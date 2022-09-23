@@ -15,4 +15,7 @@ cpp_compiler = meson.get_compiler('cpp')
 
 subdir('mm/glib')
 subdir('mm/gio')
-#subdir('mm-gtk')
+subdir('mm/cairo')
+subdir('mm/pango')
+subdir('mm/gdk')
+subdir('mm/gtk')

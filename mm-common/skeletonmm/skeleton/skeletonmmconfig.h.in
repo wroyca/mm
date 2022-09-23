@@ -2,7 +2,7 @@
 #ifndef SKELETONMMCONFIG_H_INCLUDED
 #define SKELETONMMCONFIG_H_INCLUDED
 
-#include <glibmmconfig.h>
+#include <mm/glibconfig.h>
 
 /* Define to omit deprecated API from the library. */
 #mesondefine SKELETONMM_DISABLE_DEPRECATED
