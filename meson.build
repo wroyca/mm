@@ -13,5 +13,6 @@ mm_micro_version = mm_version_array[2].to_int()
 c_compiler = meson.get_compiler('c')
 cpp_compiler = meson.get_compiler('cpp')
 
-subdir('mm-glib')
+subdir('mm/glib')
+subdir('mm/gio')
 #subdir('mm-gtk')
