@@ -1,0 +1,90 @@
+/*
+ * Copyright (C) 1998-2002 The gtkmm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+
+_CONFIGINCLUDE(gtkmmconfig.h)
+
+#include <gtkmm/widget.h>
+#include <glibmm/datetime.h>
+
+_DEFS(gtkmm,gtk)
+_PINCLUDE(gtkmm/private/widget_p.h)
+
+namespace Gtk
+{
+
+_CC_INCLUDE(gtk/gtk.h)
+
+/** Display a calendar and/or allow the user to select a date.
+ *
+ * This is a widget that displays a calendar, one month at a time.
+ *
+ * The month and year currently displayed can be altered with
+ * select_month().  The exact day can be selected from the displayed month
+ * using select_day().
+ *
+ * The way in which the calendar itself is displayed can be altered using
+ * set_display_options().
+ *
+ * The selected date can be retrieved from a GtkCalendar using get_date().
+ *
+ * If performing many 'mark' operations, the calendar can be frozen to
+ * prevent flicker, using freeze(), and 'thawed' again using thaw().
+ *
+ * The Calendar widget looks like this:
+ * @image html calendar1.png
+ *
+ * @ingroup Widgets
+ */
+class GTKMM_API Calendar : public Widget
+{
+  _CLASS_GTKOBJECT(Calendar, GtkCalendar, GTK_CALENDAR, Gtk::Widget, GtkWidget, , , GTKMM_API)
+public:
+  _CTOR_DEFAULT
+
+  _WRAP_METHOD(void select_day(const Glib::DateTime& day), gtk_calendar_select_day)
+  _WRAP_METHOD(void mark_day(guint day), gtk_calendar_mark_day)
+  _WRAP_METHOD(void unmark_day(guint day), gtk_calendar_unmark_day)
+  _WRAP_METHOD(void clear_marks(), gtk_calendar_clear_marks)
+
+  _WRAP_METHOD(void set_show_week_numbers(bool value = true), gtk_calendar_set_show_week_numbers)
+  _WRAP_METHOD(bool get_show_week_numbers() const, gtk_calendar_get_show_week_numbers)
+  _WRAP_METHOD(void set_show_heading(bool value = true), gtk_calendar_set_show_heading)
+  _WRAP_METHOD(bool get_show_heading() const, gtk_calendar_get_show_heading)
+  _WRAP_METHOD(void set_show_day_names(bool value = true), gtk_calendar_set_show_day_names)
+  _WRAP_METHOD(bool get_show_day_names() const, gtk_calendar_get_show_day_names)
+
+  _WRAP_METHOD(Glib::DateTime get_date() const, gtk_calendar_get_date)
+
+  _WRAP_METHOD(bool get_day_is_marked(guint day) const, gtk_calendar_get_day_is_marked)
+
+  // no_default_handler because GtkCalendarClass is private.
+  _WRAP_SIGNAL(void day_selected(), "day_selected", no_default_handler)
+  _WRAP_SIGNAL(void prev_month(), "prev_month", no_default_handler)
+  _WRAP_SIGNAL(void next_month(), "next_month", no_default_handler)
+  _WRAP_SIGNAL(void prev_year(), "prev_year", no_default_handler)
+  _WRAP_SIGNAL(void next_year(), "next_year", no_default_handler)
+
+  _WRAP_PROPERTY("year", int)
+  _WRAP_PROPERTY("month", int)
+  _WRAP_PROPERTY("day", int)
+  _WRAP_PROPERTY("show-heading", bool)
+  _WRAP_PROPERTY("show-day-names", bool)
+  _WRAP_PROPERTY("show-week-numbers", bool)
+};
+
+} // namespace Gtk

@@ -1,0 +1,1255 @@
+;; From GdkAppLaunchContext
+
+(define-property display
+  (of-object "GdkAppLaunchContext")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GdkClipboard
+
+(define-signal changed
+  (of-object "GdkClipboard")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-property display
+  (of-object "GdkClipboard")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property formats
+  (of-object "GdkClipboard")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property local
+  (of-object "GdkClipboard")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "TRUE")
+)
+
+(define-property content
+  (of-object "GdkClipboard")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+;; From GdkContentProvider
+
+(define-signal content-changed
+  (of-object "GdkContentProvider")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-property formats
+  (of-object "GdkContentProvider")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property storable-formats
+  (of-object "GdkContentProvider")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+;; From GdkCursor
+
+(define-property fallback
+  (of-object "GdkCursor")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property hotspot-x
+  (of-object "GdkCursor")
+  (prop-type "GParamInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "0")
+)
+
+(define-property hotspot-y
+  (of-object "GdkCursor")
+  (prop-type "GParamInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "0")
+)
+
+(define-property name
+  (of-object "GdkCursor")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property texture
+  (of-object "GdkCursor")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GdkDevice
+
+(define-signal changed
+  (of-object "GdkDevice")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal tool-changed
+  (of-object "GdkDevice")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GdkDeviceTool*" "p0")
+  )
+)
+
+(define-property display
+  (of-object "GdkDevice")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property name
+  (of-object "GdkDevice")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property source
+  (of-object "GdkDevice")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "GDK_SOURCE_MOUSE")
+)
+
+(define-property has-cursor
+  (of-object "GdkDevice")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "FALSE")
+)
+
+(define-property n-axes
+  (of-object "GdkDevice")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "0")
+)
+
+(define-property vendor-id
+  (of-object "GdkDevice")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property product-id
+  (of-object "GdkDevice")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property seat
+  (of-object "GdkDevice")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property num-touches
+  (of-object "GdkDevice")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "0")
+)
+
+(define-property tool
+  (of-object "GdkDevice")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property direction
+  (of-object "GdkDevice")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "PANGO_DIRECTION_NEUTRAL")
+)
+
+(define-property has-bidi-layouts
+  (of-object "GdkDevice")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property caps-lock-state
+  (of-object "GdkDevice")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property num-lock-state
+  (of-object "GdkDevice")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property scroll-lock-state
+  (of-object "GdkDevice")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property modifier-state
+  (of-object "GdkDevice")
+  (prop-type "GParamFlags")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "0")
+)
+
+;; From GdkDeviceTool
+
+(define-property serial
+  (of-object "GdkDeviceTool")
+  (prop-type "GParamUInt64")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "0")
+)
+
+(define-property tool-type
+  (of-object "GdkDeviceTool")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "GDK_DEVICE_TOOL_TYPE_UNKNOWN")
+)
+
+(define-property axes
+  (of-object "GdkDeviceTool")
+  (prop-type "GParamFlags")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "0")
+)
+
+(define-property hardware-id
+  (of-object "GdkDeviceTool")
+  (prop-type "GParamUInt64")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "0")
+)
+
+;; From GdkDisplay
+
+(define-signal closed
+  (of-object "GdkDisplay")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("gboolean" "p0")
+  )
+)
+
+(define-signal opened
+  (of-object "GdkDisplay")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal seat-added
+  (of-object "GdkDisplay")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GdkSeat*" "p0")
+  )
+)
+
+(define-signal seat-removed
+  (of-object "GdkDisplay")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GdkSeat*" "p0")
+  )
+)
+
+(define-signal setting-changed
+  (of-object "GdkDisplay")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("const-gchar*" "p0")
+  )
+)
+
+(define-property composited
+  (of-object "GdkDisplay")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "TRUE")
+)
+
+(define-property rgba
+  (of-object "GdkDisplay")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "TRUE")
+)
+
+(define-property input-shapes
+  (of-object "GdkDisplay")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "TRUE")
+)
+
+;; From GdkDisplayManager
+
+(define-signal display-opened
+  (of-object "GdkDisplayManager")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GdkDisplay*" "p0")
+  )
+)
+
+(define-property default-display
+  (of-object "GdkDisplayManager")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GdkDrag
+
+(define-signal cancel
+  (of-object "GdkDrag")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GdkDragCancelReason" "p0")
+  )
+)
+
+(define-signal drop-performed
+  (of-object "GdkDrag")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal dnd-finished
+  (of-object "GdkDrag")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-property content
+  (of-object "GdkDrag")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property device
+  (of-object "GdkDrag")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property display
+  (of-object "GdkDrag")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property formats
+  (of-object "GdkDrag")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property selected-action
+  (of-object "GdkDrag")
+  (prop-type "GParamFlags")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "0")
+)
+
+(define-property actions
+  (of-object "GdkDrag")
+  (prop-type "GParamFlags")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "0")
+)
+
+(define-property surface
+  (of-object "GdkDrag")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GdkDrawContext
+
+(define-property display
+  (of-object "GdkDrawContext")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property surface
+  (of-object "GdkDrawContext")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GdkDrop
+
+(define-property actions
+  (of-object "GdkDrop")
+  (prop-type "GParamFlags")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK")
+)
+
+(define-property device
+  (of-object "GdkDrop")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property display
+  (of-object "GdkDrop")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property drag
+  (of-object "GdkDrop")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property formats
+  (of-object "GdkDrop")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property surface
+  (of-object "GdkDrop")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GdkFrameClock
+
+(define-signal flush-events
+  (of-object "GdkFrameClock")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal before-paint
+  (of-object "GdkFrameClock")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal update
+  (of-object "GdkFrameClock")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal layout
+  (of-object "GdkFrameClock")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal paint
+  (of-object "GdkFrameClock")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal after-paint
+  (of-object "GdkFrameClock")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal resume-events
+  (of-object "GdkFrameClock")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+;; From GdkMonitor
+
+(define-signal invalidate
+  (of-object "GdkMonitor")
+  (return-type "void")
+  (flags "Run First")
+)
+
+(define-property display
+  (of-object "GdkMonitor")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property manufacturer
+  (of-object "GdkMonitor")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property model
+  (of-object "GdkMonitor")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property connector
+  (of-object "GdkMonitor")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property scale-factor
+  (of-object "GdkMonitor")
+  (prop-type "GParamInt")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "1")
+)
+
+(define-property geometry
+  (of-object "GdkMonitor")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property width-mm
+  (of-object "GdkMonitor")
+  (prop-type "GParamInt")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "0")
+)
+
+(define-property height-mm
+  (of-object "GdkMonitor")
+  (prop-type "GParamInt")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "0")
+)
+
+(define-property refresh-rate
+  (of-object "GdkMonitor")
+  (prop-type "GParamInt")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "0")
+)
+
+(define-property subpixel-layout
+  (of-object "GdkMonitor")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "GDK_SUBPIXEL_LAYOUT_UNKNOWN")
+)
+
+(define-property valid
+  (of-object "GdkMonitor")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "TRUE")
+)
+
+;; From GdkPaintable
+
+(define-signal invalidate-contents
+  (of-object "GdkPaintable")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal invalidate-size
+  (of-object "GdkPaintable")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+;; From GdkPixbuf
+
+(define-property colorspace
+  (of-object "GdkPixbuf")
+  (prop-type "GParamEnum")
+  (docs "The colorspace in which the samples are interpreted")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "GDK_COLORSPACE_RGB")
+)
+
+(define-property n-channels
+  (of-object "GdkPixbuf")
+  (prop-type "GParamInt")
+  (docs "The number of samples per pixel")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "3")
+)
+
+(define-property has-alpha
+  (of-object "GdkPixbuf")
+  (prop-type "GParamBoolean")
+  (docs "Whether the pixbuf has an alpha channel")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "FALSE")
+)
+
+(define-property bits-per-sample
+  (of-object "GdkPixbuf")
+  (prop-type "GParamInt")
+  (docs "The number of bits per sample")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "8")
+)
+
+(define-property width
+  (of-object "GdkPixbuf")
+  (prop-type "GParamInt")
+  (docs "The number of columns of the pixbuf")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "1")
+)
+
+(define-property height
+  (of-object "GdkPixbuf")
+  (prop-type "GParamInt")
+  (docs "The number of rows of the pixbuf")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "1")
+)
+
+(define-property rowstride
+  (of-object "GdkPixbuf")
+  (prop-type "GParamInt")
+  (docs "The number of bytes between the start of a row and the start of the next row")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "1")
+)
+
+(define-property pixels
+  (of-object "GdkPixbuf")
+  (prop-type "GParamPointer")
+  (docs "A pointer to the pixel data of the pixbuf")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property pixel-bytes
+  (of-object "GdkPixbuf")
+  (prop-type "GParamBoxed")
+  (docs "Readonly pixel data")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GdkPixbufAnimation
+
+;; From GdkPixbufLoader
+
+(define-signal closed
+  (of-object "GdkPixbufLoader")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal size-prepared
+  (of-object "GdkPixbufLoader")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("gint" "p0")
+    '("gint" "p1")
+  )
+)
+
+(define-signal area-prepared
+  (of-object "GdkPixbufLoader")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal area-updated
+  (of-object "GdkPixbufLoader")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("gint" "p0")
+    '("gint" "p1")
+    '("gint" "p2")
+    '("gint" "p3")
+  )
+)
+
+;; From GdkPopup
+
+(define-property autohide
+  (of-object "GdkPopup")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "FALSE")
+)
+
+(define-property parent
+  (of-object "GdkPopup")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GdkSeat
+
+(define-signal device-added
+  (of-object "GdkSeat")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GdkDevice*" "p0")
+  )
+)
+
+(define-signal device-removed
+  (of-object "GdkSeat")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GdkDevice*" "p0")
+  )
+)
+
+(define-signal tool-added
+  (of-object "GdkSeat")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GdkDeviceTool*" "p0")
+  )
+)
+
+(define-signal tool-removed
+  (of-object "GdkSeat")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GdkDeviceTool*" "p0")
+  )
+)
+
+(define-property display
+  (of-object "GdkSeat")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GdkSurface
+
+(define-signal event
+  (of-object "GdkSurface")
+  (return-type "gboolean")
+  (flags "Run Last")
+  (parameters
+    '("GdkEvent*" "p0")
+  )
+)
+
+(define-signal layout
+  (of-object "GdkSurface")
+  (return-type "void")
+  (flags "Run First")
+  (parameters
+    '("gint" "p0")
+    '("gint" "p1")
+  )
+)
+
+(define-signal render
+  (of-object "GdkSurface")
+  (return-type "gboolean")
+  (flags "Run Last")
+  (parameters
+    '("CairoRegion*" "p0")
+  )
+)
+
+(define-signal enter-monitor
+  (of-object "GdkSurface")
+  (return-type "void")
+  (flags "Run First")
+  (parameters
+    '("GdkMonitor*" "p0")
+  )
+)
+
+(define-signal leave-monitor
+  (of-object "GdkSurface")
+  (return-type "void")
+  (flags "Run First")
+  (parameters
+    '("GdkMonitor*" "p0")
+  )
+)
+
+(define-property cursor
+  (of-object "GdkSurface")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property display
+  (of-object "GdkSurface")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property frame-clock
+  (of-object "GdkSurface")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property mapped
+  (of-object "GdkSurface")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property width
+  (of-object "GdkSurface")
+  (prop-type "GParamInt")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "0")
+)
+
+(define-property height
+  (of-object "GdkSurface")
+  (prop-type "GParamInt")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "0")
+)
+
+(define-property scale-factor
+  (of-object "GdkSurface")
+  (prop-type "GParamInt")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "1")
+)
+
+;; From GdkTexture
+
+(define-property width
+  (of-object "GdkTexture")
+  (prop-type "GParamInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "1")
+)
+
+(define-property height
+  (of-object "GdkTexture")
+  (prop-type "GParamInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "1")
+)
+
+;; From GdkToplevel
+
+(define-signal compute-size
+  (of-object "GdkToplevel")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GdkToplevelSize*" "p0")
+  )
+)
+
+(define-property decorated
+  (of-object "GdkToplevel")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property deletable
+  (of-object "GdkToplevel")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property fullscreen-mode
+  (of-object "GdkToplevel")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "GDK_FULLSCREEN_ON_CURRENT_MONITOR")
+)
+
+(define-property icon-list
+  (of-object "GdkToplevel")
+  (prop-type "GParamPointer")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property modal
+  (of-object "GdkToplevel")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property shortcuts-inhibited
+  (of-object "GdkToplevel")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property startup-id
+  (of-object "GdkToplevel")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property state
+  (of-object "GdkToplevel")
+  (prop-type "GParamFlags")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "0")
+)
+
+(define-property title
+  (of-object "GdkToplevel")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property transient-for
+  (of-object "GdkToplevel")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GdkGLContext
+
+(define-property allowed-apis
+  (of-object "GdkGLContext")
+  (prop-type "GParamFlags")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "GDK_GL_API_GL | GDK_GL_API_GLES")
+)
+
+(define-property api
+  (of-object "GdkGLContext")
+  (prop-type "GParamFlags")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "0")
+)
+
+(define-property shared-context
+  (of-object "GdkGLContext")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (deprecated #t)
+)
+
