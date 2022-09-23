@@ -1,0 +1,36 @@
+/* This file is part of cairomm. */
+
+/* Define to omit deprecated API from the library. */
+#undef CAIROMM_DISABLE_DEPRECATED
+
+/* Defined when the --enable-api-exceptions configure argument was given */
+#undef CAIROMM_EXCEPTIONS_ENABLED
+
+/* Major version number of cairomm. */
+#undef CAIROMM_MAJOR_VERSION
+
+/* Minor version number of cairomm. */
+#undef CAIROMM_MINOR_VERSION
+
+/* Micro version number of cairomm. */
+#undef CAIROMM_MICRO_VERSION
+
+/* Enable DLL-specific stuff only when not building a static library */
+#if !defined(__CYGWIN__) && \
+    (defined(__MINGW32__) || defined (_MSC_VER)) && \
+    !defined(CAIROMM_STATIC_LIB)
+# define CAIROMM_DLL 1
+#endif
+
+#ifdef CAIROMM_DLL
+# if defined(CAIROMM_BUILD)
+#  define CAIROMM_API __declspec(dllexport)
+# elif !defined (__GNUC__)
+#  define CAIROMM_API __declspec(dllimport)
+# else /* don't dllimport classes/methods on GCC/MinGW */
+#  define CAIROMM_API
+# endif
+/* Build a static or non-native-Windows library */
+#else
+# define CAIROMM_API
+#endif /* CAIROMM_DLL */
