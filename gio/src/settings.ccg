@@ -1,0 +1,69 @@
+/* Copyright (C) 2010 The giomm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include <gio/gio.h>
+#include <glibmm/exceptionhandler.h>
+#include <glibmm/vectorutils.h>
+#include <giomm/settingsschema.h>
+
+namespace Gio
+{
+
+void
+Settings::get_value(const Glib::ustring& key, Glib::VariantBase& value) const
+{
+  const auto g_value = g_settings_get_value(const_cast<GSettings*>(gobj()), key.c_str());
+  if (!g_value)
+    return;
+
+  value.init(g_value, false /* don't take a reference */);
+}
+
+bool
+Settings::get_user_value(const Glib::ustring& key, Glib::VariantBase& value) const
+{
+  const auto g_value = g_settings_get_user_value(const_cast<GSettings*>(gobj()), key.c_str());
+  if (!g_value)
+    return false;
+
+  value.init(g_value, false /* don't take a reference */);
+  return true;
+}
+
+void
+Settings::get_default_value(const Glib::ustring& key, Glib::VariantBase& value) const
+{
+  const auto g_value = g_settings_get_default_value(const_cast<GSettings*>(gobj()), key.c_str());
+  if (!g_value)
+    return;
+
+  value.init(g_value, false /* don't take a reference */);
+}
+void
+Settings::bind(
+  const Glib::ustring& key, const Glib::PropertyProxy_Base& property_proxy, BindFlags flags)
+{
+  bind(key, property_proxy.get_object(), property_proxy.get_name(), flags);
+}
+
+void
+Settings::bind_writable(
+  const Glib::ustring& key, const Glib::PropertyProxy_Base& property_proxy, bool inverted)
+{
+  bind_writable(key, property_proxy.get_object(), property_proxy.get_name(), inverted);
+}
+
+}

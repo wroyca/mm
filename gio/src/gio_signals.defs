@@ -1,0 +1,3305 @@
+;; From GAsyncResult
+
+;; From GAction
+
+(define-property enabled
+  (of-object "GAction")
+  (prop-type "GParamBoolean")
+  (docs "If the action can be activated")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "TRUE")
+)
+
+(define-property name
+  (of-object "GAction")
+  (prop-type "GParamString")
+  (docs "The name used to invoke the action")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property parameter-type
+  (of-object "GAction")
+  (prop-type "GParamBoxed")
+  (docs "The type of GVariant passed to activate()")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property state
+  (of-object "GAction")
+  (prop-type "GParamVariant")
+  (docs "The state the action is in")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property state-type
+  (of-object "GAction")
+  (prop-type "GParamBoxed")
+  (docs "The type of the state kept by the action")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+;; From GActionGroup
+
+(define-signal action-added
+  (of-object "GActionGroup")
+  (return-type "void")
+  (flags "Run Last")
+  (detailed #t)
+  (parameters
+    '("const-gchar*" "p0")
+  )
+)
+
+(define-signal action-removed
+  (of-object "GActionGroup")
+  (return-type "void")
+  (flags "Run Last")
+  (detailed #t)
+  (parameters
+    '("const-gchar*" "p0")
+  )
+)
+
+(define-signal action-enabled-changed
+  (of-object "GActionGroup")
+  (return-type "void")
+  (flags "Run Last")
+  (detailed #t)
+  (parameters
+    '("const-gchar*" "p0")
+    '("gboolean" "p1")
+  )
+)
+
+(define-signal action-state-changed
+  (of-object "GActionGroup")
+  (return-type "void")
+  (flags "Run Last, Must Collect")
+  (detailed #t)
+  (parameters
+    '("const-gchar*" "p0")
+    '("GVariant*" "p1")
+  )
+)
+
+;; From GApplication
+
+(define-signal startup
+  (of-object "GApplication")
+  (return-type "void")
+  (flags "Run First")
+)
+
+(define-signal shutdown
+  (of-object "GApplication")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal activate
+  (of-object "GApplication")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal open
+  (of-object "GApplication")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("gpointer" "p0")
+    '("gint" "p1")
+    '("const-gchar*" "p2")
+  )
+)
+
+(define-signal command-line
+  (of-object "GApplication")
+  (return-type "gint")
+  (flags "Run Last")
+  (parameters
+    '("GApplicationCommandLine*" "p0")
+  )
+)
+
+(define-signal handle-local-options
+  (of-object "GApplication")
+  (return-type "gint")
+  (flags "Run Last")
+  (parameters
+    '("GVariantDict*" "p0")
+  )
+)
+
+(define-signal name-lost
+  (of-object "GApplication")
+  (return-type "gboolean")
+  (flags "Run Last")
+)
+
+(define-property application-id
+  (of-object "GApplication")
+  (prop-type "GParamString")
+  (docs "The unique identifier for the application")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property flags
+  (of-object "GApplication")
+  (prop-type "GParamFlags")
+  (docs "Flags specifying the behaviour of the application")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "G_APPLICATION_FLAGS_NONE")
+)
+
+(define-property resource-base-path
+  (of-object "GApplication")
+  (prop-type "GParamString")
+  (docs "The base resource path for the application")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property is-registered
+  (of-object "GApplication")
+  (prop-type "GParamBoolean")
+  (docs "If g_application_register() has been called")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property is-remote
+  (of-object "GApplication")
+  (prop-type "GParamBoolean")
+  (docs "If this application instance is remote")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property inactivity-timeout
+  (of-object "GApplication")
+  (prop-type "GParamUInt")
+  (docs "Time (ms) to stay alive after becoming idle")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "0")
+)
+
+(define-property action-group
+  (of-object "GApplication")
+  (prop-type "GParamObject")
+  (docs "The group of actions that the application exports")
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+  (deprecated #t)
+)
+
+(define-property is-busy
+  (of-object "GApplication")
+  (prop-type "GParamBoolean")
+  (docs "If this application is currently marked busy")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+;; From GAppInfoMonitor
+
+(define-signal changed
+  (of-object "GAppInfoMonitor")
+  (return-type "void")
+  (flags "Run First")
+)
+
+;; From GCancellable
+
+(define-signal cancelled
+  (of-object "GCancellable")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+;; From GBufferedInputStream
+
+(define-property buffer-size
+  (of-object "GBufferedInputStream")
+  (prop-type "GParamUInt")
+  (docs "The size of the backend buffer")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "4096")
+)
+
+;; From GBufferedOutputStream
+
+(define-property buffer-size
+  (of-object "GBufferedOutputStream")
+  (prop-type "GParamUInt")
+  (docs "The size of the backend buffer")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "4096")
+)
+
+(define-property auto-grow
+  (of-object "GBufferedOutputStream")
+  (prop-type "GParamBoolean")
+  (docs "Whether the buffer should automatically grow")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+;; From GCharsetConverter
+
+(define-property from-charset
+  (of-object "GCharsetConverter")
+  (prop-type "GParamString")
+  (docs "The character encoding to convert from")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property to-charset
+  (of-object "GCharsetConverter")
+  (prop-type "GParamString")
+  (docs "The character encoding to convert to")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property use-fallback
+  (of-object "GCharsetConverter")
+  (prop-type "GParamBoolean")
+  (docs "Use fallback (of form \<hexval>) for invalid bytes")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+;; From GConverterInputStream
+
+(define-property converter
+  (of-object "GConverterInputStream")
+  (prop-type "GParamObject")
+  (docs "The converter object")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GConverterOutputStream
+
+(define-property converter
+  (of-object "GConverterOutputStream")
+  (prop-type "GParamObject")
+  (docs "The converter object")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GDataInputStream
+
+(define-property byte-order
+  (of-object "GDataInputStream")
+  (prop-type "GParamEnum")
+  (docs "The byte order")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "G_DATA_STREAM_BYTE_ORDER_BIG_ENDIAN")
+)
+
+(define-property newline-type
+  (of-object "GDataInputStream")
+  (prop-type "GParamEnum")
+  (docs "The accepted types of line ending")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "G_DATA_STREAM_NEWLINE_TYPE_LF")
+)
+
+;; From GDataOutputStream
+
+(define-property byte-order
+  (of-object "GDataOutputStream")
+  (prop-type "GParamEnum")
+  (docs "The byte order")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "G_DATA_STREAM_BYTE_ORDER_BIG_ENDIAN")
+)
+
+;; From GDrive
+
+(define-signal changed
+  (of-object "GDrive")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal disconnected
+  (of-object "GDrive")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal eject-button
+  (of-object "GDrive")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal stop-button
+  (of-object "GDrive")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+;; From GFile
+
+;; From GFileEnumerator
+
+(define-property container
+  (of-object "GFileEnumerator")
+  (prop-type "GParamObject")
+  (docs "The container that is being enumerated")
+  (readable #f)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GFileInfo
+
+;; From GFileIcon
+
+(define-property file
+  (of-object "GFileIcon")
+  (prop-type "GParamObject")
+  (docs "The file containing the icon")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GFileMonitor
+
+(define-signal changed
+  (of-object "GFileMonitor")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GFile*" "p0")
+    '("GFile*" "p1")
+    '("GFileMonitorEvent" "p2")
+  )
+)
+
+(define-property rate-limit
+  (of-object "GFileMonitor")
+  (prop-type "GParamInt")
+  (docs "The limit of the monitor to watch for changes, in milliseconds")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "800")
+)
+
+(define-property cancelled
+  (of-object "GFileMonitor")
+  (prop-type "GParamBoolean")
+  (docs "Whether the monitor has been cancelled")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+;; From GFilenameCompleter
+
+(define-signal got-completion-data
+  (of-object "GFilenameCompleter")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+;; From GFileInputStream
+
+;; From GFileOutputStream
+
+;; From GFilterInputStream
+
+(define-property base-stream
+  (of-object "GFilterInputStream")
+  (prop-type "GParamObject")
+  (docs "The underlying base stream on which the io ops will be done.")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property close-base-stream
+  (of-object "GFilterInputStream")
+  (prop-type "GParamBoolean")
+  (docs "If the base stream should be closed when the filter stream is closed.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "TRUE")
+)
+
+;; From GFilterOutputStream
+
+(define-property base-stream
+  (of-object "GFilterOutputStream")
+  (prop-type "GParamObject")
+  (docs "The underlying base stream on which the io ops will be done.")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property close-base-stream
+  (of-object "GFilterOutputStream")
+  (prop-type "GParamBoolean")
+  (docs "If the base stream should be closed when the filter stream is closed.")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "TRUE")
+)
+
+;; From GUnixCredentialsMessage
+
+(define-property credentials
+  (of-object "GUnixCredentialsMessage")
+  (prop-type "GParamObject")
+  (docs "The credentials stored in the message")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GUnixFDMessage
+
+(define-property fd-list
+  (of-object "GUnixFDMessage")
+  (prop-type "GParamObject")
+  (docs "The GUnixFDList object to send with the message")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GUnixInputStream
+
+(define-property fd
+  (of-object "GUnixInputStream")
+  (prop-type "GParamInt")
+  (docs "The file descriptor to read from")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "-1")
+)
+
+(define-property close-fd
+  (of-object "GUnixInputStream")
+  (prop-type "GParamBoolean")
+  (docs "Whether to close the file descriptor when the stream is closed")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "TRUE")
+)
+
+;; From GUnixOutputStream
+
+(define-property fd
+  (of-object "GUnixOutputStream")
+  (prop-type "GParamInt")
+  (docs "The file descriptor to write to")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "-1")
+)
+
+(define-property close-fd
+  (of-object "GUnixOutputStream")
+  (prop-type "GParamBoolean")
+  (docs "Whether to close the file descriptor when the stream is closed")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "TRUE")
+)
+
+;; From GUnixSocketAddress
+
+(define-property path
+  (of-object "GUnixSocketAddress")
+  (prop-type "GParamString")
+  (docs "UNIX socket path")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property path-as-array
+  (of-object "GUnixSocketAddress")
+  (prop-type "GParamBoxed")
+  (docs "UNIX socket path, as byte array")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property abstract
+  (of-object "GUnixSocketAddress")
+  (prop-type "GParamBoolean")
+  (docs "Whether or not this is an abstract address")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "FALSE")
+)
+
+(define-property address-type
+  (of-object "GUnixSocketAddress")
+  (prop-type "GParamEnum")
+  (docs "The type of UNIX socket address")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "G_UNIX_SOCKET_ADDRESS_PATH")
+)
+
+;; From GInputStream
+
+;; From GListModel
+
+(define-signal items-changed
+  (of-object "GListModel")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("guint" "p0")
+    '("guint" "p1")
+    '("guint" "p2")
+  )
+)
+
+;; From GListStore
+
+(define-property item-type
+  (of-object "GListStore")
+  (prop-type "GParamGType")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property n-items
+  (of-object "GListStore")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "0")
+)
+
+;; From GLoadableIcon
+
+;; From GMemoryInputStream
+
+;; From GMemoryOutputStream
+
+(define-property data
+  (of-object "GMemoryOutputStream")
+  (prop-type "GParamPointer")
+  (docs "Pointer to buffer where data will be written.")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property size
+  (of-object "GMemoryOutputStream")
+  (prop-type "GParamULong")
+  (docs "Current size of the data buffer.")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "0")
+)
+
+(define-property data-size
+  (of-object "GMemoryOutputStream")
+  (prop-type "GParamULong")
+  (docs "Size of data written to the buffer.")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "0")
+)
+
+(define-property realloc-function
+  (of-object "GMemoryOutputStream")
+  (prop-type "GParamPointer")
+  (docs "Function with realloc semantics called to enlarge the buffer.")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property destroy-function
+  (of-object "GMemoryOutputStream")
+  (prop-type "GParamPointer")
+  (docs "Function called with the buffer as argument when the stream is destroyed.")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GMenu
+
+;; From GMenuModel
+
+(define-signal items-changed
+  (of-object "GMenuModel")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("gint" "p0")
+    '("gint" "p1")
+    '("gint" "p2")
+  )
+)
+
+;; From GMount
+
+(define-signal changed
+  (of-object "GMount")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal unmounted
+  (of-object "GMount")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal pre-unmount
+  (of-object "GMount")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+;; From GMountOperation
+
+(define-signal ask-password
+  (of-object "GMountOperation")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("const-gchar*" "p0")
+    '("const-gchar*" "p1")
+    '("const-gchar*" "p2")
+    '("GAskPasswordFlags" "p3")
+  )
+)
+
+(define-signal ask-question
+  (of-object "GMountOperation")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("const-gchar*" "p0")
+    '("const-gchar**" "p1")
+  )
+)
+
+(define-signal reply
+  (of-object "GMountOperation")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GMountOperationResult" "p0")
+  )
+)
+
+(define-signal aborted
+  (of-object "GMountOperation")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal show-processes
+  (of-object "GMountOperation")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("const-gchar*" "p0")
+    '("GArray*" "p1")
+    '("GStrv*" "p2")
+  )
+)
+
+(define-signal show-unmount-progress
+  (of-object "GMountOperation")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("const-gchar*" "p0")
+    '("gint64" "p1")
+    '("gint64" "p2")
+  )
+)
+
+(define-property username
+  (of-object "GMountOperation")
+  (prop-type "GParamString")
+  (docs "The user name")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property password
+  (of-object "GMountOperation")
+  (prop-type "GParamString")
+  (docs "The password")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property anonymous
+  (of-object "GMountOperation")
+  (prop-type "GParamBoolean")
+  (docs "Whether to use an anonymous user")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property domain
+  (of-object "GMountOperation")
+  (prop-type "GParamString")
+  (docs "The domain of the mount operation")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property password-save
+  (of-object "GMountOperation")
+  (prop-type "GParamEnum")
+  (docs "How passwords should be saved")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "G_PASSWORD_SAVE_NEVER")
+)
+
+(define-property choice
+  (of-object "GMountOperation")
+  (prop-type "GParamInt")
+  (docs "The users choice")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "0")
+)
+
+(define-property is-tcrypt-hidden-volume
+  (of-object "GMountOperation")
+  (prop-type "GParamBoolean")
+  (docs "Whether to unlock a TCRYPT hidden volume. See https://www.veracrypt.fr/en/Hidden%20Volume.html.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property is-tcrypt-system-volume
+  (of-object "GMountOperation")
+  (prop-type "GParamBoolean")
+  (docs "Whether to unlock a TCRYPT system volume. Only supported for unlocking Windows system volumes. See https://www.veracrypt.fr/en/System%20Encryption.html.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property pim
+  (of-object "GMountOperation")
+  (prop-type "GParamUInt")
+  (docs "The VeraCrypt PIM value")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "0")
+)
+
+;; From GNotification
+
+;; From GPermission
+
+(define-property allowed
+  (of-object "GPermission")
+  (prop-type "GParamBoolean")
+  (docs "If the caller is allowed to perform the action")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property can-acquire
+  (of-object "GPermission")
+  (prop-type "GParamBoolean")
+  (docs "If calling g_permission_acquire() makes sense")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property can-release
+  (of-object "GPermission")
+  (prop-type "GParamBoolean")
+  (docs "If calling g_permission_release() makes sense")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+;; From GPropertyAction
+
+(define-property name
+  (of-object "GPropertyAction")
+  (prop-type "GParamString")
+  (docs "The name used to invoke the action")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property parameter-type
+  (of-object "GPropertyAction")
+  (prop-type "GParamBoxed")
+  (docs "The type of GVariant passed to activate()")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property enabled
+  (of-object "GPropertyAction")
+  (prop-type "GParamBoolean")
+  (docs "If the action can be activated")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "TRUE")
+)
+
+(define-property state-type
+  (of-object "GPropertyAction")
+  (prop-type "GParamBoxed")
+  (docs "The type of the state kept by the action")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property state
+  (of-object "GPropertyAction")
+  (prop-type "GParamVariant")
+  (docs "The state the action is in")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property object
+  (of-object "GPropertyAction")
+  (prop-type "GParamObject")
+  (docs "The object with the property to wrap")
+  (readable #f)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property property-name
+  (of-object "GPropertyAction")
+  (prop-type "GParamString")
+  (docs "The name of the property to wrap")
+  (readable #f)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property invert-boolean
+  (of-object "GPropertyAction")
+  (prop-type "GParamBoolean")
+  (docs "Whether to invert the value of a boolean property")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "FALSE")
+)
+
+;; From GProxy
+
+;; From GProxyAddress
+
+(define-property protocol
+  (of-object "GProxyAddress")
+  (prop-type "GParamString")
+  (docs "The proxy protocol")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property destination-protocol
+  (of-object "GProxyAddress")
+  (prop-type "GParamString")
+  (docs "The proxy destination protocol")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property destination-hostname
+  (of-object "GProxyAddress")
+  (prop-type "GParamString")
+  (docs "The proxy destination hostname")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property destination-port
+  (of-object "GProxyAddress")
+  (prop-type "GParamUInt")
+  (docs "The proxy destination port")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "0")
+)
+
+(define-property username
+  (of-object "GProxyAddress")
+  (prop-type "GParamString")
+  (docs "The proxy username")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property password
+  (of-object "GProxyAddress")
+  (prop-type "GParamString")
+  (docs "The proxy password")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property uri
+  (of-object "GProxyAddress")
+  (prop-type "GParamString")
+  (docs "The proxy’s URI")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+;; From GProxyAddressEnumerator
+
+(define-property uri
+  (of-object "GProxyAddressEnumerator")
+  (prop-type "GParamString")
+  (docs "The destination URI, use none:// for generic socket")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property default-port
+  (of-object "GProxyAddressEnumerator")
+  (prop-type "GParamUInt")
+  (docs "The default port to use if uri does not specify one")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "0")
+)
+
+(define-property connectable
+  (of-object "GProxyAddressEnumerator")
+  (prop-type "GParamObject")
+  (docs "The connectable being enumerated.")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property proxy-resolver
+  (of-object "GProxyAddressEnumerator")
+  (prop-type "GParamObject")
+  (docs "The proxy resolver to use.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GProxyResolver
+
+;; From GSeekable
+
+;; From GSettings
+
+(define-signal changed
+  (of-object "GSettings")
+  (return-type "void")
+  (flags "Run Last")
+  (detailed #t)
+  (parameters
+    '("const-gchar*" "p0")
+  )
+)
+
+(define-signal change-event
+  (of-object "GSettings")
+  (return-type "gboolean")
+  (flags "Run Last")
+  (parameters
+    '("gpointer" "p0")
+    '("gint" "p1")
+  )
+)
+
+(define-signal writable-changed
+  (of-object "GSettings")
+  (return-type "void")
+  (flags "Run Last")
+  (detailed #t)
+  (parameters
+    '("const-gchar*" "p0")
+  )
+)
+
+(define-signal writable-change-event
+  (of-object "GSettings")
+  (return-type "gboolean")
+  (flags "Run Last")
+  (parameters
+    '("GQuark" "p0")
+  )
+)
+
+(define-property settings-schema
+  (of-object "GSettings")
+  (prop-type "GParamBoxed")
+  (docs "The GSettingsSchema for this settings object")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property schema
+  (of-object "GSettings")
+  (prop-type "GParamString")
+  (docs "The name of the schema for this settings object")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (deprecated #t)
+  (default-value "")
+)
+
+(define-property schema-id
+  (of-object "GSettings")
+  (prop-type "GParamString")
+  (docs "The name of the schema for this settings object")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property backend
+  (of-object "GSettings")
+  (prop-type "GParamObject")
+  (docs "The GSettingsBackend for this settings object")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property path
+  (of-object "GSettings")
+  (prop-type "GParamString")
+  (docs "The path within the backend where the settings are")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property has-unapplied
+  (of-object "GSettings")
+  (prop-type "GParamBoolean")
+  (docs "TRUE if there are outstanding changes to apply()")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property delay-apply
+  (of-object "GSettings")
+  (prop-type "GParamBoolean")
+  (docs "Whether this settings object is in “delay-apply” mode")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+;; From GSettingsBackend
+
+;; From GSimpleAsyncResult
+
+;; From GSimpleAction
+
+(define-signal activate
+  (of-object "GSimpleAction")
+  (return-type "void")
+  (flags "Run Last, Must Collect")
+  (parameters
+    '("GVariant*" "p0")
+  )
+)
+
+(define-signal change-state
+  (of-object "GSimpleAction")
+  (return-type "void")
+  (flags "Run Last, Must Collect")
+  (parameters
+    '("GVariant*" "p0")
+  )
+)
+
+(define-property name
+  (of-object "GSimpleAction")
+  (prop-type "GParamString")
+  (docs "The name used to invoke the action")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property parameter-type
+  (of-object "GSimpleAction")
+  (prop-type "GParamBoxed")
+  (docs "The type of GVariant passed to activate()")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property enabled
+  (of-object "GSimpleAction")
+  (prop-type "GParamBoolean")
+  (docs "If the action can be activated")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "TRUE")
+)
+
+(define-property state-type
+  (of-object "GSimpleAction")
+  (prop-type "GParamBoxed")
+  (docs "The type of the state kept by the action")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property state
+  (of-object "GSimpleAction")
+  (prop-type "GParamVariant")
+  (docs "The state the action is in")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GSimpleIOStream
+
+(define-property input-stream
+  (of-object "GSimpleIOStream")
+  (prop-type "GParamObject")
+  (docs "The GInputStream to read from")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property output-stream
+  (of-object "GSimpleIOStream")
+  (prop-type "GParamObject")
+  (docs "The GOutputStream to write to")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GSubprocess
+
+(define-property flags
+  (of-object "GSubprocess")
+  (prop-type "GParamFlags")
+  (docs "Subprocess flags")
+  (readable #f)
+  (writable #t)
+  (construct-only #t)
+  (default-value "G_SUBPROCESS_FLAGS_NONE")
+)
+
+(define-property argv
+  (of-object "GSubprocess")
+  (prop-type "GParamBoxed")
+  (docs "Argument vector")
+  (readable #f)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GSubprocessLauncher
+
+(define-property flags
+  (of-object "GSubprocessLauncher")
+  (prop-type "GParamFlags")
+  (docs "GSubprocessFlags for launched processes")
+  (readable #f)
+  (writable #t)
+  (construct-only #t)
+  (default-value "G_SUBPROCESS_FLAGS_NONE")
+)
+
+;; From GThemedIcon
+
+(define-property name
+  (of-object "GThemedIcon")
+  (prop-type "GParamString")
+  (docs "The name of the icon")
+  (readable #f)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property names
+  (of-object "GThemedIcon")
+  (prop-type "GParamBoxed")
+  (docs "An array containing the icon names")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property use-default-fallbacks
+  (of-object "GThemedIcon")
+  (prop-type "GParamBoolean")
+  (docs "Whether to use default fallbacks found by shortening the name at “-” characters. Ignores names after the first if multiple names are given.")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "FALSE")
+)
+
+;; From GVolume
+
+(define-signal changed
+  (of-object "GVolume")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+(define-signal removed
+  (of-object "GVolume")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+;; From GVolumeMonitor
+
+(define-signal volume-added
+  (of-object "GVolumeMonitor")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GVolume*" "p0")
+  )
+)
+
+(define-signal volume-removed
+  (of-object "GVolumeMonitor")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GVolume*" "p0")
+  )
+)
+
+(define-signal volume-changed
+  (of-object "GVolumeMonitor")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GVolume*" "p0")
+  )
+)
+
+(define-signal mount-added
+  (of-object "GVolumeMonitor")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GMount*" "p0")
+  )
+)
+
+(define-signal mount-removed
+  (of-object "GVolumeMonitor")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GMount*" "p0")
+  )
+)
+
+(define-signal mount-pre-unmount
+  (of-object "GVolumeMonitor")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GMount*" "p0")
+  )
+)
+
+(define-signal mount-changed
+  (of-object "GVolumeMonitor")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GMount*" "p0")
+  )
+)
+
+(define-signal drive-connected
+  (of-object "GVolumeMonitor")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GDrive*" "p0")
+  )
+)
+
+(define-signal drive-disconnected
+  (of-object "GVolumeMonitor")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GDrive*" "p0")
+  )
+)
+
+(define-signal drive-changed
+  (of-object "GVolumeMonitor")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GDrive*" "p0")
+  )
+)
+
+(define-signal drive-eject-button
+  (of-object "GVolumeMonitor")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GDrive*" "p0")
+  )
+)
+
+(define-signal drive-stop-button
+  (of-object "GVolumeMonitor")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GDrive*" "p0")
+  )
+)
+
+;; From GZlibCompressor
+
+(define-property format
+  (of-object "GZlibCompressor")
+  (prop-type "GParamEnum")
+  (docs "The format of the compressed data")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "G_ZLIB_COMPRESSOR_FORMAT_ZLIB")
+)
+
+(define-property level
+  (of-object "GZlibCompressor")
+  (prop-type "GParamInt")
+  (docs "The level of compression from 0 (no compression) to 9 (most compression), -1 for the default level")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "-1")
+)
+
+(define-property file-info
+  (of-object "GZlibCompressor")
+  (prop-type "GParamObject")
+  (docs "File info")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GZlibDecompressor
+
+(define-property format
+  (of-object "GZlibDecompressor")
+  (prop-type "GParamEnum")
+  (docs "The format of the compressed data")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "G_ZLIB_COMPRESSOR_FORMAT_ZLIB")
+)
+
+(define-property file-info
+  (of-object "GZlibDecompressor")
+  (prop-type "GParamObject")
+  (docs "File info")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+;; From GInetAddress
+
+(define-property family
+  (of-object "GInetAddress")
+  (prop-type "GParamEnum")
+  (docs "The address family (IPv4 or IPv6)")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "G_SOCKET_FAMILY_INVALID")
+)
+
+(define-property bytes
+  (of-object "GInetAddress")
+  (prop-type "GParamPointer")
+  (docs "The raw address data")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property is-any
+  (of-object "GInetAddress")
+  (prop-type "GParamBoolean")
+  (docs "Whether this is the 'any' address for its family")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property is-loopback
+  (of-object "GInetAddress")
+  (prop-type "GParamBoolean")
+  (docs "Whether this is the loopback address for its family")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property is-link-local
+  (of-object "GInetAddress")
+  (prop-type "GParamBoolean")
+  (docs "Whether this is a link-local address")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property is-site-local
+  (of-object "GInetAddress")
+  (prop-type "GParamBoolean")
+  (docs "Whether this is a site-local address")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property is-multicast
+  (of-object "GInetAddress")
+  (prop-type "GParamBoolean")
+  (docs "Whether this is a multicast address")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property is-mc-global
+  (of-object "GInetAddress")
+  (prop-type "GParamBoolean")
+  (docs "Whether this is a global multicast address")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property is-mc-link-local
+  (of-object "GInetAddress")
+  (prop-type "GParamBoolean")
+  (docs "Whether this is a link-local multicast address")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property is-mc-node-local
+  (of-object "GInetAddress")
+  (prop-type "GParamBoolean")
+  (docs "Whether this is a node-local multicast address")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property is-mc-org-local
+  (of-object "GInetAddress")
+  (prop-type "GParamBoolean")
+  (docs "Whether this is an organization-local multicast address")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property is-mc-site-local
+  (of-object "GInetAddress")
+  (prop-type "GParamBoolean")
+  (docs "Whether this is a site-local multicast address")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+;; From GInetSocketAddress
+
+(define-property address
+  (of-object "GInetSocketAddress")
+  (prop-type "GParamObject")
+  (docs "The address")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property port
+  (of-object "GInetSocketAddress")
+  (prop-type "GParamUInt")
+  (docs "The port")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "0")
+)
+
+(define-property flowinfo
+  (of-object "GInetSocketAddress")
+  (prop-type "GParamUInt")
+  (docs "IPv6 flow info")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "0")
+)
+
+(define-property scope-id
+  (of-object "GInetSocketAddress")
+  (prop-type "GParamUInt")
+  (docs "IPv6 scope ID")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "0")
+)
+
+;; From GSocketAddress
+
+(define-property family
+  (of-object "GSocketAddress")
+  (prop-type "GParamEnum")
+  (docs "The family of the socket address")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "G_SOCKET_FAMILY_INVALID")
+)
+
+;; From GSocketAddressEnumerator
+
+;; From GSocketConnectable
+
+;; GSrvTarget is neither a GObject nor a GInterface. Not checked for signals and properties.
+
+;; From GResolver
+
+(define-signal reload
+  (of-object "GResolver")
+  (return-type "void")
+  (flags "Run Last")
+)
+
+;; From GNetworkAddress
+
+(define-property hostname
+  (of-object "GNetworkAddress")
+  (prop-type "GParamString")
+  (docs "Hostname to resolve")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property port
+  (of-object "GNetworkAddress")
+  (prop-type "GParamUInt")
+  (docs "Network port")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "0")
+)
+
+(define-property scheme
+  (of-object "GNetworkAddress")
+  (prop-type "GParamString")
+  (docs "URI Scheme")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+;; From GNetworkMonitor
+
+(define-signal network-changed
+  (of-object "GNetworkMonitor")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("gboolean" "p0")
+  )
+)
+
+(define-property connectivity
+  (of-object "GNetworkMonitor")
+  (prop-type "GParamEnum")
+  (docs "Level of network connectivity")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "G_NETWORK_CONNECTIVITY_FULL")
+)
+
+(define-property network-available
+  (of-object "GNetworkMonitor")
+  (prop-type "GParamBoolean")
+  (docs "Whether the network is available")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property network-metered
+  (of-object "GNetworkMonitor")
+  (prop-type "GParamBoolean")
+  (docs "Whether the network is metered")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+;; From GNetworkService
+
+(define-property service
+  (of-object "GNetworkService")
+  (prop-type "GParamString")
+  (docs "Service name, eg 'ldap'")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property protocol
+  (of-object "GNetworkService")
+  (prop-type "GParamString")
+  (docs "Network protocol, eg 'tcp'")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property domain
+  (of-object "GNetworkService")
+  (prop-type "GParamString")
+  (docs "Network domain, eg, 'example.com'")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property scheme
+  (of-object "GNetworkService")
+  (prop-type "GParamString")
+  (docs "Network scheme (default is to use service)")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "")
+)
+
+;; From GSettings
+
+(define-signal changed
+  (of-object "GSettings")
+  (return-type "void")
+  (flags "Run Last")
+  (detailed #t)
+  (parameters
+    '("const-gchar*" "p0")
+  )
+)
+
+(define-signal change-event
+  (of-object "GSettings")
+  (return-type "gboolean")
+  (flags "Run Last")
+  (parameters
+    '("gpointer" "p0")
+    '("gint" "p1")
+  )
+)
+
+(define-signal writable-changed
+  (of-object "GSettings")
+  (return-type "void")
+  (flags "Run Last")
+  (detailed #t)
+  (parameters
+    '("const-gchar*" "p0")
+  )
+)
+
+(define-signal writable-change-event
+  (of-object "GSettings")
+  (return-type "gboolean")
+  (flags "Run Last")
+  (parameters
+    '("GQuark" "p0")
+  )
+)
+
+(define-property settings-schema
+  (of-object "GSettings")
+  (prop-type "GParamBoxed")
+  (docs "The GSettingsSchema for this settings object")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property schema
+  (of-object "GSettings")
+  (prop-type "GParamString")
+  (docs "The name of the schema for this settings object")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (deprecated #t)
+  (default-value "")
+)
+
+(define-property schema-id
+  (of-object "GSettings")
+  (prop-type "GParamString")
+  (docs "The name of the schema for this settings object")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property backend
+  (of-object "GSettings")
+  (prop-type "GParamObject")
+  (docs "The GSettingsBackend for this settings object")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property path
+  (of-object "GSettings")
+  (prop-type "GParamString")
+  (docs "The path within the backend where the settings are")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property has-unapplied
+  (of-object "GSettings")
+  (prop-type "GParamBoolean")
+  (docs "TRUE if there are outstanding changes to apply()")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property delay-apply
+  (of-object "GSettings")
+  (prop-type "GParamBoolean")
+  (docs "Whether this settings object is in “delay-apply” mode")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+;; GSettingsSchema is neither a GObject nor a GInterface. Not checked for signals and properties.
+
+;; GSettingsSchemaKey is neither a GObject nor a GInterface. Not checked for signals and properties.
+
+;; GSettingsSchemaSource is neither a GObject nor a GInterface. Not checked for signals and properties.
+
+;; From GSimplePermission
+
+;; From GSocket
+
+(define-property family
+  (of-object "GSocket")
+  (prop-type "GParamEnum")
+  (docs "The sockets address family")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "G_SOCKET_FAMILY_INVALID")
+)
+
+(define-property type
+  (of-object "GSocket")
+  (prop-type "GParamEnum")
+  (docs "The sockets type")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "G_SOCKET_TYPE_STREAM")
+)
+
+(define-property protocol
+  (of-object "GSocket")
+  (prop-type "GParamEnum")
+  (docs "The id of the protocol to use, or -1 for unknown")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "G_SOCKET_PROTOCOL_UNKNOWN")
+)
+
+(define-property fd
+  (of-object "GSocket")
+  (prop-type "GParamInt")
+  (docs "The sockets file descriptor")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "-1")
+)
+
+(define-property blocking
+  (of-object "GSocket")
+  (prop-type "GParamBoolean")
+  (docs "Whether or not I/O on this socket is blocking")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "TRUE")
+)
+
+(define-property listen-backlog
+  (of-object "GSocket")
+  (prop-type "GParamInt")
+  (docs "Outstanding connections in the listen queue")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "10")
+)
+
+(define-property keepalive
+  (of-object "GSocket")
+  (prop-type "GParamBoolean")
+  (docs "Keep connection alive by sending periodic pings")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property local-address
+  (of-object "GSocket")
+  (prop-type "GParamObject")
+  (docs "The local address the socket is bound to")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property remote-address
+  (of-object "GSocket")
+  (prop-type "GParamObject")
+  (docs "The remote address the socket is connected to")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property timeout
+  (of-object "GSocket")
+  (prop-type "GParamUInt")
+  (docs "The timeout in seconds on socket I/O")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "0")
+)
+
+(define-property ttl
+  (of-object "GSocket")
+  (prop-type "GParamUInt")
+  (docs "Time-to-live of outgoing unicast packets")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "0")
+)
+
+(define-property broadcast
+  (of-object "GSocket")
+  (prop-type "GParamBoolean")
+  (docs "Whether to allow sending to broadcast addresses")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property multicast-loopback
+  (of-object "GSocket")
+  (prop-type "GParamBoolean")
+  (docs "Whether outgoing multicast packets loop back to the local host")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "TRUE")
+)
+
+(define-property multicast-ttl
+  (of-object "GSocket")
+  (prop-type "GParamUInt")
+  (docs "Time-to-live of outgoing multicast packets")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "1")
+)
+
+;; From GSocketClient
+
+(define-signal event
+  (of-object "GSocketClient")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GSocketClientEvent" "p0")
+    '("GSocketConnectable*" "p1")
+    '("GIOStream*" "p2")
+  )
+)
+
+(define-property family
+  (of-object "GSocketClient")
+  (prop-type "GParamEnum")
+  (docs "The sockets address family to use for socket construction")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "G_SOCKET_FAMILY_INVALID")
+)
+
+(define-property type
+  (of-object "GSocketClient")
+  (prop-type "GParamEnum")
+  (docs "The sockets type to use for socket construction")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "G_SOCKET_TYPE_STREAM")
+)
+
+(define-property protocol
+  (of-object "GSocketClient")
+  (prop-type "GParamEnum")
+  (docs "The protocol to use for socket construction, or 0 for default")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "G_SOCKET_PROTOCOL_DEFAULT")
+)
+
+(define-property local-address
+  (of-object "GSocketClient")
+  (prop-type "GParamObject")
+  (docs "The local address constructed sockets will be bound to")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property timeout
+  (of-object "GSocketClient")
+  (prop-type "GParamUInt")
+  (docs "The I/O timeout for sockets, or 0 for none")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "0")
+)
+
+(define-property enable-proxy
+  (of-object "GSocketClient")
+  (prop-type "GParamBoolean")
+  (docs "Enable proxy support")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "TRUE")
+)
+
+(define-property tls
+  (of-object "GSocketClient")
+  (prop-type "GParamBoolean")
+  (docs "Whether to create TLS connections")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property tls-validation-flags
+  (of-object "GSocketClient")
+  (prop-type "GParamFlags")
+  (docs "TLS validation flags to use")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (deprecated #t)
+  (default-value "G_TLS_CERTIFICATE_UNKNOWN_CA | G_TLS_CERTIFICATE_BAD_IDENTITY | G_TLS_CERTIFICATE_NOT_ACTIVATED | G_TLS_CERTIFICATE_EXPIRED | G_TLS_CERTIFICATE_REVOKED | G_TLS_CERTIFICATE_INSECURE | G_TLS_CERTIFICATE_GENERIC_ERROR")
+)
+
+(define-property proxy-resolver
+  (of-object "GSocketClient")
+  (prop-type "GParamObject")
+  (docs "The proxy resolver to use")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GSocketConnection
+
+(define-property socket
+  (of-object "GSocketConnection")
+  (prop-type "GParamObject")
+  (docs "The underlying GSocket")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GTcpConnection
+
+(define-property graceful-disconnect
+  (of-object "GTcpConnection")
+  (prop-type "GParamBoolean")
+  (docs "Whether or not close does a graceful disconnect")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+;; From GTcpWrapperConnection
+
+(define-property base-io-stream
+  (of-object "GTcpWrapperConnection")
+  (prop-type "GParamObject")
+  (docs "The wrapped GIOStream")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GTlsBackend
+
+;; From GTlsCertificate
+
+(define-property certificate
+  (of-object "GTlsCertificate")
+  (prop-type "GParamBoxed")
+  (docs "The DER representation of the certificate")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property certificate-pem
+  (of-object "GTlsCertificate")
+  (prop-type "GParamString")
+  (docs "The PEM representation of the certificate")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property private-key
+  (of-object "GTlsCertificate")
+  (prop-type "GParamBoxed")
+  (docs "The DER representation of the certificate’s private key")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property private-key-pem
+  (of-object "GTlsCertificate")
+  (prop-type "GParamString")
+  (docs "The PEM representation of the certificate’s private key")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property issuer
+  (of-object "GTlsCertificate")
+  (prop-type "GParamObject")
+  (docs "The certificate for the issuing entity")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property pkcs11-uri
+  (of-object "GTlsCertificate")
+  (prop-type "GParamString")
+  (docs "The PKCS #11 URI")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property private-key-pkcs11-uri
+  (of-object "GTlsCertificate")
+  (prop-type "GParamString")
+  (docs "The PKCS #11 URI for a private key")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property not-valid-before
+  (of-object "GTlsCertificate")
+  (prop-type "GParamBoxed")
+  (docs "Cert should not be considered valid before this time.")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property not-valid-after
+  (of-object "GTlsCertificate")
+  (prop-type "GParamBoxed")
+  (docs "Cert should not be considered valid after this time.")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property subject-name
+  (of-object "GTlsCertificate")
+  (prop-type "GParamString")
+  (docs "The subject name from the certificate.")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property issuer-name
+  (of-object "GTlsCertificate")
+  (prop-type "GParamString")
+  (docs "The issuer from the certificate.")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property dns-names
+  (of-object "GTlsCertificate")
+  (prop-type "GParamBoxed")
+  (docs "DNS Names listed on the cert.")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property ip-addresses
+  (of-object "GTlsCertificate")
+  (prop-type "GParamBoxed")
+  (docs "IP Addresses listed on the cert.")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property pkcs12-data
+  (of-object "GTlsCertificate")
+  (prop-type "GParamBoxed")
+  (docs "The PKCS #12 data used for construction")
+  (readable #f)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property password
+  (of-object "GTlsCertificate")
+  (prop-type "GParamString")
+  (docs "Password used when constructing from bytes")
+  (readable #f)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+;; From GTlsClientConnection
+
+(define-property accepted-cas
+  (of-object "GTlsClientConnection")
+  (prop-type "GParamPointer")
+  (docs "Distinguished names of the CAs the server accepts certificates from")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property server-identity
+  (of-object "GTlsClientConnection")
+  (prop-type "GParamObject")
+  (docs "GSocketConnectable identifying the server")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property use-ssl3
+  (of-object "GTlsClientConnection")
+  (prop-type "GParamBoolean")
+  (docs "Use fallback version of SSL/TLS rather than most recent version")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (deprecated #t)
+  (default-value "FALSE")
+)
+
+(define-property validation-flags
+  (of-object "GTlsClientConnection")
+  (prop-type "GParamFlags")
+  (docs "What certificate validation to perform")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (deprecated #t)
+  (default-value "G_TLS_CERTIFICATE_UNKNOWN_CA | G_TLS_CERTIFICATE_BAD_IDENTITY | G_TLS_CERTIFICATE_NOT_ACTIVATED | G_TLS_CERTIFICATE_EXPIRED | G_TLS_CERTIFICATE_REVOKED | G_TLS_CERTIFICATE_INSECURE | G_TLS_CERTIFICATE_GENERIC_ERROR")
+)
+
+;; From GTlsConnection
+
+(define-signal accept-certificate
+  (of-object "GTlsConnection")
+  (return-type "gboolean")
+  (flags "Run Last")
+  (parameters
+    '("GTlsCertificate*" "p0")
+    '("GTlsCertificateFlags" "p1")
+  )
+)
+
+(define-property base-io-stream
+  (of-object "GTlsConnection")
+  (prop-type "GParamObject")
+  (docs "The GIOStream that the connection wraps")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property require-close-notify
+  (of-object "GTlsConnection")
+  (prop-type "GParamBoolean")
+  (docs "Whether to require proper TLS close notification")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "TRUE")
+)
+
+(define-property rehandshake-mode
+  (of-object "GTlsConnection")
+  (prop-type "GParamEnum")
+  (docs "When to allow rehandshaking")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (deprecated #t)
+  (default-value "G_TLS_REHANDSHAKE_SAFELY")
+)
+
+(define-property use-system-certdb
+  (of-object "GTlsConnection")
+  (prop-type "GParamBoolean")
+  (docs "Whether to verify peer certificates against the system certificate database")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (deprecated #t)
+  (default-value "TRUE")
+)
+
+(define-property database
+  (of-object "GTlsConnection")
+  (prop-type "GParamObject")
+  (docs "Certificate database to use for looking up or verifying certificates")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property interaction
+  (of-object "GTlsConnection")
+  (prop-type "GParamObject")
+  (docs "Optional object for user interaction")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property certificate
+  (of-object "GTlsConnection")
+  (prop-type "GParamObject")
+  (docs "The connection’s certificate")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property peer-certificate
+  (of-object "GTlsConnection")
+  (prop-type "GParamObject")
+  (docs "The connection’s peer’s certificate")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property peer-certificate-errors
+  (of-object "GTlsConnection")
+  (prop-type "GParamFlags")
+  (docs "Errors found with the peer’s certificate")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "G_TLS_CERTIFICATE_NO_FLAGS")
+)
+
+(define-property advertised-protocols
+  (of-object "GTlsConnection")
+  (prop-type "GParamBoxed")
+  (docs "Application-layer protocols available on this connection")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property negotiated-protocol
+  (of-object "GTlsConnection")
+  (prop-type "GParamString")
+  (docs "Application-layer protocol negotiated for this connection")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property protocol-version
+  (of-object "GTlsConnection")
+  (prop-type "GParamEnum")
+  (docs "TLS protocol version negotiated for this connection")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "G_TLS_PROTOCOL_VERSION_UNKNOWN")
+)
+
+(define-property ciphersuite-name
+  (of-object "GTlsConnection")
+  (prop-type "GParamString")
+  (docs "Name of ciphersuite negotiated for this connection")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "")
+)
+
+;; From GTlsDatabase
+
+;; From GTlsFileDatabase
+
+(define-property anchors
+  (of-object "GTlsFileDatabase")
+  (prop-type "GParamString")
+  (docs "The certificate authority anchor file")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "")
+)
+
+;; From GTlsInteraction
+
+;; From GTlsPassword
+
+(define-property flags
+  (of-object "GTlsPassword")
+  (prop-type "GParamFlags")
+  (docs "Flags about the password")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "G_TLS_PASSWORD_NONE")
+)
+
+(define-property description
+  (of-object "GTlsPassword")
+  (prop-type "GParamString")
+  (docs "Description of what the password is for")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property warning
+  (of-object "GTlsPassword")
+  (prop-type "GParamString")
+  (docs "Warning about the password")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "")
+)
+
+;; From GTlsServerConnection
+
+(define-property authentication-mode
+  (of-object "GTlsServerConnection")
+  (prop-type "GParamEnum")
+  (docs "The client authentication mode")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "G_TLS_AUTHENTICATION_NONE")
+)
+
+;; From GUnixConnection
+
+;; From GSocketListener
+
+(define-signal event
+  (of-object "GSocketListener")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GSocketListenerEvent" "p0")
+    '("GSocket*" "p1")
+  )
+)
+
+(define-property listen-backlog
+  (of-object "GSocketListener")
+  (prop-type "GParamInt")
+  (docs "outstanding connections in the listen queue")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "10")
+)
+
+;; From GSocketService
+
+(define-signal incoming
+  (of-object "GSocketService")
+  (return-type "gboolean")
+  (flags "Run Last")
+  (parameters
+    '("GSocketConnection*" "p0")
+    '("GObject*" "p1")
+  )
+)
+
+(define-property active
+  (of-object "GSocketService")
+  (prop-type "GParamBoolean")
+  (docs "Whether the service is currently accepting connections")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "TRUE")
+)
+
+;; From GThreadedSocketService
+
+(define-signal run
+  (of-object "GThreadedSocketService")
+  (return-type "gboolean")
+  (flags "Run Last")
+  (parameters
+    '("GSocketConnection*" "p0")
+    '("GObject*" "p1")
+  )
+)
+
+(define-property max-threads
+  (of-object "GThreadedSocketService")
+  (prop-type "GParamInt")
+  (docs "The max number of threads handling clients for this service")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "10")
+)
+
+;; From GDBusAuthObserver
+
+(define-signal authorize-authenticated-peer
+  (of-object "GDBusAuthObserver")
+  (return-type "gboolean")
+  (flags "Run Last")
+  (parameters
+    '("GIOStream*" "p0")
+    '("GCredentials*" "p1")
+  )
+)
+
+(define-signal allow-mechanism
+  (of-object "GDBusAuthObserver")
+  (return-type "gboolean")
+  (flags "Run Last")
+  (parameters
+    '("const-gchar*" "p0")
+  )
+)
+
+;; From GDBusConnection
+
+(define-signal closed
+  (of-object "GDBusConnection")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("gboolean" "p0")
+    '("GError*" "p1")
+  )
+)
+
+(define-property stream
+  (of-object "GDBusConnection")
+  (prop-type "GParamObject")
+  (docs "The underlying streams used for I/O")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property address
+  (of-object "GDBusConnection")
+  (prop-type "GParamString")
+  (docs "D-Bus address specifying potential socket endpoints")
+  (readable #f)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property flags
+  (of-object "GDBusConnection")
+  (prop-type "GParamFlags")
+  (docs "Flags")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "G_DBUS_CONNECTION_FLAGS_NONE")
+)
+
+(define-property guid
+  (of-object "GDBusConnection")
+  (prop-type "GParamString")
+  (docs "GUID of the server peer")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property unique-name
+  (of-object "GDBusConnection")
+  (prop-type "GParamString")
+  (docs "Unique name of bus connection")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property closed
+  (of-object "GDBusConnection")
+  (prop-type "GParamBoolean")
+  (docs "Whether the connection is closed")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property exit-on-close
+  (of-object "GDBusConnection")
+  (prop-type "GParamBoolean")
+  (docs "Whether the process is terminated when the connection is closed")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property capabilities
+  (of-object "GDBusConnection")
+  (prop-type "GParamFlags")
+  (docs "Capabilities")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "G_DBUS_CAPABILITY_FLAGS_NONE")
+)
+
+(define-property authentication-observer
+  (of-object "GDBusConnection")
+  (prop-type "GParamObject")
+  (docs "Object used to assist in the authentication process")
+  (readable #f)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; GDBusError is neither a GObject nor a GInterface. Not checked for signals and properties.
+
+;; GDBusAnnotationInfo is neither a GObject nor a GInterface. Not checked for signals and properties.
+
+;; GDBusArgInfo is neither a GObject nor a GInterface. Not checked for signals and properties.
+
+;; From GDBusMenuModel
+
+;; GDBusMethodInfo is neither a GObject nor a GInterface. Not checked for signals and properties.
+
+;; GDBusSignalInfo is neither a GObject nor a GInterface. Not checked for signals and properties.
+
+;; GDBusPropertyInfo is neither a GObject nor a GInterface. Not checked for signals and properties.
+
+;; GDBusInterfaceInfo is neither a GObject nor a GInterface. Not checked for signals and properties.
+
+;; From GDBusInterfaceSkeleton
+
+(define-signal g-authorize-method
+  (of-object "GDBusInterfaceSkeleton")
+  (return-type "gboolean")
+  (flags "Run Last")
+  (parameters
+    '("GDBusMethodInvocation*" "p0")
+  )
+)
+
+(define-property g-flags
+  (of-object "GDBusInterfaceSkeleton")
+  (prop-type "GParamFlags")
+  (docs "Flags for the interface skeleton")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "G_DBUS_INTERFACE_SKELETON_FLAGS_NONE")
+)
+
+;; From GDBusObject
+
+(define-signal interface-added
+  (of-object "GDBusObject")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GDBusInterface*" "p0")
+  )
+)
+
+(define-signal interface-removed
+  (of-object "GDBusObject")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GDBusInterface*" "p0")
+  )
+)
+
+;; From GDBusObjectManager
+
+(define-signal interface-added
+  (of-object "GDBusObjectManager")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GDBusObject*" "p0")
+    '("GDBusInterface*" "p1")
+  )
+)
+
+(define-signal interface-removed
+  (of-object "GDBusObjectManager")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GDBusObject*" "p0")
+    '("GDBusInterface*" "p1")
+  )
+)
+
+(define-signal object-added
+  (of-object "GDBusObjectManager")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GDBusObject*" "p0")
+  )
+)
+
+(define-signal object-removed
+  (of-object "GDBusObjectManager")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GDBusObject*" "p0")
+  )
+)
+
+;; From GDBusObjectManagerClient
+
+(define-signal interface-proxy-signal
+  (of-object "GDBusObjectManagerClient")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GDBusObjectProxy*" "p0")
+    '("GDBusProxy*" "p1")
+    '("const-gchar*" "p2")
+    '("const-gchar*" "p3")
+    '("GVariant*" "p4")
+  )
+)
+
+(define-signal interface-proxy-properties-changed
+  (of-object "GDBusObjectManagerClient")
+  (return-type "void")
+  (flags "Run Last")
+  (parameters
+    '("GDBusObjectProxy*" "p0")
+    '("GDBusProxy*" "p1")
+    '("GVariant*" "p2")
+    '("const-gchar*const*" "p3")
+  )
+)
+
+(define-property bus-type
+  (of-object "GDBusObjectManagerClient")
+  (prop-type "GParamEnum")
+  (docs "The bus to connect to, if any")
+  (readable #f)
+  (writable #t)
+  (construct-only #t)
+  (default-value "G_BUS_TYPE_NONE")
+)
+
+(define-property connection
+  (of-object "GDBusObjectManagerClient")
+  (prop-type "GParamObject")
+  (docs "The connection to use")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property flags
+  (of-object "GDBusObjectManagerClient")
+  (prop-type "GParamFlags")
+  (docs "Flags for the proxy manager")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "G_DBUS_OBJECT_MANAGER_CLIENT_FLAGS_NONE")
+)
+
+(define-property object-path
+  (of-object "GDBusObjectManagerClient")
+  (prop-type "GParamString")
+  (docs "The object path of the control object")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property name
+  (of-object "GDBusObjectManagerClient")
+  (prop-type "GParamString")
+  (docs "Name that the manager is for")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property name-owner
+  (of-object "GDBusObjectManagerClient")
+  (prop-type "GParamString")
+  (docs "The owner of the name we are watching")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property get-proxy-type-func
+  (of-object "GDBusObjectManagerClient")
+  (prop-type "GParamPointer")
+  (docs "The GDBusProxyTypeFunc pointer to use")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property get-proxy-type-user-data
+  (of-object "GDBusObjectManagerClient")
+  (prop-type "GParamPointer")
+  (docs "The GDBusProxyTypeFunc user_data")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property get-proxy-type-destroy-notify
+  (of-object "GDBusObjectManagerClient")
+  (prop-type "GParamPointer")
+  (docs "The GDBusProxyTypeFunc user data free function")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GDBusObjectManagerServer
+
+(define-property connection
+  (of-object "GDBusObjectManagerServer")
+  (prop-type "GParamObject")
+  (docs "The connection to export objects on")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property object-path
+  (of-object "GDBusObjectManagerServer")
+  (prop-type "GParamString")
+  (docs "The object path to register the manager object at")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+;; From GDBusObjectProxy
+
+(define-property g-object-path
+  (of-object "GDBusObjectProxy")
+  (prop-type "GParamString")
+  (docs "The object path of the proxy")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property g-connection
+  (of-object "GDBusObjectProxy")
+  (prop-type "GParamObject")
+  (docs "The connection of the proxy")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From GDBusObjectSkeleton
+
+(define-signal authorize-method
+  (of-object "GDBusObjectSkeleton")
+  (return-type "gboolean")
+  (flags "Run Last")
+  (parameters
+    '("GDBusInterfaceSkeleton*" "p0")
+    '("GDBusMethodInvocation*" "p1")
+  )
+)
+
+(define-property g-object-path
+  (of-object "GDBusObjectSkeleton")
+  (prop-type "GParamString")
+  (docs "The object path where the object is exported")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "")
+)
+
+;; GDBusNodeInfo is neither a GObject nor a GInterface. Not checked for signals and properties.
+
+;; From GDBusMessage
+
+(define-property locked
+  (of-object "GDBusMessage")
+  (prop-type "GParamBoolean")
+  (docs "Whether the message is locked")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+;; From GDBusMethodInvocation
+
+;; From GDBusProxy
+
+(define-signal g-properties-changed
+  (of-object "GDBusProxy")
+  (return-type "void")
+  (flags "Run Last, Must Collect")
+  (parameters
+    '("GVariant*" "p0")
+    '("const-gchar*const*" "p1")
+  )
+)
+
+(define-signal g-signal
+  (of-object "GDBusProxy")
+  (return-type "void")
+  (flags "Run Last, Must Collect")
+  (detailed #t)
+  (parameters
+    '("const-gchar*" "p0")
+    '("const-gchar*" "p1")
+    '("GVariant*" "p2")
+  )
+)
+
+(define-property g-connection
+  (of-object "GDBusProxy")
+  (prop-type "GParamObject")
+  (docs "The connection the proxy is for")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property g-bus-type
+  (of-object "GDBusProxy")
+  (prop-type "GParamEnum")
+  (docs "The bus to connect to, if any")
+  (readable #f)
+  (writable #t)
+  (construct-only #t)
+  (default-value "G_BUS_TYPE_NONE")
+)
+
+(define-property g-name
+  (of-object "GDBusProxy")
+  (prop-type "GParamString")
+  (docs "The well-known or unique name that the proxy is for")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property g-name-owner
+  (of-object "GDBusProxy")
+  (prop-type "GParamString")
+  (docs "The unique name for the owner")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property g-flags
+  (of-object "GDBusProxy")
+  (prop-type "GParamFlags")
+  (docs "Flags for the proxy")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "G_DBUS_PROXY_FLAGS_NONE")
+)
+
+(define-property g-object-path
+  (of-object "GDBusProxy")
+  (prop-type "GParamString")
+  (docs "The object path the proxy is for")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property g-interface-name
+  (of-object "GDBusProxy")
+  (prop-type "GParamString")
+  (docs "The D-Bus interface name the proxy is for")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property g-default-timeout
+  (of-object "GDBusProxy")
+  (prop-type "GParamInt")
+  (docs "Timeout for remote method invocation")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "-1")
+)
+
+(define-property g-interface-info
+  (of-object "GDBusProxy")
+  (prop-type "GParamBoxed")
+  (docs "Interface Information")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GDBusServer
+
+(define-signal new-connection
+  (of-object "GDBusServer")
+  (return-type "gboolean")
+  (flags "Run Last")
+  (parameters
+    '("GDBusConnection*" "p0")
+  )
+)
+
+(define-property address
+  (of-object "GDBusServer")
+  (prop-type "GParamString")
+  (docs "The address to listen on")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property client-address
+  (of-object "GDBusServer")
+  (prop-type "GParamString")
+  (docs "The address clients can use")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "")
+)
+
+(define-property flags
+  (of-object "GDBusServer")
+  (prop-type "GParamFlags")
+  (docs "Flags for the server")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "G_DBUS_SERVER_FLAGS_NONE")
+)
+
+(define-property guid
+  (of-object "GDBusServer")
+  (prop-type "GParamString")
+  (docs "The guid of the server")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+  (default-value "")
+)
+
+(define-property active
+  (of-object "GDBusServer")
+  (prop-type "GParamBoolean")
+  (docs "Whether the server is currently active")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+
+(define-property authentication-observer
+  (of-object "GDBusServer")
+  (prop-type "GParamObject")
+  (docs "Object used to assist in the authentication process")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+
