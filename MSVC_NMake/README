@@ -1,0 +1,24 @@
+Building cairomm-1.16 with Visual Studio .NET 2017 or later
+
+* You will need Visual Studio 2017 (MSVC 15.0).  Building with Visual Studio 2015 or earlier is no longer supported.
+* Install the latest Win32 GTK+ Development files from ftp://ftp.gnome.org/pub/GNOME/binaries/win32/gtk+/ and add
+  the paths to headers and import libraries to Visual Studio, if they are not already in $(srcroot)/../vs15/$(Platform).
+* In a Visual Studio command prompt, go to $(srcroot)\MSVC_NMake
+* Build using nmake /f Makefile.vc CFG=[release|debug]
+* Run the tests.
+* Now the built DLL and .lib files use the toolset version ('vc141' for Visual Studio 2017 and 'vc142' for Visual Studio
+  2019) instead of the Visual Studio version ('vc150' for Visual Studio 2017) by default.  If using the old naming style,
+  please note that libsigc++-3.x must be built with this option enabled as well, if building it with NMake.
+  For the Meson builds, pass in the option '-Dmsvc14x-parallel-installable=false' to the Meson configure command line
+  to avoid having the toolset version in the final DLL and .lib filenames; again, this is only recommended if it is
+  inconvenient to re-build the dependent code, and this option should be used when building items that depend on cairomm,
+  if this option is provided.
+
+Cedric Gustin
+08/18/2006
+
+Armin Burgmeier
+09/29/2010
+
+Chun-wei Fan
+09/10/2015
