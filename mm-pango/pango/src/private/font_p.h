@@ -3,9 +3,9 @@
 #define _PANGOMM_FONT_P_H
 
 
-#include <glibmm/private/object_p.h>
+#include <mm/glib/private/object_p.h>
 
-#include <glibmm/class.h>
+#include <mm/glib/class.h>
 
 namespace Pango
 {

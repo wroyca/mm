@@ -3,11 +3,11 @@
 #define _PANGOMM_FONTFAMILY_H
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* fontfamily.h
- * 
+ *
  * Copyright 2001      The gtkmm Development Team
  *
  * This library is free software; you can redistribute it and/or
@@ -25,8 +25,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/object.h>
-#include <giomm/listmodel.h>
+#include <mm/glib/object.h>
+#include <mm/gio/listmodel.h>
 #include <pangomm/fontface.h>
 #include <pango/pango.h>
 
@@ -51,7 +51,7 @@ namespace Pango
 
 class PANGOMM_API FontFamily : public Glib::Object, public Gio::ListModel
 {
-   
+
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 public:
@@ -101,7 +101,7 @@ public:
 
 private:
 
-   
+
 public:
   /** Lists the different font faces that make up family.
    * The faces in a family share a common design, but differ in slant, weight, width and other aspects.
@@ -109,53 +109,53 @@ public:
    */
   std::vector<Glib::RefPtr<FontFace>> list_faces() const;
 
-  
+
   /** Gets the name of the family.
-   * 
+   *
    * The name is unique among all fonts for the font backend and can
    * be used in a `Pango::FontDescription` to specify that a face from
    * this family is desired.
-   * 
+   *
    * @return The name of the family. This string is owned
    * by the family object and must not be modified or freed.
    */
   Glib::ustring get_name() const;
-  
+
   /** A monospace font is a font designed for text display where the the
    * characters form a regular grid.
-   * 
+   *
    * For Western languages this would
    * mean that the advance width of all characters are the same, but
    * this categorization also includes Asian fonts which include
    * double-width characters: characters that occupy two grid cells.
    * Glib::unichar_iswide() returns a result that indicates whether a
    * character is typically double-width in a monospace font.
-   * 
+   *
    * The best way to find out the grid-cell size is to call
    * Pango::FontMetrics::get_approximate_digit_width(), since the
    * results of Pango::FontMetrics::get_approximate_char_width() may
    * be affected by double-width characters.
-   * 
+   *
    * @newin{1,4}
-   * 
+   *
    * @return <tt>true</tt> if the family is monospace.
    */
   bool is_monospace() const;
-  
+
   /** A variable font is a font which has axes that can be modified to
    * produce different faces.
-   * 
+   *
    * @newin{1,44}
-   * 
+   *
    * @return <tt>true</tt> if the family is variable.
    */
   bool is_variable() const;
 
-  
+
   /** Gets the `Pango::FontFace` of @a family with the given name.
-   * 
+   *
    * @newin{1,46}
-   * 
+   *
    * @param name The name of a face. If the name is <tt>nullptr</tt>,
    * the family's default face (fontconfig calls it "Regular")
    * will be returned.
@@ -163,11 +163,11 @@ public:
    * or <tt>nullptr</tt> if no face with the given name exists.
    */
   Glib::RefPtr<FontFace> get_face(const Glib::ustring& name =  {});
-  
+
   /** Gets the `Pango::FontFace` of @a family with the given name.
-   * 
+   *
    * @newin{1,46}
-   * 
+   *
    * @param name The name of a face. If the name is <tt>nullptr</tt>,
    * the family's default face (fontconfig calls it "Regular")
    * will be returned.

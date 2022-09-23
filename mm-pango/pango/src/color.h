@@ -5,7 +5,7 @@
 #include <pangommconfig.h>
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -26,8 +26,8 @@
  */
 
 
-#include <glibmm/value.h>
-#include <glibmm/utility.h>
+#include <mm/glib/value.h>
+#include <mm/glib/utility.h>
 #include <pango/pango.h>
 
 
@@ -68,13 +68,13 @@ protected:
   PangoColor gobject_;
 
 private:
-  
-  
+
+
 public:
 
   /// Tests whether the Color is valid.
   explicit operator bool() const;
-  
+
   /** Gets the red component of the color.
    * @return The red component of the color. This is a value between 0 and 65535, with 65535 indicating full intensity.
    */
@@ -105,7 +105,7 @@ public:
    */
   void set_blue(const guint16& value);
 
-  
+
   /** Fill in the fields of a color from a string specification. The
    * string can either one of a large set of standard names. (Taken
    * from the X11 &lt;filename&gt;rgb.txt&lt;/filename&gt; file), or it can be a hex value in the
@@ -113,22 +113,22 @@ public:
    * 'r', 'g' and 'b' are hex digits of the red, green, and blue
    * components of the color, respectively. (White in the four
    * forms is '#fff' '#ffffff' '#fffffffff' and '#ffffffffffff')
-   * 
+   *
    * @param spec A string specifying the new color.
    * @return <tt>true</tt> if parsing of the specifier succeeded,
    * otherwise <tt>false</tt>.
    */
   bool parse(const Glib::ustring& spec);
 
-  
+
   /** Returns a textual specification of @a color.
-   * 
+   *
    * The string is in the hexadecimal form `#rrrrggggbbbb`,
    * where `r`, `g` and `b` are hex digits representing the
    * red, green, and blue components respectively.
-   * 
+   *
    * @newin{1,16}
-   * 
+   *
    * @return A newly-allocated text string that must
    * be freed with Glib::free().
    */

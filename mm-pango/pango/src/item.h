@@ -3,7 +3,7 @@
 #define _PANGOMM_ITEM_H
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -22,7 +22,7 @@
  * License along with this library; if not, write to the Free
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
- 
+
 #include <pangomm/attributes.h>
 #include <pangomm/language.h>
 #include <pango/pango.h>
@@ -32,22 +32,22 @@ namespace Pango
 {
 /** @addtogroup pangommEnums pangomm Enums and Flags */
 
-/** 
+/**
  *  @var ShapeFlags NONE
  * Default value.
- * 
+ *
  *  @var ShapeFlags ROUND_POSITIONS
  * Round glyph positions
  * and widths to whole device units. This option should
  * be set if the target renderer can't do subpixel
  * positioning of glyphs.
- * 
+ *
  *  @enum ShapeFlags
- * 
+ *
  * Flags influencing the shaping process.
- * 
+ *
  * `Pango::ShapeFlags` can be passed to pango_shape_with_flags().
- * 
+ *
  * @newin{2,44}
  *
  * @ingroup pangommEnums
@@ -199,7 +199,7 @@ class PANGOMM_API Item
 
 private:
  //There is the whole set of functions for _CLASS_BOXEDTYPE but unfortunately PangoItem is not registered as a boxed type and lacks pango_item_get_type...
-  
+
 
 public:
   // There is no default constructor. This class is only used as an output type.
@@ -214,11 +214,11 @@ public:
   PangoItem* gobj_copy() const;
 
 public:
-  
+
   /** Modifies @a orig to cover only the text after @a split_index, and
    * returns a new item that covers the text before @a split_index that
    * used to be in @a orig.
-   * 
+   *
    * You can think of @a split_index as the length of the returned item.
    *  @a split_index may not be 0, and it may not be greater than or equal
    * to the length of @a orig (that is, there must be at least one byte
@@ -227,7 +227,7 @@ public:
    * provided because the text used to generate the item isn't available,
    * so `split()` can't count the char length of the split items
    * itself.
-   * 
+   *
    * @param split_index Byte index of position to split item, relative to the
    * start of the item.
    * @param split_offset Number of chars between start of @a orig and @a split_index.
@@ -289,7 +289,7 @@ public:
   GlyphString shape(const Glib::ustring& item_text, const Glib::ustring& paragraph_text,
     ShapeFlags flags = ShapeFlags::NONE) const;
 
-  /// Provides access to the underlying C GObject.  
+  /// Provides access to the underlying C GObject.
   PangoItem*       gobj()       { return gobject_; }
   /// Provides access to the underlying C GObject.
   const PangoItem* gobj() const { return gobject_; }

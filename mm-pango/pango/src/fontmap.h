@@ -3,7 +3,7 @@
 #define _PANGOMM_FONTMAP_H
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* fontmap.h
@@ -25,8 +25,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/object.h>
-#include <giomm/listmodel.h>
+#include <mm/glib/object.h>
+#include <mm/gio/listmodel.h>
 #include <pangomm/font.h>
 #include <pangomm/fontset.h>
 #include <pangomm/fontfamily.h>
@@ -59,7 +59,7 @@ class PANGOMM_API Context;
 
 class PANGOMM_API FontMap : public Glib::Object, public Gio::ListModel
 {
-  
+
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 public:
@@ -109,21 +109,21 @@ public:
 
 private:
 
-  
+
 public:
-  
+
   /** Load the font in the fontmap that is the closest match for @a desc.
-   * 
+   *
    * @param context The `Pango::Context` the font will be used with.
    * @param desc A `Pango::FontDescription` describing the font to load.
    * @return The newly allocated `Pango::Font`
    * loaded, or <tt>nullptr</tt> if no font matched.
    */
   Glib::RefPtr<Font> load_font(const Glib::RefPtr<Context>& context, const FontDescription& desc) const;
-  
+
   /** Load a set of fonts in the fontmap that can be used to render
    * a font matching @a desc.
-   * 
+   *
    * @param context The `Pango::Context` the font will be used with.
    * @param desc A `Pango::FontDescription` describing the font to load.
    * @param language A `Pango::Language` the fonts will be used for.
@@ -132,19 +132,19 @@ public:
    */
   Glib::RefPtr<Fontset> load_fontset(const Glib::RefPtr<Context>& context, const FontDescription& desc, const Language& language) const;
 
-  
+
   /** Creates a `Pango::Context` connected to @a fontmap.
-   * 
+   *
    * This is equivalent to Pango::Context::new() followed by
    * Pango::Context::set_font_map().
-   * 
+   *
    * If you are using Pango as part of a higher-level system,
    * that system may have it's own way of create a `Pango::Context`.
    * For instance, the GTK toolkit has, among others,
    * gtk_widget_get_pango_context(). Use those instead.
-   * 
+   *
    * @newin{1,22}
-   * 
+   *
    * @return The newly allocated `Pango::Context`,
    * which should be freed with Glib::object_unref().
    */
@@ -155,40 +155,40 @@ public:
    */
   std::vector<Glib::RefPtr<FontFamily>> list_families() const;
 
-  
+
   /** Returns the current serial number of @a fontmap.
-   * 
+   *
    * The serial number is initialized to an small number larger than zero
    * when a new fontmap is created and is increased whenever the fontmap
    * is changed. It may wrap, but will never have the value 0. Since it can
    * wrap, never compare it with "less than", always use "not equals".
-   * 
+   *
    * The fontmap can only be changed using backend-specific API, like changing
    * fontmap resolution.
-   * 
+   *
    * This can be used to automatically detect changes to a `Pango::FontMap`,
    * like in `Pango::Context`.
-   * 
+   *
    * @newin{1,32,4}
-   * 
+   *
    * @return The current serial number of @a fontmap.
    */
   guint get_serial() const;
 
-  
+
   /** Gets a font family by name.
-   * 
+   *
    * @newin{2,50}
-   * 
+   *
    * @param name A family name.
    * @return The `Pango::FontFamily`.
    */
   Glib::RefPtr<FontFamily> get_family(const Glib::ustring& name);
-  
+
   /** Gets a font family by name.
-   * 
+   *
    * @newin{2,50}
-   * 
+   *
    * @param name A family name.
    * @return The `Pango::FontFamily`.
    */

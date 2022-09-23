@@ -3,7 +3,7 @@
 #define _PANGOMM_ATTRLIST_H
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* attrlist.h
@@ -86,7 +86,7 @@ protected:
 
 private:
 
-  
+
 public:
   /** Constructs an attribute list by parsing a marked-up text (see markup format).
    * If @a accel_marker is nonzero, the given character will mark the character
@@ -103,11 +103,11 @@ public:
 
   /** Constructs an attribute list by parsing a marked-up text (see markup format).
    * @a text is set to the plaintext string.
-   * If @a accel_marker is nonzero, the given character will mark the character 
-   * following it as an accelerator. For example, the accel marker might be an 
+   * If @a accel_marker is nonzero, the given character will mark the character
+   * following it as an accelerator. For example, the accel marker might be an
    * ampersand or underscore. All characters marked as an accelerator will receive
-   * a Pango::UNDERLINE_LOW attribute. The first character so marked will be 
-   * returned in @a accel_char. Two @a accel_marker characters following each other 
+   * a Pango::UNDERLINE_LOW attribute. The first character so marked will be
+   * returned in @a accel_char. Two @a accel_marker characters following each other
    * produce a single literal @a accel_marker character.
    *
    * @param markup_text Markup to parse (see markup format).
@@ -126,20 +126,20 @@ public:
    // hand code because we need to pass a copy of the attribute
   void change(Attribute& attr);
    // hand code because we need to pass a copy of the attribute
-  
+
   /** This function opens up a hole in @a list, fills it
    * in with attributes from the left, and then merges
    *  @a other on top of the hole.
-   * 
+   *
    * This operation is equivalent to stretching every attribute
    * that applies at position @a pos in @a list by an amount @a len,
    * and then calling change() with a copy
    * of each attribute in @a other in sequence (offset in position
    * by @a pos).
-   * 
+   *
    * This operation proves useful for, for instance, inserting
    * a pre-edit string in the middle of an edit buffer.
-   * 
+   *
    * @param other Another `Pango::AttrList`.
    * @param pos The position in @a list at which to insert @a other.
    * @param len The length of the spliced segment. (Note that this
@@ -147,90 +147,90 @@ public:
    * be present at some subsection of this range).
    */
   void splice(AttrList& other, int pos, int len);
-  
+
   /** Update indices of attributes in @a list for a change in the
    * text they refer to.
-   * 
+   *
    * The change that this function applies is removing @a remove
    * bytes at position @a pos and inserting @a add bytes instead.
-   * 
+   *
    * Attributes that fall entirely in the ( @a pos, @a pos + @a remove)
    * range are removed.
-   * 
+   *
    * Attributes that start or end inside the ( @a pos, @a pos + @a remove)
    * range are shortened to reflect the removal.
-   * 
+   *
    * Attributes start and end positions are updated if they are
    * behind @a pos + @a remove.
-   * 
+   *
    * @newin{2,50}
-   * 
+   *
    * @param pos The position of the change.
    * @param remove The number of removed bytes.
    * @param add The number of added bytes.
    */
   void update(int pos, int remove, int add);
 
- 
+
   /** Gets a list of all attributes in @a list.
-   * 
+   *
    * @newin{2,50}
-   * 
+   *
    * @return A list of all attributes in @a list. To free this value,
    * call [method @a Pango.Attribute.
    */
   std::vector<Attribute> get_attributes() const;
 
-  
+
   /** Checks whether @a list and @a other_list contain the same
    * attributes and whether those attributes apply to the
    * same ranges.
-   * 
+   *
    * Beware that this will return wrong values if any list
    * contains duplicates.
-   * 
+   *
    * @newin{2,50}
-   * 
+   *
    * @param other_list The other `Pango::AttrList`.
    * @return <tt>true</tt> if the lists are equal, <tt>false</tt> if
    * they aren't.
    */
   bool equal(const AttrList& other_list) const;
-  
+
   /** Serializes a `Pango::AttrList` to a string.
-   * 
+   *
    * No guarantees are made about the format of the string,
    * it may change between Pango versions.
-   * 
+   *
    * The intended use of this function is testing and
    * debugging. The format is not meant as a permanent
    * storage format.
-   * 
+   *
    * @newin{2,50}
-   * 
+   *
    * @return A newly allocated string.
    */
   Glib::ustring to_string() const;
   // Don't replace from_string() by a constructor. A call to such a constructor would be
   // ambiguous because of AttrList(markup_text, accel_marker=0).
- 
+
 
   /** Deserializes a `Pango::AttrList` from a string.
-   * 
+   *
    * This is the counterpart to to_string().
    * See that functions for details about the format.
-   * 
+   *
    * @newin{2,50}
-   * 
+   *
    * @param text A string.
    * @return A new `Pango::AttrList`.
    */
   static AttrList from_string(const Glib::ustring& text);
-  
+
   /** Create a iterator initialized to the beginning of the list.
-   * 
+   *
    *  @a list must not be modified until this iterator is freed.
-   * 
+   *
    * @return The newly allocated
    * `Pango::AttrIterator`, which should be freed with
    * Pango::AttrIterator::destroy().

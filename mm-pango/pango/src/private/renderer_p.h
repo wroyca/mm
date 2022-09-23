@@ -3,10 +3,10 @@
 #define _PANGOMM_RENDERER_P_H
 
 
-#include <glibmm/private/object_p.h>
+#include <mm/glib/private/object_p.h>
 #include <pango/pango.h>
 
-#include <glibmm/class.h>
+#include <mm/glib/class.h>
 
 namespace Pango
 {

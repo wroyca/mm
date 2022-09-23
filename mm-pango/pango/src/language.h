@@ -5,7 +5,7 @@
 #include <pangommconfig.h>
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -26,7 +26,7 @@
  */
 
 
-#include <glibmm/value.h>
+#include <mm/glib/value.h>
 #include <pango/pango.h>
 
 
@@ -39,370 +39,370 @@ namespace Pango
 
 /** @addtogroup pangommEnums pangomm Enums and Flags */
 
-/** 
+/**
  *  @var Script INVALID_CODE
  * A value never returned from pango_script_for_unichar().
- * 
+ *
  *  @var Script COMMON
  * A character used by multiple different scripts.
- * 
+ *
  *  @var Script INHERITED
  * A mark glyph that takes its script from the
  * base glyph to which it is attached.
- * 
+ *
  *  @var Script ARABIC
  * Arabic.
- * 
+ *
  *  @var Script ARMENIAN
  * Armenian.
- * 
+ *
  *  @var Script BENGALI
  * Bengali.
- * 
+ *
  *  @var Script BOPOMOFO
  * Bopomofo.
- * 
+ *
  *  @var Script CHEROKEE
  * Cherokee.
- * 
+ *
  *  @var Script COPTIC
  * Coptic.
- * 
+ *
  *  @var Script CYRILLIC
  * Cyrillic.
- * 
+ *
  *  @var Script DESERET
  * Deseret.
- * 
+ *
  *  @var Script DEVANAGARI
  * Devanagari.
- * 
+ *
  *  @var Script ETHIOPIC
  * Ethiopic.
- * 
+ *
  *  @var Script GEORGIAN
  * Georgian.
- * 
+ *
  *  @var Script GOTHIC
  * Gothic.
- * 
+ *
  *  @var Script GREEK
  * Greek.
- * 
+ *
  *  @var Script GUJARATI
  * Gujarati.
- * 
+ *
  *  @var Script GURMUKHI
  * Gurmukhi.
- * 
+ *
  *  @var Script HAN
  * Han.
- * 
+ *
  *  @var Script HANGUL
  * Hangul.
- * 
+ *
  *  @var Script HEBREW
  * Hebrew.
- * 
+ *
  *  @var Script HIRAGANA
  * Hiragana.
- * 
+ *
  *  @var Script KANNADA
  * Kannada.
- * 
+ *
  *  @var Script KATAKANA
  * Katakana.
- * 
+ *
  *  @var Script KHMER
  * Khmer.
- * 
+ *
  *  @var Script LAO
  * Lao.
- * 
+ *
  *  @var Script LATIN
  * Latin.
- * 
+ *
  *  @var Script MALAYALAM
  * Malayalam.
- * 
+ *
  *  @var Script MONGOLIAN
  * Mongolian.
- * 
+ *
  *  @var Script MYANMAR
  * Myanmar.
- * 
+ *
  *  @var Script OGHAM
  * Ogham.
- * 
+ *
  *  @var Script OLD_ITALIC
  * Old Italic.
- * 
+ *
  *  @var Script ORIYA
  * Oriya.
- * 
+ *
  *  @var Script RUNIC
  * Runic.
- * 
+ *
  *  @var Script SINHALA
  * Sinhala.
- * 
+ *
  *  @var Script SYRIAC
  * Syriac.
- * 
+ *
  *  @var Script TAMIL
  * Tamil.
- * 
+ *
  *  @var Script TELUGU
  * Telugu.
- * 
+ *
  *  @var Script THAANA
  * Thaana.
- * 
+ *
  *  @var Script THAI
  * Thai.
- * 
+ *
  *  @var Script TIBETAN
  * Tibetan.
- * 
+ *
  *  @var Script CANADIAN_ABORIGINAL
  * Canadian Aboriginal.
- * 
+ *
  *  @var Script YI
  * Yi.
- * 
+ *
  *  @var Script TAGALOG
  * Tagalog.
- * 
+ *
  *  @var Script HANUNOO
  * Hanunoo.
- * 
+ *
  *  @var Script BUHID
  * Buhid.
- * 
+ *
  *  @var Script TAGBANWA
  * Tagbanwa.
- * 
+ *
  *  @var Script BRAILLE
  * Braille.
- * 
+ *
  *  @var Script CYPRIOT
  * Cypriot.
- * 
+ *
  *  @var Script LIMBU
  * Limbu.
- * 
+ *
  *  @var Script OSMANYA
  * Osmanya.
- * 
+ *
  *  @var Script SHAVIAN
  * Shavian.
- * 
+ *
  *  @var Script LINEAR_B
  * Linear B.
- * 
+ *
  *  @var Script TAI_LE
  * Tai Le.
- * 
+ *
  *  @var Script UGARITIC
  * Ugaritic.
- * 
+ *
  *  @var Script NEW_TAI_LUE
  * New Tai Lue. @newin{1,10}
- * 
+ *
  *  @var Script BUGINESE
  * Buginese. @newin{1,10}
- * 
+ *
  *  @var Script GLAGOLITIC
  * Glagolitic. @newin{1,10}
- * 
+ *
  *  @var Script TIFINAGH
  * Tifinagh. @newin{1,10}
- * 
+ *
  *  @var Script SYLOTI_NAGRI
  * Syloti Nagri. @newin{1,10}
- * 
+ *
  *  @var Script OLD_PERSIAN
  * Old Persian. @newin{1,10}
- * 
+ *
  *  @var Script KHAROSHTHI
  * Kharoshthi. @newin{1,10}
- * 
+ *
  *  @var Script UNKNOWN
  * An unassigned code point. @newin{1,14}
- * 
+ *
  *  @var Script BALINESE
  * Balinese. @newin{1,14}
- * 
+ *
  *  @var Script CUNEIFORM
  * Cuneiform. @newin{1,14}
- * 
+ *
  *  @var Script PHOENICIAN
  * Phoenician. @newin{1,14}
- * 
+ *
  *  @var Script PHAGS_PA
  * Phags-pa. @newin{1,14}
- * 
+ *
  *  @var Script NKO
  * N'Ko. @newin{1,14}
- * 
+ *
  *  @var Script KAYAH_LI
  * Kayah Li. @newin{1,20,1}
- * 
+ *
  *  @var Script LEPCHA
  * Lepcha. @newin{1,20,1}
- * 
+ *
  *  @var Script REJANG
  * Rejang. @newin{1,20,1}
- * 
+ *
  *  @var Script SUNDANESE
  * Sundanese. @newin{1,20,1}
- * 
+ *
  *  @var Script SAURASHTRA
  * Saurashtra. @newin{1,20,1}
- * 
+ *
  *  @var Script CHAM
  * Cham. @newin{1,20,1}
- * 
+ *
  *  @var Script OL_CHIKI
  * Ol Chiki. @newin{1,20,1}
- * 
+ *
  *  @var Script VAI
  * Vai. @newin{1,20,1}
- * 
+ *
  *  @var Script CARIAN
  * Carian. @newin{1,20,1}
- * 
+ *
  *  @var Script LYCIAN
  * Lycian. @newin{1,20,1}
- * 
+ *
  *  @var Script LYDIAN
  * Lydian. @newin{1,20,1}
- * 
+ *
  *  @var Script BATAK
  * Batak. @newin{1,32}
- * 
+ *
  *  @var Script BRAHMI
  * Brahmi. @newin{1,32}
- * 
+ *
  *  @var Script MANDAIC
  * Mandaic. @newin{1,32}
- * 
+ *
  *  @var Script CHAKMA
  * Chakma. @newin{1,32}
- * 
+ *
  *  @var Script MEROITIC_CURSIVE
  * Meroitic Cursive. @newin{1,32}
- * 
+ *
  *  @var Script MEROITIC_HIEROGLYPHS
  * Meroitic Hieroglyphs. @newin{1,32}
- * 
+ *
  *  @var Script MIAO
  * Miao. @newin{1,32}
- * 
+ *
  *  @var Script SHARADA
  * Sharada. @newin{1,32}
- * 
+ *
  *  @var Script SORA_SOMPENG
  * Sora Sompeng. @newin{1,32}
- * 
+ *
  *  @var Script TAKRI
  * Takri. @newin{1,32}
- * 
+ *
  *  @var Script BASSA_VAH
  * Bassa. @newin{1,40}
- * 
+ *
  *  @var Script CAUCASIAN_ALBANIAN
  * Caucasian Albanian. @newin{1,40}
- * 
+ *
  *  @var Script DUPLOYAN
  * Duployan. @newin{1,40}
- * 
+ *
  *  @var Script ELBASAN
  * Elbasan. @newin{1,40}
- * 
+ *
  *  @var Script GRANTHA
  * Grantha. @newin{1,40}
- * 
+ *
  *  @var Script KHOJKI
  * Kjohki. @newin{1,40}
- * 
+ *
  *  @var Script KHUDAWADI
  * Khudawadi, Sindhi. @newin{1,40}
- * 
+ *
  *  @var Script LINEAR_A
  * Linear A. @newin{1,40}
- * 
+ *
  *  @var Script MAHAJANI
  * Mahajani. @newin{1,40}
- * 
+ *
  *  @var Script MANICHAEAN
  * Manichaean. @newin{1,40}
- * 
+ *
  *  @var Script MENDE_KIKAKUI
  * Mende Kikakui. @newin{1,40}
- * 
+ *
  *  @var Script MODI
  * Modi. @newin{1,40}
- * 
+ *
  *  @var Script MRO
  * Mro. @newin{1,40}
- * 
+ *
  *  @var Script NABATAEAN
  * Nabataean. @newin{1,40}
- * 
+ *
  *  @var Script OLD_NORTH_ARABIAN
  * Old North Arabian. @newin{1,40}
- * 
+ *
  *  @var Script OLD_PERMIC
  * Old Permic. @newin{1,40}
- * 
+ *
  *  @var Script PAHAWH_HMONG
  * Pahawh Hmong. @newin{1,40}
- * 
+ *
  *  @var Script PALMYRENE
  * Palmyrene. @newin{1,40}
- * 
+ *
  *  @var Script PAU_CIN_HAU
  * Pau Cin Hau. @newin{1,40}
- * 
+ *
  *  @var Script PSALTER_PAHLAVI
  * Psalter Pahlavi. @newin{1,40}
- * 
+ *
  *  @var Script SIDDHAM
  * Siddham. @newin{1,40}
- * 
+ *
  *  @var Script TIRHUTA
  * Tirhuta. @newin{1,40}
- * 
+ *
  *  @var Script WARANG_CITI
  * Warang Citi. @newin{1,40}
- * 
+ *
  *  @var Script AHOM
  * Ahom. @newin{1,40}
- * 
+ *
  *  @var Script ANATOLIAN_HIEROGLYPHS
  * Anatolian Hieroglyphs. @newin{1,40}
- * 
+ *
  *  @var Script HATRAN
  * Hatran. @newin{1,40}
- * 
+ *
  *  @var Script MULTANI
  * Multani. @newin{1,40}
- * 
+ *
  *  @var Script OLD_HUNGARIAN
  * Old Hungarian. @newin{1,40}
- * 
+ *
  *  @var Script SIGNWRITING
  * Signwriting. @newin{1,40}
- * 
+ *
  *  @enum Script
- * 
+ *
  * The `Pango::Script` enumeration identifies different writing
  * systems.
- * 
+ *
  * The values correspond to the names as defined in the Unicode standard. See
  * [Unicode Standard Annex 24: Script names](http://www.unicode.org/reports/tr24/)
- * 
+ *
  * Note that this enumeration is deprecated and will not be updated
  * to include values in newer versions of the Unicode standard.
  * Applications should use the `UnicodeScript` enumeration instead,
@@ -596,7 +596,7 @@ private:
 
    //This function is a bad hack for internal use by renderers and Pango (from pango/pango-utils.c)
    //This is defined as a macro
-  
+
 
 public:
   /** Constructs an empty language tag.
@@ -614,14 +614,14 @@ public:
    */
   Glib::ustring get_string() const;
 
-  
+
   /** Checks if a language tag matches one of the elements in a list of
    * language ranges.
-   * 
+   *
    * A language tag is considered to match a range in the list if the
    * range is '*', the range is exactly the tag, or the range is a prefix
    * of the tag, and the character after it in the tag is '-'.
-   * 
+   *
    * @param range_list A list of language ranges, separated by ';', ':',
    * ',', or space characters.
    * Each element must either be '*', or a RFC 3066 language range
@@ -629,23 +629,23 @@ public:
    * @return <tt>true</tt> if a match was found.
    */
   bool matches(const Glib::ustring & range_list) const;
-  
+
   /** Determines if @a script is one of the scripts used to
    * write @a language.
-   * 
+   *
    * The returned value is conservative; if nothing is known about
    * the language tag @a language, <tt>true</tt> will be returned, since, as
    * far as Pango knows, @a script might be used to write @a language.
-   * 
+   *
    * This routine is used in Pango's itemization process when
    * determining if a supplied language tag is relevant to
    * a particular section of text. It probably is not useful
    * for applications in most circumstances.
-   * 
+   *
    * This function uses get_scripts() internally.
-   * 
+   *
    * @newin{1,4}
-   * 
+   *
    * @param script A `Pango::Script`.
    * @return <tt>true</tt> if @a script is one of the scripts used
    * to write @a language or if nothing is known about @a language
@@ -670,7 +670,7 @@ public:
    * @newin{2,14}
    */
   std::vector<Script> get_scripts() const;
-  
+
 
 };
 

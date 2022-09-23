@@ -3,7 +3,7 @@
 #define _PANGOMM_ATTRITER_H
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* attriter.h
@@ -46,7 +46,7 @@ class PANGOMM_API AttrIter
 
 private:
 
-  
+
 public:
   typedef std::forward_iterator_tag iterator_category;
   typedef int                       difference_type;
@@ -80,26 +80,26 @@ public:
    */
   bool next();
 
-  
+
   /** Get the range of the current segment.
-   * 
+   *
    * Note that the stored return values are signed, not unsigned
    * like the values in `Pango::Attribute`. To deal with this API
    * oversight, stored return values that wouldn't fit into
    * a signed integer are clamped to G_MAXINT.
-   * 
+   *
    * @param start Location to store the start of the range.
    * @param end Location to store the end of the range.
    */
   void get_range(int& start, int& end) const;
-  
+
   /** Find the current attribute of a particular type
    * at the iterator location.
-   * 
+   *
    * When multiple attributes of the same type overlap,
    * the attribute whose range starts closest to the
    * current location is used.
-   * 
+   *
    * @param type The type of attribute to find.
    * @return The current
    * attribute of the given type, or <tt>nullptr</tt> if no attribute
@@ -129,7 +129,7 @@ public:
    * @result A list of all attributes for the current range.
    */
   std::vector<Attribute> get_attrs() const;
-  
+
 
   PangoAttrIterator*       gobj()       { return gobject_; }
   const PangoAttrIterator* gobj() const { return gobject_; }

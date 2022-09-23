@@ -3,7 +3,7 @@
 #define _PANGOMM_LAYOUTLINE_H
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* layoutline.h
@@ -25,7 +25,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/refptr.h>
+#include <mm/glib/refptr.h>
 #include <pangomm/rectangle.h>
 #include <cairomm/context.h>
 #include <pango/pango.h>
@@ -82,13 +82,13 @@ protected:
 
 private:
 
-  
+
 public:
 
-  
+
   /** Converts from x offset to the byte index of the corresponding character
    * within the text of the layout.
-   * 
+   *
    * If @a x_pos is outside the line, @a index and @a trailing will point to the very
    * first or very last position in the line. This determination is based on the
    * resolved direction of the paragraph; for example, if the resolved direction
@@ -97,7 +97,7 @@ public:
    * left of the line results in @a index pointing to the (logical) last grapheme
    * in the line and @a trailing being set to the number of characters in that
    * grapheme. The reverse is true for a left-to-right line.
-   * 
+   *
    * @param x_pos The X offset (in Pango units) from the left edge of the line.
    * @param index Location to store calculated byte index for the grapheme
    * in which the user clicked.
@@ -110,11 +110,11 @@ public:
 
   /** Converts an index within a line to a @a x position.
    * @param index Byte offset of a grapheme within the layout.
-   * @param trailing  A boolean indicating the edge of the grapheme to retrieve the position of. If <tt>false</tt>, the trailing edge of the grapheme, if <tt>true</tt> the leading of the grapheme. 
+   * @param trailing  A boolean indicating the edge of the grapheme to retrieve the position of. If <tt>false</tt>, the trailing edge of the grapheme, if <tt>true</tt> the leading of the grapheme.
    * @return The x offset (in thousands of a device unit).
    */
   int index_to_x(int index, bool trailing) const;
-  
+
 
   /** Get a list of visual ranges corresponding to a given logical range.
    * This list is not necessarily minimal - there may be consecutive ranges which are adjacent.
@@ -132,11 +132,11 @@ public:
    */
   std::vector<std::pair<int,int> > get_x_ranges(int start_index, int end_index) const;
 
-  
+
   /** Compute the logical and ink extents of a layout line. See the documentation
    * for Pango::Font::get_glyph_extents() for details about the interpretation
    * of the rectangles.
-   * 
+   *
    * @param ink_rect Rectangle used to store the extents of the glyph string as drawn.
    * @param logical_rect Rectangle used to store the logical extents of the glyph string.
    */
@@ -152,13 +152,13 @@ public:
    */
   Rectangle get_logical_extents() const;
 
-  
+
   /** Compute the logical and ink extents of a layout line. See the documentation
    * for Pango::Font::get_glyph_extents() for details about the interpretation
    * of the rectangles. The returned rectangles are in device units, as
    * opposed to get_extents(), which returns the extents in
    * units of device unit / PANGO_SCALE.
-   * 
+   *
    * @param ink_rect Rectangle used to store the extents of the glyph string as drawn.
    * @param logical_rect Rectangle used to store the logical extents of the glyph string.
    */
@@ -195,7 +195,7 @@ public:
   //_MEMBER_SET_GOBJECT(layout, layout, Pango::Layout, PangoLayout*)
   int get_length() const;
   int get_start_index() const;
-    
+
 
 };
 

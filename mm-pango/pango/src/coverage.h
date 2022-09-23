@@ -5,7 +5,7 @@
 #include <pangommconfig.h>
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* coverage.h
@@ -28,7 +28,7 @@
  */
 
 
-#include <glibmm/value.h>
+#include <mm/glib/value.h>
 #include <pango/pango.h>
 
 
@@ -81,38 +81,38 @@ protected:
 
 private:
 
-  
+
    //pango ref doc: "This function may now be unecessary since we refcount the structure. Mail otaylor redhat.com if you use it."
-  
+
 public:
   /** @addtogroup pangommEnums pangomm Enums and Flags */
 
-  /** 
+  /**
    *  @var Level NONE
    * The character is not representable with
    * the font.
-   * 
+   *
    *  @var Level FALLBACK
    * The character is represented in a
    * way that may be comprehensible but is not the correct
    * graphical form. For instance, a Hangul character represented
    * as a a sequence of Jamos, or a Latin transliteration of a
    * Cyrillic word.
-   * 
+   *
    *  @var Level APPROXIMATE
    * The character is represented as
    * basically the correct graphical form, but with a stylistic
    * variant inappropriate for the current script.
-   * 
+   *
    *  @var Level EXACT
    * The character is represented as the
    * correct graphical form.
-   * 
+   *
    *  @enum Level
-   * 
+   *
    * `Pango::CoverageLevel` is used to indicate how well a font can
    * represent a particular Unicode character for a particular script.
-   * 
+   *
    * Since 1.44, only Pango::Coverage::Level::NONE and Pango::Coverage::Level::EXACT
    * will be returned.
    *
@@ -129,16 +129,16 @@ public:
 
   //_WRAP_METHOD(Glib::RefPtr<Coverage> copy() const, pango_coverage_copy) //see above
 
-  
+
   /** Determine whether a particular index is covered by @a coverage.
-   * 
+   *
    * @param index The index to check.
    * @return The coverage level of @a coverage for character @a index.
    */
   Level get(int index) const;
-  
+
   /** Modify a particular index within @a coverage
-   * 
+   *
    * @param index The index to modify.
    * @param level The new level for @a index.
    */

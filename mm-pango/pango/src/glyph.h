@@ -5,7 +5,7 @@
 #include <pangommconfig.h>
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* glyph.h

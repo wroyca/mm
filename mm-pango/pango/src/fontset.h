@@ -3,7 +3,7 @@
 #define _PANGOMM_FONTSET_H
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* fontset.h
@@ -25,7 +25,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/object.h>
+#include <mm/glib/object.h>
 #include <pangomm/language.h>
 #include <pangomm/font.h>
 #include <pangomm/fontmetrics.h>
@@ -51,7 +51,7 @@ namespace Pango
 
 class PANGOMM_API Fontset : public Glib::Object
 {
-  
+
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 public:
@@ -103,17 +103,17 @@ private:
 
 
 public:
-  
+
   /** Returns the font in the fontset that contains the best glyph for a
    * Unicode character.
-   * 
+   *
    * @param wc A Unicode character.
    * @return A `Pango::Font`.
    */
   Glib::RefPtr<Font> get_font(guint wc) const;
-  
+
   /** Get overall metric information for the fonts in the fontset.
-   * 
+   *
    * @return A `Pango::FontMetrics` object.
    */
   FontMetrics get_metrics() const;
@@ -131,7 +131,7 @@ public:
    * @param slot Callback function
    */
   void foreach(const ForeachSlot& slot);
-  
+
 
 public:
 

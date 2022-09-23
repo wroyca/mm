@@ -3,11 +3,11 @@
 #define _PANGOMM_FONTFACE_H
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* fontface.h
- * 
+ *
  * Copyright 2001      The gtkmm Development Team
  *
  * This library is free software; you can redistribute it and/or
@@ -26,7 +26,7 @@
  */
 
 #include <pangomm/fontdescription.h>
-#include <glibmm/object.h>
+#include <mm/glib/object.h>
 #include <pango/pango.h>
 
 
@@ -50,7 +50,7 @@ class PANGOMM_API FontFamily;
 
 class PANGOMM_API FontFace : public Glib::Object
 {
-   
+
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 public:
@@ -102,58 +102,58 @@ private:
 
 
 public:
-  
+
   /** Returns the family, style, variant, weight and stretch of
    * a Pango::FontFace. The size field of the resulting font description
    * will be unset.
-   * 
-   * @return A  Pango::FontDescription 
+   *
+   * @return A  Pango::FontDescription
    * holding the description of the face.
    */
   FontDescription describe() const;
-  
+
   /** Gets a name representing the style of this face among the
    * different faces in the `Pango::FontFamily` for the face. The
    * name is suitable for displaying to users.
-   * 
+   *
    * @return The face name for the face. This string is
    * owned by the face object and must not be modified or freed.
    */
   Glib::ustring get_name() const;
 
-  /** List the available sizes for a font. This is only applicable to bitmap fonts. 
-   * For scalable fonts this returns an empty array. 
+  /** List the available sizes for a font. This is only applicable to bitmap fonts.
+   * For scalable fonts this returns an empty array.
    * The sizes returned are in Pango units and are sorted in ascending order.
    */
   std::vector<int> list_sizes() const;
-  
+
 
   /** Returns whether a `Pango::FontFace` is synthesized by the underlying
    * font rendering engine from another face, perhaps by shearing, emboldening,
    * or lightening it.
-   * 
+   *
    * @newin{1,18}
-   * 
+   *
    * @return Whether @a face is synthesized.
    */
   bool is_synthesized() const;
-  
+
   /** Gets the `Pango::FontFamily` that @a face belongs to.
-   * 
+   *
    * @newin{1,46}
-   * 
+   *
    * @return The `Pango::FontFamily`.
    */
   Glib::RefPtr<FontFamily> get_family();
-  
+
   /** Gets the `Pango::FontFamily` that @a face belongs to.
-   * 
+   *
    * @newin{1,46}
-   * 
+   *
    * @return The `Pango::FontFamily`.
    */
   Glib::RefPtr<const FontFamily> get_family() const;
-  
+
 // PangoFontFaceClass is hidden when PANGO_DISABLE_DEPRECATED is defined.
 // Don't wrap vfuncs.
 

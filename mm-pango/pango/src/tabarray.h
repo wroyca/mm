@@ -3,7 +3,7 @@
 #define _PANGOMM_TABARRAY_H
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* tabarray.h
@@ -39,28 +39,28 @@ namespace Pango
 
 /** @addtogroup pangommEnums pangomm Enums and Flags */
 
-/** 
+/**
  *  @var TabAlign LEFT
  * The text appears to the right of the tab stop position.
- * 
+ *
  *  @var TabAlign RIGHT
  * The text appears to the left of the tab stop position
  * until the available space is filled.
- * 
+ *
  *  @var TabAlign CENTER
  * The text is centered at the tab stop position
  * until the available space is filled.
- * 
+ *
  *  @var TabAlign DECIMAL
  * Text before the first '.' appears to the left of the
  * tab stop position (until the available space is filled), the rest to
  * the right.
- * 
+ *
  *  @enum TabAlign
- * 
+ *
  * `Pango::TabAlign` specifies where the text appears relative to the tab stop
  * position.
- * 
+ *
  * Support for tab alignments other than Pango::TabAlign::LEFT was added
  * in Pango 1.50.
  *
@@ -138,28 +138,28 @@ protected:
 
 private:
 
-  
+
 public:
   explicit TabArray(int initial_size, bool positions_in_pixels = true);
 
-  
+
   /** Gets the number of tab stops in @a tab_array.
-   * 
+   *
    * @return The number of tab stops in the array.
    */
   int get_size() const;
-  
+
   /** Resizes a tab array.
-   * 
+   *
    * You must subsequently initialize any tabs
    * that were added as a result of growing the array.
-   * 
+   *
    * @param new_size New size of the array.
    */
   void resize(int new_size);
-  
+
   /** Sets the alignment and location of a tab stop.
-   * 
+   *
    * @param tab_index The index of a tab stop.
    * @param alignment Tab alignment.
    * @param location Tab location in Pango units.
@@ -176,10 +176,10 @@ public:
    */
   std::vector<std::pair<TabAlign, int>> get_tabs() const;
 
-  
+
   /** Returns <tt>true</tt> if the tab positions are in pixels,
    * <tt>false</tt> if they are in Pango units.
-   * 
+   *
    * @return Whether positions are in pixels.
    */
   bool get_positions_in_pixels() const;

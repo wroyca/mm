@@ -3,7 +3,7 @@
 #define _PANGOMM_GLYPHSTRING_H
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* glyphstring.h
@@ -81,7 +81,7 @@ protected:
 
 private:
 
-  
+
 public:
 
   /** Constructs a string of glyphs from a string of characters.
@@ -122,29 +122,29 @@ public:
   GlyphString(const Glib::ustring& item_text, const Glib::ustring& paragraph_text,
     const Analysis& analysis, ShapeFlags flags = ShapeFlags::NONE);
 
-  
+
   /** Resize a glyph string to the given length.
-   * 
+   *
    * @param new_len The new length of the string.
    */
   void set_size(int new_len);
 
-  
+
   /** Compute the logical and ink extents of a glyph string. See the documentation
    * for Pango::Font::get_glyph_extents() for details about the interpretation
    * of the rectangles.
-   * 
+   *
    * @param font A Pango::Font.
    * @param ink_rect Rectangle used to store the extents of the glyph string as drawn.
    * @param logical_rect Rectangle used to store the logical extents of the glyph string.
    */
   void get_extents(const Glib::RefPtr<const Font>& font, Rectangle& ink_rect, Rectangle& logical_rect) const;
-  
+
   /** Computes the extents of a sub-portion of a glyph string. The extents are
    * relative to the start of the glyph string range (the origin of their
    * coordinate system is at the start of the range, not at the start of the entire
    * glyph string).
-   * 
+   *
    * @param start Start index.
    * @param end End index (the range is the set of bytes with
    *               indices such that start &lt;= index &lt; end).
@@ -154,16 +154,16 @@ public:
    */
   void get_extents(int start, int end, const Glib::RefPtr<const Font>& font, Rectangle& ink_rect, Rectangle& logical_rect) const;
 
-  
+
   /** Computes the logical width of the glyph string.
-   * 
+   *
    * This can also be computed using extents().
    * However, since this only computes the width, it's much faster. This
    * is in fact only a convenience function that computes the sum of
    *  @a geometry.width for each glyph in the @a glyphs.
-   * 
+   *
    * @newin{1,14}
-   * 
+   *
    * @return The logical width of the glyph string.
    */
   int get_width() const;

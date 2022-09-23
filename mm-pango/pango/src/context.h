@@ -3,12 +3,12 @@
 #define _PANGOMM_CONTEXT_H
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* context.h
- * 
- * Copyright (C) 1998-1999 The gtkmm Development Team 
+ *
+ * Copyright (C) 1998-1999 The gtkmm Development Team
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -26,7 +26,7 @@
  */
 
 
-#include <glibmm/object.h>
+#include <mm/glib/object.h>
 #include <pangomm/fontdescription.h>
 #include <pangomm/fontmetrics.h>
 #include <pangomm/fontset.h>
@@ -55,47 +55,47 @@ namespace Pango
 
 /** @addtogroup pangommEnums pangomm Enums and Flags */
 
-/** 
+/**
  *  @var Direction LTR
  * A strong left-to-right direction.
- * 
+ *
  *  @var Direction RTL
  * A strong right-to-left direction.
- * 
+ *
  *  @var Direction TTB_LTR
  * Deprecated value; treated the
  * same as Pango::Direction::RTL.
- * 
+ *
  *  @var Direction TTB_RTL
  * Deprecated value; treated the
  * same as Pango::Direction::LTR.
- * 
+ *
  *  @var Direction WEAK_LTR
  * A weak left-to-right direction.
- * 
+ *
  *  @var Direction WEAK_RTL
  * A weak right-to-left direction.
- * 
+ *
  *  @var Direction NEUTRAL
  * No direction specified.
- * 
+ *
  *  @enum Direction
- * 
+ *
  * `Pango::Direction` represents a direction in the Unicode bidirectional
  * algorithm.
- * 
+ *
  * Not every value in this enumeration makes sense for every usage of
  * `Pango::Direction`; for example, the return value of unichar_direction()
  * and find_base_dir() cannot be Pango::Direction::WEAK_LTR or
  * Pango::Direction::WEAK_RTL, since every character is either neutral
  * or has a strong direction; on the other hand Pango::Direction::NEUTRAL
  * doesn't make sense to pass to itemize_with_base_dir().
- * 
+ *
  * The Pango::Direction::TTB_LTR, Pango::Direction::TTB_RTL values come from
  * an earlier interpretation of this enumeration as the writing direction
  * of a block of text and are no longer used; See `Pango::Gravity` for how
  * vertical text is handled in Pango.
- * 
+ *
  * If you are interested in text direction, you should really use fribidi
  * directly. `Pango::Direction` is only retained because it is used in some
  * public apis.
@@ -133,30 +133,30 @@ public:
 namespace Pango
 {
 
-/** 
+/**
  *  @var GravityHint NATURAL
  * Scripts will take their natural gravity based
  * on the base gravity and the script.  This is the default.
- * 
+ *
  *  @var GravityHint STRONG
  * Always use the base gravity set, regardless of
  * the script.
- * 
+ *
  *  @var GravityHint LINE
  * For scripts not in their natural direction (eg.
  * Latin in East gravity), choose per-script gravity such that every script
  * respects the line progression. This means, Latin and Arabic will take
  * opposite gravities and both flow top-to-bottom for example.
- * 
+ *
  *  @enum GravityHint
- * 
+ *
  * `Pango::GravityHint` defines how horizontal scripts should behave in a
  * vertical context.
- * 
+ *
  * That is, English excerpts in a vertical paragraph for example.
- * 
+ *
  * See also Pango::Gravity
- * 
+ *
  * @newin{1,16}
  *
  * @ingroup pangommEnums
@@ -217,7 +217,7 @@ namespace Pango
 
 class PANGOMM_API Context : public Glib::Object
 {
-   
+
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 public:
@@ -268,11 +268,11 @@ public:
 private:
 
     //PANGO_ENABLE_BACKEND
-   
+
 protected:
   Context();
-  
-  
+
+
 public:
   /** List all available font families for a context.
    * You can specify one of these as your desired font family in the Pango::FontDesciption
@@ -280,71 +280,71 @@ public:
    * @return An array of Pango::FontFamily objects.
    */
   std::vector<Glib::RefPtr<FontFamily>> list_families() const;
-  
-  
+
+
   /** Sets the font map to be searched when fonts are looked-up
    * in this context.
-   * 
+   *
    * This is only for internal use by Pango backends, a `Pango::Context`
    * obtained via one of the recommended methods should already have a
    * suitable font map.
-   * 
+   *
    * @param font_map The `Pango::FontMap` to set.
    */
   void set_font_map(const Glib::RefPtr<FontMap>& font_map);
 
-  
+
   /** Gets the `Pango::FontMap` used to look up fonts for this context.
-   * 
+   *
    * @newin{1,6}
-   * 
+   *
    * @return The font map for the `Pango::Context`.
    * This value is owned by Pango and should not be unreferenced.
    */
   Glib::RefPtr<FontMap> get_font_map();
-  
+
   /** Gets the `Pango::FontMap` used to look up fonts for this context.
-   * 
+   *
    * @newin{1,6}
-   * 
+   *
    * @return The font map for the `Pango::Context`.
    * This value is owned by Pango and should not be unreferenced.
    */
   Glib::RefPtr<const FontMap> get_font_map() const;
 
-  
+
   /** Returns the current serial number of @a context.
-   * 
+   *
    * The serial number is initialized to an small number larger than zero
    * when a new context is created and is increased whenever the context
    * is changed using any of the setter functions, or the `Pango::FontMap` it
    * uses to find fonts has changed. The serial may wrap, but will never
    * have the value 0. Since it can wrap, never compare it with "less than",
    * always use "not equals".
-   * 
+   *
    * This can be used to automatically detect changes to a `Pango::Context`,
    * and is only useful when implementing objects that need update when their
    * `Pango::Context` changes, like `Pango::Layout`.
-   * 
+   *
    * @newin{1,32,4}
-   * 
+   *
    * @return The current serial number of @a context.
    */
   guint get_serial() const;
 
-  
+
   /** Loads the font in one of the fontmaps in the context
    * that is the closest match for @a desc.
-   * 
+   *
    * @param desc A `Pango::FontDescription` describing the font to load.
    * @return The newly allocated `Pango::Font`
    * that was loaded, or <tt>nullptr</tt> if no font matched.
    */
   Glib::RefPtr<Font> load_font(const FontDescription& desc) const;
-  
+
   /** Load a set of fonts in the context that can be used to render
    * a font matching @a desc.
-   * 
+   *
    * @param desc A `Pango::FontDescription` describing the fonts to load.
    * @param language A `Pango::Language` the fonts will be used for.
    * @return The newly allocated
@@ -359,152 +359,152 @@ public:
    * @return A Pango::FontMetrics object.
    */
   FontMetrics get_metrics(const FontDescription& desc) const;
-  
+
   /** Get overall metric information for a font particular font
    * description.  Since the metrics may be substantially different for
    * different scripts, a language tag can be provided to indicate that
    * the metrics should be retrieved that correspond to the script(s)
    * used by that language.
-   * 
+   *
    * The Pango::FontDescription is interpreted in the same way as
    * by pango_itemize(), and the family name may be a comma separated
    * list of figures. If characters from multiple of these families
    * would be used to render the string, then the returned fonts would
    * be a composite of the metrics for the fonts loaded for the
    * individual families.
-   * 
+   *
    * @param desc A Pango::FontDescription structure.
    * @param language Language tag used to determine which script to get the metrics
    * for.
    * @return A Pango::Metrics object.
    */
   FontMetrics get_metrics(const FontDescription& desc, const Language& language) const;
-  
+
   /** Set the default font description for the context
-   * 
+   *
    * @param desc The new pango font description.
    */
   void set_font_description(const FontDescription& desc);
-  
+
   /** Retrieve the default font description for the context.
-   * 
+   *
    * @return A pointer to the context's default font
    * description. This value must not be modified or freed.
    */
   FontDescription get_font_description() const;
-  
+
   /** Retrieves the global language tag for the context.
-   * 
+   *
    * @return The global language tag.
    */
   Language get_language() const;
-  
+
   /** Sets the global language tag for the context.
-   * 
+   *
    * The default language for the locale of the running process
    * can be found using Pango::Language::get_default().
-   * 
+   *
    * @param language The new language tag.
    */
   void set_language(const Language& language);
-  
+
   /** Sets the base direction for the context.
-   * 
+   *
    * The base direction is used in applying the Unicode bidirectional
    * algorithm; if the @a direction is Pango::Direction::LTR or
    * Pango::Direction::RTL, then the value will be used as the paragraph
    * direction in the Unicode bidirectional algorithm. A value of
    * Pango::Direction::WEAK_LTR or Pango::Direction::WEAK_RTL is used only
    * for paragraphs that do not contain any strong characters themselves.
-   * 
+   *
    * @param direction The new base direction.
    */
   void set_base_dir(Direction direction);
-  
+
   /** Retrieves the base direction for the context.
-   * 
+   *
    * See set_base_dir().
-   * 
+   *
    * @return The base direction for the context.
    */
   Direction get_base_dir() const;
 
-  
+
   /** Sets the base gravity for the context.
-   * 
+   *
    * The base gravity is used in laying vertical text out.
-   * 
+   *
    * @newin{1,16}
-   * 
+   *
    * @param gravity The new base gravity.
    */
   void set_base_gravity(Gravity gravity);
-  
+
   /** Retrieves the base gravity for the context.
-   * 
+   *
    * See set_base_gravity().
-   * 
+   *
    * @newin{1,16}
-   * 
+   *
    * @return The base gravity for the context.
    */
   Gravity get_base_gravity() const;
-  
+
   /** Retrieves the gravity for the context.
-   * 
+   *
    * This is similar to get_base_gravity(),
    * except for when the base gravity is Pango::Gravity::AUTO for
    * which pango_gravity_get_for_matrix() is used to return the
    * gravity from the current context matrix.
-   * 
+   *
    * @newin{1,16}
-   * 
+   *
    * @return The resolved gravity for the context.
    */
   Gravity get_gravity() const;
-  
+
   /** Sets the gravity hint for the context.
-   * 
+   *
    * The gravity hint is used in laying vertical text out, and
    * is only relevant if gravity of the context as returned by
    * get_gravity() is set to Pango::Gravity::EAST
    * or Pango::Gravity::WEST.
-   * 
+   *
    * @newin{1,16}
-   * 
+   *
    * @param hint The new gravity hint.
    */
   void set_gravity_hint(GravityHint hint);
-  
+
   /** Retrieves the gravity hint for the context.
-   * 
+   *
    * See set_gravity_hint() for details.
-   * 
+   *
    * @newin{1,16}
-   * 
+   *
    * @return The gravity hint for the context.
    */
   GravityHint get_gravity_hint() const;
 
-  
+
   /** Sets the transformation matrix that will be applied when rendering
    * with this context.
-   * 
+   *
    * Note that reported metrics are in the user space coordinates before
    * the application of the matrix, not device-space coordinates after the
    * application of the matrix. So, they don't scale with the matrix, though
    * they may change slightly for different matrices, depending on how the
    * text is fit to the pixel grid.
-   * 
+   *
    * @newin{1,6}
-   * 
+   *
    * @param matrix A `Pango::Matrix`, or <tt>nullptr</tt> to unset any existing
    * matrix. (No matrix set is the same as setting the identity matrix.).
    */
   void set_matrix(const Matrix& matrix);
 
   Matrix get_matrix() const;
-  
+
 
   /** Breaks a piece of text into segments with consistent directional level and shaping engine.
    * Each byte of @a text will be contained in exactly one of the items in the returned list.
@@ -517,7 +517,7 @@ public:
   std::vector<Item> itemize(const Glib::ustring& text, const AttrList& attrs) const;
 
   /** Breaks a piece of text into segments with consistent directional level and shaping engine.
-   * Each byte of @a text will be contained in exactly one of the items in the returned list. 
+   * Each byte of @a text will be contained in exactly one of the items in the returned list.
    * The generated list of items will be in logical order (the start offsets of the items
    * are ascending).
    *
@@ -548,53 +548,53 @@ public:
 
 
   /** Sets the font options used when rendering text with this context.
-   * 
+   *
    * These options override any options that update_context()
    * derives from the target surface.
-   * 
+   *
    * @newin{1,10}
-   * 
+   *
    * @param options A `cairo_font_options_t`, or <tt>nullptr</tt> to unset
    * any previously set options. A copy is made.
    */
   void set_cairo_font_options(const Cairo::FontOptions& options);
 
- 
+
   /** Retrieves any font rendering options previously set with
    * pango_cairo_context_set_font_options().
-   * 
+   *
    * This function does not report options that are derived from
    * the target surface by update_context().
-   * 
+   *
    * @newin{1,10}
-   * 
+   *
    * @return The font options previously set on the
    * context, or <tt>nullptr</tt> if no options have been set. This value is
    * owned by the context and must not be modified or freed.
    */
   Cairo::FontOptions get_font_options() const;
 
-  
+
   /** Sets the resolution for the context.
-   * 
+   *
    * This is a scale factor between points specified in a `Pango::FontDescription`
    * and Cairo units. The default value is 96, meaning that a 10 point font will
    * be 13 units high. (10 * 96. / 72. = 13.3).
-   * 
+   *
    * @newin{1,10}
-   * 
+   *
    * @param dpi The resolution in "dots per inch". (Physical inches aren't actually
    * involved; the terminology is conventional.) A 0 or negative value
    * means to use the resolution from the font map.
    */
   void set_resolution(double dpi);
-  
+
   /** Gets the resolution for the context.
-   * 
+   *
    * See pango_cairo_context_set_resolution()
-   * 
+   *
    * @newin{1,10}
-   * 
+   *
    * @return The resolution in "dots per inch". A negative value will
    * be returned if no resolution has previously been set.
    */

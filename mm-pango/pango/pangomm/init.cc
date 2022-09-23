@@ -18,7 +18,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/init.h>
+#include <mm/glib/init.h>
 #include <pangomm/wrap_init.h>
 
 namespace Pango
@@ -27,7 +27,7 @@ namespace Pango
 void init()
 {
   Glib::init();
-  Pango::wrap_init();  
+  Pango::wrap_init();
 }
 
 } // namespace Pango

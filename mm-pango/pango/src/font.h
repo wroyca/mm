@@ -3,12 +3,12 @@
 #define _PANGOMM_FONT_H
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* font.h
- * 
- * Copyright (C) 1998-1999 The gtkmm Development Team 
+ *
+ * Copyright (C) 1998-1999 The gtkmm Development Team
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -26,7 +26,7 @@
  */
 
 
-#include <glibmm/object.h>
+#include <mm/glib/object.h>
 #include <pangomm/rectangle.h>
 #include <pangomm/language.h>
 #include <pangomm/glyph.h>
@@ -69,7 +69,7 @@ class PANGOMM_API FontMap;
 
 class PANGOMM_API Font : public Glib::Object
 {
-  
+
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 public:
@@ -122,29 +122,29 @@ private:
    // Deprecated
 
 public:
-  
+
   /** Returns a description of the font, with font size set in points.
-   * 
+   *
    * Use describe_with_absolute_size() if you want
    * the font size in device units.
-   * 
+   *
    * @return A newly-allocated `Pango::FontDescription` object.
    */
   FontDescription describe() const;
-  
+
   /** Returns a description of the font, with absolute font size set
    * in device units.
-   * 
+   *
    * Use describe() if you want the font size in points.
-   * 
+   *
    * @newin{1,14}
-   * 
+   *
    * @return A newly-allocated `Pango::FontDescription` object.
    */
   FontDescription describe_with_absolute_size() const;
-  
+
   /** Computes the coverage map for a given font and language tag.
-   * 
+   *
    * @param language The language tag.
    * @return A newly-allocated `Pango::Coverage`
    * object.
@@ -156,19 +156,19 @@ public:
    * However, this function overload returns the metrics for the entire font.
    */
   FontMetrics get_metrics() const;
-  
+
   /** Gets overall metric information for a font. Since the metrics may be
    * substantially different for different scripts, a language tag can
    * be provided to indicate that the metrics should be retrieved that
    * correspond to the script(s) used by that language.
-   * 
+   *
    * @param language Language tag used to determine which script to get the metrics
    * for.
    * @return A Pango::Metrics object.
    */
   FontMetrics get_metrics(const Language& language) const;
 
-  
+
   /** Gets the logical and ink extents of a glyph within a font. The
    * coordinate system for each rectangle has its origin at the
    * base line and horizontal origin of the character with increasing
@@ -176,74 +176,74 @@ public:
    * PANGO_DESCENT(), PANGO_LBEARING(), and PANGO_RBEARING can be used to convert
    * from the extents rectangle to more traditional font metrics. The units
    * of the rectangles are in 1/PANGO_SCALE of a device unit.
-   * 
+   *
    * @param glyph The glyph index.
    * @param ink_rect Rectangle used to store the extents of the glyph as drawn.
    * @param logical_rect Rectangle used to store the logical extents of the glyph.
    */
   void get_glyph_extents(Glyph glyph, Rectangle& ink_rect, Rectangle& logical_rect) const;
 
-  
+
   /** Gets the font map for which the font was created.
-   * 
+   *
    * Note that the font maintains a *weak* reference to
    * the font map, so if all references to font map are
    * dropped, the font map will be finalized even if there
    * are fonts created with the font map that are still alive.
    * In that case this function will return <tt>nullptr</tt>.
-   * 
+   *
    * It is the responsibility of the user to ensure that the
    * font map is kept alive. In most uses this is not an issue
    * as a `Pango::Context` holds a reference to the font map.
-   * 
+   *
    * @newin{1,10}
-   * 
+   *
    * @return The `Pango::FontMap`
    * for the font.
    */
   Glib::RefPtr<FontMap> get_font_map();
-  
+
   /** Gets the font map for which the font was created.
-   * 
+   *
    * Note that the font maintains a *weak* reference to
    * the font map, so if all references to font map are
    * dropped, the font map will be finalized even if there
    * are fonts created with the font map that are still alive.
    * In that case this function will return <tt>nullptr</tt>.
-   * 
+   *
    * It is the responsibility of the user to ensure that the
    * font map is kept alive. In most uses this is not an issue
    * as a `Pango::Context` holds a reference to the font map.
-   * 
+   *
    * @newin{1,10}
-   * 
+   *
    * @return The `Pango::FontMap`
    * for the font.
    */
   Glib::RefPtr<const FontMap> get_font_map() const;
 
-  
+
   /** Gets the `Pango::FontFace` to which @a font belongs.
-   * 
+   *
    * @newin{1,46}
-   * 
+   *
    * @return The `Pango::FontFace`.
    */
   Glib::RefPtr<FontFace> get_face();
-  
+
   /** Gets the `Pango::FontFace` to which @a font belongs.
-   * 
+   *
    * @newin{1,46}
-   * 
+   *
    * @return The `Pango::FontFace`.
    */
   Glib::RefPtr<const FontFace> get_face() const;
 
-  
+
   /** Returns whether the font provides a glyph for this character.
-   * 
+   *
    * @newin{1,44}
-   * 
+   *
    * @param wc A Unicode character.
    * @return <tt>true</tt> if @a font can render @a wc.
    */

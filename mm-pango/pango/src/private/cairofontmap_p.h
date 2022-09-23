@@ -3,9 +3,9 @@
 #define _PANGOMM_CAIROFONTMAP_P_H
 
 
-#include <glibmm/private/interface_p.h>
+#include <mm/glib/private/interface_p.h>
 
-#include <glibmm/private/interface_p.h>
+#include <mm/glib/private/interface_p.h>
 
 namespace Pango
 {

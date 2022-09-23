@@ -3,7 +3,7 @@
 #define _PANGOMM_LAYOUTITER_H
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* layoutiter.h
@@ -79,22 +79,22 @@ protected:
 
 private:
 
-  
+
 public:
 
-  
+
   /** Gets the current byte index.
-   * 
+   *
    * Note that iterating forward by char moves in visual order,
    * not logical order, so indexes may not be sequential. Also,
    * the index may be equal to the length of the text in the
    * layout, if on the <tt>nullptr</tt> run (see get_run()).
-   * 
+   *
    * @return Current byte index.
    */
   int get_index() const;
 
-  
+
   /** Gets the current run.
    *
    * When iterating by run, at the end of each line, there's a position with
@@ -105,7 +105,7 @@ public:
    * @return The current run.
    */
   GlyphItem get_run() const;
-  
+
 
   /** Gets the current line.
    *
@@ -116,14 +116,14 @@ public:
    */
   Glib::RefPtr<LayoutLine> get_line();
 
-  
+
   /** Gets the current line for read-only access.
    *
    * @return The current line, that should not be modified.
    */
   Glib::RefPtr<const LayoutLine> get_line() const;
 
-  
+
   /** Gets the current line for read-only access.
    *
    * This is a faster alternative to get_line(), but the user is not expected
@@ -135,59 +135,59 @@ public:
    */
   Glib::RefPtr<const LayoutLine> get_const_line() const;
 
-  
+
   /** Determines whether @a iter is on the last line of the layout.
-   * 
+   *
    * @return <tt>true</tt> if @a iter is on the last line.
    */
   bool at_last_line() const;
 
-  
+
   /** Gets the layout associated with a `Pango::LayoutIter`.
-   * 
+   *
    * @newin{1,20}
-   * 
+   *
    * @return The layout associated with @a iter.
    */
   Glib::RefPtr<Layout> get_layout();
-  
+
   /** Gets the layout associated with a `Pango::LayoutIter`.
-   * 
+   *
    * @newin{1,20}
-   * 
+   *
    * @return The layout associated with @a iter.
    */
   Glib::RefPtr<const Layout> get_layout() const;
 
-  
+
   /** Moves @a iter forward to the next character in visual order.
-   * 
+   *
    * If @a iter was already at the end of the layout, returns <tt>false</tt>.
-   * 
+   *
    * @return Whether motion was possible.
    */
   bool next_char();
-  
+
   /** Moves @a iter forward to the next cluster in visual order.
-   * 
+   *
    * If @a iter was already at the end of the layout, returns <tt>false</tt>.
-   * 
+   *
    * @return Whether motion was possible.
    */
   bool next_cluster();
-  
+
   /** Moves @a iter forward to the next run in visual order.
-   * 
+   *
    * If @a iter was already at the end of the layout, returns <tt>false</tt>.
-   * 
+   *
    * @return Whether motion was possible.
    */
   bool next_run();
-  
+
   /** Moves @a iter forward to the start of the next line.
-   * 
+   *
    * If @a iter is already on the last line, returns <tt>false</tt>.
-   * 
+   *
    * @return Whether motion was possible.
    */
   bool next_line();
@@ -197,12 +197,12 @@ public:
    * @return The logical extents of the current character.
    */
   Rectangle get_char_extents() const;
-  
+
 
   /** Gets the extents of the current cluster, in layout coordinates.
-   * 
+   *
    * Layout coordinates have the origin at the top left of the entire layout.
-   * 
+   *
    * @param ink_rect Rectangle to fill with ink extents.
    * @param logical_rect Rectangle to fill with logical extents.
    */
@@ -218,11 +218,11 @@ public:
    */
   Rectangle get_cluster_logical_extents() const;
 
-  
+
   /** Gets the extents of the current run in layout coordinates.
-   * 
+   *
    * Layout coordinates have the origin at the top left of the entire layout.
-   * 
+   *
    * @param ink_rect Rectangle to fill with ink extents.
    * @param logical_rect Rectangle to fill with logical extents.
    */
@@ -238,14 +238,14 @@ public:
    */
   Rectangle get_run_logical_extents() const;
 
-  
+
   /** Obtains the extents of the current line.
-   * 
+   *
    * Extents are in layout coordinates (origin is the top-left corner
    * of the entire `Pango::Layout`). Thus the extents returned by this
    * function will be the same width/height but not at the same x/y
    * as the extents returned from Pango::LayoutLine::get_extents().
-   * 
+   *
    * @param ink_rect Rectangle to fill with ink extents.
    * @param logical_rect Rectangle to fill with logical extents.
    */
@@ -261,27 +261,27 @@ public:
    */
   Rectangle get_line_logical_extents() const;
 
-  
+
   /** Divides the vertical space in the `Pango::Layout` being iterated over
    * between the lines in the layout, and returns the space belonging to
    * the current line.
-   * 
+   *
    * A line's range includes the line's logical extents. plus half of the
    * spacing above and below the line, if set_spacing()
    * has been called to set layout spacing. The Y positions are in layout
    * coordinates (origin at top left of the entire layout).
-   * 
+   *
    * @note Since 1.44, Pango uses line heights for placing lines, and there
    * may be gaps between the ranges returned by this function.
-   * 
+   *
    * @param y0 Start of line.
    * @param y1 End of line.
    */
   void get_line_yrange(int& y0, int& y1) const;
 
-  
+
   /** Obtains the extents of the `Pango::Layout` being iterated over.
-   * 
+   *
    * @param ink_rect Rectangle to fill with ink extents.
    * @param logical_rect Rectangle to fill with logical extents.
    */
@@ -297,12 +297,12 @@ public:
    */
   Rectangle get_layout_logical_extents() const;
 
-  
+
   /** Gets the Y position of the current line's baseline, in layout
    * coordinates.
-   * 
+   *
    * Layout coordinates have the origin at the top left of the entire layout.
-   * 
+   *
    * @return Baseline of current line.
    */
   int get_baseline() const;

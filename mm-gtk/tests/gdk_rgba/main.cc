@@ -5,7 +5,7 @@
 // https://gitlab.gnome.org/GNOME/gtkmm/merge_requests/8
 
 #include <gdkmm/rgba.h>
-#include <glib.h>
+#include <mm/glib/mm-glib.h>
 #include <limits>
 #include <cmath>
 

@@ -5,7 +5,7 @@
 #include <pangommconfig.h>
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* fontmap.h
@@ -28,7 +28,7 @@
  */
 
 
-#include <glibmm/interface.h>
+#include <mm/glib/interface.h>
 #include <pangomm/fontmap.h>
 #include <cairomm/enums.h>
 #include <pango/pangocairo.h>
@@ -60,7 +60,7 @@ namespace Pango
 
 class PANGOMM_API CairoFontMap : public Glib::Interface
 {
-   
+
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 public:
@@ -129,7 +129,7 @@ private:
 
 
 public:
-  
+
   /** Gets a default %Pango::CairoFontMap to use with Cairo.
    *
    * Note that the type of the returned object will depend
@@ -159,61 +159,61 @@ public:
    */
   static Glib::RefPtr<FontMap> get_default();
 
-  
+
   /** Sets a default `Pango::CairoFontMap` to use with Cairo.
-   * 
+   *
    * This can be used to change the Cairo font backend that the
    * default fontmap uses for example. The old default font map
    * is unreffed and the new font map referenced.
-   * 
+   *
    * Note that since Pango 1.32.6, the default fontmap is per-thread.
    * This function only changes the default fontmap for
    * the current thread. Default fontmaps of existing threads
    * are not changed. Default fontmaps of any new threads will
    * still be created using new().
-   * 
+   *
    * A value of <tt>nullptr</tt> for @a fontmap will cause the current default
    * font map to be released and a new default font map to be created
    * on demand, using new().
-   * 
+   *
    * @newin{1,22}
    */
   void set_default();
 
- 
+
   /** Gets the type of Cairo font backend that @a fontmap uses.
-   * 
+   *
    * @newin{1,18}
-   * 
+   *
    * @return The `cairo_font_type_t` cairo font backend type.
    */
   Cairo::FontType get_font_type() const;
 
-  
+
   /** Sets the resolution for the fontmap.
-   * 
+   *
    * This is a scale factor between
    * points specified in a `Pango::FontDescription` and Cairo units. The
    * default value is 96, meaning that a 10 point font will be 13
    * units high. (10 * 96. / 72. = 13.3).
-   * 
+   *
    * @newin{1,10}
-   * 
+   *
    * @param dpi The resolution in "dots per inch". (Physical inches aren't actually
    * involved; the terminology is conventional.).
    */
   void set_resolution(double dpi);
-  
+
   /** Gets the resolution for the fontmap.
-   * 
+   *
    * See set_resolution().
-   * 
+   *
    * @newin{1,10}
-   * 
+   *
    * @return The resolution in "dots per inch".
    */
   double get_resolution() const;
-  
+
 
 public:
 

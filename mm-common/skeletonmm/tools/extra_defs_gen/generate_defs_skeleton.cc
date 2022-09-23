@@ -21,7 +21,7 @@
 // at compile time.
 #undef SKELETON_DISABLE_DEPRECATED
 
-#include <glibmm_generate_extra_defs/generate_extra_defs.h>
+#include <mm/glib_generate_extra_defs/generate_extra_defs.h>
 #include <skeleton/skeleton.h>
 #include <iostream>
 

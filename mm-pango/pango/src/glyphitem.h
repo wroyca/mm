@@ -3,7 +3,7 @@
 #define _PANGOMM_GLYPHITEM_H
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* glyphitem.h
@@ -91,25 +91,25 @@ protected:
 
 private:
 
-  
+
 public:
   // pango_glyph_item_split() returns a newly created PangoGlyphItem. Don't take a copy.
- 
+
 
   /** Modifies @a orig to cover only the text after @a split_index, and
    * returns a new item that covers the text before @a split_index that
    * used to be in @a orig.
-   * 
+   *
    * You can think of @a split_index as the length of the returned item.
    *  @a split_index may not be 0, and it may not be greater than or equal
    * to the length of @a orig (that is, there must be at least one byte
    * assigned to each item, you can't create a zero-length item).
-   * 
+   *
    * This function is similar in function to Pango::Item::split() (and uses
    * it internally.)
-   * 
+   *
    * @newin{1,2}
-   * 
+   *
    * @param text Text to which positions in @a orig apply.
    * @param split_index Byte index of position to split item, relative to the
    * start of the item.
@@ -121,12 +121,12 @@ public:
 
   //This takes ownership of the GlyphItem, which is strange:
   // _WRAP_METHOD(GSList* apply_attrs(const Glib::ustring& text, const AttrList& list), pango_glyph_item_apply_attrs)
-  
+
   /** Adds spacing between the graphemes of @a glyph_item to
    * give the effect of typographic letter spacing.
-   * 
+   *
    * @newin{1,6}
-   * 
+   *
    * @param text Text that @a glyph_item corresponds to
    * (glyph_item->item->offset is an offset from the
    * start of @a text).

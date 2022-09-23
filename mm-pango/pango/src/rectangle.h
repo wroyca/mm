@@ -5,7 +5,7 @@
 #include <pangommconfig.h>
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -130,7 +130,7 @@ public:
    */
   bool equal(const Rectangle& rhs) const;
 
-  /// Provides access to the underlying C GObject.  
+  /// Provides access to the underlying C GObject.
   PangoRectangle*       gobj()       { return &gobject_; }
   /// Provides access to the underlying C GObject.
   const PangoRectangle* gobj() const { return &gobject_; }

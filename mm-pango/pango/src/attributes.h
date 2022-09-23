@@ -3,7 +3,7 @@
 #define _PANGOMM_ATTRIBUTES_H
 
 
-#include <glibmm/ustring.h>
+#include <mm/glib/ustring.h>
 #include <sigc++/sigc++.h>
 
 /* attributes.h
@@ -43,119 +43,119 @@ namespace Pango
  * attribute is listed in parentheses after the description.
  *  @var AttrType INVALID
  * Does not happen.
- * 
+ *
  *  @var AttrType LANGUAGE
  * Language (Pango::AttrLanguage).
- * 
+ *
  *  @var AttrType FAMILY
  * Font family name list (Pango::AttrString).
- * 
+ *
  *  @var AttrType STYLE
  * Font slant style (Pango::AttrInt).
- * 
+ *
  *  @var AttrType WEIGHT
  * Font weight (Pango::AttrInt).
- * 
+ *
  *  @var AttrType VARIANT
  * Font variant (normal or small caps) (Pango::AttrInt).
- * 
+ *
  *  @var AttrType STRETCH
  * Font stretch (Pango::AttrInt).
- * 
+ *
  *  @var AttrType SIZE
  * Font size in points scaled by Pango::SCALE (Pango::AttrInt).
- * 
+ *
  *  @var AttrType FONT_DESC
  * Font description (Pango::AttrFontDesc).
- * 
+ *
  *  @var AttrType FOREGROUND
  * Foreground color (Pango::AttrColor).
- * 
+ *
  *  @var AttrType BACKGROUND
  * Background color (Pango::AttrColor).
- * 
+ *
  *  @var AttrType UNDERLINE
  * Whether the text has an underline (Pango::AttrInt).
- * 
+ *
  *  @var AttrType STRIKETHROUGH
  * Whether the text is struck-through (Pango::AttrInt).
- * 
+ *
  *  @var AttrType RISE
  * Baseline displacement (Pango::AttrInt).
- * 
+ *
  *  @var AttrType SHAPE
  * Shape (Pango::AttrShape).
- * 
+ *
  *  @var AttrType SCALE_FACTOR
  * Font size scale factor (Pango::AttrFloat).
- * 
+ *
  *  @var AttrType FALLBACK
  * Whether fallback is enabled (Pango::AttrInt).
- * 
+ *
  *  @var AttrType LETTER_SPACING
  * Letter spacing (Pango::PangoAttrInt).
- * 
+ *
  *  @var AttrType UNDERLINE_COLOR
  * Underline color (Pango::AttrColor).
- * 
+ *
  *  @var AttrType STRIKETHROUGH_COLOR
  * Strikethrough color (Pango::AttrColor).
- * 
+ *
  *  @var AttrType ABSOLUTE_SIZE
  * Font size in pixels scaled by Pango::SCALE (Pango::AttrInt).
- * 
+ *
  *  @var AttrType GRAVITY
  * Base text gravity (Pango::AttrInt).
- * 
+ *
  *  @var AttrType GRAVITY_HINT
  * Gravity hint (Pango::AttrInt).
- * 
+ *
  *  @var AttrType FONT_FEATURES
  * OpenType font features (Pango::AttrFontFeatures). @newin{1,38}
- * 
+ *
  *  @var AttrType FOREGROUND_ALPHA
  * Foreground alpha (Pango::AttrInt). @newin{1,38}
- * 
+ *
  *  @var AttrType BACKGROUND_ALPHA
  * Background alpha (Pango::AttrInt). @newin{1,38}
- * 
+ *
  *  @var AttrType ALLOW_BREAKS
  * Whether breaks are allowed (Pango::AttrInt). @newin{1,44}
- * 
+ *
  *  @var AttrType SHOW
  * How to render invisible characters (Pango::AttrInt). @newin{1,44}
- * 
+ *
  *  @var AttrType INSERT_HYPHENS
  * Whether to insert hyphens at intra-word line breaks (Pango::AttrInt). @newin{1,44}
- * 
+ *
  *  @var AttrType OVERLINE
  * Whether the text has an overline (Pango::AttrInt). @newin{1,46}
- * 
+ *
  *  @var AttrType OVERLINE_COLOR
  * Overline color (Pango::AttrColor). @newin{1,46}
- * 
+ *
  *  @var AttrType LINE_HEIGHT
  * Line height factor (Pango::AttrFloat). @newin{1,50}
- * 
+ *
  *  @var AttrType ABSOLUTE_LINE_HEIGHT
  * Line height (Pango::AttrInt). @newin{1,50}
- * 
+ *
  *  @var AttrType WORD
  * Override segmentation to classify the range of the attribute as a single word (Pango::AttrInt). @newin{1,50}
- * 
+ *
  *  @var AttrType SENTENCE
  * Override segmentation to classify the range of the attribute as a single sentence (Pango::AttrInt). @newin{1,50}
- * 
+ *
  *  @var AttrType BASELINE_SHIFT
  * Baseline displacement (Pango::AttrInt). @newin{1,50}
- * 
+ *
  *  @var AttrType FONT_SCALE
  * Font-relative size change (Pango::AttrInt). @newin{1,50}
- * 
+ *
  *  @enum AttrType
- * 
+ *
  * The `Pango::AttrType` distinguishes between different types of attributes.
- * 
+ *
  * Along with the predefined values, it is possible to allocate additional
  * values for custom attributes using attr_type_register(). The predefined
  * values are given below. The type of structure used to store the attribute is
@@ -227,16 +227,16 @@ namespace Pango
 
 // gcc complains that SCALE shadows the global constant SCALE from font.h.
 
-/** 
+/**
  *  @var Underline NONE
  * No underline should be drawn.
- * 
+ *
  *  @var Underline SINGLE
  * A single underline should be drawn.
- * 
+ *
  *  @var Underline DOUBLE
  * A double underline should be drawn.
- * 
+ *
  *  @var Underline LOW
  * A single underline should be drawn at a
  * position beneath the ink extents of the text being
@@ -244,7 +244,7 @@ namespace Pango
  * single characters, such as for keyboard accelerators.
  * Pango::Underline::SINGLE should be used for extended
  * portions of text.
- * 
+ *
  *  @var Underline ERROR
  * An underline indicating an error should
  * be drawn below. The exact style of rendering is up to the
@@ -254,24 +254,24 @@ namespace Pango
  * as a possible mispelling; in some cases a contrasting color
  * may automatically be used. This type of underlining is
  * available since Pango 1.4.
- * 
+ *
  *  @var Underline SINGLE_LINE
  * Like @a PANGO_UNDERLINE_SINGLE, but
  * drawn continuously across multiple runs. This type
  * of underlining is available since Pango 1.46.
- * 
+ *
  *  @var Underline DOUBLE_LINE
  * Like @a PANGO_UNDERLINE_DOUBLE, but
  * drawn continuously across multiple runs. This type
  * of underlining is available since Pango 1.46.
- * 
+ *
  *  @var Underline ERROR_LINE
  * Like @a PANGO_UNDERLINE_ERROR, but
  * drawn continuously across multiple runs. This type
  * of underlining is available since Pango 1.46.
- * 
+ *
  *  @enum Underline
- * 
+ *
  * The `Pango::Underline` enumeration is used to specify whether text
  * should be underlined, and if so, the type of underlining.
  *
@@ -309,19 +309,19 @@ public:
 namespace Pango
 {
 
-/** 
+/**
  *  @var Overline NONE
  * No overline should be drawn.
- * 
+ *
  *  @var Overline SINGLE
  * Draw a single line above the ink
  * extents of the text being underlined.
- * 
+ *
  *  @enum Overline
- * 
+ *
  * The `Pango::Overline` enumeration is used to specify whether text
  * should be overlined, and if so, the type of line.
- * 
+ *
  * @newin{1,46}
  *
  * @ingroup pangommEnums
@@ -352,25 +352,25 @@ public:
 namespace Pango
 {
 
-/** 
+/**
  *  @var ShowFlags NONE
  * No special treatment for invisible characters.
- * 
+ *
  *  @var ShowFlags SPACES
  * Render spaces, tabs and newlines visibly.
- * 
+ *
  *  @var ShowFlags LINE_BREAKS
  * Render line breaks visibly.
- * 
+ *
  *  @var ShowFlags IGNORABLES
  * Render default-ignorable Unicode
  * characters visibly.
- * 
+ *
  *  @enum ShowFlags
- * 
+ *
  * These flags affect how Pango treats characters that are normally
  * not visible in the output.
- * 
+ *
  * @newin{1,44}
  *
  * @ingroup pangommEnums
@@ -439,24 +439,24 @@ public:
 namespace Pango
 {
 
-/** 
+/**
  *  @var TextTransform NONE
  * Leave text unchanged.
- * 
+ *
  *  @var TextTransform LOWERCASE
  * Display letters and numbers as lowercase.
- * 
+ *
  *  @var TextTransform UPPERCASE
  * Display letters and numbers as uppercase.
- * 
+ *
  *  @var TextTransform CAPITALIZE
  * Display the first character of a word
  * in titlecase.
- * 
+ *
  *  @enum TextTransform
- * 
+ *
  * An enumeration that affects how Pango treats characters during shaping.
- * 
+ *
  * @newin{2,50}
  *
  * @ingroup pangommEnums
@@ -498,22 +498,22 @@ namespace Pango
 class BaselineShift_Wrapper final
 {
 public:
-  /** 
+  /**
    *  @var BaselineShift NONE
    * Leave the baseline unchanged.
-   * 
+   *
    *  @var BaselineShift SUPERSCRIPT
    * Shift the baseline to the superscript position,
    * relative to the previous run.
-   * 
+   *
    *  @var BaselineShift SUBSCRIPT
    * Shift the baseline to the subscript position,
    * relative to the previous run.
-   * 
+   *
    *  @enum BaselineShift
-   * 
+   *
    * An enumeration that affects baseline shifts between runs.
-   * 
+   *
    * @newin{2,50}
    *
    * @ingroup pangommEnums
@@ -555,24 +555,24 @@ public:
 namespace Pango
 {
 
-/** 
+/**
  *  @var FontScale NONE
  * Leave the font size unchanged.
- * 
+ *
  *  @var FontScale SUPERSCRIPT
  * Change the font to a size suitable for superscripts.
- * 
+ *
  *  @var FontScale SUBSCRIPT
  * Change the font to a size suitable for subscripts.
- * 
+ *
  *  @var FontScale SMALL_CAPS
  * Change the font to a size suitable for Small Caps. @newin{1,50}
- * 
+ *
  *  @enum FontScale
- * 
+ *
  * An enumeration that affects font sizes for superscript
  * and subscript positioning and for (emulated) Small Caps.
- * 
+ *
  * @newin{2,50}
  *
  * @ingroup pangommEnums
@@ -638,7 +638,7 @@ class PANGOMM_API Attribute
 
 private:
 
-  
+
 public:
   /** Constructs an invalid attribute.
    */
@@ -697,19 +697,19 @@ public:
    */
   void set_end_index(const unsigned int& value);
 
-  
+
   /** Compare two attributes for equality.
-   * 
+   *
    * This compares only the actual value of the two
    * attributes and not the ranges that the attributes
    * apply to.
-   * 
+   *
    * @param attr2 Another `Pango::Attribute`.
    * @return <tt>true</tt> if the two attributes have the same value.
    */
   bool equal(const Attribute& attr2) const;
 
-  /// Provides access to the underlying C GObject.  
+  /// Provides access to the underlying C GObject.
   PangoAttribute*       gobj()       { return gobject_; }
   /// Provides access to the underlying C GObject.
   const PangoAttribute* gobj() const { return gobject_; }
@@ -1046,7 +1046,7 @@ public:
    */
   static AttrInt create_attr_text_transform(TextTransform transform);
 
-  
+
 protected:
   PangoAttribute* gobject_;
 
@@ -1097,7 +1097,7 @@ public:
    */
   void set_string(const Glib::ustring& string);
 
-  /// Provides access to the underlying C GObject.  
+  /// Provides access to the underlying C GObject.
   PangoAttrString*       gobj()       { return reinterpret_cast<PangoAttrString*>(gobject_); }
   /// Provides access to the underlying C GObject.
   const PangoAttrString* gobj() const { return reinterpret_cast<const PangoAttrString*>(gobject_); }
@@ -1137,7 +1137,7 @@ public:
    */
   void set_language(const Language& value);
 
-  /// Provides access to the underlying C GObject.  
+  /// Provides access to the underlying C GObject.
   PangoAttrLanguage*       gobj()       { return reinterpret_cast<PangoAttrLanguage*>(gobject_); }
   /// Provides access to the underlying C GObject.
   const PangoAttrLanguage* gobj() const { return reinterpret_cast<const PangoAttrLanguage*>(gobject_); }
@@ -1177,7 +1177,7 @@ public:
    */
   void set_color(const Color& value);
 
-  /// Provides access to the underlying C GObject.  
+  /// Provides access to the underlying C GObject.
   PangoAttrColor*       gobj()       { return reinterpret_cast<PangoAttrColor*>(gobject_); }
   /// Provides access to the underlying C GObject.
   const PangoAttrColor* gobj() const { return reinterpret_cast<const PangoAttrColor*>(gobject_); }
@@ -1217,7 +1217,7 @@ public:
    */
   void set_value(const int& value);
 
-  /// Provides access to the underlying C GObject.  
+  /// Provides access to the underlying C GObject.
   PangoAttrInt*       gobj()       { return reinterpret_cast<PangoAttrInt*>(gobject_); }
   /// Provides access to the underlying C GObject.
   const PangoAttrInt* gobj() const { return reinterpret_cast<const PangoAttrInt*>(gobject_); }
@@ -1296,7 +1296,7 @@ public:
    * @param desc The new font description for the attribute.
    */
   void set_desc(const FontDescription& desc);
-  
+
   /// Provides access to the underlying C GObject.
   PangoAttrFontDesc*       gobj()       { return reinterpret_cast<PangoAttrFontDesc*>(gobject_); }
   /// Provides access to the underlying C GObject.
@@ -1347,7 +1347,7 @@ public:
    */
   void set_logical_rect(const Rectangle& value);
 
-  /// Provides access to the underlying C GObject.  
+  /// Provides access to the underlying C GObject.
   PangoAttrShape*       gobj()       { return reinterpret_cast<PangoAttrShape*>(gobject_); }
   /// Provides access to the underlying C GObject.
   const PangoAttrShape* gobj() const { return reinterpret_cast<const PangoAttrShape*>(gobject_); }
