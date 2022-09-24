@@ -1,3 +1,17 @@
-subprojects/*/
-*/subprojects/*/
-builddir
+# Cache directories
+.[Vv]s/
+.[Vv]scode/
+.[Ii]dea/
+.[Cc]ache/
+
+# Cache files
+*.[Ss]wp
+*.[Ss]wo
+*~
+
+# Build results
+[Bb]uild/
+[Bb]uilddir/
+
+# Meson subprojects
+[Ss]ubprojects/*/
