@@ -31,7 +31,7 @@
 namespace Gtk
 {
 
-float _gtkmm_align_float_from_enum(Align value)
+auto _gtkmm_align_float_from_enum(Align value) -> float
 {
   //Choose the float alignment value appropriate for this human-readable enum value:
   switch(value)
@@ -54,199 +54,199 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::Align>::value_type()
+auto Glib::Value<Gtk::Align>::value_type() -> GType
 {
   return gtk_align_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::ArrowType>::value_type()
+auto Glib::Value<Gtk::ArrowType>::value_type() -> GType
 {
   return gtk_arrow_type_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::DeleteType>::value_type()
+auto Glib::Value<Gtk::DeleteType>::value_type() -> GType
 {
   return gtk_delete_type_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::DirectionType>::value_type()
+auto Glib::Value<Gtk::DirectionType>::value_type() -> GType
 {
   return gtk_direction_type_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::IconSize>::value_type()
+auto Glib::Value<Gtk::IconSize>::value_type() -> GType
 {
   return gtk_icon_size_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::TextDirection>::value_type()
+auto Glib::Value<Gtk::TextDirection>::value_type() -> GType
 {
   return gtk_text_direction_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::Justification>::value_type()
+auto Glib::Value<Gtk::Justification>::value_type() -> GType
 {
   return gtk_justification_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::MessageType>::value_type()
+auto Glib::Value<Gtk::MessageType>::value_type() -> GType
 {
   return gtk_message_type_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::MovementStep>::value_type()
+auto Glib::Value<Gtk::MovementStep>::value_type() -> GType
 {
   return gtk_movement_step_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::Orientation>::value_type()
+auto Glib::Value<Gtk::Orientation>::value_type() -> GType
 {
   return gtk_orientation_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::Overflow>::value_type()
+auto Glib::Value<Gtk::Overflow>::value_type() -> GType
 {
   return gtk_overflow_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::CornerType>::value_type()
+auto Glib::Value<Gtk::CornerType>::value_type() -> GType
 {
   return gtk_corner_type_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::PackType>::value_type()
+auto Glib::Value<Gtk::PackType>::value_type() -> GType
 {
   return gtk_pack_type_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::PickFlags>::value_type()
+auto Glib::Value<Gtk::PickFlags>::value_type() -> GType
 {
   return gtk_pick_flags_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::PolicyType>::value_type()
+auto Glib::Value<Gtk::PolicyType>::value_type() -> GType
 {
   return gtk_policy_type_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::PositionType>::value_type()
+auto Glib::Value<Gtk::PositionType>::value_type() -> GType
 {
   return gtk_position_type_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::RevealerTransitionType>::value_type()
+auto Glib::Value<Gtk::RevealerTransitionType>::value_type() -> GType
 {
   return gtk_revealer_transition_type_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::ScrollType>::value_type()
+auto Glib::Value<Gtk::ScrollType>::value_type() -> GType
 {
   return gtk_scroll_type_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::SelectionMode>::value_type()
+auto Glib::Value<Gtk::SelectionMode>::value_type() -> GType
 {
   return gtk_selection_mode_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::StackTransitionType>::value_type()
+auto Glib::Value<Gtk::StackTransitionType>::value_type() -> GType
 {
   return gtk_stack_transition_type_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::WrapMode>::value_type()
+auto Glib::Value<Gtk::WrapMode>::value_type() -> GType
 {
   return gtk_wrap_mode_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::NaturalWrapMode>::value_type()
+auto Glib::Value<Gtk::NaturalWrapMode>::value_type() -> GType
 {
   return gtk_natural_wrap_mode_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::SortType>::value_type()
+auto Glib::Value<Gtk::SortType>::value_type() -> GType
 {
   return gtk_sort_type_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::Ordering>::value_type()
+auto Glib::Value<Gtk::Ordering>::value_type() -> GType
 {
   return gtk_ordering_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::PageOrientation>::value_type()
+auto Glib::Value<Gtk::PageOrientation>::value_type() -> GType
 {
   return gtk_page_orientation_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::SensitivityType>::value_type()
+auto Glib::Value<Gtk::SensitivityType>::value_type() -> GType
 {
   return gtk_sensitivity_type_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::SizeRequestMode>::value_type()
+auto Glib::Value<Gtk::SizeRequestMode>::value_type() -> GType
 {
   return gtk_size_request_mode_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::StateFlags>::value_type()
+auto Glib::Value<Gtk::StateFlags>::value_type() -> GType
 {
   return gtk_state_flags_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::InputPurpose>::value_type()
+auto Glib::Value<Gtk::InputPurpose>::value_type() -> GType
 {
   return gtk_input_purpose_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::InputHints>::value_type()
+auto Glib::Value<Gtk::InputHints>::value_type() -> GType
 {
   return gtk_input_hints_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::BaselinePosition>::value_type()
+auto Glib::Value<Gtk::BaselinePosition>::value_type() -> GType
 {
   return gtk_baseline_position_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::ShortcutScope>::value_type()
+auto Glib::Value<Gtk::ShortcutScope>::value_type() -> GType
 {
   return gtk_shortcut_scope_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::ContentFit>::value_type()
+auto Glib::Value<Gtk::ContentFit>::value_type() -> GType
 {
   return gtk_content_fit_get_type();
 }

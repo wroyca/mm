@@ -63,7 +63,7 @@ public:
 
   // noncopyable
   TcpConnection(const TcpConnection&) = delete;
-  TcpConnection& operator=(const TcpConnection&) = delete;
+  auto operator=(const TcpConnection&) -> TcpConnection& = delete;
 
 private:  friend class TcpConnection_Class;
   static CppClassType tcpconnection_class_;
@@ -77,28 +77,28 @@ protected:
 public:
 
   TcpConnection(TcpConnection&& src) noexcept;
-  TcpConnection& operator=(TcpConnection&& src) noexcept;
+  auto operator=(TcpConnection&& src) noexcept -> TcpConnection&;
 
   ~TcpConnection() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GTcpConnection*       gobj()       { return reinterpret_cast<GTcpConnection*>(gobject_); }
+  auto       gobj() -> GTcpConnection*       { return reinterpret_cast<GTcpConnection*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GTcpConnection* gobj() const { return reinterpret_cast<GTcpConnection*>(gobject_); }
+  auto gobj() const -> const GTcpConnection* { return reinterpret_cast<GTcpConnection*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GTcpConnection* gobj_copy();
+  auto gobj_copy() -> GTcpConnection*;
 
 private:
 
@@ -128,7 +128,7 @@ public:
    *
    * @return <tt>true</tt> if graceful disconnect is used on close, <tt>false</tt> otherwise.
    */
-  bool get_graceful_disconnect() const;
+  auto get_graceful_disconnect() const -> bool;
 
     /** Whether or not close does a graceful disconnect.
    *
@@ -137,7 +137,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_graceful_disconnect() ;
+  auto property_graceful_disconnect() -> Glib::PropertyProxy< bool > ;
 
 /** Whether or not close does a graceful disconnect.
    *
@@ -146,7 +146,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_graceful_disconnect() const;
+  auto property_graceful_disconnect() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -176,7 +176,7 @@ namespace Glib
    * @relates Gio::TcpConnection
    */
   GIOMM_API
-  Glib::RefPtr<Gio::TcpConnection> wrap(GTcpConnection* object, bool take_copy = false);
+  auto wrap(GTcpConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::TcpConnection>;
 }
 
 

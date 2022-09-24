@@ -41,7 +41,7 @@ Context::Context(const RefPtr<Surface>& target)
   check_object_status_and_throw_exception(*this);
 }
 
-RefPtr<Context> Context::create(const RefPtr<Surface>& target)
+auto Context::create(const RefPtr<Surface>& target) -> RefPtr<Context>
 {
   return make_refptr_for_instance<Context>(new Context(target));
 }
@@ -378,21 +378,21 @@ void Context::show_page()
   check_object_status_and_throw_exception(*this);
 }
 
-bool Context::in_stroke(double x, double y) const
+auto Context::in_stroke(double x, double y) const -> bool
 {
   const bool result = cairo_in_stroke(const_cast<cobject*>(cobj()), x, y);
   check_object_status_and_throw_exception(*this);
   return result;
 }
 
-bool Context::in_fill(double x, double y) const
+auto Context::in_fill(double x, double y) const -> bool
 {
   const bool result = cairo_in_fill(const_cast<cobject*>(cobj()), x, y);
   check_object_status_and_throw_exception(*this);
   return result;
 }
 
-bool Context::in_clip(double x, double y) const
+auto Context::in_clip(double x, double y) const -> bool
 {
   const bool result = cairo_in_clip(const_cast<cobject*>(cobj()), x, y);
   check_object_status_and_throw_exception(*this);
@@ -499,7 +499,7 @@ void Context::set_scaled_font(const RefPtr<const ScaledFont>& scaled_font)
   check_object_status_and_throw_exception(*this);
 }
 
-RefPtr<ScaledFont> Context::get_scaled_font()
+auto Context::get_scaled_font() -> RefPtr<ScaledFont>
 {
   auto font = cairo_get_scaled_font(cobj());
   check_object_status_and_throw_exception(*this);
@@ -534,14 +534,14 @@ void Context::show_glyphs(const std::vector<Glyph>& glyphs)
   check_object_status_and_throw_exception(*this);
 }
 
-RefPtr<FontFace> Context::get_font_face()
+auto Context::get_font_face() -> RefPtr<FontFace>
 {
   auto cfontface = cairo_get_font_face(cobj());
   check_object_status_and_throw_exception(*this);
   return make_refptr_for_instance<FontFace>(new FontFace(cfontface, false /* does not have reference */));
 }
 
-RefPtr<const FontFace> Context::get_font_face() const
+auto Context::get_font_face() const -> RefPtr<const FontFace>
 {
   auto cfontface = cairo_get_font_face(const_cast<cobject*>(cobj()));
   check_object_status_and_throw_exception(*this);
@@ -588,7 +588,7 @@ void Context::glyph_path(const std::vector<Glyph>& glyphs)
   check_object_status_and_throw_exception(*this);
 }
 
-Context::Operator Context::get_operator() const
+auto Context::get_operator() const -> Context::Operator
 {
   const auto result =
     static_cast<Operator>(cairo_get_operator(const_cast<cobject*>(cobj())));
@@ -596,7 +596,7 @@ Context::Operator Context::get_operator() const
   return result;
 }
 
-static RefPtr<Pattern> get_pattern_wrapper (cairo_pattern_t* pattern)
+static auto get_pattern_wrapper (cairo_pattern_t* pattern) -> RefPtr<Pattern>
 {
   auto pattern_type = cairo_pattern_get_type (pattern);
   switch (pattern_type)
@@ -618,21 +618,21 @@ static RefPtr<Pattern> get_pattern_wrapper (cairo_pattern_t* pattern)
   }
 }
 
-RefPtr<Pattern> Context::get_source()
+auto Context::get_source() -> RefPtr<Pattern>
 {
   auto pattern = cairo_get_source(cobj());
   check_object_status_and_throw_exception(*this);
   return get_pattern_wrapper (pattern);
 }
 
-RefPtr<const Pattern> Context::get_source() const
+auto Context::get_source() const -> RefPtr<const Pattern>
 {
   auto pattern = cairo_get_source(const_cast<cobject*>(cobj()));
   check_object_status_and_throw_exception(*this);
   return get_pattern_wrapper(pattern);
 }
 
-RefPtr<SurfacePattern> Context::get_source_for_surface()
+auto Context::get_source_for_surface() -> RefPtr<SurfacePattern>
 {
   auto pattern = cairo_get_source(cobj());
   check_object_status_and_throw_exception(*this);
@@ -642,26 +642,26 @@ RefPtr<SurfacePattern> Context::get_source_for_surface()
   return make_refptr_for_instance<SurfacePattern>(new SurfacePattern(pattern, false /* does not have reference */));
 }
 
-RefPtr<const SurfacePattern> Context::get_source_for_surface() const
+auto Context::get_source_for_surface() const -> RefPtr<const SurfacePattern>
 {
   return const_cast<Context*>(this)->get_source_for_surface();
 }
 
-double Context::get_tolerance() const
+auto Context::get_tolerance() const -> double
 {
   const auto result = cairo_get_tolerance(const_cast<cobject*>(cobj()));
   check_object_status_and_throw_exception(*this);
   return result;
 }
 
-Antialias Context::get_antialias() const
+auto Context::get_antialias() const -> Antialias
 {
   const auto result = static_cast<Antialias>(cairo_get_antialias(const_cast<cobject*>(cobj())));
   check_object_status_and_throw_exception(*this);
   return result;
 }
 
-bool Context::has_current_point() const
+auto Context::has_current_point() const -> bool
 {
   return cairo_has_current_point(const_cast<cobject*>(cobj()));
 }
@@ -672,35 +672,35 @@ void Context::get_current_point(double& x, double& y) const
   check_object_status_and_throw_exception(*this);
 }
 
-Context::FillRule Context::get_fill_rule() const
+auto Context::get_fill_rule() const -> Context::FillRule
 {
   const auto result = static_cast<FillRule>(cairo_get_fill_rule(const_cast<cobject*>(cobj())));
   check_object_status_and_throw_exception(*this);
   return result;
 }
 
-double Context::get_line_width() const
+auto Context::get_line_width() const -> double
 {
   const auto result = cairo_get_line_width(const_cast<cobject*>(cobj()));
   check_object_status_and_throw_exception(*this);
   return result;
 }
 
-Context::LineCap Context::get_line_cap() const
+auto Context::get_line_cap() const -> Context::LineCap
 {
   const auto result = static_cast<LineCap>(cairo_get_line_cap(const_cast<cobject*>(cobj())));
   check_object_status_and_throw_exception(*this);
   return result;
 }
 
-Context::LineJoin Context::get_line_join() const
+auto Context::get_line_join() const -> Context::LineJoin
 {
   const auto result = static_cast<LineJoin>(cairo_get_line_join(const_cast<cobject*>(cobj())));
   check_object_status_and_throw_exception(*this);
   return result;
 }
 
-double Context::get_miter_limit() const
+auto Context::get_miter_limit() const -> double
 {
   const auto result = cairo_get_miter_limit(const_cast<cobject*>(cobj()));
   check_object_status_and_throw_exception(*this);
@@ -727,7 +727,7 @@ void Context::get_matrix(Matrix& matrix)
   check_object_status_and_throw_exception(*this);
 }
 
-Matrix Context::get_matrix() const
+auto Context::get_matrix() const -> Matrix
 {
   Cairo::Matrix m;
   cairo_get_matrix(const_cast<cobject*>(cobj()), (cairo_matrix_t*)&m);
@@ -736,7 +736,7 @@ Matrix Context::get_matrix() const
 }
 
 static
-RefPtr<Surface> get_surface_wrapper (cairo_surface_t* surface)
+auto get_surface_wrapper (cairo_surface_t* surface) -> RefPtr<Surface>
 {
   auto surface_type = cairo_surface_get_type (surface);
   switch (surface_type)
@@ -794,21 +794,21 @@ RefPtr<Surface> get_surface_wrapper (cairo_surface_t* surface)
   }
 }
 
-RefPtr<Surface> Context::get_target()
+auto Context::get_target() -> RefPtr<Surface>
 {
   auto surface = cairo_get_target(const_cast<cobject*>(cobj()));
   check_object_status_and_throw_exception(*this);
   return get_surface_wrapper (surface);
 }
 
-RefPtr<const Surface> Context::get_target() const
+auto Context::get_target() const -> RefPtr<const Surface>
 {
   auto surface = cairo_get_target(const_cast<cobject*>(cobj()));
   check_object_status_and_throw_exception(*this);
   return get_surface_wrapper(surface);
 }
 
-Path* Context::copy_path() const
+auto Context::copy_path() const -> Path*
 {
   auto cresult = cairo_copy_path(const_cast<cobject*>(cobj()));
   check_object_status_and_throw_exception(*this);
@@ -822,7 +822,7 @@ void Context::get_path_extents(double& x1, double& y1, double& x2, double& y2) c
 }
 
 
-Path* Context::copy_path_flat() const
+auto Context::copy_path_flat() const -> Path*
 {
   auto cresult = cairo_copy_path_flat(const_cast<cobject*>(cobj()));
   check_object_status_and_throw_exception(*this);
@@ -847,7 +847,7 @@ void Context::push_group_with_content(Content content)
   check_object_status_and_throw_exception(*this);
 }
 
-RefPtr<Pattern> Context::pop_group()
+auto Context::pop_group() -> RefPtr<Pattern>
 {
   auto pattern = cairo_pop_group(cobj());
   check_object_status_and_throw_exception(*this);
@@ -860,7 +860,7 @@ void Context::pop_group_to_source()
   check_object_status_and_throw_exception(*this);
 }
 
-RefPtr<Surface> Context::get_group_target()
+auto Context::get_group_target() -> RefPtr<Surface>
 {
   auto surface = cairo_get_group_target(cobj());
   // surface can be NULL if you're not between push/pop group calls
@@ -873,7 +873,7 @@ RefPtr<Surface> Context::get_group_target()
   return get_surface_wrapper(surface);
 }
 
-RefPtr<const Surface> Context::get_group_target() const
+auto Context::get_group_target() const -> RefPtr<const Surface>
 {
   auto surface = cairo_get_group_target(const_cast<cobject*>(cobj()));
   // surface can be NULL if you're not between push/pop group calls

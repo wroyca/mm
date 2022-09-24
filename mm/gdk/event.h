@@ -88,7 +88,7 @@ template <>
 class GDKMM_API Value<Gdk::KeyMatch> : public Glib::Value_Enum<Gdk::KeyMatch>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -138,19 +138,19 @@ class GDKMM_API Event final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GdkEvent*       gobj();
+  auto       gobj() -> GdkEvent*;
 
   ///Provides access to the underlying C instance.
-  const GdkEvent* gobj() const;
+  auto gobj() const -> const GdkEvent*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkEvent* gobj_copy() const;
+  auto gobj_copy() const -> GdkEvent*;
 
   Event() = delete;
 
   // noncopyable
   Event(const Event&) = delete;
-  Event& operator=(const Event&) = delete;
+  auto operator=(const Event&) -> Event& = delete;
 
 protected:
   // Do not derive this.  Gdk::Event can neither be constructed nor deleted.
@@ -305,33 +305,33 @@ public:
    *
    * @return A `Gdk::Event`Type.
    */
-  Type get_event_type() const;
+  auto get_event_type() const -> Type;
 
 
   /** Extracts the surface associated with an event.
    *
    * @return The `Gdk::Surface` associated with the event.
    */
-  Glib::RefPtr<Surface> get_surface();
+  auto get_surface() -> Glib::RefPtr<Surface>;
 
   /** Extracts the surface associated with an event.
    *
    * @return The `Gdk::Surface` associated with the event.
    */
-  Glib::RefPtr<const Surface> get_surface() const;
+  auto get_surface() const -> Glib::RefPtr<const Surface>;
 
 
   /** Returns the seat that originated the event.
    *
    * @return A `Gdk::Seat`.
    */
-  Glib::RefPtr<Seat> get_seat();
+  auto get_seat() -> Glib::RefPtr<Seat>;
 
   /** Returns the seat that originated the event.
    *
    * @return A `Gdk::Seat`.
    */
-  Glib::RefPtr<const Seat> get_seat() const;
+  auto get_seat() const -> Glib::RefPtr<const Seat>;
 
 
   /** Returns the device of an event.
@@ -340,7 +340,7 @@ public:
    *
    * @return A `Gdk::Device`.
    */
-  Glib::RefPtr<Device> get_device();
+  auto get_device() -> Glib::RefPtr<Device>;
 
   /** Returns the device of an event.
    *
@@ -348,7 +348,7 @@ public:
    *
    * @return A `Gdk::Device`.
    */
-  Glib::RefPtr<const Device> get_device() const;
+  auto get_device() const -> Glib::RefPtr<const Device>;
 
 
   /** Returns a `Gdk::DeviceTool` representing the tool that
@@ -364,7 +364,7 @@ public:
    *
    * @return The current device tool.
    */
-  Glib::RefPtr<DeviceTool> get_device_tool();
+  auto get_device_tool() -> Glib::RefPtr<DeviceTool>;
 
   /** Returns a `Gdk::DeviceTool` representing the tool that
    * caused the event.
@@ -379,7 +379,7 @@ public:
    *
    * @return The current device tool.
    */
-  Glib::RefPtr<const DeviceTool> get_device_tool() const;
+  auto get_device_tool() const -> Glib::RefPtr<const DeviceTool>;
 
 
   /** Returns the timestamp of @a event.
@@ -389,20 +389,20 @@ public:
    *
    * @return Timestamp field from @a event.
    */
-  guint32 get_time() const;
+  auto get_time() const -> guint32;
 
 
   /** Retrieves the display associated to the @a event.
    *
    * @return A `Gdk::Display`.
    */
-  Glib::RefPtr<Display> get_display();
+  auto get_display() -> Glib::RefPtr<Display>;
 
   /** Retrieves the display associated to the @a event.
    *
    * @return A `Gdk::Display`.
    */
-  Glib::RefPtr<const Display> get_display() const;
+  auto get_display() const -> Glib::RefPtr<const Display>;
 
 
   /** Retuns the event sequence to which the event belongs.
@@ -412,26 +412,26 @@ public:
    *
    * @return The event sequence that the event belongs to.
    */
-  const EventSequence* get_event_sequence() const;
+  auto get_event_sequence() const -> const EventSequence*;
 
   /** Returns the modifier state field of an event.
    *
    * @return The modifier state of @a event.
    */
-  ModifierType get_modifier_state() const;
+  auto get_modifier_state() const -> ModifierType;
 
   /** Extract the event surface relative x/y coordinates from an event.
    *
    * @param x Location to put event surface x coordinate.
    * @param y Location to put event surface y coordinate.
    */
-  bool get_position(double& x, double& y) const;
+  auto get_position(double& x, double& y) const -> bool;
 
   /** Extracts all axis values from an event.
    *
    * @return A vector of values for all axes. An empty vector in case of failure.
    */
-  std::vector<double> get_axes() const;
+  auto get_axes() const -> std::vector<double>;
 
 
   /** Extract the axis value for a particular axis use from
@@ -444,7 +444,7 @@ public:
    * @param value Location to store the value found.
    * @return <tt>true</tt> if the specified axis was found, otherwise <tt>false</tt>.
    */
-  bool get_axis(Gdk::AxisUse axis_use, double& value) const;
+  auto get_axis(Gdk::AxisUse axis_use, double& value) const -> bool;
 
   /** Returns whether this event is an 'emulated' pointer event.
    *
@@ -452,19 +452,19 @@ public:
    *
    * @return <tt>true</tt> if this event is emulated.
    */
-  bool get_pointer_emulated() const;
+  auto get_pointer_emulated() const -> bool;
 
   /** Extract the button number from a button event.
    *
    * @return The button of @a event.
    */
-  guint get_button() const;
+  auto get_button() const -> guint;
 
   /** Extracts the direction of a scroll event.
    *
    * @return The scroll direction of @a event.
    */
-  ScrollDirection get_direction() const;
+  auto get_direction() const -> ScrollDirection;
 
   /** Extracts the scroll deltas of a scroll event.
    *
@@ -488,7 +488,7 @@ public:
    *
    * @return The scroll unit.
    */
-  ScrollUnit get_scroll_unit() const;
+  auto get_scroll_unit() const -> ScrollUnit;
 
   /** Check whether a scroll event is a stop scroll event.
    *
@@ -502,86 +502,86 @@ public:
    *
    * @return <tt>true</tt> if the event is a scroll stop event.
    */
-  bool is_scroll_stop() const;
+  auto is_scroll_stop() const -> bool;
 
   /** Extracts the keyval from a key event.
    *
    * @return The keyval of @a event.
    */
-  guint get_keyval() const;
+  auto get_keyval() const -> guint;
 
   /** Extracts the keycode from a key event.
    *
    * @return The keycode of @a event.
    */
-  guint get_keycode() const;
+  auto get_keycode() const -> guint;
 
   /** Extracts the consumed modifiers from a key event.
    *
    * @return The consumed modifiers or @a event.
    */
-  ModifierType get_consumed_modifiers() const;
+  auto get_consumed_modifiers() const -> ModifierType;
 
   /** Extracts the layout from a key event.
    *
    * @return The layout of @a event.
    */
-  guint get_layout() const;
+  auto get_layout() const -> guint;
 
   /** Extracts the shift level from a key event.
    *
    * @return The shift level of @a event.
    */
-  guint get_level() const;
+  auto get_level() const -> guint;
 
   /** Extracts whether the key event is for a modifier key.
    *
    * @return <tt>true</tt> if the @a event is for a modifier key.
    */
-  bool is_modifier() const;
+  auto is_modifier() const -> bool;
 
   /** Extracts whether this event is about focus entering or
    * leaving the surface.
    *
    * @return <tt>true</tt> of the focus is entering.
    */
-  bool get_focus_in() const;
+  auto get_focus_in() const -> bool;
 
   /** Extracts whether a touch event is emulating a pointer event.
    *
    * @return <tt>true</tt> if @a event is emulating.
    */
-  bool get_touch_emulating_pointer() const;
+  auto get_touch_emulating_pointer() const -> bool;
 
   /** Extracts the crossing mode from a crossing event.
    *
    * @return The mode of @a event.
    */
-  CrossingMode get_crossing_mode() const;
+  auto get_crossing_mode() const -> CrossingMode;
 
   /** Extracts the notify detail from a crossing event.
    *
    * @return The notify detail of @a event.
    */
-  NotifyType get_crossing_detail() const;
+  auto get_crossing_detail() const -> NotifyType;
 
   /** Checks if the @a event surface is the focus surface.
    *
    * @return <tt>true</tt> if the surface is the focus surface.
    */
-  bool get_crossing_focus() const;
+  auto get_crossing_focus() const -> bool;
 
   /** Extracts the touchpad gesture phase from a touchpad event.
    *
    * @return The gesture phase of @a event.
    */
-  TouchpadGesturePhase get_touchpad_gesture_phase() const;
+  auto get_touchpad_gesture_phase() const -> TouchpadGesturePhase;
 
   /** Extracts the number of fingers from a touchpad event.
    *
    * @return The number of fingers for @a event.
    */
-  guint get_touchpad_n_fingers() const;
+  auto get_touchpad_n_fingers() const -> guint;
 
   /** Extracts delta information from a touchpad event.
    *
@@ -594,20 +594,20 @@ public:
    *
    * @return The angle delta of @a event.
    */
-  double get_touchpad_pinch_angle_delta() const;
+  auto get_touchpad_pinch_angle_delta() const -> double;
 
   /** Extracts the scale from a touchpad pinch event.
    *
    * @return The scale of @a event.
    */
-  double get_touchpad_pinch_scale() const;
+  auto get_touchpad_pinch_scale() const -> double;
 
   /** Extracts information about the pressed button from
    * a pad event.
    *
    * @return The button of @a event.
    */
-  guint get_pad_button() const;
+  auto get_pad_button() const -> guint;
 
   /** Extracts the information from a pad strip or ring event.
    *
@@ -628,32 +628,32 @@ public:
    *
    * @return The drop.
    */
-  Glib::RefPtr<Drop> get_dnd_drop();
+  auto get_dnd_drop() -> Glib::RefPtr<Drop>;
 
   /** Gets the `Gdk::Drop` object from a DND event.
    *
    * @return The drop.
    */
-  Glib::RefPtr<const Drop> get_dnd_drop() const;
+  auto get_dnd_drop() const -> Glib::RefPtr<const Drop>;
 
 
   /** Extracts the grab surface from a grab broken event.
    *
    * @return The grab surface of @a event.
    */
-  Glib::RefPtr<Surface> get_grab_broken_grab_surface();
+  auto get_grab_broken_grab_surface() -> Glib::RefPtr<Surface>;
 
   /** Extracts the grab surface from a grab broken event.
    *
    * @return The grab surface of @a event.
    */
-  Glib::RefPtr<const Surface> get_grab_broken_grab_surface() const;
+  auto get_grab_broken_grab_surface() const -> Glib::RefPtr<const Surface>;
 
   /** Checks whether the grab broken event is for an implicit grab.
    *
    * @return <tt>true</tt> if the an implicit grab was broken.
    */
-  bool get_grab_broken_implicit() const;
+  auto get_grab_broken_implicit() const -> bool;
 
   /** Retrieves the history of the event, as a vector of time and coordinates.
    *
@@ -665,7 +665,7 @@ public:
    *
    * @return A vector of time and coordinates.
    */
-  std::vector<TimeCoord> get_history() const;
+  auto get_history() const -> std::vector<TimeCoord>;
 
 
   /** Returns whether a `Gdk::Event` should trigger a context menu,
@@ -678,7 +678,7 @@ public:
    *
    * @return <tt>true</tt> if the event should trigger a context menu.
    */
-  bool triggers_context_menu() const;
+  auto triggers_context_menu() const -> bool;
 
   /** Returns the distance between the event locations.
    *
@@ -689,7 +689,7 @@ public:
    * @param distance Return location for the distance.
    * @return <tt>true</tt> if the distance could be calculated.
    */
-  bool get_distance(const Glib::RefPtr<const Event>& event2, double& distance) const;
+  auto get_distance(const Glib::RefPtr<const Event>& event2, double& distance) const -> bool;
 
   /** Returns the relative angle from @a event1 to @a event2.
    *
@@ -704,7 +704,7 @@ public:
    * @param angle Return location for the relative angle between both events.
    * @return <tt>true</tt> if the angle could be calculated.
    */
-  bool get_angle(const Glib::RefPtr<const Event>& event2, double& angle) const;
+  auto get_angle(const Glib::RefPtr<const Event>& event2, double& angle) const -> bool;
 
   /** Returns the point halfway between the events' positions.
    *
@@ -716,7 +716,7 @@ public:
    * @param y Return location for the Y coordinate of the center.
    * @return <tt>true</tt> if the center could be calculated.
    */
-  bool get_center(const Glib::RefPtr<const Event>& event2, double& x, double& y) const;
+  auto get_center(const Glib::RefPtr<const Event>& event2, double& x, double& y) const -> bool;
 
 
   /** Matches a key event against a keyval and modifiers.
@@ -732,7 +732,7 @@ public:
    * @param modifiers The modifiers to match.
    * @return A `Gdk::KeyMatch` value describing whether @a event matches.
    */
-  KeyMatch matches(guint keyval, ModifierType modifiers) const;
+  auto matches(guint keyval, ModifierType modifiers) const -> KeyMatch;
 
   /** Gets a keyval and modifier combination that will match
    * the event.
@@ -743,7 +743,7 @@ public:
    * @param modifiers Return location for modifiers.
    * @return <tt>true</tt> on success.
    */
-  bool get_match(guint& keyval, ModifierType& modifiers) const;
+  auto get_match(guint& keyval, ModifierType& modifiers) const -> bool;
 
 
 };
@@ -759,7 +759,7 @@ template <>
 class GDKMM_API Value<Gdk::Event::Type> : public Glib::Value_Enum<Gdk::Event::Type>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -778,7 +778,7 @@ namespace Glib
  * @relates Gdk::Event
  */
 GDKMM_API
-Glib::RefPtr<Gdk::Event> wrap(GdkEvent* object, bool take_copy = false);
+auto wrap(GdkEvent* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Event>;
 
 } // namespace Glib
 

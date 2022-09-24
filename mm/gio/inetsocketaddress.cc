@@ -38,7 +38,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::InetSocketAddress> wrap(GInetSocketAddress* object, bool take_copy)
+auto wrap(GInetSocketAddress* object, bool take_copy) -> Glib::RefPtr<Gio::InetSocketAddress>
 {
   return Glib::make_refptr_for_instance<Gio::InetSocketAddress>( dynamic_cast<Gio::InetSocketAddress*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -53,7 +53,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& InetSocketAddress_Class::init()
+auto InetSocketAddress_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -84,7 +84,7 @@ void InetSocketAddress_Class::class_init_function(void* g_class, void* class_dat
 }
 
 
-Glib::ObjectBase* InetSocketAddress_Class::wrap_new(GObject* object)
+auto InetSocketAddress_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new InetSocketAddress((GInetSocketAddress*)object);
 }
@@ -92,7 +92,7 @@ Glib::ObjectBase* InetSocketAddress_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GInetSocketAddress* InetSocketAddress::gobj_copy()
+auto InetSocketAddress::gobj_copy() -> GInetSocketAddress*
 {
   reference();
   return gobj();
@@ -115,7 +115,7 @@ InetSocketAddress::InetSocketAddress(InetSocketAddress&& src) noexcept
 : SocketAddress(std::move(src))
 {}
 
-InetSocketAddress& InetSocketAddress::operator=(InetSocketAddress&& src) noexcept
+auto InetSocketAddress::operator=(InetSocketAddress&& src) noexcept -> InetSocketAddress&
 {
   SocketAddress::operator=(std::move(src));
   return *this;
@@ -128,13 +128,13 @@ InetSocketAddress::~InetSocketAddress() noexcept
 
 InetSocketAddress::CppClassType InetSocketAddress::inetsocketaddress_class_; // initialize static member
 
-GType InetSocketAddress::get_type()
+auto InetSocketAddress::get_type() -> GType
 {
   return inetsocketaddress_class_.init().get_type();
 }
 
 
-GType InetSocketAddress::get_base_type()
+auto InetSocketAddress::get_base_type() -> GType
 {
   return g_inet_socket_address_get_type();
 }
@@ -150,12 +150,12 @@ InetSocketAddress::InetSocketAddress(const Glib::RefPtr<InetAddress>& address, g
 
 }
 
-Glib::RefPtr<InetSocketAddress> InetSocketAddress::create(const Glib::RefPtr<InetAddress>& address, guint16 port)
+auto InetSocketAddress::create(const Glib::RefPtr<InetAddress>& address, guint16 port) -> Glib::RefPtr<InetSocketAddress>
 {
   return Glib::make_refptr_for_instance<InetSocketAddress>( new InetSocketAddress(address, port) );
 }
 
-Glib::RefPtr<InetAddress> InetSocketAddress::get_address()
+auto InetSocketAddress::get_address() -> Glib::RefPtr<InetAddress>
 {
   auto retvalue = Glib::wrap(g_inet_socket_address_get_address(gobj()));
   if(retvalue)
@@ -163,22 +163,22 @@ Glib::RefPtr<InetAddress> InetSocketAddress::get_address()
   return retvalue;
 }
 
-Glib::RefPtr<const InetAddress> InetSocketAddress::get_address() const
+auto InetSocketAddress::get_address() const -> Glib::RefPtr<const InetAddress>
 {
   return const_cast<InetSocketAddress*>(this)->get_address();
 }
 
-guint16 InetSocketAddress::get_port() const
+auto InetSocketAddress::get_port() const -> guint16
 {
   return g_inet_socket_address_get_port(const_cast<GInetSocketAddress*>(gobj()));
 }
 
-guint32 InetSocketAddress::get_flowinfo() const
+auto InetSocketAddress::get_flowinfo() const -> guint32
 {
   return g_inet_socket_address_get_flowinfo(const_cast<GInetSocketAddress*>(gobj()));
 }
 
-guint32 InetSocketAddress::get_scope_id() const
+auto InetSocketAddress::get_scope_id() const -> guint32
 {
   return g_inet_socket_address_get_scope_id(const_cast<GInetSocketAddress*>(gobj()));
 }
@@ -188,22 +188,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<InetAdd
   "Type Glib::RefPtr<InetAddress> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InetAddress> > InetSocketAddress::property_address() const
+auto InetSocketAddress::property_address() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InetAddress> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InetAddress> >(this, "address");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > InetSocketAddress::property_port() const
+auto InetSocketAddress::property_port() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "port");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > InetSocketAddress::property_flowinfo() const
+auto InetSocketAddress::property_flowinfo() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "flowinfo");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > InetSocketAddress::property_scope_id() const
+auto InetSocketAddress::property_scope_id() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "scope-id");
 }

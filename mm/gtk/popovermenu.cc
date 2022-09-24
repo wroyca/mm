@@ -42,7 +42,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::PopoverMenu::Flags>::value_type()
+auto Glib::Value<Gtk::PopoverMenu::Flags>::value_type() -> GType
 {
   return gtk_popover_menu_flags_get_type();
 }
@@ -51,7 +51,7 @@ GType Glib::Value<Gtk::PopoverMenu::Flags>::value_type()
 namespace Glib
 {
 
-Gtk::PopoverMenu* wrap(GtkPopoverMenu* object, bool take_copy)
+auto wrap(GtkPopoverMenu* object, bool take_copy) -> Gtk::PopoverMenu*
 {
   return dynamic_cast<Gtk::PopoverMenu *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -64,7 +64,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& PopoverMenu_Class::init()
+auto PopoverMenu_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -95,7 +95,7 @@ void PopoverMenu_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* PopoverMenu_Class::wrap_new(GObject* o)
+auto PopoverMenu_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new PopoverMenu((GtkPopoverMenu*)(o)));
 
@@ -121,7 +121,7 @@ PopoverMenu::PopoverMenu(PopoverMenu&& src) noexcept
 : Gtk::Popover(std::move(src))
 {}
 
-PopoverMenu& PopoverMenu::operator=(PopoverMenu&& src) noexcept
+auto PopoverMenu::operator=(PopoverMenu&& src) noexcept -> PopoverMenu&
 {
   Gtk::Popover::operator=(std::move(src));
   return *this;
@@ -134,13 +134,13 @@ PopoverMenu::~PopoverMenu() noexcept
 
 PopoverMenu::CppClassType PopoverMenu::popovermenu_class_; // initialize static member
 
-GType PopoverMenu::get_type()
+auto PopoverMenu::get_type() -> GType
 {
   return popovermenu_class_.init().get_type();
 }
 
 
-GType PopoverMenu::get_base_type()
+auto PopoverMenu::get_base_type() -> GType
 {
   return gtk_popover_menu_get_type();
 }
@@ -151,7 +151,7 @@ void PopoverMenu::set_menu_model(const Glib::RefPtr<Gio::MenuModel>& model)
   gtk_popover_menu_set_menu_model(gobj(), Glib::unwrap(model));
 }
 
-Glib::RefPtr<Gio::MenuModel> PopoverMenu::get_menu_model()
+auto PopoverMenu::get_menu_model() -> Glib::RefPtr<Gio::MenuModel>
 {
   auto retvalue = Glib::wrap(gtk_popover_menu_get_menu_model(gobj()));
   if(retvalue)
@@ -159,28 +159,28 @@ Glib::RefPtr<Gio::MenuModel> PopoverMenu::get_menu_model()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::MenuModel> PopoverMenu::get_menu_model() const
+auto PopoverMenu::get_menu_model() const -> Glib::RefPtr<const Gio::MenuModel>
 {
   return const_cast<PopoverMenu*>(this)->get_menu_model();
 }
 
-bool PopoverMenu::add_child(Widget& child, const Glib::ustring& id)
+auto PopoverMenu::add_child(Widget& child, const Glib::ustring& id) -> bool
 {
   return gtk_popover_menu_add_child(gobj(), (child).gobj(), id.c_str());
 }
 
-bool PopoverMenu::remove_child(Widget& child)
+auto PopoverMenu::remove_child(Widget& child) -> bool
 {
   return gtk_popover_menu_remove_child(gobj(), (child).gobj());
 }
 
 
-Glib::PropertyProxy< Glib::ustring > PopoverMenu::property_visible_submenu()
+auto PopoverMenu::property_visible_submenu() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "visible-submenu");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > PopoverMenu::property_visible_submenu() const
+auto PopoverMenu::property_visible_submenu() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "visible-submenu");
 }
@@ -189,12 +189,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Me
   "Type Glib::RefPtr<Gio::MenuModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > PopoverMenu::property_menu_model()
+auto PopoverMenu::property_menu_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >(this, "menu-model");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> > PopoverMenu::property_menu_model() const
+auto PopoverMenu::property_menu_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >(this, "menu-model");
 }

@@ -58,7 +58,7 @@ public:
   ValueBase();
 
   ValueBase(const ValueBase& other);
-  ValueBase& operator=(const ValueBase& other);
+  auto operator=(const ValueBase& other) -> ValueBase&;
 
   ~ValueBase() noexcept;
 
@@ -87,8 +87,8 @@ public:
    */
   void reset();
 
-  GValue* gobj() { return &gobject_; }
-  const GValue* gobj() const { return &gobject_; }
+  auto gobj() -> GValue* { return &gobject_; }
+  auto gobj() const -> const GValue* { return &gobject_; }
 
 protected:
   GValue gobject_;
@@ -100,16 +100,16 @@ protected:
 class GLIBMM_API ValueBase_Boxed : public ValueBase
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  GParamSpec* create_param_spec(const Glib::ustring& name, const Glib::ustring& nick,
-                                const Glib::ustring& blurb, Glib::ParamFlags flags) const;
+  auto create_param_spec(const Glib::ustring& name, const Glib::ustring& nick,
+                                const Glib::ustring& blurb, Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
 
 protected:
   void set_boxed(const void* data);
-  void* get_boxed() const; // doesn't copy
+  auto get_boxed() const -> void*; // doesn't copy
 };
 
 /**
@@ -118,17 +118,17 @@ protected:
 class GLIBMM_API ValueBase_Object : public ValueBase
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  GParamSpec* create_param_spec(const Glib::ustring& name, const Glib::ustring& nick,
-                                const Glib::ustring& blurb, Glib::ParamFlags flags) const;
+  auto create_param_spec(const Glib::ustring& name, const Glib::ustring& nick,
+                                const Glib::ustring& blurb, Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
 
 protected:
   void set_object(Glib::ObjectBase* data);
-  Glib::ObjectBase* get_object() const;
-  Glib::RefPtr<Glib::ObjectBase> get_object_copy() const;
+  auto get_object() const -> Glib::ObjectBase*;
+  auto get_object_copy() const -> Glib::RefPtr<Glib::ObjectBase>;
 };
 
 /**
@@ -137,16 +137,16 @@ protected:
 class GLIBMM_API ValueBase_Enum : public ValueBase
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  GParamSpec* create_param_spec(const Glib::ustring& name, const Glib::ustring& nick,
-                                const Glib::ustring& blurb, Glib::ParamFlags flags) const;
+  auto create_param_spec(const Glib::ustring& name, const Glib::ustring& nick,
+                                const Glib::ustring& blurb, Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
 
 protected:
   void set_enum(int data);
-  int get_enum() const;
+  auto get_enum() const -> int;
 };
 
 /**
@@ -155,16 +155,16 @@ protected:
 class GLIBMM_API ValueBase_Flags : public ValueBase
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  GParamSpec* create_param_spec(const Glib::ustring& name, const Glib::ustring& nick,
-                                const Glib::ustring& blurb, Glib::ParamFlags flags) const;
+  auto create_param_spec(const Glib::ustring& name, const Glib::ustring& nick,
+                                const Glib::ustring& blurb, Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
 
 protected:
   void set_flags(unsigned int data);
-  unsigned int get_flags() const;
+  auto get_flags() const -> unsigned int;
 };
 
 /**
@@ -173,16 +173,16 @@ protected:
 class GLIBMM_API ValueBase_String : public ValueBase
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  GParamSpec* create_param_spec(const Glib::ustring& name, const Glib::ustring& nick,
-                                const Glib::ustring& blurb, Glib::ParamFlags flags) const;
+  auto create_param_spec(const Glib::ustring& name, const Glib::ustring& nick,
+                                const Glib::ustring& blurb, Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
 
 protected:
   void set_cstring(const char* data);
-  const char* get_cstring() const; // never returns nullptr
+  auto get_cstring() const -> const char*; // never returns nullptr
 };
 
 /**
@@ -191,16 +191,16 @@ protected:
 class GLIBMM_API ValueBase_Variant : public ValueBase
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  GParamSpec* create_param_spec(const Glib::ustring& name, const Glib::ustring& nick,
-                                const Glib::ustring& blurb, Glib::ParamFlags flags) const;
+  auto create_param_spec(const Glib::ustring& name, const Glib::ustring& nick,
+                                const Glib::ustring& blurb, Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
 
 protected:
   void set_variant(GVariant* data);
-  GVariant* get_variant() const; // doesn't copy, may return nullptr
+  auto get_variant() const -> GVariant*; // doesn't copy, may return nullptr
 };
 
 
@@ -225,10 +225,10 @@ class Value_Boxed : public ValueBase_Boxed
 public:
   using CppType = T;
 
-  static GType value_type() { return T::get_type(); }
+  static auto value_type() -> GType { return T::get_type(); }
 
   void set(const CppType& data) { set_boxed(data.gobj()); }
-  CppType get() const { return CppType(static_cast<typename T::BaseObjectType*>(get_boxed())); }
+  auto get() const -> CppType { return CppType(static_cast<typename T::BaseObjectType*>(get_boxed())); }
 };
 
 /**
@@ -241,7 +241,7 @@ class Value_RefPtrBoxed : public ValueBase_Boxed
 public:
   using CppType = Glib::RefPtr<T>;
 
-  static GType value_type() { return T::get_type(); }
+  static auto value_type() -> GType { return T::get_type(); }
 
   // Equivalent to set_boxed(Glib::unwrap(data)) without including wrap.h.
   void set(const CppType& data) { set_boxed(data ? data->gobj() : nullptr); }
@@ -265,11 +265,11 @@ struct HasGetBaseType<T, Ret(Args...)> {
    struct Check;
 
   template<typename U>
-  static std::true_type
-  Test(Check<Ret(*)(Args...), &U::get_base_type>*);
+  static auto
+  Test(Check<Ret(*)(Args...), &U::get_base_type>*) -> std::true_type;
 
   template<typename U>
-  static std::false_type Test(...);
+  static auto Test(...) -> std::false_type;
 
   static const bool value = decltype(Test<T>(0))::value;
   //using type = decltype(Test<T>(0));
@@ -287,10 +287,10 @@ class Value<Glib::RefPtr<T>, typename std::enable_if<Glib::Traits::HasGetBaseTyp
 public:
   using CppType = Glib::RefPtr<T>;
 
-  static GType value_type() { return T::get_base_type(); }
+  static auto value_type() -> GType { return T::get_base_type(); }
 
   void set(const CppType& data) { set_object(const_cast<std::remove_const_t<T>*>(data.get())); }
-  CppType get() const { return std::dynamic_pointer_cast<T>(get_object_copy()); }
+  auto get() const -> CppType { return std::dynamic_pointer_cast<T>(get_object_copy()); }
 };
 
 // The SUN Forte Compiler has a problem with this:
@@ -337,7 +337,7 @@ public:
   using CppType = std::string;
 
   void set(const std::string& data);
-  std::string get() const { return get_cstring(); }
+  auto get() const -> std::string { return get_cstring(); }
 };
 
 /** Specialization for UTF-8 strings.
@@ -350,7 +350,7 @@ public:
   using CppType = Glib::ustring;
 
   void set(const Glib::ustring& data);
-  Glib::ustring get() const { return get_cstring(); }
+  auto get() const -> Glib::ustring { return get_cstring(); }
 };
 
 /** Specialization for vectors of strings.
@@ -362,10 +362,10 @@ class GLIBMM_API Value<std::vector<std::string>> : public ValueBase_Boxed
 public:
   using CppType = std::vector<std::string>;
 
-  static GType value_type();
+  static auto value_type() -> GType;
 
   void set(const CppType& data);
-  CppType get() const;
+  auto get() const -> CppType;
 };
 
 /** Specialization for vectors of UTF-8 strings.
@@ -377,10 +377,10 @@ class GLIBMM_API Value<std::vector<Glib::ustring>> : public ValueBase_Boxed
 public:
   using CppType = std::vector<Glib::ustring>;
 
-  static GType value_type();
+  static auto value_type() -> GType;
 
   void set(const CppType& data);
-  CppType get() const;
+  auto get() const -> CppType;
 };
 
 /** Base class of Glib::Value<T> specializations for enum types.
@@ -393,7 +393,7 @@ public:
   using CppType = T;
 
   void set(CppType data) { set_enum(static_cast<int>(data)); }
-  CppType get() const { return CppType(get_enum()); }
+  auto get() const -> CppType { return CppType(get_enum()); }
 };
 
 /** Base class of Glib::Value<T> specializations for flags types.
@@ -406,7 +406,7 @@ public:
   using CppType = T;
 
   void set(CppType data) { set_flags(static_cast<unsigned int>(data)); }
-  CppType get() const { return CppType(get_flags()); }
+  auto get() const -> CppType { return CppType(get_flags()); }
 };
 
 } // namespace Glib

@@ -35,19 +35,11 @@ using GDBusServerClass = struct _GDBusServerClass;
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
-{
-
-namespace DBus
-{ class GIOMM_API Server_Class; } // namespace DBus
-
-} // namespace Gio
+namespace Gio::DBus
+{ class GIOMM_API Server_Class; } // namespace Gio
 #endif //DOXYGEN_SHOULD_SKIP_THIS
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 
@@ -81,7 +73,7 @@ public:
 
   // noncopyable
   Server(const Server&) = delete;
-  Server& operator=(const Server&) = delete;
+  auto operator=(const Server&) -> Server& = delete;
 
 private:  friend class Server_Class;
   static CppClassType server_class_;
@@ -95,28 +87,28 @@ protected:
 public:
 
   Server(Server&& src) noexcept;
-  Server& operator=(Server&& src) noexcept;
+  auto operator=(Server&& src) noexcept -> Server&;
 
   ~Server() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDBusServer*       gobj()       { return reinterpret_cast<GDBusServer*>(gobject_); }
+  auto       gobj() -> GDBusServer*       { return reinterpret_cast<GDBusServer*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDBusServer* gobj() const { return reinterpret_cast<GDBusServer*>(gobject_); }
+  auto gobj() const -> const GDBusServer* { return reinterpret_cast<GDBusServer*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusServer* gobj_copy();
+  auto gobj_copy() -> GDBusServer*;
 
 private:
 
@@ -223,11 +215,11 @@ public:
    */
 
   /// @throw Glib::Error.
-  static Glib::RefPtr<Server> create_sync(const std::string& address,
+  static auto create_sync(const std::string& address,
     const std::string& guid,
     const Glib::RefPtr<AuthObserver>& observer,
     const Glib::RefPtr<Cancellable>& cancellable,
-    Flags flags = Gio::DBus::Server::Flags::NONE);
+    Flags flags = Gio::DBus::Server::Flags::NONE) -> Glib::RefPtr<Server>;
 
 
   /** Creates a new D-Bus server that listens on the first address in
@@ -263,21 +255,21 @@ public:
    */
 
   /// @throw Glib::Error.
-  static Glib::RefPtr<Server> create_sync(const std::string& address,
+  static auto create_sync(const std::string& address,
     const std::string& guid,
     const Glib::RefPtr<Cancellable>& cancellable,
-    Flags flags = Gio::DBus::Server::Flags::NONE);
+    Flags flags = Gio::DBus::Server::Flags::NONE) -> Glib::RefPtr<Server>;
 
   /// Non-cancellable version of create_sync().
-  static Glib::RefPtr<Server> create_sync(const std::string& address,
+  static auto create_sync(const std::string& address,
     const std::string& guid,
     const Glib::RefPtr<AuthObserver>& observer,
-    Flags flags = Gio::DBus::Server::Flags::NONE);
+    Flags flags = Gio::DBus::Server::Flags::NONE) -> Glib::RefPtr<Server>;
 
   /// Non-cancellable version of create_sync().
-  static Glib::RefPtr<Server> create_sync(const std::string& address,
+  static auto create_sync(const std::string& address,
     const std::string& guid,
-    Flags flags = Gio::DBus::Server::Flags::NONE);
+    Flags flags = Gio::DBus::Server::Flags::NONE) -> Glib::RefPtr<Server>;
 
 
   /** Starts @a server.
@@ -298,7 +290,7 @@ public:
    *
    * @return <tt>true</tt> if server is active, <tt>false</tt> otherwise.
    */
-  bool is_active() const;
+  auto is_active() const -> bool;
 
   /** Gets the GUID for @a server, as provided to g_dbus_server_new_sync().
    *
@@ -306,7 +298,7 @@ public:
    *
    * @return A D-Bus GUID. Do not free this string, it is owned by @a server.
    */
-  std::string get_guid() const;
+  auto get_guid() const -> std::string;
 
   /** Gets the flags for @a server.
    *
@@ -314,7 +306,7 @@ public:
    *
    * @return A set of flags from the Gio::DBus::Server::Flags enumeration.
    */
-  Flags get_flags() const;
+  auto get_flags() const -> Flags;
 
   /** Gets a
    * [D-Bus address](https://dbus.freedesktop.org/doc/dbus-specification.html#addresses)
@@ -327,7 +319,7 @@ public:
    * @return A D-Bus address string. Do not free, the string is owned
    * by @a server.
    */
-  std::string get_client_address() const;
+  auto get_client_address() const -> std::string;
 
   /** Whether the server is currently active.
    *
@@ -338,7 +330,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_active() const;
+  auto property_active() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** The D-Bus address to listen on.
@@ -350,7 +342,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::string > property_address() const;
+  auto property_address() const -> Glib::PropertyProxy_ReadOnly< std::string >;
 
 
   /** A Gio::DBus::AuthObserver object to assist in the authentication process or <tt>nullptr</tt>.
@@ -360,7 +352,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<AuthObserver> > property_authentication_observer() const;
+  auto property_authentication_observer() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<AuthObserver> >;
 
 
   /** The D-Bus address that clients can use.
@@ -372,7 +364,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::string > property_client_address() const;
+  auto property_client_address() const -> Glib::PropertyProxy_ReadOnly< std::string >;
 
 
   /** Flags from the Gio::DBus::Server::Flags enumeration.
@@ -384,7 +376,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Flags > property_flags() const;
+  auto property_flags() const -> Glib::PropertyProxy_ReadOnly< Flags >;
 
 
   /** The GUID of the server.
@@ -398,7 +390,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::string > property_guid() const;
+  auto property_guid() const -> Glib::PropertyProxy_ReadOnly< std::string >;
 
 
   /**
@@ -436,7 +428,7 @@ public:
    * run.
    */
 
-  Glib::SignalProxy<bool(const Glib::RefPtr<Connection>&)> signal_new_connection();
+  auto signal_new_connection() -> Glib::SignalProxy<bool(const Glib::RefPtr<Connection>&)>;
 
 
 public:
@@ -452,45 +444,38 @@ protected:
 
 };
 
-} //namespace DBus
-
 } // namespace Gio
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 /** @ingroup giommEnums */
-inline Server::Flags operator|(Server::Flags lhs, Server::Flags rhs)
+inline auto operator|(Server::Flags lhs, Server::Flags rhs) -> Server::Flags
   { return static_cast<Server::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Server::Flags operator&(Server::Flags lhs, Server::Flags rhs)
+inline auto operator&(Server::Flags lhs, Server::Flags rhs) -> Server::Flags
   { return static_cast<Server::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Server::Flags operator^(Server::Flags lhs, Server::Flags rhs)
+inline auto operator^(Server::Flags lhs, Server::Flags rhs) -> Server::Flags
   { return static_cast<Server::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Server::Flags operator~(Server::Flags flags)
+inline auto operator~(Server::Flags flags) -> Server::Flags
   { return static_cast<Server::Flags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline Server::Flags& operator|=(Server::Flags& lhs, Server::Flags rhs)
+inline auto operator|=(Server::Flags& lhs, Server::Flags rhs) -> Server::Flags&
   { return (lhs = static_cast<Server::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Server::Flags& operator&=(Server::Flags& lhs, Server::Flags rhs)
+inline auto operator&=(Server::Flags& lhs, Server::Flags rhs) -> Server::Flags&
   { return (lhs = static_cast<Server::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Server::Flags& operator^=(Server::Flags& lhs, Server::Flags rhs)
+inline auto operator^=(Server::Flags& lhs, Server::Flags rhs) -> Server::Flags&
   { return (lhs = static_cast<Server::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
-} // namespace DBus
-
 } // namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -501,7 +486,7 @@ template <>
 class GIOMM_API Value<Gio::DBus::Server::Flags> : public Glib::Value_Flags<Gio::DBus::Server::Flags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -519,7 +504,7 @@ namespace Glib
    * @relates Gio::DBus::Server
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DBus::Server> wrap(GDBusServer* object, bool take_copy = false);
+  auto wrap(GDBusServer* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::Server>;
 }
 
 

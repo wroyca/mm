@@ -42,9 +42,9 @@ struct BindingTransformSlots
   Glib::Binding::SlotTransform from_target_to_source;
 };
 
-gboolean
+auto
 Binding_transform_callback_common(
-  const GValue* from_value, GValue* to_value, Glib::Binding::SlotTransform& the_slot)
+  const GValue* from_value, GValue* to_value, Glib::Binding::SlotTransform& the_slot) -> gboolean
 {
   bool result = false;
   try
@@ -58,9 +58,9 @@ Binding_transform_callback_common(
   return result;
 }
 
-gboolean
+auto
 Binding_transform_to_callback(
-  GBinding*, const GValue* from_value, GValue* to_value, gpointer user_data)
+  GBinding*, const GValue* from_value, GValue* to_value, gpointer user_data) -> gboolean
 {
   Glib::Binding::SlotTransform& the_slot =
     static_cast<BindingTransformSlots*>(user_data)->from_source_to_target;
@@ -68,9 +68,9 @@ Binding_transform_to_callback(
   return Binding_transform_callback_common(from_value, to_value, the_slot);
 }
 
-gboolean
+auto
 Binding_transform_from_callback(
-  GBinding*, const GValue* from_value, GValue* to_value, gpointer user_data)
+  GBinding*, const GValue* from_value, GValue* to_value, gpointer user_data) -> gboolean
 {
   Glib::Binding::SlotTransform& the_slot =
     static_cast<BindingTransformSlots*>(user_data)->from_target_to_source;
@@ -89,10 +89,10 @@ Binding_transform_callback_destroy(gpointer user_data)
 namespace Glib
 {
 // static
-Glib::RefPtr<Binding>
+auto
 Binding::bind_property_value(const PropertyProxy_Base& source_property,
   const PropertyProxy_Base& target_property, Flags flags, const SlotTransform& transform_to,
-  const SlotTransform& transform_from)
+  const SlotTransform& transform_from) -> Glib::RefPtr<Binding>
 {
   GBinding* binding = nullptr;
   if (transform_to.empty() && transform_from.empty())
@@ -145,7 +145,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Glib::Binding::Flags>::value_type()
+auto Glib::Value<Glib::Binding::Flags>::value_type() -> GType
 {
   return g_binding_flags_get_type();
 }
@@ -154,7 +154,7 @@ GType Glib::Value<Glib::Binding::Flags>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Glib::Binding> wrap(GBinding* object, bool take_copy)
+auto wrap(GBinding* object, bool take_copy) -> Glib::RefPtr<Glib::Binding>
 {
   return Glib::make_refptr_for_instance<Glib::Binding>( dynamic_cast<Glib::Binding*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -169,7 +169,7 @@ namespace Glib
 
 /* The *_Class implementation: */
 
-const Glib::Class& Binding_Class::init()
+auto Binding_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -200,7 +200,7 @@ void Binding_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Binding_Class::wrap_new(GObject* object)
+auto Binding_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Binding((GBinding*)object);
 }
@@ -208,7 +208,7 @@ Glib::ObjectBase* Binding_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GBinding* Binding::gobj_copy()
+auto Binding::gobj_copy() -> GBinding*
 {
   reference();
   return gobj();
@@ -231,7 +231,7 @@ Binding::Binding(Binding&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Binding& Binding::operator=(Binding&& src) noexcept
+auto Binding::operator=(Binding&& src) noexcept -> Binding&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -244,13 +244,13 @@ Binding::~Binding() noexcept
 
 Binding::CppClassType Binding::binding_class_; // initialize static member
 
-GType Binding::get_type()
+auto Binding::get_type() -> GType
 {
   return binding_class_.init().get_type();
 }
 
 
-GType Binding::get_base_type()
+auto Binding::get_base_type() -> GType
 {
   return g_binding_get_type();
 }
@@ -258,7 +258,7 @@ GType Binding::get_base_type()
 
 #ifndef GLIBMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-Glib::ObjectBase* Binding::get_source()
+auto Binding::get_source() -> Glib::ObjectBase*
 {
   return Glib::wrap_auto(g_binding_get_source(gobj()));
 }
@@ -267,31 +267,31 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 
 #ifndef GLIBMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-const Glib::ObjectBase* Binding::get_source() const
+auto Binding::get_source() const -> const Glib::ObjectBase*
 {
   return const_cast<Binding*>(this)->get_source();
 }
 G_GNUC_END_IGNORE_DEPRECATIONS
 #endif // GLIBMM_DISABLE_DEPRECATED
 
-Glib::RefPtr<Glib::ObjectBase> Binding::dup_source()
+auto Binding::dup_source() -> Glib::RefPtr<Glib::ObjectBase>
 {
   return Glib::make_refptr_for_instance<Glib::ObjectBase>(Glib::wrap_auto(g_binding_dup_source(gobj())));
 }
 
-Glib::RefPtr<const Glib::ObjectBase> Binding::dup_source() const
+auto Binding::dup_source() const -> Glib::RefPtr<const Glib::ObjectBase>
 {
   return const_cast<Binding*>(this)->dup_source();
 }
 
-Glib::ustring Binding::get_source_property() const
+auto Binding::get_source_property() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_binding_get_source_property(const_cast<GBinding*>(gobj())));
 }
 
 #ifndef GLIBMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-Glib::ObjectBase* Binding::get_target()
+auto Binding::get_target() -> Glib::ObjectBase*
 {
   return Glib::wrap_auto(g_binding_get_target(gobj()));
 }
@@ -300,29 +300,29 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 
 #ifndef GLIBMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-const Glib::ObjectBase* Binding::get_target() const
+auto Binding::get_target() const -> const Glib::ObjectBase*
 {
   return const_cast<Binding*>(this)->get_target();
 }
 G_GNUC_END_IGNORE_DEPRECATIONS
 #endif // GLIBMM_DISABLE_DEPRECATED
 
-Glib::RefPtr<Glib::ObjectBase> Binding::dup_target()
+auto Binding::dup_target() -> Glib::RefPtr<Glib::ObjectBase>
 {
   return Glib::make_refptr_for_instance<Glib::ObjectBase>(Glib::wrap_auto(g_binding_dup_target(gobj())));
 }
 
-Glib::RefPtr<const Glib::ObjectBase> Binding::dup_target() const
+auto Binding::dup_target() const -> Glib::RefPtr<const Glib::ObjectBase>
 {
   return const_cast<Binding*>(this)->dup_target();
 }
 
-Glib::ustring Binding::get_target_property() const
+auto Binding::get_target_property() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_binding_get_target_property(const_cast<GBinding*>(gobj())));
 }
 
-Flags Binding::get_flags() const
+auto Binding::get_flags() const -> Flags
 {
   return static_cast<Flags>(g_binding_get_flags(const_cast<GBinding*>(gobj())));
 }
@@ -332,7 +332,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Flags>::value,
   "Type Flags cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Flags > Binding::property_flags() const
+auto Binding::property_flags() const -> Glib::PropertyProxy_ReadOnly< Flags >
 {
   return Glib::PropertyProxy_ReadOnly< Flags >(this, "flags");
 }
@@ -341,12 +341,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Glib::O
   "Type Glib::RefPtr<Glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> > Binding::property_source() const
+auto Binding::property_source() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> >(this, "source");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Binding::property_source_property() const
+auto Binding::property_source_property() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "source-property");
 }
@@ -355,12 +355,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Glib::O
   "Type Glib::RefPtr<Glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> > Binding::property_target() const
+auto Binding::property_target() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> >(this, "target");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Binding::property_target_property() const
+auto Binding::property_target_property() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "target-property");
 }

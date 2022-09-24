@@ -87,11 +87,11 @@ class GTKMM_API ProgressBar
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ProgressBar(ProgressBar&& src) noexcept;
-  ProgressBar& operator=(ProgressBar&& src) noexcept;
+  auto operator=(ProgressBar&& src) noexcept -> ProgressBar&;
 
   // noncopyable
   ProgressBar(const ProgressBar&) = delete;
-  ProgressBar& operator=(const ProgressBar&) = delete;
+  auto operator=(const ProgressBar&) -> ProgressBar& = delete;
 
   ~ProgressBar() noexcept override;
 
@@ -111,19 +111,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkProgressBar*       gobj()       { return reinterpret_cast<GtkProgressBar*>(gobject_); }
+  auto       gobj() -> GtkProgressBar*       { return reinterpret_cast<GtkProgressBar*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkProgressBar* gobj() const { return reinterpret_cast<GtkProgressBar*>(gobject_); }
+  auto gobj() const -> const GtkProgressBar* { return reinterpret_cast<GtkProgressBar*>(gobject_); }
 
 private:
 
@@ -147,7 +147,7 @@ public:
    *
    * @return Text.
    */
-  Glib::ustring get_text() const;
+  auto get_text() const -> Glib::ustring;
 
   /** Causes the given @a text to appear next to the progress bar.
    *
@@ -170,7 +170,7 @@ public:
    *
    * @return A fraction from 0.0 to 1.0.
    */
-  double get_fraction() const;
+  auto get_fraction() const -> double;
 
   /** Causes the progress bar to “fill in” the given fraction
    * of the bar.
@@ -188,7 +188,7 @@ public:
    *
    * @return A fraction from 0.0 to 1.0.
    */
-  double get_pulse_step() const;
+  auto get_pulse_step() const -> double;
 
   /** Sets the fraction of total progress bar length to move the
    * bouncing block.
@@ -214,7 +214,7 @@ public:
    *
    * @return <tt>true</tt> if the progress bar is inverted.
    */
-  bool get_inverted() const;
+  auto get_inverted() const -> bool;
 
 
   /** Sets the mode used to ellipsize the text.
@@ -232,7 +232,7 @@ public:
    *
    * @return `Pango::EllipsizeMode`.
    */
-  Pango::EllipsizeMode get_ellipsize() const;
+  auto get_ellipsize() const -> Pango::EllipsizeMode;
 
 
   /** Sets whether the progress bar will show text next to the bar.
@@ -255,7 +255,7 @@ public:
    *
    * @return <tt>true</tt> if text is shown in the progress bar.
    */
-  bool get_show_text() const;
+  auto get_show_text() const -> bool;
 
   /** The fraction of total work that has been completed.
    *
@@ -264,7 +264,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_fraction() ;
+  auto property_fraction() -> Glib::PropertyProxy< double > ;
 
 /** The fraction of total work that has been completed.
    *
@@ -273,7 +273,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_fraction() const;
+  auto property_fraction() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** The fraction of total progress to move the bounding block when pulsed.
    *
@@ -282,7 +282,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_pulse_step() ;
+  auto property_pulse_step() -> Glib::PropertyProxy< double > ;
 
 /** The fraction of total progress to move the bounding block when pulsed.
    *
@@ -291,7 +291,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_pulse_step() const;
+  auto property_pulse_step() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** Text to be displayed in the progress bar.
    *
@@ -300,7 +300,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_text() ;
+  auto property_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Text to be displayed in the progress bar.
    *
@@ -309,7 +309,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_text() const;
+  auto property_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The preferred place to ellipsize the string.
    *
@@ -326,7 +326,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_ellipsize() ;
+  auto property_ellipsize() -> Glib::PropertyProxy< bool > ;
 
 /** The preferred place to ellipsize the string.
    *
@@ -343,7 +343,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_ellipsize() const;
+  auto property_ellipsize() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Sets whether the progress bar will show a text in addition
    * to the bar itself.
@@ -361,7 +361,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_text() ;
+  auto property_show_text() -> Glib::PropertyProxy< bool > ;
 
 /** Sets whether the progress bar will show a text in addition
    * to the bar itself.
@@ -379,7 +379,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_text() const;
+  auto property_show_text() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Invert the direction in which the progress bar grows.
    *
@@ -388,7 +388,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_inverted() ;
+  auto property_inverted() -> Glib::PropertyProxy< bool > ;
 
 /** Invert the direction in which the progress bar grows.
    *
@@ -397,7 +397,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_inverted() const;
+  auto property_inverted() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -427,7 +427,7 @@ namespace Glib
    * @relates Gtk::ProgressBar
    */
 
-  Gtk::ProgressBar* wrap(GtkProgressBar* object, bool take_copy = false);
+  auto wrap(GtkProgressBar* object, bool take_copy = false) -> Gtk::ProgressBar*;
 } //namespace Glib
 
 

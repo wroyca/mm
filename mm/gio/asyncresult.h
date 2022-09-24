@@ -141,7 +141,7 @@ public:
 
   // noncopyable
   AsyncResult(const AsyncResult&) = delete;
-  AsyncResult& operator=(const AsyncResult&) = delete;
+  auto operator=(const AsyncResult&) -> AsyncResult& = delete;
 
 private:
   friend class AsyncResult_Class;
@@ -175,7 +175,7 @@ protected:
 public:
 
   AsyncResult(AsyncResult&& src) noexcept;
-  AsyncResult& operator=(AsyncResult&& src) noexcept;
+  auto operator=(AsyncResult&& src) noexcept -> AsyncResult&;
 
   ~AsyncResult() noexcept override;
 
@@ -183,17 +183,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GAsyncResult*       gobj()       { return reinterpret_cast<GAsyncResult*>(gobject_); }
+  auto       gobj() -> GAsyncResult*       { return reinterpret_cast<GAsyncResult*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GAsyncResult* gobj() const { return reinterpret_cast<GAsyncResult*>(gobject_); }
+  auto gobj() const -> const GAsyncResult* { return reinterpret_cast<GAsyncResult*>(gobject_); }
 
 private:
 
@@ -203,8 +203,8 @@ public:
 
   //Note that this returns a reference, unlike most GTK+ get_*() functions,
   //so we don't need to use refreturn.
-  Glib::RefPtr<Glib::ObjectBase> get_source_object_base();
-  Glib::RefPtr<const Glib::ObjectBase> get_source_object_base() const;
+  auto get_source_object_base() -> Glib::RefPtr<Glib::ObjectBase>;
+  auto get_source_object_base() const -> Glib::RefPtr<const Glib::ObjectBase>;
 
 
   /** Checks if @a res has the given @a source_tag (generally a function
@@ -216,7 +216,7 @@ public:
    * @return <tt>true</tt> if @a res has the indicated @a source_tag, <tt>false</tt> if
    * not.
    */
-  bool is_tagged(gpointer source_tag) const;
+  auto is_tagged(gpointer source_tag) const -> bool;
 
 protected:
   // The compiler cannot find an unwrap() for ObjectBase, because
@@ -224,9 +224,9 @@ protected:
   //#m4 __CONVERSION(`Glib::RefPtr<Glib::ObjectBase>',`GObject*',__CONVERT_REFPTR_TO_P)
 
 
-    virtual Glib::RefPtr<Glib::ObjectBase> get_source_object_vfunc();
+    virtual auto get_source_object_vfunc() -> Glib::RefPtr<Glib::ObjectBase>;
 
-    virtual bool is_tagged_vfunc(gpointer source_tag);
+    virtual auto is_tagged_vfunc(gpointer source_tag) -> bool;
 
 
 public:
@@ -256,7 +256,7 @@ namespace Glib
    * @relates Gio::AsyncResult
    */
   GIOMM_API
-  Glib::RefPtr<Gio::AsyncResult> wrap(GAsyncResult* object, bool take_copy = false);
+  auto wrap(GAsyncResult* object, bool take_copy = false) -> Glib::RefPtr<Gio::AsyncResult>;
 
 } // namespace Glib
 

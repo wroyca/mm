@@ -35,7 +35,7 @@ namespace
 {
 
 
-static void VolumeMonitor_signal_volume_added_callback(GVolumeMonitor* self, GVolume* p0,void* data)
+void VolumeMonitor_signal_volume_added_callback(GVolumeMonitor* self, GVolume* p0,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Volume>&)>;
@@ -57,7 +57,7 @@ static void VolumeMonitor_signal_volume_added_callback(GVolumeMonitor* self, GVo
   }
 }
 
-static const Glib::SignalProxyInfo VolumeMonitor_signal_volume_added_info =
+const Glib::SignalProxyInfo VolumeMonitor_signal_volume_added_info =
 {
   "volume_added",
   (GCallback) &VolumeMonitor_signal_volume_added_callback,
@@ -65,7 +65,7 @@ static const Glib::SignalProxyInfo VolumeMonitor_signal_volume_added_info =
 };
 
 
-static void VolumeMonitor_signal_volume_removed_callback(GVolumeMonitor* self, GVolume* p0,void* data)
+void VolumeMonitor_signal_volume_removed_callback(GVolumeMonitor* self, GVolume* p0,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Volume>&)>;
@@ -87,7 +87,7 @@ static void VolumeMonitor_signal_volume_removed_callback(GVolumeMonitor* self, G
   }
 }
 
-static const Glib::SignalProxyInfo VolumeMonitor_signal_volume_removed_info =
+const Glib::SignalProxyInfo VolumeMonitor_signal_volume_removed_info =
 {
   "volume_removed",
   (GCallback) &VolumeMonitor_signal_volume_removed_callback,
@@ -95,7 +95,7 @@ static const Glib::SignalProxyInfo VolumeMonitor_signal_volume_removed_info =
 };
 
 
-static void VolumeMonitor_signal_volume_changed_callback(GVolumeMonitor* self, GVolume* p0,void* data)
+void VolumeMonitor_signal_volume_changed_callback(GVolumeMonitor* self, GVolume* p0,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Volume>&)>;
@@ -117,7 +117,7 @@ static void VolumeMonitor_signal_volume_changed_callback(GVolumeMonitor* self, G
   }
 }
 
-static const Glib::SignalProxyInfo VolumeMonitor_signal_volume_changed_info =
+const Glib::SignalProxyInfo VolumeMonitor_signal_volume_changed_info =
 {
   "volume_changed",
   (GCallback) &VolumeMonitor_signal_volume_changed_callback,
@@ -125,7 +125,7 @@ static const Glib::SignalProxyInfo VolumeMonitor_signal_volume_changed_info =
 };
 
 
-static void VolumeMonitor_signal_mount_added_callback(GVolumeMonitor* self, GMount* p0,void* data)
+void VolumeMonitor_signal_mount_added_callback(GVolumeMonitor* self, GMount* p0,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Mount>&)>;
@@ -147,7 +147,7 @@ static void VolumeMonitor_signal_mount_added_callback(GVolumeMonitor* self, GMou
   }
 }
 
-static const Glib::SignalProxyInfo VolumeMonitor_signal_mount_added_info =
+const Glib::SignalProxyInfo VolumeMonitor_signal_mount_added_info =
 {
   "mount_added",
   (GCallback) &VolumeMonitor_signal_mount_added_callback,
@@ -155,7 +155,7 @@ static const Glib::SignalProxyInfo VolumeMonitor_signal_mount_added_info =
 };
 
 
-static void VolumeMonitor_signal_mount_removed_callback(GVolumeMonitor* self, GMount* p0,void* data)
+void VolumeMonitor_signal_mount_removed_callback(GVolumeMonitor* self, GMount* p0,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Mount>&)>;
@@ -177,7 +177,7 @@ static void VolumeMonitor_signal_mount_removed_callback(GVolumeMonitor* self, GM
   }
 }
 
-static const Glib::SignalProxyInfo VolumeMonitor_signal_mount_removed_info =
+const Glib::SignalProxyInfo VolumeMonitor_signal_mount_removed_info =
 {
   "mount_removed",
   (GCallback) &VolumeMonitor_signal_mount_removed_callback,
@@ -185,7 +185,7 @@ static const Glib::SignalProxyInfo VolumeMonitor_signal_mount_removed_info =
 };
 
 
-static void VolumeMonitor_signal_mount_pre_unmount_callback(GVolumeMonitor* self, GMount* p0,void* data)
+void VolumeMonitor_signal_mount_pre_unmount_callback(GVolumeMonitor* self, GMount* p0,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Mount>&)>;
@@ -207,7 +207,7 @@ static void VolumeMonitor_signal_mount_pre_unmount_callback(GVolumeMonitor* self
   }
 }
 
-static const Glib::SignalProxyInfo VolumeMonitor_signal_mount_pre_unmount_info =
+const Glib::SignalProxyInfo VolumeMonitor_signal_mount_pre_unmount_info =
 {
   "mount_pre_unmount",
   (GCallback) &VolumeMonitor_signal_mount_pre_unmount_callback,
@@ -215,7 +215,7 @@ static const Glib::SignalProxyInfo VolumeMonitor_signal_mount_pre_unmount_info =
 };
 
 
-static void VolumeMonitor_signal_mount_changed_callback(GVolumeMonitor* self, GMount* p0,void* data)
+void VolumeMonitor_signal_mount_changed_callback(GVolumeMonitor* self, GMount* p0,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Mount>&)>;
@@ -237,7 +237,7 @@ static void VolumeMonitor_signal_mount_changed_callback(GVolumeMonitor* self, GM
   }
 }
 
-static const Glib::SignalProxyInfo VolumeMonitor_signal_mount_changed_info =
+const Glib::SignalProxyInfo VolumeMonitor_signal_mount_changed_info =
 {
   "mount_changed",
   (GCallback) &VolumeMonitor_signal_mount_changed_callback,
@@ -245,7 +245,7 @@ static const Glib::SignalProxyInfo VolumeMonitor_signal_mount_changed_info =
 };
 
 
-static void VolumeMonitor_signal_drive_connected_callback(GVolumeMonitor* self, GDrive* p0,void* data)
+void VolumeMonitor_signal_drive_connected_callback(GVolumeMonitor* self, GDrive* p0,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Drive>&)>;
@@ -267,7 +267,7 @@ static void VolumeMonitor_signal_drive_connected_callback(GVolumeMonitor* self, 
   }
 }
 
-static const Glib::SignalProxyInfo VolumeMonitor_signal_drive_connected_info =
+const Glib::SignalProxyInfo VolumeMonitor_signal_drive_connected_info =
 {
   "drive_connected",
   (GCallback) &VolumeMonitor_signal_drive_connected_callback,
@@ -275,7 +275,7 @@ static const Glib::SignalProxyInfo VolumeMonitor_signal_drive_connected_info =
 };
 
 
-static void VolumeMonitor_signal_drive_disconnected_callback(GVolumeMonitor* self, GDrive* p0,void* data)
+void VolumeMonitor_signal_drive_disconnected_callback(GVolumeMonitor* self, GDrive* p0,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Drive>&)>;
@@ -297,7 +297,7 @@ static void VolumeMonitor_signal_drive_disconnected_callback(GVolumeMonitor* sel
   }
 }
 
-static const Glib::SignalProxyInfo VolumeMonitor_signal_drive_disconnected_info =
+const Glib::SignalProxyInfo VolumeMonitor_signal_drive_disconnected_info =
 {
   "drive_disconnected",
   (GCallback) &VolumeMonitor_signal_drive_disconnected_callback,
@@ -305,7 +305,7 @@ static const Glib::SignalProxyInfo VolumeMonitor_signal_drive_disconnected_info 
 };
 
 
-static void VolumeMonitor_signal_drive_changed_callback(GVolumeMonitor* self, GDrive* p0,void* data)
+void VolumeMonitor_signal_drive_changed_callback(GVolumeMonitor* self, GDrive* p0,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Drive>&)>;
@@ -327,7 +327,7 @@ static void VolumeMonitor_signal_drive_changed_callback(GVolumeMonitor* self, GD
   }
 }
 
-static const Glib::SignalProxyInfo VolumeMonitor_signal_drive_changed_info =
+const Glib::SignalProxyInfo VolumeMonitor_signal_drive_changed_info =
 {
   "drive_changed",
   (GCallback) &VolumeMonitor_signal_drive_changed_callback,
@@ -335,7 +335,7 @@ static const Glib::SignalProxyInfo VolumeMonitor_signal_drive_changed_info =
 };
 
 
-static void VolumeMonitor_signal_drive_eject_button_callback(GVolumeMonitor* self, GDrive* p0,void* data)
+void VolumeMonitor_signal_drive_eject_button_callback(GVolumeMonitor* self, GDrive* p0,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Drive>&)>;
@@ -357,7 +357,7 @@ static void VolumeMonitor_signal_drive_eject_button_callback(GVolumeMonitor* sel
   }
 }
 
-static const Glib::SignalProxyInfo VolumeMonitor_signal_drive_eject_button_info =
+const Glib::SignalProxyInfo VolumeMonitor_signal_drive_eject_button_info =
 {
   "drive_eject_button",
   (GCallback) &VolumeMonitor_signal_drive_eject_button_callback,
@@ -365,7 +365,7 @@ static const Glib::SignalProxyInfo VolumeMonitor_signal_drive_eject_button_info 
 };
 
 
-static void VolumeMonitor_signal_drive_stop_button_callback(GVolumeMonitor* self, GDrive* p0,void* data)
+void VolumeMonitor_signal_drive_stop_button_callback(GVolumeMonitor* self, GDrive* p0,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Drive>&)>;
@@ -387,7 +387,7 @@ static void VolumeMonitor_signal_drive_stop_button_callback(GVolumeMonitor* self
   }
 }
 
-static const Glib::SignalProxyInfo VolumeMonitor_signal_drive_stop_button_info =
+const Glib::SignalProxyInfo VolumeMonitor_signal_drive_stop_button_info =
 {
   "drive_stop_button",
   (GCallback) &VolumeMonitor_signal_drive_stop_button_callback,
@@ -401,7 +401,7 @@ static const Glib::SignalProxyInfo VolumeMonitor_signal_drive_stop_button_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gio::VolumeMonitor> wrap(GVolumeMonitor* object, bool take_copy)
+auto wrap(GVolumeMonitor* object, bool take_copy) -> Glib::RefPtr<Gio::VolumeMonitor>
 {
   return Glib::make_refptr_for_instance<Gio::VolumeMonitor>( dynamic_cast<Gio::VolumeMonitor*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -416,7 +416,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& VolumeMonitor_Class::init()
+auto VolumeMonitor_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -905,7 +905,7 @@ void VolumeMonitor_Class::drive_stop_button_callback(GVolumeMonitor* self, GDriv
 }
 
 
-Glib::ObjectBase* VolumeMonitor_Class::wrap_new(GObject* object)
+auto VolumeMonitor_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new VolumeMonitor((GVolumeMonitor*)object);
 }
@@ -913,7 +913,7 @@ Glib::ObjectBase* VolumeMonitor_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GVolumeMonitor* VolumeMonitor::gobj_copy()
+auto VolumeMonitor::gobj_copy() -> GVolumeMonitor*
 {
   reference();
   return gobj();
@@ -936,7 +936,7 @@ VolumeMonitor::VolumeMonitor(VolumeMonitor&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-VolumeMonitor& VolumeMonitor::operator=(VolumeMonitor&& src) noexcept
+auto VolumeMonitor::operator=(VolumeMonitor&& src) noexcept -> VolumeMonitor&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -949,39 +949,39 @@ VolumeMonitor::~VolumeMonitor() noexcept
 
 VolumeMonitor::CppClassType VolumeMonitor::volumemonitor_class_; // initialize static member
 
-GType VolumeMonitor::get_type()
+auto VolumeMonitor::get_type() -> GType
 {
   return volumemonitor_class_.init().get_type();
 }
 
 
-GType VolumeMonitor::get_base_type()
+auto VolumeMonitor::get_base_type() -> GType
 {
   return g_volume_monitor_get_type();
 }
 
 
-Glib::RefPtr<VolumeMonitor> VolumeMonitor::get()
+auto VolumeMonitor::get() -> Glib::RefPtr<VolumeMonitor>
 {
   return Glib::wrap(g_volume_monitor_get());
 }
 
-std::vector<Glib::RefPtr<Drive>> VolumeMonitor::get_connected_drives()
+auto VolumeMonitor::get_connected_drives() -> std::vector<Glib::RefPtr<Drive>>
 {
   return Glib::ListHandler<Glib::RefPtr<Drive>>::list_to_vector(g_volume_monitor_get_connected_drives(gobj()), Glib::OWNERSHIP_DEEP);
 }
 
-std::vector<Glib::RefPtr<Volume>> VolumeMonitor::get_volumes()
+auto VolumeMonitor::get_volumes() -> std::vector<Glib::RefPtr<Volume>>
 {
   return Glib::ListHandler<Glib::RefPtr<Volume>>::list_to_vector(g_volume_monitor_get_volumes(gobj()), Glib::OWNERSHIP_DEEP);
 }
 
-std::vector<Glib::RefPtr<Mount>> VolumeMonitor::get_mounts()
+auto VolumeMonitor::get_mounts() -> std::vector<Glib::RefPtr<Mount>>
 {
   return Glib::ListHandler<Glib::RefPtr<Mount>>::list_to_vector(g_volume_monitor_get_mounts(gobj()), Glib::OWNERSHIP_DEEP);
 }
 
-Glib::RefPtr<Volume> VolumeMonitor::get_volume_for_uuid(const std::string& uuid)
+auto VolumeMonitor::get_volume_for_uuid(const std::string& uuid) -> Glib::RefPtr<Volume>
 {
   auto retvalue = Glib::wrap(g_volume_monitor_get_volume_for_uuid(gobj(), uuid.c_str()));
   if(retvalue)
@@ -989,7 +989,7 @@ Glib::RefPtr<Volume> VolumeMonitor::get_volume_for_uuid(const std::string& uuid)
   return retvalue;
 }
 
-Glib::RefPtr<Mount> VolumeMonitor::get_mount_for_uuid(const std::string& uuid)
+auto VolumeMonitor::get_mount_for_uuid(const std::string& uuid) -> Glib::RefPtr<Mount>
 {
   auto retvalue = Glib::wrap(g_volume_monitor_get_mount_for_uuid(gobj(), uuid.c_str()));
   if(retvalue)
@@ -998,73 +998,73 @@ Glib::RefPtr<Mount> VolumeMonitor::get_mount_for_uuid(const std::string& uuid)
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Volume>&)> VolumeMonitor::signal_volume_added()
+auto VolumeMonitor::signal_volume_added() -> Glib::SignalProxy<void(const Glib::RefPtr<Volume>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Volume>&) >(this, &VolumeMonitor_signal_volume_added_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Volume>&)> VolumeMonitor::signal_volume_removed()
+auto VolumeMonitor::signal_volume_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<Volume>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Volume>&) >(this, &VolumeMonitor_signal_volume_removed_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Volume>&)> VolumeMonitor::signal_volume_changed()
+auto VolumeMonitor::signal_volume_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<Volume>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Volume>&) >(this, &VolumeMonitor_signal_volume_changed_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)> VolumeMonitor::signal_mount_added()
+auto VolumeMonitor::signal_mount_added() -> Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Mount>&) >(this, &VolumeMonitor_signal_mount_added_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)> VolumeMonitor::signal_mount_removed()
+auto VolumeMonitor::signal_mount_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Mount>&) >(this, &VolumeMonitor_signal_mount_removed_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)> VolumeMonitor::signal_mount_pre_unmount()
+auto VolumeMonitor::signal_mount_pre_unmount() -> Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Mount>&) >(this, &VolumeMonitor_signal_mount_pre_unmount_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)> VolumeMonitor::signal_mount_changed()
+auto VolumeMonitor::signal_mount_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Mount>&) >(this, &VolumeMonitor_signal_mount_changed_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)> VolumeMonitor::signal_drive_connected()
+auto VolumeMonitor::signal_drive_connected() -> Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Drive>&) >(this, &VolumeMonitor_signal_drive_connected_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)> VolumeMonitor::signal_drive_disconnected()
+auto VolumeMonitor::signal_drive_disconnected() -> Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Drive>&) >(this, &VolumeMonitor_signal_drive_disconnected_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)> VolumeMonitor::signal_drive_changed()
+auto VolumeMonitor::signal_drive_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Drive>&) >(this, &VolumeMonitor_signal_drive_changed_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)> VolumeMonitor::signal_drive_eject_button()
+auto VolumeMonitor::signal_drive_eject_button() -> Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Drive>&) >(this, &VolumeMonitor_signal_drive_eject_button_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)> VolumeMonitor::signal_drive_stop_button()
+auto VolumeMonitor::signal_drive_stop_button() -> Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Drive>&) >(this, &VolumeMonitor_signal_drive_stop_button_info);
 }

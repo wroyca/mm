@@ -28,7 +28,7 @@
 
 namespace
 {
-gboolean SlotShortcut_callback(GtkWidget* widget, GVariant* args, gpointer user_data)
+auto SlotShortcut_callback(GtkWidget* widget, GVariant* args, gpointer user_data) -> gboolean
 {
   auto the_slot = static_cast<Gtk::CallbackAction::SlotShortcut*>(user_data);
 
@@ -67,7 +67,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::ShortcutAction::Flags>::value_type()
+auto Glib::Value<Gtk::ShortcutAction::Flags>::value_type() -> GType
 {
   return gtk_shortcut_action_flags_get_type();
 }
@@ -76,7 +76,7 @@ GType Glib::Value<Gtk::ShortcutAction::Flags>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::ShortcutAction> wrap(GtkShortcutAction* object, bool take_copy)
+auto wrap(GtkShortcutAction* object, bool take_copy) -> Glib::RefPtr<Gtk::ShortcutAction>
 {
   return Glib::make_refptr_for_instance<Gtk::ShortcutAction>( dynamic_cast<Gtk::ShortcutAction*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -91,7 +91,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ShortcutAction_Class::init()
+auto ShortcutAction_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -116,7 +116,7 @@ void ShortcutAction_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* ShortcutAction_Class::wrap_new(GObject* object)
+auto ShortcutAction_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ShortcutAction((GtkShortcutAction*)object);
 }
@@ -124,7 +124,7 @@ Glib::ObjectBase* ShortcutAction_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkShortcutAction* ShortcutAction::gobj_copy()
+auto ShortcutAction::gobj_copy() -> GtkShortcutAction*
 {
   reference();
   return gobj();
@@ -147,7 +147,7 @@ ShortcutAction::ShortcutAction(ShortcutAction&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-ShortcutAction& ShortcutAction::operator=(ShortcutAction&& src) noexcept
+auto ShortcutAction::operator=(ShortcutAction&& src) noexcept -> ShortcutAction&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -160,13 +160,13 @@ ShortcutAction::~ShortcutAction() noexcept
 
 ShortcutAction::CppClassType ShortcutAction::shortcutaction_class_; // initialize static member
 
-GType ShortcutAction::get_type()
+auto ShortcutAction::get_type() -> GType
 {
   return shortcutaction_class_.init().get_type();
 }
 
 
-GType ShortcutAction::get_base_type()
+auto ShortcutAction::get_base_type() -> GType
 {
   return gtk_shortcut_action_get_type();
 }
@@ -182,17 +182,17 @@ ShortcutAction::ShortcutAction()
 
 }
 
-Glib::RefPtr<ShortcutAction> ShortcutAction::parse_string(const Glib::ustring& string)
+auto ShortcutAction::parse_string(const Glib::ustring& string) -> Glib::RefPtr<ShortcutAction>
 {
   return Glib::wrap(gtk_shortcut_action_parse_string(string.c_str()));
 }
 
-Glib::ustring ShortcutAction::to_string() const
+auto ShortcutAction::to_string() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_shortcut_action_to_string(const_cast<GtkShortcutAction*>(gobj())));
 }
 
-bool ShortcutAction::activate(Widget& widget, Flags flags, const Glib::VariantBase& args)
+auto ShortcutAction::activate(Widget& widget, Flags flags, const Glib::VariantBase& args) -> bool
 {
   return gtk_shortcut_action_activate(gobj(), static_cast<GtkShortcutActionFlags>(flags), (widget).gobj(), const_cast<GVariant*>((args).gobj()));
 }
@@ -204,7 +204,7 @@ bool ShortcutAction::activate(Widget& widget, Flags flags, const Glib::VariantBa
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::NothingAction> wrap(GtkNothingAction* object, bool take_copy)
+auto wrap(GtkNothingAction* object, bool take_copy) -> Glib::RefPtr<Gtk::NothingAction>
 {
   return Glib::make_refptr_for_instance<Gtk::NothingAction>( dynamic_cast<Gtk::NothingAction*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -219,7 +219,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& NothingAction_Class::init()
+auto NothingAction_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -244,7 +244,7 @@ void NothingAction_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* NothingAction_Class::wrap_new(GObject* object)
+auto NothingAction_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new NothingAction((GtkNothingAction*)object);
 }
@@ -252,7 +252,7 @@ Glib::ObjectBase* NothingAction_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkNothingAction* NothingAction::gobj_copy()
+auto NothingAction::gobj_copy() -> GtkNothingAction*
 {
   reference();
   return gobj();
@@ -275,7 +275,7 @@ NothingAction::NothingAction(NothingAction&& src) noexcept
 : ShortcutAction(std::move(src))
 {}
 
-NothingAction& NothingAction::operator=(NothingAction&& src) noexcept
+auto NothingAction::operator=(NothingAction&& src) noexcept -> NothingAction&
 {
   ShortcutAction::operator=(std::move(src));
   return *this;
@@ -288,13 +288,13 @@ NothingAction::~NothingAction() noexcept
 
 NothingAction::CppClassType NothingAction::nothingaction_class_; // initialize static member
 
-GType NothingAction::get_type()
+auto NothingAction::get_type() -> GType
 {
   return nothingaction_class_.init().get_type();
 }
 
 
-GType NothingAction::get_base_type()
+auto NothingAction::get_base_type() -> GType
 {
   return gtk_nothing_action_get_type();
 }
@@ -309,7 +309,7 @@ NothingAction::NothingAction()
 
 }
 
-Glib::RefPtr<NothingAction> NothingAction::get()
+auto NothingAction::get() -> Glib::RefPtr<NothingAction>
 {
 
   auto retvalue = Glib::wrap(GTK_NOTHING_ACTION(gtk_nothing_action_get()));
@@ -325,7 +325,7 @@ Glib::RefPtr<NothingAction> NothingAction::get()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::CallbackAction> wrap(GtkCallbackAction* object, bool take_copy)
+auto wrap(GtkCallbackAction* object, bool take_copy) -> Glib::RefPtr<Gtk::CallbackAction>
 {
   return Glib::make_refptr_for_instance<Gtk::CallbackAction>( dynamic_cast<Gtk::CallbackAction*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -340,7 +340,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& CallbackAction_Class::init()
+auto CallbackAction_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -365,7 +365,7 @@ void CallbackAction_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* CallbackAction_Class::wrap_new(GObject* object)
+auto CallbackAction_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new CallbackAction((GtkCallbackAction*)object);
 }
@@ -373,7 +373,7 @@ Glib::ObjectBase* CallbackAction_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkCallbackAction* CallbackAction::gobj_copy()
+auto CallbackAction::gobj_copy() -> GtkCallbackAction*
 {
   reference();
   return gobj();
@@ -396,7 +396,7 @@ CallbackAction::CallbackAction(CallbackAction&& src) noexcept
 : ShortcutAction(std::move(src))
 {}
 
-CallbackAction& CallbackAction::operator=(CallbackAction&& src) noexcept
+auto CallbackAction::operator=(CallbackAction&& src) noexcept -> CallbackAction&
 {
   ShortcutAction::operator=(std::move(src));
   return *this;
@@ -409,18 +409,18 @@ CallbackAction::~CallbackAction() noexcept
 
 CallbackAction::CppClassType CallbackAction::callbackaction_class_; // initialize static member
 
-GType CallbackAction::get_type()
+auto CallbackAction::get_type() -> GType
 {
   return callbackaction_class_.init().get_type();
 }
 
 
-GType CallbackAction::get_base_type()
+auto CallbackAction::get_base_type() -> GType
 {
   return gtk_callback_action_get_type();
 }
 
-Glib::RefPtr<CallbackAction> CallbackAction::create(const SlotShortcut& slot)
+auto CallbackAction::create(const SlotShortcut& slot) -> Glib::RefPtr<CallbackAction>
 {
   return Glib::make_refptr_for_instance<CallbackAction>( new CallbackAction(slot) );
 }
@@ -432,7 +432,7 @@ Glib::RefPtr<CallbackAction> CallbackAction::create(const SlotShortcut& slot)
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::MnemonicAction> wrap(GtkMnemonicAction* object, bool take_copy)
+auto wrap(GtkMnemonicAction* object, bool take_copy) -> Glib::RefPtr<Gtk::MnemonicAction>
 {
   return Glib::make_refptr_for_instance<Gtk::MnemonicAction>( dynamic_cast<Gtk::MnemonicAction*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -447,7 +447,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& MnemonicAction_Class::init()
+auto MnemonicAction_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -472,7 +472,7 @@ void MnemonicAction_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* MnemonicAction_Class::wrap_new(GObject* object)
+auto MnemonicAction_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new MnemonicAction((GtkMnemonicAction*)object);
 }
@@ -480,7 +480,7 @@ Glib::ObjectBase* MnemonicAction_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkMnemonicAction* MnemonicAction::gobj_copy()
+auto MnemonicAction::gobj_copy() -> GtkMnemonicAction*
 {
   reference();
   return gobj();
@@ -503,7 +503,7 @@ MnemonicAction::MnemonicAction(MnemonicAction&& src) noexcept
 : ShortcutAction(std::move(src))
 {}
 
-MnemonicAction& MnemonicAction::operator=(MnemonicAction&& src) noexcept
+auto MnemonicAction::operator=(MnemonicAction&& src) noexcept -> MnemonicAction&
 {
   ShortcutAction::operator=(std::move(src));
   return *this;
@@ -516,13 +516,13 @@ MnemonicAction::~MnemonicAction() noexcept
 
 MnemonicAction::CppClassType MnemonicAction::mnemonicaction_class_; // initialize static member
 
-GType MnemonicAction::get_type()
+auto MnemonicAction::get_type() -> GType
 {
   return mnemonicaction_class_.init().get_type();
 }
 
 
-GType MnemonicAction::get_base_type()
+auto MnemonicAction::get_base_type() -> GType
 {
   return gtk_mnemonic_action_get_type();
 }
@@ -537,7 +537,7 @@ MnemonicAction::MnemonicAction()
 
 }
 
-Glib::RefPtr<MnemonicAction> MnemonicAction::get()
+auto MnemonicAction::get() -> Glib::RefPtr<MnemonicAction>
 {
 
   auto retvalue = Glib::wrap(GTK_MNEMONIC_ACTION(gtk_mnemonic_action_get()));
@@ -553,7 +553,7 @@ Glib::RefPtr<MnemonicAction> MnemonicAction::get()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::ActivateAction> wrap(GtkActivateAction* object, bool take_copy)
+auto wrap(GtkActivateAction* object, bool take_copy) -> Glib::RefPtr<Gtk::ActivateAction>
 {
   return Glib::make_refptr_for_instance<Gtk::ActivateAction>( dynamic_cast<Gtk::ActivateAction*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -568,7 +568,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ActivateAction_Class::init()
+auto ActivateAction_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -593,7 +593,7 @@ void ActivateAction_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* ActivateAction_Class::wrap_new(GObject* object)
+auto ActivateAction_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ActivateAction((GtkActivateAction*)object);
 }
@@ -601,7 +601,7 @@ Glib::ObjectBase* ActivateAction_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkActivateAction* ActivateAction::gobj_copy()
+auto ActivateAction::gobj_copy() -> GtkActivateAction*
 {
   reference();
   return gobj();
@@ -624,7 +624,7 @@ ActivateAction::ActivateAction(ActivateAction&& src) noexcept
 : ShortcutAction(std::move(src))
 {}
 
-ActivateAction& ActivateAction::operator=(ActivateAction&& src) noexcept
+auto ActivateAction::operator=(ActivateAction&& src) noexcept -> ActivateAction&
 {
   ShortcutAction::operator=(std::move(src));
   return *this;
@@ -637,13 +637,13 @@ ActivateAction::~ActivateAction() noexcept
 
 ActivateAction::CppClassType ActivateAction::activateaction_class_; // initialize static member
 
-GType ActivateAction::get_type()
+auto ActivateAction::get_type() -> GType
 {
   return activateaction_class_.init().get_type();
 }
 
 
-GType ActivateAction::get_base_type()
+auto ActivateAction::get_base_type() -> GType
 {
   return gtk_activate_action_get_type();
 }
@@ -658,7 +658,7 @@ ActivateAction::ActivateAction()
 
 }
 
-Glib::RefPtr<ActivateAction> ActivateAction::get()
+auto ActivateAction::get() -> Glib::RefPtr<ActivateAction>
 {
 
   auto retvalue = Glib::wrap(GTK_ACTIVATE_ACTION(gtk_activate_action_get()));
@@ -674,7 +674,7 @@ Glib::RefPtr<ActivateAction> ActivateAction::get()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::SignalAction> wrap(GtkSignalAction* object, bool take_copy)
+auto wrap(GtkSignalAction* object, bool take_copy) -> Glib::RefPtr<Gtk::SignalAction>
 {
   return Glib::make_refptr_for_instance<Gtk::SignalAction>( dynamic_cast<Gtk::SignalAction*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -689,7 +689,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& SignalAction_Class::init()
+auto SignalAction_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -714,7 +714,7 @@ void SignalAction_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* SignalAction_Class::wrap_new(GObject* object)
+auto SignalAction_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new SignalAction((GtkSignalAction*)object);
 }
@@ -722,7 +722,7 @@ Glib::ObjectBase* SignalAction_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkSignalAction* SignalAction::gobj_copy()
+auto SignalAction::gobj_copy() -> GtkSignalAction*
 {
   reference();
   return gobj();
@@ -745,7 +745,7 @@ SignalAction::SignalAction(SignalAction&& src) noexcept
 : ShortcutAction(std::move(src))
 {}
 
-SignalAction& SignalAction::operator=(SignalAction&& src) noexcept
+auto SignalAction::operator=(SignalAction&& src) noexcept -> SignalAction&
 {
   ShortcutAction::operator=(std::move(src));
   return *this;
@@ -758,13 +758,13 @@ SignalAction::~SignalAction() noexcept
 
 SignalAction::CppClassType SignalAction::signalaction_class_; // initialize static member
 
-GType SignalAction::get_type()
+auto SignalAction::get_type() -> GType
 {
   return signalaction_class_.init().get_type();
 }
 
 
-GType SignalAction::get_base_type()
+auto SignalAction::get_base_type() -> GType
 {
   return gtk_signal_action_get_type();
 }
@@ -779,18 +779,18 @@ SignalAction::SignalAction(const Glib::ustring& signal_name)
 
 }
 
-Glib::RefPtr<SignalAction> SignalAction::create(const Glib::ustring& signal_name)
+auto SignalAction::create(const Glib::ustring& signal_name) -> Glib::RefPtr<SignalAction>
 {
   return Glib::make_refptr_for_instance<SignalAction>( new SignalAction(signal_name) );
 }
 
-Glib::ustring SignalAction::get_signal_name() const
+auto SignalAction::get_signal_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_signal_action_get_signal_name(const_cast<GtkSignalAction*>(gobj())));
 }
 
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > SignalAction::property_signal_name() const
+auto SignalAction::property_signal_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "signal-name");
 }
@@ -802,7 +802,7 @@ Glib::PropertyProxy_ReadOnly< Glib::ustring > SignalAction::property_signal_name
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::NamedAction> wrap(GtkNamedAction* object, bool take_copy)
+auto wrap(GtkNamedAction* object, bool take_copy) -> Glib::RefPtr<Gtk::NamedAction>
 {
   return Glib::make_refptr_for_instance<Gtk::NamedAction>( dynamic_cast<Gtk::NamedAction*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -817,7 +817,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& NamedAction_Class::init()
+auto NamedAction_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -842,7 +842,7 @@ void NamedAction_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* NamedAction_Class::wrap_new(GObject* object)
+auto NamedAction_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new NamedAction((GtkNamedAction*)object);
 }
@@ -850,7 +850,7 @@ Glib::ObjectBase* NamedAction_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkNamedAction* NamedAction::gobj_copy()
+auto NamedAction::gobj_copy() -> GtkNamedAction*
 {
   reference();
   return gobj();
@@ -873,7 +873,7 @@ NamedAction::NamedAction(NamedAction&& src) noexcept
 : ShortcutAction(std::move(src))
 {}
 
-NamedAction& NamedAction::operator=(NamedAction&& src) noexcept
+auto NamedAction::operator=(NamedAction&& src) noexcept -> NamedAction&
 {
   ShortcutAction::operator=(std::move(src));
   return *this;
@@ -886,13 +886,13 @@ NamedAction::~NamedAction() noexcept
 
 NamedAction::CppClassType NamedAction::namedaction_class_; // initialize static member
 
-GType NamedAction::get_type()
+auto NamedAction::get_type() -> GType
 {
   return namedaction_class_.init().get_type();
 }
 
 
-GType NamedAction::get_base_type()
+auto NamedAction::get_base_type() -> GType
 {
   return gtk_named_action_get_type();
 }
@@ -907,18 +907,18 @@ NamedAction::NamedAction(const Glib::ustring& action_name)
 
 }
 
-Glib::RefPtr<NamedAction> NamedAction::create(const Glib::ustring& action_name)
+auto NamedAction::create(const Glib::ustring& action_name) -> Glib::RefPtr<NamedAction>
 {
   return Glib::make_refptr_for_instance<NamedAction>( new NamedAction(action_name) );
 }
 
-Glib::ustring NamedAction::get_action_name() const
+auto NamedAction::get_action_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_named_action_get_action_name(const_cast<GtkNamedAction*>(gobj())));
 }
 
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > NamedAction::property_action_name() const
+auto NamedAction::property_action_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "action-name");
 }

@@ -31,7 +31,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gdk::DeviceTool::Type>::value_type()
+auto Glib::Value<Gdk::DeviceTool::Type>::value_type() -> GType
 {
   return gdk_device_tool_type_get_type();
 }
@@ -40,7 +40,7 @@ GType Glib::Value<Gdk::DeviceTool::Type>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::DeviceTool> wrap(GdkDeviceTool* object, bool take_copy)
+auto wrap(GdkDeviceTool* object, bool take_copy) -> Glib::RefPtr<Gdk::DeviceTool>
 {
   return Glib::make_refptr_for_instance<Gdk::DeviceTool>( dynamic_cast<Gdk::DeviceTool*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -55,7 +55,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Class& DeviceTool_Class::init()
+auto DeviceTool_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -86,7 +86,7 @@ void DeviceTool_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* DeviceTool_Class::wrap_new(GObject* object)
+auto DeviceTool_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new DeviceTool((GdkDeviceTool*)object);
 }
@@ -94,7 +94,7 @@ Glib::ObjectBase* DeviceTool_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GdkDeviceTool* DeviceTool::gobj_copy()
+auto DeviceTool::gobj_copy() -> GdkDeviceTool*
 {
   reference();
   return gobj();
@@ -117,7 +117,7 @@ DeviceTool::DeviceTool(DeviceTool&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-DeviceTool& DeviceTool::operator=(DeviceTool&& src) noexcept
+auto DeviceTool::operator=(DeviceTool&& src) noexcept -> DeviceTool&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -130,34 +130,34 @@ DeviceTool::~DeviceTool() noexcept
 
 DeviceTool::CppClassType DeviceTool::devicetool_class_; // initialize static member
 
-GType DeviceTool::get_type()
+auto DeviceTool::get_type() -> GType
 {
   return devicetool_class_.init().get_type();
 }
 
 
-GType DeviceTool::get_base_type()
+auto DeviceTool::get_base_type() -> GType
 {
   return gdk_device_tool_get_type();
 }
 
 
-guint64 DeviceTool::get_serial() const
+auto DeviceTool::get_serial() const -> guint64
 {
   return gdk_device_tool_get_serial(const_cast<GdkDeviceTool*>(gobj()));
 }
 
-guint64 DeviceTool::get_hardware_id() const
+auto DeviceTool::get_hardware_id() const -> guint64
 {
   return gdk_device_tool_get_hardware_id(const_cast<GdkDeviceTool*>(gobj()));
 }
 
-Type DeviceTool::get_tool_type() const
+auto DeviceTool::get_tool_type() const -> Type
 {
   return static_cast<Type>(gdk_device_tool_get_tool_type(const_cast<GdkDeviceTool*>(gobj())));
 }
 
-AxisFlags DeviceTool::get_axes() const
+auto DeviceTool::get_axes() const -> AxisFlags
 {
   return static_cast<AxisFlags>(gdk_device_tool_get_axes(const_cast<GdkDeviceTool*>(gobj())));
 }
@@ -167,7 +167,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<guint64>::value,
   "Type guint64 cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< guint64 > DeviceTool::property_serial() const
+auto DeviceTool::property_serial() const -> Glib::PropertyProxy_ReadOnly< guint64 >
 {
   return Glib::PropertyProxy_ReadOnly< guint64 >(this, "serial");
 }
@@ -176,7 +176,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Type>::value,
   "Type Type cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Type > DeviceTool::property_tool_type() const
+auto DeviceTool::property_tool_type() const -> Glib::PropertyProxy_ReadOnly< Type >
 {
   return Glib::PropertyProxy_ReadOnly< Type >(this, "tool-type");
 }
@@ -185,7 +185,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<AxisFlags>::value,
   "Type AxisFlags cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< AxisFlags > DeviceTool::property_axes() const
+auto DeviceTool::property_axes() const -> Glib::PropertyProxy_ReadOnly< AxisFlags >
 {
   return Glib::PropertyProxy_ReadOnly< AxisFlags >(this, "axes");
 }
@@ -194,7 +194,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<guint64>::value,
   "Type guint64 cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< guint64 > DeviceTool::property_hardware_id() const
+auto DeviceTool::property_hardware_id() const -> Glib::PropertyProxy_ReadOnly< guint64 >
 {
   return Glib::PropertyProxy_ReadOnly< guint64 >(this, "hardware-id");
 }

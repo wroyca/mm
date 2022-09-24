@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::ShortcutTrigger> wrap(GtkShortcutTrigger* object, bool take_copy)
+auto wrap(GtkShortcutTrigger* object, bool take_copy) -> Glib::RefPtr<Gtk::ShortcutTrigger>
 {
   return Glib::make_refptr_for_instance<Gtk::ShortcutTrigger>( dynamic_cast<Gtk::ShortcutTrigger*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ShortcutTrigger_Class::init()
+auto ShortcutTrigger_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -73,7 +73,7 @@ void ShortcutTrigger_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* ShortcutTrigger_Class::wrap_new(GObject* object)
+auto ShortcutTrigger_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ShortcutTrigger((GtkShortcutTrigger*)object);
 }
@@ -81,7 +81,7 @@ Glib::ObjectBase* ShortcutTrigger_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkShortcutTrigger* ShortcutTrigger::gobj_copy()
+auto ShortcutTrigger::gobj_copy() -> GtkShortcutTrigger*
 {
   reference();
   return gobj();
@@ -104,7 +104,7 @@ ShortcutTrigger::ShortcutTrigger(ShortcutTrigger&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-ShortcutTrigger& ShortcutTrigger::operator=(ShortcutTrigger&& src) noexcept
+auto ShortcutTrigger::operator=(ShortcutTrigger&& src) noexcept -> ShortcutTrigger&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -117,13 +117,13 @@ ShortcutTrigger::~ShortcutTrigger() noexcept
 
 ShortcutTrigger::CppClassType ShortcutTrigger::shortcuttrigger_class_; // initialize static member
 
-GType ShortcutTrigger::get_type()
+auto ShortcutTrigger::get_type() -> GType
 {
   return shortcuttrigger_class_.init().get_type();
 }
 
 
-GType ShortcutTrigger::get_base_type()
+auto ShortcutTrigger::get_base_type() -> GType
 {
   return gtk_shortcut_trigger_get_type();
 }
@@ -139,32 +139,32 @@ ShortcutTrigger::ShortcutTrigger()
 
 }
 
-Glib::RefPtr<ShortcutTrigger> ShortcutTrigger::parse_string(const Glib::ustring& string)
+auto ShortcutTrigger::parse_string(const Glib::ustring& string) -> Glib::RefPtr<ShortcutTrigger>
 {
   return Glib::wrap(gtk_shortcut_trigger_parse_string(string.c_str()));
 }
 
-Glib::ustring ShortcutTrigger::to_string() const
+auto ShortcutTrigger::to_string() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_shortcut_trigger_to_string(const_cast<GtkShortcutTrigger*>(gobj())));
 }
 
-Glib::ustring ShortcutTrigger::to_label(const Glib::RefPtr<const Gdk::Display>& display) const
+auto ShortcutTrigger::to_label(const Glib::RefPtr<const Gdk::Display>& display) const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_shortcut_trigger_to_label(const_cast<GtkShortcutTrigger*>(gobj()), const_cast<GdkDisplay*>(Glib::unwrap(display))));
 }
 
-bool ShortcutTrigger::equal(const Glib::RefPtr<const ShortcutTrigger>& trigger2) const
+auto ShortcutTrigger::equal(const Glib::RefPtr<const ShortcutTrigger>& trigger2) const -> bool
 {
   return gtk_shortcut_trigger_equal(const_cast<GtkShortcutTrigger*>(gobj()), Glib::unwrap(trigger2));
 }
 
-int ShortcutTrigger::compare(const Glib::RefPtr<const ShortcutTrigger>& trigger2) const
+auto ShortcutTrigger::compare(const Glib::RefPtr<const ShortcutTrigger>& trigger2) const -> int
 {
   return gtk_shortcut_trigger_compare(const_cast<GtkShortcutTrigger*>(gobj()), Glib::unwrap(trigger2));
 }
 
-Gdk::KeyMatch ShortcutTrigger::trigger(const Glib::RefPtr<const Gdk::Event>& event, bool enable_mnemonics) const
+auto ShortcutTrigger::trigger(const Glib::RefPtr<const Gdk::Event>& event, bool enable_mnemonics) const -> Gdk::KeyMatch
 {
   return static_cast<Gdk::KeyMatch>(gtk_shortcut_trigger_trigger(const_cast<GtkShortcutTrigger*>(gobj()), const_cast<GdkEvent*>(Glib::unwrap(event)), static_cast<int>(enable_mnemonics)));
 }
@@ -176,7 +176,7 @@ Gdk::KeyMatch ShortcutTrigger::trigger(const Glib::RefPtr<const Gdk::Event>& eve
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::NeverTrigger> wrap(GtkNeverTrigger* object, bool take_copy)
+auto wrap(GtkNeverTrigger* object, bool take_copy) -> Glib::RefPtr<Gtk::NeverTrigger>
 {
   return Glib::make_refptr_for_instance<Gtk::NeverTrigger>( dynamic_cast<Gtk::NeverTrigger*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -191,7 +191,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& NeverTrigger_Class::init()
+auto NeverTrigger_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -216,7 +216,7 @@ void NeverTrigger_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* NeverTrigger_Class::wrap_new(GObject* object)
+auto NeverTrigger_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new NeverTrigger((GtkNeverTrigger*)object);
 }
@@ -224,7 +224,7 @@ Glib::ObjectBase* NeverTrigger_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkNeverTrigger* NeverTrigger::gobj_copy()
+auto NeverTrigger::gobj_copy() -> GtkNeverTrigger*
 {
   reference();
   return gobj();
@@ -247,7 +247,7 @@ NeverTrigger::NeverTrigger(NeverTrigger&& src) noexcept
 : ShortcutTrigger(std::move(src))
 {}
 
-NeverTrigger& NeverTrigger::operator=(NeverTrigger&& src) noexcept
+auto NeverTrigger::operator=(NeverTrigger&& src) noexcept -> NeverTrigger&
 {
   ShortcutTrigger::operator=(std::move(src));
   return *this;
@@ -260,13 +260,13 @@ NeverTrigger::~NeverTrigger() noexcept
 
 NeverTrigger::CppClassType NeverTrigger::nevertrigger_class_; // initialize static member
 
-GType NeverTrigger::get_type()
+auto NeverTrigger::get_type() -> GType
 {
   return nevertrigger_class_.init().get_type();
 }
 
 
-GType NeverTrigger::get_base_type()
+auto NeverTrigger::get_base_type() -> GType
 {
   return gtk_never_trigger_get_type();
 }
@@ -281,7 +281,7 @@ NeverTrigger::NeverTrigger()
 
 }
 
-Glib::RefPtr<NeverTrigger> NeverTrigger::get()
+auto NeverTrigger::get() -> Glib::RefPtr<NeverTrigger>
 {
 
   auto retvalue = Glib::wrap(GTK_NEVER_TRIGGER(gtk_never_trigger_get()));
@@ -297,7 +297,7 @@ Glib::RefPtr<NeverTrigger> NeverTrigger::get()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::KeyvalTrigger> wrap(GtkKeyvalTrigger* object, bool take_copy)
+auto wrap(GtkKeyvalTrigger* object, bool take_copy) -> Glib::RefPtr<Gtk::KeyvalTrigger>
 {
   return Glib::make_refptr_for_instance<Gtk::KeyvalTrigger>( dynamic_cast<Gtk::KeyvalTrigger*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -312,7 +312,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& KeyvalTrigger_Class::init()
+auto KeyvalTrigger_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -337,7 +337,7 @@ void KeyvalTrigger_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* KeyvalTrigger_Class::wrap_new(GObject* object)
+auto KeyvalTrigger_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new KeyvalTrigger((GtkKeyvalTrigger*)object);
 }
@@ -345,7 +345,7 @@ Glib::ObjectBase* KeyvalTrigger_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkKeyvalTrigger* KeyvalTrigger::gobj_copy()
+auto KeyvalTrigger::gobj_copy() -> GtkKeyvalTrigger*
 {
   reference();
   return gobj();
@@ -368,7 +368,7 @@ KeyvalTrigger::KeyvalTrigger(KeyvalTrigger&& src) noexcept
 : ShortcutTrigger(std::move(src))
 {}
 
-KeyvalTrigger& KeyvalTrigger::operator=(KeyvalTrigger&& src) noexcept
+auto KeyvalTrigger::operator=(KeyvalTrigger&& src) noexcept -> KeyvalTrigger&
 {
   ShortcutTrigger::operator=(std::move(src));
   return *this;
@@ -381,13 +381,13 @@ KeyvalTrigger::~KeyvalTrigger() noexcept
 
 KeyvalTrigger::CppClassType KeyvalTrigger::keyvaltrigger_class_; // initialize static member
 
-GType KeyvalTrigger::get_type()
+auto KeyvalTrigger::get_type() -> GType
 {
   return keyvaltrigger_class_.init().get_type();
 }
 
 
-GType KeyvalTrigger::get_base_type()
+auto KeyvalTrigger::get_base_type() -> GType
 {
   return gtk_keyval_trigger_get_type();
 }
@@ -402,23 +402,23 @@ KeyvalTrigger::KeyvalTrigger(guint keyval, Gdk::ModifierType modifiers)
 
 }
 
-Glib::RefPtr<KeyvalTrigger> KeyvalTrigger::create(guint keyval, Gdk::ModifierType modifiers)
+auto KeyvalTrigger::create(guint keyval, Gdk::ModifierType modifiers) -> Glib::RefPtr<KeyvalTrigger>
 {
   return Glib::make_refptr_for_instance<KeyvalTrigger>( new KeyvalTrigger(keyval, modifiers) );
 }
 
-guint KeyvalTrigger::get_keyval() const
+auto KeyvalTrigger::get_keyval() const -> guint
 {
   return gtk_keyval_trigger_get_keyval(const_cast<GtkKeyvalTrigger*>(gobj()));
 }
 
-Gdk::ModifierType KeyvalTrigger::get_modifiers() const
+auto KeyvalTrigger::get_modifiers() const -> Gdk::ModifierType
 {
   return static_cast<Gdk::ModifierType>(gtk_keyval_trigger_get_modifiers(const_cast<GtkKeyvalTrigger*>(gobj())));
 }
 
 
-Glib::PropertyProxy_ReadOnly< guint > KeyvalTrigger::property_keyval() const
+auto KeyvalTrigger::property_keyval() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "keyval");
 }
@@ -427,7 +427,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::ModifierType>::
   "Type Gdk::ModifierType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Gdk::ModifierType > KeyvalTrigger::property_modifiers() const
+auto KeyvalTrigger::property_modifiers() const -> Glib::PropertyProxy_ReadOnly< Gdk::ModifierType >
 {
   return Glib::PropertyProxy_ReadOnly< Gdk::ModifierType >(this, "modifiers");
 }
@@ -439,7 +439,7 @@ Glib::PropertyProxy_ReadOnly< Gdk::ModifierType > KeyvalTrigger::property_modifi
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::MnemonicTrigger> wrap(GtkMnemonicTrigger* object, bool take_copy)
+auto wrap(GtkMnemonicTrigger* object, bool take_copy) -> Glib::RefPtr<Gtk::MnemonicTrigger>
 {
   return Glib::make_refptr_for_instance<Gtk::MnemonicTrigger>( dynamic_cast<Gtk::MnemonicTrigger*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -454,7 +454,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& MnemonicTrigger_Class::init()
+auto MnemonicTrigger_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -479,7 +479,7 @@ void MnemonicTrigger_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* MnemonicTrigger_Class::wrap_new(GObject* object)
+auto MnemonicTrigger_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new MnemonicTrigger((GtkMnemonicTrigger*)object);
 }
@@ -487,7 +487,7 @@ Glib::ObjectBase* MnemonicTrigger_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkMnemonicTrigger* MnemonicTrigger::gobj_copy()
+auto MnemonicTrigger::gobj_copy() -> GtkMnemonicTrigger*
 {
   reference();
   return gobj();
@@ -510,7 +510,7 @@ MnemonicTrigger::MnemonicTrigger(MnemonicTrigger&& src) noexcept
 : ShortcutTrigger(std::move(src))
 {}
 
-MnemonicTrigger& MnemonicTrigger::operator=(MnemonicTrigger&& src) noexcept
+auto MnemonicTrigger::operator=(MnemonicTrigger&& src) noexcept -> MnemonicTrigger&
 {
   ShortcutTrigger::operator=(std::move(src));
   return *this;
@@ -523,13 +523,13 @@ MnemonicTrigger::~MnemonicTrigger() noexcept
 
 MnemonicTrigger::CppClassType MnemonicTrigger::mnemonictrigger_class_; // initialize static member
 
-GType MnemonicTrigger::get_type()
+auto MnemonicTrigger::get_type() -> GType
 {
   return mnemonictrigger_class_.init().get_type();
 }
 
 
-GType MnemonicTrigger::get_base_type()
+auto MnemonicTrigger::get_base_type() -> GType
 {
   return gtk_mnemonic_trigger_get_type();
 }
@@ -544,18 +544,18 @@ MnemonicTrigger::MnemonicTrigger(guint keyval)
 
 }
 
-Glib::RefPtr<MnemonicTrigger> MnemonicTrigger::create(guint keyval)
+auto MnemonicTrigger::create(guint keyval) -> Glib::RefPtr<MnemonicTrigger>
 {
   return Glib::make_refptr_for_instance<MnemonicTrigger>( new MnemonicTrigger(keyval) );
 }
 
-guint MnemonicTrigger::get_keyval() const
+auto MnemonicTrigger::get_keyval() const -> guint
 {
   return gtk_mnemonic_trigger_get_keyval(const_cast<GtkMnemonicTrigger*>(gobj()));
 }
 
 
-Glib::PropertyProxy_ReadOnly< guint > MnemonicTrigger::property_keyval() const
+auto MnemonicTrigger::property_keyval() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "keyval");
 }
@@ -567,7 +567,7 @@ Glib::PropertyProxy_ReadOnly< guint > MnemonicTrigger::property_keyval() const
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::AlternativeTrigger> wrap(GtkAlternativeTrigger* object, bool take_copy)
+auto wrap(GtkAlternativeTrigger* object, bool take_copy) -> Glib::RefPtr<Gtk::AlternativeTrigger>
 {
   return Glib::make_refptr_for_instance<Gtk::AlternativeTrigger>( dynamic_cast<Gtk::AlternativeTrigger*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -582,7 +582,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& AlternativeTrigger_Class::init()
+auto AlternativeTrigger_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -607,7 +607,7 @@ void AlternativeTrigger_Class::class_init_function(void* g_class, void* class_da
 }
 
 
-Glib::ObjectBase* AlternativeTrigger_Class::wrap_new(GObject* object)
+auto AlternativeTrigger_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new AlternativeTrigger((GtkAlternativeTrigger*)object);
 }
@@ -615,7 +615,7 @@ Glib::ObjectBase* AlternativeTrigger_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkAlternativeTrigger* AlternativeTrigger::gobj_copy()
+auto AlternativeTrigger::gobj_copy() -> GtkAlternativeTrigger*
 {
   reference();
   return gobj();
@@ -638,7 +638,7 @@ AlternativeTrigger::AlternativeTrigger(AlternativeTrigger&& src) noexcept
 : ShortcutTrigger(std::move(src))
 {}
 
-AlternativeTrigger& AlternativeTrigger::operator=(AlternativeTrigger&& src) noexcept
+auto AlternativeTrigger::operator=(AlternativeTrigger&& src) noexcept -> AlternativeTrigger&
 {
   ShortcutTrigger::operator=(std::move(src));
   return *this;
@@ -651,13 +651,13 @@ AlternativeTrigger::~AlternativeTrigger() noexcept
 
 AlternativeTrigger::CppClassType AlternativeTrigger::alternativetrigger_class_; // initialize static member
 
-GType AlternativeTrigger::get_type()
+auto AlternativeTrigger::get_type() -> GType
 {
   return alternativetrigger_class_.init().get_type();
 }
 
 
-GType AlternativeTrigger::get_base_type()
+auto AlternativeTrigger::get_base_type() -> GType
 {
   return gtk_alternative_trigger_get_type();
 }
@@ -672,12 +672,12 @@ AlternativeTrigger::AlternativeTrigger(const Glib::RefPtr<const ShortcutTrigger>
 
 }
 
-Glib::RefPtr<AlternativeTrigger> AlternativeTrigger::create(const Glib::RefPtr<const ShortcutTrigger>& first, const Glib::RefPtr<const ShortcutTrigger>& second)
+auto AlternativeTrigger::create(const Glib::RefPtr<const ShortcutTrigger>& first, const Glib::RefPtr<const ShortcutTrigger>& second) -> Glib::RefPtr<AlternativeTrigger>
 {
   return Glib::make_refptr_for_instance<AlternativeTrigger>( new AlternativeTrigger(first, second) );
 }
 
-Glib::RefPtr<const ShortcutTrigger> AlternativeTrigger::get_first() const
+auto AlternativeTrigger::get_first() const -> Glib::RefPtr<const ShortcutTrigger>
 {
   auto retvalue = Glib::wrap(gtk_alternative_trigger_get_first(const_cast<GtkAlternativeTrigger*>(gobj())));
   if(retvalue)
@@ -685,7 +685,7 @@ Glib::RefPtr<const ShortcutTrigger> AlternativeTrigger::get_first() const
   return retvalue;
 }
 
-Glib::RefPtr<const ShortcutTrigger> AlternativeTrigger::get_second() const
+auto AlternativeTrigger::get_second() const -> Glib::RefPtr<const ShortcutTrigger>
 {
   auto retvalue = Glib::wrap(gtk_alternative_trigger_get_second(const_cast<GtkAlternativeTrigger*>(gobj())));
   if(retvalue)
@@ -698,7 +698,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<const S
   "Type Glib::RefPtr<const ShortcutTrigger> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<const ShortcutTrigger> > AlternativeTrigger::property_first() const
+auto AlternativeTrigger::property_first() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<const ShortcutTrigger> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<const ShortcutTrigger> >(this, "first");
 }
@@ -707,7 +707,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<const S
   "Type Glib::RefPtr<const ShortcutTrigger> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<const ShortcutTrigger> > AlternativeTrigger::property_second() const
+auto AlternativeTrigger::property_second() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<const ShortcutTrigger> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<const ShortcutTrigger> >(this, "second");
 }

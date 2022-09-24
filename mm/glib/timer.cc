@@ -55,20 +55,20 @@ Timer::resume()
   g_timer_continue(gobject_);
 }
 
-double
-Timer::elapsed() const
+auto
+Timer::elapsed() const -> double
 {
   return g_timer_elapsed(gobject_, nullptr);
 }
 
-double
-Timer::elapsed(unsigned long& microseconds) const
+auto
+Timer::elapsed(unsigned long& microseconds) const -> double
 {
   return g_timer_elapsed(gobject_, &microseconds);
 }
 
-bool
-Timer::is_active() const
+auto
+Timer::is_active() const -> bool
 {
   return g_timer_is_active(gobject_);
 }

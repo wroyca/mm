@@ -72,11 +72,11 @@ class GTKMM_API Stack
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Stack(Stack&& src) noexcept;
-  Stack& operator=(Stack&& src) noexcept;
+  auto operator=(Stack&& src) noexcept -> Stack&;
 
   // noncopyable
   Stack(const Stack&) = delete;
-  Stack& operator=(const Stack&) = delete;
+  auto operator=(const Stack&) -> Stack& = delete;
 
   ~Stack() noexcept override;
 
@@ -96,19 +96,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkStack*       gobj()       { return reinterpret_cast<GtkStack*>(gobject_); }
+  auto       gobj() -> GtkStack*       { return reinterpret_cast<GtkStack*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkStack* gobj() const { return reinterpret_cast<GtkStack*>(gobject_); }
+  auto gobj() const -> const GtkStack* { return reinterpret_cast<GtkStack*>(gobject_); }
 
 private:
 
@@ -121,7 +121,7 @@ public:
    * @param child The widget to add.
    * @return The `Gtk::StackPage` for @a child.
    */
-  Glib::RefPtr<StackPage> add(Widget& child);
+  auto add(Widget& child) -> Glib::RefPtr<StackPage>;
 
   /** Adds a child to @a stack.
    *
@@ -131,7 +131,7 @@ public:
    * @param name The name for @a child.
    * @return The `Gtk::StackPage` for @a child.
    */
-  Glib::RefPtr<StackPage> add(Widget& child, const Glib::ustring& name);
+  auto add(Widget& child, const Glib::ustring& name) -> Glib::RefPtr<StackPage>;
 
   /** Adds a child to @a stack.
    *
@@ -144,7 +144,7 @@ public:
    * @param title A human-readable title for @a child.
    * @return The `Gtk::StackPage` for @a child.
    */
-  Glib::RefPtr<StackPage> add(Widget& child, const Glib::ustring& name, const Glib::ustring& title);
+  auto add(Widget& child, const Glib::ustring& name, const Glib::ustring& title) -> Glib::RefPtr<StackPage>;
 
 
   /** Removes a child widget from @a stack.
@@ -159,14 +159,14 @@ public:
    * @param child A child of @a stack.
    * @return The `Gtk::StackPage` for @a child.
    */
-  Glib::RefPtr<StackPage> get_page(Widget& child);
+  auto get_page(Widget& child) -> Glib::RefPtr<StackPage>;
 
   /** Returns the `Gtk::StackPage` object for @a child.
    *
    * @param child A child of @a stack.
    * @return The `Gtk::StackPage` for @a child.
    */
-  Glib::RefPtr<const StackPage> get_page(const Widget& child) const;
+  auto get_page(const Widget& child) const -> Glib::RefPtr<const StackPage>;
 
 
   /** Makes @a child the visible child of @a stack.
@@ -187,13 +187,13 @@ public:
    *
    * @return The visible child of the `Gtk::Stack`.
    */
-  Widget* get_visible_child();
+  auto get_visible_child() -> Widget*;
 
   /** Gets the currently visible child of @a stack.
    *
    * @return The visible child of the `Gtk::Stack`.
    */
-  const Widget* get_visible_child() const;
+  auto get_visible_child() const -> const Widget*;
 
 
   /** Makes the child with the given name visible.
@@ -226,7 +226,7 @@ public:
    * @return The name of the visible child
    * of the `Gtk::Stack`.
    */
-  Glib::ustring get_visible_child_name() const;
+  auto get_visible_child_name() const -> Glib::ustring;
 
 
   /** Sets the `Gtk::Stack` to be horizontally homogeneous or not.
@@ -243,7 +243,7 @@ public:
    *
    * @return Whether @a stack is horizontally homogeneous.
    */
-  bool get_hhomogeneous() const;
+  auto get_hhomogeneous() const -> bool;
 
 
   /** Sets the `Gtk::Stack` to be vertically homogeneous or not.
@@ -260,7 +260,7 @@ public:
    *
    * @return Whether @a stack is vertically homogeneous.
    */
-  bool get_vhomogeneous() const;
+  auto get_vhomogeneous() const -> bool;
 
 
   /** Sets the duration that transitions between pages in @a stack
@@ -275,7 +275,7 @@ public:
    *
    * @return The transition duration.
    */
-  guint get_transition_duration() const;
+  auto get_transition_duration() const -> guint;
 
 
   /** Sets the type of animation that will be used for
@@ -296,7 +296,7 @@ public:
    *
    * @return The current transition type of @a stack.
    */
-  StackTransitionType get_transition_type() const;
+  auto get_transition_type() const -> StackTransitionType;
 
 
   /** Returns whether the @a stack is currently in a transition from one page to
@@ -304,7 +304,7 @@ public:
    *
    * @return <tt>true</tt> if the transition is currently running, <tt>false</tt> otherwise.
    */
-  bool get_transition_running() const;
+  auto get_transition_running() const -> bool;
 
 
   /** Finds the child with the name given as the argument.
@@ -313,7 +313,7 @@ public:
    * @return The requested child
    * of the `Gtk::Stack`.
    */
-  Widget* get_child_by_name(const Glib::ustring& name);
+  auto get_child_by_name(const Glib::ustring& name) -> Widget*;
 
   /** Finds the child with the name given as the argument.
    *
@@ -321,7 +321,7 @@ public:
    * @return The requested child
    * of the `Gtk::Stack`.
    */
-  const Widget* get_child_by_name(const Glib::ustring& name) const;
+  auto get_child_by_name(const Glib::ustring& name) const -> const Widget*;
 
 
   /** Sets whether or not @a stack will interpolate its size when
@@ -345,7 +345,7 @@ public:
    *
    * @return <tt>true</tt> if child sizes are interpolated.
    */
-  bool get_interpolate_size() const;
+  auto get_interpolate_size() const -> bool;
 
   /** Returns a Gio::ListModel that contains the pages of the stack.
    *
@@ -365,12 +365,12 @@ public:
    * the owner of the returned instance. When the caller's reference is dropped,
    * the instance is deleted.
    */
-  Glib::RefPtr<SelectionModel> get_pages();
+  auto get_pages() -> Glib::RefPtr<SelectionModel>;
 
 
   /** See the non-const version.
    */
-  Glib::RefPtr<const SelectionModel> get_pages() const;
+  auto get_pages() const -> Glib::RefPtr<const SelectionModel>;
 
   /** <tt>true</tt> if the stack allocates the same width for all children.
    *
@@ -379,7 +379,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_hhomogeneous() ;
+  auto property_hhomogeneous() -> Glib::PropertyProxy< bool > ;
 
 /** <tt>true</tt> if the stack allocates the same width for all children.
    *
@@ -388,7 +388,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_hhomogeneous() const;
+  auto property_hhomogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The animation duration, in milliseconds.
    *
@@ -397,7 +397,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< unsigned int > property_transition_duration() ;
+  auto property_transition_duration() -> Glib::PropertyProxy< unsigned int > ;
 
 /** The animation duration, in milliseconds.
    *
@@ -406,7 +406,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_transition_duration() const;
+  auto property_transition_duration() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
   /** Whether or not the transition is currently running.
    *
@@ -415,7 +415,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_transition_running() const;
+  auto property_transition_running() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** The type of animation used to transition.
@@ -425,7 +425,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< StackTransitionType > property_transition_type() ;
+  auto property_transition_type() -> Glib::PropertyProxy< StackTransitionType > ;
 
 /** The type of animation used to transition.
    *
@@ -434,7 +434,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< StackTransitionType > property_transition_type() const;
+  auto property_transition_type() const -> Glib::PropertyProxy_ReadOnly< StackTransitionType >;
 
   /** <tt>true</tt> if the stack allocates the same height for all children.
    *
@@ -443,7 +443,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_vhomogeneous() ;
+  auto property_vhomogeneous() -> Glib::PropertyProxy< bool > ;
 
 /** <tt>true</tt> if the stack allocates the same height for all children.
    *
@@ -452,21 +452,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_vhomogeneous() const;
+  auto property_vhomogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The widget currently visible in the stack.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_visible_child() ;
+  auto property_visible_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The widget currently visible in the stack.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_visible_child() const;
+  auto property_visible_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
   /** The name of the widget currently visible in the stack.
    *
@@ -475,7 +475,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_visible_child_name() ;
+  auto property_visible_child_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The name of the widget currently visible in the stack.
    *
@@ -484,7 +484,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_visible_child_name() const;
+  auto property_visible_child_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Whether or not the size should smoothly change during the transition.
    *
@@ -495,7 +495,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_interpolate_size() ;
+  auto property_interpolate_size() -> Glib::PropertyProxy< bool > ;
 
 /** Whether or not the size should smoothly change during the transition.
    *
@@ -506,14 +506,14 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_interpolate_size() const;
+  auto property_interpolate_size() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** A selection model with the stack pages.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> > property_pages() const;
+  auto property_pages() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> >;
 
 
   // There are no signals or vfuncs.
@@ -546,7 +546,7 @@ namespace Glib
    * @relates Gtk::Stack
    */
   GTKMM_API
-  Gtk::Stack* wrap(GtkStack* object, bool take_copy = false);
+  auto wrap(GtkStack* object, bool take_copy = false) -> Gtk::Stack*;
 } //namespace Glib
 
 

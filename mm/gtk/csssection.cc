@@ -46,7 +46,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::CssSection> wrap(GtkCssSection* object, bool take_copy)
+auto wrap(GtkCssSection* object, bool take_copy) -> Glib::RefPtr<Gtk::CssSection>
 {
   if(take_copy && object)
     gtk_css_section_ref(object);
@@ -73,19 +73,19 @@ void CssSection::unreference() const
   gtk_css_section_unref(reinterpret_cast<GtkCssSection*>(const_cast<CssSection*>(this)));
 }
 
-GtkCssSection* CssSection::gobj()
+auto CssSection::gobj() -> GtkCssSection*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<GtkCssSection*>(this);
 }
 
-const GtkCssSection* CssSection::gobj() const
+auto CssSection::gobj() const -> const GtkCssSection*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<const GtkCssSection*>(this);
 }
 
-GtkCssSection* CssSection::gobj_copy() const
+auto CssSection::gobj_copy() const -> GtkCssSection*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   const auto gobject = reinterpret_cast<GtkCssSection*>(const_cast<CssSection*>(this));
@@ -94,17 +94,17 @@ GtkCssSection* CssSection::gobj_copy() const
 }
 
 
-Glib::RefPtr<CssSection> CssSection::create(const Glib::RefPtr<Gio::File>& file, const CssLocation& start, const CssLocation& end)
+auto CssSection::create(const Glib::RefPtr<Gio::File>& file, const CssLocation& start, const CssLocation& end) -> Glib::RefPtr<CssSection>
 {
   return Glib::wrap(gtk_css_section_new(const_cast<GFile*>(Glib::unwrap<Gio::File>(file)), (start).gobj(), (end).gobj()));
 }
 
-Glib::ustring CssSection::to_string() const
+auto CssSection::to_string() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_css_section_to_string(const_cast<GtkCssSection*>(gobj())));
 }
 
-Glib::RefPtr<CssSection> CssSection::get_parent()
+auto CssSection::get_parent() -> Glib::RefPtr<CssSection>
 {
   auto retvalue = Glib::wrap(gtk_css_section_get_parent(gobj()));
   if(retvalue)
@@ -112,12 +112,12 @@ Glib::RefPtr<CssSection> CssSection::get_parent()
   return retvalue;
 }
 
-Glib::RefPtr<const CssSection> CssSection::get_parent() const
+auto CssSection::get_parent() const -> Glib::RefPtr<const CssSection>
 {
   return const_cast<CssSection*>(this)->get_parent();
 }
 
-Glib::RefPtr<Gio::File> CssSection::get_file()
+auto CssSection::get_file() -> Glib::RefPtr<Gio::File>
 {
   auto retvalue = Glib::wrap(gtk_css_section_get_file(gobj()));
   if(retvalue)
@@ -125,17 +125,17 @@ Glib::RefPtr<Gio::File> CssSection::get_file()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::File> CssSection::get_file() const
+auto CssSection::get_file() const -> Glib::RefPtr<const Gio::File>
 {
   return const_cast<CssSection*>(this)->get_file();
 }
 
-CssLocation CssSection::get_start_location() const
+auto CssSection::get_start_location() const -> CssLocation
 {
   return Glib::wrap(gtk_css_section_get_start_location(const_cast<GtkCssSection*>(gobj())));
 }
 
-CssLocation CssSection::get_end_location() const
+auto CssSection::get_end_location() const -> CssLocation
 {
   return Glib::wrap(gtk_css_section_get_end_location(const_cast<GtkCssSection*>(gobj())));
 }

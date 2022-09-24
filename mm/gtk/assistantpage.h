@@ -65,7 +65,7 @@ public:
 
   // noncopyable
   AssistantPage(const AssistantPage&) = delete;
-  AssistantPage& operator=(const AssistantPage&) = delete;
+  auto operator=(const AssistantPage&) -> AssistantPage& = delete;
 
 private:  friend class AssistantPage_Class;
   static CppClassType assistantpage_class_;
@@ -79,28 +79,28 @@ protected:
 public:
 
   AssistantPage(AssistantPage&& src) noexcept;
-  AssistantPage& operator=(AssistantPage&& src) noexcept;
+  auto operator=(AssistantPage&& src) noexcept -> AssistantPage&;
 
   ~AssistantPage() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkAssistantPage*       gobj()       { return reinterpret_cast<GtkAssistantPage*>(gobject_); }
+  auto       gobj() -> GtkAssistantPage*       { return reinterpret_cast<GtkAssistantPage*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkAssistantPage* gobj() const { return reinterpret_cast<GtkAssistantPage*>(gobject_); }
+  auto gobj() const -> const GtkAssistantPage* { return reinterpret_cast<GtkAssistantPage*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkAssistantPage* gobj_copy();
+  auto gobj_copy() -> GtkAssistantPage*;
 
 private:
 
@@ -166,13 +166,13 @@ public:
    *
    * @return The child to which @a page belongs.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Returns the child to which @a page belongs.
    *
    * @return The child to which @a page belongs.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
   /** The type of the assistant page.
    *
@@ -181,7 +181,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Type > property_page_type() ;
+  auto property_page_type() -> Glib::PropertyProxy< Type > ;
 
 /** The type of the assistant page.
    *
@@ -190,7 +190,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Type > property_page_type() const;
+  auto property_page_type() const -> Glib::PropertyProxy_ReadOnly< Type >;
 
   /** The title of the page.
    *
@@ -199,7 +199,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_title() ;
+  auto property_title() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The title of the page.
    *
@@ -208,7 +208,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_title() const;
+  auto property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Whether all required fields are filled in.
    *
@@ -220,7 +220,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_complete() ;
+  auto property_complete() -> Glib::PropertyProxy< bool > ;
 
 /** Whether all required fields are filled in.
    *
@@ -232,14 +232,14 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_complete() const;
+  auto property_complete() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The child widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
   // There are no signals or vfuncs.
@@ -269,7 +269,7 @@ template <>
 class GTKMM_API Value<Gtk::AssistantPage::Type> : public Glib::Value_Enum<Gtk::AssistantPage::Type>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -287,7 +287,7 @@ namespace Glib
    * @relates Gtk::AssistantPage
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::AssistantPage> wrap(GtkAssistantPage* object, bool take_copy = false);
+  auto wrap(GtkAssistantPage* object, bool take_copy = false) -> Glib::RefPtr<Gtk::AssistantPage>;
 }
 
 

@@ -35,7 +35,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::DesktopAppInfo> wrap(GDesktopAppInfo* object, bool take_copy)
+auto wrap(GDesktopAppInfo* object, bool take_copy) -> Glib::RefPtr<Gio::DesktopAppInfo>
 {
   return Glib::make_refptr_for_instance<Gio::DesktopAppInfo>( dynamic_cast<Gio::DesktopAppInfo*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -50,7 +50,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& DesktopAppInfo_Class::init()
+auto DesktopAppInfo_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -82,7 +82,7 @@ void DesktopAppInfo_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* DesktopAppInfo_Class::wrap_new(GObject* object)
+auto DesktopAppInfo_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new DesktopAppInfo((GDesktopAppInfo*)object);
 }
@@ -90,7 +90,7 @@ Glib::ObjectBase* DesktopAppInfo_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GDesktopAppInfo* DesktopAppInfo::gobj_copy()
+auto DesktopAppInfo::gobj_copy() -> GDesktopAppInfo*
 {
   reference();
   return gobj();
@@ -114,7 +114,7 @@ DesktopAppInfo::DesktopAppInfo(DesktopAppInfo&& src) noexcept
   , AppInfo(std::move(src))
 {}
 
-DesktopAppInfo& DesktopAppInfo::operator=(DesktopAppInfo&& src) noexcept
+auto DesktopAppInfo::operator=(DesktopAppInfo&& src) noexcept -> DesktopAppInfo&
 {
   Glib::Object::operator=(std::move(src));
   AppInfo::operator=(std::move(src));
@@ -128,94 +128,94 @@ DesktopAppInfo::~DesktopAppInfo() noexcept
 
 DesktopAppInfo::CppClassType DesktopAppInfo::desktopappinfo_class_; // initialize static member
 
-GType DesktopAppInfo::get_type()
+auto DesktopAppInfo::get_type() -> GType
 {
   return desktopappinfo_class_.init().get_type();
 }
 
 
-GType DesktopAppInfo::get_base_type()
+auto DesktopAppInfo::get_base_type() -> GType
 {
   return g_desktop_app_info_get_type();
 }
 
 
-Glib::RefPtr<DesktopAppInfo> DesktopAppInfo::create(const std::string& desktop_id)
+auto DesktopAppInfo::create(const std::string& desktop_id) -> Glib::RefPtr<DesktopAppInfo>
 {
   return Glib::wrap(g_desktop_app_info_new(desktop_id.c_str()));
 }
 
-Glib::RefPtr<DesktopAppInfo> DesktopAppInfo::create_from_keyfile(const Glib::RefPtr<Glib::KeyFile>& key_file)
+auto DesktopAppInfo::create_from_keyfile(const Glib::RefPtr<Glib::KeyFile>& key_file) -> Glib::RefPtr<DesktopAppInfo>
 {
   return Glib::wrap(g_desktop_app_info_new_from_keyfile(Glib::unwrap(key_file)));
 }
 
-Glib::RefPtr<DesktopAppInfo> DesktopAppInfo::create_from_filename(const std::string& filename)
+auto DesktopAppInfo::create_from_filename(const std::string& filename) -> Glib::RefPtr<DesktopAppInfo>
 {
   return Glib::wrap(g_desktop_app_info_new_from_filename(filename.c_str()));
 }
 
-std::string DesktopAppInfo::get_filename() const
+auto DesktopAppInfo::get_filename() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_desktop_app_info_get_filename(const_cast<GDesktopAppInfo*>(gobj())));
 }
 
-bool DesktopAppInfo::is_hidden() const
+auto DesktopAppInfo::is_hidden() const -> bool
 {
   return g_desktop_app_info_get_is_hidden(const_cast<GDesktopAppInfo*>(gobj()));
 }
 
-std::vector<Glib::ustring> DesktopAppInfo::get_keywords() const
+auto DesktopAppInfo::get_keywords() const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_desktop_app_info_get_keywords(const_cast<GDesktopAppInfo*>(gobj())), Glib::OWNERSHIP_NONE);
 }
 
-std::string DesktopAppInfo::get_startup_wm_class() const
+auto DesktopAppInfo::get_startup_wm_class() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_desktop_app_info_get_startup_wm_class(const_cast<GDesktopAppInfo*>(gobj())));
 }
 
-bool DesktopAppInfo::get_nodisplay() const
+auto DesktopAppInfo::get_nodisplay() const -> bool
 {
   return g_desktop_app_info_get_nodisplay(const_cast<GDesktopAppInfo*>(gobj()));
 }
 
-bool DesktopAppInfo::get_show_in(const std::string& desktop_env) const
+auto DesktopAppInfo::get_show_in(const std::string& desktop_env) const -> bool
 {
   return g_desktop_app_info_get_show_in(const_cast<GDesktopAppInfo*>(gobj()), desktop_env.c_str());
 }
 
-std::string DesktopAppInfo::get_generic_name() const
+auto DesktopAppInfo::get_generic_name() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_desktop_app_info_get_generic_name(const_cast<GDesktopAppInfo*>(gobj())));
 }
 
-std::string DesktopAppInfo::get_categories() const
+auto DesktopAppInfo::get_categories() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_desktop_app_info_get_categories(const_cast<GDesktopAppInfo*>(gobj())));
 }
 
-bool DesktopAppInfo::has_key(const Glib::ustring& key) const
+auto DesktopAppInfo::has_key(const Glib::ustring& key) const -> bool
 {
   return g_desktop_app_info_has_key(const_cast<GDesktopAppInfo*>(gobj()), key.c_str());
 }
 
-Glib::ustring DesktopAppInfo::get_string(const Glib::ustring& key)
+auto DesktopAppInfo::get_string(const Glib::ustring& key) -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(g_desktop_app_info_get_string(gobj(), key.c_str()));
 }
 
-Glib::ustring DesktopAppInfo::get_locale_string(const Glib::ustring& key)
+auto DesktopAppInfo::get_locale_string(const Glib::ustring& key) -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(g_desktop_app_info_get_locale_string(gobj(), key.c_str()));
 }
 
-bool DesktopAppInfo::get_boolean(const Glib::ustring& key) const
+auto DesktopAppInfo::get_boolean(const Glib::ustring& key) const -> bool
 {
   return g_desktop_app_info_get_boolean(const_cast<GDesktopAppInfo*>(gobj()), key.c_str());
 }
 
-std::vector<Glib::ustring> DesktopAppInfo::list_actions() const
+auto DesktopAppInfo::list_actions() const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_desktop_app_info_list_actions(const_cast<GDesktopAppInfo*>(gobj())), Glib::OWNERSHIP_NONE);
 }
@@ -230,7 +230,7 @@ void DesktopAppInfo::launch_action(const Glib::ustring& action_name)
   g_desktop_app_info_launch_action(gobj(), action_name.c_str(), nullptr);
 }
 
-Glib::ustring DesktopAppInfo::get_action_name(const Glib::ustring& action_name) const
+auto DesktopAppInfo::get_action_name(const Glib::ustring& action_name) const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(g_desktop_app_info_get_action_name(const_cast<GDesktopAppInfo*>(gobj()), action_name.c_str()));
 }

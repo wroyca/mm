@@ -82,7 +82,7 @@ public:
 
   GDKMM_API TextureError(Code error_code, const Glib::ustring& error_message);
   GDKMM_API explicit TextureError(GError* gobject);
-  GDKMM_API Code code() const;
+  GDKMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -104,7 +104,7 @@ template <>
 class GDKMM_API Value<Gdk::TextureError::Code> : public Glib::Value_Enum<Gdk::TextureError::Code>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -145,7 +145,7 @@ public:
 
   // noncopyable
   Texture(const Texture&) = delete;
-  Texture& operator=(const Texture&) = delete;
+  auto operator=(const Texture&) -> Texture& = delete;
 
 private:  friend class Texture_Class;
   static CppClassType texture_class_;
@@ -159,28 +159,28 @@ protected:
 public:
 
   Texture(Texture&& src) noexcept;
-  Texture& operator=(Texture&& src) noexcept;
+  auto operator=(Texture&& src) noexcept -> Texture&;
 
   ~Texture() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkTexture*       gobj()       { return reinterpret_cast<GdkTexture*>(gobject_); }
+  auto       gobj() -> GdkTexture*       { return reinterpret_cast<GdkTexture*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkTexture* gobj() const { return reinterpret_cast<GdkTexture*>(gobject_); }
+  auto gobj() const -> const GdkTexture* { return reinterpret_cast<GdkTexture*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkTexture* gobj_copy();
+  auto gobj_copy() -> GdkTexture*;
 
 private:
 
@@ -200,7 +200,7 @@ public:
    * @param pixbuf A `Gdk::Pixbuf`.
    * @return A new `Gdk::Texture`.
    */
-  static Glib::RefPtr<Texture> create_for_pixbuf(const Glib::RefPtr<Pixbuf>& pixbuf);
+  static auto create_for_pixbuf(const Glib::RefPtr<Pixbuf>& pixbuf) -> Glib::RefPtr<Texture>;
 
   /** Creates a new texture by loading an image from a resource.
    *
@@ -219,7 +219,7 @@ public:
    * @param resource_path The path of the resource file.
    * @return A newly-created `Gdk::Texture`.
    */
-  static Glib::RefPtr<Texture> create_from_resource(const std::string& resource_path);
+  static auto create_from_resource(const std::string& resource_path) -> Glib::RefPtr<Texture>;
 
   /** Creates a new texture by loading an image from a file.
    *
@@ -237,7 +237,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<Texture> create_from_file(const Glib::RefPtr<Gio::File>& file);
+  static auto create_from_file(const Glib::RefPtr<Gio::File>& file) -> Glib::RefPtr<Texture>;
 
   /** Creates a new texture by loading an image from a file.
    *
@@ -257,7 +257,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<Texture> create_from_filename(const std::string& path);
+  static auto create_from_filename(const std::string& path) -> Glib::RefPtr<Texture>;
 
   /** Creates a new texture by loading an image from memory,
    *
@@ -277,20 +277,20 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<Texture> create_from_bytes(const Glib::RefPtr<const Glib::Bytes>& bytes);
+  static auto create_from_bytes(const Glib::RefPtr<const Glib::Bytes>& bytes) -> Glib::RefPtr<Texture>;
 
 
   /** Returns the width of @a texture, in pixels.
    *
    * @return The width of the `Gdk::Texture`.
    */
-  int get_width() const;
+  auto get_width() const -> int;
 
   /** Returns the height of the @a texture, in pixels.
    *
    * @return The height of the `Gdk::Texture`.
    */
-  int get_height() const;
+  auto get_height() const -> int;
 
   /** Downloads the @a texture into local memory.
    *
@@ -323,7 +323,7 @@ public:
    * @param filename The filename to store to.
    * @return <tt>true</tt> if saving succeeded, <tt>false</tt> on failure.
    */
-  bool save_to_png(const Glib::ustring& filename) const;
+  auto save_to_png(const Glib::ustring& filename) const -> bool;
 
   /** Store the given @a texture in memory as a PNG file.
    *
@@ -344,7 +344,7 @@ public:
    *
    * @return A newly allocated `Glib::Bytes` containing PNG data.
    */
-  Glib::RefPtr<Glib::Bytes> save_to_png_bytes() const;
+  auto save_to_png_bytes() const -> Glib::RefPtr<Glib::Bytes>;
 
   /** Store the given @a texture to the @a filename as a TIFF file.
    *
@@ -354,7 +354,7 @@ public:
    * @param filename The filename to store to.
    * @return <tt>true</tt> if saving succeeded, <tt>false</tt> on failure.
    */
-  bool save_to_tiff(const std::string& filename) const;
+  auto save_to_tiff(const std::string& filename) const -> bool;
 
   /** Store the given @a texture in memory as a TIFF file.
    *
@@ -373,7 +373,7 @@ public:
    *
    * @return A newly allocated `Glib::Bytes` containing TIFF data.
    */
-  Glib::RefPtr<Glib::Bytes> save_to_tiff_bytes() const;
+  auto save_to_tiff_bytes() const -> Glib::RefPtr<Glib::Bytes>;
 
   /** The width of the texture, in pixels.
    *
@@ -382,7 +382,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_width() const;
+  auto property_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** The height of the texture, in pixels.
@@ -392,7 +392,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_height() const;
+  auto property_height() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   // There are no public signals or vfuncs.
@@ -425,7 +425,7 @@ namespace Glib
    * @relates Gdk::Texture
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::Texture> wrap(GdkTexture* object, bool take_copy = false);
+  auto wrap(GdkTexture* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Texture>;
 }
 
 

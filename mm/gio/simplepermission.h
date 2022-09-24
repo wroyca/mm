@@ -62,7 +62,7 @@ public:
 
   // noncopyable
   SimplePermission(const SimplePermission&) = delete;
-  SimplePermission& operator=(const SimplePermission&) = delete;
+  auto operator=(const SimplePermission&) -> SimplePermission& = delete;
 
 private:  friend class SimplePermission_Class;
   static CppClassType simplepermission_class_;
@@ -76,28 +76,28 @@ protected:
 public:
 
   SimplePermission(SimplePermission&& src) noexcept;
-  SimplePermission& operator=(SimplePermission&& src) noexcept;
+  auto operator=(SimplePermission&& src) noexcept -> SimplePermission&;
 
   ~SimplePermission() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GSimplePermission*       gobj()       { return reinterpret_cast<GSimplePermission*>(gobject_); }
+  auto       gobj() -> GSimplePermission*       { return reinterpret_cast<GSimplePermission*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GSimplePermission* gobj() const { return reinterpret_cast<GSimplePermission*>(gobject_); }
+  auto gobj() const -> const GSimplePermission* { return reinterpret_cast<GSimplePermission*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GSimplePermission* gobj_copy();
+  auto gobj_copy() -> GSimplePermission*;
 
 private:
 
@@ -110,7 +110,7 @@ protected:
 public:
 
 
-  static Glib::RefPtr<SimplePermission> create(bool allowed);
+  static auto create(bool allowed) -> Glib::RefPtr<SimplePermission>;
 
 
   // SimplePermission has no properties nor signals.
@@ -143,7 +143,7 @@ namespace Glib
    * @relates Gio::SimplePermission
    */
   GIOMM_API
-  Glib::RefPtr<Gio::SimplePermission> wrap(GSimplePermission* object, bool take_copy = false);
+  auto wrap(GSimplePermission* object, bool take_copy = false) -> Glib::RefPtr<Gio::SimplePermission>;
 }
 
 

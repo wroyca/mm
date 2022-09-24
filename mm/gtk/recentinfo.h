@@ -71,19 +71,19 @@ class GTKMM_API RecentInfo final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GtkRecentInfo*       gobj();
+  auto       gobj() -> GtkRecentInfo*;
 
   ///Provides access to the underlying C instance.
-  const GtkRecentInfo* gobj() const;
+  auto gobj() const -> const GtkRecentInfo*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkRecentInfo* gobj_copy() const;
+  auto gobj_copy() const -> GtkRecentInfo*;
 
   RecentInfo() = delete;
 
   // noncopyable
   RecentInfo(const RecentInfo&) = delete;
-  RecentInfo& operator=(const RecentInfo&) = delete;
+  auto operator=(const RecentInfo&) -> RecentInfo& = delete;
 
 protected:
   // Do not derive this.  Gtk::RecentInfo can neither be constructed nor deleted.
@@ -101,7 +101,7 @@ public:
    * @return The URI of the resource. The returned string is
    * owned by the recent manager, and should not be freed.
    */
-  Glib::ustring get_uri() const;
+  auto get_uri() const -> Glib::ustring;
 
   /** Gets the name of the resource.
    *
@@ -111,21 +111,21 @@ public:
    * @return The display name of the resource. The returned string
    * is owned by the recent manager, and should not be freed.
    */
-  Glib::ustring get_display_name() const;
+  auto get_display_name() const -> Glib::ustring;
 
   /** Gets the (short) description of the resource.
    *
    * @return The description of the resource. The returned string
    * is owned by the recent manager, and should not be freed.
    */
-  Glib::ustring get_description() const;
+  auto get_description() const -> Glib::ustring;
 
   /** Gets the MIME type of the resource.
    *
    * @return The MIME type of the resource. The returned string
    * is owned by the recent manager, and should not be freed.
    */
-  Glib::ustring get_mime_type() const;
+  auto get_mime_type() const -> Glib::ustring;
 
 
   /** Gets the time when the resource
@@ -134,7 +134,7 @@ public:
    * @return A `Glib::DateTime` for the time
    * when the resource was added.
    */
-  Glib::DateTime get_added() const;
+  auto get_added() const -> Glib::DateTime;
 
   /** Gets the time when the meta-data
    * for the resource was last modified.
@@ -142,7 +142,7 @@ public:
    * @return A `Glib::DateTime` for the time
    * when the resource was last modified.
    */
-  Glib::DateTime get_modified() const;
+  auto get_modified() const -> Glib::DateTime;
 
   /** Gets the time when the meta-data
    * for the resource was last visited.
@@ -150,7 +150,7 @@ public:
    * @return A `Glib::DateTime` for the time
    * when the resource was last visited.
    */
-  Glib::DateTime get_visited() const;
+  auto get_visited() const -> Glib::DateTime;
 
 
   /** Gets the value of the “private” flag.
@@ -161,7 +161,7 @@ public:
    *
    * @return <tt>true</tt> if the private flag was found, <tt>false</tt> otherwise.
    */
-  bool get_private_hint() const;
+  auto get_private_hint() const -> bool;
 
 
   /** Creates a `Gio::AppInfo` for the specified `Gtk::RecentInfo`
@@ -176,7 +176,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<Gio::AppInfo> create_app_info(const Glib::ustring& app_name);
+  auto create_app_info(const Glib::ustring& app_name) -> Glib::RefPtr<Gio::AppInfo>;
 
 
   /** Gets the data regarding the application that has registered the resource
@@ -197,8 +197,8 @@ public:
    * modified or freed.
    */
 
-  bool get_application_info(const Glib::ustring& app_name, std::string& app_exec,
-                            guint& count, Glib::DateTime& stamp) const;
+  auto get_application_info(const Glib::ustring& app_name, std::string& app_exec,
+                            guint& count, Glib::DateTime& stamp) const -> bool;
 
 
   /** Retrieves the list of applications that have registered this resource.
@@ -208,7 +208,7 @@ public:
    * allocated <tt>nullptr</tt>-terminated array of strings.
    */
 
-  std::vector<Glib::ustring> get_applications() const;
+  auto get_applications() const -> std::vector<Glib::ustring>;
 
 
   /** Gets the name of the last application that have registered the
@@ -216,7 +216,7 @@ public:
    *
    * @return An application name.
    */
-  Glib::ustring last_application() const;
+  auto last_application() const -> Glib::ustring;
 
   /** Checks whether an application registered this resource using @a app_name.
    *
@@ -224,7 +224,7 @@ public:
    * @return <tt>true</tt> if an application with name @a app_name was found,
    * <tt>false</tt> otherwise.
    */
-  bool has_application(const Glib::ustring& app_name) const;
+  auto has_application(const Glib::ustring& app_name) const -> bool;
 
 
   /** Returns all groups registered for the recently used item @a info.
@@ -236,7 +236,7 @@ public:
    * @return A newly allocated <tt>nullptr</tt> terminated array of strings.
    */
 
-  std::vector<Glib::ustring> get_groups() const;
+  auto get_groups() const -> std::vector<Glib::ustring>;
 
 
   /** Checks whether @a group_name appears inside the groups
@@ -245,20 +245,20 @@ public:
    * @param group_name Name of a group.
    * @return <tt>true</tt> if the group was found.
    */
-  bool has_group(const Glib::ustring& group_name) const;
+  auto has_group(const Glib::ustring& group_name) const -> bool;
 
 
   /** Retrieves the icon associated to the resource MIME type.
    *
    * @return A `Gio::Icon` containing the icon.
    */
-  Glib::RefPtr<Gio::Icon> get_gicon();
+  auto get_gicon() -> Glib::RefPtr<Gio::Icon>;
 
   /** Retrieves the icon associated to the resource MIME type.
    *
    * @return A `Gio::Icon` containing the icon.
    */
-  Glib::RefPtr<const Gio::Icon> get_gicon() const;
+  auto get_gicon() const -> Glib::RefPtr<const Gio::Icon>;
 
 
   /** Computes a valid UTF-8 string that can be used as the
@@ -270,7 +270,7 @@ public:
    * @return A newly-allocated string in UTF-8 encoding
    * free it with Glib::free().
    */
-  Glib::ustring get_short_name() const;
+  auto get_short_name() const -> Glib::ustring;
 
   /** Gets a displayable version of the resource’s URI.
    *
@@ -281,7 +281,7 @@ public:
    * @return A newly allocated UTF-8 string containing the
    * resource’s URI or <tt>nullptr</tt>.
    */
-  Glib::ustring get_uri_display() const;
+  auto get_uri_display() const -> Glib::ustring;
 
 
   /** Gets the number of days elapsed since the last update
@@ -290,14 +290,14 @@ public:
    * @return A positive integer containing the number of days
    * elapsed since the time this resource was last modified.
    */
-  int get_age() const;
+  auto get_age() const -> int;
 
   /** Checks whether the resource is local or not by looking at the
    * scheme of its URI.
    *
    * @return <tt>true</tt> if the resource is local.
    */
-  bool is_local() const;
+  auto is_local() const -> bool;
 
   /** Checks whether the resource pointed by @a info still exists.
    * At the moment this check is done only on resources pointing
@@ -305,7 +305,7 @@ public:
    *
    * @return <tt>true</tt> if the resource exists.
    */
-  bool exists() const;
+  auto exists() const -> bool;
 
   /** Checks whether two `Gtk::RecentInfo` point to the same resource.
    *
@@ -313,7 +313,7 @@ public:
    * @return <tt>true</tt> if both `Gtk::RecentInfo` point to the same
    * resource, <tt>false</tt> otherwise.
    */
-  bool equal(const Glib::RefPtr<const RecentInfo>& info_b) const;
+  auto equal(const Glib::RefPtr<const RecentInfo>& info_b) const -> bool;
 
 
 };
@@ -326,20 +326,20 @@ struct RecentInfoTraits
   typedef const GtkRecentInfo* CType;
   typedef GtkRecentInfo* CTypeNonConst;
 
-  static inline CType to_c_type(const CppType& obj) { return Glib::unwrap(obj); }
-  static inline CType to_c_type(const CType& obj) { return obj; }
-  static CppType to_cpp_type(const CType& obj);
+  static inline auto to_c_type(const CppType& obj) -> CType { return Glib::unwrap(obj); }
+  static inline auto to_c_type(const CType& obj) -> CType { return obj; }
+  static auto to_cpp_type(const CType& obj) -> CppType;
   static inline void release_c_type(const CType& obj)
     { gtk_recent_info_unref(const_cast<CTypeNonConst>(obj)); }
 };
 #endif /* !DOXYGEN_SHOULD_SKIP_THIS */
 
 /** @relates Gtk::RecentInfo */
-inline bool operator==(const Glib::RefPtr<const RecentInfo>& lhs, const Glib::RefPtr<const RecentInfo>& rhs)
+inline auto operator==(const Glib::RefPtr<const RecentInfo>& lhs, const Glib::RefPtr<const RecentInfo>& rhs) -> bool
   { return lhs->equal(rhs); }
 
 /** @relates Gtk::RecentInfo */
-inline bool operator!=(const Glib::RefPtr<const RecentInfo>& lhs, const Glib::RefPtr<const RecentInfo>& rhs)
+inline auto operator!=(const Glib::RefPtr<const RecentInfo>& lhs, const Glib::RefPtr<const RecentInfo>& rhs) -> bool
   { return !lhs->equal(rhs); }
 
 } // namespace Gtk
@@ -356,10 +356,10 @@ public:
   typedef Glib::RefPtr<Gtk::RecentInfo> CppType;
   typedef GtkRecentInfo* CType;
 
-  static GType value_type();
+  static auto value_type() -> GType;
 
   void set(const CppType& data);
-  CppType get() const;
+  auto get() const -> CppType;
 };
 
 } // namespace Glib
@@ -377,7 +377,7 @@ namespace Glib
  * @relates Gtk::RecentInfo
  */
 GTKMM_API
-Glib::RefPtr<Gtk::RecentInfo> wrap(GtkRecentInfo* object, bool take_copy = false);
+auto wrap(GtkRecentInfo* object, bool take_copy = false) -> Glib::RefPtr<Gtk::RecentInfo>;
 
 } // namespace Glib
 

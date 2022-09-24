@@ -274,7 +274,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo Mount_signal_changed_info =
+const Glib::SignalProxyInfo Mount_signal_changed_info =
 {
   "changed",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -282,7 +282,7 @@ static const Glib::SignalProxyInfo Mount_signal_changed_info =
 };
 
 
-static const Glib::SignalProxyInfo Mount_signal_unmounted_info =
+const Glib::SignalProxyInfo Mount_signal_unmounted_info =
 {
   "unmounted",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -290,7 +290,7 @@ static const Glib::SignalProxyInfo Mount_signal_unmounted_info =
 };
 
 
-static const Glib::SignalProxyInfo Mount_signal_pre_unmount_info =
+const Glib::SignalProxyInfo Mount_signal_pre_unmount_info =
 {
   "pre_unmount",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -304,7 +304,7 @@ static const Glib::SignalProxyInfo Mount_signal_pre_unmount_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gio::Mount> wrap(GMount* object, bool take_copy)
+auto wrap(GMount* object, bool take_copy) -> Glib::RefPtr<Gio::Mount>
 {
   return Glib::make_refptr_for_instance<Gio::Mount>( dynamic_cast<Gio::Mount*> (Glib::wrap_auto_interface<Gio::Mount> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -319,7 +319,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& Mount_Class::init()
+auto Mount_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -462,7 +462,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* Mount_Class::wrap_new(GObject* object)
+auto Mount_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Mount((GMount*)(object));
 }
@@ -489,7 +489,7 @@ Mount::Mount(Mount&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-Mount& Mount::operator=(Mount&& src) noexcept
+auto Mount::operator=(Mount&& src) noexcept -> Mount&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -506,19 +506,19 @@ void Mount::add_interface(GType gtype_implementer)
 
 Mount::CppClassType Mount::mount_class_; // initialize static member
 
-GType Mount::get_type()
+auto Mount::get_type() -> GType
 {
   return mount_class_.init().get_type();
 }
 
 
-GType Mount::get_base_type()
+auto Mount::get_base_type() -> GType
 {
   return g_mount_get_type();
 }
 
 
-Glib::RefPtr<File> Mount::get_root()
+auto Mount::get_root() -> Glib::RefPtr<File>
 {
   auto retvalue = Glib::wrap(g_mount_get_root(gobj()));
   if(retvalue)
@@ -526,17 +526,17 @@ Glib::RefPtr<File> Mount::get_root()
   return retvalue;
 }
 
-Glib::RefPtr<const File> Mount::get_root() const
+auto Mount::get_root() const -> Glib::RefPtr<const File>
 {
   return const_cast<Mount*>(this)->get_root();
 }
 
-std::string Mount::get_name() const
+auto Mount::get_name() const -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(g_mount_get_name(const_cast<GMount*>(gobj())));
 }
 
-Glib::RefPtr<Icon> Mount::get_icon()
+auto Mount::get_icon() -> Glib::RefPtr<Icon>
 {
   auto retvalue = Glib::wrap(g_mount_get_icon(gobj()));
   if(retvalue)
@@ -544,12 +544,12 @@ Glib::RefPtr<Icon> Mount::get_icon()
   return retvalue;
 }
 
-Glib::RefPtr<const Icon> Mount::get_icon() const
+auto Mount::get_icon() const -> Glib::RefPtr<const Icon>
 {
   return const_cast<Mount*>(this)->get_icon();
 }
 
-Glib::RefPtr<Icon> Mount::get_symbolic_icon()
+auto Mount::get_symbolic_icon() -> Glib::RefPtr<Icon>
 {
   auto retvalue = Glib::wrap(g_mount_get_symbolic_icon(gobj()));
   if(retvalue)
@@ -557,17 +557,17 @@ Glib::RefPtr<Icon> Mount::get_symbolic_icon()
   return retvalue;
 }
 
-Glib::RefPtr<const Icon> Mount::get_symbolic_icon() const
+auto Mount::get_symbolic_icon() const -> Glib::RefPtr<const Icon>
 {
   return const_cast<Mount*>(this)->get_symbolic_icon();
 }
 
-std::string Mount::get_uuid() const
+auto Mount::get_uuid() const -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(g_mount_get_uuid(const_cast<GMount*>(gobj())));
 }
 
-Glib::RefPtr<Volume> Mount::get_volume()
+auto Mount::get_volume() -> Glib::RefPtr<Volume>
 {
   auto retvalue = Glib::wrap(g_mount_get_volume(gobj()));
   if(retvalue)
@@ -575,12 +575,12 @@ Glib::RefPtr<Volume> Mount::get_volume()
   return retvalue;
 }
 
-Glib::RefPtr<const Volume> Mount::get_volume() const
+auto Mount::get_volume() const -> Glib::RefPtr<const Volume>
 {
   return const_cast<Mount*>(this)->get_volume();
 }
 
-Glib::RefPtr<Drive> Mount::get_drive()
+auto Mount::get_drive() -> Glib::RefPtr<Drive>
 {
   auto retvalue = Glib::wrap(g_mount_get_drive(gobj()));
   if(retvalue)
@@ -588,22 +588,22 @@ Glib::RefPtr<Drive> Mount::get_drive()
   return retvalue;
 }
 
-Glib::RefPtr<const Drive> Mount::get_drive() const
+auto Mount::get_drive() const -> Glib::RefPtr<const Drive>
 {
   return const_cast<Mount*>(this)->get_drive();
 }
 
-bool Mount::can_unmount() const
+auto Mount::can_unmount() const -> bool
 {
   return g_mount_can_unmount(const_cast<GMount*>(gobj()));
 }
 
-bool Mount::can_eject() const
+auto Mount::can_eject() const -> bool
 {
   return g_mount_can_eject(const_cast<GMount*>(gobj()));
 }
 
-bool Mount::unmount_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Mount::unmount_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_mount_unmount_with_operation_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -612,7 +612,7 @@ bool Mount::unmount_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool Mount::remount_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Mount::remount_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_mount_remount_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -621,7 +621,7 @@ bool Mount::remount_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool Mount::eject_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Mount::eject_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_mount_eject_with_operation_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -630,7 +630,7 @@ bool Mount::eject_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-std::vector<Glib::ustring> Mount::guess_content_type_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Mount::guess_content_type_finish(const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::ustring>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_mount_guess_content_type_finish(gobj(), Glib::unwrap(result), &(gerror)), Glib::OWNERSHIP_DEEP);
@@ -639,7 +639,7 @@ std::vector<Glib::ustring> Mount::guess_content_type_finish(const Glib::RefPtr<A
   return retvalue;
 }
 
-bool Mount::is_shadowed() const
+auto Mount::is_shadowed() const -> bool
 {
   return g_mount_is_shadowed(const_cast<GMount*>(gobj()));
 }
@@ -654,30 +654,30 @@ void Mount::unshadow()
   g_mount_unshadow(gobj());
 }
 
-Glib::RefPtr<File> Mount::get_default_location() const
+auto Mount::get_default_location() const -> Glib::RefPtr<File>
 {
   return Glib::wrap(g_mount_get_default_location(const_cast<GMount*>(gobj())));
 }
 
-Glib::ustring Mount::get_sort_key() const
+auto Mount::get_sort_key() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_mount_get_sort_key(const_cast<GMount*>(gobj())));
 }
 
 
-Glib::SignalProxy<void()> Mount::signal_changed()
+auto Mount::signal_changed() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Mount_signal_changed_info);
 }
 
 
-Glib::SignalProxy<void()> Mount::signal_unmounted()
+auto Mount::signal_unmounted() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Mount_signal_unmounted_info);
 }
 
 
-Glib::SignalProxy<void()> Mount::signal_pre_unmount()
+auto Mount::signal_pre_unmount() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Mount_signal_pre_unmount_info);
 }

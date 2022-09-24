@@ -28,7 +28,7 @@ CairoFontMapImpl::CairoFontMapImpl(CairoFontMapImpl&& src) noexcept
   FontMap(std::move(src))
 {}
 
-CairoFontMapImpl& CairoFontMapImpl::operator=(CairoFontMapImpl&& src) noexcept
+auto CairoFontMapImpl::operator=(CairoFontMapImpl&& src) noexcept -> CairoFontMapImpl&
 {
   CairoFontMap::operator=(std::move(src));
   FontMap::operator=(std::move(src));

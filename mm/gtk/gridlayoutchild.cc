@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::GridLayoutChild> wrap(GtkGridLayoutChild* object, bool take_copy)
+auto wrap(GtkGridLayoutChild* object, bool take_copy) -> Glib::RefPtr<Gtk::GridLayoutChild>
 {
   return Glib::make_refptr_for_instance<Gtk::GridLayoutChild>( dynamic_cast<Gtk::GridLayoutChild*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& GridLayoutChild_Class::init()
+auto GridLayoutChild_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -73,7 +73,7 @@ void GridLayoutChild_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* GridLayoutChild_Class::wrap_new(GObject* object)
+auto GridLayoutChild_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new GridLayoutChild((GtkGridLayoutChild*)object);
 }
@@ -81,7 +81,7 @@ Glib::ObjectBase* GridLayoutChild_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkGridLayoutChild* GridLayoutChild::gobj_copy()
+auto GridLayoutChild::gobj_copy() -> GtkGridLayoutChild*
 {
   reference();
   return gobj();
@@ -104,7 +104,7 @@ GridLayoutChild::GridLayoutChild(GridLayoutChild&& src) noexcept
 : LayoutChild(std::move(src))
 {}
 
-GridLayoutChild& GridLayoutChild::operator=(GridLayoutChild&& src) noexcept
+auto GridLayoutChild::operator=(GridLayoutChild&& src) noexcept -> GridLayoutChild&
 {
   LayoutChild::operator=(std::move(src));
   return *this;
@@ -117,13 +117,13 @@ GridLayoutChild::~GridLayoutChild() noexcept
 
 GridLayoutChild::CppClassType GridLayoutChild::gridlayoutchild_class_; // initialize static member
 
-GType GridLayoutChild::get_type()
+auto GridLayoutChild::get_type() -> GType
 {
   return gridlayoutchild_class_.init().get_type();
 }
 
 
-GType GridLayoutChild::get_base_type()
+auto GridLayoutChild::get_base_type() -> GType
 {
   return gtk_grid_layout_child_get_type();
 }
@@ -144,7 +144,7 @@ void GridLayoutChild::set_row(int row)
   gtk_grid_layout_child_set_row(gobj(), row);
 }
 
-int GridLayoutChild::get_row() const
+auto GridLayoutChild::get_row() const -> int
 {
   return gtk_grid_layout_child_get_row(const_cast<GtkGridLayoutChild*>(gobj()));
 }
@@ -154,7 +154,7 @@ void GridLayoutChild::set_column(int column)
   gtk_grid_layout_child_set_column(gobj(), column);
 }
 
-int GridLayoutChild::get_column() const
+auto GridLayoutChild::get_column() const -> int
 {
   return gtk_grid_layout_child_get_column(const_cast<GtkGridLayoutChild*>(gobj()));
 }
@@ -164,7 +164,7 @@ void GridLayoutChild::set_column_span(int span)
   gtk_grid_layout_child_set_column_span(gobj(), span);
 }
 
-int GridLayoutChild::get_column_span() const
+auto GridLayoutChild::get_column_span() const -> int
 {
   return gtk_grid_layout_child_get_column_span(const_cast<GtkGridLayoutChild*>(gobj()));
 }
@@ -174,48 +174,48 @@ void GridLayoutChild::set_row_span(int span)
   gtk_grid_layout_child_set_row_span(gobj(), span);
 }
 
-int GridLayoutChild::get_row_span() const
+auto GridLayoutChild::get_row_span() const -> int
 {
   return gtk_grid_layout_child_get_row_span(const_cast<GtkGridLayoutChild*>(gobj()));
 }
 
 
-Glib::PropertyProxy< int > GridLayoutChild::property_column()
+auto GridLayoutChild::property_column() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "column");
 }
 
-Glib::PropertyProxy_ReadOnly< int > GridLayoutChild::property_column() const
+auto GridLayoutChild::property_column() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "column");
 }
 
-Glib::PropertyProxy< int > GridLayoutChild::property_row()
+auto GridLayoutChild::property_row() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "row");
 }
 
-Glib::PropertyProxy_ReadOnly< int > GridLayoutChild::property_row() const
+auto GridLayoutChild::property_row() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "row");
 }
 
-Glib::PropertyProxy< int > GridLayoutChild::property_column_span()
+auto GridLayoutChild::property_column_span() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "column-span");
 }
 
-Glib::PropertyProxy_ReadOnly< int > GridLayoutChild::property_column_span() const
+auto GridLayoutChild::property_column_span() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "column-span");
 }
 
-Glib::PropertyProxy< int > GridLayoutChild::property_row_span()
+auto GridLayoutChild::property_row_span() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "row-span");
 }
 
-Glib::PropertyProxy_ReadOnly< int > GridLayoutChild::property_row_span() const
+auto GridLayoutChild::property_row_span() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "row-span");
 }

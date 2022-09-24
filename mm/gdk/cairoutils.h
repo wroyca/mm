@@ -25,9 +25,7 @@
 #include <mm/glib/containerhandle_shared.h>
 #include <type_traits>
 
-namespace Gdk
-{
-namespace Cairo
+namespace Gdk::Cairo
 {
 
 // Cairomm has no wrap() functions, similar to Glib::wrap().
@@ -45,7 +43,7 @@ namespace Cairo
  * @newin{3,92}
  */
 GDKMM_API
-::Cairo::RefPtr< ::Cairo::Context> wrap(cairo_t* cobject, bool has_reference = true);
+auto wrap(cairo_t* cobject, bool has_reference = true) -> ::Cairo::RefPtr< ::Cairo::Context>;
 
 /** Creates a Cairo::RefPtr with a C++ wrapper for the C instance.
  *
@@ -59,7 +57,7 @@ GDKMM_API
  * @newin{3,92}
  */
 GDKMM_API
-::Cairo::RefPtr< ::Cairo::Region> wrap(cairo_region_t* cobject, bool has_reference = true);
+auto wrap(cairo_region_t* cobject, bool has_reference = true) -> ::Cairo::RefPtr< ::Cairo::Region>;
 
 /** Creates a Cairo::RefPtr with a C++ wrapper for the C instance.
  *
@@ -74,17 +72,14 @@ GDKMM_API
  * @newin{3,92}
  */
 template <typename T = ::Cairo::Surface, typename = std::enable_if<std::is_base_of< ::Cairo::Surface, T>::value>>
-::Cairo::RefPtr<T> wrap(cairo_surface_t* cobject, bool has_reference = true)
+auto wrap(cairo_surface_t* cobject, bool has_reference = true) -> ::Cairo::RefPtr<T>
 {
   return ::Cairo::make_refptr_for_instance<T>(cobject ? new T(cobject, has_reference) : nullptr);
 }
 
-} //namespace Cairo
 } //namespace Gdk
 
-namespace Glib
-{
-namespace Container_Helpers
+namespace Glib::Container_Helpers
 {
 // Used by Glib::ArrayHandler<>, Glib::ListHandler<>, Glib::SListHandler<>.
 // It's not possible to make a specialization like
@@ -106,9 +101,9 @@ struct TypeTraits<::Cairo::RefPtr<::Cairo::Surface>>
   using CType = ::Cairo::Surface::cobject*;
   using CTypeNonConst = ::Cairo::Surface::cobject*;
 
-  static CType to_c_type(const CppType& ptr) { return ptr ? ptr->cobj() : nullptr; }
-  static CType to_c_type(CType ptr) { return ptr; }
-  static CppType to_cpp_type(CType ptr) { return Gdk::Cairo::wrap(ptr, false); }
+  static auto to_c_type(const CppType& ptr) -> CType { return ptr ? ptr->cobj() : nullptr; }
+  static auto to_c_type(CType ptr) -> CType { return ptr; }
+  static auto to_cpp_type(CType ptr) -> CppType { return Gdk::Cairo::wrap(ptr, false); }
   static void release_c_type(CType ptr) { cairo_surface_destroy(ptr); }
 };
 
@@ -124,13 +119,12 @@ struct TypeTraits<::Cairo::RefPtr<const ::Cairo::Surface>>
   using CType = const ::Cairo::Surface::cobject*;
   using CTypeNonConst = ::Cairo::Surface::cobject*;
 
-  static CType to_c_type(const CppType& ptr) { return ptr ? ptr->cobj() : nullptr; }
-  static CType to_c_type(CType ptr) { return ptr; }
-  static CppType to_cpp_type(CType ptr) { return Gdk::Cairo::wrap(const_cast<CTypeNonConst>(ptr), false); }
+  static auto to_c_type(const CppType& ptr) -> CType { return ptr ? ptr->cobj() : nullptr; }
+  static auto to_c_type(CType ptr) -> CType { return ptr; }
+  static auto to_cpp_type(CType ptr) -> CppType { return Gdk::Cairo::wrap(const_cast<CTypeNonConst>(ptr), false); }
   static void release_c_type(CType ptr) { cairo_surface_destroy(const_cast<CTypeNonConst>(ptr)); }
 };
 
-} // namespace Container_Helpers
 } // namespace Glib
 
 #endif //_GDKMM_CAIROUTILS_H

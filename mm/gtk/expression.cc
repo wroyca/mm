@@ -26,10 +26,7 @@
 #include <mm/gtk/expression.h>
 
 
-namespace Gtk
-{
-
-namespace Expression_Private
+namespace Gtk::Expression_Private
 {
 
 void watch_callback(gpointer data)
@@ -40,8 +37,6 @@ void watch_callback(gpointer data)
 
 void closure_callback_func()
 {}
-
-} // namespace Expression_Private
 
 } // namespace Gtk
 
@@ -66,7 +61,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::ExpressionBase> wrap(GtkExpression* object, bool take_copy)
+auto wrap(GtkExpression* object, bool take_copy) -> Glib::RefPtr<Gtk::ExpressionBase>
 {
   if(take_copy && object)
     gtk_expression_ref(object);
@@ -93,19 +88,19 @@ void ExpressionBase::unreference() const
   gtk_expression_unref(reinterpret_cast<GtkExpression*>(const_cast<ExpressionBase*>(this)));
 }
 
-GtkExpression* ExpressionBase::gobj()
+auto ExpressionBase::gobj() -> GtkExpression*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<GtkExpression*>(this);
 }
 
-const GtkExpression* ExpressionBase::gobj() const
+auto ExpressionBase::gobj() const -> const GtkExpression*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<const GtkExpression*>(this);
 }
 
-GtkExpression* ExpressionBase::gobj_copy() const
+auto ExpressionBase::gobj_copy() const -> GtkExpression*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   const auto gobject = reinterpret_cast<GtkExpression*>(const_cast<ExpressionBase*>(this));
@@ -114,12 +109,12 @@ GtkExpression* ExpressionBase::gobj_copy() const
 }
 
 
-GType ExpressionBase::get_value_type() const
+auto ExpressionBase::get_value_type() const -> GType
 {
   return gtk_expression_get_value_type(const_cast<GtkExpression*>(gobj()));
 }
 
-bool ExpressionBase::is_static() const
+auto ExpressionBase::is_static() const -> bool
 {
   return gtk_expression_is_static(const_cast<GtkExpression*>(gobj()));
 }

@@ -100,11 +100,11 @@ class GTKMM_API ApplicationWindow
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ApplicationWindow(ApplicationWindow&& src) noexcept;
-  ApplicationWindow& operator=(ApplicationWindow&& src) noexcept;
+  auto operator=(ApplicationWindow&& src) noexcept -> ApplicationWindow&;
 
   // noncopyable
   ApplicationWindow(const ApplicationWindow&) = delete;
-  ApplicationWindow& operator=(const ApplicationWindow&) = delete;
+  auto operator=(const ApplicationWindow&) -> ApplicationWindow& = delete;
 
   ~ApplicationWindow() noexcept override;
 
@@ -124,19 +124,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkApplicationWindow*       gobj()       { return reinterpret_cast<GtkApplicationWindow*>(gobject_); }
+  auto       gobj() -> GtkApplicationWindow*       { return reinterpret_cast<GtkApplicationWindow*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkApplicationWindow* gobj() const { return reinterpret_cast<GtkApplicationWindow*>(gobject_); }
+  auto gobj() const -> const GtkApplicationWindow* { return reinterpret_cast<GtkApplicationWindow*>(gobject_); }
 
 private:
 
@@ -166,7 +166,7 @@ public:
    *
    * @return <tt>true</tt> if @a window will display a menubar when needed.
    */
-  bool get_show_menubar() const;
+  auto get_show_menubar() const -> bool;
 
 
   /** Returns the unique ID of the window.
@@ -176,7 +176,7 @@ public:
    * @return The unique ID for @a window, or `0` if the window
    * has not yet been added to a `Gtk::Application`.
    */
-  guint get_id() const;
+  auto get_id() const -> guint;
 
 
   /** Associates a shortcuts window with the application window.
@@ -201,7 +201,7 @@ public:
    * @return The help overlay associated
    * with @a window.
    */
-  ShortcutsWindow* get_help_overlay();
+  auto get_help_overlay() -> ShortcutsWindow*;
 
   /** Gets the `Gtk::ShortcutsWindow` that is associated with @a window.
    *
@@ -210,7 +210,7 @@ public:
    * @return The help overlay associated
    * with @a window.
    */
-  const ShortcutsWindow* get_help_overlay() const;
+  auto get_help_overlay() const -> const ShortcutsWindow*;
 
   /** If this property is <tt>true</tt>, the window will display a menubar
    * unless it is shown by the desktop shell.
@@ -225,7 +225,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_menubar() ;
+  auto property_show_menubar() -> Glib::PropertyProxy< bool > ;
 
 /** If this property is <tt>true</tt>, the window will display a menubar
    * unless it is shown by the desktop shell.
@@ -240,7 +240,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_menubar() const;
+  auto property_show_menubar() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -270,7 +270,7 @@ namespace Glib
    * @relates Gtk::ApplicationWindow
    */
   GTKMM_API
-  Gtk::ApplicationWindow* wrap(GtkApplicationWindow* object, bool take_copy = false);
+  auto wrap(GtkApplicationWindow* object, bool take_copy = false) -> Gtk::ApplicationWindow*;
 } //namespace Glib
 
 

@@ -74,7 +74,7 @@ public:
 
   // noncopyable
   SortListModel(const SortListModel&) = delete;
-  SortListModel& operator=(const SortListModel&) = delete;
+  auto operator=(const SortListModel&) -> SortListModel& = delete;
 
 private:  friend class SortListModel_Class;
   static CppClassType sortlistmodel_class_;
@@ -88,28 +88,28 @@ protected:
 public:
 
   SortListModel(SortListModel&& src) noexcept;
-  SortListModel& operator=(SortListModel&& src) noexcept;
+  auto operator=(SortListModel&& src) noexcept -> SortListModel&;
 
   ~SortListModel() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkSortListModel*       gobj()       { return reinterpret_cast<GtkSortListModel*>(gobject_); }
+  auto       gobj() -> GtkSortListModel*       { return reinterpret_cast<GtkSortListModel*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkSortListModel* gobj() const { return reinterpret_cast<GtkSortListModel*>(gobject_); }
+  auto gobj() const -> const GtkSortListModel* { return reinterpret_cast<GtkSortListModel*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkSortListModel* gobj_copy();
+  auto gobj_copy() -> GtkSortListModel*;
 
 private:
 
@@ -120,7 +120,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<SortListModel> create(const Glib::RefPtr<Gio::ListModel>& model, const Glib::RefPtr<Sorter>& sorter);
+  static auto create(const Glib::RefPtr<Gio::ListModel>& model, const Glib::RefPtr<Sorter>& sorter) -> Glib::RefPtr<SortListModel>;
 
 
   /** Sets a new sorter on @a self.
@@ -133,13 +133,13 @@ public:
    *
    * @return The sorter of #self.
    */
-  Glib::RefPtr<Sorter> get_sorter();
+  auto get_sorter() -> Glib::RefPtr<Sorter>;
 
   /** Gets the sorter that is used to sort @a self.
    *
    * @return The sorter of #self.
    */
-  Glib::RefPtr<const Sorter> get_sorter() const;
+  auto get_sorter() const -> Glib::RefPtr<const Sorter>;
 
 
   /** Sets the model to be sorted.
@@ -154,13 +154,13 @@ public:
    *
    * @return The model that gets sorted.
    */
-  Glib::RefPtr<Gio::ListModel> get_model();
+  auto get_model() -> Glib::RefPtr<Gio::ListModel>;
 
   /** Gets the model currently sorted or <tt>nullptr</tt> if none.
    *
    * @return The model that gets sorted.
    */
-  Glib::RefPtr<const Gio::ListModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const Gio::ListModel>;
 
 
   /** Sets the sort model to do an incremental sort.
@@ -190,7 +190,7 @@ public:
    *
    * @return <tt>true</tt> if incremental sorting is enabled.
    */
-  bool get_incremental() const;
+  auto get_incremental() const -> bool;
 
 
   /** Estimates progress of an ongoing sorting operation.
@@ -210,7 +210,7 @@ public:
    *
    * @return A progress estimate of remaining items to sort.
    */
-  guint get_pending() const;
+  auto get_pending() const -> guint;
 
   /** If the model should sort items incrementally.
    *
@@ -219,7 +219,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_incremental() ;
+  auto property_incremental() -> Glib::PropertyProxy< bool > ;
 
 /** If the model should sort items incrementally.
    *
@@ -228,7 +228,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_incremental() const;
+  auto property_incremental() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The type of items. See Gio::ListModel::get_item_type().
    *
@@ -237,7 +237,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< GType > property_item_type() const;
+  auto property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >;
 
 
   /** The model being sorted.
@@ -245,14 +245,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > property_model() ;
+  auto property_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > ;
 
 /** The model being sorted.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >;
 
   /** The number of items. See Gio::ListModel::get_n_items().
    *
@@ -263,7 +263,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_n_items() const;
+  auto property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
 
   /** Estimate of unsorted items remaining.
@@ -273,7 +273,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_pending() const;
+  auto property_pending() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
   /** The sorter for this model.
@@ -281,14 +281,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Sorter> > property_sorter() ;
+  auto property_sorter() -> Glib::PropertyProxy< Glib::RefPtr<Sorter> > ;
 
 /** The sorter for this model.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Sorter> > property_sorter() const;
+  auto property_sorter() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Sorter> >;
 
 
 public:
@@ -318,7 +318,7 @@ namespace Glib
    * @relates Gtk::SortListModel
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::SortListModel> wrap(GtkSortListModel* object, bool take_copy = false);
+  auto wrap(GtkSortListModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SortListModel>;
 }
 
 

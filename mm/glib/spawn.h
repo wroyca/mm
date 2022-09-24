@@ -121,31 +121,31 @@ enum class SpawnFlags
 };
 
 /** @ingroup glibmmEnums */
-inline SpawnFlags operator|(SpawnFlags lhs, SpawnFlags rhs)
+inline auto operator|(SpawnFlags lhs, SpawnFlags rhs) -> SpawnFlags
   { return static_cast<SpawnFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline SpawnFlags operator&(SpawnFlags lhs, SpawnFlags rhs)
+inline auto operator&(SpawnFlags lhs, SpawnFlags rhs) -> SpawnFlags
   { return static_cast<SpawnFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline SpawnFlags operator^(SpawnFlags lhs, SpawnFlags rhs)
+inline auto operator^(SpawnFlags lhs, SpawnFlags rhs) -> SpawnFlags
   { return static_cast<SpawnFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline SpawnFlags operator~(SpawnFlags flags)
+inline auto operator~(SpawnFlags flags) -> SpawnFlags
   { return static_cast<SpawnFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup glibmmEnums */
-inline SpawnFlags& operator|=(SpawnFlags& lhs, SpawnFlags rhs)
+inline auto operator|=(SpawnFlags& lhs, SpawnFlags rhs) -> SpawnFlags&
   { return (lhs = static_cast<SpawnFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline SpawnFlags& operator&=(SpawnFlags& lhs, SpawnFlags rhs)
+inline auto operator&=(SpawnFlags& lhs, SpawnFlags rhs) -> SpawnFlags&
   { return (lhs = static_cast<SpawnFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline SpawnFlags& operator^=(SpawnFlags& lhs, SpawnFlags rhs)
+inline auto operator^=(SpawnFlags& lhs, SpawnFlags rhs) -> SpawnFlags&
   { return (lhs = static_cast<SpawnFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -254,7 +254,7 @@ public:
 
   GLIBMM_API SpawnError(Code error_code, const Glib::ustring& error_message);
   GLIBMM_API explicit SpawnError(GError* gobject);
-  GLIBMM_API Code code() const;
+  GLIBMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:

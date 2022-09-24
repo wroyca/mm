@@ -159,7 +159,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo Volume_signal_changed_info =
+const Glib::SignalProxyInfo Volume_signal_changed_info =
 {
   "changed",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -167,7 +167,7 @@ static const Glib::SignalProxyInfo Volume_signal_changed_info =
 };
 
 
-static const Glib::SignalProxyInfo Volume_signal_removed_info =
+const Glib::SignalProxyInfo Volume_signal_removed_info =
 {
   "removed",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -181,7 +181,7 @@ static const Glib::SignalProxyInfo Volume_signal_removed_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gio::Volume> wrap(GVolume* object, bool take_copy)
+auto wrap(GVolume* object, bool take_copy) -> Glib::RefPtr<Gio::Volume>
 {
   return Glib::make_refptr_for_instance<Gio::Volume>( dynamic_cast<Gio::Volume*> (Glib::wrap_auto_interface<Gio::Volume> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -196,7 +196,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& Volume_Class::init()
+auto Volume_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -301,7 +301,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* Volume_Class::wrap_new(GObject* object)
+auto Volume_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Volume((GVolume*)(object));
 }
@@ -328,7 +328,7 @@ Volume::Volume(Volume&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-Volume& Volume::operator=(Volume&& src) noexcept
+auto Volume::operator=(Volume&& src) noexcept -> Volume&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -345,29 +345,29 @@ void Volume::add_interface(GType gtype_implementer)
 
 Volume::CppClassType Volume::volume_class_; // initialize static member
 
-GType Volume::get_type()
+auto Volume::get_type() -> GType
 {
   return volume_class_.init().get_type();
 }
 
 
-GType Volume::get_base_type()
+auto Volume::get_base_type() -> GType
 {
   return g_drive_get_type();
 }
 
 
-std::string Volume::get_name() const
+auto Volume::get_name() const -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(g_volume_get_name(const_cast<GVolume*>(gobj())));
 }
 
-std::string Volume::get_uuid() const
+auto Volume::get_uuid() const -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(g_volume_get_uuid(const_cast<GVolume*>(gobj())));
 }
 
-Glib::RefPtr<Icon> Volume::get_icon()
+auto Volume::get_icon() -> Glib::RefPtr<Icon>
 {
   auto retvalue = Glib::wrap(g_volume_get_icon(gobj()));
   if(retvalue)
@@ -375,12 +375,12 @@ Glib::RefPtr<Icon> Volume::get_icon()
   return retvalue;
 }
 
-Glib::RefPtr<const Icon> Volume::get_icon() const
+auto Volume::get_icon() const -> Glib::RefPtr<const Icon>
 {
   return const_cast<Volume*>(this)->get_icon();
 }
 
-Glib::RefPtr<Icon> Volume::get_symbolic_icon()
+auto Volume::get_symbolic_icon() -> Glib::RefPtr<Icon>
 {
   auto retvalue = Glib::wrap(g_volume_get_symbolic_icon(gobj()));
   if(retvalue)
@@ -388,12 +388,12 @@ Glib::RefPtr<Icon> Volume::get_symbolic_icon()
   return retvalue;
 }
 
-Glib::RefPtr<const Icon> Volume::get_symbolic_icon() const
+auto Volume::get_symbolic_icon() const -> Glib::RefPtr<const Icon>
 {
   return const_cast<Volume*>(this)->get_symbolic_icon();
 }
 
-Glib::RefPtr<Drive> Volume::get_drive()
+auto Volume::get_drive() -> Glib::RefPtr<Drive>
 {
   auto retvalue = Glib::wrap(g_volume_get_drive(gobj()));
   if(retvalue)
@@ -401,12 +401,12 @@ Glib::RefPtr<Drive> Volume::get_drive()
   return retvalue;
 }
 
-Glib::RefPtr<const Drive> Volume::get_drive() const
+auto Volume::get_drive() const -> Glib::RefPtr<const Drive>
 {
   return const_cast<Volume*>(this)->get_drive();
 }
 
-Glib::RefPtr<Mount> Volume::get_mount()
+auto Volume::get_mount() -> Glib::RefPtr<Mount>
 {
   auto retvalue = Glib::wrap(g_volume_get_mount(gobj()));
   if(retvalue)
@@ -414,27 +414,27 @@ Glib::RefPtr<Mount> Volume::get_mount()
   return retvalue;
 }
 
-Glib::RefPtr<const Mount> Volume::get_mount() const
+auto Volume::get_mount() const -> Glib::RefPtr<const Mount>
 {
   return const_cast<Volume*>(this)->get_mount();
 }
 
-bool Volume::can_mount() const
+auto Volume::can_mount() const -> bool
 {
   return g_volume_can_mount(const_cast<GVolume*>(gobj()));
 }
 
-bool Volume::can_eject() const
+auto Volume::can_eject() const -> bool
 {
   return g_volume_can_eject(const_cast<GVolume*>(gobj()));
 }
 
-bool Volume::should_automount() const
+auto Volume::should_automount() const -> bool
 {
   return g_volume_should_automount(const_cast<GVolume*>(gobj()));
 }
 
-bool Volume::mount_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Volume::mount_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_volume_mount_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -443,7 +443,7 @@ bool Volume::mount_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool Volume::eject_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Volume::eject_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_volume_eject_with_operation_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -452,39 +452,39 @@ bool Volume::eject_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-std::string Volume::get_identifier(const std::string& kind) const
+auto Volume::get_identifier(const std::string& kind) const -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(g_volume_get_identifier(const_cast<GVolume*>(gobj()), kind.c_str()));
 }
 
-std::vector<Glib::ustring> Volume::enumerate_identifiers() const
+auto Volume::enumerate_identifiers() const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_volume_enumerate_identifiers(const_cast<GVolume*>(gobj())), Glib::OWNERSHIP_DEEP);
 }
 
-Glib::RefPtr<File> Volume::get_activation_root()
+auto Volume::get_activation_root() -> Glib::RefPtr<File>
 {
   return Glib::wrap(g_volume_get_activation_root(gobj()));
 }
 
-Glib::RefPtr<const File> Volume::get_activation_root() const
+auto Volume::get_activation_root() const -> Glib::RefPtr<const File>
 {
   return Glib::wrap(g_volume_get_activation_root(const_cast<GVolume*>(gobj())));
 }
 
-Glib::ustring Volume::sort_key()
+auto Volume::sort_key() -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_volume_get_sort_key(gobj()));
 }
 
 
-Glib::SignalProxy<void()> Volume::signal_changed()
+auto Volume::signal_changed() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Volume_signal_changed_info);
 }
 
 
-Glib::SignalProxy<void()> Volume::signal_removed()
+auto Volume::signal_removed() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Volume_signal_removed_info);
 }

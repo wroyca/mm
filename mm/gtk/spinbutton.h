@@ -97,7 +97,7 @@ template <>
 class GTKMM_API Value<Gtk::SpinType> : public Glib::Value_Enum<Gtk::SpinType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -133,11 +133,11 @@ class GTKMM_API SpinButton
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   SpinButton(SpinButton&& src) noexcept;
-  SpinButton& operator=(SpinButton&& src) noexcept;
+  auto operator=(SpinButton&& src) noexcept -> SpinButton&;
 
   // noncopyable
   SpinButton(const SpinButton&) = delete;
-  SpinButton& operator=(const SpinButton&) = delete;
+  auto operator=(const SpinButton&) -> SpinButton& = delete;
 
   ~SpinButton() noexcept override;
 
@@ -157,19 +157,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkSpinButton*       gobj()       { return reinterpret_cast<GtkSpinButton*>(gobject_); }
+  auto       gobj() -> GtkSpinButton*       { return reinterpret_cast<GtkSpinButton*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkSpinButton* gobj() const { return reinterpret_cast<GtkSpinButton*>(gobject_); }
+  auto gobj() const -> const GtkSpinButton* { return reinterpret_cast<GtkSpinButton*>(gobject_); }
 
 private:
 
@@ -239,13 +239,13 @@ public:
    *
    * @return The `Gtk::Adjustment` of @a spin_button.
    */
-  Glib::RefPtr<Adjustment> get_adjustment();
+  auto get_adjustment() -> Glib::RefPtr<Adjustment>;
 
   /** Get the adjustment associated with a `Gtk::SpinButton`.
    *
    * @return The `Gtk::Adjustment` of @a spin_button.
    */
-  Glib::RefPtr<const Adjustment> get_adjustment() const;
+  auto get_adjustment() const -> Glib::RefPtr<const Adjustment>;
 
 
   /** Set the precision to be displayed by @a spin_button.
@@ -261,7 +261,7 @@ public:
    *
    * @return The current precision.
    */
-  guint get_digits() const;
+  auto get_digits() const -> guint;
 
 
   /** Sets the step and page increments for spin_button.
@@ -309,13 +309,13 @@ public:
    *
    * @return The value of @a spin_button.
    */
-  double get_value() const;
+  auto get_value() const -> double;
 
   /** Get the value @a spin_button represented as an integer.
    *
    * @return The value of @a spin_button.
    */
-  int get_value_as_int() const;
+  auto get_value_as_int() const -> int;
 
   /** Sets the value of @a spin_button.
    *
@@ -339,7 +339,7 @@ public:
    *
    * @return The current update policy.
    */
-  UpdatePolicy get_update_policy() const;
+  auto get_update_policy() const -> UpdatePolicy;
 
 
   /** Sets the flag that determines if non-numeric text can be typed
@@ -353,7 +353,7 @@ public:
    *
    * @return <tt>true</tt> if only numeric text can be entered.
    */
-  bool get_numeric() const;
+  auto get_numeric() const -> bool;
 
 
   /** Increment or decrement a spin button’s value in a specified
@@ -379,7 +379,7 @@ public:
    *
    * @return <tt>true</tt> if the spin button wraps around.
    */
-  bool get_wrap() const;
+  auto get_wrap() const -> bool;
 
 
   /** Sets the policy as to whether values are corrected to the
@@ -394,7 +394,7 @@ public:
    *
    * @return <tt>true</tt> if values are snapped to the nearest step.
    */
-  bool get_snap_to_ticks() const;
+  auto get_snap_to_ticks() const -> bool;
 
 
   /** Sets the acceleration rate for repeated changes when you
@@ -408,7 +408,7 @@ public:
    *
    * @return The acceleration rate.
    */
-  double get_climb_rate() const;
+  auto get_climb_rate() const -> double;
 
 
   /** Manually force an update of the spin button.
@@ -443,7 +443,7 @@ public:
    * was not handled, and GTK_INPUT_ERROR if the conversion failed.
    */
 
-  Glib::SignalProxy<int(double&)> signal_input();
+  auto signal_input() -> Glib::SignalProxy<int(double&)>;
 
 
   /**
@@ -460,7 +460,7 @@ public:
    * @return <tt>true</tt> if the value has been displayed.
    */
 
-  Glib::SignalProxy<bool()> signal_output();
+  auto signal_output() -> Glib::SignalProxy<bool()>;
 
 
   /**
@@ -473,7 +473,7 @@ public:
    * to its minimum value or vice-versa.
    */
 
-  Glib::SignalProxy<void()> signal_wrapped();
+  auto signal_wrapped() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -487,7 +487,7 @@ public:
    * Also see the signal_output() signal.
    */
 
-  Glib::SignalProxy<void()> signal_value_changed();
+  auto signal_value_changed() -> Glib::SignalProxy<void()>;
 
 
   //Keybinding signals:
@@ -498,14 +498,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Adjustment> > property_adjustment() ;
+  auto property_adjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> > ;
 
 /** The adjustment that holds the value of the spin button.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> > property_adjustment() const;
+  auto property_adjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >;
 
   /** The acceleration rate when you hold down a button or key.
    *
@@ -514,7 +514,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_climb_rate() ;
+  auto property_climb_rate() -> Glib::PropertyProxy< double > ;
 
 /** The acceleration rate when you hold down a button or key.
    *
@@ -523,7 +523,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_climb_rate() const;
+  auto property_climb_rate() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** The number of decimal places to display.
    *
@@ -532,7 +532,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_digits() ;
+  auto property_digits() -> Glib::PropertyProxy< guint > ;
 
 /** The number of decimal places to display.
    *
@@ -541,7 +541,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_digits() const;
+  auto property_digits() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** Whether erroneous values are automatically changed to the spin buttons
    * nearest step increment.
@@ -551,7 +551,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_snap_to_ticks() ;
+  auto property_snap_to_ticks() -> Glib::PropertyProxy< bool > ;
 
 /** Whether erroneous values are automatically changed to the spin buttons
    * nearest step increment.
@@ -561,7 +561,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_snap_to_ticks() const;
+  auto property_snap_to_ticks() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether non-numeric characters should be ignored.
    *
@@ -570,7 +570,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_numeric() ;
+  auto property_numeric() -> Glib::PropertyProxy< bool > ;
 
 /** Whether non-numeric characters should be ignored.
    *
@@ -579,7 +579,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_numeric() const;
+  auto property_numeric() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether a spin button should wrap upon reaching its limits.
    *
@@ -588,7 +588,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_wrap() ;
+  auto property_wrap() -> Glib::PropertyProxy< bool > ;
 
 /** Whether a spin button should wrap upon reaching its limits.
    *
@@ -597,7 +597,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_wrap() const;
+  auto property_wrap() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the spin button should update always, or only when the value
    * is acceptable.
@@ -607,7 +607,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< UpdatePolicy > property_update_policy() ;
+  auto property_update_policy() -> Glib::PropertyProxy< UpdatePolicy > ;
 
 /** Whether the spin button should update always, or only when the value
    * is acceptable.
@@ -617,7 +617,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< UpdatePolicy > property_update_policy() const;
+  auto property_update_policy() const -> Glib::PropertyProxy_ReadOnly< UpdatePolicy >;
 
   /** The current value.
    *
@@ -626,7 +626,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_value() ;
+  auto property_value() -> Glib::PropertyProxy< double > ;
 
 /** The current value.
    *
@@ -635,7 +635,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_value() const;
+  auto property_value() const -> Glib::PropertyProxy_ReadOnly< double >;
 
 
 public:
@@ -662,7 +662,7 @@ template <>
 class GTKMM_API Value<Gtk::SpinButton::UpdatePolicy> : public Glib::Value_Enum<Gtk::SpinButton::UpdatePolicy>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -680,7 +680,7 @@ namespace Glib
    * @relates Gtk::SpinButton
    */
   GTKMM_API
-  Gtk::SpinButton* wrap(GtkSpinButton* object, bool take_copy = false);
+  auto wrap(GtkSpinButton* object, bool take_copy = false) -> Gtk::SpinButton*;
 } //namespace Glib
 
 

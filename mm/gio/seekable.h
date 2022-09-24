@@ -72,7 +72,7 @@ public:
 
   // noncopyable
   Seekable(const Seekable&) = delete;
-  Seekable& operator=(const Seekable&) = delete;
+  auto operator=(const Seekable&) -> Seekable& = delete;
 
 private:
   friend class Seekable_Class;
@@ -106,7 +106,7 @@ protected:
 public:
 
   Seekable(Seekable&& src) noexcept;
-  Seekable& operator=(Seekable&& src) noexcept;
+  auto operator=(Seekable&& src) noexcept -> Seekable&;
 
   ~Seekable() noexcept override;
 
@@ -114,17 +114,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GSeekable*       gobj()       { return reinterpret_cast<GSeekable*>(gobject_); }
+  auto       gobj() -> GSeekable*       { return reinterpret_cast<GSeekable*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GSeekable* gobj() const { return reinterpret_cast<GSeekable*>(gobject_); }
+  auto gobj() const -> const GSeekable* { return reinterpret_cast<GSeekable*>(gobject_); }
 
 private:
 
@@ -136,13 +136,13 @@ public:
    * @return The (positive or zero) offset from the beginning of the
    * buffer, zero if the target is not seekable.
    */
-  goffset tell() const;
+  auto tell() const -> goffset;
 
   /** Tests if the stream supports the SeekableIface.
    *
    * @return <tt>true</tt> if @a seekable can be seeked. <tt>false</tt> otherwise.
    */
-  bool can_seek() const;
+  auto can_seek() const -> bool;
 
 
   /** Seeks in the stream by the given @a offset, modified by @a type.
@@ -160,10 +160,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool seek(goffset offset, Glib::SeekType type, const Glib::RefPtr<Cancellable>& cancellable);
+  auto seek(goffset offset, Glib::SeekType type, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A seek() convenience overload.
-  bool seek(goffset offset, Glib::SeekType type);
+  auto seek(goffset offset, Glib::SeekType type) -> bool;
 
   //TODO: Document the exception in the C API: https://bugzilla.gnome.org/show_bug.cgi?id=509990#c1
 
@@ -173,7 +173,7 @@ public:
    *
    * @return <tt>true</tt> if the stream can be truncated, <tt>false</tt> otherwise.
    */
-  bool can_truncate() const;
+  auto can_truncate() const -> bool;
 
 
   /** Truncates a stream with a given #offset.
@@ -192,10 +192,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool truncate(goffset offset, const Glib::RefPtr<Cancellable>& cancellable);
+  auto truncate(goffset offset, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A truncate() convenience overload.
-  bool truncate(goffset offset);
+  auto truncate(goffset offset) -> bool;
 
   //TODO: Document the exception in the C API: https://bugzilla.gnome.org/show_bug.cgi?id=509990#c1
 
@@ -238,7 +238,7 @@ namespace Glib
    * @relates Gio::Seekable
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Seekable> wrap(GSeekable* object, bool take_copy = false);
+  auto wrap(GSeekable* object, bool take_copy = false) -> Glib::RefPtr<Gio::Seekable>;
 
 } // namespace Glib
 

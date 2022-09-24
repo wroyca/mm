@@ -65,11 +65,11 @@ class GTKMM_API FileChooserWidget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   FileChooserWidget(FileChooserWidget&& src) noexcept;
-  FileChooserWidget& operator=(FileChooserWidget&& src) noexcept;
+  auto operator=(FileChooserWidget&& src) noexcept -> FileChooserWidget&;
 
   // noncopyable
   FileChooserWidget(const FileChooserWidget&) = delete;
-  FileChooserWidget& operator=(const FileChooserWidget&) = delete;
+  auto operator=(const FileChooserWidget&) -> FileChooserWidget& = delete;
 
   ~FileChooserWidget() noexcept override;
 
@@ -89,19 +89,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkFileChooserWidget*       gobj()       { return reinterpret_cast<GtkFileChooserWidget*>(gobject_); }
+  auto       gobj() -> GtkFileChooserWidget*       { return reinterpret_cast<GtkFileChooserWidget*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkFileChooserWidget* gobj() const { return reinterpret_cast<GtkFileChooserWidget*>(gobject_); }
+  auto gobj() const -> const GtkFileChooserWidget* { return reinterpret_cast<GtkFileChooserWidget*>(gobject_); }
 
 private:
 
@@ -148,7 +148,7 @@ namespace Glib
    * @relates Gtk::FileChooserWidget
    */
   GTKMM_API
-  Gtk::FileChooserWidget* wrap(GtkFileChooserWidget* object, bool take_copy = false);
+  auto wrap(GtkFileChooserWidget* object, bool take_copy = false) -> Gtk::FileChooserWidget*;
 } //namespace Glib
 
 

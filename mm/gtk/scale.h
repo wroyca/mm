@@ -68,11 +68,11 @@ class GTKMM_API Scale : public Range
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Scale(Scale&& src) noexcept;
-  Scale& operator=(Scale&& src) noexcept;
+  auto operator=(Scale&& src) noexcept -> Scale&;
 
   // noncopyable
   Scale(const Scale&) = delete;
-  Scale& operator=(const Scale&) = delete;
+  auto operator=(const Scale&) -> Scale& = delete;
 
   ~Scale() noexcept override;
 
@@ -92,19 +92,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkScale*       gobj()       { return reinterpret_cast<GtkScale*>(gobject_); }
+  auto       gobj() -> GtkScale*       { return reinterpret_cast<GtkScale*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkScale* gobj() const { return reinterpret_cast<GtkScale*>(gobject_); }
+  auto gobj() const -> const GtkScale* { return reinterpret_cast<GtkScale*>(gobject_); }
 
 private:
 
@@ -132,7 +132,7 @@ public:
 
   /** Get the number of decimal digits.
    */
-  int get_digits() const;
+  auto get_digits() const -> int;
 
 
   /** Set whether the current value is displayed as a string next to the slider.
@@ -142,7 +142,7 @@ public:
 
   /** Get whether the current value is displayed as a string next to the slider.
    */
-  bool get_draw_value() const;
+  auto get_draw_value() const -> bool;
 
 
   /** Set the position in which the value is displayed.
@@ -152,7 +152,7 @@ public:
 
   /** Get the position in which the value is displayed.
    */
-  PositionType get_value_pos() const;
+  auto get_value_pos() const -> PositionType;
 
 
   /** Sets whether the scale has an origin.
@@ -169,7 +169,7 @@ public:
    *
    * @return <tt>true</tt> if the scale has an origin.
    */
-  bool get_has_origin() const;
+  auto get_has_origin() const -> bool;
 
 
   /** Gets the `Pango::Layout` used to display the scale.
@@ -181,7 +181,7 @@ public:
    * for this scale, or <tt>nullptr</tt> if the Gtk::GtkScale::property_draw_value()
    * property is <tt>false</tt>.
    */
-  Glib::RefPtr<Pango::Layout> get_layout();
+  auto get_layout() -> Glib::RefPtr<Pango::Layout>;
 
   /** Gets the `Pango::Layout` used to display the scale.
    *
@@ -192,7 +192,7 @@ public:
    * for this scale, or <tt>nullptr</tt> if the Gtk::GtkScale::property_draw_value()
    * property is <tt>false</tt>.
    */
-  Glib::RefPtr<const Pango::Layout> get_layout() const;
+  auto get_layout() const -> Glib::RefPtr<const Pango::Layout>;
 
   /** Obtains the coordinates where the scale will draw the
    * `Pango::Layout` representing the text in the scale.
@@ -273,7 +273,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_digits() ;
+  auto property_digits() -> Glib::PropertyProxy< int > ;
 
 /** The number of decimal places that are displayed in the value.
    *
@@ -282,7 +282,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_digits() const;
+  auto property_digits() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Whether the current value is displayed as a string next to the slider.
    *
@@ -291,7 +291,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_draw_value() ;
+  auto property_draw_value() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the current value is displayed as a string next to the slider.
    *
@@ -300,7 +300,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_draw_value() const;
+  auto property_draw_value() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The position in which the current value is displayed.
    *
@@ -309,7 +309,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< PositionType > property_value_pos() ;
+  auto property_value_pos() -> Glib::PropertyProxy< PositionType > ;
 
 /** The position in which the current value is displayed.
    *
@@ -318,7 +318,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< PositionType > property_value_pos() const;
+  auto property_value_pos() const -> Glib::PropertyProxy_ReadOnly< PositionType >;
 
   /** Whether the scale has an origin.
    *
@@ -327,7 +327,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_has_origin() ;
+  auto property_has_origin() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the scale has an origin.
    *
@@ -336,7 +336,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_origin() const;
+  auto property_has_origin() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -366,7 +366,7 @@ namespace Glib
    * @relates Gtk::Scale
    */
   GTKMM_API
-  Gtk::Scale* wrap(GtkScale* object, bool take_copy = false);
+  auto wrap(GtkScale* object, bool take_copy = false) -> Gtk::Scale*;
 } //namespace Glib
 
 

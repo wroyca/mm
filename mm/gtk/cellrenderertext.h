@@ -61,11 +61,11 @@ class GTKMM_API CellRendererText : public CellRenderer
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   CellRendererText(CellRendererText&& src) noexcept;
-  CellRendererText& operator=(CellRendererText&& src) noexcept;
+  auto operator=(CellRendererText&& src) noexcept -> CellRendererText&;
 
   // noncopyable
   CellRendererText(const CellRendererText&) = delete;
-  CellRendererText& operator=(const CellRendererText&) = delete;
+  auto operator=(const CellRendererText&) -> CellRendererText& = delete;
 
   ~CellRendererText() noexcept override;
 
@@ -85,19 +85,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkCellRendererText*       gobj()       { return reinterpret_cast<GtkCellRendererText*>(gobject_); }
+  auto       gobj() -> GtkCellRendererText*       { return reinterpret_cast<GtkCellRendererText*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkCellRendererText* gobj() const { return reinterpret_cast<GtkCellRendererText*>(gobject_); }
+  auto gobj() const -> const GtkCellRendererText* { return reinterpret_cast<GtkCellRendererText*>(gobject_); }
 
 private:
 
@@ -133,7 +133,7 @@ public:
    * @param new_text The new text.
    */
 
-  Glib::SignalProxy<void(const Glib::ustring&, const Glib::ustring&)> signal_edited();
+  auto signal_edited() -> Glib::SignalProxy<void(const Glib::ustring&, const Glib::ustring&)>;
 
 
   /** Default value: ""
@@ -141,21 +141,21 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_text() ;
+  auto property_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Default value: ""
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_text() const;
+  auto property_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Default value: ""
    *
    * @return A PropertyProxy_WriteOnly that allows you to set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_WriteOnly< Glib::ustring > property_markup() ;
+  auto property_markup() -> Glib::PropertyProxy_WriteOnly< Glib::ustring > ;
 
 
   /**
@@ -163,21 +163,21 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::AttrList > property_attributes() ;
+  auto property_attributes() -> Glib::PropertyProxy< Pango::AttrList > ;
 
 /**
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::AttrList > property_attributes() const;
+  auto property_attributes() const -> Glib::PropertyProxy_ReadOnly< Pango::AttrList >;
 
   /** Default value: ""
    *
    * @return A PropertyProxy_WriteOnly that allows you to set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_WriteOnly< Glib::ustring > property_background() ;
+  auto property_background() -> Glib::PropertyProxy_WriteOnly< Glib::ustring > ;
 
 
   /** Default value: ""
@@ -185,7 +185,7 @@ public:
    * @return A PropertyProxy_WriteOnly that allows you to set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_WriteOnly< Glib::ustring > property_foreground() ;
+  auto property_foreground() -> Glib::PropertyProxy_WriteOnly< Glib::ustring > ;
 
 
   /** Background color as a `GdkRGBA`
@@ -193,238 +193,238 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Gdk::RGBA > property_background_rgba() ;
+  auto property_background_rgba() -> Glib::PropertyProxy< Gdk::RGBA > ;
 
 /** Background color as a `GdkRGBA`
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Gdk::RGBA > property_background_rgba() const;
+  auto property_background_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >;
 
   /** Foreground color as a `GdkRGBA`
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Gdk::RGBA > property_foreground_rgba() ;
+  auto property_foreground_rgba() -> Glib::PropertyProxy< Gdk::RGBA > ;
 
 /** Foreground color as a `GdkRGBA`
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Gdk::RGBA > property_foreground_rgba() const;
+  auto property_foreground_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >;
 
   /** Default value: ""
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_font() ;
+  auto property_font() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Default value: ""
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_font() const;
+  auto property_font() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /**
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::FontDescription > property_font_desc() ;
+  auto property_font_desc() -> Glib::PropertyProxy< Pango::FontDescription > ;
 
 /**
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::FontDescription > property_font_desc() const;
+  auto property_font_desc() const -> Glib::PropertyProxy_ReadOnly< Pango::FontDescription >;
 
   /** Default value: ""
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_family() ;
+  auto property_family() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Default value: ""
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_family() const;
+  auto property_family() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Default value: Pango::Style::NORMAL
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::Style > property_style() ;
+  auto property_style() -> Glib::PropertyProxy< Pango::Style > ;
 
 /** Default value: Pango::Style::NORMAL
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::Style > property_style() const;
+  auto property_style() const -> Glib::PropertyProxy_ReadOnly< Pango::Style >;
 
   /** Default value: Pango::Variant::NORMAL
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::Variant > property_variant() ;
+  auto property_variant() -> Glib::PropertyProxy< Pango::Variant > ;
 
 /** Default value: Pango::Variant::NORMAL
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::Variant > property_variant() const;
+  auto property_variant() const -> Glib::PropertyProxy_ReadOnly< Pango::Variant >;
 
   /** Default value: 400
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_weight() ;
+  auto property_weight() -> Glib::PropertyProxy< int > ;
 
 /** Default value: 400
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_weight() const;
+  auto property_weight() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Default value: Pango::Stretch::NORMAL
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::Stretch > property_stretch() ;
+  auto property_stretch() -> Glib::PropertyProxy< Pango::Stretch > ;
 
 /** Default value: Pango::Stretch::NORMAL
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::Stretch > property_stretch() const;
+  auto property_stretch() const -> Glib::PropertyProxy_ReadOnly< Pango::Stretch >;
 
   /** Default value: 0
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_size() ;
+  auto property_size() -> Glib::PropertyProxy< int > ;
 
 /** Default value: 0
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_size() const;
+  auto property_size() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Default value: 0
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_size_points() ;
+  auto property_size_points() -> Glib::PropertyProxy< double > ;
 
 /** Default value: 0
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_size_points() const;
+  auto property_size_points() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** Default value: 1
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_scale() ;
+  auto property_scale() -> Glib::PropertyProxy< double > ;
 
 /** Default value: 1
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_scale() const;
+  auto property_scale() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_editable() ;
+  auto property_editable() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_editable() const;
+  auto property_editable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_strikethrough() ;
+  auto property_strikethrough() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_strikethrough() const;
+  auto property_strikethrough() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: Pango::Underline::NONE
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::Underline > property_underline() ;
+  auto property_underline() -> Glib::PropertyProxy< Pango::Underline > ;
 
 /** Default value: Pango::Underline::NONE
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::Underline > property_underline() const;
+  auto property_underline() const -> Glib::PropertyProxy_ReadOnly< Pango::Underline >;
 
   /** Default value: 0
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_rise() ;
+  auto property_rise() -> Glib::PropertyProxy< int > ;
 
 /** Default value: 0
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_rise() const;
+  auto property_rise() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Default value: ""
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_language() ;
+  auto property_language() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Default value: ""
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_language() const;
+  auto property_language() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Specifies the preferred place to ellipsize the string, if the cell renderer
    * does not have enough room to display the entire string. Setting it to
@@ -436,7 +436,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::EllipsizeMode > property_ellipsize() ;
+  auto property_ellipsize() -> Glib::PropertyProxy< Pango::EllipsizeMode > ;
 
 /** Specifies the preferred place to ellipsize the string, if the cell renderer
    * does not have enough room to display the entire string. Setting it to
@@ -448,7 +448,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::EllipsizeMode > property_ellipsize() const;
+  auto property_ellipsize() const -> Glib::PropertyProxy_ReadOnly< Pango::EllipsizeMode >;
 
   /** The desired width of the cell, in characters. If this property is set to
    * -1, the width will be calculated automatically, otherwise the cell will
@@ -459,7 +459,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_width_chars() ;
+  auto property_width_chars() -> Glib::PropertyProxy< int > ;
 
 /** The desired width of the cell, in characters. If this property is set to
    * -1, the width will be calculated automatically, otherwise the cell will
@@ -470,7 +470,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_width_chars() const;
+  auto property_width_chars() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The desired maximum width of the cell, in characters. If this property
    * is set to -1, the width will be calculated automatically.
@@ -486,7 +486,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_max_width_chars() ;
+  auto property_max_width_chars() -> Glib::PropertyProxy< int > ;
 
 /** The desired maximum width of the cell, in characters. If this property
    * is set to -1, the width will be calculated automatically.
@@ -502,7 +502,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_max_width_chars() const;
+  auto property_max_width_chars() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Specifies how to break the string into multiple lines, if the cell
    * renderer does not have enough room to display the entire string.
@@ -513,7 +513,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::WrapMode > property_wrap_mode() ;
+  auto property_wrap_mode() -> Glib::PropertyProxy< Pango::WrapMode > ;
 
 /** Specifies how to break the string into multiple lines, if the cell
    * renderer does not have enough room to display the entire string.
@@ -524,7 +524,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::WrapMode > property_wrap_mode() const;
+  auto property_wrap_mode() const -> Glib::PropertyProxy_ReadOnly< Pango::WrapMode >;
 
   /** Specifies the minimum width at which the text is wrapped. The wrap-mode property can
    * be used to influence at what character positions the line breaks can be placed.
@@ -535,7 +535,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_wrap_width() ;
+  auto property_wrap_width() -> Glib::PropertyProxy< int > ;
 
 /** Specifies the minimum width at which the text is wrapped. The wrap-mode property can
    * be used to influence at what character positions the line breaks can be placed.
@@ -546,7 +546,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_wrap_width() const;
+  auto property_wrap_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Specifies how to align the lines of text with respect to each other.
    *
@@ -559,7 +559,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::Alignment > property_alignment() ;
+  auto property_alignment() -> Glib::PropertyProxy< Pango::Alignment > ;
 
 /** Specifies how to align the lines of text with respect to each other.
    *
@@ -572,245 +572,245 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::Alignment > property_alignment() const;
+  auto property_alignment() const -> Glib::PropertyProxy_ReadOnly< Pango::Alignment >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_background_set() ;
+  auto property_background_set() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_background_set() const;
+  auto property_background_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_foreground_set() ;
+  auto property_foreground_set() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_foreground_set() const;
+  auto property_foreground_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_family_set() ;
+  auto property_family_set() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_family_set() const;
+  auto property_family_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_style_set() ;
+  auto property_style_set() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_style_set() const;
+  auto property_style_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_variant_set() ;
+  auto property_variant_set() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_variant_set() const;
+  auto property_variant_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_weight_set() ;
+  auto property_weight_set() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_weight_set() const;
+  auto property_weight_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_stretch_set() ;
+  auto property_stretch_set() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_stretch_set() const;
+  auto property_stretch_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_size_set() ;
+  auto property_size_set() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_size_set() const;
+  auto property_size_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_scale_set() ;
+  auto property_scale_set() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_scale_set() const;
+  auto property_scale_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_editable_set() ;
+  auto property_editable_set() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_editable_set() const;
+  auto property_editable_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_strikethrough_set() ;
+  auto property_strikethrough_set() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_strikethrough_set() const;
+  auto property_strikethrough_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_underline_set() ;
+  auto property_underline_set() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_underline_set() const;
+  auto property_underline_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_rise_set() ;
+  auto property_rise_set() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_rise_set() const;
+  auto property_rise_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_language_set() ;
+  auto property_language_set() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_language_set() const;
+  auto property_language_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_ellipsize_set() ;
+  auto property_ellipsize_set() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_ellipsize_set() const;
+  auto property_ellipsize_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_single_paragraph_mode() ;
+  auto property_single_paragraph_mode() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_single_paragraph_mode() const;
+  auto property_single_paragraph_mode() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_align_set() ;
+  auto property_align_set() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_align_set() const;
+  auto property_align_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The text that will be displayed in the `Gtk::CellRenderer` if
    * `GtkCellRendererText:editable` is <tt>true</tt> and the cell is empty.
@@ -820,7 +820,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_placeholder_text() ;
+  auto property_placeholder_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The text that will be displayed in the `Gtk::CellRenderer` if
    * `GtkCellRendererText:editable` is <tt>true</tt> and the cell is empty.
@@ -830,10 +830,10 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_placeholder_text() const;
+  auto property_placeholder_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
-  Glib::PropertyProxy_Base _property_renderable() override;
+  auto _property_renderable() -> Glib::PropertyProxy_Base override;
 
 protected:
   /** Emits the "edited" signal.
@@ -871,7 +871,7 @@ namespace Glib
    * @relates Gtk::CellRendererText
    */
   GTKMM_API
-  Gtk::CellRendererText* wrap(GtkCellRendererText* object, bool take_copy = false);
+  auto wrap(GtkCellRendererText* object, bool take_copy = false) -> Gtk::CellRendererText*;
 } //namespace Glib
 
 

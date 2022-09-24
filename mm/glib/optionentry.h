@@ -127,11 +127,11 @@ public:
   OptionEntry(const OptionEntry& src);
 
   OptionEntry(OptionEntry&& other) noexcept;
-  OptionEntry& operator=(OptionEntry&& other) noexcept;
+  auto operator=(OptionEntry&& other) noexcept -> OptionEntry&;
 
   virtual ~OptionEntry();
 
-  OptionEntry& operator=(const OptionEntry& src);
+  auto operator=(const OptionEntry& src) -> OptionEntry&;
 
   // We do not use nullptr for an empty string in set_long_name(),
   // because G_OPTION_REMAINING is actually a "", so it has a distinct meaning.
@@ -139,14 +139,14 @@ public:
   // set_long_name(void) or set_is_remaining()? murrayc.
 
 
-  Glib::ustring get_long_name() const;
+  auto get_long_name() const -> Glib::ustring;
   void set_long_name(const Glib::ustring& value);
 
-  gchar get_short_name() const;
+  auto get_short_name() const -> gchar;
   void set_short_name(const gchar& value);
 
 
-  Flags get_flags() const;
+  auto get_flags() const -> Flags;
 
 
   /** Set one or more OptionEntry::Flags.
@@ -158,14 +158,14 @@ public:
   // We use nullptr for an empty string in set_description() and set_arg_description().
 
 
-  Glib::ustring get_description() const;
+  auto get_description() const -> Glib::ustring;
   void set_description(const Glib::ustring& value);
 
-  Glib::ustring get_arg_description() const;
+  auto get_arg_description() const -> Glib::ustring;
   void set_arg_description(const Glib::ustring& value);
 
-  GOptionEntry*       gobj()       { return gobject_; }
-  const GOptionEntry* gobj() const { return gobject_; }
+  auto       gobj() -> GOptionEntry*       { return gobject_; }
+  auto gobj() const -> const GOptionEntry* { return gobject_; }
 
 private:
   void release_gobject() noexcept;
@@ -182,31 +182,31 @@ namespace Glib
 {
 
 /** @ingroup glibmmEnums */
-inline OptionEntry::Flags operator|(OptionEntry::Flags lhs, OptionEntry::Flags rhs)
+inline auto operator|(OptionEntry::Flags lhs, OptionEntry::Flags rhs) -> OptionEntry::Flags
   { return static_cast<OptionEntry::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline OptionEntry::Flags operator&(OptionEntry::Flags lhs, OptionEntry::Flags rhs)
+inline auto operator&(OptionEntry::Flags lhs, OptionEntry::Flags rhs) -> OptionEntry::Flags
   { return static_cast<OptionEntry::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline OptionEntry::Flags operator^(OptionEntry::Flags lhs, OptionEntry::Flags rhs)
+inline auto operator^(OptionEntry::Flags lhs, OptionEntry::Flags rhs) -> OptionEntry::Flags
   { return static_cast<OptionEntry::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline OptionEntry::Flags operator~(OptionEntry::Flags flags)
+inline auto operator~(OptionEntry::Flags flags) -> OptionEntry::Flags
   { return static_cast<OptionEntry::Flags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup glibmmEnums */
-inline OptionEntry::Flags& operator|=(OptionEntry::Flags& lhs, OptionEntry::Flags rhs)
+inline auto operator|=(OptionEntry::Flags& lhs, OptionEntry::Flags rhs) -> OptionEntry::Flags&
   { return (lhs = static_cast<OptionEntry::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline OptionEntry::Flags& operator&=(OptionEntry::Flags& lhs, OptionEntry::Flags rhs)
+inline auto operator&=(OptionEntry::Flags& lhs, OptionEntry::Flags rhs) -> OptionEntry::Flags&
   { return (lhs = static_cast<OptionEntry::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline OptionEntry::Flags& operator^=(OptionEntry::Flags& lhs, OptionEntry::Flags rhs)
+inline auto operator^=(OptionEntry::Flags& lhs, OptionEntry::Flags rhs) -> OptionEntry::Flags&
   { return (lhs = static_cast<OptionEntry::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Glib
 

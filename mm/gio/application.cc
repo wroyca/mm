@@ -37,7 +37,7 @@ using Flags = Gio::Application::Flags;
 namespace // anonymous
 {
 
-static void
+void
 Application_signal_open_callback(
   GApplication* self, GFile** files, gint n_files, const gchar* hint, void* data)
 {
@@ -71,7 +71,7 @@ Application_signal_open_callback(
   return;
 }
 
-static void
+void
 Application_signal_open_notify_callback(
   GApplication* self, GFile** files, gint n_files, const gchar* hint, void* data)
 {
@@ -106,7 +106,7 @@ Application_signal_open_notify_callback(
   return;
 }
 
-static const Glib::SignalProxyInfo Application_signal_open_info = { "open",
+const Glib::SignalProxyInfo Application_signal_open_info = { "open",
   (GCallback)&Application_signal_open_callback,
   (GCallback)&Application_signal_open_notify_callback };
 
@@ -152,16 +152,16 @@ public:
   {
   }
 
-  const Gio::Application* get_application() const { return application_; }
-  const gchar* get_long_name() const { return long_name_; }
-  gchar get_short_name() const { return short_name_; }
-  const gchar* get_description() const { return description_; }
-  const gchar* get_arg_description() const { return arg_description_; }
-  bool is_filename_option() const { return slot_filename_ != nullptr; }
+  auto get_application() const -> const Gio::Application* { return application_; }
+  auto get_long_name() const -> const gchar* { return long_name_; }
+  auto get_short_name() const -> gchar { return short_name_; }
+  auto get_description() const -> const gchar* { return description_; }
+  auto get_arg_description() const -> const gchar* { return arg_description_; }
+  auto is_filename_option() const -> bool { return slot_filename_ != nullptr; }
 
-  const Glib::OptionGroup::SlotOptionArgString* get_slot_string() const { return slot_string_; }
+  auto get_slot_string() const -> const Glib::OptionGroup::SlotOptionArgString* { return slot_string_; }
 
-  const Glib::OptionGroup::SlotOptionArgFilename* get_slot_filename() const
+  auto get_slot_filename() const -> const Glib::OptionGroup::SlotOptionArgFilename*
   {
     return slot_filename_;
   }
@@ -188,7 +188,7 @@ private:
 
   // Not copyable
   OptionArgCallbackData(const OptionArgCallbackData&) = delete;
-  OptionArgCallbackData& operator=(const OptionArgCallbackData&) = delete;
+  auto operator=(const OptionArgCallbackData&) -> OptionArgCallbackData& = delete;
 
 }; // end class OptionArgCallbackData
 
@@ -199,9 +199,9 @@ OptionArgCallbackDataMap option_arg_callback_data;
 // Accesses to option_arg_callback_data must be thread-safe.
 std::mutex option_arg_callback_data_mutex;
 
-gboolean
+auto
 Application_option_arg_callback(
-  const gchar* option_name, const gchar* value, gpointer /* data */, GError** error)
+  const gchar* option_name, const gchar* value, gpointer /* data */, GError** error) -> gboolean
 {
   const Glib::ustring cpp_option_name(option_name);
 
@@ -271,8 +271,8 @@ Application_option_arg_callback(
 namespace Gio
 {
 
-const Glib::Class&
-Application::custom_class_init()
+auto
+Application::custom_class_init() -> const Glib::Class&
 {
   Glib::init();
   Gio::init();
@@ -360,8 +360,8 @@ Application_Class::open_callback(GApplication* self, GFile** files, gint n_files
     (*base->open)(self, files, n_files, hint);
 }
 
-Glib::SignalProxy<void(const Application::type_vec_files&, const Glib::ustring&)>
-Application::signal_open()
+auto
+Application::signal_open() -> Glib::SignalProxy<void(const Application::type_vec_files&, const Glib::ustring&)>
 {
   return Glib::SignalProxy<void(const Application::type_vec_files&, const Glib::ustring&)>(
     this, &Application_signal_open_info);
@@ -505,7 +505,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo Application_signal_startup_info =
+const Glib::SignalProxyInfo Application_signal_startup_info =
 {
   "startup",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -513,7 +513,7 @@ static const Glib::SignalProxyInfo Application_signal_startup_info =
 };
 
 
-static const Glib::SignalProxyInfo Application_signal_shutdown_info =
+const Glib::SignalProxyInfo Application_signal_shutdown_info =
 {
   "shutdown",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -521,7 +521,7 @@ static const Glib::SignalProxyInfo Application_signal_shutdown_info =
 };
 
 
-static const Glib::SignalProxyInfo Application_signal_activate_info =
+const Glib::SignalProxyInfo Application_signal_activate_info =
 {
   "activate",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -529,7 +529,7 @@ static const Glib::SignalProxyInfo Application_signal_activate_info =
 };
 
 
-static gint Application_signal_command_line_callback(GApplication* self, GApplicationCommandLine* p0,void* data)
+auto Application_signal_command_line_callback(GApplication* self, GApplicationCommandLine* p0,void* data) -> gint
 {
   using namespace Gio;
   using SlotType = sigc::slot<int(const Glib::RefPtr<ApplicationCommandLine>&)>;
@@ -554,7 +554,7 @@ static gint Application_signal_command_line_callback(GApplication* self, GApplic
   return RType();
 }
 
-static gint Application_signal_command_line_notify_callback(GApplication* self, GApplicationCommandLine* p0, void* data)
+auto Application_signal_command_line_notify_callback(GApplication* self, GApplicationCommandLine* p0, void* data) -> gint
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<ApplicationCommandLine>&)>;
@@ -579,7 +579,7 @@ static gint Application_signal_command_line_notify_callback(GApplication* self, 
   return RType();
 }
 
-static const Glib::SignalProxyInfo Application_signal_command_line_info =
+const Glib::SignalProxyInfo Application_signal_command_line_info =
 {
   "command-line",
   (GCallback) &Application_signal_command_line_callback,
@@ -587,7 +587,7 @@ static const Glib::SignalProxyInfo Application_signal_command_line_info =
 };
 
 
-static gint Application_signal_handle_local_options_callback(GApplication* self, GVariantDict* p0,void* data)
+auto Application_signal_handle_local_options_callback(GApplication* self, GVariantDict* p0,void* data) -> gint
 {
   using namespace Gio;
   using SlotType = sigc::slot<int(const Glib::RefPtr<Glib::VariantDict>&)>;
@@ -612,7 +612,7 @@ static gint Application_signal_handle_local_options_callback(GApplication* self,
   return RType();
 }
 
-static gint Application_signal_handle_local_options_notify_callback(GApplication* self, GVariantDict* p0, void* data)
+auto Application_signal_handle_local_options_notify_callback(GApplication* self, GVariantDict* p0, void* data) -> gint
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Glib::VariantDict>&)>;
@@ -637,7 +637,7 @@ static gint Application_signal_handle_local_options_notify_callback(GApplication
   return RType();
 }
 
-static const Glib::SignalProxyInfo Application_signal_handle_local_options_info =
+const Glib::SignalProxyInfo Application_signal_handle_local_options_info =
 {
   "handle-local-options",
   (GCallback) &Application_signal_handle_local_options_callback,
@@ -645,7 +645,7 @@ static const Glib::SignalProxyInfo Application_signal_handle_local_options_info 
 };
 
 
-static gboolean Application_signal_name_lost_callback(GApplication* self, void* data)
+auto Application_signal_name_lost_callback(GApplication* self, void* data) -> gboolean
 {
   using namespace Gio;
   using SlotType = sigc::slot<bool()>;
@@ -669,7 +669,7 @@ static gboolean Application_signal_name_lost_callback(GApplication* self, void* 
   return RType();
 }
 
-static gboolean Application_signal_name_lost_notify_callback(GApplication* self,  void* data)
+auto Application_signal_name_lost_notify_callback(GApplication* self,  void* data) -> gboolean
 {
   using namespace Gio;
   using SlotType = sigc::slot<void()>;
@@ -693,7 +693,7 @@ static gboolean Application_signal_name_lost_notify_callback(GApplication* self,
   return RType();
 }
 
-static const Glib::SignalProxyInfo Application_signal_name_lost_info =
+const Glib::SignalProxyInfo Application_signal_name_lost_info =
 {
   "name-lost",
   (GCallback) &Application_signal_name_lost_callback,
@@ -704,7 +704,7 @@ static const Glib::SignalProxyInfo Application_signal_name_lost_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::Application::Flags>::value_type()
+auto Glib::Value<Gio::Application::Flags>::value_type() -> GType
 {
   return g_application_flags_get_type();
 }
@@ -713,7 +713,7 @@ GType Glib::Value<Gio::Application::Flags>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gio::Application> wrap(GApplication* object, bool take_copy)
+auto wrap(GApplication* object, bool take_copy) -> Glib::RefPtr<Gio::Application>
 {
   return Glib::make_refptr_for_instance<Gio::Application>( dynamic_cast<Gio::Application*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -728,7 +728,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& Application_Class::init()
+auto Application_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -774,7 +774,7 @@ void Application_Class::class_init_function(void* g_class, void* class_data)
   klass->open = &open_callback;
   }
 
-gboolean Application_Class::local_command_line_vfunc_callback(GApplication* self, gchar*** arguments, int* exit_status)
+auto Application_Class::local_command_line_vfunc_callback(GApplication* self, gchar*** arguments, int* exit_status) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -960,7 +960,7 @@ void Application_Class::run_mainloop_vfunc_callback(GApplication* self)
   if(base && base->run_mainloop)
     (*base->run_mainloop)(self);
 }
-gboolean Application_Class::dbus_register_vfunc_callback(GApplication* self, GDBusConnection* connection, const gchar* object_path, GError** error)
+auto Application_Class::dbus_register_vfunc_callback(GApplication* self, GDBusConnection* connection, const gchar* object_path, GError** error) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1153,7 +1153,7 @@ void Application_Class::activate_callback(GApplication* self)
   if(base && base->activate)
     (*base->activate)(self);
 }
-gint Application_Class::command_line_callback(GApplication* self, GApplicationCommandLine* p0)
+auto Application_Class::command_line_callback(GApplication* self, GApplicationCommandLine* p0) -> gint
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1192,7 +1192,7 @@ gint Application_Class::command_line_callback(GApplication* self, GApplicationCo
   using RType = gint;
   return RType();
 }
-gint Application_Class::handle_local_options_callback(GApplication* self, GVariantDict* p0)
+auto Application_Class::handle_local_options_callback(GApplication* self, GVariantDict* p0) -> gint
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1231,7 +1231,7 @@ gint Application_Class::handle_local_options_callback(GApplication* self, GVaria
   using RType = gint;
   return RType();
 }
-gboolean Application_Class::name_lost_callback(GApplication* self)
+auto Application_Class::name_lost_callback(GApplication* self) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1271,7 +1271,7 @@ gboolean Application_Class::name_lost_callback(GApplication* self)
 }
 
 
-Glib::ObjectBase* Application_Class::wrap_new(GObject* object)
+auto Application_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Application((GApplication*)object);
 }
@@ -1279,7 +1279,7 @@ Glib::ObjectBase* Application_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GApplication* Application::gobj_copy()
+auto Application::gobj_copy() -> GApplication*
 {
   reference();
   return gobj();
@@ -1304,7 +1304,7 @@ Application::Application(Application&& src) noexcept
   , ActionMap(std::move(src))
 {}
 
-Application& Application::operator=(Application&& src) noexcept
+auto Application::operator=(Application&& src) noexcept -> Application&
 {
   Glib::Object::operator=(std::move(src));
   ActionGroup::operator=(std::move(src));
@@ -1315,29 +1315,29 @@ Application& Application::operator=(Application&& src) noexcept
 
 Application::CppClassType Application::application_class_; // initialize static member
 
-GType Application::get_type()
+auto Application::get_type() -> GType
 {
   return application_class_.init().get_type();
 }
 
 
-GType Application::get_base_type()
+auto Application::get_base_type() -> GType
 {
   return g_application_get_type();
 }
 
 
-Glib::RefPtr<Application> Application::create(const Glib::ustring& application_id, Flags flags)
+auto Application::create(const Glib::ustring& application_id, Flags flags) -> Glib::RefPtr<Application>
 {
   return Glib::make_refptr_for_instance<Application>( new Application(application_id, flags) );
 }
 
-bool Application::id_is_valid(const Glib::ustring& application_id)
+auto Application::id_is_valid(const Glib::ustring& application_id) -> bool
 {
   return g_application_id_is_valid(application_id.c_str());
 }
 
-Glib::ustring Application::get_id() const
+auto Application::get_id() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_application_get_application_id(const_cast<GApplication*>(gobj())));
 }
@@ -1347,7 +1347,7 @@ void Application::set_id(const Glib::ustring& application_id)
   g_application_set_application_id(gobj(), application_id.c_str());
 }
 
-Glib::RefPtr<DBus::Connection> Application::get_dbus_connection()
+auto Application::get_dbus_connection() -> Glib::RefPtr<DBus::Connection>
 {
   auto retvalue = Glib::wrap(g_application_get_dbus_connection(gobj()));
   if(retvalue)
@@ -1355,17 +1355,17 @@ Glib::RefPtr<DBus::Connection> Application::get_dbus_connection()
   return retvalue;
 }
 
-Glib::RefPtr<const DBus::Connection> Application::get_dbus_connection() const
+auto Application::get_dbus_connection() const -> Glib::RefPtr<const DBus::Connection>
 {
   return const_cast<Application*>(this)->get_dbus_connection();
 }
 
-Glib::ustring Application::get_dbus_object_path() const
+auto Application::get_dbus_object_path() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_application_get_dbus_object_path(const_cast<GApplication*>(gobj())));
 }
 
-guint Application::get_inactivity_timeout() const
+auto Application::get_inactivity_timeout() const -> guint
 {
   return g_application_get_inactivity_timeout(const_cast<GApplication*>(gobj()));
 }
@@ -1375,7 +1375,7 @@ void Application::set_inactivity_timeout(guint inactivity_timeout)
   g_application_set_inactivity_timeout(gobj(), inactivity_timeout);
 }
 
-Flags Application::get_flags() const
+auto Application::get_flags() const -> Flags
 {
   return static_cast<Flags>(g_application_get_flags(const_cast<GApplication*>(gobj())));
 }
@@ -1385,7 +1385,7 @@ void Application::set_flags(Flags flags)
   g_application_set_flags(gobj(), static_cast<GApplicationFlags>(flags));
 }
 
-std::string Application::get_resource_base_path() const
+auto Application::get_resource_base_path() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_application_get_resource_base_path(const_cast<GApplication*>(gobj())));
 }
@@ -1415,17 +1415,17 @@ void Application::set_option_context_description(const Glib::ustring& descriptio
   g_application_set_option_context_description(gobj(), description.empty() ? nullptr : description.c_str());
 }
 
-bool Application::is_registered() const
+auto Application::is_registered() const -> bool
 {
   return g_application_get_is_registered(const_cast<GApplication*>(gobj()));
 }
 
-bool Application::is_remote() const
+auto Application::is_remote() const -> bool
 {
   return g_application_get_is_remote(const_cast<GApplication*>(gobj()));
 }
 
-bool Application::register_application(const Glib::RefPtr<Gio::Cancellable>& cancellable)
+auto Application::register_application(const Glib::RefPtr<Gio::Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_application_register(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -1434,7 +1434,7 @@ bool Application::register_application(const Glib::RefPtr<Gio::Cancellable>& can
   return retvalue;
 }
 
-bool Application::register_application()
+auto Application::register_application() -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_application_register(gobj(), nullptr, &(gerror));
@@ -1458,7 +1458,7 @@ void Application::activate()
   g_application_activate(gobj());
 }
 
-int Application::run(int argc, char** argv)
+auto Application::run(int argc, char** argv) -> int
 {
   return g_application_run(gobj(), argc, argv);
 }
@@ -1473,7 +1473,7 @@ void Application::set_default(const Glib::RefPtr<Application>& application)
   g_application_set_default(const_cast<GApplication*>(Glib::unwrap(application)));
 }
 
-Glib::RefPtr<Application> Application::get_default()
+auto Application::get_default() -> Glib::RefPtr<Application>
 {
 
   auto retvalue = Glib::wrap(g_application_get_default());
@@ -1492,7 +1492,7 @@ void Application::unmark_busy()
   g_application_unmark_busy(gobj());
 }
 
-bool Application::get_is_busy() const
+auto Application::get_is_busy() const -> bool
 {
   return g_application_get_is_busy(const_cast<GApplication*>(gobj()));
 }
@@ -1513,48 +1513,48 @@ void Application::withdraw_notification(const Glib::ustring& id)
 }
 
 
-Glib::SignalProxy<void()> Application::signal_startup()
+auto Application::signal_startup() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Application_signal_startup_info);
 }
 
 
-Glib::SignalProxy<void()> Application::signal_shutdown()
+auto Application::signal_shutdown() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Application_signal_shutdown_info);
 }
 
 
-Glib::SignalProxy<void()> Application::signal_activate()
+auto Application::signal_activate() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Application_signal_activate_info);
 }
 
 
-Glib::SignalProxy<int(const Glib::RefPtr<ApplicationCommandLine>&)> Application::signal_command_line()
+auto Application::signal_command_line() -> Glib::SignalProxy<int(const Glib::RefPtr<ApplicationCommandLine>&)>
 {
   return Glib::SignalProxy<int(const Glib::RefPtr<ApplicationCommandLine>&) >(this, &Application_signal_command_line_info);
 }
 
 
-Glib::SignalProxy<int(const Glib::RefPtr<Glib::VariantDict>&)> Application::signal_handle_local_options()
+auto Application::signal_handle_local_options() -> Glib::SignalProxy<int(const Glib::RefPtr<Glib::VariantDict>&)>
 {
   return Glib::SignalProxy<int(const Glib::RefPtr<Glib::VariantDict>&) >(this, &Application_signal_handle_local_options_info);
 }
 
 
-Glib::SignalProxy<bool()> Application::signal_name_lost()
+auto Application::signal_name_lost() -> Glib::SignalProxy<bool()>
 {
   return Glib::SignalProxy<bool() >(this, &Application_signal_name_lost_info);
 }
 
 
-Glib::PropertyProxy< Glib::ustring > Application::property_application_id()
+auto Application::property_application_id() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "application-id");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Application::property_application_id() const
+auto Application::property_application_id() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "application-id");
 }
@@ -1563,47 +1563,47 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Flags>::value,
   "Type Flags cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Flags > Application::property_flags()
+auto Application::property_flags() -> Glib::PropertyProxy< Flags >
 {
   return Glib::PropertyProxy< Flags >(this, "flags");
 }
 
-Glib::PropertyProxy_ReadOnly< Flags > Application::property_flags() const
+auto Application::property_flags() const -> Glib::PropertyProxy_ReadOnly< Flags >
 {
   return Glib::PropertyProxy_ReadOnly< Flags >(this, "flags");
 }
 
-Glib::PropertyProxy< guint > Application::property_inactivity_timeout()
+auto Application::property_inactivity_timeout() -> Glib::PropertyProxy< guint >
 {
   return Glib::PropertyProxy< guint >(this, "inactivity-timeout");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > Application::property_inactivity_timeout() const
+auto Application::property_inactivity_timeout() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "inactivity-timeout");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Application::property_is_registered() const
+auto Application::property_is_registered() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-registered");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Application::property_is_remote() const
+auto Application::property_is_remote() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-remote");
 }
 
-Glib::PropertyProxy< std::string > Application::property_resource_base_path()
+auto Application::property_resource_base_path() -> Glib::PropertyProxy< std::string >
 {
   return Glib::PropertyProxy< std::string >(this, "resource-base-path");
 }
 
-Glib::PropertyProxy_ReadOnly< std::string > Application::property_resource_base_path() const
+auto Application::property_resource_base_path() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
   return Glib::PropertyProxy_ReadOnly< std::string >(this, "resource-base-path");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Application::property_is_busy() const
+auto Application::property_is_busy() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-busy");
 }
@@ -1636,7 +1636,7 @@ void Gio::Application::on_activate()
   if(base && base->activate)
     (*base->activate)(gobj());
 }
-int Gio::Application::on_command_line(const Glib::RefPtr<ApplicationCommandLine>& command_line)
+auto Gio::Application::on_command_line(const Glib::RefPtr<ApplicationCommandLine>& command_line) -> int
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1648,7 +1648,7 @@ int Gio::Application::on_command_line(const Glib::RefPtr<ApplicationCommandLine>
   using RType = int;
   return RType();
 }
-int Gio::Application::on_handle_local_options(const Glib::RefPtr<Glib::VariantDict>& options)
+auto Gio::Application::on_handle_local_options(const Glib::RefPtr<Glib::VariantDict>& options) -> int
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1660,7 +1660,7 @@ int Gio::Application::on_handle_local_options(const Glib::RefPtr<Glib::VariantDi
   using RType = int;
   return RType();
 }
-bool Gio::Application::on_name_lost()
+auto Gio::Application::on_name_lost() -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1673,7 +1673,7 @@ bool Gio::Application::on_name_lost()
   return RType();
 }
 
-bool Gio::Application::local_command_line_vfunc(char**& arguments, int& exit_status)
+auto Gio::Application::local_command_line_vfunc(char**& arguments, int& exit_status) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1732,7 +1732,7 @@ void Gio::Application::run_mainloop_vfunc()
     (*base->run_mainloop)(gobj());
   }
 }
-bool Gio::Application::dbus_register_vfunc(const Glib::RefPtr<DBus::Connection>& connection, const Glib::ustring& object_path)
+auto Gio::Application::dbus_register_vfunc(const Glib::RefPtr<DBus::Connection>& connection, const Glib::ustring& object_path) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

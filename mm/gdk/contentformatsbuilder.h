@@ -54,19 +54,19 @@ class GDKMM_API ContentFormatsBuilder final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GdkContentFormatsBuilder*       gobj();
+  auto       gobj() -> GdkContentFormatsBuilder*;
 
   ///Provides access to the underlying C instance.
-  const GdkContentFormatsBuilder* gobj() const;
+  auto gobj() const -> const GdkContentFormatsBuilder*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkContentFormatsBuilder* gobj_copy() const;
+  auto gobj_copy() const -> GdkContentFormatsBuilder*;
 
   ContentFormatsBuilder() = delete;
 
   // noncopyable
   ContentFormatsBuilder(const ContentFormatsBuilder&) = delete;
-  ContentFormatsBuilder& operator=(const ContentFormatsBuilder&) = delete;
+  auto operator=(const ContentFormatsBuilder&) -> ContentFormatsBuilder& = delete;
 
 protected:
   // Do not derive this.  Gdk::ContentFormatsBuilder can neither be constructed nor deleted.
@@ -88,7 +88,7 @@ public:
    *
    * @return A new %ContentFormatsBuilder.
    */
-  static Glib::RefPtr<ContentFormatsBuilder> create();
+  static auto create() -> Glib::RefPtr<ContentFormatsBuilder>;
 
 
   /** Appends all formats from @a formats to @a builder, skipping those that
@@ -118,7 +118,7 @@ public:
    *
    * @return A newly created Gdk::ContentFormats with all the formats added to the builder.
    */
-  Glib::RefPtr<ContentFormats> to_formats();
+  auto to_formats() -> Glib::RefPtr<ContentFormats>;
 
 
 };
@@ -138,7 +138,7 @@ namespace Glib
  * @relates Gdk::ContentFormatsBuilder
  */
 GDKMM_API
-Glib::RefPtr<Gdk::ContentFormatsBuilder> wrap(GdkContentFormatsBuilder* object, bool take_copy = false);
+auto wrap(GdkContentFormatsBuilder* object, bool take_copy = false) -> Glib::RefPtr<Gdk::ContentFormatsBuilder>;
 
 } // namespace Glib
 

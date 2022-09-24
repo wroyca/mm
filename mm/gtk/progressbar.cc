@@ -37,7 +37,7 @@ namespace
 namespace Glib
 {
 
-Gtk::ProgressBar* wrap(GtkProgressBar* object, bool take_copy)
+auto wrap(GtkProgressBar* object, bool take_copy) -> Gtk::ProgressBar*
 {
   return dynamic_cast<Gtk::ProgressBar *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -50,7 +50,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ProgressBar_Class::init()
+auto ProgressBar_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -82,7 +82,7 @@ void ProgressBar_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* ProgressBar_Class::wrap_new(GObject* o)
+auto ProgressBar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new ProgressBar((GtkProgressBar*)(o)));
 
@@ -109,7 +109,7 @@ ProgressBar::ProgressBar(ProgressBar&& src) noexcept
   , Orientable(std::move(src))
 {}
 
-ProgressBar& ProgressBar::operator=(ProgressBar&& src) noexcept
+auto ProgressBar::operator=(ProgressBar&& src) noexcept -> ProgressBar&
 {
   Gtk::Widget::operator=(std::move(src));
   Orientable::operator=(std::move(src));
@@ -123,13 +123,13 @@ ProgressBar::~ProgressBar() noexcept
 
 ProgressBar::CppClassType ProgressBar::progressbar_class_; // initialize static member
 
-GType ProgressBar::get_type()
+auto ProgressBar::get_type() -> GType
 {
   return progressbar_class_.init().get_type();
 }
 
 
-GType ProgressBar::get_base_type()
+auto ProgressBar::get_base_type() -> GType
 {
   return gtk_progress_bar_get_type();
 }
@@ -150,7 +150,7 @@ void ProgressBar::pulse()
   gtk_progress_bar_pulse(gobj());
 }
 
-Glib::ustring ProgressBar::get_text() const
+auto ProgressBar::get_text() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_progress_bar_get_text(const_cast<GtkProgressBar*>(gobj())));
 }
@@ -160,7 +160,7 @@ void ProgressBar::set_text(const Glib::ustring& text)
   gtk_progress_bar_set_text(gobj(), text.c_str());
 }
 
-double ProgressBar::get_fraction() const
+auto ProgressBar::get_fraction() const -> double
 {
   return gtk_progress_bar_get_fraction(const_cast<GtkProgressBar*>(gobj()));
 }
@@ -170,7 +170,7 @@ void ProgressBar::set_fraction(double fraction)
   gtk_progress_bar_set_fraction(gobj(), fraction);
 }
 
-double ProgressBar::get_pulse_step() const
+auto ProgressBar::get_pulse_step() const -> double
 {
   return gtk_progress_bar_get_pulse_step(const_cast<GtkProgressBar*>(gobj()));
 }
@@ -185,7 +185,7 @@ void ProgressBar::set_inverted(bool inverted)
   gtk_progress_bar_set_inverted(gobj(), static_cast<int>(inverted));
 }
 
-bool ProgressBar::get_inverted() const
+auto ProgressBar::get_inverted() const -> bool
 {
   return gtk_progress_bar_get_inverted(const_cast<GtkProgressBar*>(gobj()));
 }
@@ -195,7 +195,7 @@ void ProgressBar::set_ellipsize(Pango::EllipsizeMode mode)
   gtk_progress_bar_set_ellipsize(gobj(), static_cast<PangoEllipsizeMode>(mode));
 }
 
-Pango::EllipsizeMode ProgressBar::get_ellipsize() const
+auto ProgressBar::get_ellipsize() const -> Pango::EllipsizeMode
 {
   return static_cast<Pango::EllipsizeMode>(gtk_progress_bar_get_ellipsize(const_cast<GtkProgressBar*>(gobj())));
 }
@@ -205,68 +205,68 @@ void ProgressBar::set_show_text(bool show_text)
   gtk_progress_bar_set_show_text(gobj(), static_cast<int>(show_text));
 }
 
-bool ProgressBar::get_show_text() const
+auto ProgressBar::get_show_text() const -> bool
 {
   return gtk_progress_bar_get_show_text(const_cast<GtkProgressBar*>(gobj()));
 }
 
 
-Glib::PropertyProxy< double > ProgressBar::property_fraction()
+auto ProgressBar::property_fraction() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "fraction");
 }
 
-Glib::PropertyProxy_ReadOnly< double > ProgressBar::property_fraction() const
+auto ProgressBar::property_fraction() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "fraction");
 }
 
-Glib::PropertyProxy< double > ProgressBar::property_pulse_step()
+auto ProgressBar::property_pulse_step() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "pulse-step");
 }
 
-Glib::PropertyProxy_ReadOnly< double > ProgressBar::property_pulse_step() const
+auto ProgressBar::property_pulse_step() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "pulse-step");
 }
 
-Glib::PropertyProxy< Glib::ustring > ProgressBar::property_text()
+auto ProgressBar::property_text() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "text");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > ProgressBar::property_text() const
+auto ProgressBar::property_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "text");
 }
 
-Glib::PropertyProxy< bool > ProgressBar::property_ellipsize()
+auto ProgressBar::property_ellipsize() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "ellipsize");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > ProgressBar::property_ellipsize() const
+auto ProgressBar::property_ellipsize() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "ellipsize");
 }
 
-Glib::PropertyProxy< bool > ProgressBar::property_show_text()
+auto ProgressBar::property_show_text() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "show-text");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > ProgressBar::property_show_text() const
+auto ProgressBar::property_show_text() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "show-text");
 }
 
-Glib::PropertyProxy< bool > ProgressBar::property_inverted()
+auto ProgressBar::property_inverted() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "inverted");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > ProgressBar::property_inverted() const
+auto ProgressBar::property_inverted() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "inverted");
 }

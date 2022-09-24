@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Gtk::ListBase* wrap(GtkListBase* object, bool take_copy)
+auto wrap(GtkListBase* object, bool take_copy) -> Gtk::ListBase*
 {
   return dynamic_cast<Gtk::ListBase *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -46,7 +46,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ListBase_Class::init()
+auto ListBase_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -79,7 +79,7 @@ void ListBase_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* ListBase_Class::wrap_new(GObject* o)
+auto ListBase_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new ListBase((GtkListBase*)(o)));
 
@@ -107,7 +107,7 @@ ListBase::ListBase(ListBase&& src) noexcept
   , Scrollable(std::move(src))
 {}
 
-ListBase& ListBase::operator=(ListBase&& src) noexcept
+auto ListBase::operator=(ListBase&& src) noexcept -> ListBase&
 {
   Gtk::Widget::operator=(std::move(src));
   Orientable::operator=(std::move(src));
@@ -122,13 +122,13 @@ ListBase::~ListBase() noexcept
 
 ListBase::CppClassType ListBase::listbase_class_; // initialize static member
 
-GType ListBase::get_type()
+auto ListBase::get_type() -> GType
 {
   return listbase_class_.init().get_type();
 }
 
 
-GType ListBase::get_base_type()
+auto ListBase::get_base_type() -> GType
 {
   return gtk_list_base_get_type();
 }

@@ -85,7 +85,7 @@ public:
 
   // noncopyable
   TreeSelection(const TreeSelection&) = delete;
-  TreeSelection& operator=(const TreeSelection&) = delete;
+  auto operator=(const TreeSelection&) -> TreeSelection& = delete;
 
 private:  friend class TreeSelection_Class;
   static CppClassType treeselection_class_;
@@ -99,28 +99,28 @@ protected:
 public:
 
   TreeSelection(TreeSelection&& src) noexcept;
-  TreeSelection& operator=(TreeSelection&& src) noexcept;
+  auto operator=(TreeSelection&& src) noexcept -> TreeSelection&;
 
   ~TreeSelection() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkTreeSelection*       gobj()       { return reinterpret_cast<GtkTreeSelection*>(gobject_); }
+  auto       gobj() -> GtkTreeSelection*       { return reinterpret_cast<GtkTreeSelection*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkTreeSelection* gobj() const { return reinterpret_cast<GtkTreeSelection*>(gobject_); }
+  auto gobj() const -> const GtkTreeSelection* { return reinterpret_cast<GtkTreeSelection*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkTreeSelection* gobj_copy();
+  auto gobj_copy() -> GtkTreeSelection*;
 
 private:
 
@@ -140,7 +140,7 @@ public:
    *
    * @return The current selection mode.
    */
-  SelectionMode get_mode() const;
+  auto get_mode() const -> SelectionMode;
 
   /** For instance,
    * bool on_select_function(const Glib::RefPtr<TreeModel>& model, const TreeModel::Path& path, bool path_currently_selected);
@@ -167,19 +167,19 @@ public:
    *
    * @return A `Gtk::TreeView`.
    */
-  TreeView* get_tree_view();
+  auto get_tree_view() -> TreeView*;
 
   /** Returns the tree view associated with @a selection.
    *
    * @return A `Gtk::TreeView`.
    */
-  const TreeView* get_tree_view() const;
+  auto get_tree_view() const -> const TreeView*;
 
   /** Shortcut for get_tree_view()->get_model().
    * @return The TreeModel associated with this TreeSelection.
    */
-  Glib::RefPtr<TreeModel> get_model(); // convenience function, not in GTK+
-  Glib::RefPtr<const TreeModel> get_model() const; // convenience function, not in GTK+
+  auto get_model() -> Glib::RefPtr<TreeModel>; // convenience function, not in GTK+
+  auto get_model() const -> Glib::RefPtr<const TreeModel>; // convenience function, not in GTK+
 
   /** Get the currently selected row.
    * @return The currently selected row. Or an invalid iterator, if no row is selected.
@@ -187,7 +187,7 @@ public:
    * This method won't work if the selection mode is <tt>Gtk::SelectionMode::MULTIPLE</tt>.
    * Use get_selected_rows() for multiple selections.
    */
-  TreeModel::iterator get_selected();
+  auto get_selected() -> TreeModel::iterator;
 
   /** Get the currently selected row.
    * @return The currently selected row. Or an invalid iterator, if no row is selected.
@@ -197,7 +197,7 @@ public:
    *
    * @newin{3,90}
    */
-  TreeModel::const_iterator get_selected() const;
+  auto get_selected() const -> TreeModel::const_iterator;
 
   /** Get the currently selected row.
    * @param[out] model The current TreeModel.
@@ -206,7 +206,7 @@ public:
    * This method won't work if the selection mode is <tt>Gtk::SelectionMode::MULTIPLE</tt>.
    * Use get_selected_rows() for multiple selections.
    */
-  TreeModel::iterator get_selected(Glib::RefPtr<TreeModel>& model);
+  auto get_selected(Glib::RefPtr<TreeModel>& model) -> TreeModel::iterator;
 
   /** Get the currently selected row.
    * @param[out] model The current TreeModel.
@@ -217,7 +217,7 @@ public:
    *
    * @newin{3,90}
    */
-  TreeModel::const_iterator get_selected(Glib::RefPtr<const TreeModel>& model) const;
+  auto get_selected(Glib::RefPtr<const TreeModel>& model) const -> TreeModel::const_iterator;
 
   /** Creates a vector of paths of all selected rows.
    * Additionally, if you are planning on modifying the model after calling this function,
@@ -225,7 +225,7 @@ public:
    *
    * @returns A vector containing a Gtk::TreeModel::Path for each selected row.
    */
-  std::vector<TreeModel::Path> get_selected_rows() const;
+  auto get_selected_rows() const -> std::vector<TreeModel::Path>;
 
 
   /** Creates a list of paths of all selected rows.
@@ -235,14 +235,14 @@ public:
    * @param[out] model The current TreeModel.
    * @returns A vector containing a Gtk::TreeModel::Path for each selected row.
    */
-  std::vector<TreeModel::Path> get_selected_rows(Glib::RefPtr<TreeModel>& model);
+  auto get_selected_rows(Glib::RefPtr<TreeModel>& model) -> std::vector<TreeModel::Path>;
 
 
   /** Returns the number of rows that have been selected in @a tree.
    *
    * @return The number of rows selected.
    */
-  int count_selected_rows() const;
+  auto count_selected_rows() const -> int;
 
   /** For example,
    * void on_foreach(const Gtk::TreeModel::const_iterator& iter);
@@ -342,14 +342,14 @@ public:
    * @param path A `Gtk::TreePath` to check selection on.
    * @return <tt>true</tt> if @a path is selected.
    */
-  bool is_selected(const TreeModel::Path& path) const;
+  auto is_selected(const TreeModel::Path& path) const -> bool;
 
   /** Returns <tt>true</tt> if the row at @a iter is currently selected.
    *
    * @param iter A valid `Gtk::TreeIter`.
    * @return <tt>true</tt>, if @a iter is selected.
    */
-  bool is_selected(const TreeModel::const_iterator& iter) const;
+  auto is_selected(const TreeModel::const_iterator& iter) const -> bool;
 
 
   /** Selects all the nodes. @a selection must be set to Gtk::SelectionMode::MULTIPLE
@@ -369,7 +369,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< SelectionMode > property_mode() ;
+  auto property_mode() -> Glib::PropertyProxy< SelectionMode > ;
 
 /** Selection mode.
    * See Gtk::TreeSelection::set_mode() for more information on this property.
@@ -379,7 +379,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< SelectionMode > property_mode() const;
+  auto property_mode() const -> Glib::PropertyProxy_ReadOnly< SelectionMode >;
 
 
   // no_default_handler because GtkTreeSelectionClass is private.
@@ -396,7 +396,7 @@ public:
    * has happened.
    */
 
-  Glib::SignalProxy<void()> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void()>;
 
 
 public:
@@ -426,7 +426,7 @@ namespace Glib
    * @relates Gtk::TreeSelection
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::TreeSelection> wrap(GtkTreeSelection* object, bool take_copy = false);
+  auto wrap(GtkTreeSelection* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeSelection>;
 }
 
 

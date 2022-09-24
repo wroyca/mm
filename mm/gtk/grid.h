@@ -73,11 +73,11 @@ class GTKMM_API Grid
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Grid(Grid&& src) noexcept;
-  Grid& operator=(Grid&& src) noexcept;
+  auto operator=(Grid&& src) noexcept -> Grid&;
 
   // noncopyable
   Grid(const Grid&) = delete;
-  Grid& operator=(const Grid&) = delete;
+  auto operator=(const Grid&) -> Grid& = delete;
 
   ~Grid() noexcept override;
 
@@ -97,19 +97,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkGrid*       gobj()       { return reinterpret_cast<GtkGrid*>(gobject_); }
+  auto       gobj() -> GtkGrid*       { return reinterpret_cast<GtkGrid*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkGrid* gobj() const { return reinterpret_cast<GtkGrid*>(gobject_); }
+  auto gobj() const -> const GtkGrid* { return reinterpret_cast<GtkGrid*>(gobject_); }
 
 private:
 
@@ -163,7 +163,7 @@ public:
    * @param row The top edge of the cell.
    * @return The child at the given position.
    */
-  Widget* get_child_at(int column, int row);
+  auto get_child_at(int column, int row) -> Widget*;
 
   /** Gets the child of @a grid whose area covers the grid
    * cell at @a column, @a row.
@@ -172,7 +172,7 @@ public:
    * @param row The top edge of the cell.
    * @return The child at the given position.
    */
-  const Widget* get_child_at(int column, int row) const;
+  auto get_child_at(int column, int row) const -> const Widget*;
 
   /** Removes a child from @a grid.
    *
@@ -249,7 +249,7 @@ public:
    *
    * @return Whether all rows of @a grid have the same height.
    */
-  bool get_row_homogeneous() const;
+  auto get_row_homogeneous() const -> bool;
 
   /** Sets the amount of space between rows of @a grid.
    *
@@ -261,7 +261,7 @@ public:
    *
    * @return The row spacing of @a grid.
    */
-  guint get_row_spacing() const;
+  auto get_row_spacing() const -> guint;
 
   /** Sets whether all columns of @a grid will have the same width.
    *
@@ -273,7 +273,7 @@ public:
    *
    * @return Whether all columns of @a grid have the same width.
    */
-  bool get_column_homogeneous() const;
+  auto get_column_homogeneous() const -> bool;
 
   /** Sets the amount of space between columns of @a grid.
    *
@@ -285,7 +285,7 @@ public:
    *
    * @return The column spacing of @a grid.
    */
-  guint get_column_spacing() const;
+  auto get_column_spacing() const -> guint;
 
   /** Sets how the baseline should be positioned on @a row of the
    * grid, in case that row is assigned more space than is requested.
@@ -304,7 +304,7 @@ public:
    * @param row A row index.
    * @return The baseline position of @a row.
    */
-  BaselinePosition get_row_baseline_position(int row) const;
+  auto get_row_baseline_position(int row) const -> BaselinePosition;
 
   /** Sets which row defines the global baseline for the entire grid.
    *
@@ -320,7 +320,7 @@ public:
    *
    * @return The row index defining the global baseline.
    */
-  int get_baseline_row() const;
+  auto get_baseline_row() const -> int;
 
   /** Queries the attach points and spans of @a child inside the given `Gtk::Grid`.
    *
@@ -339,7 +339,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_row_spacing() ;
+  auto property_row_spacing() -> Glib::PropertyProxy< guint > ;
 
 /** The amount of space between two consecutive rows.
    *
@@ -348,7 +348,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_row_spacing() const;
+  auto property_row_spacing() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** The amount of space between two consecutive columns.
    *
@@ -357,7 +357,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_column_spacing() ;
+  auto property_column_spacing() -> Glib::PropertyProxy< guint > ;
 
 /** The amount of space between two consecutive columns.
    *
@@ -366,7 +366,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_column_spacing() const;
+  auto property_column_spacing() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** If <tt>true</tt>, the rows are all the same height.
    *
@@ -375,7 +375,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_row_homogeneous() ;
+  auto property_row_homogeneous() -> Glib::PropertyProxy< bool > ;
 
 /** If <tt>true</tt>, the rows are all the same height.
    *
@@ -384,7 +384,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_row_homogeneous() const;
+  auto property_row_homogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** If <tt>true</tt>, the columns are all the same width.
    *
@@ -393,7 +393,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_column_homogeneous() ;
+  auto property_column_homogeneous() -> Glib::PropertyProxy< bool > ;
 
 /** If <tt>true</tt>, the columns are all the same width.
    *
@@ -402,7 +402,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_column_homogeneous() const;
+  auto property_column_homogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The row to align to the baseline when valign is Gtk::Align::BASELINE.
    *
@@ -411,7 +411,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_baseline_row() ;
+  auto property_baseline_row() -> Glib::PropertyProxy< int > ;
 
 /** The row to align to the baseline when valign is Gtk::Align::BASELINE.
    *
@@ -420,7 +420,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_baseline_row() const;
+  auto property_baseline_row() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
 public:
@@ -450,7 +450,7 @@ namespace Glib
    * @relates Gtk::Grid
    */
   GTKMM_API
-  Gtk::Grid* wrap(GtkGrid* object, bool take_copy = false);
+  auto wrap(GtkGrid* object, bool take_copy = false) -> Gtk::Grid*;
 } //namespace Glib
 
 

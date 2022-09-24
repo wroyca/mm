@@ -45,7 +45,7 @@ Gio::Error::Error(GError* gobject)
   Glib::Error (gobject)
 {}
 
-Gio::Error::Code Gio::Error::code() const
+auto Gio::Error::code() const -> Gio::Error::Code
 {
   return static_cast<Code>(Glib::Error::code());
 }
@@ -66,7 +66,7 @@ Gio::ResolverError::ResolverError(GError* gobject)
   Glib::Error (gobject)
 {}
 
-Gio::ResolverError::Code Gio::ResolverError::code() const
+auto Gio::ResolverError::code() const -> Gio::ResolverError::Code
 {
   return static_cast<Code>(Glib::Error::code());
 }
@@ -87,7 +87,7 @@ Gio::TlsError::TlsError(GError* gobject)
   Glib::Error (gobject)
 {}
 
-Gio::TlsError::Code Gio::TlsError::code() const
+auto Gio::TlsError::code() const -> Gio::TlsError::Code
 {
   return static_cast<Code>(Glib::Error::code());
 }

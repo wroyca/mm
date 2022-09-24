@@ -35,7 +35,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::TextTag> wrap(GtkTextTag* object, bool take_copy)
+auto wrap(GtkTextTag* object, bool take_copy) -> Glib::RefPtr<Gtk::TextTag>
 {
   return Glib::make_refptr_for_instance<Gtk::TextTag>( dynamic_cast<Gtk::TextTag*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -50,7 +50,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& TextTag_Class::init()
+auto TextTag_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -81,7 +81,7 @@ void TextTag_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* TextTag_Class::wrap_new(GObject* object)
+auto TextTag_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new TextTag((GtkTextTag*)object);
 }
@@ -89,7 +89,7 @@ Glib::ObjectBase* TextTag_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkTextTag* TextTag::gobj_copy()
+auto TextTag::gobj_copy() -> GtkTextTag*
 {
   reference();
   return gobj();
@@ -112,7 +112,7 @@ TextTag::TextTag(TextTag&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-TextTag& TextTag::operator=(TextTag&& src) noexcept
+auto TextTag::operator=(TextTag&& src) noexcept -> TextTag&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -125,13 +125,13 @@ TextTag::~TextTag() noexcept
 
 TextTag::CppClassType TextTag::texttag_class_; // initialize static member
 
-GType TextTag::get_type()
+auto TextTag::get_type() -> GType
 {
   return texttag_class_.init().get_type();
 }
 
 
-GType TextTag::get_base_type()
+auto TextTag::get_base_type() -> GType
 {
   return gtk_text_tag_get_type();
 }
@@ -157,17 +157,17 @@ TextTag::TextTag(const Glib::ustring& name)
 
 }
 
-Glib::RefPtr<TextTag> TextTag::create()
+auto TextTag::create() -> Glib::RefPtr<TextTag>
 {
   return Glib::make_refptr_for_instance<TextTag>( new TextTag() );
 }
 
-Glib::RefPtr<TextTag> TextTag::create(const Glib::ustring& name)
+auto TextTag::create(const Glib::ustring& name) -> Glib::RefPtr<TextTag>
 {
   return Glib::make_refptr_for_instance<TextTag>( new TextTag(name) );
 }
 
-int TextTag::get_priority() const
+auto TextTag::get_priority() const -> int
 {
   return gtk_text_tag_get_priority(const_cast<GtkTextTag*>(gobj()));
 }
@@ -183,17 +183,17 @@ void TextTag::tag_changed(bool size_changed)
 }
 
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > TextTag::property_name() const
+auto TextTag::property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name");
 }
 
-Glib::PropertyProxy_WriteOnly< Glib::ustring > TextTag::property_background()
+auto TextTag::property_background() -> Glib::PropertyProxy_WriteOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_WriteOnly< Glib::ustring >(this, "background");
 }
 
-Glib::PropertyProxy_WriteOnly< Glib::ustring > TextTag::property_foreground()
+auto TextTag::property_foreground() -> Glib::PropertyProxy_WriteOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_WriteOnly< Glib::ustring >(this, "foreground");
 }
@@ -202,12 +202,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
   "Type Gdk::RGBA cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Gdk::RGBA > TextTag::property_background_rgba()
+auto TextTag::property_background_rgba() -> Glib::PropertyProxy< Gdk::RGBA >
 {
   return Glib::PropertyProxy< Gdk::RGBA >(this, "background-rgba");
 }
 
-Glib::PropertyProxy_ReadOnly< Gdk::RGBA > TextTag::property_background_rgba() const
+auto TextTag::property_background_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >
 {
   return Glib::PropertyProxy_ReadOnly< Gdk::RGBA >(this, "background-rgba");
 }
@@ -216,22 +216,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
   "Type Gdk::RGBA cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Gdk::RGBA > TextTag::property_foreground_rgba()
+auto TextTag::property_foreground_rgba() -> Glib::PropertyProxy< Gdk::RGBA >
 {
   return Glib::PropertyProxy< Gdk::RGBA >(this, "foreground-rgba");
 }
 
-Glib::PropertyProxy_ReadOnly< Gdk::RGBA > TextTag::property_foreground_rgba() const
+auto TextTag::property_foreground_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >
 {
   return Glib::PropertyProxy_ReadOnly< Gdk::RGBA >(this, "foreground-rgba");
 }
 
-Glib::PropertyProxy< Glib::ustring > TextTag::property_font()
+auto TextTag::property_font() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "font");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > TextTag::property_font() const
+auto TextTag::property_font() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "font");
 }
@@ -240,22 +240,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::FontDescripti
   "Type Pango::FontDescription cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::FontDescription > TextTag::property_font_desc()
+auto TextTag::property_font_desc() -> Glib::PropertyProxy< Pango::FontDescription >
 {
   return Glib::PropertyProxy< Pango::FontDescription >(this, "font-desc");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::FontDescription > TextTag::property_font_desc() const
+auto TextTag::property_font_desc() const -> Glib::PropertyProxy_ReadOnly< Pango::FontDescription >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::FontDescription >(this, "font-desc");
 }
 
-Glib::PropertyProxy< Glib::ustring > TextTag::property_family()
+auto TextTag::property_family() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "family");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > TextTag::property_family() const
+auto TextTag::property_family() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "family");
 }
@@ -264,12 +264,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Style>::value
   "Type Pango::Style cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::Style > TextTag::property_style()
+auto TextTag::property_style() -> Glib::PropertyProxy< Pango::Style >
 {
   return Glib::PropertyProxy< Pango::Style >(this, "style");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::Style > TextTag::property_style() const
+auto TextTag::property_style() const -> Glib::PropertyProxy_ReadOnly< Pango::Style >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::Style >(this, "style");
 }
@@ -278,22 +278,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Variant>::val
   "Type Pango::Variant cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::Variant > TextTag::property_variant()
+auto TextTag::property_variant() -> Glib::PropertyProxy< Pango::Variant >
 {
   return Glib::PropertyProxy< Pango::Variant >(this, "variant");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::Variant > TextTag::property_variant() const
+auto TextTag::property_variant() const -> Glib::PropertyProxy_ReadOnly< Pango::Variant >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::Variant >(this, "variant");
 }
 
-Glib::PropertyProxy< int > TextTag::property_weight()
+auto TextTag::property_weight() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "weight");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextTag::property_weight() const
+auto TextTag::property_weight() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "weight");
 }
@@ -302,82 +302,82 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Stretch>::val
   "Type Pango::Stretch cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::Stretch > TextTag::property_stretch()
+auto TextTag::property_stretch() -> Glib::PropertyProxy< Pango::Stretch >
 {
   return Glib::PropertyProxy< Pango::Stretch >(this, "stretch");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::Stretch > TextTag::property_stretch() const
+auto TextTag::property_stretch() const -> Glib::PropertyProxy_ReadOnly< Pango::Stretch >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::Stretch >(this, "stretch");
 }
 
-Glib::PropertyProxy< int > TextTag::property_size()
+auto TextTag::property_size() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "size");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextTag::property_size() const
+auto TextTag::property_size() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "size");
 }
 
-Glib::PropertyProxy< double > TextTag::property_size_points()
+auto TextTag::property_size_points() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "size-points");
 }
 
-Glib::PropertyProxy_ReadOnly< double > TextTag::property_size_points() const
+auto TextTag::property_size_points() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "size-points");
 }
 
-Glib::PropertyProxy< double > TextTag::property_scale()
+auto TextTag::property_scale() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "scale");
 }
 
-Glib::PropertyProxy_ReadOnly< double > TextTag::property_scale() const
+auto TextTag::property_scale() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "scale");
 }
 
-Glib::PropertyProxy< int > TextTag::property_pixels_above_lines()
+auto TextTag::property_pixels_above_lines() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "pixels-above-lines");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextTag::property_pixels_above_lines() const
+auto TextTag::property_pixels_above_lines() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "pixels-above-lines");
 }
 
-Glib::PropertyProxy< int > TextTag::property_pixels_below_lines()
+auto TextTag::property_pixels_below_lines() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "pixels-below-lines");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextTag::property_pixels_below_lines() const
+auto TextTag::property_pixels_below_lines() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "pixels-below-lines");
 }
 
-Glib::PropertyProxy< int > TextTag::property_pixels_inside_wrap()
+auto TextTag::property_pixels_inside_wrap() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "pixels-inside-wrap");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextTag::property_pixels_inside_wrap() const
+auto TextTag::property_pixels_inside_wrap() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "pixels-inside-wrap");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_editable()
+auto TextTag::property_editable() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "editable");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_editable() const
+auto TextTag::property_editable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "editable");
 }
@@ -386,12 +386,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<WrapMode>::value,
   "Type WrapMode cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< WrapMode > TextTag::property_wrap_mode()
+auto TextTag::property_wrap_mode() -> Glib::PropertyProxy< WrapMode >
 {
   return Glib::PropertyProxy< WrapMode >(this, "wrap-mode");
 }
 
-Glib::PropertyProxy_ReadOnly< WrapMode > TextTag::property_wrap_mode() const
+auto TextTag::property_wrap_mode() const -> Glib::PropertyProxy_ReadOnly< WrapMode >
 {
   return Glib::PropertyProxy_ReadOnly< WrapMode >(this, "wrap-mode");
 }
@@ -400,12 +400,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Justification>::valu
   "Type Justification cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Justification > TextTag::property_justification()
+auto TextTag::property_justification() -> Glib::PropertyProxy< Justification >
 {
   return Glib::PropertyProxy< Justification >(this, "justification");
 }
 
-Glib::PropertyProxy_ReadOnly< Justification > TextTag::property_justification() const
+auto TextTag::property_justification() const -> Glib::PropertyProxy_ReadOnly< Justification >
 {
   return Glib::PropertyProxy_ReadOnly< Justification >(this, "justification");
 }
@@ -414,52 +414,52 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<TextDirection>::valu
   "Type TextDirection cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< TextDirection > TextTag::property_direction()
+auto TextTag::property_direction() -> Glib::PropertyProxy< TextDirection >
 {
   return Glib::PropertyProxy< TextDirection >(this, "direction");
 }
 
-Glib::PropertyProxy_ReadOnly< TextDirection > TextTag::property_direction() const
+auto TextTag::property_direction() const -> Glib::PropertyProxy_ReadOnly< TextDirection >
 {
   return Glib::PropertyProxy_ReadOnly< TextDirection >(this, "direction");
 }
 
-Glib::PropertyProxy< int > TextTag::property_left_margin()
+auto TextTag::property_left_margin() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "left-margin");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextTag::property_left_margin() const
+auto TextTag::property_left_margin() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "left-margin");
 }
 
-Glib::PropertyProxy< int > TextTag::property_indent()
+auto TextTag::property_indent() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "indent");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextTag::property_indent() const
+auto TextTag::property_indent() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "indent");
 }
 
-Glib::PropertyProxy< float > TextTag::property_line_height()
+auto TextTag::property_line_height() -> Glib::PropertyProxy< float >
 {
   return Glib::PropertyProxy< float >(this, "line-height");
 }
 
-Glib::PropertyProxy_ReadOnly< float > TextTag::property_line_height() const
+auto TextTag::property_line_height() const -> Glib::PropertyProxy_ReadOnly< float >
 {
   return Glib::PropertyProxy_ReadOnly< float >(this, "line-height");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_strikethrough()
+auto TextTag::property_strikethrough() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "strikethrough");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_strikethrough() const
+auto TextTag::property_strikethrough() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "strikethrough");
 }
@@ -468,22 +468,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
   "Type Gdk::RGBA cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Gdk::RGBA > TextTag::property_strikethrough_rgba()
+auto TextTag::property_strikethrough_rgba() -> Glib::PropertyProxy< Gdk::RGBA >
 {
   return Glib::PropertyProxy< Gdk::RGBA >(this, "strikethrough-rgba");
 }
 
-Glib::PropertyProxy_ReadOnly< Gdk::RGBA > TextTag::property_strikethrough_rgba() const
+auto TextTag::property_strikethrough_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >
 {
   return Glib::PropertyProxy_ReadOnly< Gdk::RGBA >(this, "strikethrough-rgba");
 }
 
-Glib::PropertyProxy< int > TextTag::property_right_margin()
+auto TextTag::property_right_margin() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "right-margin");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextTag::property_right_margin() const
+auto TextTag::property_right_margin() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "right-margin");
 }
@@ -492,12 +492,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Underline>::v
   "Type Pango::Underline cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::Underline > TextTag::property_underline()
+auto TextTag::property_underline() -> Glib::PropertyProxy< Pango::Underline >
 {
   return Glib::PropertyProxy< Pango::Underline >(this, "underline");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::Underline > TextTag::property_underline() const
+auto TextTag::property_underline() const -> Glib::PropertyProxy_ReadOnly< Pango::Underline >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::Underline >(this, "underline");
 }
@@ -506,12 +506,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
   "Type Gdk::RGBA cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Gdk::RGBA > TextTag::property_underline_rgba()
+auto TextTag::property_underline_rgba() -> Glib::PropertyProxy< Gdk::RGBA >
 {
   return Glib::PropertyProxy< Gdk::RGBA >(this, "underline-rgba");
 }
 
-Glib::PropertyProxy_ReadOnly< Gdk::RGBA > TextTag::property_underline_rgba() const
+auto TextTag::property_underline_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >
 {
   return Glib::PropertyProxy_ReadOnly< Gdk::RGBA >(this, "underline-rgba");
 }
@@ -520,12 +520,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Overline>::va
   "Type Pango::Overline cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::Overline > TextTag::property_overline()
+auto TextTag::property_overline() -> Glib::PropertyProxy< Pango::Overline >
 {
   return Glib::PropertyProxy< Pango::Overline >(this, "overline");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::Overline > TextTag::property_overline() const
+auto TextTag::property_overline() const -> Glib::PropertyProxy_ReadOnly< Pango::Overline >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::Overline >(this, "overline");
 }
@@ -534,42 +534,42 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
   "Type Gdk::RGBA cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Gdk::RGBA > TextTag::property_overline_rgba()
+auto TextTag::property_overline_rgba() -> Glib::PropertyProxy< Gdk::RGBA >
 {
   return Glib::PropertyProxy< Gdk::RGBA >(this, "overline-rgba");
 }
 
-Glib::PropertyProxy_ReadOnly< Gdk::RGBA > TextTag::property_overline_rgba() const
+auto TextTag::property_overline_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >
 {
   return Glib::PropertyProxy_ReadOnly< Gdk::RGBA >(this, "overline-rgba");
 }
 
-Glib::PropertyProxy< int > TextTag::property_rise()
+auto TextTag::property_rise() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "rise");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextTag::property_rise() const
+auto TextTag::property_rise() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "rise");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_background_full_height()
+auto TextTag::property_background_full_height() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "background-full-height");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_background_full_height() const
+auto TextTag::property_background_full_height() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "background-full-height");
 }
 
-Glib::PropertyProxy< Glib::ustring > TextTag::property_language()
+auto TextTag::property_language() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "language");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > TextTag::property_language() const
+auto TextTag::property_language() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "language");
 }
@@ -578,27 +578,27 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::TabArray>::va
   "Type Pango::TabArray cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::TabArray > TextTag::property_tabs()
+auto TextTag::property_tabs() -> Glib::PropertyProxy< Pango::TabArray >
 {
   return Glib::PropertyProxy< Pango::TabArray >(this, "tabs");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::TabArray > TextTag::property_tabs() const
+auto TextTag::property_tabs() const -> Glib::PropertyProxy_ReadOnly< Pango::TabArray >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::TabArray >(this, "tabs");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_invisible()
+auto TextTag::property_invisible() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "invisible");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_invisible() const
+auto TextTag::property_invisible() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "invisible");
 }
 
-Glib::PropertyProxy_WriteOnly< Glib::ustring > TextTag::property_paragraph_background()
+auto TextTag::property_paragraph_background() -> Glib::PropertyProxy_WriteOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_WriteOnly< Glib::ustring >(this, "paragraph-background");
 }
@@ -607,32 +607,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
   "Type Gdk::RGBA cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Gdk::RGBA > TextTag::property_paragraph_background_rgba()
+auto TextTag::property_paragraph_background_rgba() -> Glib::PropertyProxy< Gdk::RGBA >
 {
   return Glib::PropertyProxy< Gdk::RGBA >(this, "paragraph-background-rgba");
 }
 
-Glib::PropertyProxy_ReadOnly< Gdk::RGBA > TextTag::property_paragraph_background_rgba() const
+auto TextTag::property_paragraph_background_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >
 {
   return Glib::PropertyProxy_ReadOnly< Gdk::RGBA >(this, "paragraph-background-rgba");
 }
 
-Glib::PropertyProxy< Glib::ustring > TextTag::property_font_features()
+auto TextTag::property_font_features() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "font-features");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > TextTag::property_font_features() const
+auto TextTag::property_font_features() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "font-features");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_allow_breaks()
+auto TextTag::property_allow_breaks() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "allow-breaks");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_allow_breaks() const
+auto TextTag::property_allow_breaks() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "allow-breaks");
 }
@@ -641,22 +641,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::ShowFlags>::v
   "Type Pango::ShowFlags cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::ShowFlags > TextTag::property_show_spaces()
+auto TextTag::property_show_spaces() -> Glib::PropertyProxy< Pango::ShowFlags >
 {
   return Glib::PropertyProxy< Pango::ShowFlags >(this, "show-spaces");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::ShowFlags > TextTag::property_show_spaces() const
+auto TextTag::property_show_spaces() const -> Glib::PropertyProxy_ReadOnly< Pango::ShowFlags >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::ShowFlags >(this, "show-spaces");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_insert_hyphens()
+auto TextTag::property_insert_hyphens() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "insert-hyphens");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_insert_hyphens() const
+auto TextTag::property_insert_hyphens() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "insert-hyphens");
 }
@@ -665,462 +665,462 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::TextTransform
   "Type Pango::TextTransform cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::TextTransform > TextTag::property_text_transform()
+auto TextTag::property_text_transform() -> Glib::PropertyProxy< Pango::TextTransform >
 {
   return Glib::PropertyProxy< Pango::TextTransform >(this, "text-transform");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::TextTransform > TextTag::property_text_transform() const
+auto TextTag::property_text_transform() const -> Glib::PropertyProxy_ReadOnly< Pango::TextTransform >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::TextTransform >(this, "text-transform");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_word()
+auto TextTag::property_word() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "word");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_word() const
+auto TextTag::property_word() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "word");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_sentence()
+auto TextTag::property_sentence() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "sentence");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_sentence() const
+auto TextTag::property_sentence() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "sentence");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_accumulative_margin()
+auto TextTag::property_accumulative_margin() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "accumulative-margin");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_accumulative_margin() const
+auto TextTag::property_accumulative_margin() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "accumulative-margin");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_background_set()
+auto TextTag::property_background_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "background-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_background_set() const
+auto TextTag::property_background_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "background-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_foreground_set()
+auto TextTag::property_foreground_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "foreground-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_foreground_set() const
+auto TextTag::property_foreground_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "foreground-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_family_set()
+auto TextTag::property_family_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "family-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_family_set() const
+auto TextTag::property_family_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "family-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_style_set()
+auto TextTag::property_style_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "style-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_style_set() const
+auto TextTag::property_style_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "style-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_variant_set()
+auto TextTag::property_variant_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "variant-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_variant_set() const
+auto TextTag::property_variant_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "variant-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_weight_set()
+auto TextTag::property_weight_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "weight-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_weight_set() const
+auto TextTag::property_weight_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "weight-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_stretch_set()
+auto TextTag::property_stretch_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "stretch-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_stretch_set() const
+auto TextTag::property_stretch_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "stretch-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_size_set()
+auto TextTag::property_size_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "size-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_size_set() const
+auto TextTag::property_size_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "size-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_scale_set()
+auto TextTag::property_scale_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "scale-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_scale_set() const
+auto TextTag::property_scale_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "scale-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_pixels_above_lines_set()
+auto TextTag::property_pixels_above_lines_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "pixels-above-lines-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_pixels_above_lines_set() const
+auto TextTag::property_pixels_above_lines_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "pixels-above-lines-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_pixels_below_lines_set()
+auto TextTag::property_pixels_below_lines_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "pixels-below-lines-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_pixels_below_lines_set() const
+auto TextTag::property_pixels_below_lines_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "pixels-below-lines-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_pixels_inside_wrap_set()
+auto TextTag::property_pixels_inside_wrap_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "pixels-inside-wrap-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_pixels_inside_wrap_set() const
+auto TextTag::property_pixels_inside_wrap_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "pixels-inside-wrap-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_editable_set()
+auto TextTag::property_editable_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "editable-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_editable_set() const
+auto TextTag::property_editable_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "editable-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_wrap_mode_set()
+auto TextTag::property_wrap_mode_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "wrap-mode-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_wrap_mode_set() const
+auto TextTag::property_wrap_mode_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "wrap-mode-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_justification_set()
+auto TextTag::property_justification_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "justification-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_justification_set() const
+auto TextTag::property_justification_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "justification-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_left_margin_set()
+auto TextTag::property_left_margin_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "left-margin-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_left_margin_set() const
+auto TextTag::property_left_margin_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "left-margin-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_indent_set()
+auto TextTag::property_indent_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "indent-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_indent_set() const
+auto TextTag::property_indent_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "indent-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_line_height_set()
+auto TextTag::property_line_height_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "line-height-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_line_height_set() const
+auto TextTag::property_line_height_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "line-height-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_strikethrough_set()
+auto TextTag::property_strikethrough_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "strikethrough-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_strikethrough_set() const
+auto TextTag::property_strikethrough_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "strikethrough-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_strikethrough_rgba_set()
+auto TextTag::property_strikethrough_rgba_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "strikethrough-rgba-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_strikethrough_rgba_set() const
+auto TextTag::property_strikethrough_rgba_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "strikethrough-rgba-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_right_margin_set()
+auto TextTag::property_right_margin_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "right-margin-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_right_margin_set() const
+auto TextTag::property_right_margin_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "right-margin-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_underline_set()
+auto TextTag::property_underline_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "underline-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_underline_set() const
+auto TextTag::property_underline_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "underline-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_underline_rgba_set()
+auto TextTag::property_underline_rgba_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "underline-rgba-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_underline_rgba_set() const
+auto TextTag::property_underline_rgba_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "underline-rgba-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_overline_set()
+auto TextTag::property_overline_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "overline-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_overline_set() const
+auto TextTag::property_overline_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "overline-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_overline_rgba_set()
+auto TextTag::property_overline_rgba_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "overline-rgba-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_overline_rgba_set() const
+auto TextTag::property_overline_rgba_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "overline-rgba-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_rise_set()
+auto TextTag::property_rise_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "rise-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_rise_set() const
+auto TextTag::property_rise_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "rise-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_background_full_height_set()
+auto TextTag::property_background_full_height_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "background-full-height-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_background_full_height_set() const
+auto TextTag::property_background_full_height_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "background-full-height-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_language_set()
+auto TextTag::property_language_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "language-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_language_set() const
+auto TextTag::property_language_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "language-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_tabs_set()
+auto TextTag::property_tabs_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "tabs-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_tabs_set() const
+auto TextTag::property_tabs_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "tabs-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_invisible_set()
+auto TextTag::property_invisible_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "invisible-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_invisible_set() const
+auto TextTag::property_invisible_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "invisible-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_paragraph_background_set()
+auto TextTag::property_paragraph_background_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "paragraph-background-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_paragraph_background_set() const
+auto TextTag::property_paragraph_background_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "paragraph-background-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_fallback()
+auto TextTag::property_fallback() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "fallback");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_fallback() const
+auto TextTag::property_fallback() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "fallback");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_fallback_set()
+auto TextTag::property_fallback_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "fallback-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_fallback_set() const
+auto TextTag::property_fallback_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "fallback-set");
 }
 
-Glib::PropertyProxy< int > TextTag::property_letter_spacing()
+auto TextTag::property_letter_spacing() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "letter-spacing");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextTag::property_letter_spacing() const
+auto TextTag::property_letter_spacing() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "letter-spacing");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_letter_spacing_set()
+auto TextTag::property_letter_spacing_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "letter-spacing-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_letter_spacing_set() const
+auto TextTag::property_letter_spacing_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "letter-spacing-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_font_features_set()
+auto TextTag::property_font_features_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "font-features-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_font_features_set() const
+auto TextTag::property_font_features_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "font-features-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_allow_breaks_set()
+auto TextTag::property_allow_breaks_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "allow-breaks-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_allow_breaks_set() const
+auto TextTag::property_allow_breaks_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "allow-breaks-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_show_spaces_set()
+auto TextTag::property_show_spaces_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "show-spaces-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_show_spaces_set() const
+auto TextTag::property_show_spaces_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "show-spaces-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_insert_hyphens_set()
+auto TextTag::property_insert_hyphens_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "insert-hyphens-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_insert_hyphens_set() const
+auto TextTag::property_insert_hyphens_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "insert-hyphens-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_text_transform_set()
+auto TextTag::property_text_transform_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "text-transform-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_text_transform_set() const
+auto TextTag::property_text_transform_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "text-transform-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_word_set()
+auto TextTag::property_word_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "word-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_word_set() const
+auto TextTag::property_word_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "word-set");
 }
 
-Glib::PropertyProxy< bool > TextTag::property_sentence_set()
+auto TextTag::property_sentence_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "sentence-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextTag::property_sentence_set() const
+auto TextTag::property_sentence_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "sentence-set");
 }

@@ -39,7 +39,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::SimpleActionGroup> wrap(GSimpleActionGroup* object, bool take_copy)
+auto wrap(GSimpleActionGroup* object, bool take_copy) -> Glib::RefPtr<Gio::SimpleActionGroup>
 {
   return Glib::make_refptr_for_instance<Gio::SimpleActionGroup>( dynamic_cast<Gio::SimpleActionGroup*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -54,7 +54,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& SimpleActionGroup_Class::init()
+auto SimpleActionGroup_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -87,7 +87,7 @@ void SimpleActionGroup_Class::class_init_function(void* g_class, void* class_dat
 }
 
 
-Glib::ObjectBase* SimpleActionGroup_Class::wrap_new(GObject* object)
+auto SimpleActionGroup_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new SimpleActionGroup((GSimpleActionGroup*)object);
 }
@@ -95,7 +95,7 @@ Glib::ObjectBase* SimpleActionGroup_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GSimpleActionGroup* SimpleActionGroup::gobj_copy()
+auto SimpleActionGroup::gobj_copy() -> GSimpleActionGroup*
 {
   reference();
   return gobj();
@@ -120,7 +120,7 @@ SimpleActionGroup::SimpleActionGroup(SimpleActionGroup&& src) noexcept
   , ActionMap(std::move(src))
 {}
 
-SimpleActionGroup& SimpleActionGroup::operator=(SimpleActionGroup&& src) noexcept
+auto SimpleActionGroup::operator=(SimpleActionGroup&& src) noexcept -> SimpleActionGroup&
 {
   Glib::Object::operator=(std::move(src));
   ActionGroup::operator=(std::move(src));
@@ -135,13 +135,13 @@ SimpleActionGroup::~SimpleActionGroup() noexcept
 
 SimpleActionGroup::CppClassType SimpleActionGroup::simpleactiongroup_class_; // initialize static member
 
-GType SimpleActionGroup::get_type()
+auto SimpleActionGroup::get_type() -> GType
 {
   return simpleactiongroup_class_.init().get_type();
 }
 
 
-GType SimpleActionGroup::get_base_type()
+auto SimpleActionGroup::get_base_type() -> GType
 {
   return g_simple_action_group_get_type();
 }
@@ -157,7 +157,7 @@ SimpleActionGroup::SimpleActionGroup()
 
 }
 
-Glib::RefPtr<SimpleActionGroup> SimpleActionGroup::create()
+auto SimpleActionGroup::create() -> Glib::RefPtr<SimpleActionGroup>
 {
   return Glib::make_refptr_for_instance<SimpleActionGroup>( new SimpleActionGroup() );
 }

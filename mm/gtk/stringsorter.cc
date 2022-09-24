@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::StringSorter> wrap(GtkStringSorter* object, bool take_copy)
+auto wrap(GtkStringSorter* object, bool take_copy) -> Glib::RefPtr<Gtk::StringSorter>
 {
   return Glib::make_refptr_for_instance<Gtk::StringSorter>( dynamic_cast<Gtk::StringSorter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& StringSorter_Class::init()
+auto StringSorter_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -73,7 +73,7 @@ void StringSorter_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* StringSorter_Class::wrap_new(GObject* object)
+auto StringSorter_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new StringSorter((GtkStringSorter*)object);
 }
@@ -81,7 +81,7 @@ Glib::ObjectBase* StringSorter_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkStringSorter* StringSorter::gobj_copy()
+auto StringSorter::gobj_copy() -> GtkStringSorter*
 {
   reference();
   return gobj();
@@ -104,7 +104,7 @@ StringSorter::StringSorter(StringSorter&& src) noexcept
 : Gtk::Sorter(std::move(src))
 {}
 
-StringSorter& StringSorter::operator=(StringSorter&& src) noexcept
+auto StringSorter::operator=(StringSorter&& src) noexcept -> StringSorter&
 {
   Gtk::Sorter::operator=(std::move(src));
   return *this;
@@ -117,13 +117,13 @@ StringSorter::~StringSorter() noexcept
 
 StringSorter::CppClassType StringSorter::stringsorter_class_; // initialize static member
 
-GType StringSorter::get_type()
+auto StringSorter::get_type() -> GType
 {
   return stringsorter_class_.init().get_type();
 }
 
 
-GType StringSorter::get_base_type()
+auto StringSorter::get_base_type() -> GType
 {
   return gtk_string_sorter_get_type();
 }
@@ -139,12 +139,12 @@ StringSorter::StringSorter(const Glib::RefPtr<Expression<Glib::ustring>>& expres
 
 }
 
-Glib::RefPtr<StringSorter> StringSorter::create(const Glib::RefPtr<Expression<Glib::ustring>>& expression)
+auto StringSorter::create(const Glib::RefPtr<Expression<Glib::ustring>>& expression) -> Glib::RefPtr<StringSorter>
 {
   return Glib::make_refptr_for_instance<StringSorter>( new StringSorter(expression) );
 }
 
-Glib::RefPtr<Expression<Glib::ustring>> StringSorter::get_expression()
+auto StringSorter::get_expression() -> Glib::RefPtr<Expression<Glib::ustring>>
 {
   auto retvalue = Glib::wrap<Glib::ustring>(gtk_string_sorter_get_expression(gobj()));
   if(retvalue)
@@ -152,7 +152,7 @@ Glib::RefPtr<Expression<Glib::ustring>> StringSorter::get_expression()
   return retvalue;
 }
 
-Glib::RefPtr<const Expression<Glib::ustring>> StringSorter::get_expression() const
+auto StringSorter::get_expression() const -> Glib::RefPtr<const Expression<Glib::ustring>>
 {
   auto retvalue = Glib::wrap<Glib::ustring>(gtk_string_sorter_get_expression(const_cast<GtkStringSorter*>(gobj())));
   if(retvalue)
@@ -165,7 +165,7 @@ void StringSorter::set_expression(const Glib::RefPtr<Expression<Glib::ustring>>&
   gtk_string_sorter_set_expression(gobj(), ((expression) ? (expression)->gobj() : nullptr));
 }
 
-bool StringSorter::get_ignore_case() const
+auto StringSorter::get_ignore_case() const -> bool
 {
   return gtk_string_sorter_get_ignore_case(const_cast<GtkStringSorter*>(gobj()));
 }
@@ -180,22 +180,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Express
   "Type Glib::RefPtr<Expression<Glib::ustring>> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Expression<Glib::ustring>> > StringSorter::property_expression()
+auto StringSorter::property_expression() -> Glib::PropertyProxy< Glib::RefPtr<Expression<Glib::ustring>> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Expression<Glib::ustring>> >(this, "expression");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Expression<Glib::ustring>> > StringSorter::property_expression() const
+auto StringSorter::property_expression() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Expression<Glib::ustring>> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Expression<Glib::ustring>> >(this, "expression");
 }
 
-Glib::PropertyProxy< bool > StringSorter::property_ignore_case()
+auto StringSorter::property_ignore_case() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "ignore-case");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > StringSorter::property_ignore_case() const
+auto StringSorter::property_ignore_case() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "ignore-case");
 }

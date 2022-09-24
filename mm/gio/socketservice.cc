@@ -34,7 +34,7 @@ namespace
 {
 
 
-static gboolean SocketService_signal_incoming_callback(GSocketService* self, GSocketConnection* p0,GObject* p1,void* data)
+auto SocketService_signal_incoming_callback(GSocketService* self, GSocketConnection* p0,GObject* p1,void* data) -> gboolean
 {
   using namespace Gio;
   using SlotType = sigc::slot<bool(const Glib::RefPtr<SocketConnection>&, const Glib::RefPtr<Glib::Object>&)>;
@@ -60,7 +60,7 @@ static gboolean SocketService_signal_incoming_callback(GSocketService* self, GSo
   return RType();
 }
 
-static gboolean SocketService_signal_incoming_notify_callback(GSocketService* self, GSocketConnection* p0,GObject* p1, void* data)
+auto SocketService_signal_incoming_notify_callback(GSocketService* self, GSocketConnection* p0,GObject* p1, void* data) -> gboolean
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<SocketConnection>&, const Glib::RefPtr<Glib::Object>&)>;
@@ -86,7 +86,7 @@ static gboolean SocketService_signal_incoming_notify_callback(GSocketService* se
   return RType();
 }
 
-static const Glib::SignalProxyInfo SocketService_signal_incoming_info =
+const Glib::SignalProxyInfo SocketService_signal_incoming_info =
 {
   "incoming",
   (GCallback) &SocketService_signal_incoming_callback,
@@ -100,7 +100,7 @@ static const Glib::SignalProxyInfo SocketService_signal_incoming_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gio::SocketService> wrap(GSocketService* object, bool take_copy)
+auto wrap(GSocketService* object, bool take_copy) -> Glib::RefPtr<Gio::SocketService>
 {
   return Glib::make_refptr_for_instance<Gio::SocketService>( dynamic_cast<Gio::SocketService*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -115,7 +115,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& SocketService_Class::init()
+auto SocketService_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -147,7 +147,7 @@ void SocketService_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-gboolean SocketService_Class::incoming_callback(GSocketService* self, GSocketConnection* p0, GObject* p1)
+auto SocketService_Class::incoming_callback(GSocketService* self, GSocketConnection* p0, GObject* p1) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -189,7 +189,7 @@ gboolean SocketService_Class::incoming_callback(GSocketService* self, GSocketCon
 }
 
 
-Glib::ObjectBase* SocketService_Class::wrap_new(GObject* object)
+auto SocketService_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new SocketService((GSocketService*)object);
 }
@@ -197,7 +197,7 @@ Glib::ObjectBase* SocketService_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GSocketService* SocketService::gobj_copy()
+auto SocketService::gobj_copy() -> GSocketService*
 {
   reference();
   return gobj();
@@ -220,7 +220,7 @@ SocketService::SocketService(SocketService&& src) noexcept
 : Gio::SocketListener(std::move(src))
 {}
 
-SocketService& SocketService::operator=(SocketService&& src) noexcept
+auto SocketService::operator=(SocketService&& src) noexcept -> SocketService&
 {
   Gio::SocketListener::operator=(std::move(src));
   return *this;
@@ -233,13 +233,13 @@ SocketService::~SocketService() noexcept
 
 SocketService::CppClassType SocketService::socketservice_class_; // initialize static member
 
-GType SocketService::get_type()
+auto SocketService::get_type() -> GType
 {
   return socketservice_class_.init().get_type();
 }
 
 
-GType SocketService::get_base_type()
+auto SocketService::get_base_type() -> GType
 {
   return g_socket_service_get_type();
 }
@@ -255,7 +255,7 @@ SocketService::SocketService()
 
 }
 
-Glib::RefPtr<SocketService> SocketService::create()
+auto SocketService::create() -> Glib::RefPtr<SocketService>
 {
   return Glib::make_refptr_for_instance<SocketService>( new SocketService() );
 }
@@ -270,30 +270,30 @@ void SocketService::stop()
   g_socket_service_stop(gobj());
 }
 
-bool SocketService::is_active()
+auto SocketService::is_active() -> bool
 {
   return g_socket_service_is_active(gobj());
 }
 
 
-Glib::SignalProxy<bool(const Glib::RefPtr<SocketConnection>&, const Glib::RefPtr<Glib::Object>&)> SocketService::signal_incoming()
+auto SocketService::signal_incoming() -> Glib::SignalProxy<bool(const Glib::RefPtr<SocketConnection>&, const Glib::RefPtr<Glib::Object>&)>
 {
   return Glib::SignalProxy<bool(const Glib::RefPtr<SocketConnection>&, const Glib::RefPtr<Glib::Object>&) >(this, &SocketService_signal_incoming_info);
 }
 
 
-Glib::PropertyProxy< bool > SocketService::property_active()
+auto SocketService::property_active() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "active");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > SocketService::property_active() const
+auto SocketService::property_active() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "active");
 }
 
 
-bool Gio::SocketService::on_incoming(const Glib::RefPtr<SocketConnection>& connection, const Glib::RefPtr<Glib::Object>& source_object)
+auto Gio::SocketService::on_incoming(const Glib::RefPtr<SocketConnection>& connection, const Glib::RefPtr<Glib::Object>& source_object) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

@@ -61,8 +61,8 @@ public:
    *
    * @since 1.12
    */
-  static RefPtr<ScriptSurface> create(const RefPtr<Script>& script,
-                                      Content content, double width, double height);
+  static auto create(const RefPtr<Script>& script,
+                                      Content content, double width, double height) -> RefPtr<ScriptSurface>;
 
   /**
    * Create a proxy surface that will render to target and record the operations
@@ -75,8 +75,8 @@ public:
    *
    * @since 1.12
    */
-  static RefPtr<ScriptSurface> create_for_target(const RefPtr<Script>& script,
-                                                 const RefPtr<Surface>& target);
+  static auto create_for_target(const RefPtr<Script>& script,
+                                                 const RefPtr<Surface>& target) -> RefPtr<ScriptSurface>;
 };
 
 #endif // CAIRO_HAS_SCRIPT_SURFACE

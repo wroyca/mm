@@ -61,7 +61,7 @@ public:
 
   // noncopyable
   MultiSorter(const MultiSorter&) = delete;
-  MultiSorter& operator=(const MultiSorter&) = delete;
+  auto operator=(const MultiSorter&) -> MultiSorter& = delete;
 
 private:  friend class MultiSorter_Class;
   static CppClassType multisorter_class_;
@@ -75,28 +75,28 @@ protected:
 public:
 
   MultiSorter(MultiSorter&& src) noexcept;
-  MultiSorter& operator=(MultiSorter&& src) noexcept;
+  auto operator=(MultiSorter&& src) noexcept -> MultiSorter&;
 
   ~MultiSorter() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkMultiSorter*       gobj()       { return reinterpret_cast<GtkMultiSorter*>(gobject_); }
+  auto       gobj() -> GtkMultiSorter*       { return reinterpret_cast<GtkMultiSorter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkMultiSorter* gobj() const { return reinterpret_cast<GtkMultiSorter*>(gobject_); }
+  auto gobj() const -> const GtkMultiSorter* { return reinterpret_cast<GtkMultiSorter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkMultiSorter* gobj_copy();
+  auto gobj_copy() -> GtkMultiSorter*;
 
 private:
 
@@ -106,7 +106,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<MultiSorter> create();
+  static auto create() -> Glib::RefPtr<MultiSorter>;
 
 
   /** Add @a sorter to @a self to use for sorting at the end.
@@ -134,7 +134,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< GType > property_item_type() const;
+  auto property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >;
 
 
   /** The number of items. See Gio::ListModel::get_n_items().
@@ -146,7 +146,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_n_items() const;
+  auto property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
 
 public:
@@ -176,7 +176,7 @@ namespace Glib
    * @relates Gtk::MultiSorter
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::MultiSorter> wrap(GtkMultiSorter* object, bool take_copy = false);
+  auto wrap(GtkMultiSorter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MultiSorter>;
 }
 
 

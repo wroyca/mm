@@ -34,7 +34,7 @@ namespace
 namespace Glib
 {
 
-Gtk::Spinner* wrap(GtkSpinner* object, bool take_copy)
+auto wrap(GtkSpinner* object, bool take_copy) -> Gtk::Spinner*
 {
   return dynamic_cast<Gtk::Spinner *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -47,7 +47,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Spinner_Class::init()
+auto Spinner_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -78,7 +78,7 @@ void Spinner_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Spinner_Class::wrap_new(GObject* o)
+auto Spinner_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Spinner((GtkSpinner*)(o)));
 
@@ -104,7 +104,7 @@ Spinner::Spinner(Spinner&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-Spinner& Spinner::operator=(Spinner&& src) noexcept
+auto Spinner::operator=(Spinner&& src) noexcept -> Spinner&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -117,13 +117,13 @@ Spinner::~Spinner() noexcept
 
 Spinner::CppClassType Spinner::spinner_class_; // initialize static member
 
-GType Spinner::get_type()
+auto Spinner::get_type() -> GType
 {
   return spinner_class_.init().get_type();
 }
 
 
-GType Spinner::get_base_type()
+auto Spinner::get_base_type() -> GType
 {
   return gtk_spinner_get_type();
 }
@@ -154,18 +154,18 @@ void Spinner::set_spinning(bool spinning)
   gtk_spinner_set_spinning(gobj(), static_cast<int>(spinning));
 }
 
-bool Spinner::get_spinning() const
+auto Spinner::get_spinning() const -> bool
 {
   return gtk_spinner_get_spinning(const_cast<GtkSpinner*>(gobj()));
 }
 
 
-Glib::PropertyProxy< bool > Spinner::property_spinning()
+auto Spinner::property_spinning() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "spinning");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Spinner::property_spinning() const
+auto Spinner::property_spinning() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "spinning");
 }

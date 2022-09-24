@@ -35,7 +35,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::StyleProvider> wrap(GtkStyleProvider* object, bool take_copy)
+auto wrap(GtkStyleProvider* object, bool take_copy) -> Glib::RefPtr<Gtk::StyleProvider>
 {
   return Glib::make_refptr_for_instance<Gtk::StyleProvider>( dynamic_cast<Gtk::StyleProvider*> (Glib::wrap_auto_interface<Gtk::StyleProvider> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -50,7 +50,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& StyleProvider_Class::init()
+auto StyleProvider_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -77,7 +77,7 @@ void StyleProvider_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* StyleProvider_Class::wrap_new(GObject* object)
+auto StyleProvider_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new StyleProvider((GtkStyleProvider*)(object));
 }
@@ -104,7 +104,7 @@ StyleProvider::StyleProvider(StyleProvider&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-StyleProvider& StyleProvider::operator=(StyleProvider&& src) noexcept
+auto StyleProvider::operator=(StyleProvider&& src) noexcept -> StyleProvider&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -121,13 +121,13 @@ void StyleProvider::add_interface(GType gtype_implementer)
 
 StyleProvider::CppClassType StyleProvider::styleprovider_class_; // initialize static member
 
-GType StyleProvider::get_type()
+auto StyleProvider::get_type() -> GType
 {
   return styleprovider_class_.init().get_type();
 }
 
 
-GType StyleProvider::get_base_type()
+auto StyleProvider::get_base_type() -> GType
 {
   return gtk_style_provider_get_type();
 }

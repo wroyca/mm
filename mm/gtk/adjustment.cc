@@ -50,7 +50,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo Adjustment_signal_changed_info =
+const Glib::SignalProxyInfo Adjustment_signal_changed_info =
 {
   "changed",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -58,7 +58,7 @@ static const Glib::SignalProxyInfo Adjustment_signal_changed_info =
 };
 
 
-static const Glib::SignalProxyInfo Adjustment_signal_value_changed_info =
+const Glib::SignalProxyInfo Adjustment_signal_value_changed_info =
 {
   "value_changed",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -72,7 +72,7 @@ static const Glib::SignalProxyInfo Adjustment_signal_value_changed_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::Adjustment> wrap(GtkAdjustment* object, bool take_copy)
+auto wrap(GtkAdjustment* object, bool take_copy) -> Glib::RefPtr<Gtk::Adjustment>
 {
   return Glib::make_refptr_for_instance<Gtk::Adjustment>( dynamic_cast<Gtk::Adjustment*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -87,7 +87,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Adjustment_Class::init()
+auto Adjustment_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -194,7 +194,7 @@ void Adjustment_Class::value_changed_callback(GtkAdjustment* self)
 }
 
 
-Glib::ObjectBase* Adjustment_Class::wrap_new(GObject* object)
+auto Adjustment_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Adjustment((GtkAdjustment*)object);
 }
@@ -202,7 +202,7 @@ Glib::ObjectBase* Adjustment_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkAdjustment* Adjustment::gobj_copy()
+auto Adjustment::gobj_copy() -> GtkAdjustment*
 {
   reference();
   return gobj();
@@ -227,7 +227,7 @@ Adjustment::Adjustment(Adjustment&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Adjustment& Adjustment::operator=(Adjustment&& src) noexcept
+auto Adjustment::operator=(Adjustment&& src) noexcept -> Adjustment&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -240,19 +240,19 @@ Adjustment::~Adjustment() noexcept
 
 Adjustment::CppClassType Adjustment::adjustment_class_; // initialize static member
 
-GType Adjustment::get_type()
+auto Adjustment::get_type() -> GType
 {
   return adjustment_class_.init().get_type();
 }
 
 
-GType Adjustment::get_base_type()
+auto Adjustment::get_base_type() -> GType
 {
   return gtk_adjustment_get_type();
 }
 
 
-Glib::RefPtr<Adjustment> Adjustment::create(double value, double lower, double upper, double step_increment, double page_increment, double page_size)
+auto Adjustment::create(double value, double lower, double upper, double step_increment, double page_increment, double page_size) -> Glib::RefPtr<Adjustment>
 {
   return Glib::make_refptr_for_instance<Adjustment>( new Adjustment(value, lower, upper, step_increment, page_increment, page_size) );
 }
@@ -267,7 +267,7 @@ void Adjustment::set_value(double value)
   gtk_adjustment_set_value(gobj(), value);
 }
 
-double Adjustment::get_value() const
+auto Adjustment::get_value() const -> double
 {
   return gtk_adjustment_get_value(const_cast<GtkAdjustment*>(gobj()));
 }
@@ -277,7 +277,7 @@ void Adjustment::set_lower(double lower)
   gtk_adjustment_set_lower(gobj(), lower);
 }
 
-double Adjustment::get_lower() const
+auto Adjustment::get_lower() const -> double
 {
   return gtk_adjustment_get_lower(const_cast<GtkAdjustment*>(gobj()));
 }
@@ -287,7 +287,7 @@ void Adjustment::set_upper(double upper)
   gtk_adjustment_set_upper(gobj(), upper);
 }
 
-double Adjustment::get_upper() const
+auto Adjustment::get_upper() const -> double
 {
   return gtk_adjustment_get_upper(const_cast<GtkAdjustment*>(gobj()));
 }
@@ -297,7 +297,7 @@ void Adjustment::set_step_increment(double step_increment)
   gtk_adjustment_set_step_increment(gobj(), step_increment);
 }
 
-double Adjustment::get_step_increment() const
+auto Adjustment::get_step_increment() const -> double
 {
   return gtk_adjustment_get_step_increment(const_cast<GtkAdjustment*>(gobj()));
 }
@@ -307,7 +307,7 @@ void Adjustment::set_page_increment(double page_increment)
   gtk_adjustment_set_page_increment(gobj(), page_increment);
 }
 
-double Adjustment::get_page_increment() const
+auto Adjustment::get_page_increment() const -> double
 {
   return gtk_adjustment_get_page_increment(const_cast<GtkAdjustment*>(gobj()));
 }
@@ -317,7 +317,7 @@ void Adjustment::set_page_size(double page_size)
   gtk_adjustment_set_page_size(gobj(), page_size);
 }
 
-double Adjustment::get_page_size() const
+auto Adjustment::get_page_size() const -> double
 {
   return gtk_adjustment_get_page_size(const_cast<GtkAdjustment*>(gobj()));
 }
@@ -327,80 +327,80 @@ void Adjustment::configure(double value, double lower, double upper, double step
   gtk_adjustment_configure(gobj(), value, lower, upper, step_increment, page_increment, page_size);
 }
 
-double Adjustment::get_minimum_increment() const
+auto Adjustment::get_minimum_increment() const -> double
 {
   return gtk_adjustment_get_minimum_increment(const_cast<GtkAdjustment*>(gobj()));
 }
 
 
-Glib::SignalProxy<void()> Adjustment::signal_changed()
+auto Adjustment::signal_changed() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Adjustment_signal_changed_info);
 }
 
 
-Glib::SignalProxy<void()> Adjustment::signal_value_changed()
+auto Adjustment::signal_value_changed() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Adjustment_signal_value_changed_info);
 }
 
 
-Glib::PropertyProxy< double > Adjustment::property_value()
+auto Adjustment::property_value() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "value");
 }
 
-Glib::PropertyProxy_ReadOnly< double > Adjustment::property_value() const
+auto Adjustment::property_value() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "value");
 }
 
-Glib::PropertyProxy< double > Adjustment::property_lower()
+auto Adjustment::property_lower() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "lower");
 }
 
-Glib::PropertyProxy_ReadOnly< double > Adjustment::property_lower() const
+auto Adjustment::property_lower() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "lower");
 }
 
-Glib::PropertyProxy< double > Adjustment::property_upper()
+auto Adjustment::property_upper() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "upper");
 }
 
-Glib::PropertyProxy_ReadOnly< double > Adjustment::property_upper() const
+auto Adjustment::property_upper() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "upper");
 }
 
-Glib::PropertyProxy< double > Adjustment::property_step_increment()
+auto Adjustment::property_step_increment() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "step-increment");
 }
 
-Glib::PropertyProxy_ReadOnly< double > Adjustment::property_step_increment() const
+auto Adjustment::property_step_increment() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "step-increment");
 }
 
-Glib::PropertyProxy< double > Adjustment::property_page_increment()
+auto Adjustment::property_page_increment() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "page-increment");
 }
 
-Glib::PropertyProxy_ReadOnly< double > Adjustment::property_page_increment() const
+auto Adjustment::property_page_increment() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "page-increment");
 }
 
-Glib::PropertyProxy< double > Adjustment::property_page_size()
+auto Adjustment::property_page_size() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "page-size");
 }
 
-Glib::PropertyProxy_ReadOnly< double > Adjustment::property_page_size() const
+auto Adjustment::property_page_size() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "page-size");
 }

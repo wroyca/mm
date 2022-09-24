@@ -39,7 +39,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::Actionable> wrap(GtkActionable* object, bool take_copy)
+auto wrap(GtkActionable* object, bool take_copy) -> Glib::RefPtr<Gtk::Actionable>
 {
   return Glib::make_refptr_for_instance<Gtk::Actionable>( dynamic_cast<Gtk::Actionable*> (Glib::wrap_auto_interface<Gtk::Actionable> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -54,7 +54,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& Actionable_Class::init()
+auto Actionable_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -84,7 +84,7 @@ void Actionable_Class::iface_init_function(void* g_iface, void*)
 
 }
 
-const gchar* Actionable_Class::get_action_name_vfunc_callback(GtkActionable* self)
+auto Actionable_Class::get_action_name_vfunc_callback(GtkActionable* self) -> const gchar*
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -173,7 +173,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->set_action_name)
     (*base->set_action_name)(self, action_name);
 }
-GVariant* Actionable_Class::get_action_target_value_vfunc_callback(GtkActionable* self)
+auto Actionable_Class::get_action_target_value_vfunc_callback(GtkActionable* self) -> GVariant*
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -264,7 +264,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* Actionable_Class::wrap_new(GObject* object)
+auto Actionable_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Actionable((GtkActionable*)(object));
 }
@@ -291,7 +291,7 @@ Actionable::Actionable(Actionable&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-Actionable& Actionable::operator=(Actionable&& src) noexcept
+auto Actionable::operator=(Actionable&& src) noexcept -> Actionable&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -308,19 +308,19 @@ void Actionable::add_interface(GType gtype_implementer)
 
 Actionable::CppClassType Actionable::actionable_class_; // initialize static member
 
-GType Actionable::get_type()
+auto Actionable::get_type() -> GType
 {
   return actionable_class_.init().get_type();
 }
 
 
-GType Actionable::get_base_type()
+auto Actionable::get_base_type() -> GType
 {
   return gtk_actionable_get_type();
 }
 
 
-Glib::ustring Actionable::get_action_name() const
+auto Actionable::get_action_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_actionable_get_action_name(const_cast<GtkActionable*>(gobj())));
 }
@@ -330,12 +330,12 @@ void Actionable::set_action_name(const Glib::ustring& action_name)
   gtk_actionable_set_action_name(gobj(), action_name.c_str());
 }
 
-Glib::VariantBase Actionable::get_action_target_value()
+auto Actionable::get_action_target_value() -> Glib::VariantBase
 {
   return Glib::wrap(gtk_actionable_get_action_target_value(gobj()),true);
 }
 
-const Glib::VariantBase Actionable::get_action_target_value() const
+auto Actionable::get_action_target_value() const -> const Glib::VariantBase
 {
   return const_cast<Actionable*>(this)->get_action_target_value();
 }
@@ -351,12 +351,12 @@ void Actionable::set_detailed_action_name(const Glib::ustring& detailed_action_n
 }
 
 
-Glib::PropertyProxy< Glib::ustring > Actionable::property_action_name()
+auto Actionable::property_action_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "action-name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Actionable::property_action_name() const
+auto Actionable::property_action_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "action-name");
 }
@@ -365,18 +365,18 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantBase>::
   "Type Glib::VariantBase cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::VariantBase > Actionable::property_action_target()
+auto Actionable::property_action_target() -> Glib::PropertyProxy< Glib::VariantBase >
 {
   return Glib::PropertyProxy< Glib::VariantBase >(this, "action-target");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::VariantBase > Actionable::property_action_target() const
+auto Actionable::property_action_target() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantBase >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::VariantBase >(this, "action-target");
 }
 
 
-Glib::ustring Gtk::Actionable::get_action_name_vfunc() const
+auto Gtk::Actionable::get_action_name_vfunc() const -> Glib::ustring
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -404,7 +404,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->set_action_name)(gobj(),action_name.c_str());
   }
 }
-Glib::VariantBase Gtk::Actionable::get_action_target_value_vfunc() const
+auto Gtk::Actionable::get_action_target_value_vfunc() const -> Glib::VariantBase
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

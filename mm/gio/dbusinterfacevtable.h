@@ -26,10 +26,7 @@
 #include <gio/gio.h>
 
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 /**This represents a virtual table for
@@ -137,29 +134,29 @@ public:
   );
 
   InterfaceVTable(const InterfaceVTable& other) = delete;
-  InterfaceVTable& operator=(const InterfaceVTable& other) = delete;
+  auto operator=(const InterfaceVTable& other) -> InterfaceVTable& = delete;
 
   InterfaceVTable(InterfaceVTable&& other) noexcept;
-  InterfaceVTable& operator=(InterfaceVTable&& other) noexcept;
+  auto operator=(InterfaceVTable&& other) noexcept -> InterfaceVTable&;
 
   /// Destructor.
   virtual ~InterfaceVTable();
 
   /// Provides access to the underlying C object.
-  GDBusInterfaceVTable* gobj()
+  auto gobj() -> GDBusInterfaceVTable*
     { return reinterpret_cast<GDBusInterfaceVTable*>(&gobject_); }
 
   /// Provides access to the underlying C object.
-  const GDBusInterfaceVTable* gobj() const
+  auto gobj() const -> const GDBusInterfaceVTable*
     { return reinterpret_cast<const GDBusInterfaceVTable*>(&gobject_); }
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   // These are so the C callbacks and the
   // Gio::DBus::Connection::register_object() method can have access to the
   // copies of the slots used for creation when registering.
-  SlotInterfaceMethodCall*      get_slot_method_call() const;
-  SlotInterfaceGetProperty*     get_slot_get_property() const;
-  SlotInterfaceSetProperty*     get_slot_set_property() const;
+  auto      get_slot_method_call() const -> SlotInterfaceMethodCall*;
+  auto     get_slot_get_property() const -> SlotInterfaceGetProperty*;
+  auto     get_slot_set_property() const -> SlotInterfaceSetProperty*;
 #endif
 
 protected:
@@ -174,8 +171,6 @@ protected:
 
 };
 
-
-} //namespace DBus
 
 } // namespace Gio
 

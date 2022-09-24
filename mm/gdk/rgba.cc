@@ -179,23 +179,23 @@ void RGBA::set_hsl(float h, float s, float l, float alpha)
   }
 }
 
-gushort RGBA::get_red_u() const
+auto RGBA::get_red_u() const -> gushort
 {
   return gobject_->red *  MULTIPLIER;
 }
 
-gushort RGBA::get_green_u() const
+auto RGBA::get_green_u() const -> gushort
 {
   return gobject_->green *  MULTIPLIER;
 
 }
 
-gushort RGBA::get_blue_u() const
+auto RGBA::get_blue_u() const -> gushort
 {
   return gobject_->blue *  MULTIPLIER;
 }
 
-gushort RGBA::get_alpha_u() const
+auto RGBA::get_alpha_u() const -> gushort
 {
   return gobject_->alpha *  MULTIPLIER;
 }
@@ -240,22 +240,22 @@ void RGBA::set_alpha(float value)
   gobject_->alpha = value;
 }
 
-float RGBA::get_red() const
+auto RGBA::get_red() const -> float
 {
   return gobject_->red;
 }
 
-float RGBA::get_green() const
+auto RGBA::get_green() const -> float
 {
   return gobject_->green;
 }
 
-float RGBA::get_blue() const
+auto RGBA::get_blue() const -> float
 {
   return gobject_->blue;
 }
 
-float RGBA::get_alpha() const
+auto RGBA::get_alpha() const -> float
 {
   return gobject_->alpha;
 }
@@ -270,7 +270,7 @@ namespace
 namespace Glib
 {
 
-Gdk::RGBA wrap(GdkRGBA* object, bool take_copy)
+auto wrap(GdkRGBA* object, bool take_copy) -> Gdk::RGBA
 {
   return Gdk::RGBA(object, take_copy);
 }
@@ -283,7 +283,7 @@ namespace Gdk
 
 
 // static
-GType RGBA::get_type()
+auto RGBA::get_type() -> GType
 {
   return gdk_rgba_get_type();
 }
@@ -301,7 +301,7 @@ RGBA::RGBA(RGBA&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-RGBA& RGBA::operator=(RGBA&& other) noexcept
+auto RGBA::operator=(RGBA&& other) noexcept -> RGBA&
 {
   RGBA temp (std::move(other));
   swap(temp);
@@ -316,7 +316,7 @@ RGBA::RGBA(GdkRGBA* gobject, bool make_a_copy)
   gobject_ ((make_a_copy && gobject) ? gdk_rgba_copy(gobject) : gobject)
 {}
 
-RGBA& RGBA::operator=(const RGBA& other)
+auto RGBA::operator=(const RGBA& other) -> RGBA&
 {
   RGBA temp (other);
   swap(temp);
@@ -334,39 +334,39 @@ void RGBA::swap(RGBA& other) noexcept
   std::swap(gobject_, other.gobject_);
 }
 
-GdkRGBA* RGBA::gobj_copy() const
+auto RGBA::gobj_copy() const -> GdkRGBA*
 {
   return gdk_rgba_copy(gobject_);
 }
 
 
-bool RGBA::set(const Glib::ustring& spec)
+auto RGBA::set(const Glib::ustring& spec) -> bool
 {
   return gdk_rgba_parse(gobj(), spec.c_str());
 }
 
-Glib::ustring RGBA::to_string() const
+auto RGBA::to_string() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gdk_rgba_to_string(const_cast<GdkRGBA*>(gobj())));
 }
 
-bool RGBA::is_clear() const
+auto RGBA::is_clear() const -> bool
 {
   return gdk_rgba_is_clear(const_cast<GdkRGBA*>(gobj()));
 }
 
-bool RGBA::is_opaque() const
+auto RGBA::is_opaque() const -> bool
 {
   return gdk_rgba_is_opaque(const_cast<GdkRGBA*>(gobj()));
 }
 
 
-bool operator==(const RGBA& lhs, const RGBA& rhs)
+auto operator==(const RGBA& lhs, const RGBA& rhs) -> bool
 {
   return (gdk_rgba_equal(lhs.gobj(), rhs.gobj()) != 0);
 }
 
-bool operator!=(const RGBA& lhs, const RGBA& rhs)
+auto operator!=(const RGBA& lhs, const RGBA& rhs) -> bool
 {
   return (gdk_rgba_equal(lhs.gobj(), rhs.gobj()) == 0);
 }

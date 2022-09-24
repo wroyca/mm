@@ -73,7 +73,7 @@ public:
 
   // noncopyable
   Editable(const Editable&) = delete;
-  Editable& operator=(const Editable&) = delete;
+  auto operator=(const Editable&) -> Editable& = delete;
 
 private:
   friend class Editable_Class;
@@ -107,7 +107,7 @@ protected:
 public:
 
   Editable(Editable&& src) noexcept;
-  Editable& operator=(Editable&& src) noexcept;
+  auto operator=(Editable&& src) noexcept -> Editable&;
 
   ~Editable() noexcept override;
 
@@ -115,17 +115,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkEditable*       gobj()       { return reinterpret_cast<GtkEditable*>(gobject_); }
+  auto       gobj() -> GtkEditable*       { return reinterpret_cast<GtkEditable*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkEditable* gobj() const { return reinterpret_cast<GtkEditable*>(gobject_); }
+  auto gobj() const -> const GtkEditable* { return reinterpret_cast<GtkEditable*>(gobject_); }
 
 private:
 
@@ -138,7 +138,7 @@ public:
    *
    * @return A pointer to the contents of the editable.
    */
-  Glib::ustring get_text() const;
+  auto get_text() const -> Glib::ustring;
 
   /** Sets the text in the editable to the given value.
    *
@@ -166,7 +166,7 @@ public:
    *
    * @return <tt>true</tt> if @a editable is editable.
    */
-  bool get_editable() const;
+  auto get_editable() const -> bool;
 
 
   /** Inserts @a new_text_length bytes of @a new_text into the contents of the
@@ -212,7 +212,7 @@ public:
    * string. This string is allocated by the `Gtk::Editable` implementation
    * and should be freed by the caller.
    */
-  Glib::ustring get_chars(int start_pos, int end_pos) const;
+  auto get_chars(int start_pos, int end_pos) const -> Glib::ustring;
 
 
   /** Selects a region of text.
@@ -241,7 +241,7 @@ public:
    * @param end_pos Location to store the end position.
    * @return <tt>true</tt> if there is a non-empty selection, <tt>false</tt> otherwise.
    */
-  bool get_selection_bounds(int& start_pos, int& end_pos) const;
+  auto get_selection_bounds(int& start_pos, int& end_pos) const -> bool;
 
 
   /** Sets the cursor position in the editable to the given value.
@@ -263,14 +263,14 @@ public:
    *
    * @return The cursor position.
    */
-  int get_position() const;
+  auto get_position() const -> int;
 
 
   /** Gets the alignment of the editable.
    *
    * @return The alignment.
    */
-  float get_alignment() const;
+  auto get_alignment() const -> float;
 
   /** Sets the alignment for the contents of the editable.
    *
@@ -288,7 +288,7 @@ public:
    *
    * @return Number of chars to request space for, or negative if unset.
    */
-  int get_width_chars() const;
+  auto get_width_chars() const -> int;
 
   /** Changes the size request of the editable to be about the
    * right size for @a n_chars characters.
@@ -306,7 +306,7 @@ public:
    *
    * @return The maximum width of the entry, in characters.
    */
-  int get_max_width_chars() const;
+  auto get_max_width_chars() const -> int;
 
   /** Sets the desired maximum width in characters of @a editable.
    *
@@ -319,7 +319,7 @@ public:
    *
    * @return <tt>true</tt> if undo is enabled.
    */
-  bool get_enable_undo() const;
+  auto get_enable_undo() const -> bool;
 
   /** If enabled, changes to @a editable will be saved for undo/redo
    * actions.
@@ -335,7 +335,7 @@ public:
   // Don't wrap API for implementations. Should it be wrapped?
 
 
-  Glib::SignalProxy<void(const Glib::ustring&, int*)> signal_insert_text();
+  auto signal_insert_text() -> Glib::SignalProxy<void(const Glib::ustring&, int*)>;
 
 
   /**
@@ -358,7 +358,7 @@ public:
    * @param end_pos The end position.
    */
 
-  Glib::SignalProxy<void(int, int)> signal_delete_text();
+  auto signal_delete_text() -> Glib::SignalProxy<void(int, int)>;
 
 
   /**
@@ -377,7 +377,7 @@ public:
    * to be emitted).
    */
 
-  Glib::SignalProxy<void()> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void()>;
 
 
   /** The contents of the entry.
@@ -387,7 +387,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_text() ;
+  auto property_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The contents of the entry.
    *
@@ -396,7 +396,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_text() const;
+  auto property_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The current position of the insertion cursor in chars.
    *
@@ -405,7 +405,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_cursor_position() const;
+  auto property_cursor_position() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** If undo/redo should be enabled for the editable.
@@ -415,7 +415,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_enable_undo() ;
+  auto property_enable_undo() -> Glib::PropertyProxy< bool > ;
 
 /** If undo/redo should be enabled for the editable.
    *
@@ -424,7 +424,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_enable_undo() const;
+  auto property_enable_undo() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The position of the opposite end of the selection from the cursor in chars.
    *
@@ -433,7 +433,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_selection_bound() const;
+  auto property_selection_bound() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** Whether the entry contents can be edited.
@@ -443,7 +443,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_editable() ;
+  auto property_editable() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the entry contents can be edited.
    *
@@ -452,7 +452,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_editable() const;
+  auto property_editable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Number of characters to leave space for in the entry.
    *
@@ -461,7 +461,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_width_chars() ;
+  auto property_width_chars() -> Glib::PropertyProxy< int > ;
 
 /** Number of characters to leave space for in the entry.
    *
@@ -470,7 +470,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_width_chars() const;
+  auto property_width_chars() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The desired maximum width of the entry, in characters.
    *
@@ -479,7 +479,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_max_width_chars() ;
+  auto property_max_width_chars() -> Glib::PropertyProxy< int > ;
 
 /** The desired maximum width of the entry, in characters.
    *
@@ -488,7 +488,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_max_width_chars() const;
+  auto property_max_width_chars() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The horizontal alignment, from 0 (left) to 1 (right).
    *
@@ -499,7 +499,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< float > property_xalign() ;
+  auto property_xalign() -> Glib::PropertyProxy< float > ;
 
 /** The horizontal alignment, from 0 (left) to 1 (right).
    *
@@ -510,7 +510,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< float > property_xalign() const;
+  auto property_xalign() const -> Glib::PropertyProxy_ReadOnly< float >;
 
 
 protected:
@@ -519,12 +519,12 @@ protected:
     virtual void delete_text_vfunc(int start_pos, int end_pos);
 
 
-    virtual Glib::ustring get_text_vfunc() const;
+    virtual auto get_text_vfunc() const -> Glib::ustring;
 
 
     virtual void select_region_vfunc(int start_pos, int end_pos);
 
-    virtual bool get_selection_bounds_vfunc(int& start_pos, int& end_pos) const;
+    virtual auto get_selection_bounds_vfunc(int& start_pos, int& end_pos) const -> bool;
 
   // Don't wrap API for implementations. Should it be wrapped?
   // _WRAP_VFUNC(Editable* get_delegate(), get_delegate)
@@ -565,7 +565,7 @@ namespace Glib
    * @relates Gtk::Editable
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Editable> wrap(GtkEditable* object, bool take_copy = false);
+  auto wrap(GtkEditable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Editable>;
 
 } // namespace Glib
 

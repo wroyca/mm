@@ -30,7 +30,7 @@ DeviceWithPad::DeviceWithPad(DeviceWithPad&& src) noexcept
   DevicePad(std::move(src))
 {}
 
-DeviceWithPad& DeviceWithPad::operator=(DeviceWithPad&& src) noexcept
+auto DeviceWithPad::operator=(DeviceWithPad&& src) noexcept -> DeviceWithPad&
 {
   Device::operator=(std::move(src));
   DevicePad::operator=(std::move(src));

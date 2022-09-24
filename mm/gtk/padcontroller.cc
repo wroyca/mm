@@ -64,7 +64,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::PadController> wrap(GtkPadController* object, bool take_copy)
+auto wrap(GtkPadController* object, bool take_copy) -> Glib::RefPtr<Gtk::PadController>
 {
   return Glib::make_refptr_for_instance<Gtk::PadController>( dynamic_cast<Gtk::PadController*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -79,7 +79,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& PadController_Class::init()
+auto PadController_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -110,7 +110,7 @@ void PadController_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* PadController_Class::wrap_new(GObject* object)
+auto PadController_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new PadController((GtkPadController*)object);
 }
@@ -118,7 +118,7 @@ Glib::ObjectBase* PadController_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkPadController* PadController::gobj_copy()
+auto PadController::gobj_copy() -> GtkPadController*
 {
   reference();
   return gobj();
@@ -141,7 +141,7 @@ PadController::PadController(PadController&& src) noexcept
 : EventController(std::move(src))
 {}
 
-PadController& PadController::operator=(PadController&& src) noexcept
+auto PadController::operator=(PadController&& src) noexcept -> PadController&
 {
   EventController::operator=(std::move(src));
   return *this;
@@ -154,19 +154,19 @@ PadController::~PadController() noexcept
 
 PadController::CppClassType PadController::padcontroller_class_; // initialize static member
 
-GType PadController::get_type()
+auto PadController::get_type() -> GType
 {
   return padcontroller_class_.init().get_type();
 }
 
 
-GType PadController::get_base_type()
+auto PadController::get_base_type() -> GType
 {
   return gtk_pad_controller_get_type();
 }
 
 
-Glib::RefPtr<PadController> PadController::create(const Glib::RefPtr<Gio::ActionGroup>& action_group, const Glib::RefPtr<Gdk::Device>& pad)
+auto PadController::create(const Glib::RefPtr<Gio::ActionGroup>& action_group, const Glib::RefPtr<Gdk::Device>& pad) -> Glib::RefPtr<PadController>
 {
   return Glib::make_refptr_for_instance<PadController>( new PadController(action_group, pad) );
 }
@@ -181,7 +181,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Ac
   "Type Glib::RefPtr<Gio::ActionGroup> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ActionGroup> > PadController::property_action_group() const
+auto PadController::property_action_group() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ActionGroup> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ActionGroup> >(this, "action-group");
 }
@@ -190,7 +190,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::De
   "Type Glib::RefPtr<Gdk::Device> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Device> > PadController::property_pad() const
+auto PadController::property_pad() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Device> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Device> >(this, "pad");
 }

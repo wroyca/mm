@@ -35,19 +35,11 @@ using GDBusObjectManagerServerClass = struct _GDBusObjectManagerServerClass;
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
-{
-
-namespace DBus
-{ class GIOMM_API ObjectManagerServer_Class; } // namespace DBus
-
-} // namespace Gio
+namespace Gio::DBus
+{ class GIOMM_API ObjectManagerServer_Class; } // namespace Gio
 #endif //DOXYGEN_SHOULD_SKIP_THIS
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 //The GMMPROC_EXTRA_NAMESPACE() macro is a hint to generate_wrap_init.pl to put it in the DBus sub-namespace
 
@@ -93,7 +85,7 @@ public:
 
   // noncopyable
   ObjectManagerServer(const ObjectManagerServer&) = delete;
-  ObjectManagerServer& operator=(const ObjectManagerServer&) = delete;
+  auto operator=(const ObjectManagerServer&) -> ObjectManagerServer& = delete;
 
 private:  friend class ObjectManagerServer_Class;
   static CppClassType objectmanagerserver_class_;
@@ -107,28 +99,28 @@ protected:
 public:
 
   ObjectManagerServer(ObjectManagerServer&& src) noexcept;
-  ObjectManagerServer& operator=(ObjectManagerServer&& src) noexcept;
+  auto operator=(ObjectManagerServer&& src) noexcept -> ObjectManagerServer&;
 
   ~ObjectManagerServer() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDBusObjectManagerServer*       gobj()       { return reinterpret_cast<GDBusObjectManagerServer*>(gobject_); }
+  auto       gobj() -> GDBusObjectManagerServer*       { return reinterpret_cast<GDBusObjectManagerServer*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDBusObjectManagerServer* gobj() const { return reinterpret_cast<GDBusObjectManagerServer*>(gobject_); }
+  auto gobj() const -> const GDBusObjectManagerServer* { return reinterpret_cast<GDBusObjectManagerServer*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusObjectManagerServer* gobj_copy();
+  auto gobj_copy() -> GDBusObjectManagerServer*;
 
 private:
 
@@ -149,7 +141,7 @@ public:
    * @return A new %Gio::DBus::ObjectManagerServer object.
    */
 
-  static Glib::RefPtr<ObjectManagerServer> create(const Glib::ustring& object_path);
+  static auto create(const Glib::ustring& object_path) -> Glib::RefPtr<ObjectManagerServer>;
 
 
   /** Gets the Gio::DBus::Connection used by @a manager.
@@ -160,7 +152,7 @@ public:
    *  @a manager isn't exported on a connection. The returned object should
    * be freed with Glib::object_unref().
    */
-  Glib::RefPtr<Connection> get_connection();
+  auto get_connection() -> Glib::RefPtr<Connection>;
 
   /** Gets the Gio::DBus::Connection used by @a manager.
    *
@@ -170,7 +162,7 @@ public:
    *  @a manager isn't exported on a connection. The returned object should
    * be freed with Glib::object_unref().
    */
-  Glib::RefPtr<const Connection> get_connection() const;
+  auto get_connection() const -> Glib::RefPtr<const Connection>;
 
   /** Exports all objects managed by @a manager on @a connection. If
    *  @a connection is <tt>nullptr</tt>, stops exporting objects.
@@ -216,7 +208,7 @@ public:
    * @param object An object.
    * @return <tt>true</tt> if @a object is exported.
    */
-  bool is_exported(const Glib::RefPtr<Gio::DBus::ObjectSkeleton>& object) const;
+  auto is_exported(const Glib::RefPtr<Gio::DBus::ObjectSkeleton>& object) const -> bool;
 
   /** If @a manager has an object at @a path, removes the object. Otherwise
    * does nothing.
@@ -229,7 +221,7 @@ public:
    * @param object_path An object path.
    * @return <tt>true</tt> if object at @a object_path was removed, <tt>false</tt> otherwise.
    */
-  bool unexport(const Glib::ustring& object_path);
+  auto unexport(const Glib::ustring& object_path) -> bool;
 
  /** The Gio::DBus::Connection to export objects on.
    *
@@ -238,7 +230,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Connection> > property_connection() ;
+  auto property_connection() -> Glib::PropertyProxy< Glib::RefPtr<Connection> > ;
 
 /** The Gio::DBus::Connection to export objects on.
    *
@@ -247,7 +239,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Connection> > property_connection() const;
+  auto property_connection() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Connection> >;
 
  /** The object path to register the manager object at.
    *
@@ -258,7 +250,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_object_path() const;
+  auto property_object_path() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -274,8 +266,6 @@ protected:
 
 };
 
-} //namespace
-
 } // namespace Gio
 
 
@@ -290,7 +280,7 @@ namespace Glib
    * @relates Gio::DBus::ObjectManagerServer
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DBus::ObjectManagerServer> wrap(GDBusObjectManagerServer* object, bool take_copy = false);
+  auto wrap(GDBusObjectManagerServer* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::ObjectManagerServer>;
 }
 
 

@@ -32,7 +32,7 @@ namespace
 {
 
 
-static void LevelBar_signal_offset_changed_callback(GtkLevelBar* self, const gchar* p0,void* data)
+void LevelBar_signal_offset_changed_callback(GtkLevelBar* self, const gchar* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -54,7 +54,7 @@ static void LevelBar_signal_offset_changed_callback(GtkLevelBar* self, const gch
   }
 }
 
-static const Glib::SignalProxyInfo LevelBar_signal_offset_changed_info =
+const Glib::SignalProxyInfo LevelBar_signal_offset_changed_info =
 {
   "offset_changed",
   (GCallback) &LevelBar_signal_offset_changed_callback,
@@ -65,7 +65,7 @@ static const Glib::SignalProxyInfo LevelBar_signal_offset_changed_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::LevelBar::Mode>::value_type()
+auto Glib::Value<Gtk::LevelBar::Mode>::value_type() -> GType
 {
   return gtk_level_bar_mode_get_type();
 }
@@ -74,7 +74,7 @@ GType Glib::Value<Gtk::LevelBar::Mode>::value_type()
 namespace Glib
 {
 
-Gtk::LevelBar* wrap(GtkLevelBar* object, bool take_copy)
+auto wrap(GtkLevelBar* object, bool take_copy) -> Gtk::LevelBar*
 {
   return dynamic_cast<Gtk::LevelBar *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -87,7 +87,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& LevelBar_Class::init()
+auto LevelBar_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -119,7 +119,7 @@ void LevelBar_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* LevelBar_Class::wrap_new(GObject* o)
+auto LevelBar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new LevelBar((GtkLevelBar*)(o)));
 
@@ -146,7 +146,7 @@ LevelBar::LevelBar(LevelBar&& src) noexcept
   , Orientable(std::move(src))
 {}
 
-LevelBar& LevelBar::operator=(LevelBar&& src) noexcept
+auto LevelBar::operator=(LevelBar&& src) noexcept -> LevelBar&
 {
   Gtk::Widget::operator=(std::move(src));
   Orientable::operator=(std::move(src));
@@ -160,13 +160,13 @@ LevelBar::~LevelBar() noexcept
 
 LevelBar::CppClassType LevelBar::levelbar_class_; // initialize static member
 
-GType LevelBar::get_type()
+auto LevelBar::get_type() -> GType
 {
   return levelbar_class_.init().get_type();
 }
 
 
-GType LevelBar::get_base_type()
+auto LevelBar::get_base_type() -> GType
 {
   return gtk_level_bar_get_type();
 }
@@ -187,7 +187,7 @@ void LevelBar::set_mode(Mode mode)
   gtk_level_bar_set_mode(gobj(), static_cast<GtkLevelBarMode>(mode));
 }
 
-Mode LevelBar::get_mode() const
+auto LevelBar::get_mode() const -> Mode
 {
   return static_cast<Mode>(gtk_level_bar_get_mode(const_cast<GtkLevelBar*>(gobj())));
 }
@@ -197,7 +197,7 @@ void LevelBar::set_value(double value)
   gtk_level_bar_set_value(gobj(), value);
 }
 
-double LevelBar::get_value() const
+auto LevelBar::get_value() const -> double
 {
   return gtk_level_bar_get_value(const_cast<GtkLevelBar*>(gobj()));
 }
@@ -207,7 +207,7 @@ void LevelBar::set_min_value(double value)
   gtk_level_bar_set_min_value(gobj(), value);
 }
 
-double LevelBar::get_min_value() const
+auto LevelBar::get_min_value() const -> double
 {
   return gtk_level_bar_get_min_value(const_cast<GtkLevelBar*>(gobj()));
 }
@@ -217,7 +217,7 @@ void LevelBar::set_max_value(double value)
   gtk_level_bar_set_max_value(gobj(), value);
 }
 
-double LevelBar::get_max_value() const
+auto LevelBar::get_max_value() const -> double
 {
   return gtk_level_bar_get_max_value(const_cast<GtkLevelBar*>(gobj()));
 }
@@ -227,7 +227,7 @@ void LevelBar::set_inverted(bool inverted)
   gtk_level_bar_set_inverted(gobj(), static_cast<int>(inverted));
 }
 
-bool LevelBar::get_inverted() const
+auto LevelBar::get_inverted() const -> bool
 {
   return gtk_level_bar_get_inverted(const_cast<GtkLevelBar*>(gobj()));
 }
@@ -242,44 +242,44 @@ void LevelBar::remove_offset_value(const Glib::ustring& name)
   gtk_level_bar_remove_offset_value(gobj(), name.c_str());
 }
 
-bool LevelBar::get_offset_value(const Glib::ustring& name, double& value) const
+auto LevelBar::get_offset_value(const Glib::ustring& name, double& value) const -> bool
 {
   return gtk_level_bar_get_offset_value(const_cast<GtkLevelBar*>(gobj()), name.c_str(), &(value));
 }
 
 
-Glib::SignalProxyDetailed<void(const Glib::ustring&)> LevelBar::signal_offset_changed(const Glib::ustring& offset_name)
+auto LevelBar::signal_offset_changed(const Glib::ustring& offset_name) -> Glib::SignalProxyDetailed<void(const Glib::ustring&)>
 {
   return Glib::SignalProxyDetailed<void(const Glib::ustring&)>(this, &LevelBar_signal_offset_changed_info, offset_name);
 }
 
 
-Glib::PropertyProxy< double > LevelBar::property_value()
+auto LevelBar::property_value() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "value");
 }
 
-Glib::PropertyProxy_ReadOnly< double > LevelBar::property_value() const
+auto LevelBar::property_value() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "value");
 }
 
-Glib::PropertyProxy< double > LevelBar::property_min_value()
+auto LevelBar::property_min_value() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "min-value");
 }
 
-Glib::PropertyProxy_ReadOnly< double > LevelBar::property_min_value() const
+auto LevelBar::property_min_value() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "min-value");
 }
 
-Glib::PropertyProxy< double > LevelBar::property_max_value()
+auto LevelBar::property_max_value() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "max-value");
 }
 
-Glib::PropertyProxy_ReadOnly< double > LevelBar::property_max_value() const
+auto LevelBar::property_max_value() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "max-value");
 }
@@ -288,22 +288,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Mode>::value,
   "Type Mode cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Mode > LevelBar::property_mode()
+auto LevelBar::property_mode() -> Glib::PropertyProxy< Mode >
 {
   return Glib::PropertyProxy< Mode >(this, "mode");
 }
 
-Glib::PropertyProxy_ReadOnly< Mode > LevelBar::property_mode() const
+auto LevelBar::property_mode() const -> Glib::PropertyProxy_ReadOnly< Mode >
 {
   return Glib::PropertyProxy_ReadOnly< Mode >(this, "mode");
 }
 
-Glib::PropertyProxy< bool > LevelBar::property_inverted()
+auto LevelBar::property_inverted() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "inverted");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > LevelBar::property_inverted() const
+auto LevelBar::property_inverted() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "inverted");
 }

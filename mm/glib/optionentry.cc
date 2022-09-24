@@ -60,8 +60,8 @@ OptionEntry::OptionEntry(const OptionEntry& src)
   operator=(src);
 }
 
-OptionEntry&
-OptionEntry::operator=(const OptionEntry& src)
+auto
+OptionEntry::operator=(const OptionEntry& src) -> OptionEntry&
 {
   if (this != &src)
   {
@@ -97,8 +97,8 @@ OptionEntry::OptionEntry(OptionEntry&& other) noexcept : gobject_(std::move(othe
   other.gobject_ = nullptr;
 }
 
-OptionEntry&
-OptionEntry::operator=(OptionEntry&& other) noexcept
+auto
+OptionEntry::operator=(OptionEntry&& other) noexcept -> OptionEntry&
 {
   release_gobject();
 
@@ -119,7 +119,7 @@ namespace Glib
 {
 
 
-Glib::ustring OptionEntry::get_long_name() const
+auto OptionEntry::get_long_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gobj()->long_name);
 }
@@ -130,7 +130,7 @@ void OptionEntry::set_long_name(const Glib::ustring& value)
   gobj()->long_name = g_strdup((value).c_str());
 }
 
-gchar OptionEntry::get_short_name() const
+auto OptionEntry::get_short_name() const -> gchar
 {
   return gobj()->short_name;
 }
@@ -140,7 +140,7 @@ void OptionEntry::set_short_name(const gchar& value)
   gobj()->short_name = value;
 }
 
-Flags OptionEntry::get_flags() const
+auto OptionEntry::get_flags() const -> Flags
 {
   return static_cast<Flags>(gobj()->flags);
 }
@@ -150,7 +150,7 @@ void OptionEntry::set_flags(const Flags& value)
   gobj()->flags = static_cast<int>(value);
 }
 
-Glib::ustring OptionEntry::get_description() const
+auto OptionEntry::get_description() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gobj()->description);
 }
@@ -161,7 +161,7 @@ void OptionEntry::set_description(const Glib::ustring& value)
   gobj()->description = g_strdup(Glib::c_str_or_nullptr(value));
 }
 
-Glib::ustring OptionEntry::get_arg_description() const
+auto OptionEntry::get_arg_description() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gobj()->arg_description);
 }

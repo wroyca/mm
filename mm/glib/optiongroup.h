@@ -91,15 +91,15 @@ public:
   // a pointer to the wrapper, set in the call to g_option_group_new().
   // That pointer can't be changed.
   OptionGroup(const OptionGroup& other) = delete;
-  OptionGroup& operator=(const OptionGroup& other) = delete;
+  auto operator=(const OptionGroup& other) -> OptionGroup& = delete;
   OptionGroup(OptionGroup&& other) = delete;
-  OptionGroup& operator=(OptionGroup&& other) = delete;
+  auto operator=(OptionGroup&& other) -> OptionGroup& = delete;
 
   virtual ~OptionGroup();
 
 
-  virtual bool on_pre_parse(OptionContext& context);
-  virtual bool on_post_parse(OptionContext& context);
+  virtual auto on_pre_parse(OptionContext& context) -> bool;
+  virtual auto on_post_parse(OptionContext& context) -> bool;
   virtual void on_error(OptionContext& context, const Error& error);
 
 
@@ -196,13 +196,13 @@ public:
   void set_translation_domain(const Glib::ustring& domain);
 
   /// Provides access to the underlying C instance.
-  GOptionGroup*       gobj()       { return gobject_; }
+  auto       gobj() -> GOptionGroup*       { return gobject_; }
 
   /// Provides access to the underlying C instance.
-  const GOptionGroup* gobj() const { return gobject_; }
+  auto gobj() const -> const GOptionGroup* { return gobject_; }
 
   /// Provides access to the underlying C instance. The caller is responsible for unrefing it.
-  GOptionGroup*       gobj_copy() const;
+  auto       gobj_copy() const -> GOptionGroup*;
 
 protected:
 
@@ -227,11 +227,11 @@ protected:
 
   void add_entry_with_wrapper(const OptionEntry& entry, GOptionArg arg_type, void* cpp_arg);
 
-  static gboolean post_parse_callback(GOptionContext* context,
-    GOptionGroup* group, gpointer data, GError** error);
+  static auto post_parse_callback(GOptionContext* context,
+    GOptionGroup* group, gpointer data, GError** error) -> gboolean;
 
-  static gboolean option_arg_callback(const gchar* option_name, const gchar* value,
-    gpointer data, GError** error);
+  static auto option_arg_callback(const gchar* option_name, const gchar* value,
+    gpointer data, GError** error) -> gboolean;
 
   //Map of entry names to CppOptionEntry:
   using type_map_entries = std::map<Glib::ustring, CppOptionEntry>;

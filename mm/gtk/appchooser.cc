@@ -34,7 +34,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::AppChooser> wrap(GtkAppChooser* object, bool take_copy)
+auto wrap(GtkAppChooser* object, bool take_copy) -> Glib::RefPtr<Gtk::AppChooser>
 {
   return Glib::make_refptr_for_instance<Gtk::AppChooser>( dynamic_cast<Gtk::AppChooser*> (Glib::wrap_auto_interface<Gtk::AppChooser> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -49,7 +49,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& AppChooser_Class::init()
+auto AppChooser_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -76,7 +76,7 @@ void AppChooser_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* AppChooser_Class::wrap_new(GObject* object)
+auto AppChooser_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new AppChooser((GtkAppChooser*)(object));
 }
@@ -103,7 +103,7 @@ AppChooser::AppChooser(AppChooser&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-AppChooser& AppChooser::operator=(AppChooser&& src) noexcept
+auto AppChooser::operator=(AppChooser&& src) noexcept -> AppChooser&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -120,19 +120,19 @@ void AppChooser::add_interface(GType gtype_implementer)
 
 AppChooser::CppClassType AppChooser::appchooser_class_; // initialize static member
 
-GType AppChooser::get_type()
+auto AppChooser::get_type() -> GType
 {
   return appchooser_class_.init().get_type();
 }
 
 
-GType AppChooser::get_base_type()
+auto AppChooser::get_base_type() -> GType
 {
   return gtk_app_chooser_get_type();
 }
 
 
-Glib::RefPtr<Gio::AppInfo> AppChooser::get_app_info()
+auto AppChooser::get_app_info() -> Glib::RefPtr<Gio::AppInfo>
 {
   auto retvalue = Glib::wrap(gtk_app_chooser_get_app_info(gobj()));
   if(retvalue)
@@ -140,12 +140,12 @@ Glib::RefPtr<Gio::AppInfo> AppChooser::get_app_info()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::AppInfo> AppChooser::get_app_info() const
+auto AppChooser::get_app_info() const -> Glib::RefPtr<const Gio::AppInfo>
 {
   return const_cast<AppChooser*>(this)->get_app_info();
 }
 
-Glib::ustring AppChooser::get_content_type() const
+auto AppChooser::get_content_type() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_app_chooser_get_content_type(const_cast<GtkAppChooser*>(gobj())));
 }
@@ -156,7 +156,7 @@ void AppChooser::refresh()
 }
 
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > AppChooser::property_content_type() const
+auto AppChooser::property_content_type() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "content-type");
 }

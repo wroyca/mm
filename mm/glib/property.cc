@@ -89,7 +89,7 @@ struct custom_properties_type
 };
 
 // The quark used for storing/getting the custom properties of custom types.
-static const GQuark custom_properties_quark =
+const GQuark custom_properties_quark =
   g_quark_from_string("gtkmm_CustomObject_custom_properties");
 
 // Delete the custom properties data when an object of a custom type is finalized.
@@ -107,8 +107,8 @@ void destroy_notify_obj_custom_props(void* data)
   delete obj_custom_props;
 }
 
-custom_properties_type*
-get_obj_custom_props(GObject* obj)
+auto
+get_obj_custom_props(GObject* obj) -> custom_properties_type*
 {
   auto obj_custom_props =
     static_cast<custom_properties_type*>(g_object_get_qdata(obj, custom_properties_quark));
@@ -277,8 +277,8 @@ PropertyBase::~PropertyBase() noexcept
     g_param_spec_unref(param_spec_);
 }
 
-bool
-PropertyBase::lookup_property(const Glib::ustring& name)
+auto
+PropertyBase::lookup_property(const Glib::ustring& name) -> bool
 {
   g_assert(param_spec_ == nullptr);
 
@@ -338,29 +338,29 @@ PropertyBase::install_property(GParamSpec* param_spec)
   g_param_spec_ref(param_spec_);
 }
 
-const char*
-PropertyBase::get_name_internal() const
+auto
+PropertyBase::get_name_internal() const -> const char*
 {
   const char* const name = g_param_spec_get_name(param_spec_);
   g_return_val_if_fail(name != nullptr, "");
   return name;
 }
 
-Glib::ustring
-PropertyBase::get_name() const
+auto
+PropertyBase::get_name() const -> Glib::ustring
 {
   return Glib::ustring(get_name_internal());
 }
 
-Glib::ustring
-PropertyBase::get_nick() const
+auto
+PropertyBase::get_nick() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(
     g_param_spec_get_nick(param_spec_));
 }
 
-Glib::ustring
-PropertyBase::get_blurb() const
+auto
+PropertyBase::get_blurb() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(
     g_param_spec_get_blurb(param_spec_));

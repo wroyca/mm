@@ -124,7 +124,7 @@ public:
 
   // noncopyable
   CellArea(const CellArea&) = delete;
-  CellArea& operator=(const CellArea&) = delete;
+  auto operator=(const CellArea&) -> CellArea& = delete;
 
 private:  friend class CellArea_Class;
   static CppClassType cellarea_class_;
@@ -138,28 +138,28 @@ protected:
 public:
 
   CellArea(CellArea&& src) noexcept;
-  CellArea& operator=(CellArea&& src) noexcept;
+  auto operator=(CellArea&& src) noexcept -> CellArea&;
 
   ~CellArea() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkCellArea*       gobj()       { return reinterpret_cast<GtkCellArea*>(gobject_); }
+  auto       gobj() -> GtkCellArea*       { return reinterpret_cast<GtkCellArea*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkCellArea* gobj() const { return reinterpret_cast<GtkCellArea*>(gobject_); }
+  auto gobj() const -> const GtkCellArea* { return reinterpret_cast<GtkCellArea*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkCellArea* gobj_copy();
+  auto gobj_copy() -> GtkCellArea*;
 
 private:
 
@@ -186,7 +186,7 @@ public:
    * @param renderer The `Gtk::CellRenderer` to check.
    * @return <tt>true</tt> if @a renderer is in the @a area.
    */
-  bool has_renderer(CellRenderer& renderer);
+  auto has_renderer(CellRenderer& renderer) -> bool;
 
   /** For instance,
    * bool on_foreach(Gtk::CellRenderer* renderer);
@@ -243,7 +243,7 @@ public:
    * @param flags The `Gtk::CellRenderer`State for @a area in this row.
    * @return <tt>true</tt> if the event was handled by @a area.
    */
-  int event(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, const Glib::RefPtr<const Gdk::Event>& gdk_event, const Gdk::Rectangle& cell_area, GtkCellRendererState flags);
+  auto event(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, const Glib::RefPtr<const Gdk::Event>& gdk_event, const Gdk::Rectangle& cell_area, GtkCellRendererState flags) -> int;
 
 
   /** Snapshots @a area’s cells according to @a area’s layout onto at
@@ -286,7 +286,7 @@ public:
    * returned cell renderer.
    * @return The `Gtk::CellRenderer` at @a x and @a y.
    */
-  CellRenderer* get_cell_at_position(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, const Gdk::Rectangle& cell_area, int x, int y, Gdk::Rectangle& alloc_area);
+  auto get_cell_at_position(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, const Gdk::Rectangle& cell_area, int x, int y, Gdk::Rectangle& alloc_area) -> CellRenderer*;
 
   /** Gets the `Gtk::CellRenderer` at @a x and @a y coordinates inside @a area and optionally
    * returns the full cell allocation for it inside @a cell_area.
@@ -301,7 +301,7 @@ public:
    * returned cell renderer.
    * @return The `Gtk::CellRenderer` at @a x and @a y.
    */
-  const CellRenderer* get_cell_at_position(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, const Gdk::Rectangle& cell_area, int x, int y, Gdk::Rectangle& alloc_area) const;
+  auto get_cell_at_position(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, const Gdk::Rectangle& cell_area, int x, int y, Gdk::Rectangle& alloc_area) const -> const CellRenderer*;
 
 
   /** Creates a `Gtk::CellArea`Context to be used with @a area for
@@ -313,7 +313,7 @@ public:
    *
    * @return A newly created `Gtk::CellArea`Context which can be used with @a area.
    */
-  Glib::RefPtr<CellAreaContext> create_context() const;
+  auto create_context() const -> Glib::RefPtr<CellAreaContext>;
 
 
   /** This is sometimes needed for cases where rows need to share
@@ -331,7 +331,7 @@ public:
    * @param context The `Gtk::CellArea`Context to copy.
    * @return A newly created `Gtk::CellArea`Context copy of @a context.
    */
-  Glib::RefPtr<CellAreaContext> copy_context(const Glib::RefPtr<const CellAreaContext>& context);
+  auto copy_context(const Glib::RefPtr<const CellAreaContext>& context) -> Glib::RefPtr<CellAreaContext>;
 
 
   /** Gets whether the area prefers a height-for-width layout
@@ -339,7 +339,7 @@ public:
    *
    * @return The `Gtk::SizeRequestMode` preferred by @a area.
    */
-  SizeRequestMode get_request_mode() const;
+  auto get_request_mode() const -> SizeRequestMode;
 
   /** Retrieves a cell area’s initial minimum and natural width.
    *
@@ -427,7 +427,7 @@ public:
    * attributes applied to @a area. This string belongs to the area and
    * should not be freed.
    */
-  Glib::ustring get_current_path_string() const;
+  auto get_current_path_string() const -> Glib::ustring;
 
 
   /** Applies any connected attributes to the renderers in
@@ -467,7 +467,7 @@ public:
    * @param attribute An attribute on the renderer.
    * @return The model column, or -1.
    */
-  int attribute_get_column(CellRenderer& renderer, const Glib::ustring& attribute) const;
+  auto attribute_get_column(CellRenderer& renderer, const Glib::ustring& attribute) const -> int;
 
   //Ignore the C convenience functions.
 
@@ -494,7 +494,7 @@ public:
    *
    * @return Whether @a area can do anything when activated.
    */
-  bool is_activatable() const;
+  auto is_activatable() const -> bool;
 
   /** Activates @a area, usually by activating the currently focused
    * cell, however some subclasses which embed widgets in the area
@@ -508,7 +508,7 @@ public:
    * will be activated.
    * @return Whether @a area was successfully activated.
    */
-  bool activate(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, const Gdk::Rectangle& cell_area, CellRendererState flags, bool edit_only);
+  auto activate(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, const Gdk::Rectangle& cell_area, CellRendererState flags, bool edit_only) -> bool;
 
   /** This should be called by the @a area’s owning layout widget
    * when focus is to be passed to @a area, or moved within @a area
@@ -521,7 +521,7 @@ public:
    * @param direction The `Gtk::DirectionType`.
    * @return <tt>true</tt> if focus remains inside @a area as a result of this call.
    */
-  bool focus(DirectionType direction);
+  auto focus(DirectionType direction) -> bool;
 
   /** Explicitly sets the currently focused cell to @a renderer.
    *
@@ -539,13 +539,13 @@ public:
    *
    * @return The currently focused cell in @a area.
    */
-  CellRenderer* get_focus_cell();
+  auto get_focus_cell() -> CellRenderer*;
 
   /** Retrieves the currently focused cell for @a area
    *
    * @return The currently focused cell in @a area.
    */
-  const CellRenderer* get_focus_cell() const;
+  auto get_focus_cell() const -> const CellRenderer*;
 
 
   /** Adds @a sibling to @a renderer’s focusable area, focus will be drawn
@@ -575,7 +575,7 @@ public:
    * @param sibling The `Gtk::CellRenderer` to check against @a renderer’s sibling list.
    * @return <tt>true</tt> if @a sibling is a focus sibling of @a renderer.
    */
-  bool is_focus_sibling(CellRenderer& renderer, CellRenderer& sibling);
+  auto is_focus_sibling(CellRenderer& renderer, CellRenderer& sibling) -> bool;
 
 
   /** Gets the focus sibling cell renderers for @a renderer.
@@ -584,7 +584,7 @@ public:
    * @return A `GList` of `Gtk::CellRenderer`s.
    * The returned list is internal and should not be freed.
    */
-  std::vector<CellRenderer*> get_focus_siblings(CellRenderer& renderer);
+  auto get_focus_siblings(CellRenderer& renderer) -> std::vector<CellRenderer*>;
 
 
   /** Gets the focus sibling cell renderers for @a renderer.
@@ -593,7 +593,7 @@ public:
    * @return A `GList` of `Gtk::CellRenderer`s.
    * The returned list is internal and should not be freed.
    */
-  std::vector<const CellRenderer*> get_focus_siblings(const CellRenderer& renderer) const;
+  auto get_focus_siblings(const CellRenderer& renderer) const -> std::vector<const CellRenderer*>;
 
 
   /** Gets the `Gtk::CellRenderer` which is expected to be focusable
@@ -608,7 +608,7 @@ public:
    * @return The `Gtk::CellRenderer`
    * for which @a renderer is a sibling.
    */
-  CellRenderer* get_focus_from_sibling(CellRenderer& renderer);
+  auto get_focus_from_sibling(CellRenderer& renderer) -> CellRenderer*;
 
   /** Gets the `Gtk::CellRenderer` which is expected to be focusable
    * for which @a renderer is, or may be a sibling.
@@ -622,7 +622,7 @@ public:
    * @return The `Gtk::CellRenderer`
    * for which @a renderer is a sibling.
    */
-  const CellRenderer* get_focus_from_sibling(CellRenderer& renderer) const;
+  auto get_focus_from_sibling(CellRenderer& renderer) const -> const CellRenderer*;
 
 
   /** Gets the `Gtk::CellRenderer` in @a area that is currently
@@ -630,14 +630,14 @@ public:
    *
    * @return The currently edited `Gtk::CellRenderer`.
    */
-  CellRenderer* get_edited_cell();
+  auto get_edited_cell() -> CellRenderer*;
 
   /** Gets the `Gtk::CellRenderer` in @a area that is currently
    * being edited.
    *
    * @return The currently edited `Gtk::CellRenderer`.
    */
-  const CellRenderer* get_edited_cell() const;
+  auto get_edited_cell() const -> const CellRenderer*;
 
 
   /** Gets the `Gtk::CellEditable` widget currently used
@@ -645,14 +645,14 @@ public:
    *
    * @return The currently active `Gtk::CellEditable` widget.
    */
-  CellEditable* get_edit_widget();
+  auto get_edit_widget() -> CellEditable*;
 
   /** Gets the `Gtk::CellEditable` widget currently used
    * to edit the currently edited cell.
    *
    * @return The currently active `Gtk::CellEditable` widget.
    */
-  const CellEditable* get_edit_widget() const;
+  auto get_edit_widget() const -> const CellEditable*;
 
 
   /** This is used by `Gtk::CellArea` subclasses when handling events
@@ -668,7 +668,7 @@ public:
    * @param flags The `Gtk::CellRenderer`State for @a renderer.
    * @return Whether cell activation was successful.
    */
-  bool activate_cell(Widget& widget, CellRenderer& renderer, const Glib::RefPtr<const Gdk::Event>& gdk_event, const Gdk::Rectangle& cell_area, CellRendererState flags);
+  auto activate_cell(Widget& widget, CellRenderer& renderer, const Glib::RefPtr<const Gdk::Event>& gdk_event, const Gdk::Rectangle& cell_area, CellRendererState flags) -> bool;
 
   /** Explicitly stops the editing of the currently edited cell.
    *
@@ -729,7 +729,7 @@ protected:
    * @param is_expanded Whether the view is currently showing the children of this row.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<TreeModel>&, const TreeModel::iterator&, bool, bool)> signal_apply_attributes();
+  auto signal_apply_attributes() -> Glib::SignalProxy<void(const Glib::RefPtr<TreeModel>&, const TreeModel::iterator&, bool, bool)>;
 
 
   // The add-editable, remove-editable and focus-changed signals can't have default handlers because the wrapped C signals have no default handlers.
@@ -751,7 +751,7 @@ protected:
    * @param path The `Gtk::TreePath` string this edit was initiated for.
    */
 
-  Glib::SignalProxy<void(CellRenderer*, CellEditable*, const Gdk::Rectangle&, const Glib::ustring&)> signal_add_editable();
+  auto signal_add_editable() -> Glib::SignalProxy<void(CellRenderer*, CellEditable*, const Gdk::Rectangle&, const Glib::ustring&)>;
 
 
   /**
@@ -767,7 +767,7 @@ protected:
    * @param editable The `Gtk::CellEditable` widget to remove.
    */
 
-  Glib::SignalProxy<void(CellRenderer*, CellEditable*)> signal_remove_editable();
+  auto signal_remove_editable() -> Glib::SignalProxy<void(CellRenderer*, CellEditable*)>;
 
 
   /**
@@ -789,7 +789,7 @@ protected:
    * @param path The current `Gtk::TreePath` string set for @a area.
    */
 
-  Glib::SignalProxy<void(CellRenderer*, const Glib::ustring&)> signal_focus_changed();
+  auto signal_focus_changed() -> Glib::SignalProxy<void(CellRenderer*, const Glib::ustring&)>;
 
 
     virtual void snapshot_vfunc(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, const Glib::RefPtr<Gtk::Snapshot>& snapshot, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags, bool paint_focus);
@@ -799,7 +799,7 @@ protected:
 //  GtkCellAreaContext *(* create_context)                 (GtkCellArea             *area);
 //  GtkCellAreaContext *(* copy_context)                   (GtkCellArea             *area,
 
-    virtual SizeRequestMode get_request_mode_vfunc() const;
+    virtual auto get_request_mode_vfunc() const -> SizeRequestMode;
 
     virtual void get_preferred_width_vfunc(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, int& minimum_width, int& natural_width);
 
@@ -815,14 +815,14 @@ protected:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< CellRenderer* > property_focus_cell() ;
+  auto property_focus_cell() -> Glib::PropertyProxy< CellRenderer* > ;
 
 /** The cell in the area that currently has focus
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< CellRenderer* > property_focus_cell() const;
+  auto property_focus_cell() const -> Glib::PropertyProxy_ReadOnly< CellRenderer* >;
 
   /** The cell in the area that is currently edited
    *
@@ -832,7 +832,7 @@ protected:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< CellRenderer* > property_edited_cell() const;
+  auto property_edited_cell() const -> Glib::PropertyProxy_ReadOnly< CellRenderer* >;
 
 
   /** The widget currently editing the edited cell
@@ -843,7 +843,7 @@ protected:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< CellEditable* > property_edit_widget() const;
+  auto property_edit_widget() const -> Glib::PropertyProxy_ReadOnly< CellEditable* >;
 
 
 public:
@@ -875,7 +875,7 @@ namespace Glib
    * @relates Gtk::CellArea
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::CellArea> wrap(GtkCellArea* object, bool take_copy = false);
+  auto wrap(GtkCellArea* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CellArea>;
 }
 
 

@@ -81,7 +81,7 @@ public:
 
   // noncopyable
   RemoteActionGroup(const RemoteActionGroup&) = delete;
-  RemoteActionGroup& operator=(const RemoteActionGroup&) = delete;
+  auto operator=(const RemoteActionGroup&) -> RemoteActionGroup& = delete;
 
 private:
   friend class RemoteActionGroup_Class;
@@ -115,7 +115,7 @@ protected:
 public:
 
   RemoteActionGroup(RemoteActionGroup&& src) noexcept;
-  RemoteActionGroup& operator=(RemoteActionGroup&& src) noexcept;
+  auto operator=(RemoteActionGroup&& src) noexcept -> RemoteActionGroup&;
 
   ~RemoteActionGroup() noexcept override;
 
@@ -123,17 +123,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GRemoteActionGroup*       gobj()       { return reinterpret_cast<GRemoteActionGroup*>(gobject_); }
+  auto       gobj() -> GRemoteActionGroup*       { return reinterpret_cast<GRemoteActionGroup*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GRemoteActionGroup* gobj() const { return reinterpret_cast<GRemoteActionGroup*>(gobject_); }
+  auto gobj() const -> const GRemoteActionGroup* { return reinterpret_cast<GRemoteActionGroup*>(gobject_); }
 
 private:
 
@@ -211,7 +211,7 @@ namespace Glib
    * @relates Gio::RemoteActionGroup
    */
   GIOMM_API
-  Glib::RefPtr<Gio::RemoteActionGroup> wrap(GRemoteActionGroup* object, bool take_copy = false);
+  auto wrap(GRemoteActionGroup* object, bool take_copy = false) -> Glib::RefPtr<Gio::RemoteActionGroup>;
 
 } // namespace Glib
 

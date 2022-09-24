@@ -120,10 +120,10 @@ public:
   explicit Module(const std::string& file_name, Flags flags = Flags(0));
 
   Module(const Module&) = delete;
-  Module& operator=(const Module&) = delete;
+  auto operator=(const Module&) -> Module& = delete;
 
   Module(Module&& other) noexcept;
-  Module& operator=(Module&& other) noexcept;
+  auto operator=(Module&& other) noexcept -> Module&;
 
   /** Close a module. The module will be removed from memory, unless
    * <tt>make_resident</tt> has been called.
@@ -138,7 +138,7 @@ public:
   /** Checks if modules are supported on the current platform.
    * @returns true if available, false otherwise
    */
-  static bool get_supported();
+  static auto get_supported() -> bool;
 
 
   /** Ensures that a module will never be unloaded. Any calls to the
@@ -150,7 +150,7 @@ public:
   /** Gets a string describing the last module error.
    * @returns The error string
    */
-  static std::string get_last_error();
+  static auto get_last_error() -> std::string;
 
 
   /** Gets a symbol pointer from the module.
@@ -158,13 +158,13 @@ public:
    * @param symbol A pointer to set to the symbol
    * @returns True if the symbol was found, false otherwise.
    */
-  bool get_symbol(const std::string& symbol_name, void*& symbol) const;
+  auto get_symbol(const std::string& symbol_name, void*& symbol) const -> bool;
 
 
   /** Get the name of the module.
    * @returns The name of the module
    */
-  std::string get_name() const;
+  auto get_name() const -> std::string;
 
 
   /** A portable way to build the filename of a module. The
@@ -187,10 +187,10 @@ public:
    * @param module_name The name of the module
    * @returns The system-specific filename of the module
    */
-  static std::string build_path(const std::string& directory, const std::string& module_name);
+  static auto build_path(const std::string& directory, const std::string& module_name) -> std::string;
 
-  GModule*       gobj()       { return gobject_; }
-  const GModule* gobj() const { return gobject_; }
+  auto       gobj() -> GModule*       { return gobject_; }
+  auto gobj() const -> const GModule* { return gobject_; }
 
 protected:
   GModule* gobject_;
@@ -205,31 +205,31 @@ namespace Glib
 {
 
 /** @ingroup glibmmEnums */
-inline Module::Flags operator|(Module::Flags lhs, Module::Flags rhs)
+inline auto operator|(Module::Flags lhs, Module::Flags rhs) -> Module::Flags
   { return static_cast<Module::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline Module::Flags operator&(Module::Flags lhs, Module::Flags rhs)
+inline auto operator&(Module::Flags lhs, Module::Flags rhs) -> Module::Flags
   { return static_cast<Module::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline Module::Flags operator^(Module::Flags lhs, Module::Flags rhs)
+inline auto operator^(Module::Flags lhs, Module::Flags rhs) -> Module::Flags
   { return static_cast<Module::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline Module::Flags operator~(Module::Flags flags)
+inline auto operator~(Module::Flags flags) -> Module::Flags
   { return static_cast<Module::Flags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup glibmmEnums */
-inline Module::Flags& operator|=(Module::Flags& lhs, Module::Flags rhs)
+inline auto operator|=(Module::Flags& lhs, Module::Flags rhs) -> Module::Flags&
   { return (lhs = static_cast<Module::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline Module::Flags& operator&=(Module::Flags& lhs, Module::Flags rhs)
+inline auto operator&=(Module::Flags& lhs, Module::Flags rhs) -> Module::Flags&
   { return (lhs = static_cast<Module::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline Module::Flags& operator^=(Module::Flags& lhs, Module::Flags rhs)
+inline auto operator^=(Module::Flags& lhs, Module::Flags rhs) -> Module::Flags&
   { return (lhs = static_cast<Module::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Glib
 

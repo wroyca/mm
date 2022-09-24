@@ -37,7 +37,7 @@ namespace
 {
 
 
-static void DisplayManager_signal_display_opened_callback(GdkDisplayManager* self, GdkDisplay* p0,void* data)
+void DisplayManager_signal_display_opened_callback(GdkDisplayManager* self, GdkDisplay* p0,void* data)
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Display>&)>;
@@ -59,7 +59,7 @@ static void DisplayManager_signal_display_opened_callback(GdkDisplayManager* sel
   }
 }
 
-static const Glib::SignalProxyInfo DisplayManager_signal_display_opened_info =
+const Glib::SignalProxyInfo DisplayManager_signal_display_opened_info =
 {
   "display-opened",
   (GCallback) &DisplayManager_signal_display_opened_callback,
@@ -73,7 +73,7 @@ static const Glib::SignalProxyInfo DisplayManager_signal_display_opened_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::DisplayManager> wrap(GdkDisplayManager* object, bool take_copy)
+auto wrap(GdkDisplayManager* object, bool take_copy) -> Glib::RefPtr<Gdk::DisplayManager>
 {
   return Glib::make_refptr_for_instance<Gdk::DisplayManager>( dynamic_cast<Gdk::DisplayManager*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -88,7 +88,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Class& DisplayManager_Class::init()
+auto DisplayManager_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -119,7 +119,7 @@ void DisplayManager_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* DisplayManager_Class::wrap_new(GObject* object)
+auto DisplayManager_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new DisplayManager((GdkDisplayManager*)object);
 }
@@ -127,7 +127,7 @@ Glib::ObjectBase* DisplayManager_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GdkDisplayManager* DisplayManager::gobj_copy()
+auto DisplayManager::gobj_copy() -> GdkDisplayManager*
 {
   reference();
   return gobj();
@@ -150,7 +150,7 @@ DisplayManager::DisplayManager(DisplayManager&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-DisplayManager& DisplayManager::operator=(DisplayManager&& src) noexcept
+auto DisplayManager::operator=(DisplayManager&& src) noexcept -> DisplayManager&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -163,19 +163,19 @@ DisplayManager::~DisplayManager() noexcept
 
 DisplayManager::CppClassType DisplayManager::displaymanager_class_; // initialize static member
 
-GType DisplayManager::get_type()
+auto DisplayManager::get_type() -> GType
 {
   return displaymanager_class_.init().get_type();
 }
 
 
-GType DisplayManager::get_base_type()
+auto DisplayManager::get_base_type() -> GType
 {
   return gdk_display_manager_get_type();
 }
 
 
-Glib::RefPtr<DisplayManager> DisplayManager::get()
+auto DisplayManager::get() -> Glib::RefPtr<DisplayManager>
 {
 
   auto retvalue = Glib::wrap(gdk_display_manager_get());
@@ -184,7 +184,7 @@ Glib::RefPtr<DisplayManager> DisplayManager::get()
   return retvalue;
 }
 
-Glib::RefPtr<Display> DisplayManager::get_default_display()
+auto DisplayManager::get_default_display() -> Glib::RefPtr<Display>
 {
   auto retvalue = Glib::wrap(gdk_display_manager_get_default_display(gobj()));
   if(retvalue)
@@ -192,7 +192,7 @@ Glib::RefPtr<Display> DisplayManager::get_default_display()
   return retvalue;
 }
 
-Glib::RefPtr<const Display> DisplayManager::get_default_display() const
+auto DisplayManager::get_default_display() const -> Glib::RefPtr<const Display>
 {
   return const_cast<DisplayManager*>(this)->get_default_display();
 }
@@ -202,12 +202,12 @@ void DisplayManager::set_default_display(const Glib::RefPtr<Display>& display)
   gdk_display_manager_set_default_display(gobj(), Glib::unwrap(display));
 }
 
-std::vector< Glib::RefPtr<Display> > DisplayManager::list_displays()
+auto DisplayManager::list_displays() -> std::vector< Glib::RefPtr<Display> >
 {
   return Glib::SListHandler<Glib::RefPtr<Display> >::slist_to_vector(gdk_display_manager_list_displays(gobj()), Glib::OWNERSHIP_SHALLOW);
 }
 
-Glib::RefPtr<Display> DisplayManager::open_display(const Glib::ustring& name)
+auto DisplayManager::open_display(const Glib::ustring& name) -> Glib::RefPtr<Display>
 {
   auto retvalue = Glib::wrap(gdk_display_manager_open_display(gobj(), name.c_str()));
   if(retvalue)
@@ -216,7 +216,7 @@ Glib::RefPtr<Display> DisplayManager::open_display(const Glib::ustring& name)
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Display>&)> DisplayManager::signal_display_opened()
+auto DisplayManager::signal_display_opened() -> Glib::SignalProxy<void(const Glib::RefPtr<Display>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Display>&) >(this, &DisplayManager_signal_display_opened_info);
 }
@@ -226,12 +226,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Display
   "Type Glib::RefPtr<Display> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Display> > DisplayManager::property_default_display()
+auto DisplayManager::property_default_display() -> Glib::PropertyProxy< Glib::RefPtr<Display> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Display> >(this, "default-display");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> > DisplayManager::property_default_display() const
+auto DisplayManager::property_default_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >(this, "default-display");
 }

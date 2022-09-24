@@ -51,30 +51,30 @@ class PANGOMM_API GlyphString
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   GlyphString();
 
   explicit GlyphString(PangoGlyphString* gobject, bool make_a_copy = true);
 
   GlyphString(const GlyphString& other);
-  GlyphString& operator=(const GlyphString& other);
+  auto operator=(const GlyphString& other) -> GlyphString&;
 
   GlyphString(GlyphString&& other) noexcept;
-  GlyphString& operator=(GlyphString&& other) noexcept;
+  auto operator=(GlyphString&& other) noexcept -> GlyphString&;
 
   ~GlyphString() noexcept;
 
   void swap(GlyphString& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  PangoGlyphString*       gobj()       { return gobject_; }
+  auto       gobj() -> PangoGlyphString*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const PangoGlyphString* gobj() const { return gobject_; }
+  auto gobj() const -> const PangoGlyphString* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  PangoGlyphString* gobj_copy() const;
+  auto gobj_copy() const -> PangoGlyphString*;
 
 protected:
   PangoGlyphString* gobject_;
@@ -166,13 +166,13 @@ public:
    *
    * @return The logical width of the glyph string.
    */
-  int get_width() const;
+  auto get_width() const -> int;
 
   /** Computes the extents of the glyph string as drawn.
    * @param font A Pango::Font.
    * @return The extents of the glyph string as drawn.
    */
-  Rectangle get_ink_extents(const Glib::RefPtr<const Font>& font) const;
+  auto get_ink_extents(const Glib::RefPtr<const Font>& font) const -> Rectangle;
 
   /** Computes the extents of a sub-portion of the glyph string as drawn.
    * @param start The start index.
@@ -180,13 +180,13 @@ public:
    * @param font A Panog::Font
    * @return The extents of the sub-portion of the glyph string as drawn.
    */
-  Rectangle get_ink_extents(int start, int end, const Glib::RefPtr<const Font>& font) const;
+  auto get_ink_extents(int start, int end, const Glib::RefPtr<const Font>& font) const -> Rectangle;
 
   /** Computes the logical extents of a sub-portion of the glyph string.
    * @param font A Pango::Font.
    * @return The logical extents of the glyph string.
    */
-  Rectangle get_logical_extents(const Glib::RefPtr<const Font>& font) const;
+  auto get_logical_extents(const Glib::RefPtr<const Font>& font) const -> Rectangle;
 
   /** Computes the logical extents of a sub-portion of the glyph string.
    * @param start The start index.
@@ -194,7 +194,7 @@ public:
    * @param font A Pango::Font.
    * @return The logical extents of the sub-portion of the glyph string.
    */
-  Rectangle get_logical_extents(int start, int end, const Glib::RefPtr<const Font>& font) const;
+  auto get_logical_extents(int start, int end, const Glib::RefPtr<const Font>& font) const -> Rectangle;
 
   /** Determine the screen width corresponding to each character.
    * When multiple characters compose a single cluster, the width of the entire cluster
@@ -203,7 +203,7 @@ public:
    * @param embedding_level The embedding level of the string.
    * @return An array of integers representing the resulting character widths.
    */
-  std::vector<int> get_logical_widths(const Glib::ustring& text, int embedding_level) const;
+  auto get_logical_widths(const Glib::ustring& text, int embedding_level) const -> std::vector<int>;
 
   /** Converts from character position to x position.
    * (X position is measured from the left edge of the run). Character positions are computed by dividing up each cluster into equal portions.
@@ -213,7 +213,7 @@ public:
    * @param trailing Whether we should compute the result for the beginning or end of the character.
    * @return The x position.
    */
-  int index_to_x(const Glib::ustring& text, const Analysis& analysis, int index, bool trailing) const;
+  auto index_to_x(const Glib::ustring& text, const Analysis& analysis, int index, bool trailing) const -> int;
 
   /** Convert from x offset to character position.
    * Character positions are computed by dividing up each cluster into equal portions.
@@ -231,7 +231,7 @@ public:
   /** Gharacter positions are computed by dividing up each cluster into equal portions.
    * @return An array of Pango::GlyphInfo objects.
    */
-  std::vector<GlyphInfo> get_glyphs() const;
+  auto get_glyphs() const -> std::vector<GlyphInfo>;
 
 
 };
@@ -263,7 +263,7 @@ namespace Glib
  * @relates Pango::GlyphString
  */
 PANGOMM_API
-Pango::GlyphString wrap(PangoGlyphString* object, bool take_copy = false);
+auto wrap(PangoGlyphString* object, bool take_copy = false) -> Pango::GlyphString;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

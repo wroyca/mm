@@ -45,7 +45,7 @@ class GTKMM_API SelectionListModelImpl : public Gio::ListModel, public Selection
 public:
   // noncopyable
   SelectionListModelImpl(const SelectionListModelImpl&) = delete;
-  SelectionListModelImpl& operator=(const SelectionListModelImpl&) = delete;
+  auto operator=(const SelectionListModelImpl&) -> SelectionListModelImpl& = delete;
 
 protected:
   explicit SelectionListModelImpl(GObject* castitem);
@@ -55,7 +55,7 @@ protected:
 
 public:
   SelectionListModelImpl(SelectionListModelImpl&& src) noexcept;
-  SelectionListModelImpl& operator=(SelectionListModelImpl&& src) noexcept;
+  auto operator=(SelectionListModelImpl&& src) noexcept -> SelectionListModelImpl&;
 
   ~SelectionListModelImpl() noexcept override;
 };

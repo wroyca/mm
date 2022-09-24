@@ -92,7 +92,7 @@ namespace
 namespace Glib
 {
 
-Gtk::MenuButton* wrap(GtkMenuButton* object, bool take_copy)
+auto wrap(GtkMenuButton* object, bool take_copy) -> Gtk::MenuButton*
 {
   return dynamic_cast<Gtk::MenuButton *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -105,7 +105,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& MenuButton_Class::init()
+auto MenuButton_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -136,7 +136,7 @@ void MenuButton_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* MenuButton_Class::wrap_new(GObject* o)
+auto MenuButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new MenuButton((GtkMenuButton*)(o)));
 
@@ -162,7 +162,7 @@ MenuButton::MenuButton(MenuButton&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-MenuButton& MenuButton::operator=(MenuButton&& src) noexcept
+auto MenuButton::operator=(MenuButton&& src) noexcept -> MenuButton&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -175,13 +175,13 @@ MenuButton::~MenuButton() noexcept
 
 MenuButton::CppClassType MenuButton::menubutton_class_; // initialize static member
 
-GType MenuButton::get_type()
+auto MenuButton::get_type() -> GType
 {
   return menubutton_class_.init().get_type();
 }
 
 
-GType MenuButton::get_base_type()
+auto MenuButton::get_base_type() -> GType
 {
   return gtk_menu_button_get_type();
 }
@@ -202,12 +202,12 @@ void MenuButton::set_popover(Popover& popover)
   gtk_menu_button_set_popover(gobj(), (popover).Gtk::Widget::gobj());
 }
 
-Popover* MenuButton::get_popover()
+auto MenuButton::get_popover() -> Popover*
 {
   return Glib::wrap(gtk_menu_button_get_popover(gobj()));
 }
 
-const Popover* MenuButton::get_popover() const
+auto MenuButton::get_popover() const -> const Popover*
 {
   return const_cast<MenuButton*>(this)->get_popover();
 }
@@ -217,7 +217,7 @@ void MenuButton::set_direction(ArrowType direction)
   gtk_menu_button_set_direction(gobj(), static_cast<GtkArrowType>(direction));
 }
 
-ArrowType MenuButton::get_direction() const
+auto MenuButton::get_direction() const -> ArrowType
 {
   return static_cast<ArrowType>(gtk_menu_button_get_direction(const_cast<GtkMenuButton*>(gobj())));
 }
@@ -227,7 +227,7 @@ void MenuButton::set_menu_model(const Glib::RefPtr<const Gio::MenuModel>& menu_m
   gtk_menu_button_set_menu_model(gobj(), const_cast<GMenuModel*>(Glib::unwrap(menu_model)));
 }
 
-Glib::RefPtr<Gio::MenuModel> MenuButton::get_menu_model()
+auto MenuButton::get_menu_model() -> Glib::RefPtr<Gio::MenuModel>
 {
   auto retvalue = Glib::wrap(gtk_menu_button_get_menu_model(gobj()));
   if(retvalue)
@@ -235,7 +235,7 @@ Glib::RefPtr<Gio::MenuModel> MenuButton::get_menu_model()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::MenuModel> MenuButton::get_menu_model() const
+auto MenuButton::get_menu_model() const -> Glib::RefPtr<const Gio::MenuModel>
 {
   return const_cast<MenuButton*>(this)->get_menu_model();
 }
@@ -245,7 +245,7 @@ void MenuButton::set_icon_name(const Glib::ustring& icon_name)
   gtk_menu_button_set_icon_name(gobj(), icon_name.c_str());
 }
 
-Glib::ustring MenuButton::get_icon_name() const
+auto MenuButton::get_icon_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_menu_button_get_icon_name(const_cast<GtkMenuButton*>(gobj())));
 }
@@ -255,7 +255,7 @@ void MenuButton::set_always_show_arrow(bool always_show_arrow)
   gtk_menu_button_set_always_show_arrow(gobj(), static_cast<int>(always_show_arrow));
 }
 
-bool MenuButton::get_always_show_arrow() const
+auto MenuButton::get_always_show_arrow() const -> bool
 {
   return gtk_menu_button_get_always_show_arrow(const_cast<GtkMenuButton*>(gobj()));
 }
@@ -265,7 +265,7 @@ void MenuButton::set_label(const Glib::ustring& label)
   gtk_menu_button_set_label(gobj(), label.c_str());
 }
 
-Glib::ustring MenuButton::get_label() const
+auto MenuButton::get_label() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_menu_button_get_label(const_cast<GtkMenuButton*>(gobj())));
 }
@@ -275,7 +275,7 @@ void MenuButton::set_use_underline(bool use_underline)
   gtk_menu_button_set_use_underline(gobj(), static_cast<int>(use_underline));
 }
 
-bool MenuButton::get_use_underline() const
+auto MenuButton::get_use_underline() const -> bool
 {
   return gtk_menu_button_get_use_underline(const_cast<GtkMenuButton*>(gobj()));
 }
@@ -285,7 +285,7 @@ void MenuButton::set_has_frame(bool has_frame)
   gtk_menu_button_set_has_frame(gobj(), static_cast<int>(has_frame));
 }
 
-bool MenuButton::get_has_frame() const
+auto MenuButton::get_has_frame() const -> bool
 {
   return gtk_menu_button_get_has_frame(const_cast<GtkMenuButton*>(gobj()));
 }
@@ -305,7 +305,7 @@ void MenuButton::set_primary(bool primary)
   gtk_menu_button_set_primary(gobj(), static_cast<int>(primary));
 }
 
-bool MenuButton::get_primary() const
+auto MenuButton::get_primary() const -> bool
 {
   return gtk_menu_button_get_primary(const_cast<GtkMenuButton*>(gobj()));
 }
@@ -315,12 +315,12 @@ void MenuButton::set_child(Widget& child)
   gtk_menu_button_set_child(gobj(), (child).gobj());
 }
 
-Widget* MenuButton::get_child()
+auto MenuButton::get_child() -> Widget*
 {
   return Glib::wrap(gtk_menu_button_get_child(gobj()));
 }
 
-const Widget* MenuButton::get_child() const
+auto MenuButton::get_child() const -> const Widget*
 {
   return const_cast<MenuButton*>(this)->get_child();
 }
@@ -330,12 +330,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Me
   "Type Glib::RefPtr<Gio::MenuModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > MenuButton::property_menu_model()
+auto MenuButton::property_menu_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >(this, "menu-model");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> > MenuButton::property_menu_model() const
+auto MenuButton::property_menu_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >(this, "menu-model");
 }
@@ -344,12 +344,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<ArrowType>::value,
   "Type ArrowType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< ArrowType > MenuButton::property_direction()
+auto MenuButton::property_direction() -> Glib::PropertyProxy< ArrowType >
 {
   return Glib::PropertyProxy< ArrowType >(this, "direction");
 }
 
-Glib::PropertyProxy_ReadOnly< ArrowType > MenuButton::property_direction() const
+auto MenuButton::property_direction() const -> Glib::PropertyProxy_ReadOnly< ArrowType >
 {
   return Glib::PropertyProxy_ReadOnly< ArrowType >(this, "direction");
 }
@@ -358,82 +358,82 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Popover*>::value,
   "Type Popover* cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Popover* > MenuButton::property_popover()
+auto MenuButton::property_popover() -> Glib::PropertyProxy< Popover* >
 {
   return Glib::PropertyProxy< Popover* >(this, "popover");
 }
 
-Glib::PropertyProxy_ReadOnly< Popover* > MenuButton::property_popover() const
+auto MenuButton::property_popover() const -> Glib::PropertyProxy_ReadOnly< Popover* >
 {
   return Glib::PropertyProxy_ReadOnly< Popover* >(this, "popover");
 }
 
-Glib::PropertyProxy< Glib::ustring > MenuButton::property_icon_name()
+auto MenuButton::property_icon_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "icon-name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > MenuButton::property_icon_name() const
+auto MenuButton::property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "icon-name");
 }
 
-Glib::PropertyProxy< bool > MenuButton::property_always_show_arrow()
+auto MenuButton::property_always_show_arrow() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "always-show-arrow");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > MenuButton::property_always_show_arrow() const
+auto MenuButton::property_always_show_arrow() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "always-show-arrow");
 }
 
-Glib::PropertyProxy< Glib::ustring > MenuButton::property_label()
+auto MenuButton::property_label() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "label");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > MenuButton::property_label() const
+auto MenuButton::property_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "label");
 }
 
-Glib::PropertyProxy< bool > MenuButton::property_use_underline()
+auto MenuButton::property_use_underline() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "use-underline");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > MenuButton::property_use_underline() const
+auto MenuButton::property_use_underline() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "use-underline");
 }
 
-Glib::PropertyProxy< bool > MenuButton::property_has_frame()
+auto MenuButton::property_has_frame() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "has-frame");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > MenuButton::property_has_frame() const
+auto MenuButton::property_has_frame() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "has-frame");
 }
 
-Glib::PropertyProxy< bool > MenuButton::property_primary()
+auto MenuButton::property_primary() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "primary");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > MenuButton::property_primary() const
+auto MenuButton::property_primary() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "primary");
 }
 
-Glib::PropertyProxy< Widget* > MenuButton::property_child()
+auto MenuButton::property_child() -> Glib::PropertyProxy< Widget* >
 {
   return Glib::PropertyProxy< Widget* >(this, "child");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > MenuButton::property_child() const
+auto MenuButton::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
 }

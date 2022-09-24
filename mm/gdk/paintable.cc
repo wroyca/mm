@@ -32,7 +32,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo Paintable_signal_invalidate_contents_info =
+const Glib::SignalProxyInfo Paintable_signal_invalidate_contents_info =
 {
   "invalidate-contents",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -40,7 +40,7 @@ static const Glib::SignalProxyInfo Paintable_signal_invalidate_contents_info =
 };
 
 
-static const Glib::SignalProxyInfo Paintable_signal_invalidate_size_info =
+const Glib::SignalProxyInfo Paintable_signal_invalidate_size_info =
 {
   "invalidate-size",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -51,7 +51,7 @@ static const Glib::SignalProxyInfo Paintable_signal_invalidate_size_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gdk::Paintable::Flags>::value_type()
+auto Glib::Value<Gdk::Paintable::Flags>::value_type() -> GType
 {
   return gdk_paintable_flags_get_type();
 }
@@ -60,7 +60,7 @@ GType Glib::Value<Gdk::Paintable::Flags>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::Paintable> wrap(GdkPaintable* object, bool take_copy)
+auto wrap(GdkPaintable* object, bool take_copy) -> Glib::RefPtr<Gdk::Paintable>
 {
   return Glib::make_refptr_for_instance<Gdk::Paintable>( dynamic_cast<Gdk::Paintable*> (Glib::wrap_auto_interface<Gdk::Paintable> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -75,7 +75,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& Paintable_Class::init()
+auto Paintable_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -145,7 +145,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->snapshot)
     (*base->snapshot)(self, snapshot, width, height);
 }
-GdkPaintable* Paintable_Class::get_current_image_vfunc_callback(GdkPaintable* self)
+auto Paintable_Class::get_current_image_vfunc_callback(GdkPaintable* self) -> GdkPaintable*
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -184,7 +184,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = GdkPaintable*;
   return RType();
 }
-GdkPaintableFlags Paintable_Class::get_flags_vfunc_callback(GdkPaintable* self)
+auto Paintable_Class::get_flags_vfunc_callback(GdkPaintable* self) -> GdkPaintableFlags
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -223,7 +223,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = GdkPaintableFlags;
   return RType();
 }
-int Paintable_Class::get_intrinsic_width_vfunc_callback(GdkPaintable* self)
+auto Paintable_Class::get_intrinsic_width_vfunc_callback(GdkPaintable* self) -> int
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -262,7 +262,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = int;
   return RType();
 }
-int Paintable_Class::get_intrinsic_height_vfunc_callback(GdkPaintable* self)
+auto Paintable_Class::get_intrinsic_height_vfunc_callback(GdkPaintable* self) -> int
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -301,7 +301,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = int;
   return RType();
 }
-double Paintable_Class::get_intrinsic_aspect_ratio_vfunc_callback(GdkPaintable* self)
+auto Paintable_Class::get_intrinsic_aspect_ratio_vfunc_callback(GdkPaintable* self) -> double
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -342,7 +342,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* Paintable_Class::wrap_new(GObject* object)
+auto Paintable_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Paintable((GdkPaintable*)(object));
 }
@@ -369,7 +369,7 @@ Paintable::Paintable(Paintable&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-Paintable& Paintable::operator=(Paintable&& src) noexcept
+auto Paintable::operator=(Paintable&& src) noexcept -> Paintable&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -386,13 +386,13 @@ void Paintable::add_interface(GType gtype_implementer)
 
 Paintable::CppClassType Paintable::paintable_class_; // initialize static member
 
-GType Paintable::get_type()
+auto Paintable::get_type() -> GType
 {
   return paintable_class_.init().get_type();
 }
 
 
-GType Paintable::get_base_type()
+auto Paintable::get_base_type() -> GType
 {
   return gdk_paintable_get_type();
 }
@@ -403,27 +403,27 @@ void Paintable::snapshot(const Glib::RefPtr<Gdk::Snapshot>& snapshot, double wid
   gdk_paintable_snapshot(gobj(), Glib::unwrap(snapshot), width, height);
 }
 
-Glib::RefPtr<const Paintable> Paintable::get_current_image() const
+auto Paintable::get_current_image() const -> Glib::RefPtr<const Paintable>
 {
   return Glib::wrap(gdk_paintable_get_current_image(const_cast<GdkPaintable*>(gobj())));
 }
 
-Flags Paintable::get_flags() const
+auto Paintable::get_flags() const -> Flags
 {
   return static_cast<Flags>(gdk_paintable_get_flags(const_cast<GdkPaintable*>(gobj())));
 }
 
-int Paintable::get_intrinsic_width() const
+auto Paintable::get_intrinsic_width() const -> int
 {
   return gdk_paintable_get_intrinsic_width(const_cast<GdkPaintable*>(gobj()));
 }
 
-int Paintable::get_intrinsic_height() const
+auto Paintable::get_intrinsic_height() const -> int
 {
   return gdk_paintable_get_intrinsic_height(const_cast<GdkPaintable*>(gobj()));
 }
 
-double Paintable::get_intrinsic_aspect_ratio() const
+auto Paintable::get_intrinsic_aspect_ratio() const -> double
 {
   return gdk_paintable_get_intrinsic_aspect_ratio(const_cast<GdkPaintable*>(gobj()));
 }
@@ -444,13 +444,13 @@ void Paintable::invalidate_size()
 }
 
 
-Glib::SignalProxy<void()> Paintable::signal_invalidate_contents()
+auto Paintable::signal_invalidate_contents() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Paintable_signal_invalidate_contents_info);
 }
 
 
-Glib::SignalProxy<void()> Paintable::signal_invalidate_size()
+auto Paintable::signal_invalidate_size() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Paintable_signal_invalidate_size_info);
 }
@@ -468,7 +468,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->snapshot)(gobj(),Glib::unwrap(snapshot),width,height);
   }
 }
-Glib::RefPtr<Paintable> Gdk::Paintable::get_current_image_vfunc() const
+auto Gdk::Paintable::get_current_image_vfunc() const -> Glib::RefPtr<Paintable>
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -484,7 +484,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = Glib::RefPtr<Paintable>;
   return RType();
 }
-Flags Gdk::Paintable::get_flags_vfunc() const
+auto Gdk::Paintable::get_flags_vfunc() const -> Flags
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -500,7 +500,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = Flags;
   return RType();
 }
-int Gdk::Paintable::get_intrinsic_width_vfunc() const
+auto Gdk::Paintable::get_intrinsic_width_vfunc() const -> int
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -516,7 +516,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = int;
   return RType();
 }
-int Gdk::Paintable::get_intrinsic_height_vfunc() const
+auto Gdk::Paintable::get_intrinsic_height_vfunc() const -> int
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -532,7 +532,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = int;
   return RType();
 }
-double Gdk::Paintable::get_intrinsic_aspect_ratio_vfunc() const
+auto Gdk::Paintable::get_intrinsic_aspect_ratio_vfunc() const -> double
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

@@ -74,7 +74,7 @@ public:
 
   // noncopyable
   BuilderScope(const BuilderScope&) = delete;
-  BuilderScope& operator=(const BuilderScope&) = delete;
+  auto operator=(const BuilderScope&) -> BuilderScope& = delete;
 
 private:
   friend class BuilderScope_Class;
@@ -108,7 +108,7 @@ protected:
 public:
 
   BuilderScope(BuilderScope&& src) noexcept;
-  BuilderScope& operator=(BuilderScope&& src) noexcept;
+  auto operator=(BuilderScope&& src) noexcept -> BuilderScope&;
 
   ~BuilderScope() noexcept override;
 
@@ -116,17 +116,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkBuilderScope*       gobj()       { return reinterpret_cast<GtkBuilderScope*>(gobject_); }
+  auto       gobj() -> GtkBuilderScope*       { return reinterpret_cast<GtkBuilderScope*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkBuilderScope* gobj() const { return reinterpret_cast<GtkBuilderScope*>(gobject_); }
+  auto gobj() const -> const GtkBuilderScope* { return reinterpret_cast<GtkBuilderScope*>(gobject_); }
 
 private:
 
@@ -162,7 +162,7 @@ namespace Glib
    * @relates Gtk::BuilderScope
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::BuilderScope> wrap(GtkBuilderScope* object, bool take_copy = false);
+  auto wrap(GtkBuilderScope* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BuilderScope>;
 
 } // namespace Glib
 

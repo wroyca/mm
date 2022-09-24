@@ -73,7 +73,7 @@ public:
 
   // noncopyable
   NativeDialog(const NativeDialog&) = delete;
-  NativeDialog& operator=(const NativeDialog&) = delete;
+  auto operator=(const NativeDialog&) -> NativeDialog& = delete;
 
 private:  friend class NativeDialog_Class;
   static CppClassType nativedialog_class_;
@@ -87,28 +87,28 @@ protected:
 public:
 
   NativeDialog(NativeDialog&& src) noexcept;
-  NativeDialog& operator=(NativeDialog&& src) noexcept;
+  auto operator=(NativeDialog&& src) noexcept -> NativeDialog&;
 
   ~NativeDialog() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkNativeDialog*       gobj()       { return reinterpret_cast<GtkNativeDialog*>(gobject_); }
+  auto       gobj() -> GtkNativeDialog*       { return reinterpret_cast<GtkNativeDialog*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkNativeDialog* gobj() const { return reinterpret_cast<GtkNativeDialog*>(gobject_); }
+  auto gobj() const -> const GtkNativeDialog* { return reinterpret_cast<GtkNativeDialog*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkNativeDialog* gobj_copy();
+  auto gobj_copy() -> GtkNativeDialog*;
 
 private:
 
@@ -153,7 +153,7 @@ public:
    *
    * @return <tt>true</tt> if the dialog is visible.
    */
-  bool get_visible() const;
+  auto get_visible() const -> bool;
 
   /** Sets a dialog modal or non-modal.
    *
@@ -175,7 +175,7 @@ public:
    *
    * @return <tt>true</tt> if the dialog is set to be modal.
    */
-  bool get_modal() const;
+  auto get_modal() const -> bool;
 
   /** Sets the title of the `GtkNativeDialog.`
    *
@@ -193,7 +193,7 @@ public:
    * been set explicitly. The returned string is owned by the widget
    * and must not be modified or freed.
    */
-  Glib::ustring get_title() const;
+  auto get_title() const -> Glib::ustring;
 
 
   /** Dialog windows should be set transient for the main application
@@ -224,7 +224,7 @@ public:
    * @return The transient parent for this window,
    * or <tt>nullptr</tt> if no transient parent has been set.
    */
-  Window* get_transient_for();
+  auto get_transient_for() -> Window*;
 
   /** Fetches the transient parent for this window.
    *
@@ -233,7 +233,7 @@ public:
    * @return The transient parent for this window,
    * or <tt>nullptr</tt> if no transient parent has been set.
    */
-  const Window* get_transient_for() const;
+  auto get_transient_for() const -> const Window*;
 
   /** The title of the dialog window
    *
@@ -244,7 +244,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_title() ;
+  auto property_title() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The title of the dialog window
    *
@@ -255,7 +255,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_title() const;
+  auto property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Whether the window should be modal with respect to its transient parent.
    *
@@ -266,7 +266,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_modal() ;
+  auto property_modal() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the window should be modal with respect to its transient parent.
    *
@@ -277,7 +277,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_modal() const;
+  auto property_modal() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the window is currently visible.
    *
@@ -288,7 +288,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_visible() ;
+  auto property_visible() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the window is currently visible.
    *
@@ -299,7 +299,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_visible() const;
+  auto property_visible() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The transient parent of the dialog, or <tt>nullptr</tt> for none.
    *
@@ -308,7 +308,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Window* > property_transient_for() ;
+  auto property_transient_for() -> Glib::PropertyProxy< Window* > ;
 
 /** The transient parent of the dialog, or <tt>nullptr</tt> for none.
    *
@@ -317,7 +317,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Window* > property_transient_for() const;
+  auto property_transient_for() const -> Glib::PropertyProxy_ReadOnly< Window* >;
 
 
   /**
@@ -338,7 +338,7 @@ public:
    * @param response_id The response ID.
    */
 
-  Glib::SignalProxy<void(int)> signal_response();
+  auto signal_response() -> Glib::SignalProxy<void(int)>;
 
 
 public:
@@ -370,7 +370,7 @@ namespace Glib
    * @relates Gtk::NativeDialog
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::NativeDialog> wrap(GtkNativeDialog* object, bool take_copy = false);
+  auto wrap(GtkNativeDialog* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NativeDialog>;
 }
 
 

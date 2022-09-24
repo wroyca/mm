@@ -38,7 +38,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::ProxyAddress> wrap(GProxyAddress* object, bool take_copy)
+auto wrap(GProxyAddress* object, bool take_copy) -> Glib::RefPtr<Gio::ProxyAddress>
 {
   return Glib::make_refptr_for_instance<Gio::ProxyAddress>( dynamic_cast<Gio::ProxyAddress*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -53,7 +53,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& ProxyAddress_Class::init()
+auto ProxyAddress_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -84,7 +84,7 @@ void ProxyAddress_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* ProxyAddress_Class::wrap_new(GObject* object)
+auto ProxyAddress_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ProxyAddress((GProxyAddress*)object);
 }
@@ -92,7 +92,7 @@ Glib::ObjectBase* ProxyAddress_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GProxyAddress* ProxyAddress::gobj_copy()
+auto ProxyAddress::gobj_copy() -> GProxyAddress*
 {
   reference();
   return gobj();
@@ -115,7 +115,7 @@ ProxyAddress::ProxyAddress(ProxyAddress&& src) noexcept
 : InetSocketAddress(std::move(src))
 {}
 
-ProxyAddress& ProxyAddress::operator=(ProxyAddress&& src) noexcept
+auto ProxyAddress::operator=(ProxyAddress&& src) noexcept -> ProxyAddress&
 {
   InetSocketAddress::operator=(std::move(src));
   return *this;
@@ -128,13 +128,13 @@ ProxyAddress::~ProxyAddress() noexcept
 
 ProxyAddress::CppClassType ProxyAddress::proxyaddress_class_; // initialize static member
 
-GType ProxyAddress::get_type()
+auto ProxyAddress::get_type() -> GType
 {
   return proxyaddress_class_.init().get_type();
 }
 
 
-GType ProxyAddress::get_base_type()
+auto ProxyAddress::get_base_type() -> GType
 {
   return g_proxy_address_get_type();
 }
@@ -150,78 +150,78 @@ ProxyAddress::ProxyAddress(const Glib::RefPtr<InetAddress>& address, guint16 por
 
 }
 
-Glib::RefPtr<ProxyAddress> ProxyAddress::create(const Glib::RefPtr<InetAddress>& address, guint16 port, const Glib::ustring& protocol, const Glib::ustring& destination_hostname, guint16 destination_port, const Glib::ustring& username, const Glib::ustring& password)
+auto ProxyAddress::create(const Glib::RefPtr<InetAddress>& address, guint16 port, const Glib::ustring& protocol, const Glib::ustring& destination_hostname, guint16 destination_port, const Glib::ustring& username, const Glib::ustring& password) -> Glib::RefPtr<ProxyAddress>
 {
   return Glib::make_refptr_for_instance<ProxyAddress>( new ProxyAddress(address, port, protocol, destination_hostname, destination_port, username, password) );
 }
 
-Glib::ustring ProxyAddress::get_protocol() const
+auto ProxyAddress::get_protocol() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_proxy_address_get_protocol(const_cast<GProxyAddress*>(gobj())));
 }
 
-Glib::ustring ProxyAddress::get_destination_protocol() const
+auto ProxyAddress::get_destination_protocol() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_proxy_address_get_destination_protocol(const_cast<GProxyAddress*>(gobj())));
 }
 
-Glib::ustring ProxyAddress::get_destination_hostname() const
+auto ProxyAddress::get_destination_hostname() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_proxy_address_get_destination_hostname(const_cast<GProxyAddress*>(gobj())));
 }
 
-guint16 ProxyAddress::get_destination_port() const
+auto ProxyAddress::get_destination_port() const -> guint16
 {
   return g_proxy_address_get_destination_port(const_cast<GProxyAddress*>(gobj()));
 }
 
-Glib::ustring ProxyAddress::get_username() const
+auto ProxyAddress::get_username() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_proxy_address_get_username(const_cast<GProxyAddress*>(gobj())));
 }
 
-Glib::ustring ProxyAddress::get_password() const
+auto ProxyAddress::get_password() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_proxy_address_get_password(const_cast<GProxyAddress*>(gobj())));
 }
 
-Glib::ustring ProxyAddress::get_uri() const
+auto ProxyAddress::get_uri() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_proxy_address_get_uri(const_cast<GProxyAddress*>(gobj())));
 }
 
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > ProxyAddress::property_protocol() const
+auto ProxyAddress::property_protocol() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "protocol");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > ProxyAddress::property_destination_protocol() const
+auto ProxyAddress::property_destination_protocol() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "destination-protocol");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > ProxyAddress::property_destination_hostname() const
+auto ProxyAddress::property_destination_hostname() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "destination-hostname");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > ProxyAddress::property_destination_port() const
+auto ProxyAddress::property_destination_port() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "destination-port");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > ProxyAddress::property_username() const
+auto ProxyAddress::property_username() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "username");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > ProxyAddress::property_password() const
+auto ProxyAddress::property_password() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "password");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > ProxyAddress::property_uri() const
+auto ProxyAddress::property_uri() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "uri");
 }

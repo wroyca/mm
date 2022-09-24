@@ -67,11 +67,11 @@ class GTKMM_API Frame : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Frame(Frame&& src) noexcept;
-  Frame& operator=(Frame&& src) noexcept;
+  auto operator=(Frame&& src) noexcept -> Frame&;
 
   // noncopyable
   Frame(const Frame&) = delete;
-  Frame& operator=(const Frame&) = delete;
+  auto operator=(const Frame&) -> Frame& = delete;
 
   ~Frame() noexcept override;
 
@@ -91,19 +91,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkFrame*       gobj()       { return reinterpret_cast<GtkFrame*>(gobject_); }
+  auto       gobj() -> GtkFrame*       { return reinterpret_cast<GtkFrame*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkFrame* gobj() const { return reinterpret_cast<GtkFrame*>(gobject_); }
+  auto gobj() const -> const GtkFrame* { return reinterpret_cast<GtkFrame*>(gobject_); }
 
 private:
 
@@ -128,7 +128,7 @@ public:
    * was no label widget or the label widget was not a `Gtk::Label`.
    * This string is owned by GTK and must not be modified or freed.
    */
-  Glib::ustring get_label() const;
+  auto get_label() const -> Glib::ustring;
 
 
   /** Sets the label widget for the frame.
@@ -144,13 +144,13 @@ public:
    *
    * @return The label widget.
    */
-  Widget* get_label_widget();
+  auto get_label_widget() -> Widget*;
 
   /** Retrieves the label widget for the frame.
    *
    * @return The label widget.
    */
-  const Widget* get_label_widget() const;
+  auto get_label_widget() const -> const Widget*;
 
 
   /** Sets the X alignment of the frame widget’s label.
@@ -177,7 +177,7 @@ public:
    *
    * @return The frames X alignment.
    */
-  float get_label_align() const;
+  auto get_label_align() const -> float;
 
 
   /** Sets the child widget of @a frame.
@@ -191,13 +191,13 @@ public:
    *
    * @return The child widget of @a frame.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget of @a frame.
    *
    * @return The child widget of @a frame.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
   /** Text of the frame's label.
    *
@@ -206,7 +206,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_label() ;
+  auto property_label() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Text of the frame's label.
    *
@@ -215,7 +215,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_label() const;
+  auto property_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The horizontal alignment of the label.
    *
@@ -224,7 +224,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_label_xalign() ;
+  auto property_label_xalign() -> Glib::PropertyProxy< double > ;
 
 /** The horizontal alignment of the label.
    *
@@ -233,35 +233,35 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_label_xalign() const;
+  auto property_label_xalign() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** Widget to display in place of the usual frame label.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_label_widget() ;
+  auto property_label_widget() -> Glib::PropertyProxy< Widget* > ;
 
 /** Widget to display in place of the usual frame label.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_label_widget() const;
+  auto property_label_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
   /** The child widget.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The child widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
 protected:
@@ -297,7 +297,7 @@ namespace Glib
    * @relates Gtk::Frame
    */
   GTKMM_API
-  Gtk::Frame* wrap(GtkFrame* object, bool take_copy = false);
+  auto wrap(GtkFrame* object, bool take_copy = false) -> Gtk::Frame*;
 } //namespace Glib
 
 

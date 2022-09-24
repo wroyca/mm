@@ -82,7 +82,7 @@ public:
 
   GTKMM_API FileChooserError(Code error_code, const Glib::ustring& error_message);
   GTKMM_API explicit FileChooserError(GError* gobject);
-  GTKMM_API Code code() const;
+  GTKMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -104,7 +104,7 @@ template <>
 class GTKMM_API Value<Gtk::FileChooserError::Code> : public Glib::Value_Enum<Gtk::FileChooserError::Code>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -165,7 +165,7 @@ public:
 
   // noncopyable
   FileChooser(const FileChooser&) = delete;
-  FileChooser& operator=(const FileChooser&) = delete;
+  auto operator=(const FileChooser&) -> FileChooser& = delete;
 
 private:
   friend class FileChooser_Class;
@@ -199,7 +199,7 @@ protected:
 public:
 
   FileChooser(FileChooser&& src) noexcept;
-  FileChooser& operator=(FileChooser&& src) noexcept;
+  auto operator=(FileChooser&& src) noexcept -> FileChooser&;
 
   ~FileChooser() noexcept override;
 
@@ -207,17 +207,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkFileChooser*       gobj()       { return reinterpret_cast<GtkFileChooser*>(gobject_); }
+  auto       gobj() -> GtkFileChooser*       { return reinterpret_cast<GtkFileChooser*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkFileChooser* gobj() const { return reinterpret_cast<GtkFileChooser*>(gobject_); }
+  auto gobj() const -> const GtkFileChooser* { return reinterpret_cast<GtkFileChooser*>(gobject_); }
 
 private:
 
@@ -270,7 +270,7 @@ public:
    *
    * @return The action that the file selector is performing.
    */
-  Action get_action() const;
+  auto get_action() const -> Action;
 
   /** Sets whether multiple files can be selected in the file chooser.
    *
@@ -287,7 +287,7 @@ public:
    *
    * @return <tt>true</tt> if multiple files can be selected.
    */
-  bool get_select_multiple() const;
+  auto get_select_multiple() const -> bool;
 
 
   /** Sets whether file chooser will offer to create new folders.
@@ -303,7 +303,7 @@ public:
    *
    * @return <tt>true</tt> if the Create Folder button should be displayed.
    */
-  bool get_create_folders() const;
+  auto get_create_folders() const -> bool;
 
 
   /** Sets the current name in the file selector, as if entered
@@ -334,7 +334,7 @@ public:
    * in UTF-8 encoding, which is not necessarily the system’s encoding for
    * filenames.
    */
-  Glib::ustring get_current_name() const;
+  auto get_current_name() const -> Glib::ustring;
 
 
   /** Sets @a file as the current filename for the file chooser.
@@ -365,7 +365,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool set_file(const Glib::RefPtr<const Gio::File>& file);
+  auto set_file(const Glib::RefPtr<const Gio::File>& file) -> bool;
 
   //No refreturn is needed here, because the C function provides a reference:
 
@@ -376,7 +376,7 @@ public:
    * selected file and subfolder in the current folder. Free the returned
    * list with Glib::object_unref().
    */
-  Glib::RefPtr<Gio::ListModel> get_files();
+  auto get_files() -> Glib::RefPtr<Gio::ListModel>;
 
   /** Lists all the selected files and subfolders in the current folder
    * of @a chooser as `Gio::File`.
@@ -385,7 +385,7 @@ public:
    * selected file and subfolder in the current folder. Free the returned
    * list with Glib::object_unref().
    */
-  Glib::RefPtr<const Gio::ListModel> get_files() const;
+  auto get_files() const -> Glib::RefPtr<const Gio::ListModel>;
 
 
   /** Sets the current folder for @a chooser from a `Gio::File`.
@@ -396,7 +396,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool set_current_folder(const Glib::RefPtr<const Gio::File>& file);
+  auto set_current_folder(const Glib::RefPtr<const Gio::File>& file) -> bool;
 
   //No refreturn is needed here, because the C function provides a reference:
 
@@ -408,7 +408,7 @@ public:
    * requested from it; for example, as would be for calling
    * set_current_folder() on a nonexistent folder.
    */
-  Glib::RefPtr<Gio::File> get_current_folder();
+  auto get_current_folder() -> Glib::RefPtr<Gio::File>;
 
   /** Gets the current folder of @a chooser as `Gio::File`.
    *
@@ -418,7 +418,7 @@ public:
    * requested from it; for example, as would be for calling
    * set_current_folder() on a nonexistent folder.
    */
-  Glib::RefPtr<const Gio::File> get_current_folder() const;
+  auto get_current_folder() const -> Glib::RefPtr<const Gio::File>;
 
   //No refreturn is needed here, because the C function provides a reference:
 
@@ -434,7 +434,7 @@ public:
    * @return A selected `Gio::File`. You own the
    * returned file; use Glib::object_unref() to release it.
    */
-  Glib::RefPtr<Gio::File> get_file();
+  auto get_file() -> Glib::RefPtr<Gio::File>;
 
   /** Gets the `Gio::File` for the currently selected file in
    * the file selector.
@@ -448,7 +448,7 @@ public:
    * @return A selected `Gio::File`. You own the
    * returned file; use Glib::object_unref() to release it.
    */
-  Glib::RefPtr<const Gio::File> get_file() const;
+  auto get_file() const -> Glib::RefPtr<const Gio::File>;
 
 /* List of user selectable filters
  */
@@ -484,7 +484,7 @@ public:
    * @return A `Gio::ListModel` containing the current set
    * of user-selectable filters.
    */
-  Glib::RefPtr<const Gio::ListModel> get_filters() const;
+  auto get_filters() const -> Glib::RefPtr<const Gio::ListModel>;
 
 /* Current filter
  */
@@ -507,13 +507,13 @@ public:
    *
    * @return The current filter.
    */
-  Glib::RefPtr<FileFilter> get_filter();
+  auto get_filter() -> Glib::RefPtr<FileFilter>;
 
   /** Gets the current filter.
    *
    * @return The current filter.
    */
-  Glib::RefPtr<const FileFilter> get_filter() const;
+  auto get_filter() const -> Glib::RefPtr<const FileFilter>;
 
 /* Per-application shortcut folders */
 
@@ -527,7 +527,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool add_shortcut_folder(const Glib::RefPtr<Gio::File>& folder);
+  auto add_shortcut_folder(const Glib::RefPtr<Gio::File>& folder) -> bool;
 
   /** Removes a folder from the shortcut folders in a file chooser.
    *
@@ -537,7 +537,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool remove_shortcut_folder(const Glib::RefPtr<Gio::File>& folder);
+  auto remove_shortcut_folder(const Glib::RefPtr<Gio::File>& folder) -> bool;
 
   //No refreturn is needed here, because the C function provides a reference:
 
@@ -548,7 +548,7 @@ public:
    *
    * @return A list model of `Gio::File`s.
    */
-  Glib::RefPtr<const Gio::ListModel> get_shortcut_folders() const;
+  auto get_shortcut_folders() const -> Glib::RefPtr<const Gio::ListModel>;
 
 
   /** Adds a 'choice' to the file chooser.
@@ -604,7 +604,7 @@ public:
    * @param id The ID of the choice to get.
    * @return The ID of the currently selected option.
    */
-  Glib::ustring get_choice(const Glib::ustring& id) const;
+  auto get_choice(const Glib::ustring& id) const -> Glib::ustring;
 
   /** The type of operation that the file chooser is performing.
    *
@@ -613,7 +613,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Action > property_action() ;
+  auto property_action() -> Glib::PropertyProxy< Action > ;
 
 /** The type of operation that the file chooser is performing.
    *
@@ -622,21 +622,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Action > property_action() const;
+  auto property_action() const -> Glib::PropertyProxy_ReadOnly< Action >;
 
   /** The current filter for selecting files that are displayed.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<FileFilter> > property_filter() ;
+  auto property_filter() -> Glib::PropertyProxy< Glib::RefPtr<FileFilter> > ;
 
 /** The current filter for selecting files that are displayed.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<FileFilter> > property_filter() const;
+  auto property_filter() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<FileFilter> >;
 
   /** Whether to allow multiple files to be selected.
    *
@@ -645,7 +645,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_select_multiple() ;
+  auto property_select_multiple() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to allow multiple files to be selected.
    *
@@ -654,7 +654,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_select_multiple() const;
+  auto property_select_multiple() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** A `Gio::ListModel` containing the filters that have been
    * added with Gtk::FileChooser::add_filter().
@@ -665,7 +665,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > property_filters() const;
+  auto property_filters() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >;
 
 
   /** A `Gio::ListModel` containing the shortcut folders that have been
@@ -677,7 +677,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > property_shortcut_folders() const;
+  auto property_shortcut_folders() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >;
 
 
   /** Whether a file chooser not in Gtk::FileChooser::Action::OPEN mode
@@ -688,7 +688,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_create_folders() ;
+  auto property_create_folders() -> Glib::PropertyProxy< bool > ;
 
 /** Whether a file chooser not in Gtk::FileChooser::Action::OPEN mode
    * will offer the user to create new folders.
@@ -698,7 +698,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_create_folders() const;
+  auto property_create_folders() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -725,7 +725,7 @@ template <>
 class GTKMM_API Value<Gtk::FileChooser::Action> : public Glib::Value_Enum<Gtk::FileChooser::Action>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -743,7 +743,7 @@ namespace Glib
    * @relates Gtk::FileChooser
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::FileChooser> wrap(GtkFileChooser* object, bool take_copy = false);
+  auto wrap(GtkFileChooser* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FileChooser>;
 
 } // namespace Glib
 

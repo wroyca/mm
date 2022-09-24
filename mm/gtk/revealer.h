@@ -65,11 +65,11 @@ class GTKMM_API Revealer
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Revealer(Revealer&& src) noexcept;
-  Revealer& operator=(Revealer&& src) noexcept;
+  auto operator=(Revealer&& src) noexcept -> Revealer&;
 
   // noncopyable
   Revealer(const Revealer&) = delete;
-  Revealer& operator=(const Revealer&) = delete;
+  auto operator=(const Revealer&) -> Revealer& = delete;
 
   ~Revealer() noexcept override;
 
@@ -89,19 +89,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkRevealer*       gobj()       { return reinterpret_cast<GtkRevealer*>(gobject_); }
+  auto       gobj() -> GtkRevealer*       { return reinterpret_cast<GtkRevealer*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkRevealer* gobj() const { return reinterpret_cast<GtkRevealer*>(gobject_); }
+  auto gobj() const -> const GtkRevealer* { return reinterpret_cast<GtkRevealer*>(gobject_); }
 
 private:
 
@@ -121,7 +121,7 @@ public:
    *
    * @return <tt>true</tt> if the child is revealed.
    */
-  bool get_reveal_child() const;
+  auto get_reveal_child() const -> bool;
 
   /** Tells the `Gtk::Revealer` to reveal or conceal its child.
    *
@@ -140,7 +140,7 @@ public:
    *
    * @return <tt>true</tt> if the child is fully revealed.
    */
-  bool get_child_revealed() const;
+  auto get_child_revealed() const -> bool;
 
 
   /** Returns the amount of time (in milliseconds) that
@@ -148,7 +148,7 @@ public:
    *
    * @return The transition duration.
    */
-  guint get_transition_duration() const;
+  auto get_transition_duration() const -> guint;
 
   /** Sets the duration that transitions will take.
    *
@@ -162,7 +162,7 @@ public:
    *
    * @return The current transition type of @a revealer.
    */
-  RevealerTransitionType get_transition_type() const;
+  auto get_transition_type() const -> RevealerTransitionType;
 
   /** Sets the type of animation that will be used for
    * transitions in @a revealer.
@@ -185,13 +185,13 @@ public:
    *
    * @return The child widget of @a revealer.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget of @a revealer.
    *
    * @return The child widget of @a revealer.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
   /** The type of animation used to transition.
    *
@@ -200,7 +200,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< RevealerTransitionType > property_transition_type() ;
+  auto property_transition_type() -> Glib::PropertyProxy< RevealerTransitionType > ;
 
 /** The type of animation used to transition.
    *
@@ -209,7 +209,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< RevealerTransitionType > property_transition_type() const;
+  auto property_transition_type() const -> Glib::PropertyProxy_ReadOnly< RevealerTransitionType >;
 
   /** The animation duration, in milliseconds.
    *
@@ -218,7 +218,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_transition_duration() ;
+  auto property_transition_duration() -> Glib::PropertyProxy< guint > ;
 
 /** The animation duration, in milliseconds.
    *
@@ -227,7 +227,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_transition_duration() const;
+  auto property_transition_duration() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** Whether the revealer should reveal the child.
    *
@@ -236,7 +236,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_reveal_child() ;
+  auto property_reveal_child() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the revealer should reveal the child.
    *
@@ -245,7 +245,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_reveal_child() const;
+  auto property_reveal_child() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the child is revealed and the animation target reached.
    *
@@ -254,7 +254,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_child_revealed() const;
+  auto property_child_revealed() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** The child widget.
@@ -262,14 +262,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The child widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
   // Gtk::Revealer has no signals nor vfuncs as of 3.10.
@@ -302,7 +302,7 @@ namespace Glib
    * @relates Gtk::Revealer
    */
   GTKMM_API
-  Gtk::Revealer* wrap(GtkRevealer* object, bool take_copy = false);
+  auto wrap(GtkRevealer* object, bool take_copy = false) -> Gtk::Revealer*;
 } //namespace Glib
 
 

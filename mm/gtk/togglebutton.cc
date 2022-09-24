@@ -48,7 +48,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo ToggleButton_signal_toggled_info =
+const Glib::SignalProxyInfo ToggleButton_signal_toggled_info =
 {
   "toggled",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -62,7 +62,7 @@ static const Glib::SignalProxyInfo ToggleButton_signal_toggled_info =
 namespace Glib
 {
 
-Gtk::ToggleButton* wrap(GtkToggleButton* object, bool take_copy)
+auto wrap(GtkToggleButton* object, bool take_copy) -> Gtk::ToggleButton*
 {
   return dynamic_cast<Gtk::ToggleButton *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -75,7 +75,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ToggleButton_Class::init()
+auto ToggleButton_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -145,7 +145,7 @@ void ToggleButton_Class::toggled_callback(GtkToggleButton* self)
 }
 
 
-Glib::ObjectBase* ToggleButton_Class::wrap_new(GObject* o)
+auto ToggleButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new ToggleButton((GtkToggleButton*)(o)));
 
@@ -171,7 +171,7 @@ ToggleButton::ToggleButton(ToggleButton&& src) noexcept
 : Gtk::Button(std::move(src))
 {}
 
-ToggleButton& ToggleButton::operator=(ToggleButton&& src) noexcept
+auto ToggleButton::operator=(ToggleButton&& src) noexcept -> ToggleButton&
 {
   Gtk::Button::operator=(std::move(src));
   return *this;
@@ -184,13 +184,13 @@ ToggleButton::~ToggleButton() noexcept
 
 ToggleButton::CppClassType ToggleButton::togglebutton_class_; // initialize static member
 
-GType ToggleButton::get_type()
+auto ToggleButton::get_type() -> GType
 {
   return togglebutton_class_.init().get_type();
 }
 
 
-GType ToggleButton::get_base_type()
+auto ToggleButton::get_base_type() -> GType
 {
   return gtk_toggle_button_get_type();
 }
@@ -211,7 +211,7 @@ void ToggleButton::set_active(bool is_active)
   gtk_toggle_button_set_active(gobj(), static_cast<int>(is_active));
 }
 
-bool ToggleButton::get_active() const
+auto ToggleButton::get_active() const -> bool
 {
   return gtk_toggle_button_get_active(const_cast<GtkToggleButton*>(gobj()));
 }
@@ -227,18 +227,18 @@ void ToggleButton::set_group(ToggleButton& group)
 }
 
 
-Glib::SignalProxy<void()> ToggleButton::signal_toggled()
+auto ToggleButton::signal_toggled() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &ToggleButton_signal_toggled_info);
 }
 
 
-Glib::PropertyProxy< bool > ToggleButton::property_active()
+auto ToggleButton::property_active() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "active");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > ToggleButton::property_active() const
+auto ToggleButton::property_active() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "active");
 }
@@ -247,7 +247,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<ToggleButton*>::valu
   "Type ToggleButton* cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_WriteOnly< ToggleButton* > ToggleButton::property_group()
+auto ToggleButton::property_group() -> Glib::PropertyProxy_WriteOnly< ToggleButton* >
 {
   return Glib::PropertyProxy_WriteOnly< ToggleButton* >(this, "group");
 }

@@ -36,13 +36,8 @@ using GDBusMethodInvocationClass = struct _GDBusMethodInvocationClass;
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
-{
-
-namespace DBus
-{ class GIOMM_API MethodInvocation_Class; } // namespace DBus
-
-} // namespace Gio
+namespace Gio::DBus
+{ class GIOMM_API MethodInvocation_Class; } // namespace Gio
 #endif //DOXYGEN_SHOULD_SKIP_THIS
 
 namespace Glib
@@ -52,10 +47,7 @@ class GIOMM_API Error;
 
 }
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 class Connection;
@@ -87,7 +79,7 @@ public:
 
   // noncopyable
   MethodInvocation(const MethodInvocation&) = delete;
-  MethodInvocation& operator=(const MethodInvocation&) = delete;
+  auto operator=(const MethodInvocation&) -> MethodInvocation& = delete;
 
 private:  friend class MethodInvocation_Class;
   static CppClassType methodinvocation_class_;
@@ -101,28 +93,28 @@ protected:
 public:
 
   MethodInvocation(MethodInvocation&& src) noexcept;
-  MethodInvocation& operator=(MethodInvocation&& src) noexcept;
+  auto operator=(MethodInvocation&& src) noexcept -> MethodInvocation&;
 
   ~MethodInvocation() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDBusMethodInvocation*       gobj()       { return reinterpret_cast<GDBusMethodInvocation*>(gobject_); }
+  auto       gobj() -> GDBusMethodInvocation*       { return reinterpret_cast<GDBusMethodInvocation*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDBusMethodInvocation* gobj() const { return reinterpret_cast<GDBusMethodInvocation*>(gobject_); }
+  auto gobj() const -> const GDBusMethodInvocation* { return reinterpret_cast<GDBusMethodInvocation*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusMethodInvocation* gobj_copy();
+  auto gobj_copy() -> GDBusMethodInvocation*;
 
 private:
 
@@ -135,7 +127,7 @@ public:
    *
    * @return A string. Do not free, it is owned by @a invocation.
    */
-  Glib::ustring get_sender() const;
+  auto get_sender() const -> Glib::ustring;
 
   /** Gets the object path the method was invoked on.
    *
@@ -143,7 +135,7 @@ public:
    *
    * @return A string. Do not free, it is owned by @a invocation.
    */
-  Glib::ustring get_object_path() const;
+  auto get_object_path() const -> Glib::ustring;
 
   /** Gets the name of the D-Bus interface the method was invoked on.
    *
@@ -156,7 +148,7 @@ public:
    *
    * @return A string. Do not free, it is owned by @a invocation.
    */
-  Glib::ustring get_interface_name() const;
+  auto get_interface_name() const -> Glib::ustring;
 
   /** Gets the name of the method that was invoked.
    *
@@ -164,7 +156,7 @@ public:
    *
    * @return A string. Do not free, it is owned by @a invocation.
    */
-  Glib::ustring get_method_name() const;
+  auto get_method_name() const -> Glib::ustring;
 
 
   // The C API only returns a const GDBusMethodInfo.
@@ -180,7 +172,7 @@ public:
    *
    * @return A DBusMethodInfo or <tt>nullptr</tt>. Do not free, it is owned by @a invocation.
    */
-  Glib::RefPtr<const MethodInfo> get_method_info() const;
+  auto get_method_info() const -> Glib::RefPtr<const MethodInfo>;
 
 
   /** Gets the Gio::DBus::Connection the method was invoked on.
@@ -189,7 +181,7 @@ public:
    *
    * @return A Gio::DBus::Connection. Do not free, it is owned by @a invocation.
    */
-  Glib::RefPtr<Connection> get_connection();
+  auto get_connection() -> Glib::RefPtr<Connection>;
 
   /** Gets the Gio::DBus::Connection the method was invoked on.
    *
@@ -197,7 +189,7 @@ public:
    *
    * @return A Gio::DBus::Connection. Do not free, it is owned by @a invocation.
    */
-  Glib::RefPtr<const Connection> get_connection() const;
+  auto get_connection() const -> Glib::RefPtr<const Connection>;
 
 
   /** Gets the Gio::DBus::Message for the method invocation. This is useful if
@@ -213,7 +205,7 @@ public:
    *
    * @return Gio::DBus::Message. Do not free, it is owned by @a invocation.
    */
-  Glib::RefPtr<Message> get_message();
+  auto get_message() -> Glib::RefPtr<Message>;
 
   /** Gets the Gio::DBus::Message for the method invocation. This is useful if
    * you need to use low-level protocol features, such as UNIX file
@@ -228,7 +220,7 @@ public:
    *
    * @return Gio::DBus::Message. Do not free, it is owned by @a invocation.
    */
-  Glib::RefPtr<const Message> get_message() const;
+  auto get_message() const -> Glib::RefPtr<const Message>;
 
   //We assume that this is a tuple (VariantContainerBase).
   //See https://bugzilla.gnome.org/show_bug.cgi?id=646420
@@ -240,7 +232,7 @@ public:
    *
    * @return A Variant tuple. Do not unref this because it is owned by @a invocation.
    */
-  Glib::VariantContainerBase get_parameters() const;
+  auto get_parameters() const -> Glib::VariantContainerBase;
 
   //TODO: Add a return_single_value() method?
   //A return_value(VariantBase) would probably be ambiguous to people
@@ -353,7 +345,6 @@ protected:
 
 };
 
-} //namespace DBus
 } // namespace Gio
 
 
@@ -368,7 +359,7 @@ namespace Glib
    * @relates Gio::DBus::MethodInvocation
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DBus::MethodInvocation> wrap(GDBusMethodInvocation* object, bool take_copy = false);
+  auto wrap(GDBusMethodInvocation* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::MethodInvocation>;
 }
 
 

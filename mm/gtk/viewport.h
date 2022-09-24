@@ -60,11 +60,11 @@ class GTKMM_API Viewport
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Viewport(Viewport&& src) noexcept;
-  Viewport& operator=(Viewport&& src) noexcept;
+  auto operator=(Viewport&& src) noexcept -> Viewport&;
 
   // noncopyable
   Viewport(const Viewport&) = delete;
-  Viewport& operator=(const Viewport&) = delete;
+  auto operator=(const Viewport&) -> Viewport& = delete;
 
   ~Viewport() noexcept override;
 
@@ -84,19 +84,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkViewport*       gobj()       { return reinterpret_cast<GtkViewport*>(gobject_); }
+  auto       gobj() -> GtkViewport*       { return reinterpret_cast<GtkViewport*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkViewport* gobj() const { return reinterpret_cast<GtkViewport*>(gobject_); }
+  auto gobj() const -> const GtkViewport* { return reinterpret_cast<GtkViewport*>(gobject_); }
 
 private:
 
@@ -118,7 +118,7 @@ public:
    *
    * @return <tt>true</tt> if the viewport keeps the focus child scrolled to view.
    */
-  bool get_scroll_to_focus() const;
+  auto get_scroll_to_focus() const -> bool;
 
 
   /** Sets the child widget of @a viewport.
@@ -132,13 +132,13 @@ public:
    *
    * @return The child widget of @a viewport.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget of @a viewport.
    *
    * @return The child widget of @a viewport.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
   /** Whether to scroll when the focus changes.
    *
@@ -151,7 +151,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_scroll_to_focus() ;
+  auto property_scroll_to_focus() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to scroll when the focus changes.
    *
@@ -164,21 +164,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_scroll_to_focus() const;
+  auto property_scroll_to_focus() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The child widget.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The child widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
 public:
@@ -208,7 +208,7 @@ namespace Glib
    * @relates Gtk::Viewport
    */
   GTKMM_API
-  Gtk::Viewport* wrap(GtkViewport* object, bool take_copy = false);
+  auto wrap(GtkViewport* object, bool take_copy = false) -> Gtk::Viewport*;
 } //namespace Glib
 
 

@@ -67,31 +67,31 @@ enum class ShapeFlags
 };
 
 /** @ingroup pangommEnums */
-inline ShapeFlags operator|(ShapeFlags lhs, ShapeFlags rhs)
+inline auto operator|(ShapeFlags lhs, ShapeFlags rhs) -> ShapeFlags
   { return static_cast<ShapeFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup pangommEnums */
-inline ShapeFlags operator&(ShapeFlags lhs, ShapeFlags rhs)
+inline auto operator&(ShapeFlags lhs, ShapeFlags rhs) -> ShapeFlags
   { return static_cast<ShapeFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup pangommEnums */
-inline ShapeFlags operator^(ShapeFlags lhs, ShapeFlags rhs)
+inline auto operator^(ShapeFlags lhs, ShapeFlags rhs) -> ShapeFlags
   { return static_cast<ShapeFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup pangommEnums */
-inline ShapeFlags operator~(ShapeFlags flags)
+inline auto operator~(ShapeFlags flags) -> ShapeFlags
   { return static_cast<ShapeFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup pangommEnums */
-inline ShapeFlags& operator|=(ShapeFlags& lhs, ShapeFlags rhs)
+inline auto operator|=(ShapeFlags& lhs, ShapeFlags rhs) -> ShapeFlags&
   { return (lhs = static_cast<ShapeFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup pangommEnums */
-inline ShapeFlags& operator&=(ShapeFlags& lhs, ShapeFlags rhs)
+inline auto operator&=(ShapeFlags& lhs, ShapeFlags rhs) -> ShapeFlags&
   { return (lhs = static_cast<ShapeFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup pangommEnums */
-inline ShapeFlags& operator^=(ShapeFlags& lhs, ShapeFlags rhs)
+inline auto operator^=(ShapeFlags& lhs, ShapeFlags rhs) -> ShapeFlags&
   { return (lhs = static_cast<ShapeFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -105,7 +105,7 @@ template <>
 class PANGOMM_API Value<Pango::ShapeFlags> : public Glib::Value_Flags<Pango::ShapeFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -149,28 +149,28 @@ public:
   /** Gets the font used to render this segment.
    * @return The font used to render this segment.
    */
-  Glib::RefPtr<Font> get_font();
-  Glib::RefPtr<const Font> get_font() const;
+  auto get_font() -> Glib::RefPtr<Font>;
+  auto get_font() const -> Glib::RefPtr<const Font>;
 
   /** Gets the bidrectional level for this segment.
    * @return The bidirectional level for this segment.
    */
-  guint8 get_level() const;
+  auto get_level() const -> guint8;
 
   /** Gets the language of this segment.
    * @return The language of this segment.
    */
-  Language get_language() const;
+  auto get_language() const -> Language;
 
   /** Gets a list of non-font attributes for this segment.
    * @return A list of non-font attributes for this segment.
    */
-  std::vector<Attribute> get_extra_attrs() const;
+  auto get_extra_attrs() const -> std::vector<Attribute>;
 
   /// Provides access to the underlying C GObject.
-  PangoAnalysis*       gobj()       { return &gobject_; }
+  auto       gobj() -> PangoAnalysis*       { return &gobject_; }
   /// Provides access to the underlying C GObject.
-  const PangoAnalysis* gobj() const { return &gobject_; }
+  auto gobj() const -> const PangoAnalysis* { return &gobject_; }
 
 protected:
   PangoAnalysis gobject_;
@@ -206,12 +206,12 @@ public:
   explicit Item(PangoItem* castitem, bool make_a_copy = true);
 
   Item(const Item& src);
-  Item& operator=(const Item& src);
+  auto operator=(const Item& src) -> Item&;
 
   ~Item();
 
   /// Provides access to the underlying C GObject. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  PangoItem* gobj_copy() const;
+  auto gobj_copy() const -> PangoItem*;
 
 public:
 
@@ -234,33 +234,33 @@ public:
    * @return New item representing text before @a split_index, which
    * should be freed with free().
    */
-  Item split(int split_index, int split_offset);
+  auto split(int split_index, int split_offset) -> Item;
 
   /** Gets the offset of the segment from the beginning of the string in bytes.
    * @return The offset of the segment from the beginning of the string in bytes.
    */
-  int get_offset() const;
+  auto get_offset() const -> int;
 
   /** Gets the length of the segment in bytes.
    * @return The length of the segment in bytes.
    */
-  int get_length() const;
+  auto get_length() const -> int;
 
   /** Gets the length of the segment in characters.
    * @return The length of the semgment in characters.
    */
-  int get_num_chars() const;
+  auto get_num_chars() const -> int;
 
   /** Gets the properties of the segment.
    * @return The properties of the segment.
    */
-  Analysis get_analysis() const;
+  auto get_analysis() const -> Analysis;
 
   /** Computes the segment of text that is represented by the item.
    * @param text The text that has been passed into Pango::Context::itemize().
    * @return The sub-string of @a text that corresponds to the item.
    */
-  Glib::ustring get_segment(const Glib::ustring& text) const;
+  auto get_segment(const Glib::ustring& text) const -> Glib::ustring;
 
   /** Converts a segment of text into a string of glyphs.
    *
@@ -270,7 +270,7 @@ public:
    *             the member functions of Pango::GlyphString for further calculations.
    * @return A Pango::GlyphString object that can be measured or drawn.
    */
-  GlyphString shape(const Glib::ustring& text) const;
+  auto shape(const Glib::ustring& text) const -> GlyphString;
 
   /** Converts a segment of text into a string of glyphs.
    *
@@ -286,13 +286,13 @@ public:
    * @param flags Flags influencing the shaping process.
    * @return A Pango::GlyphString object that can be measured or drawn.
    */
-  GlyphString shape(const Glib::ustring& item_text, const Glib::ustring& paragraph_text,
-    ShapeFlags flags = ShapeFlags::NONE) const;
+  auto shape(const Glib::ustring& item_text, const Glib::ustring& paragraph_text,
+    ShapeFlags flags = ShapeFlags::NONE) const -> GlyphString;
 
   /// Provides access to the underlying C GObject.
-  PangoItem*       gobj()       { return gobject_; }
+  auto       gobj() -> PangoItem*       { return gobject_; }
   /// Provides access to the underlying C GObject.
-  const PangoItem* gobj() const { return gobject_; }
+  auto gobj() const -> const PangoItem* { return gobject_; }
 
 protected:
   PangoItem* gobject_;
@@ -307,15 +307,15 @@ namespace Glib
 
 /** @relates Pango::Analysis */
 PANGOMM_API
-Pango::Analysis& wrap(PangoAnalysis* object);
+auto wrap(PangoAnalysis* object) -> Pango::Analysis&;
 
 /** @relates Pango::Analysis */
 PANGOMM_API
-const Pango::Analysis& wrap(const PangoAnalysis* object);
+auto wrap(const PangoAnalysis* object) -> const Pango::Analysis&;
 
 /** @relates Pango::Item */
 PANGOMM_API
-Pango::Item wrap(PangoItem* object, bool take_copy=true);
+auto wrap(PangoItem* object, bool take_copy=true) -> Pango::Item;
 
 } // namespace Glib
 

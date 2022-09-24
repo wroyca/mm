@@ -34,8 +34,8 @@ VariantIter::VariantIter(const VariantContainerBase& variant)
 {
 }
 
-bool
-VariantIter::next_value(VariantBase& value)
+auto
+VariantIter::next_value(VariantBase& value) -> bool
 {
   GVariant* const g_value = g_variant_iter_next_value(gobj());
 
@@ -58,7 +58,7 @@ namespace
 namespace Glib
 {
 
-Glib::VariantIter wrap(GVariantIter* object, bool take_copy /* = false */)
+auto wrap(GVariantIter* object, bool take_copy /* = false */) -> Glib::VariantIter
 {
   return Glib::VariantIter(object, take_copy);
 }
@@ -99,7 +99,7 @@ VariantIter::VariantIter(GVariantIter* castitem, bool make_a_copy /* = false */)
 }
 
 
-VariantIter& VariantIter::operator=(const VariantIter& src)
+auto VariantIter::operator=(const VariantIter& src) -> VariantIter&
 {
   const auto new_gobject = (src.gobject_) ? g_variant_iter_copy(src.gobject_) : nullptr;
 
@@ -118,7 +118,7 @@ VariantIter::VariantIter(VariantIter&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-VariantIter& VariantIter::operator=(VariantIter&& other) noexcept
+auto VariantIter::operator=(VariantIter&& other) noexcept -> VariantIter&
 {
   VariantIter temp (std::move(other));
   swap(temp);
@@ -136,18 +136,18 @@ void VariantIter::swap(VariantIter& other) noexcept
   std::swap(gobject_, other.gobject_);
 }
 
-GVariantIter* VariantIter::gobj_copy() const
+auto VariantIter::gobj_copy() const -> GVariantIter*
 {
   return g_variant_iter_copy(gobject_);
 }
 
 
-gsize VariantIter::init(const VariantContainerBase& value)
+auto VariantIter::init(const VariantContainerBase& value) -> gsize
 {
   return g_variant_iter_init(gobj(), const_cast<GVariant*>((value).gobj()));
 }
 
-gsize VariantIter::get_n_children() const
+auto VariantIter::get_n_children() const -> gsize
 {
   return g_variant_iter_n_children(const_cast<GVariantIter*>(gobj()));
 }

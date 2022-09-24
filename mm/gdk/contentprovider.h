@@ -80,7 +80,7 @@ public:
 
   // noncopyable
   ContentProvider(const ContentProvider&) = delete;
-  ContentProvider& operator=(const ContentProvider&) = delete;
+  auto operator=(const ContentProvider&) -> ContentProvider& = delete;
 
 private:  friend class ContentProvider_Class;
   static CppClassType contentprovider_class_;
@@ -94,28 +94,28 @@ protected:
 public:
 
   ContentProvider(ContentProvider&& src) noexcept;
-  ContentProvider& operator=(ContentProvider&& src) noexcept;
+  auto operator=(ContentProvider&& src) noexcept -> ContentProvider&;
 
   ~ContentProvider() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkContentProvider*       gobj()       { return reinterpret_cast<GdkContentProvider*>(gobject_); }
+  auto       gobj() -> GdkContentProvider*       { return reinterpret_cast<GdkContentProvider*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkContentProvider* gobj() const { return reinterpret_cast<GdkContentProvider*>(gobject_); }
+  auto gobj() const -> const GdkContentProvider* { return reinterpret_cast<GdkContentProvider*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkContentProvider* gobj_copy();
+  auto gobj_copy() -> GdkContentProvider*;
 
 private:
 
@@ -132,7 +132,7 @@ public:
    * @param value A `Glib::Value`.
    * @return A new `Gdk::ContentProvider`.
    */
-  static Glib::RefPtr<ContentProvider> create(const Glib::ValueBase& value);
+  static auto create(const Glib::ValueBase& value) -> Glib::RefPtr<ContentProvider>;
 
   /** Creates a content provider that represents all the given @a providers.
    *
@@ -151,7 +151,7 @@ public:
    * @return A new `Gdk::ContentProvider`.
    */
 
-  static Glib::RefPtr<ContentProvider> create(const std::vector<Glib::RefPtr<ContentProvider>>& providers);
+  static auto create(const std::vector<Glib::RefPtr<ContentProvider>>& providers) -> Glib::RefPtr<ContentProvider>;
 
   /** Create a content provider that provides the given @a bytes as data for
    * the given @a mime_type.
@@ -160,7 +160,7 @@ public:
    * @param bytes A `Glib::Bytes` with the data for @a mime_type.
    * @return A new `Gdk::ContentProvider`.
    */
-  static Glib::RefPtr<ContentProvider> create(const Glib::ustring& mime_type, const Glib::RefPtr<const Glib::Bytes>& bytes);
+  static auto create(const Glib::ustring& mime_type, const Glib::RefPtr<const Glib::Bytes>& bytes) -> Glib::RefPtr<ContentProvider>;
 
   // ref_formats() and ref_storable_formats() are const because they return
   // newly created ContentFormats instances.
@@ -169,7 +169,7 @@ public:
    *
    * @return The formats of the provider.
    */
-  Glib::RefPtr<ContentFormats> ref_formats() const;
+  auto ref_formats() const -> Glib::RefPtr<ContentFormats>;
 
   /** Gets the formats that the provider suggests other applications to store
    * the data in.
@@ -180,7 +180,7 @@ public:
    *
    * @return The storable formats of the provider.
    */
-  Glib::RefPtr<ContentFormats> ref_storable_formats() const;
+  auto ref_storable_formats() const -> Glib::RefPtr<ContentFormats>;
 
 
   /** Emits the signal_content_changed() signal.
@@ -242,7 +242,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> > property_formats() const;
+  auto property_formats() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> >;
 
 
   /** The subset of formats that clipboard managers should store this provider's data in.
@@ -250,7 +250,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> > property_storable_formats() const;
+  auto property_storable_formats() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> >;
 
 
   /**
@@ -262,7 +262,7 @@ public:
    * Emitted whenever the content provided by this provider has changed.
    */
 
-  Glib::SignalProxy<void()> signal_content_changed();
+  auto signal_content_changed() -> Glib::SignalProxy<void()>;
 
 
   // GdkContentProvider contains vfuncs, but it's no use wrapping them as long as
@@ -300,7 +300,7 @@ namespace Glib
    * @relates Gdk::ContentProvider
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::ContentProvider> wrap(GdkContentProvider* object, bool take_copy = false);
+  auto wrap(GdkContentProvider* object, bool take_copy = false) -> Glib::RefPtr<Gdk::ContentProvider>;
 }
 
 

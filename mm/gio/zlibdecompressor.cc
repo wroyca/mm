@@ -39,7 +39,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::ZlibDecompressor> wrap(GZlibDecompressor* object, bool take_copy)
+auto wrap(GZlibDecompressor* object, bool take_copy) -> Glib::RefPtr<Gio::ZlibDecompressor>
 {
   return Glib::make_refptr_for_instance<Gio::ZlibDecompressor>( dynamic_cast<Gio::ZlibDecompressor*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -54,7 +54,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& ZlibDecompressor_Class::init()
+auto ZlibDecompressor_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -86,7 +86,7 @@ void ZlibDecompressor_Class::class_init_function(void* g_class, void* class_data
 }
 
 
-Glib::ObjectBase* ZlibDecompressor_Class::wrap_new(GObject* object)
+auto ZlibDecompressor_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ZlibDecompressor((GZlibDecompressor*)object);
 }
@@ -94,7 +94,7 @@ Glib::ObjectBase* ZlibDecompressor_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GZlibDecompressor* ZlibDecompressor::gobj_copy()
+auto ZlibDecompressor::gobj_copy() -> GZlibDecompressor*
 {
   reference();
   return gobj();
@@ -118,7 +118,7 @@ ZlibDecompressor::ZlibDecompressor(ZlibDecompressor&& src) noexcept
   , Converter(std::move(src))
 {}
 
-ZlibDecompressor& ZlibDecompressor::operator=(ZlibDecompressor&& src) noexcept
+auto ZlibDecompressor::operator=(ZlibDecompressor&& src) noexcept -> ZlibDecompressor&
 {
   Glib::Object::operator=(std::move(src));
   Converter::operator=(std::move(src));
@@ -132,13 +132,13 @@ ZlibDecompressor::~ZlibDecompressor() noexcept
 
 ZlibDecompressor::CppClassType ZlibDecompressor::zlibdecompressor_class_; // initialize static member
 
-GType ZlibDecompressor::get_type()
+auto ZlibDecompressor::get_type() -> GType
 {
   return zlibdecompressor_class_.init().get_type();
 }
 
 
-GType ZlibDecompressor::get_base_type()
+auto ZlibDecompressor::get_base_type() -> GType
 {
   return g_zlib_decompressor_get_type();
 }
@@ -154,17 +154,17 @@ ZlibDecompressor::ZlibDecompressor(ZlibCompressorFormat format)
 
 }
 
-Glib::RefPtr<ZlibDecompressor> ZlibDecompressor::create(ZlibCompressorFormat format)
+auto ZlibDecompressor::create(ZlibCompressorFormat format) -> Glib::RefPtr<ZlibDecompressor>
 {
   return Glib::make_refptr_for_instance<ZlibDecompressor>( new ZlibDecompressor(format) );
 }
 
-Glib::RefPtr<FileInfo> ZlibDecompressor::get_file_info()
+auto ZlibDecompressor::get_file_info() -> Glib::RefPtr<FileInfo>
 {
   return Glib::wrap(g_zlib_decompressor_get_file_info(gobj()));
 }
 
-Glib::RefPtr<const FileInfo> ZlibDecompressor::get_file_info() const
+auto ZlibDecompressor::get_file_info() const -> Glib::RefPtr<const FileInfo>
 {
   return const_cast<ZlibDecompressor*>(this)->get_file_info();
 }
@@ -174,7 +174,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<FileInf
   "Type Glib::RefPtr<FileInfo> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<FileInfo> > ZlibDecompressor::property_file_info() const
+auto ZlibDecompressor::property_file_info() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<FileInfo> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<FileInfo> >(this, "file-info");
 }
@@ -183,7 +183,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<ZlibCompressorFormat
   "Type ZlibCompressorFormat cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< ZlibCompressorFormat > ZlibDecompressor::property_format() const
+auto ZlibDecompressor::property_format() const -> Glib::PropertyProxy_ReadOnly< ZlibCompressorFormat >
 {
   return Glib::PropertyProxy_ReadOnly< ZlibCompressorFormat >(this, "format");
 }

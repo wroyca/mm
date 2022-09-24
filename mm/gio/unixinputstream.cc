@@ -34,7 +34,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::UnixInputStream> wrap(GUnixInputStream* object, bool take_copy)
+auto wrap(GUnixInputStream* object, bool take_copy) -> Glib::RefPtr<Gio::UnixInputStream>
 {
   return Glib::make_refptr_for_instance<Gio::UnixInputStream>( dynamic_cast<Gio::UnixInputStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -49,7 +49,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& UnixInputStream_Class::init()
+auto UnixInputStream_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -82,7 +82,7 @@ void UnixInputStream_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* UnixInputStream_Class::wrap_new(GObject* object)
+auto UnixInputStream_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new UnixInputStream((GUnixInputStream*)object);
 }
@@ -90,7 +90,7 @@ Glib::ObjectBase* UnixInputStream_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GUnixInputStream* UnixInputStream::gobj_copy()
+auto UnixInputStream::gobj_copy() -> GUnixInputStream*
 {
   reference();
   return gobj();
@@ -115,7 +115,7 @@ UnixInputStream::UnixInputStream(UnixInputStream&& src) noexcept
   , FileDescriptorBased(std::move(src))
 {}
 
-UnixInputStream& UnixInputStream::operator=(UnixInputStream&& src) noexcept
+auto UnixInputStream::operator=(UnixInputStream&& src) noexcept -> UnixInputStream&
 {
   Gio::InputStream::operator=(std::move(src));
   PollableInputStream::operator=(std::move(src));
@@ -130,13 +130,13 @@ UnixInputStream::~UnixInputStream() noexcept
 
 UnixInputStream::CppClassType UnixInputStream::unixinputstream_class_; // initialize static member
 
-GType UnixInputStream::get_type()
+auto UnixInputStream::get_type() -> GType
 {
   return unixinputstream_class_.init().get_type();
 }
 
 
-GType UnixInputStream::get_base_type()
+auto UnixInputStream::get_base_type() -> GType
 {
   return g_unix_input_stream_get_type();
 }
@@ -152,7 +152,7 @@ UnixInputStream::UnixInputStream(int fd, bool close_fd)
 
 }
 
-Glib::RefPtr<UnixInputStream> UnixInputStream::create(int fd, bool close_fd)
+auto UnixInputStream::create(int fd, bool close_fd) -> Glib::RefPtr<UnixInputStream>
 {
   return Glib::make_refptr_for_instance<UnixInputStream>( new UnixInputStream(fd, close_fd) );
 }
@@ -162,28 +162,28 @@ void UnixInputStream::set_close_fd(bool close_fd)
   g_unix_input_stream_set_close_fd(gobj(), static_cast<int>(close_fd));
 }
 
-bool UnixInputStream::get_close_fd() const
+auto UnixInputStream::get_close_fd() const -> bool
 {
   return g_unix_input_stream_get_close_fd(const_cast<GUnixInputStream*>(gobj()));
 }
 
-int UnixInputStream::get_fd() const
+auto UnixInputStream::get_fd() const -> int
 {
   return g_unix_input_stream_get_fd(const_cast<GUnixInputStream*>(gobj()));
 }
 
 
-Glib::PropertyProxy_ReadOnly< int > UnixInputStream::property_fd() const
+auto UnixInputStream::property_fd() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "fd");
 }
 
-Glib::PropertyProxy< bool > UnixInputStream::property_close_fd()
+auto UnixInputStream::property_close_fd() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "close-fd");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > UnixInputStream::property_close_fd() const
+auto UnixInputStream::property_close_fd() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "close-fd");
 }

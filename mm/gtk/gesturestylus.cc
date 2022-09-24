@@ -30,7 +30,7 @@
 namespace Gtk
 {
 
-std::optional<double> GestureStylus::get_axis(Gdk::AxisUse axis) const
+auto GestureStylus::get_axis(Gdk::AxisUse axis) const -> std::optional<double>
 {
   double g_value = double();
   auto retvalue = gtk_gesture_stylus_get_axis(
@@ -42,7 +42,7 @@ std::optional<double> GestureStylus::get_axis(Gdk::AxisUse axis) const
     return {};
 }
 
-std::vector<double> GestureStylus::get_axes(const std::vector<Gdk::AxisUse>& axes) const
+auto GestureStylus::get_axes(const std::vector<Gdk::AxisUse>& axes) const -> std::vector<double>
 {
   // Glib::ArrayHandler is not used for axes.
   // Glib::ArrayHandler::vector_to_array() creates a 0-terminated array,
@@ -63,7 +63,7 @@ std::vector<double> GestureStylus::get_axes(const std::vector<Gdk::AxisUse>& axe
     return {};
 }
 
-std::vector<Gdk::TimeCoord> GestureStylus::get_backlog() const
+auto GestureStylus::get_backlog() const -> std::vector<Gdk::TimeCoord>
 {
   GdkTimeCoord* g_backlog = nullptr;
   guint n_elems = 0;
@@ -83,7 +83,7 @@ namespace
 {
 
 
-static void GestureStylus_signal_proximity_callback(GtkGestureStylus* self, gdouble p0,gdouble p1,void* data)
+void GestureStylus_signal_proximity_callback(GtkGestureStylus* self, gdouble p0,gdouble p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
@@ -106,7 +106,7 @@ static void GestureStylus_signal_proximity_callback(GtkGestureStylus* self, gdou
   }
 }
 
-static const Glib::SignalProxyInfo GestureStylus_signal_proximity_info =
+const Glib::SignalProxyInfo GestureStylus_signal_proximity_info =
 {
   "proximity",
   (GCallback) &GestureStylus_signal_proximity_callback,
@@ -114,7 +114,7 @@ static const Glib::SignalProxyInfo GestureStylus_signal_proximity_info =
 };
 
 
-static void GestureStylus_signal_down_callback(GtkGestureStylus* self, gdouble p0,gdouble p1,void* data)
+void GestureStylus_signal_down_callback(GtkGestureStylus* self, gdouble p0,gdouble p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
@@ -137,7 +137,7 @@ static void GestureStylus_signal_down_callback(GtkGestureStylus* self, gdouble p
   }
 }
 
-static const Glib::SignalProxyInfo GestureStylus_signal_down_info =
+const Glib::SignalProxyInfo GestureStylus_signal_down_info =
 {
   "down",
   (GCallback) &GestureStylus_signal_down_callback,
@@ -145,7 +145,7 @@ static const Glib::SignalProxyInfo GestureStylus_signal_down_info =
 };
 
 
-static void GestureStylus_signal_motion_callback(GtkGestureStylus* self, gdouble p0,gdouble p1,void* data)
+void GestureStylus_signal_motion_callback(GtkGestureStylus* self, gdouble p0,gdouble p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
@@ -168,7 +168,7 @@ static void GestureStylus_signal_motion_callback(GtkGestureStylus* self, gdouble
   }
 }
 
-static const Glib::SignalProxyInfo GestureStylus_signal_motion_info =
+const Glib::SignalProxyInfo GestureStylus_signal_motion_info =
 {
   "motion",
   (GCallback) &GestureStylus_signal_motion_callback,
@@ -176,7 +176,7 @@ static const Glib::SignalProxyInfo GestureStylus_signal_motion_info =
 };
 
 
-static void GestureStylus_signal_up_callback(GtkGestureStylus* self, gdouble p0,gdouble p1,void* data)
+void GestureStylus_signal_up_callback(GtkGestureStylus* self, gdouble p0,gdouble p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
@@ -199,7 +199,7 @@ static void GestureStylus_signal_up_callback(GtkGestureStylus* self, gdouble p0,
   }
 }
 
-static const Glib::SignalProxyInfo GestureStylus_signal_up_info =
+const Glib::SignalProxyInfo GestureStylus_signal_up_info =
 {
   "up",
   (GCallback) &GestureStylus_signal_up_callback,
@@ -213,7 +213,7 @@ static const Glib::SignalProxyInfo GestureStylus_signal_up_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::GestureStylus> wrap(GtkGestureStylus* object, bool take_copy)
+auto wrap(GtkGestureStylus* object, bool take_copy) -> Glib::RefPtr<Gtk::GestureStylus>
 {
   return Glib::make_refptr_for_instance<Gtk::GestureStylus>( dynamic_cast<Gtk::GestureStylus*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -228,7 +228,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& GestureStylus_Class::init()
+auto GestureStylus_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -259,7 +259,7 @@ void GestureStylus_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* GestureStylus_Class::wrap_new(GObject* object)
+auto GestureStylus_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new GestureStylus((GtkGestureStylus*)object);
 }
@@ -267,7 +267,7 @@ Glib::ObjectBase* GestureStylus_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkGestureStylus* GestureStylus::gobj_copy()
+auto GestureStylus::gobj_copy() -> GtkGestureStylus*
 {
   reference();
   return gobj();
@@ -290,7 +290,7 @@ GestureStylus::GestureStylus(GestureStylus&& src) noexcept
 : GestureSingle(std::move(src))
 {}
 
-GestureStylus& GestureStylus::operator=(GestureStylus&& src) noexcept
+auto GestureStylus::operator=(GestureStylus&& src) noexcept -> GestureStylus&
 {
   GestureSingle::operator=(std::move(src));
   return *this;
@@ -303,13 +303,13 @@ GestureStylus::~GestureStylus() noexcept
 
 GestureStylus::CppClassType GestureStylus::gesturestylus_class_; // initialize static member
 
-GType GestureStylus::get_type()
+auto GestureStylus::get_type() -> GType
 {
   return gesturestylus_class_.init().get_type();
 }
 
 
-GType GestureStylus::get_base_type()
+auto GestureStylus::get_base_type() -> GType
 {
   return gtk_gesture_stylus_get_type();
 }
@@ -325,12 +325,12 @@ GestureStylus::GestureStylus()
 
 }
 
-Glib::RefPtr<GestureStylus> GestureStylus::create()
+auto GestureStylus::create() -> Glib::RefPtr<GestureStylus>
 {
   return Glib::make_refptr_for_instance<GestureStylus>( new GestureStylus() );
 }
 
-Glib::RefPtr<Gdk::DeviceTool> GestureStylus::get_device_tool()
+auto GestureStylus::get_device_tool() -> Glib::RefPtr<Gdk::DeviceTool>
 {
   auto retvalue = Glib::wrap(gtk_gesture_stylus_get_device_tool(gobj()));
   if(retvalue)
@@ -338,31 +338,31 @@ Glib::RefPtr<Gdk::DeviceTool> GestureStylus::get_device_tool()
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::DeviceTool> GestureStylus::get_device_tool() const
+auto GestureStylus::get_device_tool() const -> Glib::RefPtr<const Gdk::DeviceTool>
 {
   return const_cast<GestureStylus*>(this)->get_device_tool();
 }
 
 
-Glib::SignalProxy<void(double, double)> GestureStylus::signal_proximity()
+auto GestureStylus::signal_proximity() -> Glib::SignalProxy<void(double, double)>
 {
   return Glib::SignalProxy<void(double, double) >(this, &GestureStylus_signal_proximity_info);
 }
 
 
-Glib::SignalProxy<void(double, double)> GestureStylus::signal_down()
+auto GestureStylus::signal_down() -> Glib::SignalProxy<void(double, double)>
 {
   return Glib::SignalProxy<void(double, double) >(this, &GestureStylus_signal_down_info);
 }
 
 
-Glib::SignalProxy<void(double, double)> GestureStylus::signal_motion()
+auto GestureStylus::signal_motion() -> Glib::SignalProxy<void(double, double)>
 {
   return Glib::SignalProxy<void(double, double) >(this, &GestureStylus_signal_motion_info);
 }
 
 
-Glib::SignalProxy<void(double, double)> GestureStylus::signal_up()
+auto GestureStylus::signal_up() -> Glib::SignalProxy<void(double, double)>
 {
   return Glib::SignalProxy<void(double, double) >(this, &GestureStylus_signal_up_info);
 }

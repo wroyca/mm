@@ -51,7 +51,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::GLTexture> wrap(GdkGLTexture* object, bool take_copy)
+auto wrap(GdkGLTexture* object, bool take_copy) -> Glib::RefPtr<Gdk::GLTexture>
 {
   return Glib::make_refptr_for_instance<Gdk::GLTexture>( dynamic_cast<Gdk::GLTexture*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -66,7 +66,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Class& GLTexture_Class::init()
+auto GLTexture_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -97,7 +97,7 @@ void GLTexture_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* GLTexture_Class::wrap_new(GObject* object)
+auto GLTexture_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new GLTexture((GdkGLTexture*)object);
 }
@@ -105,7 +105,7 @@ Glib::ObjectBase* GLTexture_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GdkGLTexture* GLTexture::gobj_copy()
+auto GLTexture::gobj_copy() -> GdkGLTexture*
 {
   reference();
   return gobj();
@@ -128,7 +128,7 @@ GLTexture::GLTexture(GLTexture&& src) noexcept
 : Gdk::Texture(std::move(src))
 {}
 
-GLTexture& GLTexture::operator=(GLTexture&& src) noexcept
+auto GLTexture::operator=(GLTexture&& src) noexcept -> GLTexture&
 {
   Gdk::Texture::operator=(std::move(src));
   return *this;
@@ -141,13 +141,13 @@ GLTexture::~GLTexture() noexcept
 
 GLTexture::CppClassType GLTexture::gltexture_class_; // initialize static member
 
-GType GLTexture::get_type()
+auto GLTexture::get_type() -> GType
 {
   return gltexture_class_.init().get_type();
 }
 
 
-GType GLTexture::get_base_type()
+auto GLTexture::get_base_type() -> GType
 {
   return gdk_gl_texture_get_type();
 }
@@ -163,7 +163,7 @@ GLTexture::GLTexture()
 
 }
 
-Glib::RefPtr<Texture> GLTexture::create(const Glib::RefPtr<GLContext>& context, guint id, int width, int height, const SlotGLReleased& slot)
+auto GLTexture::create(const Glib::RefPtr<GLContext>& context, guint id, int width, int height, const SlotGLReleased& slot) -> Glib::RefPtr<Texture>
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotGLReleased(slot);

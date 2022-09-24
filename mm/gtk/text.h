@@ -79,11 +79,11 @@ class GTKMM_API Text : public Widget,  public Editable
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Text(Text&& src) noexcept;
-  Text& operator=(Text&& src) noexcept;
+  auto operator=(Text&& src) noexcept -> Text&;
 
   // noncopyable
   Text(const Text&) = delete;
-  Text& operator=(const Text&) = delete;
+  auto operator=(const Text&) -> Text& = delete;
 
   ~Text() noexcept override;
 
@@ -103,19 +103,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkText*       gobj()       { return reinterpret_cast<GtkText*>(gobject_); }
+  auto       gobj() -> GtkText*       { return reinterpret_cast<GtkText*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkText* gobj() const { return reinterpret_cast<GtkText*>(gobject_); }
+  auto gobj() const -> const GtkText* { return reinterpret_cast<GtkText*>(gobject_); }
 
 private:
 
@@ -130,14 +130,14 @@ public:
    *
    * @return A `Gtk::EntryBuffer` object.
    */
-  Glib::RefPtr<EntryBuffer> get_buffer();
+  auto get_buffer() -> Glib::RefPtr<EntryBuffer>;
 
   /** Get the `Gtk::EntryBuffer` object which holds the text for
    * this widget.
    *
    * @return A `Gtk::EntryBuffer` object.
    */
-  Glib::RefPtr<const EntryBuffer> get_buffer() const;
+  auto get_buffer() const -> Glib::RefPtr<const EntryBuffer>;
 
   /** Set the `Gtk::EntryBuffer` object which holds the text for
    * this widget.
@@ -171,7 +171,7 @@ public:
    *
    * @return <tt>true</tt> if the text is currently visible.
    */
-  bool get_visibility() const;
+  auto get_visibility() const -> bool;
 
   /** Sets the character to use when in “password mode”.
    *
@@ -200,7 +200,7 @@ public:
    * @return The current invisible char, or 0, if @a text does not
    * show invisible text at all.
    */
-  gunichar get_invisible_char() const;
+  auto get_invisible_char() const -> gunichar;
 
   /** Sets whether the text is overwritten when typing
    * in the `Gtk::Text`.
@@ -215,7 +215,7 @@ public:
    *
    * @return Whether the text is overwritten when typing.
    */
-  bool get_overwrite_mode() const;
+  auto get_overwrite_mode() const -> bool;
 
   /** Sets the maximum allowed length of the contents of the widget.
    *
@@ -241,7 +241,7 @@ public:
    * @return The maximum allowed number of characters
    * in `Gtk::Text`, or 0 if there is no maximum.
    */
-  int get_max_length() const;
+  auto get_max_length() const -> int;
 
   /** Retrieves the current length of the text in @a self.
    *
@@ -251,7 +251,7 @@ public:
    * @return The current number of characters
    * in `Gtk::Text`, or 0 if there are none.
    */
-  guint16 get_text_length() const;
+  auto get_text_length() const -> guint16;
 
   /** If @a setting is <tt>true</tt>, pressing Enter will activate
    * the default widget for the window containing @a self.
@@ -271,7 +271,7 @@ public:
    *
    * @return <tt>true</tt> if the `Gtk::Text` will activate the default widget.
    */
-  bool get_activates_default() const;
+  auto get_activates_default() const -> bool;
 
   /** Retrieves the text that will be displayed when
    *  @a self is empty and unfocused
@@ -280,7 +280,7 @@ public:
    *
    * @return The placeholder text.
    */
-  Glib::ustring get_placeholder_text() const;
+  auto get_placeholder_text() const -> Glib::ustring;
 
   /** Sets text to be displayed in @a self when it is empty.
    *
@@ -304,7 +304,7 @@ public:
 
   /** Gets the input purpose of the `Gtk::Text`.
    */
-  InputPurpose get_input_purpose() const;
+  auto get_input_purpose() const -> InputPurpose;
 
 
   /** Sets input hints that allow input methods
@@ -316,7 +316,7 @@ public:
 
   /** Gets the input hints of the `Gtk::Text`.
    */
-  InputHints get_input_hints() const;
+  auto get_input_hints() const -> InputHints;
 
 
   /** Sets attributes that are applied to the text.
@@ -331,7 +331,7 @@ public:
    *
    * @return The attribute list.
    */
-  Pango::AttrList get_attributes() const;
+  auto get_attributes() const -> Pango::AttrList;
 
 
   /** Sets tabstops that are applied to the text.
@@ -346,7 +346,7 @@ public:
    *
    * @return The tabstops.
    */
-  Pango::TabArray get_tabs() const;
+  auto get_tabs() const -> Pango::TabArray;
 
 
   /** Causes @a self to have keyboard focus.
@@ -359,7 +359,7 @@ public:
    *
    * @return <tt>true</tt> if focus is now inside @a self.
    */
-  bool grab_focus_without_selecting();
+  auto grab_focus_without_selecting() -> bool;
 
 
   /** Sets a menu model to add when constructing
@@ -375,7 +375,7 @@ public:
    *
    * @return The menu model.
    */
-  Glib::RefPtr<Gio::MenuModel> get_extra_menu();
+  auto get_extra_menu() -> Glib::RefPtr<Gio::MenuModel>;
 
   /** Gets the menu model for extra items in the context menu.
    *
@@ -383,7 +383,7 @@ public:
    *
    * @return The menu model.
    */
-  Glib::RefPtr<const Gio::MenuModel> get_extra_menu() const;
+  auto get_extra_menu() const -> Glib::RefPtr<const Gio::MenuModel>;
 
 
   /** Sets whether Emoji completion is enabled.
@@ -401,7 +401,7 @@ public:
    *
    * @return <tt>true</tt> if Emoji completion is enabled.
    */
-  bool get_enable_emoji_completion() const;
+  auto get_enable_emoji_completion() const -> bool;
 
   /** Sets whether the `Gtk::Text` should grow and shrink with the content.
    *
@@ -414,7 +414,7 @@ public:
    *
    * @return <tt>true</tt> if @a self will propagate the text width.
    */
-  bool get_propagate_text_width() const;
+  auto get_propagate_text_width() const -> bool;
 
   /** Sets whether the `Gtk::Text` should truncate multi-line text
    * that is pasted into the widget.
@@ -428,7 +428,7 @@ public:
    *
    * @return <tt>true</tt> if @a self will truncate multi-line text.
    */
-  bool get_truncate_multiline() const;
+  auto get_truncate_multiline() const -> bool;
 
   // Action signals
 
@@ -438,14 +438,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<EntryBuffer> > property_buffer() ;
+  auto property_buffer() -> Glib::PropertyProxy< Glib::RefPtr<EntryBuffer> > ;
 
 /** The `Gtk::EntryBuffer` object which stores the text.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<EntryBuffer> > property_buffer() const;
+  auto property_buffer() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<EntryBuffer> >;
 
   /** Maximum number of characters that are allowed.
    *
@@ -456,7 +456,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_max_length() ;
+  auto property_max_length() -> Glib::PropertyProxy< int > ;
 
 /** Maximum number of characters that are allowed.
    *
@@ -467,7 +467,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_max_length() const;
+  auto property_max_length() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** If <tt>false</tt>, the text is masked with the “invisible char”.
    *
@@ -476,7 +476,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_visibility() ;
+  auto property_visibility() -> Glib::PropertyProxy< bool > ;
 
 /** If <tt>false</tt>, the text is masked with the “invisible char”.
    *
@@ -485,7 +485,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_visibility() const;
+  auto property_visibility() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The character to used when masking contents (in “password mode”).
    *
@@ -494,7 +494,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< gunichar > property_invisible_char() ;
+  auto property_invisible_char() -> Glib::PropertyProxy< gunichar > ;
 
 /** The character to used when masking contents (in “password mode”).
    *
@@ -503,7 +503,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< gunichar > property_invisible_char() const;
+  auto property_invisible_char() const -> Glib::PropertyProxy_ReadOnly< gunichar >;
 
   /** Whether the invisible char has been set for the `Gtk::Text`.
    *
@@ -512,7 +512,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_invisible_char_set() ;
+  auto property_invisible_char_set() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the invisible char has been set for the `Gtk::Text`.
    *
@@ -521,7 +521,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_invisible_char_set() const;
+  auto property_invisible_char_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether to activate the default widget when Enter is pressed.
    *
@@ -530,7 +530,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_activates_default() ;
+  auto property_activates_default() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to activate the default widget when Enter is pressed.
    *
@@ -539,7 +539,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_activates_default() const;
+  auto property_activates_default() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Number of pixels scrolled of the screen to the left.
    *
@@ -548,7 +548,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_scroll_offset() const;
+  auto property_scroll_offset() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** When <tt>true</tt>, pasted multi-line text is truncated to the first line.
@@ -558,7 +558,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_truncate_multiline() ;
+  auto property_truncate_multiline() -> Glib::PropertyProxy< bool > ;
 
 /** When <tt>true</tt>, pasted multi-line text is truncated to the first line.
    *
@@ -567,7 +567,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_truncate_multiline() const;
+  auto property_truncate_multiline() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** If text is overwritten when typing in the `Gtk::Text`.
    *
@@ -576,7 +576,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_overwrite_mode() ;
+  auto property_overwrite_mode() -> Glib::PropertyProxy< bool > ;
 
 /** If text is overwritten when typing in the `Gtk::Text`.
    *
@@ -585,7 +585,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_overwrite_mode() const;
+  auto property_overwrite_mode() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Which IM (input method) module should be used for this self.
    *
@@ -600,7 +600,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_im_module() ;
+  auto property_im_module() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Which IM (input method) module should be used for this self.
    *
@@ -615,7 +615,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_im_module() const;
+  auto property_im_module() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The text that will be displayed in the `Gtk::Text` when it is empty
    * and unfocused.
@@ -625,7 +625,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_placeholder_text() ;
+  auto property_placeholder_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The text that will be displayed in the `Gtk::Text` when it is empty
    * and unfocused.
@@ -635,7 +635,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_placeholder_text() const;
+  auto property_placeholder_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The purpose of this text field.
    *
@@ -651,7 +651,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< InputPurpose > property_input_purpose() ;
+  auto property_input_purpose() -> Glib::PropertyProxy< InputPurpose > ;
 
 /** The purpose of this text field.
    *
@@ -667,7 +667,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< InputPurpose > property_input_purpose() const;
+  auto property_input_purpose() const -> Glib::PropertyProxy_ReadOnly< InputPurpose >;
 
   /** Additional hints that allow input methods to fine-tune
    * their behaviour.
@@ -677,7 +677,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< InputHints > property_input_hints() ;
+  auto property_input_hints() -> Glib::PropertyProxy< InputHints > ;
 
 /** Additional hints that allow input methods to fine-tune
    * their behaviour.
@@ -687,7 +687,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< InputHints > property_input_hints() const;
+  auto property_input_hints() const -> Glib::PropertyProxy_ReadOnly< InputHints >;
 
   /** A list of Pango attributes to apply to the text of the `Gtk::Text`.
    *
@@ -699,7 +699,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::AttrList > property_attributes() ;
+  auto property_attributes() -> Glib::PropertyProxy< Pango::AttrList > ;
 
 /** A list of Pango attributes to apply to the text of the `Gtk::Text`.
    *
@@ -711,21 +711,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::AttrList > property_attributes() const;
+  auto property_attributes() const -> Glib::PropertyProxy_ReadOnly< Pango::AttrList >;
 
   /** A list of tabstops to apply to the text of the `Gtk::Text`.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::TabArray > property_tabs() ;
+  auto property_tabs() -> Glib::PropertyProxy< Pango::TabArray > ;
 
 /** A list of tabstops to apply to the text of the `Gtk::Text`.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::TabArray > property_tabs() const;
+  auto property_tabs() const -> Glib::PropertyProxy_ReadOnly< Pango::TabArray >;
 
   /** Whether to suggest Emoji replacements.
    *
@@ -734,7 +734,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_enable_emoji_completion() ;
+  auto property_enable_emoji_completion() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to suggest Emoji replacements.
    *
@@ -743,7 +743,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_enable_emoji_completion() const;
+  auto property_enable_emoji_completion() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the widget should grow and shrink with the content.
    *
@@ -752,7 +752,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_propagate_text_width() ;
+  auto property_propagate_text_width() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the widget should grow and shrink with the content.
    *
@@ -761,7 +761,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_propagate_text_width() const;
+  auto property_propagate_text_width() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** A menu model whose contents will be appended to
    * the context menu.
@@ -769,7 +769,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > property_extra_menu() ;
+  auto property_extra_menu() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > ;
 
 /** A menu model whose contents will be appended to
    * the context menu.
@@ -777,7 +777,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> > property_extra_menu() const;
+  auto property_extra_menu() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >;
 
 
 public:
@@ -807,7 +807,7 @@ namespace Glib
    * @relates Gtk::Text
    */
   GTKMM_API
-  Gtk::Text* wrap(GtkText* object, bool take_copy = false);
+  auto wrap(GtkText* object, bool take_copy = false) -> Gtk::Text*;
 } //namespace Glib
 
 

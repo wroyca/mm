@@ -81,7 +81,7 @@ namespace
 namespace Glib
 {
 
-Gtk::CellView* wrap(GtkCellView* object, bool take_copy)
+auto wrap(GtkCellView* object, bool take_copy) -> Gtk::CellView*
 {
   return dynamic_cast<Gtk::CellView *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -94,7 +94,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& CellView_Class::init()
+auto CellView_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -127,7 +127,7 @@ void CellView_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* CellView_Class::wrap_new(GObject* o)
+auto CellView_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new CellView((GtkCellView*)(o)));
 
@@ -155,7 +155,7 @@ CellView::CellView(CellView&& src) noexcept
   , Orientable(std::move(src))
 {}
 
-CellView& CellView::operator=(CellView&& src) noexcept
+auto CellView::operator=(CellView&& src) noexcept -> CellView&
 {
   Gtk::Widget::operator=(std::move(src));
   CellLayout::operator=(std::move(src));
@@ -170,13 +170,13 @@ CellView::~CellView() noexcept
 
 CellView::CppClassType CellView::cellview_class_; // initialize static member
 
-GType CellView::get_type()
+auto CellView::get_type() -> GType
 {
   return cellview_class_.init().get_type();
 }
 
 
-GType CellView::get_base_type()
+auto CellView::get_base_type() -> GType
 {
   return gtk_cell_view_get_type();
 }
@@ -197,7 +197,7 @@ void CellView::set_model(const Glib::RefPtr<TreeModel>& model)
   gtk_cell_view_set_model(gobj(), Glib::unwrap(model));
 }
 
-Glib::RefPtr<TreeModel> CellView::get_model()
+auto CellView::get_model() -> Glib::RefPtr<TreeModel>
 {
   auto retvalue = Glib::wrap(gtk_cell_view_get_model(gobj()));
   if(retvalue)
@@ -205,7 +205,7 @@ Glib::RefPtr<TreeModel> CellView::get_model()
   return retvalue;
 }
 
-Glib::RefPtr<const TreeModel> CellView::get_model() const
+auto CellView::get_model() const -> Glib::RefPtr<const TreeModel>
 {
   return const_cast<CellView*>(this)->get_model();
 }
@@ -215,12 +215,12 @@ void CellView::set_displayed_row(const TreeModel::Path& path)
   gtk_cell_view_set_displayed_row(gobj(), const_cast<GtkTreePath*>((path).gobj()));
 }
 
-TreeModel::Path CellView::get_displayed_row() const
+auto CellView::get_displayed_row() const -> TreeModel::Path
 {
   return Gtk::TreePath(gtk_cell_view_get_displayed_row(const_cast<GtkCellView*>(gobj())), false);
 }
 
-bool CellView::get_draw_sensitive() const
+auto CellView::get_draw_sensitive() const -> bool
 {
   return gtk_cell_view_get_draw_sensitive(const_cast<GtkCellView*>(gobj()));
 }
@@ -230,7 +230,7 @@ void CellView::set_draw_sensitive(bool draw_sensitive)
   gtk_cell_view_set_draw_sensitive(gobj(), static_cast<int>(draw_sensitive));
 }
 
-bool CellView::get_fit_model() const
+auto CellView::get_fit_model() const -> bool
 {
   return gtk_cell_view_get_fit_model(const_cast<GtkCellView*>(gobj()));
 }
@@ -245,12 +245,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<TreeMod
   "Type Glib::RefPtr<TreeModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<TreeModel> > CellView::property_model()
+auto CellView::property_model() -> Glib::PropertyProxy< Glib::RefPtr<TreeModel> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<TreeModel> >(this, "model");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> > CellView::property_model() const
+auto CellView::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> >(this, "model");
 }
@@ -259,7 +259,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<CellAre
   "Type Glib::RefPtr<CellArea> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> > CellView::property_cell_area() const
+auto CellView::property_cell_area() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> >(this, "cell-area");
 }
@@ -268,27 +268,27 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<CellAre
   "Type Glib::RefPtr<CellAreaContext> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellAreaContext> > CellView::property_cell_area_context() const
+auto CellView::property_cell_area_context() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellAreaContext> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellAreaContext> >(this, "cell-area-context");
 }
 
-Glib::PropertyProxy< bool > CellView::property_draw_sensitive()
+auto CellView::property_draw_sensitive() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "draw-sensitive");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellView::property_draw_sensitive() const
+auto CellView::property_draw_sensitive() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "draw-sensitive");
 }
 
-Glib::PropertyProxy< bool > CellView::property_fit_model()
+auto CellView::property_fit_model() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "fit-model");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellView::property_fit_model() const
+auto CellView::property_fit_model() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "fit-model");
 }

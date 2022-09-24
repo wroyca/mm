@@ -51,7 +51,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::ApplicationCommandLine> wrap(GApplicationCommandLine* object, bool take_copy)
+auto wrap(GApplicationCommandLine* object, bool take_copy) -> Glib::RefPtr<Gio::ApplicationCommandLine>
 {
   return Glib::make_refptr_for_instance<Gio::ApplicationCommandLine>( dynamic_cast<Gio::ApplicationCommandLine*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -66,7 +66,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& ApplicationCommandLine_Class::init()
+auto ApplicationCommandLine_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -97,7 +97,7 @@ void ApplicationCommandLine_Class::class_init_function(void* g_class, void* clas
 }
 
 
-Glib::ObjectBase* ApplicationCommandLine_Class::wrap_new(GObject* object)
+auto ApplicationCommandLine_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ApplicationCommandLine((GApplicationCommandLine*)object);
 }
@@ -105,7 +105,7 @@ Glib::ObjectBase* ApplicationCommandLine_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GApplicationCommandLine* ApplicationCommandLine::gobj_copy()
+auto ApplicationCommandLine::gobj_copy() -> GApplicationCommandLine*
 {
   reference();
   return gobj();
@@ -128,7 +128,7 @@ ApplicationCommandLine::ApplicationCommandLine(ApplicationCommandLine&& src) noe
 : Glib::Object(std::move(src))
 {}
 
-ApplicationCommandLine& ApplicationCommandLine::operator=(ApplicationCommandLine&& src) noexcept
+auto ApplicationCommandLine::operator=(ApplicationCommandLine&& src) noexcept -> ApplicationCommandLine&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -141,13 +141,13 @@ ApplicationCommandLine::~ApplicationCommandLine() noexcept
 
 ApplicationCommandLine::CppClassType ApplicationCommandLine::applicationcommandline_class_; // initialize static member
 
-GType ApplicationCommandLine::get_type()
+auto ApplicationCommandLine::get_type() -> GType
 {
   return applicationcommandline_class_.init().get_type();
 }
 
 
-GType ApplicationCommandLine::get_base_type()
+auto ApplicationCommandLine::get_base_type() -> GType
 {
   return g_application_command_line_get_type();
 }
@@ -163,12 +163,12 @@ ApplicationCommandLine::ApplicationCommandLine()
 
 }
 
-char** ApplicationCommandLine::get_arguments(int& argc) const
+auto ApplicationCommandLine::get_arguments(int& argc) const -> char**
 {
   return g_application_command_line_get_arguments(const_cast<GApplicationCommandLine*>(gobj()), &(argc));
 }
 
-Glib::RefPtr<Glib::VariantDict> ApplicationCommandLine::get_options_dict()
+auto ApplicationCommandLine::get_options_dict() -> Glib::RefPtr<Glib::VariantDict>
 {
   auto retvalue = Glib::wrap(g_application_command_line_get_options_dict(gobj()));
   if(retvalue)
@@ -176,12 +176,12 @@ Glib::RefPtr<Glib::VariantDict> ApplicationCommandLine::get_options_dict()
   return retvalue;
 }
 
-Glib::RefPtr<const Glib::VariantDict> ApplicationCommandLine::get_options_dict() const
+auto ApplicationCommandLine::get_options_dict() const -> Glib::RefPtr<const Glib::VariantDict>
 {
   return const_cast<ApplicationCommandLine*>(this)->get_options_dict();
 }
 
-Glib::RefPtr<InputStream> ApplicationCommandLine::get_stdin()
+auto ApplicationCommandLine::get_stdin() -> Glib::RefPtr<InputStream>
 {
   auto retvalue = Glib::wrap(g_application_command_line_get_stdin(gobj()));
   if(retvalue)
@@ -189,32 +189,32 @@ Glib::RefPtr<InputStream> ApplicationCommandLine::get_stdin()
   return retvalue;
 }
 
-Glib::RefPtr<const InputStream> ApplicationCommandLine::get_stdin() const
+auto ApplicationCommandLine::get_stdin() const -> Glib::RefPtr<const InputStream>
 {
   return const_cast<ApplicationCommandLine*>(this)->get_stdin();
 }
 
-std::string ApplicationCommandLine::get_cwd() const
+auto ApplicationCommandLine::get_cwd() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_application_command_line_get_cwd(const_cast<GApplicationCommandLine*>(gobj())));
 }
 
-std::vector<std::string> ApplicationCommandLine::get_environ() const
+auto ApplicationCommandLine::get_environ() const -> std::vector<std::string>
 {
   return Glib::ArrayHandler<std::string>::array_to_vector(g_application_command_line_get_environ(const_cast<GApplicationCommandLine*>(gobj())), Glib::OWNERSHIP_NONE);
 }
 
-std::string ApplicationCommandLine::getenv(const Glib::ustring& name) const
+auto ApplicationCommandLine::getenv(const Glib::ustring& name) const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_application_command_line_getenv(const_cast<GApplicationCommandLine*>(gobj()), name.c_str()));
 }
 
-bool ApplicationCommandLine::is_remote() const
+auto ApplicationCommandLine::is_remote() const -> bool
 {
   return g_application_command_line_get_is_remote(const_cast<GApplicationCommandLine*>(gobj()));
 }
 
-Glib::Variant< std::map<Glib::ustring, Glib::VariantBase> > ApplicationCommandLine::get_platform_data() const
+auto ApplicationCommandLine::get_platform_data() const -> Glib::Variant< std::map<Glib::ustring, Glib::VariantBase> >
 {
   return Glib::Variant< std::map<Glib::ustring, Glib::VariantBase> >(g_application_command_line_get_platform_data(const_cast<GApplicationCommandLine*>(gobj())));
 }
@@ -224,12 +224,12 @@ void ApplicationCommandLine::set_exit_status(int exit_status)
   g_application_command_line_set_exit_status(gobj(), exit_status);
 }
 
-int ApplicationCommandLine::get_exit_status() const
+auto ApplicationCommandLine::get_exit_status() const -> int
 {
   return g_application_command_line_get_exit_status(const_cast<GApplicationCommandLine*>(gobj()));
 }
 
-Glib::RefPtr<File> ApplicationCommandLine::create_file_for_arg(const Glib::ustring& arg) const
+auto ApplicationCommandLine::create_file_for_arg(const Glib::ustring& arg) const -> Glib::RefPtr<File>
 {
   return Glib::wrap(g_application_command_line_create_file_for_arg(const_cast<GApplicationCommandLine*>(gobj()), arg.c_str()));
 }

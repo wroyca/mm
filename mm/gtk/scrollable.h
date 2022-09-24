@@ -69,7 +69,7 @@ public:
 
   // noncopyable
   Scrollable(const Scrollable&) = delete;
-  Scrollable& operator=(const Scrollable&) = delete;
+  auto operator=(const Scrollable&) -> Scrollable& = delete;
 
 private:
   friend class Scrollable_Class;
@@ -103,7 +103,7 @@ protected:
 public:
 
   Scrollable(Scrollable&& src) noexcept;
-  Scrollable& operator=(Scrollable&& src) noexcept;
+  auto operator=(Scrollable&& src) noexcept -> Scrollable&;
 
   ~Scrollable() noexcept override;
 
@@ -111,17 +111,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkScrollable*       gobj()       { return reinterpret_cast<GtkScrollable*>(gobject_); }
+  auto       gobj() -> GtkScrollable*       { return reinterpret_cast<GtkScrollable*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkScrollable* gobj() const { return reinterpret_cast<GtkScrollable*>(gobject_); }
+  auto gobj() const -> const GtkScrollable* { return reinterpret_cast<GtkScrollable*>(gobject_); }
 
 private:
 
@@ -154,13 +154,13 @@ public:
    *
    * @return Horizontal `Gtk::Adjustment`.
    */
-  Glib::RefPtr<Adjustment> get_hadjustment();
+  auto get_hadjustment() -> Glib::RefPtr<Adjustment>;
 
   /** Retrieves the `Gtk::Adjustment` used for horizontal scrolling.
    *
    * @return Horizontal `Gtk::Adjustment`.
    */
-  Glib::RefPtr<const Adjustment> get_hadjustment() const;
+  auto get_hadjustment() const -> Glib::RefPtr<const Adjustment>;
 
 
   /** Sets the horizontal adjustment of the `Gtk::Scrollable`.
@@ -179,13 +179,13 @@ public:
    *
    * @return Vertical `Gtk::Adjustment`.
    */
-  Glib::RefPtr<Adjustment> get_vadjustment();
+  auto get_vadjustment() -> Glib::RefPtr<Adjustment>;
 
   /** Retrieves the `Gtk::Adjustment` used for vertical scrolling.
    *
    * @return Vertical `Gtk::Adjustment`.
    */
-  Glib::RefPtr<const Adjustment> get_vadjustment() const;
+  auto get_vadjustment() const -> Glib::RefPtr<const Adjustment>;
 
 
   /** Sets the vertical adjustment of the `Gtk::Scrollable`.
@@ -204,7 +204,7 @@ public:
    *
    * @return The horizontal `Gtk::Scrollable::Policy`.
    */
-  Policy get_hscroll_policy() const;
+  auto get_hscroll_policy() const -> Policy;
 
   /** Sets the `Gtk::Scrollable::Policy`.
    *
@@ -219,7 +219,7 @@ public:
    *
    * @return The vertical `Gtk::Scrollable::Policy`.
    */
-  Policy get_vscroll_policy() const;
+  auto get_vscroll_policy() const -> Policy;
 
   /** Sets the `Gtk::Scrollable::Policy`.
    *
@@ -240,7 +240,7 @@ public:
    * @param border Return location for the results.
    * @return <tt>true</tt> if @a border has been set.
    */
-  bool get_border(Border& border) const;
+  auto get_border(Border& border) const -> bool;
 
   /** Horizontal `Gtk::Adjustment` of the scrollable widget.
    *
@@ -249,7 +249,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Adjustment> > property_hadjustment() ;
+  auto property_hadjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> > ;
 
 /** Horizontal `Gtk::Adjustment` of the scrollable widget.
    *
@@ -258,7 +258,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> > property_hadjustment() const;
+  auto property_hadjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >;
 
   /** Vertical `Gtk::Adjustment` of the scrollable widget.
    *
@@ -267,7 +267,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Adjustment> > property_vadjustment() ;
+  auto property_vadjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> > ;
 
 /** Vertical `Gtk::Adjustment` of the scrollable widget.
    *
@@ -276,7 +276,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> > property_vadjustment() const;
+  auto property_vadjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >;
 
   /** Determines when horizontal scrolling should start.
    *
@@ -285,7 +285,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Policy > property_hscroll_policy() ;
+  auto property_hscroll_policy() -> Glib::PropertyProxy< Policy > ;
 
 /** Determines when horizontal scrolling should start.
    *
@@ -294,7 +294,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Policy > property_hscroll_policy() const;
+  auto property_hscroll_policy() const -> Glib::PropertyProxy_ReadOnly< Policy >;
 
   /** Determines when vertical scrolling should start.
    *
@@ -303,7 +303,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Policy > property_vscroll_policy() ;
+  auto property_vscroll_policy() -> Glib::PropertyProxy< Policy > ;
 
 /** Determines when vertical scrolling should start.
    *
@@ -312,11 +312,11 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Policy > property_vscroll_policy() const;
+  auto property_vscroll_policy() const -> Glib::PropertyProxy_ReadOnly< Policy >;
 
 
 protected:
-    virtual bool get_border_vfunc(Border& border) const;
+    virtual auto get_border_vfunc(Border& border) const -> bool;
 
 
 public:
@@ -343,7 +343,7 @@ template <>
 class GTKMM_API Value<Gtk::Scrollable::Policy> : public Glib::Value_Enum<Gtk::Scrollable::Policy>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -361,7 +361,7 @@ namespace Glib
    * @relates Gtk::Scrollable
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Scrollable> wrap(GtkScrollable* object, bool take_copy = false);
+  auto wrap(GtkScrollable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Scrollable>;
 
 } // namespace Glib
 

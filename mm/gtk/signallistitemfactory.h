@@ -99,7 +99,7 @@ public:
 
   // noncopyable
   SignalListItemFactory(const SignalListItemFactory&) = delete;
-  SignalListItemFactory& operator=(const SignalListItemFactory&) = delete;
+  auto operator=(const SignalListItemFactory&) -> SignalListItemFactory& = delete;
 
 private:  friend class SignalListItemFactory_Class;
   static CppClassType signallistitemfactory_class_;
@@ -113,28 +113,28 @@ protected:
 public:
 
   SignalListItemFactory(SignalListItemFactory&& src) noexcept;
-  SignalListItemFactory& operator=(SignalListItemFactory&& src) noexcept;
+  auto operator=(SignalListItemFactory&& src) noexcept -> SignalListItemFactory&;
 
   ~SignalListItemFactory() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkSignalListItemFactory*       gobj()       { return reinterpret_cast<GtkSignalListItemFactory*>(gobject_); }
+  auto       gobj() -> GtkSignalListItemFactory*       { return reinterpret_cast<GtkSignalListItemFactory*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkSignalListItemFactory* gobj() const { return reinterpret_cast<GtkSignalListItemFactory*>(gobject_); }
+  auto gobj() const -> const GtkSignalListItemFactory* { return reinterpret_cast<GtkSignalListItemFactory*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkSignalListItemFactory* gobj_copy();
+  auto gobj_copy() -> GtkSignalListItemFactory*;
 
 private:
 
@@ -144,7 +144,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<SignalListItemFactory> create();
+  static auto create() -> Glib::RefPtr<SignalListItemFactory>;
 
 
   // no_default_handler because GtkSignalListItemFactoryClass is private.
@@ -170,7 +170,7 @@ public:
    * @param list_item The `Glib::Object` to set up.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)> signal_setup();
+  auto signal_setup() -> Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)>;
 
 
   /**
@@ -193,7 +193,7 @@ public:
    * @param list_item The `Glib::Object` to bind.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)> signal_bind();
+  auto signal_bind() -> Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)>;
 
 
   /**
@@ -212,7 +212,7 @@ public:
    * @param list_item The `Glib::Object` to unbind.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)> signal_unbind();
+  auto signal_unbind() -> Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)>;
 
 
   /**
@@ -231,7 +231,7 @@ public:
    * @param list_item The `Glib::Object` to tear down.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)> signal_teardown();
+  auto signal_teardown() -> Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)>;
 
 
 public:
@@ -261,7 +261,7 @@ namespace Glib
    * @relates Gtk::SignalListItemFactory
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::SignalListItemFactory> wrap(GtkSignalListItemFactory* object, bool take_copy = false);
+  auto wrap(GtkSignalListItemFactory* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SignalListItemFactory>;
 }
 
 

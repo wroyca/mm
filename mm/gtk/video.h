@@ -61,11 +61,11 @@ class GTKMM_API Video : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Video(Video&& src) noexcept;
-  Video& operator=(Video&& src) noexcept;
+  auto operator=(Video&& src) noexcept -> Video&;
 
   // noncopyable
   Video(const Video&) = delete;
-  Video& operator=(const Video&) = delete;
+  auto operator=(const Video&) -> Video& = delete;
 
   ~Video() noexcept override;
 
@@ -85,19 +85,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkVideo*       gobj()       { return reinterpret_cast<GtkVideo*>(gobject_); }
+  auto       gobj() -> GtkVideo*       { return reinterpret_cast<GtkVideo*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkVideo* gobj() const { return reinterpret_cast<GtkVideo*>(gobject_); }
+  auto gobj() const -> const GtkVideo* { return reinterpret_cast<GtkVideo*>(gobject_); }
 
 private:
 
@@ -139,13 +139,13 @@ public:
    *
    * @return The media stream managed by @a self.
    */
-  Glib::RefPtr<MediaStream> get_media_stream();
+  auto get_media_stream() -> Glib::RefPtr<MediaStream>;
 
   /** Gets the media stream managed by @a self or <tt>nullptr</tt> if none.
    *
    * @return The media stream managed by @a self.
    */
-  Glib::RefPtr<const MediaStream> get_media_stream() const;
+  auto get_media_stream() const -> Glib::RefPtr<const MediaStream>;
 
   /** Sets the media stream to be played back.
    *
@@ -166,14 +166,14 @@ public:
    *
    * @return The file played by @a self.
    */
-  Glib::RefPtr<Gio::File> get_file();
+  auto get_file() -> Glib::RefPtr<Gio::File>;
 
   /** Gets the file played by @a self or <tt>nullptr</tt> if not playing back
    * a file.
    *
    * @return The file played by @a self.
    */
-  Glib::RefPtr<const Gio::File> get_file() const;
+  auto get_file() const -> Glib::RefPtr<const Gio::File>;
 
   /** Makes @a self play the given @a file.
    *
@@ -203,7 +203,7 @@ public:
    *
    * @return <tt>true</tt> if streams should autoplay.
    */
-  bool get_autoplay() const;
+  auto get_autoplay() const -> bool;
 
   /** Sets whether @a self automatically starts playback when it
    * becomes visible or when a new file gets loaded.
@@ -216,7 +216,7 @@ public:
    *
    * @return <tt>true</tt> if streams should loop.
    */
-  bool get_loop() const;
+  auto get_loop() const -> bool;
 
   /** Sets whether new files loaded by @a self should be set to loop.
    *
@@ -229,28 +229,28 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<MediaStream> > property_media_stream() ;
+  auto property_media_stream() -> Glib::PropertyProxy< Glib::RefPtr<MediaStream> > ;
 
 /** The media-stream played
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<MediaStream> > property_media_stream() const;
+  auto property_media_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<MediaStream> >;
 
   /** The file played by this video if the video is playing a file.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::File> > property_file() ;
+  auto property_file() -> Glib::PropertyProxy< Glib::RefPtr<Gio::File> > ;
 
 /** The file played by this video if the video is playing a file.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> > property_file() const;
+  auto property_file() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >;
 
   /** If the video should automatically begin playing.
    *
@@ -259,7 +259,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_autoplay() ;
+  auto property_autoplay() -> Glib::PropertyProxy< bool > ;
 
 /** If the video should automatically begin playing.
    *
@@ -268,7 +268,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_autoplay() const;
+  auto property_autoplay() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** If new media files should be set to loop.
    *
@@ -277,7 +277,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_loop() ;
+  auto property_loop() -> Glib::PropertyProxy< bool > ;
 
 /** If new media files should be set to loop.
    *
@@ -286,7 +286,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_loop() const;
+  auto property_loop() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   // There are no signals or vfuncs.
@@ -319,7 +319,7 @@ namespace Glib
    * @relates Gtk::Video
    */
   GTKMM_API
-  Gtk::Video* wrap(GtkVideo* object, bool take_copy = false);
+  auto wrap(GtkVideo* object, bool take_copy = false) -> Gtk::Video*;
 } //namespace Glib
 
 

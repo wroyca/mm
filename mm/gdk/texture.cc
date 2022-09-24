@@ -43,7 +43,7 @@ Gdk::TextureError::TextureError(GError* gobject)
   Glib::Error (gobject)
 {}
 
-Gdk::TextureError::Code Gdk::TextureError::code() const
+auto Gdk::TextureError::code() const -> Gdk::TextureError::Code
 {
   return static_cast<Code>(Glib::Error::code());
 }
@@ -54,7 +54,7 @@ void Gdk::TextureError::throw_func(GError* gobject)
 }
 
 // static
-GType Glib::Value<Gdk::TextureError::Code>::value_type()
+auto Glib::Value<Gdk::TextureError::Code>::value_type() -> GType
 {
   return gdk_texture_error_get_type();
 }
@@ -63,7 +63,7 @@ GType Glib::Value<Gdk::TextureError::Code>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::Texture> wrap(GdkTexture* object, bool take_copy)
+auto wrap(GdkTexture* object, bool take_copy) -> Glib::RefPtr<Gdk::Texture>
 {
   return Glib::make_refptr_for_instance<Gdk::Texture>( dynamic_cast<Gdk::Texture*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -78,7 +78,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Texture_Class::init()
+auto Texture_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -110,7 +110,7 @@ void Texture_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Texture_Class::wrap_new(GObject* object)
+auto Texture_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Texture((GdkTexture*)object);
 }
@@ -118,7 +118,7 @@ Glib::ObjectBase* Texture_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GdkTexture* Texture::gobj_copy()
+auto Texture::gobj_copy() -> GdkTexture*
 {
   reference();
   return gobj();
@@ -142,7 +142,7 @@ Texture::Texture(Texture&& src) noexcept
   , Paintable(std::move(src))
 {}
 
-Texture& Texture::operator=(Texture&& src) noexcept
+auto Texture::operator=(Texture&& src) noexcept -> Texture&
 {
   Glib::Object::operator=(std::move(src));
   Paintable::operator=(std::move(src));
@@ -156,13 +156,13 @@ Texture::~Texture() noexcept
 
 Texture::CppClassType Texture::texture_class_; // initialize static member
 
-GType Texture::get_type()
+auto Texture::get_type() -> GType
 {
   return texture_class_.init().get_type();
 }
 
 
-GType Texture::get_base_type()
+auto Texture::get_base_type() -> GType
 {
   return gdk_texture_get_type();
 }
@@ -178,17 +178,17 @@ Texture::Texture()
 
 }
 
-Glib::RefPtr<Texture> Texture::create_for_pixbuf(const Glib::RefPtr<Pixbuf>& pixbuf)
+auto Texture::create_for_pixbuf(const Glib::RefPtr<Pixbuf>& pixbuf) -> Glib::RefPtr<Texture>
 {
   return Glib::wrap(gdk_texture_new_for_pixbuf(Glib::unwrap(pixbuf)));
 }
 
-Glib::RefPtr<Texture> Texture::create_from_resource(const std::string& resource_path)
+auto Texture::create_from_resource(const std::string& resource_path) -> Glib::RefPtr<Texture>
 {
   return Glib::wrap(gdk_texture_new_from_resource(resource_path.c_str()));
 }
 
-Glib::RefPtr<Texture> Texture::create_from_file(const Glib::RefPtr<Gio::File>& file)
+auto Texture::create_from_file(const Glib::RefPtr<Gio::File>& file) -> Glib::RefPtr<Texture>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(gdk_texture_new_from_file(const_cast<GFile*>(Glib::unwrap<Gio::File>(file)), &(gerror)));
@@ -197,7 +197,7 @@ Glib::RefPtr<Texture> Texture::create_from_file(const Glib::RefPtr<Gio::File>& f
   return retvalue;
 }
 
-Glib::RefPtr<Texture> Texture::create_from_filename(const std::string& path)
+auto Texture::create_from_filename(const std::string& path) -> Glib::RefPtr<Texture>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(gdk_texture_new_from_filename(path.c_str(), &(gerror)));
@@ -206,7 +206,7 @@ Glib::RefPtr<Texture> Texture::create_from_filename(const std::string& path)
   return retvalue;
 }
 
-Glib::RefPtr<Texture> Texture::create_from_bytes(const Glib::RefPtr<const Glib::Bytes>& bytes)
+auto Texture::create_from_bytes(const Glib::RefPtr<const Glib::Bytes>& bytes) -> Glib::RefPtr<Texture>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(gdk_texture_new_from_bytes(const_cast<GBytes*>(Glib::unwrap<Glib::Bytes>(bytes)), &(gerror)));
@@ -215,12 +215,12 @@ Glib::RefPtr<Texture> Texture::create_from_bytes(const Glib::RefPtr<const Glib::
   return retvalue;
 }
 
-int Texture::get_width() const
+auto Texture::get_width() const -> int
 {
   return gdk_texture_get_width(const_cast<GdkTexture*>(gobj()));
 }
 
-int Texture::get_height() const
+auto Texture::get_height() const -> int
 {
   return gdk_texture_get_height(const_cast<GdkTexture*>(gobj()));
 }
@@ -230,33 +230,33 @@ void Texture::download(guchar* data, gsize stride) const
   gdk_texture_download(const_cast<GdkTexture*>(gobj()), data, stride);
 }
 
-bool Texture::save_to_png(const Glib::ustring& filename) const
+auto Texture::save_to_png(const Glib::ustring& filename) const -> bool
 {
   return gdk_texture_save_to_png(const_cast<GdkTexture*>(gobj()), filename.c_str());
 }
 
-Glib::RefPtr<Glib::Bytes> Texture::save_to_png_bytes() const
+auto Texture::save_to_png_bytes() const -> Glib::RefPtr<Glib::Bytes>
 {
   return Glib::wrap(gdk_texture_save_to_png_bytes(const_cast<GdkTexture*>(gobj())));
 }
 
-bool Texture::save_to_tiff(const std::string& filename) const
+auto Texture::save_to_tiff(const std::string& filename) const -> bool
 {
   return gdk_texture_save_to_tiff(const_cast<GdkTexture*>(gobj()), filename.c_str());
 }
 
-Glib::RefPtr<Glib::Bytes> Texture::save_to_tiff_bytes() const
+auto Texture::save_to_tiff_bytes() const -> Glib::RefPtr<Glib::Bytes>
 {
   return Glib::wrap(gdk_texture_save_to_tiff_bytes(const_cast<GdkTexture*>(gobj())));
 }
 
 
-Glib::PropertyProxy_ReadOnly< int > Texture::property_width() const
+auto Texture::property_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "width");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Texture::property_height() const
+auto Texture::property_height() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "height");
 }

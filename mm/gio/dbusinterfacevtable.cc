@@ -59,10 +59,10 @@ DBusInterfaceVTable_MethodCall_giomm_callback(GDBusConnection* connection, const
   }
 }
 
-static GVariant*
+static auto
 DBusInterfaceVTable_GetProperty_giomm_callback(GDBusConnection* connection, const char* sender,
   const char* object_path, const char* interface_name, const char* property_name, GError** error,
-  void* user_data)
+  void* user_data) -> GVariant*
 {
   Gio::DBus::InterfaceVTable* vtable = static_cast<Gio::DBus::InterfaceVTable*>(user_data);
 
@@ -89,10 +89,10 @@ DBusInterfaceVTable_GetProperty_giomm_callback(GDBusConnection* connection, cons
   return nullptr;
 }
 
-static gboolean
+static auto
 DBusInterfaceVTable_SetProperty_giomm_callback(GDBusConnection* connection, const char* sender,
   const char* object_path, const char* interface_name, const char* property_name, GVariant* value,
-  GError** error, void* user_data)
+  GError** error, void* user_data) -> gboolean
 {
   Gio::DBus::InterfaceVTable* vtable = static_cast<Gio::DBus::InterfaceVTable*>(user_data);
 
@@ -119,10 +119,7 @@ DBusInterfaceVTable_SetProperty_giomm_callback(GDBusConnection* connection, cons
 } // extern "C"
 }
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 InterfaceVTable::InterfaceVTable(const SlotInterfaceMethodCall& slot_method_call,
@@ -148,8 +145,8 @@ InterfaceVTable::InterfaceVTable(InterfaceVTable&& other) noexcept
   other.slot_set_property_ = nullptr;
 }
 
-InterfaceVTable&
-InterfaceVTable::operator=(InterfaceVTable&& other) noexcept
+auto
+InterfaceVTable::operator=(InterfaceVTable&& other) noexcept -> InterfaceVTable&
 {
   delete slot_method_call_;
   delete slot_get_property_;
@@ -174,25 +171,23 @@ InterfaceVTable::~InterfaceVTable()
   delete slot_set_property_;
 }
 
-InterfaceVTable::SlotInterfaceMethodCall*
-InterfaceVTable::get_slot_method_call() const
+auto
+InterfaceVTable::get_slot_method_call() const -> InterfaceVTable::SlotInterfaceMethodCall*
 {
   return slot_method_call_;
 }
 
-InterfaceVTable::SlotInterfaceGetProperty*
-InterfaceVTable::get_slot_get_property() const
+auto
+InterfaceVTable::get_slot_get_property() const -> InterfaceVTable::SlotInterfaceGetProperty*
 {
   return slot_get_property_;
 }
 
-InterfaceVTable::SlotInterfaceSetProperty*
-InterfaceVTable::get_slot_set_property() const
+auto
+InterfaceVTable::get_slot_set_property() const -> InterfaceVTable::SlotInterfaceSetProperty*
 {
   return slot_set_property_;
 }
-
-} // namespace DBus
 
 } // namespace Gio
 
@@ -201,14 +196,9 @@ namespace
 } // anonymous namespace
 
 
-namespace Gio
+namespace Gio::DBus
 {
 
-namespace DBus
-{
-
-
-} // namespace DBus
 
 } // namespace Gio
 

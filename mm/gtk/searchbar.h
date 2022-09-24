@@ -75,11 +75,11 @@ class GTKMM_API SearchBar
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   SearchBar(SearchBar&& src) noexcept;
-  SearchBar& operator=(SearchBar&& src) noexcept;
+  auto operator=(SearchBar&& src) noexcept -> SearchBar&;
 
   // noncopyable
   SearchBar(const SearchBar&) = delete;
-  SearchBar& operator=(const SearchBar&) = delete;
+  auto operator=(const SearchBar&) -> SearchBar& = delete;
 
   ~SearchBar() noexcept override;
 
@@ -99,19 +99,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkSearchBar*       gobj()       { return reinterpret_cast<GtkSearchBar*>(gobject_); }
+  auto       gobj() -> GtkSearchBar*       { return reinterpret_cast<GtkSearchBar*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkSearchBar* gobj() const { return reinterpret_cast<GtkSearchBar*>(gobject_); }
+  auto gobj() const -> const GtkSearchBar* { return reinterpret_cast<GtkSearchBar*>(gobject_); }
 
 private:
 
@@ -141,7 +141,7 @@ public:
    *
    * @return Whether search mode is toggled on.
    */
-  bool get_search_mode() const;
+  auto get_search_mode() const -> bool;
 
   /** Switches the search mode on or off.
    *
@@ -154,7 +154,7 @@ public:
    *
    * @return Whether the close button is shown.
    */
-  bool get_show_close_button() const;
+  auto get_show_close_button() const -> bool;
 
   /** Shows or hides the close button.
    *
@@ -188,13 +188,13 @@ public:
    *
    * @return The key capture widget.
    */
-  Widget* get_key_capture_widget();
+  auto get_key_capture_widget() -> Widget*;
 
   /** Gets the widget that @a bar is capturing key events from.
    *
    * @return The key capture widget.
    */
-  const Widget* get_key_capture_widget() const;
+  auto get_key_capture_widget() const -> const Widget*;
   void unset_key_capture_widget();
 
 
@@ -209,13 +209,13 @@ public:
    *
    * @return The child widget of @a bar.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget of @a bar.
    *
    * @return The child widget of @a bar.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
   /** Whether the search mode is on and the search bar shown.
    *
@@ -224,7 +224,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_search_mode_enabled() ;
+  auto property_search_mode_enabled() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the search mode is on and the search bar shown.
    *
@@ -233,7 +233,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_search_mode_enabled() const;
+  auto property_search_mode_enabled() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether to show the close button in the search bar.
    *
@@ -242,7 +242,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_close_button() ;
+  auto property_show_close_button() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to show the close button in the search bar.
    *
@@ -251,35 +251,35 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_close_button() const;
+  auto property_show_close_button() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The child widget.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The child widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
   /** The key capture widget.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_key_capture_widget() ;
+  auto property_key_capture_widget() -> Glib::PropertyProxy< Widget* > ;
 
 /** The key capture widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_key_capture_widget() const;
+  auto property_key_capture_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
   // Gtk::SearchBar has no signals nor vfuncs as of 3.10.
@@ -312,7 +312,7 @@ namespace Glib
    * @relates Gtk::SearchBar
    */
   GTKMM_API
-  Gtk::SearchBar* wrap(GtkSearchBar* object, bool take_copy = false);
+  auto wrap(GtkSearchBar* object, bool take_copy = false) -> Gtk::SearchBar*;
 } //namespace Glib
 
 

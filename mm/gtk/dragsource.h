@@ -88,7 +88,7 @@ public:
 
   // noncopyable
   DragSource(const DragSource&) = delete;
-  DragSource& operator=(const DragSource&) = delete;
+  auto operator=(const DragSource&) -> DragSource& = delete;
 
 private:  friend class DragSource_Class;
   static CppClassType dragsource_class_;
@@ -102,28 +102,28 @@ protected:
 public:
 
   DragSource(DragSource&& src) noexcept;
-  DragSource& operator=(DragSource&& src) noexcept;
+  auto operator=(DragSource&& src) noexcept -> DragSource&;
 
   ~DragSource() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkDragSource*       gobj()       { return reinterpret_cast<GtkDragSource*>(gobject_); }
+  auto       gobj() -> GtkDragSource*       { return reinterpret_cast<GtkDragSource*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkDragSource* gobj() const { return reinterpret_cast<GtkDragSource*>(gobject_); }
+  auto gobj() const -> const GtkDragSource* { return reinterpret_cast<GtkDragSource*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkDragSource* gobj_copy();
+  auto gobj_copy() -> GtkDragSource*;
 
 private:
 
@@ -133,7 +133,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<DragSource> create();
+  static auto create() -> Glib::RefPtr<DragSource>;
 
 
   /** Sets a content provider on a `Gtk::DragSource`.
@@ -155,13 +155,13 @@ public:
    *
    * @return The `Gdk::ContentProvider` of @a source.
    */
-  Glib::RefPtr<Gdk::ContentProvider> get_content();
+  auto get_content() -> Glib::RefPtr<Gdk::ContentProvider>;
 
   /** Gets the current content provider of a `Gtk::DragSource`.
    *
    * @return The `Gdk::ContentProvider` of @a source.
    */
-  Glib::RefPtr<const Gdk::ContentProvider> get_content() const;
+  auto get_content() const -> Glib::RefPtr<const Gdk::ContentProvider>;
 
 
   /** Sets the actions on the `Gtk::DragSource`.
@@ -182,7 +182,7 @@ public:
    *
    * @return The actions set on @a source.
    */
-  Gdk::DragAction get_actions() const;
+  auto get_actions() const -> Gdk::DragAction;
 
 
   /** Sets a paintable to use as icon during DND operations.
@@ -211,28 +211,28 @@ public:
    * @return The `Gdk::Drag` of the current
    * drag operation.
    */
-  Glib::RefPtr<Gdk::Drag> get_drag();
+  auto get_drag() -> Glib::RefPtr<Gdk::Drag>;
 
   /** Returns the underlying `Gdk::Drag` object for an ongoing drag.
    *
    * @return The `Gdk::Drag` of the current
    * drag operation.
    */
-  Glib::RefPtr<const Gdk::Drag> get_drag() const;
+  auto get_drag() const -> Glib::RefPtr<const Gdk::Drag>;
 
   /** The data that is offered by drag operations from this source.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gdk::ContentProvider> > property_content() ;
+  auto property_content() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::ContentProvider> > ;
 
 /** The data that is offered by drag operations from this source.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::ContentProvider> > property_content() const;
+  auto property_content() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::ContentProvider> >;
 
   /** The actions that are supported by drag operations from the source.
    *
@@ -244,7 +244,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Gdk::DragAction > property_actions() ;
+  auto property_actions() -> Glib::PropertyProxy< Gdk::DragAction > ;
 
 /** The actions that are supported by drag operations from the source.
    *
@@ -256,7 +256,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Gdk::DragAction > property_actions() const;
+  auto property_actions() const -> Glib::PropertyProxy_ReadOnly< Gdk::DragAction >;
 
 
   // no_default_handler because GtkDragSourceClass is private.
@@ -282,7 +282,7 @@ public:
    * @return A `Gdk::ContentProvider`.
    */
 
-  Glib::SignalProxy<Glib::RefPtr<Gdk::ContentProvider>(double, double)> signal_prepare();
+  auto signal_prepare() -> Glib::SignalProxy<Glib::RefPtr<Gdk::ContentProvider>(double, double)>;
 
 
   /**
@@ -299,7 +299,7 @@ public:
    * @param drag The `Gdk::Drag` object.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Gdk::Drag>&)> signal_drag_begin();
+  auto signal_drag_begin() -> Glib::SignalProxy<void(const Glib::RefPtr<Gdk::Drag>&)>;
 
 
   /**
@@ -319,7 +319,7 @@ public:
    * and the data should be deleted.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Gdk::Drag>&, bool)> signal_drag_end();
+  auto signal_drag_end() -> Glib::SignalProxy<void(const Glib::RefPtr<Gdk::Drag>&, bool)>;
 
 
   /**
@@ -339,7 +339,7 @@ public:
    * @return <tt>true</tt> if the failed drag operation has been already handled.
    */
 
-  Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drag>&, Gdk::DragCancelReason)> signal_drag_cancel();
+  auto signal_drag_cancel() -> Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drag>&, Gdk::DragCancelReason)>;
 
 
 public:
@@ -369,7 +369,7 @@ namespace Glib
    * @relates Gtk::DragSource
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::DragSource> wrap(GtkDragSource* object, bool take_copy = false);
+  auto wrap(GtkDragSource* object, bool take_copy = false) -> Glib::RefPtr<Gtk::DragSource>;
 }
 
 

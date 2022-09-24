@@ -72,11 +72,11 @@ class GTKMM_API AppChooserWidget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   AppChooserWidget(AppChooserWidget&& src) noexcept;
-  AppChooserWidget& operator=(AppChooserWidget&& src) noexcept;
+  auto operator=(AppChooserWidget&& src) noexcept -> AppChooserWidget&;
 
   // noncopyable
   AppChooserWidget(const AppChooserWidget&) = delete;
-  AppChooserWidget& operator=(const AppChooserWidget&) = delete;
+  auto operator=(const AppChooserWidget&) -> AppChooserWidget& = delete;
 
   ~AppChooserWidget() noexcept override;
 
@@ -96,19 +96,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkAppChooserWidget*       gobj()       { return reinterpret_cast<GtkAppChooserWidget*>(gobject_); }
+  auto       gobj() -> GtkAppChooserWidget*       { return reinterpret_cast<GtkAppChooserWidget*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkAppChooserWidget* gobj() const { return reinterpret_cast<GtkAppChooserWidget*>(gobject_); }
+  auto gobj() const -> const GtkAppChooserWidget* { return reinterpret_cast<GtkAppChooserWidget*>(gobject_); }
 
 private:
 
@@ -136,7 +136,7 @@ public:
    *
    * @return The value of property_show_default().
    */
-  bool get_show_default();
+  auto get_show_default() -> bool;
 
 
   /** Sets whether the app chooser should show recommended applications
@@ -151,7 +151,7 @@ public:
    *
    * @return The value of property_show_recommended().
    */
-  bool get_show_recommended() const;
+  auto get_show_recommended() const -> bool;
 
 
   /** Sets whether the app chooser should show related applications
@@ -166,7 +166,7 @@ public:
    *
    * @return The value of property_show_fallback().
    */
-  bool get_show_fallback() const;
+  auto get_show_fallback() const -> bool;
 
 
   /** Sets whether the app chooser should show applications
@@ -181,7 +181,7 @@ public:
    *
    * @return The value of property_show_other().
    */
-  bool get_show_other() const;
+  auto get_show_other() const -> bool;
 
 
   /** Sets whether the app chooser should show all applications
@@ -196,7 +196,7 @@ public:
    *
    * @return The value of property_show_all().
    */
-  bool get_show_all() const;
+  auto get_show_all() const -> bool;
 
 
   /** Sets the text that is shown if there are not applications
@@ -211,7 +211,7 @@ public:
    *
    * @return The value of property_default_text().
    */
-  Glib::ustring get_default_text();
+  auto get_default_text() -> Glib::ustring;
 
   // no_default_handler because GtkAppChooserWidgetClass is private.
 
@@ -227,7 +227,7 @@ public:
    * @param app_info The selected `Gio::AppInfo`.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Gio::AppInfo>&)> signal_application_selected();
+  auto signal_application_selected() -> Glib::SignalProxy<void(const Glib::RefPtr<Gio::AppInfo>&)>;
 
 
   /**
@@ -245,7 +245,7 @@ public:
    * @param app_info The activated `Gio::AppInfo`.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Gio::AppInfo>&)> signal_application_activated();
+  auto signal_application_activated() -> Glib::SignalProxy<void(const Glib::RefPtr<Gio::AppInfo>&)>;
 
 
   /** Determines whether the app chooser should show the default
@@ -259,7 +259,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_default() ;
+  auto property_show_default() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether the app chooser should show the default
    * handler for the content type in a separate section.
@@ -272,7 +272,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_default() const;
+  auto property_show_default() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Determines whether the app chooser should show a section
    * for recommended applications.
@@ -285,7 +285,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_recommended() ;
+  auto property_show_recommended() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether the app chooser should show a section
    * for recommended applications.
@@ -298,7 +298,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_recommended() const;
+  auto property_show_recommended() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Determines whether the app chooser should show a section
    * for fallback applications.
@@ -311,7 +311,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_fallback() ;
+  auto property_show_fallback() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether the app chooser should show a section
    * for fallback applications.
@@ -324,7 +324,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_fallback() const;
+  auto property_show_fallback() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Determines whether the app chooser should show a section
    * for other applications.
@@ -334,7 +334,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_other() ;
+  auto property_show_other() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether the app chooser should show a section
    * for other applications.
@@ -344,7 +344,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_other() const;
+  auto property_show_other() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** If <tt>true</tt>, the app chooser presents all applications
    * in a single list, without subsections for default,
@@ -355,7 +355,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_all() ;
+  auto property_show_all() -> Glib::PropertyProxy< bool > ;
 
 /** If <tt>true</tt>, the app chooser presents all applications
    * in a single list, without subsections for default,
@@ -366,7 +366,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_all() const;
+  auto property_show_all() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The text that appears in the widget when there are no applications
    * for the given content type.
@@ -376,7 +376,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_default_text() ;
+  auto property_default_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The text that appears in the widget when there are no applications
    * for the given content type.
@@ -386,7 +386,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_default_text() const;
+  auto property_default_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -416,7 +416,7 @@ namespace Glib
    * @relates Gtk::AppChooserWidget
    */
   GTKMM_API
-  Gtk::AppChooserWidget* wrap(GtkAppChooserWidget* object, bool take_copy = false);
+  auto wrap(GtkAppChooserWidget* object, bool take_copy = false) -> Gtk::AppChooserWidget*;
 } //namespace Glib
 
 

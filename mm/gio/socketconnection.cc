@@ -59,7 +59,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::SocketConnection> wrap(GSocketConnection* object, bool take_copy)
+auto wrap(GSocketConnection* object, bool take_copy) -> Glib::RefPtr<Gio::SocketConnection>
 {
   return Glib::make_refptr_for_instance<Gio::SocketConnection>( dynamic_cast<Gio::SocketConnection*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -74,7 +74,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& SocketConnection_Class::init()
+auto SocketConnection_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -105,7 +105,7 @@ void SocketConnection_Class::class_init_function(void* g_class, void* class_data
 }
 
 
-Glib::ObjectBase* SocketConnection_Class::wrap_new(GObject* object)
+auto SocketConnection_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new SocketConnection((GSocketConnection*)object);
 }
@@ -113,7 +113,7 @@ Glib::ObjectBase* SocketConnection_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GSocketConnection* SocketConnection::gobj_copy()
+auto SocketConnection::gobj_copy() -> GSocketConnection*
 {
   reference();
   return gobj();
@@ -136,7 +136,7 @@ SocketConnection::SocketConnection(SocketConnection&& src) noexcept
 : Gio::IOStream(std::move(src))
 {}
 
-SocketConnection& SocketConnection::operator=(SocketConnection&& src) noexcept
+auto SocketConnection::operator=(SocketConnection&& src) noexcept -> SocketConnection&
 {
   Gio::IOStream::operator=(std::move(src));
   return *this;
@@ -149,19 +149,19 @@ SocketConnection::~SocketConnection() noexcept
 
 SocketConnection::CppClassType SocketConnection::socketconnection_class_; // initialize static member
 
-GType SocketConnection::get_type()
+auto SocketConnection::get_type() -> GType
 {
   return socketconnection_class_.init().get_type();
 }
 
 
-GType SocketConnection::get_base_type()
+auto SocketConnection::get_base_type() -> GType
 {
   return g_socket_connection_get_type();
 }
 
 
-bool SocketConnection::connect(const Glib::RefPtr<SocketAddress>& address, const Glib::RefPtr<Cancellable>& cancellable)
+auto SocketConnection::connect(const Glib::RefPtr<SocketAddress>& address, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_socket_connection_connect(gobj(), const_cast<GSocketAddress*>(Glib::unwrap(address)), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -170,7 +170,7 @@ bool SocketConnection::connect(const Glib::RefPtr<SocketAddress>& address, const
   return retvalue;
 }
 
-bool SocketConnection::connect(const Glib::RefPtr<SocketAddress>& address)
+auto SocketConnection::connect(const Glib::RefPtr<SocketAddress>& address) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_socket_connection_connect(gobj(), const_cast<GSocketAddress*>(Glib::unwrap(address)), nullptr, &(gerror));
@@ -179,7 +179,7 @@ bool SocketConnection::connect(const Glib::RefPtr<SocketAddress>& address)
   return retvalue;
 }
 
-bool SocketConnection::connect_finish(const Glib::RefPtr<AsyncResult>& result)
+auto SocketConnection::connect_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_socket_connection_connect_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -188,12 +188,12 @@ bool SocketConnection::connect_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool SocketConnection::is_connected() const
+auto SocketConnection::is_connected() const -> bool
 {
   return g_socket_connection_is_connected(const_cast<GSocketConnection*>(gobj()));
 }
 
-Glib::RefPtr<Socket> SocketConnection::get_socket()
+auto SocketConnection::get_socket() -> Glib::RefPtr<Socket>
 {
   auto retvalue = Glib::wrap(g_socket_connection_get_socket(gobj()));
   if(retvalue)
@@ -201,12 +201,12 @@ Glib::RefPtr<Socket> SocketConnection::get_socket()
   return retvalue;
 }
 
-Glib::RefPtr<const Socket> SocketConnection::get_socket() const
+auto SocketConnection::get_socket() const -> Glib::RefPtr<const Socket>
 {
   return const_cast<SocketConnection*>(this)->get_socket();
 }
 
-Glib::RefPtr<SocketAddress> SocketConnection::get_local_address()
+auto SocketConnection::get_local_address() -> Glib::RefPtr<SocketAddress>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_connection_get_local_address(gobj(), &(gerror)));
@@ -215,12 +215,12 @@ Glib::RefPtr<SocketAddress> SocketConnection::get_local_address()
   return retvalue;
 }
 
-Glib::RefPtr<const SocketAddress> SocketConnection::get_local_address() const
+auto SocketConnection::get_local_address() const -> Glib::RefPtr<const SocketAddress>
 {
   return const_cast<SocketConnection*>(this)->get_local_address();
 }
 
-Glib::RefPtr<SocketAddress> SocketConnection::get_remote_address()
+auto SocketConnection::get_remote_address() -> Glib::RefPtr<SocketAddress>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_connection_get_remote_address(gobj(), &(gerror)));
@@ -229,12 +229,12 @@ Glib::RefPtr<SocketAddress> SocketConnection::get_remote_address()
   return retvalue;
 }
 
-Glib::RefPtr<const SocketAddress> SocketConnection::get_remote_address() const
+auto SocketConnection::get_remote_address() const -> Glib::RefPtr<const SocketAddress>
 {
   return const_cast<SocketConnection*>(this)->get_remote_address();
 }
 
-Glib::RefPtr<SocketConnection> SocketConnection::create(const Glib::RefPtr<Socket>& socket)
+auto SocketConnection::create(const Glib::RefPtr<Socket>& socket) -> Glib::RefPtr<SocketConnection>
 {
   return Glib::wrap(g_socket_connection_factory_create_connection(const_cast<GSocket*>(Glib::unwrap(socket))));
 }
@@ -244,7 +244,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Socket>
   "Type Glib::RefPtr<Socket> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Socket> > SocketConnection::property_socket() const
+auto SocketConnection::property_socket() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Socket> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Socket> >(this, "socket");
 }

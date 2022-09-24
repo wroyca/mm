@@ -63,11 +63,11 @@ class GTKMM_API AspectFrame : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   AspectFrame(AspectFrame&& src) noexcept;
-  AspectFrame& operator=(AspectFrame&& src) noexcept;
+  auto operator=(AspectFrame&& src) noexcept -> AspectFrame&;
 
   // noncopyable
   AspectFrame(const AspectFrame&) = delete;
-  AspectFrame& operator=(const AspectFrame&) = delete;
+  auto operator=(const AspectFrame&) -> AspectFrame& = delete;
 
   ~AspectFrame() noexcept override;
 
@@ -87,19 +87,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkAspectFrame*       gobj()       { return reinterpret_cast<GtkAspectFrame*>(gobject_); }
+  auto       gobj() -> GtkAspectFrame*       { return reinterpret_cast<GtkAspectFrame*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkAspectFrame* gobj() const { return reinterpret_cast<GtkAspectFrame*>(gobject_); }
+  auto gobj() const -> const GtkAspectFrame* { return reinterpret_cast<GtkAspectFrame*>(gobject_); }
 
 private:
 
@@ -149,7 +149,7 @@ public:
    *
    * @return The horizontal alignment.
    */
-  float get_xalign() const;
+  auto get_xalign() const -> float;
 
 
   /** Sets the vertical alignment of the child within the allocation
@@ -171,7 +171,7 @@ public:
    *
    * @return The vertical alignment.
    */
-  float get_yalign() const;
+  auto get_yalign() const -> float;
 
   /** Sets the desired aspect ratio of the child.
    *
@@ -183,7 +183,7 @@ public:
    *
    * @return The desired aspect ratio.
    */
-  float get_ratio() const;
+  auto get_ratio() const -> float;
 
   /** Sets whether the aspect ratio of the child's size
    * request should override the set aspect ratio of
@@ -199,7 +199,7 @@ public:
    *
    * @return Whether to obey the child's size request.
    */
-  bool get_obey_child() const;
+  auto get_obey_child() const -> bool;
 
   /** Sets the child widget of @a self.
    *
@@ -212,13 +212,13 @@ public:
    *
    * @return The child widget of self@.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget of @a self.
    *
    * @return The child widget of self@.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
   /** The horizontal alignment of the child.
    *
@@ -227,7 +227,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< float > property_xalign() ;
+  auto property_xalign() -> Glib::PropertyProxy< float > ;
 
 /** The horizontal alignment of the child.
    *
@@ -236,7 +236,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< float > property_xalign() const;
+  auto property_xalign() const -> Glib::PropertyProxy_ReadOnly< float >;
 
   /** The vertical alignment of the child.
    *
@@ -245,7 +245,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< float > property_yalign() ;
+  auto property_yalign() -> Glib::PropertyProxy< float > ;
 
 /** The vertical alignment of the child.
    *
@@ -254,7 +254,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< float > property_yalign() const;
+  auto property_yalign() const -> Glib::PropertyProxy_ReadOnly< float >;
 
   /** The aspect ratio to be used by the `Gtk::AspectFrame`.
    *
@@ -266,7 +266,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< float > property_ratio() ;
+  auto property_ratio() -> Glib::PropertyProxy< float > ;
 
 /** The aspect ratio to be used by the `Gtk::AspectFrame`.
    *
@@ -278,7 +278,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< float > property_ratio() const;
+  auto property_ratio() const -> Glib::PropertyProxy_ReadOnly< float >;
 
   /** Whether the `Gtk::AspectFrame` should use the aspect ratio of its child.
    *
@@ -287,7 +287,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_obey_child() ;
+  auto property_obey_child() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the `Gtk::AspectFrame` should use the aspect ratio of its child.
    *
@@ -296,21 +296,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_obey_child() const;
+  auto property_obey_child() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The child widget.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The child widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
 public:
@@ -340,7 +340,7 @@ namespace Glib
    * @relates Gtk::AspectFrame
    */
   GTKMM_API
-  Gtk::AspectFrame* wrap(GtkAspectFrame* object, bool take_copy = false);
+  auto wrap(GtkAspectFrame* object, bool take_copy = false) -> Gtk::AspectFrame*;
 } //namespace Glib
 
 

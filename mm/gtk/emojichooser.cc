@@ -29,7 +29,7 @@ namespace
 {
 
 
-static void EmojiChooser_signal_emoji_picked_callback(GtkEmojiChooser* self, const gchar* p0,void* data)
+void EmojiChooser_signal_emoji_picked_callback(GtkEmojiChooser* self, const gchar* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -51,7 +51,7 @@ static void EmojiChooser_signal_emoji_picked_callback(GtkEmojiChooser* self, con
   }
 }
 
-static const Glib::SignalProxyInfo EmojiChooser_signal_emoji_picked_info =
+const Glib::SignalProxyInfo EmojiChooser_signal_emoji_picked_info =
 {
   "emoji-picked",
   (GCallback) &EmojiChooser_signal_emoji_picked_callback,
@@ -65,7 +65,7 @@ static const Glib::SignalProxyInfo EmojiChooser_signal_emoji_picked_info =
 namespace Glib
 {
 
-Gtk::EmojiChooser* wrap(GtkEmojiChooser* object, bool take_copy)
+auto wrap(GtkEmojiChooser* object, bool take_copy) -> Gtk::EmojiChooser*
 {
   return dynamic_cast<Gtk::EmojiChooser *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -78,7 +78,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& EmojiChooser_Class::init()
+auto EmojiChooser_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -109,7 +109,7 @@ void EmojiChooser_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* EmojiChooser_Class::wrap_new(GObject* o)
+auto EmojiChooser_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new EmojiChooser((GtkEmojiChooser*)(o)));
 
@@ -135,7 +135,7 @@ EmojiChooser::EmojiChooser(EmojiChooser&& src) noexcept
 : Gtk::Popover(std::move(src))
 {}
 
-EmojiChooser& EmojiChooser::operator=(EmojiChooser&& src) noexcept
+auto EmojiChooser::operator=(EmojiChooser&& src) noexcept -> EmojiChooser&
 {
   Gtk::Popover::operator=(std::move(src));
   return *this;
@@ -148,13 +148,13 @@ EmojiChooser::~EmojiChooser() noexcept
 
 EmojiChooser::CppClassType EmojiChooser::emojichooser_class_; // initialize static member
 
-GType EmojiChooser::get_type()
+auto EmojiChooser::get_type() -> GType
 {
   return emojichooser_class_.init().get_type();
 }
 
 
-GType EmojiChooser::get_base_type()
+auto EmojiChooser::get_base_type() -> GType
 {
   return gtk_emoji_chooser_get_type();
 }
@@ -171,7 +171,7 @@ EmojiChooser::EmojiChooser()
 }
 
 
-Glib::SignalProxy<void(const Glib::ustring&)> EmojiChooser::signal_emoji_picked()
+auto EmojiChooser::signal_emoji_picked() -> Glib::SignalProxy<void(const Glib::ustring&)>
 {
   return Glib::SignalProxy<void(const Glib::ustring&) >(this, &EmojiChooser_signal_emoji_picked_info);
 }

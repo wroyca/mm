@@ -80,7 +80,7 @@ public:
 
   // noncopyable
   Display(const Display&) = delete;
-  Display& operator=(const Display&) = delete;
+  auto operator=(const Display&) -> Display& = delete;
 
 private:  friend class Display_Class;
   static CppClassType display_class_;
@@ -94,28 +94,28 @@ protected:
 public:
 
   Display(Display&& src) noexcept;
-  Display& operator=(Display&& src) noexcept;
+  auto operator=(Display&& src) noexcept -> Display&;
 
   ~Display() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkDisplay*       gobj()       { return reinterpret_cast<GdkDisplay*>(gobject_); }
+  auto       gobj() -> GdkDisplay*       { return reinterpret_cast<GdkDisplay*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkDisplay* gobj() const { return reinterpret_cast<GdkDisplay*>(gobject_); }
+  auto gobj() const -> const GdkDisplay* { return reinterpret_cast<GdkDisplay*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkDisplay* gobj_copy();
+  auto gobj_copy() -> GdkDisplay*;
 
 private:
 
@@ -131,7 +131,7 @@ public:
    * @param display_name The name of the display to open.
    * @return A `Gdk::Display`.
    */
-  static Glib::RefPtr<Display> open(const Glib::ustring& display_name);
+  static auto open(const Glib::ustring& display_name) -> Glib::RefPtr<Display>;
 
 
   /** Gets the name of the display.
@@ -139,7 +139,7 @@ public:
    * @return A string representing the display name. This string is owned
    * by GDK and should not be modified or freed.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
 
   /** Returns <tt>true</tt> if there is an ongoing grab on @a device for @a display.
@@ -147,7 +147,7 @@ public:
    * @param device A `Gdk::Device`.
    * @return <tt>true</tt> if there is a grab in effect for @a device.
    */
-  bool device_is_grabbed(const Glib::RefPtr<const Gdk::Device>& device) const;
+  auto device_is_grabbed(const Glib::RefPtr<const Gdk::Device>& device) const -> bool;
 
   /** Emits a short beep on @a display
    */
@@ -176,7 +176,7 @@ public:
    *
    * @return <tt>true</tt> if the display is closed.
    */
-  bool is_closed() const;
+  auto is_closed() const -> bool;
 
   /** Returns whether surfaces can reasonably be expected to have
    * their alpha channel drawn correctly on the screen.
@@ -193,7 +193,7 @@ public:
    * be expected to have their alpha channels drawn correctly
    * on the screen.
    */
-  bool is_composited() const;
+  auto is_composited() const -> bool;
 
   /** Returns whether surfaces on this @a display are created with an
    * alpha channel.
@@ -210,7 +210,7 @@ public:
    * @return <tt>true</tt> if surfaces are created with an alpha channel or
    * <tt>false</tt> if the display does not support this functionality.
    */
-  bool is_rgba() const;
+  auto is_rgba() const -> bool;
 
 
   /** Appends the given event onto the front of the event
@@ -233,7 +233,7 @@ public:
    * @return A `Gdk::Display`, or <tt>nullptr</tt> if
    * there is no default display.
    */
-  static Glib::RefPtr<Display> get_default();
+  static auto get_default() -> Glib::RefPtr<Display>;
 
 
   /** Flushes any requests queued for the windowing system.
@@ -254,13 +254,13 @@ public:
    *
    * @return The display's clipboard.
    */
-  Glib::RefPtr<Clipboard> get_clipboard();
+  auto get_clipboard() -> Glib::RefPtr<Clipboard>;
 
   /** Gets the clipboard used for copy/paste operations.
    *
    * @return The display's clipboard.
    */
-  Glib::RefPtr<const Clipboard> get_clipboard() const;
+  auto get_clipboard() const -> Glib::RefPtr<const Clipboard>;
 
   /** Gets the clipboard used for the primary selection.
    *
@@ -269,7 +269,7 @@ public:
    *
    * @return The primary clipboard.
    */
-  Glib::RefPtr<Clipboard> get_primary_clipboard();
+  auto get_primary_clipboard() -> Glib::RefPtr<Clipboard>;
 
   /** Gets the clipboard used for the primary selection.
    *
@@ -278,7 +278,7 @@ public:
    *
    * @return The primary clipboard.
    */
-  Glib::RefPtr<const Clipboard> get_primary_clipboard() const;
+  auto get_primary_clipboard() const -> Glib::RefPtr<const Clipboard>;
 
 
   /** Returns <tt>true</tt> if the display supports input shapes.
@@ -290,7 +290,7 @@ public:
    *
    * @return <tt>true</tt> if surfaces with modified input shape are supported.
    */
-  bool supports_input_shapes() const;
+  auto supports_input_shapes() const -> bool;
 
 
   /** Checks that OpenGL is available for this display and ensures that it is
@@ -331,7 +331,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<GLContext> create_gl_context();
+  auto create_gl_context() -> Glib::RefPtr<GLContext>;
 
 
   /** Indicates to the GUI environment that the application has
@@ -352,7 +352,7 @@ public:
    *
    * @return The startup notification ID for @a display.
    */
-  Glib::ustring get_startup_notification_id() const;
+  auto get_startup_notification_id() const -> Glib::ustring;
 
 
   /** Returns a `Gdk::AppLaunchContext` suitable for launching
@@ -360,14 +360,14 @@ public:
    *
    * @return A new `Gdk::AppLaunchContext` for @a display.
    */
-  Glib::RefPtr<AppLaunchContext> get_app_launch_context();
+  auto get_app_launch_context() -> Glib::RefPtr<AppLaunchContext>;
 
   /** Returns a `Gdk::AppLaunchContext` suitable for launching
    * applications on the given display.
    *
    * @return A new `Gdk::AppLaunchContext` for @a display.
    */
-  Glib::RefPtr<const AppLaunchContext> get_app_launch_context() const;
+  auto get_app_launch_context() const -> Glib::RefPtr<const AppLaunchContext>;
 
 
   /** Returns the default `Gdk::Seat` for this display.
@@ -377,7 +377,7 @@ public:
    *
    * @return The default seat.
    */
-  Glib::RefPtr<Seat> get_default_seat();
+  auto get_default_seat() -> Glib::RefPtr<Seat>;
 
   /** Returns the default `Gdk::Seat` for this display.
    *
@@ -386,7 +386,7 @@ public:
    *
    * @return The default seat.
    */
-  Glib::RefPtr<const Seat> get_default_seat() const;
+  auto get_default_seat() const -> Glib::RefPtr<const Seat>;
 
 
   /** Returns the list of seats known to @a display.
@@ -394,7 +394,7 @@ public:
    * @return The
    * list of seats known to the `Gdk::Display`.
    */
-  std::vector<Glib::RefPtr<Seat>> list_seats();
+  auto list_seats() -> std::vector<Glib::RefPtr<Seat>>;
 
 
   /** Returns the list of seats known to @a display.
@@ -402,7 +402,7 @@ public:
    * @return The
    * list of seats known to the `Gdk::Display`.
    */
-  std::vector<Glib::RefPtr<const Seat>> list_seats() const;
+  auto list_seats() const -> std::vector<Glib::RefPtr<const Seat>>;
 
 
   /** Gets the list of monitors associated with this display.
@@ -415,7 +415,7 @@ public:
    *
    * @return A `Gio::ListModel` of `Gdk::Monitor`.
    */
-  Glib::RefPtr<Gio::ListModel> get_monitors();
+  auto get_monitors() -> Glib::RefPtr<Gio::ListModel>;
 
   /** Gets the list of monitors associated with this display.
    *
@@ -427,7 +427,7 @@ public:
    *
    * @return A `Gio::ListModel` of `Gdk::Monitor`.
    */
-  Glib::RefPtr<const Gio::ListModel> get_monitors() const;
+  auto get_monitors() const -> Glib::RefPtr<const Gio::ListModel>;
 
 
   /** Gets the monitor in which the largest area of @a surface
@@ -437,7 +437,7 @@ public:
    * @return The monitor with the largest
    * overlap with @a surface.
    */
-  Glib::RefPtr<Monitor> get_monitor_at_surface(const Glib::RefPtr<Surface>& surface);
+  auto get_monitor_at_surface(const Glib::RefPtr<Surface>& surface) -> Glib::RefPtr<Monitor>;
 
   /** Gets the monitor in which the largest area of @a surface
    * resides.
@@ -446,11 +446,11 @@ public:
    * @return The monitor with the largest
    * overlap with @a surface.
    */
-  Glib::RefPtr<const Monitor> get_monitor_at_surface(const Glib::RefPtr<Surface>& surface) const;
+  auto get_monitor_at_surface(const Glib::RefPtr<Surface>& surface) const -> Glib::RefPtr<const Monitor>;
 
 
   template <class ValueType>
-  bool get_setting(const Glib::ustring& name, ValueType& value) const;
+  auto get_setting(const Glib::ustring& name, ValueType& value) const -> bool;
 
 
   //We use no_default_handler because GdkDisplayClass is private.
@@ -467,7 +467,7 @@ public:
    * @param is_error <tt>true</tt> if the display was closed due to an error.
    */
 
-  Glib::SignalProxy<void(bool)> signal_closed();
+  auto signal_closed() -> Glib::SignalProxy<void(bool)>;
 
 
   /**
@@ -479,7 +479,7 @@ public:
    * Emitted when the connection to the windowing system for @a display is opened.
    */
 
-  Glib::SignalProxy<void()> signal_opened();
+  auto signal_opened() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -493,7 +493,7 @@ public:
    * @param seat The seat that was just added.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Seat>&)> signal_seat_added();
+  auto signal_seat_added() -> Glib::SignalProxy<void(const Glib::RefPtr<Seat>&)>;
 
 
   /**
@@ -507,7 +507,7 @@ public:
    * @param seat The seat that was just removed.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Seat>&)> signal_seat_removed();
+  auto signal_seat_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<Seat>&)>;
 
 
   /**
@@ -521,7 +521,7 @@ public:
    * @param setting The name of the setting that changed.
    */
 
-  Glib::SignalProxy<void(const Glib::ustring&)> signal_setting_changed();
+  auto signal_setting_changed() -> Glib::SignalProxy<void(const Glib::ustring&)>;
 
 
   /** <tt>true</tt> if the display properly composites the alpha channel.
@@ -531,7 +531,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_composited() const;
+  auto property_composited() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** <tt>true</tt> if the display supports an alpha channel.
@@ -541,7 +541,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_rgba() const;
+  auto property_rgba() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** <tt>true</tt> if the display supports input shapes.
@@ -551,7 +551,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_input_shapes() const;
+  auto property_input_shapes() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   // We don't wrap the vfuncs because GdkDisplayClass is private.
@@ -571,7 +571,7 @@ protected:
 };
 
 template <class ValueType>
-bool Display::get_setting(const Glib::ustring& name, ValueType& value) const
+auto Display::get_setting(const Glib::ustring& name, ValueType& value) const -> bool
 {
   Glib::Value<ValueType> glibmmvalue;
   glibmmvalue.init(Glib::Value<ValueType>::value_type());
@@ -597,7 +597,7 @@ namespace Glib
    * @relates Gdk::Display
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::Display> wrap(GdkDisplay* object, bool take_copy = false);
+  auto wrap(GdkDisplay* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Display>;
 }
 
 

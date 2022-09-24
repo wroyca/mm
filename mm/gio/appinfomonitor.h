@@ -77,7 +77,7 @@ public:
 
   // noncopyable
   AppInfoMonitor(const AppInfoMonitor&) = delete;
-  AppInfoMonitor& operator=(const AppInfoMonitor&) = delete;
+  auto operator=(const AppInfoMonitor&) -> AppInfoMonitor& = delete;
 
 private:  friend class AppInfoMonitor_Class;
   static CppClassType appinfomonitor_class_;
@@ -91,28 +91,28 @@ protected:
 public:
 
   AppInfoMonitor(AppInfoMonitor&& src) noexcept;
-  AppInfoMonitor& operator=(AppInfoMonitor&& src) noexcept;
+  auto operator=(AppInfoMonitor&& src) noexcept -> AppInfoMonitor&;
 
   ~AppInfoMonitor() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GAppInfoMonitor*       gobj()       { return reinterpret_cast<GAppInfoMonitor*>(gobject_); }
+  auto       gobj() -> GAppInfoMonitor*       { return reinterpret_cast<GAppInfoMonitor*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GAppInfoMonitor* gobj() const { return reinterpret_cast<GAppInfoMonitor*>(gobject_); }
+  auto gobj() const -> const GAppInfoMonitor* { return reinterpret_cast<GAppInfoMonitor*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GAppInfoMonitor* gobj_copy();
+  auto gobj_copy() -> GAppInfoMonitor*;
 
 private:
 
@@ -132,7 +132,7 @@ public:
    *
    * @return A reference to a %Gio::AppInfoMonitor.
    */
-  static Glib::RefPtr<AppInfoMonitor> get();
+  static auto get() -> Glib::RefPtr<AppInfoMonitor>;
 
   // no_default_handler because the wrapped C signal has no default handler.
 
@@ -148,7 +148,7 @@ public:
    * @newin{2,72}
    */
 
-  Glib::SignalProxy<void()> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void()>;
 
 
 public:
@@ -178,7 +178,7 @@ namespace Glib
    * @relates Gio::AppInfoMonitor
    */
   GIOMM_API
-  Glib::RefPtr<Gio::AppInfoMonitor> wrap(GAppInfoMonitor* object, bool take_copy = false);
+  auto wrap(GAppInfoMonitor* object, bool take_copy = false) -> Glib::RefPtr<Gio::AppInfoMonitor>;
 }
 
 

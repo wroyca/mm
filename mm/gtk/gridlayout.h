@@ -71,7 +71,7 @@ public:
 
   // noncopyable
   GridLayout(const GridLayout&) = delete;
-  GridLayout& operator=(const GridLayout&) = delete;
+  auto operator=(const GridLayout&) -> GridLayout& = delete;
 
 private:  friend class GridLayout_Class;
   static CppClassType gridlayout_class_;
@@ -85,28 +85,28 @@ protected:
 public:
 
   GridLayout(GridLayout&& src) noexcept;
-  GridLayout& operator=(GridLayout&& src) noexcept;
+  auto operator=(GridLayout&& src) noexcept -> GridLayout&;
 
   ~GridLayout() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkGridLayout*       gobj()       { return reinterpret_cast<GtkGridLayout*>(gobject_); }
+  auto       gobj() -> GtkGridLayout*       { return reinterpret_cast<GtkGridLayout*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkGridLayout* gobj() const { return reinterpret_cast<GtkGridLayout*>(gobject_); }
+  auto gobj() const -> const GtkGridLayout* { return reinterpret_cast<GtkGridLayout*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkGridLayout* gobj_copy();
+  auto gobj_copy() -> GtkGridLayout*;
 
 private:
 
@@ -116,7 +116,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<GridLayout> create();
+  static auto create() -> Glib::RefPtr<GridLayout>;
 
 
   /** Sets whether all rows of @a grid should have the same height.
@@ -129,7 +129,7 @@ public:
    *
    * @return <tt>true</tt> if the rows are homogeneous, and <tt>false</tt> otherwise.
    */
-  bool get_row_homogeneous() const;
+  auto get_row_homogeneous() const -> bool;
 
   /** Sets the amount of space to insert between consecutive rows.
    *
@@ -141,7 +141,7 @@ public:
    *
    * @return The spacing between consecutive rows.
    */
-  guint get_row_spacing() const;
+  auto get_row_spacing() const -> guint;
 
   /** Sets whether all columns of @a grid should have the same width.
    *
@@ -153,7 +153,7 @@ public:
    *
    * @return <tt>true</tt> if the columns are homogeneous, and <tt>false</tt> otherwise.
    */
-  bool get_column_homogeneous() const;
+  auto get_column_homogeneous() const -> bool;
 
   /** Sets the amount of space to insert between consecutive columns.
    *
@@ -165,7 +165,7 @@ public:
    *
    * @return The spacing between consecutive columns.
    */
-  guint get_column_spacing() const;
+  auto get_column_spacing() const -> guint;
 
   /** Sets how the baseline should be positioned on @a row of the
    * grid, in case that row is assigned more space than is requested.
@@ -185,7 +185,7 @@ public:
    * @param row A row index.
    * @return The baseline position of @a row.
    */
-  BaselinePosition get_row_baseline_position(int row) const;
+  auto get_row_baseline_position(int row) const -> BaselinePosition;
 
   /** Sets which row defines the global baseline for the entire grid.
    *
@@ -201,7 +201,7 @@ public:
    *
    * @return The global baseline row.
    */
-  int get_baseline_row() const;
+  auto get_baseline_row() const -> int;
 
   /** The amount of space between to consecutive rows.
    *
@@ -210,7 +210,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_row_spacing() ;
+  auto property_row_spacing() -> Glib::PropertyProxy< int > ;
 
 /** The amount of space between to consecutive rows.
    *
@@ -219,7 +219,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_row_spacing() const;
+  auto property_row_spacing() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The amount of space between to consecutive columns.
    *
@@ -228,7 +228,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_column_spacing() ;
+  auto property_column_spacing() -> Glib::PropertyProxy< int > ;
 
 /** The amount of space between to consecutive columns.
    *
@@ -237,7 +237,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_column_spacing() const;
+  auto property_column_spacing() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Whether all the rows in the grid have the same height.
    *
@@ -246,7 +246,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_row_homogeneous() ;
+  auto property_row_homogeneous() -> Glib::PropertyProxy< bool > ;
 
 /** Whether all the rows in the grid have the same height.
    *
@@ -255,7 +255,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_row_homogeneous() const;
+  auto property_row_homogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether all the columns in the grid have the same width.
    *
@@ -264,7 +264,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_column_homogeneous() ;
+  auto property_column_homogeneous() -> Glib::PropertyProxy< bool > ;
 
 /** Whether all the columns in the grid have the same width.
    *
@@ -273,7 +273,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_column_homogeneous() const;
+  auto property_column_homogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The row to align to the baseline, when `GtkWidget:valign` is set
    * to Gtk::Align::BASELINE.
@@ -283,7 +283,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_baseline_row() ;
+  auto property_baseline_row() -> Glib::PropertyProxy< int > ;
 
 /** The row to align to the baseline, when `GtkWidget:valign` is set
    * to Gtk::Align::BASELINE.
@@ -293,7 +293,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_baseline_row() const;
+  auto property_baseline_row() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   // There are no signals or vfuncs.
@@ -326,7 +326,7 @@ namespace Glib
    * @relates Gtk::GridLayout
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::GridLayout> wrap(GtkGridLayout* object, bool take_copy = false);
+  auto wrap(GtkGridLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GridLayout>;
 }
 
 

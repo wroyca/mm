@@ -98,7 +98,7 @@ public:
 
   // noncopyable
   ShortcutController(const ShortcutController&) = delete;
-  ShortcutController& operator=(const ShortcutController&) = delete;
+  auto operator=(const ShortcutController&) -> ShortcutController& = delete;
 
 private:  friend class ShortcutController_Class;
   static CppClassType shortcutcontroller_class_;
@@ -112,28 +112,28 @@ protected:
 public:
 
   ShortcutController(ShortcutController&& src) noexcept;
-  ShortcutController& operator=(ShortcutController&& src) noexcept;
+  auto operator=(ShortcutController&& src) noexcept -> ShortcutController&;
 
   ~ShortcutController() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkShortcutController*       gobj()       { return reinterpret_cast<GtkShortcutController*>(gobject_); }
+  auto       gobj() -> GtkShortcutController*       { return reinterpret_cast<GtkShortcutController*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkShortcutController* gobj() const { return reinterpret_cast<GtkShortcutController*>(gobject_); }
+  auto gobj() const -> const GtkShortcutController* { return reinterpret_cast<GtkShortcutController*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkShortcutController* gobj_copy();
+  auto gobj_copy() -> GtkShortcutController*;
 
 private:
 
@@ -145,7 +145,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<ShortcutController> create();
+  static auto create() -> Glib::RefPtr<ShortcutController>;
 
 
   /** Creates a new shortcut controller that takes its shortcuts from
@@ -159,7 +159,7 @@ public:
    * @return A newly created shortcut controller.
    */
 
-  static Glib::RefPtr<ShortcutController> create(const Glib::RefPtr<Gio::ListModel>& model);
+  static auto create(const Glib::RefPtr<Gio::ListModel>& model) -> Glib::RefPtr<ShortcutController>;
 
 
   /** Sets the controller to use the given modifier for mnemonics.
@@ -184,7 +184,7 @@ public:
    *
    * @return The controller's mnemonics modifiers.
    */
-  Gdk::ModifierType get_mnemonics_modifiers() const;
+  auto get_mnemonics_modifiers() const -> Gdk::ModifierType;
 
 
   /** Sets the controller to have the given @a scope.
@@ -211,7 +211,7 @@ public:
    *
    * @return The controller's scope.
    */
-  ShortcutScope set_scope() const;
+  auto set_scope() const -> ShortcutScope;
 #endif // GTKMM_DISABLE_DEPRECATED
 
 
@@ -223,7 +223,7 @@ public:
    *
    * @return The controller's scope.
    */
-  ShortcutScope get_scope() const;
+  auto get_scope() const -> ShortcutScope;
 
   // gtk_shortcut_controller_add_shortcut() does not take a ref (transfer full).
 
@@ -254,7 +254,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< GType > property_item_type() const;
+  auto property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >;
 
 
   /** The modifiers that need to be pressed to allow mnemonics activation.
@@ -264,7 +264,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Gdk::ModifierType > property_mnemonic_modifiers() ;
+  auto property_mnemonic_modifiers() -> Glib::PropertyProxy< Gdk::ModifierType > ;
 
 /** The modifiers that need to be pressed to allow mnemonics activation.
    *
@@ -273,7 +273,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Gdk::ModifierType > property_mnemonic_modifiers() const;
+  auto property_mnemonic_modifiers() const -> Glib::PropertyProxy_ReadOnly< Gdk::ModifierType >;
 
   /** The number of items. See Gio::ListModel::get_n_items().
    *
@@ -284,7 +284,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_n_items() const;
+  auto property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
 
   /** What scope the shortcuts will be handled in.
@@ -294,7 +294,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< ShortcutScope > property_scope() ;
+  auto property_scope() -> Glib::PropertyProxy< ShortcutScope > ;
 
 /** What scope the shortcuts will be handled in.
    *
@@ -303,7 +303,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< ShortcutScope > property_scope() const;
+  auto property_scope() const -> Glib::PropertyProxy_ReadOnly< ShortcutScope >;
 
   // The "model" property is write-pnly, construct-only. Can't be wrapped.
 
@@ -335,7 +335,7 @@ namespace Glib
    * @relates Gtk::ShortcutController
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::ShortcutController> wrap(GtkShortcutController* object, bool take_copy = false);
+  auto wrap(GtkShortcutController* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ShortcutController>;
 }
 
 

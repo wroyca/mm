@@ -201,7 +201,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo Drive_signal_changed_info =
+const Glib::SignalProxyInfo Drive_signal_changed_info =
 {
   "changed",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -209,7 +209,7 @@ static const Glib::SignalProxyInfo Drive_signal_changed_info =
 };
 
 
-static const Glib::SignalProxyInfo Drive_signal_disconnected_info =
+const Glib::SignalProxyInfo Drive_signal_disconnected_info =
 {
   "disconnected",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -217,7 +217,7 @@ static const Glib::SignalProxyInfo Drive_signal_disconnected_info =
 };
 
 
-static const Glib::SignalProxyInfo Drive_signal_eject_button_info =
+const Glib::SignalProxyInfo Drive_signal_eject_button_info =
 {
   "eject_button",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -225,7 +225,7 @@ static const Glib::SignalProxyInfo Drive_signal_eject_button_info =
 };
 
 
-static const Glib::SignalProxyInfo Drive_signal_stop_button_info =
+const Glib::SignalProxyInfo Drive_signal_stop_button_info =
 {
   "stop_button",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -236,13 +236,13 @@ static const Glib::SignalProxyInfo Drive_signal_stop_button_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::Drive::StartFlags>::value_type()
+auto Glib::Value<Gio::Drive::StartFlags>::value_type() -> GType
 {
   return g_drive_start_flags_get_type();
 }
 
 // static
-GType Glib::Value<Gio::Drive::StartStopType>::value_type()
+auto Glib::Value<Gio::Drive::StartStopType>::value_type() -> GType
 {
   return g_drive_start_stop_type_get_type();
 }
@@ -251,7 +251,7 @@ GType Glib::Value<Gio::Drive::StartStopType>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gio::Drive> wrap(GDrive* object, bool take_copy)
+auto wrap(GDrive* object, bool take_copy) -> Glib::RefPtr<Gio::Drive>
 {
   return Glib::make_refptr_for_instance<Gio::Drive>( dynamic_cast<Gio::Drive*> (Glib::wrap_auto_interface<Gio::Drive> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -266,7 +266,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& Drive_Class::init()
+auto Drive_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -447,7 +447,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* Drive_Class::wrap_new(GObject* object)
+auto Drive_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Drive((GDrive*)(object));
 }
@@ -474,7 +474,7 @@ Drive::Drive(Drive&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-Drive& Drive::operator=(Drive&& src) noexcept
+auto Drive::operator=(Drive&& src) noexcept -> Drive&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -491,24 +491,24 @@ void Drive::add_interface(GType gtype_implementer)
 
 Drive::CppClassType Drive::drive_class_; // initialize static member
 
-GType Drive::get_type()
+auto Drive::get_type() -> GType
 {
   return drive_class_.init().get_type();
 }
 
 
-GType Drive::get_base_type()
+auto Drive::get_base_type() -> GType
 {
   return g_drive_get_type();
 }
 
 
-Glib::ustring Drive::get_name() const
+auto Drive::get_name() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(g_drive_get_name(const_cast<GDrive*>(gobj())));
 }
 
-Glib::RefPtr<Icon> Drive::get_icon()
+auto Drive::get_icon() -> Glib::RefPtr<Icon>
 {
   auto retvalue = Glib::wrap(g_drive_get_icon(gobj()));
   if(retvalue)
@@ -516,12 +516,12 @@ Glib::RefPtr<Icon> Drive::get_icon()
   return retvalue;
 }
 
-Glib::RefPtr<const Icon> Drive::get_icon() const
+auto Drive::get_icon() const -> Glib::RefPtr<const Icon>
 {
   return const_cast<Drive*>(this)->get_icon();
 }
 
-Glib::RefPtr<Icon> Drive::get_symbolic_icon()
+auto Drive::get_symbolic_icon() -> Glib::RefPtr<Icon>
 {
   auto retvalue = Glib::wrap(g_drive_get_symbolic_icon(gobj()));
   if(retvalue)
@@ -529,52 +529,52 @@ Glib::RefPtr<Icon> Drive::get_symbolic_icon()
   return retvalue;
 }
 
-Glib::RefPtr<const Icon> Drive::get_symbolic_icon() const
+auto Drive::get_symbolic_icon() const -> Glib::RefPtr<const Icon>
 {
   return const_cast<Drive*>(this)->get_symbolic_icon();
 }
 
-bool Drive::has_volumes() const
+auto Drive::has_volumes() const -> bool
 {
   return g_drive_has_volumes(const_cast<GDrive*>(gobj()));
 }
 
-std::vector<Glib::RefPtr<Volume>> Drive::get_volumes()
+auto Drive::get_volumes() -> std::vector<Glib::RefPtr<Volume>>
 {
   return Glib::ListHandler<Glib::RefPtr<Volume>>::list_to_vector(g_drive_get_volumes(gobj()), Glib::OWNERSHIP_DEEP);
 }
 
-bool Drive::is_media_removable() const
+auto Drive::is_media_removable() const -> bool
 {
   return g_drive_is_media_removable(const_cast<GDrive*>(gobj()));
 }
 
-bool Drive::is_removable() const
+auto Drive::is_removable() const -> bool
 {
   return g_drive_is_removable(const_cast<GDrive*>(gobj()));
 }
 
-bool Drive::has_media() const
+auto Drive::has_media() const -> bool
 {
   return g_drive_has_media(const_cast<GDrive*>(gobj()));
 }
 
-bool Drive::is_media_check_automatic() const
+auto Drive::is_media_check_automatic() const -> bool
 {
   return g_drive_is_media_check_automatic(const_cast<GDrive*>(gobj()));
 }
 
-bool Drive::can_poll_for_media() const
+auto Drive::can_poll_for_media() const -> bool
 {
   return g_drive_can_poll_for_media(const_cast<GDrive*>(gobj()));
 }
 
-bool Drive::can_eject() const
+auto Drive::can_eject() const -> bool
 {
   return g_drive_can_eject(const_cast<GDrive*>(gobj()));
 }
 
-bool Drive::eject_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Drive::eject_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_drive_eject_with_operation_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -583,7 +583,7 @@ bool Drive::eject_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool Drive::poll_for_media_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Drive::poll_for_media_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_drive_poll_for_media_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -592,17 +592,17 @@ bool Drive::poll_for_media_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-std::string Drive::get_identifier(const std::string& kind) const
+auto Drive::get_identifier(const std::string& kind) const -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(g_drive_get_identifier(const_cast<GDrive*>(gobj()), kind.c_str()));
 }
 
-std::vector<Glib::ustring> Drive::enumerate_identifiers() const
+auto Drive::enumerate_identifiers() const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_drive_enumerate_identifiers(const_cast<GDrive*>(gobj())), Glib::OWNERSHIP_DEEP);
 }
 
-bool Drive::start_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Drive::start_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_drive_start_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -611,17 +611,17 @@ bool Drive::start_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool Drive::can_start() const
+auto Drive::can_start() const -> bool
 {
   return g_drive_can_start(const_cast<GDrive*>(gobj()));
 }
 
-bool Drive::can_start_degraded() const
+auto Drive::can_start_degraded() const -> bool
 {
   return g_drive_can_start_degraded(const_cast<GDrive*>(gobj()));
 }
 
-bool Drive::stop_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Drive::stop_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_drive_stop_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -630,41 +630,41 @@ bool Drive::stop_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool Drive::can_stop() const
+auto Drive::can_stop() const -> bool
 {
   return g_drive_can_stop(const_cast<GDrive*>(gobj()));
 }
 
-StartStopType Drive::get_start_stop_type() const
+auto Drive::get_start_stop_type() const -> StartStopType
 {
   return static_cast<StartStopType>(g_drive_get_start_stop_type(const_cast<GDrive*>(gobj())));
 }
 
-Glib::ustring Drive::get_sort_key() const
+auto Drive::get_sort_key() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_drive_get_sort_key(const_cast<GDrive*>(gobj())));
 }
 
 
-Glib::SignalProxy<void()> Drive::signal_changed()
+auto Drive::signal_changed() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Drive_signal_changed_info);
 }
 
 
-Glib::SignalProxy<void()> Drive::signal_disconnected()
+auto Drive::signal_disconnected() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Drive_signal_disconnected_info);
 }
 
 
-Glib::SignalProxy<void()> Drive::signal_eject_button()
+auto Drive::signal_eject_button() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Drive_signal_eject_button_info);
 }
 
 
-Glib::SignalProxy<void()> Drive::signal_stop_button()
+auto Drive::signal_stop_button() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Drive_signal_stop_button_info);
 }

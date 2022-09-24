@@ -29,7 +29,7 @@ namespace
 {
 
 
-static void GestureSwipe_signal_swipe_callback(GtkGestureSwipe* self, gdouble p0,gdouble p1,void* data)
+void GestureSwipe_signal_swipe_callback(GtkGestureSwipe* self, gdouble p0,gdouble p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
@@ -52,7 +52,7 @@ static void GestureSwipe_signal_swipe_callback(GtkGestureSwipe* self, gdouble p0
   }
 }
 
-static const Glib::SignalProxyInfo GestureSwipe_signal_swipe_info =
+const Glib::SignalProxyInfo GestureSwipe_signal_swipe_info =
 {
   "swipe",
   (GCallback) &GestureSwipe_signal_swipe_callback,
@@ -66,7 +66,7 @@ static const Glib::SignalProxyInfo GestureSwipe_signal_swipe_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::GestureSwipe> wrap(GtkGestureSwipe* object, bool take_copy)
+auto wrap(GtkGestureSwipe* object, bool take_copy) -> Glib::RefPtr<Gtk::GestureSwipe>
 {
   return Glib::make_refptr_for_instance<Gtk::GestureSwipe>( dynamic_cast<Gtk::GestureSwipe*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -81,7 +81,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& GestureSwipe_Class::init()
+auto GestureSwipe_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -112,7 +112,7 @@ void GestureSwipe_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* GestureSwipe_Class::wrap_new(GObject* object)
+auto GestureSwipe_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new GestureSwipe((GtkGestureSwipe*)object);
 }
@@ -120,7 +120,7 @@ Glib::ObjectBase* GestureSwipe_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkGestureSwipe* GestureSwipe::gobj_copy()
+auto GestureSwipe::gobj_copy() -> GtkGestureSwipe*
 {
   reference();
   return gobj();
@@ -143,7 +143,7 @@ GestureSwipe::GestureSwipe(GestureSwipe&& src) noexcept
 : GestureSingle(std::move(src))
 {}
 
-GestureSwipe& GestureSwipe::operator=(GestureSwipe&& src) noexcept
+auto GestureSwipe::operator=(GestureSwipe&& src) noexcept -> GestureSwipe&
 {
   GestureSingle::operator=(std::move(src));
   return *this;
@@ -156,13 +156,13 @@ GestureSwipe::~GestureSwipe() noexcept
 
 GestureSwipe::CppClassType GestureSwipe::gestureswipe_class_; // initialize static member
 
-GType GestureSwipe::get_type()
+auto GestureSwipe::get_type() -> GType
 {
   return gestureswipe_class_.init().get_type();
 }
 
 
-GType GestureSwipe::get_base_type()
+auto GestureSwipe::get_base_type() -> GType
 {
   return gtk_gesture_swipe_get_type();
 }
@@ -178,18 +178,18 @@ GestureSwipe::GestureSwipe()
 
 }
 
-Glib::RefPtr<GestureSwipe> GestureSwipe::create()
+auto GestureSwipe::create() -> Glib::RefPtr<GestureSwipe>
 {
   return Glib::make_refptr_for_instance<GestureSwipe>( new GestureSwipe() );
 }
 
-bool GestureSwipe::get_velocity(double& velocity_x, double& velocity_y) const
+auto GestureSwipe::get_velocity(double& velocity_x, double& velocity_y) const -> bool
 {
   return gtk_gesture_swipe_get_velocity(const_cast<GtkGestureSwipe*>(gobj()), &(velocity_x), &(velocity_y));
 }
 
 
-Glib::SignalProxy<void(double, double)> GestureSwipe::signal_swipe()
+auto GestureSwipe::signal_swipe() -> Glib::SignalProxy<void(double, double)>
 {
   return Glib::SignalProxy<void(double, double) >(this, &GestureSwipe_signal_swipe_info);
 }

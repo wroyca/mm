@@ -29,15 +29,15 @@
 namespace Gio
 {
 
-bool
-Icon::equal(const Glib::RefPtr<Icon>& other) const
+auto
+Icon::equal(const Glib::RefPtr<Icon>& other) const -> bool
 {
   return static_cast<bool>(
     g_icon_equal(const_cast<GIcon*>(this->gobj()), const_cast<GIcon*>(other->gobj())));
 }
 
-Glib::RefPtr<Icon>
-Icon::create(const std::string& str)
+auto
+Icon::create(const std::string& str) -> Glib::RefPtr<Icon>
 {
   GError* gerror = nullptr;
   auto icon = g_icon_new_for_string(str.c_str(), &gerror);
@@ -57,7 +57,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::Icon> wrap(GIcon* object, bool take_copy)
+auto wrap(GIcon* object, bool take_copy) -> Glib::RefPtr<Gio::Icon>
 {
   return Glib::make_refptr_for_instance<Gio::Icon>( dynamic_cast<Gio::Icon*> (Glib::wrap_auto_interface<Gio::Icon> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -72,7 +72,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& Icon_Class::init()
+auto Icon_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -99,7 +99,7 @@ void Icon_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* Icon_Class::wrap_new(GObject* object)
+auto Icon_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Icon((GIcon*)(object));
 }
@@ -126,7 +126,7 @@ Icon::Icon(Icon&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-Icon& Icon::operator=(Icon&& src) noexcept
+auto Icon::operator=(Icon&& src) noexcept -> Icon&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -143,34 +143,34 @@ void Icon::add_interface(GType gtype_implementer)
 
 Icon::CppClassType Icon::icon_class_; // initialize static member
 
-GType Icon::get_type()
+auto Icon::get_type() -> GType
 {
   return icon_class_.init().get_type();
 }
 
 
-GType Icon::get_base_type()
+auto Icon::get_base_type() -> GType
 {
   return g_icon_get_type();
 }
 
 
-guint Icon::hash() const
+auto Icon::hash() const -> guint
 {
   return g_icon_hash(const_cast<GIcon*>(gobj()));
 }
 
-std::string Icon::to_string() const
+auto Icon::to_string() const -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(g_icon_to_string(const_cast<GIcon*>(gobj())));
 }
 
-Glib::VariantBase Icon::serialize() const
+auto Icon::serialize() const -> Glib::VariantBase
 {
   return Glib::wrap(g_icon_serialize(const_cast<GIcon*>(gobj())), false);
 }
 
-Glib::RefPtr<Icon> Icon::deserialize(const Glib::VariantBase& value)
+auto Icon::deserialize(const Glib::VariantBase& value) -> Glib::RefPtr<Icon>
 {
   return Glib::wrap(g_icon_deserialize(const_cast<GVariant*>((value).gobj())));
 }

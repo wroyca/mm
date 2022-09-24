@@ -28,7 +28,7 @@ namespace
 
 using ThrowFuncTable = std::map<GQuark, Glib::Error::ThrowFunc>;
 
-static ThrowFuncTable* throw_func_table = nullptr;
+ThrowFuncTable* throw_func_table = nullptr;
 
 } // anonymous namespace
 
@@ -54,8 +54,8 @@ Error::Error(const Error& other)
 {
 }
 
-Error&
-Error::operator=(const Error& other)
+auto
+Error::operator=(const Error& other) -> Error&
 {
   if (gobject_ != other.gobject_)
   {
@@ -83,24 +83,24 @@ Error::operator bool() const
   return gobject_ != nullptr;
 }
 
-GQuark
-Error::domain() const
+auto
+Error::domain() const -> GQuark
 {
   g_return_val_if_fail(gobject_ != nullptr, 0);
 
   return gobject_->domain;
 }
 
-int
-Error::code() const
+auto
+Error::code() const -> int
 {
   g_return_val_if_fail(gobject_ != nullptr, -1);
 
   return gobject_->code;
 }
 
-const char*
-Error::what() const noexcept
+auto
+Error::what() const noexcept -> const char*
 {
   g_return_val_if_fail(gobject_ != nullptr, "");
   g_return_val_if_fail(gobject_->message != nullptr, "");
@@ -108,20 +108,20 @@ Error::what() const noexcept
   return gobject_->message;
 }
 
-bool
-Error::matches(GQuark error_domain, int error_code) const
+auto
+Error::matches(GQuark error_domain, int error_code) const -> bool
 {
   return g_error_matches(gobject_, error_domain, error_code);
 }
 
-GError*
-Error::gobj()
+auto
+Error::gobj() -> GError*
 {
   return gobject_;
 }
 
-const GError*
-Error::gobj() const
+auto
+Error::gobj() const -> const GError*
 {
   return gobject_;
 }
@@ -190,7 +190,7 @@ Error::throw_exception(GError* gobject)
 }
 
 // Glib::Value<Glib::Error>
-GType Value<Error>::value_type()
+auto Value<Error>::value_type() -> GType
 {
   return g_error_get_type();
 }
@@ -200,7 +200,7 @@ void Value<Error>::set(const CppType& data)
   set_boxed(data.gobj());
 }
 
-Value<Error>::CppType Value<Error>::get() const
+auto Value<Error>::get() const -> Value<Error>::CppType
 {
   return Glib::Error(static_cast<CType>(get_boxed()), true);
 }

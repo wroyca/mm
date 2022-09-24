@@ -69,7 +69,7 @@ public:
 
   // noncopyable
   BoxLayout(const BoxLayout&) = delete;
-  BoxLayout& operator=(const BoxLayout&) = delete;
+  auto operator=(const BoxLayout&) -> BoxLayout& = delete;
 
 private:  friend class BoxLayout_Class;
   static CppClassType boxlayout_class_;
@@ -83,28 +83,28 @@ protected:
 public:
 
   BoxLayout(BoxLayout&& src) noexcept;
-  BoxLayout& operator=(BoxLayout&& src) noexcept;
+  auto operator=(BoxLayout&& src) noexcept -> BoxLayout&;
 
   ~BoxLayout() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkBoxLayout*       gobj()       { return reinterpret_cast<GtkBoxLayout*>(gobject_); }
+  auto       gobj() -> GtkBoxLayout*       { return reinterpret_cast<GtkBoxLayout*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkBoxLayout* gobj() const { return reinterpret_cast<GtkBoxLayout*>(gobject_); }
+  auto gobj() const -> const GtkBoxLayout* { return reinterpret_cast<GtkBoxLayout*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkBoxLayout* gobj_copy();
+  auto gobj_copy() -> GtkBoxLayout*;
 
 private:
 
@@ -115,7 +115,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<BoxLayout> create(Orientation orientation =  Orientation::HORIZONTAL);
+  static auto create(Orientation orientation =  Orientation::HORIZONTAL) -> Glib::RefPtr<BoxLayout>;
 
 
   /** Sets whether the box layout will allocate the same
@@ -129,7 +129,7 @@ public:
    *
    * Return: <tt>true</tt> if the layout is homogeneous
    */
-  bool get_homogeneous() const;
+  auto get_homogeneous() const -> bool;
 
 
   /** Sets how much spacing to put between children.
@@ -142,7 +142,7 @@ public:
    *
    * @return The spacing of the layout.
    */
-  guint get_spacing() const;
+  auto get_spacing() const -> guint;
 
 
   /** Sets the baseline position of a box layout.
@@ -161,7 +161,7 @@ public:
    *
    * @return The baseline position.
    */
-  BaselinePosition get_baseline_position() const;
+  auto get_baseline_position() const -> BaselinePosition;
 
   // spacing is int in property_spacing(), but guint in set/get_spacing().
   // That's how it's done in gtk.
@@ -173,7 +173,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_homogeneous() ;
+  auto property_homogeneous() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the box layout should distribute the available space
    * equally among the children.
@@ -183,7 +183,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_homogeneous() const;
+  auto property_homogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The space to put between the children.
    *
@@ -192,7 +192,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_spacing() ;
+  auto property_spacing() -> Glib::PropertyProxy< int > ;
 
 /** The space to put between the children.
    *
@@ -201,7 +201,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_spacing() const;
+  auto property_spacing() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The position of the allocated baseline within the extra space
    * allocated to each child.
@@ -214,7 +214,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< BaselinePosition > property_baseline_position() ;
+  auto property_baseline_position() -> Glib::PropertyProxy< BaselinePosition > ;
 
 /** The position of the allocated baseline within the extra space
    * allocated to each child.
@@ -227,7 +227,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< BaselinePosition > property_baseline_position() const;
+  auto property_baseline_position() const -> Glib::PropertyProxy_ReadOnly< BaselinePosition >;
 
 
   // There are no signals or vfuncs.
@@ -260,7 +260,7 @@ namespace Glib
    * @relates Gtk::BoxLayout
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::BoxLayout> wrap(GtkBoxLayout* object, bool take_copy = false);
+  auto wrap(GtkBoxLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BoxLayout>;
 }
 
 

@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::ConstraintGuide> wrap(GtkConstraintGuide* object, bool take_copy)
+auto wrap(GtkConstraintGuide* object, bool take_copy) -> Glib::RefPtr<Gtk::ConstraintGuide>
 {
   return Glib::make_refptr_for_instance<Gtk::ConstraintGuide>( dynamic_cast<Gtk::ConstraintGuide*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ConstraintGuide_Class::init()
+auto ConstraintGuide_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -73,7 +73,7 @@ void ConstraintGuide_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* ConstraintGuide_Class::wrap_new(GObject* object)
+auto ConstraintGuide_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ConstraintGuide((GtkConstraintGuide*)object);
 }
@@ -81,7 +81,7 @@ Glib::ObjectBase* ConstraintGuide_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkConstraintGuide* ConstraintGuide::gobj_copy()
+auto ConstraintGuide::gobj_copy() -> GtkConstraintGuide*
 {
   reference();
   return gobj();
@@ -105,7 +105,7 @@ ConstraintGuide::ConstraintGuide(ConstraintGuide&& src) noexcept
   , ConstraintTarget(std::move(src))
 {}
 
-ConstraintGuide& ConstraintGuide::operator=(ConstraintGuide&& src) noexcept
+auto ConstraintGuide::operator=(ConstraintGuide&& src) noexcept -> ConstraintGuide&
 {
   Glib::Object::operator=(std::move(src));
   ConstraintTarget::operator=(std::move(src));
@@ -119,13 +119,13 @@ ConstraintGuide::~ConstraintGuide() noexcept
 
 ConstraintGuide::CppClassType ConstraintGuide::constraintguide_class_; // initialize static member
 
-GType ConstraintGuide::get_type()
+auto ConstraintGuide::get_type() -> GType
 {
   return constraintguide_class_.init().get_type();
 }
 
 
-GType ConstraintGuide::get_base_type()
+auto ConstraintGuide::get_base_type() -> GType
 {
   return gtk_constraint_guide_get_type();
 }
@@ -141,7 +141,7 @@ ConstraintGuide::ConstraintGuide()
 
 }
 
-Glib::RefPtr<ConstraintGuide> ConstraintGuide::create()
+auto ConstraintGuide::create() -> Glib::RefPtr<ConstraintGuide>
 {
   return Glib::make_refptr_for_instance<ConstraintGuide>( new ConstraintGuide() );
 }
@@ -181,7 +181,7 @@ void ConstraintGuide::set_strength(Constraint::Strength strength)
   gtk_constraint_guide_set_strength(gobj(), static_cast<GtkConstraintStrength>(strength));
 }
 
-Constraint::Strength ConstraintGuide::get_strength() const
+auto ConstraintGuide::get_strength() const -> Constraint::Strength
 {
   return static_cast<Constraint::Strength>(gtk_constraint_guide_get_strength(const_cast<GtkConstraintGuide*>(gobj())));
 }
@@ -191,68 +191,68 @@ void ConstraintGuide::set_name(const Glib::ustring& name)
   gtk_constraint_guide_set_name(gobj(), name.c_str());
 }
 
-Glib::ustring ConstraintGuide::get_name() const
+auto ConstraintGuide::get_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_constraint_guide_get_name(const_cast<GtkConstraintGuide*>(gobj())));
 }
 
 
-Glib::PropertyProxy< int > ConstraintGuide::property_min_width()
+auto ConstraintGuide::property_min_width() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "min-width");
 }
 
-Glib::PropertyProxy_ReadOnly< int > ConstraintGuide::property_min_width() const
+auto ConstraintGuide::property_min_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "min-width");
 }
 
-Glib::PropertyProxy< int > ConstraintGuide::property_min_height()
+auto ConstraintGuide::property_min_height() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "min-height");
 }
 
-Glib::PropertyProxy_ReadOnly< int > ConstraintGuide::property_min_height() const
+auto ConstraintGuide::property_min_height() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "min-height");
 }
 
-Glib::PropertyProxy< int > ConstraintGuide::property_nat_width()
+auto ConstraintGuide::property_nat_width() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "nat-width");
 }
 
-Glib::PropertyProxy_ReadOnly< int > ConstraintGuide::property_nat_width() const
+auto ConstraintGuide::property_nat_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "nat-width");
 }
 
-Glib::PropertyProxy< int > ConstraintGuide::property_nat_height()
+auto ConstraintGuide::property_nat_height() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "nat-height");
 }
 
-Glib::PropertyProxy_ReadOnly< int > ConstraintGuide::property_nat_height() const
+auto ConstraintGuide::property_nat_height() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "nat-height");
 }
 
-Glib::PropertyProxy< int > ConstraintGuide::property_max_width()
+auto ConstraintGuide::property_max_width() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "max-width");
 }
 
-Glib::PropertyProxy_ReadOnly< int > ConstraintGuide::property_max_width() const
+auto ConstraintGuide::property_max_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "max-width");
 }
 
-Glib::PropertyProxy< int > ConstraintGuide::property_max_height()
+auto ConstraintGuide::property_max_height() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "max-height");
 }
 
-Glib::PropertyProxy_ReadOnly< int > ConstraintGuide::property_max_height() const
+auto ConstraintGuide::property_max_height() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "max-height");
 }
@@ -261,22 +261,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Constraint::Strength
   "Type Constraint::Strength cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Constraint::Strength > ConstraintGuide::property_strength()
+auto ConstraintGuide::property_strength() -> Glib::PropertyProxy< Constraint::Strength >
 {
   return Glib::PropertyProxy< Constraint::Strength >(this, "strength");
 }
 
-Glib::PropertyProxy_ReadOnly< Constraint::Strength > ConstraintGuide::property_strength() const
+auto ConstraintGuide::property_strength() const -> Glib::PropertyProxy_ReadOnly< Constraint::Strength >
 {
   return Glib::PropertyProxy_ReadOnly< Constraint::Strength >(this, "strength");
 }
 
-Glib::PropertyProxy< Glib::ustring > ConstraintGuide::property_name()
+auto ConstraintGuide::property_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > ConstraintGuide::property_name() const
+auto ConstraintGuide::property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name");
 }

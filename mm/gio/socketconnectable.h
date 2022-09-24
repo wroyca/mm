@@ -63,7 +63,7 @@ public:
 
   // noncopyable
   SocketConnectable(const SocketConnectable&) = delete;
-  SocketConnectable& operator=(const SocketConnectable&) = delete;
+  auto operator=(const SocketConnectable&) -> SocketConnectable& = delete;
 
 private:
   friend class SocketConnectable_Class;
@@ -97,7 +97,7 @@ protected:
 public:
 
   SocketConnectable(SocketConnectable&& src) noexcept;
-  SocketConnectable& operator=(SocketConnectable&& src) noexcept;
+  auto operator=(SocketConnectable&& src) noexcept -> SocketConnectable&;
 
   ~SocketConnectable() noexcept override;
 
@@ -105,17 +105,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GSocketConnectable*       gobj()       { return reinterpret_cast<GSocketConnectable*>(gobject_); }
+  auto       gobj() -> GSocketConnectable*       { return reinterpret_cast<GSocketConnectable*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GSocketConnectable* gobj() const { return reinterpret_cast<GSocketConnectable*>(gobject_); }
+  auto gobj() const -> const GSocketConnectable* { return reinterpret_cast<GSocketConnectable*>(gobject_); }
 
 private:
 
@@ -128,7 +128,7 @@ public:
    *
    * @return A new SocketAddressEnumerator.
    */
-  Glib::RefPtr<SocketAddressEnumerator> enumerate();
+  auto enumerate() -> Glib::RefPtr<SocketAddressEnumerator>;
 
   /** Creates a SocketAddressEnumerator for @a connectable.
    *
@@ -136,7 +136,7 @@ public:
    *
    * @return A new SocketAddressEnumerator.
    */
-  Glib::RefPtr<const SocketAddressEnumerator> enumerate() const;
+  auto enumerate() const -> Glib::RefPtr<const SocketAddressEnumerator>;
 
 
   /** Creates a SocketAddressEnumerator for @a connectable that will
@@ -151,7 +151,7 @@ public:
    *
    * @return A new SocketAddressEnumerator.
    */
-  Glib::RefPtr<SocketAddressEnumerator> proxy_enumerate();
+  auto proxy_enumerate() -> Glib::RefPtr<SocketAddressEnumerator>;
 
   /** Creates a SocketAddressEnumerator for @a connectable that will
    * return a ProxyAddress for each of its addresses that you must connect
@@ -165,7 +165,7 @@ public:
    *
    * @return A new SocketAddressEnumerator.
    */
-  Glib::RefPtr<const SocketAddressEnumerator> proxy_enumerate() const;
+  auto proxy_enumerate() const -> Glib::RefPtr<const SocketAddressEnumerator>;
 
 
   /** Format a SocketConnectable as a string. This is a human-readable format for
@@ -180,7 +180,7 @@ public:
    *
    * @return The formatted string.
    */
-  Glib::ustring to_string() const;
+  auto to_string() const -> Glib::ustring;
 
   //TODO: Wrap vfuncs?
 
@@ -212,7 +212,7 @@ namespace Glib
    * @relates Gio::SocketConnectable
    */
   GIOMM_API
-  Glib::RefPtr<Gio::SocketConnectable> wrap(GSocketConnectable* object, bool take_copy = false);
+  auto wrap(GSocketConnectable* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketConnectable>;
 
 } // namespace Glib
 

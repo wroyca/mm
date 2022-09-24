@@ -79,61 +79,61 @@ public:
   /** Gets the X coordinate of the left side of the rectangle.
    * @return The X coordinate.
    */
-  int get_x() const        { return gobject_.x; }
+  auto get_x() const -> int        { return gobject_.x; }
 
   /** Gets the Y coordinate of the top side of the rectangle.
    * @return The Y coordinate.
    */
-  int get_y() const        { return gobject_.y; }
+  auto get_y() const -> int        { return gobject_.y; }
 
   /** Gets the width of the rectangle.
    * @return The width.
    */
-  int get_width() const    { return gobject_.width; }
+  auto get_width() const -> int    { return gobject_.width; }
 
   /** Gets the height of the rectangle.
    * @return The height.
    */
-  int get_height() const   { return gobject_.height; }
+  auto get_height() const -> int   { return gobject_.height; }
 
   /** Extracts the ascent from a Pango::Rectangle representing glyph extents.
    * The ascent is the distance from the baseline to the highest point of the character.
    * This is positive if the glyph ascends above the baseline.
    * @return The ascent of the character.
    */
-  int get_ascent() const   { return PANGO_ASCENT(*gobj()); }
+  auto get_ascent() const -> int   { return PANGO_ASCENT(*gobj()); }
 
   /** Extracts the descent from a Pango::Rectangle representing glyph extents.
    * The descent is the distance from the baseline to the lowest point of the character.
    * This is positive if the glyph descends below the baseline.
    * @return The descent of the character.
    */
-  int get_descent() const  { return PANGO_DESCENT(*gobj()); }
+  auto get_descent() const -> int  { return PANGO_DESCENT(*gobj()); }
 
   /** Extracts the left bearing from a Pango::Rectangle representing glyph extents.
    * The left bearing is the distance from the horizontal origin to the farthest left point of the character.
    * This is positive for characters drawn completely to the right of the glyph origin.
    * @return The left bearing of the character.
    */
-  int get_lbearing() const { return PANGO_LBEARING(*gobj()); }
+  auto get_lbearing() const -> int { return PANGO_LBEARING(*gobj()); }
 
   /** Extracts the right bearing from a Pango::Rectangle representing glyph extents.
    * The right bearing is the distance from the horizontal origin to the farthest right point of the character.
    * This is positive except for characters drawn completely to the left of the horizontal origin.
    * @return The right bearing of the character.
    */
-  int get_rbearing() const { return PANGO_RBEARING(*gobj()); }
+  auto get_rbearing() const -> int { return PANGO_RBEARING(*gobj()); }
 
   /** Checks for equality of two Pango::Rectangles.
    * @param rhs The Pango::Rectangle to compare with.
    * @return true if @a rhs is equal with the rectangle.
    */
-  bool equal(const Rectangle& rhs) const;
+  auto equal(const Rectangle& rhs) const -> bool;
 
   /// Provides access to the underlying C GObject.
-  PangoRectangle*       gobj()       { return &gobject_; }
+  auto       gobj() -> PangoRectangle*       { return &gobject_; }
   /// Provides access to the underlying C GObject.
-  const PangoRectangle* gobj() const { return &gobject_; }
+  auto gobj() const -> const PangoRectangle* { return &gobject_; }
 
 protected:
   PangoRectangle gobject_;
@@ -142,11 +142,11 @@ protected:
 };
 
 /** @relates Pango::Rectangle */
-inline bool operator==(const Rectangle& lhs, const Rectangle& rhs)
+inline auto operator==(const Rectangle& lhs, const Rectangle& rhs) -> bool
   { return lhs.equal(rhs); }
 
 /** @relates Pango::Rectangle */
-inline bool operator!=(const Rectangle& lhs, const Rectangle& rhs)
+inline auto operator!=(const Rectangle& lhs, const Rectangle& rhs) -> bool
   { return !lhs.equal(rhs); }
 
 } /* namespace Pango */
@@ -157,11 +157,11 @@ namespace Glib
 
 /** @relates Pango::Rectangle */
 PANGOMM_API
-Pango::Rectangle& wrap(PangoRectangle* object);
+auto wrap(PangoRectangle* object) -> Pango::Rectangle&;
 
 /** @relates Pango::Rectangle */
 PANGOMM_API
-const Pango::Rectangle& wrap(const PangoRectangle* object);
+auto wrap(const PangoRectangle* object) -> const Pango::Rectangle&;
 
 } /* namespace Glib */
 

@@ -39,19 +39,11 @@ using GDBusInterfaceClass = struct _GDBusInterfaceClass;
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
-{
-
-namespace DBus
-{ class GIOMM_API Interface_Class; } // namespace DBus
-
-} // namespace Gio
+namespace Gio::DBus
+{ class GIOMM_API Interface_Class; } // namespace Gio
 #endif // DOXYGEN_SHOULD_SKIP_THIS
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 class GIOMM_API InterfaceInfo;
@@ -78,7 +70,7 @@ public:
 
   // noncopyable
   Interface(const Interface&) = delete;
-  Interface& operator=(const Interface&) = delete;
+  auto operator=(const Interface&) -> Interface& = delete;
 
 private:
   friend class Interface_Class;
@@ -112,7 +104,7 @@ protected:
 public:
 
   Interface(Interface&& src) noexcept;
-  Interface& operator=(Interface&& src) noexcept;
+  auto operator=(Interface&& src) noexcept -> Interface&;
 
   ~Interface() noexcept override;
 
@@ -120,17 +112,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDBusInterface*       gobj()       { return reinterpret_cast<GDBusInterface*>(gobject_); }
+  auto       gobj() -> GDBusInterface*       { return reinterpret_cast<GDBusInterface*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDBusInterface* gobj() const { return reinterpret_cast<GDBusInterface*>(gobject_); }
+  auto gobj() const -> const GDBusInterface* { return reinterpret_cast<GDBusInterface*>(gobject_); }
 
 private:
 
@@ -144,7 +136,7 @@ public:
    *
    * @return A Gio::DBus::InterfaceInfo. Do not free.
    */
-  Glib::RefPtr<InterfaceInfo> get_info();
+  auto get_info() -> Glib::RefPtr<InterfaceInfo>;
 
   /** Gets D-Bus introspection information for the D-Bus interface
    * implemented by @a interface.
@@ -153,7 +145,7 @@ public:
    *
    * @return A Gio::DBus::InterfaceInfo. Do not free.
    */
-  Glib::RefPtr<const InterfaceInfo> get_info() const;
+  auto get_info() const -> Glib::RefPtr<const InterfaceInfo>;
 
 
   /** Gets the DBusObject that @a interface belongs to, if any.
@@ -167,7 +159,7 @@ public:
    * @return A DBusObject or <tt>nullptr</tt>. The returned
    * reference belongs to @a interface and should not be freed.
    */
-  Glib::RefPtr<Gio::DBus::Object> get_object();
+  auto get_object() -> Glib::RefPtr<Gio::DBus::Object>;
 
   /** Gets the DBusObject that @a interface belongs to, if any.
    *
@@ -180,7 +172,7 @@ public:
    * @return A DBusObject or <tt>nullptr</tt>. The returned
    * reference belongs to @a interface and should not be freed.
    */
-  Glib::RefPtr<const Gio::DBus::Object> get_object() const;
+  auto get_object() const -> Glib::RefPtr<const Gio::DBus::Object>;
 
 
   /** Gets the DBusObject that @a interface belongs to, if any.
@@ -190,7 +182,7 @@ public:
    * @return A DBusObject or <tt>nullptr</tt>. The returned
    * reference should be freed with Glib::object_unref().
    */
-  Glib::RefPtr<Gio::DBus::Object> dup_object();
+  auto dup_object() -> Glib::RefPtr<Gio::DBus::Object>;
 
   /** Gets the DBusObject that @a interface belongs to, if any.
    *
@@ -199,7 +191,7 @@ public:
    * @return A DBusObject or <tt>nullptr</tt>. The returned
    * reference should be freed with Glib::object_unref().
    */
-  Glib::RefPtr<const Gio::DBus::Object> dup_object() const;
+  auto dup_object() const -> Glib::RefPtr<const Gio::DBus::Object>;
 
 
   /** Sets the DBusObject for @a interface to @a object.
@@ -213,15 +205,15 @@ public:
   void set_object(const Glib::RefPtr<Gio::DBus::Object>& object);
 
 protected:
-    virtual Glib::RefPtr<InterfaceInfo> get_info_vfunc() const;
+    virtual auto get_info_vfunc() const -> Glib::RefPtr<InterfaceInfo>;
 
-    virtual Glib::RefPtr<Gio::DBus::Object> get_object_vfunc() const;
+    virtual auto get_object_vfunc() const -> Glib::RefPtr<Gio::DBus::Object>;
 
 
     virtual void set_object_vfunc(const Glib::RefPtr<Gio::DBus::Object>& object);
 
 
-    virtual Glib::RefPtr<Gio::DBus::Object> dup_object_vfunc() const;
+    virtual auto dup_object_vfunc() const -> Glib::RefPtr<Gio::DBus::Object>;
 
 
 public:
@@ -237,8 +229,6 @@ protected:
 
 };
 
-} // namespace DBus
-
 } // namespace Gio
 
 
@@ -253,7 +243,7 @@ namespace Glib
    * @relates Gio::DBus::Interface
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DBus::Interface> wrap(GDBusInterface* object, bool take_copy = false);
+  auto wrap(GDBusInterface* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::Interface>;
 
 } // namespace Glib
 

@@ -36,7 +36,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::MediaFile> wrap(GtkMediaFile* object, bool take_copy)
+auto wrap(GtkMediaFile* object, bool take_copy) -> Glib::RefPtr<Gtk::MediaFile>
 {
   return Glib::make_refptr_for_instance<Gtk::MediaFile>( dynamic_cast<Gtk::MediaFile*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -51,7 +51,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& MediaFile_Class::init()
+auto MediaFile_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -157,7 +157,7 @@ void MediaFile_Class::close_vfunc_callback(GtkMediaFile* self)
 }
 
 
-Glib::ObjectBase* MediaFile_Class::wrap_new(GObject* object)
+auto MediaFile_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new MediaFile((GtkMediaFile*)object);
 }
@@ -165,7 +165,7 @@ Glib::ObjectBase* MediaFile_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkMediaFile* MediaFile::gobj_copy()
+auto MediaFile::gobj_copy() -> GtkMediaFile*
 {
   reference();
   return gobj();
@@ -188,7 +188,7 @@ MediaFile::MediaFile(MediaFile&& src) noexcept
 : Gtk::MediaStream(std::move(src))
 {}
 
-MediaFile& MediaFile::operator=(MediaFile&& src) noexcept
+auto MediaFile::operator=(MediaFile&& src) noexcept -> MediaFile&
 {
   Gtk::MediaStream::operator=(std::move(src));
   return *this;
@@ -201,13 +201,13 @@ MediaFile::~MediaFile() noexcept
 
 MediaFile::CppClassType MediaFile::mediafile_class_; // initialize static member
 
-GType MediaFile::get_type()
+auto MediaFile::get_type() -> GType
 {
   return mediafile_class_.init().get_type();
 }
 
 
-GType MediaFile::get_base_type()
+auto MediaFile::get_base_type() -> GType
 {
   return gtk_media_file_get_type();
 }
@@ -223,27 +223,27 @@ MediaFile::MediaFile()
 
 }
 
-Glib::RefPtr<MediaFile> MediaFile::create()
+auto MediaFile::create() -> Glib::RefPtr<MediaFile>
 {
   return Glib::wrap(GTK_MEDIA_FILE(gtk_media_file_new()));
 }
 
-Glib::RefPtr<MediaFile> MediaFile::create_for_filename(const std::string& filename)
+auto MediaFile::create_for_filename(const std::string& filename) -> Glib::RefPtr<MediaFile>
 {
   return Glib::wrap(GTK_MEDIA_FILE(gtk_media_file_new_for_filename(filename.c_str())));
 }
 
-Glib::RefPtr<MediaFile> MediaFile::create_for_resource(const std::string& resource_path)
+auto MediaFile::create_for_resource(const std::string& resource_path) -> Glib::RefPtr<MediaFile>
 {
   return Glib::wrap(GTK_MEDIA_FILE(gtk_media_file_new_for_resource(resource_path.c_str())));
 }
 
-Glib::RefPtr<MediaFile> MediaFile::create(const Glib::RefPtr<Gio::File>& file)
+auto MediaFile::create(const Glib::RefPtr<Gio::File>& file) -> Glib::RefPtr<MediaFile>
 {
   return Glib::wrap(GTK_MEDIA_FILE(gtk_media_file_new_for_file(const_cast<GFile*>(Glib::unwrap<Gio::File>(file)))));
 }
 
-Glib::RefPtr<MediaFile> MediaFile::create(const Glib::RefPtr<Gio::InputStream>& stream)
+auto MediaFile::create(const Glib::RefPtr<Gio::InputStream>& stream) -> Glib::RefPtr<MediaFile>
 {
   return Glib::wrap(GTK_MEDIA_FILE(gtk_media_file_new_for_input_stream(const_cast<GInputStream*>(Glib::unwrap(stream)))));
 }
@@ -268,7 +268,7 @@ void MediaFile::set_file(const Glib::RefPtr<Gio::File>& file)
   gtk_media_file_set_file(gobj(), const_cast<GFile*>(Glib::unwrap<Gio::File>(file)));
 }
 
-Glib::RefPtr<Gio::File> MediaFile::get_file()
+auto MediaFile::get_file() -> Glib::RefPtr<Gio::File>
 {
   auto retvalue = Glib::wrap(gtk_media_file_get_file(gobj()));
   if(retvalue)
@@ -276,7 +276,7 @@ Glib::RefPtr<Gio::File> MediaFile::get_file()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::File> MediaFile::get_file() const
+auto MediaFile::get_file() const -> Glib::RefPtr<const Gio::File>
 {
   return const_cast<MediaFile*>(this)->get_file();
 }
@@ -286,7 +286,7 @@ void MediaFile::set_input_stream(const Glib::RefPtr<Gio::InputStream>& stream)
   gtk_media_file_set_input_stream(gobj(), const_cast<GInputStream*>(Glib::unwrap(stream)));
 }
 
-Glib::RefPtr<Gio::InputStream> MediaFile::get_input_stream()
+auto MediaFile::get_input_stream() -> Glib::RefPtr<Gio::InputStream>
 {
   auto retvalue = Glib::wrap(gtk_media_file_get_input_stream(gobj()));
   if(retvalue)
@@ -294,7 +294,7 @@ Glib::RefPtr<Gio::InputStream> MediaFile::get_input_stream()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::InputStream> MediaFile::get_input_stream() const
+auto MediaFile::get_input_stream() const -> Glib::RefPtr<const Gio::InputStream>
 {
   return const_cast<MediaFile*>(this)->get_input_stream();
 }
@@ -304,12 +304,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Fi
   "Type Glib::RefPtr<Gio::File> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gio::File> > MediaFile::property_file()
+auto MediaFile::property_file() -> Glib::PropertyProxy< Glib::RefPtr<Gio::File> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gio::File> >(this, "file");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> > MediaFile::property_file() const
+auto MediaFile::property_file() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >(this, "file");
 }
@@ -318,12 +318,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::In
   "Type Glib::RefPtr<Gio::InputStream> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gio::InputStream> > MediaFile::property_input_stream()
+auto MediaFile::property_input_stream() -> Glib::PropertyProxy< Glib::RefPtr<Gio::InputStream> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gio::InputStream> >(this, "input-stream");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::InputStream> > MediaFile::property_input_stream() const
+auto MediaFile::property_input_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::InputStream> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::InputStream> >(this, "input-stream");
 }

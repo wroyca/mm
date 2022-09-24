@@ -66,7 +66,7 @@ public:
 
   // noncopyable
   Settings(const Settings&) = delete;
-  Settings& operator=(const Settings&) = delete;
+  auto operator=(const Settings&) -> Settings& = delete;
 
 private:  friend class Settings_Class;
   static CppClassType settings_class_;
@@ -80,28 +80,28 @@ protected:
 public:
 
   Settings(Settings&& src) noexcept;
-  Settings& operator=(Settings&& src) noexcept;
+  auto operator=(Settings&& src) noexcept -> Settings&;
 
   ~Settings() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GSettings*       gobj()       { return reinterpret_cast<GSettings*>(gobject_); }
+  auto       gobj() -> GSettings*       { return reinterpret_cast<GSettings*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GSettings* gobj() const { return reinterpret_cast<GSettings*>(gobject_); }
+  auto gobj() const -> const GSettings* { return reinterpret_cast<GSettings*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GSettings* gobj_copy();
+  auto gobj_copy() -> GSettings*;
 
 private:
 
@@ -171,10 +171,10 @@ protected:
 
 public:
 
-  static Glib::RefPtr<Settings> create(const Glib::ustring& schema_id);
+  static auto create(const Glib::ustring& schema_id) -> Glib::RefPtr<Settings>;
 
 
-  static Glib::RefPtr<Settings> create(const Glib::ustring& schema_id, const Glib::ustring& path);
+  static auto create(const Glib::ustring& schema_id, const Glib::ustring& path) -> Glib::RefPtr<Settings>;
 
   //TODO: Requires SettingsBackend: _WRAP_CREATE(const Glib::ustring& schema_id, const Glib::RefPtr<SettingsBackend>& backend)
   //TODO: Requires SettingsBackend: _WRAP_CREATE(const Glib::ustring& schema_id, const Glib::RefPtr<SettingsBackend>& backend, const Glib::ustring& path)
@@ -197,7 +197,7 @@ public:
    * @return <tt>true</tt> if setting the key succeeded,
    * <tt>false</tt> if the key was not writable.
    */
-  bool set_value(const Glib::ustring& key, const Glib::VariantBase& value);
+  auto set_value(const Glib::ustring& key, const Glib::VariantBase& value) -> bool;
 
 
   /** Gets the value that is stored in the settings for a @a key.
@@ -241,7 +241,7 @@ public:
    *
    * @newin{2,40}
    */
-  bool get_user_value(const Glib::ustring& key, Glib::VariantBase& value) const;
+  auto get_user_value(const Glib::ustring& key, Glib::VariantBase& value) const -> bool;
 
 
   /** Gets the "default value" of a key.
@@ -286,7 +286,7 @@ public:
    * @param key The key to get the value for.
    * @return An integer.
    */
-  int get_int(const Glib::ustring& key) const;
+  auto get_int(const Glib::ustring& key) const -> int;
 
   /** Sets @a key in @a settings to @a value.
    *
@@ -302,7 +302,7 @@ public:
    * @return <tt>true</tt> if setting the key succeeded,
    * <tt>false</tt> if the key was not writable.
    */
-  bool set_int(const Glib::ustring& key, int value);
+  auto set_int(const Glib::ustring& key, int value) -> bool;
 
   /** Gets the value that is stored at @a key in @a settings.
    *
@@ -316,7 +316,7 @@ public:
    * @param key The key to get the value for.
    * @return A 64-bit integer.
    */
-  gint64 get_int64(const Glib::ustring& key) const;
+  auto get_int64(const Glib::ustring& key) const -> gint64;
 
   /** Sets @a key in @a settings to @a value.
    *
@@ -332,7 +332,7 @@ public:
    * @return <tt>true</tt> if setting the key succeeded,
    * <tt>false</tt> if the key was not writable.
    */
-  bool set_int64(const Glib::ustring& key, gint64 value);
+  auto set_int64(const Glib::ustring& key, gint64 value) -> bool;
 
   /** Gets the value that is stored at @a key in @a settings.
    *
@@ -347,7 +347,7 @@ public:
    * @param key The key to get the value for.
    * @return An unsigned integer.
    */
-  guint get_uint(const Glib::ustring& key) const;
+  auto get_uint(const Glib::ustring& key) const -> guint;
 
   /** Sets @a key in @a settings to @a value.
    *
@@ -364,7 +364,7 @@ public:
    * @return <tt>true</tt> if setting the key succeeded,
    * <tt>false</tt> if the key was not writable.
    */
-  bool set_uint(const Glib::ustring& key, guint value);
+  auto set_uint(const Glib::ustring& key, guint value) -> bool;
 
   /** Gets the value that is stored at @a key in @a settings.
    *
@@ -379,7 +379,7 @@ public:
    * @param key The key to get the value for.
    * @return A 64-bit unsigned integer.
    */
-  guint64 get_uint64(const Glib::ustring& key) const;
+  auto get_uint64(const Glib::ustring& key) const -> guint64;
 
   /** Sets @a key in @a settings to @a value.
    *
@@ -396,7 +396,7 @@ public:
    * @return <tt>true</tt> if setting the key succeeded,
    * <tt>false</tt> if the key was not writable.
    */
-  bool set_uint64(const Glib::ustring& key, guint64 value);
+  auto set_uint64(const Glib::ustring& key, guint64 value) -> bool;
 
   /** Gets the value that is stored at @a key in @a settings.
    *
@@ -410,7 +410,7 @@ public:
    * @param key The key to get the value for.
    * @return A boolean.
    */
-  bool get_boolean(const Glib::ustring& key) const;
+  auto get_boolean(const Glib::ustring& key) const -> bool;
 
   /** Sets @a key in @a settings to @a value.
    *
@@ -426,7 +426,7 @@ public:
    * @return <tt>true</tt> if setting the key succeeded,
    * <tt>false</tt> if the key was not writable.
    */
-  bool set_boolean(const Glib::ustring& key, bool value);
+  auto set_boolean(const Glib::ustring& key, bool value) -> bool;
 
   /** Gets the value that is stored at @a key in @a settings.
    *
@@ -440,7 +440,7 @@ public:
    * @param key The key to get the value for.
    * @return A newly-allocated string.
    */
-  Glib::ustring get_string(const Glib::ustring& key) const;
+  auto get_string(const Glib::ustring& key) const -> Glib::ustring;
 
   /** Sets @a key in @a settings to @a value.
    *
@@ -456,7 +456,7 @@ public:
    * @return <tt>true</tt> if setting the key succeeded,
    * <tt>false</tt> if the key was not writable.
    */
-  bool set_string(const Glib::ustring& key, const Glib::ustring& value);
+  auto set_string(const Glib::ustring& key, const Glib::ustring& value) -> bool;
 
   /** Gets the value that is stored at @a key in @a settings.
    *
@@ -470,7 +470,7 @@ public:
    * @param key The key to get the value for.
    * @return A double.
    */
-  double get_double(const Glib::ustring& key) const;
+  auto get_double(const Glib::ustring& key) const -> double;
 
   /** Sets @a key in @a settings to @a value.
    *
@@ -486,7 +486,7 @@ public:
    * @return <tt>true</tt> if setting the key succeeded,
    * <tt>false</tt> if the key was not writable.
    */
-  bool set_double(const Glib::ustring& key, double value);
+  auto set_double(const Glib::ustring& key, double value) -> bool;
 
 
   /** A convenience variant of g_settings_get() for string arrays.
@@ -501,7 +501,7 @@ public:
    * newly-allocated, <tt>nullptr</tt>-terminated array of strings, the value that
    * is stored at @a key in @a settings.
    */
-  std::vector<Glib::ustring> get_string_array(const Glib::ustring& key) const;
+  auto get_string_array(const Glib::ustring& key) const -> std::vector<Glib::ustring>;
 
 
   /** Sets @a key in @a settings to @a value.
@@ -519,7 +519,7 @@ public:
    * @return <tt>true</tt> if setting the key succeeded,
    * <tt>false</tt> if the key was not writable.
    */
-  bool set_string_array(const Glib::ustring& key, const std::vector<Glib::ustring>& value);
+  auto set_string_array(const Glib::ustring& key, const std::vector<Glib::ustring>& value) -> bool;
 
 
   /** Gets the value that is stored in @a settings for @a key and converts it
@@ -540,7 +540,7 @@ public:
    * @param key The key to get the value for.
    * @return The enum value.
    */
-  int get_enum(const Glib::ustring& key) const;
+  auto get_enum(const Glib::ustring& key) const -> int;
 
   /** Looks up the enumerated type nick for @a value and writes it to @a key,
    * within @a settings.
@@ -557,7 +557,7 @@ public:
    * @param value An enumerated value.
    * @return <tt>true</tt>, if the set succeeds.
    */
-  bool set_enum(const Glib::ustring& key, int value);
+  auto set_enum(const Glib::ustring& key, int value) -> bool;
 
   /** Gets the value that is stored in @a settings for @a key and converts it
    * to the flags value that it represents.
@@ -577,7 +577,7 @@ public:
    * @param key The key to get the value for.
    * @return The flags value.
    */
-  guint get_flags(const Glib::ustring& key) const;
+  auto get_flags(const Glib::ustring& key) const -> guint;
 
   /** Looks up the flags type nicks for the bits specified by @a value, puts
    * them in an array of strings and writes the array to @a key, within
@@ -595,7 +595,7 @@ public:
    * @param value A flags value.
    * @return <tt>true</tt>, if the set succeeds.
    */
-  bool set_flags(const Glib::ustring& key, guint value);
+  auto set_flags(const Glib::ustring& key, guint value) -> bool;
 
   // Ignore varargs functions.
 
@@ -615,7 +615,7 @@ public:
    * @param name The name of the child schema.
    * @return A 'child' settings object.
    */
-  Glib::RefPtr<Settings> get_child(const Glib::ustring& name);
+  auto get_child(const Glib::ustring& name) -> Glib::RefPtr<Settings>;
 
   /** Creates a child settings object which has a base path of
    * `base-path/ @a name`, where `base-path` is the base path of
@@ -632,7 +632,7 @@ public:
    * @param name The name of the child schema.
    * @return A 'child' settings object.
    */
-  Glib::RefPtr<const Settings> get_child(const Glib::ustring& name) const;
+  auto get_child(const Glib::ustring& name) const -> Glib::RefPtr<const Settings>;
 
   /** Finds out if a key can be written or not
    *
@@ -641,7 +641,7 @@ public:
    * @param name The name of a key.
    * @return <tt>true</tt> if the key @a name is writable.
    */
-  bool is_writable(const Glib::ustring& name) const;
+  auto is_writable(const Glib::ustring& name) const -> bool;
 
 
   /** Changes the Settings object into 'delay-apply' mode. In this
@@ -675,7 +675,7 @@ public:
    *
    * @return <tt>true</tt> if @a settings has unapplied changes.
    */
-  bool get_has_unapplied() const;
+  auto get_has_unapplied() const -> bool;
 
 
   /** Resets @a key to its default value.
@@ -701,7 +701,7 @@ public:
    * @return A list of the children
    * on @a settings, in no defined order.
    */
-  std::vector<Glib::ustring> list_children() const;
+  auto list_children() const -> std::vector<Glib::ustring>;
 
 
    // deprecated
@@ -789,7 +789,7 @@ public:
    * @param key The name of a key in @a settings.
    * @return A new Action.
    */
-  Glib::RefPtr<Action> create_action(const Glib::ustring& key);
+  auto create_action(const Glib::ustring& key) -> Glib::RefPtr<Action>;
 
   //TODO?: _WRAP_PROPERTY("backend", Glib::RefPtr<SettingsBackend>)
 
@@ -803,7 +803,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_delay_apply() const;
+  auto property_delay_apply() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** If this property is <tt>true</tt>, the Settings object has outstanding
@@ -814,7 +814,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_unapplied() const;
+  auto property_has_unapplied() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** The path within the backend where the settings are stored.
@@ -824,7 +824,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::string > property_path() const;
+  auto property_path() const -> Glib::PropertyProxy_ReadOnly< std::string >;
 
 
   /** The name of the schema that describes the types of keys
@@ -835,7 +835,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_schema_id() const;
+  auto property_schema_id() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The SettingsSchema describing the types of keys for this
@@ -851,7 +851,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SettingsSchema> > property_settings_schema() const;
+  auto property_settings_schema() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SettingsSchema> >;
 
 
   //TODO?: _WRAP_SIGNAL(bool change_event(const std::vector<Glib::QueryQuark>&  keys, int n_keys), "change-event")
@@ -877,7 +877,7 @@ public:
    * @param key The name of the key that changed.
    */
 
-  Glib::SignalProxyDetailed<void(const Glib::ustring&)> signal_changed(const Glib::ustring& key = {});
+  auto signal_changed(const Glib::ustring& key = {}) -> Glib::SignalProxyDetailed<void(const Glib::ustring&)>;
 
 
   /**
@@ -910,7 +910,7 @@ public:
    * event. <tt>false</tt> to propagate the event further.
    */
 
-  Glib::SignalProxy<bool(GQuark)> signal_writable_change_event();
+  auto signal_writable_change_event() -> Glib::SignalProxy<bool(GQuark)>;
 
 
   /**
@@ -930,7 +930,7 @@ public:
    * @param key The key.
    */
 
-  Glib::SignalProxyDetailed<void(const Glib::ustring&)> signal_writable_changed(const Glib::ustring& key = {});
+  auto signal_writable_changed(const Glib::ustring& key = {}) -> Glib::SignalProxyDetailed<void(const Glib::ustring&)>;
 
 
 public:
@@ -945,7 +945,7 @@ protected:
   /// This is a default handler for the signal signal_changed().
   virtual void on_changed(const Glib::ustring& key);
   /// This is a default handler for the signal signal_writable_change_event().
-  virtual bool on_writable_change_event(GQuark key);
+  virtual auto on_writable_change_event(GQuark key) -> bool;
   /// This is a default handler for the signal signal_writable_changed().
   virtual void on_writable_changed(const Glib::ustring& key);
 
@@ -958,31 +958,31 @@ namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline Settings::BindFlags operator|(Settings::BindFlags lhs, Settings::BindFlags rhs)
+inline auto operator|(Settings::BindFlags lhs, Settings::BindFlags rhs) -> Settings::BindFlags
   { return static_cast<Settings::BindFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Settings::BindFlags operator&(Settings::BindFlags lhs, Settings::BindFlags rhs)
+inline auto operator&(Settings::BindFlags lhs, Settings::BindFlags rhs) -> Settings::BindFlags
   { return static_cast<Settings::BindFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Settings::BindFlags operator^(Settings::BindFlags lhs, Settings::BindFlags rhs)
+inline auto operator^(Settings::BindFlags lhs, Settings::BindFlags rhs) -> Settings::BindFlags
   { return static_cast<Settings::BindFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Settings::BindFlags operator~(Settings::BindFlags flags)
+inline auto operator~(Settings::BindFlags flags) -> Settings::BindFlags
   { return static_cast<Settings::BindFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline Settings::BindFlags& operator|=(Settings::BindFlags& lhs, Settings::BindFlags rhs)
+inline auto operator|=(Settings::BindFlags& lhs, Settings::BindFlags rhs) -> Settings::BindFlags&
   { return (lhs = static_cast<Settings::BindFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Settings::BindFlags& operator&=(Settings::BindFlags& lhs, Settings::BindFlags rhs)
+inline auto operator&=(Settings::BindFlags& lhs, Settings::BindFlags rhs) -> Settings::BindFlags&
   { return (lhs = static_cast<Settings::BindFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Settings::BindFlags& operator^=(Settings::BindFlags& lhs, Settings::BindFlags rhs)
+inline auto operator^=(Settings::BindFlags& lhs, Settings::BindFlags rhs) -> Settings::BindFlags&
   { return (lhs = static_cast<Settings::BindFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 
@@ -994,7 +994,7 @@ template <>
 class GIOMM_API Value<Gio::Settings::BindFlags> : public Glib::Value_Flags<Gio::Settings::BindFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1012,7 +1012,7 @@ namespace Glib
    * @relates Gio::Settings
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Settings> wrap(GSettings* object, bool take_copy = false);
+  auto wrap(GSettings* object, bool take_copy = false) -> Glib::RefPtr<Gio::Settings>;
 }
 
 

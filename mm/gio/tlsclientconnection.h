@@ -75,7 +75,7 @@ public:
 
   // noncopyable
   TlsClientConnection(const TlsClientConnection&) = delete;
-  TlsClientConnection& operator=(const TlsClientConnection&) = delete;
+  auto operator=(const TlsClientConnection&) -> TlsClientConnection& = delete;
 
 private:
   friend class TlsClientConnection_Class;
@@ -109,7 +109,7 @@ protected:
 public:
 
   TlsClientConnection(TlsClientConnection&& src) noexcept;
-  TlsClientConnection& operator=(TlsClientConnection&& src) noexcept;
+  auto operator=(TlsClientConnection&& src) noexcept -> TlsClientConnection&;
 
   ~TlsClientConnection() noexcept override;
 
@@ -117,17 +117,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GTlsClientConnection*       gobj()       { return reinterpret_cast<GTlsClientConnection*>(gobject_); }
+  auto       gobj() -> GTlsClientConnection*       { return reinterpret_cast<GTlsClientConnection*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GTlsClientConnection* gobj() const { return reinterpret_cast<GTlsClientConnection*>(gobject_); }
+  auto gobj() const -> const GTlsClientConnection* { return reinterpret_cast<GTlsClientConnection*>(gobject_); }
 
 private:
 
@@ -154,10 +154,10 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<TlsClientConnectionImpl> create(const Glib::RefPtr<IOStream>& base_io_stream, const Glib::RefPtr<const SocketConnectable>& server_identity);
+  static auto create(const Glib::RefPtr<IOStream>& base_io_stream, const Glib::RefPtr<const SocketConnectable>& server_identity) -> Glib::RefPtr<TlsClientConnectionImpl>;
 
   /// A create() convenience overload.
-  static Glib::RefPtr<TlsClientConnectionImpl> create(const Glib::RefPtr<IOStream>& base_io_stream);
+  static auto create(const Glib::RefPtr<IOStream>& base_io_stream) -> Glib::RefPtr<TlsClientConnectionImpl>;
 
 
   /** Sets @a conn's expected server identity, which is used both to tell
@@ -180,7 +180,7 @@ public:
    * expected server identity, or <tt>nullptr</tt> if the expected identity is not
    * known.
    */
-  Glib::RefPtr<SocketConnectable> get_server_identity();
+  auto get_server_identity() -> Glib::RefPtr<SocketConnectable>;
 
   /** Gets @a conn's expected server identity
    *
@@ -190,7 +190,7 @@ public:
    * expected server identity, or <tt>nullptr</tt> if the expected identity is not
    * known.
    */
-  Glib::RefPtr<const SocketConnectable> get_server_identity() const;
+  auto get_server_identity() const -> Glib::RefPtr<const SocketConnectable>;
 
 
 #ifndef GIOMM_DISABLE_DEPRECATED
@@ -231,7 +231,7 @@ public:
    *
    * @return The validation flags.
    */
-  TlsCertificateFlags get_validation_flags() const;
+  auto get_validation_flags() const -> TlsCertificateFlags;
 #endif // GIOMM_DISABLE_DEPRECATED
 
 
@@ -248,7 +248,7 @@ public:
    * @return The list of
    * CA DNs.
    */
-  std::vector< Glib::RefPtr<Glib::ByteArray> > get_accepted_cas();
+  auto get_accepted_cas() -> std::vector< Glib::RefPtr<Glib::ByteArray> >;
 
 
   /** Gets the list of distinguished names of the Certificate Authorities
@@ -264,7 +264,7 @@ public:
    * @return The list of
    * CA DNs.
    */
-  std::vector< Glib::RefPtr<const Glib::ByteArray> > get_accepted_cas() const;
+  auto get_accepted_cas() const -> std::vector< Glib::RefPtr<const Glib::ByteArray> >;
 
 
   /** Possibly copies session state from one connection to another, for use
@@ -325,7 +325,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<SocketConnectable> > property_server_identity() ;
+  auto property_server_identity() -> Glib::PropertyProxy< Glib::RefPtr<SocketConnectable> > ;
 
 /** A SocketConnectable describing the identity of the server that
    * is expected on the other end of the connection.
@@ -347,7 +347,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketConnectable> > property_server_identity() const;
+  auto property_server_identity() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketConnectable> >;
 
 
 #ifndef GIOMM_DISABLE_DEPRECATED
@@ -380,7 +380,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< TlsCertificateFlags > property_validation_flags() ;
+  auto property_validation_flags() -> Glib::PropertyProxy< TlsCertificateFlags > ;
 
 /** What steps to perform when validating a certificate received from
    * a server. Server certificates that fail to validate in any of the
@@ -410,7 +410,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< TlsCertificateFlags > property_validation_flags() const;
+  auto property_validation_flags() const -> Glib::PropertyProxy_ReadOnly< TlsCertificateFlags >;
 
 #endif // GIOMM_DISABLE_DEPRECATED
 
@@ -442,7 +442,7 @@ namespace Glib
    * @relates Gio::TlsClientConnection
    */
   GIOMM_API
-  Glib::RefPtr<Gio::TlsClientConnection> wrap(GTlsClientConnection* object, bool take_copy = false);
+  auto wrap(GTlsClientConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsClientConnection>;
 
 } // namespace Glib
 

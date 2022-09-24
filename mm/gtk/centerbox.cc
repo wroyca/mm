@@ -51,7 +51,7 @@ namespace
 namespace Glib
 {
 
-Gtk::CenterBox* wrap(GtkCenterBox* object, bool take_copy)
+auto wrap(GtkCenterBox* object, bool take_copy) -> Gtk::CenterBox*
 {
   return dynamic_cast<Gtk::CenterBox *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -64,7 +64,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& CenterBox_Class::init()
+auto CenterBox_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -96,7 +96,7 @@ void CenterBox_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* CenterBox_Class::wrap_new(GObject* o)
+auto CenterBox_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new CenterBox((GtkCenterBox*)(o)));
 
@@ -123,7 +123,7 @@ CenterBox::CenterBox(CenterBox&& src) noexcept
   , Orientable(std::move(src))
 {}
 
-CenterBox& CenterBox::operator=(CenterBox&& src) noexcept
+auto CenterBox::operator=(CenterBox&& src) noexcept -> CenterBox&
 {
   Widget::operator=(std::move(src));
   Orientable::operator=(std::move(src));
@@ -137,13 +137,13 @@ CenterBox::~CenterBox() noexcept
 
 CenterBox::CppClassType CenterBox::centerbox_class_; // initialize static member
 
-GType CenterBox::get_type()
+auto CenterBox::get_type() -> GType
 {
   return centerbox_class_.init().get_type();
 }
 
 
-GType CenterBox::get_base_type()
+auto CenterBox::get_base_type() -> GType
 {
   return gtk_center_box_get_type();
 }
@@ -164,12 +164,12 @@ void CenterBox::set_start_widget(Widget& child)
   gtk_center_box_set_start_widget(gobj(), (child).gobj());
 }
 
-Widget* CenterBox::get_start_widget()
+auto CenterBox::get_start_widget() -> Widget*
 {
   return Glib::wrap(gtk_center_box_get_start_widget(gobj()));
 }
 
-const Widget* CenterBox::get_start_widget() const
+auto CenterBox::get_start_widget() const -> const Widget*
 {
   return const_cast<CenterBox*>(this)->get_start_widget();
 }
@@ -179,12 +179,12 @@ void CenterBox::set_center_widget(Widget& child)
   gtk_center_box_set_center_widget(gobj(), (child).gobj());
 }
 
-Widget* CenterBox::get_center_widget()
+auto CenterBox::get_center_widget() -> Widget*
 {
   return Glib::wrap(gtk_center_box_get_center_widget(gobj()));
 }
 
-const Widget* CenterBox::get_center_widget() const
+auto CenterBox::get_center_widget() const -> const Widget*
 {
   return const_cast<CenterBox*>(this)->get_center_widget();
 }
@@ -194,12 +194,12 @@ void CenterBox::set_end_widget(Widget& child)
   gtk_center_box_set_end_widget(gobj(), (child).gobj());
 }
 
-Widget* CenterBox::get_end_widget()
+auto CenterBox::get_end_widget() -> Widget*
 {
   return Glib::wrap(gtk_center_box_get_end_widget(gobj()));
 }
 
-const Widget* CenterBox::get_end_widget() const
+auto CenterBox::get_end_widget() const -> const Widget*
 {
   return const_cast<CenterBox*>(this)->get_end_widget();
 }
@@ -209,7 +209,7 @@ void CenterBox::set_baseline_position(BaselinePosition position)
   gtk_center_box_set_baseline_position(gobj(), static_cast<GtkBaselinePosition>(position));
 }
 
-BaselinePosition CenterBox::get_baseline_position()
+auto CenterBox::get_baseline_position() -> BaselinePosition
 {
   return static_cast<BaselinePosition>(gtk_center_box_get_baseline_position(gobj()));
 }
@@ -219,12 +219,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<BaselinePosition>::v
   "Type BaselinePosition cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< BaselinePosition > CenterBox::property_baseline_position()
+auto CenterBox::property_baseline_position() -> Glib::PropertyProxy< BaselinePosition >
 {
   return Glib::PropertyProxy< BaselinePosition >(this, "baseline-position");
 }
 
-Glib::PropertyProxy_ReadOnly< BaselinePosition > CenterBox::property_baseline_position() const
+auto CenterBox::property_baseline_position() const -> Glib::PropertyProxy_ReadOnly< BaselinePosition >
 {
   return Glib::PropertyProxy_ReadOnly< BaselinePosition >(this, "baseline-position");
 }

@@ -66,11 +66,11 @@ class GTKMM_API CellRendererCombo : public CellRendererText
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   CellRendererCombo(CellRendererCombo&& src) noexcept;
-  CellRendererCombo& operator=(CellRendererCombo&& src) noexcept;
+  auto operator=(CellRendererCombo&& src) noexcept -> CellRendererCombo&;
 
   // noncopyable
   CellRendererCombo(const CellRendererCombo&) = delete;
-  CellRendererCombo& operator=(const CellRendererCombo&) = delete;
+  auto operator=(const CellRendererCombo&) -> CellRendererCombo& = delete;
 
   ~CellRendererCombo() noexcept override;
 
@@ -90,19 +90,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkCellRendererCombo*       gobj()       { return reinterpret_cast<GtkCellRendererCombo*>(gobject_); }
+  auto       gobj() -> GtkCellRendererCombo*       { return reinterpret_cast<GtkCellRendererCombo*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkCellRendererCombo* gobj() const { return reinterpret_cast<GtkCellRendererCombo*>(gobject_); }
+  auto gobj() const -> const GtkCellRendererCombo* { return reinterpret_cast<GtkCellRendererCombo*>(gobject_); }
 
 private:
 
@@ -135,7 +135,7 @@ public:
    * (relative to the combo box model).
    */
 
-  Glib::SignalProxy<void(const Glib::ustring&, const TreeModel::iterator&)> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void(const Glib::ustring&, const TreeModel::iterator&)>;
 
 
   /** Holds a tree model containing the possible values for the combo box.
@@ -144,7 +144,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gtk::TreeModel> > property_model() ;
+  auto property_model() -> Glib::PropertyProxy< Glib::RefPtr<Gtk::TreeModel> > ;
 
 /** Holds a tree model containing the possible values for the combo box.
    * Use the text_column property to specify the column holding the values.
@@ -152,7 +152,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gtk::TreeModel> > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gtk::TreeModel> >;
 
   /** Specifies the model column which holds the possible values for the
    * combo box.
@@ -169,7 +169,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_text_column() ;
+  auto property_text_column() -> Glib::PropertyProxy< int > ;
 
 /** Specifies the model column which holds the possible values for the
    * combo box.
@@ -186,7 +186,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_text_column() const;
+  auto property_text_column() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** If <tt>true</tt>, the cell renderer will include an entry and allow to enter
    * values other than the ones in the popup list.
@@ -196,7 +196,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_has_entry() ;
+  auto property_has_entry() -> Glib::PropertyProxy< bool > ;
 
 /** If <tt>true</tt>, the cell renderer will include an entry and allow to enter
    * values other than the ones in the popup list.
@@ -206,10 +206,10 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_entry() const;
+  auto property_has_entry() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
-  Glib::PropertyProxy_Base _property_renderable() override;
+  auto _property_renderable() -> Glib::PropertyProxy_Base override;
 
 
 public:
@@ -239,7 +239,7 @@ namespace Glib
    * @relates Gtk::CellRendererCombo
    */
   GTKMM_API
-  Gtk::CellRendererCombo* wrap(GtkCellRendererCombo* object, bool take_copy = false);
+  auto wrap(GtkCellRendererCombo* object, bool take_copy = false) -> Gtk::CellRendererCombo*;
 } //namespace Glib
 
 

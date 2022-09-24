@@ -48,30 +48,30 @@ class GTKMM_API Border
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   Border();
 
   explicit Border(GtkBorder* gobject, bool make_a_copy = true);
 
   Border(const Border& other);
-  Border& operator=(const Border& other);
+  auto operator=(const Border& other) -> Border&;
 
   Border(Border&& other) noexcept;
-  Border& operator=(Border&& other) noexcept;
+  auto operator=(Border&& other) noexcept -> Border&;
 
   ~Border() noexcept;
 
   void swap(Border& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  GtkBorder*       gobj()       { return gobject_; }
+  auto       gobj() -> GtkBorder*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const GtkBorder* gobj() const { return gobject_; }
+  auto gobj() const -> const GtkBorder* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  GtkBorder* gobj_copy() const;
+  auto gobj_copy() const -> GtkBorder*;
 
 protected:
   GtkBorder* gobject_;
@@ -82,7 +82,7 @@ public:
 
   /** Get the width of the left border.
    */
-  int get_left() const;
+  auto get_left() const -> int;
 
   /** Set the width of the left border.
    */
@@ -90,7 +90,7 @@ public:
 
   /** Get the width of the right border.
    */
-  int get_right() const;
+  auto get_right() const -> int;
 
   /** Set the width of the right border.
    */
@@ -98,7 +98,7 @@ public:
 
   /** Get the width of the top border.
    */
-  int get_top() const;
+  auto get_top() const -> int;
 
   /** Set the width of the top border.
    */
@@ -106,7 +106,7 @@ public:
 
   /** Get the width of the bottom border.
    */
-  int get_bottom() const;
+  auto get_bottom() const -> int;
 
   /** Set the width of the bottom border.
    */
@@ -142,7 +142,7 @@ namespace Glib
  * @relates Gtk::Border
  */
 GTKMM_API
-Gtk::Border wrap(GtkBorder* object, bool take_copy = false);
+auto wrap(GtkBorder* object, bool take_copy = false) -> Gtk::Border;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

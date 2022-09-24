@@ -37,8 +37,8 @@ using std::strlen;
 namespace
 {
 
-char* SignalProxy_Scale_format_value_callback(GtkScale* /* scale */,
-  double value, gpointer user_data)
+auto SignalProxy_Scale_format_value_callback(GtkScale* /* scale */,
+  double value, gpointer user_data) -> char*
 {
   auto the_slot = static_cast<Gtk::Scale::SlotFormatValue*>(user_data);
 
@@ -101,7 +101,7 @@ namespace
 namespace Glib
 {
 
-Gtk::Scale* wrap(GtkScale* object, bool take_copy)
+auto wrap(GtkScale* object, bool take_copy) -> Gtk::Scale*
 {
   return dynamic_cast<Gtk::Scale *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -114,7 +114,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Scale_Class::init()
+auto Scale_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -145,7 +145,7 @@ void Scale_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Scale_Class::wrap_new(GObject* o)
+auto Scale_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Scale((GtkScale*)(o)));
 
@@ -171,7 +171,7 @@ Scale::Scale(Scale&& src) noexcept
 : Gtk::Range(std::move(src))
 {}
 
-Scale& Scale::operator=(Scale&& src) noexcept
+auto Scale::operator=(Scale&& src) noexcept -> Scale&
 {
   Gtk::Range::operator=(std::move(src));
   return *this;
@@ -184,13 +184,13 @@ Scale::~Scale() noexcept
 
 Scale::CppClassType Scale::scale_class_; // initialize static member
 
-GType Scale::get_type()
+auto Scale::get_type() -> GType
 {
   return scale_class_.init().get_type();
 }
 
 
-GType Scale::get_base_type()
+auto Scale::get_base_type() -> GType
 {
   return gtk_scale_get_type();
 }
@@ -211,7 +211,7 @@ void Scale::set_digits(int digits)
   gtk_scale_set_digits(gobj(), digits);
 }
 
-int Scale::get_digits() const
+auto Scale::get_digits() const -> int
 {
   return gtk_scale_get_digits(const_cast<GtkScale*>(gobj()));
 }
@@ -221,7 +221,7 @@ void Scale::set_draw_value(bool draw_value)
   gtk_scale_set_draw_value(gobj(), static_cast<int>(draw_value));
 }
 
-bool Scale::get_draw_value() const
+auto Scale::get_draw_value() const -> bool
 {
   return gtk_scale_get_draw_value(const_cast<GtkScale*>(gobj()));
 }
@@ -231,7 +231,7 @@ void Scale::set_value_pos(PositionType pos)
   gtk_scale_set_value_pos(gobj(), static_cast<GtkPositionType>(pos));
 }
 
-PositionType Scale::get_value_pos() const
+auto Scale::get_value_pos() const -> PositionType
 {
   return static_cast<PositionType>(gtk_scale_get_value_pos(const_cast<GtkScale*>(gobj())));
 }
@@ -241,12 +241,12 @@ void Scale::set_has_origin(bool has_origin)
   gtk_scale_set_has_origin(gobj(), static_cast<int>(has_origin));
 }
 
-bool Scale::get_has_origin() const
+auto Scale::get_has_origin() const -> bool
 {
   return gtk_scale_get_has_origin(const_cast<GtkScale*>(gobj()));
 }
 
-Glib::RefPtr<Pango::Layout> Scale::get_layout()
+auto Scale::get_layout() -> Glib::RefPtr<Pango::Layout>
 {
   auto retvalue = Glib::wrap(gtk_scale_get_layout(gobj()));
   if(retvalue)
@@ -254,7 +254,7 @@ Glib::RefPtr<Pango::Layout> Scale::get_layout()
   return retvalue;
 }
 
-Glib::RefPtr<const Pango::Layout> Scale::get_layout() const
+auto Scale::get_layout() const -> Glib::RefPtr<const Pango::Layout>
 {
   return const_cast<Scale*>(this)->get_layout();
 }
@@ -275,22 +275,22 @@ void Scale::clear_marks()
 }
 
 
-Glib::PropertyProxy< int > Scale::property_digits()
+auto Scale::property_digits() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "digits");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Scale::property_digits() const
+auto Scale::property_digits() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "digits");
 }
 
-Glib::PropertyProxy< bool > Scale::property_draw_value()
+auto Scale::property_draw_value() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "draw-value");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Scale::property_draw_value() const
+auto Scale::property_draw_value() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "draw-value");
 }
@@ -299,22 +299,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<PositionType>::value
   "Type PositionType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< PositionType > Scale::property_value_pos()
+auto Scale::property_value_pos() -> Glib::PropertyProxy< PositionType >
 {
   return Glib::PropertyProxy< PositionType >(this, "value-pos");
 }
 
-Glib::PropertyProxy_ReadOnly< PositionType > Scale::property_value_pos() const
+auto Scale::property_value_pos() const -> Glib::PropertyProxy_ReadOnly< PositionType >
 {
   return Glib::PropertyProxy_ReadOnly< PositionType >(this, "value-pos");
 }
 
-Glib::PropertyProxy< bool > Scale::property_has_origin()
+auto Scale::property_has_origin() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "has-origin");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Scale::property_has_origin() const
+auto Scale::property_has_origin() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "has-origin");
 }

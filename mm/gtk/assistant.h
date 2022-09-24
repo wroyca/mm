@@ -69,11 +69,11 @@ class GTKMM_API Assistant : public Window
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Assistant(Assistant&& src) noexcept;
-  Assistant& operator=(Assistant&& src) noexcept;
+  auto operator=(Assistant&& src) noexcept -> Assistant&;
 
   // noncopyable
   Assistant(const Assistant&) = delete;
-  Assistant& operator=(const Assistant&) = delete;
+  auto operator=(const Assistant&) -> Assistant& = delete;
 
   ~Assistant() noexcept override;
 
@@ -93,19 +93,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkAssistant*       gobj()       { return reinterpret_cast<GtkAssistant*>(gobject_); }
+  auto       gobj() -> GtkAssistant*       { return reinterpret_cast<GtkAssistant*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkAssistant* gobj() const { return reinterpret_cast<GtkAssistant*>(gobject_); }
+  auto gobj() const -> const GtkAssistant* { return reinterpret_cast<GtkAssistant*>(gobject_); }
 
 private:
 
@@ -150,7 +150,7 @@ public:
    * page in the @a assistant, or -1 if the @a assistant has no pages,
    * or no current page.
    */
-  int get_current_page() const;
+  auto get_current_page() const -> int;
 
   /** Switches the page to @a page_num.
    *
@@ -169,7 +169,7 @@ public:
    *
    * @return The number of pages in the @a assistant.
    */
-  int get_n_pages() const;
+  auto get_n_pages() const -> int;
 
   /** Returns the child widget contained in page number @a page_num.
    *
@@ -178,7 +178,7 @@ public:
    * @return The child widget, or <tt>nullptr</tt>
    * if @a page_num is out of bounds.
    */
-  Widget* get_nth_page(int page_num);
+  auto get_nth_page(int page_num) -> Widget*;
 
   /** Returns the child widget contained in page number @a page_num.
    *
@@ -187,21 +187,21 @@ public:
    * @return The child widget, or <tt>nullptr</tt>
    * if @a page_num is out of bounds.
    */
-  const Widget* get_nth_page(int page_num) const;
+  auto get_nth_page(int page_num) const -> const Widget*;
 
   /** Prepends a page to the @a assistant.
    *
    * @param page A `Gtk::Widget`.
    * @return The index (starting at 0) of the inserted page.
    */
-  int prepend_page(Widget& page);
+  auto prepend_page(Widget& page) -> int;
 
   /** Appends a page to the @a assistant.
    *
    * @param page A `Gtk::Widget`.
    * @return The index (starting at 0) of the inserted page.
    */
-  int append_page(Widget& page);
+  auto append_page(Widget& page) -> int;
 
   /** Inserts a page in the @a assistant at a given position.
    *
@@ -210,7 +210,7 @@ public:
    * or -1 to append the page to the @a assistant.
    * @return The index (starting from 0) of the inserted page.
    */
-  int insert_page(Widget& page, int position);
+  auto insert_page(Widget& page, int position) -> int;
 
   /** Removes the @a page_num’s page from @a assistant.
    *
@@ -238,7 +238,7 @@ public:
    * @param page A page of @a assistant.
    * @return The page type of @a page.
    */
-  AssistantPage::Type get_page_type(const Widget& page) const;
+  auto get_page_type(const Widget& page) const -> AssistantPage::Type;
 
   /** Sets a title for @a page.
    *
@@ -255,7 +255,7 @@ public:
    * @param page A page of @a assistant.
    * @return The title for @a page.
    */
-  Glib::ustring get_page_title(const Widget& page) const;
+  auto get_page_title(const Widget& page) const -> Glib::ustring;
 
 
   /** Sets whether @a page contents are complete.
@@ -273,7 +273,7 @@ public:
    * @param page A page of @a assistant.
    * @return <tt>true</tt> if @a page is complete.
    */
-  bool get_page_complete(const Widget& page) const;
+  auto get_page_complete(const Widget& page) const -> bool;
 
   /** Adds a widget to the action area of a `Gtk::Assistant`.
    *
@@ -318,27 +318,27 @@ public:
    * @param child A child of @a assistant.
    * @return The `Gtk::AssistantPage` for @a child.
    */
-  Glib::RefPtr<AssistantPage> get_page(Widget& child);
+  auto get_page(Widget& child) -> Glib::RefPtr<AssistantPage>;
 
   /** Returns the `Gtk::AssistantPage` object for @a child.
    *
    * @param child A child of @a assistant.
    * @return The `Gtk::AssistantPage` for @a child.
    */
-  Glib::RefPtr<const AssistantPage> get_page(const Widget& child) const;
+  auto get_page(const Widget& child) const -> Glib::RefPtr<const AssistantPage>;
 
 
   /** Gets a list model of the assistant pages.
    *
    * @return A list model of the pages.
    */
-  Glib::RefPtr<Gio::ListModel> get_pages();
+  auto get_pages() -> Glib::RefPtr<Gio::ListModel>;
 
   /** Gets a list model of the assistant pages.
    *
    * @return A list model of the pages.
    */
-  Glib::RefPtr<const Gio::ListModel> get_pages() const;
+  auto get_pages() const -> Glib::RefPtr<const Gio::ListModel>;
 
   // no_default_handler because GtkAssistantClass is private.
 
@@ -357,7 +357,7 @@ public:
    * @param page The current page.
    */
 
-  Glib::SignalProxy<void(Gtk::Widget*)> signal_prepare();
+  auto signal_prepare() -> Glib::SignalProxy<void(Gtk::Widget*)>;
 
 
   /**
@@ -379,7 +379,7 @@ public:
    * the progress page.
    */
 
-  Glib::SignalProxy<void()> signal_apply();
+  auto signal_apply() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -393,7 +393,7 @@ public:
    * Gtk::AssistantPage::Type::CONFIRM) is clicked.
    */
 
-  Glib::SignalProxy<void()> signal_close();
+  auto signal_close() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -405,7 +405,7 @@ public:
    * Emitted when then the cancel button is clicked.
    */
 
-  Glib::SignalProxy<void()> signal_cancel();
+  auto signal_cancel() -> Glib::SignalProxy<void()>;
 
 
   //Ignore action signals.
@@ -422,7 +422,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_header_bar() const;
+  auto property_use_header_bar() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** `Gio::ListModel` containing the pages.
@@ -430,7 +430,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > property_pages() const;
+  auto property_pages() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >;
 
 
 public:
@@ -460,7 +460,7 @@ namespace Glib
    * @relates Gtk::Assistant
    */
   GTKMM_API
-  Gtk::Assistant* wrap(GtkAssistant* object, bool take_copy = false);
+  auto wrap(GtkAssistant* object, bool take_copy = false) -> Gtk::Assistant*;
 } //namespace Glib
 
 

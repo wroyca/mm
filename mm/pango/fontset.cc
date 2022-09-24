@@ -25,7 +25,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-static gboolean fontset_foreach_callback(PangoFontset* /* fontset */, PangoFont* font, gpointer data)
+static auto fontset_foreach_callback(PangoFontset* /* fontset */, PangoFont* font, gpointer data) -> gboolean
 {
   try
   {
@@ -61,7 +61,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Pango::Fontset> wrap(PangoFontset* object, bool take_copy)
+auto wrap(PangoFontset* object, bool take_copy) -> Glib::RefPtr<Pango::Fontset>
 {
   return Glib::make_refptr_for_instance<Pango::Fontset>( dynamic_cast<Pango::Fontset*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -76,7 +76,7 @@ namespace Pango
 
 /* The *_Class implementation: */
 
-const Glib::Class& Fontset_Class::init()
+auto Fontset_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -107,7 +107,7 @@ void Fontset_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Fontset_Class::wrap_new(GObject* object)
+auto Fontset_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Fontset((PangoFontset*)object);
 }
@@ -115,7 +115,7 @@ Glib::ObjectBase* Fontset_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-PangoFontset* Fontset::gobj_copy()
+auto Fontset::gobj_copy() -> PangoFontset*
 {
   reference();
   return gobj();
@@ -138,7 +138,7 @@ Fontset::Fontset(Fontset&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Fontset& Fontset::operator=(Fontset&& src) noexcept
+auto Fontset::operator=(Fontset&& src) noexcept -> Fontset&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -151,24 +151,24 @@ Fontset::~Fontset() noexcept
 
 Fontset::CppClassType Fontset::fontset_class_; // initialize static member
 
-GType Fontset::get_type()
+auto Fontset::get_type() -> GType
 {
   return fontset_class_.init().get_type();
 }
 
 
-GType Fontset::get_base_type()
+auto Fontset::get_base_type() -> GType
 {
   return pango_fontset_get_type();
 }
 
 
-Glib::RefPtr<Font> Fontset::get_font(guint wc) const
+auto Fontset::get_font(guint wc) const -> Glib::RefPtr<Font>
 {
   return Glib::wrap(pango_fontset_get_font(const_cast<PangoFontset*>(gobj()), wc));
 }
 
-FontMetrics Fontset::get_metrics() const
+auto Fontset::get_metrics() const -> FontMetrics
 {
   return FontMetrics((pango_fontset_get_metrics(const_cast<PangoFontset*>(gobj()))));
 }

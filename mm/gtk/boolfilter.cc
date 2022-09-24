@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::BoolFilter> wrap(GtkBoolFilter* object, bool take_copy)
+auto wrap(GtkBoolFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::BoolFilter>
 {
   return Glib::make_refptr_for_instance<Gtk::BoolFilter>( dynamic_cast<Gtk::BoolFilter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& BoolFilter_Class::init()
+auto BoolFilter_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -73,7 +73,7 @@ void BoolFilter_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* BoolFilter_Class::wrap_new(GObject* object)
+auto BoolFilter_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new BoolFilter((GtkBoolFilter*)object);
 }
@@ -81,7 +81,7 @@ Glib::ObjectBase* BoolFilter_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkBoolFilter* BoolFilter::gobj_copy()
+auto BoolFilter::gobj_copy() -> GtkBoolFilter*
 {
   reference();
   return gobj();
@@ -104,7 +104,7 @@ BoolFilter::BoolFilter(BoolFilter&& src) noexcept
 : Gtk::Filter(std::move(src))
 {}
 
-BoolFilter& BoolFilter::operator=(BoolFilter&& src) noexcept
+auto BoolFilter::operator=(BoolFilter&& src) noexcept -> BoolFilter&
 {
   Gtk::Filter::operator=(std::move(src));
   return *this;
@@ -117,13 +117,13 @@ BoolFilter::~BoolFilter() noexcept
 
 BoolFilter::CppClassType BoolFilter::boolfilter_class_; // initialize static member
 
-GType BoolFilter::get_type()
+auto BoolFilter::get_type() -> GType
 {
   return boolfilter_class_.init().get_type();
 }
 
 
-GType BoolFilter::get_base_type()
+auto BoolFilter::get_base_type() -> GType
 {
   return gtk_bool_filter_get_type();
 }
@@ -139,12 +139,12 @@ BoolFilter::BoolFilter(const Glib::RefPtr<Expression<bool>>& expression)
 
 }
 
-Glib::RefPtr<BoolFilter> BoolFilter::create(const Glib::RefPtr<Expression<bool>>& expression)
+auto BoolFilter::create(const Glib::RefPtr<Expression<bool>>& expression) -> Glib::RefPtr<BoolFilter>
 {
   return Glib::make_refptr_for_instance<BoolFilter>( new BoolFilter(expression) );
 }
 
-Glib::RefPtr<Expression<bool>> BoolFilter::get_expression()
+auto BoolFilter::get_expression() -> Glib::RefPtr<Expression<bool>>
 {
   auto retvalue = Glib::wrap<bool>(gtk_bool_filter_get_expression(gobj()));
   if(retvalue)
@@ -152,7 +152,7 @@ Glib::RefPtr<Expression<bool>> BoolFilter::get_expression()
   return retvalue;
 }
 
-Glib::RefPtr<const Expression<bool>> BoolFilter::get_expression() const
+auto BoolFilter::get_expression() const -> Glib::RefPtr<const Expression<bool>>
 {
   auto retvalue = Glib::wrap<bool>(gtk_bool_filter_get_expression(const_cast<GtkBoolFilter*>(gobj())));
   if(retvalue)
@@ -165,7 +165,7 @@ void BoolFilter::set_expression(const Glib::RefPtr<Expression<bool>>& expression
   gtk_bool_filter_set_expression(gobj(), ((expression) ? (expression)->gobj() : nullptr));
 }
 
-bool BoolFilter::get_invert() const
+auto BoolFilter::get_invert() const -> bool
 {
   return gtk_bool_filter_get_invert(const_cast<GtkBoolFilter*>(gobj()));
 }
@@ -180,22 +180,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Express
   "Type Glib::RefPtr<Expression<bool>> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Expression<bool>> > BoolFilter::property_expression()
+auto BoolFilter::property_expression() -> Glib::PropertyProxy< Glib::RefPtr<Expression<bool>> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Expression<bool>> >(this, "expression");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Expression<bool>> > BoolFilter::property_expression() const
+auto BoolFilter::property_expression() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Expression<bool>> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Expression<bool>> >(this, "expression");
 }
 
-Glib::PropertyProxy< bool > BoolFilter::property_invert()
+auto BoolFilter::property_invert() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "invert");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > BoolFilter::property_invert() const
+auto BoolFilter::property_invert() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "invert");
 }

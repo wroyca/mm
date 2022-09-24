@@ -69,11 +69,11 @@ class GTKMM_API ActionBar
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ActionBar(ActionBar&& src) noexcept;
-  ActionBar& operator=(ActionBar&& src) noexcept;
+  auto operator=(ActionBar&& src) noexcept -> ActionBar&;
 
   // noncopyable
   ActionBar(const ActionBar&) = delete;
-  ActionBar& operator=(const ActionBar&) = delete;
+  auto operator=(const ActionBar&) -> ActionBar& = delete;
 
   ~ActionBar() noexcept override;
 
@@ -93,19 +93,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkActionBar*       gobj()       { return reinterpret_cast<GtkActionBar*>(gobject_); }
+  auto       gobj() -> GtkActionBar*       { return reinterpret_cast<GtkActionBar*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkActionBar* gobj() const { return reinterpret_cast<GtkActionBar*>(gobject_); }
+  auto gobj() const -> const GtkActionBar* { return reinterpret_cast<GtkActionBar*>(gobject_); }
 
 private:
 
@@ -142,13 +142,13 @@ public:
    *
    * @return The center `Gtk::Widget`.
    */
-  Widget* get_center_widget();
+  auto get_center_widget() -> Widget*;
 
   /** Retrieves the center bar widget of the bar.
    *
    * @return The center `Gtk::Widget`.
    */
-  const Widget* get_center_widget() const;
+  auto get_center_widget() const -> const Widget*;
 
   /** Sets the center widget for the `Gtk::ActionBar`.
    *
@@ -182,7 +182,7 @@ public:
    * @return The current value of the property_revealed()
    * property.
    */
-  bool get_revealed() const;
+  auto get_revealed() const -> bool;
 
   /** Controls whether the action bar shows its contents.
    *
@@ -193,7 +193,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_revealed() ;
+  auto property_revealed() -> Glib::PropertyProxy< bool > ;
 
 /** Controls whether the action bar shows its contents.
    *
@@ -204,7 +204,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_revealed() const;
+  auto property_revealed() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   // Gtk::ActionBar has no signals nor vfuncs as of 3.90.
@@ -237,7 +237,7 @@ namespace Glib
    * @relates Gtk::ActionBar
    */
   GTKMM_API
-  Gtk::ActionBar* wrap(GtkActionBar* object, bool take_copy = false);
+  auto wrap(GtkActionBar* object, bool take_copy = false) -> Gtk::ActionBar*;
 } //namespace Glib
 
 

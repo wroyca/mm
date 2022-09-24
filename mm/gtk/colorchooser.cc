@@ -29,7 +29,7 @@
 namespace Gtk
 {
 
-Gdk::RGBA ColorChooser::get_rgba() const
+auto ColorChooser::get_rgba() const -> Gdk::RGBA
 {
   GdkRGBA crgba;
   gtk_color_chooser_get_rgba(const_cast<GtkColorChooser*>(gobj()), &crgba);
@@ -48,7 +48,7 @@ namespace
 {
 
 
-static void ColorChooser_signal_color_activated_callback(GtkColorChooser* self, const GdkRGBA* p0,void* data)
+void ColorChooser_signal_color_activated_callback(GtkColorChooser* self, const GdkRGBA* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Gdk::RGBA&)>;
@@ -70,7 +70,7 @@ static void ColorChooser_signal_color_activated_callback(GtkColorChooser* self, 
   }
 }
 
-static const Glib::SignalProxyInfo ColorChooser_signal_color_activated_info =
+const Glib::SignalProxyInfo ColorChooser_signal_color_activated_info =
 {
   "color-activated",
   (GCallback) &ColorChooser_signal_color_activated_callback,
@@ -84,7 +84,7 @@ static const Glib::SignalProxyInfo ColorChooser_signal_color_activated_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::ColorChooser> wrap(GtkColorChooser* object, bool take_copy)
+auto wrap(GtkColorChooser* object, bool take_copy) -> Glib::RefPtr<Gtk::ColorChooser>
 {
   return Glib::make_refptr_for_instance<Gtk::ColorChooser>( dynamic_cast<Gtk::ColorChooser*> (Glib::wrap_auto_interface<Gtk::ColorChooser> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -99,7 +99,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& ColorChooser_Class::init()
+auto ColorChooser_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -167,7 +167,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* ColorChooser_Class::wrap_new(GObject* object)
+auto ColorChooser_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ColorChooser((GtkColorChooser*)(object));
 }
@@ -194,7 +194,7 @@ ColorChooser::ColorChooser(ColorChooser&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-ColorChooser& ColorChooser::operator=(ColorChooser&& src) noexcept
+auto ColorChooser::operator=(ColorChooser&& src) noexcept -> ColorChooser&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -211,13 +211,13 @@ void ColorChooser::add_interface(GType gtype_implementer)
 
 ColorChooser::CppClassType ColorChooser::colorchooser_class_; // initialize static member
 
-GType ColorChooser::get_type()
+auto ColorChooser::get_type() -> GType
 {
   return colorchooser_class_.init().get_type();
 }
 
 
-GType ColorChooser::get_base_type()
+auto ColorChooser::get_base_type() -> GType
 {
   return gtk_color_chooser_get_type();
 }
@@ -228,7 +228,7 @@ void ColorChooser::set_rgba(const Gdk::RGBA& color)
   gtk_color_chooser_set_rgba(gobj(), (color).gobj());
 }
 
-bool ColorChooser::get_use_alpha() const
+auto ColorChooser::get_use_alpha() const -> bool
 {
   return gtk_color_chooser_get_use_alpha(const_cast<GtkColorChooser*>(gobj()));
 }
@@ -239,7 +239,7 @@ void ColorChooser::set_use_alpha(bool use_alpha)
 }
 
 
-Glib::SignalProxy<void(const Gdk::RGBA&)> ColorChooser::signal_color_activated()
+auto ColorChooser::signal_color_activated() -> Glib::SignalProxy<void(const Gdk::RGBA&)>
 {
   return Glib::SignalProxy<void(const Gdk::RGBA&) >(this, &ColorChooser_signal_color_activated_info);
 }
@@ -249,22 +249,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
   "Type Gdk::RGBA cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Gdk::RGBA > ColorChooser::property_rgba()
+auto ColorChooser::property_rgba() -> Glib::PropertyProxy< Gdk::RGBA >
 {
   return Glib::PropertyProxy< Gdk::RGBA >(this, "rgba");
 }
 
-Glib::PropertyProxy_ReadOnly< Gdk::RGBA > ColorChooser::property_rgba() const
+auto ColorChooser::property_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >
 {
   return Glib::PropertyProxy_ReadOnly< Gdk::RGBA >(this, "rgba");
 }
 
-Glib::PropertyProxy< bool > ColorChooser::property_use_alpha()
+auto ColorChooser::property_use_alpha() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "use-alpha");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > ColorChooser::property_use_alpha() const
+auto ColorChooser::property_use_alpha() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "use-alpha");
 }

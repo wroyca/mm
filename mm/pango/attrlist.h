@@ -56,30 +56,30 @@ class PANGOMM_API AttrList
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   AttrList();
 
   explicit AttrList(PangoAttrList* gobject, bool make_a_copy = true);
 
   AttrList(const AttrList& other);
-  AttrList& operator=(const AttrList& other);
+  auto operator=(const AttrList& other) -> AttrList&;
 
   AttrList(AttrList&& other) noexcept;
-  AttrList& operator=(AttrList&& other) noexcept;
+  auto operator=(AttrList&& other) noexcept -> AttrList&;
 
   ~AttrList() noexcept;
 
   void swap(AttrList& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  PangoAttrList*       gobj()       { return gobject_; }
+  auto       gobj() -> PangoAttrList*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const PangoAttrList* gobj() const { return gobject_; }
+  auto gobj() const -> const PangoAttrList* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  PangoAttrList* gobj_copy() const;
+  auto gobj_copy() const -> PangoAttrList*;
 
 protected:
   PangoAttrList* gobject_;
@@ -179,7 +179,7 @@ public:
    * @return A list of all attributes in @a list. To free this value,
    * call [method @a Pango.Attribute.
    */
-  std::vector<Attribute> get_attributes() const;
+  auto get_attributes() const -> std::vector<Attribute>;
 
 
   /** Checks whether @a list and @a other_list contain the same
@@ -195,7 +195,7 @@ public:
    * @return <tt>true</tt> if the lists are equal, <tt>false</tt> if
    * they aren't.
    */
-  bool equal(const AttrList& other_list) const;
+  auto equal(const AttrList& other_list) const -> bool;
 
   /** Serializes a `Pango::AttrList` to a string.
    *
@@ -210,7 +210,7 @@ public:
    *
    * @return A newly allocated string.
    */
-  Glib::ustring to_string() const;
+  auto to_string() const -> Glib::ustring;
   // Don't replace from_string() by a constructor. A call to such a constructor would be
   // ambiguous because of AttrList(markup_text, accel_marker=0).
 
@@ -225,7 +225,7 @@ public:
    * @param text A string.
    * @return A new `Pango::AttrList`.
    */
-  static AttrList from_string(const Glib::ustring& text);
+  static auto from_string(const Glib::ustring& text) -> AttrList;
 
   /** Create a iterator initialized to the beginning of the list.
    *
@@ -235,7 +235,7 @@ public:
    * `Pango::AttrIterator`, which should be freed with
    * Pango::AttrIterator::destroy().
    */
-  AttrIter get_iter();
+  auto get_iter() -> AttrIter;
 
   //TODO: Though it doesn't seem important:
   //PangoAttrList* pango_attr_list_filter (PangoAttrList* list, PangoAttrFilterFunc  func, gpointer             data)
@@ -270,7 +270,7 @@ namespace Glib
  * @relates Pango::AttrList
  */
 PANGOMM_API
-Pango::AttrList wrap(PangoAttrList* object, bool take_copy = false);
+auto wrap(PangoAttrList* object, bool take_copy = false) -> Pango::AttrList;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

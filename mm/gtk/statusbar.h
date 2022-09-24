@@ -66,11 +66,11 @@ class GTKMM_API Statusbar : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Statusbar(Statusbar&& src) noexcept;
-  Statusbar& operator=(Statusbar&& src) noexcept;
+  auto operator=(Statusbar&& src) noexcept -> Statusbar&;
 
   // noncopyable
   Statusbar(const Statusbar&) = delete;
-  Statusbar& operator=(const Statusbar&) = delete;
+  auto operator=(const Statusbar&) -> Statusbar& = delete;
 
   ~Statusbar() noexcept override;
 
@@ -90,19 +90,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkStatusbar*       gobj()       { return reinterpret_cast<GtkStatusbar*>(gobject_); }
+  auto       gobj() -> GtkStatusbar*       { return reinterpret_cast<GtkStatusbar*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkStatusbar* gobj() const { return reinterpret_cast<GtkStatusbar*>(gobject_); }
+  auto gobj() const -> const GtkStatusbar* { return reinterpret_cast<GtkStatusbar*>(gobject_); }
 
 private:
 
@@ -120,13 +120,13 @@ public:
    * the new message is being used in.
    * @return An integer id.
    */
-  guint get_context_id(const Glib::ustring& context_description);
+  auto get_context_id(const Glib::ustring& context_description) -> guint;
 
   /** Pushes a new message onto a statusbar's stack.
    * @param text The message to add to the statusbar.
    * @param context_id The message's context id, as returned by get_context_id()
    */
-  guint push(const Glib::ustring& text, guint context_id = 0);
+  auto push(const Glib::ustring& text, guint context_id = 0) -> guint;
 
 
   /** Removes the first message in the `Gtk::Statusbar`’s stack
@@ -170,7 +170,7 @@ public:
    * @param text The message that was pushed.
    */
 
-  Glib::SignalProxy<void(guint, const Glib::ustring&)> signal_text_pushed();
+  auto signal_text_pushed() -> Glib::SignalProxy<void(guint, const Glib::ustring&)>;
 
 
   /**
@@ -185,7 +185,7 @@ public:
    * @param text The message that was just popped.
    */
 
-  Glib::SignalProxy<void(guint, const Glib::ustring&)> signal_text_popped();
+  auto signal_text_popped() -> Glib::SignalProxy<void(guint, const Glib::ustring&)>;
 
 
 public:
@@ -215,7 +215,7 @@ namespace Glib
    * @relates Gtk::Statusbar
    */
   GTKMM_API
-  Gtk::Statusbar* wrap(GtkStatusbar* object, bool take_copy = false);
+  auto wrap(GtkStatusbar* object, bool take_copy = false) -> Gtk::Statusbar*;
 } //namespace Glib
 
 

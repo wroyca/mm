@@ -37,14 +37,14 @@ extern "C"
 {
 //Declarations of the *_get_type() functions:
 
-GType pango_context_get_type(void);
-GType pango_font_get_type(void);
-GType pango_font_face_get_type(void);
-GType pango_font_family_get_type(void);
-GType pango_font_map_get_type(void);
-GType pango_fontset_get_type(void);
-GType pango_layout_get_type(void);
-GType pango_renderer_get_type(void);
+auto pango_context_get_type(void) -> GType;
+auto pango_font_get_type(void) -> GType;
+auto pango_font_face_get_type(void) -> GType;
+auto pango_font_family_get_type(void) -> GType;
+auto pango_font_map_get_type(void) -> GType;
+auto pango_fontset_get_type(void) -> GType;
+auto pango_layout_get_type(void) -> GType;
+auto pango_renderer_get_type(void) -> GType;
 
 //Declarations of the *_error_quark() functions:
 
@@ -54,14 +54,14 @@ namespace Pango {
 
 //Declarations of the *_Class::wrap_new() methods, instead of including all the private headers:
 
-class Context_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Font_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class FontFace_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class FontFamily_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class FontMap_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Fontset_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Layout_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Renderer_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
+class Context_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Font_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class FontFace_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class FontFamily_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class FontMap_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Fontset_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Layout_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Renderer_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 
 void wrap_init()
 {

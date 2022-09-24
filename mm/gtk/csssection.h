@@ -62,19 +62,19 @@ class GTKMM_API CssSection final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GtkCssSection*       gobj();
+  auto       gobj() -> GtkCssSection*;
 
   ///Provides access to the underlying C instance.
-  const GtkCssSection* gobj() const;
+  auto gobj() const -> const GtkCssSection*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkCssSection* gobj_copy() const;
+  auto gobj_copy() const -> GtkCssSection*;
 
   CssSection() = delete;
 
   // noncopyable
   CssSection(const CssSection&) = delete;
-  CssSection& operator=(const CssSection&) = delete;
+  auto operator=(const CssSection&) -> CssSection& = delete;
 
 protected:
   // Do not derive this.  Gtk::CssSection can neither be constructed nor deleted.
@@ -95,7 +95,7 @@ public:
    * @param end The end location.
    * @return A new `Gtk::CssSection`.
    */
-  static Glib::RefPtr<CssSection> create(const Glib::RefPtr<Gio::File>& file, const CssLocation& start, const CssLocation& end);
+  static auto create(const Glib::RefPtr<Gio::File>& file, const CssLocation& start, const CssLocation& end) -> Glib::RefPtr<CssSection>;
 
 
   /** Prints the section into a human-readable text form.
@@ -105,7 +105,7 @@ public:
    *
    * @return A new string.
    */
-  Glib::ustring to_string() const;
+  auto to_string() const -> Glib::ustring;
 
 
   /** Gets the parent section for the given `section`.
@@ -119,7 +119,7 @@ public:
    *
    * @return The parent section.
    */
-  Glib::RefPtr<CssSection> get_parent();
+  auto get_parent() -> Glib::RefPtr<CssSection>;
 
   /** Gets the parent section for the given `section`.
    *
@@ -132,7 +132,7 @@ public:
    *
    * @return The parent section.
    */
-  Glib::RefPtr<const CssSection> get_parent() const;
+  auto get_parent() const -> Glib::RefPtr<const CssSection>;
 
   /** Gets the file that @a section was parsed from.
    *
@@ -142,7 +142,7 @@ public:
    * @return The `Gio::File` from which the `section`
    * was parsed.
    */
-  Glib::RefPtr<Gio::File> get_file();
+  auto get_file() -> Glib::RefPtr<Gio::File>;
 
   /** Gets the file that @a section was parsed from.
    *
@@ -152,21 +152,21 @@ public:
    * @return The `Gio::File` from which the `section`
    * was parsed.
    */
-  Glib::RefPtr<const Gio::File> get_file() const;
+  auto get_file() const -> Glib::RefPtr<const Gio::File>;
 
   /** Returns the location in the CSS document where this section starts.
    *
    * @return The start location of
    * this section.
    */
-  CssLocation get_start_location() const;
+  auto get_start_location() const -> CssLocation;
 
   /** Returns the location in the CSS document where this section ends.
    *
    * @return The end location of
    * this section.
    */
-  CssLocation get_end_location() const;
+  auto get_end_location() const -> CssLocation;
 
 
 };
@@ -186,7 +186,7 @@ namespace Glib
  * @relates Gtk::CssSection
  */
 GTKMM_API
-Glib::RefPtr<Gtk::CssSection> wrap(GtkCssSection* object, bool take_copy = false);
+auto wrap(GtkCssSection* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CssSection>;
 
 } // namespace Glib
 

@@ -47,7 +47,7 @@ namespace
 namespace Glib
 {
 
-Gtk::Viewport* wrap(GtkViewport* object, bool take_copy)
+auto wrap(GtkViewport* object, bool take_copy) -> Gtk::Viewport*
 {
   return dynamic_cast<Gtk::Viewport *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -60,7 +60,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Viewport_Class::init()
+auto Viewport_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -92,7 +92,7 @@ void Viewport_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Viewport_Class::wrap_new(GObject* o)
+auto Viewport_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Viewport((GtkViewport*)(o)));
 
@@ -119,7 +119,7 @@ Viewport::Viewport(Viewport&& src) noexcept
   , Scrollable(std::move(src))
 {}
 
-Viewport& Viewport::operator=(Viewport&& src) noexcept
+auto Viewport::operator=(Viewport&& src) noexcept -> Viewport&
 {
   Gtk::Widget::operator=(std::move(src));
   Scrollable::operator=(std::move(src));
@@ -133,13 +133,13 @@ Viewport::~Viewport() noexcept
 
 Viewport::CppClassType Viewport::viewport_class_; // initialize static member
 
-GType Viewport::get_type()
+auto Viewport::get_type() -> GType
 {
   return viewport_class_.init().get_type();
 }
 
 
-GType Viewport::get_base_type()
+auto Viewport::get_base_type() -> GType
 {
   return gtk_viewport_get_type();
 }
@@ -160,7 +160,7 @@ void Viewport::set_scroll_to_focus(bool scroll_to_focus)
   gtk_viewport_set_scroll_to_focus(gobj(), static_cast<int>(scroll_to_focus));
 }
 
-bool Viewport::get_scroll_to_focus() const
+auto Viewport::get_scroll_to_focus() const -> bool
 {
   return gtk_viewport_get_scroll_to_focus(const_cast<GtkViewport*>(gobj()));
 }
@@ -170,33 +170,33 @@ void Viewport::set_child(Widget& child)
   gtk_viewport_set_child(gobj(), (child).gobj());
 }
 
-Widget* Viewport::get_child()
+auto Viewport::get_child() -> Widget*
 {
   return Glib::wrap(gtk_viewport_get_child(gobj()));
 }
 
-const Widget* Viewport::get_child() const
+auto Viewport::get_child() const -> const Widget*
 {
   return const_cast<Viewport*>(this)->get_child();
 }
 
 
-Glib::PropertyProxy< bool > Viewport::property_scroll_to_focus()
+auto Viewport::property_scroll_to_focus() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "scroll-to-focus");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Viewport::property_scroll_to_focus() const
+auto Viewport::property_scroll_to_focus() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "scroll-to-focus");
 }
 
-Glib::PropertyProxy< Widget* > Viewport::property_child()
+auto Viewport::property_child() -> Glib::PropertyProxy< Widget* >
 {
   return Glib::PropertyProxy< Widget* >(this, "child");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > Viewport::property_child() const
+auto Viewport::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
 }

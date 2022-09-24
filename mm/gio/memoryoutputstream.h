@@ -76,7 +76,7 @@ public:
 
   // noncopyable
   MemoryOutputStream(const MemoryOutputStream&) = delete;
-  MemoryOutputStream& operator=(const MemoryOutputStream&) = delete;
+  auto operator=(const MemoryOutputStream&) -> MemoryOutputStream& = delete;
 
 private:  friend class MemoryOutputStream_Class;
   static CppClassType memoryoutputstream_class_;
@@ -90,28 +90,28 @@ protected:
 public:
 
   MemoryOutputStream(MemoryOutputStream&& src) noexcept;
-  MemoryOutputStream& operator=(MemoryOutputStream&& src) noexcept;
+  auto operator=(MemoryOutputStream&& src) noexcept -> MemoryOutputStream&;
 
   ~MemoryOutputStream() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GMemoryOutputStream*       gobj()       { return reinterpret_cast<GMemoryOutputStream*>(gobject_); }
+  auto       gobj() -> GMemoryOutputStream*       { return reinterpret_cast<GMemoryOutputStream*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GMemoryOutputStream* gobj() const { return reinterpret_cast<GMemoryOutputStream*>(gobject_); }
+  auto gobj() const -> const GMemoryOutputStream* { return reinterpret_cast<GMemoryOutputStream*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GMemoryOutputStream* gobj_copy();
+  auto gobj_copy() -> GMemoryOutputStream*;
 
 private:
 
@@ -128,11 +128,11 @@ protected:
 
 public:
 
-  static Glib::RefPtr<MemoryOutputStream> create();
+  static auto create() -> Glib::RefPtr<MemoryOutputStream>;
 
   // TODO: more C++-like interface using sigc++
 
-  static Glib::RefPtr<MemoryOutputStream> create(void* data, gsize size, GReallocFunc realloc_function, GDestroyNotify destroy_function);
+  static auto create(void* data, gsize size, GReallocFunc realloc_function, GDestroyNotify destroy_function) -> Glib::RefPtr<MemoryOutputStream>;
 
 
   /** Gets any loaded data from the @a ostream.
@@ -143,7 +143,7 @@ public:
    * @return Pointer to the stream's data, or <tt>nullptr</tt> if the data
    * has been stolen.
    */
-  void* get_data();
+  auto get_data() -> void*;
 
   /** Gets any loaded data from the @a ostream.
    *
@@ -153,7 +153,7 @@ public:
    * @return Pointer to the stream's data, or <tt>nullptr</tt> if the data
    * has been stolen.
    */
-  const void* get_data() const;
+  auto get_data() const -> const void*;
 
   /** Gets any loaded data from the @a ostream. Ownership of the data
    * is transferred to the caller; when no longer needed it must be
@@ -167,7 +167,7 @@ public:
    * @return The stream's data, or <tt>nullptr</tt> if it has previously
    * been stolen.
    */
-  void* steal_data();
+  auto steal_data() -> void*;
 
 
   /** Gets the size of the currently allocated data area (available from
@@ -188,7 +188,7 @@ public:
    *
    * @return The number of bytes allocated for the data buffer.
    */
-  gsize get_size() const;
+  auto get_size() const -> gsize;
 
   /** Returns the number of bytes from the start up to including the last
    * byte written in the stream that has not been truncated away.
@@ -197,7 +197,7 @@ public:
    *
    * @return The number of bytes written to the stream.
    */
-  gsize get_data_size() const;
+  auto get_data_size() const -> gsize;
 
 
   /** Returns data from the @a ostream as a Bytes. @a ostream must be
@@ -207,7 +207,7 @@ public:
    *
    * @return The stream's data.
    */
-  Glib::RefPtr<Glib::Bytes> steal_as_bytes();
+  auto steal_as_bytes() -> Glib::RefPtr<Glib::Bytes>;
 
   /** Pointer to buffer where data will be written.
    *
@@ -216,7 +216,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< void* > property_data() const;
+  auto property_data() const -> Glib::PropertyProxy_ReadOnly< void* >;
 
 
   /** Size of data written to the buffer.
@@ -228,7 +228,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< gulong > property_data_size() const;
+  auto property_data_size() const -> Glib::PropertyProxy_ReadOnly< gulong >;
 
 
   /** Current size of the data buffer.
@@ -240,7 +240,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< gulong > property_size() const;
+  auto property_size() const -> Glib::PropertyProxy_ReadOnly< gulong >;
 
 
 public:
@@ -270,7 +270,7 @@ namespace Glib
    * @relates Gio::MemoryOutputStream
    */
   GIOMM_API
-  Glib::RefPtr<Gio::MemoryOutputStream> wrap(GMemoryOutputStream* object, bool take_copy = false);
+  auto wrap(GMemoryOutputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::MemoryOutputStream>;
 }
 
 

@@ -82,7 +82,7 @@ public:
 
   // noncopyable
   MediaStream(const MediaStream&) = delete;
-  MediaStream& operator=(const MediaStream&) = delete;
+  auto operator=(const MediaStream&) -> MediaStream& = delete;
 
 private:  friend class MediaStream_Class;
   static CppClassType mediastream_class_;
@@ -96,28 +96,28 @@ protected:
 public:
 
   MediaStream(MediaStream&& src) noexcept;
-  MediaStream& operator=(MediaStream&& src) noexcept;
+  auto operator=(MediaStream&& src) noexcept -> MediaStream&;
 
   ~MediaStream() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkMediaStream*       gobj()       { return reinterpret_cast<GtkMediaStream*>(gobject_); }
+  auto       gobj() -> GtkMediaStream*       { return reinterpret_cast<GtkMediaStream*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkMediaStream* gobj() const { return reinterpret_cast<GtkMediaStream*>(gobject_); }
+  auto gobj() const -> const GtkMediaStream* { return reinterpret_cast<GtkMediaStream*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkMediaStream* gobj_copy();
+  auto gobj_copy() -> GtkMediaStream*;
 
 private:
 
@@ -130,7 +130,7 @@ public:
    *
    * @return <tt>true</tt> if the stream is prepared.
    */
-  bool is_prepared() const;
+  auto is_prepared() const -> bool;
 
 
   /** If the stream is in an error state, returns the `GError`
@@ -151,19 +151,19 @@ public:
    * @return <tt>nullptr</tt> if not in an
    * error state or the `GError` of the stream.
    */
-  Glib::Error get_error() const;
+  auto get_error() const -> Glib::Error;
 
   /** Returns whether the stream has audio.
    *
    * @return <tt>true</tt> if the stream has audio.
    */
-  bool has_audio() const;
+  auto has_audio() const -> bool;
 
   /** Returns whether the stream has video.
    *
    * @return <tt>true</tt> if the stream has video.
    */
-  bool has_video() const;
+  auto has_video() const -> bool;
 
   /** Starts playing the stream.
    *
@@ -181,7 +181,7 @@ public:
    *
    * @return <tt>true</tt> if the stream is playing.
    */
-  bool get_playing() const;
+  auto get_playing() const -> bool;
 
   /** Starts or pauses playback of the stream.
    *
@@ -193,13 +193,13 @@ public:
    *
    * @return <tt>true</tt> if playback is finished.
    */
-  bool get_ended() const;
+  auto get_ended() const -> bool;
 
   /** Returns the current presentation timestamp in microseconds.
    *
    * @return The timestamp in microseconds.
    */
-  gint64 get_timestamp() const;
+  auto get_timestamp() const -> gint64;
 
   /** Gets the duration of the stream.
    *
@@ -207,7 +207,7 @@ public:
    *
    * @return The duration of the stream or 0 if not known.
    */
-  gint64 get_duration() const;
+  auto get_duration() const -> gint64;
 
   /** Checks if a stream may be seekable.
    *
@@ -221,13 +221,13 @@ public:
    *
    * @return <tt>true</tt> if the stream may support seeking.
    */
-  bool is_seekable() const;
+  auto is_seekable() const -> bool;
 
   /** Checks if there is currently a seek operation going on.
    *
    * @return <tt>true</tt> if a seek operation is ongoing.
    */
-  bool is_seeking() const;
+  auto is_seeking() const -> bool;
 
   /** Start a seek operation on @a self to @a timestamp.
    *
@@ -251,7 +251,7 @@ public:
    *
    * @return <tt>true</tt> if the stream should loop.
    */
-  bool get_loop() const;
+  auto get_loop() const -> bool;
 
   /** Sets whether the stream should loop.
    *
@@ -272,7 +272,7 @@ public:
    *
    * @return <tt>true</tt> if the stream is muted.
    */
-  bool get_muted() const;
+  auto get_muted() const -> bool;
 
   /** Sets whether the audio stream should be muted.
    *
@@ -293,7 +293,7 @@ public:
    *
    * @return Volume of the stream from 0.0 to 1.0.
    */
-  double get_volume() const;
+  auto get_volume() const -> double;
 
   /** Sets the volume of the audio stream.
    *
@@ -493,7 +493,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_prepared() ;
+  auto property_prepared() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the stream has finished initializing and existence of
    * audio and video is known.
@@ -503,7 +503,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_prepared() const;
+  auto property_prepared() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** <tt>nullptr</tt> for a properly working stream or the `GError`
    * that the stream is in.
@@ -511,7 +511,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::Error > property_error() const;
+  auto property_error() const -> Glib::PropertyProxy_ReadOnly< Glib::Error >;
 
 
   /** Whether the stream contains audio.
@@ -521,7 +521,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_audio() const;
+  auto property_has_audio() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether the stream contains video.
@@ -531,7 +531,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_video() const;
+  auto property_has_video() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether the stream is currently playing.
@@ -541,7 +541,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_playing() ;
+  auto property_playing() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the stream is currently playing.
    *
@@ -550,7 +550,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_playing() const;
+  auto property_playing() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Set when playback has finished.
    *
@@ -559,7 +559,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_ended() const;
+  auto property_ended() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** The current presentation timestamp in microseconds.
@@ -569,7 +569,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< gint64 > property_timestamp() const;
+  auto property_timestamp() const -> Glib::PropertyProxy_ReadOnly< gint64 >;
 
 
   /** The stream's duration in microseconds or 0 if unknown.
@@ -579,7 +579,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< gint64 > property_duration() const;
+  auto property_duration() const -> Glib::PropertyProxy_ReadOnly< gint64 >;
 
 
   /** Set unless the stream is known to not support seeking.
@@ -589,7 +589,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_seekable() const;
+  auto property_seekable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Set while a seek is in progress.
@@ -599,7 +599,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_seeking() const;
+  auto property_seeking() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Try to restart the media from the beginning once it ended.
@@ -609,7 +609,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_loop() ;
+  auto property_loop() -> Glib::PropertyProxy< bool > ;
 
 /** Try to restart the media from the beginning once it ended.
    *
@@ -618,7 +618,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_loop() const;
+  auto property_loop() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the audio stream should be muted.
    *
@@ -627,7 +627,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_muted() ;
+  auto property_muted() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the audio stream should be muted.
    *
@@ -636,7 +636,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_muted() const;
+  auto property_muted() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Volume of the audio stream.
    *
@@ -645,7 +645,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_volume() ;
+  auto property_volume() -> Glib::PropertyProxy< double > ;
 
 /** Volume of the audio stream.
    *
@@ -654,11 +654,11 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_volume() const;
+  auto property_volume() const -> Glib::PropertyProxy_ReadOnly< double >;
 
 
 protected:
-    virtual bool play_vfunc();
+    virtual auto play_vfunc() -> bool;
 
     virtual void pause_vfunc();
 
@@ -702,7 +702,7 @@ namespace Glib
    * @relates Gtk::MediaStream
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::MediaStream> wrap(GtkMediaStream* object, bool take_copy = false);
+  auto wrap(GtkMediaStream* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MediaStream>;
 }
 
 

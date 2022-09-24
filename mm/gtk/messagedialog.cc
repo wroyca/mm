@@ -83,7 +83,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::ButtonsType>::value_type()
+auto Glib::Value<Gtk::ButtonsType>::value_type() -> GType
 {
   return gtk_buttons_type_get_type();
 }
@@ -92,7 +92,7 @@ GType Glib::Value<Gtk::ButtonsType>::value_type()
 namespace Glib
 {
 
-Gtk::MessageDialog* wrap(GtkMessageDialog* object, bool take_copy)
+auto wrap(GtkMessageDialog* object, bool take_copy) -> Gtk::MessageDialog*
 {
   return dynamic_cast<Gtk::MessageDialog *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -105,7 +105,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& MessageDialog_Class::init()
+auto MessageDialog_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -136,7 +136,7 @@ void MessageDialog_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* MessageDialog_Class::wrap_new(GObject* o)
+auto MessageDialog_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return new MessageDialog((GtkMessageDialog*)(o)); //top-level windows can not be manage()ed.
 
@@ -162,7 +162,7 @@ MessageDialog::MessageDialog(MessageDialog&& src) noexcept
 : Gtk::Dialog(std::move(src))
 {}
 
-MessageDialog& MessageDialog::operator=(MessageDialog&& src) noexcept
+auto MessageDialog::operator=(MessageDialog&& src) noexcept -> MessageDialog&
 {
   Gtk::Dialog::operator=(std::move(src));
   return *this;
@@ -175,24 +175,24 @@ MessageDialog::~MessageDialog() noexcept
 
 MessageDialog::CppClassType MessageDialog::messagedialog_class_; // initialize static member
 
-GType MessageDialog::get_type()
+auto MessageDialog::get_type() -> GType
 {
   return messagedialog_class_.init().get_type();
 }
 
 
-GType MessageDialog::get_base_type()
+auto MessageDialog::get_base_type() -> GType
 {
   return gtk_message_dialog_get_type();
 }
 
 
-Box* MessageDialog::get_message_area()
+auto MessageDialog::get_message_area() -> Box*
 {
   return Glib::wrap((GtkBox*)(gtk_message_dialog_get_message_area(gobj())));
 }
 
-const Box* MessageDialog::get_message_area() const
+auto MessageDialog::get_message_area() const -> const Box*
 {
   return const_cast<MessageDialog*>(this)->get_message_area();
 }
@@ -202,52 +202,52 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<MessageType>::value,
   "Type MessageType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< MessageType > MessageDialog::property_message_type()
+auto MessageDialog::property_message_type() -> Glib::PropertyProxy< MessageType >
 {
   return Glib::PropertyProxy< MessageType >(this, "message-type");
 }
 
-Glib::PropertyProxy_ReadOnly< MessageType > MessageDialog::property_message_type() const
+auto MessageDialog::property_message_type() const -> Glib::PropertyProxy_ReadOnly< MessageType >
 {
   return Glib::PropertyProxy_ReadOnly< MessageType >(this, "message-type");
 }
 
-Glib::PropertyProxy< Glib::ustring > MessageDialog::property_text()
+auto MessageDialog::property_text() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "text");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > MessageDialog::property_text() const
+auto MessageDialog::property_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "text");
 }
 
-Glib::PropertyProxy< bool > MessageDialog::property_use_markup()
+auto MessageDialog::property_use_markup() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "use-markup");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > MessageDialog::property_use_markup() const
+auto MessageDialog::property_use_markup() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "use-markup");
 }
 
-Glib::PropertyProxy< Glib::ustring > MessageDialog::property_secondary_text()
+auto MessageDialog::property_secondary_text() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "secondary-text");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > MessageDialog::property_secondary_text() const
+auto MessageDialog::property_secondary_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "secondary-text");
 }
 
-Glib::PropertyProxy< bool > MessageDialog::property_secondary_use_markup()
+auto MessageDialog::property_secondary_use_markup() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "secondary-use-markup");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > MessageDialog::property_secondary_use_markup() const
+auto MessageDialog::property_secondary_use_markup() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "secondary-use-markup");
 }
@@ -256,7 +256,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Box*>::value,
   "Type Box* cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Box* > MessageDialog::property_message_area() const
+auto MessageDialog::property_message_area() const -> Glib::PropertyProxy_ReadOnly< Box* >
 {
   return Glib::PropertyProxy_ReadOnly< Box* >(this, "message-area");
 }

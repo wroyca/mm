@@ -72,7 +72,7 @@ namespace
 namespace Glib
 {
 
-Gtk::ComboBoxText* wrap(GtkComboBoxText* object, bool take_copy)
+auto wrap(GtkComboBoxText* object, bool take_copy) -> Gtk::ComboBoxText*
 {
   return dynamic_cast<Gtk::ComboBoxText *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -85,7 +85,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ComboBoxText_Class::init()
+auto ComboBoxText_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -116,7 +116,7 @@ void ComboBoxText_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* ComboBoxText_Class::wrap_new(GObject* o)
+auto ComboBoxText_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new ComboBoxText((GtkComboBoxText*)(o)));
 
@@ -142,7 +142,7 @@ ComboBoxText::ComboBoxText(ComboBoxText&& src) noexcept
 : ComboBox(std::move(src))
 {}
 
-ComboBoxText& ComboBoxText::operator=(ComboBoxText&& src) noexcept
+auto ComboBoxText::operator=(ComboBoxText&& src) noexcept -> ComboBoxText&
 {
   ComboBox::operator=(std::move(src));
   return *this;
@@ -155,13 +155,13 @@ ComboBoxText::~ComboBoxText() noexcept
 
 ComboBoxText::CppClassType ComboBoxText::comboboxtext_class_; // initialize static member
 
-GType ComboBoxText::get_type()
+auto ComboBoxText::get_type() -> GType
 {
   return comboboxtext_class_.init().get_type();
 }
 
 
-GType ComboBoxText::get_base_type()
+auto ComboBoxText::get_base_type() -> GType
 {
   return gtk_combo_box_text_get_type();
 }
@@ -202,7 +202,7 @@ void ComboBoxText::remove_text(int position)
   gtk_combo_box_text_remove(gobj(), position);
 }
 
-Glib::ustring ComboBoxText::get_active_text() const
+auto ComboBoxText::get_active_text() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_combo_box_text_get_active_text(const_cast<GtkComboBoxText*>(gobj())));
 }

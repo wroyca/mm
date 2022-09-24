@@ -166,31 +166,31 @@ enum class IOFlags
 };
 
 /** @ingroup glibmmEnums */
-inline IOFlags operator|(IOFlags lhs, IOFlags rhs)
+inline auto operator|(IOFlags lhs, IOFlags rhs) -> IOFlags
   { return static_cast<IOFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline IOFlags operator&(IOFlags lhs, IOFlags rhs)
+inline auto operator&(IOFlags lhs, IOFlags rhs) -> IOFlags
   { return static_cast<IOFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline IOFlags operator^(IOFlags lhs, IOFlags rhs)
+inline auto operator^(IOFlags lhs, IOFlags rhs) -> IOFlags
   { return static_cast<IOFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline IOFlags operator~(IOFlags flags)
+inline auto operator~(IOFlags flags) -> IOFlags
   { return static_cast<IOFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup glibmmEnums */
-inline IOFlags& operator|=(IOFlags& lhs, IOFlags rhs)
+inline auto operator|=(IOFlags& lhs, IOFlags rhs) -> IOFlags&
   { return (lhs = static_cast<IOFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline IOFlags& operator&=(IOFlags& lhs, IOFlags rhs)
+inline auto operator&=(IOFlags& lhs, IOFlags rhs) -> IOFlags&
   { return (lhs = static_cast<IOFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline IOFlags& operator^=(IOFlags& lhs, IOFlags rhs)
+inline auto operator^=(IOFlags& lhs, IOFlags rhs) -> IOFlags&
   { return (lhs = static_cast<IOFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -252,31 +252,31 @@ enum class IOCondition
 };
 
 /** @ingroup glibmmEnums */
-inline IOCondition operator|(IOCondition lhs, IOCondition rhs)
+inline auto operator|(IOCondition lhs, IOCondition rhs) -> IOCondition
   { return static_cast<IOCondition>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline IOCondition operator&(IOCondition lhs, IOCondition rhs)
+inline auto operator&(IOCondition lhs, IOCondition rhs) -> IOCondition
   { return static_cast<IOCondition>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline IOCondition operator^(IOCondition lhs, IOCondition rhs)
+inline auto operator^(IOCondition lhs, IOCondition rhs) -> IOCondition
   { return static_cast<IOCondition>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline IOCondition operator~(IOCondition flags)
+inline auto operator~(IOCondition flags) -> IOCondition
   { return static_cast<IOCondition>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup glibmmEnums */
-inline IOCondition& operator|=(IOCondition& lhs, IOCondition rhs)
+inline auto operator|=(IOCondition& lhs, IOCondition rhs) -> IOCondition&
   { return (lhs = static_cast<IOCondition>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline IOCondition& operator&=(IOCondition& lhs, IOCondition rhs)
+inline auto operator&=(IOCondition& lhs, IOCondition rhs) -> IOCondition&
   { return (lhs = static_cast<IOCondition>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline IOCondition& operator^=(IOCondition& lhs, IOCondition rhs)
+inline auto operator^=(IOCondition& lhs, IOCondition rhs) -> IOCondition&
   { return (lhs = static_cast<IOCondition>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -331,7 +331,7 @@ public:
 
   GLIBMM_API IOChannelError(Code error_code, const Glib::ustring& error_message);
   GLIBMM_API explicit IOChannelError(GError* gobject);
-  GLIBMM_API Code code() const;
+  GLIBMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -371,7 +371,7 @@ private:
 
 
   IOChannel(IOChannel&& other) noexcept;
-  IOChannel& operator=(IOChannel&& other) noexcept;
+  auto operator=(IOChannel&& other) noexcept -> IOChannel&;
 
 
 public:
@@ -389,7 +389,7 @@ public:
    * @return An IOChannel for the opened file.
    * @throw Glib::FileError
    */
-  static Glib::RefPtr<IOChannel> create_from_file(const std::string& filename, const std::string& mode);
+  static auto create_from_file(const std::string& filename, const std::string& mode) -> Glib::RefPtr<IOChannel>;
 
 
   /** Creates an I/O channel from a file descriptor.
@@ -411,7 +411,7 @@ public:
    * corresponding concept is file <tt>HANDLE</tt>. There isn't as of yet
    * a way to get IOChannels for Win32 file <tt>HANDLE</tt>s.
    */
-  static Glib::RefPtr<IOChannel> create_from_fd(int fd);
+  static auto create_from_fd(int fd) -> Glib::RefPtr<IOChannel>;
 
 
 #ifdef G_OS_WIN32
@@ -444,7 +444,7 @@ public:
    * @throw Glib::IOChannelError
    * @throw Glib::ConvertError
    */
-  IOStatus read(gunichar& thechar);
+  auto read(gunichar& thechar) -> IOStatus;
 
 
   /** Read a character sequence into memory.
@@ -459,7 +459,7 @@ public:
    * @throw Glib::IOChannelError
    * @throw Glib::ConvertError
    */
-  IOStatus read(char* buf, gsize count, gsize& bytes_read);
+  auto read(char* buf, gsize count, gsize& bytes_read) -> IOStatus;
 
   /** Read a maximum of @a count bytes into @a str.
    * @param[out] str The characters that have been read.
@@ -468,7 +468,7 @@ public:
    * @throw Glib::IOChannelError
    * @throw Glib::ConvertError
    */
-  IOStatus read(Glib::ustring& str, gsize count);
+  auto read(Glib::ustring& str, gsize count) -> IOStatus;
 
   /** Read a whole line.
    * Reads until the line separator is found, which is included
@@ -478,7 +478,7 @@ public:
    * @throw Glib::IOChannelError
    * @throw Glib::ConvertError
    */
-  IOStatus read_line(Glib::ustring& line);
+  auto read_line(Glib::ustring& line) -> IOStatus;
 
 
   /** Reads all the remaining data from the file.
@@ -488,7 +488,7 @@ public:
    * @throw Glib::IOChannelError
    * @throw Glib::ConvertError
    */
-  IOStatus read_to_end(Glib::ustring& str);
+  auto read_to_end(Glib::ustring& str) -> IOStatus;
 
 
   /** Write a string to the I/O channel.
@@ -500,7 +500,7 @@ public:
    * @throw Glib::IOChannelError
    * @throw Glib::ConvertError
    */
-  IOStatus write(const Glib::ustring& str);
+  auto write(const Glib::ustring& str) -> IOStatus;
 
 
   /** Write a memory area of @a count bytes to the I/O channel.
@@ -511,7 +511,7 @@ public:
    * @throw Glib::IOChannelError
    * @throw Glib::ConvertError
    */
-  IOStatus write(const char* buf, gssize count, gsize& bytes_written);
+  auto write(const char* buf, gssize count, gsize& bytes_written) -> IOStatus;
 
 
   /** Write a single UCS-4 character to the I/O channel.
@@ -520,7 +520,7 @@ public:
    * @throw Glib::IOChannelError
    * @throw Glib::ConvertError
    */
-  IOStatus write(gunichar unichar);
+  auto write(gunichar unichar) -> IOStatus;
 
 
   /** Seek the I/O channel to a specific position.
@@ -532,7 +532,7 @@ public:
    * @throw Glib::IOChannelError
    * @throw Glib::ConvertError
    */
-  IOStatus seek(gint64 offset, SeekType type =  SeekType::SET);
+  auto seek(gint64 offset, SeekType type =  SeekType::SET) -> IOStatus;
 
 
   /** Flush the buffers of the I/O channel.
@@ -540,7 +540,7 @@ public:
    * @throw Glib::IOChannelError
    * @throw Glib::ConvertError
    */
-  IOStatus flush();
+  auto flush() -> IOStatus;
 
 
   /** Close the I/O channel.
@@ -551,13 +551,13 @@ public:
    * @return The status of the operation.
    * @throw Glib::IOChannelError
    */
-  IOStatus close(bool flush_pending =  true);
+  auto close(bool flush_pending =  true) -> IOStatus;
 
 
   /** Get the IOChannel internal buffer size.
    * @return The buffer size.
    */
-  gsize get_buffer_size() const;
+  auto get_buffer_size() const -> gsize;
 
 
   /** Set the internal IOChannel buffer size.
@@ -577,7 +577,7 @@ public:
    * flags.
    * @return Bitwise combination of the flags set on the channel.
    */
-  IOFlags get_flags() const;
+  auto get_flags() const -> IOFlags;
 
 
   /** Set flags on the IOChannel.
@@ -585,7 +585,7 @@ public:
    * @return The operation result code.
    * @throw Glib::IOChannelError
    */
-  IOStatus set_flags(IOFlags flags);
+  auto set_flags(IOFlags flags) -> IOStatus;
 
 
   /** Set the buffering status of the I/O channel.
@@ -611,7 +611,7 @@ public:
   /** Get the buffering status of the I/O channel.
    * @return The buffering status of the channel.
    */
-  bool get_buffered() const;
+  auto get_buffered() const -> bool;
 
 
   /** Returns an IOCondition depending on whether there is data to be
@@ -619,7 +619,7 @@ public:
    * Only the flags Glib::IOCondition::IO_IN and Glib::IOCondition::IO_OUT may be set.
    * @return Bitwise combination of Glib::IOCondition flags.
    */
-  IOCondition get_buffer_condition() const;
+  auto get_buffer_condition() const -> IOCondition;
 
 
   /** Returns whether the file/socket/whatever associated with the I/O channel
@@ -629,7 +629,7 @@ public:
    * @return Whether the channel will be closed on the final unref of the
    * IOChannel object.
    */
-  bool get_close_on_unref() const;
+  auto get_close_on_unref() const -> bool;
 
 
   /** Setting this flag to <tt>true</tt> for a channel you have already closed
@@ -671,19 +671,19 @@ public:
    * @return Glib::IOStatus::NORMAL if the encoding was successfully set.
    * @throw Glib::IOChannelError
    */
-  IOStatus set_encoding(const std::string& encoding = {});
+  auto set_encoding(const std::string& encoding = {}) -> IOStatus;
 
 
   /** Get the encoding of the I/O channel.
    * @return The current encoding of the channel.
    */
-  std::string get_encoding() const;
+  auto get_encoding() const -> std::string;
 
 
   void set_line_term(const std::string& term = {});
 
 
-  std::string get_line_term() const;
+  auto get_line_term() const -> std::string;
 
 
   /** Creates an IOSource object.
@@ -699,14 +699,14 @@ public:
    * @param condition The condition to watch for.
    * @return An IOSource object that can be polled from a MainContext's event loop.
    */
-  Glib::RefPtr<IOSource> create_watch(IOCondition condition);
+  auto create_watch(IOCondition condition) -> Glib::RefPtr<IOSource>;
 
   virtual void reference()   const;
   virtual void unreference() const;
 
 
-  GIOChannel*       gobj()       { return gobject_; }
-  const GIOChannel* gobj() const { return gobject_; }
+  auto       gobj() -> GIOChannel*       { return gobject_; }
+  auto gobj() const -> const GIOChannel* { return gobject_; }
 
 protected:
   GIOChannel* gobject_;
@@ -722,7 +722,7 @@ private:
 
 };
 
-GLIBMM_API Glib::RefPtr<IOChannel> wrap(GIOChannel* gobject, bool take_copy = false);
+GLIBMM_API auto wrap(GIOChannel* gobject, bool take_copy = false) -> Glib::RefPtr<IOChannel>;
 
 } // namespace Glib
 

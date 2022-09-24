@@ -64,11 +64,11 @@ class GTKMM_API Switch
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Switch(Switch&& src) noexcept;
-  Switch& operator=(Switch&& src) noexcept;
+  auto operator=(Switch&& src) noexcept -> Switch&;
 
   // noncopyable
   Switch(const Switch&) = delete;
-  Switch& operator=(const Switch&) = delete;
+  auto operator=(const Switch&) -> Switch& = delete;
 
   ~Switch() noexcept override;
 
@@ -88,19 +88,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkSwitch*       gobj()       { return reinterpret_cast<GtkSwitch*>(gobject_); }
+  auto       gobj() -> GtkSwitch*       { return reinterpret_cast<GtkSwitch*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkSwitch* gobj() const { return reinterpret_cast<GtkSwitch*>(gobject_); }
+  auto gobj() const -> const GtkSwitch* { return reinterpret_cast<GtkSwitch*>(gobject_); }
 
 private:
 
@@ -120,7 +120,7 @@ public:
    *
    * @return <tt>true</tt> if the `Gtk::Switch` is active, and <tt>false</tt> otherwise.
    */
-  bool get_active() const;
+  auto get_active() const -> bool;
 
 
   /** Sets the underlying state of the `Gtk::Switch`.
@@ -139,7 +139,7 @@ public:
    *
    * @return The underlying state.
    */
-  bool get_state() const;
+  auto get_state() const -> bool;
 
   /** Whether the `Gtk::Switch` widget is in its on or off state.
    *
@@ -148,7 +148,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_active() ;
+  auto property_active() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the `Gtk::Switch` widget is in its on or off state.
    *
@@ -157,7 +157,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_active() const;
+  auto property_active() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The backend state that is controlled by the switch.
    *
@@ -168,7 +168,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_state() ;
+  auto property_state() -> Glib::PropertyProxy< bool > ;
 
 /** The backend state that is controlled by the switch.
    *
@@ -179,7 +179,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_state() const;
+  auto property_state() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   //activate is an action signal that's documented as not for use by applications.
@@ -213,7 +213,7 @@ public:
    * @return <tt>true</tt> to stop the signal emission.
    */
 
-  Glib::SignalProxy<bool(bool)> signal_state_set();
+  auto signal_state_set() -> Glib::SignalProxy<bool(bool)>;
 
 
 public:
@@ -243,7 +243,7 @@ namespace Glib
    * @relates Gtk::Switch
    */
   GTKMM_API
-  Gtk::Switch* wrap(GtkSwitch* object, bool take_copy = false);
+  auto wrap(GtkSwitch* object, bool take_copy = false) -> Gtk::Switch*;
 } //namespace Glib
 
 

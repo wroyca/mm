@@ -132,7 +132,7 @@ public:
   virtual ~Device();
 
   /** This function returns the type of the device */
-  DeviceType get_type() const;
+  auto get_type() const -> DeviceType;
 
   /** Finish any pending operations for the device and also restore any
    * temporary modifications cairo has made to the device's state. This function
@@ -186,12 +186,12 @@ public:
 
   typedef cairo_device_t cobject;
 
-  inline cobject* cobj() { return m_cobject; }
-  inline const cobject* cobj() const { return m_cobject; }
+  inline auto cobj() -> cobject* { return m_cobject; }
+  inline auto cobj() const -> const cobject* { return m_cobject; }
 
   #ifndef DOXYGEN_IGNORE_THIS
   ///For use only by the cairomm implementation.
-  inline ErrorStatus get_status() const
+  inline auto get_status() const -> ErrorStatus
   { return cairo_device_status(const_cast<cairo_device_t*>(cobj())); }
   #endif //DOXYGEN_IGNORE_THIS
 

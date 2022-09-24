@@ -46,11 +46,11 @@ public:
   QueryQuark(const ustring& s);
   QueryQuark(const char* s);
   ~QueryQuark() noexcept {}
-  QueryQuark& operator=(const QueryQuark& q);
+  auto operator=(const QueryQuark& q) -> QueryQuark&;
   operator ustring() const;
 
   operator GQuark() const { return quark_; }
-  GQuark id() const { return quark_; }
+  auto id() const -> GQuark { return quark_; }
 
 private:
   GQuark quark_;
@@ -65,15 +65,15 @@ public:
 };
 
 /** @relates Glib::QueryQuark */
-inline bool
-operator==(const QueryQuark& a, const QueryQuark& b)
+inline auto
+operator==(const QueryQuark& a, const QueryQuark& b) -> bool
 {
   return a.id() == b.id();
 }
 
 /** @relates Glib::QueryQuark */
-inline bool
-operator!=(const QueryQuark& a, const QueryQuark& b)
+inline auto
+operator!=(const QueryQuark& a, const QueryQuark& b) -> bool
 {
   return a.id() != b.id();
 }

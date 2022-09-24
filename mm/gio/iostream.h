@@ -87,7 +87,7 @@ public:
 
   // noncopyable
   IOStream(const IOStream&) = delete;
-  IOStream& operator=(const IOStream&) = delete;
+  auto operator=(const IOStream&) -> IOStream& = delete;
 
 private:  friend class IOStream_Class;
   static CppClassType iostream_class_;
@@ -101,28 +101,28 @@ protected:
 public:
 
   IOStream(IOStream&& src) noexcept;
-  IOStream& operator=(IOStream&& src) noexcept;
+  auto operator=(IOStream&& src) noexcept -> IOStream&;
 
   ~IOStream() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GIOStream*       gobj()       { return reinterpret_cast<GIOStream*>(gobject_); }
+  auto       gobj() -> GIOStream*       { return reinterpret_cast<GIOStream*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GIOStream* gobj() const { return reinterpret_cast<GIOStream*>(gobject_); }
+  auto gobj() const -> const GIOStream* { return reinterpret_cast<GIOStream*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GIOStream* gobj_copy();
+  auto gobj_copy() -> GIOStream*;
 
 private:
 
@@ -209,7 +209,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static bool splice_finish(const Glib::RefPtr<AsyncResult>& result);
+  static auto splice_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Gets the input stream for this object. This is used
@@ -220,7 +220,7 @@ public:
    * @return A InputStream, owned by the IOStream.
    * Do not free.
    */
-  Glib::RefPtr<InputStream> get_input_stream();
+  auto get_input_stream() -> Glib::RefPtr<InputStream>;
 
   /** Gets the output stream for this object. This is used for
    * writing.
@@ -230,7 +230,7 @@ public:
    * @return A OutputStream, owned by the IOStream.
    * Do not free.
    */
-  Glib::RefPtr<OutputStream> get_output_stream();
+  auto get_output_stream() -> Glib::RefPtr<OutputStream>;
 
   /** Closes the stream, releasing resources related to it. This will also
    * close the individual input and output streams, if they are not already
@@ -273,10 +273,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool close(const Glib::RefPtr<Cancellable>& cancellable);
+  auto close(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A close() convenience overload.
-  bool close();
+  auto close() -> bool;
 
   void close_async(const SlotAsyncReady&slot, const Glib::RefPtr<Cancellable>& cancellable, int io_priority=Glib::PRIORITY_DEFAULT);
   void close_async(const SlotAsyncReady& slot, int io_priority = Glib::PRIORITY_DEFAULT);
@@ -291,7 +291,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool close_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto close_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
   /** Checks if a stream is closed.
    *
@@ -299,7 +299,7 @@ public:
    *
    * @return <tt>true</tt> if the stream is closed.
    */
-  bool is_closed() const;
+  auto is_closed() const -> bool;
 
   /** Checks if a stream has pending actions.
    *
@@ -307,7 +307,7 @@ public:
    *
    * @return <tt>true</tt> if @a stream has pending actions.
    */
-  bool has_pending() const;
+  auto has_pending() const -> bool;
 
   /** Sets @a stream to have actions pending. If the pending flag is
    * already set or @a stream is closed, it will return <tt>false</tt> and set
@@ -319,7 +319,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool set_pending();
+  auto set_pending() -> bool;
 
   /** Clears the pending flag on @a stream.
    *
@@ -347,31 +347,31 @@ namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline IOStream::SpliceFlags operator|(IOStream::SpliceFlags lhs, IOStream::SpliceFlags rhs)
+inline auto operator|(IOStream::SpliceFlags lhs, IOStream::SpliceFlags rhs) -> IOStream::SpliceFlags
   { return static_cast<IOStream::SpliceFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline IOStream::SpliceFlags operator&(IOStream::SpliceFlags lhs, IOStream::SpliceFlags rhs)
+inline auto operator&(IOStream::SpliceFlags lhs, IOStream::SpliceFlags rhs) -> IOStream::SpliceFlags
   { return static_cast<IOStream::SpliceFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline IOStream::SpliceFlags operator^(IOStream::SpliceFlags lhs, IOStream::SpliceFlags rhs)
+inline auto operator^(IOStream::SpliceFlags lhs, IOStream::SpliceFlags rhs) -> IOStream::SpliceFlags
   { return static_cast<IOStream::SpliceFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline IOStream::SpliceFlags operator~(IOStream::SpliceFlags flags)
+inline auto operator~(IOStream::SpliceFlags flags) -> IOStream::SpliceFlags
   { return static_cast<IOStream::SpliceFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline IOStream::SpliceFlags& operator|=(IOStream::SpliceFlags& lhs, IOStream::SpliceFlags rhs)
+inline auto operator|=(IOStream::SpliceFlags& lhs, IOStream::SpliceFlags rhs) -> IOStream::SpliceFlags&
   { return (lhs = static_cast<IOStream::SpliceFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline IOStream::SpliceFlags& operator&=(IOStream::SpliceFlags& lhs, IOStream::SpliceFlags rhs)
+inline auto operator&=(IOStream::SpliceFlags& lhs, IOStream::SpliceFlags rhs) -> IOStream::SpliceFlags&
   { return (lhs = static_cast<IOStream::SpliceFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline IOStream::SpliceFlags& operator^=(IOStream::SpliceFlags& lhs, IOStream::SpliceFlags rhs)
+inline auto operator^=(IOStream::SpliceFlags& lhs, IOStream::SpliceFlags rhs) -> IOStream::SpliceFlags&
   { return (lhs = static_cast<IOStream::SpliceFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 
@@ -386,7 +386,7 @@ namespace Glib
    * @relates Gio::IOStream
    */
   GIOMM_API
-  Glib::RefPtr<Gio::IOStream> wrap(GIOStream* object, bool take_copy = false);
+  auto wrap(GIOStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::IOStream>;
 }
 
 

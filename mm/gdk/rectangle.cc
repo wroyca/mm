@@ -37,7 +37,7 @@ Rectangle::Rectangle(int x, int y, int width, int height)
   gobject_.height = height;
 }
 
-bool Rectangle::operator==(const Rectangle& src) const
+auto Rectangle::operator==(const Rectangle& src) const -> bool
 {
   if(!gobj() && !src.gobj())
     return true;
@@ -51,54 +51,54 @@ bool Rectangle::operator==(const Rectangle& src) const
 // the destination points to one of the input rectangles.  The join() and
 // intersect() implementations rely on this ability.
 
-Rectangle& Rectangle::join(const Rectangle& src2)
+auto Rectangle::join(const Rectangle& src2) -> Rectangle&
 {
   gdk_rectangle_union(
       &gobject_, const_cast<GdkRectangle*>(&src2.gobject_), &gobject_);
   return *this;
 }
 
-Rectangle& Rectangle::intersect(const Rectangle& src2)
+auto Rectangle::intersect(const Rectangle& src2) -> Rectangle&
 {
   gdk_rectangle_intersect(
       &gobject_, const_cast<GdkRectangle*>(&src2.gobject_), &gobject_);
   return *this;
 }
 
-Rectangle& Rectangle::intersect(const Rectangle& src2, bool& rectangles_intersect)
+auto Rectangle::intersect(const Rectangle& src2, bool& rectangles_intersect) -> Rectangle&
 {
   rectangles_intersect = gdk_rectangle_intersect(
       &gobject_, const_cast<GdkRectangle*>(&src2.gobject_), &gobject_);
   return *this;
 }
 
-bool Rectangle::intersects(const Rectangle& src2) const
+auto Rectangle::intersects(const Rectangle& src2) const -> bool
 {
   return gdk_rectangle_intersect(&gobject_, &src2.gobject_, nullptr);
 }
 
-bool Rectangle::has_zero_area() const
+auto Rectangle::has_zero_area() const -> bool
 {
   return (gobject_.width == 0 || gobject_.height == 0);
 }
 
 // Freestanding functions (not Rectangle members)
 
-Rectangle join(const Rectangle& src1, const Rectangle& src2)
+auto join(const Rectangle& src1, const Rectangle& src2) -> Rectangle
 {
   Rectangle dest;
   gdk_rectangle_union(src1.gobj(), src2.gobj(), dest.gobj());
   return dest;
 }
 
-Rectangle intersect(const Rectangle& src1, const Rectangle& src2)
+auto intersect(const Rectangle& src1, const Rectangle& src2) -> Rectangle
 {
   Rectangle dest;
   gdk_rectangle_intersect(src1.gobj(), src2.gobj(), dest.gobj());
   return dest;
 }
 
-Rectangle intersect(const Rectangle& src1, const Rectangle& src2, bool& rectangles_intersect)
+auto intersect(const Rectangle& src1, const Rectangle& src2, bool& rectangles_intersect) -> Rectangle
 {
   Rectangle dest;
   rectangles_intersect = gdk_rectangle_intersect(src1.gobj(), src2.gobj(), dest.gobj());
@@ -116,12 +116,12 @@ namespace
 namespace Glib
 {
 
-Gdk::Rectangle& wrap(GdkRectangle* object)
+auto wrap(GdkRectangle* object) -> Gdk::Rectangle&
 {
   return *reinterpret_cast<Gdk::Rectangle*>(object);
 }
 
-const Gdk::Rectangle& wrap(const GdkRectangle* object)
+auto wrap(const GdkRectangle* object) -> const Gdk::Rectangle&
 {
   return *reinterpret_cast<const Gdk::Rectangle*>(object);
 }
@@ -139,7 +139,7 @@ Rectangle::Rectangle(const Rectangle& other) noexcept
 {
 }
 
-Rectangle& Rectangle::operator=(const Rectangle& other) noexcept
+auto Rectangle::operator=(const Rectangle& other) noexcept -> Rectangle&
 {
   gobject_ = other.gobject_;
   return *this;
@@ -154,14 +154,14 @@ Rectangle::Rectangle(Rectangle&& other) noexcept
   //other.gobject_ = nullptr;
 }
 
-Rectangle& Rectangle::operator=(Rectangle&& other) noexcept
+auto Rectangle::operator=(Rectangle&& other) noexcept -> Rectangle&
 {
   gobject_ = std::move(other.gobject_);
   return *this;
 }
 
 // static
-GType Rectangle::get_type()
+auto Rectangle::get_type() -> GType
 {
   return gdk_rectangle_get_type();
 }
@@ -180,12 +180,12 @@ Rectangle::Rectangle(const GdkRectangle* gobject)
 }
 
 
-bool Rectangle::contains_point(int x, int y) const
+auto Rectangle::contains_point(int x, int y) const -> bool
 {
   return gdk_rectangle_contains_point(const_cast<GdkRectangle*>(gobj()), x, y);
 }
 
-int Rectangle::get_x() const
+auto Rectangle::get_x() const -> int
 {
   return gobj()->x;
 }
@@ -195,7 +195,7 @@ void Rectangle::set_x(const int& value)
   gobj()->x = value;
 }
 
-int Rectangle::get_y() const
+auto Rectangle::get_y() const -> int
 {
   return gobj()->y;
 }
@@ -205,7 +205,7 @@ void Rectangle::set_y(const int& value)
   gobj()->y = value;
 }
 
-int Rectangle::get_width() const
+auto Rectangle::get_width() const -> int
 {
   return gobj()->width;
 }
@@ -215,7 +215,7 @@ void Rectangle::set_width(const int& value)
   gobj()->width = value;
 }
 
-int Rectangle::get_height() const
+auto Rectangle::get_height() const -> int
 {
   return gobj()->height;
 }

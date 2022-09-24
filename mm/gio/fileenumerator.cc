@@ -94,7 +94,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::FileEnumerator> wrap(GFileEnumerator* object, bool take_copy)
+auto wrap(GFileEnumerator* object, bool take_copy) -> Glib::RefPtr<Gio::FileEnumerator>
 {
   return Glib::make_refptr_for_instance<Gio::FileEnumerator>( dynamic_cast<Gio::FileEnumerator*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -109,7 +109,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& FileEnumerator_Class::init()
+auto FileEnumerator_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -140,7 +140,7 @@ void FileEnumerator_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* FileEnumerator_Class::wrap_new(GObject* object)
+auto FileEnumerator_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new FileEnumerator((GFileEnumerator*)object);
 }
@@ -148,7 +148,7 @@ Glib::ObjectBase* FileEnumerator_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GFileEnumerator* FileEnumerator::gobj_copy()
+auto FileEnumerator::gobj_copy() -> GFileEnumerator*
 {
   reference();
   return gobj();
@@ -171,7 +171,7 @@ FileEnumerator::FileEnumerator(FileEnumerator&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-FileEnumerator& FileEnumerator::operator=(FileEnumerator&& src) noexcept
+auto FileEnumerator::operator=(FileEnumerator&& src) noexcept -> FileEnumerator&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -184,19 +184,19 @@ FileEnumerator::~FileEnumerator() noexcept
 
 FileEnumerator::CppClassType FileEnumerator::fileenumerator_class_; // initialize static member
 
-GType FileEnumerator::get_type()
+auto FileEnumerator::get_type() -> GType
 {
   return fileenumerator_class_.init().get_type();
 }
 
 
-GType FileEnumerator::get_base_type()
+auto FileEnumerator::get_base_type() -> GType
 {
   return g_file_enumerator_get_type();
 }
 
 
-Glib::RefPtr<FileInfo> FileEnumerator::next_file(const Glib::RefPtr<Cancellable>& cancellable)
+auto FileEnumerator::next_file(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<FileInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_enumerator_next_file(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -205,7 +205,7 @@ Glib::RefPtr<FileInfo> FileEnumerator::next_file(const Glib::RefPtr<Cancellable>
   return retvalue;
 }
 
-Glib::RefPtr<FileInfo> FileEnumerator::next_file()
+auto FileEnumerator::next_file() -> Glib::RefPtr<FileInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_enumerator_next_file(gobj(), nullptr, &(gerror)));
@@ -214,7 +214,7 @@ Glib::RefPtr<FileInfo> FileEnumerator::next_file()
   return retvalue;
 }
 
-bool FileEnumerator::close(const Glib::RefPtr<Cancellable>& cancellable)
+auto FileEnumerator::close(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_enumerator_close(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -223,7 +223,7 @@ bool FileEnumerator::close(const Glib::RefPtr<Cancellable>& cancellable)
   return retvalue;
 }
 
-bool FileEnumerator::close()
+auto FileEnumerator::close() -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_enumerator_close(gobj(), nullptr, &(gerror));
@@ -232,7 +232,7 @@ bool FileEnumerator::close()
   return retvalue;
 }
 
-std::vector<Glib::RefPtr<FileInfo>> FileEnumerator::next_files_finish(const Glib::RefPtr<AsyncResult>& result)
+auto FileEnumerator::next_files_finish(const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::RefPtr<FileInfo>>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::ListHandler<Glib::RefPtr<FileInfo>>::list_to_vector(g_file_enumerator_next_files_finish(gobj(), Glib::unwrap(result), &(gerror)), Glib::OWNERSHIP_DEEP);
@@ -241,7 +241,7 @@ std::vector<Glib::RefPtr<FileInfo>> FileEnumerator::next_files_finish(const Glib
   return retvalue;
 }
 
-bool FileEnumerator::close_finish(const Glib::RefPtr<AsyncResult>& result)
+auto FileEnumerator::close_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_enumerator_close_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -250,12 +250,12 @@ bool FileEnumerator::close_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool FileEnumerator::is_closed() const
+auto FileEnumerator::is_closed() const -> bool
 {
   return g_file_enumerator_is_closed(const_cast<GFileEnumerator*>(gobj()));
 }
 
-bool FileEnumerator::has_pending() const
+auto FileEnumerator::has_pending() const -> bool
 {
   return g_file_enumerator_has_pending(const_cast<GFileEnumerator*>(gobj()));
 }
@@ -265,7 +265,7 @@ void FileEnumerator::set_pending(bool pending)
   g_file_enumerator_set_pending(gobj(), static_cast<int>(pending));
 }
 
-Glib::RefPtr<File> FileEnumerator::get_container()
+auto FileEnumerator::get_container() -> Glib::RefPtr<File>
 {
   auto retvalue = Glib::wrap(g_file_enumerator_get_container(gobj()));
   if(retvalue)
@@ -273,7 +273,7 @@ Glib::RefPtr<File> FileEnumerator::get_container()
   return retvalue;
 }
 
-Glib::RefPtr<const File> FileEnumerator::get_container() const
+auto FileEnumerator::get_container() const -> Glib::RefPtr<const File>
 {
   auto retvalue = Glib::wrap(g_file_enumerator_get_container(const_cast<GFileEnumerator*>(gobj())));
   if(retvalue)
@@ -281,12 +281,12 @@ Glib::RefPtr<const File> FileEnumerator::get_container() const
   return retvalue;
 }
 
-Glib::RefPtr<File> FileEnumerator::get_child(const Glib::RefPtr<FileInfo>& info)
+auto FileEnumerator::get_child(const Glib::RefPtr<FileInfo>& info) -> Glib::RefPtr<File>
 {
   return Glib::wrap(g_file_enumerator_get_child(gobj(), Glib::unwrap(info)));
 }
 
-Glib::RefPtr<const File> FileEnumerator::get_child(const Glib::RefPtr<FileInfo>& info) const
+auto FileEnumerator::get_child(const Glib::RefPtr<FileInfo>& info) const -> Glib::RefPtr<const File>
 {
   return Glib::wrap(g_file_enumerator_get_child(const_cast<GFileEnumerator*>(gobj()), Glib::unwrap(info)));
 }

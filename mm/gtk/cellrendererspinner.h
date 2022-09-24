@@ -64,11 +64,11 @@ class GTKMM_API CellRendererSpinner : public CellRenderer
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   CellRendererSpinner(CellRendererSpinner&& src) noexcept;
-  CellRendererSpinner& operator=(CellRendererSpinner&& src) noexcept;
+  auto operator=(CellRendererSpinner&& src) noexcept -> CellRendererSpinner&;
 
   // noncopyable
   CellRendererSpinner(const CellRendererSpinner&) = delete;
-  CellRendererSpinner& operator=(const CellRendererSpinner&) = delete;
+  auto operator=(const CellRendererSpinner&) -> CellRendererSpinner& = delete;
 
   ~CellRendererSpinner() noexcept override;
 
@@ -88,19 +88,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkCellRendererSpinner*       gobj()       { return reinterpret_cast<GtkCellRendererSpinner*>(gobject_); }
+  auto       gobj() -> GtkCellRendererSpinner*       { return reinterpret_cast<GtkCellRendererSpinner*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkCellRendererSpinner* gobj() const { return reinterpret_cast<GtkCellRendererSpinner*>(gobject_); }
+  auto gobj() const -> const GtkCellRendererSpinner* { return reinterpret_cast<GtkCellRendererSpinner*>(gobject_); }
 
 private:
 
@@ -113,14 +113,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_active() ;
+  auto property_active() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_active() const;
+  auto property_active() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Pulse of the spinner. Increment this value to draw the next frame of the
    * spinner animation. Usually, you would update this value in a timeout.
@@ -133,7 +133,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_pulse() ;
+  auto property_pulse() -> Glib::PropertyProxy< guint > ;
 
 /** Pulse of the spinner. Increment this value to draw the next frame of the
    * spinner animation. Usually, you would update this value in a timeout.
@@ -146,7 +146,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_pulse() const;
+  auto property_pulse() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** The `Gtk::IconSize` value that specifies the size of the rendered spinner.
    *
@@ -155,7 +155,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Gtk::IconSize > property_size() ;
+  auto property_size() -> Glib::PropertyProxy< Gtk::IconSize > ;
 
 /** The `Gtk::IconSize` value that specifies the size of the rendered spinner.
    *
@@ -164,7 +164,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Gtk::IconSize > property_size() const;
+  auto property_size() const -> Glib::PropertyProxy_ReadOnly< Gtk::IconSize >;
 
 
 public:
@@ -194,7 +194,7 @@ namespace Glib
    * @relates Gtk::CellRendererSpinner
    */
   GTKMM_API
-  Gtk::CellRendererSpinner* wrap(GtkCellRendererSpinner* object, bool take_copy = false);
+  auto wrap(GtkCellRendererSpinner* object, bool take_copy = false) -> Gtk::CellRendererSpinner*;
 } //namespace Glib
 
 

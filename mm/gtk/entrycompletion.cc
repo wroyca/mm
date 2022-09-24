@@ -30,7 +30,7 @@
 #include <gtk/gtk.h>
 
 
-static gboolean SignalProxy_Match_gtk_callback(GtkEntryCompletion* completion, const char* key, GtkTreeIter* iter, gpointer user_data)
+static auto SignalProxy_Match_gtk_callback(GtkEntryCompletion* completion, const char* key, GtkTreeIter* iter, gpointer user_data) -> gboolean
 {
   auto the_slot = static_cast<Gtk::EntryCompletion::SlotMatch*>(user_data);
 
@@ -80,7 +80,7 @@ void EntryCompletion::set_match_func(const SlotMatch& slot)
 namespace //anonymous
 {
 
-static gboolean Widget_signal_match_selected_callback(GtkEntryCompletion* self, GtkTreeModel* c_model, GtkTreeIter* c_iter, void* data)
+auto Widget_signal_match_selected_callback(GtkEntryCompletion* self, GtkTreeModel* c_model, GtkTreeIter* c_iter, void* data) -> gboolean
 {
   using namespace Gtk;
   typedef sigc::slot<bool(const TreeModel::iterator&)> SlotType;
@@ -108,7 +108,7 @@ static gboolean Widget_signal_match_selected_callback(GtkEntryCompletion* self, 
   return RType();
 }
 
-static gboolean Widget_signal_match_selected_notify_callback(GtkEntryCompletion* self, GtkTreeModel* c_model, GtkTreeIter* c_iter, void* data)
+auto Widget_signal_match_selected_notify_callback(GtkEntryCompletion* self, GtkTreeModel* c_model, GtkTreeIter* c_iter, void* data) -> gboolean
 {
   using namespace Gtk;
   typedef sigc::slot<void(const TreeModel::iterator&)> SlotType;
@@ -144,7 +144,7 @@ const Glib::SignalProxyInfo EntryCompletion_signal_match_selected_info =
 };
 
 
-static gboolean Widget_signal_cursor_on_match_callback(GtkEntryCompletion* self, GtkTreeModel* c_model, GtkTreeIter* c_iter, void* data)
+auto Widget_signal_cursor_on_match_callback(GtkEntryCompletion* self, GtkTreeModel* c_model, GtkTreeIter* c_iter, void* data) -> gboolean
 {
   using namespace Gtk;
   typedef sigc::slot<bool(const TreeModel::iterator&)> SlotType;
@@ -172,7 +172,7 @@ static gboolean Widget_signal_cursor_on_match_callback(GtkEntryCompletion* self,
   return RType();
 }
 
-static gboolean Widget_signal_cursor_on_match_notify_callback(GtkEntryCompletion* self, GtkTreeModel* c_model, GtkTreeIter* c_iter, void* data)
+auto Widget_signal_cursor_on_match_notify_callback(GtkEntryCompletion* self, GtkTreeModel* c_model, GtkTreeIter* c_iter, void* data) -> gboolean
 {
   using namespace Gtk;
   typedef sigc::slot<void(const TreeModel::iterator&)> SlotType;
@@ -214,12 +214,12 @@ namespace Gtk
 
 //Hand-coded signal wrapping:
 
-Glib::SignalProxy<bool(const TreeModel::iterator&)> EntryCompletion::signal_match_selected()
+auto EntryCompletion::signal_match_selected() -> Glib::SignalProxy<bool(const TreeModel::iterator&)>
 {
   return Glib::SignalProxy<bool(const TreeModel::iterator&)>(this, &EntryCompletion_signal_match_selected_info);
 }
 
-Glib::SignalProxy<bool(const TreeModel::iterator&)> EntryCompletion::signal_cursor_on_match()
+auto EntryCompletion::signal_cursor_on_match() -> Glib::SignalProxy<bool(const TreeModel::iterator&)>
 {
   return Glib::SignalProxy<bool(const TreeModel::iterator&)>(this, &EntryCompletion_signal_cursor_on_match_info);
 }
@@ -231,7 +231,7 @@ namespace
 {
 
 
-static gboolean EntryCompletion_signal_insert_prefix_callback(GtkEntryCompletion* self, const gchar* p0,void* data)
+auto EntryCompletion_signal_insert_prefix_callback(GtkEntryCompletion* self, const gchar* p0,void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<bool(const Glib::ustring&)>;
@@ -256,7 +256,7 @@ static gboolean EntryCompletion_signal_insert_prefix_callback(GtkEntryCompletion
   return RType();
 }
 
-static gboolean EntryCompletion_signal_insert_prefix_notify_callback(GtkEntryCompletion* self, const gchar* p0, void* data)
+auto EntryCompletion_signal_insert_prefix_notify_callback(GtkEntryCompletion* self, const gchar* p0, void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -281,7 +281,7 @@ static gboolean EntryCompletion_signal_insert_prefix_notify_callback(GtkEntryCom
   return RType();
 }
 
-static const Glib::SignalProxyInfo EntryCompletion_signal_insert_prefix_info =
+const Glib::SignalProxyInfo EntryCompletion_signal_insert_prefix_info =
 {
   "insert_prefix",
   (GCallback) &EntryCompletion_signal_insert_prefix_callback,
@@ -289,7 +289,7 @@ static const Glib::SignalProxyInfo EntryCompletion_signal_insert_prefix_info =
 };
 
 
-static const Glib::SignalProxyInfo EntryCompletion_signal_no_matches_info =
+const Glib::SignalProxyInfo EntryCompletion_signal_no_matches_info =
 {
   "no_matches",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -303,7 +303,7 @@ static const Glib::SignalProxyInfo EntryCompletion_signal_no_matches_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::EntryCompletion> wrap(GtkEntryCompletion* object, bool take_copy)
+auto wrap(GtkEntryCompletion* object, bool take_copy) -> Glib::RefPtr<Gtk::EntryCompletion>
 {
   return Glib::make_refptr_for_instance<Gtk::EntryCompletion>( dynamic_cast<Gtk::EntryCompletion*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -318,7 +318,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& EntryCompletion_Class::init()
+auto EntryCompletion_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -351,7 +351,7 @@ void EntryCompletion_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* EntryCompletion_Class::wrap_new(GObject* object)
+auto EntryCompletion_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new EntryCompletion((GtkEntryCompletion*)object);
 }
@@ -359,7 +359,7 @@ Glib::ObjectBase* EntryCompletion_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkEntryCompletion* EntryCompletion::gobj_copy()
+auto EntryCompletion::gobj_copy() -> GtkEntryCompletion*
 {
   reference();
   return gobj();
@@ -384,7 +384,7 @@ EntryCompletion::EntryCompletion(EntryCompletion&& src) noexcept
   , Buildable(std::move(src))
 {}
 
-EntryCompletion& EntryCompletion::operator=(EntryCompletion&& src) noexcept
+auto EntryCompletion::operator=(EntryCompletion&& src) noexcept -> EntryCompletion&
 {
   Glib::Object::operator=(std::move(src));
   CellLayout::operator=(std::move(src));
@@ -399,13 +399,13 @@ EntryCompletion::~EntryCompletion() noexcept
 
 EntryCompletion::CppClassType EntryCompletion::entrycompletion_class_; // initialize static member
 
-GType EntryCompletion::get_type()
+auto EntryCompletion::get_type() -> GType
 {
   return entrycompletion_class_.init().get_type();
 }
 
 
-GType EntryCompletion::get_base_type()
+auto EntryCompletion::get_base_type() -> GType
 {
   return gtk_entry_completion_get_type();
 }
@@ -421,17 +421,17 @@ EntryCompletion::EntryCompletion()
 
 }
 
-Glib::RefPtr<EntryCompletion> EntryCompletion::create()
+auto EntryCompletion::create() -> Glib::RefPtr<EntryCompletion>
 {
   return Glib::make_refptr_for_instance<EntryCompletion>( new EntryCompletion() );
 }
 
-Entry* EntryCompletion::get_entry()
+auto EntryCompletion::get_entry() -> Entry*
 {
   return Glib::wrap((GtkEntry*)(gtk_entry_completion_get_entry(gobj())));
 }
 
-const Entry* EntryCompletion::get_entry() const
+auto EntryCompletion::get_entry() const -> const Entry*
 {
   return Glib::wrap((GtkEntry*)(gtk_entry_completion_get_entry(const_cast<GtkEntryCompletion*>(gobj()))));
 }
@@ -441,7 +441,7 @@ void EntryCompletion::set_model(const Glib::RefPtr<TreeModel>& model)
   gtk_entry_completion_set_model(gobj(), Glib::unwrap(model));
 }
 
-Glib::RefPtr<TreeModel> EntryCompletion::get_model()
+auto EntryCompletion::get_model() -> Glib::RefPtr<TreeModel>
 {
   auto retvalue = Glib::wrap(gtk_entry_completion_get_model(gobj()));
   if(retvalue)
@@ -449,7 +449,7 @@ Glib::RefPtr<TreeModel> EntryCompletion::get_model()
   return retvalue;
 }
 
-Glib::RefPtr<const TreeModel> EntryCompletion::get_model() const
+auto EntryCompletion::get_model() const -> Glib::RefPtr<const TreeModel>
 {
   return const_cast<EntryCompletion*>(this)->get_model();
 }
@@ -459,12 +459,12 @@ void EntryCompletion::set_minimum_key_length(int length)
   gtk_entry_completion_set_minimum_key_length(gobj(), length);
 }
 
-int EntryCompletion::get_minimum_key_length() const
+auto EntryCompletion::get_minimum_key_length() const -> int
 {
   return gtk_entry_completion_get_minimum_key_length(const_cast<GtkEntryCompletion*>(gobj()));
 }
 
-Glib::ustring EntryCompletion::compute_prefix(const Glib::ustring& key)
+auto EntryCompletion::compute_prefix(const Glib::ustring& key) -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_entry_completion_compute_prefix(gobj(), key.c_str()));
 }
@@ -484,7 +484,7 @@ void EntryCompletion::set_inline_completion(bool inline_completion)
   gtk_entry_completion_set_inline_completion(gobj(), static_cast<int>(inline_completion));
 }
 
-bool EntryCompletion::get_inline_completion() const
+auto EntryCompletion::get_inline_completion() const -> bool
 {
   return gtk_entry_completion_get_inline_completion(const_cast<GtkEntryCompletion*>(gobj()));
 }
@@ -494,7 +494,7 @@ void EntryCompletion::set_inline_selection(bool inline_selection)
   gtk_entry_completion_set_inline_selection(gobj(), static_cast<int>(inline_selection));
 }
 
-bool EntryCompletion::get_inline_selection() const
+auto EntryCompletion::get_inline_selection() const -> bool
 {
   return gtk_entry_completion_get_inline_selection(const_cast<GtkEntryCompletion*>(gobj()));
 }
@@ -504,7 +504,7 @@ void EntryCompletion::set_popup_completion(bool popup_completion)
   gtk_entry_completion_set_popup_completion(gobj(), static_cast<int>(popup_completion));
 }
 
-bool EntryCompletion::get_popup_completion() const
+auto EntryCompletion::get_popup_completion() const -> bool
 {
   return gtk_entry_completion_get_popup_completion(const_cast<GtkEntryCompletion*>(gobj()));
 }
@@ -514,7 +514,7 @@ void EntryCompletion::set_popup_set_width(bool popup_set_width)
   gtk_entry_completion_set_popup_set_width(gobj(), static_cast<int>(popup_set_width));
 }
 
-bool EntryCompletion::get_popup_set_width() const
+auto EntryCompletion::get_popup_set_width() const -> bool
 {
   return gtk_entry_completion_get_popup_set_width(const_cast<GtkEntryCompletion*>(gobj()));
 }
@@ -524,12 +524,12 @@ void EntryCompletion::set_popup_single_match(bool popup_single_match)
   gtk_entry_completion_set_popup_single_match(gobj(), static_cast<int>(popup_single_match));
 }
 
-bool EntryCompletion::get_popup_single_match() const
+auto EntryCompletion::get_popup_single_match() const -> bool
 {
   return gtk_entry_completion_get_popup_single_match(const_cast<GtkEntryCompletion*>(gobj()));
 }
 
-Glib::ustring EntryCompletion::get_completion_prefix() const
+auto EntryCompletion::get_completion_prefix() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_entry_completion_get_completion_prefix(const_cast<GtkEntryCompletion*>(gobj())));
 }
@@ -544,19 +544,19 @@ void EntryCompletion::set_text_column(int column)
   gtk_entry_completion_set_text_column(gobj(), column);
 }
 
-int EntryCompletion::get_text_column() const
+auto EntryCompletion::get_text_column() const -> int
 {
   return gtk_entry_completion_get_text_column(const_cast<GtkEntryCompletion*>(gobj()));
 }
 
 
-Glib::SignalProxy<bool(const Glib::ustring&)> EntryCompletion::signal_insert_prefix()
+auto EntryCompletion::signal_insert_prefix() -> Glib::SignalProxy<bool(const Glib::ustring&)>
 {
   return Glib::SignalProxy<bool(const Glib::ustring&) >(this, &EntryCompletion_signal_insert_prefix_info);
 }
 
 
-Glib::SignalProxy<void()> EntryCompletion::signal_no_matches()
+auto EntryCompletion::signal_no_matches() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &EntryCompletion_signal_no_matches_info);
 }
@@ -566,82 +566,82 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gtk::Tr
   "Type Glib::RefPtr<Gtk::TreeModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gtk::TreeModel> > EntryCompletion::property_model()
+auto EntryCompletion::property_model() -> Glib::PropertyProxy< Glib::RefPtr<Gtk::TreeModel> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gtk::TreeModel> >(this, "model");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gtk::TreeModel> > EntryCompletion::property_model() const
+auto EntryCompletion::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gtk::TreeModel> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gtk::TreeModel> >(this, "model");
 }
 
-Glib::PropertyProxy< int > EntryCompletion::property_minimum_key_length()
+auto EntryCompletion::property_minimum_key_length() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "minimum-key-length");
 }
 
-Glib::PropertyProxy_ReadOnly< int > EntryCompletion::property_minimum_key_length() const
+auto EntryCompletion::property_minimum_key_length() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "minimum-key-length");
 }
 
-Glib::PropertyProxy< int > EntryCompletion::property_text_column()
+auto EntryCompletion::property_text_column() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "text-column");
 }
 
-Glib::PropertyProxy_ReadOnly< int > EntryCompletion::property_text_column() const
+auto EntryCompletion::property_text_column() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "text-column");
 }
 
-Glib::PropertyProxy< bool > EntryCompletion::property_inline_completion()
+auto EntryCompletion::property_inline_completion() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "inline-completion");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > EntryCompletion::property_inline_completion() const
+auto EntryCompletion::property_inline_completion() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "inline-completion");
 }
 
-Glib::PropertyProxy< bool > EntryCompletion::property_popup_completion()
+auto EntryCompletion::property_popup_completion() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "popup-completion");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > EntryCompletion::property_popup_completion() const
+auto EntryCompletion::property_popup_completion() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "popup-completion");
 }
 
-Glib::PropertyProxy< bool > EntryCompletion::property_popup_set_width()
+auto EntryCompletion::property_popup_set_width() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "popup-set-width");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > EntryCompletion::property_popup_set_width() const
+auto EntryCompletion::property_popup_set_width() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "popup-set-width");
 }
 
-Glib::PropertyProxy< bool > EntryCompletion::property_popup_single_match()
+auto EntryCompletion::property_popup_single_match() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "popup-single-match");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > EntryCompletion::property_popup_single_match() const
+auto EntryCompletion::property_popup_single_match() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "popup-single-match");
 }
 
-Glib::PropertyProxy< bool > EntryCompletion::property_inline_selection()
+auto EntryCompletion::property_inline_selection() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "inline-selection");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > EntryCompletion::property_inline_selection() const
+auto EntryCompletion::property_inline_selection() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "inline-selection");
 }
@@ -650,7 +650,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<CellAre
   "Type Glib::RefPtr<CellArea> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> > EntryCompletion::property_cell_area() const
+auto EntryCompletion::property_cell_area() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> >(this, "cell-area");
 }

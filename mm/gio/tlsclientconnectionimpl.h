@@ -44,7 +44,7 @@ class GIOMM_API TlsClientConnectionImpl : public TlsClientConnection, public Tls
 private:
   // noncopyable
   TlsClientConnectionImpl(const TlsClientConnectionImpl&) = delete;
-  TlsClientConnectionImpl& operator=(const TlsClientConnectionImpl&) = delete;
+  auto operator=(const TlsClientConnectionImpl&) -> TlsClientConnectionImpl& = delete;
 
   friend class TlsConnection_Class;
 
@@ -53,7 +53,7 @@ protected:
 
 public:
   TlsClientConnectionImpl(TlsClientConnectionImpl&& src) noexcept;
-  TlsClientConnectionImpl& operator=(TlsClientConnectionImpl&& src) noexcept;
+  auto operator=(TlsClientConnectionImpl&& src) noexcept -> TlsClientConnectionImpl&;
 
   ~TlsClientConnectionImpl() noexcept override;
 };

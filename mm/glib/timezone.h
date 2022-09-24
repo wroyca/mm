@@ -104,30 +104,30 @@ class GLIBMM_API TimeZone
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   TimeZone();
 
   explicit TimeZone(GTimeZone* gobject, bool make_a_copy = true);
 
   TimeZone(const TimeZone& other);
-  TimeZone& operator=(const TimeZone& other);
+  auto operator=(const TimeZone& other) -> TimeZone&;
 
   TimeZone(TimeZone&& other) noexcept;
-  TimeZone& operator=(TimeZone&& other) noexcept;
+  auto operator=(TimeZone&& other) noexcept -> TimeZone&;
 
   ~TimeZone() noexcept;
 
   void swap(TimeZone& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  GTimeZone*       gobj()       { return gobject_; }
+  auto       gobj() -> GTimeZone*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const GTimeZone* gobj() const { return gobject_; }
+  auto gobj() const -> const GTimeZone* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  GTimeZone* gobj_copy() const;
+  auto gobj_copy() const -> GTimeZone*;
 
 protected:
   GTimeZone* gobject_;
@@ -156,7 +156,7 @@ public:
    * @param identifier A timezone identifier.
    * @return The requested timezone.
    */
-  static TimeZone create(const Glib::ustring& identifier);
+  static auto create(const Glib::ustring& identifier) -> TimeZone;
 #endif // GLIBMM_DISABLE_DEPRECATED
 
 
@@ -232,7 +232,7 @@ public:
    * @return The requested timezone, or <tt>nullptr</tt> on
    * failure.
    */
-  static TimeZone create_identifier(const Glib::ustring& identifier);
+  static auto create_identifier(const Glib::ustring& identifier) -> TimeZone;
 
   /** Creates a TimeZone corresponding to local time.  The local time
    * zone may change between invocations to this function; for example,
@@ -248,7 +248,7 @@ public:
    *
    * @return The local timezone.
    */
-  static TimeZone create_local();
+  static auto create_local() -> TimeZone;
 
   /** Creates a TimeZone corresponding to UTC.
    *
@@ -262,7 +262,7 @@ public:
    *
    * @return The universal timezone.
    */
-  static TimeZone create_utc();
+  static auto create_utc() -> TimeZone;
 
   /** Returns true if the %TimeZone object is valid.
    * This will return false, for instance, if create_identifier()
@@ -297,7 +297,7 @@ public:
    * @param time A number of seconds since January 1, 1970.
    * @return The interval containing @a time, or -1 in case of failure.
    */
-  int find_interval(TimeType type, gint64 time) const;
+  auto find_interval(TimeType type, gint64 time) const -> int;
 
   /** Finds an interval within @a tz that corresponds to the given @a time,
    * possibly adjusting @a time if required to fit into an interval.
@@ -322,7 +322,7 @@ public:
    * @param time A pointer to a number of seconds since January 1, 1970.
    * @return The interval containing @a time, never -1.
    */
-  int adjust_time(TimeType type, gint64& time) const;
+  auto adjust_time(TimeType type, gint64& time) const -> int;
 
   /** Determines the time zone abbreviation to be used during a particular
    *  @a interval of time in the time zone @a tz.
@@ -336,7 +336,7 @@ public:
    * @param interval An interval within the timezone.
    * @return The time zone abbreviation, which belongs to @a tz.
    */
-  Glib::ustring get_abbreviation(int interval) const;
+  auto get_abbreviation(int interval) const -> Glib::ustring;
 
   /** Determines the offset to UTC in effect during a particular @a interval
    * of time in the time zone @a tz.
@@ -351,7 +351,7 @@ public:
    * @return The number of seconds that should be added to UTC to get the
    * local time in @a tz.
    */
-  gint32 get_offset(int interval) const;
+  auto get_offset(int interval) const -> gint32;
 
   /** Determines if daylight savings time is in effect during a particular
    *  @a interval of time in the time zone @a tz.
@@ -361,7 +361,7 @@ public:
    * @param interval An interval within the timezone.
    * @return <tt>true</tt> if daylight savings time is in effect.
    */
-  bool is_dst(int interval) const;
+  auto is_dst(int interval) const -> bool;
 
   /** Get the identifier of this TimeZone, as passed to g_time_zone_new().
    * If the identifier passed at construction time was not recognised, `UTC` will
@@ -376,7 +376,7 @@ public:
    *
    * @return Identifier for this timezone.
    */
-  Glib::ustring get_identifier() const;
+  auto get_identifier() const -> Glib::ustring;
 
 
 };
@@ -408,7 +408,7 @@ namespace Glib
  * @relates Glib::TimeZone
  */
 GLIBMM_API
-Glib::TimeZone wrap(GTimeZone* object, bool take_copy = false);
+auto wrap(GTimeZone* object, bool take_copy = false) -> Glib::TimeZone;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

@@ -65,7 +65,7 @@ public:
 
   // noncopyable
   VolumeMonitor(const VolumeMonitor&) = delete;
-  VolumeMonitor& operator=(const VolumeMonitor&) = delete;
+  auto operator=(const VolumeMonitor&) -> VolumeMonitor& = delete;
 
 private:  friend class VolumeMonitor_Class;
   static CppClassType volumemonitor_class_;
@@ -79,28 +79,28 @@ protected:
 public:
 
   VolumeMonitor(VolumeMonitor&& src) noexcept;
-  VolumeMonitor& operator=(VolumeMonitor&& src) noexcept;
+  auto operator=(VolumeMonitor&& src) noexcept -> VolumeMonitor&;
 
   ~VolumeMonitor() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GVolumeMonitor*       gobj()       { return reinterpret_cast<GVolumeMonitor*>(gobject_); }
+  auto       gobj() -> GVolumeMonitor*       { return reinterpret_cast<GVolumeMonitor*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GVolumeMonitor* gobj() const { return reinterpret_cast<GVolumeMonitor*>(gobject_); }
+  auto gobj() const -> const GVolumeMonitor* { return reinterpret_cast<GVolumeMonitor*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GVolumeMonitor* gobj_copy();
+  auto gobj_copy() -> GVolumeMonitor*;
 
 private:
 
@@ -114,28 +114,28 @@ public:
    * @return A reference to the VolumeMonitor used by gio. Call
    * Glib::object_unref() when done with it.
    */
-  static Glib::RefPtr<VolumeMonitor> get();
+  static auto get() -> Glib::RefPtr<VolumeMonitor>;
 
 
   /** Gets a list of drives connected to the system.
    *
    * @return A List of connected Drive objects.
    */
-  std::vector<Glib::RefPtr<Drive>> get_connected_drives();
+  auto get_connected_drives() -> std::vector<Glib::RefPtr<Drive>>;
 
 
   /** Gets a list of the volumes on the system.
    *
    * @return A List of Volume objects.
    */
-  std::vector<Glib::RefPtr<Volume>> get_volumes();
+  auto get_volumes() -> std::vector<Glib::RefPtr<Volume>>;
 
 
   /** Gets a list of the mounts on the system.
    *
    * @return A List of Mount objects.
    */
-  std::vector<Glib::RefPtr<Mount>> get_mounts();
+  auto get_mounts() -> std::vector<Glib::RefPtr<Mount>>;
 
 
   /** Finds a Volume object by its UUID (see g_volume_get_uuid())
@@ -144,7 +144,7 @@ public:
    * @return A Volume or <tt>nullptr</tt> if no such volume is available.
    * Free the returned object with Glib::object_unref().
    */
-  Glib::RefPtr<Volume> get_volume_for_uuid(const std::string& uuid);
+  auto get_volume_for_uuid(const std::string& uuid) -> Glib::RefPtr<Volume>;
 
   /** Finds a Mount object by its UUID (see g_mount_get_uuid())
    *
@@ -152,7 +152,7 @@ public:
    * @return A Mount or <tt>nullptr</tt> if no such mount is available.
    * Free the returned object with Glib::object_unref().
    */
-  Glib::RefPtr<Mount> get_mount_for_uuid(const std::string& uuid);
+  auto get_mount_for_uuid(const std::string& uuid) -> Glib::RefPtr<Mount>;
 
 
   /**
@@ -166,7 +166,7 @@ public:
    * @param volume A Volume that was added.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Volume>&)> signal_volume_added();
+  auto signal_volume_added() -> Glib::SignalProxy<void(const Glib::RefPtr<Volume>&)>;
 
 
   /**
@@ -180,7 +180,7 @@ public:
    * @param volume A Volume that was removed.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Volume>&)> signal_volume_removed();
+  auto signal_volume_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<Volume>&)>;
 
 
   /**
@@ -194,7 +194,7 @@ public:
    * @param volume A Volume that changed.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Volume>&)> signal_volume_changed();
+  auto signal_volume_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<Volume>&)>;
 
 
   /**
@@ -208,7 +208,7 @@ public:
    * @param mount A Mount that was added.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)> signal_mount_added();
+  auto signal_mount_added() -> Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)>;
 
 
   /**
@@ -222,7 +222,7 @@ public:
    * @param mount A Mount that was removed.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)> signal_mount_removed();
+  auto signal_mount_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)>;
 
 
   /**
@@ -239,7 +239,7 @@ public:
    * @param mount A Mount that is being unmounted.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)> signal_mount_pre_unmount();
+  auto signal_mount_pre_unmount() -> Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)>;
 
 
   /**
@@ -253,7 +253,7 @@ public:
    * @param mount A Mount that changed.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)> signal_mount_changed();
+  auto signal_mount_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)>;
 
 
   /**
@@ -267,7 +267,7 @@ public:
    * @param drive A Drive that was connected.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)> signal_drive_connected();
+  auto signal_drive_connected() -> Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)>;
 
 
   /**
@@ -281,7 +281,7 @@ public:
    * @param drive A Drive that was disconnected.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)> signal_drive_disconnected();
+  auto signal_drive_disconnected() -> Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)>;
 
 
   /**
@@ -295,7 +295,7 @@ public:
    * @param drive The drive that changed.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)> signal_drive_changed();
+  auto signal_drive_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)>;
 
 
   /**
@@ -311,7 +311,7 @@ public:
    * @param drive The drive where the eject button was pressed.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)> signal_drive_eject_button();
+  auto signal_drive_eject_button() -> Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)>;
 
 
   /**
@@ -327,7 +327,7 @@ public:
    * @param drive The drive where the stop button was pressed.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)> signal_drive_stop_button();
+  auto signal_drive_stop_button() -> Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)>;
 
 
 protected:
@@ -395,7 +395,7 @@ namespace Glib
    * @relates Gio::VolumeMonitor
    */
   GIOMM_API
-  Glib::RefPtr<Gio::VolumeMonitor> wrap(GVolumeMonitor* object, bool take_copy = false);
+  auto wrap(GVolumeMonitor* object, bool take_copy = false) -> Glib::RefPtr<Gio::VolumeMonitor>;
 }
 
 

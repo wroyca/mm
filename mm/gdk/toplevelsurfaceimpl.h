@@ -48,12 +48,12 @@ protected:
 
   // noncopyable
   ToplevelSurfaceImpl(const ToplevelSurfaceImpl&) = delete;
-  ToplevelSurfaceImpl& operator=(const ToplevelSurfaceImpl&) = delete;
+  auto operator=(const ToplevelSurfaceImpl&) -> ToplevelSurfaceImpl& = delete;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
 public:
   ToplevelSurfaceImpl(ToplevelSurfaceImpl&& src) noexcept;
-  ToplevelSurfaceImpl& operator=(ToplevelSurfaceImpl&& src) noexcept;
+  auto operator=(ToplevelSurfaceImpl&& src) noexcept -> ToplevelSurfaceImpl&;
 
   ~ToplevelSurfaceImpl() noexcept override;
 };

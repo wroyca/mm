@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::MultiSelection> wrap(GtkMultiSelection* object, bool take_copy)
+auto wrap(GtkMultiSelection* object, bool take_copy) -> Glib::RefPtr<Gtk::MultiSelection>
 {
   return Glib::make_refptr_for_instance<Gtk::MultiSelection>( dynamic_cast<Gtk::MultiSelection*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& MultiSelection_Class::init()
+auto MultiSelection_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -73,7 +73,7 @@ void MultiSelection_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* MultiSelection_Class::wrap_new(GObject* object)
+auto MultiSelection_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new MultiSelection((GtkMultiSelection*)object);
 }
@@ -81,7 +81,7 @@ Glib::ObjectBase* MultiSelection_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkMultiSelection* MultiSelection::gobj_copy()
+auto MultiSelection::gobj_copy() -> GtkMultiSelection*
 {
   reference();
   return gobj();
@@ -106,7 +106,7 @@ MultiSelection::MultiSelection(MultiSelection&& src) noexcept
   , SelectionModel(std::move(src))
 {}
 
-MultiSelection& MultiSelection::operator=(MultiSelection&& src) noexcept
+auto MultiSelection::operator=(MultiSelection&& src) noexcept -> MultiSelection&
 {
   Glib::Object::operator=(std::move(src));
   Gio::ListModel::operator=(std::move(src));
@@ -121,13 +121,13 @@ MultiSelection::~MultiSelection() noexcept
 
 MultiSelection::CppClassType MultiSelection::multiselection_class_; // initialize static member
 
-GType MultiSelection::get_type()
+auto MultiSelection::get_type() -> GType
 {
   return multiselection_class_.init().get_type();
 }
 
 
-GType MultiSelection::get_base_type()
+auto MultiSelection::get_base_type() -> GType
 {
   return gtk_multi_selection_get_type();
 }
@@ -153,17 +153,17 @@ MultiSelection::MultiSelection(const Glib::RefPtr<Gio::ListModel>& model)
 
 }
 
-Glib::RefPtr<MultiSelection> MultiSelection::create()
+auto MultiSelection::create() -> Glib::RefPtr<MultiSelection>
 {
   return Glib::make_refptr_for_instance<MultiSelection>( new MultiSelection() );
 }
 
-Glib::RefPtr<MultiSelection> MultiSelection::create(const Glib::RefPtr<Gio::ListModel>& model)
+auto MultiSelection::create(const Glib::RefPtr<Gio::ListModel>& model) -> Glib::RefPtr<MultiSelection>
 {
   return Glib::make_refptr_for_instance<MultiSelection>( new MultiSelection(model) );
 }
 
-Glib::RefPtr<Gio::ListModel> MultiSelection::get_model()
+auto MultiSelection::get_model() -> Glib::RefPtr<Gio::ListModel>
 {
   auto retvalue = Glib::wrap(gtk_multi_selection_get_model(gobj()));
   if(retvalue)
@@ -171,7 +171,7 @@ Glib::RefPtr<Gio::ListModel> MultiSelection::get_model()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::ListModel> MultiSelection::get_model() const
+auto MultiSelection::get_model() const -> Glib::RefPtr<const Gio::ListModel>
 {
   return const_cast<MultiSelection*>(this)->get_model();
 }
@@ -186,7 +186,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
   "Type GType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< GType > MultiSelection::property_item_type() const
+auto MultiSelection::property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >
 {
   return Glib::PropertyProxy_ReadOnly< GType >(this, "item-type");
 }
@@ -195,17 +195,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Li
   "Type Glib::RefPtr<Gio::ListModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > MultiSelection::property_model()
+auto MultiSelection::property_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> >(this, "model");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > MultiSelection::property_model() const
+auto MultiSelection::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >(this, "model");
 }
 
-Glib::PropertyProxy_ReadOnly< unsigned int > MultiSelection::property_n_items() const
+auto MultiSelection::property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
   return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "n-items");
 }

@@ -35,12 +35,12 @@ namespace Pango
  * Compare with pango/pango-util.c for reference. */
  //(I wonder who wrote this - it wasn't me. murrayc)
 
-inline PangoLanguage* _pango_language_new()
+inline auto _pango_language_new() -> PangoLanguage*
 {
   return 0;
 }
 
-inline PangoLanguage* _pango_language_copy(const PangoLanguage* language)
+inline auto _pango_language_copy(const PangoLanguage* language) -> PangoLanguage*
 {
   return const_cast<PangoLanguage*>(language);
 }
@@ -60,7 +60,7 @@ Language::Language(const Glib::ustring& language)
   gobject_(pango_language_from_string(language.c_str()))
 {}
 
-Glib::ustring Language::get_string() const
+auto Language::get_string() const -> Glib::ustring
 {
   if (gobject_)
     return pango_language_to_string(const_cast<PangoLanguage*>(gobj()));
@@ -68,7 +68,7 @@ Glib::ustring Language::get_string() const
     return Glib::ustring();
 }
 
-std::vector<Script> Language::get_scripts() const
+auto Language::get_scripts() const -> std::vector<Script>
 {
   int num_scripts = 0;
   const auto* carray = pango_language_get_scripts(const_cast<PangoLanguage*>(gobj()), &num_scripts);
@@ -83,7 +83,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Pango::Script>::value_type()
+auto Glib::Value<Pango::Script>::value_type() -> GType
 {
   return pango_script_get_type();
 }
@@ -92,7 +92,7 @@ GType Glib::Value<Pango::Script>::value_type()
 namespace Glib
 {
 
-Pango::Language wrap(PangoLanguage* object, bool take_copy)
+auto wrap(PangoLanguage* object, bool take_copy) -> Pango::Language
 {
   return Pango::Language(object, take_copy);
 }
@@ -105,7 +105,7 @@ namespace Pango
 
 
 // static
-GType Language::get_type()
+auto Language::get_type() -> GType
 {
   return pango_language_get_type();
 }
@@ -123,7 +123,7 @@ Language::Language(Language&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-Language& Language::operator=(Language&& other) noexcept
+auto Language::operator=(Language&& other) noexcept -> Language&
 {
   Language temp (std::move(other));
   swap(temp);
@@ -138,7 +138,7 @@ Language::Language(PangoLanguage* gobject, bool make_a_copy)
   gobject_ ((make_a_copy && gobject) ? _pango_language_copy(gobject) : gobject)
 {}
 
-Language& Language::operator=(const Language& other)
+auto Language::operator=(const Language& other) -> Language&
 {
   Language temp (other);
   swap(temp);
@@ -156,18 +156,18 @@ void Language::swap(Language& other) noexcept
   std::swap(gobject_, other.gobject_);
 }
 
-PangoLanguage* Language::gobj_copy() const
+auto Language::gobj_copy() const -> PangoLanguage*
 {
   return _pango_language_copy(gobject_);
 }
 
 
-bool Language::matches(const Glib::ustring & range_list) const
+auto Language::matches(const Glib::ustring & range_list) const -> bool
 {
   return pango_language_matches(const_cast<PangoLanguage*>(gobj()), range_list.c_str());
 }
 
-bool Language::includes_script(Script script) const
+auto Language::includes_script(Script script) const -> bool
 {
   return pango_language_includes_script(const_cast<PangoLanguage*>(gobj()), static_cast<PangoScript>(script));
 }

@@ -72,7 +72,7 @@ public:
 
   // noncopyable
   Dispatcher(const Dispatcher&) = delete;
-  Dispatcher& operator=(const Dispatcher&) = delete;
+  auto operator=(const Dispatcher&) -> Dispatcher& = delete;
 
   /** Create new Dispatcher instance using an arbitrary main context.
    * @throw Glib::FileError
@@ -83,10 +83,10 @@ public:
   void emit();
   void operator()();
 
-  sigc::connection connect(const sigc::slot<void()>& slot);
+  auto connect(const sigc::slot<void()>& slot) -> sigc::connection;
   /** @newin{2,48}
    */
-  sigc::connection connect(sigc::slot<void()>&& slot);
+  auto connect(sigc::slot<void()>&& slot) -> sigc::connection;
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
   struct Impl;

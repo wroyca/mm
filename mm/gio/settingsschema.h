@@ -67,7 +67,7 @@ class GIOMM_API SettingsSchema final
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
 
   /** Increment the reference count for this object.
@@ -81,19 +81,19 @@ class GIOMM_API SettingsSchema final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GSettingsSchema*       gobj();
+  auto       gobj() -> GSettingsSchema*;
 
   ///Provides access to the underlying C instance.
-  const GSettingsSchema* gobj() const;
+  auto gobj() const -> const GSettingsSchema*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GSettingsSchema* gobj_copy() const;
+  auto gobj_copy() const -> GSettingsSchema*;
 
   SettingsSchema() = delete;
 
   // noncopyable
   SettingsSchema(const SettingsSchema&) = delete;
-  SettingsSchema& operator=(const SettingsSchema&) = delete;
+  auto operator=(const SettingsSchema&) -> SettingsSchema& = delete;
 
 protected:
   // Do not derive this.  Gio::SettingsSchema can neither be constructed nor deleted.
@@ -115,7 +115,7 @@ public:
    *
    * @return The ID.
    */
-  Glib::ustring get_id() const;
+  auto get_id() const -> Glib::ustring;
 
   /** Gets the path associated with @a schema, or <tt>nullptr</tt>.
    *
@@ -131,7 +131,7 @@ public:
    *
    * @return The path of the schema, or <tt>nullptr</tt>.
    */
-  Glib::ustring get_path() const;
+  auto get_path() const -> Glib::ustring;
 
   //Note that these don't need refreturn because they seem to return a reference
   //(they are documented as transfer:full)
@@ -146,7 +146,7 @@ public:
    * @param name The name of a key.
    * @return The SettingsSchemaKey for @a name.
    */
-  Glib::RefPtr<SettingsSchemaKey> get_key(const Glib::ustring& name);
+  auto get_key(const Glib::ustring& name) -> Glib::RefPtr<SettingsSchemaKey>;
 
   /** Gets the key named @a name from @a schema.
    *
@@ -158,7 +158,7 @@ public:
    * @param name The name of a key.
    * @return The SettingsSchemaKey for @a name.
    */
-  Glib::RefPtr<const SettingsSchemaKey> get_key(const Glib::ustring& name) const;
+  auto get_key(const Glib::ustring& name) const -> Glib::RefPtr<const SettingsSchemaKey>;
 
 
   /** Checks if @a schema has a key named @a name.
@@ -168,7 +168,7 @@ public:
    * @param name The name of a key.
    * @return <tt>true</tt> if such a key exists.
    */
-  bool has_key(const Glib::ustring& name) const;
+  auto has_key(const Glib::ustring& name) const -> bool;
 
 
   /** Introspects the list of keys on @a schema.
@@ -182,7 +182,7 @@ public:
    * @return A list
    * of the keys on @a schema, in no defined order.
    */
-  std::vector<Glib::ustring> list_keys() const;
+  auto list_keys() const -> std::vector<Glib::ustring>;
 
 
   /** Gets the list of children in @a schema.
@@ -192,7 +192,7 @@ public:
    * @return A list of
    * the children on @a settings, in no defined order.
    */
-  std::vector<Glib::ustring> list_children() const;
+  auto list_children() const -> std::vector<Glib::ustring>;
 
 
 };
@@ -212,14 +212,14 @@ namespace Glib
  * @relates Gio::SettingsSchema
  */
 GIOMM_API
-Glib::RefPtr<Gio::SettingsSchema> wrap(GSettingsSchema* object, bool take_copy = false);
+auto wrap(GSettingsSchema* object, bool take_copy = false) -> Glib::RefPtr<Gio::SettingsSchema>;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>
 class GIOMM_API Value<Glib::RefPtr<Gio::SettingsSchema>> : public Glib::Value_RefPtrBoxed<Gio::SettingsSchema>
 {
 public:
-  CppType get() const { return Glib::wrap(static_cast<GSettingsSchema*>(get_boxed()), true); }
+  auto get() const -> CppType { return Glib::wrap(static_cast<GSettingsSchema*>(get_boxed()), true); }
 };
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 

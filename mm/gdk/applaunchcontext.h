@@ -65,7 +65,7 @@ public:
 
   // noncopyable
   AppLaunchContext(const AppLaunchContext&) = delete;
-  AppLaunchContext& operator=(const AppLaunchContext&) = delete;
+  auto operator=(const AppLaunchContext&) -> AppLaunchContext& = delete;
 
 private:  friend class AppLaunchContext_Class;
   static CppClassType applaunchcontext_class_;
@@ -79,28 +79,28 @@ protected:
 public:
 
   AppLaunchContext(AppLaunchContext&& src) noexcept;
-  AppLaunchContext& operator=(AppLaunchContext&& src) noexcept;
+  auto operator=(AppLaunchContext&& src) noexcept -> AppLaunchContext&;
 
   ~AppLaunchContext() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkAppLaunchContext*       gobj()       { return reinterpret_cast<GdkAppLaunchContext*>(gobject_); }
+  auto       gobj() -> GdkAppLaunchContext*       { return reinterpret_cast<GdkAppLaunchContext*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkAppLaunchContext* gobj() const { return reinterpret_cast<GdkAppLaunchContext*>(gobject_); }
+  auto gobj() const -> const GdkAppLaunchContext* { return reinterpret_cast<GdkAppLaunchContext*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkAppLaunchContext* gobj_copy();
+  auto gobj_copy() -> GdkAppLaunchContext*;
 
 private:
 
@@ -110,20 +110,20 @@ protected:
 
 public:
 
-  static Glib::RefPtr<AppLaunchContext> create();
+  static auto create() -> Glib::RefPtr<AppLaunchContext>;
 
 
   /** Gets the `Gdk::Display` that @a context is for.
    *
    * @return The display of @a context.
    */
-  Glib::RefPtr<Display> get_display();
+  auto get_display() -> Glib::RefPtr<Display>;
 
   /** Gets the `Gdk::Display` that @a context is for.
    *
    * @return The display of @a context.
    */
-  Glib::RefPtr<const Display> get_display() const;
+  auto get_display() const -> Glib::RefPtr<const Display>;
 
   /** Sets the workspace on which applications will be launched.
    *
@@ -188,7 +188,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> > property_display() const;
+  auto property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >;
 
 
 public:
@@ -218,7 +218,7 @@ namespace Glib
    * @relates Gdk::AppLaunchContext
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::AppLaunchContext> wrap(GdkAppLaunchContext* object, bool take_copy = false);
+  auto wrap(GdkAppLaunchContext* object, bool take_copy = false) -> Glib::RefPtr<Gdk::AppLaunchContext>;
 }
 
 

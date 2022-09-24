@@ -83,31 +83,31 @@ enum class IconLookupFlags
 };
 
 /** @ingroup gtkmmEnums */
-inline IconLookupFlags operator|(IconLookupFlags lhs, IconLookupFlags rhs)
+inline auto operator|(IconLookupFlags lhs, IconLookupFlags rhs) -> IconLookupFlags
   { return static_cast<IconLookupFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline IconLookupFlags operator&(IconLookupFlags lhs, IconLookupFlags rhs)
+inline auto operator&(IconLookupFlags lhs, IconLookupFlags rhs) -> IconLookupFlags
   { return static_cast<IconLookupFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline IconLookupFlags operator^(IconLookupFlags lhs, IconLookupFlags rhs)
+inline auto operator^(IconLookupFlags lhs, IconLookupFlags rhs) -> IconLookupFlags
   { return static_cast<IconLookupFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline IconLookupFlags operator~(IconLookupFlags flags)
+inline auto operator~(IconLookupFlags flags) -> IconLookupFlags
   { return static_cast<IconLookupFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gtkmmEnums */
-inline IconLookupFlags& operator|=(IconLookupFlags& lhs, IconLookupFlags rhs)
+inline auto operator|=(IconLookupFlags& lhs, IconLookupFlags rhs) -> IconLookupFlags&
   { return (lhs = static_cast<IconLookupFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline IconLookupFlags& operator&=(IconLookupFlags& lhs, IconLookupFlags rhs)
+inline auto operator&=(IconLookupFlags& lhs, IconLookupFlags rhs) -> IconLookupFlags&
   { return (lhs = static_cast<IconLookupFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline IconLookupFlags& operator^=(IconLookupFlags& lhs, IconLookupFlags rhs)
+inline auto operator^=(IconLookupFlags& lhs, IconLookupFlags rhs) -> IconLookupFlags&
   { return (lhs = static_cast<IconLookupFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -134,7 +134,7 @@ public:
 
   GTKMM_API IconThemeError(Code error_code, const Glib::ustring& error_message);
   GTKMM_API explicit IconThemeError(GError* gobject);
-  GTKMM_API Code code() const;
+  GTKMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -156,7 +156,7 @@ template <>
 class GTKMM_API Value<Gtk::IconThemeError::Code> : public Glib::Value_Enum<Gtk::IconThemeError::Code>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -201,7 +201,7 @@ public:
 
   // noncopyable
   IconTheme(const IconTheme&) = delete;
-  IconTheme& operator=(const IconTheme&) = delete;
+  auto operator=(const IconTheme&) -> IconTheme& = delete;
 
 private:  friend class IconTheme_Class;
   static CppClassType icontheme_class_;
@@ -215,28 +215,28 @@ protected:
 public:
 
   IconTheme(IconTheme&& src) noexcept;
-  IconTheme& operator=(IconTheme&& src) noexcept;
+  auto operator=(IconTheme&& src) noexcept -> IconTheme&;
 
   ~IconTheme() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkIconTheme*       gobj()       { return reinterpret_cast<GtkIconTheme*>(gobject_); }
+  auto       gobj() -> GtkIconTheme*       { return reinterpret_cast<GtkIconTheme*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkIconTheme* gobj() const { return reinterpret_cast<GtkIconTheme*>(gobject_); }
+  auto gobj() const -> const GtkIconTheme* { return reinterpret_cast<GtkIconTheme*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkIconTheme* gobj_copy();
+  auto gobj_copy() -> GtkIconTheme*;
 
 private:
 
@@ -245,7 +245,7 @@ protected:
   IconTheme();
 public:
 
-  static Glib::RefPtr<IconTheme> create();
+  static auto create() -> Glib::RefPtr<IconTheme>;
 
 
   /** Gets the icon theme object associated with @a display.
@@ -262,7 +262,7 @@ public:
    * the given display. This icon theme is associated with the display
    * and can be used as long as the display is open. Do not ref or unref it.
    */
-  static Glib::RefPtr<IconTheme> get_for_display(const Glib::RefPtr<Gdk::Display>& display);
+  static auto get_for_display(const Glib::RefPtr<Gdk::Display>& display) -> Glib::RefPtr<IconTheme>;
 
 
   /** Returns the display that the `Gtk::IconTheme` object was
@@ -270,14 +270,14 @@ public:
    *
    * @return The display of @a icon_theme.
    */
-  Glib::RefPtr<Gdk::Display> get_display();
+  auto get_display() -> Glib::RefPtr<Gdk::Display>;
 
   /** Returns the display that the `Gtk::IconTheme` object was
    * created for.
    *
    * @return The display of @a icon_theme.
    */
-  Glib::RefPtr<const Gdk::Display> get_display() const;
+  auto get_display() const -> Glib::RefPtr<const Gdk::Display>;
 
 
   /** Sets the search path for the icon theme object.
@@ -308,7 +308,7 @@ public:
    *
    * @return A list of icon theme path directories.
    */
-  std::vector<std::string> get_search_path() const;
+  auto get_search_path() const -> std::vector<std::string>;
 
   /** Appends a directory to the search path.
    *
@@ -342,7 +342,7 @@ public:
    *
    * @return A list of resource paths.
    */
-  std::vector<std::string> get_resource_path() const;
+  auto get_resource_path() const -> std::vector<std::string>;
 
   /** Adds a resource path that will be looked at when looking
    * for icons, similar to search paths.
@@ -372,7 +372,7 @@ public:
    *
    * @return The current icon theme name,.
    */
-  Glib::ustring get_theme_name() const;
+  auto get_theme_name() const -> Glib::ustring;
 
   /** Checks whether an icon theme includes an icon
    * for a particular name.
@@ -381,7 +381,7 @@ public:
    * @return <tt>true</tt> if @a self includes an
    * icon for @a icon_name.
    */
-  bool has_icon(const Glib::ustring& icon_name) const;
+  auto has_icon(const Glib::ustring& icon_name) const -> bool;
 
   /** Checks whether an icon theme includes an icon
    * for a particular `Gio::Icon`.
@@ -391,7 +391,7 @@ public:
    * @param gicon A `Gio::Icon`.
    * @return <tt>true</tt> if @a self includes an icon for @a gicon.
    */
-  bool has_gicon(const Glib::RefPtr<const Gio::Icon>& gicon) const;
+  auto has_gicon(const Glib::RefPtr<const Gio::Icon>& gicon) const -> bool;
 
 
   /** Returns an array of integers describing the sizes at which
@@ -405,7 +405,7 @@ public:
    * allocated array describing the sizes at which the icon is
    * available.
    */
-  std::vector<int> get_icon_sizes(const Glib::ustring& icon_name) const;
+  auto get_icon_sizes(const Glib::ustring& icon_name) const -> std::vector<int>;
 
 
   /** Looks up a named icon for a desired size and window scale,
@@ -433,10 +433,10 @@ public:
    * @return A `Gtk::IconPaintable` object
    * containing the icon.
    */
-  Glib::RefPtr<IconPaintable> lookup_icon(const Glib::ustring& icon_name, const std::vector<Glib::ustring>& fallbacks, int size, int scale =  1, TextDirection direction =  TextDirection::NONE, IconLookupFlags flags =  (IconLookupFlags)0);
+  auto lookup_icon(const Glib::ustring& icon_name, const std::vector<Glib::ustring>& fallbacks, int size, int scale =  1, TextDirection direction =  TextDirection::NONE, IconLookupFlags flags =  (IconLookupFlags)0) -> Glib::RefPtr<IconPaintable>;
 
   /// A lookup_icon() convenience overload.
-  Glib::RefPtr<IconPaintable> lookup_icon(const Glib::ustring& icon_name, int size, int scale =  1, TextDirection direction =  TextDirection::NONE, IconLookupFlags flags =  (IconLookupFlags)0);
+  auto lookup_icon(const Glib::ustring& icon_name, int size, int scale =  1, TextDirection direction =  TextDirection::NONE, IconLookupFlags flags =  (IconLookupFlags)0) -> Glib::RefPtr<IconPaintable>;
 
   /** Looks up a named icon for a desired size and window scale,
    * returning a `Gtk::IconPaintable`.
@@ -463,10 +463,10 @@ public:
    * @return A `Gtk::IconPaintable` object
    * containing the icon.
    */
-  Glib::RefPtr<const IconPaintable> lookup_icon(const Glib::ustring& icon_name, const std::vector<Glib::ustring>& fallbacks, int size, int scale =  1, TextDirection direction =  TextDirection::NONE, IconLookupFlags flags =  (IconLookupFlags)0) const;
+  auto lookup_icon(const Glib::ustring& icon_name, const std::vector<Glib::ustring>& fallbacks, int size, int scale =  1, TextDirection direction =  TextDirection::NONE, IconLookupFlags flags =  (IconLookupFlags)0) const -> Glib::RefPtr<const IconPaintable>;
 
   /// A lookup_icon() convenience overload.
-  Glib::RefPtr<const IconPaintable> lookup_icon(const Glib::ustring& icon_name, int size, int scale =  1, TextDirection direction =  TextDirection::NONE, IconLookupFlags flags =  (IconLookupFlags)0) const;
+  auto lookup_icon(const Glib::ustring& icon_name, int size, int scale =  1, TextDirection direction =  TextDirection::NONE, IconLookupFlags flags =  (IconLookupFlags)0) const -> Glib::RefPtr<const IconPaintable>;
 
 
   /** Looks up a icon for a desired size and window scale.
@@ -482,7 +482,7 @@ public:
    * @return A `Gtk::IconPaintable` containing
    * information about the icon. Unref with Glib::object_unref().
    */
-  Glib::RefPtr<IconPaintable> lookup_icon(const Glib::RefPtr<const Gio::Icon>& icon, int size, int scale =  1, TextDirection direction =  TextDirection::NONE, IconLookupFlags flags =  (IconLookupFlags)0);
+  auto lookup_icon(const Glib::RefPtr<const Gio::Icon>& icon, int size, int scale =  1, TextDirection direction =  TextDirection::NONE, IconLookupFlags flags =  (IconLookupFlags)0) -> Glib::RefPtr<IconPaintable>;
 
   /** Looks up a icon for a desired size and window scale.
    *
@@ -497,14 +497,14 @@ public:
    * @return A `Gtk::IconPaintable` containing
    * information about the icon. Unref with Glib::object_unref().
    */
-  Glib::RefPtr<const IconPaintable> lookup_icon(const Glib::RefPtr<const Gio::Icon>& icon, int size, int scale =  1, TextDirection direction =  TextDirection::NONE, IconLookupFlags flags =  (IconLookupFlags)0) const;
+  auto lookup_icon(const Glib::RefPtr<const Gio::Icon>& icon, int size, int scale =  1, TextDirection direction =  TextDirection::NONE, IconLookupFlags flags =  (IconLookupFlags)0) const -> Glib::RefPtr<const IconPaintable>;
 
 
   /** Lists the names of icons in the current icon theme.
    *
    * @return A vector holding the names of all the icons in the theme.
    */
-  std::vector<Glib::ustring> get_icon_names() const;
+  auto get_icon_names() const -> std::vector<Glib::ustring>;
 
   // no_default_handler because GtkIconThemeClass is private.
 
@@ -521,7 +521,7 @@ public:
    * contents of the current icon theme.
    */
 
-  Glib::SignalProxy<void()> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void()>;
 
 
   /** The display that this icon theme object is attached to.
@@ -529,21 +529,21 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gdk::Display> > property_display() ;
+  auto property_display() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Display> > ;
 
 /** The display that this icon theme object is attached to.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Display> > property_display() const;
+  auto property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Display> >;
 
   /** The icon names that are supported by the icon theme.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> > property_icon_names() const;
+  auto property_icon_names() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >;
 
 
   /** The search path for this icon theme.
@@ -557,7 +557,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< std::vector<std::string> > property_search_path() ;
+  auto property_search_path() -> Glib::PropertyProxy< std::vector<std::string> > ;
 
 /** The search path for this icon theme.
    *
@@ -570,7 +570,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::vector<std::string> > property_search_path() const;
+  auto property_search_path() const -> Glib::PropertyProxy_ReadOnly< std::vector<std::string> >;
 
   /** Resource paths that will be looked at when looking for icons,
    * similar to search paths.
@@ -584,7 +584,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< std::vector<std::string> > property_resource_path() ;
+  auto property_resource_path() -> Glib::PropertyProxy< std::vector<std::string> > ;
 
 /** Resource paths that will be looked at when looking for icons,
    * similar to search paths.
@@ -598,7 +598,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::vector<std::string> > property_resource_path() const;
+  auto property_resource_path() const -> Glib::PropertyProxy_ReadOnly< std::vector<std::string> >;
 
   /** The name of the icon theme that is being used.
    *
@@ -611,7 +611,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_theme_name() ;
+  auto property_theme_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The name of the icon theme that is being used.
    *
@@ -624,7 +624,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_theme_name() const;
+  auto property_theme_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -654,7 +654,7 @@ namespace Glib
    * @relates Gtk::IconTheme
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::IconTheme> wrap(GtkIconTheme* object, bool take_copy = false);
+  auto wrap(GtkIconTheme* object, bool take_copy = false) -> Glib::RefPtr<Gtk::IconTheme>;
 }
 
 

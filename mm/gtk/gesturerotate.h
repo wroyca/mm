@@ -62,7 +62,7 @@ public:
 
   // noncopyable
   GestureRotate(const GestureRotate&) = delete;
-  GestureRotate& operator=(const GestureRotate&) = delete;
+  auto operator=(const GestureRotate&) -> GestureRotate& = delete;
 
 private:  friend class GestureRotate_Class;
   static CppClassType gesturerotate_class_;
@@ -76,28 +76,28 @@ protected:
 public:
 
   GestureRotate(GestureRotate&& src) noexcept;
-  GestureRotate& operator=(GestureRotate&& src) noexcept;
+  auto operator=(GestureRotate&& src) noexcept -> GestureRotate&;
 
   ~GestureRotate() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkGestureRotate*       gobj()       { return reinterpret_cast<GtkGestureRotate*>(gobject_); }
+  auto       gobj() -> GtkGestureRotate*       { return reinterpret_cast<GtkGestureRotate*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkGestureRotate* gobj() const { return reinterpret_cast<GtkGestureRotate*>(gobject_); }
+  auto gobj() const -> const GtkGestureRotate* { return reinterpret_cast<GtkGestureRotate*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkGestureRotate* gobj_copy();
+  auto gobj_copy() -> GtkGestureRotate*;
 
 private:
 
@@ -115,7 +115,7 @@ public:
    * @return A RefPtr to a new GestureRotate.
    */
 
-  static Glib::RefPtr<GestureRotate> create();
+  static auto create() -> Glib::RefPtr<GestureRotate>;
 
 
   /** Gets the angle delta in radians.
@@ -126,7 +126,7 @@ public:
    *
    * @return The angle delta in radians.
    */
-  double get_angle_delta() const;
+  auto get_angle_delta() const -> double;
 
   // no_default_handler because GtkGestureRotateClass is private.
 
@@ -142,7 +142,7 @@ public:
    * @param angle_delta Difference with the starting angle, in radians.
    */
 
-  Glib::SignalProxy<void(double, double)> signal_angle_changed();
+  auto signal_angle_changed() -> Glib::SignalProxy<void(double, double)>;
 
 
   // GestureRotate has no properties
@@ -175,7 +175,7 @@ namespace Glib
    * @relates Gtk::GestureRotate
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::GestureRotate> wrap(GtkGestureRotate* object, bool take_copy = false);
+  auto wrap(GtkGestureRotate* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureRotate>;
 }
 
 

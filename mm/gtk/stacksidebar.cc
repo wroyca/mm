@@ -43,7 +43,7 @@ namespace
 namespace Glib
 {
 
-Gtk::StackSidebar* wrap(GtkStackSidebar* object, bool take_copy)
+auto wrap(GtkStackSidebar* object, bool take_copy) -> Gtk::StackSidebar*
 {
   return dynamic_cast<Gtk::StackSidebar *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -56,7 +56,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& StackSidebar_Class::init()
+auto StackSidebar_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -87,7 +87,7 @@ void StackSidebar_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* StackSidebar_Class::wrap_new(GObject* o)
+auto StackSidebar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new StackSidebar((GtkStackSidebar*)(o)));
 
@@ -113,7 +113,7 @@ StackSidebar::StackSidebar(StackSidebar&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-StackSidebar& StackSidebar::operator=(StackSidebar&& src) noexcept
+auto StackSidebar::operator=(StackSidebar&& src) noexcept -> StackSidebar&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -126,13 +126,13 @@ StackSidebar::~StackSidebar() noexcept
 
 StackSidebar::CppClassType StackSidebar::stacksidebar_class_; // initialize static member
 
-GType StackSidebar::get_type()
+auto StackSidebar::get_type() -> GType
 {
   return stacksidebar_class_.init().get_type();
 }
 
 
-GType StackSidebar::get_base_type()
+auto StackSidebar::get_base_type() -> GType
 {
   return gtk_stack_sidebar_get_type();
 }
@@ -153,12 +153,12 @@ void StackSidebar::set_stack(Stack& stack)
   gtk_stack_sidebar_set_stack(gobj(), (stack).gobj());
 }
 
-Stack* StackSidebar::get_stack()
+auto StackSidebar::get_stack() -> Stack*
 {
   return Glib::wrap(gtk_stack_sidebar_get_stack(gobj()));
 }
 
-const Stack* StackSidebar::get_stack() const
+auto StackSidebar::get_stack() const -> const Stack*
 {
   return const_cast<StackSidebar*>(this)->get_stack();
 }
@@ -168,12 +168,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Stack*>::value,
   "Type Stack* cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Stack* > StackSidebar::property_stack()
+auto StackSidebar::property_stack() -> Glib::PropertyProxy< Stack* >
 {
   return Glib::PropertyProxy< Stack* >(this, "stack");
 }
 
-Glib::PropertyProxy_ReadOnly< Stack* > StackSidebar::property_stack() const
+auto StackSidebar::property_stack() const -> Glib::PropertyProxy_ReadOnly< Stack* >
 {
   return Glib::PropertyProxy_ReadOnly< Stack* >(this, "stack");
 }

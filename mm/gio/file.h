@@ -90,31 +90,31 @@ enum class FileQueryInfoFlags
 };
 
 /** @ingroup giommEnums */
-inline FileQueryInfoFlags operator|(FileQueryInfoFlags lhs, FileQueryInfoFlags rhs)
+inline auto operator|(FileQueryInfoFlags lhs, FileQueryInfoFlags rhs) -> FileQueryInfoFlags
   { return static_cast<FileQueryInfoFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline FileQueryInfoFlags operator&(FileQueryInfoFlags lhs, FileQueryInfoFlags rhs)
+inline auto operator&(FileQueryInfoFlags lhs, FileQueryInfoFlags rhs) -> FileQueryInfoFlags
   { return static_cast<FileQueryInfoFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline FileQueryInfoFlags operator^(FileQueryInfoFlags lhs, FileQueryInfoFlags rhs)
+inline auto operator^(FileQueryInfoFlags lhs, FileQueryInfoFlags rhs) -> FileQueryInfoFlags
   { return static_cast<FileQueryInfoFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline FileQueryInfoFlags operator~(FileQueryInfoFlags flags)
+inline auto operator~(FileQueryInfoFlags flags) -> FileQueryInfoFlags
   { return static_cast<FileQueryInfoFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline FileQueryInfoFlags& operator|=(FileQueryInfoFlags& lhs, FileQueryInfoFlags rhs)
+inline auto operator|=(FileQueryInfoFlags& lhs, FileQueryInfoFlags rhs) -> FileQueryInfoFlags&
   { return (lhs = static_cast<FileQueryInfoFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline FileQueryInfoFlags& operator&=(FileQueryInfoFlags& lhs, FileQueryInfoFlags rhs)
+inline auto operator&=(FileQueryInfoFlags& lhs, FileQueryInfoFlags rhs) -> FileQueryInfoFlags&
   { return (lhs = static_cast<FileQueryInfoFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline FileQueryInfoFlags& operator^=(FileQueryInfoFlags& lhs, FileQueryInfoFlags rhs)
+inline auto operator^=(FileQueryInfoFlags& lhs, FileQueryInfoFlags rhs) -> FileQueryInfoFlags&
   { return (lhs = static_cast<FileQueryInfoFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -167,31 +167,31 @@ enum class FileMonitorFlags
 };
 
 /** @ingroup giommEnums */
-inline FileMonitorFlags operator|(FileMonitorFlags lhs, FileMonitorFlags rhs)
+inline auto operator|(FileMonitorFlags lhs, FileMonitorFlags rhs) -> FileMonitorFlags
   { return static_cast<FileMonitorFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline FileMonitorFlags operator&(FileMonitorFlags lhs, FileMonitorFlags rhs)
+inline auto operator&(FileMonitorFlags lhs, FileMonitorFlags rhs) -> FileMonitorFlags
   { return static_cast<FileMonitorFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline FileMonitorFlags operator^(FileMonitorFlags lhs, FileMonitorFlags rhs)
+inline auto operator^(FileMonitorFlags lhs, FileMonitorFlags rhs) -> FileMonitorFlags
   { return static_cast<FileMonitorFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline FileMonitorFlags operator~(FileMonitorFlags flags)
+inline auto operator~(FileMonitorFlags flags) -> FileMonitorFlags
   { return static_cast<FileMonitorFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline FileMonitorFlags& operator|=(FileMonitorFlags& lhs, FileMonitorFlags rhs)
+inline auto operator|=(FileMonitorFlags& lhs, FileMonitorFlags rhs) -> FileMonitorFlags&
   { return (lhs = static_cast<FileMonitorFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline FileMonitorFlags& operator&=(FileMonitorFlags& lhs, FileMonitorFlags rhs)
+inline auto operator&=(FileMonitorFlags& lhs, FileMonitorFlags rhs) -> FileMonitorFlags&
   { return (lhs = static_cast<FileMonitorFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline FileMonitorFlags& operator^=(FileMonitorFlags& lhs, FileMonitorFlags rhs)
+inline auto operator^=(FileMonitorFlags& lhs, FileMonitorFlags rhs) -> FileMonitorFlags&
   { return (lhs = static_cast<FileMonitorFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -233,7 +233,7 @@ public:
 
   // noncopyable
   File(const File&) = delete;
-  File& operator=(const File&) = delete;
+  auto operator=(const File&) -> File& = delete;
 
 private:
   friend class File_Class;
@@ -267,7 +267,7 @@ protected:
 public:
 
   File(File&& src) noexcept;
-  File& operator=(File&& src) noexcept;
+  auto operator=(File&& src) noexcept -> File&;
 
   ~File() noexcept override;
 
@@ -275,17 +275,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GFile*       gobj()       { return reinterpret_cast<GFile*>(gobject_); }
+  auto       gobj() -> GFile*       { return reinterpret_cast<GFile*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GFile* gobj() const { return reinterpret_cast<GFile*>(gobject_); }
+  auto gobj() const -> const GFile* { return reinterpret_cast<GFile*>(gobject_); }
 
 private:
 
@@ -439,7 +439,7 @@ public:
    * @param path A string containing a relative or absolute path.
    * @result A new instantiation of an appropriate Gio::File class.
    */
-  static Glib::RefPtr<File> create_for_path(const std::string& path);
+  static auto create_for_path(const std::string& path) -> Glib::RefPtr<File>;
 
 
   /** Constructs a File for a given URI.
@@ -448,7 +448,7 @@ public:
    * @param uri A string containing a URI.
    * @result A new instantiation of an appropriate Gio::File class.
    */
-  static Glib::RefPtr<File> create_for_uri(const std::string& uri);
+  static auto create_for_uri(const std::string& uri) -> Glib::RefPtr<File>;
 
 
   /** Constructs a File for a given argument from the command line.
@@ -458,7 +458,7 @@ public:
    * @param arg A string containing a relative or absolute path.
    * @result A new instantiation of an appropriate Gio::File class.
    */
-  static Glib::RefPtr<File> create_for_commandline_arg(const std::string& arg);
+  static auto create_for_commandline_arg(const std::string& arg) -> Glib::RefPtr<File>;
 
 
   /** Constructs a file in the preferred directory for temporary files.
@@ -481,7 +481,7 @@ public:
    *
    * @throws Glib::FileError
    */
-  static std::pair<Glib::RefPtr<File>, Glib::RefPtr<FileIOStream>> create_tmp(const std::string& tmpl = {});
+  static auto create_tmp(const std::string& tmpl = {}) -> std::pair<Glib::RefPtr<File>, Glib::RefPtr<FileIOStream>>;
 
 
   // parse_name is a UTF8-guaranteed "nice" string that can both
@@ -498,7 +498,7 @@ public:
    * @param parse_name A UTF-8 encoded file name or path to be parsed.
    * @return A new %File.
    */
-  static Glib::RefPtr<File> create_for_parse_name(const Glib::ustring& parse_name);
+  static auto create_for_parse_name(const Glib::ustring& parse_name) -> Glib::RefPtr<File>;
 
 
   /** Duplicates a File handle. This operation does not duplicate
@@ -515,7 +515,7 @@ public:
    * @return A new File that is a duplicate
    * of the given File.
    */
-  Glib::RefPtr<File> dup() const;
+  auto dup() const -> Glib::RefPtr<File>;
 
   // The method intended to be used for making hash tables
   // (g_hash_table_new in C).
@@ -531,7 +531,7 @@ public:
    * This function is intended for easily hashing a File to
    * add to a HashTable or similar data structure.
    */
-  guint hash() const;
+  auto hash() const -> guint;
 
   //Note that the implementation of equal() is already virtual via equal_vfunc().
 
@@ -546,7 +546,7 @@ public:
    * @return <tt>true</tt> if @a *this and @a other are equal.
    * <tt>false</tt> if either is not a File.
    */
-  bool equal(const Glib::RefPtr<const File>& other) const;
+  auto equal(const Glib::RefPtr<const File>& other) const -> bool;
 
 
   /** Gets the base name (the last component of the path) for a given File.
@@ -566,7 +566,7 @@ public:
    * @return String containing the File's
    * base name, or <tt>nullptr</tt> if given File is invalid.
    */
-  std::string get_basename() const;
+  auto get_basename() const -> std::string;
 
   /** Gets the local pathname for File, if one exists. If non-<tt>nullptr</tt>, this is
    * guaranteed to be an absolute, canonical path. It might contain symlinks.
@@ -576,7 +576,7 @@ public:
    * @return String containing the File's path,
    * or <tt>nullptr</tt> if no such path exists.
    */
-  std::string get_path() const;
+  auto get_path() const -> std::string;
 
 
   /** Gets the URI for the @a file.
@@ -586,7 +586,7 @@ public:
    * @return A string containing the File's URI. If the File was constructed
    * with an invalid URI, an invalid URI is returned.
    */
-  std::string get_uri() const;
+  auto get_uri() const -> std::string;
 
   /** Gets the parse name of the @a file.
    * A parse name is a UTF-8 string that describes the
@@ -605,7 +605,7 @@ public:
    *
    * @return A string containing the File's parse name.
    */
-  Glib::ustring get_parse_name() const;
+  auto get_parse_name() const -> Glib::ustring;
 
   //Note that these return a reference (usually new instances),
   //so we don't need to use refreturn.
@@ -624,7 +624,7 @@ public:
    * parent of the given File or <tt>nullptr</tt> if there is no parent. Free
    * the returned object with Glib::object_unref().
    */
-  Glib::RefPtr<File> get_parent() const;
+  auto get_parent() const -> Glib::RefPtr<File>;
 
 
   /** Checks if @a file has a parent, and optionally, if it is @a parent.
@@ -639,14 +639,14 @@ public:
    * @return <tt>true</tt> if @a file is an immediate child of @a parent (or any parent in
    * the case that @a parent is <tt>nullptr</tt>).
    */
-  bool has_parent(const Glib::RefPtr<File>& parent) const;
+  auto has_parent(const Glib::RefPtr<File>& parent) const -> bool;
 
   /** Checks if the file has any parent at all.
    * @result true if the file is a child of any parent.
    *
    * @newin{2,24}
    */
-  bool has_parent() const;
+  auto has_parent() const -> bool;
 
 
   /** Gets a child of @a file with basename equal to @a name.
@@ -661,7 +661,7 @@ public:
    * @return A File to a child specified by @a name.
    * Free the returned object with Glib::object_unref().
    */
-  Glib::RefPtr<File> get_child(const std::string& name) const;
+  auto get_child(const std::string& name) const -> Glib::RefPtr<File>;
 
 
   /** Gets the child of @a file for a given @a display_name (i.e.\ a UTF-8
@@ -680,7 +680,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<File> get_child_for_display_name(const Glib::ustring& display_name) const;
+  auto get_child_for_display_name(const Glib::ustring& display_name) const -> Glib::RefPtr<File>;
 
 
   /** Checks whether @a file has the prefix specified by @a prefix.
@@ -704,7 +704,7 @@ public:
    * @return <tt>true</tt> if the @a file's parent, grandparent, etc is @a prefix,
    * <tt>false</tt> otherwise.
    */
-  bool has_prefix(const Glib::RefPtr<const File>& prefix) const;
+  auto has_prefix(const Glib::RefPtr<const File>& prefix) const -> bool;
 
   /** Gets the path for @a descendant relative to @a parent.
    *
@@ -715,7 +715,7 @@ public:
    *  @a descendant to @a parent, or <tt>nullptr</tt> if @a descendant doesn't have @a parent as
    * prefix.
    */
-  std::string get_relative_path(const Glib::RefPtr<const File>& descendant) const;
+  auto get_relative_path(const Glib::RefPtr<const File>& descendant) const -> std::string;
 
   /** Resolves a relative path for @a file to an absolute path.
    *
@@ -727,7 +727,7 @@ public:
    * @param relative_path A given relative path string.
    * @return A File for the resolved path.
    */
-  Glib::RefPtr<File> resolve_relative_path(const std::string& relative_path) const;
+  auto resolve_relative_path(const std::string& relative_path) const -> Glib::RefPtr<File>;
 
   /** Checks to see if a file is native to the platform.
    *
@@ -743,7 +743,7 @@ public:
    *
    * @return <tt>true</tt> if @a file is native.
    */
-  bool is_native() const;
+  auto is_native() const -> bool;
 
   /** Checks to see if a File has a given URI scheme.
    *
@@ -754,7 +754,7 @@ public:
    * given URI scheme, <tt>false</tt> if URI scheme is <tt>nullptr</tt>,
    * not supported, or File is invalid.
    */
-  bool has_uri_scheme(const std::string& uri_scheme) const;
+  auto has_uri_scheme(const std::string& uri_scheme) const -> bool;
 
 
   /** Gets the URI scheme for a File.
@@ -771,7 +771,7 @@ public:
    * @return A string containing the URI scheme for the given
    * File or <tt>nullptr</tt> if the File was constructed with an invalid URI.
    */
-  std::string get_uri_scheme() const;
+  auto get_uri_scheme() const -> std::string;
 
   //TODO: We don't have both const and unconst versions because a FileInputStream can't really change the File.
 
@@ -791,10 +791,10 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<FileInputStream> read(const Glib::RefPtr<Cancellable>& cancellable);
+  auto read(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<FileInputStream>;
 
   /// A read() convenience overload.
-  Glib::RefPtr<FileInputStream> read();
+  auto read() -> Glib::RefPtr<FileInputStream>;
 
   /** Asynchronously opens the file for reading.
    * For more details, see read() which is the synchronous version of this call.
@@ -825,7 +825,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<FileInputStream> read_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto read_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileInputStream>;
 
 
   /** Gets an output stream for appending data to the file. If
@@ -851,7 +851,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileOutputStream> append_to(const Glib::RefPtr<Cancellable>& cancellable, CreateFlags flags = CreateFlags::NONE);
+  auto append_to(const Glib::RefPtr<Cancellable>& cancellable, CreateFlags flags = CreateFlags::NONE) -> Glib::RefPtr<FileOutputStream>;
 
   /** Gets an output stream for appending data to the file. If
    * the file doesn't already exist it is created.
@@ -871,7 +871,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileOutputStream> append_to(CreateFlags flags = CreateFlags::NONE);
+  auto append_to(CreateFlags flags = CreateFlags::NONE) -> Glib::RefPtr<FileOutputStream>;
 
 
   //We renamed this to create_file from (g_file_create() and g_file_create_readwrite), to avoid confusion with static create() methods,
@@ -904,7 +904,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileOutputStream> create_file(const Glib::RefPtr<Cancellable>& cancellable, CreateFlags flags = CreateFlags::NONE);
+  auto create_file(const Glib::RefPtr<Cancellable>& cancellable, CreateFlags flags = CreateFlags::NONE) -> Glib::RefPtr<FileOutputStream>;
 
   /** Creates a new file and returns an output stream for writing to it.
    * The file must not already exist.
@@ -929,7 +929,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileOutputStream> create_file(CreateFlags flags = CreateFlags::NONE);
+  auto create_file(CreateFlags flags = CreateFlags::NONE) -> Glib::RefPtr<FileOutputStream>;
 
 
   /** Creates a new file and returns a stream for reading and writing to it.
@@ -963,7 +963,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileIOStream> create_file_readwrite(const Glib::RefPtr<Cancellable>& cancellable, CreateFlags flags = CreateFlags::NONE);
+  auto create_file_readwrite(const Glib::RefPtr<Cancellable>& cancellable, CreateFlags flags = CreateFlags::NONE) -> Glib::RefPtr<FileIOStream>;
 
   /** Creates a new file and returns a stream for reading and writing to it.
    * The file must not already exist.
@@ -992,7 +992,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileIOStream> create_file_readwrite(CreateFlags flags = CreateFlags::NONE);
+  auto create_file_readwrite(CreateFlags flags = CreateFlags::NONE) -> Glib::RefPtr<FileIOStream>;
 
 
   /** Returns an output stream for overwriting the file, possibly creating a backup copy of the file first.
@@ -1031,7 +1031,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileOutputStream> replace(const Glib::RefPtr<Cancellable>& cancellable, const std::string& etag = {}, bool make_backup = false, CreateFlags flags = CreateFlags::NONE);
+  auto replace(const Glib::RefPtr<Cancellable>& cancellable, const std::string& etag = {}, bool make_backup = false, CreateFlags flags = CreateFlags::NONE) -> Glib::RefPtr<FileOutputStream>;
 
   /** Returns an output stream for overwriting the file, possibly creating a backup copy of the file first.
    * This will try to replace the file in the safest way possible so that any errors during the writing will
@@ -1065,7 +1065,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileOutputStream> replace(const std::string& etag = {}, bool make_backup = false, CreateFlags flags = CreateFlags::NONE);
+  auto replace(const std::string& etag = {}, bool make_backup = false, CreateFlags flags = CreateFlags::NONE) -> Glib::RefPtr<FileOutputStream>;
 
 
   /** Asynchronously opens the file for appending.
@@ -1100,7 +1100,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<FileOutputStream> append_to_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto append_to_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileOutputStream>;
 
   //We renamed this to create_file_async from (g_file_create_async() and g_file_create_readwrite_async), to avoid confusion with static create() methods,
   //but I would still like to choose a different word, but can't think of a good one. murrayc. See also create_file().
@@ -1138,7 +1138,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<FileOutputStream> create_file_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto create_file_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileOutputStream>;
 
 
   /** Asynchronously creates a new file and returns a stream for reading and
@@ -1184,7 +1184,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<FileIOStream> create_file_readwrite_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto create_file_readwrite_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileIOStream>;
 
   /** Asyncronously overwrites the file, replacing the contents, possibly creating a backup copy of the file first.
    * For more details, see replace() which is the synchronous version of this call.
@@ -1221,7 +1221,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<FileOutputStream> replace_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto replace_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileOutputStream>;
 
 
   /** Opens an existing file for reading and writing. The result is
@@ -1249,10 +1249,10 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<FileIOStream> open_readwrite(const Glib::RefPtr<Cancellable>& cancellable);
+  auto open_readwrite(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<FileIOStream>;
 
   /// A open_readwrite() convenience overload.
-  Glib::RefPtr<FileIOStream> open_readwrite();
+  auto open_readwrite() -> Glib::RefPtr<FileIOStream>;
 
   /** Opens an existing file for reading and writing.
    * The result is a FileIOStream that can be used to read and write the contents of the file.
@@ -1307,7 +1307,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<FileIOStream> open_readwrite_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto open_readwrite_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileIOStream>;
 
   /** Returns an output stream for overwriting the file in readwrite mode, possibly creating a backup copy of the file first.
    *
@@ -1329,7 +1329,7 @@ public:
    *
    * @newin{2,24}
    */
-  Glib::RefPtr<FileIOStream> replace_readwrite(const Glib::RefPtr<Cancellable>& cancellable, const std::string& etag = {}, bool make_backup = false, CreateFlags flags = CreateFlags::NONE);
+  auto replace_readwrite(const Glib::RefPtr<Cancellable>& cancellable, const std::string& etag = {}, bool make_backup = false, CreateFlags flags = CreateFlags::NONE) -> Glib::RefPtr<FileIOStream>;
 
 
   /** Returns an output stream for overwriting the file in readwrite mode, possibly creating a backup copy of the file first.
@@ -1351,7 +1351,7 @@ public:
    *
    * @newin{2,24}
    */
-  Glib::RefPtr<FileIOStream> replace_readwrite(const std::string& etag = {}, bool make_backup = false, CreateFlags flags = CreateFlags::NONE);
+  auto replace_readwrite(const std::string& etag = {}, bool make_backup = false, CreateFlags flags = CreateFlags::NONE) -> Glib::RefPtr<FileIOStream>;
 
 
   /** Asyncronously overwrites the file in read-write mode, replacing the contents, possibly creating a backup copy of the file first.
@@ -1398,7 +1398,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<FileIOStream> replace_readwrite_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto replace_readwrite_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileIOStream>;
 
   /** Gets the requested information about the file. The result
    * is a FileInfo object that contains key-value attributes (such as the  type or size
@@ -1433,7 +1433,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileInfo> query_info(const Glib::RefPtr<Cancellable>& cancellable, const std::string& attributes = "*", FileQueryInfoFlags flags = FileQueryInfoFlags::NONE) const;
+  auto query_info(const Glib::RefPtr<Cancellable>& cancellable, const std::string& attributes = "*", FileQueryInfoFlags flags = FileQueryInfoFlags::NONE) const -> Glib::RefPtr<FileInfo>;
 
   /** Gets the requested information about the file. The result
    * is a FileInfo object that contains key-value attributes (such as the  type or size
@@ -1463,7 +1463,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileInfo> query_info(const std::string& attributes = "*", FileQueryInfoFlags flags = FileQueryInfoFlags::NONE) const;
+  auto query_info(const std::string& attributes = "*", FileQueryInfoFlags flags = FileQueryInfoFlags::NONE) const -> Glib::RefPtr<FileInfo>;
 
 
   /** Utility function to check if a particular file exists. This is
@@ -1492,10 +1492,10 @@ public:
    * @param cancellable Optional Cancellable object, <tt>nullptr</tt> to ignore.
    * @return <tt>true</tt> if the file exists (and can be detected without error), <tt>false</tt> otherwise (or if cancelled).
    */
-  bool query_exists(const Glib::RefPtr<Cancellable>& cancellable) const;
+  auto query_exists(const Glib::RefPtr<Cancellable>& cancellable) const -> bool;
 
   /// A query_exists() convenience overload.
-  bool query_exists() const;
+  auto query_exists() const -> bool;
 
   //We cannot use the {?} format here because we want a default value for flags, but gmmproc then generates a method with a default value for flags when it is not the last parameter.
 
@@ -1513,7 +1513,7 @@ public:
    * @return The FileType of the file and Gio::FileType::UNKNOWN
    * if the file does not exist.
    */
-  FileType query_file_type(FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable) const;
+  auto query_file_type(FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable) const -> FileType;
 
   /** Utility function to inspect the FileType of a file. This is
    * implemented using query_info() and as such does blocking I/O.
@@ -1526,7 +1526,7 @@ public:
    *
    * @newin{2,18}
    */
-   FileType query_file_type(FileQueryInfoFlags flags = FileQueryInfoFlags::NONE) const;
+   auto query_file_type(FileQueryInfoFlags flags = FileQueryInfoFlags::NONE) const -> FileType;
 
   /** Asynchronously gets the requested information about specified file. The result is a FileInfo object that contains key-value attributes (such as type or size for the file).
    *
@@ -1564,7 +1564,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<FileInfo> query_info_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto query_info_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileInfo>;
 
   /** Similar to query_info(), but obtains information
    * about the filesystem the file is on, rather than the file itself.
@@ -1594,7 +1594,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileInfo> query_filesystem_info(const Glib::RefPtr<Cancellable>& cancellable, const std::string& attributes = "*");
+  auto query_filesystem_info(const Glib::RefPtr<Cancellable>& cancellable, const std::string& attributes = "*") -> Glib::RefPtr<FileInfo>;
 
   /** Similar to query_info(), but obtains information
    * about the filesystem the file is on, rather than the file itself.
@@ -1619,7 +1619,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileInfo> query_filesystem_info(const std::string& attributes = "*");
+  auto query_filesystem_info(const std::string& attributes = "*") -> Glib::RefPtr<FileInfo>;
 
 
   /** Gets a Mount for the File.
@@ -1637,10 +1637,10 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<Mount> find_enclosing_mount(const Glib::RefPtr<Cancellable>& cancellable);
+  auto find_enclosing_mount(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Mount>;
 
   /// A find_enclosing_mount() convenience overload.
-  Glib::RefPtr<Mount> find_enclosing_mount();
+  auto find_enclosing_mount() -> Glib::RefPtr<Mount>;
 
   /** Asynchronously gets the requested information about the filesystem
    * that the file is on. The result is a FileInfo object
@@ -1684,7 +1684,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<FileInfo> query_filesystem_info_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto query_filesystem_info_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileInfo>;
 
   /** Asynchronously gets the mount for the file.
    *
@@ -1723,7 +1723,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<Mount> find_enclosing_mount_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto find_enclosing_mount_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Mount>;
 
   /** Gets the requested information about the files in a directory. The result
    * is a FileEnumerator object that will give out FileInfo objects for
@@ -1752,7 +1752,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileEnumerator> enumerate_children(const Glib::RefPtr<Cancellable>& cancellable, const std::string& attributes = "*", FileQueryInfoFlags flags = FileQueryInfoFlags::NONE);
+  auto enumerate_children(const Glib::RefPtr<Cancellable>& cancellable, const std::string& attributes = "*", FileQueryInfoFlags flags = FileQueryInfoFlags::NONE) -> Glib::RefPtr<FileEnumerator>;
 
 
   /** Gets the requested information about the files in a directory. The result
@@ -1777,7 +1777,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileEnumerator> enumerate_children(const std::string& attributes = "*", FileQueryInfoFlags flags = FileQueryInfoFlags::NONE);
+  auto enumerate_children(const std::string& attributes = "*", FileQueryInfoFlags flags = FileQueryInfoFlags::NONE) -> Glib::RefPtr<FileEnumerator>;
 
 
   /** Asynchronously gets the requested information about the files in a directory. The result is a GFileEnumerator object that will give out GFileInfo objects for all the files in the directory.
@@ -1816,7 +1816,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<FileEnumerator> enumerate_children_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto enumerate_children_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileEnumerator>;
 
 
   /** Renames @a file to the specified display name.
@@ -1840,10 +1840,10 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<File> set_display_name(const Glib::ustring& display_name, const Glib::RefPtr<Cancellable>& cancellable);
+  auto set_display_name(const Glib::ustring& display_name, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<File>;
 
   /// A set_display_name() convenience overload.
-  Glib::RefPtr<File> set_display_name(const Glib::ustring& display_name);
+  auto set_display_name(const Glib::ustring& display_name) -> Glib::RefPtr<File>;
 
   /** Asynchronously sets the display name for a given Gio::File. For the synchronous version of this function, see set_display_name().
    * When the operation is finished, @a slot will be called. You can then call set_display_name_finish() to get the result of the operation.
@@ -1874,7 +1874,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<File> set_display_name_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto set_display_name_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<File>;
 
   //TODO: Remove the bool results from this and other methods that throw an exception.
 
@@ -1887,10 +1887,10 @@ public:
    * @param cancellable A Cancellable object which can be used to cancel the operation.
    * @return <tt>true</tt> if the file was deleted. <tt>false</tt> otherwise.
    */
-  bool remove(const Glib::RefPtr<Cancellable>& cancellable);
+  auto remove(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A remove() convenience overload.
-  bool remove();
+  auto remove() -> bool;
 
    /** Asynchronously delete a file.
     * If the file is a directory, it will
@@ -1926,7 +1926,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool remove_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto remove_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Sends @a file to the "Trashcan", if possible. This is similar to
@@ -1944,10 +1944,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool trash(const Glib::RefPtr<Cancellable>& cancellable);
+  auto trash(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A trash() convenience overload.
-  bool trash();
+  auto trash() -> bool;
 
    /** Asynchronously sends the file to the Trash location, if possible.
     *
@@ -1978,7 +1978,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool trash_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto trash_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** A signal handler would be, for instance:
@@ -2008,7 +2008,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool copy(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot, const Glib::RefPtr<Cancellable>& cancellable, CopyFlags flags = CopyFlags::NONE);
+  auto copy(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot, const Glib::RefPtr<Cancellable>& cancellable, CopyFlags flags = CopyFlags::NONE) -> bool;
 
   /** Copies the file source to the location specified by destination. Can not handle recursive copies of directories.
    * If the flag CopyFlags::OVERWRITE is specified an already existing destination file is overwritten.
@@ -2030,7 +2030,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool copy(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot, CopyFlags flags = CopyFlags::NONE);
+  auto copy(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot, CopyFlags flags = CopyFlags::NONE) -> bool;
 
   /** Copies the file source to the location specified by destination. Can not handle recursive copies of directories.
    * If the flag CopyFlags::OVERWRITE is specified an already existing destination file is overwritten.
@@ -2050,7 +2050,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool copy(const Glib::RefPtr<File>& destination, CopyFlags flags = CopyFlags::NONE);
+  auto copy(const Glib::RefPtr<File>& destination, CopyFlags flags = CopyFlags::NONE) -> bool;
 
 
   /** Copies the file to the location specified by @a destination asynchronously.
@@ -2125,7 +2125,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool copy_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto copy_finish(const Glib::RefPtr<AsyncResult>& res) -> bool;
 
   /** Tries to move the file or directory source to the location specified by destination. If native move operations are supported then this is
    * used, otherwise a copy and delete fallback is used. The native implementation may support moving directories (for instance on moves inside
@@ -2150,11 +2150,11 @@ public:
    *
    * @throws Gio::Error
    */
-  bool move(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot, const Glib::RefPtr<Cancellable>& cancellable, CopyFlags flags = CopyFlags::NONE);
+  auto move(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot, const Glib::RefPtr<Cancellable>& cancellable, CopyFlags flags = CopyFlags::NONE) -> bool;
 
-  bool move(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot, CopyFlags flags = CopyFlags::NONE);
+  auto move(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot, CopyFlags flags = CopyFlags::NONE) -> bool;
 
-  bool move(const Glib::RefPtr<File>& destination, CopyFlags flags = CopyFlags::NONE);
+  auto move(const Glib::RefPtr<File>& destination, CopyFlags flags = CopyFlags::NONE) -> bool;
 
 
   /** Asynchronously moves a file source to the location of @a destination.
@@ -2204,7 +2204,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool move_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto move_finish(const Glib::RefPtr<AsyncResult>& res) -> bool;
 
 
   /** Creates a directory.
@@ -2218,10 +2218,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool make_directory(const Glib::RefPtr<Cancellable>& cancellable);
+  auto make_directory(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A make_directory() convenience overload.
-  bool make_directory();
+  auto make_directory() -> bool;
 
    /** Asynchronously creates a directory.
     *
@@ -2252,7 +2252,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool make_directory_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto make_directory_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Creates a directory and any parent directories that may not
@@ -2278,10 +2278,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool make_directory_with_parents(const Glib::RefPtr<Cancellable>& cancellable);
+  auto make_directory_with_parents(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A make_directory_with_parents() convenience overload.
-  bool make_directory_with_parents();
+  auto make_directory_with_parents() -> bool;
 
 
   /** Creates a symbolic link.
@@ -2296,10 +2296,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool make_symbolic_link(const std::string& symlink_value, const Glib::RefPtr<Cancellable>& cancellable);
+  auto make_symbolic_link(const std::string& symlink_value, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A make_symbolic_link() convenience overload.
-  bool make_symbolic_link(const std::string& symlink_value);
+  auto make_symbolic_link(const std::string& symlink_value) -> bool;
 
 
   /** Asynchronously creates a symbolic link named @a file which contains the
@@ -2330,7 +2330,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool make_symbolic_link_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto make_symbolic_link_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Obtain the list of settable attributes for the file.
@@ -2343,10 +2343,10 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<FileAttributeInfoList> query_settable_attributes(const Glib::RefPtr<Cancellable>& cancellable);
+  auto query_settable_attributes(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<FileAttributeInfoList>;
 
   /// A query_settable_attributes() convenience overload.
-  Glib::RefPtr<FileAttributeInfoList> query_settable_attributes();
+  auto query_settable_attributes() -> Glib::RefPtr<FileAttributeInfoList>;
 
 
   /** Obtain the list of attribute namespaces where new attributes
@@ -2363,10 +2363,10 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<FileAttributeInfoList> query_writable_namespaces(const Glib::RefPtr<Cancellable>& cancellable);
+  auto query_writable_namespaces(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<FileAttributeInfoList>;
 
   /// A query_writable_namespaces() convenience overload.
-  Glib::RefPtr<FileAttributeInfoList> query_writable_namespaces();
+  auto query_writable_namespaces() -> Glib::RefPtr<FileAttributeInfoList>;
 
   /* This seems to be very generic (see the gpointer parameter),
      in a C kind of way. Hopefully we don't need it. murrayc
@@ -2398,7 +2398,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool set_attributes_from_info(const Glib::RefPtr<FileInfo>& info, const Glib::RefPtr<Cancellable>& cancellable, FileQueryInfoFlags flags = FileQueryInfoFlags::NONE);
+  auto set_attributes_from_info(const Glib::RefPtr<FileInfo>& info, const Glib::RefPtr<Cancellable>& cancellable, FileQueryInfoFlags flags = FileQueryInfoFlags::NONE) -> bool;
 
   /** Tries to set all attributes in the FileInfo on the target values,
    * not stopping on the first error.
@@ -2418,7 +2418,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool set_attributes_from_info(const Glib::RefPtr<FileInfo>& info, FileQueryInfoFlags flags = FileQueryInfoFlags::NONE);
+  auto set_attributes_from_info(const Glib::RefPtr<FileInfo>& info, FileQueryInfoFlags flags = FileQueryInfoFlags::NONE) -> bool;
 
 
   /** Asynchronously sets the attributes of file with info.
@@ -2448,7 +2448,7 @@ public:
 
    // takes GFileInfo**
 
-  bool set_attributes_finish(const Glib::RefPtr<AsyncResult>& result, const Glib::RefPtr<FileInfo>& info);
+  auto set_attributes_finish(const Glib::RefPtr<AsyncResult>& result, const Glib::RefPtr<FileInfo>& info) -> bool;
 
 
   /** Sets @a attribute of type G_FILE_ATTRIBUTE_TYPE_STRING to @a value.
@@ -2466,10 +2466,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool set_attribute_string(const std::string& attribute, const Glib::ustring& value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable);
+  auto set_attribute_string(const std::string& attribute, const Glib::ustring& value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A set_attribute_string() convenience overload.
-  bool set_attribute_string(const std::string& attribute, const Glib::ustring& value, FileQueryInfoFlags flags);
+  auto set_attribute_string(const std::string& attribute, const Glib::ustring& value, FileQueryInfoFlags flags) -> bool;
 
 
   /** Sets @a attribute of type G_FILE_ATTRIBUTE_TYPE_BYTE_STRING to @a value.
@@ -2489,10 +2489,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool set_attribute_byte_string(const std::string& attribute, const std::string& value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable);
+  auto set_attribute_byte_string(const std::string& attribute, const std::string& value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A set_attribute_byte_string() convenience overload.
-  bool set_attribute_byte_string(const std::string& attribute, const std::string& value, FileQueryInfoFlags flags);
+  auto set_attribute_byte_string(const std::string& attribute, const std::string& value, FileQueryInfoFlags flags) -> bool;
 
 
   /** Sets @a attribute of type G_FILE_ATTRIBUTE_TYPE_UINT32 to @a value.
@@ -2511,10 +2511,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool set_attribute_uint32(const std::string& attribute, guint32 value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable);
+  auto set_attribute_uint32(const std::string& attribute, guint32 value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A set_attribute_uint32() convenience overload.
-  bool set_attribute_uint32(const std::string& attribute, guint32 value, FileQueryInfoFlags flags);
+  auto set_attribute_uint32(const std::string& attribute, guint32 value, FileQueryInfoFlags flags) -> bool;
 
 
   /** Sets @a attribute of type G_FILE_ATTRIBUTE_TYPE_INT32 to @a value.
@@ -2533,10 +2533,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool set_attribute_int32(const std::string& attribute, gint32 value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable);
+  auto set_attribute_int32(const std::string& attribute, gint32 value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A set_attribute_int32() convenience overload.
-  bool set_attribute_int32(const std::string& attribute, gint32 value, FileQueryInfoFlags flags);
+  auto set_attribute_int32(const std::string& attribute, gint32 value, FileQueryInfoFlags flags) -> bool;
 
 
   /** Sets @a attribute of type G_FILE_ATTRIBUTE_TYPE_UINT64 to @a value.
@@ -2555,10 +2555,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool set_attribute_uint64(const std::string& attribute, guint64 value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable);
+  auto set_attribute_uint64(const std::string& attribute, guint64 value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A set_attribute_uint64() convenience overload.
-  bool set_attribute_uint64(const std::string& attribute, guint64 value, FileQueryInfoFlags flags);
+  auto set_attribute_uint64(const std::string& attribute, guint64 value, FileQueryInfoFlags flags) -> bool;
 
 
   /** Sets @a attribute of type G_FILE_ATTRIBUTE_TYPE_INT64 to @a value.
@@ -2576,10 +2576,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool set_attribute_int64(const std::string& attribute, gint64 value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable);
+  auto set_attribute_int64(const std::string& attribute, gint64 value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A set_attribute_int64() convenience overload.
-  bool set_attribute_int64(const std::string& attribute, gint64 value, FileQueryInfoFlags flags);
+  auto set_attribute_int64(const std::string& attribute, gint64 value, FileQueryInfoFlags flags) -> bool;
 
   /** Starts a @a mount_operation, mounting the volume that contains the file.
    *
@@ -2634,7 +2634,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool mount_enclosing_volume_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto mount_enclosing_volume_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
   /** Mounts a file of type FileType::MOUNTABLE. Using @a mount_operation, you can request callbacks when, for instance,
    * passwords are needed during authentication.
@@ -2689,7 +2689,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<File> mount_mountable_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto mount_mountable_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<File>;
 
   /** Unmounts a file of type FileType::MOUNTABLE.
    *
@@ -2771,7 +2771,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool unmount_mountable_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto unmount_mountable_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
   /** Starts an asynchronous eject on a mountable.
    *
@@ -2850,7 +2850,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool eject_mountable_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto eject_mountable_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Copies the file attributes from @a source to @a destination.
@@ -2868,7 +2868,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool copy_attributes(const Glib::RefPtr<File>& destination, const Glib::RefPtr<Cancellable>& cancellable, CopyFlags flags = CopyFlags::NONE);
+  auto copy_attributes(const Glib::RefPtr<File>& destination, const Glib::RefPtr<Cancellable>& cancellable, CopyFlags flags = CopyFlags::NONE) -> bool;
 
   /** Copies the file attributes from @a source to @a destination.
    *
@@ -2884,7 +2884,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool copy_attributes(const Glib::RefPtr<File>& destination, CopyFlags flags = CopyFlags::NONE);
+  auto copy_attributes(const Glib::RefPtr<File>& destination, CopyFlags flags = CopyFlags::NONE) -> bool;
 
 
   /** Obtains a directory monitor for the given file.
@@ -2899,7 +2899,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileMonitor> monitor_directory(const Glib::RefPtr<Cancellable>& cancellable, FileMonitorFlags flags = FileMonitorFlags::NONE);
+  auto monitor_directory(const Glib::RefPtr<Cancellable>& cancellable, FileMonitorFlags flags = FileMonitorFlags::NONE) -> Glib::RefPtr<FileMonitor>;
 
   /** Obtains a directory monitor for the given file.
    * This may fail if directory monitoring is not supported.
@@ -2909,7 +2909,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileMonitor> monitor_directory(FileMonitorFlags flags = FileMonitorFlags::NONE);
+  auto monitor_directory(FileMonitorFlags flags = FileMonitorFlags::NONE) -> Glib::RefPtr<FileMonitor>;
 
 
   /** Obtains a file monitor for the given file. If no file notification
@@ -2924,7 +2924,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileMonitor> monitor_file(const Glib::RefPtr<Cancellable>& cancellable, FileMonitorFlags flags = FileMonitorFlags::NONE);
+  auto monitor_file(const Glib::RefPtr<Cancellable>& cancellable, FileMonitorFlags flags = FileMonitorFlags::NONE) -> Glib::RefPtr<FileMonitor>;
 
   /** Obtains a file monitor for the given file. If no file notification
    * mechanism exists, then regular polling of the file is used.
@@ -2937,7 +2937,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<FileMonitor> monitor_file(FileMonitorFlags flags = FileMonitorFlags::NONE);
+  auto monitor_file(FileMonitorFlags flags = FileMonitorFlags::NONE) -> Glib::RefPtr<FileMonitor>;
 
 
   /** Obtains a file monitor for the given file. If no file notification
@@ -2954,7 +2954,7 @@ public:
    *
    * @newin{2,18}
    */
-  Glib::RefPtr<FileMonitor> monitor(const Glib::RefPtr<Cancellable>& cancellable, FileMonitorFlags flags = FileMonitorFlags::NONE);
+  auto monitor(const Glib::RefPtr<Cancellable>& cancellable, FileMonitorFlags flags = FileMonitorFlags::NONE) -> Glib::RefPtr<FileMonitor>;
 
   /** Obtains a file monitor for the given file. If no file notification
    * mechanism exists, then regular polling of the file is used.
@@ -2969,7 +2969,7 @@ public:
    *
    * @newin{2,18}
    */
-  Glib::RefPtr<FileMonitor> monitor(FileMonitorFlags flags = FileMonitorFlags::NONE);
+  auto monitor(FileMonitorFlags flags = FileMonitorFlags::NONE) -> Glib::RefPtr<FileMonitor>;
 
 
  /** This slot type is used by measure_disk_usage() to make
@@ -3079,7 +3079,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool measure_disk_usage_finish(const Glib::RefPtr<AsyncResult>& result, guint64& disk_usage, guint64& num_dirs, guint64& num_files);
+  auto measure_disk_usage_finish(const Glib::RefPtr<AsyncResult>& result, guint64& disk_usage, guint64& num_dirs, guint64& num_files) -> bool;
 
 
  //TODO: The documentation for these start/stop/poll_mountable functions needs to be improved once we've figured out what they do and what the C documentation means. murrayc.
@@ -3137,7 +3137,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool start_mountable_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto start_mountable_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
  /** Stops a file of type Mountable.
@@ -3194,7 +3194,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool stop_mountable_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto stop_mountable_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
  /** Polls a file of type Mountable.
@@ -3247,7 +3247,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool poll_mountable_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto poll_mountable_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Returns the AppInfo that is registered as the default
@@ -3264,10 +3264,10 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<AppInfo> query_default_handler(const Glib::RefPtr<Cancellable>& cancellable);
+  auto query_default_handler(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<AppInfo>;
 
   /// A query_default_handler() convenience overload.
-  Glib::RefPtr<AppInfo> query_default_handler();
+  auto query_default_handler() -> Glib::RefPtr<AppInfo>;
 
   //TODO: Something better than char*& for contents?
   /** Loads the content of the file into memory, returning the size of the data.
@@ -3283,7 +3283,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool load_contents(const Glib::RefPtr<Cancellable>& cancellable, char*& contents, gsize& length, std::string& etag_out);
+  auto load_contents(const Glib::RefPtr<Cancellable>& cancellable, char*& contents, gsize& length, std::string& etag_out) -> bool;
 
   /** Loads the content of the file into memory, returning the size of the data.
    * The data is always zero terminated, but this is not included in the resultant @a length.
@@ -3298,7 +3298,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool load_contents(const Glib::RefPtr<Cancellable>& cancellable, char*& contents, gsize& length);
+  auto load_contents(const Glib::RefPtr<Cancellable>& cancellable, char*& contents, gsize& length) -> bool;
 
   //TODO: Something better than char*& for contents?
   /** Loads the content of the file into memory, returning the size of the data.
@@ -3310,7 +3310,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool load_contents(char*& contents, gsize& length, std::string& etag_out);
+  auto load_contents(char*& contents, gsize& length, std::string& etag_out) -> bool;
 
   /** Loads the content of the file into memory, returning the size of the data.
    * The data is always zero terminated, but this is not included in the resultant @a length.
@@ -3321,7 +3321,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool load_contents(char*& contents, gsize& length);
+  auto load_contents(char*& contents, gsize& length) -> bool;
 
 
   /** Starts an asynchronous load of the file's contents.
@@ -3362,7 +3362,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool load_contents_finish(const Glib::RefPtr<AsyncResult>& result, char*& contents, gsize& length, std::string& etag_out);
+  auto load_contents_finish(const Glib::RefPtr<AsyncResult>& result, char*& contents, gsize& length, std::string& etag_out) -> bool;
 
   /** Finishes an asynchronous load of the @a file's contents.
    * The contents are placed in @a contents, and @a length is set to the
@@ -3377,7 +3377,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool load_contents_finish(const Glib::RefPtr<AsyncResult>& result, char*& contents, gsize& length);
+  auto load_contents_finish(const Glib::RefPtr<AsyncResult>& result, char*& contents, gsize& length) -> bool;
 
 
   /** A signal handler would be, for instance:
@@ -3427,7 +3427,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool load_partial_contents_finish(const Glib::RefPtr<AsyncResult>& result, char*& contents, gsize& length, std::string& etag_out);
+  auto load_partial_contents_finish(const Glib::RefPtr<AsyncResult>& result, char*& contents, gsize& length, std::string& etag_out) -> bool;
 
   /** Finishes an asynchronous partial load operation that was started
    * with load_partial_contents_async().
@@ -3440,7 +3440,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool load_partial_contents_finish(const Glib::RefPtr<AsyncResult>& result, char*& contents, gsize& length);
+  auto load_partial_contents_finish(const Glib::RefPtr<AsyncResult>& result, char*& contents, gsize& length) -> bool;
 
 
   /** Replaces the contents of the file with @a contents of @a length bytes.
@@ -3703,7 +3703,7 @@ public:
    *
    * @return Whether or not @a file supports thread-default contexts.
    */
-  bool supports_thread_contexts() const;
+  auto supports_thread_contexts() const -> bool;
 
 protected:
   // *** vfuncs ***
@@ -3759,7 +3759,7 @@ namespace Glib
 
 //Pre-declare this so we can use it in TypeTrait:
 GIOMM_API
-Glib::RefPtr<Gio::File> wrap(GFile* object, bool take_copy);
+auto wrap(GFile* object, bool take_copy) -> Glib::RefPtr<Gio::File>;
 
 namespace Container_Helpers
 {
@@ -3776,10 +3776,10 @@ struct TypeTraits< Glib::RefPtr<Gio::File> >
   using CType = GFile*;
   using CTypeNonConst = GFile*;
 
-  static CType   to_c_type      (const CppType& item)
+  static auto   to_c_type      (const CppType& item) -> CType
   { return Glib::unwrap (item); }
 
-  static CppType to_cpp_type    (const CType& item)
+  static auto to_cpp_type    (const CType& item) -> CppType
   {
     //Use a specific Glib::wrap() function,
     //because CType has the specific type (not just GObject):
@@ -3800,93 +3800,93 @@ namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline File::CreateFlags operator|(File::CreateFlags lhs, File::CreateFlags rhs)
+inline auto operator|(File::CreateFlags lhs, File::CreateFlags rhs) -> File::CreateFlags
   { return static_cast<File::CreateFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline File::CreateFlags operator&(File::CreateFlags lhs, File::CreateFlags rhs)
+inline auto operator&(File::CreateFlags lhs, File::CreateFlags rhs) -> File::CreateFlags
   { return static_cast<File::CreateFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline File::CreateFlags operator^(File::CreateFlags lhs, File::CreateFlags rhs)
+inline auto operator^(File::CreateFlags lhs, File::CreateFlags rhs) -> File::CreateFlags
   { return static_cast<File::CreateFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline File::CreateFlags operator~(File::CreateFlags flags)
+inline auto operator~(File::CreateFlags flags) -> File::CreateFlags
   { return static_cast<File::CreateFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline File::CreateFlags& operator|=(File::CreateFlags& lhs, File::CreateFlags rhs)
+inline auto operator|=(File::CreateFlags& lhs, File::CreateFlags rhs) -> File::CreateFlags&
   { return (lhs = static_cast<File::CreateFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline File::CreateFlags& operator&=(File::CreateFlags& lhs, File::CreateFlags rhs)
+inline auto operator&=(File::CreateFlags& lhs, File::CreateFlags rhs) -> File::CreateFlags&
   { return (lhs = static_cast<File::CreateFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline File::CreateFlags& operator^=(File::CreateFlags& lhs, File::CreateFlags rhs)
+inline auto operator^=(File::CreateFlags& lhs, File::CreateFlags rhs) -> File::CreateFlags&
   { return (lhs = static_cast<File::CreateFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline File::CopyFlags operator|(File::CopyFlags lhs, File::CopyFlags rhs)
+inline auto operator|(File::CopyFlags lhs, File::CopyFlags rhs) -> File::CopyFlags
   { return static_cast<File::CopyFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline File::CopyFlags operator&(File::CopyFlags lhs, File::CopyFlags rhs)
+inline auto operator&(File::CopyFlags lhs, File::CopyFlags rhs) -> File::CopyFlags
   { return static_cast<File::CopyFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline File::CopyFlags operator^(File::CopyFlags lhs, File::CopyFlags rhs)
+inline auto operator^(File::CopyFlags lhs, File::CopyFlags rhs) -> File::CopyFlags
   { return static_cast<File::CopyFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline File::CopyFlags operator~(File::CopyFlags flags)
+inline auto operator~(File::CopyFlags flags) -> File::CopyFlags
   { return static_cast<File::CopyFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline File::CopyFlags& operator|=(File::CopyFlags& lhs, File::CopyFlags rhs)
+inline auto operator|=(File::CopyFlags& lhs, File::CopyFlags rhs) -> File::CopyFlags&
   { return (lhs = static_cast<File::CopyFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline File::CopyFlags& operator&=(File::CopyFlags& lhs, File::CopyFlags rhs)
+inline auto operator&=(File::CopyFlags& lhs, File::CopyFlags rhs) -> File::CopyFlags&
   { return (lhs = static_cast<File::CopyFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline File::CopyFlags& operator^=(File::CopyFlags& lhs, File::CopyFlags rhs)
+inline auto operator^=(File::CopyFlags& lhs, File::CopyFlags rhs) -> File::CopyFlags&
   { return (lhs = static_cast<File::CopyFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline File::MeasureFlags operator|(File::MeasureFlags lhs, File::MeasureFlags rhs)
+inline auto operator|(File::MeasureFlags lhs, File::MeasureFlags rhs) -> File::MeasureFlags
   { return static_cast<File::MeasureFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline File::MeasureFlags operator&(File::MeasureFlags lhs, File::MeasureFlags rhs)
+inline auto operator&(File::MeasureFlags lhs, File::MeasureFlags rhs) -> File::MeasureFlags
   { return static_cast<File::MeasureFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline File::MeasureFlags operator^(File::MeasureFlags lhs, File::MeasureFlags rhs)
+inline auto operator^(File::MeasureFlags lhs, File::MeasureFlags rhs) -> File::MeasureFlags
   { return static_cast<File::MeasureFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline File::MeasureFlags operator~(File::MeasureFlags flags)
+inline auto operator~(File::MeasureFlags flags) -> File::MeasureFlags
   { return static_cast<File::MeasureFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline File::MeasureFlags& operator|=(File::MeasureFlags& lhs, File::MeasureFlags rhs)
+inline auto operator|=(File::MeasureFlags& lhs, File::MeasureFlags rhs) -> File::MeasureFlags&
   { return (lhs = static_cast<File::MeasureFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline File::MeasureFlags& operator&=(File::MeasureFlags& lhs, File::MeasureFlags rhs)
+inline auto operator&=(File::MeasureFlags& lhs, File::MeasureFlags rhs) -> File::MeasureFlags&
   { return (lhs = static_cast<File::MeasureFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline File::MeasureFlags& operator^=(File::MeasureFlags& lhs, File::MeasureFlags rhs)
+inline auto operator^=(File::MeasureFlags& lhs, File::MeasureFlags rhs) -> File::MeasureFlags&
   { return (lhs = static_cast<File::MeasureFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 
@@ -3901,7 +3901,7 @@ namespace Glib
    * @relates Gio::File
    */
   GIOMM_API
-  Glib::RefPtr<Gio::File> wrap(GFile* object, bool take_copy = false);
+  auto wrap(GFile* object, bool take_copy = false) -> Glib::RefPtr<Gio::File>;
 
 } // namespace Glib
 

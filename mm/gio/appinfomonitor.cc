@@ -34,7 +34,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo AppInfoMonitor_signal_changed_info =
+const Glib::SignalProxyInfo AppInfoMonitor_signal_changed_info =
 {
   "changed",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -48,7 +48,7 @@ static const Glib::SignalProxyInfo AppInfoMonitor_signal_changed_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gio::AppInfoMonitor> wrap(GAppInfoMonitor* object, bool take_copy)
+auto wrap(GAppInfoMonitor* object, bool take_copy) -> Glib::RefPtr<Gio::AppInfoMonitor>
 {
   return Glib::make_refptr_for_instance<Gio::AppInfoMonitor>( dynamic_cast<Gio::AppInfoMonitor*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -63,7 +63,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& AppInfoMonitor_Class::init()
+auto AppInfoMonitor_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -94,7 +94,7 @@ void AppInfoMonitor_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* AppInfoMonitor_Class::wrap_new(GObject* object)
+auto AppInfoMonitor_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new AppInfoMonitor((GAppInfoMonitor*)object);
 }
@@ -102,7 +102,7 @@ Glib::ObjectBase* AppInfoMonitor_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GAppInfoMonitor* AppInfoMonitor::gobj_copy()
+auto AppInfoMonitor::gobj_copy() -> GAppInfoMonitor*
 {
   reference();
   return gobj();
@@ -125,7 +125,7 @@ AppInfoMonitor::AppInfoMonitor(AppInfoMonitor&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-AppInfoMonitor& AppInfoMonitor::operator=(AppInfoMonitor&& src) noexcept
+auto AppInfoMonitor::operator=(AppInfoMonitor&& src) noexcept -> AppInfoMonitor&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -138,25 +138,25 @@ AppInfoMonitor::~AppInfoMonitor() noexcept
 
 AppInfoMonitor::CppClassType AppInfoMonitor::appinfomonitor_class_; // initialize static member
 
-GType AppInfoMonitor::get_type()
+auto AppInfoMonitor::get_type() -> GType
 {
   return appinfomonitor_class_.init().get_type();
 }
 
 
-GType AppInfoMonitor::get_base_type()
+auto AppInfoMonitor::get_base_type() -> GType
 {
   return g_app_info_monitor_get_type();
 }
 
 
-Glib::RefPtr<AppInfoMonitor> AppInfoMonitor::get()
+auto AppInfoMonitor::get() -> Glib::RefPtr<AppInfoMonitor>
 {
   return Glib::wrap(g_app_info_monitor_get());
 }
 
 
-Glib::SignalProxy<void()> AppInfoMonitor::signal_changed()
+auto AppInfoMonitor::signal_changed() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &AppInfoMonitor_signal_changed_info);
 }

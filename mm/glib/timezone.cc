@@ -43,7 +43,7 @@ namespace
 namespace Glib
 {
 
-Glib::TimeZone wrap(GTimeZone* object, bool take_copy)
+auto wrap(GTimeZone* object, bool take_copy) -> Glib::TimeZone
 {
   return Glib::TimeZone(object, take_copy);
 }
@@ -56,7 +56,7 @@ namespace Glib
 
 
 // static
-GType TimeZone::get_type()
+auto TimeZone::get_type() -> GType
 {
   return g_time_zone_get_type();
 }
@@ -78,7 +78,7 @@ TimeZone::TimeZone(TimeZone&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-TimeZone& TimeZone::operator=(TimeZone&& other) noexcept
+auto TimeZone::operator=(TimeZone&& other) noexcept -> TimeZone&
 {
   TimeZone temp (std::move(other));
   swap(temp);
@@ -93,7 +93,7 @@ TimeZone::TimeZone(GTimeZone* gobject, bool make_a_copy)
   gobject_ ((make_a_copy && gobject) ? g_time_zone_ref(gobject) : gobject)
 {}
 
-TimeZone& TimeZone::operator=(const TimeZone& other)
+auto TimeZone::operator=(const TimeZone& other) -> TimeZone&
 {
   TimeZone temp (other);
   swap(temp);
@@ -111,7 +111,7 @@ void TimeZone::swap(TimeZone& other) noexcept
   std::swap(gobject_, other.gobject_);
 }
 
-GTimeZone* TimeZone::gobj_copy() const
+auto TimeZone::gobj_copy() const -> GTimeZone*
 {
   return g_time_zone_ref(gobject_);
 }
@@ -119,54 +119,54 @@ GTimeZone* TimeZone::gobj_copy() const
 
 #ifndef GLIBMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-TimeZone TimeZone::create(const Glib::ustring& identifier)
+auto TimeZone::create(const Glib::ustring& identifier) -> TimeZone
 {
   return Glib::wrap(g_time_zone_new(identifier.c_str()));
 }
 G_GNUC_END_IGNORE_DEPRECATIONS
 #endif // GLIBMM_DISABLE_DEPRECATED
 
-TimeZone TimeZone::create_identifier(const Glib::ustring& identifier)
+auto TimeZone::create_identifier(const Glib::ustring& identifier) -> TimeZone
 {
   return Glib::wrap(g_time_zone_new_identifier(identifier.c_str()));
 }
 
-TimeZone TimeZone::create_local()
+auto TimeZone::create_local() -> TimeZone
 {
   return Glib::wrap(g_time_zone_new_local());
 }
 
-TimeZone TimeZone::create_utc()
+auto TimeZone::create_utc() -> TimeZone
 {
   return Glib::wrap(g_time_zone_new_utc());
 }
 
-int TimeZone::find_interval(TimeType type, gint64 time) const
+auto TimeZone::find_interval(TimeType type, gint64 time) const -> int
 {
   return g_time_zone_find_interval(const_cast<GTimeZone*>(gobj()), static_cast<GTimeType>(type), time);
 }
 
-int TimeZone::adjust_time(TimeType type, gint64& time) const
+auto TimeZone::adjust_time(TimeType type, gint64& time) const -> int
 {
   return g_time_zone_adjust_time(const_cast<GTimeZone*>(gobj()), static_cast<GTimeType>(type), &(time));
 }
 
-Glib::ustring TimeZone::get_abbreviation(int interval) const
+auto TimeZone::get_abbreviation(int interval) const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_time_zone_get_abbreviation(const_cast<GTimeZone*>(gobj()), interval));
 }
 
-gint32 TimeZone::get_offset(int interval) const
+auto TimeZone::get_offset(int interval) const -> gint32
 {
   return g_time_zone_get_offset(const_cast<GTimeZone*>(gobj()), interval);
 }
 
-bool TimeZone::is_dst(int interval) const
+auto TimeZone::is_dst(int interval) const -> bool
 {
   return g_time_zone_is_dst(const_cast<GTimeZone*>(gobj()), interval);
 }
 
-Glib::ustring TimeZone::get_identifier() const
+auto TimeZone::get_identifier() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_time_zone_get_identifier(const_cast<GTimeZone*>(gobj())));
 }

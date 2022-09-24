@@ -88,11 +88,11 @@ class GTKMM_API FlowBox
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   FlowBox(FlowBox&& src) noexcept;
-  FlowBox& operator=(FlowBox&& src) noexcept;
+  auto operator=(FlowBox&& src) noexcept -> FlowBox&;
 
   // noncopyable
   FlowBox(const FlowBox&) = delete;
-  FlowBox& operator=(const FlowBox&) = delete;
+  auto operator=(const FlowBox&) -> FlowBox& = delete;
 
   ~FlowBox() noexcept override;
 
@@ -112,19 +112,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkFlowBox*       gobj()       { return reinterpret_cast<GtkFlowBox*>(gobject_); }
+  auto       gobj() -> GtkFlowBox*       { return reinterpret_cast<GtkFlowBox*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkFlowBox* gobj() const { return reinterpret_cast<GtkFlowBox*>(gobject_); }
+  auto gobj() const -> const GtkFlowBox* { return reinterpret_cast<GtkFlowBox*>(gobject_); }
 
 private:
 
@@ -190,7 +190,7 @@ public:
    *
    * @return <tt>true</tt> if the box is homogeneous.
    */
-  bool get_homogeneous() const;
+  auto get_homogeneous() const -> bool;
 
 
   /** Sets the vertical space to add between children.
@@ -203,7 +203,7 @@ public:
    *
    * @return The vertical spacing.
    */
-  guint get_row_spacing() const;
+  auto get_row_spacing() const -> guint;
 
 
   /** Sets the horizontal space to add between children.
@@ -216,7 +216,7 @@ public:
    *
    * @return The horizontal spacing.
    */
-  guint get_column_spacing() const;
+  auto get_column_spacing() const -> guint;
 
 
   /** Sets the minimum number of children to line up
@@ -230,7 +230,7 @@ public:
    *
    * @return The minimum number of children per line.
    */
-  guint get_min_children_per_line() const;
+  auto get_min_children_per_line() const -> guint;
 
 
   /** Sets the maximum number of children to request and
@@ -248,7 +248,7 @@ public:
    *
    * @return The maximum number of children per line.
    */
-  guint get_max_children_per_line() const;
+  auto get_max_children_per_line() const -> guint;
 
 
   /** If @a single is <tt>true</tt>, children will be activated when you click
@@ -263,7 +263,7 @@ public:
    * @return <tt>true</tt> if children are activated on single click,
    * <tt>false</tt> otherwise.
    */
-  bool get_activate_on_single_click() const;
+  auto get_activate_on_single_click() const -> bool;
 
 
   /** Adds @a child to the start of @a self.
@@ -319,7 +319,7 @@ public:
    * always be a `Gtk::FlowBoxChild` or <tt>nullptr</tt> in case no child widget
    * with the given index exists.
    */
-  FlowBoxChild* get_child_at_index(int idx);
+  auto get_child_at_index(int idx) -> FlowBoxChild*;
 
   /** Gets the nth child in the @a box.
    *
@@ -328,7 +328,7 @@ public:
    * always be a `Gtk::FlowBoxChild` or <tt>nullptr</tt> in case no child widget
    * with the given index exists.
    */
-  const FlowBoxChild* get_child_at_index(int idx) const;
+  auto get_child_at_index(int idx) const -> const FlowBoxChild*;
 
 
   /** Gets the child in the ( @a x, @a y) position.
@@ -341,7 +341,7 @@ public:
    * always be a `Gtk::FlowBoxChild` or <tt>nullptr</tt> in case no child widget
    * exists for the given x and y coordinates.
    */
-  FlowBoxChild* get_child_at_pos(int x, int y);
+  auto get_child_at_pos(int x, int y) -> FlowBoxChild*;
 
   /** Gets the child in the ( @a x, @a y) position.
    *
@@ -353,7 +353,7 @@ public:
    * always be a `Gtk::FlowBoxChild` or <tt>nullptr</tt> in case no child widget
    * exists for the given x and y coordinates.
    */
-  const FlowBoxChild* get_child_at_pos(int x, int y) const;
+  auto get_child_at_pos(int x, int y) const -> const FlowBoxChild*;
 
   /** Calls a function for each selected child.
    *
@@ -374,14 +374,14 @@ public:
    *
    * @return A `GList` containing the `Gtk::Widget` for each selected child.
    */
-  std::vector< Gtk::FlowBoxChild*> get_selected_children();
+  auto get_selected_children() -> std::vector< Gtk::FlowBoxChild*>;
 
 
   /** Creates a list of all selected children.
    *
    * @return A `GList` containing the `Gtk::Widget` for each selected child.
    */
-  std::vector< const Gtk::FlowBoxChild*> get_selected_children() const;
+  auto get_selected_children() const -> std::vector< const Gtk::FlowBoxChild*>;
 
 
   /** Selects a single child of @a box, if the selection
@@ -420,7 +420,7 @@ public:
    *
    * @return The `Gtk::SelectionMode`.
    */
-  SelectionMode get_selection_mode() const;
+  auto get_selection_mode() const -> SelectionMode;
 
 
   /** Hooks up an adjustment to focus handling in @a box.
@@ -605,7 +605,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< SelectionMode > property_selection_mode() ;
+  auto property_selection_mode() -> Glib::PropertyProxy< SelectionMode > ;
 
 /** The selection mode used by the flow box.
    *
@@ -614,7 +614,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< SelectionMode > property_selection_mode() const;
+  auto property_selection_mode() const -> Glib::PropertyProxy_ReadOnly< SelectionMode >;
 
   /** Determines whether children can be activated with a single
    * click, or require a double-click.
@@ -624,7 +624,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_activate_on_single_click() ;
+  auto property_activate_on_single_click() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether children can be activated with a single
    * click, or require a double-click.
@@ -634,21 +634,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_activate_on_single_click() const;
+  auto property_activate_on_single_click() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_accept_unpaired_release() ;
+  auto property_accept_unpaired_release() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_accept_unpaired_release() const;
+  auto property_accept_unpaired_release() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Determines whether all children should be allocated the
    * same size.
@@ -658,7 +658,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_homogeneous() ;
+  auto property_homogeneous() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether all children should be allocated the
    * same size.
@@ -668,7 +668,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_homogeneous() const;
+  auto property_homogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The minimum number of children to allocate consecutively
    * in the given orientation.
@@ -682,7 +682,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_min_children_per_line() ;
+  auto property_min_children_per_line() -> Glib::PropertyProxy< guint > ;
 
 /** The minimum number of children to allocate consecutively
    * in the given orientation.
@@ -696,7 +696,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_min_children_per_line() const;
+  auto property_min_children_per_line() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** The maximum amount of children to request space for consecutively
    * in the given orientation.
@@ -706,7 +706,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_max_children_per_line() ;
+  auto property_max_children_per_line() -> Glib::PropertyProxy< guint > ;
 
 /** The maximum amount of children to request space for consecutively
    * in the given orientation.
@@ -716,7 +716,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_max_children_per_line() const;
+  auto property_max_children_per_line() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** The amount of vertical space between two children.
    *
@@ -725,7 +725,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_row_spacing() ;
+  auto property_row_spacing() -> Glib::PropertyProxy< guint > ;
 
 /** The amount of vertical space between two children.
    *
@@ -734,7 +734,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_row_spacing() const;
+  auto property_row_spacing() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** The amount of horizontal space between two children.
    *
@@ -743,7 +743,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_column_spacing() ;
+  auto property_column_spacing() -> Glib::PropertyProxy< guint > ;
 
 /** The amount of horizontal space between two children.
    *
@@ -752,7 +752,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_column_spacing() const;
+  auto property_column_spacing() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
   // no_default_handler because GtkFlowBoxClass is private.
@@ -768,7 +768,7 @@ public:
    * @param child The child that is activated.
    */
 
-  Glib::SignalProxy<void(FlowBoxChild*)> signal_child_activated();
+  auto signal_child_activated() -> Glib::SignalProxy<void(FlowBoxChild*)>;
 
 
   /**
@@ -784,13 +784,13 @@ public:
    * selected children.
    */
 
-  Glib::SignalProxy<void()> signal_selected_children_changed();
+  auto signal_selected_children_changed() -> Glib::SignalProxy<void()>;
 
    // Action signals
 
 private:
   template <typename T_item>
-  static GtkWidget* proxy_bind_list_store_create_widget_callback(void* item, void* data);
+  static auto proxy_bind_list_store_create_widget_callback(void* item, void* data) -> GtkWidget*;
 
 
 public:
@@ -823,7 +823,7 @@ void FlowBox::bind_list_store(const Glib::RefPtr<Gio::ListStore<T_item>>& store,
 }
 
 template <typename T_item>
-GtkWidget* FlowBox::proxy_bind_list_store_create_widget_callback(void* item, void* data)
+auto FlowBox::proxy_bind_list_store_create_widget_callback(void* item, void* data) -> GtkWidget*
 {
   auto& slot = *static_cast<SlotCreateWidget<T_item>*>(data);
   auto cobject = static_cast<typename T_item::BaseObjectType*>(item);
@@ -861,7 +861,7 @@ namespace Glib
    * @relates Gtk::FlowBox
    */
   GTKMM_API
-  Gtk::FlowBox* wrap(GtkFlowBox* object, bool take_copy = false);
+  auto wrap(GtkFlowBox* object, bool take_copy = false) -> Gtk::FlowBox*;
 } //namespace Glib
 
 

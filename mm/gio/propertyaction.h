@@ -109,7 +109,7 @@ public:
 
   // noncopyable
   PropertyAction(const PropertyAction&) = delete;
-  PropertyAction& operator=(const PropertyAction&) = delete;
+  auto operator=(const PropertyAction&) -> PropertyAction& = delete;
 
 private:  friend class PropertyAction_Class;
   static CppClassType propertyaction_class_;
@@ -123,28 +123,28 @@ protected:
 public:
 
   PropertyAction(PropertyAction&& src) noexcept;
-  PropertyAction& operator=(PropertyAction&& src) noexcept;
+  auto operator=(PropertyAction&& src) noexcept -> PropertyAction&;
 
   ~PropertyAction() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GPropertyAction*       gobj()       { return reinterpret_cast<GPropertyAction*>(gobject_); }
+  auto       gobj() -> GPropertyAction*       { return reinterpret_cast<GPropertyAction*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GPropertyAction* gobj() const { return reinterpret_cast<GPropertyAction*>(gobject_); }
+  auto gobj() const -> const GPropertyAction* { return reinterpret_cast<GPropertyAction*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GPropertyAction* gobj_copy();
+  auto gobj_copy() -> GPropertyAction*;
 
 private:
 
@@ -170,7 +170,7 @@ public:
    * @newin{2,58}
    */
 
-  static Glib::RefPtr<PropertyAction> create(const Glib::ustring& name, const Glib::PropertyProxy_Base& property_proxy, bool invert_boolean =  false);
+  static auto create(const Glib::ustring& name, const Glib::PropertyProxy_Base& property_proxy, bool invert_boolean =  false) -> Glib::RefPtr<PropertyAction>;
 
 
   /** The name of the action.  This is mostly meaningful for identifying
@@ -183,7 +183,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_name() const;
+  auto property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The type of the parameter that must be given when activating the
@@ -194,7 +194,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::VariantType > property_parameter_type() const;
+  auto property_parameter_type() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantType >;
 
 
   /** If @a action is currently enabled.
@@ -209,7 +209,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_enabled() const;
+  auto property_enabled() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** The VariantType of the state that the action has, or <tt>nullptr</tt> if the
@@ -220,7 +220,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::VariantType > property_state_type() const;
+  auto property_state_type() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantType >;
 
 
   /** The state of the action, or <tt>nullptr</tt> if the action is stateless.
@@ -230,7 +230,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::VariantBase > property_state() const;
+  auto property_state() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantBase >;
 
 
   //_WRAP_PROPERTY("object", Glib::ObjectBase) // write-only, construct-only
@@ -245,7 +245,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_invert_boolean() const;
+  auto property_invert_boolean() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   // There are no methods (apart from ctor and create), signals or vfuncs.
@@ -278,7 +278,7 @@ namespace Glib
    * @relates Gio::PropertyAction
    */
   GIOMM_API
-  Glib::RefPtr<Gio::PropertyAction> wrap(GPropertyAction* object, bool take_copy = false);
+  auto wrap(GPropertyAction* object, bool take_copy = false) -> Glib::RefPtr<Gio::PropertyAction>;
 }
 
 

@@ -48,37 +48,37 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Pango::Style>::value_type()
+auto Glib::Value<Pango::Style>::value_type() -> GType
 {
   return pango_style_get_type();
 }
 
 // static
-GType Glib::Value<Pango::Variant>::value_type()
+auto Glib::Value<Pango::Variant>::value_type() -> GType
 {
   return pango_variant_get_type();
 }
 
 // static
-GType Glib::Value<Pango::Stretch>::value_type()
+auto Glib::Value<Pango::Stretch>::value_type() -> GType
 {
   return pango_stretch_get_type();
 }
 
 // static
-GType Glib::Value<Pango::Weight>::value_type()
+auto Glib::Value<Pango::Weight>::value_type() -> GType
 {
   return pango_weight_get_type();
 }
 
 // static
-GType Glib::Value<Pango::FontMask>::value_type()
+auto Glib::Value<Pango::FontMask>::value_type() -> GType
 {
   return pango_font_mask_get_type();
 }
 
 // static
-GType Glib::Value<Pango::Gravity>::value_type()
+auto Glib::Value<Pango::Gravity>::value_type() -> GType
 {
   return pango_gravity_get_type();
 }
@@ -87,7 +87,7 @@ GType Glib::Value<Pango::Gravity>::value_type()
 namespace Glib
 {
 
-Pango::FontDescription wrap(PangoFontDescription* object, bool take_copy)
+auto wrap(PangoFontDescription* object, bool take_copy) -> Pango::FontDescription
 {
   return Pango::FontDescription(object, take_copy);
 }
@@ -100,7 +100,7 @@ namespace Pango
 
 
 // static
-GType FontDescription::get_type()
+auto FontDescription::get_type() -> GType
 {
   return pango_font_description_get_type();
 }
@@ -122,7 +122,7 @@ FontDescription::FontDescription(FontDescription&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-FontDescription& FontDescription::operator=(FontDescription&& other) noexcept
+auto FontDescription::operator=(FontDescription&& other) noexcept -> FontDescription&
 {
   FontDescription temp (std::move(other));
   swap(temp);
@@ -137,7 +137,7 @@ FontDescription::FontDescription(PangoFontDescription* gobject, bool make_a_copy
   gobject_ ((make_a_copy && gobject) ? pango_font_description_copy(gobject) : gobject)
 {}
 
-FontDescription& FontDescription::operator=(const FontDescription& other)
+auto FontDescription::operator=(const FontDescription& other) -> FontDescription&
 {
   FontDescription temp (other);
   swap(temp);
@@ -155,13 +155,13 @@ void FontDescription::swap(FontDescription& other) noexcept
   std::swap(gobject_, other.gobject_);
 }
 
-PangoFontDescription* FontDescription::gobj_copy() const
+auto FontDescription::gobj_copy() const -> PangoFontDescription*
 {
   return pango_font_description_copy(gobject_);
 }
 
 
-guint FontDescription::hash() const
+auto FontDescription::hash() const -> guint
 {
   return pango_font_description_hash(const_cast<PangoFontDescription*>(gobj()));
 }
@@ -171,7 +171,7 @@ void FontDescription::set_family(const Glib::ustring& family)
   pango_font_description_set_family(gobj(), family.c_str());
 }
 
-Glib::ustring FontDescription::get_family() const
+auto FontDescription::get_family() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(pango_font_description_get_family(const_cast<PangoFontDescription*>(gobj())));
 }
@@ -181,7 +181,7 @@ void FontDescription::set_style(Style style)
   pango_font_description_set_style(gobj(), static_cast<PangoStyle>(style));
 }
 
-Style FontDescription::get_style() const
+auto FontDescription::get_style() const -> Style
 {
   return static_cast<Style>(pango_font_description_get_style(const_cast<PangoFontDescription*>(gobj())));
 }
@@ -191,7 +191,7 @@ void FontDescription::set_variant(Variant variant)
   pango_font_description_set_variant(gobj(), static_cast<PangoVariant>(variant));
 }
 
-Variant FontDescription::get_variant() const
+auto FontDescription::get_variant() const -> Variant
 {
   return static_cast<Variant>(pango_font_description_get_variant(const_cast<PangoFontDescription*>(gobj())));
 }
@@ -201,7 +201,7 @@ void FontDescription::set_weight(Weight weight)
   pango_font_description_set_weight(gobj(), static_cast<PangoWeight>(weight));
 }
 
-Weight FontDescription::get_weight() const
+auto FontDescription::get_weight() const -> Weight
 {
   return static_cast<Weight>(pango_font_description_get_weight(const_cast<PangoFontDescription*>(gobj())));
 }
@@ -211,7 +211,7 @@ void FontDescription::set_stretch(Stretch stretch)
   pango_font_description_set_stretch(gobj(), static_cast<PangoStretch>(stretch));
 }
 
-Stretch FontDescription::get_stretch() const
+auto FontDescription::get_stretch() const -> Stretch
 {
   return static_cast<Stretch>(pango_font_description_get_stretch(const_cast<PangoFontDescription*>(gobj())));
 }
@@ -221,7 +221,7 @@ void FontDescription::set_size(int size)
   pango_font_description_set_size(gobj(), size);
 }
 
-int FontDescription::get_size() const
+auto FontDescription::get_size() const -> int
 {
   return pango_font_description_get_size(const_cast<PangoFontDescription*>(gobj()));
 }
@@ -231,7 +231,7 @@ void FontDescription::set_absolute_size(double size)
   pango_font_description_set_absolute_size(gobj(), size);
 }
 
-bool FontDescription::get_size_is_absolute() const
+auto FontDescription::get_size_is_absolute() const -> bool
 {
   return pango_font_description_get_size_is_absolute(const_cast<PangoFontDescription*>(gobj()));
 }
@@ -241,7 +241,7 @@ void FontDescription::set_gravity(Gravity gravity)
   pango_font_description_set_gravity(gobj(), static_cast<PangoGravity>(gravity));
 }
 
-Gravity FontDescription::get_gravity() const
+auto FontDescription::get_gravity() const -> Gravity
 {
   return static_cast<Gravity>(pango_font_description_get_gravity(const_cast<PangoFontDescription*>(gobj())));
 }
@@ -251,12 +251,12 @@ void FontDescription::set_variations(const Glib::ustring& settings)
   pango_font_description_set_variations(gobj(), settings.c_str());
 }
 
-Glib::ustring FontDescription::get_variations() const
+auto FontDescription::get_variations() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(pango_font_description_get_variations(const_cast<PangoFontDescription*>(gobj())));
 }
 
-FontMask FontDescription::get_set_fields() const
+auto FontDescription::get_set_fields() const -> FontMask
 {
   return static_cast<FontMask>(pango_font_description_get_set_fields(const_cast<PangoFontDescription*>(gobj())));
 }
@@ -271,28 +271,28 @@ void FontDescription::merge(const FontDescription& desc_to_merge, bool replace_e
   pango_font_description_merge(gobj(), (desc_to_merge).gobj(), static_cast<int>(replace_existing));
 }
 
-bool FontDescription::better_match(const FontDescription& old_match, const FontDescription& new_match) const
+auto FontDescription::better_match(const FontDescription& old_match, const FontDescription& new_match) const -> bool
 {
   return pango_font_description_better_match(const_cast<PangoFontDescription*>(gobj()), (old_match).gobj(), (new_match).gobj());
 }
 
-Glib::ustring FontDescription::to_string() const
+auto FontDescription::to_string() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(pango_font_description_to_string(const_cast<PangoFontDescription*>(gobj())));
 }
 
-Glib::ustring FontDescription::to_filename() const
+auto FontDescription::to_filename() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(pango_font_description_to_filename(const_cast<PangoFontDescription*>(gobj())));
 }
 
 
-bool operator==(const FontDescription& lhs, const FontDescription& rhs)
+auto operator==(const FontDescription& lhs, const FontDescription& rhs) -> bool
 {
   return (pango_font_description_equal(lhs.gobj(), rhs.gobj()) != 0);
 }
 
-bool operator!=(const FontDescription& lhs, const FontDescription& rhs)
+auto operator!=(const FontDescription& lhs, const FontDescription& rhs) -> bool
 {
   return (pango_font_description_equal(lhs.gobj(), rhs.gobj()) == 0);
 }

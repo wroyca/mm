@@ -70,7 +70,7 @@ public:
 
   // noncopyable
   Converter(const Converter&) = delete;
-  Converter& operator=(const Converter&) = delete;
+  auto operator=(const Converter&) -> Converter& = delete;
 
 private:
   friend class Converter_Class;
@@ -104,7 +104,7 @@ protected:
 public:
 
   Converter(Converter&& src) noexcept;
-  Converter& operator=(Converter&& src) noexcept;
+  auto operator=(Converter&& src) noexcept -> Converter&;
 
   ~Converter() noexcept override;
 
@@ -112,17 +112,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GConverter*       gobj()       { return reinterpret_cast<GConverter*>(gobject_); }
+  auto       gobj() -> GConverter*       { return reinterpret_cast<GConverter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GConverter* gobj() const { return reinterpret_cast<GConverter*>(gobject_); }
+  auto gobj() const -> const GConverter* { return reinterpret_cast<GConverter*>(gobject_); }
 
 private:
 
@@ -292,7 +292,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Result convert(const void* inbuf, gsize inbuf_size, void* outbuf, gsize outbuf_size, Flags flags, gsize& bytes_read, gsize& bytes_written);
+  auto convert(const void* inbuf, gsize inbuf_size, void* outbuf, gsize outbuf_size, Flags flags, gsize& bytes_read, gsize& bytes_written) -> Result;
 
   /** Resets all internal state in the converter, making it behave
    * as if it was just created. If the converter has any internal
@@ -306,7 +306,7 @@ protected:
 
 
   /// @throws Glib::Error.
-  virtual Result convert_vfunc(const void* inbuf, gsize inbuf_size, void* outbuf, gsize outbuf_size, Flags flags, gsize& bytes_read, gsize& bytes_written);
+  virtual auto convert_vfunc(const void* inbuf, gsize inbuf_size, void* outbuf, gsize outbuf_size, Flags flags, gsize& bytes_read, gsize& bytes_written) -> Result;
 
 
     virtual void reset_vfunc();
@@ -336,7 +336,7 @@ template <>
 class GIOMM_API Value<Gio::Converter::Result> : public Glib::Value_Enum<Gio::Converter::Result>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -346,31 +346,31 @@ namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline Converter::Flags operator|(Converter::Flags lhs, Converter::Flags rhs)
+inline auto operator|(Converter::Flags lhs, Converter::Flags rhs) -> Converter::Flags
   { return static_cast<Converter::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Converter::Flags operator&(Converter::Flags lhs, Converter::Flags rhs)
+inline auto operator&(Converter::Flags lhs, Converter::Flags rhs) -> Converter::Flags
   { return static_cast<Converter::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Converter::Flags operator^(Converter::Flags lhs, Converter::Flags rhs)
+inline auto operator^(Converter::Flags lhs, Converter::Flags rhs) -> Converter::Flags
   { return static_cast<Converter::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Converter::Flags operator~(Converter::Flags flags)
+inline auto operator~(Converter::Flags flags) -> Converter::Flags
   { return static_cast<Converter::Flags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline Converter::Flags& operator|=(Converter::Flags& lhs, Converter::Flags rhs)
+inline auto operator|=(Converter::Flags& lhs, Converter::Flags rhs) -> Converter::Flags&
   { return (lhs = static_cast<Converter::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Converter::Flags& operator&=(Converter::Flags& lhs, Converter::Flags rhs)
+inline auto operator&=(Converter::Flags& lhs, Converter::Flags rhs) -> Converter::Flags&
   { return (lhs = static_cast<Converter::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Converter::Flags& operator^=(Converter::Flags& lhs, Converter::Flags rhs)
+inline auto operator^=(Converter::Flags& lhs, Converter::Flags rhs) -> Converter::Flags&
   { return (lhs = static_cast<Converter::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 
@@ -382,7 +382,7 @@ template <>
 class GIOMM_API Value<Gio::Converter::Flags> : public Glib::Value_Flags<Gio::Converter::Flags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -400,7 +400,7 @@ namespace Glib
    * @relates Gio::Converter
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Converter> wrap(GConverter* object, bool take_copy = false);
+  auto wrap(GConverter* object, bool take_copy = false) -> Glib::RefPtr<Gio::Converter>;
 
 } // namespace Glib
 

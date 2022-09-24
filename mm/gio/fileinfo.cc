@@ -30,8 +30,8 @@ namespace Gio
 
 // FileAttributeMatcher
 
-Glib::RefPtr<FileAttributeMatcher>
-FileAttributeMatcher::create(const std::string& attributes)
+auto
+FileAttributeMatcher::create(const std::string& attributes) -> Glib::RefPtr<FileAttributeMatcher>
 {
   return Glib::wrap(g_file_attribute_matcher_new(attributes.c_str()));
 }
@@ -59,7 +59,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::FileAttributeMatcher> wrap(GFileAttributeMatcher* object, bool take_copy)
+auto wrap(GFileAttributeMatcher* object, bool take_copy) -> Glib::RefPtr<Gio::FileAttributeMatcher>
 {
   if(take_copy && object)
     g_file_attribute_matcher_ref(object);
@@ -86,19 +86,19 @@ void FileAttributeMatcher::unreference() const
   g_file_attribute_matcher_unref(reinterpret_cast<GFileAttributeMatcher*>(const_cast<FileAttributeMatcher*>(this)));
 }
 
-GFileAttributeMatcher* FileAttributeMatcher::gobj()
+auto FileAttributeMatcher::gobj() -> GFileAttributeMatcher*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<GFileAttributeMatcher*>(this);
 }
 
-const GFileAttributeMatcher* FileAttributeMatcher::gobj() const
+auto FileAttributeMatcher::gobj() const -> const GFileAttributeMatcher*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<const GFileAttributeMatcher*>(this);
 }
 
-GFileAttributeMatcher* FileAttributeMatcher::gobj_copy() const
+auto FileAttributeMatcher::gobj_copy() const -> GFileAttributeMatcher*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   const auto gobject = reinterpret_cast<GFileAttributeMatcher*>(const_cast<FileAttributeMatcher*>(this));
@@ -107,32 +107,32 @@ GFileAttributeMatcher* FileAttributeMatcher::gobj_copy() const
 }
 
 
-Glib::RefPtr<FileAttributeMatcher> FileAttributeMatcher::create_difference(const Glib::RefPtr<const FileAttributeMatcher>& subtract) const
+auto FileAttributeMatcher::create_difference(const Glib::RefPtr<const FileAttributeMatcher>& subtract) const -> Glib::RefPtr<FileAttributeMatcher>
 {
   return Glib::wrap(g_file_attribute_matcher_subtract(const_cast<GFileAttributeMatcher*>(gobj()), const_cast<GFileAttributeMatcher*>(Glib::unwrap(subtract))));
 }
 
-bool FileAttributeMatcher::matches(const std::string& attribute) const
+auto FileAttributeMatcher::matches(const std::string& attribute) const -> bool
 {
   return g_file_attribute_matcher_matches(const_cast<GFileAttributeMatcher*>(gobj()), attribute.c_str());
 }
 
-bool FileAttributeMatcher::matches_only(const std::string& attribute) const
+auto FileAttributeMatcher::matches_only(const std::string& attribute) const -> bool
 {
   return g_file_attribute_matcher_matches_only(const_cast<GFileAttributeMatcher*>(gobj()), attribute.c_str());
 }
 
-bool FileAttributeMatcher::enumerate_namespace(const std::string& ns)
+auto FileAttributeMatcher::enumerate_namespace(const std::string& ns) -> bool
 {
   return g_file_attribute_matcher_enumerate_namespace(gobj(), ns.c_str());
 }
 
-std::string FileAttributeMatcher::enumerate_next()
+auto FileAttributeMatcher::enumerate_next() -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_file_attribute_matcher_enumerate_next(gobj()));
 }
 
-std::string FileAttributeMatcher::to_string() const
+auto FileAttributeMatcher::to_string() const -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(g_file_attribute_matcher_to_string(const_cast<GFileAttributeMatcher*>(gobj())));
 }
@@ -144,7 +144,7 @@ std::string FileAttributeMatcher::to_string() const
 namespace Glib
 {
 
-Glib::RefPtr<Gio::FileInfo> wrap(GFileInfo* object, bool take_copy)
+auto wrap(GFileInfo* object, bool take_copy) -> Glib::RefPtr<Gio::FileInfo>
 {
   return Glib::make_refptr_for_instance<Gio::FileInfo>( dynamic_cast<Gio::FileInfo*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -159,7 +159,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& FileInfo_Class::init()
+auto FileInfo_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -190,7 +190,7 @@ void FileInfo_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* FileInfo_Class::wrap_new(GObject* object)
+auto FileInfo_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new FileInfo((GFileInfo*)object);
 }
@@ -198,7 +198,7 @@ Glib::ObjectBase* FileInfo_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GFileInfo* FileInfo::gobj_copy()
+auto FileInfo::gobj_copy() -> GFileInfo*
 {
   reference();
   return gobj();
@@ -221,7 +221,7 @@ FileInfo::FileInfo(FileInfo&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-FileInfo& FileInfo::operator=(FileInfo&& src) noexcept
+auto FileInfo::operator=(FileInfo&& src) noexcept -> FileInfo&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -234,13 +234,13 @@ FileInfo::~FileInfo() noexcept
 
 FileInfo::CppClassType FileInfo::fileinfo_class_; // initialize static member
 
-GType FileInfo::get_type()
+auto FileInfo::get_type() -> GType
 {
   return fileinfo_class_.init().get_type();
 }
 
 
-GType FileInfo::get_base_type()
+auto FileInfo::get_base_type() -> GType
 {
   return g_file_info_get_type();
 }
@@ -255,7 +255,7 @@ FileInfo::FileInfo()
 
 }
 
-Glib::RefPtr<FileInfo> FileInfo::dup() const
+auto FileInfo::dup() const -> Glib::RefPtr<FileInfo>
 {
   return Glib::wrap(g_file_info_dup(const_cast<GFileInfo*>(gobj())));
 }
@@ -265,27 +265,27 @@ void FileInfo::copy_into(Glib::RefPtr<FileInfo>& dest_info) const
   g_file_info_copy_into(const_cast<GFileInfo*>(gobj()), Glib::unwrap(dest_info));
 }
 
-bool FileInfo::has_attribute(const std::string& attribute) const
+auto FileInfo::has_attribute(const std::string& attribute) const -> bool
 {
   return g_file_info_has_attribute(const_cast<GFileInfo*>(gobj()), attribute.c_str());
 }
 
-bool FileInfo::has_namespace(const std::string& name_space) const
+auto FileInfo::has_namespace(const std::string& name_space) const -> bool
 {
   return g_file_info_has_namespace(const_cast<GFileInfo*>(gobj()), name_space.c_str());
 }
 
-std::vector<Glib::ustring> FileInfo::list_attributes(const std::string& name_space) const
+auto FileInfo::list_attributes(const std::string& name_space) const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_file_info_list_attributes(const_cast<GFileInfo*>(gobj()), name_space.empty() ? nullptr : name_space.c_str()), Glib::OWNERSHIP_DEEP);
 }
 
-std::vector<Glib::ustring> FileInfo::list_attributes() const
+auto FileInfo::list_attributes() const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_file_info_list_attributes(const_cast<GFileInfo*>(gobj()), nullptr), Glib::OWNERSHIP_DEEP);
 }
 
-FileAttributeType FileInfo::get_attribute_type(const std::string& attribute) const
+auto FileInfo::get_attribute_type(const std::string& attribute) const -> FileAttributeType
 {
   return static_cast<FileAttributeType>(g_file_info_get_attribute_type(const_cast<GFileInfo*>(gobj()), attribute.c_str()));
 }
@@ -295,62 +295,62 @@ void FileInfo::remove_attribute(const std::string& attribute)
   g_file_info_remove_attribute(gobj(), attribute.c_str());
 }
 
-FileAttributeStatus FileInfo::get_attribute_status(const std::string& attribute) const
+auto FileInfo::get_attribute_status(const std::string& attribute) const -> FileAttributeStatus
 {
   return static_cast<FileAttributeStatus>(g_file_info_get_attribute_status(const_cast<GFileInfo*>(gobj()), attribute.c_str()));
 }
 
-Glib::ustring FileInfo::get_attribute_string(const std::string& attribute) const
+auto FileInfo::get_attribute_string(const std::string& attribute) const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_file_info_get_attribute_string(const_cast<GFileInfo*>(gobj()), attribute.c_str()));
 }
 
-std::vector<Glib::ustring> FileInfo::get_attribute_strings(const std::string& attribute) const
+auto FileInfo::get_attribute_strings(const std::string& attribute) const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_file_info_get_attribute_stringv(const_cast<GFileInfo*>(gobj()), attribute.c_str()), Glib::OWNERSHIP_NONE);
 }
 
-Glib::ustring FileInfo::get_attribute_as_string(const std::string& attribute) const
+auto FileInfo::get_attribute_as_string(const std::string& attribute) const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(g_file_info_get_attribute_as_string(const_cast<GFileInfo*>(gobj()), attribute.c_str()));
 }
 
-std::string FileInfo::get_attribute_byte_string(const std::string& attribute) const
+auto FileInfo::get_attribute_byte_string(const std::string& attribute) const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_file_info_get_attribute_byte_string(const_cast<GFileInfo*>(gobj()), attribute.c_str()));
 }
 
-bool FileInfo::get_attribute_boolean(const std::string& attribute) const
+auto FileInfo::get_attribute_boolean(const std::string& attribute) const -> bool
 {
   return g_file_info_get_attribute_boolean(const_cast<GFileInfo*>(gobj()), attribute.c_str());
 }
 
-guint32 FileInfo::get_attribute_uint32(const std::string& attribute) const
+auto FileInfo::get_attribute_uint32(const std::string& attribute) const -> guint32
 {
   return g_file_info_get_attribute_uint32(const_cast<GFileInfo*>(gobj()), attribute.c_str());
 }
 
-gint32 FileInfo::get_attribute_int32(const std::string& attribute) const
+auto FileInfo::get_attribute_int32(const std::string& attribute) const -> gint32
 {
   return g_file_info_get_attribute_int32(const_cast<GFileInfo*>(gobj()), attribute.c_str());
 }
 
-guint64 FileInfo::get_attribute_uint64(const std::string& attribute) const
+auto FileInfo::get_attribute_uint64(const std::string& attribute) const -> guint64
 {
   return g_file_info_get_attribute_uint64(const_cast<GFileInfo*>(gobj()), attribute.c_str());
 }
 
-gint64 FileInfo::get_attribute_int64(const std::string& attribute) const
+auto FileInfo::get_attribute_int64(const std::string& attribute) const -> gint64
 {
   return g_file_info_get_attribute_int64(const_cast<GFileInfo*>(gobj()), attribute.c_str());
 }
 
-Glib::RefPtr<Glib::Object> FileInfo::get_attribute_object(const std::string& attribute) const
+auto FileInfo::get_attribute_object(const std::string& attribute) const -> Glib::RefPtr<Glib::Object>
 {
   return Glib::wrap(g_file_info_get_attribute_object(const_cast<GFileInfo*>(gobj()), attribute.c_str()));
 }
 
-bool FileInfo::set_attribute_status(const std::string& attribute, FileAttributeStatus status)
+auto FileInfo::set_attribute_status(const std::string& attribute, FileAttributeStatus status) -> bool
 {
   return g_file_info_set_attribute_status(gobj(), attribute.c_str(), static_cast<GFileAttributeStatus>(status));
 }
@@ -405,47 +405,47 @@ void FileInfo::clear_status()
   g_file_info_clear_status(gobj());
 }
 
-Glib::DateTime FileInfo::get_deletion_date() const
+auto FileInfo::get_deletion_date() const -> Glib::DateTime
 {
   return Glib::wrap(g_file_info_get_deletion_date(const_cast<GFileInfo*>(gobj())));
 }
 
-FileType FileInfo::get_file_type() const
+auto FileInfo::get_file_type() const -> FileType
 {
   return static_cast<FileType>(g_file_info_get_file_type(const_cast<GFileInfo*>(gobj())));
 }
 
-bool FileInfo::is_hidden() const
+auto FileInfo::is_hidden() const -> bool
 {
   return g_file_info_get_is_hidden(const_cast<GFileInfo*>(gobj()));
 }
 
-bool FileInfo::is_backup() const
+auto FileInfo::is_backup() const -> bool
 {
   return g_file_info_get_is_backup(const_cast<GFileInfo*>(gobj()));
 }
 
-bool FileInfo::is_symlink() const
+auto FileInfo::is_symlink() const -> bool
 {
   return g_file_info_get_is_symlink(const_cast<GFileInfo*>(gobj()));
 }
 
-std::string FileInfo::get_name() const
+auto FileInfo::get_name() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_file_info_get_name(const_cast<GFileInfo*>(gobj())));
 }
 
-Glib::ustring FileInfo::get_display_name() const
+auto FileInfo::get_display_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_file_info_get_display_name(const_cast<GFileInfo*>(gobj())));
 }
 
-Glib::ustring FileInfo::get_edit_name() const
+auto FileInfo::get_edit_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_file_info_get_edit_name(const_cast<GFileInfo*>(gobj())));
 }
 
-Glib::RefPtr<Icon> FileInfo::get_icon()
+auto FileInfo::get_icon() -> Glib::RefPtr<Icon>
 {
   auto retvalue = Glib::wrap(g_file_info_get_icon(gobj()));
   if(retvalue)
@@ -453,12 +453,12 @@ Glib::RefPtr<Icon> FileInfo::get_icon()
   return retvalue;
 }
 
-Glib::RefPtr<const Icon> FileInfo::get_icon() const
+auto FileInfo::get_icon() const -> Glib::RefPtr<const Icon>
 {
   return const_cast<FileInfo*>(this)->get_icon();
 }
 
-Glib::RefPtr<Icon> FileInfo::get_symbolic_icon()
+auto FileInfo::get_symbolic_icon() -> Glib::RefPtr<Icon>
 {
   auto retvalue = Glib::wrap(g_file_info_get_symbolic_icon(gobj()));
   if(retvalue)
@@ -466,47 +466,47 @@ Glib::RefPtr<Icon> FileInfo::get_symbolic_icon()
   return retvalue;
 }
 
-Glib::RefPtr<const Icon> FileInfo::get_symbolic_icon() const
+auto FileInfo::get_symbolic_icon() const -> Glib::RefPtr<const Icon>
 {
   return const_cast<FileInfo*>(this)->get_symbolic_icon();
 }
 
-Glib::ustring FileInfo::get_content_type() const
+auto FileInfo::get_content_type() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_file_info_get_content_type(const_cast<GFileInfo*>(gobj())));
 }
 
-goffset FileInfo::get_size() const
+auto FileInfo::get_size() const -> goffset
 {
   return g_file_info_get_size(const_cast<GFileInfo*>(gobj()));
 }
 
-Glib::DateTime FileInfo::get_modification_date_time() const
+auto FileInfo::get_modification_date_time() const -> Glib::DateTime
 {
   return Glib::wrap(g_file_info_get_modification_date_time(const_cast<GFileInfo*>(gobj())));
 }
 
-Glib::DateTime FileInfo::get_access_date_time() const
+auto FileInfo::get_access_date_time() const -> Glib::DateTime
 {
   return Glib::wrap(g_file_info_get_access_date_time(const_cast<GFileInfo*>(gobj())));
 }
 
-Glib::DateTime FileInfo::get_creation_date_time() const
+auto FileInfo::get_creation_date_time() const -> Glib::DateTime
 {
   return Glib::wrap(g_file_info_get_creation_date_time(const_cast<GFileInfo*>(gobj())));
 }
 
-std::string FileInfo::get_symlink_target() const
+auto FileInfo::get_symlink_target() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_file_info_get_symlink_target(const_cast<GFileInfo*>(gobj())));
 }
 
-Glib::ustring FileInfo::get_etag() const
+auto FileInfo::get_etag() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_file_info_get_etag(const_cast<GFileInfo*>(gobj())));
 }
 
-gint32 FileInfo::get_sort_order() const
+auto FileInfo::get_sort_order() const -> gint32
 {
   return g_file_info_get_sort_order(const_cast<GFileInfo*>(gobj()));
 }

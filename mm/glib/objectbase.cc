@@ -30,7 +30,7 @@ namespace
 // char array rather than a string literal allows for fast pointer comparison,
 // which is otherwise not guaranteed to work.
 
-static const char anonymous_custom_type_name[] = "gtkmm__anonymous_custom_type";
+const char anonymous_custom_type_name[] = "gtkmm__anonymous_custom_type";
 
 } // anonymous namespace
 
@@ -125,8 +125,8 @@ ObjectBase::ObjectBase(ObjectBase&& src) noexcept
 {
 }
 
-ObjectBase&
-ObjectBase::operator=(ObjectBase&& src) noexcept
+auto
+ObjectBase::operator=(ObjectBase&& src) noexcept -> ObjectBase&
 {
   if (this == &src)
     return *this;
@@ -200,8 +200,8 @@ ObjectBase::unreference() const
   g_object_unref(gobject_);
 }
 
-GObject*
-ObjectBase::gobj_copy() const
+auto
+ObjectBase::gobj_copy() const -> GObject*
 {
   reference();
   return gobject_;
@@ -254,8 +254,8 @@ ObjectBase::_move_current_wrapper(GObject* object, Glib::ObjectBase* previous_wr
 }
 
 // static
-ObjectBase*
-ObjectBase::_get_current_wrapper(GObject* object)
+auto
+ObjectBase::_get_current_wrapper(GObject* object) -> ObjectBase*
 {
   if (object)
     return static_cast<ObjectBase*>(g_object_get_qdata(object, Glib::quark_));
@@ -307,15 +307,15 @@ ObjectBase::destroy_notify_()
   delete this;
 }
 
-bool
-ObjectBase::is_anonymous_custom_() const
+auto
+ObjectBase::is_anonymous_custom_() const -> bool
 {
   // Doing high-speed pointer comparison is OK here.
   return (custom_type_name_ == anonymous_custom_type_name);
 }
 
-bool
-ObjectBase::is_derived_() const
+auto
+ObjectBase::is_derived_() const -> bool
 {
   // gtkmmproc-generated classes initialize this to 0 by default.
   return (custom_type_name_ != nullptr);
@@ -333,8 +333,8 @@ ObjectBase::set_manage()
           "only Gtk::Object instances can be managed");
 }
 
-bool
-ObjectBase::_cpp_destruction_is_in_progress() const
+auto
+ObjectBase::_cpp_destruction_is_in_progress() const -> bool
 {
   return cpp_destruction_in_progress_;
 }
@@ -351,9 +351,9 @@ ObjectBase::get_property_value(const Glib::ustring& property_name, Glib::ValueBa
   g_object_get_property(const_cast<GObject*>(gobj()), property_name.c_str(), value.gobj());
 }
 
-sigc::connection
+auto
 ObjectBase::connect_property_changed(
-  const Glib::ustring& property_name, const sigc::slot<void()>& slot)
+  const Glib::ustring& property_name, const sigc::slot<void()>& slot) -> sigc::connection
 {
   // Create a proxy to hold our connection info
   // This will be deleted by destroy_notify_handler.
@@ -364,9 +364,9 @@ ObjectBase::connect_property_changed(
   return pConnectionNode->connect_changed(property_name);
 }
 
-sigc::connection
+auto
 ObjectBase::connect_property_changed(
-  const Glib::ustring& property_name, sigc::slot<void()>&& slot)
+  const Glib::ustring& property_name, sigc::slot<void()>&& slot) -> sigc::connection
 {
   // Create a proxy to hold our connection info
   // This will be deleted by destroy_notify_handler.
@@ -389,7 +389,7 @@ ObjectBase::thaw_notify()
   g_object_thaw_notify(gobj());
 }
 
-GType ObjectBase::get_base_type()
+auto ObjectBase::get_base_type() -> GType
 {
   return G_TYPE_OBJECT;
 }
@@ -416,12 +416,12 @@ void ObjectBase::set_custom_instance_init_function(GInstanceInitFunc instance_in
   priv_pimpl_->custom_instance_init_function = instance_init_func;
 }
 
-const Class::interface_classes_type* ObjectBase::get_custom_interface_classes() const
+auto ObjectBase::get_custom_interface_classes() const -> const Class::interface_classes_type*
 {
   return priv_pimpl_ ? &priv_pimpl_->custom_interface_classes : nullptr;
 }
 
-const Class::class_init_funcs_type* ObjectBase::get_custom_class_init_functions() const
+auto ObjectBase::get_custom_class_init_functions() const -> const Class::class_init_funcs_type*
 {
   return priv_pimpl_ ? &priv_pimpl_->custom_class_init_functions : nullptr;
 }
@@ -437,8 +437,8 @@ void ObjectBase::custom_class_init_finished()
 }
 
 /**** Global function *****************************************************/
-bool
-_gobject_cppinstance_already_deleted(GObject* gobject)
+auto
+_gobject_cppinstance_already_deleted(GObject* gobject) -> bool
 {
   // This function is used to prevent calling wrap() on a GTK+ instance whose gtkmm instance has
   // been deleted.

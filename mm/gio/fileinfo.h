@@ -120,19 +120,19 @@ class GIOMM_API FileAttributeMatcher final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GFileAttributeMatcher*       gobj();
+  auto       gobj() -> GFileAttributeMatcher*;
 
   ///Provides access to the underlying C instance.
-  const GFileAttributeMatcher* gobj() const;
+  auto gobj() const -> const GFileAttributeMatcher*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GFileAttributeMatcher* gobj_copy() const;
+  auto gobj_copy() const -> GFileAttributeMatcher*;
 
   FileAttributeMatcher() = delete;
 
   // noncopyable
   FileAttributeMatcher(const FileAttributeMatcher&) = delete;
-  FileAttributeMatcher& operator=(const FileAttributeMatcher&) = delete;
+  auto operator=(const FileAttributeMatcher&) -> FileAttributeMatcher& = delete;
 
 protected:
   // Do not derive this.  Gio::FileAttributeMatcher can neither be constructed nor deleted.
@@ -151,7 +151,7 @@ public:
    * @param attributes The attributes string.
    * @result a new FileAttributeMatcher.
    */
-  static Glib::RefPtr<FileAttributeMatcher> create(const std::string& attributes = "*");
+  static auto create(const std::string& attributes = "*") -> Glib::RefPtr<FileAttributeMatcher>;
 
 
   /** Subtracts all attributes of @a subtract from @a matcher and returns
@@ -167,7 +167,7 @@ public:
    * @return A file attribute matcher matching all attributes of
    *  @a matcher that are not matched by @a subtract.
    */
-  Glib::RefPtr<FileAttributeMatcher> create_difference(const Glib::RefPtr<const FileAttributeMatcher>& subtract) const;
+  auto create_difference(const Glib::RefPtr<const FileAttributeMatcher>& subtract) const -> Glib::RefPtr<FileAttributeMatcher>;
 
 
   /** Checks if an attribute will be matched by an attribute matcher. If
@@ -177,7 +177,7 @@ public:
    * @param attribute A file attribute key.
    * @return <tt>true</tt> if @a attribute matches @a matcher. <tt>false</tt> otherwise.
    */
-  bool matches(const std::string& attribute) const;
+  auto matches(const std::string& attribute) const -> bool;
 
   /** Checks if a attribute matcher only matches a given attribute. Always
    * returns <tt>false</tt> if "*" was used when creating the matcher.
@@ -185,7 +185,7 @@ public:
    * @param attribute A file attribute key.
    * @return <tt>true</tt> if the matcher only matches @a attribute. <tt>false</tt> otherwise.
    */
-  bool matches_only(const std::string& attribute) const;
+  auto matches_only(const std::string& attribute) const -> bool;
 
   /** Checks if the matcher will match all of the keys in a given namespace.
    * This will always return <tt>true</tt> if a wildcard character is in use (e.g. if
@@ -198,14 +198,14 @@ public:
    * @return <tt>true</tt> if the matcher matches all of the entries
    * in the given @a ns, <tt>false</tt> otherwise.
    */
-  bool enumerate_namespace(const std::string& ns);
+  auto enumerate_namespace(const std::string& ns) -> bool;
 
   /** Gets the next matched attribute from a FileAttributeMatcher.
    *
    * @return A string containing the next attribute or, <tt>nullptr</tt> if
    * no more attribute exist.
    */
-  std::string enumerate_next();
+  auto enumerate_next() -> std::string;
 
   /** Prints what the matcher is matching against. The format will be
    * equal to the format passed to g_file_attribute_matcher_new().
@@ -217,7 +217,7 @@ public:
    * @return A string describing the attributes the matcher matches
    * against or <tt>nullptr</tt> if @a matcher was <tt>nullptr</tt>.
    */
-  std::string to_string() const;
+  auto to_string() const -> std::string;
 
 
 };
@@ -245,7 +245,7 @@ public:
 
   // noncopyable
   FileInfo(const FileInfo&) = delete;
-  FileInfo& operator=(const FileInfo&) = delete;
+  auto operator=(const FileInfo&) -> FileInfo& = delete;
 
 private:  friend class FileInfo_Class;
   static CppClassType fileinfo_class_;
@@ -259,28 +259,28 @@ protected:
 public:
 
   FileInfo(FileInfo&& src) noexcept;
-  FileInfo& operator=(FileInfo&& src) noexcept;
+  auto operator=(FileInfo&& src) noexcept -> FileInfo&;
 
   ~FileInfo() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GFileInfo*       gobj()       { return reinterpret_cast<GFileInfo*>(gobject_); }
+  auto       gobj() -> GFileInfo*       { return reinterpret_cast<GFileInfo*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GFileInfo* gobj() const { return reinterpret_cast<GFileInfo*>(gobject_); }
+  auto gobj() const -> const GFileInfo* { return reinterpret_cast<GFileInfo*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GFileInfo* gobj_copy();
+  auto gobj_copy() -> GFileInfo*;
 
 private:
 
@@ -293,7 +293,7 @@ public:
    *
    * @return A duplicate FileInfo of @a other.
    */
-  Glib::RefPtr<FileInfo> dup() const;
+  auto dup() const -> Glib::RefPtr<FileInfo>;
 
   /** First clears all of the [GFileAttribute][gio-GFileAttribute] of @a dest_info,
    * and then copies all of the file attributes from @a src_info to @a dest_info.
@@ -308,7 +308,7 @@ public:
    * @return <tt>true</tt> if @a info has an attribute named @a attribute,
    * <tt>false</tt> otherwise.
    */
-  bool has_attribute(const std::string& attribute) const;
+  auto has_attribute(const std::string& attribute) const -> bool;
 
 
   /** Checks if a file info structure has an attribute in the
@@ -320,7 +320,7 @@ public:
    * @return <tt>true</tt> if @a info has an attribute in @a name_space,
    * <tt>false</tt> otherwise.
    */
-  bool has_namespace(const std::string& name_space) const;
+  auto has_namespace(const std::string& name_space) const -> bool;
 
 
   /** Lists the file info structure's attributes.
@@ -331,10 +331,10 @@ public:
    * null-terminated array of strings of all of the possible attribute
    * types for the given @a name_space, or <tt>nullptr</tt> on error.
    */
-  std::vector<Glib::ustring> list_attributes(const std::string& name_space) const;
+  auto list_attributes(const std::string& name_space) const -> std::vector<Glib::ustring>;
 
   /// A list_attributes() convenience overload.
-  std::vector<Glib::ustring> list_attributes() const;
+  auto list_attributes() const -> std::vector<Glib::ustring>;
 
 
   /** Gets the attribute type for an attribute key.
@@ -343,7 +343,7 @@ public:
    * @return A FileAttributeType for the given @a attribute, or
    * G_FILE_ATTRIBUTE_TYPE_INVALID if the key is not set.
    */
-  FileAttributeType get_attribute_type(const std::string& attribute) const;
+  auto get_attribute_type(const std::string& attribute) const -> FileAttributeType;
 
   /** Removes all cases of @a attribute from @a info if it exists.
    *
@@ -358,7 +358,7 @@ public:
    * @return A FileAttributeStatus for the given @a attribute, or
    * G_FILE_ATTRIBUTE_STATUS_UNSET if the key is invalid.
    */
-  FileAttributeStatus get_attribute_status(const std::string& attribute) const;
+  auto get_attribute_status(const std::string& attribute) const -> FileAttributeStatus;
 
 
   /** Gets the value of a string attribute. If the attribute does
@@ -368,7 +368,7 @@ public:
    * @return The contents of the @a attribute value as a UTF-8 string,
    * or <tt>nullptr</tt> otherwise.
    */
-  Glib::ustring get_attribute_string(const std::string& attribute) const;
+  auto get_attribute_string(const std::string& attribute) const -> Glib::ustring;
 
 
   /** Gets the value of a stringv attribute. If the attribute does
@@ -380,7 +380,7 @@ public:
    * @return The contents of the @a attribute value as a stringv,
    * or <tt>nullptr</tt> otherwise. Do not free. These returned strings are UTF-8.
    */
-  std::vector<Glib::ustring> get_attribute_strings(const std::string& attribute) const;
+  auto get_attribute_strings(const std::string& attribute) const -> std::vector<Glib::ustring>;
 
 
   /** Gets the value of a attribute, formatted as a string.
@@ -391,7 +391,7 @@ public:
    * @return A UTF-8 string associated with the given @a attribute, or
    * <tt>nullptr</tt> if the attribute wasn’t set.
    */
-  Glib::ustring get_attribute_as_string(const std::string& attribute) const;
+  auto get_attribute_as_string(const std::string& attribute) const -> Glib::ustring;
 
   /** Gets the value of a byte string attribute. If the attribute does
    * not contain a byte string, <tt>nullptr</tt> will be returned.
@@ -400,7 +400,7 @@ public:
    * @return The contents of the @a attribute value as a byte string, or
    * <tt>nullptr</tt> otherwise.
    */
-  std::string get_attribute_byte_string(const std::string& attribute) const;
+  auto get_attribute_byte_string(const std::string& attribute) const -> std::string;
 
   /** Gets the value of a boolean attribute. If the attribute does not
    * contain a boolean value, <tt>false</tt> will be returned.
@@ -408,7 +408,7 @@ public:
    * @param attribute A file attribute key.
    * @return The boolean value contained within the attribute.
    */
-  bool get_attribute_boolean(const std::string& attribute) const;
+  auto get_attribute_boolean(const std::string& attribute) const -> bool;
 
   /** Gets an unsigned 32-bit integer contained within the attribute. If the
    * attribute does not contain an unsigned 32-bit integer, or is invalid,
@@ -417,7 +417,7 @@ public:
    * @param attribute A file attribute key.
    * @return An unsigned 32-bit integer from the attribute.
    */
-  guint32 get_attribute_uint32(const std::string& attribute) const;
+  auto get_attribute_uint32(const std::string& attribute) const -> guint32;
 
   /** Gets a signed 32-bit integer contained within the attribute. If the
    * attribute does not contain a signed 32-bit integer, or is invalid,
@@ -426,7 +426,7 @@ public:
    * @param attribute A file attribute key.
    * @return A signed 32-bit integer from the attribute.
    */
-  gint32 get_attribute_int32(const std::string& attribute) const;
+  auto get_attribute_int32(const std::string& attribute) const -> gint32;
 
   /** Gets a unsigned 64-bit integer contained within the attribute. If the
    * attribute does not contain an unsigned 64-bit integer, or is invalid,
@@ -435,7 +435,7 @@ public:
    * @param attribute A file attribute key.
    * @return A unsigned 64-bit integer from the attribute.
    */
-  guint64 get_attribute_uint64(const std::string& attribute) const;
+  auto get_attribute_uint64(const std::string& attribute) const -> guint64;
 
   /** Gets a signed 64-bit integer contained within the attribute. If the
    * attribute does not contain a signed 64-bit integer, or is invalid,
@@ -444,7 +444,7 @@ public:
    * @param attribute A file attribute key.
    * @return A signed 64-bit integer from the attribute.
    */
-  gint64 get_attribute_int64(const std::string& attribute) const;
+  auto get_attribute_int64(const std::string& attribute) const -> gint64;
 
   /** Gets the value of a Object attribute. If the attribute does
    * not contain a Object, <tt>nullptr</tt> will be returned.
@@ -453,7 +453,7 @@ public:
    * @return A Object associated with the given @a attribute,
    * or <tt>nullptr</tt> otherwise.
    */
-  Glib::RefPtr<Glib::Object> get_attribute_object(const std::string& attribute) const;
+  auto get_attribute_object(const std::string& attribute) const -> Glib::RefPtr<Glib::Object>;
 
 
   /** Sets the attribute status for an attribute key. This is only
@@ -469,7 +469,7 @@ public:
    * @param status A FileAttributeStatus.
    * @return <tt>true</tt> if the status was changed, <tt>false</tt> if the key was not set.
    */
-  bool set_attribute_status(const std::string& attribute, FileAttributeStatus status);
+  auto set_attribute_status(const std::string& attribute, FileAttributeStatus status) -> bool;
 
 
   /** Sets the @a attribute to contain the given @a attr_value,
@@ -564,65 +564,65 @@ public:
    *
    * @return A DateTime, or <tt>nullptr</tt>.
    */
-  Glib::DateTime get_deletion_date() const;
+  auto get_deletion_date() const -> Glib::DateTime;
 
   /** Gets a file's type (whether it is a regular file, symlink, etc).
    * This is different from the file's content type, see g_file_info_get_content_type().
    *
    * @return A FileType for the given file.
    */
-  FileType get_file_type() const;
+  auto get_file_type() const -> FileType;
 
   /** Checks if a file is hidden.
    *
    * @return <tt>true</tt> if the file is a hidden file, <tt>false</tt> otherwise.
    */
-  bool is_hidden() const;
+  auto is_hidden() const -> bool;
 
   /** Checks if a file is a backup file.
    *
    * @return <tt>true</tt> if file is a backup file, <tt>false</tt> otherwise.
    */
-  bool is_backup() const;
+  auto is_backup() const -> bool;
 
   /** Checks if a file is a symlink.
    *
    * @return <tt>true</tt> if the given @a info is a symlink.
    */
-  bool is_symlink() const;
+  auto is_symlink() const -> bool;
 
   /** Gets the name for a file. This is guaranteed to always be set.
    *
    * @return A string containing the file name.
    */
-  std::string get_name() const;
+  auto get_name() const -> std::string;
 
 
   /** Gets a display name for a file. This is guaranteed to always be set.
    *
    * @return A string containing the display name.
    */
-  Glib::ustring get_display_name() const;
+  auto get_display_name() const -> Glib::ustring;
 
 
   /** Gets the edit name for a file.
    *
    * @return A string containing the edit name.
    */
-  Glib::ustring get_edit_name() const;
+  auto get_edit_name() const -> Glib::ustring;
 
 
   /** Gets the icon for a file.
    *
    * @return Icon for the given @a info.
    */
-  Glib::RefPtr<Icon> get_icon();
+  auto get_icon() -> Glib::RefPtr<Icon>;
 
   /** Gets the icon for a file.
    *
    * @return Icon for the given @a info.
    */
-  Glib::RefPtr<const Icon> get_icon() const;
+  auto get_icon() const -> Glib::RefPtr<const Icon>;
 
 
   /** Gets the symbolic icon for a file.
@@ -631,7 +631,7 @@ public:
    *
    * @return Icon for the given @a info.
    */
-  Glib::RefPtr<Icon> get_symbolic_icon();
+  auto get_symbolic_icon() -> Glib::RefPtr<Icon>;
 
   /** Gets the symbolic icon for a file.
    *
@@ -639,7 +639,7 @@ public:
    *
    * @return Icon for the given @a info.
    */
-  Glib::RefPtr<const Icon> get_symbolic_icon() const;
+  auto get_symbolic_icon() const -> Glib::RefPtr<const Icon>;
 
 
   /** Gets the file's content type.
@@ -647,7 +647,7 @@ public:
    * @return A string containing the file's content type,
    * or <tt>nullptr</tt> if unknown.
    */
-  Glib::ustring get_content_type() const;
+  auto get_content_type() const -> Glib::ustring;
 
 
   /** Gets the file's size (in bytes). The size is retrieved through the value of
@@ -656,7 +656,7 @@ public:
    *
    * @return A #goffset containing the file's size (in bytes).
    */
-  goffset get_size() const;
+  auto get_size() const -> goffset;
 
 
   /** Gets the modification time of the current @a info and returns it as a
@@ -673,7 +673,7 @@ public:
    *
    * @return Modification time, or <tt>nullptr</tt> if unknown.
    */
-  Glib::DateTime get_modification_date_time() const;
+  auto get_modification_date_time() const -> Glib::DateTime;
 
   /** Gets the access time of the current @a info and returns it as a
    * DateTime.
@@ -689,7 +689,7 @@ public:
    *
    * @return Access time, or <tt>nullptr</tt> if unknown.
    */
-  Glib::DateTime get_access_date_time() const;
+  auto get_access_date_time() const -> Glib::DateTime;
 
   /** Gets the creation time of the current @a info and returns it as a
    * DateTime.
@@ -705,14 +705,14 @@ public:
    *
    * @return Creation time, or <tt>nullptr</tt> if unknown.
    */
-  Glib::DateTime get_creation_date_time() const;
+  auto get_creation_date_time() const -> Glib::DateTime;
 
 
   /** Gets the symlink target for a given FileInfo.
    *
    * @return A string containing the symlink target.
    */
-  std::string get_symlink_target() const;
+  auto get_symlink_target() const -> std::string;
 
 
   /** Gets the [entity tag][gfile-etag] for a given
@@ -720,7 +720,7 @@ public:
    *
    * @return A string containing the value of the "etag:value" attribute.
    */
-  Glib::ustring get_etag() const;
+  auto get_etag() const -> Glib::ustring;
 
 
   /** Gets the value of the sort_order attribute from the FileInfo.
@@ -728,7 +728,7 @@ public:
    *
    * @return A #gint32 containing the value of the "standard::sort_order" attribute.
    */
-  gint32 get_sort_order() const;
+  auto get_sort_order() const -> gint32;
 
   /** Sets @a mask on @a info to match specific attribute types.
    *
@@ -902,7 +902,7 @@ namespace Glib
  * @relates Gio::FileAttributeMatcher
  */
 GIOMM_API
-Glib::RefPtr<Gio::FileAttributeMatcher> wrap(GFileAttributeMatcher* object, bool take_copy = false);
+auto wrap(GFileAttributeMatcher* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileAttributeMatcher>;
 
 } // namespace Glib
 
@@ -918,7 +918,7 @@ namespace Glib
    * @relates Gio::FileInfo
    */
   GIOMM_API
-  Glib::RefPtr<Gio::FileInfo> wrap(GFileInfo* object, bool take_copy = false);
+  auto wrap(GFileInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileInfo>;
 }
 
 

@@ -64,7 +64,7 @@ public:
 
   // noncopyable
   FilenameCompleter(const FilenameCompleter&) = delete;
-  FilenameCompleter& operator=(const FilenameCompleter&) = delete;
+  auto operator=(const FilenameCompleter&) -> FilenameCompleter& = delete;
 
 private:  friend class FilenameCompleter_Class;
   static CppClassType filenamecompleter_class_;
@@ -78,28 +78,28 @@ protected:
 public:
 
   FilenameCompleter(FilenameCompleter&& src) noexcept;
-  FilenameCompleter& operator=(FilenameCompleter&& src) noexcept;
+  auto operator=(FilenameCompleter&& src) noexcept -> FilenameCompleter&;
 
   ~FilenameCompleter() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GFilenameCompleter*       gobj()       { return reinterpret_cast<GFilenameCompleter*>(gobject_); }
+  auto       gobj() -> GFilenameCompleter*       { return reinterpret_cast<GFilenameCompleter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GFilenameCompleter* gobj() const { return reinterpret_cast<GFilenameCompleter*>(gobject_); }
+  auto gobj() const -> const GFilenameCompleter* { return reinterpret_cast<GFilenameCompleter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GFilenameCompleter* gobj_copy();
+  auto gobj_copy() -> GFilenameCompleter*;
 
 private:
 
@@ -108,7 +108,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<FilenameCompleter> create();
+  static auto create() -> Glib::RefPtr<FilenameCompleter>;
 
 
   /** Obtains a completion for @a initial_text from @a completer.
@@ -117,7 +117,7 @@ public:
    * @return A completed string, or <tt>nullptr</tt> if no
    * completion exists.
    */
-  std::string get_completion_suffix(const std::string& initial_text) const;
+  auto get_completion_suffix(const std::string& initial_text) const -> std::string;
 
 
   /** Gets an array of completion strings for a given initial text.
@@ -125,7 +125,7 @@ public:
    * @param initial_text Text to be completed.
    * @return Array of strings with possible completions for @a initial_text.
    */
-  std::vector<Glib::ustring> get_completions(const std::string& initial_text) const;
+  auto get_completions(const std::string& initial_text) const -> std::vector<Glib::ustring>;
 
   /** If @a dirs_only is <tt>true</tt>, @a completer will only
    * complete directory names, and not file names.
@@ -144,7 +144,7 @@ public:
    * Emitted when the file name completion information comes available.
    */
 
-  Glib::SignalProxy<void()> signal_got_completion_data();
+  auto signal_got_completion_data() -> Glib::SignalProxy<void()>;
 
 
 public:
@@ -176,7 +176,7 @@ namespace Glib
    * @relates Gio::FilenameCompleter
    */
   GIOMM_API
-  Glib::RefPtr<Gio::FilenameCompleter> wrap(GFilenameCompleter* object, bool take_copy = false);
+  auto wrap(GFilenameCompleter* object, bool take_copy = false) -> Glib::RefPtr<Gio::FilenameCompleter>;
 }
 
 

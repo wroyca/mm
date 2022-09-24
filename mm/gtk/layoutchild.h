@@ -72,7 +72,7 @@ public:
 
   // noncopyable
   LayoutChild(const LayoutChild&) = delete;
-  LayoutChild& operator=(const LayoutChild&) = delete;
+  auto operator=(const LayoutChild&) -> LayoutChild& = delete;
 
 private:  friend class LayoutChild_Class;
   static CppClassType layoutchild_class_;
@@ -86,28 +86,28 @@ protected:
 public:
 
   LayoutChild(LayoutChild&& src) noexcept;
-  LayoutChild& operator=(LayoutChild&& src) noexcept;
+  auto operator=(LayoutChild&& src) noexcept -> LayoutChild&;
 
   ~LayoutChild() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkLayoutChild*       gobj()       { return reinterpret_cast<GtkLayoutChild*>(gobject_); }
+  auto       gobj() -> GtkLayoutChild*       { return reinterpret_cast<GtkLayoutChild*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkLayoutChild* gobj() const { return reinterpret_cast<GtkLayoutChild*>(gobject_); }
+  auto gobj() const -> const GtkLayoutChild* { return reinterpret_cast<GtkLayoutChild*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkLayoutChild* gobj_copy();
+  auto gobj_copy() -> GtkLayoutChild*;
 
 private:
 
@@ -127,34 +127,34 @@ public:
    *
    * @return A `Gtk::LayoutManager`.
    */
-  Glib::RefPtr<LayoutManager> get_layout_manager();
+  auto get_layout_manager() -> Glib::RefPtr<LayoutManager>;
 
   /** Retrieves the `Gtk::LayoutManager` instance that created the
    * given @a layout_child.
    *
    * @return A `Gtk::LayoutManager`.
    */
-  Glib::RefPtr<const LayoutManager> get_layout_manager() const;
+  auto get_layout_manager() const -> Glib::RefPtr<const LayoutManager>;
 
 
   /** Retrieves the `Gtk::Widget` associated to the given @a layout_child.
    *
    * @return A `Gtk::Widget`.
    */
-  Widget* get_child_widget();
+  auto get_child_widget() -> Widget*;
 
   /** Retrieves the `Gtk::Widget` associated to the given @a layout_child.
    *
    * @return A `Gtk::Widget`.
    */
-  const Widget* get_child_widget() const;
+  auto get_child_widget() const -> const Widget*;
 
   /** The layout manager that created the `Gtk::LayoutChild` instance.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<LayoutManager> > property_layout_manager() const;
+  auto property_layout_manager() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<LayoutManager> >;
 
 
   /** The widget that is associated to the `Gtk::LayoutChild` instance.
@@ -162,7 +162,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child_widget() const;
+  auto property_child_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
   // There are no signals or vfuncs.
@@ -195,7 +195,7 @@ namespace Glib
    * @relates Gtk::LayoutChild
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::LayoutChild> wrap(GtkLayoutChild* object, bool take_copy = false);
+  auto wrap(GtkLayoutChild* object, bool take_copy = false) -> Glib::RefPtr<Gtk::LayoutChild>;
 }
 
 

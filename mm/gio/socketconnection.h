@@ -77,7 +77,7 @@ public:
 
   // noncopyable
   SocketConnection(const SocketConnection&) = delete;
-  SocketConnection& operator=(const SocketConnection&) = delete;
+  auto operator=(const SocketConnection&) -> SocketConnection& = delete;
 
 private:  friend class SocketConnection_Class;
   static CppClassType socketconnection_class_;
@@ -91,28 +91,28 @@ protected:
 public:
 
   SocketConnection(SocketConnection&& src) noexcept;
-  SocketConnection& operator=(SocketConnection&& src) noexcept;
+  auto operator=(SocketConnection&& src) noexcept -> SocketConnection&;
 
   ~SocketConnection() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GSocketConnection*       gobj()       { return reinterpret_cast<GSocketConnection*>(gobject_); }
+  auto       gobj() -> GSocketConnection*       { return reinterpret_cast<GSocketConnection*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GSocketConnection* gobj() const { return reinterpret_cast<GSocketConnection*>(gobject_); }
+  auto gobj() const -> const GSocketConnection* { return reinterpret_cast<GSocketConnection*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GSocketConnection* gobj_copy();
+  auto gobj_copy() -> GSocketConnection*;
 
 private:
 
@@ -129,10 +129,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool connect(const Glib::RefPtr<SocketAddress>& address, const Glib::RefPtr<Cancellable>& cancellable);
+  auto connect(const Glib::RefPtr<SocketAddress>& address, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A connect() convenience overload.
-  bool connect(const Glib::RefPtr<SocketAddress>& address);
+  auto connect(const Glib::RefPtr<SocketAddress>& address) -> bool;
 
   /**  Asynchronously connect this connection to the specified remote address.
    * This clears the "blocking" flag on this connection's underlying socket if
@@ -163,7 +163,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool connect_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto connect_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Checks if @a connection is connected. This is equivalent to calling
@@ -173,7 +173,7 @@ public:
    *
    * @return Whether @a connection is connected.
    */
-  bool is_connected() const;
+  auto is_connected() const -> bool;
 
 
   /** Gets the underlying Socket object of the connection.
@@ -184,7 +184,7 @@ public:
    *
    * @return A Socket or <tt>nullptr</tt> on error.
    */
-  Glib::RefPtr<Socket> get_socket();
+  auto get_socket() -> Glib::RefPtr<Socket>;
 
   /** Gets the underlying Socket object of the connection.
    * This can be useful if you want to do something unusual on it
@@ -194,7 +194,7 @@ public:
    *
    * @return A Socket or <tt>nullptr</tt> on error.
    */
-  Glib::RefPtr<const Socket> get_socket() const;
+  auto get_socket() const -> Glib::RefPtr<const Socket>;
 
   /** Try to get the local address of a socket connection.
    *
@@ -205,7 +205,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<SocketAddress> get_local_address();
+  auto get_local_address() -> Glib::RefPtr<SocketAddress>;
 
   /** Try to get the local address of a socket connection.
    *
@@ -216,7 +216,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<const SocketAddress> get_local_address() const;
+  auto get_local_address() const -> Glib::RefPtr<const SocketAddress>;
 
   /** Try to get the remote address of a socket connection.
    *
@@ -234,7 +234,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<SocketAddress> get_remote_address();
+  auto get_remote_address() -> Glib::RefPtr<SocketAddress>;
 
   /** Try to get the remote address of a socket connection.
    *
@@ -252,7 +252,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<const SocketAddress> get_remote_address() const;
+  auto get_remote_address() const -> Glib::RefPtr<const SocketAddress>;
 
   // Not sure that registering new GTypes with the factory is useful for the C++ binding
   //_WRAP_METHOD(void factory_register_type(GType g_type, GSocketFamily family, GSocketType type, gint protocol);
@@ -267,14 +267,14 @@ public:
    * @param socket A Socket.
    * @return A SocketConnection.
    */
-  static Glib::RefPtr<SocketConnection> create(const Glib::RefPtr<Socket>& socket);
+  static auto create(const Glib::RefPtr<Socket>& socket) -> Glib::RefPtr<SocketConnection>;
 
   /** The underlying GSocket.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Socket> > property_socket() const;
+  auto property_socket() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Socket> >;
 
 
 public:
@@ -304,7 +304,7 @@ namespace Glib
    * @relates Gio::SocketConnection
    */
   GIOMM_API
-  Glib::RefPtr<Gio::SocketConnection> wrap(GSocketConnection* object, bool take_copy = false);
+  auto wrap(GSocketConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketConnection>;
 }
 
 

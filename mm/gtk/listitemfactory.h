@@ -102,7 +102,7 @@ public:
 
   // noncopyable
   ListItemFactory(const ListItemFactory&) = delete;
-  ListItemFactory& operator=(const ListItemFactory&) = delete;
+  auto operator=(const ListItemFactory&) -> ListItemFactory& = delete;
 
 private:  friend class ListItemFactory_Class;
   static CppClassType listitemfactory_class_;
@@ -116,28 +116,28 @@ protected:
 public:
 
   ListItemFactory(ListItemFactory&& src) noexcept;
-  ListItemFactory& operator=(ListItemFactory&& src) noexcept;
+  auto operator=(ListItemFactory&& src) noexcept -> ListItemFactory&;
 
   ~ListItemFactory() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkListItemFactory*       gobj()       { return reinterpret_cast<GtkListItemFactory*>(gobject_); }
+  auto       gobj() -> GtkListItemFactory*       { return reinterpret_cast<GtkListItemFactory*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkListItemFactory* gobj() const { return reinterpret_cast<GtkListItemFactory*>(gobject_); }
+  auto gobj() const -> const GtkListItemFactory* { return reinterpret_cast<GtkListItemFactory*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkListItemFactory* gobj_copy();
+  auto gobj_copy() -> GtkListItemFactory*;
 
 private:
 
@@ -169,7 +169,7 @@ namespace Glib
    * @relates Gtk::ListItemFactory
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::ListItemFactory> wrap(GtkListItemFactory* object, bool take_copy = false);
+  auto wrap(GtkListItemFactory* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ListItemFactory>;
 }
 
 

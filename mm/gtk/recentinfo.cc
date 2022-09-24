@@ -31,7 +31,7 @@
 namespace Gtk
 {
 
-std::vector<Glib::ustring> RecentInfo::get_applications() const
+auto RecentInfo::get_applications() const -> std::vector<Glib::ustring>
 {
   gsize length = 0;
   char** const applications =
@@ -40,8 +40,8 @@ std::vector<Glib::ustring> RecentInfo::get_applications() const
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(applications, length, Glib::OWNERSHIP_DEEP);
 }
 
-bool RecentInfo::get_application_info(const Glib::ustring& app_name, std::string& app_exec,
-                                      guint& count, Glib::DateTime& stamp) const
+auto RecentInfo::get_application_info(const Glib::ustring& app_name, std::string& app_exec,
+                                      guint& count, Glib::DateTime& stamp) const -> bool
 {
   const char* app_exec_cstr = nullptr;
   GDateTime* date_time = nullptr;
@@ -57,7 +57,7 @@ bool RecentInfo::get_application_info(const Glib::ustring& app_name, std::string
   return (found != 0);
 }
 
-std::vector<Glib::ustring> RecentInfo::get_groups() const
+auto RecentInfo::get_groups() const -> std::vector<Glib::ustring>
 {
   gsize length = 0;
   char** const groups = gtk_recent_info_get_groups(const_cast<GtkRecentInfo*>(gobj()), &length);
@@ -65,7 +65,7 @@ std::vector<Glib::ustring> RecentInfo::get_groups() const
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(groups, length, Glib::OWNERSHIP_DEEP);
 }
 
-RecentInfoTraits::CppType RecentInfoTraits::to_cpp_type(const CType& obj)
+auto RecentInfoTraits::to_cpp_type(const CType& obj) -> RecentInfoTraits::CppType
 {
   return Glib::wrap(const_cast<CTypeNonConst>(obj), true);
 }
@@ -75,7 +75,7 @@ RecentInfoTraits::CppType RecentInfoTraits::to_cpp_type(const CType& obj)
 namespace Glib
 {
 
-GType Value<RefPtr<Gtk::RecentInfo> >::value_type()
+auto Value<RefPtr<Gtk::RecentInfo> >::value_type() -> GType
 {
   return gtk_recent_info_get_type();
 }
@@ -85,7 +85,7 @@ void Value<RefPtr<Gtk::RecentInfo> >::set(const CppType& data)
   set_boxed(Glib::unwrap(data));
 }
 
-Value<RefPtr<Gtk::RecentInfo> >::CppType Value<RefPtr<Gtk::RecentInfo> >::get() const
+auto Value<RefPtr<Gtk::RecentInfo> >::get() const -> Value<RefPtr<Gtk::RecentInfo> >::CppType
 {
   return Glib::wrap(static_cast<CType>(get_boxed()), true);
 }
@@ -113,7 +113,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::RecentInfo> wrap(GtkRecentInfo* object, bool take_copy)
+auto wrap(GtkRecentInfo* object, bool take_copy) -> Glib::RefPtr<Gtk::RecentInfo>
 {
   if(take_copy && object)
     gtk_recent_info_ref(object);
@@ -140,19 +140,19 @@ void RecentInfo::unreference() const
   gtk_recent_info_unref(reinterpret_cast<GtkRecentInfo*>(const_cast<RecentInfo*>(this)));
 }
 
-GtkRecentInfo* RecentInfo::gobj()
+auto RecentInfo::gobj() -> GtkRecentInfo*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<GtkRecentInfo*>(this);
 }
 
-const GtkRecentInfo* RecentInfo::gobj() const
+auto RecentInfo::gobj() const -> const GtkRecentInfo*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<const GtkRecentInfo*>(this);
 }
 
-GtkRecentInfo* RecentInfo::gobj_copy() const
+auto RecentInfo::gobj_copy() const -> GtkRecentInfo*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   const auto gobject = reinterpret_cast<GtkRecentInfo*>(const_cast<RecentInfo*>(this));
@@ -161,47 +161,47 @@ GtkRecentInfo* RecentInfo::gobj_copy() const
 }
 
 
-Glib::ustring RecentInfo::get_uri() const
+auto RecentInfo::get_uri() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_recent_info_get_uri(const_cast<GtkRecentInfo*>(gobj())));
 }
 
-Glib::ustring RecentInfo::get_display_name() const
+auto RecentInfo::get_display_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_recent_info_get_display_name(const_cast<GtkRecentInfo*>(gobj())));
 }
 
-Glib::ustring RecentInfo::get_description() const
+auto RecentInfo::get_description() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_recent_info_get_description(const_cast<GtkRecentInfo*>(gobj())));
 }
 
-Glib::ustring RecentInfo::get_mime_type() const
+auto RecentInfo::get_mime_type() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_recent_info_get_mime_type(const_cast<GtkRecentInfo*>(gobj())));
 }
 
-Glib::DateTime RecentInfo::get_added() const
+auto RecentInfo::get_added() const -> Glib::DateTime
 {
   return Glib::wrap(gtk_recent_info_get_added(const_cast<GtkRecentInfo*>(gobj())));
 }
 
-Glib::DateTime RecentInfo::get_modified() const
+auto RecentInfo::get_modified() const -> Glib::DateTime
 {
   return Glib::wrap(gtk_recent_info_get_modified(const_cast<GtkRecentInfo*>(gobj())));
 }
 
-Glib::DateTime RecentInfo::get_visited() const
+auto RecentInfo::get_visited() const -> Glib::DateTime
 {
   return Glib::wrap(gtk_recent_info_get_visited(const_cast<GtkRecentInfo*>(gobj())));
 }
 
-bool RecentInfo::get_private_hint() const
+auto RecentInfo::get_private_hint() const -> bool
 {
   return gtk_recent_info_get_private_hint(const_cast<GtkRecentInfo*>(gobj()));
 }
 
-Glib::RefPtr<Gio::AppInfo> RecentInfo::create_app_info(const Glib::ustring& app_name)
+auto RecentInfo::create_app_info(const Glib::ustring& app_name) -> Glib::RefPtr<Gio::AppInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(gtk_recent_info_create_app_info(gobj(), app_name.c_str(), &(gerror)));
@@ -210,22 +210,22 @@ Glib::RefPtr<Gio::AppInfo> RecentInfo::create_app_info(const Glib::ustring& app_
   return retvalue;
 }
 
-Glib::ustring RecentInfo::last_application() const
+auto RecentInfo::last_application() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_recent_info_last_application(const_cast<GtkRecentInfo*>(gobj())));
 }
 
-bool RecentInfo::has_application(const Glib::ustring& app_name) const
+auto RecentInfo::has_application(const Glib::ustring& app_name) const -> bool
 {
   return gtk_recent_info_has_application(const_cast<GtkRecentInfo*>(gobj()), app_name.c_str());
 }
 
-bool RecentInfo::has_group(const Glib::ustring& group_name) const
+auto RecentInfo::has_group(const Glib::ustring& group_name) const -> bool
 {
   return gtk_recent_info_has_group(const_cast<GtkRecentInfo*>(gobj()), group_name.c_str());
 }
 
-Glib::RefPtr<Gio::Icon> RecentInfo::get_gicon()
+auto RecentInfo::get_gicon() -> Glib::RefPtr<Gio::Icon>
 {
   auto retvalue = Glib::wrap(gtk_recent_info_get_gicon(gobj()));
   if(retvalue)
@@ -233,37 +233,37 @@ Glib::RefPtr<Gio::Icon> RecentInfo::get_gicon()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::Icon> RecentInfo::get_gicon() const
+auto RecentInfo::get_gicon() const -> Glib::RefPtr<const Gio::Icon>
 {
   return const_cast<RecentInfo*>(this)->get_gicon();
 }
 
-Glib::ustring RecentInfo::get_short_name() const
+auto RecentInfo::get_short_name() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_recent_info_get_short_name(const_cast<GtkRecentInfo*>(gobj())));
 }
 
-Glib::ustring RecentInfo::get_uri_display() const
+auto RecentInfo::get_uri_display() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_recent_info_get_uri_display(const_cast<GtkRecentInfo*>(gobj())));
 }
 
-int RecentInfo::get_age() const
+auto RecentInfo::get_age() const -> int
 {
   return gtk_recent_info_get_age(const_cast<GtkRecentInfo*>(gobj()));
 }
 
-bool RecentInfo::is_local() const
+auto RecentInfo::is_local() const -> bool
 {
   return gtk_recent_info_is_local(const_cast<GtkRecentInfo*>(gobj()));
 }
 
-bool RecentInfo::exists() const
+auto RecentInfo::exists() const -> bool
 {
   return gtk_recent_info_exists(const_cast<GtkRecentInfo*>(gobj()));
 }
 
-bool RecentInfo::equal(const Glib::RefPtr<const RecentInfo>& info_b) const
+auto RecentInfo::equal(const Glib::RefPtr<const RecentInfo>& info_b) const -> bool
 {
   return gtk_recent_info_match(const_cast<GtkRecentInfo*>(gobj()), const_cast<GtkRecentInfo*>(Glib::unwrap<Gtk::RecentInfo>(info_b)));
 }

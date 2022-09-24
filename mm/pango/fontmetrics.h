@@ -51,30 +51,30 @@ class PANGOMM_API FontMetrics
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   FontMetrics();
 
   explicit FontMetrics(PangoFontMetrics* gobject, bool make_a_copy = true);
 
   FontMetrics(const FontMetrics& other);
-  FontMetrics& operator=(const FontMetrics& other);
+  auto operator=(const FontMetrics& other) -> FontMetrics&;
 
   FontMetrics(FontMetrics&& other) noexcept;
-  FontMetrics& operator=(FontMetrics&& other) noexcept;
+  auto operator=(FontMetrics&& other) noexcept -> FontMetrics&;
 
   ~FontMetrics() noexcept;
 
   void swap(FontMetrics& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  PangoFontMetrics*       gobj()       { return gobject_; }
+  auto       gobj() -> PangoFontMetrics*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const PangoFontMetrics* gobj() const { return gobject_; }
+  auto gobj() const -> const PangoFontMetrics* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  PangoFontMetrics* gobj_copy() const;
+  auto gobj_copy() const -> PangoFontMetrics*;
 
 protected:
   PangoFontMetrics* gobject_;
@@ -93,7 +93,7 @@ public:
    *
    * @return The ascent, in Pango units.
    */
-  int get_ascent() const;
+  auto get_ascent() const -> int;
 
   /** Gets the descent from a font metrics structure.
    *
@@ -104,7 +104,7 @@ public:
    *
    * @return The descent, in Pango units.
    */
-  int get_descent() const;
+  auto get_descent() const -> int;
 
   /** Gets the line height from a font metrics structure.
    *
@@ -117,7 +117,7 @@ public:
    *
    * @return The height, in Pango units.
    */
-  int get_height() const;
+  auto get_height() const -> int;
 
   /** Gets the approximate character width for a font metrics structure.
    *
@@ -127,7 +127,7 @@ public:
    *
    * @return The character width, in Pango units.
    */
-  int get_approximate_char_width() const;
+  auto get_approximate_char_width() const -> int;
 
   /** Gets the approximate digit width for a font metrics structure.
    *
@@ -139,7 +139,7 @@ public:
    *
    * @return The digit width, in Pango units.
    */
-  int get_approximate_digit_width() const;
+  auto get_approximate_digit_width() const -> int;
 
 
   /** Gets the suggested position to draw the underline.
@@ -152,7 +152,7 @@ public:
    *
    * @return The suggested underline position, in Pango units.
    */
-  int get_underline_position() const;
+  auto get_underline_position() const -> int;
 
   /** Gets the suggested thickness to draw for the underline.
    *
@@ -160,7 +160,7 @@ public:
    *
    * @return The suggested underline thickness, in Pango units.
    */
-  int get_underline_thickness() const;
+  auto get_underline_thickness() const -> int;
 
   /** Gets the suggested position to draw the strikethrough.
    *
@@ -171,7 +171,7 @@ public:
    *
    * @return The suggested strikethrough position, in Pango units.
    */
-  int get_strikethrough_position() const;
+  auto get_strikethrough_position() const -> int;
 
   /** Gets the suggested thickness to draw for the strikethrough.
    *
@@ -179,7 +179,7 @@ public:
    *
    * @return The suggested strikethrough thickness, in Pango units.
    */
-  int get_strikethrough_thickness() const;
+  auto get_strikethrough_thickness() const -> int;
 
 
 };
@@ -211,7 +211,7 @@ namespace Glib
  * @relates Pango::FontMetrics
  */
 PANGOMM_API
-Pango::FontMetrics wrap(PangoFontMetrics* object, bool take_copy = false);
+auto wrap(PangoFontMetrics* object, bool take_copy = false) -> Pango::FontMetrics;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

@@ -45,29 +45,29 @@ class GDKMM_API PixbufFormat
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
 
   explicit PixbufFormat(GdkPixbufFormat* gobject, bool make_a_copy = true);
 
   PixbufFormat(const PixbufFormat& other);
-  PixbufFormat& operator=(const PixbufFormat& other);
+  auto operator=(const PixbufFormat& other) -> PixbufFormat&;
 
   PixbufFormat(PixbufFormat&& other) noexcept;
-  PixbufFormat& operator=(PixbufFormat&& other) noexcept;
+  auto operator=(PixbufFormat&& other) noexcept -> PixbufFormat&;
 
   ~PixbufFormat() noexcept;
 
   void swap(PixbufFormat& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  GdkPixbufFormat*       gobj()       { return gobject_; }
+  auto       gobj() -> GdkPixbufFormat*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const GdkPixbufFormat* gobj() const { return gobject_; }
+  auto gobj() const -> const GdkPixbufFormat* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  GdkPixbufFormat* gobj_copy() const;
+  auto gobj_copy() const -> GdkPixbufFormat*;
 
 protected:
   GdkPixbufFormat* gobject_;
@@ -86,7 +86,7 @@ public:
    *
    * @return The name of the format.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
   /** Returns a description of the format.
    *
@@ -94,7 +94,7 @@ public:
    *
    * @return A description of the format.
    */
-  Glib::ustring get_description() const;
+  auto get_description() const -> Glib::ustring;
 
 
   /** Returns the mime types supported by the format.
@@ -103,7 +103,7 @@ public:
    *
    * @return An array of mime types.
    */
-  std::vector<Glib::ustring> get_mime_types() const;
+  auto get_mime_types() const -> std::vector<Glib::ustring>;
 
   /** Returns the filename extensions typically used for files in the
    * given format.
@@ -113,7 +113,7 @@ public:
    * @return An array of
    * filename extensions.
    */
-  std::vector<Glib::ustring> get_extensions() const;
+  auto get_extensions() const -> std::vector<Glib::ustring>;
 
   /** Returns <tt>true</tt> if the save option specified by @a option_key is supported when
    * saving a pixbuf using the module implementing @a format.
@@ -125,7 +125,7 @@ public:
    * @param option_key The name of an option.
    * @return <tt>true</tt> if the specified option is supported.
    */
-  bool is_save_option_supported(const Glib::ustring& option_key) const;
+  auto is_save_option_supported(const Glib::ustring& option_key) const -> bool;
 
   /** Returns whether pixbufs can be saved in the given format.
    *
@@ -133,7 +133,7 @@ public:
    *
    * @return Whether pixbufs can be saved in the given format.
    */
-  bool is_writable() const;
+  auto is_writable() const -> bool;
 
 
   /** Returns whether this image format is scalable.
@@ -146,7 +146,7 @@ public:
    *
    * @return Whether this image format is scalable.
    */
-  bool is_scalable() const;
+  auto is_scalable() const -> bool;
 
   /** Returns whether this image format is disabled.
    *
@@ -156,7 +156,7 @@ public:
    *
    * @return Whether this image format is disabled.
    */
-  bool is_disabled() const;
+  auto is_disabled() const -> bool;
 
   /** Disables or enables an image format.
    *
@@ -181,7 +181,7 @@ public:
    *
    * @return A string describing the license of the pixbuf format.
    */
-  Glib::ustring get_license() const;
+  auto get_license() const -> Glib::ustring;
 
 
 };
@@ -193,9 +193,9 @@ struct PixbufFormatTraits
   typedef const GdkPixbufFormat*      CType;
   typedef GdkPixbufFormat*            CTypeNonConst;
 
-  static CType   to_c_type      (const CppType& obj) { return obj.gobj();     }
-  static CType   to_c_type      (CType          ptr) { return ptr;                   }
-  static CppType to_cpp_type    (CType          ptr) { return PixbufFormat(const_cast<GdkPixbufFormat*>(ptr), true); }
+  static auto   to_c_type      (const CppType& obj) -> CType { return obj.gobj();     }
+  static auto   to_c_type      (CType          ptr) -> CType { return ptr;                   }
+  static auto to_cpp_type    (CType          ptr) -> CppType { return PixbufFormat(const_cast<GdkPixbufFormat*>(ptr), true); }
   static void    release_c_type (CType          /* ptr */) { /* Doesn't happen */ }
 };
 #endif //DOXYGEN_SHOULD_SKIP_THIS
@@ -227,7 +227,7 @@ namespace Glib
  * @relates Gdk::PixbufFormat
  */
 GDKMM_API
-Gdk::PixbufFormat wrap(GdkPixbufFormat* object, bool take_copy = false);
+auto wrap(GdkPixbufFormat* object, bool take_copy = false) -> Gdk::PixbufFormat;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

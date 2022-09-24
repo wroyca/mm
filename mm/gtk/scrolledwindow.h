@@ -75,11 +75,11 @@ class GTKMM_API ScrolledWindow : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ScrolledWindow(ScrolledWindow&& src) noexcept;
-  ScrolledWindow& operator=(ScrolledWindow&& src) noexcept;
+  auto operator=(ScrolledWindow&& src) noexcept -> ScrolledWindow&;
 
   // noncopyable
   ScrolledWindow(const ScrolledWindow&) = delete;
-  ScrolledWindow& operator=(const ScrolledWindow&) = delete;
+  auto operator=(const ScrolledWindow&) -> ScrolledWindow& = delete;
 
   ~ScrolledWindow() noexcept override;
 
@@ -99,19 +99,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkScrolledWindow*       gobj()       { return reinterpret_cast<GtkScrolledWindow*>(gobject_); }
+  auto       gobj() -> GtkScrolledWindow*       { return reinterpret_cast<GtkScrolledWindow*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkScrolledWindow* gobj() const { return reinterpret_cast<GtkScrolledWindow*>(gobject_); }
+  auto gobj() const -> const GtkScrolledWindow* { return reinterpret_cast<GtkScrolledWindow*>(gobject_); }
 
 private:
 
@@ -140,7 +140,7 @@ public:
    *
    * @return The horizontal `Gtk::Adjustment`.
    */
-  Glib::RefPtr<Adjustment> get_hadjustment();
+  auto get_hadjustment() -> Glib::RefPtr<Adjustment>;
 
   /** Returns the horizontal scrollbar’s adjustment.
    *
@@ -149,7 +149,7 @@ public:
    *
    * @return The horizontal `Gtk::Adjustment`.
    */
-  Glib::RefPtr<const Adjustment> get_hadjustment() const;
+  auto get_hadjustment() const -> Glib::RefPtr<const Adjustment>;
 
   /** Returns the vertical scrollbar’s adjustment.
    *
@@ -158,7 +158,7 @@ public:
    *
    * @return The vertical `Gtk::Adjustment`.
    */
-  Glib::RefPtr<Adjustment> get_vadjustment();
+  auto get_vadjustment() -> Glib::RefPtr<Adjustment>;
 
   /** Returns the vertical scrollbar’s adjustment.
    *
@@ -167,7 +167,7 @@ public:
    *
    * @return The vertical `Gtk::Adjustment`.
    */
-  Glib::RefPtr<const Adjustment> get_vadjustment() const;
+  auto get_vadjustment() const -> Glib::RefPtr<const Adjustment>;
 
 
   /** Sets the scrollbar policy for the horizontal and vertical scrollbars.
@@ -223,7 +223,7 @@ public:
    *
    * @return The current placement value.
    */
-  CornerType get_placement() const;
+  auto get_placement() const -> CornerType;
 
 
   /** Changes the frame drawn around the contents of @a scrolled_window.
@@ -236,40 +236,40 @@ public:
    *
    * @return <tt>true</tt> if the @a scrolled_window has a frame.
    */
-  bool get_has_frame() const;
+  auto get_has_frame() const -> bool;
 
 
   /** Returns the vertical scrollbar of @a scrolled_window.
    *
    * @return The vertical scrollbar of the scrolled window.
    */
-  Scrollbar* get_vscrollbar();
+  auto get_vscrollbar() -> Scrollbar*;
 
   /** Returns the vertical scrollbar of @a scrolled_window.
    *
    * @return The vertical scrollbar of the scrolled window.
    */
-  const Scrollbar* get_vscrollbar() const;
+  auto get_vscrollbar() const -> const Scrollbar*;
 
 
   /** Returns the horizontal scrollbar of @a scrolled_window.
    *
    * @return The horizontal scrollbar of the scrolled window.
    */
-  Scrollbar* get_hscrollbar();
+  auto get_hscrollbar() -> Scrollbar*;
 
   /** Returns the horizontal scrollbar of @a scrolled_window.
    *
    * @return The horizontal scrollbar of the scrolled window.
    */
-  const Scrollbar* get_hscrollbar() const;
+  auto get_hscrollbar() const -> const Scrollbar*;
 
 
   /** Gets the minimum content width of @a scrolled_window.
    *
    * @return The minimum content width.
    */
-  int get_min_content_width() const;
+  auto get_min_content_width() const -> int;
 
   /** Sets the minimum width that @a scrolled_window should keep visible.
    *
@@ -287,7 +287,7 @@ public:
    *
    * @return The minimal content height.
    */
-  int get_min_content_height() const;
+  auto get_min_content_height() const -> int;
 
   /** Sets the minimum height that @a scrolled_window should keep visible.
    *
@@ -315,7 +315,7 @@ public:
    *
    * @return The scrolling behavior flags.
    */
-  bool get_kinetic_scrolling() const;
+  auto get_kinetic_scrolling() const -> bool;
 
 
   /** Enables or disables overlay scrolling for this scrolled window.
@@ -328,7 +328,7 @@ public:
    *
    * @return <tt>true</tt> if overlay scrolling is enabled.
    */
-  bool get_overlay_scrolling() const;
+  auto get_overlay_scrolling() const -> bool;
 
 
   /** Sets the maximum width that @a scrolled_window should keep visible.
@@ -347,7 +347,7 @@ public:
    *
    * @return The maximum content width, or -1.
    */
-  int get_max_content_width() const;
+  auto get_max_content_width() const -> int;
 
   /** Sets the maximum height that @a scrolled_window should keep visible.
    *
@@ -365,7 +365,7 @@ public:
    *
    * @return The maximum content height, or -1.
    */
-  int get_max_content_height() const;
+  auto get_max_content_height() const -> int;
 
 
   /** Sets whether the natural width of the child should be calculated
@@ -380,7 +380,7 @@ public:
    *
    * @return Whether natural width propagation is enabled.
    */
-  bool get_propagate_natural_width() const;
+  auto get_propagate_natural_width() const -> bool;
 
   /** Sets whether the natural height of the child should be calculated
    * and propagated through the scrolled window’s requested natural height.
@@ -394,7 +394,7 @@ public:
    *
    * @return Whether natural height propagation is enabled.
    */
-  bool get_propagate_natural_height() const;
+  auto get_propagate_natural_height() const -> bool;
 
 
   /** Sets the child widget of @a scrolled_window.
@@ -408,13 +408,13 @@ public:
    *
    * @return The child widget of @a scrolled_window.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget of @a scrolled_window.
    *
    * @return The child widget of @a scrolled_window.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
   //Keybinding signals:
 
@@ -440,7 +440,7 @@ public:
    * @param pos Edge side that was hit.
    */
 
-  Glib::SignalProxy<void(Gtk::PositionType)> signal_edge_overshot();
+  auto signal_edge_overshot() -> Glib::SignalProxy<void(Gtk::PositionType)>;
 
 
   /**
@@ -462,7 +462,7 @@ public:
    * @param pos Edge side that was reached.
    */
 
-  Glib::SignalProxy<void(Gtk::PositionType)> signal_edge_reached();
+  auto signal_edge_reached() -> Glib::SignalProxy<void(Gtk::PositionType)>;
 
 
   /**
@@ -470,28 +470,28 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Adjustment> > property_hadjustment() ;
+  auto property_hadjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> > ;
 
 /**
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> > property_hadjustment() const;
+  auto property_hadjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >;
 
   /**
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Adjustment> > property_vadjustment() ;
+  auto property_vadjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> > ;
 
 /**
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> > property_vadjustment() const;
+  auto property_vadjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >;
 
   /** When the horizontal scrollbar is displayed.
    *
@@ -503,7 +503,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< PolicyType > property_hscrollbar_policy() ;
+  auto property_hscrollbar_policy() -> Glib::PropertyProxy< PolicyType > ;
 
 /** When the horizontal scrollbar is displayed.
    *
@@ -515,7 +515,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< PolicyType > property_hscrollbar_policy() const;
+  auto property_hscrollbar_policy() const -> Glib::PropertyProxy_ReadOnly< PolicyType >;
 
   /** When the vertical scrollbar is displayed.
    *
@@ -527,7 +527,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< PolicyType > property_vscrollbar_policy() ;
+  auto property_vscrollbar_policy() -> Glib::PropertyProxy< PolicyType > ;
 
 /** When the vertical scrollbar is displayed.
    *
@@ -539,7 +539,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< PolicyType > property_vscrollbar_policy() const;
+  auto property_vscrollbar_policy() const -> Glib::PropertyProxy_ReadOnly< PolicyType >;
 
   /** Where the contents are located with respect to the scrollbars.
    *
@@ -548,7 +548,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< CornerType > property_window_placement() ;
+  auto property_window_placement() -> Glib::PropertyProxy< CornerType > ;
 
 /** Where the contents are located with respect to the scrollbars.
    *
@@ -557,7 +557,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< CornerType > property_window_placement() const;
+  auto property_window_placement() const -> Glib::PropertyProxy_ReadOnly< CornerType >;
 
   /** Whether to draw a frame around the contents.
    *
@@ -566,7 +566,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_has_frame() ;
+  auto property_has_frame() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to draw a frame around the contents.
    *
@@ -575,7 +575,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_frame() const;
+  auto property_has_frame() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The minimum content width of @a scrolled_window.
    *
@@ -584,7 +584,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_min_content_width() ;
+  auto property_min_content_width() -> Glib::PropertyProxy< int > ;
 
 /** The minimum content width of @a scrolled_window.
    *
@@ -593,7 +593,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_min_content_width() const;
+  auto property_min_content_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The minimum content height of @a scrolled_window.
    *
@@ -602,7 +602,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_min_content_height() ;
+  auto property_min_content_height() -> Glib::PropertyProxy< int > ;
 
 /** The minimum content height of @a scrolled_window.
    *
@@ -611,7 +611,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_min_content_height() const;
+  auto property_min_content_height() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Whether kinetic scrolling is enabled or not.
    *
@@ -622,7 +622,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_kinetic_scrolling() ;
+  auto property_kinetic_scrolling() -> Glib::PropertyProxy< bool > ;
 
 /** Whether kinetic scrolling is enabled or not.
    *
@@ -633,7 +633,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_kinetic_scrolling() const;
+  auto property_kinetic_scrolling() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether overlay scrolling is enabled or not.
    *
@@ -649,7 +649,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_overlay_scrolling() ;
+  auto property_overlay_scrolling() -> Glib::PropertyProxy< bool > ;
 
 /** Whether overlay scrolling is enabled or not.
    *
@@ -665,7 +665,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_overlay_scrolling() const;
+  auto property_overlay_scrolling() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The maximum content width of @a scrolled_window.
    *
@@ -674,7 +674,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_max_content_width() ;
+  auto property_max_content_width() -> Glib::PropertyProxy< int > ;
 
 /** The maximum content width of @a scrolled_window.
    *
@@ -683,7 +683,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_max_content_width() const;
+  auto property_max_content_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The maximum content height of @a scrolled_window.
    *
@@ -692,7 +692,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_max_content_height() ;
+  auto property_max_content_height() -> Glib::PropertyProxy< int > ;
 
 /** The maximum content height of @a scrolled_window.
    *
@@ -701,7 +701,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_max_content_height() const;
+  auto property_max_content_height() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Whether the natural width of the child should be calculated and propagated
    * through the scrolled window’s requested natural width.
@@ -714,7 +714,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_propagate_natural_width() ;
+  auto property_propagate_natural_width() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the natural width of the child should be calculated and propagated
    * through the scrolled window’s requested natural width.
@@ -727,7 +727,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_propagate_natural_width() const;
+  auto property_propagate_natural_width() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the natural height of the child should be calculated and propagated
    * through the scrolled window’s requested natural height.
@@ -740,7 +740,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_propagate_natural_height() ;
+  auto property_propagate_natural_height() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the natural height of the child should be calculated and propagated
    * through the scrolled window’s requested natural height.
@@ -753,21 +753,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_propagate_natural_height() const;
+  auto property_propagate_natural_height() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The child widget.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The child widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
 public:
@@ -797,7 +797,7 @@ namespace Glib
    * @relates Gtk::ScrolledWindow
    */
   GTKMM_API
-  Gtk::ScrolledWindow* wrap(GtkScrolledWindow* object, bool take_copy = false);
+  auto wrap(GtkScrolledWindow* object, bool take_copy = false) -> Gtk::ScrolledWindow*;
 } //namespace Glib
 
 

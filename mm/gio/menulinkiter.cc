@@ -29,8 +29,8 @@
 namespace Gio
 {
 
-bool
-MenuLinkIter::get_next(Glib::ustring& out_link, Glib::RefPtr<MenuModel>& value)
+auto
+MenuLinkIter::get_next(Glib::ustring& out_link, Glib::RefPtr<MenuModel>& value) -> bool
 {
   const char* g_out_link = nullptr;
   GMenuModel* g_value = nullptr;
@@ -52,7 +52,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::MenuLinkIter> wrap(GMenuLinkIter* object, bool take_copy)
+auto wrap(GMenuLinkIter* object, bool take_copy) -> Glib::RefPtr<Gio::MenuLinkIter>
 {
   return Glib::make_refptr_for_instance<Gio::MenuLinkIter>( dynamic_cast<Gio::MenuLinkIter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -67,7 +67,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& MenuLinkIter_Class::init()
+auto MenuLinkIter_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -98,7 +98,7 @@ void MenuLinkIter_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* MenuLinkIter_Class::wrap_new(GObject* object)
+auto MenuLinkIter_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new MenuLinkIter((GMenuLinkIter*)object);
 }
@@ -106,7 +106,7 @@ Glib::ObjectBase* MenuLinkIter_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GMenuLinkIter* MenuLinkIter::gobj_copy()
+auto MenuLinkIter::gobj_copy() -> GMenuLinkIter*
 {
   reference();
   return gobj();
@@ -129,7 +129,7 @@ MenuLinkIter::MenuLinkIter(MenuLinkIter&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-MenuLinkIter& MenuLinkIter::operator=(MenuLinkIter&& src) noexcept
+auto MenuLinkIter::operator=(MenuLinkIter&& src) noexcept -> MenuLinkIter&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -142,13 +142,13 @@ MenuLinkIter::~MenuLinkIter() noexcept
 
 MenuLinkIter::CppClassType MenuLinkIter::menulinkiter_class_; // initialize static member
 
-GType MenuLinkIter::get_type()
+auto MenuLinkIter::get_type() -> GType
 {
   return menulinkiter_class_.init().get_type();
 }
 
 
-GType MenuLinkIter::get_base_type()
+auto MenuLinkIter::get_base_type() -> GType
 {
   return g_menu_link_iter_get_type();
 }
@@ -164,22 +164,22 @@ MenuLinkIter::MenuLinkIter()
 
 }
 
-Glib::ustring MenuLinkIter::get_name() const
+auto MenuLinkIter::get_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_menu_link_iter_get_name(const_cast<GMenuLinkIter*>(gobj())));
 }
 
-Glib::RefPtr<MenuModel> MenuLinkIter::get_value()
+auto MenuLinkIter::get_value() -> Glib::RefPtr<MenuModel>
 {
   return Glib::wrap(g_menu_link_iter_get_value(gobj()));
 }
 
-Glib::RefPtr<const MenuModel> MenuLinkIter::get_value() const
+auto MenuLinkIter::get_value() const -> Glib::RefPtr<const MenuModel>
 {
   return const_cast<MenuLinkIter*>(this)->get_value();
 }
 
-bool MenuLinkIter::next()
+auto MenuLinkIter::next() -> bool
 {
   return g_menu_link_iter_next(gobj());
 }

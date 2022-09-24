@@ -34,19 +34,11 @@ using GDBusActionGroupClass = struct _GDBusActionGroupClass;
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
-{
-
-namespace DBus
-{ class GIOMM_API ActionGroup_Class; } // namespace DBus
-
-} // namespace Gio
+namespace Gio::DBus
+{ class GIOMM_API ActionGroup_Class; } // namespace Gio
 #endif //DOXYGEN_SHOULD_SKIP_THIS
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 class GIOMM_API Connection;
@@ -73,7 +65,7 @@ public:
 
   // noncopyable
   ActionGroup(const ActionGroup&) = delete;
-  ActionGroup& operator=(const ActionGroup&) = delete;
+  auto operator=(const ActionGroup&) -> ActionGroup& = delete;
 
 private:  friend class ActionGroup_Class;
   static CppClassType actiongroup_class_;
@@ -87,28 +79,28 @@ protected:
 public:
 
   ActionGroup(ActionGroup&& src) noexcept;
-  ActionGroup& operator=(ActionGroup&& src) noexcept;
+  auto operator=(ActionGroup&& src) noexcept -> ActionGroup&;
 
   ~ActionGroup() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDBusActionGroup*       gobj()       { return reinterpret_cast<GDBusActionGroup*>(gobject_); }
+  auto       gobj() -> GDBusActionGroup*       { return reinterpret_cast<GDBusActionGroup*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDBusActionGroup* gobj() const { return reinterpret_cast<GDBusActionGroup*>(gobject_); }
+  auto gobj() const -> const GDBusActionGroup* { return reinterpret_cast<GDBusActionGroup*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusActionGroup* gobj_copy();
+  auto gobj_copy() -> GDBusActionGroup*;
 
 private:
 
@@ -141,7 +133,7 @@ public:
    * @param object_path The object path at which the action group is exported.
    * @return A Gio::DBus::ActionGroup.
    */
-  static Glib::RefPtr<ActionGroup> get(const Glib::RefPtr<Connection>& connection, const Glib::ustring& bus_name, const Glib::ustring& object_path);
+  static auto get(const Glib::RefPtr<Connection>& connection, const Glib::ustring& bus_name, const Glib::ustring& object_path) -> Glib::RefPtr<ActionGroup>;
 
 
 public:
@@ -157,8 +149,6 @@ protected:
 
 };
 
-} // namespace DBus
-
 } // namespace Gio
 
 
@@ -173,7 +163,7 @@ namespace Glib
    * @relates Gio::DBus::ActionGroup
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DBus::ActionGroup> wrap(GDBusActionGroup* object, bool take_copy = false);
+  auto wrap(GDBusActionGroup* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::ActionGroup>;
 }
 
 

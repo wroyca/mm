@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::NumericSorterBase> wrap(GtkNumericSorter* object, bool take_copy)
+auto wrap(GtkNumericSorter* object, bool take_copy) -> Glib::RefPtr<Gtk::NumericSorterBase>
 {
   return Glib::make_refptr_for_instance<Gtk::NumericSorterBase>( dynamic_cast<Gtk::NumericSorterBase*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& NumericSorterBase_Class::init()
+auto NumericSorterBase_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -73,7 +73,7 @@ void NumericSorterBase_Class::class_init_function(void* g_class, void* class_dat
 }
 
 
-Glib::ObjectBase* NumericSorterBase_Class::wrap_new(GObject* object)
+auto NumericSorterBase_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new NumericSorterBase((GtkNumericSorter*)object);
 }
@@ -81,7 +81,7 @@ Glib::ObjectBase* NumericSorterBase_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkNumericSorter* NumericSorterBase::gobj_copy()
+auto NumericSorterBase::gobj_copy() -> GtkNumericSorter*
 {
   reference();
   return gobj();
@@ -104,7 +104,7 @@ NumericSorterBase::NumericSorterBase(NumericSorterBase&& src) noexcept
 : Gtk::Sorter(std::move(src))
 {}
 
-NumericSorterBase& NumericSorterBase::operator=(NumericSorterBase&& src) noexcept
+auto NumericSorterBase::operator=(NumericSorterBase&& src) noexcept -> NumericSorterBase&
 {
   Gtk::Sorter::operator=(std::move(src));
   return *this;
@@ -117,13 +117,13 @@ NumericSorterBase::~NumericSorterBase() noexcept
 
 NumericSorterBase::CppClassType NumericSorterBase::numericsorterbase_class_; // initialize static member
 
-GType NumericSorterBase::get_type()
+auto NumericSorterBase::get_type() -> GType
 {
   return numericsorterbase_class_.init().get_type();
 }
 
 
-GType NumericSorterBase::get_base_type()
+auto NumericSorterBase::get_base_type() -> GType
 {
   return gtk_numeric_sorter_get_type();
 }
@@ -139,7 +139,7 @@ NumericSorterBase::NumericSorterBase(const Glib::RefPtr<ExpressionBase>& express
 
 }
 
-SortType NumericSorterBase::get_sort_order() const
+auto NumericSorterBase::get_sort_order() const -> SortType
 {
   return static_cast<SortType>(gtk_numeric_sorter_get_sort_order(const_cast<GtkNumericSorter*>(gobj())));
 }
@@ -154,12 +154,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<SortType>::value,
   "Type SortType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< SortType > NumericSorterBase::property_sort_order()
+auto NumericSorterBase::property_sort_order() -> Glib::PropertyProxy< SortType >
 {
   return Glib::PropertyProxy< SortType >(this, "sort-order");
 }
 
-Glib::PropertyProxy_ReadOnly< SortType > NumericSorterBase::property_sort_order() const
+auto NumericSorterBase::property_sort_order() const -> Glib::PropertyProxy_ReadOnly< SortType >
 {
   return Glib::PropertyProxy_ReadOnly< SortType >(this, "sort-order");
 }

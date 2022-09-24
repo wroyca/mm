@@ -63,7 +63,7 @@ namespace
 namespace Glib
 {
 
-Gtk::PrintUnixDialog* wrap(GtkPrintUnixDialog* object, bool take_copy)
+auto wrap(GtkPrintUnixDialog* object, bool take_copy) -> Gtk::PrintUnixDialog*
 {
   return dynamic_cast<Gtk::PrintUnixDialog *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -76,7 +76,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& PrintUnixDialog_Class::init()
+auto PrintUnixDialog_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -107,7 +107,7 @@ void PrintUnixDialog_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* PrintUnixDialog_Class::wrap_new(GObject* o)
+auto PrintUnixDialog_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return new PrintUnixDialog((GtkPrintUnixDialog*)(o)); //top-level windows can not be manage()ed.
 
@@ -133,7 +133,7 @@ PrintUnixDialog::PrintUnixDialog(PrintUnixDialog&& src) noexcept
 : Gtk::Dialog(std::move(src))
 {}
 
-PrintUnixDialog& PrintUnixDialog::operator=(PrintUnixDialog&& src) noexcept
+auto PrintUnixDialog::operator=(PrintUnixDialog&& src) noexcept -> PrintUnixDialog&
 {
   Gtk::Dialog::operator=(std::move(src));
   return *this;
@@ -146,13 +146,13 @@ PrintUnixDialog::~PrintUnixDialog() noexcept
 
 PrintUnixDialog::CppClassType PrintUnixDialog::printunixdialog_class_; // initialize static member
 
-GType PrintUnixDialog::get_type()
+auto PrintUnixDialog::get_type() -> GType
 {
   return printunixdialog_class_.init().get_type();
 }
 
 
-GType PrintUnixDialog::get_base_type()
+auto PrintUnixDialog::get_base_type() -> GType
 {
   return gtk_print_unix_dialog_get_type();
 }
@@ -163,7 +163,7 @@ void PrintUnixDialog::set_page_setup(const Glib::RefPtr<PageSetup>& page_setup)
   gtk_print_unix_dialog_set_page_setup(gobj(), Glib::unwrap(page_setup));
 }
 
-Glib::RefPtr<PageSetup> PrintUnixDialog::get_page_setup()
+auto PrintUnixDialog::get_page_setup() -> Glib::RefPtr<PageSetup>
 {
   auto retvalue = Glib::wrap(gtk_print_unix_dialog_get_page_setup(gobj()));
   if(retvalue)
@@ -171,7 +171,7 @@ Glib::RefPtr<PageSetup> PrintUnixDialog::get_page_setup()
   return retvalue;
 }
 
-Glib::RefPtr<const PageSetup> PrintUnixDialog::get_page_setup() const
+auto PrintUnixDialog::get_page_setup() const -> Glib::RefPtr<const PageSetup>
 {
   return const_cast<PrintUnixDialog*>(this)->get_page_setup();
 }
@@ -181,7 +181,7 @@ void PrintUnixDialog::set_current_page(int current_page)
   gtk_print_unix_dialog_set_current_page(gobj(), current_page);
 }
 
-int PrintUnixDialog::get_current_page() const
+auto PrintUnixDialog::get_current_page() const -> int
 {
   return gtk_print_unix_dialog_get_current_page(const_cast<GtkPrintUnixDialog*>(gobj()));
 }
@@ -191,7 +191,7 @@ void PrintUnixDialog::set_settings(const Glib::RefPtr<PrintSettings>& settings)
   gtk_print_unix_dialog_set_settings(gobj(), Glib::unwrap(settings));
 }
 
-Glib::RefPtr<PrintSettings> PrintUnixDialog::get_settings()
+auto PrintUnixDialog::get_settings() -> Glib::RefPtr<PrintSettings>
 {
   auto retvalue = Glib::wrap(gtk_print_unix_dialog_get_settings(gobj()));
   if(retvalue)
@@ -199,12 +199,12 @@ Glib::RefPtr<PrintSettings> PrintUnixDialog::get_settings()
   return retvalue;
 }
 
-Glib::RefPtr<const PrintSettings> PrintUnixDialog::get_settings() const
+auto PrintUnixDialog::get_settings() const -> Glib::RefPtr<const PrintSettings>
 {
   return const_cast<PrintUnixDialog*>(this)->get_settings();
 }
 
-Glib::RefPtr<Printer> PrintUnixDialog::get_selected_printer()
+auto PrintUnixDialog::get_selected_printer() -> Glib::RefPtr<Printer>
 {
   auto retvalue = Glib::wrap(gtk_print_unix_dialog_get_selected_printer(gobj()));
   if(retvalue)
@@ -212,7 +212,7 @@ Glib::RefPtr<Printer> PrintUnixDialog::get_selected_printer()
   return retvalue;
 }
 
-Glib::RefPtr<const Printer> PrintUnixDialog::get_selected_printer() const
+auto PrintUnixDialog::get_selected_printer() const -> Glib::RefPtr<const Printer>
 {
   return const_cast<PrintUnixDialog*>(this)->get_selected_printer();
 }
@@ -227,7 +227,7 @@ void PrintUnixDialog::set_manual_capabilities(PrintCapabilities capabilities)
   gtk_print_unix_dialog_set_manual_capabilities(gobj(), static_cast<GtkPrintCapabilities>(capabilities));
 }
 
-PrintCapabilities PrintUnixDialog::get_manual_capabilities() const
+auto PrintUnixDialog::get_manual_capabilities() const -> PrintCapabilities
 {
   return static_cast<PrintCapabilities>(gtk_print_unix_dialog_get_manual_capabilities(const_cast<GtkPrintUnixDialog*>(gobj())));
 }
@@ -237,7 +237,7 @@ void PrintUnixDialog::get_support_selection(bool support_selection)
   gtk_print_unix_dialog_set_support_selection(gobj(), static_cast<int>(support_selection));
 }
 
-bool PrintUnixDialog::get_support_selection() const
+auto PrintUnixDialog::get_support_selection() const -> bool
 {
   return gtk_print_unix_dialog_get_support_selection(const_cast<GtkPrintUnixDialog*>(gobj()));
 }
@@ -247,7 +247,7 @@ void PrintUnixDialog::set_has_selection(bool has_selection)
   gtk_print_unix_dialog_set_has_selection(gobj(), static_cast<int>(has_selection));
 }
 
-bool PrintUnixDialog::get_has_selection() const
+auto PrintUnixDialog::get_has_selection() const -> bool
 {
   return gtk_print_unix_dialog_get_has_selection(const_cast<GtkPrintUnixDialog*>(gobj()));
 }
@@ -257,12 +257,12 @@ void PrintUnixDialog::set_embed_page_setup(bool embed)
   gtk_print_unix_dialog_set_embed_page_setup(gobj(), static_cast<int>(embed));
 }
 
-bool PrintUnixDialog::get_embed_page_setup() const
+auto PrintUnixDialog::get_embed_page_setup() const -> bool
 {
   return gtk_print_unix_dialog_get_embed_page_setup(const_cast<GtkPrintUnixDialog*>(gobj()));
 }
 
-bool PrintUnixDialog::get_page_setup_set() const
+auto PrintUnixDialog::get_page_setup_set() const -> bool
 {
   return gtk_print_unix_dialog_get_page_setup_set(const_cast<GtkPrintUnixDialog*>(gobj()));
 }
@@ -272,22 +272,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<PageSet
   "Type Glib::RefPtr<PageSetup> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<PageSetup> > PrintUnixDialog::property_page_setup()
+auto PrintUnixDialog::property_page_setup() -> Glib::PropertyProxy< Glib::RefPtr<PageSetup> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<PageSetup> >(this, "page-setup");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PageSetup> > PrintUnixDialog::property_page_setup() const
+auto PrintUnixDialog::property_page_setup() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PageSetup> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PageSetup> >(this, "page-setup");
 }
 
-Glib::PropertyProxy< int > PrintUnixDialog::property_current_page()
+auto PrintUnixDialog::property_current_page() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "current-page");
 }
 
-Glib::PropertyProxy_ReadOnly< int > PrintUnixDialog::property_current_page() const
+auto PrintUnixDialog::property_current_page() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "current-page");
 }
@@ -296,12 +296,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<PrintSe
   "Type Glib::RefPtr<PrintSettings> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<PrintSettings> > PrintUnixDialog::property_print_settings()
+auto PrintUnixDialog::property_print_settings() -> Glib::PropertyProxy< Glib::RefPtr<PrintSettings> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<PrintSettings> >(this, "print-settings");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PrintSettings> > PrintUnixDialog::property_print_settings() const
+auto PrintUnixDialog::property_print_settings() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PrintSettings> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PrintSettings> >(this, "print-settings");
 }
@@ -310,47 +310,47 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Printer
   "Type Glib::RefPtr<Printer> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Printer> > PrintUnixDialog::property_selected_printer() const
+auto PrintUnixDialog::property_selected_printer() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Printer> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Printer> >(this, "selected-printer");
 }
 
-Glib::PropertyProxy< bool > PrintUnixDialog::property_manual_capabilities()
+auto PrintUnixDialog::property_manual_capabilities() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "manual-capabilities");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > PrintUnixDialog::property_manual_capabilities() const
+auto PrintUnixDialog::property_manual_capabilities() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "manual-capabilities");
 }
 
-Glib::PropertyProxy< bool > PrintUnixDialog::property_support_selection()
+auto PrintUnixDialog::property_support_selection() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "support-selection");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > PrintUnixDialog::property_support_selection() const
+auto PrintUnixDialog::property_support_selection() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "support-selection");
 }
 
-Glib::PropertyProxy< bool > PrintUnixDialog::property_has_selection()
+auto PrintUnixDialog::property_has_selection() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "has-selection");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > PrintUnixDialog::property_has_selection() const
+auto PrintUnixDialog::property_has_selection() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "has-selection");
 }
 
-Glib::PropertyProxy< bool > PrintUnixDialog::property_embed_page_setup()
+auto PrintUnixDialog::property_embed_page_setup() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "embed-page-setup");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > PrintUnixDialog::property_embed_page_setup() const
+auto PrintUnixDialog::property_embed_page_setup() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "embed-page-setup");
 }

@@ -83,11 +83,11 @@ class GTKMM_API ListBox : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ListBox(ListBox&& src) noexcept;
-  ListBox& operator=(ListBox&& src) noexcept;
+  auto operator=(ListBox&& src) noexcept -> ListBox&;
 
   // noncopyable
   ListBox(const ListBox&) = delete;
-  ListBox& operator=(const ListBox&) = delete;
+  auto operator=(const ListBox&) -> ListBox& = delete;
 
   ~ListBox() noexcept override;
 
@@ -107,19 +107,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkListBox*       gobj()       { return reinterpret_cast<GtkListBox*>(gobject_); }
+  auto       gobj() -> GtkListBox*       { return reinterpret_cast<GtkListBox*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkListBox* gobj() const { return reinterpret_cast<GtkListBox*>(gobject_); }
+  auto gobj() const -> const GtkListBox* { return reinterpret_cast<GtkListBox*>(gobject_); }
 
 private:
 
@@ -212,7 +212,7 @@ public:
    *
    * @return The selected row.
    */
-  ListBoxRow* get_selected_row();
+  auto get_selected_row() -> ListBoxRow*;
 
   /** Gets the selected row, or <tt>nullptr</tt> if no rows are selected.
    *
@@ -222,7 +222,7 @@ public:
    *
    * @return The selected row.
    */
-  const ListBoxRow* get_selected_row() const;
+  auto get_selected_row() const -> const ListBoxRow*;
 
   /** Gets the n-th child in the list (not counting headers).
    *
@@ -232,7 +232,7 @@ public:
    * @param index The index of the row.
    * @return The child `Gtk::Widget`.
    */
-  ListBoxRow* get_row_at_index(int index);
+  auto get_row_at_index(int index) -> ListBoxRow*;
 
   /** Gets the n-th child in the list (not counting headers).
    *
@@ -242,21 +242,21 @@ public:
    * @param index The index of the row.
    * @return The child `Gtk::Widget`.
    */
-  const ListBoxRow* get_row_at_index(int index) const;
+  auto get_row_at_index(int index) const -> const ListBoxRow*;
 
   /** Gets the row at the @a y position.
    *
    * @param y Position.
    * @return The row.
    */
-  ListBoxRow* get_row_at_y(int y);
+  auto get_row_at_y(int y) -> ListBoxRow*;
 
   /** Gets the row at the @a y position.
    *
    * @param y Position.
    * @return The row.
    */
-  const ListBoxRow* get_row_at_y(int y) const;
+  auto get_row_at_y(int y) const -> const ListBoxRow*;
 
   /** Make @a row the currently selected row.
    *
@@ -305,14 +305,14 @@ public:
    *
    * @return The adjustment.
    */
-  Glib::RefPtr<Adjustment> get_adjustment();
+  auto get_adjustment() -> Glib::RefPtr<Adjustment>;
 
   /** Gets the adjustment (if any) that the widget uses to
    * for vertical scrolling.
    *
    * @return The adjustment.
    */
-  Glib::RefPtr<const Adjustment> get_adjustment() const;
+  auto get_adjustment() const -> Glib::RefPtr<const Adjustment>;
 
   /** For instance,
    * void on_foreach(ListBoxRow* row);
@@ -326,14 +326,14 @@ public:
    *
    * @return A `GList` containing the `Gtk::Widget` for each selected child.
    */
-  std::vector<ListBoxRow*> get_selected_rows();
+  auto get_selected_rows() -> std::vector<ListBoxRow*>;
 
 
   /** Creates a list of all selected children.
    *
    * @return A `GList` containing the `Gtk::Widget` for each selected child.
    */
-  std::vector<ListBoxRow*> get_selected_rows() const;
+  auto get_selected_rows() const -> std::vector<ListBoxRow*>;
 
 
   /** Unselects a single row of @a box, if the selection mode allows it.
@@ -361,7 +361,7 @@ public:
    *
    * @return A `Gtk::SelectionMode`.
    */
-  SelectionMode get_selection_mode() const;
+  auto get_selection_mode() const -> SelectionMode;
 
   /** Sets a filter function.
    *
@@ -474,7 +474,7 @@ public:
    *
    * @return <tt>true</tt> if rows are activated on single click, <tt>false</tt> otherwise.
    */
-  bool get_activate_on_single_click() const;
+  auto get_activate_on_single_click() const -> bool;
 
   /** If a row has previously been highlighted via drag_highlight_row(),
    * it will have the highlight removed.
@@ -587,7 +587,7 @@ public:
    *
    * @return <tt>true</tt> if the list box shows separators.
    */
-  bool get_show_separators() const;
+  auto get_show_separators() const -> bool;
 
   /** The selection mode used by the list box.
    *
@@ -596,7 +596,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< SelectionMode > property_selection_mode() ;
+  auto property_selection_mode() -> Glib::PropertyProxy< SelectionMode > ;
 
 /** The selection mode used by the list box.
    *
@@ -605,7 +605,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< SelectionMode > property_selection_mode() const;
+  auto property_selection_mode() const -> Glib::PropertyProxy_ReadOnly< SelectionMode >;
 
   /** Determines whether children can be activated with a single
    * click, or require a double-click.
@@ -615,7 +615,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_activate_on_single_click() ;
+  auto property_activate_on_single_click() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether children can be activated with a single
    * click, or require a double-click.
@@ -625,7 +625,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_activate_on_single_click() const;
+  auto property_activate_on_single_click() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether to accept unpaired release events.
    *
@@ -634,7 +634,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_accept_unpaired_release() ;
+  auto property_accept_unpaired_release() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to accept unpaired release events.
    *
@@ -643,7 +643,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_accept_unpaired_release() const;
+  auto property_accept_unpaired_release() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether to show separators between rows.
    *
@@ -652,7 +652,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_separators() ;
+  auto property_show_separators() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to show separators between rows.
    *
@@ -661,7 +661,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_separators() const;
+  auto property_show_separators() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   // no_default_handler because GtkListBoxClass is private.
@@ -682,7 +682,7 @@ public:
    * @param row The selected row.
    */
 
-  Glib::SignalProxy<void(ListBoxRow*)> signal_row_selected();
+  auto signal_row_selected() -> Glib::SignalProxy<void(ListBoxRow*)>;
 
 
   /**
@@ -696,7 +696,7 @@ public:
    * @param row The activated row.
    */
 
-  Glib::SignalProxy<void(ListBoxRow*)> signal_row_activated();
+  auto signal_row_activated() -> Glib::SignalProxy<void(ListBoxRow*)>;
 
 
   /**
@@ -708,14 +708,14 @@ public:
    * Emitted when the set of selected rows changes.
    */
 
-  Glib::SignalProxy<void()> signal_selected_rows_changed();
+  auto signal_selected_rows_changed() -> Glib::SignalProxy<void()>;
 
 
    // Action signals
 
 private:
   template <typename T_item>
-  static GtkWidget* proxy_bind_list_store_create_widget_callback(void* item, void* data);
+  static auto proxy_bind_list_store_create_widget_callback(void* item, void* data) -> GtkWidget*;
 
 
 public:
@@ -748,7 +748,7 @@ void ListBox::bind_list_store(const Glib::RefPtr<Gio::ListStore<T_item>>& store,
 }
 
 template <typename T_item>
-GtkWidget* ListBox::proxy_bind_list_store_create_widget_callback(void* item, void* data)
+auto ListBox::proxy_bind_list_store_create_widget_callback(void* item, void* data) -> GtkWidget*
 {
   auto& slot = *static_cast<SlotCreateWidget<T_item>*>(data);
   auto cobject = static_cast<typename T_item::BaseObjectType*>(item);
@@ -786,7 +786,7 @@ namespace Glib
    * @relates Gtk::ListBox
    */
   GTKMM_API
-  Gtk::ListBox* wrap(GtkListBox* object, bool take_copy = false);
+  auto wrap(GtkListBox* object, bool take_copy = false) -> Gtk::ListBox*;
 } //namespace Glib
 
 

@@ -83,7 +83,7 @@ template <>
 class GIOMM_API Value<Gio::TlsInteractionResult> : public Glib::Value_Enum<Gio::TlsInteractionResult>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -120,31 +120,31 @@ enum class TlsCertificateRequestFlags
 };
 
 /** @ingroup giommEnums */
-inline TlsCertificateRequestFlags operator|(TlsCertificateRequestFlags lhs, TlsCertificateRequestFlags rhs)
+inline auto operator|(TlsCertificateRequestFlags lhs, TlsCertificateRequestFlags rhs) -> TlsCertificateRequestFlags
   { return static_cast<TlsCertificateRequestFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline TlsCertificateRequestFlags operator&(TlsCertificateRequestFlags lhs, TlsCertificateRequestFlags rhs)
+inline auto operator&(TlsCertificateRequestFlags lhs, TlsCertificateRequestFlags rhs) -> TlsCertificateRequestFlags
   { return static_cast<TlsCertificateRequestFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline TlsCertificateRequestFlags operator^(TlsCertificateRequestFlags lhs, TlsCertificateRequestFlags rhs)
+inline auto operator^(TlsCertificateRequestFlags lhs, TlsCertificateRequestFlags rhs) -> TlsCertificateRequestFlags
   { return static_cast<TlsCertificateRequestFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline TlsCertificateRequestFlags operator~(TlsCertificateRequestFlags flags)
+inline auto operator~(TlsCertificateRequestFlags flags) -> TlsCertificateRequestFlags
   { return static_cast<TlsCertificateRequestFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline TlsCertificateRequestFlags& operator|=(TlsCertificateRequestFlags& lhs, TlsCertificateRequestFlags rhs)
+inline auto operator|=(TlsCertificateRequestFlags& lhs, TlsCertificateRequestFlags rhs) -> TlsCertificateRequestFlags&
   { return (lhs = static_cast<TlsCertificateRequestFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline TlsCertificateRequestFlags& operator&=(TlsCertificateRequestFlags& lhs, TlsCertificateRequestFlags rhs)
+inline auto operator&=(TlsCertificateRequestFlags& lhs, TlsCertificateRequestFlags rhs) -> TlsCertificateRequestFlags&
   { return (lhs = static_cast<TlsCertificateRequestFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline TlsCertificateRequestFlags& operator^=(TlsCertificateRequestFlags& lhs, TlsCertificateRequestFlags rhs)
+inline auto operator^=(TlsCertificateRequestFlags& lhs, TlsCertificateRequestFlags rhs) -> TlsCertificateRequestFlags&
   { return (lhs = static_cast<TlsCertificateRequestFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -158,7 +158,7 @@ template <>
 class GIOMM_API Value<Gio::TlsCertificateRequestFlags> : public Glib::Value_Flags<Gio::TlsCertificateRequestFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -207,7 +207,7 @@ public:
 
   // noncopyable
   TlsInteraction(const TlsInteraction&) = delete;
-  TlsInteraction& operator=(const TlsInteraction&) = delete;
+  auto operator=(const TlsInteraction&) -> TlsInteraction& = delete;
 
 private:  friend class TlsInteraction_Class;
   static CppClassType tlsinteraction_class_;
@@ -221,28 +221,28 @@ protected:
 public:
 
   TlsInteraction(TlsInteraction&& src) noexcept;
-  TlsInteraction& operator=(TlsInteraction&& src) noexcept;
+  auto operator=(TlsInteraction&& src) noexcept -> TlsInteraction&;
 
   ~TlsInteraction() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GTlsInteraction*       gobj()       { return reinterpret_cast<GTlsInteraction*>(gobject_); }
+  auto       gobj() -> GTlsInteraction*       { return reinterpret_cast<GTlsInteraction*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GTlsInteraction* gobj() const { return reinterpret_cast<GTlsInteraction*>(gobject_); }
+  auto gobj() const -> const GTlsInteraction* { return reinterpret_cast<GTlsInteraction*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GTlsInteraction* gobj_copy();
+  auto gobj_copy() -> GTlsInteraction*;
 
 private:
 
@@ -274,10 +274,10 @@ public:
    *
    * @throws Glib::Error
    */
-  TlsInteractionResult ask_password(const Glib::RefPtr<TlsPassword>& password, const Glib::RefPtr<Cancellable>& cancellable);
+  auto ask_password(const Glib::RefPtr<TlsPassword>& password, const Glib::RefPtr<Cancellable>& cancellable) -> TlsInteractionResult;
 
   /// A ask_password() convenience overload.
-  TlsInteractionResult ask_password(const Glib::RefPtr<TlsPassword>& password);
+  auto ask_password(const Glib::RefPtr<TlsPassword>& password) -> TlsInteractionResult;
 
   /** Run asynchronous interaction to ask the user for a password. In general,
    * g_tls_interaction_invoke_ask_password() should be used instead of this
@@ -329,7 +329,7 @@ public:
    *
    * @throws Glib::Error
    */
-  TlsInteractionResult ask_password_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto ask_password_finish(const Glib::RefPtr<AsyncResult>& result) -> TlsInteractionResult;
 
   /** Invoke the interaction to ask the user for a password. It invokes this
    * interaction in the main loop, specifically the MainContext returned by
@@ -359,10 +359,10 @@ public:
    *
    * @throws Glib::Error
    */
-  TlsInteractionResult invoke_ask_password(const Glib::RefPtr<TlsPassword>& password, const Glib::RefPtr<Cancellable>& cancellable);
+  auto invoke_ask_password(const Glib::RefPtr<TlsPassword>& password, const Glib::RefPtr<Cancellable>& cancellable) -> TlsInteractionResult;
 
   /// A invoke_ask_password() convenience overload.
-  TlsInteractionResult invoke_ask_password(const Glib::RefPtr<TlsPassword>& password);
+  auto invoke_ask_password(const Glib::RefPtr<TlsPassword>& password) -> TlsInteractionResult;
 
 
   /** Invoke the interaction to ask the user to choose a certificate to
@@ -395,10 +395,10 @@ public:
    *
    * @throws Glib::Error
    */
-  TlsInteractionResult invoke_request_certificate(const Glib::RefPtr<TlsConnection>& connection, TlsCertificateRequestFlags flags, const Glib::RefPtr<Cancellable>& cancellable);
+  auto invoke_request_certificate(const Glib::RefPtr<TlsConnection>& connection, TlsCertificateRequestFlags flags, const Glib::RefPtr<Cancellable>& cancellable) -> TlsInteractionResult;
 
   /// A invoke_request_certificate() convenience overload.
-  TlsInteractionResult invoke_request_certificate(const Glib::RefPtr<TlsConnection>& connection, TlsCertificateRequestFlags flags);
+  auto invoke_request_certificate(const Glib::RefPtr<TlsConnection>& connection, TlsCertificateRequestFlags flags) -> TlsInteractionResult;
 
 
   /** Run synchronous interaction to ask the user to choose a certificate to use
@@ -427,10 +427,10 @@ public:
    *
    * @throws Glib::Error
    */
-  TlsInteractionResult request_certificate(const Glib::RefPtr<TlsConnection>& connection, TlsCertificateRequestFlags flags, const Glib::RefPtr<Cancellable>& cancellable);
+  auto request_certificate(const Glib::RefPtr<TlsConnection>& connection, TlsCertificateRequestFlags flags, const Glib::RefPtr<Cancellable>& cancellable) -> TlsInteractionResult;
 
   /// A request_certificate() convenience overload.
-  TlsInteractionResult request_certificate(const Glib::RefPtr<TlsConnection>& connection, TlsCertificateRequestFlags flags);
+  auto request_certificate(const Glib::RefPtr<TlsConnection>& connection, TlsCertificateRequestFlags flags) -> TlsInteractionResult;
 
 
   /** Run asynchronous interaction to ask the user for a certificate to use with
@@ -479,19 +479,19 @@ public:
    *
    * @throws Glib::Error
    */
-  TlsInteractionResult request_certificate_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto request_certificate_finish(const Glib::RefPtr<AsyncResult>& result) -> TlsInteractionResult;
 
 protected:
 
 
   /// @throws Glib::Error.
-  virtual TlsInteractionResult ask_password_vfunc(const Glib::RefPtr<TlsPassword>& password, const Glib::RefPtr<Cancellable>& cancellable);
+  virtual auto ask_password_vfunc(const Glib::RefPtr<TlsPassword>& password, const Glib::RefPtr<Cancellable>& cancellable) -> TlsInteractionResult;
 
     virtual void ask_password_async_vfunc(const Glib::RefPtr<TlsPassword>& password, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable);
 
 
   /// @throws Glib::Error.
-  virtual TlsInteractionResult ask_password_finish_vfunc(const Glib::RefPtr<AsyncResult>& result);
+  virtual auto ask_password_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> TlsInteractionResult;
 
 
 public:
@@ -521,7 +521,7 @@ namespace Glib
    * @relates Gio::TlsInteraction
    */
   GIOMM_API
-  Glib::RefPtr<Gio::TlsInteraction> wrap(GTlsInteraction* object, bool take_copy = false);
+  auto wrap(GTlsInteraction* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsInteraction>;
 }
 
 

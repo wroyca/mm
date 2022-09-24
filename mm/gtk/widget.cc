@@ -69,7 +69,7 @@ void Widget_signal_hide_callback(GObject* self, void* data)
   }
 }
 
-gboolean SlotTick_gtk_callback(GtkWidget* self, GdkFrameClock* frame_clock, void* data)
+auto SlotTick_gtk_callback(GtkWidget* self, GdkFrameClock* frame_clock, void* data) -> gboolean
 {
   // Do not try to call a signal on a disassociated wrapper.
   if (Glib::ObjectBase::_get_current_wrapper((GObject*)self))
@@ -250,7 +250,7 @@ void Gtk::Widget::compute_expand_vfunc(bool& hexpand_p, bool& vexpand_p)
 Widget::~Widget() noexcept
 {}
 
-Glib::RefPtr<ConstraintTarget> Widget::make_refptr_constrainttarget()
+auto Widget::make_refptr_constrainttarget() -> Glib::RefPtr<ConstraintTarget>
 {
   auto refcnt_constrainttarget =
     Glib::make_refptr_for_instance(static_cast<ConstraintTarget*>(this));
@@ -258,7 +258,7 @@ Glib::RefPtr<ConstraintTarget> Widget::make_refptr_constrainttarget()
   return refcnt_constrainttarget;
 }
 
-Glib::RefPtr<const ConstraintTarget> Widget::make_refptr_constrainttarget() const
+auto Widget::make_refptr_constrainttarget() const -> Glib::RefPtr<const ConstraintTarget>
 {
   return const_cast<Widget*>(this)->make_refptr_constrainttarget();
 }
@@ -292,7 +292,7 @@ void Widget::unset_focus_child()
   gtk_widget_set_focus_child(gobj(), nullptr);
 }
 
-Allocation Widget::get_allocation() const
+auto Widget::get_allocation() const -> Allocation
 {
   Allocation allocation;
   gtk_widget_get_allocation(const_cast<GtkWidget*>(gobj()), allocation.gobj());
@@ -427,7 +427,7 @@ void Widget::add_controller(const Glib::RefPtr<EventController>& controller)
   gtk_widget_add_controller(gobj(), Glib::unwrap(controller));
 }
 
-guint Widget::add_tick_callback(const SlotTick& slot)
+auto Widget::add_tick_callback(const SlotTick& slot) -> guint
 {
   // Create a copy of the slot object. A pointer to this will be passed
   // through the callback's data parameter. It will be deleted
@@ -454,7 +454,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo Widget_signal_show_info =
+const Glib::SignalProxyInfo Widget_signal_show_info =
 {
   "show",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -462,7 +462,7 @@ static const Glib::SignalProxyInfo Widget_signal_show_info =
 };
 
 
-static const Glib::SignalProxyInfo Widget_signal_hide_info =
+const Glib::SignalProxyInfo Widget_signal_hide_info =
 {
   "hide",
   (GCallback) &Widget_signal_hide_callback,
@@ -470,7 +470,7 @@ static const Glib::SignalProxyInfo Widget_signal_hide_info =
 };
 
 
-static const Glib::SignalProxyInfo Widget_signal_map_info =
+const Glib::SignalProxyInfo Widget_signal_map_info =
 {
   "map",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -478,7 +478,7 @@ static const Glib::SignalProxyInfo Widget_signal_map_info =
 };
 
 
-static const Glib::SignalProxyInfo Widget_signal_unmap_info =
+const Glib::SignalProxyInfo Widget_signal_unmap_info =
 {
   "unmap",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -486,7 +486,7 @@ static const Glib::SignalProxyInfo Widget_signal_unmap_info =
 };
 
 
-static const Glib::SignalProxyInfo Widget_signal_realize_info =
+const Glib::SignalProxyInfo Widget_signal_realize_info =
 {
   "realize",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -494,7 +494,7 @@ static const Glib::SignalProxyInfo Widget_signal_realize_info =
 };
 
 
-static const Glib::SignalProxyInfo Widget_signal_unrealize_info =
+const Glib::SignalProxyInfo Widget_signal_unrealize_info =
 {
   "unrealize",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -502,7 +502,7 @@ static const Glib::SignalProxyInfo Widget_signal_unrealize_info =
 };
 
 
-static void Widget_signal_state_flags_changed_callback(GtkWidget* self, GtkStateFlags p0,void* data)
+void Widget_signal_state_flags_changed_callback(GtkWidget* self, GtkStateFlags p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Gtk::StateFlags)>;
@@ -524,7 +524,7 @@ static void Widget_signal_state_flags_changed_callback(GtkWidget* self, GtkState
   }
 }
 
-static const Glib::SignalProxyInfo Widget_signal_state_flags_changed_info =
+const Glib::SignalProxyInfo Widget_signal_state_flags_changed_info =
 {
   "state-flags-changed",
   (GCallback) &Widget_signal_state_flags_changed_callback,
@@ -532,7 +532,7 @@ static const Glib::SignalProxyInfo Widget_signal_state_flags_changed_info =
 };
 
 
-static void Widget_signal_direction_changed_callback(GtkWidget* self, GtkTextDirection p0,void* data)
+void Widget_signal_direction_changed_callback(GtkWidget* self, GtkTextDirection p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(TextDirection)>;
@@ -554,7 +554,7 @@ static void Widget_signal_direction_changed_callback(GtkWidget* self, GtkTextDir
   }
 }
 
-static const Glib::SignalProxyInfo Widget_signal_direction_changed_info =
+const Glib::SignalProxyInfo Widget_signal_direction_changed_info =
 {
   "direction_changed",
   (GCallback) &Widget_signal_direction_changed_callback,
@@ -562,7 +562,7 @@ static const Glib::SignalProxyInfo Widget_signal_direction_changed_info =
 };
 
 
-static gboolean Widget_signal_mnemonic_activate_callback(GtkWidget* self, gboolean p0,void* data)
+auto Widget_signal_mnemonic_activate_callback(GtkWidget* self, gboolean p0,void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<bool(bool)>;
@@ -587,7 +587,7 @@ static gboolean Widget_signal_mnemonic_activate_callback(GtkWidget* self, gboole
   return RType();
 }
 
-static gboolean Widget_signal_mnemonic_activate_notify_callback(GtkWidget* self, gboolean p0, void* data)
+auto Widget_signal_mnemonic_activate_notify_callback(GtkWidget* self, gboolean p0, void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(bool)>;
@@ -612,7 +612,7 @@ static gboolean Widget_signal_mnemonic_activate_notify_callback(GtkWidget* self,
   return RType();
 }
 
-static const Glib::SignalProxyInfo Widget_signal_mnemonic_activate_info =
+const Glib::SignalProxyInfo Widget_signal_mnemonic_activate_info =
 {
   "mnemonic_activate",
   (GCallback) &Widget_signal_mnemonic_activate_callback,
@@ -620,7 +620,7 @@ static const Glib::SignalProxyInfo Widget_signal_mnemonic_activate_info =
 };
 
 
-static const Glib::SignalProxyInfo Widget_signal_destroy_info =
+const Glib::SignalProxyInfo Widget_signal_destroy_info =
 {
   "destroy",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -628,7 +628,7 @@ static const Glib::SignalProxyInfo Widget_signal_destroy_info =
 };
 
 
-static gboolean Widget_signal_query_tooltip_callback(GtkWidget* self, gint p0,gint p1,gboolean p2,GtkTooltip* p3,void* data)
+auto Widget_signal_query_tooltip_callback(GtkWidget* self, gint p0,gint p1,gboolean p2,GtkTooltip* p3,void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<bool(int, int, bool, const Glib::RefPtr<Tooltip>&)>;
@@ -656,7 +656,7 @@ static gboolean Widget_signal_query_tooltip_callback(GtkWidget* self, gint p0,gi
   return RType();
 }
 
-static gboolean Widget_signal_query_tooltip_notify_callback(GtkWidget* self, gint p0,gint p1,gboolean p2,GtkTooltip* p3, void* data)
+auto Widget_signal_query_tooltip_notify_callback(GtkWidget* self, gint p0,gint p1,gboolean p2,GtkTooltip* p3, void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(int, int, bool, const Glib::RefPtr<Tooltip>&)>;
@@ -684,7 +684,7 @@ static gboolean Widget_signal_query_tooltip_notify_callback(GtkWidget* self, gin
   return RType();
 }
 
-static const Glib::SignalProxyInfo Widget_signal_query_tooltip_info =
+const Glib::SignalProxyInfo Widget_signal_query_tooltip_info =
 {
   "query_tooltip",
   (GCallback) &Widget_signal_query_tooltip_callback,
@@ -698,7 +698,7 @@ static const Glib::SignalProxyInfo Widget_signal_query_tooltip_info =
 namespace Glib
 {
 
-Gtk::Widget* wrap(GtkWidget* object, bool take_copy)
+auto wrap(GtkWidget* object, bool take_copy) -> Gtk::Widget*
 {
   return dynamic_cast<Gtk::Widget *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -711,7 +711,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Widget_Class::init()
+auto Widget_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -873,7 +873,7 @@ void Widget_Class::size_allocate_vfunc_callback(GtkWidget* self, int width, int 
   if(base && base->size_allocate)
     (*base->size_allocate)(self, width, height, baseline);
 }
-GtkSizeRequestMode Widget_Class::get_request_mode_vfunc_callback(GtkWidget* self)
+auto Widget_Class::get_request_mode_vfunc_callback(GtkWidget* self) -> GtkSizeRequestMode
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -911,7 +911,7 @@ GtkSizeRequestMode Widget_Class::get_request_mode_vfunc_callback(GtkWidget* self
   using RType = GtkSizeRequestMode;
   return RType();
 }
-gboolean Widget_Class::grab_focus_vfunc_callback(GtkWidget* self)
+auto Widget_Class::grab_focus_vfunc_callback(GtkWidget* self) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -986,7 +986,7 @@ void Widget_Class::set_focus_child_vfunc_callback(GtkWidget* self, GtkWidget* ch
   if(base && base->set_focus_child)
     (*base->set_focus_child)(self, child);
 }
-gboolean Widget_Class::contains_vfunc_callback(GtkWidget* self, gdouble x, gdouble y)
+auto Widget_Class::contains_vfunc_callback(GtkWidget* self, gdouble x, gdouble y) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1318,7 +1318,7 @@ void Widget_Class::direction_changed_callback(GtkWidget* self, GtkTextDirection 
   if(base && base->direction_changed)
     (*base->direction_changed)(self, p0);
 }
-gboolean Widget_Class::mnemonic_activate_callback(GtkWidget* self, gboolean p0)
+auto Widget_Class::mnemonic_activate_callback(GtkWidget* self, gboolean p0) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1357,7 +1357,7 @@ gboolean Widget_Class::mnemonic_activate_callback(GtkWidget* self, gboolean p0)
   using RType = gboolean;
   return RType();
 }
-gboolean Widget_Class::query_tooltip_callback(GtkWidget* self, gint p0, gint p1, gboolean p2, GtkTooltip* p3)
+auto Widget_Class::query_tooltip_callback(GtkWidget* self, gint p0, gint p1, gboolean p2, GtkTooltip* p3) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1401,7 +1401,7 @@ gboolean Widget_Class::query_tooltip_callback(GtkWidget* self, gint p0, gint p1,
 }
 
 
-Glib::ObjectBase* Widget_Class::wrap_new(GObject* o)
+auto Widget_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Widget((GtkWidget*)(o)));
 
@@ -1430,7 +1430,7 @@ Widget::Widget(Widget&& src) noexcept
   , ConstraintTarget(std::move(src))
 {}
 
-Widget& Widget::operator=(Widget&& src) noexcept
+auto Widget::operator=(Widget&& src) noexcept -> Widget&
 {
   Object::operator=(std::move(src));
   Accessible::operator=(std::move(src));
@@ -1441,13 +1441,13 @@ Widget& Widget::operator=(Widget&& src) noexcept
 
 Widget::CppClassType Widget::widget_class_; // initialize static member
 
-GType Widget::get_type()
+auto Widget::get_type() -> GType
 {
   return widget_class_.init().get_type();
 }
 
 
-GType Widget::get_base_type()
+auto Widget::get_base_type() -> GType
 {
   return gtk_widget_get_type();
 }
@@ -1483,7 +1483,7 @@ void Widget::size_allocate(const Allocation& allocation, int baseline)
   gtk_widget_size_allocate(gobj(), (allocation.gobj()), baseline);
 }
 
-SizeRequestMode Widget::get_request_mode() const
+auto Widget::get_request_mode() const -> SizeRequestMode
 {
   return static_cast<SizeRequestMode>(gtk_widget_get_request_mode(const_cast<GtkWidget*>(gobj())));
 }
@@ -1498,7 +1498,7 @@ void Widget::get_preferred_size(Requisition& minimum_size, Requisition& natural_
   gtk_widget_get_preferred_size(const_cast<GtkWidget*>(gobj()), (minimum_size).gobj(), (natural_size).gobj());
 }
 
-Glib::RefPtr<LayoutManager> Widget::get_layout_manager()
+auto Widget::get_layout_manager() -> Glib::RefPtr<LayoutManager>
 {
   auto retvalue = Glib::wrap(gtk_widget_get_layout_manager(gobj()));
   if(retvalue)
@@ -1506,17 +1506,17 @@ Glib::RefPtr<LayoutManager> Widget::get_layout_manager()
   return retvalue;
 }
 
-Glib::RefPtr<const LayoutManager> Widget::get_layout_manager() const
+auto Widget::get_layout_manager() const -> Glib::RefPtr<const LayoutManager>
 {
   return const_cast<Widget*>(this)->get_layout_manager();
 }
 
-bool Widget::mnemonic_activate(bool group_cycling)
+auto Widget::mnemonic_activate(bool group_cycling) -> bool
 {
   return gtk_widget_mnemonic_activate(gobj(), static_cast<int>(group_cycling));
 }
 
-bool Widget::activate()
+auto Widget::activate() -> bool
 {
   return gtk_widget_activate(gobj());
 }
@@ -1526,7 +1526,7 @@ void Widget::set_can_focus(bool can_focus)
   gtk_widget_set_can_focus(gobj(), static_cast<int>(can_focus));
 }
 
-bool Widget::get_can_focus() const
+auto Widget::get_can_focus() const -> bool
 {
   return gtk_widget_get_can_focus(const_cast<GtkWidget*>(gobj()));
 }
@@ -1536,27 +1536,27 @@ void Widget::set_focusable(bool focusable)
   gtk_widget_set_focusable(gobj(), static_cast<int>(focusable));
 }
 
-bool Widget::get_focusable() const
+auto Widget::get_focusable() const -> bool
 {
   return gtk_widget_get_focusable(const_cast<GtkWidget*>(gobj()));
 }
 
-bool Widget::has_focus() const
+auto Widget::has_focus() const -> bool
 {
   return gtk_widget_has_focus(const_cast<GtkWidget*>(gobj()));
 }
 
-bool Widget::is_focus() const
+auto Widget::is_focus() const -> bool
 {
   return gtk_widget_is_focus(const_cast<GtkWidget*>(gobj()));
 }
 
-bool Widget::has_visible_focus() const
+auto Widget::has_visible_focus() const -> bool
 {
   return gtk_widget_has_visible_focus(const_cast<GtkWidget*>(gobj()));
 }
 
-bool Widget::grab_focus()
+auto Widget::grab_focus() -> bool
 {
   return gtk_widget_grab_focus(gobj());
 }
@@ -1566,7 +1566,7 @@ void Widget::set_focus_on_click(bool focus_on_click)
   gtk_widget_set_focus_on_click(gobj(), static_cast<int>(focus_on_click));
 }
 
-bool Widget::get_focus_on_click() const
+auto Widget::get_focus_on_click() const -> bool
 {
   return gtk_widget_get_focus_on_click(const_cast<GtkWidget*>(gobj()));
 }
@@ -1576,12 +1576,12 @@ void Widget::set_can_target(bool can_target)
   gtk_widget_set_can_target(gobj(), static_cast<int>(can_target));
 }
 
-bool Widget::get_can_target() const
+auto Widget::get_can_target() const -> bool
 {
   return gtk_widget_get_can_target(const_cast<GtkWidget*>(gobj()));
 }
 
-bool Widget::has_default() const
+auto Widget::has_default() const -> bool
 {
   return gtk_widget_has_default(const_cast<GtkWidget*>(gobj()));
 }
@@ -1591,7 +1591,7 @@ void Widget::set_receives_default(bool receives_default)
   gtk_widget_set_receives_default(gobj(), static_cast<int>(receives_default));
 }
 
-bool Widget::get_receives_default() const
+auto Widget::get_receives_default() const -> bool
 {
   return gtk_widget_get_receives_default(const_cast<GtkWidget*>(gobj()));
 }
@@ -1601,7 +1601,7 @@ void Widget::set_name(const Glib::ustring& name)
   gtk_widget_set_name(gobj(), name.c_str());
 }
 
-Glib::ustring Widget::get_name() const
+auto Widget::get_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_widget_get_name(const_cast<GtkWidget*>(gobj())));
 }
@@ -1616,7 +1616,7 @@ void Widget::unset_state_flags(StateFlags flags)
   gtk_widget_unset_state_flags(gobj(), static_cast<GtkStateFlags>(flags));
 }
 
-StateFlags Widget::get_state_flags() const
+auto Widget::get_state_flags() const -> StateFlags
 {
   return static_cast<StateFlags>(gtk_widget_get_state_flags(const_cast<GtkWidget*>(gobj())));
 }
@@ -1626,12 +1626,12 @@ void Widget::set_sensitive(bool sensitive)
   gtk_widget_set_sensitive(gobj(), static_cast<int>(sensitive));
 }
 
-bool Widget::get_sensitive() const
+auto Widget::get_sensitive() const -> bool
 {
   return gtk_widget_get_sensitive(const_cast<GtkWidget*>(gobj()));
 }
 
-bool Widget::is_sensitive() const
+auto Widget::is_sensitive() const -> bool
 {
   return gtk_widget_is_sensitive(const_cast<GtkWidget*>(gobj()));
 }
@@ -1641,27 +1641,27 @@ void Widget::set_visible(bool visible)
   gtk_widget_set_visible(gobj(), static_cast<int>(visible));
 }
 
-bool Widget::get_visible() const
+auto Widget::get_visible() const -> bool
 {
   return gtk_widget_get_visible(const_cast<GtkWidget*>(gobj()));
 }
 
-bool Widget::is_visible() const
+auto Widget::is_visible() const -> bool
 {
   return gtk_widget_is_visible(const_cast<GtkWidget*>(gobj()));
 }
 
-bool Widget::is_drawable() const
+auto Widget::is_drawable() const -> bool
 {
   return gtk_widget_is_drawable(const_cast<GtkWidget*>(gobj()));
 }
 
-bool Widget::get_realized() const
+auto Widget::get_realized() const -> bool
 {
   return gtk_widget_get_realized(const_cast<GtkWidget*>(gobj()));
 }
 
-bool Widget::get_mapped() const
+auto Widget::get_mapped() const -> bool
 {
   return gtk_widget_get_mapped(const_cast<GtkWidget*>(gobj()));
 }
@@ -1671,77 +1671,77 @@ void Widget::set_child_visible(bool visible)
   gtk_widget_set_child_visible(gobj(), static_cast<int>(visible));
 }
 
-bool Widget::get_child_visible() const
+auto Widget::get_child_visible() const -> bool
 {
   return gtk_widget_get_child_visible(const_cast<GtkWidget*>(gobj()));
 }
 
-int Widget::get_allocated_width() const
+auto Widget::get_allocated_width() const -> int
 {
   return gtk_widget_get_allocated_width(const_cast<GtkWidget*>(gobj()));
 }
 
-int Widget::get_allocated_height() const
+auto Widget::get_allocated_height() const -> int
 {
   return gtk_widget_get_allocated_height(const_cast<GtkWidget*>(gobj()));
 }
 
-int Widget::get_allocated_baseline() const
+auto Widget::get_allocated_baseline() const -> int
 {
   return gtk_widget_get_allocated_baseline(const_cast<GtkWidget*>(gobj()));
 }
 
-int Widget::get_width() const
+auto Widget::get_width() const -> int
 {
   return gtk_widget_get_width(const_cast<GtkWidget*>(gobj()));
 }
 
-int Widget::get_height() const
+auto Widget::get_height() const -> int
 {
   return gtk_widget_get_height(const_cast<GtkWidget*>(gobj()));
 }
 
-int Widget::get_size(Orientation orientation) const
+auto Widget::get_size(Orientation orientation) const -> int
 {
   return gtk_widget_get_size(const_cast<GtkWidget*>(gobj()), static_cast<GtkOrientation>(orientation));
 }
 
-Widget* Widget::get_parent()
+auto Widget::get_parent() -> Widget*
 {
   return Glib::wrap(gtk_widget_get_parent(gobj()));
 }
 
-const Widget* Widget::get_parent() const
+auto Widget::get_parent() const -> const Widget*
 {
   return const_cast<Widget*>(this)->get_parent();
 }
 
-Root* Widget::get_root()
+auto Widget::get_root() -> Root*
 {
   return dynamic_cast<Root*>(Glib::wrap_auto((GObject*)(gtk_widget_get_root(gobj())), false));
 }
 
-const Root* Widget::get_root() const
+auto Widget::get_root() const -> const Root*
 {
   return const_cast<Widget*>(this)->get_root();
 }
 
-Native* Widget::get_native()
+auto Widget::get_native() -> Native*
 {
   return dynamic_cast<Native*>(Glib::wrap_auto((GObject*)(gtk_widget_get_native(gobj())), false));
 }
 
-const Native* Widget::get_native() const
+auto Widget::get_native() const -> const Native*
 {
   return const_cast<Widget*>(this)->get_native();
 }
 
-bool Widget::child_focus(DirectionType direction)
+auto Widget::child_focus(DirectionType direction) -> bool
 {
   return gtk_widget_child_focus(gobj(), static_cast<GtkDirectionType>(direction));
 }
 
-bool Widget::keynav_failed(DirectionType direction)
+auto Widget::keynav_failed(DirectionType direction) -> bool
 {
   return gtk_widget_keynav_failed(gobj(), static_cast<GtkDirectionType>(direction));
 }
@@ -1766,7 +1766,7 @@ void Widget::set_opacity(double opacity)
   gtk_widget_set_opacity(gobj(), opacity);
 }
 
-double Widget::get_opacity() const
+auto Widget::get_opacity() const -> double
 {
   return gtk_widget_get_opacity(const_cast<GtkWidget*>(gobj()));
 }
@@ -1776,27 +1776,27 @@ void Widget::set_overflow(Overflow overflow)
   gtk_widget_set_overflow(gobj(), static_cast<GtkOverflow>(overflow));
 }
 
-Overflow Widget::get_overflow() const
+auto Widget::get_overflow() const -> Overflow
 {
   return static_cast<Overflow>(gtk_widget_get_overflow(const_cast<GtkWidget*>(gobj())));
 }
 
-Widget* Widget::get_ancestor(GType widget_type)
+auto Widget::get_ancestor(GType widget_type) -> Widget*
 {
   return Glib::wrap(gtk_widget_get_ancestor(gobj(), widget_type));
 }
 
-const Widget* Widget::get_ancestor(GType widget_type) const
+auto Widget::get_ancestor(GType widget_type) const -> const Widget*
 {
   return const_cast<Widget*>(this)->get_ancestor(widget_type);
 }
 
-int Widget::get_scale_factor() const
+auto Widget::get_scale_factor() const -> int
 {
   return gtk_widget_get_scale_factor(const_cast<GtkWidget*>(gobj()));
 }
 
-Glib::RefPtr<Gdk::Display> Widget::get_display()
+auto Widget::get_display() -> Glib::RefPtr<Gdk::Display>
 {
   auto retvalue = Glib::wrap(gtk_widget_get_display(gobj()));
   if(retvalue)
@@ -1804,12 +1804,12 @@ Glib::RefPtr<Gdk::Display> Widget::get_display()
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::Display> Widget::get_display() const
+auto Widget::get_display() const -> Glib::RefPtr<const Gdk::Display>
 {
   return const_cast<Widget*>(this)->get_display();
 }
 
-Glib::RefPtr<Settings> Widget::get_settings()
+auto Widget::get_settings() -> Glib::RefPtr<Settings>
 {
   auto retvalue = Glib::wrap(gtk_widget_get_settings(gobj()));
   if(retvalue)
@@ -1817,7 +1817,7 @@ Glib::RefPtr<Settings> Widget::get_settings()
   return retvalue;
 }
 
-Glib::RefPtr<Gdk::Clipboard> Widget::get_clipboard()
+auto Widget::get_clipboard() -> Glib::RefPtr<Gdk::Clipboard>
 {
   auto retvalue = Glib::wrap(gtk_widget_get_clipboard(gobj()));
   if(retvalue)
@@ -1825,12 +1825,12 @@ Glib::RefPtr<Gdk::Clipboard> Widget::get_clipboard()
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::Clipboard> Widget::get_clipboard() const
+auto Widget::get_clipboard() const -> Glib::RefPtr<const Gdk::Clipboard>
 {
   return const_cast<Widget*>(this)->get_clipboard();
 }
 
-Glib::RefPtr<Gdk::Clipboard> Widget::get_primary_clipboard()
+auto Widget::get_primary_clipboard() -> Glib::RefPtr<Gdk::Clipboard>
 {
   auto retvalue = Glib::wrap(gtk_widget_get_primary_clipboard(gobj()));
   if(retvalue)
@@ -1838,12 +1838,12 @@ Glib::RefPtr<Gdk::Clipboard> Widget::get_primary_clipboard()
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::Clipboard> Widget::get_primary_clipboard() const
+auto Widget::get_primary_clipboard() const -> Glib::RefPtr<const Gdk::Clipboard>
 {
   return const_cast<Widget*>(this)->get_primary_clipboard();
 }
 
-bool Widget::get_hexpand() const
+auto Widget::get_hexpand() const -> bool
 {
   return gtk_widget_get_hexpand(const_cast<GtkWidget*>(gobj()));
 }
@@ -1853,7 +1853,7 @@ void Widget::set_hexpand(bool expand)
   gtk_widget_set_hexpand(gobj(), static_cast<int>(expand));
 }
 
-bool Widget::get_hexpand_set() const
+auto Widget::get_hexpand_set() const -> bool
 {
   return gtk_widget_get_hexpand_set(const_cast<GtkWidget*>(gobj()));
 }
@@ -1863,7 +1863,7 @@ void Widget::set_hexpand_set(bool set)
   gtk_widget_set_hexpand_set(gobj(), static_cast<int>(set));
 }
 
-bool Widget::get_vexpand() const
+auto Widget::get_vexpand() const -> bool
 {
   return gtk_widget_get_vexpand(const_cast<GtkWidget*>(gobj()));
 }
@@ -1873,7 +1873,7 @@ void Widget::set_vexpand(bool expand)
   gtk_widget_set_vexpand(gobj(), static_cast<int>(expand));
 }
 
-bool Widget::get_vexpand_set() const
+auto Widget::get_vexpand_set() const -> bool
 {
   return gtk_widget_get_vexpand_set(const_cast<GtkWidget*>(gobj()));
 }
@@ -1883,12 +1883,12 @@ void Widget::set_vexpand_set(bool set)
   gtk_widget_set_vexpand_set(gobj(), static_cast<int>(set));
 }
 
-bool Widget::compute_expand(Orientation orientation)
+auto Widget::compute_expand(Orientation orientation) -> bool
 {
   return gtk_widget_compute_expand(gobj(), static_cast<GtkOrientation>(orientation));
 }
 
-Align Widget::get_halign() const
+auto Widget::get_halign() const -> Align
 {
   return static_cast<Align>(gtk_widget_get_halign(const_cast<GtkWidget*>(gobj())));
 }
@@ -1898,7 +1898,7 @@ void Widget::set_halign(Align align)
   gtk_widget_set_halign(gobj(), static_cast<GtkAlign>(align));
 }
 
-Align Widget::get_valign() const
+auto Widget::get_valign() const -> Align
 {
   return static_cast<Align>(gtk_widget_get_valign(const_cast<GtkWidget*>(gobj())));
 }
@@ -1908,7 +1908,7 @@ void Widget::set_valign(Align align)
   gtk_widget_set_valign(gobj(), static_cast<GtkAlign>(align));
 }
 
-int Widget::get_margin_start() const
+auto Widget::get_margin_start() const -> int
 {
   return gtk_widget_get_margin_start(const_cast<GtkWidget*>(gobj()));
 }
@@ -1918,7 +1918,7 @@ void Widget::set_margin_start(int margin)
   gtk_widget_set_margin_start(gobj(), margin);
 }
 
-int Widget::get_margin_end() const
+auto Widget::get_margin_end() const -> int
 {
   return gtk_widget_get_margin_end(const_cast<GtkWidget*>(gobj()));
 }
@@ -1928,7 +1928,7 @@ void Widget::set_margin_end(int margin)
   gtk_widget_set_margin_end(gobj(), margin);
 }
 
-int Widget::get_margin_top() const
+auto Widget::get_margin_top() const -> int
 {
   return gtk_widget_get_margin_top(const_cast<GtkWidget*>(gobj()));
 }
@@ -1938,7 +1938,7 @@ void Widget::set_margin_top(int margin)
   gtk_widget_set_margin_top(gobj(), margin);
 }
 
-int Widget::get_margin_bottom() const
+auto Widget::get_margin_bottom() const -> int
 {
   return gtk_widget_get_margin_bottom(const_cast<GtkWidget*>(gobj()));
 }
@@ -1948,27 +1948,27 @@ void Widget::set_margin_bottom(int margin)
   gtk_widget_set_margin_bottom(gobj(), margin);
 }
 
-bool Widget::is_ancestor(Widget & ancestor) const
+auto Widget::is_ancestor(Widget & ancestor) const -> bool
 {
   return gtk_widget_is_ancestor(const_cast<GtkWidget*>(gobj()), (ancestor).gobj());
 }
 
-bool Widget::translate_coordinates(Widget& dest_widget, double src_x, double src_y, double& dest_x, double& dest_y)
+auto Widget::translate_coordinates(Widget& dest_widget, double src_x, double src_y, double& dest_x, double& dest_y) -> bool
 {
   return gtk_widget_translate_coordinates(gobj(), (dest_widget).gobj(), src_x, src_y, &(dest_x), &(dest_y));
 }
 
-bool Widget::contains(double x, double y) const
+auto Widget::contains(double x, double y) const -> bool
 {
   return gtk_widget_contains(const_cast<GtkWidget*>(gobj()), x, y);
 }
 
-Widget* Widget::pick(double x, double y, PickFlags flags)
+auto Widget::pick(double x, double y, PickFlags flags) -> Widget*
 {
   return Glib::wrap(gtk_widget_pick(gobj(), x, y, static_cast<GtkPickFlags>(flags)));
 }
 
-const Widget* Widget::pick(double x, double y, PickFlags flags) const
+auto Widget::pick(double x, double y, PickFlags flags) const -> const Widget*
 {
   return const_cast<Widget*>(this)->pick(x, y, flags);
 }
@@ -1978,12 +1978,12 @@ void Widget::remove_controller(const Glib::RefPtr<EventController>& controller)
   gtk_widget_remove_controller(gobj(), Glib::unwrap(controller));
 }
 
-Glib::RefPtr<Pango::Context> Widget::create_pango_context()
+auto Widget::create_pango_context() -> Glib::RefPtr<Pango::Context>
 {
   return Glib::wrap(gtk_widget_create_pango_context(gobj()));
 }
 
-Glib::RefPtr<Pango::Context> Widget::get_pango_context()
+auto Widget::get_pango_context() -> Glib::RefPtr<Pango::Context>
 {
   auto retvalue = Glib::wrap(gtk_widget_get_pango_context(gobj()));
   if(retvalue)
@@ -1996,12 +1996,12 @@ void Widget::set_font_options(const Cairo::FontOptions& options)
   gtk_widget_set_font_options(gobj(), (options).cobj());
 }
 
-Cairo::FontOptions Widget::get_font_options() const
+auto Widget::get_font_options() const -> Cairo::FontOptions
 {
   return Cairo::FontOptions(const_cast<cairo_font_options_t*>(gtk_widget_get_font_options(const_cast<GtkWidget*>(gobj()))), false /* take_ownership */);
 }
 
-Glib::RefPtr<Pango::Layout> Widget::create_pango_layout(const Glib::ustring& text)
+auto Widget::create_pango_layout(const Glib::ustring& text) -> Glib::RefPtr<Pango::Layout>
 {
   return Glib::wrap(gtk_widget_create_pango_layout(gobj(), text.c_str()));
 }
@@ -2011,7 +2011,7 @@ void Widget::set_direction(TextDirection dir)
   gtk_widget_set_direction(gobj(), static_cast<GtkTextDirection>(dir));
 }
 
-TextDirection Widget::get_direction() const
+auto Widget::get_direction() const -> TextDirection
 {
   return static_cast<TextDirection>(gtk_widget_get_direction(const_cast<GtkWidget*>(gobj())));
 }
@@ -2021,7 +2021,7 @@ void Widget::set_default_direction(TextDirection dir)
   gtk_widget_set_default_direction(static_cast<GtkTextDirection>(dir));
 }
 
-TextDirection Widget::get_default_direction()
+auto Widget::get_default_direction() -> TextDirection
 {
   return static_cast<TextDirection>(gtk_widget_get_default_direction());
 }
@@ -2036,7 +2036,7 @@ void Widget::set_cursor(const Glib::ustring& name)
   gtk_widget_set_cursor_from_name(gobj(), name.empty() ? nullptr : name.c_str());
 }
 
-Glib::RefPtr<Gdk::Cursor> Widget::get_cursor()
+auto Widget::get_cursor() -> Glib::RefPtr<Gdk::Cursor>
 {
   auto retvalue = Glib::wrap(gtk_widget_get_cursor(gobj()));
   if(retvalue)
@@ -2044,17 +2044,17 @@ Glib::RefPtr<Gdk::Cursor> Widget::get_cursor()
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::Cursor> Widget::get_cursor() const
+auto Widget::get_cursor() const -> Glib::RefPtr<const Gdk::Cursor>
 {
   return const_cast<Widget*>(this)->get_cursor();
 }
 
-std::vector<Widget*> Widget::list_mnemonic_labels()
+auto Widget::list_mnemonic_labels() -> std::vector<Widget*>
 {
   return Glib::ListHandler<Widget*>::list_to_vector(gtk_widget_list_mnemonic_labels(gobj()), Glib::OWNERSHIP_SHALLOW);
 }
 
-std::vector<const Widget*> Widget::list_mnemonic_labels() const
+auto Widget::list_mnemonic_labels() const -> std::vector<const Widget*>
 {
   return Glib::ListHandler<const Widget*>::list_to_vector(gtk_widget_list_mnemonic_labels(const_cast<GtkWidget*>(gobj())), Glib::OWNERSHIP_SHALLOW);
 }
@@ -2069,12 +2069,12 @@ void Widget::remove_mnemonic_label(Widget& label)
   gtk_widget_remove_mnemonic_label(gobj(), (label).gobj());
 }
 
-bool Widget::drag_check_threshold(int start_x, int start_y, int current_x, int current_y)
+auto Widget::drag_check_threshold(int start_x, int start_y, int current_x, int current_y) -> bool
 {
   return gtk_drag_check_threshold(gobj(), start_x, start_y, current_x, current_y);
 }
 
-Glib::RefPtr<Gdk::FrameClock> Widget::get_frame_clock()
+auto Widget::get_frame_clock() -> Glib::RefPtr<Gdk::FrameClock>
 {
   auto retvalue = Glib::wrap(gtk_widget_get_frame_clock(gobj()));
   if(retvalue)
@@ -2082,7 +2082,7 @@ Glib::RefPtr<Gdk::FrameClock> Widget::get_frame_clock()
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::FrameClock> Widget::get_frame_clock() const
+auto Widget::get_frame_clock() const -> Glib::RefPtr<const Gdk::FrameClock>
 {
   return const_cast<Widget*>(this)->get_frame_clock();
 }
@@ -2117,7 +2117,7 @@ void Widget::set_tooltip_text(const Glib::ustring& text)
   gtk_widget_set_tooltip_text(gobj(), text.c_str());
 }
 
-Glib::ustring Widget::get_tooltip_text() const
+auto Widget::get_tooltip_text() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_widget_get_tooltip_text(const_cast<GtkWidget*>(gobj())));
 }
@@ -2127,7 +2127,7 @@ void Widget::set_tooltip_markup(const Glib::ustring& markup)
   gtk_widget_set_tooltip_markup(gobj(), markup.c_str());
 }
 
-Glib::ustring Widget::get_tooltip_markup() const
+auto Widget::get_tooltip_markup() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_widget_get_tooltip_markup(const_cast<GtkWidget*>(gobj())));
 }
@@ -2137,17 +2137,17 @@ void Widget::set_has_tooltip(bool has_tooltip)
   gtk_widget_set_has_tooltip(gobj(), static_cast<int>(has_tooltip));
 }
 
-bool Widget::get_has_tooltip() const
+auto Widget::get_has_tooltip() const -> bool
 {
   return gtk_widget_get_has_tooltip(const_cast<GtkWidget*>(gobj()));
 }
 
-bool Widget::in_destruction() const
+auto Widget::in_destruction() const -> bool
 {
   return gtk_widget_in_destruction(const_cast<GtkWidget*>(gobj()));
 }
 
-Glib::RefPtr<StyleContext> Widget::get_style_context()
+auto Widget::get_style_context() -> Glib::RefPtr<StyleContext>
 {
   auto retvalue = Glib::wrap(gtk_widget_get_style_context(gobj()));
   if(retvalue)
@@ -2155,7 +2155,7 @@ Glib::RefPtr<StyleContext> Widget::get_style_context()
   return retvalue;
 }
 
-Glib::RefPtr<const StyleContext> Widget::get_style_context() const
+auto Widget::get_style_context() const -> Glib::RefPtr<const StyleContext>
 {
   return const_cast<Widget*>(this)->get_style_context();
 }
@@ -2170,7 +2170,7 @@ void Widget::insert_action_group(const Glib::ustring& name, const Glib::RefPtr<G
   gtk_widget_insert_action_group(gobj(), name.c_str(), const_cast<GActionGroup*>(Glib::unwrap<Gio::ActionGroup>(group)));
 }
 
-bool Widget::activate_action(const Glib::ustring& name, const Glib::VariantBase& args)
+auto Widget::activate_action(const Glib::ustring& name, const Glib::VariantBase& args) -> bool
 {
   return gtk_widget_activate_action_variant(gobj(), name.c_str(), const_cast<GVariant*>((args).gobj()));
 }
@@ -2185,7 +2185,7 @@ void Widget::set_font_map(const Glib::RefPtr<Pango::FontMap>& font_map)
   gtk_widget_set_font_map(gobj(), Glib::unwrap(font_map));
 }
 
-Glib::RefPtr<Pango::FontMap> Widget::get_font_map()
+auto Widget::get_font_map() -> Glib::RefPtr<Pango::FontMap>
 {
   auto retvalue = Glib::wrap(gtk_widget_get_font_map(gobj()));
   if(retvalue)
@@ -2193,67 +2193,67 @@ Glib::RefPtr<Pango::FontMap> Widget::get_font_map()
   return retvalue;
 }
 
-Glib::RefPtr<const Pango::FontMap> Widget::get_font_map() const
+auto Widget::get_font_map() const -> Glib::RefPtr<const Pango::FontMap>
 {
   return const_cast<Widget*>(this)->get_font_map();
 }
 
-Widget* Widget::get_first_child()
+auto Widget::get_first_child() -> Widget*
 {
   return Glib::wrap(gtk_widget_get_first_child(gobj()));
 }
 
-const Widget* Widget::get_first_child() const
+auto Widget::get_first_child() const -> const Widget*
 {
   return const_cast<Widget*>(this)->get_first_child();
 }
 
-Widget* Widget::get_last_child()
+auto Widget::get_last_child() -> Widget*
 {
   return Glib::wrap(gtk_widget_get_last_child(gobj()));
 }
 
-const Widget* Widget::get_last_child() const
+auto Widget::get_last_child() const -> const Widget*
 {
   return const_cast<Widget*>(this)->get_last_child();
 }
 
-Widget* Widget::get_next_sibling()
+auto Widget::get_next_sibling() -> Widget*
 {
   return Glib::wrap(gtk_widget_get_next_sibling(gobj()));
 }
 
-const Widget* Widget::get_next_sibling() const
+auto Widget::get_next_sibling() const -> const Widget*
 {
   return const_cast<Widget*>(this)->get_next_sibling();
 }
 
-Widget* Widget::get_prev_sibling()
+auto Widget::get_prev_sibling() -> Widget*
 {
   return Glib::wrap(gtk_widget_get_prev_sibling(gobj()));
 }
 
-const Widget* Widget::get_prev_sibling() const
+auto Widget::get_prev_sibling() const -> const Widget*
 {
   return const_cast<Widget*>(this)->get_prev_sibling();
 }
 
-Glib::RefPtr<Gio::ListModel> Widget::observe_children()
+auto Widget::observe_children() -> Glib::RefPtr<Gio::ListModel>
 {
   return Glib::wrap(gtk_widget_observe_children(gobj()));
 }
 
-Glib::RefPtr<const Gio::ListModel> Widget::observe_children() const
+auto Widget::observe_children() const -> Glib::RefPtr<const Gio::ListModel>
 {
   return const_cast<Widget*>(this)->observe_children();
 }
 
-Glib::RefPtr<Gio::ListModel> Widget::observe_controllers()
+auto Widget::observe_controllers() -> Glib::RefPtr<Gio::ListModel>
 {
   return Glib::wrap(gtk_widget_observe_controllers(gobj()));
 }
 
-Glib::RefPtr<const Gio::ListModel> Widget::observe_controllers() const
+auto Widget::observe_controllers() const -> Glib::RefPtr<const Gio::ListModel>
 {
   return const_cast<Widget*>(this)->observe_controllers();
 }
@@ -2273,12 +2273,12 @@ void Widget::snapshot_child(Widget& child, const Glib::RefPtr<Gtk::Snapshot>& sn
   gtk_widget_snapshot_child(gobj(), (child).gobj(), Glib::unwrap(snapshot));
 }
 
-bool Widget::should_layout() const
+auto Widget::should_layout() const -> bool
 {
   return gtk_widget_should_layout(const_cast<GtkWidget*>(gobj()));
 }
 
-Glib::ustring Widget::get_css_name() const
+auto Widget::get_css_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_widget_get_css_name(const_cast<GtkWidget*>(gobj())));
 }
@@ -2293,12 +2293,12 @@ void Widget::remove_css_class(const Glib::ustring& css_class)
   gtk_widget_remove_css_class(gobj(), css_class.c_str());
 }
 
-bool Widget::has_css_class(const Glib::ustring& css_class) const
+auto Widget::has_css_class(const Glib::ustring& css_class) const -> bool
 {
   return gtk_widget_has_css_class(const_cast<GtkWidget*>(gobj()), css_class.c_str());
 }
 
-std::vector<Glib::ustring> Widget::get_css_classes() const
+auto Widget::get_css_classes() const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(gtk_widget_get_css_classes(const_cast<GtkWidget*>(gobj())), Glib::OWNERSHIP_DEEP);
 }
@@ -2333,94 +2333,94 @@ void Widget::set_focus_child(Widget& child)
   gtk_widget_set_focus_child(gobj(), (child).gobj());
 }
 
-Widget* Widget::get_focus_child()
+auto Widget::get_focus_child() -> Widget*
 {
   return Glib::wrap(gtk_widget_get_focus_child(gobj()));
 }
 
-const Widget* Widget::get_focus_child() const
+auto Widget::get_focus_child() const -> const Widget*
 {
   return const_cast<Widget*>(this)->get_focus_child();
 }
 
 
-Glib::SignalProxy<void()> Widget::signal_show()
+auto Widget::signal_show() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Widget_signal_show_info);
 }
 
 
-Glib::SignalProxy<void()> Widget::signal_hide()
+auto Widget::signal_hide() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Widget_signal_hide_info);
 }
 
 
-Glib::SignalProxy<void()> Widget::signal_map()
+auto Widget::signal_map() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Widget_signal_map_info);
 }
 
 
-Glib::SignalProxy<void()> Widget::signal_unmap()
+auto Widget::signal_unmap() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Widget_signal_unmap_info);
 }
 
 
-Glib::SignalProxy<void()> Widget::signal_realize()
+auto Widget::signal_realize() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Widget_signal_realize_info);
 }
 
 
-Glib::SignalProxy<void()> Widget::signal_unrealize()
+auto Widget::signal_unrealize() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Widget_signal_unrealize_info);
 }
 
 
-Glib::SignalProxy<void(Gtk::StateFlags)> Widget::signal_state_flags_changed()
+auto Widget::signal_state_flags_changed() -> Glib::SignalProxy<void(Gtk::StateFlags)>
 {
   return Glib::SignalProxy<void(Gtk::StateFlags) >(this, &Widget_signal_state_flags_changed_info);
 }
 
 
-Glib::SignalProxy<void(TextDirection)> Widget::signal_direction_changed()
+auto Widget::signal_direction_changed() -> Glib::SignalProxy<void(TextDirection)>
 {
   return Glib::SignalProxy<void(TextDirection) >(this, &Widget_signal_direction_changed_info);
 }
 
 
-Glib::SignalProxy<bool(bool)> Widget::signal_mnemonic_activate()
+auto Widget::signal_mnemonic_activate() -> Glib::SignalProxy<bool(bool)>
 {
   return Glib::SignalProxy<bool(bool) >(this, &Widget_signal_mnemonic_activate_info);
 }
 
 
-Glib::SignalProxy<void()> Widget::signal_destroy()
+auto Widget::signal_destroy() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Widget_signal_destroy_info);
 }
 
 
-Glib::SignalProxy<bool(int, int, bool, const Glib::RefPtr<Tooltip>&)> Widget::signal_query_tooltip()
+auto Widget::signal_query_tooltip() -> Glib::SignalProxy<bool(int, int, bool, const Glib::RefPtr<Tooltip>&)>
 {
   return Glib::SignalProxy<bool(int, int, bool, const Glib::RefPtr<Tooltip>&) >(this, &Widget_signal_query_tooltip_info);
 }
 
 
-Glib::PropertyProxy< Glib::ustring > Widget::property_name()
+auto Widget::property_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Widget::property_name() const
+auto Widget::property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > Widget::property_parent() const
+auto Widget::property_parent() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "parent");
 }
@@ -2429,107 +2429,107 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Root*>::value,
   "Type Root* cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Root* > Widget::property_root() const
+auto Widget::property_root() const -> Glib::PropertyProxy_ReadOnly< Root* >
 {
   return Glib::PropertyProxy_ReadOnly< Root* >(this, "root");
 }
 
-Glib::PropertyProxy< int > Widget::property_width_request()
+auto Widget::property_width_request() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "width-request");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Widget::property_width_request() const
+auto Widget::property_width_request() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "width-request");
 }
 
-Glib::PropertyProxy< int > Widget::property_height_request()
+auto Widget::property_height_request() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "height-request");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Widget::property_height_request() const
+auto Widget::property_height_request() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "height-request");
 }
 
-Glib::PropertyProxy< bool > Widget::property_visible()
+auto Widget::property_visible() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "visible");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Widget::property_visible() const
+auto Widget::property_visible() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "visible");
 }
 
-Glib::PropertyProxy< bool > Widget::property_sensitive()
+auto Widget::property_sensitive() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "sensitive");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Widget::property_sensitive() const
+auto Widget::property_sensitive() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "sensitive");
 }
 
-Glib::PropertyProxy< bool > Widget::property_can_focus()
+auto Widget::property_can_focus() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "can-focus");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Widget::property_can_focus() const
+auto Widget::property_can_focus() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "can-focus");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Widget::property_has_focus() const
+auto Widget::property_has_focus() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "has-focus");
 }
 
-Glib::PropertyProxy< bool > Widget::property_can_target()
+auto Widget::property_can_target() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "can-target");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Widget::property_can_target() const
+auto Widget::property_can_target() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "can-target");
 }
 
-Glib::PropertyProxy< bool > Widget::property_focus_on_click()
+auto Widget::property_focus_on_click() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "focus-on-click");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Widget::property_focus_on_click() const
+auto Widget::property_focus_on_click() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "focus-on-click");
 }
 
-Glib::PropertyProxy< bool > Widget::property_focusable()
+auto Widget::property_focusable() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "focusable");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Widget::property_focusable() const
+auto Widget::property_focusable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "focusable");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Widget::property_has_default() const
+auto Widget::property_has_default() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "has-default");
 }
 
-Glib::PropertyProxy< bool > Widget::property_receives_default()
+auto Widget::property_receives_default() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "receives-default");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Widget::property_receives_default() const
+auto Widget::property_receives_default() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "receives-default");
 }
@@ -2538,42 +2538,42 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Cu
   "Type Glib::RefPtr<Gdk::Cursor> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gdk::Cursor> > Widget::property_cursor()
+auto Widget::property_cursor() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Cursor> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gdk::Cursor> >(this, "cursor");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Cursor> > Widget::property_cursor() const
+auto Widget::property_cursor() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Cursor> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Cursor> >(this, "cursor");
 }
 
-Glib::PropertyProxy< bool > Widget::property_has_tooltip()
+auto Widget::property_has_tooltip() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "has-tooltip");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Widget::property_has_tooltip() const
+auto Widget::property_has_tooltip() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "has-tooltip");
 }
 
-Glib::PropertyProxy< Glib::ustring > Widget::property_tooltip_markup()
+auto Widget::property_tooltip_markup() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "tooltip-markup");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Widget::property_tooltip_markup() const
+auto Widget::property_tooltip_markup() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "tooltip-markup");
 }
 
-Glib::PropertyProxy< Glib::ustring > Widget::property_tooltip_text()
+auto Widget::property_tooltip_text() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "tooltip-text");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Widget::property_tooltip_text() const
+auto Widget::property_tooltip_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "tooltip-text");
 }
@@ -2582,12 +2582,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Align>::value,
   "Type Align cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Align > Widget::property_halign()
+auto Widget::property_halign() -> Glib::PropertyProxy< Align >
 {
   return Glib::PropertyProxy< Align >(this, "halign");
 }
 
-Glib::PropertyProxy_ReadOnly< Align > Widget::property_halign() const
+auto Widget::property_halign() const -> Glib::PropertyProxy_ReadOnly< Align >
 {
   return Glib::PropertyProxy_ReadOnly< Align >(this, "halign");
 }
@@ -2596,102 +2596,102 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Align>::value,
   "Type Align cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Align > Widget::property_valign()
+auto Widget::property_valign() -> Glib::PropertyProxy< Align >
 {
   return Glib::PropertyProxy< Align >(this, "valign");
 }
 
-Glib::PropertyProxy_ReadOnly< Align > Widget::property_valign() const
+auto Widget::property_valign() const -> Glib::PropertyProxy_ReadOnly< Align >
 {
   return Glib::PropertyProxy_ReadOnly< Align >(this, "valign");
 }
 
-Glib::PropertyProxy< int > Widget::property_margin_start()
+auto Widget::property_margin_start() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "margin-start");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Widget::property_margin_start() const
+auto Widget::property_margin_start() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "margin-start");
 }
 
-Glib::PropertyProxy< int > Widget::property_margin_end()
+auto Widget::property_margin_end() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "margin-end");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Widget::property_margin_end() const
+auto Widget::property_margin_end() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "margin-end");
 }
 
-Glib::PropertyProxy< int > Widget::property_margin_top()
+auto Widget::property_margin_top() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "margin-top");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Widget::property_margin_top() const
+auto Widget::property_margin_top() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "margin-top");
 }
 
-Glib::PropertyProxy< int > Widget::property_margin_bottom()
+auto Widget::property_margin_bottom() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "margin-bottom");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Widget::property_margin_bottom() const
+auto Widget::property_margin_bottom() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "margin-bottom");
 }
 
-Glib::PropertyProxy< bool > Widget::property_hexpand()
+auto Widget::property_hexpand() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "hexpand");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Widget::property_hexpand() const
+auto Widget::property_hexpand() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "hexpand");
 }
 
-Glib::PropertyProxy< bool > Widget::property_hexpand_set()
+auto Widget::property_hexpand_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "hexpand-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Widget::property_hexpand_set() const
+auto Widget::property_hexpand_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "hexpand-set");
 }
 
-Glib::PropertyProxy< bool > Widget::property_vexpand()
+auto Widget::property_vexpand() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "vexpand");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Widget::property_vexpand() const
+auto Widget::property_vexpand() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "vexpand");
 }
 
-Glib::PropertyProxy< bool > Widget::property_vexpand_set()
+auto Widget::property_vexpand_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "vexpand-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Widget::property_vexpand_set() const
+auto Widget::property_vexpand_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "vexpand-set");
 }
 
-Glib::PropertyProxy< double > Widget::property_opacity()
+auto Widget::property_opacity() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "opacity");
 }
 
-Glib::PropertyProxy_ReadOnly< double > Widget::property_opacity() const
+auto Widget::property_opacity() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "opacity");
 }
@@ -2700,22 +2700,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Overflow>::value,
   "Type Overflow cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Overflow > Widget::property_overflow()
+auto Widget::property_overflow() -> Glib::PropertyProxy< Overflow >
 {
   return Glib::PropertyProxy< Overflow >(this, "overflow");
 }
 
-Glib::PropertyProxy_ReadOnly< Overflow > Widget::property_overflow() const
+auto Widget::property_overflow() const -> Glib::PropertyProxy_ReadOnly< Overflow >
 {
   return Glib::PropertyProxy_ReadOnly< Overflow >(this, "overflow");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Widget::property_scale_factor() const
+auto Widget::property_scale_factor() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "scale-factor");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Widget::property_css_name() const
+auto Widget::property_css_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "css-name");
 }
@@ -2724,12 +2724,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<std::vector<Glib::us
   "Type std::vector<Glib::ustring> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< std::vector<Glib::ustring> > Widget::property_css_classes()
+auto Widget::property_css_classes() -> Glib::PropertyProxy< std::vector<Glib::ustring> >
 {
   return Glib::PropertyProxy< std::vector<Glib::ustring> >(this, "css-classes");
 }
 
-Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> > Widget::property_css_classes() const
+auto Widget::property_css_classes() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >
 {
   return Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >(this, "css-classes");
 }
@@ -2738,12 +2738,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<LayoutM
   "Type Glib::RefPtr<LayoutManager> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<LayoutManager> > Widget::property_layout_manager()
+auto Widget::property_layout_manager() -> Glib::PropertyProxy< Glib::RefPtr<LayoutManager> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<LayoutManager> >(this, "layout-manager");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<LayoutManager> > Widget::property_layout_manager() const
+auto Widget::property_layout_manager() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<LayoutManager> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<LayoutManager> >(this, "layout-manager");
 }
@@ -2821,7 +2821,7 @@ void Gtk::Widget::on_direction_changed(TextDirection direction)
   if(base && base->direction_changed)
     (*base->direction_changed)(gobj(),static_cast<GtkTextDirection>(direction));
 }
-bool Gtk::Widget::on_mnemonic_activate(bool group_cycling)
+auto Gtk::Widget::on_mnemonic_activate(bool group_cycling) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -2833,7 +2833,7 @@ bool Gtk::Widget::on_mnemonic_activate(bool group_cycling)
   using RType = bool;
   return RType();
 }
-bool Gtk::Widget::on_query_tooltip(int x, int y, bool keyboard_tooltip, const Glib::RefPtr<Tooltip>& tooltip)
+auto Gtk::Widget::on_query_tooltip(int x, int y, bool keyboard_tooltip, const Glib::RefPtr<Tooltip>& tooltip) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -2879,7 +2879,7 @@ void Gtk::Widget::size_allocate_vfunc(int width, int height, int baseline)
     (*base->size_allocate)(gobj(),width,height,baseline);
   }
 }
-SizeRequestMode Gtk::Widget::get_request_mode_vfunc() const
+auto Gtk::Widget::get_request_mode_vfunc() const -> SizeRequestMode
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -2905,7 +2905,7 @@ void Gtk::Widget::measure_vfunc(Orientation orientation, int for_size, int& mini
     (*base->measure)(const_cast<GtkWidget*>(gobj()),static_cast<GtkOrientation>(orientation),for_size,&(minimum),&(natural),&(minimum_baseline),&(natural_baseline));
   }
 }
-bool Gtk::Widget::grab_focus_vfunc()
+auto Gtk::Widget::grab_focus_vfunc() -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -2931,7 +2931,7 @@ void Gtk::Widget::set_focus_child_vfunc(Widget* child)
     (*base->set_focus_child)(gobj(),(GtkWidget*)Glib::unwrap(child));
   }
 }
-bool Gtk::Widget::contains_vfunc(double x, double y) const
+auto Gtk::Widget::contains_vfunc(double x, double y) const -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

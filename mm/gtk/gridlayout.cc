@@ -34,7 +34,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::GridLayout> wrap(GtkGridLayout* object, bool take_copy)
+auto wrap(GtkGridLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::GridLayout>
 {
   return Glib::make_refptr_for_instance<Gtk::GridLayout>( dynamic_cast<Gtk::GridLayout*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -49,7 +49,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& GridLayout_Class::init()
+auto GridLayout_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -74,7 +74,7 @@ void GridLayout_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* GridLayout_Class::wrap_new(GObject* object)
+auto GridLayout_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new GridLayout((GtkGridLayout*)object);
 }
@@ -82,7 +82,7 @@ Glib::ObjectBase* GridLayout_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkGridLayout* GridLayout::gobj_copy()
+auto GridLayout::gobj_copy() -> GtkGridLayout*
 {
   reference();
   return gobj();
@@ -105,7 +105,7 @@ GridLayout::GridLayout(GridLayout&& src) noexcept
 : LayoutManager(std::move(src))
 {}
 
-GridLayout& GridLayout::operator=(GridLayout&& src) noexcept
+auto GridLayout::operator=(GridLayout&& src) noexcept -> GridLayout&
 {
   LayoutManager::operator=(std::move(src));
   return *this;
@@ -118,13 +118,13 @@ GridLayout::~GridLayout() noexcept
 
 GridLayout::CppClassType GridLayout::gridlayout_class_; // initialize static member
 
-GType GridLayout::get_type()
+auto GridLayout::get_type() -> GType
 {
   return gridlayout_class_.init().get_type();
 }
 
 
-GType GridLayout::get_base_type()
+auto GridLayout::get_base_type() -> GType
 {
   return gtk_grid_layout_get_type();
 }
@@ -140,7 +140,7 @@ GridLayout::GridLayout()
 
 }
 
-Glib::RefPtr<GridLayout> GridLayout::create()
+auto GridLayout::create() -> Glib::RefPtr<GridLayout>
 {
   return Glib::make_refptr_for_instance<GridLayout>( new GridLayout() );
 }
@@ -150,7 +150,7 @@ void GridLayout::set_row_homogeneous(bool homogeneous)
   gtk_grid_layout_set_row_homogeneous(gobj(), static_cast<int>(homogeneous));
 }
 
-bool GridLayout::get_row_homogeneous() const
+auto GridLayout::get_row_homogeneous() const -> bool
 {
   return gtk_grid_layout_get_row_homogeneous(const_cast<GtkGridLayout*>(gobj()));
 }
@@ -160,7 +160,7 @@ void GridLayout::set_row_spacing(guint spacing)
   gtk_grid_layout_set_row_spacing(gobj(), spacing);
 }
 
-guint GridLayout::get_row_spacing() const
+auto GridLayout::get_row_spacing() const -> guint
 {
   return gtk_grid_layout_get_row_spacing(const_cast<GtkGridLayout*>(gobj()));
 }
@@ -170,7 +170,7 @@ void GridLayout::set_column_homogeneous(bool homogeneous)
   gtk_grid_layout_set_column_homogeneous(gobj(), static_cast<int>(homogeneous));
 }
 
-bool GridLayout::get_column_homogeneous() const
+auto GridLayout::get_column_homogeneous() const -> bool
 {
   return gtk_grid_layout_get_column_homogeneous(const_cast<GtkGridLayout*>(gobj()));
 }
@@ -180,7 +180,7 @@ void GridLayout::set_column_spacing(guint spacing)
   gtk_grid_layout_set_column_spacing(gobj(), spacing);
 }
 
-guint GridLayout::get_column_spacing() const
+auto GridLayout::get_column_spacing() const -> guint
 {
   return gtk_grid_layout_get_column_spacing(const_cast<GtkGridLayout*>(gobj()));
 }
@@ -190,7 +190,7 @@ void GridLayout::set_row_baseline_position(int row, BaselinePosition pos)
   gtk_grid_layout_set_row_baseline_position(gobj(), row, static_cast<GtkBaselinePosition>(pos));
 }
 
-BaselinePosition GridLayout::get_row_baseline_position(int row) const
+auto GridLayout::get_row_baseline_position(int row) const -> BaselinePosition
 {
   return static_cast<BaselinePosition>(gtk_grid_layout_get_row_baseline_position(const_cast<GtkGridLayout*>(gobj()), row));
 }
@@ -200,58 +200,58 @@ void GridLayout::set_baseline_row(int row)
   gtk_grid_layout_set_baseline_row(gobj(), row);
 }
 
-int GridLayout::get_baseline_row() const
+auto GridLayout::get_baseline_row() const -> int
 {
   return gtk_grid_layout_get_baseline_row(const_cast<GtkGridLayout*>(gobj()));
 }
 
 
-Glib::PropertyProxy< int > GridLayout::property_row_spacing()
+auto GridLayout::property_row_spacing() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "row-spacing");
 }
 
-Glib::PropertyProxy_ReadOnly< int > GridLayout::property_row_spacing() const
+auto GridLayout::property_row_spacing() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "row-spacing");
 }
 
-Glib::PropertyProxy< int > GridLayout::property_column_spacing()
+auto GridLayout::property_column_spacing() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "column-spacing");
 }
 
-Glib::PropertyProxy_ReadOnly< int > GridLayout::property_column_spacing() const
+auto GridLayout::property_column_spacing() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "column-spacing");
 }
 
-Glib::PropertyProxy< bool > GridLayout::property_row_homogeneous()
+auto GridLayout::property_row_homogeneous() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "row-homogeneous");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > GridLayout::property_row_homogeneous() const
+auto GridLayout::property_row_homogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "row-homogeneous");
 }
 
-Glib::PropertyProxy< bool > GridLayout::property_column_homogeneous()
+auto GridLayout::property_column_homogeneous() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "column-homogeneous");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > GridLayout::property_column_homogeneous() const
+auto GridLayout::property_column_homogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "column-homogeneous");
 }
 
-Glib::PropertyProxy< int > GridLayout::property_baseline_row()
+auto GridLayout::property_baseline_row() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "baseline-row");
 }
 
-Glib::PropertyProxy_ReadOnly< int > GridLayout::property_baseline_row() const
+auto GridLayout::property_baseline_row() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "baseline-row");
 }

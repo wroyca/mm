@@ -38,19 +38,11 @@ using GDBusProxyClass = struct _GDBusProxyClass;
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
-{
-
-namespace DBus
-{ class GIOMM_API Proxy_Class; } // namespace DBus
-
-} // namespace Gio
+namespace Gio::DBus
+{ class GIOMM_API Proxy_Class; } // namespace Gio
 #endif //DOXYGEN_SHOULD_SKIP_THIS
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 //The GMMPROC_EXTRA_NAMESPACE() macro is a hint to generate_wrap_init.pl to put it in the DBus sub-namespace
 
@@ -114,35 +106,33 @@ enum class ProxyFlags
 };
 
 /** @ingroup giommEnums */
-inline ProxyFlags operator|(ProxyFlags lhs, ProxyFlags rhs)
+inline auto operator|(ProxyFlags lhs, ProxyFlags rhs) -> ProxyFlags
   { return static_cast<ProxyFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline ProxyFlags operator&(ProxyFlags lhs, ProxyFlags rhs)
+inline auto operator&(ProxyFlags lhs, ProxyFlags rhs) -> ProxyFlags
   { return static_cast<ProxyFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline ProxyFlags operator^(ProxyFlags lhs, ProxyFlags rhs)
+inline auto operator^(ProxyFlags lhs, ProxyFlags rhs) -> ProxyFlags
   { return static_cast<ProxyFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline ProxyFlags operator~(ProxyFlags flags)
+inline auto operator~(ProxyFlags flags) -> ProxyFlags
   { return static_cast<ProxyFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline ProxyFlags& operator|=(ProxyFlags& lhs, ProxyFlags rhs)
+inline auto operator|=(ProxyFlags& lhs, ProxyFlags rhs) -> ProxyFlags&
   { return (lhs = static_cast<ProxyFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline ProxyFlags& operator&=(ProxyFlags& lhs, ProxyFlags rhs)
+inline auto operator&=(ProxyFlags& lhs, ProxyFlags rhs) -> ProxyFlags&
   { return (lhs = static_cast<ProxyFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline ProxyFlags& operator^=(ProxyFlags& lhs, ProxyFlags rhs)
+inline auto operator^=(ProxyFlags& lhs, ProxyFlags rhs) -> ProxyFlags&
   { return (lhs = static_cast<ProxyFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
-
-} // namespace DBus
 
 } // namespace Gio
 
@@ -154,16 +144,13 @@ template <>
 class GIOMM_API Value<Gio::DBus::ProxyFlags> : public Glib::Value_Flags<Gio::DBus::ProxyFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 
@@ -211,7 +198,7 @@ public:
 
   // noncopyable
   Proxy(const Proxy&) = delete;
-  Proxy& operator=(const Proxy&) = delete;
+  auto operator=(const Proxy&) -> Proxy& = delete;
 
 private:  friend class Proxy_Class;
   static CppClassType proxy_class_;
@@ -225,28 +212,28 @@ protected:
 public:
 
   Proxy(Proxy&& src) noexcept;
-  Proxy& operator=(Proxy&& src) noexcept;
+  auto operator=(Proxy&& src) noexcept -> Proxy&;
 
   ~Proxy() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDBusProxy*       gobj()       { return reinterpret_cast<GDBusProxy*>(gobject_); }
+  auto       gobj() -> GDBusProxy*       { return reinterpret_cast<GDBusProxy*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDBusProxy* gobj() const { return reinterpret_cast<GDBusProxy*>(gobject_); }
+  auto gobj() const -> const GDBusProxy* { return reinterpret_cast<GDBusProxy*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusProxy* gobj_copy();
+  auto gobj_copy() -> GDBusProxy*;
 
 private:
 
@@ -392,7 +379,7 @@ public:
 
   /** @throw Glib::Error.
    */
-  static Glib::RefPtr<Gio::DBus::Proxy> create_finish(const Glib::RefPtr<AsyncResult>& res);
+  static auto create_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Gio::DBus::Proxy>;
 
 
   /** Creates a proxy for accessing @a interface_name on the remote object
@@ -431,23 +418,23 @@ public:
    * Free with Glib::object_unref().
    */
 
-  static Glib::RefPtr<Proxy>
+  static auto
   create_sync(const Glib::RefPtr<Connection>& connection,
     const Glib::ustring& name,
     const Glib::ustring& object_path,
     const Glib::ustring& interface_name,
     const Glib::RefPtr<Cancellable>& cancellable,
     const Glib::RefPtr<InterfaceInfo>& info = {},
-    ProxyFlags flags = ProxyFlags::NONE);
+    ProxyFlags flags = ProxyFlags::NONE) -> Glib::RefPtr<Proxy>;
 
   /// Non-cancellable version of create_sync().
-  static Glib::RefPtr<Proxy>
+  static auto
   create_sync(const Glib::RefPtr<Connection>& connection,
     const Glib::ustring& name,
     const Glib::ustring& object_path,
     const Glib::ustring& interface_name,
     const Glib::RefPtr<InterfaceInfo>& info = {},
-    ProxyFlags flags = ProxyFlags::NONE);
+    ProxyFlags flags = ProxyFlags::NONE) -> Glib::RefPtr<Proxy>;
 
 
   /** Like g_dbus_proxy_new() but takes a BusType instead of a Gio::DBus::Connection.
@@ -498,7 +485,7 @@ public:
 
   /** @throw Glib::Error.
    */
-  static Glib::RefPtr<Gio::DBus::Proxy> create_for_bus_finish(const Glib::RefPtr<AsyncResult>& res);
+  static auto create_for_bus_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Gio::DBus::Proxy>;
 
 
   /** Like g_dbus_proxy_new_sync() but takes a BusType instead of a Gio::DBus::Connection.
@@ -519,23 +506,23 @@ public:
    * Free with Glib::object_unref().
    */
 
-  static Glib::RefPtr<Proxy>
+  static auto
   create_for_bus_sync(BusType bus_type,
     const Glib::ustring& name,
     const Glib::ustring& object_path,
     const Glib::ustring& interface_name,
     const Glib::RefPtr<Cancellable>& cancellable,
     const Glib::RefPtr<InterfaceInfo>& info = {},
-    ProxyFlags flags = ProxyFlags::NONE);
+    ProxyFlags flags = ProxyFlags::NONE) -> Glib::RefPtr<Proxy>;
 
   /// Non-cancellable version of create_for_bus_sync().
-  static Glib::RefPtr<Proxy>
+  static auto
   create_for_bus_sync(BusType bus_type,
     const Glib::ustring& name,
     const Glib::ustring& object_path,
     const Glib::ustring& interface_name,
     const Glib::RefPtr<InterfaceInfo>& info = {},
-    ProxyFlags flags = ProxyFlags::NONE);
+    ProxyFlags flags = ProxyFlags::NONE) -> Glib::RefPtr<Proxy>;
 
 
   /** Gets the flags that @a proxy was constructed with.
@@ -544,7 +531,7 @@ public:
    *
    * @return Flags from the Gio::DBus::ProxyFlags enumeration.
    */
-  ProxyFlags get_flags() const;
+  auto get_flags() const -> ProxyFlags;
 
 
   /** Gets the connection @a proxy is for.
@@ -553,7 +540,7 @@ public:
    *
    * @return A Gio::DBus::Connection owned by @a proxy. Do not free.
    */
-  Glib::RefPtr<Connection> get_connection();
+  auto get_connection() -> Glib::RefPtr<Connection>;
 
   /** Gets the connection @a proxy is for.
    *
@@ -561,7 +548,7 @@ public:
    *
    * @return A Gio::DBus::Connection owned by @a proxy. Do not free.
    */
-  Glib::RefPtr<const Connection> get_connection() const;
+  auto get_connection() const -> Glib::RefPtr<const Connection>;
 
 
   /** Gets the name that @a proxy was constructed for.
@@ -574,7 +561,7 @@ public:
    *
    * @return A string owned by @a proxy. Do not free.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
   /** The unique name that owns the name that @a proxy is for or <tt>nullptr</tt> if
    * no-one currently owns that name. You may connect to the
@@ -586,7 +573,7 @@ public:
    * @return The name owner or <tt>nullptr</tt> if no name
    * owner exists.
    */
-  Glib::ustring get_name_owner() const;
+  auto get_name_owner() const -> Glib::ustring;
 
   /** Gets the object path @a proxy is for.
    *
@@ -594,7 +581,7 @@ public:
    *
    * @return A string owned by @a proxy. Do not free.
    */
-  Glib::ustring get_object_path() const;
+  auto get_object_path() const -> Glib::ustring;
 
   /** Gets the D-Bus interface name @a proxy is for.
    *
@@ -602,7 +589,7 @@ public:
    *
    * @return A string owned by @a proxy. Do not free.
    */
-  Glib::ustring get_interface_name() const;
+  auto get_interface_name() const -> Glib::ustring;
 
 
   /** Gets the timeout to use if -1 (specifying default timeout) is
@@ -615,7 +602,7 @@ public:
    *
    * @return Timeout to use for @a proxy.
    */
-  int get_default_timeout() const;
+  auto get_default_timeout() const -> int;
 
   /** Sets the timeout to use if -1 (specifying default timeout) is
    * passed as @a timeout_msec in the g_dbus_proxy_call() and
@@ -690,7 +677,7 @@ public:
    * <tt>nullptr</tt>-terminated array of strings or <tt>nullptr</tt> if
    *  @a proxy has no cached properties.
    */
-  std::vector<Glib::ustring> get_cached_property_names() const;
+  auto get_cached_property_names() const -> std::vector<Glib::ustring>;
 
 
   /** Ensure that interactions with @a proxy conform to the given
@@ -713,7 +700,7 @@ public:
    * @return A Gio::DBus::InterfaceInfo or <tt>nullptr</tt>.
    * Do not unref the returned object, it is owned by @a proxy.
    */
-  Glib::RefPtr<InterfaceInfo> get_interface_info();
+  auto get_interface_info() -> Glib::RefPtr<InterfaceInfo>;
 
   /** Returns the Gio::DBus::InterfaceInfo, if any, specifying the interface
    * that @a proxy conforms to. See the Gio::DBus::Proxy::property_g_interface_info()
@@ -724,7 +711,7 @@ public:
    * @return A Gio::DBus::InterfaceInfo or <tt>nullptr</tt>.
    * Do not unref the returned object, it is owned by @a proxy.
    */
-  Glib::RefPtr<const InterfaceInfo> get_interface_info() const;
+  auto get_interface_info() const -> Glib::RefPtr<const InterfaceInfo>;
 
 
   /** Asynchronously invokes the @a method_name method on @a proxy.
@@ -791,7 +778,7 @@ public:
    *
    * @throw Glib::Error.
    */
-  Glib::VariantContainerBase call_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto call_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::VariantContainerBase;
 
 
   /** Synchronously invokes the @a method_name method on @a proxy.
@@ -834,10 +821,10 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::VariantContainerBase call_sync(const Glib::ustring& method_name, const Glib::RefPtr<Cancellable>& cancellable, const Glib::VariantContainerBase& parameters =  {}, int timeout_msec =  -1, CallFlags flags =  Gio::DBus::CallFlags::NONE);
+  auto call_sync(const Glib::ustring& method_name, const Glib::RefPtr<Cancellable>& cancellable, const Glib::VariantContainerBase& parameters =  {}, int timeout_msec =  -1, CallFlags flags =  Gio::DBus::CallFlags::NONE) -> Glib::VariantContainerBase;
 
   /// A call_sync() convenience overload.
-  Glib::VariantContainerBase call_sync(const Glib::ustring& method_name, const Glib::VariantContainerBase& parameters =  {}, int timeout_msec =  -1, CallFlags flags =  Gio::DBus::CallFlags::NONE);
+  auto call_sync(const Glib::ustring& method_name, const Glib::VariantContainerBase& parameters =  {}, int timeout_msec =  -1, CallFlags flags =  Gio::DBus::CallFlags::NONE) -> Glib::VariantContainerBase;
 
 
 #ifdef  G_OS_UNIX
@@ -893,7 +880,7 @@ public:
    * @throw Glib::Error.
    * @newin{2,34}
    */
-  Glib::VariantContainerBase call_finish(const Glib::RefPtr<AsyncResult>& res, Glib::RefPtr<UnixFDList>& out_fd_list);
+  auto call_finish(const Glib::RefPtr<AsyncResult>& res, Glib::RefPtr<UnixFDList>& out_fd_list) -> Glib::VariantContainerBase;
 #endif //  G_OS_UNIX
 
 
@@ -919,14 +906,14 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::VariantContainerBase call_sync(const Glib::ustring& method_name, const Glib::VariantContainerBase& parameters, const Glib::RefPtr<Cancellable>& cancellable, const Glib::RefPtr<UnixFDList>& fd_list, Glib::RefPtr<UnixFDList>& out_fd_list, int timeout_msec =  -1, CallFlags flags =  Gio::DBus::CallFlags::NONE);
+  auto call_sync(const Glib::ustring& method_name, const Glib::VariantContainerBase& parameters, const Glib::RefPtr<Cancellable>& cancellable, const Glib::RefPtr<UnixFDList>& fd_list, Glib::RefPtr<UnixFDList>& out_fd_list, int timeout_msec =  -1, CallFlags flags =  Gio::DBus::CallFlags::NONE) -> Glib::VariantContainerBase;
 #endif //  G_OS_UNIX
 
 #ifdef  G_OS_UNIX
 
 
   /// A call_sync() convenience overload.
-  Glib::VariantContainerBase call_sync(const Glib::ustring& method_name, const Glib::VariantContainerBase& parameters, const Glib::RefPtr<UnixFDList>& fd_list, Glib::RefPtr<UnixFDList>& out_fd_list, int timeout_msec =  -1, CallFlags flags =  Gio::DBus::CallFlags::NONE);
+  auto call_sync(const Glib::ustring& method_name, const Glib::VariantContainerBase& parameters, const Glib::RefPtr<UnixFDList>& fd_list, Glib::RefPtr<UnixFDList>& out_fd_list, int timeout_msec =  -1, CallFlags flags =  Gio::DBus::CallFlags::NONE) -> Glib::VariantContainerBase;
 #endif //  G_OS_UNIX
 
 
@@ -938,7 +925,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Connection> > property_g_connection() const;
+  auto property_g_connection() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Connection> >;
 
 
  /** The timeout to use if -1 (specifying default timeout) is passed
@@ -957,7 +944,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_g_default_timeout() ;
+  auto property_g_default_timeout() -> Glib::PropertyProxy< int > ;
 
 /** The timeout to use if -1 (specifying default timeout) is passed
    * as @a timeout_msec in the g_dbus_proxy_call() and
@@ -975,7 +962,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_g_default_timeout() const;
+  auto property_g_default_timeout() const -> Glib::PropertyProxy_ReadOnly< int >;
 
  /** Flags from the Gio::DBus::ProxyFlags enumeration.
    *
@@ -986,7 +973,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< ProxyFlags > property_g_flags() const;
+  auto property_g_flags() const -> Glib::PropertyProxy_ReadOnly< ProxyFlags >;
 
 
  /** Ensure that interactions with this proxy conform to the given
@@ -1019,7 +1006,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<InterfaceInfo> > property_g_interface_info() ;
+  auto property_g_interface_info() -> Glib::PropertyProxy< Glib::RefPtr<InterfaceInfo> > ;
 
 /** Ensure that interactions with this proxy conform to the given
    * interface. This is mainly to ensure that malformed data received
@@ -1051,7 +1038,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InterfaceInfo> > property_g_interface_info() const;
+  auto property_g_interface_info() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InterfaceInfo> >;
 
  /** The D-Bus interface name the proxy is for.
    *
@@ -1062,7 +1049,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_g_interface_name() const;
+  auto property_g_interface_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
  /** The well-known or unique name that the proxy is for.
@@ -1074,7 +1061,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_g_name() const;
+  auto property_g_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
  /** The unique name that owns Gio::DBus::Proxy::property_g_name() or <tt>nullptr</tt> if no-one
@@ -1088,7 +1075,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_g_name_owner() const;
+  auto property_g_name_owner() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
  /** The object path the proxy is for.
@@ -1100,7 +1087,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_g_object_path() const;
+  auto property_g_object_path() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   using MapChangedProperties = std::map<Glib::ustring, Glib::VariantBase>;
@@ -1136,7 +1123,7 @@ public:
    * @param invalidated_properties A <tt>nullptr</tt> terminated array of properties that was invalidated.
    */
 
-  Glib::SignalProxy<void(const MapChangedProperties&, const std::vector<Glib::ustring>&)> signal_properties_changed();
+  auto signal_properties_changed() -> Glib::SignalProxy<void(const MapChangedProperties&, const std::vector<Glib::ustring>&)>;
 
 
   /**
@@ -1158,7 +1145,7 @@ public:
    * @param parameters A Variant tuple with parameters for the signal.
    */
 
-  Glib::SignalProxy<void(const Glib::ustring&, const Glib::ustring&, const Glib::VariantContainerBase&)> signal_signal();
+  auto signal_signal() -> Glib::SignalProxy<void(const Glib::ustring&, const Glib::ustring&, const Glib::VariantContainerBase&)>;
 
   /**
    * @par Slot Prototype:
@@ -1179,7 +1166,7 @@ public:
    * @param parameters A Variant tuple with parameters for the signal.
    */
 
-  Glib::SignalProxyDetailed<void(const Glib::ustring&, const Glib::ustring&, const Glib::VariantContainerBase&)> signal_signal(const Glib::ustring& signal_name);
+  auto signal_signal(const Glib::ustring& signal_name) -> Glib::SignalProxyDetailed<void(const Glib::ustring&, const Glib::ustring&, const Glib::VariantContainerBase&)>;
 
 
 public:
@@ -1199,8 +1186,6 @@ protected:
 
 };
 
-} //namespace
-
 } // namespace Gio
 
 
@@ -1215,7 +1200,7 @@ namespace Glib
    * @relates Gio::DBus::Proxy
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DBus::Proxy> wrap(GDBusProxy* object, bool take_copy = false);
+  auto wrap(GDBusProxy* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::Proxy>;
 }
 
 

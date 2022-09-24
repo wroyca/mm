@@ -54,13 +54,13 @@ public:
   /** Get the value of this property.
    * @result The current value of the property.
    */
-  PropertyType get_value() const;
+  auto get_value() const -> PropertyType;
 
   /** Set the value of this property back to its default value
    */
   void reset_value() { reset_property_(); }
 
-  PropertyProxy<T>& operator=(const PropertyType& data)
+  auto operator=(const PropertyType& data) -> PropertyProxy<T>&
   {
     this->set_value(data);
     return *this;
@@ -89,7 +89,7 @@ public:
    */
   void reset_value() { reset_property_(); }
 
-  PropertyProxy_WriteOnly<T>& operator=(const PropertyType& data)
+  auto operator=(const PropertyType& data) -> PropertyProxy_WriteOnly<T>&
   {
     this->set_value(data);
     return *this;
@@ -114,7 +114,7 @@ public:
   /** Get the value of this property.
    * @result The current value of the property.
    */
-  PropertyType get_value() const;
+  auto get_value() const -> PropertyType;
 
   operator PropertyType() const { return this->get_value(); }
 };
@@ -135,8 +135,8 @@ PropertyProxy<T>::set_value(const T& data)
 }
 
 template <class T>
-T
-PropertyProxy<T>::get_value() const
+auto
+PropertyProxy<T>::get_value() const -> T
 {
   Glib::Value<T> value;
   value.init(Glib::Value<T>::value_type());
@@ -165,8 +165,8 @@ PropertyProxy_WriteOnly<T>::set_value(const T& data)
 // to avoid code duplication.
 // But the AIX compiler does not like that hack.
 template <class T>
-T
-PropertyProxy_ReadOnly<T>::get_value() const
+auto
+PropertyProxy_ReadOnly<T>::get_value() const -> T
 {
   Glib::Value<T> value;
   value.init(Glib::Value<T>::value_type());

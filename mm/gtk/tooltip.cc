@@ -60,7 +60,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::Tooltip> wrap(GtkTooltip* object, bool take_copy)
+auto wrap(GtkTooltip* object, bool take_copy) -> Glib::RefPtr<Gtk::Tooltip>
 {
   return Glib::make_refptr_for_instance<Gtk::Tooltip>( dynamic_cast<Gtk::Tooltip*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -75,7 +75,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Tooltip_Class::init()
+auto Tooltip_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -106,7 +106,7 @@ void Tooltip_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Tooltip_Class::wrap_new(GObject* object)
+auto Tooltip_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Tooltip((GtkTooltip*)object);
 }
@@ -114,7 +114,7 @@ Glib::ObjectBase* Tooltip_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkTooltip* Tooltip::gobj_copy()
+auto Tooltip::gobj_copy() -> GtkTooltip*
 {
   reference();
   return gobj();
@@ -137,7 +137,7 @@ Tooltip::Tooltip(Tooltip&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Tooltip& Tooltip::operator=(Tooltip&& src) noexcept
+auto Tooltip::operator=(Tooltip&& src) noexcept -> Tooltip&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -150,13 +150,13 @@ Tooltip::~Tooltip() noexcept
 
 Tooltip::CppClassType Tooltip::tooltip_class_; // initialize static member
 
-GType Tooltip::get_type()
+auto Tooltip::get_type() -> GType
 {
   return tooltip_class_.init().get_type();
 }
 
 
-GType Tooltip::get_base_type()
+auto Tooltip::get_base_type() -> GType
 {
   return gtk_tooltip_get_type();
 }

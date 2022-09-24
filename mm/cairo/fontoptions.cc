@@ -59,7 +59,7 @@ FontOptions::~FontOptions()
 }
 
 
-FontOptions& FontOptions::operator=(const FontOptions& src)
+auto FontOptions::operator=(const FontOptions& src) -> FontOptions&
 {
   //Reference-counting, instead of copying by value:
 
@@ -83,7 +83,7 @@ FontOptions& FontOptions::operator=(const FontOptions& src)
   return *this;
 }
 
-bool FontOptions::operator==(const FontOptions& src) const
+auto FontOptions::operator==(const FontOptions& src) const -> bool
 {
   return cairo_font_options_equal(m_cobject, src.cobj());
 }
@@ -94,7 +94,7 @@ void FontOptions::merge(const FontOptions& src)
   check_object_status_and_throw_exception(*this);
 }
 
-unsigned long FontOptions::hash() const
+auto FontOptions::hash() const -> unsigned long
 {
   const auto result = cairo_font_options_hash(m_cobject);
   check_object_status_and_throw_exception(*this);
@@ -107,7 +107,7 @@ void FontOptions::set_antialias(Antialias antialias)
   check_object_status_and_throw_exception(*this);
 }
 
-Antialias FontOptions::get_antialias() const
+auto FontOptions::get_antialias() const -> Antialias
 {
   const auto result = static_cast<Antialias>(cairo_font_options_get_antialias(m_cobject));
   check_object_status_and_throw_exception(*this);
@@ -120,7 +120,7 @@ void FontOptions::set_subpixel_order(SubpixelOrder subpixel_order)
   check_object_status_and_throw_exception(*this);
 }
 
-SubpixelOrder FontOptions::get_subpixel_order() const
+auto FontOptions::get_subpixel_order() const -> SubpixelOrder
 {
   const auto result = static_cast<SubpixelOrder>(cairo_font_options_get_subpixel_order(m_cobject));
   check_object_status_and_throw_exception(*this);
@@ -133,7 +133,7 @@ void FontOptions::set_hint_style(HintStyle hint_style)
   check_object_status_and_throw_exception(*this);
 }
 
-FontOptions::HintStyle FontOptions::get_hint_style() const
+auto FontOptions::get_hint_style() const -> FontOptions::HintStyle
 {
   const auto result = static_cast<HintStyle>(cairo_font_options_get_hint_style(m_cobject));
   check_object_status_and_throw_exception(*this);
@@ -147,7 +147,7 @@ void FontOptions::set_hint_metrics(HintMetrics hint_metrics)
   check_object_status_and_throw_exception(*this);
 }
 
-FontOptions::HintMetrics FontOptions::get_hint_metrics() const
+auto FontOptions::get_hint_metrics() const -> FontOptions::HintMetrics
 {
   const auto result =
       static_cast<HintMetrics>(cairo_font_options_get_hint_metrics(m_cobject));

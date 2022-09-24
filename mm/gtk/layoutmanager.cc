@@ -90,7 +90,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::LayoutManager> wrap(GtkLayoutManager* object, bool take_copy)
+auto wrap(GtkLayoutManager* object, bool take_copy) -> Glib::RefPtr<Gtk::LayoutManager>
 {
   return Glib::make_refptr_for_instance<Gtk::LayoutManager>( dynamic_cast<Gtk::LayoutManager*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -105,7 +105,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& LayoutManager_Class::init()
+auto LayoutManager_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -141,7 +141,7 @@ void LayoutManager_Class::class_init_function(void* g_class, void* class_data)
 
 }
 
-GtkSizeRequestMode LayoutManager_Class::get_request_mode_vfunc_callback(GtkLayoutManager* self, GtkWidget* widget)
+auto LayoutManager_Class::get_request_mode_vfunc_callback(GtkLayoutManager* self, GtkWidget* widget) -> GtkSizeRequestMode
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -217,7 +217,7 @@ void LayoutManager_Class::allocate_vfunc_callback(GtkLayoutManager* self, GtkWid
   if(base && base->allocate)
     (*base->allocate)(self, widget, width, height, baseline);
 }
-GtkLayoutChild* LayoutManager_Class::create_layout_child_vfunc_callback(GtkLayoutManager* self, GtkWidget* widget, GtkWidget* for_child)
+auto LayoutManager_Class::create_layout_child_vfunc_callback(GtkLayoutManager* self, GtkWidget* widget, GtkWidget* for_child) -> GtkLayoutChild*
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -331,7 +331,7 @@ void LayoutManager_Class::unroot_vfunc_callback(GtkLayoutManager* self)
 }
 
 
-Glib::ObjectBase* LayoutManager_Class::wrap_new(GObject* object)
+auto LayoutManager_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new LayoutManager((GtkLayoutManager*)object);
 }
@@ -339,7 +339,7 @@ Glib::ObjectBase* LayoutManager_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkLayoutManager* LayoutManager::gobj_copy()
+auto LayoutManager::gobj_copy() -> GtkLayoutManager*
 {
   reference();
   return gobj();
@@ -362,7 +362,7 @@ LayoutManager::LayoutManager(LayoutManager&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-LayoutManager& LayoutManager::operator=(LayoutManager&& src) noexcept
+auto LayoutManager::operator=(LayoutManager&& src) noexcept -> LayoutManager&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -375,13 +375,13 @@ LayoutManager::~LayoutManager() noexcept
 
 LayoutManager::CppClassType LayoutManager::layoutmanager_class_; // initialize static member
 
-GType LayoutManager::get_type()
+auto LayoutManager::get_type() -> GType
 {
   return layoutmanager_class_.init().get_type();
 }
 
 
-GType LayoutManager::get_base_type()
+auto LayoutManager::get_base_type() -> GType
 {
   return gtk_layout_manager_get_type();
 }
@@ -407,17 +407,17 @@ void LayoutManager::allocate(Widget& widget, int width, int height, int baseline
   gtk_layout_manager_allocate(gobj(), (widget).gobj(), width, height, baseline);
 }
 
-SizeRequestMode LayoutManager::get_request_mode() const
+auto LayoutManager::get_request_mode() const -> SizeRequestMode
 {
   return static_cast<SizeRequestMode>(gtk_layout_manager_get_request_mode(const_cast<GtkLayoutManager*>(gobj())));
 }
 
-Widget* LayoutManager::get_widget()
+auto LayoutManager::get_widget() -> Widget*
 {
   return Glib::wrap(gtk_layout_manager_get_widget(gobj()));
 }
 
-const Widget* LayoutManager::get_widget() const
+auto LayoutManager::get_widget() const -> const Widget*
 {
   return const_cast<LayoutManager*>(this)->get_widget();
 }
@@ -427,7 +427,7 @@ void LayoutManager::layout_changed()
   gtk_layout_manager_layout_changed(gobj());
 }
 
-Glib::RefPtr<LayoutChild> LayoutManager::get_layout_child(Widget& child)
+auto LayoutManager::get_layout_child(Widget& child) -> Glib::RefPtr<LayoutChild>
 {
   auto retvalue = Glib::wrap(gtk_layout_manager_get_layout_child(gobj(), (child).gobj()));
   if(retvalue)
@@ -435,13 +435,13 @@ Glib::RefPtr<LayoutChild> LayoutManager::get_layout_child(Widget& child)
   return retvalue;
 }
 
-Glib::RefPtr<const LayoutChild> LayoutManager::get_layout_child(Widget& child) const
+auto LayoutManager::get_layout_child(Widget& child) const -> Glib::RefPtr<const LayoutChild>
 {
   return const_cast<LayoutManager*>(this)->get_layout_child(child);
 }
 
 
-SizeRequestMode Gtk::LayoutManager::get_request_mode_vfunc(const Widget& widget) const
+auto Gtk::LayoutManager::get_request_mode_vfunc(const Widget& widget) const -> SizeRequestMode
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -478,7 +478,7 @@ void Gtk::LayoutManager::allocate_vfunc(const Widget& widget, int width, int hei
     (*base->allocate)(gobj(),const_cast<GtkWidget*>((widget).gobj()),width,height,baseline);
   }
 }
-Glib::RefPtr<LayoutChild> Gtk::LayoutManager::create_layout_child_vfunc(const Widget& widget, const Widget& for_child)
+auto Gtk::LayoutManager::create_layout_child_vfunc(const Widget& widget, const Widget& for_child) -> Glib::RefPtr<LayoutChild>
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

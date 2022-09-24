@@ -64,26 +64,26 @@ public:
 
   AccelKey(const AccelKey& src);
 
-  AccelKey& operator=(const AccelKey& src);
+  auto operator=(const AccelKey& src) -> AccelKey&;
 
-  bool is_null() const;
+  auto is_null() const -> bool;
 
   /**
    * Gets the accelerator key.
    */
-  guint get_key() const;
+  auto get_key() const -> guint;
   /**
    * Gets the accelerator modifier.
    */
-  Gdk::ModifierType get_mod() const;
+  auto get_mod() const -> Gdk::ModifierType;
   /**
    * Gets the accelerator path.
    */
-  Glib::ustring get_path() const;
+  auto get_path() const -> Glib::ustring;
   /**
    * Gets the accelerator representation for labels.
    */
-  Glib::ustring get_abbrev() const;
+  auto get_abbrev() const -> Glib::ustring;
 
 protected:
   guint key_;

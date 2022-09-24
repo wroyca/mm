@@ -60,11 +60,11 @@ class GTKMM_API CellRendererProgress
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   CellRendererProgress(CellRendererProgress&& src) noexcept;
-  CellRendererProgress& operator=(CellRendererProgress&& src) noexcept;
+  auto operator=(CellRendererProgress&& src) noexcept -> CellRendererProgress&;
 
   // noncopyable
   CellRendererProgress(const CellRendererProgress&) = delete;
-  CellRendererProgress& operator=(const CellRendererProgress&) = delete;
+  auto operator=(const CellRendererProgress&) -> CellRendererProgress& = delete;
 
   ~CellRendererProgress() noexcept override;
 
@@ -84,19 +84,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkCellRendererProgress*       gobj()       { return reinterpret_cast<GtkCellRendererProgress*>(gobject_); }
+  auto       gobj() -> GtkCellRendererProgress*       { return reinterpret_cast<GtkCellRendererProgress*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkCellRendererProgress* gobj() const { return reinterpret_cast<GtkCellRendererProgress*>(gobject_); }
+  auto gobj() const -> const GtkCellRendererProgress* { return reinterpret_cast<GtkCellRendererProgress*>(gobject_); }
 
 private:
 
@@ -112,7 +112,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_value() ;
+  auto property_value() -> Glib::PropertyProxy< int > ;
 
 /** The "value" property determines the percentage to which the
    * progress bar will be "filled in".
@@ -122,7 +122,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_value() const;
+  auto property_value() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The "text" property determines the label which will be drawn
    * over the progress bar. Setting this property to <tt>nullptr</tt> causes the default
@@ -134,7 +134,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_text() ;
+  auto property_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The "text" property determines the label which will be drawn
    * over the progress bar. Setting this property to <tt>nullptr</tt> causes the default
@@ -146,7 +146,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_text() const;
+  auto property_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Setting this to a non-negative value causes the cell renderer to
    * enter "activity mode", where a block bounces back and forth to
@@ -164,7 +164,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_pulse() ;
+  auto property_pulse() -> Glib::PropertyProxy< int > ;
 
 /** Setting this to a non-negative value causes the cell renderer to
    * enter "activity mode", where a block bounces back and forth to
@@ -182,7 +182,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_pulse() const;
+  auto property_pulse() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The "text-xalign" property controls the horizontal alignment of the
    * text in the progress bar.  Valid values range from 0 (left) to 1
@@ -193,7 +193,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< float > property_text_xalign() ;
+  auto property_text_xalign() -> Glib::PropertyProxy< float > ;
 
 /** The "text-xalign" property controls the horizontal alignment of the
    * text in the progress bar.  Valid values range from 0 (left) to 1
@@ -204,7 +204,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< float > property_text_xalign() const;
+  auto property_text_xalign() const -> Glib::PropertyProxy_ReadOnly< float >;
 
   /** The "text-yalign" property controls the vertical alignment of the
    * text in the progress bar.  Valid values range from 0 (top) to 1
@@ -215,7 +215,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< float > property_text_yalign() ;
+  auto property_text_yalign() -> Glib::PropertyProxy< float > ;
 
 /** The "text-yalign" property controls the vertical alignment of the
    * text in the progress bar.  Valid values range from 0 (top) to 1
@@ -226,24 +226,24 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< float > property_text_yalign() const;
+  auto property_text_yalign() const -> Glib::PropertyProxy_ReadOnly< float >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_inverted() ;
+  auto property_inverted() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_inverted() const;
+  auto property_inverted() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
-  Glib::PropertyProxy_Base _property_renderable() override;
+  auto _property_renderable() -> Glib::PropertyProxy_Base override;
 
 
 public:
@@ -273,7 +273,7 @@ namespace Glib
    * @relates Gtk::CellRendererProgress
    */
   GTKMM_API
-  Gtk::CellRendererProgress* wrap(GtkCellRendererProgress* object, bool take_copy = false);
+  auto wrap(GtkCellRendererProgress* object, bool take_copy = false) -> Gtk::CellRendererProgress*;
 } //namespace Glib
 
 

@@ -75,7 +75,7 @@ public:
 
   // noncopyable
   ListStore(const ListStore&) = delete;
-  ListStore& operator=(const ListStore&) = delete;
+  auto operator=(const ListStore&) -> ListStore& = delete;
 
 private:  friend class ListStore_Class;
   static CppClassType liststore_class_;
@@ -89,28 +89,28 @@ protected:
 public:
 
   ListStore(ListStore&& src) noexcept;
-  ListStore& operator=(ListStore&& src) noexcept;
+  auto operator=(ListStore&& src) noexcept -> ListStore&;
 
   ~ListStore() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkListStore*       gobj()       { return reinterpret_cast<GtkListStore*>(gobject_); }
+  auto       gobj() -> GtkListStore*       { return reinterpret_cast<GtkListStore*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkListStore* gobj() const { return reinterpret_cast<GtkListStore*>(gobject_); }
+  auto gobj() const -> const GtkListStore* { return reinterpret_cast<GtkListStore*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkListStore* gobj_copy();
+  auto gobj_copy() -> GtkListStore*;
 
 private:
 
@@ -133,7 +133,7 @@ public:
    * @result The new ListStore.
    */
 
-  static Glib::RefPtr<ListStore> create(const TreeModelColumnRecord& columns);
+  static auto create(const TreeModelColumnRecord& columns) -> Glib::RefPtr<ListStore>;
 
 
   void set_column_types(const TreeModelColumnRecord& columns);
@@ -143,7 +143,7 @@ public:
    * @param iter The iterator to the row to be removed.
    * @result An iterator to the next row, or end() if there is none.
    */
-  iterator erase(const iterator& iter);
+  auto erase(const iterator& iter) -> iterator;
 
 
   //TODO: Make this documentation similar to documentation for Standard C++ insert methods.
@@ -155,7 +155,7 @@ public:
    * @param iter An iterator to the row before which the new row will be inserted.
    * @result An iterator to the new row.
    */
-  iterator insert(const iterator& iter);
+  auto insert(const iterator& iter) -> iterator;
 
 
   //TODO: Docs. This one is apparently faster.
@@ -167,7 +167,7 @@ public:
    * @param iter An iterator to the row after which the new row will be inserted.
    * @result An iterator to the new row.
    */
-  iterator insert_after(const iterator& iter);
+  auto insert_after(const iterator& iter) -> iterator;
 
 
   /** Creates a new row at the start.
@@ -176,7 +176,7 @@ public:
    *
    * @result An iterator to the new row.
    */
-  iterator prepend();
+  auto prepend() -> iterator;
 
   /** Creates a new row at the end.
    * The row will be empty - to fill in values, you need to dereference the returned iterator and use Row::operator[] or Row::set_value().
@@ -184,7 +184,7 @@ public:
    *
    * @result An iterator to the new row.
    */
-  iterator append();
+  auto append() -> iterator;
 
 
   /** Swaps @a a and @a b in @a store. Note that this function only works with
@@ -221,7 +221,7 @@ public:
    * @param iter The iterator to check.
    * @return <tt>true</tt> if the iter is valid, <tt>false</tt> if the iter is invalid.
    */
-  bool iter_is_valid(const const_iterator& iter) const;
+  auto iter_is_valid(const const_iterator& iter) const -> bool;
 
 protected:
   void set_value_impl(const iterator& row, int column, const Glib::ValueBase& value) override;
@@ -254,7 +254,7 @@ namespace Glib
    * @relates Gtk::ListStore
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::ListStore> wrap(GtkListStore* object, bool take_copy = false);
+  auto wrap(GtkListStore* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ListStore>;
 }
 
 

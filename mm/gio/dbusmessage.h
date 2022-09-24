@@ -41,19 +41,11 @@ using GDBusMessageClass = struct _GDBusMessageClass;
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
-{
-
-namespace DBus
-{ class GIOMM_API Message_Class; } // namespace DBus
-
-} // namespace Gio
+namespace Gio::DBus
+{ class GIOMM_API Message_Class; } // namespace Gio
 #endif //DOXYGEN_SHOULD_SKIP_THIS
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 /** @addtogroup giommEnums giomm Enums and Flags */
@@ -133,31 +125,31 @@ enum class MessageFlags
 };
 
 /** @ingroup giommEnums */
-inline MessageFlags operator|(MessageFlags lhs, MessageFlags rhs)
+inline auto operator|(MessageFlags lhs, MessageFlags rhs) -> MessageFlags
   { return static_cast<MessageFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline MessageFlags operator&(MessageFlags lhs, MessageFlags rhs)
+inline auto operator&(MessageFlags lhs, MessageFlags rhs) -> MessageFlags
   { return static_cast<MessageFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline MessageFlags operator^(MessageFlags lhs, MessageFlags rhs)
+inline auto operator^(MessageFlags lhs, MessageFlags rhs) -> MessageFlags
   { return static_cast<MessageFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline MessageFlags operator~(MessageFlags flags)
+inline auto operator~(MessageFlags flags) -> MessageFlags
   { return static_cast<MessageFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline MessageFlags& operator|=(MessageFlags& lhs, MessageFlags rhs)
+inline auto operator|=(MessageFlags& lhs, MessageFlags rhs) -> MessageFlags&
   { return (lhs = static_cast<MessageFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline MessageFlags& operator&=(MessageFlags& lhs, MessageFlags rhs)
+inline auto operator&=(MessageFlags& lhs, MessageFlags rhs) -> MessageFlags&
   { return (lhs = static_cast<MessageFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline MessageFlags& operator^=(MessageFlags& lhs, MessageFlags rhs)
+inline auto operator^=(MessageFlags& lhs, MessageFlags rhs) -> MessageFlags&
   { return (lhs = static_cast<MessageFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -246,35 +238,33 @@ enum class CapabilityFlags
 };
 
 /** @ingroup giommEnums */
-inline CapabilityFlags operator|(CapabilityFlags lhs, CapabilityFlags rhs)
+inline auto operator|(CapabilityFlags lhs, CapabilityFlags rhs) -> CapabilityFlags
   { return static_cast<CapabilityFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline CapabilityFlags operator&(CapabilityFlags lhs, CapabilityFlags rhs)
+inline auto operator&(CapabilityFlags lhs, CapabilityFlags rhs) -> CapabilityFlags
   { return static_cast<CapabilityFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline CapabilityFlags operator^(CapabilityFlags lhs, CapabilityFlags rhs)
+inline auto operator^(CapabilityFlags lhs, CapabilityFlags rhs) -> CapabilityFlags
   { return static_cast<CapabilityFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline CapabilityFlags operator~(CapabilityFlags flags)
+inline auto operator~(CapabilityFlags flags) -> CapabilityFlags
   { return static_cast<CapabilityFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline CapabilityFlags& operator|=(CapabilityFlags& lhs, CapabilityFlags rhs)
+inline auto operator|=(CapabilityFlags& lhs, CapabilityFlags rhs) -> CapabilityFlags&
   { return (lhs = static_cast<CapabilityFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline CapabilityFlags& operator&=(CapabilityFlags& lhs, CapabilityFlags rhs)
+inline auto operator&=(CapabilityFlags& lhs, CapabilityFlags rhs) -> CapabilityFlags&
   { return (lhs = static_cast<CapabilityFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline CapabilityFlags& operator^=(CapabilityFlags& lhs, CapabilityFlags rhs)
+inline auto operator^=(CapabilityFlags& lhs, CapabilityFlags rhs) -> CapabilityFlags&
   { return (lhs = static_cast<CapabilityFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
-
-} // namespace DBus
 
 } // namespace Gio
 
@@ -286,16 +276,13 @@ template <>
 class GIOMM_API Value<Gio::DBus::CapabilityFlags> : public Glib::Value_Flags<Gio::DBus::CapabilityFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 
@@ -319,7 +306,7 @@ public:
 
   // noncopyable
   Message(const Message&) = delete;
-  Message& operator=(const Message&) = delete;
+  auto operator=(const Message&) -> Message& = delete;
 
 private:  friend class Message_Class;
   static CppClassType message_class_;
@@ -333,28 +320,28 @@ protected:
 public:
 
   Message(Message&& src) noexcept;
-  Message& operator=(Message&& src) noexcept;
+  auto operator=(Message&& src) noexcept -> Message&;
 
   ~Message() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDBusMessage*       gobj()       { return reinterpret_cast<GDBusMessage*>(gobject_); }
+  auto       gobj() -> GDBusMessage*       { return reinterpret_cast<GDBusMessage*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDBusMessage* gobj() const { return reinterpret_cast<GDBusMessage*>(gobject_); }
+  auto gobj() const -> const GDBusMessage* { return reinterpret_cast<GDBusMessage*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusMessage* gobj_copy();
+  auto gobj_copy() -> GDBusMessage*;
 
 private:
 
@@ -373,7 +360,7 @@ public:
    */
 
 
-  static Glib::RefPtr<Message> create();
+  static auto create() -> Glib::RefPtr<Message>;
 
 
   // Note that we can't use _WRAP_CTOR() and _WRAP_CREATE() because the C functions do more than just call g_object_new():
@@ -397,7 +384,7 @@ public:
    * @param signal A valid signal name.
    * @return A Gio::DBus::Message. Free with Glib::object_unref().
    */
-  static Glib::RefPtr<Message> create_signal(const Glib::ustring& path, const Glib::ustring& iface, const Glib::ustring& signal);
+  static auto create_signal(const Glib::ustring& path, const Glib::ustring& iface, const Glib::ustring& signal) -> Glib::RefPtr<Message>;
 
   /** Creates a new Gio::DBus::Message for a method call.
    *
@@ -409,7 +396,7 @@ public:
    * @param method A valid method name.
    * @return A Gio::DBus::Message. Free with Glib::object_unref().
    */
-  static Glib::RefPtr<Message> create_method_call(const Glib::ustring& name, const Glib::ustring& path, const Glib::ustring& iface, const Glib::ustring& method);
+  static auto create_method_call(const Glib::ustring& name, const Glib::ustring& path, const Glib::ustring& iface, const Glib::ustring& method) -> Glib::RefPtr<Message>;
 
   /** Creates a new Gio::DBus::Message that is a reply to @a method_call_message.
    *
@@ -419,7 +406,7 @@ public:
    * create a reply message to.
    * @return Gio::DBus::Message. Free with Glib::object_unref().
    */
-  static Glib::RefPtr<Message> create_method_reply(const Glib::RefPtr<Message>& method_call_message);
+  static auto create_method_reply(const Glib::RefPtr<Message>& method_call_message) -> Glib::RefPtr<Message>;
 
   /** Creates a new Gio::DBus::Message that is an error reply to @a method_call_message.
    *
@@ -431,7 +418,7 @@ public:
    * @param error_message The D-Bus error message.
    * @return A Gio::DBus::Message. Free with Glib::object_unref().
    */
-  static Glib::RefPtr<Message> create_method_error_literal(const Glib::RefPtr<const Message>& method_call_message, const Glib::ustring& error_name, const Glib::ustring& error_message);
+  static auto create_method_error_literal(const Glib::RefPtr<const Message>& method_call_message, const Glib::ustring& error_name, const Glib::ustring& error_message) -> Glib::RefPtr<Message>;
 
   // Ignore variable argument functions.
 
@@ -453,7 +440,7 @@ public:
    *
    * @throws Gio::Error
    */
-  static Glib::RefPtr<Message> create_from_blob(const guchar* blob, gsize blob_len, CapabilityFlags capabilities =  CapabilityFlags::NONE);
+  static auto create_from_blob(const guchar* blob, gsize blob_len, CapabilityFlags capabilities =  CapabilityFlags::NONE) -> Glib::RefPtr<Message>;
 
 
   /** Produces a human-readable multi-line description of @a message.
@@ -472,7 +459,7 @@ public:
    * @param indent Indentation level.
    * @return A string.
    */
-  Glib::ustring print(guint indent);
+  auto print(guint indent) -> Glib::ustring;
 
 
   /** Checks whether @a message is locked. To monitor changes to this
@@ -483,7 +470,7 @@ public:
    *
    * @return <tt>true</tt> if @a message is locked, <tt>false</tt> otherwise.
    */
-  bool get_locked() const;
+  auto get_locked() const -> bool;
 
   /** If @a message is locked, does nothing. Otherwise locks the message.
    *
@@ -505,7 +492,7 @@ public:
    *
    * @throws Gio::Error
    */
-  Glib::RefPtr<Message> copy() const;
+  auto copy() const -> Glib::RefPtr<Message>;
 
 
   /** Gets the type of @a message.
@@ -514,7 +501,7 @@ public:
    *
    * @return A 8-bit unsigned integer (typically a value from the DBusMessageType enumeration).
    */
-  MessageType get_message_type() const;
+  auto get_message_type() const -> MessageType;
 
   /** Sets @a message to be of @a type.
    *
@@ -551,7 +538,7 @@ public:
    *
    * @return The byte order.
    */
-  ByteOrder get_byte_order() const;
+  auto get_byte_order() const -> ByteOrder;
 
   /** Sets the byte order of @a message.
    *
@@ -566,7 +553,7 @@ public:
    *
    * @return A #guint32.
    */
-  guint32 get_serial() const;
+  auto get_serial() const -> guint32;
 
   /** Sets the serial for @a message.
    *
@@ -583,7 +570,7 @@ public:
    *
    * @return Flags that are set (typically values from the DBusMessageFlags enumeration bitwise ORed together).
    */
-  MessageFlags get_flags() const;
+  auto get_flags() const -> MessageFlags;
 
   /** Sets the flags to set on @a message.
    *
@@ -630,7 +617,7 @@ public:
    * @return A UnixFDList or <tt>nullptr</tt> if no file descriptors are
    * associated. Do not free, this object is owned by @a message.
    */
-  Glib::RefPtr<UnixFDList> get_unix_fd_list();
+  auto get_unix_fd_list() -> Glib::RefPtr<UnixFDList>;
 #endif //  G_OS_UNIX
 
 
@@ -651,7 +638,7 @@ public:
    * @return A UnixFDList or <tt>nullptr</tt> if no file descriptors are
    * associated. Do not free, this object is owned by @a message.
    */
-  Glib::RefPtr<const UnixFDList> get_unix_fd_list() const;
+  auto get_unix_fd_list() const -> Glib::RefPtr<const UnixFDList>;
 #endif //  G_OS_UNIX
 
 
@@ -690,7 +677,7 @@ public:
    *
    * @return The value.
    */
-  guint32 get_num_unix_fds() const;
+  auto get_num_unix_fds() const -> guint32;
 
   /** Convenience setter for the Gio::DBus::MessageHeaderField::NUM_UNIX_FDS header field.
    *
@@ -727,7 +714,7 @@ public:
    * terminated by Gio::DBus::MessageHeaderField::INVALID.  Each element
    * is a #guchar.
    */
-  std::vector<guchar> get_header_fields() const;
+  auto get_header_fields() const -> std::vector<guchar>;
 
 
   /** Convenience getter for the Gio::DBus::MessageHeaderField::DESTINATION header field.
@@ -736,7 +723,7 @@ public:
    *
    * @return The value.
    */
-  Glib::ustring get_destination() const;
+  auto get_destination() const -> Glib::ustring;
 
   /** Convenience setter for the Gio::DBus::MessageHeaderField::DESTINATION header field.
    *
@@ -753,7 +740,7 @@ public:
    *
    * @return The value.
    */
-  Glib::ustring get_error_name() const;
+  auto get_error_name() const -> Glib::ustring;
 
   /** Convenience setter for the Gio::DBus::MessageHeaderField::ERROR_NAME header field.
    *
@@ -770,7 +757,7 @@ public:
    *
    * @return The value.
    */
-  Glib::ustring get_interface() const;
+  auto get_interface() const -> Glib::ustring;
 
   /** Convenience setter for the Gio::DBus::MessageHeaderField::INTERFACE header field.
    *
@@ -787,7 +774,7 @@ public:
    *
    * @return The value.
    */
-  Glib::ustring get_member() const;
+  auto get_member() const -> Glib::ustring;
 
   /** Convenience setter for the Gio::DBus::MessageHeaderField::MEMBER header field.
    *
@@ -804,7 +791,7 @@ public:
    *
    * @return The value.
    */
-  Glib::ustring get_path() const;
+  auto get_path() const -> Glib::ustring;
 
   /** Convenience setter for the Gio::DBus::MessageHeaderField::PATH header field.
    *
@@ -821,7 +808,7 @@ public:
    *
    * @return The value.
    */
-  guint32 get_reply_serial() const;
+  auto get_reply_serial() const -> guint32;
 
   /** Convenience setter for the Gio::DBus::MessageHeaderField::REPLY_SERIAL header field.
    *
@@ -838,7 +825,7 @@ public:
    *
    * @return The value.
    */
-  Glib::ustring get_sender() const;
+  auto get_sender() const -> Glib::ustring;
 
   /** Convenience setter for the Gio::DBus::MessageHeaderField::SENDER header field.
    *
@@ -857,7 +844,7 @@ public:
    *
    * @return The value.
    */
-  Glib::ustring get_signature() const;
+  auto get_signature() const -> Glib::ustring;
 
   /** Convenience setter for the Gio::DBus::MessageHeaderField::SIGNATURE header field.
    *
@@ -875,7 +862,7 @@ public:
    * @return The string item or <tt>nullptr</tt> if the first item in the body of
    *  @a message is not a string.
    */
-  Glib::ustring get_arg0() const;
+  auto get_arg0() const -> Glib::ustring;
 
 
   /** Utility function to calculate how many bytes are needed to
@@ -891,7 +878,7 @@ public:
    *
    * @throws Gio::Error
    */
-  static gssize bytes_needed(const guchar* blob, gsize blob_len);
+  static auto bytes_needed(const guchar* blob, gsize blob_len) -> gssize;
 
 
   /** Serializes @a message to a blob. The byte order returned by
@@ -907,7 +894,7 @@ public:
    *
    * @throws Gio::Error
    */
-  guchar* to_blob(gsize& out_size, CapabilityFlags capabilities =  CapabilityFlags::NONE);
+  auto to_blob(gsize& out_size, CapabilityFlags capabilities =  CapabilityFlags::NONE) -> guchar*;
 
 
   /** If @a message is not of type Gio::DBus::MessageType::ERROR does
@@ -932,7 +919,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_locked() const;
+  auto property_locked() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -948,8 +935,6 @@ protected:
 
 };
 
-} //namespace DBus
-
 } // namespace Gio
 
 
@@ -964,7 +949,7 @@ namespace Glib
    * @relates Gio::DBus::Message
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DBus::Message> wrap(GDBusMessage* object, bool take_copy = false);
+  auto wrap(GDBusMessage* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::Message>;
 }
 
 

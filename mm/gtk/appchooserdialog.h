@@ -75,11 +75,11 @@ class GTKMM_API AppChooserDialog
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   AppChooserDialog(AppChooserDialog&& src) noexcept;
-  AppChooserDialog& operator=(AppChooserDialog&& src) noexcept;
+  auto operator=(AppChooserDialog&& src) noexcept -> AppChooserDialog&;
 
   // noncopyable
   AppChooserDialog(const AppChooserDialog&) = delete;
-  AppChooserDialog& operator=(const AppChooserDialog&) = delete;
+  auto operator=(const AppChooserDialog&) -> AppChooserDialog& = delete;
 
   ~AppChooserDialog() noexcept override;
 
@@ -99,19 +99,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkAppChooserDialog*       gobj()       { return reinterpret_cast<GtkAppChooserDialog*>(gobject_); }
+  auto       gobj() -> GtkAppChooserDialog*       { return reinterpret_cast<GtkAppChooserDialog*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkAppChooserDialog* gobj() const { return reinterpret_cast<GtkAppChooserDialog*>(gobject_); }
+  auto gobj() const -> const GtkAppChooserDialog* { return reinterpret_cast<GtkAppChooserDialog*>(gobject_); }
 
 private:
 
@@ -132,13 +132,13 @@ public:
    *
    * @return The `Gtk::AppChooserWidget` of @a self.
    */
-  Widget* get_widget();
+  auto get_widget() -> Widget*;
 
   /** Returns the `Gtk::AppChooserWidget` of this dialog.
    *
    * @return The `Gtk::AppChooserWidget` of @a self.
    */
-  const Widget* get_widget() const;
+  auto get_widget() const -> const Widget*;
 
 
   /** Sets the text to display at the top of the dialog.
@@ -154,7 +154,7 @@ public:
    * @return The text to display at the top of the dialog,
    * or <tt>nullptr</tt>, in which case a default text is displayed.
    */
-  Glib::ustring get_heading() const;
+  auto get_heading() const -> Glib::ustring;
 
   /** The GFile used by the `Gtk::AppChooserDialog`.
    *
@@ -164,7 +164,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> > property_gfile() const;
+  auto property_gfile() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >;
 
 
   /** The text to show at the top of the dialog.
@@ -176,7 +176,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_heading() ;
+  auto property_heading() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The text to show at the top of the dialog.
    *
@@ -187,7 +187,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_heading() const;
+  auto property_heading() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -217,7 +217,7 @@ namespace Glib
    * @relates Gtk::AppChooserDialog
    */
   GTKMM_API
-  Gtk::AppChooserDialog* wrap(GtkAppChooserDialog* object, bool take_copy = false);
+  auto wrap(GtkAppChooserDialog* object, bool take_copy = false) -> Gtk::AppChooserDialog*;
 } //namespace Glib
 
 

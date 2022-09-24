@@ -63,7 +63,7 @@ public:
 
   // noncopyable
   DataOutputStream(const DataOutputStream&) = delete;
-  DataOutputStream& operator=(const DataOutputStream&) = delete;
+  auto operator=(const DataOutputStream&) -> DataOutputStream& = delete;
 
 private:  friend class DataOutputStream_Class;
   static CppClassType dataoutputstream_class_;
@@ -77,28 +77,28 @@ protected:
 public:
 
   DataOutputStream(DataOutputStream&& src) noexcept;
-  DataOutputStream& operator=(DataOutputStream&& src) noexcept;
+  auto operator=(DataOutputStream&& src) noexcept -> DataOutputStream&;
 
   ~DataOutputStream() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDataOutputStream*       gobj()       { return reinterpret_cast<GDataOutputStream*>(gobject_); }
+  auto       gobj() -> GDataOutputStream*       { return reinterpret_cast<GDataOutputStream*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDataOutputStream* gobj() const { return reinterpret_cast<GDataOutputStream*>(gobject_); }
+  auto gobj() const -> const GDataOutputStream* { return reinterpret_cast<GDataOutputStream*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDataOutputStream* gobj_copy();
+  auto gobj_copy() -> GDataOutputStream*;
 
 private:
 
@@ -110,7 +110,7 @@ protected:
 public:
 
 
-  static Glib::RefPtr<DataOutputStream> create(const Glib::RefPtr<OutputStream>& base_stream);
+  static auto create(const Glib::RefPtr<OutputStream>& base_stream) -> Glib::RefPtr<DataOutputStream>;
 
 
   /** Sets the byte order of the data output stream to @a order.
@@ -123,7 +123,7 @@ public:
    *
    * @return The DataStreamByteOrder for the @a stream.
    */
-  DataStreamByteOrder get_byte_order() const;
+  auto get_byte_order() const -> DataStreamByteOrder;
 
 
   /** Puts a byte into the output stream.
@@ -134,10 +134,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool put_byte(guchar data, const Glib::RefPtr<Cancellable>& cancellable);
+  auto put_byte(guchar data, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A put_byte() convenience overload.
-  bool put_byte(guchar data);
+  auto put_byte(guchar data) -> bool;
 
 
   /** Puts a signed 16-bit integer into the output stream.
@@ -148,10 +148,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool put_int16(gint16 data, const Glib::RefPtr<Cancellable>& cancellable);
+  auto put_int16(gint16 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A put_int16() convenience overload.
-  bool put_int16(gint16 data);
+  auto put_int16(gint16 data) -> bool;
 
 
   /** Puts an unsigned 16-bit integer into the output stream.
@@ -162,10 +162,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool put_uint16(guint16 data, const Glib::RefPtr<Cancellable>& cancellable);
+  auto put_uint16(guint16 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A put_uint16() convenience overload.
-  bool put_uint16(guint16 data);
+  auto put_uint16(guint16 data) -> bool;
 
 
   /** Puts a signed 32-bit integer into the output stream.
@@ -176,10 +176,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool put_int32(gint32 data, const Glib::RefPtr<Cancellable>& cancellable);
+  auto put_int32(gint32 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A put_int32() convenience overload.
-  bool put_int32(gint32 data);
+  auto put_int32(gint32 data) -> bool;
 
 
   /** Puts an unsigned 32-bit integer into the stream.
@@ -190,10 +190,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool put_uint32(guint32 data, const Glib::RefPtr<Cancellable>& cancellable);
+  auto put_uint32(guint32 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A put_uint32() convenience overload.
-  bool put_uint32(guint32 data);
+  auto put_uint32(guint32 data) -> bool;
 
 
   /** Puts a signed 64-bit integer into the stream.
@@ -204,10 +204,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool put_int64(gint64 data, const Glib::RefPtr<Cancellable>& cancellable);
+  auto put_int64(gint64 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A put_int64() convenience overload.
-  bool put_int64(gint64 data);
+  auto put_int64(gint64 data) -> bool;
 
 
   /** Puts an unsigned 64-bit integer into the stream.
@@ -218,10 +218,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool put_uint64(guint64 data, const Glib::RefPtr<Cancellable>& cancellable);
+  auto put_uint64(guint64 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A put_uint64() convenience overload.
-  bool put_uint64(guint64 data);
+  auto put_uint64(guint64 data) -> bool;
 
 
   /** Puts a string into the output stream.
@@ -232,10 +232,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool put_string(const std::string& str, const Glib::RefPtr<Cancellable>& cancellable);
+  auto put_string(const std::string& str, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A put_string() convenience overload.
-  bool put_string(const std::string& str);
+  auto put_string(const std::string& str) -> bool;
 
   /** Determines the byte ordering that is used when writing
    * multi-byte entities (such as integers) to the stream.
@@ -245,7 +245,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< DataStreamByteOrder > property_byte_order() ;
+  auto property_byte_order() -> Glib::PropertyProxy< DataStreamByteOrder > ;
 
 /** Determines the byte ordering that is used when writing
    * multi-byte entities (such as integers) to the stream.
@@ -255,7 +255,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< DataStreamByteOrder > property_byte_order() const;
+  auto property_byte_order() const -> Glib::PropertyProxy_ReadOnly< DataStreamByteOrder >;
 
 
 public:
@@ -285,7 +285,7 @@ namespace Glib
    * @relates Gio::DataOutputStream
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DataOutputStream> wrap(GDataOutputStream* object, bool take_copy = false);
+  auto wrap(GDataOutputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::DataOutputStream>;
 }
 
 

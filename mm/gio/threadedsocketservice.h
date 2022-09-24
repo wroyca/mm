@@ -75,7 +75,7 @@ public:
 
   // noncopyable
   ThreadedSocketService(const ThreadedSocketService&) = delete;
-  ThreadedSocketService& operator=(const ThreadedSocketService&) = delete;
+  auto operator=(const ThreadedSocketService&) -> ThreadedSocketService& = delete;
 
 private:  friend class ThreadedSocketService_Class;
   static CppClassType threadedsocketservice_class_;
@@ -89,28 +89,28 @@ protected:
 public:
 
   ThreadedSocketService(ThreadedSocketService&& src) noexcept;
-  ThreadedSocketService& operator=(ThreadedSocketService&& src) noexcept;
+  auto operator=(ThreadedSocketService&& src) noexcept -> ThreadedSocketService&;
 
   ~ThreadedSocketService() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GThreadedSocketService*       gobj()       { return reinterpret_cast<GThreadedSocketService*>(gobject_); }
+  auto       gobj() -> GThreadedSocketService*       { return reinterpret_cast<GThreadedSocketService*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GThreadedSocketService* gobj() const { return reinterpret_cast<GThreadedSocketService*>(gobject_); }
+  auto gobj() const -> const GThreadedSocketService* { return reinterpret_cast<GThreadedSocketService*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GThreadedSocketService* gobj_copy();
+  auto gobj_copy() -> GThreadedSocketService*;
 
 private:
 
@@ -121,7 +121,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<ThreadedSocketService> create(int max_threads);
+  static auto create(int max_threads) -> Glib::RefPtr<ThreadedSocketService>;
 
 
   /**
@@ -140,7 +140,7 @@ public:
    * @return <tt>true</tt> to stop further signal handlers from being called.
    */
 
-  Glib::SignalProxy<bool(const Glib::RefPtr<SocketConnection>&, const Glib::RefPtr<Glib::Object>&)> signal_run();
+  auto signal_run() -> Glib::SignalProxy<bool(const Glib::RefPtr<SocketConnection>&, const Glib::RefPtr<Glib::Object>&)>;
 
     /** The max number of threads handling clients for this service.
    *
@@ -149,7 +149,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_max_threads() const;
+  auto property_max_threads() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
 public:
@@ -162,7 +162,7 @@ protected:
 
   //Default Signal Handlers::
   /// This is a default handler for the signal signal_run().
-  virtual bool on_run(const Glib::RefPtr<SocketConnection>& connection, const Glib::RefPtr<Glib::Object>& source_object);
+  virtual auto on_run(const Glib::RefPtr<SocketConnection>& connection, const Glib::RefPtr<Glib::Object>& source_object) -> bool;
 
 
 };
@@ -181,7 +181,7 @@ namespace Glib
    * @relates Gio::ThreadedSocketService
    */
   GIOMM_API
-  Glib::RefPtr<Gio::ThreadedSocketService> wrap(GThreadedSocketService* object, bool take_copy = false);
+  auto wrap(GThreadedSocketService* object, bool take_copy = false) -> Glib::RefPtr<Gio::ThreadedSocketService>;
 }
 
 

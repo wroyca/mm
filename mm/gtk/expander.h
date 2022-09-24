@@ -79,11 +79,11 @@ class GTKMM_API Expander : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Expander(Expander&& src) noexcept;
-  Expander& operator=(Expander&& src) noexcept;
+  auto operator=(Expander&& src) noexcept -> Expander&;
 
   // noncopyable
   Expander(const Expander&) = delete;
-  Expander& operator=(const Expander&) = delete;
+  auto operator=(const Expander&) -> Expander& = delete;
 
   ~Expander() noexcept override;
 
@@ -103,19 +103,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkExpander*       gobj()       { return reinterpret_cast<GtkExpander*>(gobject_); }
+  auto       gobj() -> GtkExpander*       { return reinterpret_cast<GtkExpander*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkExpander* gobj() const { return reinterpret_cast<GtkExpander*>(gobject_); }
+  auto gobj() const -> const GtkExpander* { return reinterpret_cast<GtkExpander*>(gobject_); }
 
 private:
 
@@ -158,7 +158,7 @@ public:
    *
    * @return The current state of the expander.
    */
-  bool get_expanded() const;
+  auto get_expanded() const -> bool;
 
 
   /** Sets the text of the label of the expander to @a label.
@@ -180,7 +180,7 @@ public:
    * @return The text of the label widget. This string is owned
    * by the widget and must not be modified or freed.
    */
-  Glib::ustring get_label() const;
+  auto get_label() const -> Glib::ustring;
 
 
   /** If true, an underline in the text indicates a mnemonic.
@@ -194,7 +194,7 @@ public:
    * @return <tt>true</tt> if an embedded underline in the expander
    * label indicates the mnemonic accelerator keys.
    */
-  bool get_use_underline() const;
+  auto get_use_underline() const -> bool;
 
 
   /** Sets whether the text of the label contains Pango markup.
@@ -207,7 +207,7 @@ public:
    *
    * @return <tt>true</tt> if the label’s text will be parsed for markup.
    */
-  bool get_use_markup() const;
+  auto get_use_markup() const -> bool;
 
 
   /** Set the label widget for the expander.
@@ -223,13 +223,13 @@ public:
    *
    * @return The label widget.
    */
-  Widget* get_label_widget();
+  auto get_label_widget() -> Widget*;
 
   /** Retrieves the label widget for the frame.
    *
    * @return The label widget.
    */
-  const Widget* get_label_widget() const;
+  auto get_label_widget() const -> const Widget*;
 
 
   /** Sets whether the expander will resize the toplevel widget
@@ -244,7 +244,7 @@ public:
    *
    * @return The “resize toplevel” setting.
    */
-  bool get_resize_toplevel() const;
+  auto get_resize_toplevel() const -> bool;
 
 
   /** Sets the child widget of @a expander.
@@ -258,13 +258,13 @@ public:
    *
    * @return The child widget of @a expander.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget of @a expander.
    *
    * @return The child widget of @a expander.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
    //keybinding
 
@@ -275,7 +275,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_expanded() ;
+  auto property_expanded() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the expander has been opened to reveal the child.
    *
@@ -284,7 +284,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_expanded() const;
+  auto property_expanded() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The text of the expanders label.
    *
@@ -293,7 +293,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_label() ;
+  auto property_label() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The text of the expanders label.
    *
@@ -302,7 +302,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_label() const;
+  auto property_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Whether an underline in the text indicates a mnemonic.
    *
@@ -311,7 +311,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_use_underline() ;
+  auto property_use_underline() -> Glib::PropertyProxy< bool > ;
 
 /** Whether an underline in the text indicates a mnemonic.
    *
@@ -320,7 +320,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_underline() const;
+  auto property_use_underline() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the text in the label is Pango markup.
    *
@@ -329,7 +329,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_use_markup() ;
+  auto property_use_markup() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the text in the label is Pango markup.
    *
@@ -338,21 +338,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_markup() const;
+  auto property_use_markup() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** A widget to display instead of the usual expander label.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_label_widget() ;
+  auto property_label_widget() -> Glib::PropertyProxy< Widget* > ;
 
 /** A widget to display instead of the usual expander label.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_label_widget() const;
+  auto property_label_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
   /** When this property is <tt>true</tt>, the expander will resize the toplevel
    * widget containing the expander upon expanding and collapsing.
@@ -362,7 +362,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_resize_toplevel() ;
+  auto property_resize_toplevel() -> Glib::PropertyProxy< bool > ;
 
 /** When this property is <tt>true</tt>, the expander will resize the toplevel
    * widget containing the expander upon expanding and collapsing.
@@ -372,21 +372,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_resize_toplevel() const;
+  auto property_resize_toplevel() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The child widget.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The child widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
 public:
@@ -416,7 +416,7 @@ namespace Glib
    * @relates Gtk::Expander
    */
   GTKMM_API
-  Gtk::Expander* wrap(GtkExpander* object, bool take_copy = false);
+  auto wrap(GtkExpander* object, bool take_copy = false) -> Gtk::Expander*;
 } //namespace Glib
 
 

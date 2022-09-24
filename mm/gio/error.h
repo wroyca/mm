@@ -282,7 +282,7 @@ public:
 
   GIOMM_API Error(Code error_code, const Glib::ustring& error_message);
   GIOMM_API explicit Error(GError* gobject);
-  GIOMM_API Code code() const;
+  GIOMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -325,7 +325,7 @@ public:
 
   GIOMM_API ResolverError(Code error_code, const Glib::ustring& error_message);
   GIOMM_API explicit ResolverError(GError* gobject);
-  GIOMM_API Code code() const;
+  GIOMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -400,7 +400,7 @@ public:
 
   GIOMM_API TlsError(Code error_code, const Glib::ustring& error_message);
   GIOMM_API explicit TlsError(GError* gobject);
-  GIOMM_API Code code() const;
+  GIOMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:

@@ -55,7 +55,7 @@ namespace
 namespace Glib
 {
 
-Gtk::Scrollbar* wrap(GtkScrollbar* object, bool take_copy)
+auto wrap(GtkScrollbar* object, bool take_copy) -> Gtk::Scrollbar*
 {
   return dynamic_cast<Gtk::Scrollbar *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -68,7 +68,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Scrollbar_Class::init()
+auto Scrollbar_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -100,7 +100,7 @@ void Scrollbar_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Scrollbar_Class::wrap_new(GObject* o)
+auto Scrollbar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Scrollbar((GtkScrollbar*)(o)));
 
@@ -127,7 +127,7 @@ Scrollbar::Scrollbar(Scrollbar&& src) noexcept
   , Orientable(std::move(src))
 {}
 
-Scrollbar& Scrollbar::operator=(Scrollbar&& src) noexcept
+auto Scrollbar::operator=(Scrollbar&& src) noexcept -> Scrollbar&
 {
   Gtk::Widget::operator=(std::move(src));
   Orientable::operator=(std::move(src));
@@ -141,13 +141,13 @@ Scrollbar::~Scrollbar() noexcept
 
 Scrollbar::CppClassType Scrollbar::scrollbar_class_; // initialize static member
 
-GType Scrollbar::get_type()
+auto Scrollbar::get_type() -> GType
 {
   return scrollbar_class_.init().get_type();
 }
 
 
-GType Scrollbar::get_base_type()
+auto Scrollbar::get_base_type() -> GType
 {
   return gtk_scrollbar_get_type();
 }
@@ -168,7 +168,7 @@ void Scrollbar::set_adjustment(const Glib::RefPtr<Adjustment>& adjustment)
   gtk_scrollbar_set_adjustment(gobj(), Glib::unwrap(adjustment));
 }
 
-Glib::RefPtr<Adjustment> Scrollbar::get_adjustment()
+auto Scrollbar::get_adjustment() -> Glib::RefPtr<Adjustment>
 {
   auto retvalue = Glib::wrap(gtk_scrollbar_get_adjustment(gobj()));
   if(retvalue)
@@ -176,7 +176,7 @@ Glib::RefPtr<Adjustment> Scrollbar::get_adjustment()
   return retvalue;
 }
 
-Glib::RefPtr<const Adjustment> Scrollbar::get_adjustment() const
+auto Scrollbar::get_adjustment() const -> Glib::RefPtr<const Adjustment>
 {
   return const_cast<Scrollbar*>(this)->get_adjustment();
 }
@@ -186,12 +186,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Adjustm
   "Type Glib::RefPtr<Adjustment> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Adjustment> > Scrollbar::property_adjustment()
+auto Scrollbar::property_adjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Adjustment> >(this, "adjustment");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> > Scrollbar::property_adjustment() const
+auto Scrollbar::property_adjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >(this, "adjustment");
 }

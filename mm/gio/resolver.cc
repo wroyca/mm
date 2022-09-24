@@ -35,9 +35,9 @@ struct SrvTargetListTraits
   using CType = const GSrvTarget*;
   using CTypeNonConst = GSrvTarget*;
 
-  static CType to_c_type(const CppType& item) { return item.gobj(); }
-  static CType to_c_type(CType ptr) { return ptr; }
-  static CppType to_cpp_type(CType item) { return CppType(const_cast<CTypeNonConst>(item), true /* take_copy */); }
+  static auto to_c_type(const CppType& item) -> CType { return item.gobj(); }
+  static auto to_c_type(CType ptr) -> CType { return ptr; }
+  static auto to_cpp_type(CType item) -> CppType { return CppType(const_cast<CTypeNonConst>(item), true /* take_copy */); }
   static void release_c_type(CType item) { g_srv_target_free(const_cast<CTypeNonConst>(item)); }
 };
 
@@ -46,8 +46,8 @@ struct SrvTargetListTraits
 namespace Gio
 {
 
-Glib::RefPtr<Resolver>
-Resolver::get_default()
+auto
+Resolver::get_default() -> Glib::RefPtr<Resolver>
 {
   return Glib::wrap(g_resolver_get_default());
 }
@@ -139,32 +139,32 @@ Resolver::lookup_records_async(
     static_cast<GResolverRecordType>(record_type), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-std::string
-hostname_to_ascii(const Glib::ustring& hostname)
+auto
+hostname_to_ascii(const Glib::ustring& hostname) -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(g_hostname_to_ascii(hostname.c_str()));
 }
 
-Glib::ustring
-hostname_to_unicode(const Glib::ustring& hostname)
+auto
+hostname_to_unicode(const Glib::ustring& hostname) -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(g_hostname_to_unicode(hostname.c_str()));
 }
 
-bool
-hostname_is_non_ascii(const Glib::ustring& hostname)
+auto
+hostname_is_non_ascii(const Glib::ustring& hostname) -> bool
 {
   return g_hostname_is_non_ascii(hostname.c_str());
 }
 
-bool
-hostname_is_ascii_encoded(const Glib::ustring& hostname)
+auto
+hostname_is_ascii_encoded(const Glib::ustring& hostname) -> bool
 {
   return g_hostname_is_ascii_encoded(hostname.c_str());
 }
 
-bool
-hostname_is_ip_address(const Glib::ustring& hostname)
+auto
+hostname_is_ip_address(const Glib::ustring& hostname) -> bool
 {
   return g_hostname_is_ip_address(hostname.c_str());
 }
@@ -175,7 +175,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo Resolver_signal_reload_info =
+const Glib::SignalProxyInfo Resolver_signal_reload_info =
 {
   "reload",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -186,13 +186,13 @@ static const Glib::SignalProxyInfo Resolver_signal_reload_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::Resolver::RecordType>::value_type()
+auto Glib::Value<Gio::Resolver::RecordType>::value_type() -> GType
 {
   return g_resolver_record_type_get_type();
 }
 
 // static
-GType Glib::Value<Gio::Resolver::NameLookupFlags>::value_type()
+auto Glib::Value<Gio::Resolver::NameLookupFlags>::value_type() -> GType
 {
   return g_resolver_name_lookup_flags_get_type();
 }
@@ -201,7 +201,7 @@ GType Glib::Value<Gio::Resolver::NameLookupFlags>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gio::Resolver> wrap(GResolver* object, bool take_copy)
+auto wrap(GResolver* object, bool take_copy) -> Glib::RefPtr<Gio::Resolver>
 {
   return Glib::make_refptr_for_instance<Gio::Resolver>( dynamic_cast<Gio::Resolver*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -216,7 +216,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& Resolver_Class::init()
+auto Resolver_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -286,7 +286,7 @@ void Resolver_Class::reload_callback(GResolver* self)
 }
 
 
-Glib::ObjectBase* Resolver_Class::wrap_new(GObject* object)
+auto Resolver_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Resolver((GResolver*)object);
 }
@@ -294,7 +294,7 @@ Glib::ObjectBase* Resolver_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GResolver* Resolver::gobj_copy()
+auto Resolver::gobj_copy() -> GResolver*
 {
   reference();
   return gobj();
@@ -317,7 +317,7 @@ Resolver::Resolver(Resolver&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Resolver& Resolver::operator=(Resolver&& src) noexcept
+auto Resolver::operator=(Resolver&& src) noexcept -> Resolver&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -330,19 +330,19 @@ Resolver::~Resolver() noexcept
 
 Resolver::CppClassType Resolver::resolver_class_; // initialize static member
 
-GType Resolver::get_type()
+auto Resolver::get_type() -> GType
 {
   return resolver_class_.init().get_type();
 }
 
 
-GType Resolver::get_base_type()
+auto Resolver::get_base_type() -> GType
 {
   return g_resolver_get_type();
 }
 
 
-std::vector<Glib::RefPtr<InetAddress>> Resolver::lookup_by_name(const Glib::ustring& hostname, const Glib::RefPtr<Cancellable>& cancellable)
+auto Resolver::lookup_by_name(const Glib::ustring& hostname, const Glib::RefPtr<Cancellable>& cancellable) -> std::vector<Glib::RefPtr<InetAddress>>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::ListHandler<Glib::RefPtr<InetAddress>>::list_to_vector(g_resolver_lookup_by_name(gobj(), hostname.c_str(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)), Glib::OWNERSHIP_DEEP);
@@ -351,7 +351,7 @@ std::vector<Glib::RefPtr<InetAddress>> Resolver::lookup_by_name(const Glib::ustr
   return retvalue;
 }
 
-std::vector<Glib::RefPtr<InetAddress>> Resolver::lookup_by_name(const Glib::ustring& hostname)
+auto Resolver::lookup_by_name(const Glib::ustring& hostname) -> std::vector<Glib::RefPtr<InetAddress>>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::ListHandler<Glib::RefPtr<InetAddress>>::list_to_vector(g_resolver_lookup_by_name(gobj(), hostname.c_str(), nullptr, &(gerror)), Glib::OWNERSHIP_DEEP);
@@ -360,7 +360,7 @@ std::vector<Glib::RefPtr<InetAddress>> Resolver::lookup_by_name(const Glib::ustr
   return retvalue;
 }
 
-std::vector<Glib::RefPtr<InetAddress>> Resolver::lookup_by_name_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Resolver::lookup_by_name_finish(const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::RefPtr<InetAddress>>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::ListHandler<Glib::RefPtr<InetAddress>>::list_to_vector(g_resolver_lookup_by_name_finish(gobj(), Glib::unwrap(result), &(gerror)), Glib::OWNERSHIP_DEEP);
@@ -369,7 +369,7 @@ std::vector<Glib::RefPtr<InetAddress>> Resolver::lookup_by_name_finish(const Gli
   return retvalue;
 }
 
-std::vector<Glib::RefPtr<InetAddress>> Resolver::lookup_by_name_with_flags(const Glib::ustring& hostname, NameLookupFlags flags, const Glib::RefPtr<Cancellable>& cancellable)
+auto Resolver::lookup_by_name_with_flags(const Glib::ustring& hostname, NameLookupFlags flags, const Glib::RefPtr<Cancellable>& cancellable) -> std::vector<Glib::RefPtr<InetAddress>>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::ListHandler<Glib::RefPtr<InetAddress>>::list_to_vector(g_resolver_lookup_by_name_with_flags(gobj(), hostname.c_str(), static_cast<GResolverNameLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)), Glib::OWNERSHIP_DEEP);
@@ -386,7 +386,7 @@ void Resolver::lookup_by_name_with_flags_async(const Glib::ustring& hostname, Na
   g_resolver_lookup_by_name_with_flags_async(gobj(), hostname.c_str(), static_cast<GResolverNameLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-std::vector<Glib::RefPtr<InetAddress>> Resolver::lookup_by_name_with_flags_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Resolver::lookup_by_name_with_flags_finish(const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::RefPtr<InetAddress>>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::ListHandler<Glib::RefPtr<InetAddress>>::list_to_vector(g_resolver_lookup_by_name_with_flags_finish(gobj(), Glib::unwrap(result), &(gerror)), Glib::OWNERSHIP_DEEP);
@@ -395,7 +395,7 @@ std::vector<Glib::RefPtr<InetAddress>> Resolver::lookup_by_name_with_flags_finis
   return retvalue;
 }
 
-Glib::ustring Resolver::lookup_by_address(const Glib::RefPtr<InetAddress>& address, const Glib::RefPtr<Cancellable>& cancellable)
+auto Resolver::lookup_by_address(const Glib::RefPtr<InetAddress>& address, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::ustring
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::convert_return_gchar_ptr_to_ustring(g_resolver_lookup_by_address(gobj(), const_cast<GInetAddress*>(Glib::unwrap(address)), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -404,7 +404,7 @@ Glib::ustring Resolver::lookup_by_address(const Glib::RefPtr<InetAddress>& addre
   return retvalue;
 }
 
-Glib::ustring Resolver::lookup_by_address(const Glib::RefPtr<InetAddress>& address)
+auto Resolver::lookup_by_address(const Glib::RefPtr<InetAddress>& address) -> Glib::ustring
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::convert_return_gchar_ptr_to_ustring(g_resolver_lookup_by_address(gobj(), const_cast<GInetAddress*>(Glib::unwrap(address)), nullptr, &(gerror)));
@@ -413,7 +413,7 @@ Glib::ustring Resolver::lookup_by_address(const Glib::RefPtr<InetAddress>& addre
   return retvalue;
 }
 
-Glib::ustring Resolver::lookup_by_address_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Resolver::lookup_by_address_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::ustring
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::convert_return_gchar_ptr_to_ustring(g_resolver_lookup_by_address_finish(gobj(), Glib::unwrap(result), &(gerror)));
@@ -422,7 +422,7 @@ Glib::ustring Resolver::lookup_by_address_finish(const Glib::RefPtr<AsyncResult>
   return retvalue;
 }
 
-std::vector<SrvTarget> Resolver::lookup_service(const Glib::ustring& service, const Glib::ustring& protocol, const Glib::ustring& domain, const Glib::RefPtr<Cancellable>& cancellable)
+auto Resolver::lookup_service(const Glib::ustring& service, const Glib::ustring& protocol, const Glib::ustring& domain, const Glib::RefPtr<Cancellable>& cancellable) -> std::vector<SrvTarget>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::ListHandler<SrvTarget, SrvTargetListTraits>::list_to_vector(g_resolver_lookup_service(gobj(), service.c_str(), protocol.c_str(), domain.c_str(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)), Glib::OWNERSHIP_DEEP);
@@ -431,7 +431,7 @@ std::vector<SrvTarget> Resolver::lookup_service(const Glib::ustring& service, co
   return retvalue;
 }
 
-std::vector<SrvTarget> Resolver::lookup_service(const Glib::ustring& service, const Glib::ustring& protocol, const Glib::ustring& domain)
+auto Resolver::lookup_service(const Glib::ustring& service, const Glib::ustring& protocol, const Glib::ustring& domain) -> std::vector<SrvTarget>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::ListHandler<SrvTarget, SrvTargetListTraits>::list_to_vector(g_resolver_lookup_service(gobj(), service.c_str(), protocol.c_str(), domain.c_str(), nullptr, &(gerror)), Glib::OWNERSHIP_DEEP);
@@ -440,7 +440,7 @@ std::vector<SrvTarget> Resolver::lookup_service(const Glib::ustring& service, co
   return retvalue;
 }
 
-std::vector<SrvTarget> Resolver::lookup_service_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Resolver::lookup_service_finish(const Glib::RefPtr<AsyncResult>& result) -> std::vector<SrvTarget>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::ListHandler<SrvTarget, SrvTargetListTraits>::list_to_vector(g_resolver_lookup_service_finish(gobj(), Glib::unwrap(result), &(gerror)), Glib::OWNERSHIP_DEEP);
@@ -449,7 +449,7 @@ std::vector<SrvTarget> Resolver::lookup_service_finish(const Glib::RefPtr<AsyncR
   return retvalue;
 }
 
-std::vector<Glib::VariantContainerBase> Resolver::lookup_records(const Glib::ustring& rrname, RecordType record_type, const Glib::RefPtr<Cancellable>& cancellable)
+auto Resolver::lookup_records(const Glib::ustring& rrname, RecordType record_type, const Glib::RefPtr<Cancellable>& cancellable) -> std::vector<Glib::VariantContainerBase>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::ListHandler<Glib::VariantContainerBase>::list_to_vector(g_resolver_lookup_records(gobj(), rrname.c_str(), static_cast<GResolverRecordType>(record_type), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)), Glib::OWNERSHIP_DEEP);
@@ -458,7 +458,7 @@ std::vector<Glib::VariantContainerBase> Resolver::lookup_records(const Glib::ust
   return retvalue;
 }
 
-std::vector<Glib::VariantContainerBase> Resolver::lookup_records(const Glib::ustring& rrname, RecordType record_type)
+auto Resolver::lookup_records(const Glib::ustring& rrname, RecordType record_type) -> std::vector<Glib::VariantContainerBase>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::ListHandler<Glib::VariantContainerBase>::list_to_vector(g_resolver_lookup_records(gobj(), rrname.c_str(), static_cast<GResolverRecordType>(record_type), nullptr, &(gerror)), Glib::OWNERSHIP_DEEP);
@@ -467,7 +467,7 @@ std::vector<Glib::VariantContainerBase> Resolver::lookup_records(const Glib::ust
   return retvalue;
 }
 
-std::vector<Glib::VariantContainerBase> Resolver::lookup_records_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Resolver::lookup_records_finish(const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::VariantContainerBase>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::ListHandler<Glib::VariantContainerBase>::list_to_vector(g_resolver_lookup_records_finish(gobj(), Glib::unwrap(result), &(gerror)), Glib::OWNERSHIP_DEEP);
@@ -477,7 +477,7 @@ std::vector<Glib::VariantContainerBase> Resolver::lookup_records_finish(const Gl
 }
 
 
-Glib::SignalProxy<void()> Resolver::signal_reload()
+auto Resolver::signal_reload() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Resolver_signal_reload_info);
 }

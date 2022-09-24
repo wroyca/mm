@@ -47,7 +47,7 @@ namespace
 namespace Glib
 {
 
-Gtk::ActionBar* wrap(GtkActionBar* object, bool take_copy)
+auto wrap(GtkActionBar* object, bool take_copy) -> Gtk::ActionBar*
 {
   return dynamic_cast<Gtk::ActionBar *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -60,7 +60,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ActionBar_Class::init()
+auto ActionBar_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -91,7 +91,7 @@ void ActionBar_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* ActionBar_Class::wrap_new(GObject* o)
+auto ActionBar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new ActionBar((GtkActionBar*)(o)));
 
@@ -117,7 +117,7 @@ ActionBar::ActionBar(ActionBar&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-ActionBar& ActionBar::operator=(ActionBar&& src) noexcept
+auto ActionBar::operator=(ActionBar&& src) noexcept -> ActionBar&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -130,13 +130,13 @@ ActionBar::~ActionBar() noexcept
 
 ActionBar::CppClassType ActionBar::actionbar_class_; // initialize static member
 
-GType ActionBar::get_type()
+auto ActionBar::get_type() -> GType
 {
   return actionbar_class_.init().get_type();
 }
 
 
-GType ActionBar::get_base_type()
+auto ActionBar::get_base_type() -> GType
 {
   return gtk_action_bar_get_type();
 }
@@ -167,12 +167,12 @@ void ActionBar::remove(Gtk::Widget& child)
   gtk_action_bar_remove(gobj(), (child).gobj());
 }
 
-Widget* ActionBar::get_center_widget()
+auto ActionBar::get_center_widget() -> Widget*
 {
   return Glib::wrap(gtk_action_bar_get_center_widget(gobj()));
 }
 
-const Widget* ActionBar::get_center_widget() const
+auto ActionBar::get_center_widget() const -> const Widget*
 {
   return const_cast<ActionBar*>(this)->get_center_widget();
 }
@@ -187,18 +187,18 @@ void ActionBar::set_revealed(bool revealed)
   gtk_action_bar_set_revealed(gobj(), static_cast<int>(revealed));
 }
 
-bool ActionBar::get_revealed() const
+auto ActionBar::get_revealed() const -> bool
 {
   return gtk_action_bar_get_revealed(const_cast<GtkActionBar*>(gobj()));
 }
 
 
-Glib::PropertyProxy< bool > ActionBar::property_revealed()
+auto ActionBar::property_revealed() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "revealed");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > ActionBar::property_revealed() const
+auto ActionBar::property_revealed() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "revealed");
 }

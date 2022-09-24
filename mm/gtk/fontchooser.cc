@@ -32,7 +32,7 @@ namespace
 {
 extern "C"
 {
-static gboolean SignalProxy_Filter_gtk_callback(const PangoFontFamily* family, const PangoFontFace* face, gpointer user_data)
+static auto SignalProxy_Filter_gtk_callback(const PangoFontFamily* family, const PangoFontFace* face, gpointer user_data) -> gboolean
 {
   auto the_slot = static_cast<Gtk::FontChooser::SlotFontFilter*>(user_data);
 
@@ -74,7 +74,7 @@ namespace
 {
 
 
-static void FontChooser_signal_font_activated_callback(GtkFontChooser* self, const gchar* p0,void* data)
+void FontChooser_signal_font_activated_callback(GtkFontChooser* self, const gchar* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -96,7 +96,7 @@ static void FontChooser_signal_font_activated_callback(GtkFontChooser* self, con
   }
 }
 
-static const Glib::SignalProxyInfo FontChooser_signal_font_activated_info =
+const Glib::SignalProxyInfo FontChooser_signal_font_activated_info =
 {
   "font-activated",
   (GCallback) &FontChooser_signal_font_activated_callback,
@@ -107,7 +107,7 @@ static const Glib::SignalProxyInfo FontChooser_signal_font_activated_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::FontChooser::Level>::value_type()
+auto Glib::Value<Gtk::FontChooser::Level>::value_type() -> GType
 {
   return gtk_font_chooser_level_get_type();
 }
@@ -116,7 +116,7 @@ GType Glib::Value<Gtk::FontChooser::Level>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::FontChooser> wrap(GtkFontChooser* object, bool take_copy)
+auto wrap(GtkFontChooser* object, bool take_copy) -> Glib::RefPtr<Gtk::FontChooser>
 {
   return Glib::make_refptr_for_instance<Gtk::FontChooser>( dynamic_cast<Gtk::FontChooser*> (Glib::wrap_auto_interface<Gtk::FontChooser> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -131,7 +131,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& FontChooser_Class::init()
+auto FontChooser_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -199,7 +199,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* FontChooser_Class::wrap_new(GObject* object)
+auto FontChooser_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new FontChooser((GtkFontChooser*)(object));
 }
@@ -226,7 +226,7 @@ FontChooser::FontChooser(FontChooser&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-FontChooser& FontChooser::operator=(FontChooser&& src) noexcept
+auto FontChooser::operator=(FontChooser&& src) noexcept -> FontChooser&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -243,19 +243,19 @@ void FontChooser::add_interface(GType gtype_implementer)
 
 FontChooser::CppClassType FontChooser::fontchooser_class_; // initialize static member
 
-GType FontChooser::get_type()
+auto FontChooser::get_type() -> GType
 {
   return fontchooser_class_.init().get_type();
 }
 
 
-GType FontChooser::get_base_type()
+auto FontChooser::get_base_type() -> GType
 {
   return gtk_font_chooser_get_type();
 }
 
 
-Glib::RefPtr<Pango::FontFamily> FontChooser::get_font_family()
+auto FontChooser::get_font_family() -> Glib::RefPtr<Pango::FontFamily>
 {
   auto retvalue = Glib::wrap(gtk_font_chooser_get_font_family(gobj()));
   if(retvalue)
@@ -263,12 +263,12 @@ Glib::RefPtr<Pango::FontFamily> FontChooser::get_font_family()
   return retvalue;
 }
 
-Glib::RefPtr<const Pango::FontFamily> FontChooser::get_font_family() const
+auto FontChooser::get_font_family() const -> Glib::RefPtr<const Pango::FontFamily>
 {
   return const_cast<FontChooser*>(this)->get_font_family();
 }
 
-Glib::RefPtr<Pango::FontFace> FontChooser::get_font_face()
+auto FontChooser::get_font_face() -> Glib::RefPtr<Pango::FontFace>
 {
   auto retvalue = Glib::wrap(gtk_font_chooser_get_font_face(gobj()));
   if(retvalue)
@@ -276,17 +276,17 @@ Glib::RefPtr<Pango::FontFace> FontChooser::get_font_face()
   return retvalue;
 }
 
-Glib::RefPtr<const Pango::FontFace> FontChooser::get_font_face() const
+auto FontChooser::get_font_face() const -> Glib::RefPtr<const Pango::FontFace>
 {
   return const_cast<FontChooser*>(this)->get_font_face();
 }
 
-int FontChooser::get_font_size() const
+auto FontChooser::get_font_size() const -> int
 {
   return gtk_font_chooser_get_font_size(const_cast<GtkFontChooser*>(gobj()));
 }
 
-Pango::FontDescription FontChooser::get_font_desc() const
+auto FontChooser::get_font_desc() const -> Pango::FontDescription
 {
   return Glib::wrap(const_cast<PangoFontDescription*>(gtk_font_chooser_get_font_desc(const_cast<GtkFontChooser*>(gobj()))), false);
 }
@@ -296,7 +296,7 @@ void FontChooser::set_font_desc(const Pango::FontDescription& font_desc)
   gtk_font_chooser_set_font_desc(gobj(), (font_desc).gobj());
 }
 
-Glib::ustring FontChooser::get_font() const
+auto FontChooser::get_font() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_font_chooser_get_font(const_cast<GtkFontChooser*>(gobj())));
 }
@@ -306,7 +306,7 @@ void FontChooser::set_font(const Glib::ustring& fontname)
   gtk_font_chooser_set_font(gobj(), fontname.c_str());
 }
 
-Glib::ustring FontChooser::get_preview_text() const
+auto FontChooser::get_preview_text() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_font_chooser_get_preview_text(const_cast<GtkFontChooser*>(gobj())));
 }
@@ -316,7 +316,7 @@ void FontChooser::set_preview_text(const Glib::ustring& text)
   gtk_font_chooser_set_preview_text(gobj(), text.c_str());
 }
 
-bool FontChooser::get_show_preview_entry() const
+auto FontChooser::get_show_preview_entry() const -> bool
 {
   return gtk_font_chooser_get_show_preview_entry(const_cast<GtkFontChooser*>(gobj()));
 }
@@ -331,7 +331,7 @@ void FontChooser::set_font_map(const Glib::RefPtr<Pango::FontMap>& fontmap)
   gtk_font_chooser_set_font_map(gobj(), Glib::unwrap(fontmap));
 }
 
-Glib::RefPtr<Pango::FontMap> FontChooser::get_font_map()
+auto FontChooser::get_font_map() -> Glib::RefPtr<Pango::FontMap>
 {
   auto retvalue = Glib::wrap(gtk_font_chooser_get_font_map(gobj()));
   if(retvalue)
@@ -339,7 +339,7 @@ Glib::RefPtr<Pango::FontMap> FontChooser::get_font_map()
   return retvalue;
 }
 
-Glib::RefPtr<const Pango::FontMap> FontChooser::get_font_map() const
+auto FontChooser::get_font_map() const -> Glib::RefPtr<const Pango::FontMap>
 {
   return const_cast<FontChooser*>(this)->get_font_map();
 }
@@ -349,17 +349,17 @@ void FontChooser::set_level(Level level)
   gtk_font_chooser_set_level(gobj(), static_cast<GtkFontChooserLevel>(level));
 }
 
-Level FontChooser::get_level() const
+auto FontChooser::get_level() const -> Level
 {
   return static_cast<Level>(gtk_font_chooser_get_level(const_cast<GtkFontChooser*>(gobj())));
 }
 
-Glib::ustring FontChooser::get_font_features() const
+auto FontChooser::get_font_features() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_font_chooser_get_font_features(const_cast<GtkFontChooser*>(gobj())));
 }
 
-Glib::ustring FontChooser::get_language() const
+auto FontChooser::get_language() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_font_chooser_get_language(const_cast<GtkFontChooser*>(gobj())));
 }
@@ -370,18 +370,18 @@ void FontChooser::set_language(const Glib::ustring& language)
 }
 
 
-Glib::SignalProxy<void(const Glib::ustring&)> FontChooser::signal_font_activated()
+auto FontChooser::signal_font_activated() -> Glib::SignalProxy<void(const Glib::ustring&)>
 {
   return Glib::SignalProxy<void(const Glib::ustring&) >(this, &FontChooser_signal_font_activated_info);
 }
 
 
-Glib::PropertyProxy< Glib::ustring > FontChooser::property_font()
+auto FontChooser::property_font() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "font");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > FontChooser::property_font() const
+auto FontChooser::property_font() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "font");
 }
@@ -390,32 +390,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::FontDescripti
   "Type Pango::FontDescription cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::FontDescription > FontChooser::property_font_desc()
+auto FontChooser::property_font_desc() -> Glib::PropertyProxy< Pango::FontDescription >
 {
   return Glib::PropertyProxy< Pango::FontDescription >(this, "font-desc");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::FontDescription > FontChooser::property_font_desc() const
+auto FontChooser::property_font_desc() const -> Glib::PropertyProxy_ReadOnly< Pango::FontDescription >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::FontDescription >(this, "font-desc");
 }
 
-Glib::PropertyProxy< Glib::ustring > FontChooser::property_preview_text()
+auto FontChooser::property_preview_text() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "preview-text");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > FontChooser::property_preview_text() const
+auto FontChooser::property_preview_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "preview-text");
 }
 
-Glib::PropertyProxy< bool > FontChooser::property_show_preview_entry()
+auto FontChooser::property_show_preview_entry() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "show-preview-entry");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > FontChooser::property_show_preview_entry() const
+auto FontChooser::property_show_preview_entry() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "show-preview-entry");
 }
@@ -424,27 +424,27 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Level>::value,
   "Type Level cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Level > FontChooser::property_level()
+auto FontChooser::property_level() -> Glib::PropertyProxy< Level >
 {
   return Glib::PropertyProxy< Level >(this, "level");
 }
 
-Glib::PropertyProxy_ReadOnly< Level > FontChooser::property_level() const
+auto FontChooser::property_level() const -> Glib::PropertyProxy_ReadOnly< Level >
 {
   return Glib::PropertyProxy_ReadOnly< Level >(this, "level");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > FontChooser::property_font_features() const
+auto FontChooser::property_font_features() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "font-features");
 }
 
-Glib::PropertyProxy< Glib::ustring > FontChooser::property_language()
+auto FontChooser::property_language() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "language");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > FontChooser::property_language() const
+auto FontChooser::property_language() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "language");
 }

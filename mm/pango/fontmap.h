@@ -70,7 +70,7 @@ public:
 
   // noncopyable
   FontMap(const FontMap&) = delete;
-  FontMap& operator=(const FontMap&) = delete;
+  auto operator=(const FontMap&) -> FontMap& = delete;
 
 private:  friend class FontMap_Class;
   static CppClassType fontmap_class_;
@@ -84,28 +84,28 @@ protected:
 public:
 
   FontMap(FontMap&& src) noexcept;
-  FontMap& operator=(FontMap&& src) noexcept;
+  auto operator=(FontMap&& src) noexcept -> FontMap&;
 
   ~FontMap() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  PangoFontMap*       gobj()       { return reinterpret_cast<PangoFontMap*>(gobject_); }
+  auto       gobj() -> PangoFontMap*       { return reinterpret_cast<PangoFontMap*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const PangoFontMap* gobj() const { return reinterpret_cast<PangoFontMap*>(gobject_); }
+  auto gobj() const -> const PangoFontMap* { return reinterpret_cast<PangoFontMap*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  PangoFontMap* gobj_copy();
+  auto gobj_copy() -> PangoFontMap*;
 
 private:
 
@@ -119,7 +119,7 @@ public:
    * @return The newly allocated `Pango::Font`
    * loaded, or <tt>nullptr</tt> if no font matched.
    */
-  Glib::RefPtr<Font> load_font(const Glib::RefPtr<Context>& context, const FontDescription& desc) const;
+  auto load_font(const Glib::RefPtr<Context>& context, const FontDescription& desc) const -> Glib::RefPtr<Font>;
 
   /** Load a set of fonts in the fontmap that can be used to render
    * a font matching @a desc.
@@ -130,7 +130,7 @@ public:
    * @return The newly allocated
    * `Pango::Fontset` loaded, or <tt>nullptr</tt> if no font matched.
    */
-  Glib::RefPtr<Fontset> load_fontset(const Glib::RefPtr<Context>& context, const FontDescription& desc, const Language& language) const;
+  auto load_fontset(const Glib::RefPtr<Context>& context, const FontDescription& desc, const Language& language) const -> Glib::RefPtr<Fontset>;
 
 
   /** Creates a `Pango::Context` connected to @a fontmap.
@@ -148,12 +148,12 @@ public:
    * @return The newly allocated `Pango::Context`,
    * which should be freed with Glib::object_unref().
    */
-  Glib::RefPtr<Context> create_context();
+  auto create_context() -> Glib::RefPtr<Context>;
 
   /** List all families for the fontmap.
    * @return an array of pointers to Pango::FontFamily objects.
    */
-  std::vector<Glib::RefPtr<FontFamily>> list_families() const;
+  auto list_families() const -> std::vector<Glib::RefPtr<FontFamily>>;
 
 
   /** Returns the current serial number of @a fontmap.
@@ -173,7 +173,7 @@ public:
    *
    * @return The current serial number of @a fontmap.
    */
-  guint get_serial() const;
+  auto get_serial() const -> guint;
 
 
   /** Gets a font family by name.
@@ -183,7 +183,7 @@ public:
    * @param name A family name.
    * @return The `Pango::FontFamily`.
    */
-  Glib::RefPtr<FontFamily> get_family(const Glib::ustring& name);
+  auto get_family(const Glib::ustring& name) -> Glib::RefPtr<FontFamily>;
 
   /** Gets a font family by name.
    *
@@ -192,7 +192,7 @@ public:
    * @param name A family name.
    * @return The `Pango::FontFamily`.
    */
-  Glib::RefPtr<const FontFamily> get_family(const Glib::ustring& name) const;
+  auto get_family(const Glib::ustring& name) const -> Glib::RefPtr<const FontFamily>;
 
 
 public:
@@ -222,7 +222,7 @@ namespace Glib
    * @relates Pango::FontMap
    */
   PANGOMM_API
-  Glib::RefPtr<Pango::FontMap> wrap(PangoFontMap* object, bool take_copy = false);
+  auto wrap(PangoFontMap* object, bool take_copy = false) -> Glib::RefPtr<Pango::FontMap>;
 }
 
 

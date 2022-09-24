@@ -61,7 +61,7 @@ public:
 
   // noncopyable
   TlsPassword(const TlsPassword&) = delete;
-  TlsPassword& operator=(const TlsPassword&) = delete;
+  auto operator=(const TlsPassword&) -> TlsPassword& = delete;
 
 private:  friend class TlsPassword_Class;
   static CppClassType tlspassword_class_;
@@ -75,28 +75,28 @@ protected:
 public:
 
   TlsPassword(TlsPassword&& src) noexcept;
-  TlsPassword& operator=(TlsPassword&& src) noexcept;
+  auto operator=(TlsPassword&& src) noexcept -> TlsPassword&;
 
   ~TlsPassword() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GTlsPassword*       gobj()       { return reinterpret_cast<GTlsPassword*>(gobject_); }
+  auto       gobj() -> GTlsPassword*       { return reinterpret_cast<GTlsPassword*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GTlsPassword* gobj() const { return reinterpret_cast<GTlsPassword*>(gobject_); }
+  auto gobj() const -> const GTlsPassword* { return reinterpret_cast<GTlsPassword*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GTlsPassword* gobj_copy();
+  auto gobj_copy() -> GTlsPassword*;
 
 private:
 
@@ -173,7 +173,7 @@ public:
    */
 
 
-  static Glib::RefPtr<TlsPassword> create(const Glib::ustring& description, Flags flags =  Flags::NONE);
+  static auto create(const Glib::ustring& description, Flags flags =  Flags::NONE) -> Glib::RefPtr<TlsPassword>;
 
 
   /** Get the password value. If @a length is not <tt>nullptr</tt> then it will be
@@ -187,10 +187,10 @@ public:
    * @param length Location to place the length of the password.
    * @return The password value (owned by the password object).
    */
-  const guchar* get_value(gsize& length) const;
+  auto get_value(gsize& length) const -> const guchar*;
 
   /// A get_value() convenience overload.
-  const guchar* get_value() const;
+  auto get_value() const -> const guchar*;
 
 
   /** Set the value for this password. The @a value will be copied by the password
@@ -218,7 +218,7 @@ public:
    *
    * @return The description of the password.
    */
-  Glib::ustring get_description() const;
+  auto get_description() const -> Glib::ustring;
 
   /** Set a description string about what the password will be used for.
    *
@@ -235,7 +235,7 @@ public:
    *
    * @return The flags about the password.
    */
-  Flags get_flags() const;
+  auto get_flags() const -> Flags;
 
   /** Set flags about the password.
    *
@@ -254,7 +254,7 @@ public:
    *
    * @return The warning.
    */
-  Glib::ustring get_warning() const;
+  auto get_warning() const -> Glib::ustring;
 
   /** Set a user readable translated warning. Usually this warning is a
    * representation of the password flags returned from
@@ -273,7 +273,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_description() ;
+  auto property_description() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Description of what the password is for.
    *
@@ -282,7 +282,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_description() const;
+  auto property_description() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Flags about the password.
    *
@@ -291,7 +291,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Flags > property_flags() ;
+  auto property_flags() -> Glib::PropertyProxy< Flags > ;
 
 /** Flags about the password.
    *
@@ -300,7 +300,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Flags > property_flags() const;
+  auto property_flags() const -> Glib::PropertyProxy_ReadOnly< Flags >;
 
   /** Warning about the password.
    *
@@ -309,7 +309,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_warning() ;
+  auto property_warning() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Warning about the password.
    *
@@ -318,19 +318,19 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_warning() const;
+  auto property_warning() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 protected:
 
 
-    virtual const guchar* get_value_vfunc(gsize& length) const;
+    virtual auto get_value_vfunc(gsize& length) const -> const guchar*;
 
 
   //TODO? (See g_tls_password_set_value_full() comment above): _WRAP_VFUNC(void set_value(guchar* value, gssize length, GDestroyNotify destroy), "set_value")
 
 
-    virtual Glib::ustring get_default_warning_vfunc() const;
+    virtual auto get_default_warning_vfunc() const -> Glib::ustring;
 
 
 public:
@@ -352,31 +352,31 @@ namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline TlsPassword::Flags operator|(TlsPassword::Flags lhs, TlsPassword::Flags rhs)
+inline auto operator|(TlsPassword::Flags lhs, TlsPassword::Flags rhs) -> TlsPassword::Flags
   { return static_cast<TlsPassword::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline TlsPassword::Flags operator&(TlsPassword::Flags lhs, TlsPassword::Flags rhs)
+inline auto operator&(TlsPassword::Flags lhs, TlsPassword::Flags rhs) -> TlsPassword::Flags
   { return static_cast<TlsPassword::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline TlsPassword::Flags operator^(TlsPassword::Flags lhs, TlsPassword::Flags rhs)
+inline auto operator^(TlsPassword::Flags lhs, TlsPassword::Flags rhs) -> TlsPassword::Flags
   { return static_cast<TlsPassword::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline TlsPassword::Flags operator~(TlsPassword::Flags flags)
+inline auto operator~(TlsPassword::Flags flags) -> TlsPassword::Flags
   { return static_cast<TlsPassword::Flags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline TlsPassword::Flags& operator|=(TlsPassword::Flags& lhs, TlsPassword::Flags rhs)
+inline auto operator|=(TlsPassword::Flags& lhs, TlsPassword::Flags rhs) -> TlsPassword::Flags&
   { return (lhs = static_cast<TlsPassword::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline TlsPassword::Flags& operator&=(TlsPassword::Flags& lhs, TlsPassword::Flags rhs)
+inline auto operator&=(TlsPassword::Flags& lhs, TlsPassword::Flags rhs) -> TlsPassword::Flags&
   { return (lhs = static_cast<TlsPassword::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline TlsPassword::Flags& operator^=(TlsPassword::Flags& lhs, TlsPassword::Flags rhs)
+inline auto operator^=(TlsPassword::Flags& lhs, TlsPassword::Flags rhs) -> TlsPassword::Flags&
   { return (lhs = static_cast<TlsPassword::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 
@@ -388,7 +388,7 @@ template <>
 class GIOMM_API Value<Gio::TlsPassword::Flags> : public Glib::Value_Flags<Gio::TlsPassword::Flags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -406,7 +406,7 @@ namespace Glib
    * @relates Gio::TlsPassword
    */
   GIOMM_API
-  Glib::RefPtr<Gio::TlsPassword> wrap(GTlsPassword* object, bool take_copy = false);
+  auto wrap(GTlsPassword* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsPassword>;
 }
 
 

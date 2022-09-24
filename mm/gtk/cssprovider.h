@@ -82,7 +82,7 @@ public:
 
   GTKMM_API CssParserError(Code error_code, const Glib::ustring& error_message);
   GTKMM_API explicit CssParserError(GError* gobject);
-  GTKMM_API Code code() const;
+  GTKMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -104,7 +104,7 @@ template <>
 class GTKMM_API Value<Gtk::CssParserError::Code> : public Glib::Value_Enum<Gtk::CssParserError::Code>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -147,7 +147,7 @@ public:
 
   GTKMM_API CssParserWarning(Code error_code, const Glib::ustring& error_message);
   GTKMM_API explicit CssParserWarning(GError* gobject);
-  GTKMM_API Code code() const;
+  GTKMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -169,7 +169,7 @@ template <>
 class GTKMM_API Value<Gtk::CssParserWarning::Code> : public Glib::Value_Enum<Gtk::CssParserWarning::Code>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -208,7 +208,7 @@ public:
 
   // noncopyable
   CssProvider(const CssProvider&) = delete;
-  CssProvider& operator=(const CssProvider&) = delete;
+  auto operator=(const CssProvider&) -> CssProvider& = delete;
 
 private:  friend class CssProvider_Class;
   static CppClassType cssprovider_class_;
@@ -222,28 +222,28 @@ protected:
 public:
 
   CssProvider(CssProvider&& src) noexcept;
-  CssProvider& operator=(CssProvider&& src) noexcept;
+  auto operator=(CssProvider&& src) noexcept -> CssProvider&;
 
   ~CssProvider() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkCssProvider*       gobj()       { return reinterpret_cast<GtkCssProvider*>(gobject_); }
+  auto       gobj() -> GtkCssProvider*       { return reinterpret_cast<GtkCssProvider*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkCssProvider* gobj() const { return reinterpret_cast<GtkCssProvider*>(gobject_); }
+  auto gobj() const -> const GtkCssProvider* { return reinterpret_cast<GtkCssProvider*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkCssProvider* gobj_copy();
+  auto gobj_copy() -> GtkCssProvider*;
 
 private:
 
@@ -254,7 +254,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<CssProvider> create();
+  static auto create() -> Glib::RefPtr<CssProvider>;
 
 
   /** Converts the @a provider into a string representation in CSS
@@ -267,7 +267,7 @@ public:
    *
    * @return A new string representing the @a provider.
    */
-  Glib::ustring to_string() const;
+  auto to_string() const -> Glib::ustring;
 
   /** Loads @a data into this css provider, making it clear any previously loaded information.
    *
@@ -342,7 +342,7 @@ public:
    * @param error The parsing error.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<const CssSection>&, const Glib::Error&)> signal_parsing_error();
+  auto signal_parsing_error() -> Glib::SignalProxy<void(const Glib::RefPtr<const CssSection>&, const Glib::Error&)>;
 
 
   //There are no properties.
@@ -375,7 +375,7 @@ namespace Glib
    * @relates Gtk::CssProvider
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::CssProvider> wrap(GtkCssProvider* object, bool take_copy = false);
+  auto wrap(GtkCssProvider* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CssProvider>;
 }
 
 

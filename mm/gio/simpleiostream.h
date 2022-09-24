@@ -67,7 +67,7 @@ public:
 
   // noncopyable
   SimpleIOStream(const SimpleIOStream&) = delete;
-  SimpleIOStream& operator=(const SimpleIOStream&) = delete;
+  auto operator=(const SimpleIOStream&) -> SimpleIOStream& = delete;
 
 private:  friend class SimpleIOStream_Class;
   static CppClassType simpleiostream_class_;
@@ -81,28 +81,28 @@ protected:
 public:
 
   SimpleIOStream(SimpleIOStream&& src) noexcept;
-  SimpleIOStream& operator=(SimpleIOStream&& src) noexcept;
+  auto operator=(SimpleIOStream&& src) noexcept -> SimpleIOStream&;
 
   ~SimpleIOStream() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GSimpleIOStream*       gobj()       { return reinterpret_cast<GSimpleIOStream*>(gobject_); }
+  auto       gobj() -> GSimpleIOStream*       { return reinterpret_cast<GSimpleIOStream*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GSimpleIOStream* gobj() const { return reinterpret_cast<GSimpleIOStream*>(gobject_); }
+  auto gobj() const -> const GSimpleIOStream* { return reinterpret_cast<GSimpleIOStream*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GSimpleIOStream* gobj_copy();
+  auto gobj_copy() -> GSimpleIOStream*;
 
 private:
 
@@ -133,7 +133,7 @@ public:
    * @returns A new SimpleIOStream instance.
 	 */
 
-  static Glib::RefPtr<SimpleIOStream> create(const Glib::RefPtr<InputStream>& input_stream, const Glib::RefPtr<OutputStream>& output_stream);
+  static auto create(const Glib::RefPtr<InputStream>& input_stream, const Glib::RefPtr<OutputStream>& output_stream) -> Glib::RefPtr<SimpleIOStream>;
 
 
   /** The GInputStream to read from.
@@ -143,7 +143,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InputStream> > property_input_stream() const;
+  auto property_input_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InputStream> >;
 
 
   /** The GOutputStream to write to.
@@ -153,7 +153,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<OutputStream> > property_output_stream() const;
+  auto property_output_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<OutputStream> >;
 
 
   // SimpleIOStream has no methods other than create(), signals nor vfuncs.
@@ -186,7 +186,7 @@ namespace Glib
    * @relates Gio::SimpleIOStream
    */
   GIOMM_API
-  Glib::RefPtr<Gio::SimpleIOStream> wrap(GSimpleIOStream* object, bool take_copy = false);
+  auto wrap(GSimpleIOStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::SimpleIOStream>;
 }
 
 

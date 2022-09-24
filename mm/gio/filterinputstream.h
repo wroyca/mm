@@ -62,7 +62,7 @@ public:
 
   // noncopyable
   FilterInputStream(const FilterInputStream&) = delete;
-  FilterInputStream& operator=(const FilterInputStream&) = delete;
+  auto operator=(const FilterInputStream&) -> FilterInputStream& = delete;
 
 private:  friend class FilterInputStream_Class;
   static CppClassType filterinputstream_class_;
@@ -76,28 +76,28 @@ protected:
 public:
 
   FilterInputStream(FilterInputStream&& src) noexcept;
-  FilterInputStream& operator=(FilterInputStream&& src) noexcept;
+  auto operator=(FilterInputStream&& src) noexcept -> FilterInputStream&;
 
   ~FilterInputStream() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GFilterInputStream*       gobj()       { return reinterpret_cast<GFilterInputStream*>(gobject_); }
+  auto       gobj() -> GFilterInputStream*       { return reinterpret_cast<GFilterInputStream*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GFilterInputStream* gobj() const { return reinterpret_cast<GFilterInputStream*>(gobject_); }
+  auto gobj() const -> const GFilterInputStream* { return reinterpret_cast<GFilterInputStream*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GFilterInputStream* gobj_copy();
+  auto gobj_copy() -> GFilterInputStream*;
 
 private:
 
@@ -112,14 +112,14 @@ public:
    *
    * @return A InputStream.
    */
-  Glib::RefPtr<InputStream> get_base_stream();
+  auto get_base_stream() -> Glib::RefPtr<InputStream>;
 
 
   /** Gets the base stream for the filter stream.
    *
    * @return A InputStream.
    */
-  Glib::RefPtr<const InputStream> get_base_stream() const;
+  auto get_base_stream() const -> Glib::RefPtr<const InputStream>;
 
 
   /** Returns whether the base stream will be closed when @a stream is
@@ -127,7 +127,7 @@ public:
    *
    * @return <tt>true</tt> if the base stream will be closed.
    */
-  bool get_close_base_stream() const;
+  auto get_close_base_stream() const -> bool;
 
   /** Sets whether the base stream will be closed when @a stream is closed.
    *
@@ -140,7 +140,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InputStream> > property_base_stream() const;
+  auto property_base_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InputStream> >;
 
 
   /** If the base stream should be closed when the filter stream is closed.
@@ -150,7 +150,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_close_base_stream() ;
+  auto property_close_base_stream() -> Glib::PropertyProxy< bool > ;
 
 /** If the base stream should be closed when the filter stream is closed.
    *
@@ -159,7 +159,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_close_base_stream() const;
+  auto property_close_base_stream() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -189,7 +189,7 @@ namespace Glib
    * @relates Gio::FilterInputStream
    */
   GIOMM_API
-  Glib::RefPtr<Gio::FilterInputStream> wrap(GFilterInputStream* object, bool take_copy = false);
+  auto wrap(GFilterInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::FilterInputStream>;
 }
 
 

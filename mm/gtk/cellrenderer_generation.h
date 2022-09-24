@@ -26,15 +26,11 @@
 #include <mm/gtk/cellrenderertoggle.h>
 #include <mm/gtk/cellrendereraccel.h>
 
-namespace Gtk
-{
-
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace CellRenderer_Generation
+namespace Gtk::CellRenderer_Generation
 {
 
 template<class T_ModelColumnType> //e.g. bool or Glib::ustring.
-CellRenderer* generate_cellrenderer(bool editable = false)
+auto generate_cellrenderer(bool editable = false) -> CellRenderer*
 {
   auto cell_renderer = new CellRendererText(); //the default - template specializations will use other renderers.
   //CellRendererText can render both strings and numerical values.
@@ -48,18 +44,15 @@ CellRenderer* generate_cellrenderer(bool editable = false)
 // gcc 2.95.x fails in TreeView::append_column_editable if the
 // following specializations are declared in the header.
 template<>
-GTKMM_API CellRenderer* generate_cellrenderer<bool>(bool editable);
+GTKMM_API auto generate_cellrenderer<bool>(bool editable) -> CellRenderer*;
 
 template<>
-GTKMM_API CellRenderer* generate_cellrenderer< Glib::RefPtr<Gdk::Pixbuf> >(bool editable);
+GTKMM_API auto generate_cellrenderer< Glib::RefPtr<Gdk::Pixbuf> >(bool editable) -> CellRenderer*;
 
 template<>
-GTKMM_API CellRenderer* generate_cellrenderer<AccelKey>(bool editable);
+GTKMM_API auto generate_cellrenderer<AccelKey>(bool editable) -> CellRenderer*;
 
 #endif
-
-} //CellRenderer_Generation
-#endif //DOXYGEN_SHOULD_SKIP_THIS
 
 } // namespace Gtk
 

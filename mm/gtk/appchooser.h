@@ -90,7 +90,7 @@ public:
 
   // noncopyable
   AppChooser(const AppChooser&) = delete;
-  AppChooser& operator=(const AppChooser&) = delete;
+  auto operator=(const AppChooser&) -> AppChooser& = delete;
 
 private:
   friend class AppChooser_Class;
@@ -124,7 +124,7 @@ protected:
 public:
 
   AppChooser(AppChooser&& src) noexcept;
-  AppChooser& operator=(AppChooser&& src) noexcept;
+  auto operator=(AppChooser&& src) noexcept -> AppChooser&;
 
   ~AppChooser() noexcept override;
 
@@ -132,17 +132,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkAppChooser*       gobj()       { return reinterpret_cast<GtkAppChooser*>(gobject_); }
+  auto       gobj() -> GtkAppChooser*       { return reinterpret_cast<GtkAppChooser*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkAppChooser* gobj() const { return reinterpret_cast<GtkAppChooser*>(gobject_); }
+  auto gobj() const -> const GtkAppChooser* { return reinterpret_cast<GtkAppChooser*>(gobject_); }
 
 private:
 
@@ -154,14 +154,14 @@ public:
    * @return A `Gio::AppInfo` for the
    * currently selected application.
    */
-  Glib::RefPtr<Gio::AppInfo> get_app_info();
+  auto get_app_info() -> Glib::RefPtr<Gio::AppInfo>;
 
   /** Returns the currently selected application.
    *
    * @return A `Gio::AppInfo` for the
    * currently selected application.
    */
-  Glib::RefPtr<const Gio::AppInfo> get_app_info() const;
+  auto get_app_info() const -> Glib::RefPtr<const Gio::AppInfo>;
 
 
   /** Returns the content type for which the `Gtk::AppChooser`
@@ -169,7 +169,7 @@ public:
    *
    * @return The content type of @a self.
    */
-  Glib::ustring get_content_type() const;
+  auto get_content_type() const -> Glib::ustring;
 
   /** Reloads the list of applications.
    */
@@ -184,7 +184,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_content_type() const;
+  auto property_content_type() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -214,7 +214,7 @@ namespace Glib
    * @relates Gtk::AppChooser
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::AppChooser> wrap(GtkAppChooser* object, bool take_copy = false);
+  auto wrap(GtkAppChooser* object, bool take_copy = false) -> Glib::RefPtr<Gtk::AppChooser>;
 
 } // namespace Glib
 

@@ -47,7 +47,7 @@ void Device::unreference() const
   cairo_device_destroy(m_cobject);
 }
 
-Device::DeviceType Device::get_type() const
+auto Device::get_type() const -> Device::DeviceType
 {
   auto surface_type =
     cairo_device_get_type(const_cast<cobject*>(cobj()));

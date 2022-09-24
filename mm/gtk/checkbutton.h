@@ -64,11 +64,11 @@ class GTKMM_API CheckButton : public Widget, public Actionable
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   CheckButton(CheckButton&& src) noexcept;
-  CheckButton& operator=(CheckButton&& src) noexcept;
+  auto operator=(CheckButton&& src) noexcept -> CheckButton&;
 
   // noncopyable
   CheckButton(const CheckButton&) = delete;
-  CheckButton& operator=(const CheckButton&) = delete;
+  auto operator=(const CheckButton&) -> CheckButton& = delete;
 
   ~CheckButton() noexcept override;
 
@@ -88,19 +88,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkCheckButton*       gobj()       { return reinterpret_cast<GtkCheckButton*>(gobject_); }
+  auto       gobj() -> GtkCheckButton*       { return reinterpret_cast<GtkCheckButton*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkCheckButton* gobj() const { return reinterpret_cast<GtkCheckButton*>(gobject_); }
+  auto gobj() const -> const GtkCheckButton* { return reinterpret_cast<GtkCheckButton*>(gobject_); }
 
 private:
 
@@ -133,7 +133,7 @@ public:
    *
    * @return <tt>true</tt> if @a check_button is currently in an inconsistent state.
    */
-  bool get_inconsistent() const;
+  auto get_inconsistent() const -> bool;
 
   /** Changes the check buttons active state.
    *
@@ -145,7 +145,7 @@ public:
    *
    * @return Whether the check button is active.
    */
-  bool get_active() const;
+  auto get_active() const -> bool;
 
   /** Sets the text of @a self.
    *
@@ -163,7 +163,7 @@ public:
    * @return The label @a self shows next
    * to the indicator. If no label is shown, <tt>nullptr</tt> will be returned.
    */
-  Glib::ustring get_label() const;
+  auto get_label() const -> Glib::ustring;
 
   /** Sets whether underlines in the label indicate mnemonics.
    *
@@ -181,7 +181,7 @@ public:
    * See set_use_underline() for details on how to set
    * a new value.
    */
-  bool get_use_underline() const;
+  auto get_use_underline() const -> bool;
 
 
   /** Sets the child widget of @a button.
@@ -205,7 +205,7 @@ public:
    *
    * @return The child widget of @a button.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget of @a button or <tt>nullptr</tt> if property_label() is set.
    *
@@ -213,7 +213,7 @@ public:
    *
    * @return The child widget of @a button.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
 
   /** Adds @a self to the group of @a group.
@@ -249,7 +249,7 @@ public:
    * property changes.
    */
 
-  Glib::SignalProxy<void()> signal_toggled();
+  auto signal_toggled() -> Glib::SignalProxy<void()>;
 
 
   /** If the check button is active.
@@ -262,7 +262,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_active() ;
+  auto property_active() -> Glib::PropertyProxy< bool > ;
 
 /** If the check button is active.
    *
@@ -274,14 +274,14 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_active() const;
+  auto property_active() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The check button whose group this widget belongs to.
    *
    * @return A PropertyProxy_WriteOnly that allows you to set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_WriteOnly< CheckButton* > property_group() ;
+  auto property_group() -> Glib::PropertyProxy_WriteOnly< CheckButton* > ;
 
 
   /** Text of the label inside the check button, if it contains a label widget.
@@ -291,7 +291,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_label() ;
+  auto property_label() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Text of the label inside the check button, if it contains a label widget.
    *
@@ -300,7 +300,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_label() const;
+  auto property_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** If the check button is in an “in between” state.
    *
@@ -312,7 +312,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_inconsistent() ;
+  auto property_inconsistent() -> Glib::PropertyProxy< bool > ;
 
 /** If the check button is in an “in between” state.
    *
@@ -324,7 +324,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_inconsistent() const;
+  auto property_inconsistent() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** If set, an underline in the text indicates that the following
    * character is to be used as mnemonic.
@@ -334,7 +334,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_use_underline() ;
+  auto property_use_underline() -> Glib::PropertyProxy< bool > ;
 
 /** If set, an underline in the text indicates that the following
    * character is to be used as mnemonic.
@@ -344,7 +344,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_underline() const;
+  auto property_use_underline() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The child widget.
    *
@@ -353,7 +353,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The child widget.
    *
@@ -362,7 +362,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
 public:
@@ -394,7 +394,7 @@ namespace Glib
    * @relates Gtk::CheckButton
    */
   GTKMM_API
-  Gtk::CheckButton* wrap(GtkCheckButton* object, bool take_copy = false);
+  auto wrap(GtkCheckButton* object, bool take_copy = false) -> Gtk::CheckButton*;
 } //namespace Glib
 
 

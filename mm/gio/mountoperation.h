@@ -90,31 +90,31 @@ enum class AskPasswordFlags
 };
 
 /** @ingroup giommEnums */
-inline AskPasswordFlags operator|(AskPasswordFlags lhs, AskPasswordFlags rhs)
+inline auto operator|(AskPasswordFlags lhs, AskPasswordFlags rhs) -> AskPasswordFlags
   { return static_cast<AskPasswordFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline AskPasswordFlags operator&(AskPasswordFlags lhs, AskPasswordFlags rhs)
+inline auto operator&(AskPasswordFlags lhs, AskPasswordFlags rhs) -> AskPasswordFlags
   { return static_cast<AskPasswordFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline AskPasswordFlags operator^(AskPasswordFlags lhs, AskPasswordFlags rhs)
+inline auto operator^(AskPasswordFlags lhs, AskPasswordFlags rhs) -> AskPasswordFlags
   { return static_cast<AskPasswordFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline AskPasswordFlags operator~(AskPasswordFlags flags)
+inline auto operator~(AskPasswordFlags flags) -> AskPasswordFlags
   { return static_cast<AskPasswordFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline AskPasswordFlags& operator|=(AskPasswordFlags& lhs, AskPasswordFlags rhs)
+inline auto operator|=(AskPasswordFlags& lhs, AskPasswordFlags rhs) -> AskPasswordFlags&
   { return (lhs = static_cast<AskPasswordFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline AskPasswordFlags& operator&=(AskPasswordFlags& lhs, AskPasswordFlags rhs)
+inline auto operator&=(AskPasswordFlags& lhs, AskPasswordFlags rhs) -> AskPasswordFlags&
   { return (lhs = static_cast<AskPasswordFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline AskPasswordFlags& operator^=(AskPasswordFlags& lhs, AskPasswordFlags rhs)
+inline auto operator^=(AskPasswordFlags& lhs, AskPasswordFlags rhs) -> AskPasswordFlags&
   { return (lhs = static_cast<AskPasswordFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -155,7 +155,7 @@ template <>
 class GIOMM_API Value<Gio::PasswordSave> : public Glib::Value_Enum<Gio::PasswordSave>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -218,7 +218,7 @@ public:
 
   // noncopyable
   MountOperation(const MountOperation&) = delete;
-  MountOperation& operator=(const MountOperation&) = delete;
+  auto operator=(const MountOperation&) -> MountOperation& = delete;
 
 private:  friend class MountOperation_Class;
   static CppClassType mountoperation_class_;
@@ -232,28 +232,28 @@ protected:
 public:
 
   MountOperation(MountOperation&& src) noexcept;
-  MountOperation& operator=(MountOperation&& src) noexcept;
+  auto operator=(MountOperation&& src) noexcept -> MountOperation&;
 
   ~MountOperation() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GMountOperation*       gobj()       { return reinterpret_cast<GMountOperation*>(gobject_); }
+  auto       gobj() -> GMountOperation*       { return reinterpret_cast<GMountOperation*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GMountOperation* gobj() const { return reinterpret_cast<GMountOperation*>(gobject_); }
+  auto gobj() const -> const GMountOperation* { return reinterpret_cast<GMountOperation*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GMountOperation* gobj_copy();
+  auto gobj_copy() -> GMountOperation*;
 
 private:
 
@@ -263,14 +263,14 @@ protected:
 
 public:
 
-  static Glib::RefPtr<MountOperation> create();
+  static auto create() -> Glib::RefPtr<MountOperation>;
 
 
   /** Get the user name from the mount operation.
    *
    * @return A string containing the user name.
    */
-  Glib::ustring get_username() const;
+  auto get_username() const -> Glib::ustring;
 
   /** Sets the user name within @a op to @a username.
    *
@@ -282,7 +282,7 @@ public:
    *
    * @return A string containing the password within @a op.
    */
-  Glib::ustring get_password() const;
+  auto get_password() const -> Glib::ustring;
 
   /** Sets the mount operation's password to @a password.
    *
@@ -295,7 +295,7 @@ public:
    *
    * @return <tt>true</tt> if mount operation is anonymous.
    */
-  bool get_anonymous() const;
+  auto get_anonymous() const -> bool;
 
   /** Sets the mount operation to use an anonymous user if @a anonymous is <tt>true</tt>.
    *
@@ -307,7 +307,7 @@ public:
    *
    * @return A string set to the domain.
    */
-  Glib::ustring get_domain() const;
+  auto get_domain() const -> Glib::ustring;
 
   /** Sets the mount operation's domain.
    *
@@ -319,7 +319,7 @@ public:
    *
    * @return A PasswordSave flag.
    */
-  PasswordSave get_password_save() const;
+  auto get_password_save() const -> PasswordSave;
 
   /** Sets the state of saving passwords for the mount operation.
    *
@@ -332,7 +332,7 @@ public:
    * @return An integer containing an index of the user's choice from
    * the choice's list, or `0`.
    */
-  int get_choice() const;
+  auto get_choice() const -> int;
 
   /** Sets a default choice for the mount operation.
    *
@@ -365,7 +365,7 @@ public:
    * @param flags A set of AskPasswordFlags.
    */
 
-  Glib::SignalProxy<void(const Glib::ustring&, const Glib::ustring&, const Glib::ustring&, AskPasswordFlags)> signal_ask_password();
+  auto signal_ask_password() -> Glib::SignalProxy<void(const Glib::ustring&, const Glib::ustring&, const Glib::ustring&, AskPasswordFlags)>;
 
 
   //TODO: We really need some test to make sure that our use of ArrayHandler is correct. murrayc.
@@ -388,7 +388,7 @@ public:
    * @param choices An array of strings for each possible choice.
    */
 
-  Glib::SignalProxy<void(const Glib::ustring&, const std::vector<Glib::ustring>&)> signal_ask_question();
+  auto signal_ask_question() -> Glib::SignalProxy<void(const Glib::ustring&, const std::vector<Glib::ustring>&)>;
 
 
   /**
@@ -402,7 +402,7 @@ public:
    * @param result A MountOperationResult indicating how the request was handled.
    */
 
-  Glib::SignalProxy<void(MountOperationResult)> signal_reply();
+  auto signal_reply() -> Glib::SignalProxy<void(MountOperationResult)>;
 
 
   /**
@@ -420,7 +420,7 @@ public:
    * @newin{2,20}
    */
 
-  Glib::SignalProxy<void()> signal_aborted();
+  auto signal_aborted() -> Glib::SignalProxy<void()>;
 
 
   //TODO: The array of char* is not very pleasant to wrap:
@@ -460,7 +460,7 @@ public:
    * is completed.
    */
 
-  Glib::SignalProxy<void(const Glib::ustring&, gint64, gint64)> signal_show_unmount_progress();
+  auto signal_show_unmount_progress() -> Glib::SignalProxy<void(const Glib::ustring&, gint64, gint64)>;
 
 
   /** The user name that is used for authentication when carrying out
@@ -471,7 +471,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_username() ;
+  auto property_username() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The user name that is used for authentication when carrying out
    * the mount operation.
@@ -481,7 +481,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_username() const;
+  auto property_username() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The password that is used for authentication when carrying out
    * the mount operation.
@@ -491,7 +491,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_password() ;
+  auto property_password() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The password that is used for authentication when carrying out
    * the mount operation.
@@ -501,7 +501,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_password() const;
+  auto property_password() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Whether to use an anonymous user when authenticating.
    *
@@ -510,7 +510,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_anonymous() ;
+  auto property_anonymous() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to use an anonymous user when authenticating.
    *
@@ -519,7 +519,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_anonymous() const;
+  auto property_anonymous() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The domain to use for the mount operation.
    *
@@ -528,7 +528,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_domain() ;
+  auto property_domain() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The domain to use for the mount operation.
    *
@@ -537,7 +537,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_domain() const;
+  auto property_domain() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Determines if and how the password information should be saved.
    *
@@ -546,7 +546,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< PasswordSave > property_password_save() ;
+  auto property_password_save() -> Glib::PropertyProxy< PasswordSave > ;
 
 /** Determines if and how the password information should be saved.
    *
@@ -555,7 +555,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< PasswordSave > property_password_save() const;
+  auto property_password_save() const -> Glib::PropertyProxy_ReadOnly< PasswordSave >;
 
   /** The index of the user's choice when a question is asked during the
    * mount operation. See the MountOperation::signal_ask_question() signal.
@@ -565,7 +565,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_choice() ;
+  auto property_choice() -> Glib::PropertyProxy< int > ;
 
 /** The index of the user's choice when a question is asked during the
    * mount operation. See the MountOperation::signal_ask_question() signal.
@@ -575,7 +575,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_choice() const;
+  auto property_choice() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
 public:
@@ -615,7 +615,7 @@ namespace Glib
    * @relates Gio::MountOperation
    */
   GIOMM_API
-  Glib::RefPtr<Gio::MountOperation> wrap(GMountOperation* object, bool take_copy = false);
+  auto wrap(GMountOperation* object, bool take_copy = false) -> Glib::RefPtr<Gio::MountOperation>;
 }
 
 

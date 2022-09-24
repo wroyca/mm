@@ -118,7 +118,7 @@ public:
 
   // noncopyable
   ShortcutTrigger(const ShortcutTrigger&) = delete;
-  ShortcutTrigger& operator=(const ShortcutTrigger&) = delete;
+  auto operator=(const ShortcutTrigger&) -> ShortcutTrigger& = delete;
 
 private:  friend class ShortcutTrigger_Class;
   static CppClassType shortcuttrigger_class_;
@@ -132,28 +132,28 @@ protected:
 public:
 
   ShortcutTrigger(ShortcutTrigger&& src) noexcept;
-  ShortcutTrigger& operator=(ShortcutTrigger&& src) noexcept;
+  auto operator=(ShortcutTrigger&& src) noexcept -> ShortcutTrigger&;
 
   ~ShortcutTrigger() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkShortcutTrigger*       gobj()       { return reinterpret_cast<GtkShortcutTrigger*>(gobject_); }
+  auto       gobj() -> GtkShortcutTrigger*       { return reinterpret_cast<GtkShortcutTrigger*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkShortcutTrigger* gobj() const { return reinterpret_cast<GtkShortcutTrigger*>(gobject_); }
+  auto gobj() const -> const GtkShortcutTrigger* { return reinterpret_cast<GtkShortcutTrigger*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkShortcutTrigger* gobj_copy();
+  auto gobj_copy() -> GtkShortcutTrigger*;
 
 private:
 
@@ -182,7 +182,7 @@ public:
    * @param string The string to parse.
    * @return A new `Gtk::ShortcutTrigger`.
    */
-  static Glib::RefPtr<ShortcutTrigger> parse_string(const Glib::ustring& string);
+  static auto parse_string(const Glib::ustring& string) -> Glib::RefPtr<ShortcutTrigger>;
 
 
   /** Prints the given trigger into a human-readable string.
@@ -193,7 +193,7 @@ public:
    *
    * @return A new string.
    */
-  Glib::ustring to_string() const;
+  auto to_string() const -> Glib::ustring;
 
 
   /** Gets textual representation for the given trigger.
@@ -212,7 +212,7 @@ public:
    * @param display `Gdk::Display` to print for.
    * @return A new string.
    */
-  Glib::ustring to_label(const Glib::RefPtr<const Gdk::Display>& display) const;
+  auto to_label(const Glib::RefPtr<const Gdk::Display>& display) const -> Glib::ustring;
 
 
   // Is this useful? _WRAP_METHOD(guint hash() const, gtk_shortcut_trigger_hash)
@@ -226,7 +226,7 @@ public:
    * @param trigger2 A `Gtk::ShortcutTrigger`.
    * @return <tt>true</tt> if @a trigger1 and @a trigger2 are equal.
    */
-  bool equal(const Glib::RefPtr<const ShortcutTrigger>& trigger2) const;
+  auto equal(const Glib::RefPtr<const ShortcutTrigger>& trigger2) const -> bool;
 
   /** The types of @a trigger1 and @a trigger2 are `gconstpointer` only to allow
    * use of this function as a `CompareFunc`.
@@ -238,7 +238,7 @@ public:
    *  @a trigger1 is found, respectively, to be less than, to match,
    * or be greater than @a trigger2.
    */
-  int compare(const Glib::RefPtr<const ShortcutTrigger>& trigger2) const;
+  auto compare(const Glib::RefPtr<const ShortcutTrigger>& trigger2) const -> int;
 
 
   /** Checks if the given @a event triggers @a self.
@@ -249,7 +249,7 @@ public:
    * in @a event is a Key event and has the right modifiers set.
    * @return Whether the event triggered the shortcut.
    */
-  Gdk::KeyMatch trigger(const Glib::RefPtr<const Gdk::Event>& event, bool enable_mnemonics) const;
+  auto trigger(const Glib::RefPtr<const Gdk::Event>& event, bool enable_mnemonics) const -> Gdk::KeyMatch;
 
 
 public:
@@ -282,7 +282,7 @@ public:
 
   // noncopyable
   NeverTrigger(const NeverTrigger&) = delete;
-  NeverTrigger& operator=(const NeverTrigger&) = delete;
+  auto operator=(const NeverTrigger&) -> NeverTrigger& = delete;
 
 private:  friend class NeverTrigger_Class;
   static CppClassType nevertrigger_class_;
@@ -296,28 +296,28 @@ protected:
 public:
 
   NeverTrigger(NeverTrigger&& src) noexcept;
-  NeverTrigger& operator=(NeverTrigger&& src) noexcept;
+  auto operator=(NeverTrigger&& src) noexcept -> NeverTrigger&;
 
   ~NeverTrigger() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkNeverTrigger*       gobj()       { return reinterpret_cast<GtkNeverTrigger*>(gobject_); }
+  auto       gobj() -> GtkNeverTrigger*       { return reinterpret_cast<GtkNeverTrigger*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkNeverTrigger* gobj() const { return reinterpret_cast<GtkNeverTrigger*>(gobject_); }
+  auto gobj() const -> const GtkNeverTrigger* { return reinterpret_cast<GtkNeverTrigger*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkNeverTrigger* gobj_copy();
+  auto gobj_copy() -> GtkNeverTrigger*;
 
 private:
 
@@ -334,7 +334,7 @@ public:
    *
    * @return The never trigger.
    */
-  static Glib::RefPtr<NeverTrigger> get();
+  static auto get() -> Glib::RefPtr<NeverTrigger>;
 
 
 public:
@@ -372,7 +372,7 @@ public:
 
   // noncopyable
   KeyvalTrigger(const KeyvalTrigger&) = delete;
-  KeyvalTrigger& operator=(const KeyvalTrigger&) = delete;
+  auto operator=(const KeyvalTrigger&) -> KeyvalTrigger& = delete;
 
 private:  friend class KeyvalTrigger_Class;
   static CppClassType keyvaltrigger_class_;
@@ -386,28 +386,28 @@ protected:
 public:
 
   KeyvalTrigger(KeyvalTrigger&& src) noexcept;
-  KeyvalTrigger& operator=(KeyvalTrigger&& src) noexcept;
+  auto operator=(KeyvalTrigger&& src) noexcept -> KeyvalTrigger&;
 
   ~KeyvalTrigger() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkKeyvalTrigger*       gobj()       { return reinterpret_cast<GtkKeyvalTrigger*>(gobject_); }
+  auto       gobj() -> GtkKeyvalTrigger*       { return reinterpret_cast<GtkKeyvalTrigger*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkKeyvalTrigger* gobj() const { return reinterpret_cast<GtkKeyvalTrigger*>(gobject_); }
+  auto gobj() const -> const GtkKeyvalTrigger* { return reinterpret_cast<GtkKeyvalTrigger*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkKeyvalTrigger* gobj_copy();
+  auto gobj_copy() -> GtkKeyvalTrigger*;
 
 private:
 
@@ -417,7 +417,7 @@ private:
 
 public:
 
-  static Glib::RefPtr<KeyvalTrigger> create(guint keyval, Gdk::ModifierType modifiers =  static_cast<Gdk::ModifierType>(0));
+  static auto create(guint keyval, Gdk::ModifierType modifiers =  static_cast<Gdk::ModifierType>(0)) -> Glib::RefPtr<KeyvalTrigger>;
 
 
   /** Gets the keyval that must be pressed to succeed
@@ -425,14 +425,14 @@ public:
    *
    * @return The keyval.
    */
-  guint get_keyval() const;
+  auto get_keyval() const -> guint;
 
   /** Gets the modifiers that must be present to succeed
    * triggering @a self.
    *
    * @return The modifiers.
    */
-  Gdk::ModifierType get_modifiers() const;
+  auto get_modifiers() const -> Gdk::ModifierType;
 
   /** The key value for the trigger.
    *
@@ -441,7 +441,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_keyval() const;
+  auto property_keyval() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
   /** The key modifiers for the trigger.
@@ -451,7 +451,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Gdk::ModifierType > property_modifiers() const;
+  auto property_modifiers() const -> Glib::PropertyProxy_ReadOnly< Gdk::ModifierType >;
 
 
 public:
@@ -488,7 +488,7 @@ public:
 
   // noncopyable
   MnemonicTrigger(const MnemonicTrigger&) = delete;
-  MnemonicTrigger& operator=(const MnemonicTrigger&) = delete;
+  auto operator=(const MnemonicTrigger&) -> MnemonicTrigger& = delete;
 
 private:  friend class MnemonicTrigger_Class;
   static CppClassType mnemonictrigger_class_;
@@ -502,28 +502,28 @@ protected:
 public:
 
   MnemonicTrigger(MnemonicTrigger&& src) noexcept;
-  MnemonicTrigger& operator=(MnemonicTrigger&& src) noexcept;
+  auto operator=(MnemonicTrigger&& src) noexcept -> MnemonicTrigger&;
 
   ~MnemonicTrigger() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkMnemonicTrigger*       gobj()       { return reinterpret_cast<GtkMnemonicTrigger*>(gobject_); }
+  auto       gobj() -> GtkMnemonicTrigger*       { return reinterpret_cast<GtkMnemonicTrigger*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkMnemonicTrigger* gobj() const { return reinterpret_cast<GtkMnemonicTrigger*>(gobject_); }
+  auto gobj() const -> const GtkMnemonicTrigger* { return reinterpret_cast<GtkMnemonicTrigger*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkMnemonicTrigger* gobj_copy();
+  auto gobj_copy() -> GtkMnemonicTrigger*;
 
 private:
 
@@ -533,14 +533,14 @@ private:
 
 public:
 
-  static Glib::RefPtr<MnemonicTrigger> create(guint keyval);
+  static auto create(guint keyval) -> Glib::RefPtr<MnemonicTrigger>;
 
 
   /** Gets the keyval that must be pressed to succeed triggering @a self.
    *
    * @return The keyval.
    */
-  guint get_keyval() const;
+  auto get_keyval() const -> guint;
 
   /** The key value for the trigger.
    *
@@ -549,7 +549,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_keyval() const;
+  auto property_keyval() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
 public:
@@ -581,7 +581,7 @@ public:
 
   // noncopyable
   AlternativeTrigger(const AlternativeTrigger&) = delete;
-  AlternativeTrigger& operator=(const AlternativeTrigger&) = delete;
+  auto operator=(const AlternativeTrigger&) -> AlternativeTrigger& = delete;
 
 private:  friend class AlternativeTrigger_Class;
   static CppClassType alternativetrigger_class_;
@@ -595,28 +595,28 @@ protected:
 public:
 
   AlternativeTrigger(AlternativeTrigger&& src) noexcept;
-  AlternativeTrigger& operator=(AlternativeTrigger&& src) noexcept;
+  auto operator=(AlternativeTrigger&& src) noexcept -> AlternativeTrigger&;
 
   ~AlternativeTrigger() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkAlternativeTrigger*       gobj()       { return reinterpret_cast<GtkAlternativeTrigger*>(gobject_); }
+  auto       gobj() -> GtkAlternativeTrigger*       { return reinterpret_cast<GtkAlternativeTrigger*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkAlternativeTrigger* gobj() const { return reinterpret_cast<GtkAlternativeTrigger*>(gobject_); }
+  auto gobj() const -> const GtkAlternativeTrigger* { return reinterpret_cast<GtkAlternativeTrigger*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkAlternativeTrigger* gobj_copy();
+  auto gobj_copy() -> GtkAlternativeTrigger*;
 
 private:
 
@@ -626,7 +626,7 @@ private:
 
 public:
 
-  static Glib::RefPtr<AlternativeTrigger> create(const Glib::RefPtr<const ShortcutTrigger>& first, const Glib::RefPtr<const ShortcutTrigger>& second);
+  static auto create(const Glib::RefPtr<const ShortcutTrigger>& first, const Glib::RefPtr<const ShortcutTrigger>& second) -> Glib::RefPtr<AlternativeTrigger>;
 
 
   /** Gets the first of the two alternative triggers that may
@@ -637,7 +637,7 @@ public:
    *
    * @return The first alternative trigger.
    */
-  Glib::RefPtr<const ShortcutTrigger> get_first() const;
+  auto get_first() const -> Glib::RefPtr<const ShortcutTrigger>;
 
   /** Gets the second of the two alternative triggers that may
    * trigger @a self.
@@ -647,14 +647,14 @@ public:
    *
    * @return The second alternative trigger.
    */
-  Glib::RefPtr<const ShortcutTrigger> get_second() const;
+  auto get_second() const -> Glib::RefPtr<const ShortcutTrigger>;
 
   /** The first `Gtk::ShortcutTrigger` to check.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<const ShortcutTrigger> > property_first() const;
+  auto property_first() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<const ShortcutTrigger> >;
 
 
   /** The second `Gtk::ShortcutTrigger` to check.
@@ -662,7 +662,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<const ShortcutTrigger> > property_second() const;
+  auto property_second() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<const ShortcutTrigger> >;
 
 
 public:
@@ -692,7 +692,7 @@ namespace Glib
    * @relates Gtk::ShortcutTrigger
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::ShortcutTrigger> wrap(GtkShortcutTrigger* object, bool take_copy = false);
+  auto wrap(GtkShortcutTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ShortcutTrigger>;
 }
 
 
@@ -707,7 +707,7 @@ namespace Glib
    * @relates Gtk::NeverTrigger
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::NeverTrigger> wrap(GtkNeverTrigger* object, bool take_copy = false);
+  auto wrap(GtkNeverTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NeverTrigger>;
 }
 
 
@@ -722,7 +722,7 @@ namespace Glib
    * @relates Gtk::KeyvalTrigger
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::KeyvalTrigger> wrap(GtkKeyvalTrigger* object, bool take_copy = false);
+  auto wrap(GtkKeyvalTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::KeyvalTrigger>;
 }
 
 
@@ -737,7 +737,7 @@ namespace Glib
    * @relates Gtk::MnemonicTrigger
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::MnemonicTrigger> wrap(GtkMnemonicTrigger* object, bool take_copy = false);
+  auto wrap(GtkMnemonicTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MnemonicTrigger>;
 }
 
 
@@ -752,7 +752,7 @@ namespace Glib
    * @relates Gtk::AlternativeTrigger
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::AlternativeTrigger> wrap(GtkAlternativeTrigger* object, bool take_copy = false);
+  auto wrap(GtkAlternativeTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::AlternativeTrigger>;
 }
 
 

@@ -71,7 +71,7 @@ public:
 
   // noncopyable
   FileFilter(const FileFilter&) = delete;
-  FileFilter& operator=(const FileFilter&) = delete;
+  auto operator=(const FileFilter&) -> FileFilter& = delete;
 
 private:  friend class FileFilter_Class;
   static CppClassType filefilter_class_;
@@ -85,28 +85,28 @@ protected:
 public:
 
   FileFilter(FileFilter&& src) noexcept;
-  FileFilter& operator=(FileFilter&& src) noexcept;
+  auto operator=(FileFilter&& src) noexcept -> FileFilter&;
 
   ~FileFilter() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkFileFilter*       gobj()       { return reinterpret_cast<GtkFileFilter*>(gobject_); }
+  auto       gobj() -> GtkFileFilter*       { return reinterpret_cast<GtkFileFilter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkFileFilter* gobj() const { return reinterpret_cast<GtkFileFilter*>(gobject_); }
+  auto gobj() const -> const GtkFileFilter* { return reinterpret_cast<GtkFileFilter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkFileFilter* gobj_copy();
+  auto gobj_copy() -> GtkFileFilter*;
 
 private:
 
@@ -116,7 +116,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<FileFilter> create();
+  static auto create() -> Glib::RefPtr<FileFilter>;
 
 
   /** Sets a human-readable name of the filter.
@@ -135,7 +135,7 @@ public:
    *
    * @return The human-readable name of the filter.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
 
   /** Adds a rule allowing a given mime type to @a filter.
@@ -190,7 +190,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_name() ;
+  auto property_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The human-readable name of the filter.
    *
@@ -202,7 +202,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_name() const;
+  auto property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -232,7 +232,7 @@ namespace Glib
    * @relates Gtk::FileFilter
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::FileFilter> wrap(GtkFileFilter* object, bool take_copy = false);
+  auto wrap(GtkFileFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FileFilter>;
 }
 
 

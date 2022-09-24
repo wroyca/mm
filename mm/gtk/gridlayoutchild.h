@@ -68,7 +68,7 @@ public:
 
   // noncopyable
   GridLayoutChild(const GridLayoutChild&) = delete;
-  GridLayoutChild& operator=(const GridLayoutChild&) = delete;
+  auto operator=(const GridLayoutChild&) -> GridLayoutChild& = delete;
 
 private:  friend class GridLayoutChild_Class;
   static CppClassType gridlayoutchild_class_;
@@ -82,28 +82,28 @@ protected:
 public:
 
   GridLayoutChild(GridLayoutChild&& src) noexcept;
-  GridLayoutChild& operator=(GridLayoutChild&& src) noexcept;
+  auto operator=(GridLayoutChild&& src) noexcept -> GridLayoutChild&;
 
   ~GridLayoutChild() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkGridLayoutChild*       gobj()       { return reinterpret_cast<GtkGridLayoutChild*>(gobject_); }
+  auto       gobj() -> GtkGridLayoutChild*       { return reinterpret_cast<GtkGridLayoutChild*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkGridLayoutChild* gobj() const { return reinterpret_cast<GtkGridLayoutChild*>(gobject_); }
+  auto gobj() const -> const GtkGridLayoutChild* { return reinterpret_cast<GtkGridLayoutChild*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkGridLayoutChild* gobj_copy();
+  auto gobj_copy() -> GtkGridLayoutChild*;
 
 private:
 
@@ -131,7 +131,7 @@ public:
    *
    * @return The row number.
    */
-  int get_row() const;
+  auto get_row() const -> int;
 
   /** Sets the column number to attach the left side of @a child.
    *
@@ -143,7 +143,7 @@ public:
    *
    * @return The column number.
    */
-  int get_column() const;
+  auto get_column() const -> int;
 
   /** Sets the number of columns @a child spans to.
    *
@@ -155,7 +155,7 @@ public:
    *
    * @return The number of columns.
    */
-  int get_column_span() const;
+  auto get_column_span() const -> int;
 
   /** Sets the number of rows @a child spans to.
    *
@@ -167,7 +167,7 @@ public:
    *
    * @return The number of row.
    */
-  int get_row_span() const;
+  auto get_row_span() const -> int;
 
   /** The column to place the child in.
    *
@@ -176,7 +176,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_column() ;
+  auto property_column() -> Glib::PropertyProxy< int > ;
 
 /** The column to place the child in.
    *
@@ -185,7 +185,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_column() const;
+  auto property_column() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The row to place the child in.
    *
@@ -194,7 +194,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_row() ;
+  auto property_row() -> Glib::PropertyProxy< int > ;
 
 /** The row to place the child in.
    *
@@ -203,7 +203,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_row() const;
+  auto property_row() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The number of columns the child spans to.
    *
@@ -212,7 +212,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_column_span() ;
+  auto property_column_span() -> Glib::PropertyProxy< int > ;
 
 /** The number of columns the child spans to.
    *
@@ -221,7 +221,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_column_span() const;
+  auto property_column_span() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The number of rows the child spans to.
    *
@@ -230,7 +230,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_row_span() ;
+  auto property_row_span() -> Glib::PropertyProxy< int > ;
 
 /** The number of rows the child spans to.
    *
@@ -239,7 +239,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_row_span() const;
+  auto property_row_span() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   // There are no signals or vfuncs.
@@ -272,7 +272,7 @@ namespace Glib
    * @relates Gtk::GridLayoutChild
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::GridLayoutChild> wrap(GtkGridLayoutChild* object, bool take_copy = false);
+  auto wrap(GtkGridLayoutChild* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GridLayoutChild>;
 }
 
 

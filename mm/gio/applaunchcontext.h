@@ -68,7 +68,7 @@ public:
 
   // noncopyable
   AppLaunchContext(const AppLaunchContext&) = delete;
-  AppLaunchContext& operator=(const AppLaunchContext&) = delete;
+  auto operator=(const AppLaunchContext&) -> AppLaunchContext& = delete;
 
 private:  friend class AppLaunchContext_Class;
   static CppClassType applaunchcontext_class_;
@@ -82,28 +82,28 @@ protected:
 public:
 
   AppLaunchContext(AppLaunchContext&& src) noexcept;
-  AppLaunchContext& operator=(AppLaunchContext&& src) noexcept;
+  auto operator=(AppLaunchContext&& src) noexcept -> AppLaunchContext&;
 
   ~AppLaunchContext() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GAppLaunchContext*       gobj()       { return reinterpret_cast<GAppLaunchContext*>(gobject_); }
+  auto       gobj() -> GAppLaunchContext*       { return reinterpret_cast<GAppLaunchContext*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GAppLaunchContext* gobj() const { return reinterpret_cast<GAppLaunchContext*>(gobject_); }
+  auto gobj() const -> const GAppLaunchContext* { return reinterpret_cast<GAppLaunchContext*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GAppLaunchContext* gobj_copy();
+  auto gobj_copy() -> GAppLaunchContext*;
 
 private:
 
@@ -113,7 +113,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<AppLaunchContext> create();
+  static auto create() -> Glib::RefPtr<AppLaunchContext>;
 
 
   /** Arranges for @a variable to be set to @a value in the child's
@@ -145,7 +145,7 @@ public:
    *
    * @return The child's environment.
    */
-  std::vector<Glib::ustring> get_environment() const;
+  auto get_environment() const -> std::vector<Glib::ustring>;
 
 
   /** Gets the display string for the @a context. This is used to ensure new
@@ -156,7 +156,7 @@ public:
    * @param files A List of File objects.
    * @return A display string for the display.
    */
-  std::string get_display(const Glib::RefPtr<AppInfo>& info, const std::vector<Glib::RefPtr<Gio::File>>& files);
+  auto get_display(const Glib::RefPtr<AppInfo>& info, const std::vector<Glib::RefPtr<Gio::File>>& files) -> std::string;
 
 
   /** Initiates startup notification for the application and returns the
@@ -170,7 +170,7 @@ public:
    * @return A startup notification ID for the application, or <tt>nullptr</tt> if
    * not supported.
    */
-  std::string get_startup_notify_id(const Glib::RefPtr<AppInfo>& info, const std::vector<Glib::RefPtr<Gio::File>>& files);
+  auto get_startup_notify_id(const Glib::RefPtr<AppInfo>& info, const std::vector<Glib::RefPtr<Gio::File>>& files) -> std::string;
 
   /** Called when an application has failed to launch, so that it can cancel
    * the application startup notification started in g_app_launch_context_get_startup_notify_id().
@@ -207,7 +207,7 @@ namespace Glib
    * @relates Gio::AppLaunchContext
    */
   GIOMM_API
-  Glib::RefPtr<Gio::AppLaunchContext> wrap(GAppLaunchContext* object, bool take_copy = false);
+  auto wrap(GAppLaunchContext* object, bool take_copy = false) -> Glib::RefPtr<Gio::AppLaunchContext>;
 }
 
 

@@ -52,23 +52,23 @@ Socket::Socket(int fd, const Glib::RefPtr<Cancellable>& cancellable) : // Mark t
 }
 
 // static
-Glib::RefPtr<Socket>
+auto
 Socket::create(SocketFamily family, Type type, Protocol protocol,
-  const Glib::RefPtr<Cancellable>& cancellable)
+  const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Socket>
 {
   return Glib::make_refptr_for_instance<Socket>(new Socket(family, type, protocol, cancellable));
 }
 
 // static
-Glib::RefPtr<Socket>
-Socket::create_from_fd(int fd, const Glib::RefPtr<Cancellable>& cancellable)
+auto
+Socket::create_from_fd(int fd, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Socket>
 {
   return Glib::make_refptr_for_instance<Socket>(new Socket(fd, cancellable));
 }
 
-gssize
+auto
 Socket::receive_from(Glib::RefPtr<SocketAddress>& address, char* buffer, gsize size,
-  const Glib::RefPtr<Cancellable>& cancellable)
+  const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
   GSocketAddress* caddr = nullptr;
@@ -83,8 +83,8 @@ Socket::receive_from(Glib::RefPtr<SocketAddress>& address, char* buffer, gsize s
   return retvalue;
 }
 
-gssize
-Socket::receive_from(Glib::RefPtr<SocketAddress>& address, char* buffer, gsize size)
+auto
+Socket::receive_from(Glib::RefPtr<SocketAddress>& address, char* buffer, gsize size) -> gssize
 {
   GError* gerror = nullptr;
   GSocketAddress* caddr = nullptr;
@@ -98,9 +98,9 @@ Socket::receive_from(Glib::RefPtr<SocketAddress>& address, char* buffer, gsize s
   return retvalue;
 }
 
-gssize
+auto
 Socket::receive_with_blocking(
-  gchar* buffer, gsize size, bool blocking, const Glib::RefPtr<Cancellable>& cancellable)
+  gchar* buffer, gsize size, bool blocking, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
   const auto retvalue = g_socket_receive_with_blocking(
@@ -111,9 +111,9 @@ Socket::receive_with_blocking(
   return retvalue;
 }
 
-gssize
+auto
 Socket::send_with_blocking(
-  gchar* buffer, gsize size, bool blocking, const Glib::RefPtr<Cancellable>& cancellable)
+  gchar* buffer, gsize size, bool blocking, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
   const auto retvalue = g_socket_send_with_blocking(
@@ -124,8 +124,8 @@ Socket::send_with_blocking(
   return retvalue;
 }
 
-Glib::RefPtr<SocketSource>
-Socket::create_source(Glib::IOCondition condition, const Glib::RefPtr<Cancellable>& cancellable)
+auto
+Socket::create_source(Glib::IOCondition condition, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketSource>
 {
   return SocketSource::create(gobj(), condition, cancellable);
 }
@@ -137,19 +137,19 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::Socket::Type>::value_type()
+auto Glib::Value<Gio::Socket::Type>::value_type() -> GType
 {
   return g_socket_type_get_type();
 }
 
 // static
-GType Glib::Value<Gio::Socket::Protocol>::value_type()
+auto Glib::Value<Gio::Socket::Protocol>::value_type() -> GType
 {
   return g_socket_protocol_get_type();
 }
 
 // static
-GType Glib::Value<Gio::Socket::MsgFlags>::value_type()
+auto Glib::Value<Gio::Socket::MsgFlags>::value_type() -> GType
 {
   return g_socket_msg_flags_get_type();
 }
@@ -158,7 +158,7 @@ GType Glib::Value<Gio::Socket::MsgFlags>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gio::Socket> wrap(GSocket* object, bool take_copy)
+auto wrap(GSocket* object, bool take_copy) -> Glib::RefPtr<Gio::Socket>
 {
   return Glib::make_refptr_for_instance<Gio::Socket>( dynamic_cast<Gio::Socket*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -173,7 +173,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& Socket_Class::init()
+auto Socket_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -205,7 +205,7 @@ void Socket_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Socket_Class::wrap_new(GObject* object)
+auto Socket_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Socket((GSocket*)object);
 }
@@ -213,7 +213,7 @@ Glib::ObjectBase* Socket_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GSocket* Socket::gobj_copy()
+auto Socket::gobj_copy() -> GSocket*
 {
   reference();
   return gobj();
@@ -237,7 +237,7 @@ Socket::Socket(Socket&& src) noexcept
   , Initable(std::move(src))
 {}
 
-Socket& Socket::operator=(Socket&& src) noexcept
+auto Socket::operator=(Socket&& src) noexcept -> Socket&
 {
   Glib::Object::operator=(std::move(src));
   Initable::operator=(std::move(src));
@@ -251,13 +251,13 @@ Socket::~Socket() noexcept
 
 Socket::CppClassType Socket::socket_class_; // initialize static member
 
-GType Socket::get_type()
+auto Socket::get_type() -> GType
 {
   return socket_class_.init().get_type();
 }
 
 
-GType Socket::get_base_type()
+auto Socket::get_base_type() -> GType
 {
   return g_socket_get_type();
 }
@@ -279,7 +279,7 @@ void Socket::listen()
     ::Glib::Error::throw_exception(gerror);
 }
 
-Glib::RefPtr<Socket> Socket::accept(const Glib::RefPtr<Cancellable>& cancellable)
+auto Socket::accept(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Socket>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_accept(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -288,7 +288,7 @@ Glib::RefPtr<Socket> Socket::accept(const Glib::RefPtr<Cancellable>& cancellable
   return retvalue;
 }
 
-Glib::RefPtr<Socket> Socket::accept()
+auto Socket::accept() -> Glib::RefPtr<Socket>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_accept(gobj(), nullptr, &(gerror)));
@@ -321,7 +321,7 @@ void Socket::check_connect_result()
     ::Glib::Error::throw_exception(gerror);
 }
 
-gssize Socket::receive(char* buffer, gsize size, const Glib::RefPtr<Cancellable>& cancellable)
+auto Socket::receive(char* buffer, gsize size, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
   auto retvalue = g_socket_receive(gobj(), buffer, size, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -330,7 +330,7 @@ gssize Socket::receive(char* buffer, gsize size, const Glib::RefPtr<Cancellable>
   return retvalue;
 }
 
-gssize Socket::receive(char* buffer, gsize size)
+auto Socket::receive(char* buffer, gsize size) -> gssize
 {
   GError* gerror = nullptr;
   auto retvalue = g_socket_receive(gobj(), buffer, size, nullptr, &(gerror));
@@ -339,7 +339,7 @@ gssize Socket::receive(char* buffer, gsize size)
   return retvalue;
 }
 
-gssize Socket::send(const gchar* buffer, gsize size, const Glib::RefPtr<Cancellable>& cancellable)
+auto Socket::send(const gchar* buffer, gsize size, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
   auto retvalue = g_socket_send(gobj(), buffer, size, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -348,7 +348,7 @@ gssize Socket::send(const gchar* buffer, gsize size, const Glib::RefPtr<Cancella
   return retvalue;
 }
 
-gssize Socket::send(const gchar* buffer, gsize size)
+auto Socket::send(const gchar* buffer, gsize size) -> gssize
 {
   GError* gerror = nullptr;
   auto retvalue = g_socket_send(gobj(), buffer, size, nullptr, &(gerror));
@@ -357,7 +357,7 @@ gssize Socket::send(const gchar* buffer, gsize size)
   return retvalue;
 }
 
-gssize Socket::send_to(const Glib::RefPtr<SocketAddress>& address, const char* buffer, gsize size, const Glib::RefPtr<Cancellable>& cancellable)
+auto Socket::send_to(const Glib::RefPtr<SocketAddress>& address, const char* buffer, gsize size, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
   auto retvalue = g_socket_send_to(gobj(), const_cast<GSocketAddress*>(Glib::unwrap(address)), buffer, size, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -366,7 +366,7 @@ gssize Socket::send_to(const Glib::RefPtr<SocketAddress>& address, const char* b
   return retvalue;
 }
 
-gssize Socket::send_to(const Glib::RefPtr<SocketAddress>& address, const char* buffer, gsize size)
+auto Socket::send_to(const Glib::RefPtr<SocketAddress>& address, const char* buffer, gsize size) -> gssize
 {
   GError* gerror = nullptr;
   auto retvalue = g_socket_send_to(gobj(), const_cast<GSocketAddress*>(Glib::unwrap(address)), buffer, size, nullptr, &(gerror));
@@ -383,7 +383,7 @@ void Socket::close()
     ::Glib::Error::throw_exception(gerror);
 }
 
-bool Socket::is_closed()
+auto Socket::is_closed() -> bool
 {
   return g_socket_is_closed(gobj());
 }
@@ -396,17 +396,17 @@ void Socket::shutdown(bool shutdown_read, bool shutdown_write)
     ::Glib::Error::throw_exception(gerror);
 }
 
-bool Socket::is_connected()
+auto Socket::is_connected() -> bool
 {
   return g_socket_is_connected(gobj());
 }
 
-gssize Socket::get_available_bytes() const
+auto Socket::get_available_bytes() const -> gssize
 {
   return g_socket_get_available_bytes(const_cast<GSocket*>(gobj()));
 }
 
-Glib::IOCondition Socket::condition_check(Glib::IOCondition condition)
+auto Socket::condition_check(Glib::IOCondition condition) -> Glib::IOCondition
 {
   return static_cast<Glib::IOCondition>(g_socket_condition_check(gobj(), static_cast<GIOCondition>(condition)));
 }
@@ -448,7 +448,7 @@ void Socket::set_listen_backlog(int backlog)
   g_socket_set_listen_backlog(gobj(), backlog);
 }
 
-int Socket::get_listen_backlog() const
+auto Socket::get_listen_backlog() const -> int
 {
   return g_socket_get_listen_backlog(const_cast<GSocket*>(gobj()));
 }
@@ -458,7 +458,7 @@ void Socket::set_blocking(bool blocking)
   g_socket_set_blocking(gobj(), static_cast<int>(blocking));
 }
 
-bool Socket::get_blocking() const
+auto Socket::get_blocking() const -> bool
 {
   return g_socket_get_blocking(const_cast<GSocket*>(gobj()));
 }
@@ -468,22 +468,22 @@ void Socket::set_keepalive(bool keepalive)
   g_socket_set_keepalive(gobj(), static_cast<int>(keepalive));
 }
 
-bool Socket::get_keepalive() const
+auto Socket::get_keepalive() const -> bool
 {
   return g_socket_get_keepalive(const_cast<GSocket*>(gobj()));
 }
 
-SocketFamily Socket::get_family() const
+auto Socket::get_family() const -> SocketFamily
 {
   return static_cast<SocketFamily>(g_socket_get_family(const_cast<GSocket*>(gobj())));
 }
 
-int Socket::get_fd() const
+auto Socket::get_fd() const -> int
 {
   return g_socket_get_fd(const_cast<GSocket*>(gobj()));
 }
 
-Glib::RefPtr<SocketAddress> Socket::get_local_address() const
+auto Socket::get_local_address() const -> Glib::RefPtr<SocketAddress>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_get_local_address(const_cast<GSocket*>(gobj()), &(gerror)));
@@ -492,7 +492,7 @@ Glib::RefPtr<SocketAddress> Socket::get_local_address() const
   return retvalue;
 }
 
-Glib::RefPtr<SocketAddress> Socket::get_remote_address() const
+auto Socket::get_remote_address() const -> Glib::RefPtr<SocketAddress>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_get_remote_address(const_cast<GSocket*>(gobj()), &(gerror)));
@@ -501,22 +501,22 @@ Glib::RefPtr<SocketAddress> Socket::get_remote_address() const
   return retvalue;
 }
 
-Protocol Socket::get_protocol() const
+auto Socket::get_protocol() const -> Protocol
 {
   return static_cast<Protocol>(g_socket_get_protocol(const_cast<GSocket*>(gobj())));
 }
 
-Type Socket::get_socket_type() const
+auto Socket::get_socket_type() const -> Type
 {
   return static_cast<Type>(g_socket_get_socket_type(const_cast<GSocket*>(gobj())));
 }
 
-bool Socket::speaks_ipv4() const
+auto Socket::speaks_ipv4() const -> bool
 {
   return g_socket_speaks_ipv4(const_cast<GSocket*>(gobj()));
 }
 
-Glib::RefPtr<Credentials> Socket::get_credentials()
+auto Socket::get_credentials() -> Glib::RefPtr<Credentials>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_get_credentials(gobj(), &(gerror)));
@@ -525,7 +525,7 @@ Glib::RefPtr<Credentials> Socket::get_credentials()
   return retvalue;
 }
 
-Glib::RefPtr<const Credentials> Socket::get_credentials() const
+auto Socket::get_credentials() const -> Glib::RefPtr<const Credentials>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_get_credentials(const_cast<GSocket*>(gobj()), &(gerror)));
@@ -534,7 +534,7 @@ Glib::RefPtr<const Credentials> Socket::get_credentials() const
   return retvalue;
 }
 
-guint Socket::get_timeout() const
+auto Socket::get_timeout() const -> guint
 {
   return g_socket_get_timeout(const_cast<GSocket*>(gobj()));
 }
@@ -544,7 +544,7 @@ void Socket::set_timeout(guint timeout)
   g_socket_set_timeout(gobj(), timeout);
 }
 
-bool Socket::get_option(int level, int optname, int& value) const
+auto Socket::get_option(int level, int optname, int& value) const -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_socket_get_option(const_cast<GSocket*>(gobj()), level, optname, &(value), &(gerror));
@@ -553,7 +553,7 @@ bool Socket::get_option(int level, int optname, int& value) const
   return retvalue;
 }
 
-bool Socket::set_option(int level, int optname, int value)
+auto Socket::set_option(int level, int optname, int value) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_socket_set_option(gobj(), level, optname, value, &(gerror));
@@ -562,7 +562,7 @@ bool Socket::set_option(int level, int optname, int value)
   return retvalue;
 }
 
-guint Socket::get_ttl() const
+auto Socket::get_ttl() const -> guint
 {
   return g_socket_get_ttl(const_cast<GSocket*>(gobj()));
 }
@@ -572,7 +572,7 @@ void Socket::set_ttl(guint ttl)
   g_socket_set_ttl(gobj(), ttl);
 }
 
-bool Socket::get_broadcast() const
+auto Socket::get_broadcast() const -> bool
 {
   return g_socket_get_broadcast(const_cast<GSocket*>(gobj()));
 }
@@ -582,7 +582,7 @@ void Socket::set_broadcast(bool broadcast)
   g_socket_set_broadcast(gobj(), static_cast<int>(broadcast));
 }
 
-bool Socket::get_multicast_loopback() const
+auto Socket::get_multicast_loopback() const -> bool
 {
   return g_socket_get_multicast_loopback(const_cast<GSocket*>(gobj()));
 }
@@ -592,7 +592,7 @@ void Socket::set_multicast_loopback(bool loopback)
   g_socket_set_multicast_loopback(gobj(), static_cast<int>(loopback));
 }
 
-guint Socket::get_multicast_ttl() const
+auto Socket::get_multicast_ttl() const -> guint
 {
   return g_socket_get_multicast_ttl(const_cast<GSocket*>(gobj()));
 }
@@ -602,7 +602,7 @@ void Socket::set_multicast_ttl(guint ttl)
   g_socket_set_multicast_ttl(gobj(), ttl);
 }
 
-bool Socket::join_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific, const std::string& iface)
+auto Socket::join_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific, const std::string& iface) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_socket_join_multicast_group(gobj(), const_cast<GInetAddress*>(Glib::unwrap(group)), static_cast<int>(source_specific), iface.empty() ? nullptr : iface.c_str(), &(gerror));
@@ -611,7 +611,7 @@ bool Socket::join_multicast_group(const Glib::RefPtr<InetAddress>& group, bool s
   return retvalue;
 }
 
-bool Socket::join_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific)
+auto Socket::join_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_socket_join_multicast_group(gobj(), const_cast<GInetAddress*>(Glib::unwrap(group)), static_cast<int>(source_specific), nullptr, &(gerror));
@@ -620,7 +620,7 @@ bool Socket::join_multicast_group(const Glib::RefPtr<InetAddress>& group, bool s
   return retvalue;
 }
 
-bool Socket::leave_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific, const std::string& iface)
+auto Socket::leave_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific, const std::string& iface) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_socket_leave_multicast_group(gobj(), const_cast<GInetAddress*>(Glib::unwrap(group)), static_cast<int>(source_specific), iface.empty() ? nullptr : iface.c_str(), &(gerror));
@@ -629,7 +629,7 @@ bool Socket::leave_multicast_group(const Glib::RefPtr<InetAddress>& group, bool 
   return retvalue;
 }
 
-bool Socket::leave_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific)
+auto Socket::leave_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_socket_leave_multicast_group(gobj(), const_cast<GInetAddress*>(Glib::unwrap(group)), static_cast<int>(source_specific), nullptr, &(gerror));
@@ -639,12 +639,12 @@ bool Socket::leave_multicast_group(const Glib::RefPtr<InetAddress>& group, bool 
 }
 
 
-Glib::PropertyProxy< bool > Socket::property_blocking()
+auto Socket::property_blocking() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "blocking");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Socket::property_blocking() const
+auto Socket::property_blocking() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "blocking");
 }
@@ -653,32 +653,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<SocketFamily>::value
   "Type SocketFamily cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< SocketFamily > Socket::property_family() const
+auto Socket::property_family() const -> Glib::PropertyProxy_ReadOnly< SocketFamily >
 {
   return Glib::PropertyProxy_ReadOnly< SocketFamily >(this, "family");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Socket::property_fd() const
+auto Socket::property_fd() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "fd");
 }
 
-Glib::PropertyProxy< bool > Socket::property_keepalive()
+auto Socket::property_keepalive() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "keepalive");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Socket::property_keepalive() const
+auto Socket::property_keepalive() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "keepalive");
 }
 
-Glib::PropertyProxy< int > Socket::property_listen_backlog()
+auto Socket::property_listen_backlog() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "listen-backlog");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Socket::property_listen_backlog() const
+auto Socket::property_listen_backlog() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "listen-backlog");
 }
@@ -687,7 +687,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<SocketA
   "Type Glib::RefPtr<SocketAddress> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> > Socket::property_local_address() const
+auto Socket::property_local_address() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> >(this, "local-address");
 }
@@ -696,17 +696,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<SocketA
   "Type Glib::RefPtr<SocketAddress> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> > Socket::property_remote_address() const
+auto Socket::property_remote_address() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> >(this, "remote-address");
 }
 
-Glib::PropertyProxy< guint > Socket::property_timeout()
+auto Socket::property_timeout() -> Glib::PropertyProxy< guint >
 {
   return Glib::PropertyProxy< guint >(this, "timeout");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > Socket::property_timeout() const
+auto Socket::property_timeout() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "timeout");
 }
@@ -715,17 +715,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Protocol>::value,
   "Type Protocol cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Protocol > Socket::property_protocol() const
+auto Socket::property_protocol() const -> Glib::PropertyProxy_ReadOnly< Protocol >
 {
   return Glib::PropertyProxy_ReadOnly< Protocol >(this, "protocol");
 }
 
-Glib::PropertyProxy< bool > Socket::property_broadcast()
+auto Socket::property_broadcast() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "broadcast");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Socket::property_broadcast() const
+auto Socket::property_broadcast() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "broadcast");
 }
@@ -734,37 +734,37 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Type>::value,
   "Type Type cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Type > Socket::property_type() const
+auto Socket::property_type() const -> Glib::PropertyProxy_ReadOnly< Type >
 {
   return Glib::PropertyProxy_ReadOnly< Type >(this, "type");
 }
 
-Glib::PropertyProxy< guint > Socket::property_ttl()
+auto Socket::property_ttl() -> Glib::PropertyProxy< guint >
 {
   return Glib::PropertyProxy< guint >(this, "ttl");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > Socket::property_ttl() const
+auto Socket::property_ttl() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "ttl");
 }
 
-Glib::PropertyProxy< bool > Socket::property_multicast_loopback()
+auto Socket::property_multicast_loopback() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "multicast-loopback");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Socket::property_multicast_loopback() const
+auto Socket::property_multicast_loopback() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "multicast-loopback");
 }
 
-Glib::PropertyProxy< guint > Socket::property_multicast_ttl()
+auto Socket::property_multicast_ttl() -> Glib::PropertyProxy< guint >
 {
   return Glib::PropertyProxy< guint >(this, "multicast-ttl");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > Socket::property_multicast_ttl() const
+auto Socket::property_multicast_ttl() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "multicast-ttl");
 }

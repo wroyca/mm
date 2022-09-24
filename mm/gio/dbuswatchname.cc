@@ -90,15 +90,12 @@ Bus_Watch_Name_giomm_callback_destroy(void* data)
 
 } // anonymous namespace
 
-namespace Gio
+namespace Gio::DBus
 {
 
-namespace DBus
-{
-
-guint
+auto
 watch_name(BusType bus_type, const Glib::ustring& name, const SlotNameAppeared& name_appeared_slot,
-  const SlotNameVanished& name_vanished_slot, BusNameWatcherFlags flags)
+  const SlotNameVanished& name_vanished_slot, BusNameWatcherFlags flags) -> guint
 {
   auto slots = new WatchSlots;
 
@@ -111,10 +108,10 @@ watch_name(BusType bus_type, const Glib::ustring& name, const SlotNameAppeared& 
     &Bus_Name_Vanished_giomm_callback, slots, &Bus_Watch_Name_giomm_callback_destroy);
 }
 
-guint
+auto
 watch_name(const Glib::RefPtr<Connection>& connection, const Glib::ustring& name,
   const SlotNameAppeared& name_appeared_slot, const SlotNameVanished& name_vanished_slot,
-  BusNameWatcherFlags flags)
+  BusNameWatcherFlags flags) -> guint
 {
   auto slots = new WatchSlots;
 
@@ -132,8 +129,6 @@ unwatch_name(guint watcher_id)
 {
   g_bus_unwatch_name(watcher_id);
 }
-
-} // namespace DBus
 
 } // namespace Gio
 

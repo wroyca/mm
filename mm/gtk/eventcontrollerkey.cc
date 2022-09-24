@@ -30,7 +30,7 @@ namespace
 {
 
 
-static gboolean EventControllerKey_signal_key_pressed_callback(GtkEventControllerKey* self, guint p0,guint p1,GdkModifierType p2,void* data)
+auto EventControllerKey_signal_key_pressed_callback(GtkEventControllerKey* self, guint p0,guint p1,GdkModifierType p2,void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<bool(guint, guint, Gdk::ModifierType)>;
@@ -55,7 +55,7 @@ static gboolean EventControllerKey_signal_key_pressed_callback(GtkEventControlle
   return RType();
 }
 
-static gboolean EventControllerKey_signal_key_pressed_notify_callback(GtkEventControllerKey* self, guint p0,guint p1,GdkModifierType p2, void* data)
+auto EventControllerKey_signal_key_pressed_notify_callback(GtkEventControllerKey* self, guint p0,guint p1,GdkModifierType p2, void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint, guint, Gdk::ModifierType)>;
@@ -80,7 +80,7 @@ static gboolean EventControllerKey_signal_key_pressed_notify_callback(GtkEventCo
   return RType();
 }
 
-static const Glib::SignalProxyInfo EventControllerKey_signal_key_pressed_info =
+const Glib::SignalProxyInfo EventControllerKey_signal_key_pressed_info =
 {
   "key-pressed",
   (GCallback) &EventControllerKey_signal_key_pressed_callback,
@@ -88,7 +88,7 @@ static const Glib::SignalProxyInfo EventControllerKey_signal_key_pressed_info =
 };
 
 
-static void EventControllerKey_signal_key_released_callback(GtkEventControllerKey* self, guint p0,guint p1,GdkModifierType p2,void* data)
+void EventControllerKey_signal_key_released_callback(GtkEventControllerKey* self, guint p0,guint p1,GdkModifierType p2,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint, guint, Gdk::ModifierType)>;
@@ -110,7 +110,7 @@ static void EventControllerKey_signal_key_released_callback(GtkEventControllerKe
   }
 }
 
-static const Glib::SignalProxyInfo EventControllerKey_signal_key_released_info =
+const Glib::SignalProxyInfo EventControllerKey_signal_key_released_info =
 {
   "key-released",
   (GCallback) &EventControllerKey_signal_key_released_callback,
@@ -118,7 +118,7 @@ static const Glib::SignalProxyInfo EventControllerKey_signal_key_released_info =
 };
 
 
-static gboolean EventControllerKey_signal_modifiers_callback(GtkEventControllerKey* self, GdkModifierType p0,void* data)
+auto EventControllerKey_signal_modifiers_callback(GtkEventControllerKey* self, GdkModifierType p0,void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<bool(Gdk::ModifierType)>;
@@ -143,7 +143,7 @@ static gboolean EventControllerKey_signal_modifiers_callback(GtkEventControllerK
   return RType();
 }
 
-static gboolean EventControllerKey_signal_modifiers_notify_callback(GtkEventControllerKey* self, GdkModifierType p0, void* data)
+auto EventControllerKey_signal_modifiers_notify_callback(GtkEventControllerKey* self, GdkModifierType p0, void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Gdk::ModifierType)>;
@@ -168,7 +168,7 @@ static gboolean EventControllerKey_signal_modifiers_notify_callback(GtkEventCont
   return RType();
 }
 
-static const Glib::SignalProxyInfo EventControllerKey_signal_modifiers_info =
+const Glib::SignalProxyInfo EventControllerKey_signal_modifiers_info =
 {
   "modifiers",
   (GCallback) &EventControllerKey_signal_modifiers_callback,
@@ -176,7 +176,7 @@ static const Glib::SignalProxyInfo EventControllerKey_signal_modifiers_info =
 };
 
 
-static const Glib::SignalProxyInfo EventControllerKey_signal_im_update_info =
+const Glib::SignalProxyInfo EventControllerKey_signal_im_update_info =
 {
   "im-update",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -190,7 +190,7 @@ static const Glib::SignalProxyInfo EventControllerKey_signal_im_update_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::EventControllerKey> wrap(GtkEventControllerKey* object, bool take_copy)
+auto wrap(GtkEventControllerKey* object, bool take_copy) -> Glib::RefPtr<Gtk::EventControllerKey>
 {
   return Glib::make_refptr_for_instance<Gtk::EventControllerKey>( dynamic_cast<Gtk::EventControllerKey*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -205,7 +205,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& EventControllerKey_Class::init()
+auto EventControllerKey_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -236,7 +236,7 @@ void EventControllerKey_Class::class_init_function(void* g_class, void* class_da
 }
 
 
-Glib::ObjectBase* EventControllerKey_Class::wrap_new(GObject* object)
+auto EventControllerKey_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new EventControllerKey((GtkEventControllerKey*)object);
 }
@@ -244,7 +244,7 @@ Glib::ObjectBase* EventControllerKey_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkEventControllerKey* EventControllerKey::gobj_copy()
+auto EventControllerKey::gobj_copy() -> GtkEventControllerKey*
 {
   reference();
   return gobj();
@@ -267,7 +267,7 @@ EventControllerKey::EventControllerKey(EventControllerKey&& src) noexcept
 : EventController(std::move(src))
 {}
 
-EventControllerKey& EventControllerKey::operator=(EventControllerKey&& src) noexcept
+auto EventControllerKey::operator=(EventControllerKey&& src) noexcept -> EventControllerKey&
 {
   EventController::operator=(std::move(src));
   return *this;
@@ -280,13 +280,13 @@ EventControllerKey::~EventControllerKey() noexcept
 
 EventControllerKey::CppClassType EventControllerKey::eventcontrollerkey_class_; // initialize static member
 
-GType EventControllerKey::get_type()
+auto EventControllerKey::get_type() -> GType
 {
   return eventcontrollerkey_class_.init().get_type();
 }
 
 
-GType EventControllerKey::get_base_type()
+auto EventControllerKey::get_base_type() -> GType
 {
   return gtk_event_controller_key_get_type();
 }
@@ -302,41 +302,41 @@ EventControllerKey::EventControllerKey()
 
 }
 
-Glib::RefPtr<EventControllerKey> EventControllerKey::create()
+auto EventControllerKey::create() -> Glib::RefPtr<EventControllerKey>
 {
   return Glib::make_refptr_for_instance<EventControllerKey>( new EventControllerKey() );
 }
 
-bool EventControllerKey::forward(Widget& widget)
+auto EventControllerKey::forward(Widget& widget) -> bool
 {
   return gtk_event_controller_key_forward(gobj(), (widget).gobj());
 }
 
-guint EventControllerKey::get_group() const
+auto EventControllerKey::get_group() const -> guint
 {
   return gtk_event_controller_key_get_group(const_cast<GtkEventControllerKey*>(gobj()));
 }
 
 
-Glib::SignalProxy<bool(guint, guint, Gdk::ModifierType)> EventControllerKey::signal_key_pressed()
+auto EventControllerKey::signal_key_pressed() -> Glib::SignalProxy<bool(guint, guint, Gdk::ModifierType)>
 {
   return Glib::SignalProxy<bool(guint, guint, Gdk::ModifierType) >(this, &EventControllerKey_signal_key_pressed_info);
 }
 
 
-Glib::SignalProxy<void(guint, guint, Gdk::ModifierType)> EventControllerKey::signal_key_released()
+auto EventControllerKey::signal_key_released() -> Glib::SignalProxy<void(guint, guint, Gdk::ModifierType)>
 {
   return Glib::SignalProxy<void(guint, guint, Gdk::ModifierType) >(this, &EventControllerKey_signal_key_released_info);
 }
 
 
-Glib::SignalProxy<bool(Gdk::ModifierType)> EventControllerKey::signal_modifiers()
+auto EventControllerKey::signal_modifiers() -> Glib::SignalProxy<bool(Gdk::ModifierType)>
 {
   return Glib::SignalProxy<bool(Gdk::ModifierType) >(this, &EventControllerKey_signal_modifiers_info);
 }
 
 
-Glib::SignalProxy<void()> EventControllerKey::signal_im_update()
+auto EventControllerKey::signal_im_update() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &EventControllerKey_signal_im_update_info);
 }

@@ -66,7 +66,7 @@ public:
 
   // noncopyable
   TreeDragDest(const TreeDragDest&) = delete;
-  TreeDragDest& operator=(const TreeDragDest&) = delete;
+  auto operator=(const TreeDragDest&) -> TreeDragDest& = delete;
 
 private:
   friend class TreeDragDest_Class;
@@ -100,7 +100,7 @@ protected:
 public:
 
   TreeDragDest(TreeDragDest&& src) noexcept;
-  TreeDragDest& operator=(TreeDragDest&& src) noexcept;
+  auto operator=(TreeDragDest&& src) noexcept -> TreeDragDest&;
 
   ~TreeDragDest() noexcept override;
 
@@ -108,17 +108,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkTreeDragDest*       gobj()       { return reinterpret_cast<GtkTreeDragDest*>(gobject_); }
+  auto       gobj() -> GtkTreeDragDest*       { return reinterpret_cast<GtkTreeDragDest*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkTreeDragDest* gobj() const { return reinterpret_cast<GtkTreeDragDest*>(gobject_); }
+  auto gobj() const -> const GtkTreeDragDest* { return reinterpret_cast<GtkTreeDragDest*>(gobject_); }
 
 private:
 
@@ -137,7 +137,7 @@ public:
    * @param value Data to drop.
    * @return Whether a new row was created before position @a dest.
    */
-  bool drag_data_received(const TreeModel::Path& dest, const Glib::ValueBase& value);
+  auto drag_data_received(const TreeModel::Path& dest, const Glib::ValueBase& value) -> bool;
 
   /** Determines whether a drop is possible before the given @a dest_path,
    * at the same depth as @a dest_path. i.e., can we drop the data in
@@ -149,12 +149,12 @@ public:
    * @param value The data being dropped.
    * @return <tt>true</tt> if a drop is possible before @a dest_path.
    */
-  bool row_drop_possible(const TreeModel::Path& dest_path, const Glib::ValueBase& value) const;
+  auto row_drop_possible(const TreeModel::Path& dest_path, const Glib::ValueBase& value) const -> bool;
 
 protected:
-    virtual bool drag_data_received_vfunc(const TreeModel::Path& dest, const Glib::ValueBase& value);
+    virtual auto drag_data_received_vfunc(const TreeModel::Path& dest, const Glib::ValueBase& value) -> bool;
 
-    virtual bool row_drop_possible_vfunc(const TreeModel::Path& dest, const Glib::ValueBase& value) const;
+    virtual auto row_drop_possible_vfunc(const TreeModel::Path& dest, const Glib::ValueBase& value) const -> bool;
 
 
 public:
@@ -184,7 +184,7 @@ namespace Glib
    * @relates Gtk::TreeDragDest
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::TreeDragDest> wrap(GtkTreeDragDest* object, bool take_copy = false);
+  auto wrap(GtkTreeDragDest* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeDragDest>;
 
 } // namespace Glib
 

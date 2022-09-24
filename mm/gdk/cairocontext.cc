@@ -34,7 +34,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::CairoContext> wrap(GdkCairoContext* object, bool take_copy)
+auto wrap(GdkCairoContext* object, bool take_copy) -> Glib::RefPtr<Gdk::CairoContext>
 {
   return Glib::make_refptr_for_instance<Gdk::CairoContext>( dynamic_cast<Gdk::CairoContext*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -49,7 +49,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Class& CairoContext_Class::init()
+auto CairoContext_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -80,7 +80,7 @@ void CairoContext_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* CairoContext_Class::wrap_new(GObject* object)
+auto CairoContext_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new CairoContext((GdkCairoContext*)object);
 }
@@ -88,7 +88,7 @@ Glib::ObjectBase* CairoContext_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GdkCairoContext* CairoContext::gobj_copy()
+auto CairoContext::gobj_copy() -> GdkCairoContext*
 {
   reference();
   return gobj();
@@ -111,7 +111,7 @@ CairoContext::CairoContext(CairoContext&& src) noexcept
 : Gdk::DrawContext(std::move(src))
 {}
 
-CairoContext& CairoContext::operator=(CairoContext&& src) noexcept
+auto CairoContext::operator=(CairoContext&& src) noexcept -> CairoContext&
 {
   Gdk::DrawContext::operator=(std::move(src));
   return *this;
@@ -124,13 +124,13 @@ CairoContext::~CairoContext() noexcept
 
 CairoContext::CppClassType CairoContext::cairocontext_class_; // initialize static member
 
-GType CairoContext::get_type()
+auto CairoContext::get_type() -> GType
 {
   return cairocontext_class_.init().get_type();
 }
 
 
-GType CairoContext::get_base_type()
+auto CairoContext::get_base_type() -> GType
 {
   return gdk_cairo_context_get_type();
 }
@@ -146,7 +146,7 @@ CairoContext::CairoContext()
 
 }
 
-::Cairo::RefPtr< ::Cairo::Context> CairoContext::cairo_create()
+auto CairoContext::cairo_create() -> ::Cairo::RefPtr< ::Cairo::Context>
 {
   return Gdk::Cairo::wrap(gdk_cairo_context_cairo_create(gobj()));
 }

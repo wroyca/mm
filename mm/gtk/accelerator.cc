@@ -21,20 +21,17 @@
 
 // The corresponding gtk functions are defined in gtkaccelgroup.c.
 
-namespace Gtk
+namespace Gtk::Accelerator
 {
 
-namespace Accelerator
-{
-
-bool valid(guint keyval, Gdk::ModifierType modifiers)
+auto valid(guint keyval, Gdk::ModifierType modifiers) -> bool
 {
   return gtk_accelerator_valid(keyval, (GdkModifierType) modifiers);
 }
 
-bool parse(const Glib::ustring& accelerator,
+auto parse(const Glib::ustring& accelerator,
            guint&               accelerator_key,
-           Gdk::ModifierType&   accelerator_mods)
+           Gdk::ModifierType&   accelerator_mods) -> bool
 {
   auto mods = GdkModifierType(0);
   const auto result = gtk_accelerator_parse(accelerator.c_str(), &accelerator_key, &mods);
@@ -43,23 +40,21 @@ bool parse(const Glib::ustring& accelerator,
   return result;
 }
 
-Glib::ustring name(guint accelerator_key, Gdk::ModifierType accelerator_mods)
+auto name(guint accelerator_key, Gdk::ModifierType accelerator_mods) -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_accelerator_name(
     accelerator_key, static_cast<GdkModifierType>(accelerator_mods)));
 }
 
-Glib::ustring get_label(guint accelerator_key, Gdk::ModifierType accelerator_mods)
+auto get_label(guint accelerator_key, Gdk::ModifierType accelerator_mods) -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_accelerator_get_label(
     accelerator_key, static_cast<GdkModifierType>(accelerator_mods)));
 }
 
-Gdk::ModifierType get_default_mod_mask()
+auto get_default_mod_mask() -> Gdk::ModifierType
 {
   return static_cast<Gdk::ModifierType>(gtk_accelerator_get_default_mod_mask());
 }
-
-} // namespace Accelerator
 
 } // namespace Gtk

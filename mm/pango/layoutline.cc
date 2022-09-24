@@ -34,42 +34,42 @@
 
 namespace Pango {
 
-Rectangle LayoutLine::get_ink_extents() const
+auto LayoutLine::get_ink_extents() const -> Rectangle
 {
   Rectangle ink_rect;
   pango_layout_line_get_extents(const_cast<PangoLayoutLine*>(gobj()), ink_rect.gobj(), 0);
   return ink_rect;
 }
 
-Rectangle LayoutLine::get_logical_extents() const
+auto LayoutLine::get_logical_extents() const -> Rectangle
 {
   Rectangle logical_rect;
   pango_layout_line_get_extents(const_cast<PangoLayoutLine*>(gobj()), 0, logical_rect.gobj());
   return logical_rect;
 }
 
-Rectangle LayoutLine::get_pixel_ink_extents() const
+auto LayoutLine::get_pixel_ink_extents() const -> Rectangle
 {
   Rectangle ink_rect;
   pango_layout_line_get_pixel_extents(const_cast<PangoLayoutLine*>(gobj()), ink_rect.gobj(), 0);
   return ink_rect;
 }
 
-Rectangle LayoutLine::get_pixel_logical_extents() const
+auto LayoutLine::get_pixel_logical_extents() const -> Rectangle
 {
   Rectangle logical_rect;
   pango_layout_line_get_pixel_extents(const_cast<PangoLayoutLine*>(gobj()), 0, logical_rect.gobj());
   return logical_rect;
 }
 
-int LayoutLine::index_to_x(int index, bool trailing) const
+auto LayoutLine::index_to_x(int index, bool trailing) const -> int
 {
   int x_pos;
   pango_layout_line_index_to_x(const_cast<PangoLayoutLine*>(gobj()), index, trailing, &x_pos);
   return x_pos;
 }
 
-std::vector<std::pair<int,int> > LayoutLine::get_x_ranges(int start_index, int end_index) const
+auto LayoutLine::get_x_ranges(int start_index, int end_index) const -> std::vector<std::pair<int,int> >
 {
   //TODO: This reinterpret_cast<> is scary. There should at least be a comment explaining it.
   int* ranges = nullptr;
@@ -111,7 +111,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Pango::LayoutLine> wrap(PangoLayoutLine* object, bool take_copy)
+auto wrap(PangoLayoutLine* object, bool take_copy) -> Glib::RefPtr<Pango::LayoutLine>
 {
   if(take_copy && object)
     pango_layout_line_ref(object);
@@ -138,19 +138,19 @@ void LayoutLine::unreference() const
   pango_layout_line_unref(reinterpret_cast<PangoLayoutLine*>(const_cast<LayoutLine*>(this)));
 }
 
-PangoLayoutLine* LayoutLine::gobj()
+auto LayoutLine::gobj() -> PangoLayoutLine*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<PangoLayoutLine*>(this);
 }
 
-const PangoLayoutLine* LayoutLine::gobj() const
+auto LayoutLine::gobj() const -> const PangoLayoutLine*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<const PangoLayoutLine*>(this);
 }
 
-PangoLayoutLine* LayoutLine::gobj_copy() const
+auto LayoutLine::gobj_copy() const -> PangoLayoutLine*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   const auto gobject = reinterpret_cast<PangoLayoutLine*>(const_cast<LayoutLine*>(this));
@@ -159,7 +159,7 @@ PangoLayoutLine* LayoutLine::gobj_copy() const
 }
 
 
-bool LayoutLine::x_to_index(int x_pos, int& index, int& trailing) const
+auto LayoutLine::x_to_index(int x_pos, int& index, int& trailing) const -> bool
 {
   return pango_layout_line_x_to_index(const_cast<PangoLayoutLine*>(gobj()), x_pos, &(index), &(trailing));
 }
@@ -174,7 +174,7 @@ void LayoutLine::get_pixel_extents(Rectangle& ink_rect, Rectangle& logical_rect)
   pango_layout_line_get_pixel_extents(const_cast<PangoLayoutLine*>(gobj()), (ink_rect).gobj(), (logical_rect).gobj());
 }
 
-Glib::RefPtr<Pango::Layout> LayoutLine::get_layout()
+auto LayoutLine::get_layout() -> Glib::RefPtr<Pango::Layout>
 {
   Glib::RefPtr<Pango::Layout> ref_ptr(Glib::wrap(gobj()->layout));
 
@@ -184,7 +184,7 @@ Glib::RefPtr<Pango::Layout> LayoutLine::get_layout()
   return ref_ptr;
 }
 
-Glib::RefPtr<const Pango::Layout> LayoutLine::get_layout() const
+auto LayoutLine::get_layout() const -> Glib::RefPtr<const Pango::Layout>
 {
   Glib::RefPtr<const Pango::Layout> ref_ptr(Glib::wrap(gobj()->layout));
 
@@ -194,12 +194,12 @@ Glib::RefPtr<const Pango::Layout> LayoutLine::get_layout() const
   return ref_ptr;
 }
 
-int LayoutLine::get_length() const
+auto LayoutLine::get_length() const -> int
 {
   return gobj()->length;
 }
 
-int LayoutLine::get_start_index() const
+auto LayoutLine::get_start_index() const -> int
 {
   return gobj()->start_index;
 }

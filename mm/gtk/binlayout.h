@@ -61,7 +61,7 @@ public:
 
   // noncopyable
   BinLayout(const BinLayout&) = delete;
-  BinLayout& operator=(const BinLayout&) = delete;
+  auto operator=(const BinLayout&) -> BinLayout& = delete;
 
 private:  friend class BinLayout_Class;
   static CppClassType binlayout_class_;
@@ -75,28 +75,28 @@ protected:
 public:
 
   BinLayout(BinLayout&& src) noexcept;
-  BinLayout& operator=(BinLayout&& src) noexcept;
+  auto operator=(BinLayout&& src) noexcept -> BinLayout&;
 
   ~BinLayout() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkBinLayout*       gobj()       { return reinterpret_cast<GtkBinLayout*>(gobject_); }
+  auto       gobj() -> GtkBinLayout*       { return reinterpret_cast<GtkBinLayout*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkBinLayout* gobj() const { return reinterpret_cast<GtkBinLayout*>(gobject_); }
+  auto gobj() const -> const GtkBinLayout* { return reinterpret_cast<GtkBinLayout*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkBinLayout* gobj_copy();
+  auto gobj_copy() -> GtkBinLayout*;
 
 private:
 
@@ -106,7 +106,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<BinLayout> create();
+  static auto create() -> Glib::RefPtr<BinLayout>;
 
 
   // There are no signals, properties or vfuncs, and create() is the only method.
@@ -139,7 +139,7 @@ namespace Glib
    * @relates Gtk::BinLayout
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::BinLayout> wrap(GtkBinLayout* object, bool take_copy = false);
+  auto wrap(GtkBinLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BinLayout>;
 }
 
 

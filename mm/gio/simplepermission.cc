@@ -37,7 +37,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::SimplePermission> wrap(GSimplePermission* object, bool take_copy)
+auto wrap(GSimplePermission* object, bool take_copy) -> Glib::RefPtr<Gio::SimplePermission>
 {
   return Glib::make_refptr_for_instance<Gio::SimplePermission>( dynamic_cast<Gio::SimplePermission*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -52,7 +52,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& SimplePermission_Class::init()
+auto SimplePermission_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -83,7 +83,7 @@ void SimplePermission_Class::class_init_function(void* g_class, void* class_data
 }
 
 
-Glib::ObjectBase* SimplePermission_Class::wrap_new(GObject* object)
+auto SimplePermission_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new SimplePermission((GSimplePermission*)object);
 }
@@ -91,7 +91,7 @@ Glib::ObjectBase* SimplePermission_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GSimplePermission* SimplePermission::gobj_copy()
+auto SimplePermission::gobj_copy() -> GSimplePermission*
 {
   reference();
   return gobj();
@@ -114,7 +114,7 @@ SimplePermission::SimplePermission(SimplePermission&& src) noexcept
 : Gio::Permission(std::move(src))
 {}
 
-SimplePermission& SimplePermission::operator=(SimplePermission&& src) noexcept
+auto SimplePermission::operator=(SimplePermission&& src) noexcept -> SimplePermission&
 {
   Gio::Permission::operator=(std::move(src));
   return *this;
@@ -127,13 +127,13 @@ SimplePermission::~SimplePermission() noexcept
 
 SimplePermission::CppClassType SimplePermission::simplepermission_class_; // initialize static member
 
-GType SimplePermission::get_type()
+auto SimplePermission::get_type() -> GType
 {
   return simplepermission_class_.init().get_type();
 }
 
 
-GType SimplePermission::get_base_type()
+auto SimplePermission::get_base_type() -> GType
 {
   return g_simple_permission_get_type();
 }
@@ -149,7 +149,7 @@ SimplePermission::SimplePermission(bool allowed)
 
 }
 
-Glib::RefPtr<SimplePermission> SimplePermission::create(bool allowed)
+auto SimplePermission::create(bool allowed) -> Glib::RefPtr<SimplePermission>
 {
   return Glib::make_refptr_for_instance<SimplePermission>( new SimplePermission(allowed) );
 }

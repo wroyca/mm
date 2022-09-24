@@ -73,11 +73,11 @@ class GTKMM_API CellView :
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   CellView(CellView&& src) noexcept;
-  CellView& operator=(CellView&& src) noexcept;
+  auto operator=(CellView&& src) noexcept -> CellView&;
 
   // noncopyable
   CellView(const CellView&) = delete;
-  CellView& operator=(const CellView&) = delete;
+  auto operator=(const CellView&) -> CellView& = delete;
 
   ~CellView() noexcept override;
 
@@ -97,19 +97,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkCellView*       gobj()       { return reinterpret_cast<GtkCellView*>(gobject_); }
+  auto       gobj() -> GtkCellView*       { return reinterpret_cast<GtkCellView*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkCellView* gobj() const { return reinterpret_cast<GtkCellView*>(gobject_); }
+  auto gobj() const -> const GtkCellView* { return reinterpret_cast<GtkCellView*>(gobject_); }
 
 private:
 
@@ -157,14 +157,14 @@ public:
    *
    * @return A `Gtk::TreeModel` used.
    */
-  Glib::RefPtr<TreeModel> get_model();
+  auto get_model() -> Glib::RefPtr<TreeModel>;
 
   /** Returns the model for @a cell_view. If no model is used <tt>nullptr</tt> is
    * returned.
    *
    * @return A `Gtk::TreeModel` used.
    */
-  Glib::RefPtr<const TreeModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const TreeModel>;
 
 
   /** Sets the row of the model that is currently displayed
@@ -184,7 +184,7 @@ public:
    *
    * @return The currently displayed row.
    */
-  TreeModel::Path get_displayed_row() const;
+  auto get_displayed_row() const -> TreeModel::Path;
 
 
   /** Gets whether @a cell_view is configured to draw all of its
@@ -193,7 +193,7 @@ public:
    * @return Whether @a cell_view draws all of its
    * cells in a sensitive state.
    */
-  bool get_draw_sensitive() const;
+  auto get_draw_sensitive() const -> bool;
 
   /** Sets whether @a cell_view should draw all of its
    * cells in a sensitive state, this is used by `Gtk::ComboBox` menus
@@ -210,7 +210,7 @@ public:
    * @return Whether @a cell_view requests space to fit
    * the entire `Gtk::TreeModel`.
    */
-  bool get_fit_model() const;
+  auto get_fit_model() const -> bool;
 
   /** Sets whether @a cell_view should request space to fit the entire `Gtk::TreeModel`.
    *
@@ -229,7 +229,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<TreeModel> > property_model() ;
+  auto property_model() -> Glib::PropertyProxy< Glib::RefPtr<TreeModel> > ;
 
 /** The model for cell view
    *
@@ -238,7 +238,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> >;
 
   /** The `Gtk::CellArea` rendering cells
    *
@@ -250,7 +250,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> > property_cell_area() const;
+  auto property_cell_area() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> >;
 
 
   /** The `Gtk::CellAreaContext` used to compute the geometry of the cell view.
@@ -269,7 +269,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellAreaContext> > property_cell_area_context() const;
+  auto property_cell_area_context() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellAreaContext> >;
 
 
   /** Whether all cells should be draw as sensitive for this view regardless
@@ -283,7 +283,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_draw_sensitive() ;
+  auto property_draw_sensitive() -> Glib::PropertyProxy< bool > ;
 
 /** Whether all cells should be draw as sensitive for this view regardless
    * of the actual cell properties (used to make menus with submenus appear
@@ -296,7 +296,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_draw_sensitive() const;
+  auto property_draw_sensitive() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the view should request enough space to always fit
    * the size of every row in the model (used by the combo box to
@@ -310,7 +310,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_fit_model() ;
+  auto property_fit_model() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the view should request enough space to always fit
    * the size of every row in the model (used by the combo box to
@@ -324,7 +324,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_fit_model() const;
+  auto property_fit_model() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -354,7 +354,7 @@ namespace Glib
    * @relates Gtk::CellView
    */
   GTKMM_API
-  Gtk::CellView* wrap(GtkCellView* object, bool take_copy = false);
+  auto wrap(GtkCellView* object, bool take_copy = false) -> Gtk::CellView*;
 } //namespace Glib
 
 

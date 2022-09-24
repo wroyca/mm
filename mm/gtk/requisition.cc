@@ -44,12 +44,12 @@ namespace
 namespace Glib
 {
 
-Gtk::Requisition& wrap(GtkRequisition* object)
+auto wrap(GtkRequisition* object) -> Gtk::Requisition&
 {
   return *reinterpret_cast<Gtk::Requisition*>(object);
 }
 
-const Gtk::Requisition& wrap(const GtkRequisition* object)
+auto wrap(const GtkRequisition* object) -> const Gtk::Requisition&
 {
   return *reinterpret_cast<const Gtk::Requisition*>(object);
 }
@@ -67,7 +67,7 @@ Requisition::Requisition(const Requisition& other) noexcept
 {
 }
 
-Requisition& Requisition::operator=(const Requisition& other) noexcept
+auto Requisition::operator=(const Requisition& other) noexcept -> Requisition&
 {
   gobject_ = other.gobject_;
   return *this;
@@ -82,14 +82,14 @@ Requisition::Requisition(Requisition&& other) noexcept
   //other.gobject_ = nullptr;
 }
 
-Requisition& Requisition::operator=(Requisition&& other) noexcept
+auto Requisition::operator=(Requisition&& other) noexcept -> Requisition&
 {
   gobject_ = std::move(other.gobject_);
   return *this;
 }
 
 // static
-GType Requisition::get_type()
+auto Requisition::get_type() -> GType
 {
   return gtk_requisition_get_type();
 }
@@ -108,7 +108,7 @@ Requisition::Requisition(const GtkRequisition* gobject)
 }
 
 
-int Requisition::get_width() const
+auto Requisition::get_width() const -> int
 {
   return gobj()->width;
 }
@@ -118,7 +118,7 @@ void Requisition::set_width(const int& value)
   gobj()->width = value;
 }
 
-int Requisition::get_height() const
+auto Requisition::get_height() const -> int
 {
   return gobj()->height;
 }

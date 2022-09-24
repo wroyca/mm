@@ -118,7 +118,7 @@ public:
 
   // noncopyable
   Application(const Application&) = delete;
-  Application& operator=(const Application&) = delete;
+  auto operator=(const Application&) -> Application& = delete;
 
 private:  friend class Application_Class;
   static CppClassType application_class_;
@@ -132,28 +132,28 @@ protected:
 public:
 
   Application(Application&& src) noexcept;
-  Application& operator=(Application&& src) noexcept;
+  auto operator=(Application&& src) noexcept -> Application&;
 
   ~Application() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkApplication*       gobj()       { return reinterpret_cast<GtkApplication*>(gobject_); }
+  auto       gobj() -> GtkApplication*       { return reinterpret_cast<GtkApplication*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkApplication* gobj() const { return reinterpret_cast<GtkApplication*>(gobject_); }
+  auto gobj() const -> const GtkApplication* { return reinterpret_cast<GtkApplication*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkApplication* gobj_copy();
+  auto gobj_copy() -> GtkApplication*;
 
 private:
 
@@ -238,7 +238,7 @@ public:
    *
    * @newin{3,4}
    */
-  static Glib::RefPtr<Application> create(const Glib::ustring& application_id = {}, Gio::Application::Flags flags = Gio::Application::Flags::NONE);
+  static auto create(const Glib::ustring& application_id = {}, Gio::Application::Flags flags = Gio::Application::Flags::NONE) -> Glib::RefPtr<Application>;
 
 
   /** Gets a list of the Gtk::Window instances associated with `application`.
@@ -254,7 +254,7 @@ public:
    * @return A `GList` of `Gtk::Window`
    * instances.
    */
-  std::vector<Window*> get_windows();
+  auto get_windows() -> std::vector<Window*>;
 
 
   /** Gets a list of the Gtk::Window instances associated with `application`.
@@ -270,7 +270,7 @@ public:
    * @return A `GList` of `Gtk::Window`
    * instances.
    */
-  std::vector<const Window*> get_windows() const;
+  auto get_windows() const -> std::vector<const Window*>;
 
   // Concerning the note on quit(), see https://bugzilla.gnome.org/show_bug.cgi?id=731126
   // Concerning the return from run() on hidden windows, see
@@ -322,7 +322,7 @@ public:
    *
    * @newin{3,4}
    */
-  int run(int argc, char** argv);
+  auto run(int argc, char** argv) -> int;
 
   /** Starts the application.
    *
@@ -332,7 +332,7 @@ public:
    *
    * @newin{3,4}
    */
-  int run();
+  auto run() -> int;
 
   /** Starts the application, creates and presents a window.
    *
@@ -356,14 +356,14 @@ public:
    * @newin{3,98}
    */
   template <typename T_Window, typename... T_Args>
-  int make_window_and_run(int argc, char** argv, T_Args&&... args);
+  auto make_window_and_run(int argc, char** argv, T_Args&&... args) -> int;
 
   /** Get the window, constructed by make_window_and_run().
    */
-  Window* get_run_window() { return m_run_window; }
+  auto get_run_window() -> Window* { return m_run_window; }
   /** Get the window, constructed by make_window_and_run().
    */
-  const Window* get_run_window() const { return m_run_window; }
+  auto get_run_window() const -> const Window* { return m_run_window; }
 
 
   /** Returns the menu model that has been set with
@@ -371,14 +371,14 @@ public:
    *
    * @return The menubar for windows of `application`.
    */
-  Glib::RefPtr<Gio::MenuModel> get_menubar();
+  auto get_menubar() -> Glib::RefPtr<Gio::MenuModel>;
 
   /** Returns the menu model that has been set with
    * set_menubar().
    *
    * @return The menubar for windows of `application`.
    */
-  Glib::RefPtr<const Gio::MenuModel> get_menubar() const;
+  auto get_menubar() const -> Glib::RefPtr<const Gio::MenuModel>;
 
 
   /** Sets or unsets the menubar for windows of `application`.
@@ -438,7 +438,7 @@ public:
    * in order to remove the request. If the platform does not support
    * inhibiting or the request failed for some reason, 0 is returned.
    */
-  guint inhibit(Window& window, InhibitFlags flags, const Glib::ustring& reason);
+  auto inhibit(Window& window, InhibitFlags flags, const Glib::ustring& reason) -> guint;
 
   /** Removes an inhibitor that has been previously established.
    *
@@ -459,7 +459,7 @@ public:
    * @param id An identifier number.
    * @return The window for the given `id`.
    */
-  Window* get_window_by_id(guint id);
+  auto get_window_by_id(guint id) -> Window*;
 
   /** Returns the Gtk::ApplicationWindow with the given ID.
    *
@@ -469,7 +469,7 @@ public:
    * @param id An identifier number.
    * @return The window for the given `id`.
    */
-  const Window* get_window_by_id(guint id) const;
+  auto get_window_by_id(guint id) const -> const Window*;
 
 
   /** Gets the “active” window for the application.
@@ -481,7 +481,7 @@ public:
    *
    * @return The active window.
    */
-  Window* get_active_window();
+  auto get_active_window() -> Window*;
 
   /** Gets the “active” window for the application.
    *
@@ -492,7 +492,7 @@ public:
    *
    * @return The active window.
    */
-  const Window* get_active_window() const;
+  auto get_active_window() const -> const Window*;
 
 
   /** Lists the detailed action names which have associated accelerators.
@@ -501,7 +501,7 @@ public:
    *
    * @return The detailed action names.
    */
-  std::vector<Glib::ustring> list_action_descriptions() const;
+  auto list_action_descriptions() const -> std::vector<Glib::ustring>;
 
 
   /** Gets the accelerators that are currently associated with
@@ -511,7 +511,7 @@ public:
    * and target to obtain accelerators for.
    * @return Accelerators for `detailed_action_name`.
    */
-  std::vector<Glib::ustring> get_accels_for_action(const Glib::ustring& detailed_action_name) const;
+  auto get_accels_for_action(const Glib::ustring& detailed_action_name) const -> std::vector<Glib::ustring>;
 
 
   /** Returns the list of actions (possibly empty) that `accel` maps to.
@@ -535,7 +535,7 @@ public:
    * @param accel An accelerator that can be parsed by gtk_accelerator_parse().
    * @return A <tt>nullptr</tt>-terminated array of actions for `accel`.
    */
-  std::vector<Glib::ustring> get_actions_for_accel(const Glib::ustring& accel) const;
+  auto get_actions_for_accel(const Glib::ustring& accel) const -> std::vector<Glib::ustring>;
 
 
   /** Sets zero or more keyboard accelerators that will trigger the
@@ -591,7 +591,7 @@ public:
    * @return Gets the menu with the
    * given id from the automatically loaded resources.
    */
-  Glib::RefPtr<Gio::Menu> get_menu_by_id(const Glib::ustring& id);
+  auto get_menu_by_id(const Glib::ustring& id) -> Glib::RefPtr<Gio::Menu>;
 
   /** Gets a menu from automatically loaded resources.
    *
@@ -602,21 +602,21 @@ public:
    * @return Gets the menu with the
    * given id from the automatically loaded resources.
    */
-  Glib::RefPtr<const Gio::Menu> get_menu_by_id(const Glib::ustring& id) const;
+  auto get_menu_by_id(const Glib::ustring& id) const -> Glib::RefPtr<const Gio::Menu>;
 
   /** The `Gio::MenuModel` to be used for the application's menu bar.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > property_menubar() ;
+  auto property_menubar() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > ;
 
 /** The `Gio::MenuModel` to be used for the application's menu bar.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> > property_menubar() const;
+  auto property_menubar() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >;
 
   /** Set this property to <tt>true</tt> to register with the session manager.
    *
@@ -628,7 +628,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_register_session() ;
+  auto property_register_session() -> Glib::PropertyProxy< bool > ;
 
 /** Set this property to <tt>true</tt> to register with the session manager.
    *
@@ -640,7 +640,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_register_session() const;
+  auto property_register_session() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** This property is <tt>true</tt> if GTK believes that the screensaver is
    * currently active.
@@ -658,7 +658,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_screensaver_active() const;
+  auto property_screensaver_active() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** The currently focused window of the application.
@@ -666,7 +666,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Window* > property_active_window() const;
+  auto property_active_window() const -> Glib::PropertyProxy_ReadOnly< Window* >;
 
 
   /**
@@ -681,7 +681,7 @@ public:
    * @param window The newly-added Gtk::Window.
    */
 
-  Glib::SignalProxy<void(Window*)> signal_window_added();
+  auto signal_window_added() -> Glib::SignalProxy<void(Window*)>;
 
 
   /**
@@ -698,7 +698,7 @@ public:
    * @param window The Gtk::Window that is being removed.
    */
 
-  Glib::SignalProxy<void(Window*)> signal_window_removed();
+  auto signal_window_removed() -> Glib::SignalProxy<void(Window*)>;
 
   // no_default_handler because the wrapped C signal has no default handler.
 
@@ -716,14 +716,14 @@ public:
    * to delay the end of the session until state has been saved.
    */
 
-  Glib::SignalProxy<void()> signal_query_end();
+  auto signal_query_end() -> Glib::SignalProxy<void()>;
 
 
 private:
   /** This is just a way to call Glib::init() before calling a Glib::Object ctor,
    * so that glibmm's GQuarks are created before they are used.
    */
-  const Glib::Class& custom_class_init();
+  auto custom_class_init() -> const Glib::Class&;
 
   Window* m_run_window = nullptr;
 
@@ -746,7 +746,7 @@ protected:
 };
 
 template <typename T_Window, typename... T_Args>
-int Application::make_window_and_run(int argc, char** argv, T_Args&&... args)
+auto Application::make_window_and_run(int argc, char** argv, T_Args&&... args) -> int
 {
   static_assert(std::is_base_of<Window, T_Window>::value);
 
@@ -783,31 +783,31 @@ namespace Gtk
 {
 
 /** @ingroup gtkmmEnums */
-inline Application::InhibitFlags operator|(Application::InhibitFlags lhs, Application::InhibitFlags rhs)
+inline auto operator|(Application::InhibitFlags lhs, Application::InhibitFlags rhs) -> Application::InhibitFlags
   { return static_cast<Application::InhibitFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline Application::InhibitFlags operator&(Application::InhibitFlags lhs, Application::InhibitFlags rhs)
+inline auto operator&(Application::InhibitFlags lhs, Application::InhibitFlags rhs) -> Application::InhibitFlags
   { return static_cast<Application::InhibitFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline Application::InhibitFlags operator^(Application::InhibitFlags lhs, Application::InhibitFlags rhs)
+inline auto operator^(Application::InhibitFlags lhs, Application::InhibitFlags rhs) -> Application::InhibitFlags
   { return static_cast<Application::InhibitFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline Application::InhibitFlags operator~(Application::InhibitFlags flags)
+inline auto operator~(Application::InhibitFlags flags) -> Application::InhibitFlags
   { return static_cast<Application::InhibitFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gtkmmEnums */
-inline Application::InhibitFlags& operator|=(Application::InhibitFlags& lhs, Application::InhibitFlags rhs)
+inline auto operator|=(Application::InhibitFlags& lhs, Application::InhibitFlags rhs) -> Application::InhibitFlags&
   { return (lhs = static_cast<Application::InhibitFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline Application::InhibitFlags& operator&=(Application::InhibitFlags& lhs, Application::InhibitFlags rhs)
+inline auto operator&=(Application::InhibitFlags& lhs, Application::InhibitFlags rhs) -> Application::InhibitFlags&
   { return (lhs = static_cast<Application::InhibitFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline Application::InhibitFlags& operator^=(Application::InhibitFlags& lhs, Application::InhibitFlags rhs)
+inline auto operator^=(Application::InhibitFlags& lhs, Application::InhibitFlags rhs) -> Application::InhibitFlags&
   { return (lhs = static_cast<Application::InhibitFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gtk
 
@@ -819,7 +819,7 @@ template <>
 class GTKMM_API Value<Gtk::Application::InhibitFlags> : public Glib::Value_Flags<Gtk::Application::InhibitFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -837,7 +837,7 @@ namespace Glib
    * @relates Gtk::Application
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Application> wrap(GtkApplication* object, bool take_copy = false);
+  auto wrap(GtkApplication* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Application>;
 }
 
 

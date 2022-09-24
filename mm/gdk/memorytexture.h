@@ -58,7 +58,7 @@ public:
 
   // noncopyable
   MemoryTexture(const MemoryTexture&) = delete;
-  MemoryTexture& operator=(const MemoryTexture&) = delete;
+  auto operator=(const MemoryTexture&) -> MemoryTexture& = delete;
 
 private:  friend class MemoryTexture_Class;
   static CppClassType memorytexture_class_;
@@ -72,28 +72,28 @@ protected:
 public:
 
   MemoryTexture(MemoryTexture&& src) noexcept;
-  MemoryTexture& operator=(MemoryTexture&& src) noexcept;
+  auto operator=(MemoryTexture&& src) noexcept -> MemoryTexture&;
 
   ~MemoryTexture() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkMemoryTexture*       gobj()       { return reinterpret_cast<GdkMemoryTexture*>(gobject_); }
+  auto       gobj() -> GdkMemoryTexture*       { return reinterpret_cast<GdkMemoryTexture*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkMemoryTexture* gobj() const { return reinterpret_cast<GdkMemoryTexture*>(gobject_); }
+  auto gobj() const -> const GdkMemoryTexture* { return reinterpret_cast<GdkMemoryTexture*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkMemoryTexture* gobj_copy();
+  auto gobj_copy() -> GdkMemoryTexture*;
 
 private:
 
@@ -241,7 +241,7 @@ public:
    * @param stride Rowstride for the data.
    * @return A newly-created `Gdk::Texture`.
    */
-  static Glib::RefPtr<Texture> create(int width, int height, Format format, const Glib::RefPtr<const Glib::Bytes>& bytes, gsize stride);
+  static auto create(int width, int height, Format format, const Glib::RefPtr<const Glib::Bytes>& bytes, gsize stride) -> Glib::RefPtr<Texture>;
 
   // There are no public signals, properties or vfuncs.
 
@@ -270,7 +270,7 @@ template <>
 class GDKMM_API Value<Gdk::MemoryTexture::Format> : public Glib::Value_Enum<Gdk::MemoryTexture::Format>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -288,7 +288,7 @@ namespace Glib
    * @relates Gdk::MemoryTexture
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::MemoryTexture> wrap(GdkMemoryTexture* object, bool take_copy = false);
+  auto wrap(GdkMemoryTexture* object, bool take_copy = false) -> Glib::RefPtr<Gdk::MemoryTexture>;
 }
 
 

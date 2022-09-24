@@ -166,7 +166,7 @@ public:
  * @relates Matrix
  */
 CAIROMM_API
-Matrix identity_matrix();
+auto identity_matrix() -> Matrix;
 
 /** Returns a Matrix initialized to a transformation that translates by tx and
  * ty in the X and Y dimensions, respectively.
@@ -177,7 +177,7 @@ Matrix identity_matrix();
  * @relates Matrix
  */
 CAIROMM_API
-Matrix translation_matrix(double tx, double ty);
+auto translation_matrix(double tx, double ty) -> Matrix;
 
 /** Returns a Matrix initialized to a transformation that scales by sx and sy in
  * the X and Y dimensions, respectively.
@@ -188,7 +188,7 @@ Matrix translation_matrix(double tx, double ty);
  * @relates Matrix
  */
 CAIROMM_API
-Matrix scaling_matrix(double sx, double sy);
+auto scaling_matrix(double sx, double sy) -> Matrix;
 
 /** Returns a Matrix initialized to a transformation that rotates by radians.
  *
@@ -200,7 +200,7 @@ Matrix scaling_matrix(double sx, double sy);
  * @relates Matrix
  */
 CAIROMM_API
-Matrix rotation_matrix(double radians);
+auto rotation_matrix(double radians) -> Matrix;
 
 /** Multiplies the affine transformations in a and b together and returns the
  * result. The effect of the resulting transformation is to first
@@ -215,7 +215,7 @@ Matrix rotation_matrix(double radians);
  * @relates Matrix
  */
 CAIROMM_API
-Matrix operator*(const Matrix& a, const Matrix& b);
+auto operator*(const Matrix& a, const Matrix& b) -> Matrix;
 
 } // namespace Cairo
 

@@ -90,19 +90,19 @@ class GDKMM_API ContentFormats final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GdkContentFormats*       gobj();
+  auto       gobj() -> GdkContentFormats*;
 
   ///Provides access to the underlying C instance.
-  const GdkContentFormats* gobj() const;
+  auto gobj() const -> const GdkContentFormats*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkContentFormats* gobj_copy() const;
+  auto gobj_copy() const -> GdkContentFormats*;
 
   ContentFormats() = delete;
 
   // noncopyable
   ContentFormats(const ContentFormats&) = delete;
-  ContentFormats& operator=(const ContentFormats&) = delete;
+  auto operator=(const ContentFormats&) -> ContentFormats& = delete;
 
 protected:
   // Do not derive this.  Gdk::ContentFormats can neither be constructed nor deleted.
@@ -122,7 +122,7 @@ public:
    * @param mime_types A vector of mime types.
    * @return The new %Gdk::ContentFormats.
    */
-  static Glib::RefPtr<ContentFormats> create(const std::vector<Glib::ustring>& mime_types = {});
+  static auto create(const std::vector<Glib::ustring>& mime_types = {}) -> Glib::RefPtr<ContentFormats>;
 
 
   /** Creates a new %Gdk::ContentFormats from a mime type.
@@ -130,7 +130,7 @@ public:
    * @param mime_type A mime type.
    * @return The new %Gdk::ContentFormats.
    */
-  static Glib::RefPtr<ContentFormats> create(const Glib::ustring& mime_type);
+  static auto create(const Glib::ustring& mime_type) -> Glib::RefPtr<ContentFormats>;
 
 
   /** Creates a new %Gdk::ContentFormats from a GType.
@@ -138,7 +138,7 @@ public:
    * @param type A GType.
    * @return The new %Gdk::ContentFormats.
    */
-  static Glib::RefPtr<ContentFormats> create(GType type);
+  static auto create(GType type) -> Glib::RefPtr<ContentFormats>;
 
 
   /** Parses the given @a string into `Gdk::ContentFormats` and
@@ -155,7 +155,7 @@ public:
    * @param string The string to parse.
    * @return The content formats if @a string is valid.
    */
-  static Glib::RefPtr<ContentFormats> parse(const Glib::ustring& string);
+  static auto parse(const Glib::ustring& string) -> Glib::RefPtr<ContentFormats>;
 
 
   /** Prints the given %ContentFormats into a string for human consumption.
@@ -164,7 +164,7 @@ public:
    *
    * @return A new string.
    */
-  Glib::ustring to_string() const;
+  auto to_string() const -> Glib::ustring;
 
 
   /** Gets the Types included in the %ContentFormats.
@@ -173,7 +173,7 @@ public:
    *
    * @return A vector of types included in the %ContentFormats. May be empty.
    */
-  std::vector<GType> get_gtypes() const;
+  auto get_gtypes() const -> std::vector<GType>;
 
 
   /** Gets the mime types included in the %ContentFormats.
@@ -182,7 +182,7 @@ public:
    *
    * @return A vector of mime types included in the %ContentFormats. May be empty.
    */
-  std::vector<Glib::ustring> get_mime_types() const;
+  auto get_mime_types() const -> std::vector<Glib::ustring>;
 
 
   /** Checks if a given `GType` is part of the given @a formats.
@@ -190,14 +190,14 @@ public:
    * @param type The `GType` to search for.
    * @return <tt>true</tt> if the `GType` was found.
    */
-  bool contain_gtype(GType type) const;
+  auto contain_gtype(GType type) const -> bool;
 
   /** Checks if a given mime type is part of the given @a formats.
    *
    * @param mime_type The mime type to search for.
    * @return <tt>true</tt> if the mime_type was found.
    */
-  bool contain_mime_type(const Glib::ustring& mime_type) const;
+  auto contain_mime_type(const Glib::ustring& mime_type) const -> bool;
 
   // 'union' is a C and C++ keyword. Can't be a method name.
   /** Append all missing types from @a second to <tt>*this</tt>, in the order
@@ -206,7 +206,7 @@ public:
    * @param second The %ContentFormats to merge from.
    * @return A new %ContentFormats.
    */
-  Glib::RefPtr<ContentFormats> join(const Glib::RefPtr<const ContentFormats>& second) const;
+  auto join(const Glib::RefPtr<const ContentFormats>& second) const -> Glib::RefPtr<ContentFormats>;
 
 
   /** Checks if @a first and @a second have any matching formats.
@@ -214,7 +214,7 @@ public:
    * @param second The `Gdk::ContentFormats` to intersect with.
    * @return <tt>true</tt> if a matching format was found.
    */
-  bool match(const Glib::RefPtr<const ContentFormats>& second) const;
+  auto match(const Glib::RefPtr<const ContentFormats>& second) const -> bool;
 
   /** Finds the first `GType` from @a first that is also contained
    * in @a second.
@@ -224,7 +224,7 @@ public:
    * @param second The `Gdk::ContentFormats` to intersect with.
    * @return The first common `GType` or G_TYPE_INVALID if none.
    */
-  GType match_gtype(const Glib::RefPtr<const ContentFormats>& second) const;
+  auto match_gtype(const Glib::RefPtr<const ContentFormats>& second) const -> GType;
 
   /** Finds the first mime type from <tt>*this</tt> that is also contained in @a second.
    * If no matching mime type is found, an empty string is returned.
@@ -232,7 +232,7 @@ public:
    * @param second The Gdk::ContentFormats to intersect with.
    * @return The first common mime type, or an empty string if none.
    */
-  Glib::ustring match_mime_type(const Glib::RefPtr<const ContentFormats>& second) const;
+  auto match_mime_type(const Glib::RefPtr<const ContentFormats>& second) const -> Glib::ustring;
 
 
 };
@@ -250,10 +250,10 @@ public:
   typedef Glib::RefPtr<Gdk::ContentFormats> CppType;
   typedef GdkContentFormats* CType;
 
-  static GType value_type();
+  static auto value_type() -> GType;
 
   void set(const CppType& data);
-  CppType get() const;
+  auto get() const -> CppType;
 };
 
 } // namespace Glib
@@ -271,7 +271,7 @@ namespace Glib
  * @relates Gdk::ContentFormats
  */
 GDKMM_API
-Glib::RefPtr<Gdk::ContentFormats> wrap(GdkContentFormats* object, bool take_copy = false);
+auto wrap(GdkContentFormats* object, bool take_copy = false) -> Glib::RefPtr<Gdk::ContentFormats>;
 
 } // namespace Glib
 

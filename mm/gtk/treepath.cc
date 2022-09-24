@@ -68,7 +68,7 @@ TreePath::TreePath(const TreeModel::iterator& iter)
     gobject_ = gtk_tree_path_new();
 }
 
-TreePath& TreePath::operator=(const TreeModel::iterator& iter)
+auto TreePath::operator=(const TreeModel::iterator& iter) -> TreePath&
 {
   TreePath temp(iter);
   swap(temp);
@@ -81,7 +81,7 @@ void TreePath::clear()
   swap(empty_path);
 }
 
-TreePath::size_type TreePath::size() const
+auto TreePath::size() const -> TreePath::size_type
 {
   return gtk_tree_path_get_depth(gobject_);
 }
@@ -91,45 +91,45 @@ TreePath::operator bool() const
   return !empty();
 }
 
-bool TreePath::empty() const
+auto TreePath::empty() const -> bool
 {
   return (gtk_tree_path_get_depth(gobject_) == 0);
 }
 
-TreePath::reference TreePath::operator[](TreePath::size_type i)
+auto TreePath::operator[](TreePath::size_type i) -> TreePath::reference
 {
   int *const indices = gtk_tree_path_get_indices(gobject_);
   return indices[i];
 }
 
-TreePath::const_reference TreePath::operator[](TreePath::size_type i) const
+auto TreePath::operator[](TreePath::size_type i) const -> TreePath::const_reference
 {
   const int *const indices = gtk_tree_path_get_indices(gobject_);
   return indices[i];
 }
 
-TreePath::iterator TreePath::begin()
+auto TreePath::begin() -> TreePath::iterator
 {
   return gtk_tree_path_get_indices(gobject_);
 }
 
-TreePath::iterator TreePath::end()
+auto TreePath::end() -> TreePath::iterator
 {
   return gtk_tree_path_get_indices(gobject_) + gtk_tree_path_get_depth(gobject_);
 }
 
-TreePath::const_iterator TreePath::begin() const
+auto TreePath::begin() const -> TreePath::const_iterator
 {
   return gtk_tree_path_get_indices(gobject_);
 }
 
-TreePath::const_iterator TreePath::end() const
+auto TreePath::end() const -> TreePath::const_iterator
 {
   return gtk_tree_path_get_indices(gobject_) + gtk_tree_path_get_depth(gobject_);
 }
 
 //static
-bool TreePath::get_row_drag_data(const Glib::ValueBase& value, Glib::RefPtr<const TreeModel>& model, TreePath& path)
+auto TreePath::get_row_drag_data(const Glib::ValueBase& value, Glib::RefPtr<const TreeModel>& model, TreePath& path) -> bool
 {
   GtkTreeModel* src_model = nullptr;
   GtkTreePath* src_path = nullptr;
@@ -144,7 +144,7 @@ bool TreePath::get_row_drag_data(const Glib::ValueBase& value, Glib::RefPtr<cons
 }
 
 //static
-bool TreePath::get_row_drag_data(const Glib::ValueBase& value, TreePath& path)
+auto TreePath::get_row_drag_data(const Glib::ValueBase& value, TreePath& path) -> bool
 {
   GtkTreePath* src_path = nullptr;
   gboolean result = gtk_tree_get_row_drag_data(value.gobj(), nullptr, &src_path);
@@ -155,8 +155,8 @@ bool TreePath::get_row_drag_data(const Glib::ValueBase& value, TreePath& path)
   return result;
 }
 
-Glib::RefPtr<Gdk::ContentProvider> TreePath::create_row_drag_content(
-  const Glib::RefPtr<const TreeModel>& model) const
+auto TreePath::create_row_drag_content(
+  const Glib::RefPtr<const TreeModel>& model) const -> Glib::RefPtr<Gdk::ContentProvider>
 {
   // gtk_tree_create_row_drag_content() creates a new GdkContentProvider.
   return Glib::wrap(gtk_tree_create_row_drag_content(
@@ -173,7 +173,7 @@ namespace
 namespace Glib
 {
 
-Gtk::TreePath wrap(GtkTreePath* object, bool take_copy)
+auto wrap(GtkTreePath* object, bool take_copy) -> Gtk::TreePath
 {
   return Gtk::TreePath(object, take_copy);
 }
@@ -186,7 +186,7 @@ namespace Gtk
 
 
 // static
-GType TreePath::get_type()
+auto TreePath::get_type() -> GType
 {
   return gtk_tree_path_get_type();
 }
@@ -208,7 +208,7 @@ TreePath::TreePath(TreePath&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-TreePath& TreePath::operator=(TreePath&& other) noexcept
+auto TreePath::operator=(TreePath&& other) noexcept -> TreePath&
 {
   TreePath temp (std::move(other));
   swap(temp);
@@ -216,7 +216,7 @@ TreePath& TreePath::operator=(TreePath&& other) noexcept
 }
 
 
-TreePath& TreePath::operator=(const TreePath& other)
+auto TreePath::operator=(const TreePath& other) -> TreePath&
 {
   TreePath temp (other);
   swap(temp);
@@ -234,7 +234,7 @@ void TreePath::swap(TreePath& other) noexcept
   std::swap(gobject_, other.gobject_);
 }
 
-GtkTreePath* TreePath::gobj_copy() const
+auto TreePath::gobj_copy() const -> GtkTreePath*
 {
   return gtk_tree_path_copy(gobject_);
 }
@@ -255,12 +255,12 @@ void TreePath::next()
   gtk_tree_path_next(gobj());
 }
 
-bool TreePath::prev()
+auto TreePath::prev() -> bool
 {
   return gtk_tree_path_prev(gobj());
 }
 
-bool TreePath::up()
+auto TreePath::up() -> bool
 {
   return gtk_tree_path_up(gobj());
 }
@@ -270,48 +270,48 @@ void TreePath::down()
   gtk_tree_path_down(gobj());
 }
 
-bool TreePath::is_ancestor(const TreePath& descendant) const
+auto TreePath::is_ancestor(const TreePath& descendant) const -> bool
 {
   return gtk_tree_path_is_ancestor(const_cast<GtkTreePath*>(gobj()), const_cast<GtkTreePath*>((descendant).gobj()));
 }
 
-bool TreePath::is_descendant(const TreePath& ancestor) const
+auto TreePath::is_descendant(const TreePath& ancestor) const -> bool
 {
   return gtk_tree_path_is_descendant(const_cast<GtkTreePath*>(gobj()), const_cast<GtkTreePath*>((ancestor).gobj()));
 }
 
-Glib::ustring TreePath::to_string() const
+auto TreePath::to_string() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_tree_path_to_string(const_cast<GtkTreePath*>(gobj())));
 }
 
 
-bool operator==(const TreePath& lhs, const TreePath& rhs)
+auto operator==(const TreePath& lhs, const TreePath& rhs) -> bool
 {
   return (gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) == 0);
 }
 
-bool operator!=(const TreePath& lhs, const TreePath& rhs)
+auto operator!=(const TreePath& lhs, const TreePath& rhs) -> bool
 {
   return (gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) != 0);
 }
 
-bool operator<(const TreePath& lhs, const TreePath& rhs)
+auto operator<(const TreePath& lhs, const TreePath& rhs) -> bool
 {
   return (gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) < 0);
 }
 
-bool operator>(const TreePath& lhs, const TreePath& rhs)
+auto operator>(const TreePath& lhs, const TreePath& rhs) -> bool
 {
   return (gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) > 0);
 }
 
-bool operator<=(const TreePath& lhs, const TreePath& rhs)
+auto operator<=(const TreePath& lhs, const TreePath& rhs) -> bool
 {
   return (gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) <= 0);
 }
 
-bool operator>=(const TreePath& lhs, const TreePath& rhs)
+auto operator>=(const TreePath& lhs, const TreePath& rhs) -> bool
 {
   return (gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) >= 0);
 }

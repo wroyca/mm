@@ -30,7 +30,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo Monitor_signal_invalidate_info =
+const Glib::SignalProxyInfo Monitor_signal_invalidate_info =
 {
   "invalidate",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -41,7 +41,7 @@ static const Glib::SignalProxyInfo Monitor_signal_invalidate_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gdk::SubpixelLayout>::value_type()
+auto Glib::Value<Gdk::SubpixelLayout>::value_type() -> GType
 {
   return gdk_subpixel_layout_get_type();
 }
@@ -50,7 +50,7 @@ GType Glib::Value<Gdk::SubpixelLayout>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::Monitor> wrap(GdkMonitor* object, bool take_copy)
+auto wrap(GdkMonitor* object, bool take_copy) -> Glib::RefPtr<Gdk::Monitor>
 {
   return Glib::make_refptr_for_instance<Gdk::Monitor>( dynamic_cast<Gdk::Monitor*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -65,7 +65,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Monitor_Class::init()
+auto Monitor_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -96,7 +96,7 @@ void Monitor_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Monitor_Class::wrap_new(GObject* object)
+auto Monitor_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Monitor((GdkMonitor*)object);
 }
@@ -104,7 +104,7 @@ Glib::ObjectBase* Monitor_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GdkMonitor* Monitor::gobj_copy()
+auto Monitor::gobj_copy() -> GdkMonitor*
 {
   reference();
   return gobj();
@@ -127,7 +127,7 @@ Monitor::Monitor(Monitor&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Monitor& Monitor::operator=(Monitor&& src) noexcept
+auto Monitor::operator=(Monitor&& src) noexcept -> Monitor&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -140,13 +140,13 @@ Monitor::~Monitor() noexcept
 
 Monitor::CppClassType Monitor::monitor_class_; // initialize static member
 
-GType Monitor::get_type()
+auto Monitor::get_type() -> GType
 {
   return monitor_class_.init().get_type();
 }
 
 
-GType Monitor::get_base_type()
+auto Monitor::get_base_type() -> GType
 {
   return gdk_monitor_get_type();
 }
@@ -162,7 +162,7 @@ Monitor::Monitor()
 
 }
 
-Glib::RefPtr<Display> Monitor::get_display()
+auto Monitor::get_display() -> Glib::RefPtr<Display>
 {
   auto retvalue = Glib::wrap(gdk_monitor_get_display(gobj()));
   if(retvalue)
@@ -170,7 +170,7 @@ Glib::RefPtr<Display> Monitor::get_display()
   return retvalue;
 }
 
-Glib::RefPtr<const Display> Monitor::get_display() const
+auto Monitor::get_display() const -> Glib::RefPtr<const Display>
 {
   return const_cast<Monitor*>(this)->get_display();
 }
@@ -180,53 +180,53 @@ void Monitor::get_geometry(Rectangle& geometry) const
   gdk_monitor_get_geometry(const_cast<GdkMonitor*>(gobj()), (geometry).gobj());
 }
 
-int Monitor::get_width_mm() const
+auto Monitor::get_width_mm() const -> int
 {
   return gdk_monitor_get_width_mm(const_cast<GdkMonitor*>(gobj()));
 }
 
-int Monitor::get_height_mm() const
+auto Monitor::get_height_mm() const -> int
 {
   return gdk_monitor_get_height_mm(const_cast<GdkMonitor*>(gobj()));
 }
 
-Glib::ustring Monitor::get_manufacturer() const
+auto Monitor::get_manufacturer() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gdk_monitor_get_manufacturer(const_cast<GdkMonitor*>(gobj())));
 }
 
-Glib::ustring Monitor::get_model() const
+auto Monitor::get_model() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gdk_monitor_get_model(const_cast<GdkMonitor*>(gobj())));
 }
 
-Glib::ustring Monitor::get_connector() const
+auto Monitor::get_connector() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gdk_monitor_get_connector(const_cast<GdkMonitor*>(gobj())));
 }
 
-int Monitor::get_scale_factor() const
+auto Monitor::get_scale_factor() const -> int
 {
   return gdk_monitor_get_scale_factor(const_cast<GdkMonitor*>(gobj()));
 }
 
-int Monitor::get_refresh_rate() const
+auto Monitor::get_refresh_rate() const -> int
 {
   return gdk_monitor_get_refresh_rate(const_cast<GdkMonitor*>(gobj()));
 }
 
-SubpixelLayout Monitor::get_subpixel_layout() const
+auto Monitor::get_subpixel_layout() const -> SubpixelLayout
 {
   return static_cast<SubpixelLayout>(gdk_monitor_get_subpixel_layout(const_cast<GdkMonitor*>(gobj())));
 }
 
-bool Monitor::is_valid() const
+auto Monitor::is_valid() const -> bool
 {
   return gdk_monitor_is_valid(const_cast<GdkMonitor*>(gobj()));
 }
 
 
-Glib::SignalProxy<void()> Monitor::signal_invalidate()
+auto Monitor::signal_invalidate() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Monitor_signal_invalidate_info);
 }
@@ -236,27 +236,27 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Display
   "Type Glib::RefPtr<Display> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> > Monitor::property_display() const
+auto Monitor::property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >(this, "display");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Monitor::property_manufacturer() const
+auto Monitor::property_manufacturer() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "manufacturer");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Monitor::property_model() const
+auto Monitor::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "model");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Monitor::property_connector() const
+auto Monitor::property_connector() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "connector");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Monitor::property_scale_factor() const
+auto Monitor::property_scale_factor() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "scale-factor");
 }
@@ -265,22 +265,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::Rectangle>::val
   "Type Gdk::Rectangle cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Gdk::Rectangle > Monitor::property_geometry() const
+auto Monitor::property_geometry() const -> Glib::PropertyProxy_ReadOnly< Gdk::Rectangle >
 {
   return Glib::PropertyProxy_ReadOnly< Gdk::Rectangle >(this, "geometry");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Monitor::property_width_mm() const
+auto Monitor::property_width_mm() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "width-mm");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Monitor::property_height_mm() const
+auto Monitor::property_height_mm() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "height-mm");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Monitor::property_refresh_rate() const
+auto Monitor::property_refresh_rate() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "refresh-rate");
 }
@@ -289,12 +289,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<SubpixelLayout>::val
   "Type SubpixelLayout cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< SubpixelLayout > Monitor::property_subpixel_layout() const
+auto Monitor::property_subpixel_layout() const -> Glib::PropertyProxy_ReadOnly< SubpixelLayout >
 {
   return Glib::PropertyProxy_ReadOnly< SubpixelLayout >(this, "subpixel-layout");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Monitor::property_valid() const
+auto Monitor::property_valid() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "valid");
 }

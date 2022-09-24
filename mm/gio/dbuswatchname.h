@@ -25,10 +25,7 @@
 #include <mm/gio/dbusconnection.h>
 
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 /** @addtogroup giommEnums giomm Enums and Flags */
@@ -65,31 +62,31 @@ enum class BusNameWatcherFlags
 };
 
 /** @ingroup giommEnums */
-inline BusNameWatcherFlags operator|(BusNameWatcherFlags lhs, BusNameWatcherFlags rhs)
+inline auto operator|(BusNameWatcherFlags lhs, BusNameWatcherFlags rhs) -> BusNameWatcherFlags
   { return static_cast<BusNameWatcherFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline BusNameWatcherFlags operator&(BusNameWatcherFlags lhs, BusNameWatcherFlags rhs)
+inline auto operator&(BusNameWatcherFlags lhs, BusNameWatcherFlags rhs) -> BusNameWatcherFlags
   { return static_cast<BusNameWatcherFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline BusNameWatcherFlags operator^(BusNameWatcherFlags lhs, BusNameWatcherFlags rhs)
+inline auto operator^(BusNameWatcherFlags lhs, BusNameWatcherFlags rhs) -> BusNameWatcherFlags
   { return static_cast<BusNameWatcherFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline BusNameWatcherFlags operator~(BusNameWatcherFlags flags)
+inline auto operator~(BusNameWatcherFlags flags) -> BusNameWatcherFlags
   { return static_cast<BusNameWatcherFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline BusNameWatcherFlags& operator|=(BusNameWatcherFlags& lhs, BusNameWatcherFlags rhs)
+inline auto operator|=(BusNameWatcherFlags& lhs, BusNameWatcherFlags rhs) -> BusNameWatcherFlags&
   { return (lhs = static_cast<BusNameWatcherFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline BusNameWatcherFlags& operator&=(BusNameWatcherFlags& lhs, BusNameWatcherFlags rhs)
+inline auto operator&=(BusNameWatcherFlags& lhs, BusNameWatcherFlags rhs) -> BusNameWatcherFlags&
   { return (lhs = static_cast<BusNameWatcherFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline BusNameWatcherFlags& operator^=(BusNameWatcherFlags& lhs, BusNameWatcherFlags rhs)
+inline auto operator^=(BusNameWatcherFlags& lhs, BusNameWatcherFlags rhs) -> BusNameWatcherFlags&
   { return (lhs = static_cast<BusNameWatcherFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -131,7 +128,7 @@ using SlotNameVanished = sigc::slot<void(const Glib::RefPtr<Gio::DBus::Connectio
  * The reverse is also true.
  *
  * This behavior makes it very simple to write applications that wants to take
- * action when a certain name exists, see the C API's Example 9, “Simple
+ * action when a certain name exists, see the C API's Example 9, “Simple
  * application watching a name” for more information. Basically, the
  * application should create object proxies in @a name_appeared_slot and
  * destroy them again (if any) in @a name_vanished_slot.
@@ -149,13 +146,13 @@ using SlotNameVanished = sigc::slot<void(const Glib::RefPtr<Gio::DBus::Connectio
  * @ingroup DBus
  */
 GIOMM_API
-guint watch_name(
+auto watch_name(
   BusType bus_type,
   const Glib::ustring& name,
   const SlotNameAppeared& name_appeared_slot = {},
   const SlotNameVanished& name_vanished_slot = {},
   BusNameWatcherFlags flags = Gio::DBus::BusNameWatcherFlags::NONE
-);
+) -> guint;
 
 
 /** A watch_name() function that takes a Connection instead of a BusType.
@@ -173,13 +170,13 @@ guint watch_name(
  * @ingroup DBus
  */
 GIOMM_API
-guint watch_name(
+auto watch_name(
   const Glib::RefPtr<Connection>& connection,
   const Glib::ustring& name,
   const SlotNameAppeared& name_appeared_slot = {},
   const SlotNameVanished& name_vanished_slot = {},
   BusNameWatcherFlags flags = Gio::DBus::BusNameWatcherFlags::NONE
-);
+) -> guint;
 
 
 /** Stops watching a name.
@@ -189,8 +186,6 @@ guint watch_name(
 GIOMM_API
 void unwatch_name(guint watcher_id);
 
-
-} // namespace DBus
 
 } // namespace Gio
 

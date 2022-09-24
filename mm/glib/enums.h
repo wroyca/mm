@@ -60,31 +60,31 @@ enum class MainContextFlags
 };
 
 /** @ingroup glibmmEnums */
-inline MainContextFlags operator|(MainContextFlags lhs, MainContextFlags rhs)
+inline auto operator|(MainContextFlags lhs, MainContextFlags rhs) -> MainContextFlags
   { return static_cast<MainContextFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline MainContextFlags operator&(MainContextFlags lhs, MainContextFlags rhs)
+inline auto operator&(MainContextFlags lhs, MainContextFlags rhs) -> MainContextFlags
   { return static_cast<MainContextFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline MainContextFlags operator^(MainContextFlags lhs, MainContextFlags rhs)
+inline auto operator^(MainContextFlags lhs, MainContextFlags rhs) -> MainContextFlags
   { return static_cast<MainContextFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline MainContextFlags operator~(MainContextFlags flags)
+inline auto operator~(MainContextFlags flags) -> MainContextFlags
   { return static_cast<MainContextFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup glibmmEnums */
-inline MainContextFlags& operator|=(MainContextFlags& lhs, MainContextFlags rhs)
+inline auto operator|=(MainContextFlags& lhs, MainContextFlags rhs) -> MainContextFlags&
   { return (lhs = static_cast<MainContextFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline MainContextFlags& operator&=(MainContextFlags& lhs, MainContextFlags rhs)
+inline auto operator&=(MainContextFlags& lhs, MainContextFlags rhs) -> MainContextFlags&
   { return (lhs = static_cast<MainContextFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline MainContextFlags& operator^=(MainContextFlags& lhs, MainContextFlags rhs)
+inline auto operator^=(MainContextFlags& lhs, MainContextFlags rhs) -> MainContextFlags&
   { return (lhs = static_cast<MainContextFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -175,31 +175,31 @@ enum class ParamFlags
 };
 
 /** @ingroup glibmmEnums */
-inline ParamFlags operator|(ParamFlags lhs, ParamFlags rhs)
+inline auto operator|(ParamFlags lhs, ParamFlags rhs) -> ParamFlags
   { return static_cast<ParamFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline ParamFlags operator&(ParamFlags lhs, ParamFlags rhs)
+inline auto operator&(ParamFlags lhs, ParamFlags rhs) -> ParamFlags
   { return static_cast<ParamFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline ParamFlags operator^(ParamFlags lhs, ParamFlags rhs)
+inline auto operator^(ParamFlags lhs, ParamFlags rhs) -> ParamFlags
   { return static_cast<ParamFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline ParamFlags operator~(ParamFlags flags)
+inline auto operator~(ParamFlags flags) -> ParamFlags
   { return static_cast<ParamFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup glibmmEnums */
-inline ParamFlags& operator|=(ParamFlags& lhs, ParamFlags rhs)
+inline auto operator|=(ParamFlags& lhs, ParamFlags rhs) -> ParamFlags&
   { return (lhs = static_cast<ParamFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline ParamFlags& operator&=(ParamFlags& lhs, ParamFlags rhs)
+inline auto operator&=(ParamFlags& lhs, ParamFlags rhs) -> ParamFlags&
   { return (lhs = static_cast<ParamFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline ParamFlags& operator^=(ParamFlags& lhs, ParamFlags rhs)
+inline auto operator^=(ParamFlags& lhs, ParamFlags rhs) -> ParamFlags&
   { return (lhs = static_cast<ParamFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 

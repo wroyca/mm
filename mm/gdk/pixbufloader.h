@@ -57,7 +57,7 @@ public:
 
   // noncopyable
   PixbufLoader(const PixbufLoader&) = delete;
-  PixbufLoader& operator=(const PixbufLoader&) = delete;
+  auto operator=(const PixbufLoader&) -> PixbufLoader& = delete;
 
 private:  friend class PixbufLoader_Class;
   static CppClassType pixbufloader_class_;
@@ -71,28 +71,28 @@ protected:
 public:
 
   PixbufLoader(PixbufLoader&& src) noexcept;
-  PixbufLoader& operator=(PixbufLoader&& src) noexcept;
+  auto operator=(PixbufLoader&& src) noexcept -> PixbufLoader&;
 
   ~PixbufLoader() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkPixbufLoader*       gobj()       { return reinterpret_cast<GdkPixbufLoader*>(gobject_); }
+  auto       gobj() -> GdkPixbufLoader*       { return reinterpret_cast<GdkPixbufLoader*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkPixbufLoader* gobj() const { return reinterpret_cast<GdkPixbufLoader*>(gobject_); }
+  auto gobj() const -> const GdkPixbufLoader* { return reinterpret_cast<GdkPixbufLoader*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkPixbufLoader* gobj_copy();
+  auto gobj_copy() -> GdkPixbufLoader*;
 
 private:
 
@@ -134,7 +134,7 @@ public:
    * @return A newly-created pixbuf loader.
    */
 
-  static Glib::RefPtr<PixbufLoader> create();
+  static auto create() -> Glib::RefPtr<PixbufLoader>;
 
 
    /** Constructs a pixbuf loader object for a specific image type.
@@ -162,7 +162,7 @@ public:
    * @throw Gdk::PixbufError
    */
 
-  static Glib::RefPtr<PixbufLoader> create(const Glib::ustring& image_type, bool mime_type =  false);
+  static auto create(const Glib::ustring& image_type, bool mime_type =  false) -> Glib::RefPtr<PixbufLoader>;
 
 
   /** Causes the image to be scaled while it is loaded.
@@ -225,7 +225,7 @@ public:
    * @return The pixbuf that the loader is
    * creating.
    */
-  Glib::RefPtr<Gdk::Pixbuf> get_pixbuf();
+  auto get_pixbuf() -> Glib::RefPtr<Gdk::Pixbuf>;
 
   /** Queries the Gdk::PixbufAnimation that a pixbuf loader is currently creating.
    *
@@ -239,7 +239,7 @@ public:
    * @return The animation that the loader is
    * currently loading.
    */
-  Glib::RefPtr<Gdk::PixbufAnimation> get_animation();
+  auto get_animation() -> Glib::RefPtr<Gdk::PixbufAnimation>;
 
 
   /** Obtains the available information about the format of the
@@ -249,7 +249,7 @@ public:
    *
    * @return A Gdk::PixbufFormat.
    */
-  PixbufFormat get_format() const;
+  auto get_format() const -> PixbufFormat;
 
 
   /** This signal is emitted when the pixbuf loader has allocated the
@@ -270,7 +270,7 @@ public:
    * pixbuf.
    */
 
-  Glib::SignalProxy<void()> signal_area_prepared();
+  auto signal_area_prepared() -> Glib::SignalProxy<void()>;
 
 
   /** This signal is emitted when a significant area of the image being
@@ -304,7 +304,7 @@ public:
    * @param height Height of updated area.
    */
 
-  Glib::SignalProxy<void(int, int, int, int)> signal_area_updated();
+  auto signal_area_updated() -> Glib::SignalProxy<void(int, int, int, int)>;
 
 
   /** This signal is emitted when close() is called.
@@ -324,7 +324,7 @@ public:
    * drives it.
    */
 
-  Glib::SignalProxy<void()> signal_closed();
+  auto signal_closed() -> Glib::SignalProxy<void()>;
 
 
   /** This signal is emitted when the pixbuf loader has been fed the
@@ -353,7 +353,7 @@ public:
    * @param height The original height of the image.
    */
 
-  Glib::SignalProxy<void(int, int)> signal_size_prepared();
+  auto signal_size_prepared() -> Glib::SignalProxy<void(int, int)>;
 
 
 public:
@@ -391,7 +391,7 @@ namespace Glib
    * @relates Gdk::PixbufLoader
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::PixbufLoader> wrap(GdkPixbufLoader* object, bool take_copy = false);
+  auto wrap(GdkPixbufLoader* object, bool take_copy = false) -> Glib::RefPtr<Gdk::PixbufLoader>;
 }
 
 

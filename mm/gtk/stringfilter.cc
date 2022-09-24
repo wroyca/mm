@@ -32,7 +32,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::StringFilter::MatchMode>::value_type()
+auto Glib::Value<Gtk::StringFilter::MatchMode>::value_type() -> GType
 {
   return gtk_string_filter_match_mode_get_type();
 }
@@ -41,7 +41,7 @@ GType Glib::Value<Gtk::StringFilter::MatchMode>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::StringFilter> wrap(GtkStringFilter* object, bool take_copy)
+auto wrap(GtkStringFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::StringFilter>
 {
   return Glib::make_refptr_for_instance<Gtk::StringFilter>( dynamic_cast<Gtk::StringFilter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -56,7 +56,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& StringFilter_Class::init()
+auto StringFilter_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -81,7 +81,7 @@ void StringFilter_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* StringFilter_Class::wrap_new(GObject* object)
+auto StringFilter_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new StringFilter((GtkStringFilter*)object);
 }
@@ -89,7 +89,7 @@ Glib::ObjectBase* StringFilter_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkStringFilter* StringFilter::gobj_copy()
+auto StringFilter::gobj_copy() -> GtkStringFilter*
 {
   reference();
   return gobj();
@@ -112,7 +112,7 @@ StringFilter::StringFilter(StringFilter&& src) noexcept
 : Gtk::Filter(std::move(src))
 {}
 
-StringFilter& StringFilter::operator=(StringFilter&& src) noexcept
+auto StringFilter::operator=(StringFilter&& src) noexcept -> StringFilter&
 {
   Gtk::Filter::operator=(std::move(src));
   return *this;
@@ -125,13 +125,13 @@ StringFilter::~StringFilter() noexcept
 
 StringFilter::CppClassType StringFilter::stringfilter_class_; // initialize static member
 
-GType StringFilter::get_type()
+auto StringFilter::get_type() -> GType
 {
   return stringfilter_class_.init().get_type();
 }
 
 
-GType StringFilter::get_base_type()
+auto StringFilter::get_base_type() -> GType
 {
   return gtk_string_filter_get_type();
 }
@@ -147,12 +147,12 @@ StringFilter::StringFilter(const Glib::RefPtr<Expression<Glib::ustring>>& expres
 
 }
 
-Glib::RefPtr<StringFilter> StringFilter::create(const Glib::RefPtr<Expression<Glib::ustring>>& expression)
+auto StringFilter::create(const Glib::RefPtr<Expression<Glib::ustring>>& expression) -> Glib::RefPtr<StringFilter>
 {
   return Glib::make_refptr_for_instance<StringFilter>( new StringFilter(expression) );
 }
 
-Glib::ustring StringFilter::get_search() const
+auto StringFilter::get_search() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_string_filter_get_search(const_cast<GtkStringFilter*>(gobj())));
 }
@@ -162,7 +162,7 @@ void StringFilter::set_search(const Glib::ustring& search)
   gtk_string_filter_set_search(gobj(), search.c_str());
 }
 
-Glib::RefPtr<Expression<Glib::ustring>> StringFilter::get_expression()
+auto StringFilter::get_expression() -> Glib::RefPtr<Expression<Glib::ustring>>
 {
   auto retvalue = Glib::wrap<Glib::ustring>(gtk_string_filter_get_expression(gobj()));
   if(retvalue)
@@ -170,7 +170,7 @@ Glib::RefPtr<Expression<Glib::ustring>> StringFilter::get_expression()
   return retvalue;
 }
 
-Glib::RefPtr<const Expression<Glib::ustring>> StringFilter::get_expression() const
+auto StringFilter::get_expression() const -> Glib::RefPtr<const Expression<Glib::ustring>>
 {
   auto retvalue = Glib::wrap<Glib::ustring>(gtk_string_filter_get_expression(const_cast<GtkStringFilter*>(gobj())));
   if(retvalue)
@@ -183,7 +183,7 @@ void StringFilter::set_expression(const Glib::RefPtr<Expression<Glib::ustring>>&
   gtk_string_filter_set_expression(gobj(), ((expression) ? (expression)->gobj() : nullptr));
 }
 
-bool StringFilter::get_ignore_case() const
+auto StringFilter::get_ignore_case() const -> bool
 {
   return gtk_string_filter_get_ignore_case(const_cast<GtkStringFilter*>(gobj()));
 }
@@ -193,7 +193,7 @@ void StringFilter::set_ignore_case(bool ignore_case)
   gtk_string_filter_set_ignore_case(gobj(), static_cast<int>(ignore_case));
 }
 
-MatchMode StringFilter::get_match_mode() const
+auto StringFilter::get_match_mode() const -> MatchMode
 {
   return static_cast<MatchMode>(gtk_string_filter_get_match_mode(const_cast<GtkStringFilter*>(gobj())));
 }
@@ -208,22 +208,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Express
   "Type Glib::RefPtr<Expression<Glib::ustring>> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Expression<Glib::ustring>> > StringFilter::property_expression()
+auto StringFilter::property_expression() -> Glib::PropertyProxy< Glib::RefPtr<Expression<Glib::ustring>> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Expression<Glib::ustring>> >(this, "expression");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Expression<Glib::ustring>> > StringFilter::property_expression() const
+auto StringFilter::property_expression() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Expression<Glib::ustring>> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Expression<Glib::ustring>> >(this, "expression");
 }
 
-Glib::PropertyProxy< bool > StringFilter::property_ignore_case()
+auto StringFilter::property_ignore_case() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "ignore-case");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > StringFilter::property_ignore_case() const
+auto StringFilter::property_ignore_case() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "ignore-case");
 }
@@ -232,22 +232,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<MatchMode>::value,
   "Type MatchMode cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< MatchMode > StringFilter::property_match_mode()
+auto StringFilter::property_match_mode() -> Glib::PropertyProxy< MatchMode >
 {
   return Glib::PropertyProxy< MatchMode >(this, "match-mode");
 }
 
-Glib::PropertyProxy_ReadOnly< MatchMode > StringFilter::property_match_mode() const
+auto StringFilter::property_match_mode() const -> Glib::PropertyProxy_ReadOnly< MatchMode >
 {
   return Glib::PropertyProxy_ReadOnly< MatchMode >(this, "match-mode");
 }
 
-Glib::PropertyProxy< Glib::ustring > StringFilter::property_search()
+auto StringFilter::property_search() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "search");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > StringFilter::property_search() const
+auto StringFilter::property_search() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "search");
 }

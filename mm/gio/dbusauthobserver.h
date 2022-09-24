@@ -34,19 +34,11 @@ using GDBusAuthObserverClass = struct _GDBusAuthObserverClass;
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
-{
-
-namespace DBus
-{ class GIOMM_API AuthObserver_Class; } // namespace DBus
-
-} // namespace Gio
+namespace Gio::DBus
+{ class GIOMM_API AuthObserver_Class; } // namespace Gio
 #endif //DOXYGEN_SHOULD_SKIP_THIS
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 
@@ -101,7 +93,7 @@ public:
 
   // noncopyable
   AuthObserver(const AuthObserver&) = delete;
-  AuthObserver& operator=(const AuthObserver&) = delete;
+  auto operator=(const AuthObserver&) -> AuthObserver& = delete;
 
 private:  friend class AuthObserver_Class;
   static CppClassType authobserver_class_;
@@ -115,28 +107,28 @@ protected:
 public:
 
   AuthObserver(AuthObserver&& src) noexcept;
-  AuthObserver& operator=(AuthObserver&& src) noexcept;
+  auto operator=(AuthObserver&& src) noexcept -> AuthObserver&;
 
   ~AuthObserver() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDBusAuthObserver*       gobj()       { return reinterpret_cast<GDBusAuthObserver*>(gobject_); }
+  auto       gobj() -> GDBusAuthObserver*       { return reinterpret_cast<GDBusAuthObserver*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDBusAuthObserver* gobj() const { return reinterpret_cast<GDBusAuthObserver*>(gobject_); }
+  auto gobj() const -> const GDBusAuthObserver* { return reinterpret_cast<GDBusAuthObserver*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusAuthObserver* gobj_copy();
+  auto gobj_copy() -> GDBusAuthObserver*;
 
 private:
 
@@ -147,7 +139,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<AuthObserver> create();
+  static auto create() -> Glib::RefPtr<AuthObserver>;
 
 
   /** Emits the Gio::DBus::AuthObserver::signal_authorize_authenticated_peer() signal on @a observer.
@@ -158,7 +150,7 @@ public:
    * @param credentials Credentials received from the peer or <tt>nullptr</tt>.
    * @return <tt>true</tt> if the peer is authorized, <tt>false</tt> if not.
    */
-  bool authorize_authenticated_peer(const Glib::RefPtr<const IOStream>& stream, const Glib::RefPtr<const Credentials>& credentials);
+  auto authorize_authenticated_peer(const Glib::RefPtr<const IOStream>& stream, const Glib::RefPtr<const Credentials>& credentials) -> bool;
 
   /** Emits the Gio::DBus::AuthObserver::signal_allow_mechanism() signal on @a observer.
    *
@@ -167,7 +159,7 @@ public:
    * @param mechanism The name of the mechanism, e.g. `DBUS_COOKIE_SHA1`.
    * @return <tt>true</tt> if @a mechanism can be used to authenticate the other peer, <tt>false</tt> if not.
    */
-  bool allow_mechanism(const std::string& mechanism);
+  auto allow_mechanism(const std::string& mechanism) -> bool;
 
 
   /**
@@ -186,7 +178,7 @@ public:
    * @return <tt>true</tt> if the peer is authorized, <tt>false</tt> if not.
    */
 
-  Glib::SignalProxy<bool(const Glib::RefPtr<const IOStream>&, const Glib::RefPtr<const Credentials>&)> signal_authorize_authenticated_peer();
+  auto signal_authorize_authenticated_peer() -> Glib::SignalProxy<bool(const Glib::RefPtr<const IOStream>&, const Glib::RefPtr<const Credentials>&)>;
 
 
   /**
@@ -203,7 +195,7 @@ public:
    * @return <tt>true</tt> if @a mechanism can be used to authenticate the other peer, <tt>false</tt> if not.
    */
 
-  Glib::SignalProxy<bool(const std::string&)> signal_allow_mechanism();
+  auto signal_allow_mechanism() -> Glib::SignalProxy<bool(const std::string&)>;
 
 
 public:
@@ -219,8 +211,6 @@ protected:
 
 };
 
-} //namespace DBus
-
 } // namespace Gio
 
 
@@ -235,7 +225,7 @@ namespace Glib
    * @relates Gio::DBus::AuthObserver
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DBus::AuthObserver> wrap(GDBusAuthObserver* object, bool take_copy = false);
+  auto wrap(GDBusAuthObserver* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::AuthObserver>;
 }
 
 

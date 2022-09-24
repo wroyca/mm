@@ -71,11 +71,11 @@ class GTKMM_API LinkButton : public Button
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   LinkButton(LinkButton&& src) noexcept;
-  LinkButton& operator=(LinkButton&& src) noexcept;
+  auto operator=(LinkButton&& src) noexcept -> LinkButton&;
 
   // noncopyable
   LinkButton(const LinkButton&) = delete;
-  LinkButton& operator=(const LinkButton&) = delete;
+  auto operator=(const LinkButton&) -> LinkButton& = delete;
 
   ~LinkButton() noexcept override;
 
@@ -95,19 +95,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkLinkButton*       gobj()       { return reinterpret_cast<GtkLinkButton*>(gobject_); }
+  auto       gobj() -> GtkLinkButton*       { return reinterpret_cast<GtkLinkButton*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkLinkButton* gobj() const { return reinterpret_cast<GtkLinkButton*>(gobject_); }
+  auto gobj() const -> const GtkLinkButton* { return reinterpret_cast<GtkLinkButton*>(gobject_); }
 
 private:
 
@@ -123,7 +123,7 @@ public:
    * @return A valid URI. The returned string is owned by the link button
    * and should not be modified or freed.
    */
-  Glib::ustring get_uri() const;
+  auto get_uri() const -> Glib::ustring;
 
   /** Sets @a uri as the URI where the `Gtk::LinkButton` points.
    *
@@ -143,7 +143,7 @@ public:
    *
    * @return <tt>true</tt> if the link has been visited, <tt>false</tt> otherwise.
    */
-  bool get_visited() const;
+  auto get_visited() const -> bool;
 
   /** Sets the “visited” state of the `Gtk::LinkButton`.
    *
@@ -160,7 +160,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_uri() ;
+  auto property_uri() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The URI bound to this button.
    *
@@ -169,7 +169,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_uri() const;
+  auto property_uri() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The 'visited' state of this button.
    *
@@ -180,7 +180,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_visited() ;
+  auto property_visited() -> Glib::PropertyProxy< bool > ;
 
 /** The 'visited' state of this button.
    *
@@ -191,7 +191,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_visited() const;
+  auto property_visited() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   // no_default_handler because GtkLinkButtonClass is private.
@@ -214,7 +214,7 @@ public:
    * @return <tt>true</tt> if the signal has been handled.
    */
 
-  Glib::SignalProxy<bool()> signal_activate_link();
+  auto signal_activate_link() -> Glib::SignalProxy<bool()>;
 
 
 public:
@@ -245,7 +245,7 @@ namespace Glib
    * @relates Gtk::LinkButton
    */
   GTKMM_API
-  Gtk::LinkButton* wrap(GtkLinkButton* object, bool take_copy = false);
+  auto wrap(GtkLinkButton* object, bool take_copy = false) -> Gtk::LinkButton*;
 } //namespace Glib
 
 

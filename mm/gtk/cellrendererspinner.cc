@@ -34,7 +34,7 @@ namespace
 namespace Glib
 {
 
-Gtk::CellRendererSpinner* wrap(GtkCellRendererSpinner* object, bool take_copy)
+auto wrap(GtkCellRendererSpinner* object, bool take_copy) -> Gtk::CellRendererSpinner*
 {
   return dynamic_cast<Gtk::CellRendererSpinner *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -47,7 +47,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& CellRendererSpinner_Class::init()
+auto CellRendererSpinner_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -78,7 +78,7 @@ void CellRendererSpinner_Class::class_init_function(void* g_class, void* class_d
 }
 
 
-Glib::ObjectBase* CellRendererSpinner_Class::wrap_new(GObject* o)
+auto CellRendererSpinner_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new CellRendererSpinner((GtkCellRendererSpinner*)(o)));
 
@@ -104,7 +104,7 @@ CellRendererSpinner::CellRendererSpinner(CellRendererSpinner&& src) noexcept
 : Gtk::CellRenderer(std::move(src))
 {}
 
-CellRendererSpinner& CellRendererSpinner::operator=(CellRendererSpinner&& src) noexcept
+auto CellRendererSpinner::operator=(CellRendererSpinner&& src) noexcept -> CellRendererSpinner&
 {
   Gtk::CellRenderer::operator=(std::move(src));
   return *this;
@@ -117,13 +117,13 @@ CellRendererSpinner::~CellRendererSpinner() noexcept
 
 CellRendererSpinner::CppClassType CellRendererSpinner::cellrendererspinner_class_; // initialize static member
 
-GType CellRendererSpinner::get_type()
+auto CellRendererSpinner::get_type() -> GType
 {
   return cellrendererspinner_class_.init().get_type();
 }
 
 
-GType CellRendererSpinner::get_base_type()
+auto CellRendererSpinner::get_base_type() -> GType
 {
   return gtk_cell_renderer_spinner_get_type();
 }
@@ -140,22 +140,22 @@ CellRendererSpinner::CellRendererSpinner()
 }
 
 
-Glib::PropertyProxy< bool > CellRendererSpinner::property_active()
+auto CellRendererSpinner::property_active() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "active");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererSpinner::property_active() const
+auto CellRendererSpinner::property_active() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "active");
 }
 
-Glib::PropertyProxy< guint > CellRendererSpinner::property_pulse()
+auto CellRendererSpinner::property_pulse() -> Glib::PropertyProxy< guint >
 {
   return Glib::PropertyProxy< guint >(this, "pulse");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > CellRendererSpinner::property_pulse() const
+auto CellRendererSpinner::property_pulse() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "pulse");
 }
@@ -164,12 +164,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gtk::IconSize>::valu
   "Type Gtk::IconSize cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Gtk::IconSize > CellRendererSpinner::property_size()
+auto CellRendererSpinner::property_size() -> Glib::PropertyProxy< Gtk::IconSize >
 {
   return Glib::PropertyProxy< Gtk::IconSize >(this, "size");
 }
 
-Glib::PropertyProxy_ReadOnly< Gtk::IconSize > CellRendererSpinner::property_size() const
+auto CellRendererSpinner::property_size() const -> Glib::PropertyProxy_ReadOnly< Gtk::IconSize >
 {
   return Glib::PropertyProxy_ReadOnly< Gtk::IconSize >(this, "size");
 }

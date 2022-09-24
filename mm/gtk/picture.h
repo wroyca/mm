@@ -73,11 +73,11 @@ class GTKMM_API Picture : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Picture(Picture&& src) noexcept;
-  Picture& operator=(Picture&& src) noexcept;
+  auto operator=(Picture&& src) noexcept -> Picture&;
 
   // noncopyable
   Picture(const Picture&) = delete;
-  Picture& operator=(const Picture&) = delete;
+  auto operator=(const Picture&) -> Picture& = delete;
 
   ~Picture() noexcept override;
 
@@ -97,19 +97,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkPicture*       gobj()       { return reinterpret_cast<GtkPicture*>(gobject_); }
+  auto       gobj() -> GtkPicture*       { return reinterpret_cast<GtkPicture*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkPicture* gobj() const { return reinterpret_cast<GtkPicture*>(gobject_); }
+  auto gobj() const -> const GtkPicture* { return reinterpret_cast<GtkPicture*>(gobject_); }
 
 private:
 
@@ -184,13 +184,13 @@ public:
    *
    * @return The displayed paintable.
    */
-  Glib::RefPtr<Gdk::Paintable> get_paintable();
+  auto get_paintable() -> Glib::RefPtr<Gdk::Paintable>;
 
   /** Gets the `Gdk::Paintable` being displayed by the `Gtk::Picture`.
    *
    * @return The displayed paintable.
    */
-  Glib::RefPtr<const Gdk::Paintable> get_paintable() const;
+  auto get_paintable() const -> Glib::RefPtr<const Gdk::Paintable>;
 
 
   /** Makes @a self load and display @a file.
@@ -208,7 +208,7 @@ public:
    *
    * @return The `Gio::File` displayed by @a self.
    */
-  Glib::RefPtr<Gio::File> get_file();
+  auto get_file() -> Glib::RefPtr<Gio::File>;
 
   /** Gets the `Gio::File` currently displayed if @a self is displaying a file.
    *
@@ -217,7 +217,7 @@ public:
    *
    * @return The `Gio::File` displayed by @a self.
    */
-  Glib::RefPtr<const Gio::File> get_file() const;
+  auto get_file() const -> Glib::RefPtr<const Gio::File>;
 
 
   /** Makes @a self load and display the given @a filename.
@@ -284,7 +284,7 @@ public:
    *
    * @return <tt>true</tt> if the self tries to keep the contents' aspect ratio.
    */
-  bool get_keep_aspect_ratio() const;
+  auto get_keep_aspect_ratio() const -> bool;
 #endif // GTKMM_DISABLE_DEPRECATED
 
 
@@ -307,7 +307,7 @@ public:
    *
    * @return <tt>true</tt> if the picture can be made smaller than its contents.
    */
-  bool get_can_shrink() const;
+  auto get_can_shrink() const -> bool;
 
 
   /** Sets how the content should be resized to fit the `Gtk::Picture`.
@@ -328,7 +328,7 @@ public:
    *
    * @return The content fit mode.
    */
-  ContentFit get_content_fit() const;
+  auto get_content_fit() const -> ContentFit;
 
 
   /** Sets an alternative textual description for the picture contents.
@@ -349,35 +349,35 @@ public:
    *
    * @return The alternative textual description of @a self.
    */
-  Glib::ustring get_alternative_text() const;
+  auto get_alternative_text() const -> Glib::ustring;
 
   /** The `Gdk::Paintable` to be displayed by this `Gtk::Picture`.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> > property_paintable() ;
+  auto property_paintable() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> > ;
 
 /** The `Gdk::Paintable` to be displayed by this `Gtk::Picture`.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> > property_paintable() const;
+  auto property_paintable() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> >;
 
   /** The `Gio::File` that is displayed or <tt>nullptr</tt> if none.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::File> > property_file() ;
+  auto property_file() -> Glib::PropertyProxy< Glib::RefPtr<Gio::File> > ;
 
 /** The `Gio::File` that is displayed or <tt>nullptr</tt> if none.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> > property_file() const;
+  auto property_file() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >;
 
   /** The alternative textual description for the picture.
    *
@@ -386,7 +386,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_alternative_text() ;
+  auto property_alternative_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The alternative textual description for the picture.
    *
@@ -395,7 +395,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_alternative_text() const;
+  auto property_alternative_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 #ifndef GTKMM_DISABLE_DEPRECATED
@@ -412,7 +412,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_keep_aspect_ratio() ;
+  auto property_keep_aspect_ratio() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the GtkPicture will render its contents trying to preserve the aspect
    * ratio.
@@ -426,7 +426,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_keep_aspect_ratio() const;
+  auto property_keep_aspect_ratio() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 #endif // GTKMM_DISABLE_DEPRECATED
 
@@ -437,7 +437,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_can_shrink() ;
+  auto property_can_shrink() -> Glib::PropertyProxy< bool > ;
 
 /** If the `Gtk::Picture` can be made smaller than the natural size of its contents.
    *
@@ -446,7 +446,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_can_shrink() const;
+  auto property_can_shrink() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** How the content should be resized to fit inside the `Gtk::Picture`.
    *
@@ -457,7 +457,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< ContentFit > property_content_fit() ;
+  auto property_content_fit() -> Glib::PropertyProxy< ContentFit > ;
 
 /** How the content should be resized to fit inside the `Gtk::Picture`.
    *
@@ -468,7 +468,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< ContentFit > property_content_fit() const;
+  auto property_content_fit() const -> Glib::PropertyProxy_ReadOnly< ContentFit >;
 
 
 public:
@@ -498,7 +498,7 @@ namespace Glib
    * @relates Gtk::Picture
    */
   GTKMM_API
-  Gtk::Picture* wrap(GtkPicture* object, bool take_copy = false);
+  auto wrap(GtkPicture* object, bool take_copy = false) -> Gtk::Picture*;
 } //namespace Glib
 
 

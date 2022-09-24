@@ -32,19 +32,11 @@ using GDBusMenuModelClass = struct _GDBusMenuModelClass;
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
-{
-
-namespace DBus
-{ class GIOMM_API MenuModel_Class; } // namespace DBus
-
-} // namespace Gio
+namespace Gio::DBus
+{ class GIOMM_API MenuModel_Class; } // namespace Gio
 #endif //DOXYGEN_SHOULD_SKIP_THIS
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 class GIOMM_API Connection;
@@ -70,7 +62,7 @@ public:
 
   // noncopyable
   MenuModel(const MenuModel&) = delete;
-  MenuModel& operator=(const MenuModel&) = delete;
+  auto operator=(const MenuModel&) -> MenuModel& = delete;
 
 private:  friend class MenuModel_Class;
   static CppClassType menumodel_class_;
@@ -84,28 +76,28 @@ protected:
 public:
 
   MenuModel(MenuModel&& src) noexcept;
-  MenuModel& operator=(MenuModel&& src) noexcept;
+  auto operator=(MenuModel&& src) noexcept -> MenuModel&;
 
   ~MenuModel() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDBusMenuModel*       gobj()       { return reinterpret_cast<GDBusMenuModel*>(gobject_); }
+  auto       gobj() -> GDBusMenuModel*       { return reinterpret_cast<GDBusMenuModel*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDBusMenuModel* gobj() const { return reinterpret_cast<GDBusMenuModel*>(gobject_); }
+  auto gobj() const -> const GDBusMenuModel* { return reinterpret_cast<GDBusMenuModel*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusMenuModel* gobj_copy();
+  auto gobj_copy() -> GDBusMenuModel*;
 
 private:
 
@@ -134,7 +126,7 @@ public:
    * @return A DBusMenuModel object. Free with
    * Glib::object_unref().
    */
-  static Glib::RefPtr<MenuModel> get(const Glib::RefPtr<Connection>& connection, const Glib::ustring& bus_name, const Glib::ustring& object_path);
+  static auto get(const Glib::RefPtr<Connection>& connection, const Glib::ustring& bus_name, const Glib::ustring& object_path) -> Glib::RefPtr<MenuModel>;
 
 
 public:
@@ -150,8 +142,6 @@ protected:
 
 };
 
-} // namespace DBus
-
 } // namespace Gio
 
 
@@ -166,7 +156,7 @@ namespace Glib
    * @relates Gio::DBus::MenuModel
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DBus::MenuModel> wrap(GDBusMenuModel* object, bool take_copy = false);
+  auto wrap(GDBusMenuModel* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::MenuModel>;
 }
 
 

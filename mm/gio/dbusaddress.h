@@ -25,13 +25,7 @@
 #include <mm/gio/dbusconnection.h>
 
 
-namespace Gio
-{
-
-namespace DBus
-{
-
-namespace Address
+namespace Gio::DBus::Address
 {
 
 /** Checks if @a string is a D-Bus address.
@@ -46,7 +40,7 @@ namespace Address
  * @ingroup DBus
  */
 GIOMM_API
-bool is_address(const std::string& string);
+auto is_address(const std::string& string) -> bool;
 
 /** Like is_address() but also checks if the library supports the transports
  * in @a address and that key/value pairs for each transport are valid.
@@ -59,7 +53,7 @@ bool is_address(const std::string& string);
  * @ingroup DBus
  */
 GIOMM_API
-bool is_supported(const std::string& address);
+auto is_supported(const std::string& address) -> bool;
 
 /** Asynchronously connects to an endpoint specified by @a address and sets up
  * the connection so it is in a state to run the client-side of the D-Bus
@@ -97,8 +91,8 @@ void get_stream(const std::string& address, const SlotAsyncReady slot);
  * @ingroup DBus
  */
 GIOMM_API
-Glib::RefPtr<IOStream> get_stream_finish(const Glib::RefPtr<AsyncResult>& res,
-  std::string& out_guid);
+auto get_stream_finish(const Glib::RefPtr<AsyncResult>& res,
+  std::string& out_guid) -> Glib::RefPtr<IOStream>;
 
 /** Finishes an operation started with get_stream().
  *
@@ -110,7 +104,7 @@ Glib::RefPtr<IOStream> get_stream_finish(const Glib::RefPtr<AsyncResult>& res,
  * @ingroup DBus
  */
 GIOMM_API
-Glib::RefPtr<IOStream> get_stream_finish(const Glib::RefPtr<AsyncResult>& res);
+auto get_stream_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<IOStream>;
 
 /** Synchronously connects to an endpoint specified by @a address and sets up
  * the connection so it is in a state to run the client-side of the D-Bus
@@ -129,13 +123,13 @@ Glib::RefPtr<IOStream> get_stream_finish(const Glib::RefPtr<AsyncResult>& res);
  * @ingroup DBus
  */
 GIOMM_API
-Glib::RefPtr<IOStream> get_stream_sync(const std::string& address,
-  const Glib::RefPtr<Cancellable>& cancellable, std::string& out_guid);
+auto get_stream_sync(const std::string& address,
+  const Glib::RefPtr<Cancellable>& cancellable, std::string& out_guid) -> Glib::RefPtr<IOStream>;
 
 /// A non-cancellable version of get_stream_sync().
 GIOMM_API
-Glib::RefPtr<IOStream> get_stream_sync(const std::string& address,
-  std::string& out_guid);
+auto get_stream_sync(const std::string& address,
+  std::string& out_guid) -> Glib::RefPtr<IOStream>;
 
 /** Synchronously connects to an endpoint specified by @a address and sets up
  * the connection so it is in a state to run the client-side of the D-Bus
@@ -152,12 +146,12 @@ Glib::RefPtr<IOStream> get_stream_sync(const std::string& address,
  * @ingroup DBus
  */
 GIOMM_API
-Glib::RefPtr<IOStream> get_stream_sync(const std::string& address,
-  const Glib::RefPtr<Cancellable>& cancellable);
+auto get_stream_sync(const std::string& address,
+  const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<IOStream>;
 
 /// A non-cancellable version of get_stream_sync().
 GIOMM_API
-Glib::RefPtr<IOStream> get_stream_sync(const std::string& address);
+auto get_stream_sync(const std::string& address) -> Glib::RefPtr<IOStream>;
 
 /** Synchronously looks up the D-Bus address for the well-known message bus
  * instance specified by @a bus_type. This may involve using various platform
@@ -171,16 +165,12 @@ Glib::RefPtr<IOStream> get_stream_sync(const std::string& address);
  * @ingroup DBus
  */
 GIOMM_API
-std::string get_for_bus_sync(BusType bus_type,
-  const Glib::RefPtr<Cancellable>& cancellable);
+auto get_for_bus_sync(BusType bus_type,
+  const Glib::RefPtr<Cancellable>& cancellable) -> std::string;
 
 /// A non-cancellable get_for_bus_sync().
 GIOMM_API
-std::string get_for_bus_sync(BusType bus_type);
-
-} // namespace Address
-
-} // namespace DBus
+auto get_for_bus_sync(BusType bus_type) -> std::string;
 
 } // namespace Gio
 

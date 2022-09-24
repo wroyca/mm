@@ -61,7 +61,7 @@ public:
 
   // noncopyable
   DisplayManager(const DisplayManager&) = delete;
-  DisplayManager& operator=(const DisplayManager&) = delete;
+  auto operator=(const DisplayManager&) -> DisplayManager& = delete;
 
 private:  friend class DisplayManager_Class;
   static CppClassType displaymanager_class_;
@@ -75,28 +75,28 @@ protected:
 public:
 
   DisplayManager(DisplayManager&& src) noexcept;
-  DisplayManager& operator=(DisplayManager&& src) noexcept;
+  auto operator=(DisplayManager&& src) noexcept -> DisplayManager&;
 
   ~DisplayManager() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkDisplayManager*       gobj()       { return reinterpret_cast<GdkDisplayManager*>(gobject_); }
+  auto       gobj() -> GdkDisplayManager*       { return reinterpret_cast<GdkDisplayManager*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkDisplayManager* gobj() const { return reinterpret_cast<GdkDisplayManager*>(gobject_); }
+  auto gobj() const -> const GdkDisplayManager* { return reinterpret_cast<GdkDisplayManager*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkDisplayManager* gobj_copy();
+  auto gobj_copy() -> GdkDisplayManager*;
 
 private:
 
@@ -117,19 +117,19 @@ public:
    *
    * @return The global `Gdk::DisplayManager` singleton.
    */
-  static Glib::RefPtr<DisplayManager> get();
+  static auto get() -> Glib::RefPtr<DisplayManager>;
 
   /** Gets the default `Gdk::Display`.
    *
    * @return A `Gdk::Display`.
    */
-  Glib::RefPtr<Display> get_default_display();
+  auto get_default_display() -> Glib::RefPtr<Display>;
 
   /** Gets the default `Gdk::Display`.
    *
    * @return A `Gdk::Display`.
    */
-  Glib::RefPtr<const Display> get_default_display() const;
+  auto get_default_display() const -> Glib::RefPtr<const Display>;
 
 
   /** Sets @a display as the default display.
@@ -143,7 +143,7 @@ public:
    *
    * @return A vector of Gdk::Display objects.
    */
-  std::vector< Glib::RefPtr<Display> > list_displays();
+  auto list_displays() -> std::vector< Glib::RefPtr<Display> >;
 
 
   /** Opens a display.
@@ -152,21 +152,21 @@ public:
    * @return A `Gdk::Display`, or <tt>nullptr</tt>
    * if the display could not be opened.
    */
-  Glib::RefPtr<Display> open_display(const Glib::ustring& name);
+  auto open_display(const Glib::ustring& name) -> Glib::RefPtr<Display>;
 
   /** The default display.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Display> > property_default_display() ;
+  auto property_default_display() -> Glib::PropertyProxy< Glib::RefPtr<Display> > ;
 
 /** The default display.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> > property_default_display() const;
+  auto property_default_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >;
 
 
   //We use no_default_handler because GdkDisplayManagerClass is private.
@@ -183,7 +183,7 @@ public:
    * @param display The opened display.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Display>&)> signal_display_opened();
+  auto signal_display_opened() -> Glib::SignalProxy<void(const Glib::RefPtr<Display>&)>;
 
 
 public:
@@ -213,7 +213,7 @@ namespace Glib
    * @relates Gdk::DisplayManager
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::DisplayManager> wrap(GdkDisplayManager* object, bool take_copy = false);
+  auto wrap(GdkDisplayManager* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DisplayManager>;
 }
 
 

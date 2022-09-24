@@ -61,7 +61,7 @@ public:
 
   // noncopyable
   FontFace(const FontFace&) = delete;
-  FontFace& operator=(const FontFace&) = delete;
+  auto operator=(const FontFace&) -> FontFace& = delete;
 
 private:  friend class FontFace_Class;
   static CppClassType fontface_class_;
@@ -75,28 +75,28 @@ protected:
 public:
 
   FontFace(FontFace&& src) noexcept;
-  FontFace& operator=(FontFace&& src) noexcept;
+  auto operator=(FontFace&& src) noexcept -> FontFace&;
 
   ~FontFace() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  PangoFontFace*       gobj()       { return reinterpret_cast<PangoFontFace*>(gobject_); }
+  auto       gobj() -> PangoFontFace*       { return reinterpret_cast<PangoFontFace*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const PangoFontFace* gobj() const { return reinterpret_cast<PangoFontFace*>(gobject_); }
+  auto gobj() const -> const PangoFontFace* { return reinterpret_cast<PangoFontFace*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  PangoFontFace* gobj_copy();
+  auto gobj_copy() -> PangoFontFace*;
 
 private:
 
@@ -110,7 +110,7 @@ public:
    * @return A  Pango::FontDescription
    * holding the description of the face.
    */
-  FontDescription describe() const;
+  auto describe() const -> FontDescription;
 
   /** Gets a name representing the style of this face among the
    * different faces in the `Pango::FontFamily` for the face. The
@@ -119,13 +119,13 @@ public:
    * @return The face name for the face. This string is
    * owned by the face object and must not be modified or freed.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
   /** List the available sizes for a font. This is only applicable to bitmap fonts.
    * For scalable fonts this returns an empty array.
    * The sizes returned are in Pango units and are sorted in ascending order.
    */
-  std::vector<int> list_sizes() const;
+  auto list_sizes() const -> std::vector<int>;
 
 
   /** Returns whether a `Pango::FontFace` is synthesized by the underlying
@@ -136,7 +136,7 @@ public:
    *
    * @return Whether @a face is synthesized.
    */
-  bool is_synthesized() const;
+  auto is_synthesized() const -> bool;
 
   /** Gets the `Pango::FontFamily` that @a face belongs to.
    *
@@ -144,7 +144,7 @@ public:
    *
    * @return The `Pango::FontFamily`.
    */
-  Glib::RefPtr<FontFamily> get_family();
+  auto get_family() -> Glib::RefPtr<FontFamily>;
 
   /** Gets the `Pango::FontFamily` that @a face belongs to.
    *
@@ -152,7 +152,7 @@ public:
    *
    * @return The `Pango::FontFamily`.
    */
-  Glib::RefPtr<const FontFamily> get_family() const;
+  auto get_family() const -> Glib::RefPtr<const FontFamily>;
 
 // PangoFontFaceClass is hidden when PANGO_DISABLE_DEPRECATED is defined.
 // Don't wrap vfuncs.
@@ -185,7 +185,7 @@ namespace Glib
    * @relates Pango::FontFace
    */
   PANGOMM_API
-  Glib::RefPtr<Pango::FontFace> wrap(PangoFontFace* object, bool take_copy = false);
+  auto wrap(PangoFontFace* object, bool take_copy = false) -> Glib::RefPtr<Pango::FontFace>;
 }
 
 

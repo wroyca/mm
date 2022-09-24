@@ -34,7 +34,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::FileFilter> wrap(GtkFileFilter* object, bool take_copy)
+auto wrap(GtkFileFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::FileFilter>
 {
   return Glib::make_refptr_for_instance<Gtk::FileFilter>( dynamic_cast<Gtk::FileFilter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -49,7 +49,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& FileFilter_Class::init()
+auto FileFilter_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -81,7 +81,7 @@ void FileFilter_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* FileFilter_Class::wrap_new(GObject* object)
+auto FileFilter_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new FileFilter((GtkFileFilter*)object);
 }
@@ -89,7 +89,7 @@ Glib::ObjectBase* FileFilter_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkFileFilter* FileFilter::gobj_copy()
+auto FileFilter::gobj_copy() -> GtkFileFilter*
 {
   reference();
   return gobj();
@@ -113,7 +113,7 @@ FileFilter::FileFilter(FileFilter&& src) noexcept
   , Buildable(std::move(src))
 {}
 
-FileFilter& FileFilter::operator=(FileFilter&& src) noexcept
+auto FileFilter::operator=(FileFilter&& src) noexcept -> FileFilter&
 {
   Gtk::Filter::operator=(std::move(src));
   Buildable::operator=(std::move(src));
@@ -127,13 +127,13 @@ FileFilter::~FileFilter() noexcept
 
 FileFilter::CppClassType FileFilter::filefilter_class_; // initialize static member
 
-GType FileFilter::get_type()
+auto FileFilter::get_type() -> GType
 {
   return filefilter_class_.init().get_type();
 }
 
 
-GType FileFilter::get_base_type()
+auto FileFilter::get_base_type() -> GType
 {
   return gtk_file_filter_get_type();
 }
@@ -149,7 +149,7 @@ FileFilter::FileFilter()
 
 }
 
-Glib::RefPtr<FileFilter> FileFilter::create()
+auto FileFilter::create() -> Glib::RefPtr<FileFilter>
 {
   return Glib::make_refptr_for_instance<FileFilter>( new FileFilter() );
 }
@@ -159,7 +159,7 @@ void FileFilter::set_name(const Glib::ustring& name)
   gtk_file_filter_set_name(gobj(), name.c_str());
 }
 
-Glib::ustring FileFilter::get_name() const
+auto FileFilter::get_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_file_filter_get_name(const_cast<GtkFileFilter*>(gobj())));
 }
@@ -185,12 +185,12 @@ void FileFilter::add_pixbuf_formats()
 }
 
 
-Glib::PropertyProxy< Glib::ustring > FileFilter::property_name()
+auto FileFilter::property_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > FileFilter::property_name() const
+auto FileFilter::property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name");
 }

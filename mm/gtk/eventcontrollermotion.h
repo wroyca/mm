@@ -63,7 +63,7 @@ public:
 
   // noncopyable
   EventControllerMotion(const EventControllerMotion&) = delete;
-  EventControllerMotion& operator=(const EventControllerMotion&) = delete;
+  auto operator=(const EventControllerMotion&) -> EventControllerMotion& = delete;
 
 private:  friend class EventControllerMotion_Class;
   static CppClassType eventcontrollermotion_class_;
@@ -77,28 +77,28 @@ protected:
 public:
 
   EventControllerMotion(EventControllerMotion&& src) noexcept;
-  EventControllerMotion& operator=(EventControllerMotion&& src) noexcept;
+  auto operator=(EventControllerMotion&& src) noexcept -> EventControllerMotion&;
 
   ~EventControllerMotion() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkEventControllerMotion*       gobj()       { return reinterpret_cast<GtkEventControllerMotion*>(gobject_); }
+  auto       gobj() -> GtkEventControllerMotion*       { return reinterpret_cast<GtkEventControllerMotion*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkEventControllerMotion* gobj() const { return reinterpret_cast<GtkEventControllerMotion*>(gobject_); }
+  auto gobj() const -> const GtkEventControllerMotion* { return reinterpret_cast<GtkEventControllerMotion*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkEventControllerMotion* gobj_copy();
+  auto gobj_copy() -> GtkEventControllerMotion*;
 
 private:
 
@@ -108,20 +108,20 @@ protected:
 
 public:
 
-  static Glib::RefPtr<EventControllerMotion> create();
+  static auto create() -> Glib::RefPtr<EventControllerMotion>;
 
 
   /** Returns if a pointer is within @a self or one of its children.
    *
    * @return <tt>true</tt> if a pointer is within @a self or one of its children.
    */
-  bool contains_pointer() const;
+  auto contains_pointer() const -> bool;
 
   /** Returns if a pointer is within @a self, but not one of its children.
    *
    * @return <tt>true</tt> if a pointer is within @a self but not one of its children.
    */
-  bool is_pointer() const;
+  auto is_pointer() const -> bool;
 
   // no_default_handler because GtkEventControllerMotionClass is private.
 
@@ -137,7 +137,7 @@ public:
    * @param y Coordinates of pointer location.
    */
 
-  Glib::SignalProxy<void(double, double)> signal_enter();
+  auto signal_enter() -> Glib::SignalProxy<void(double, double)>;
 
 
   /**
@@ -149,7 +149,7 @@ public:
    * Signals that the pointer has left the widget.
    */
 
-  Glib::SignalProxy<void()> signal_leave();
+  auto signal_leave() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -164,7 +164,7 @@ public:
    * @param y The y coordinate.
    */
 
-  Glib::SignalProxy<void(double, double)> signal_motion();
+  auto signal_motion() -> Glib::SignalProxy<void(double, double)>;
 
 
   /** Whether the pointer is in the controllers widget itself,
@@ -181,7 +181,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_pointer() const;
+  auto property_is_pointer() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether the pointer is in the controllers widget or a descendant.
@@ -197,7 +197,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_contains_pointer() const;
+  auto property_contains_pointer() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -227,7 +227,7 @@ namespace Glib
    * @relates Gtk::EventControllerMotion
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::EventControllerMotion> wrap(GtkEventControllerMotion* object, bool take_copy = false);
+  auto wrap(GtkEventControllerMotion* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerMotion>;
 }
 
 

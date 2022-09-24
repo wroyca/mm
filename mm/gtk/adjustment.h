@@ -69,7 +69,7 @@ public:
 
   // noncopyable
   Adjustment(const Adjustment&) = delete;
-  Adjustment& operator=(const Adjustment&) = delete;
+  auto operator=(const Adjustment&) -> Adjustment& = delete;
 
 private:  friend class Adjustment_Class;
   static CppClassType adjustment_class_;
@@ -83,28 +83,28 @@ protected:
 public:
 
   Adjustment(Adjustment&& src) noexcept;
-  Adjustment& operator=(Adjustment&& src) noexcept;
+  auto operator=(Adjustment&& src) noexcept -> Adjustment&;
 
   ~Adjustment() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkAdjustment*       gobj()       { return reinterpret_cast<GtkAdjustment*>(gobject_); }
+  auto       gobj() -> GtkAdjustment*       { return reinterpret_cast<GtkAdjustment*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkAdjustment* gobj() const { return reinterpret_cast<GtkAdjustment*>(gobject_); }
+  auto gobj() const -> const GtkAdjustment* { return reinterpret_cast<GtkAdjustment*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkAdjustment* gobj_copy();
+  auto gobj_copy() -> GtkAdjustment*;
 
 private:
 
@@ -128,7 +128,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<Adjustment> create(double value, double lower, double upper, double step_increment =  1, double page_increment =  10, double page_size =  0);
+  static auto create(double value, double lower, double upper, double step_increment =  1, double page_increment =  10, double page_size =  0) -> Glib::RefPtr<Adjustment>;
 
 
   /** Updates the Adjustment value to ensure that the range between the parameters @a lower and @a upper is in the current page (i.e.\ between @a value and @a value + @a page_size).  If this range is larger than the page size, then only the start of it will be in the current page.  A "changed" signal will be emitted if the value is changed.
@@ -149,7 +149,7 @@ public:
    *
    * @return The current value of the adjustment.
    */
-  double get_value() const;
+  auto get_value() const -> double;
 
 
   /** Sets the minimum value of the adjustment.
@@ -174,7 +174,7 @@ public:
    *
    * @return The current minimum value of the adjustment.
    */
-  double get_lower() const;
+  auto get_lower() const -> double;
 
 
   /** Sets the maximum value of the adjustment.
@@ -194,7 +194,7 @@ public:
    *
    * @return The current maximum value of the adjustment.
    */
-  double get_upper() const;
+  auto get_upper() const -> double;
 
 
   /** Sets the step increment of the adjustment.
@@ -211,7 +211,7 @@ public:
    *
    * @return The current step increment of the adjustment.
    */
-  double get_step_increment() const;
+  auto get_step_increment() const -> double;
 
 
   /** Sets the page increment of the adjustment.
@@ -228,7 +228,7 @@ public:
    *
    * @return The current page increment of the adjustment.
    */
-  double get_page_increment() const;
+  auto get_page_increment() const -> double;
 
 
   /** Sets the page size of the adjustment.
@@ -245,7 +245,7 @@ public:
    *
    * @return The current page size of the adjustment.
    */
-  double get_page_size() const;
+  auto get_page_size() const -> double;
 
 
   /** Sets all properties of the adjustment at once.
@@ -270,7 +270,7 @@ public:
    *
    * @return The minimum increment of @a adjustment.
    */
-  double get_minimum_increment() const;
+  auto get_minimum_increment() const -> double;
 
 
   /**
@@ -286,7 +286,7 @@ public:
    * covered by the signal_value_changed() signal.
    */
 
-  Glib::SignalProxy<void()> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -298,7 +298,7 @@ public:
    * Emitted when the value has been changed.
    */
 
-  Glib::SignalProxy<void()> signal_value_changed();
+  auto signal_value_changed() -> Glib::SignalProxy<void()>;
 
 
   /** The value of the adjustment.
@@ -308,7 +308,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_value() ;
+  auto property_value() -> Glib::PropertyProxy< double > ;
 
 /** The value of the adjustment.
    *
@@ -317,7 +317,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_value() const;
+  auto property_value() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** The minimum value of the adjustment.
    *
@@ -326,7 +326,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_lower() ;
+  auto property_lower() -> Glib::PropertyProxy< double > ;
 
 /** The minimum value of the adjustment.
    *
@@ -335,7 +335,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_lower() const;
+  auto property_lower() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** The maximum value of the adjustment.
    *
@@ -347,7 +347,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_upper() ;
+  auto property_upper() -> Glib::PropertyProxy< double > ;
 
 /** The maximum value of the adjustment.
    *
@@ -359,7 +359,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_upper() const;
+  auto property_upper() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** The step increment of the adjustment.
    *
@@ -368,7 +368,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_step_increment() ;
+  auto property_step_increment() -> Glib::PropertyProxy< double > ;
 
 /** The step increment of the adjustment.
    *
@@ -377,7 +377,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_step_increment() const;
+  auto property_step_increment() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** The page increment of the adjustment.
    *
@@ -386,7 +386,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_page_increment() ;
+  auto property_page_increment() -> Glib::PropertyProxy< double > ;
 
 /** The page increment of the adjustment.
    *
@@ -395,7 +395,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_page_increment() const;
+  auto property_page_increment() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** The page size of the adjustment.
    *
@@ -408,7 +408,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_page_size() ;
+  auto property_page_size() -> Glib::PropertyProxy< double > ;
 
 /** The page size of the adjustment.
    *
@@ -421,7 +421,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_page_size() const;
+  auto property_page_size() const -> Glib::PropertyProxy_ReadOnly< double >;
 
 
 public:
@@ -455,7 +455,7 @@ namespace Glib
    * @relates Gtk::Adjustment
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Adjustment> wrap(GtkAdjustment* object, bool take_copy = false);
+  auto wrap(GtkAdjustment* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Adjustment>;
 }
 
 

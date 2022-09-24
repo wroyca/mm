@@ -62,7 +62,7 @@ public:
 
   // noncopyable
   Fontset(const Fontset&) = delete;
-  Fontset& operator=(const Fontset&) = delete;
+  auto operator=(const Fontset&) -> Fontset& = delete;
 
 private:  friend class Fontset_Class;
   static CppClassType fontset_class_;
@@ -76,28 +76,28 @@ protected:
 public:
 
   Fontset(Fontset&& src) noexcept;
-  Fontset& operator=(Fontset&& src) noexcept;
+  auto operator=(Fontset&& src) noexcept -> Fontset&;
 
   ~Fontset() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  PangoFontset*       gobj()       { return reinterpret_cast<PangoFontset*>(gobject_); }
+  auto       gobj() -> PangoFontset*       { return reinterpret_cast<PangoFontset*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const PangoFontset* gobj() const { return reinterpret_cast<PangoFontset*>(gobject_); }
+  auto gobj() const -> const PangoFontset* { return reinterpret_cast<PangoFontset*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  PangoFontset* gobj_copy();
+  auto gobj_copy() -> PangoFontset*;
 
 private:
 
@@ -110,13 +110,13 @@ public:
    * @param wc A Unicode character.
    * @return A `Pango::Font`.
    */
-  Glib::RefPtr<Font> get_font(guint wc) const;
+  auto get_font(guint wc) const -> Glib::RefPtr<Font>;
 
   /** Get overall metric information for the fonts in the fontset.
    *
    * @return A `Pango::FontMetrics` object.
    */
-  FontMetrics get_metrics() const;
+  auto get_metrics() const -> FontMetrics;
 
   /** For instance,
    * bool on_foreach(const Glib::RefPtr<Pango::Font>& font);
@@ -160,7 +160,7 @@ namespace Glib
    * @relates Pango::Fontset
    */
   PANGOMM_API
-  Glib::RefPtr<Pango::Fontset> wrap(PangoFontset* object, bool take_copy = false);
+  auto wrap(PangoFontset* object, bool take_copy = false) -> Glib::RefPtr<Pango::Fontset>;
 }
 
 

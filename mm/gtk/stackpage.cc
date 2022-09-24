@@ -34,7 +34,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::StackPage> wrap(GtkStackPage* object, bool take_copy)
+auto wrap(GtkStackPage* object, bool take_copy) -> Glib::RefPtr<Gtk::StackPage>
 {
   return Glib::make_refptr_for_instance<Gtk::StackPage>( dynamic_cast<Gtk::StackPage*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -49,7 +49,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& StackPage_Class::init()
+auto StackPage_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -81,7 +81,7 @@ void StackPage_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* StackPage_Class::wrap_new(GObject* object)
+auto StackPage_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new StackPage((GtkStackPage*)object);
 }
@@ -89,7 +89,7 @@ Glib::ObjectBase* StackPage_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkStackPage* StackPage::gobj_copy()
+auto StackPage::gobj_copy() -> GtkStackPage*
 {
   reference();
   return gobj();
@@ -113,7 +113,7 @@ StackPage::StackPage(StackPage&& src) noexcept
   , Accessible(std::move(src))
 {}
 
-StackPage& StackPage::operator=(StackPage&& src) noexcept
+auto StackPage::operator=(StackPage&& src) noexcept -> StackPage&
 {
   Glib::Object::operator=(std::move(src));
   Accessible::operator=(std::move(src));
@@ -127,29 +127,29 @@ StackPage::~StackPage() noexcept
 
 StackPage::CppClassType StackPage::stackpage_class_; // initialize static member
 
-GType StackPage::get_type()
+auto StackPage::get_type() -> GType
 {
   return stackpage_class_.init().get_type();
 }
 
 
-GType StackPage::get_base_type()
+auto StackPage::get_base_type() -> GType
 {
   return gtk_stack_page_get_type();
 }
 
 
-Widget* StackPage::get_child()
+auto StackPage::get_child() -> Widget*
 {
   return Glib::wrap(gtk_stack_page_get_child(gobj()));
 }
 
-const Widget* StackPage::get_child() const
+auto StackPage::get_child() const -> const Widget*
 {
   return const_cast<StackPage*>(this)->get_child();
 }
 
-bool StackPage::get_visible() const
+auto StackPage::get_visible() const -> bool
 {
   return gtk_stack_page_get_visible(const_cast<GtkStackPage*>(gobj()));
 }
@@ -159,7 +159,7 @@ void StackPage::set_visible(bool visible)
   gtk_stack_page_set_visible(gobj(), static_cast<int>(visible));
 }
 
-bool StackPage::get_needs_attention() const
+auto StackPage::get_needs_attention() const -> bool
 {
   return gtk_stack_page_get_needs_attention(const_cast<GtkStackPage*>(gobj()));
 }
@@ -169,7 +169,7 @@ void StackPage::set_needs_attention(bool setting)
   gtk_stack_page_set_needs_attention(gobj(), static_cast<int>(setting));
 }
 
-bool StackPage::get_use_underline() const
+auto StackPage::get_use_underline() const -> bool
 {
   return gtk_stack_page_get_use_underline(const_cast<GtkStackPage*>(gobj()));
 }
@@ -179,7 +179,7 @@ void StackPage::set_use_underline(bool setting)
   gtk_stack_page_set_use_underline(gobj(), static_cast<int>(setting));
 }
 
-Glib::ustring StackPage::get_name() const
+auto StackPage::get_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_stack_page_get_name(const_cast<GtkStackPage*>(gobj())));
 }
@@ -189,7 +189,7 @@ void StackPage::set_name(const Glib::ustring& setting)
   gtk_stack_page_set_name(gobj(), setting.c_str());
 }
 
-Glib::ustring StackPage::get_title() const
+auto StackPage::get_title() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_stack_page_get_title(const_cast<GtkStackPage*>(gobj())));
 }
@@ -199,7 +199,7 @@ void StackPage::set_title(const Glib::ustring& setting)
   gtk_stack_page_set_title(gobj(), setting.c_str());
 }
 
-Glib::ustring StackPage::get_icon_name() const
+auto StackPage::get_icon_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_stack_page_get_icon_name(const_cast<GtkStackPage*>(gobj())));
 }
@@ -210,67 +210,67 @@ void StackPage::set_icon_name(const Glib::ustring& setting)
 }
 
 
-Glib::PropertyProxy_ReadOnly< Widget* > StackPage::property_child() const
+auto StackPage::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
 }
 
-Glib::PropertyProxy< Glib::ustring > StackPage::property_name()
+auto StackPage::property_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > StackPage::property_name() const
+auto StackPage::property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name");
 }
 
-Glib::PropertyProxy< Glib::ustring > StackPage::property_title()
+auto StackPage::property_title() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "title");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > StackPage::property_title() const
+auto StackPage::property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "title");
 }
 
-Glib::PropertyProxy< Glib::ustring > StackPage::property_icon_name()
+auto StackPage::property_icon_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "icon-name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > StackPage::property_icon_name() const
+auto StackPage::property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "icon-name");
 }
 
-Glib::PropertyProxy< bool > StackPage::property_needs_attention()
+auto StackPage::property_needs_attention() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "needs-attention");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > StackPage::property_needs_attention() const
+auto StackPage::property_needs_attention() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "needs-attention");
 }
 
-Glib::PropertyProxy< bool > StackPage::property_visible()
+auto StackPage::property_visible() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "visible");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > StackPage::property_visible() const
+auto StackPage::property_visible() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "visible");
 }
 
-Glib::PropertyProxy< bool > StackPage::property_use_underline()
+auto StackPage::property_use_underline() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "use-underline");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > StackPage::property_use_underline() const
+auto StackPage::property_use_underline() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "use-underline");
 }

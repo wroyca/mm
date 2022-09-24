@@ -59,11 +59,11 @@ class GTKMM_API Spinner : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Spinner(Spinner&& src) noexcept;
-  Spinner& operator=(Spinner&& src) noexcept;
+  auto operator=(Spinner&& src) noexcept -> Spinner&;
 
   // noncopyable
   Spinner(const Spinner&) = delete;
-  Spinner& operator=(const Spinner&) = delete;
+  auto operator=(const Spinner&) -> Spinner& = delete;
 
   ~Spinner() noexcept override;
 
@@ -83,19 +83,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkSpinner*       gobj()       { return reinterpret_cast<GtkSpinner*>(gobject_); }
+  auto       gobj() -> GtkSpinner*       { return reinterpret_cast<GtkSpinner*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkSpinner* gobj() const { return reinterpret_cast<GtkSpinner*>(gobject_); }
+  auto gobj() const -> const GtkSpinner* { return reinterpret_cast<GtkSpinner*>(gobject_); }
 
 private:
 
@@ -122,7 +122,7 @@ public:
    *
    * @return <tt>true</tt> if the spinner is active.
    */
-  bool get_spinning() const;
+  auto get_spinning() const -> bool;
 
   /** Whether the spinner is spinning
    *
@@ -131,7 +131,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_spinning() ;
+  auto property_spinning() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the spinner is spinning
    *
@@ -140,7 +140,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_spinning() const;
+  auto property_spinning() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -170,7 +170,7 @@ namespace Glib
    * @relates Gtk::Spinner
    */
   GTKMM_API
-  Gtk::Spinner* wrap(GtkSpinner* object, bool take_copy = false);
+  auto wrap(GtkSpinner* object, bool take_copy = false) -> Gtk::Spinner*;
 } //namespace Glib
 
 

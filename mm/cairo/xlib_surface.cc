@@ -34,14 +34,14 @@ XlibSurface::~XlibSurface()
   // surface is destroyed in base class
 }
 
-RefPtr<XlibSurface> XlibSurface::create(Display* dpy, Drawable drawable, Visual* visual, int width, int height)
+auto XlibSurface::create(Display* dpy, Drawable drawable, Visual* visual, int width, int height) -> RefPtr<XlibSurface>
 {
   auto cobject = cairo_xlib_surface_create(dpy, drawable, visual, width, height);
   check_status_and_throw_exception(cairo_surface_status(cobject));
   return make_refptr_for_instance<XlibSurface>(new XlibSurface(cobject, true /* has reference */));
 }
 
-RefPtr<XlibSurface> XlibSurface::create(Display* dpy, Pixmap bitmap, Screen* screen, int width, int height)
+auto XlibSurface::create(Display* dpy, Pixmap bitmap, Screen* screen, int width, int height) -> RefPtr<XlibSurface>
 {
   auto cobject = cairo_xlib_surface_create_for_bitmap(dpy, bitmap, screen, width, height);
   check_status_and_throw_exception(cairo_surface_status(cobject));
@@ -60,70 +60,70 @@ void XlibSurface::set_drawable(Drawable drawable, int width, int height)
   check_object_status_and_throw_exception(*this);
 }
 
-Drawable XlibSurface::get_drawable() const
+auto XlibSurface::get_drawable() const -> Drawable
 {
   auto drawable = cairo_xlib_surface_get_drawable(m_cobject);
   check_object_status_and_throw_exception(*this);
   return drawable;
 }
 
-const Display* XlibSurface::get_display() const
+auto XlibSurface::get_display() const -> const Display*
 {
   const auto dpy = cairo_xlib_surface_get_display(m_cobject);
   check_object_status_and_throw_exception(*this);
   return dpy;
 }
 
-Display* XlibSurface::get_display()
+auto XlibSurface::get_display() -> Display*
 {
   auto dpy = cairo_xlib_surface_get_display(m_cobject);
   check_object_status_and_throw_exception(*this);
   return dpy;
 }
 
-Screen* XlibSurface::get_screen()
+auto XlibSurface::get_screen() -> Screen*
 {
   auto screen = cairo_xlib_surface_get_screen(m_cobject);
   check_object_status_and_throw_exception(*this);
   return screen;
 }
 
-const Screen* XlibSurface::get_screen() const
+auto XlibSurface::get_screen() const -> const Screen*
 {
   const auto screen = cairo_xlib_surface_get_screen(m_cobject);
   check_object_status_and_throw_exception(*this);
   return screen;
 }
 
-Visual* XlibSurface::get_visual()
+auto XlibSurface::get_visual() -> Visual*
 {
   auto visual = cairo_xlib_surface_get_visual(m_cobject);
   check_object_status_and_throw_exception(*this);
   return visual;
 }
 
-const Visual* XlibSurface::get_visual() const
+auto XlibSurface::get_visual() const -> const Visual*
 {
   const auto visual = cairo_xlib_surface_get_visual(m_cobject);
   check_object_status_and_throw_exception(*this);
   return visual;
 }
 
-int XlibSurface::get_depth() const
+auto XlibSurface::get_depth() const -> int
 {
   auto depth = cairo_xlib_surface_get_depth(m_cobject);
   check_object_status_and_throw_exception(*this);
   return depth;
 }
 
-int XlibSurface::get_height() const
+auto XlibSurface::get_height() const -> int
 {
   auto h = cairo_xlib_surface_get_height(m_cobject);
   check_object_status_and_throw_exception(*this);
   return h;
 }
 
-int XlibSurface::get_width() const
+auto XlibSurface::get_width() const -> int
 {
   auto w = cairo_xlib_surface_get_width(m_cobject);
   check_object_status_and_throw_exception(*this);
@@ -131,13 +131,13 @@ int XlibSurface::get_width() const
 }
 
 #if CAIRO_HAS_XLIB_XRENDER_SURFACE
-Cairo::RefPtr<Cairo::XlibSurface>
+auto
 XlibSurface::create_with_xrender_format (Display *dpy,
                                          Drawable drawable,
                                          Screen *screen,
                                          XRenderPictFormat *format,
                                          int width,
-                                         int height)
+                                         int height) -> Cairo::RefPtr<Cairo::XlibSurface>
 {
   auto cobject =
       cairo_xlib_surface_create_with_xrender_format(dpy, drawable,
@@ -147,8 +147,8 @@ XlibSurface::create_with_xrender_format (Display *dpy,
   return make_refptr_for_instance<XlibSurface>(new XlibSurface(cobject, true /* has reference */));
 }
 
-XRenderPictFormat*
-XlibSurface::get_xrender_format() const
+auto
+XlibSurface::get_xrender_format() const -> XRenderPictFormat*
 {
     XRenderPictFormat*
         format = cairo_xlib_surface_get_xrender_format(m_cobject);

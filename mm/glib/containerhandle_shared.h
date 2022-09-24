@@ -73,8 +73,8 @@ struct TypeTraits
   using CType = T;
   using CTypeNonConst = T;
 
-  static CType to_c_type(const CppType& item) { return item; }
-  static CppType to_cpp_type(const CType& item) { return item; }
+  static auto to_c_type(const CppType& item) -> CType { return item; }
+  static auto to_cpp_type(const CType& item) -> CppType { return item; }
   static void release_c_type(const CType&) {}
 };
 
@@ -95,9 +95,9 @@ struct TypeTraits<T*>
   using CType = typename T::BaseObjectType*;
   using CTypeNonConst = typename T::BaseObjectType*;
 
-  static CType to_c_type(CppType ptr) { return Glib::unwrap(ptr); }
-  static CType to_c_type(CType ptr) { return ptr; }
-  static CppType to_cpp_type(CType ptr)
+  static auto to_c_type(CppType ptr) -> CType { return Glib::unwrap(ptr); }
+  static auto to_c_type(CType ptr) -> CType { return ptr; }
+  static auto to_cpp_type(CType ptr) -> CppType
   {
     // We copy/paste the widget wrap() implementation here,
     // because we can not use a specific Glib::wrap(T_Impl) overload here,
@@ -128,9 +128,9 @@ struct TypeTraits<const T*>
   using CType = const typename T::BaseObjectType*;
   using CTypeNonConst = typename T::BaseObjectType*;
 
-  static CType to_c_type(CppType ptr) { return Glib::unwrap(ptr); }
-  static CType to_c_type(CType ptr) { return ptr; }
-  static CppType to_cpp_type(CType ptr)
+  static auto to_c_type(CppType ptr) -> CType { return Glib::unwrap(ptr); }
+  static auto to_c_type(CType ptr) -> CType { return ptr; }
+  static auto to_cpp_type(CType ptr) -> CppType
   {
     // We copy/paste the widget wrap() implementation here,
     // because we can not use a specific Glib::wrap(T_Impl) overload here,
@@ -159,9 +159,9 @@ struct TypeTraits<Glib::RefPtr<T>>
   using CType = typename T::BaseObjectType*;
   using CTypeNonConst = typename T::BaseObjectType*;
 
-  static CType to_c_type(const CppType& ptr) { return Glib::unwrap(ptr); }
-  static CType to_c_type(CType ptr) { return ptr; }
-  static CppType to_cpp_type(CType ptr)
+  static auto to_c_type(const CppType& ptr) -> CType { return Glib::unwrap(ptr); }
+  static auto to_c_type(CType ptr) -> CType { return ptr; }
+  static auto to_cpp_type(CType ptr) -> CppType
   {
     // return Glib::wrap(ptr, true);
 
@@ -195,9 +195,9 @@ struct TypeTraits<Glib::RefPtr<const T>>
   using CType = const typename T::BaseObjectType*;
   using CTypeNonConst = typename T::BaseObjectType*;
 
-  static CType to_c_type(const CppType& ptr) { return Glib::unwrap(ptr); }
-  static CType to_c_type(CType ptr) { return ptr; }
-  static CppType to_cpp_type(CType ptr)
+  static auto to_c_type(const CppType& ptr) -> CType { return Glib::unwrap(ptr); }
+  static auto to_c_type(CType ptr) -> CType { return ptr; }
+  static auto to_cpp_type(CType ptr) -> CppType
   {
     // return Glib::wrap(ptr, true);
 
@@ -235,11 +235,11 @@ struct TypeTraits<Glib::ustring>
   using CType = const char*;
   using CTypeNonConst = char*;
 
-  static CType to_c_type(const Glib::ustring& str) { return str.c_str(); }
-  static CType to_c_type(const std::string& str) { return str.c_str(); }
-  static CType to_c_type(CType str) { return str; }
+  static auto to_c_type(const Glib::ustring& str) -> CType { return str.c_str(); }
+  static auto to_c_type(const std::string& str) -> CType { return str.c_str(); }
+  static auto to_c_type(CType str) -> CType { return str; }
 
-  static CppType to_cpp_type(CType str) { return (str) ? Glib::ustring(str) : Glib::ustring(); }
+  static auto to_cpp_type(CType str) -> CppType { return (str) ? Glib::ustring(str) : Glib::ustring(); }
 
   static void release_c_type(CType str) { g_free(const_cast<CTypeNonConst>(str)); }
 };
@@ -257,11 +257,11 @@ struct TypeTraits<std::string>
   using CType = const char*;
   using CTypeNonConst = char*;
 
-  static CType to_c_type(const std::string& str) { return str.c_str(); }
-  static CType to_c_type(const Glib::ustring& str) { return str.c_str(); }
-  static CType to_c_type(CType str) { return str; }
+  static auto to_c_type(const std::string& str) -> CType { return str.c_str(); }
+  static auto to_c_type(const Glib::ustring& str) -> CType { return str.c_str(); }
+  static auto to_c_type(CType str) -> CType { return str; }
 
-  static CppType to_cpp_type(CType str) { return (str) ? std::string(str) : std::string(); }
+  static auto to_cpp_type(CType str) -> CppType { return (str) ? std::string(str) : std::string(); }
 
   static void release_c_type(CType str) { g_free(const_cast<CTypeNonConst>(str)); }
 };
@@ -276,9 +276,9 @@ struct TypeTraits<bool>
   using CType = gboolean;
   using CTypeNonConst = gboolean;
 
-  static CType to_c_type(CppType item) { return static_cast<CType>(item); }
-  static CType to_c_type(CType item) { return item; }
-  static CppType to_cpp_type(CType item) { return (item != 0); }
+  static auto to_c_type(CppType item) -> CType { return static_cast<CType>(item); }
+  static auto to_c_type(CType item) -> CType { return item; }
+  static auto to_cpp_type(CType item) -> CppType { return (item != 0); }
   static void release_c_type(CType) {}
 };
 
@@ -292,11 +292,11 @@ struct TypeTraits<Glib::VariantBase>
   using CType = GVariant*;
   using CTypeNonConst = GVariant*;
 
-  static CType to_c_type(const Glib::VariantBase& v) { return const_cast<CTypeNonConst>(v.gobj()); }
+  static auto to_c_type(const Glib::VariantBase& v) -> CType { return const_cast<CTypeNonConst>(v.gobj()); }
 
-  static CType to_c_type(CType v) { return v; }
+  static auto to_c_type(CType v) -> CType { return v; }
 
-  static CppType to_cpp_type(CType v) { return Glib::VariantBase(v, true); }
+  static auto to_cpp_type(CType v) -> CppType { return Glib::VariantBase(v, true); }
 
   static void release_c_type(CType v) { g_variant_unref(const_cast<CTypeNonConst>(v)); }
 };
@@ -311,14 +311,14 @@ struct TypeTraits<Glib::VariantContainerBase>
   using CType = GVariant*;
   using CTypeNonConst = GVariant*;
 
-  static CType to_c_type(const Glib::VariantContainerBase& v)
+  static auto to_c_type(const Glib::VariantContainerBase& v) -> CType
   {
     return const_cast<CTypeNonConst>(v.gobj());
   }
 
-  static CType to_c_type(CType v) { return v; }
+  static auto to_c_type(CType v) -> CType { return v; }
 
-  static CppType to_cpp_type(CType v) { return Glib::VariantContainerBase(v, true); }
+  static auto to_cpp_type(CType v) -> CppType { return Glib::VariantContainerBase(v, true); }
 
   static void release_c_type(CType v) { g_variant_unref(const_cast<CTypeNonConst>(v)); }
 };

@@ -55,11 +55,11 @@ public:
 
   // Not copyable
   ToplevelSize(const ToplevelSize& other) = delete;
-  ToplevelSize& operator=(const ToplevelSize& other) = delete;
+  auto operator=(const ToplevelSize& other) -> ToplevelSize& = delete;
 
   // Movable
   ToplevelSize(ToplevelSize&& other) noexcept;
-  ToplevelSize& operator=(ToplevelSize&& other) noexcept;
+  auto operator=(ToplevelSize&& other) noexcept -> ToplevelSize&;
 
   ~ToplevelSize() noexcept;
 
@@ -74,9 +74,9 @@ public:
   explicit operator bool() const;
 
   /// Provides access to the underlying C object.
-  GdkToplevelSize* gobj() { return gobject_; }
+  auto gobj() -> GdkToplevelSize* { return gobject_; }
   /// Provides access to the underlying C object.
-  const GdkToplevelSize* gobj() const { return gobject_; }
+  auto gobj() const -> const GdkToplevelSize* { return gobject_; }
 
 
   /** Retrieves the bounds the toplevel is placed within.

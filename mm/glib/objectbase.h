@@ -57,14 +57,14 @@ class GLIBMM_API ObjectBase : virtual public sigc::trackable
 public:
   // noncopyable
   ObjectBase(const ObjectBase&) = delete;
-  ObjectBase& operator=(const ObjectBase&) = delete;
+  auto operator=(const ObjectBase&) -> ObjectBase& = delete;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   // get_base_type() is needed so Glib::ObjectBase can be used with
   // Glib::Value and _WRAP_PROPERTY in Glib::Binding without a
   // Value<RefPtr<ObjectBase>> specialization.
   // The Value<RefPtr<T>> specialization requires T::get_base_type().
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
 protected:
@@ -100,7 +100,7 @@ protected:
   explicit ObjectBase(const std::type_info& custom_type_info);
 
   ObjectBase(ObjectBase&& src) noexcept;
-  ObjectBase& operator=(ObjectBase&& src) noexcept;
+  auto operator=(ObjectBase&& src) noexcept -> ObjectBase&;
 
   virtual ~ObjectBase() noexcept = 0;
 
@@ -127,17 +127,17 @@ public:
 
   /// You probably want to use a specific property_*() accessor method instead.
   template <class PropertyType>
-  PropertyType get_property(const Glib::ustring& property_name) const;
+  auto get_property(const Glib::ustring& property_name) const -> PropertyType;
 
   /** You can use the signal_changed() signal of the property proxy instead.
    */
-  sigc::connection connect_property_changed(const Glib::ustring& property_name, const sigc::slot<void()>& slot);
+  auto connect_property_changed(const Glib::ustring& property_name, const sigc::slot<void()>& slot) -> sigc::connection;
 
   /** You can use the signal_changed() signal of the property proxy instead.
    *
    * @newin{2,48}
    */
-  sigc::connection connect_property_changed(const Glib::ustring& property_name, sigc::slot<void()>&& slot);
+  auto connect_property_changed(const Glib::ustring& property_name, sigc::slot<void()>&& slot) -> sigc::connection;
 
   /** Increases the freeze count on object. If the freeze count is non-zero, the
    * emission of "notify" signals on object is stopped. The signals are queued
@@ -171,19 +171,19 @@ public:
   virtual void unreference() const;
 
   /// Provides access to the underlying C GObject.
-  inline GObject* gobj() { return gobject_; }
+  inline auto gobj() -> GObject* { return gobject_; }
 
   /// Provides access to the underlying C GObject.
-  inline const GObject* gobj() const { return gobject_; }
+  inline auto gobj() const -> const GObject* { return gobject_; }
 
   /// Give a ref-ed copy to someone. Use for direct struct access.
-  GObject* gobj_copy() const;
+  auto gobj_copy() const -> GObject*;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   /// This is for use by gtkmm wrappers only, and not by applications.
-  static ObjectBase* _get_current_wrapper(
-    GObject* object); // We keep this non-inline version, to preserve ABI.
+  static auto _get_current_wrapper(
+    GObject* object) -> ObjectBase*; // We keep this non-inline version, to preserve ABI.
 
   // This is commented-out because it's not clear yet whether it's a worthwhile optimization.
   /// This is for use by gtkmm wrappers only, and not by applications.
@@ -199,7 +199,7 @@ public:
   //    return 0;
   //}
 
-  bool _cpp_destruction_is_in_progress() const;
+  auto _cpp_destruction_is_in_progress() const -> bool;
 #endif // DOXYGEN_SHOULD_SKIP_THIS
 
 protected:
@@ -208,15 +208,15 @@ protected:
   const char* custom_type_name_;
   bool cpp_destruction_in_progress_;
 
-  bool is_anonymous_custom_() const;
+  auto is_anonymous_custom_() const -> bool;
 
   // The following 7 methods are used by Glib::ExtraClassInit, Glib::Interface
   // and Glib::Object during construction of a named custom type.
   void add_custom_interface_class(const Interface_Class* iface_class);
   void add_custom_class_init_function(GClassInitFunc class_init_func, void* class_data = nullptr);
   void set_custom_instance_init_function(GInstanceInitFunc instance_init_func);
-  const Class::interface_classes_type* get_custom_interface_classes() const;
-  const Class::class_init_funcs_type* get_custom_class_init_functions() const;
+  auto get_custom_interface_classes() const -> const Class::interface_classes_type*;
+  auto get_custom_class_init_functions() const -> const Class::class_init_funcs_type*;
   GInstanceInitFunc get_custom_instance_init_function() const;
   void custom_class_init_finished();
 
@@ -224,7 +224,7 @@ public:
   //  is_derived_() must be public, so that overridden vfuncs and signal handlers can call it
   //  via ObjectBase.
   /// This is for use by gtkmm wrappers only, and not by applications.
-  bool is_derived_() const; // We keep this non-inline version, to preserve ABI.
+  auto is_derived_() const -> bool; // We keep this non-inline version, to preserve ABI.
 
   // This is commented-out because it's not clear yet whether it's a worthwhile optimization.
   //
@@ -283,8 +283,8 @@ ObjectBase::get_property(const Glib::ustring& property_name, PropertyType& value
 }
 
 template <class PropertyType>
-inline PropertyType
-ObjectBase::get_property(const Glib::ustring& property_name) const
+inline auto
+ObjectBase::get_property(const Glib::ustring& property_name) const -> PropertyType
 {
   PropertyType value;
   get_property(property_name, value);
@@ -295,7 +295,7 @@ ObjectBase::get_property(const Glib::ustring& property_name) const
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
 GLIBMM_API
-bool _gobject_cppinstance_already_deleted(GObject* gobject);
+auto _gobject_cppinstance_already_deleted(GObject* gobject) -> bool;
 
 } // namespace Glib
 

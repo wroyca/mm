@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::Snapshot> wrap(GdkSnapshot* object, bool take_copy)
+auto wrap(GdkSnapshot* object, bool take_copy) -> Glib::RefPtr<Gdk::Snapshot>
 {
   return Glib::make_refptr_for_instance<Gdk::Snapshot>( dynamic_cast<Gdk::Snapshot*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Snapshot_Class::init()
+auto Snapshot_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -79,7 +79,7 @@ void Snapshot_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Snapshot_Class::wrap_new(GObject* object)
+auto Snapshot_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Snapshot((GdkSnapshot*)object);
 }
@@ -87,7 +87,7 @@ Glib::ObjectBase* Snapshot_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GdkSnapshot* Snapshot::gobj_copy()
+auto Snapshot::gobj_copy() -> GdkSnapshot*
 {
   reference();
   return gobj();
@@ -110,7 +110,7 @@ Snapshot::Snapshot(Snapshot&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Snapshot& Snapshot::operator=(Snapshot&& src) noexcept
+auto Snapshot::operator=(Snapshot&& src) noexcept -> Snapshot&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -123,13 +123,13 @@ Snapshot::~Snapshot() noexcept
 
 Snapshot::CppClassType Snapshot::snapshot_class_; // initialize static member
 
-GType Snapshot::get_type()
+auto Snapshot::get_type() -> GType
 {
   return snapshot_class_.init().get_type();
 }
 
 
-GType Snapshot::get_base_type()
+auto Snapshot::get_base_type() -> GType
 {
   return gdk_snapshot_get_type();
 }

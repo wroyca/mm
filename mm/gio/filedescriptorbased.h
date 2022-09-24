@@ -69,7 +69,7 @@ public:
 
   // noncopyable
   FileDescriptorBased(const FileDescriptorBased&) = delete;
-  FileDescriptorBased& operator=(const FileDescriptorBased&) = delete;
+  auto operator=(const FileDescriptorBased&) -> FileDescriptorBased& = delete;
 
 private:
   friend class FileDescriptorBased_Class;
@@ -103,7 +103,7 @@ protected:
 public:
 
   FileDescriptorBased(FileDescriptorBased&& src) noexcept;
-  FileDescriptorBased& operator=(FileDescriptorBased&& src) noexcept;
+  auto operator=(FileDescriptorBased&& src) noexcept -> FileDescriptorBased&;
 
   ~FileDescriptorBased() noexcept override;
 
@@ -111,17 +111,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GFileDescriptorBased*       gobj()       { return reinterpret_cast<GFileDescriptorBased*>(gobject_); }
+  auto       gobj() -> GFileDescriptorBased*       { return reinterpret_cast<GFileDescriptorBased*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GFileDescriptorBased* gobj() const { return reinterpret_cast<GFileDescriptorBased*>(gobject_); }
+  auto gobj() const -> const GFileDescriptorBased* { return reinterpret_cast<GFileDescriptorBased*>(gobject_); }
 
 private:
 
@@ -138,10 +138,10 @@ public:
    *
    * @return The file descriptor.
    */
-  int get_fd() const;
+  auto get_fd() const -> int;
 
 protected:
-    virtual int get_fd_vfunc() const;
+    virtual auto get_fd_vfunc() const -> int;
 
 
 public:
@@ -171,7 +171,7 @@ namespace Glib
    * @relates Gio::FileDescriptorBased
    */
   GIOMM_API
-  Glib::RefPtr<Gio::FileDescriptorBased> wrap(GFileDescriptorBased* object, bool take_copy = false);
+  auto wrap(GFileDescriptorBased* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileDescriptorBased>;
 
 } // namespace Glib
 

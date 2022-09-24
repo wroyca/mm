@@ -51,15 +51,15 @@ public:
 #endif // DOXYGEN_SHOULD_SKIP_THIS
 
   GTKMM_API BitsetConstIter(const BitsetConstIter& other);
-  GTKMM_API BitsetConstIter& operator=(const BitsetConstIter& other);
+  GTKMM_API auto operator=(const BitsetConstIter& other) -> BitsetConstIter&;
   GTKMM_API BitsetConstIter(BitsetConstIter&& other) noexcept;
-  GTKMM_API BitsetConstIter& operator=(BitsetConstIter&& other) noexcept;
+  GTKMM_API auto operator=(BitsetConstIter&& other) noexcept -> BitsetConstIter&;
 
-  GTKMM_API BitsetConstIter& operator++();
-  GTKMM_API BitsetConstIter  operator++(int);
-  GTKMM_API BitsetConstIter& operator--();
-  GTKMM_API BitsetConstIter  operator--(int);
-  GTKMM_API reference operator*() const;
+  GTKMM_API auto operator++() -> BitsetConstIter&;
+  GTKMM_API auto  operator++(int) -> BitsetConstIter;
+  GTKMM_API auto operator--() -> BitsetConstIter&;
+  GTKMM_API auto  operator--(int) -> BitsetConstIter;
+  GTKMM_API auto operator*() const -> reference;
 
   /** Discovers whether the iterator is valid, and not equal to end().
    * For instance,
@@ -70,7 +70,7 @@ public:
    */
   GTKMM_API explicit operator bool() const noexcept;
 
-  GTKMM_API bool equal(const BitsetConstIter& other) const noexcept;
+  GTKMM_API auto equal(const BitsetConstIter& other) const noexcept -> bool;
 
 private:
   std::unique_ptr<GtkBitsetIter> gobject_;
@@ -80,11 +80,11 @@ private:
 };
 
 /** @relates Gtk::BitsetConstIter */
-inline bool operator==(const BitsetConstIter& lhs, const BitsetConstIter& rhs)
+inline auto operator==(const BitsetConstIter& lhs, const BitsetConstIter& rhs) -> bool
 { return lhs.equal(rhs); }
 
 /** @relates Gtk::BitsetConstIter */
-inline bool operator!=(const BitsetConstIter& lhs, const BitsetConstIter& rhs)
+inline auto operator!=(const BitsetConstIter& lhs, const BitsetConstIter& rhs) -> bool
 { return !lhs.equal(rhs); }
 
 } // namespace Gtk

@@ -32,7 +32,7 @@ Environ::Environ(const std::vector<std::string>& env_vec)
   envp.get()[env_vec.size()] = nullptr;
 }
 
-std::optional<std::string> Environ::get(StdStringView variable) const
+auto Environ::get(StdStringView variable) const -> std::optional<std::string>
 {
   const char* value = g_environ_getenv(envp.get(), variable.c_str());
   if (value)
@@ -50,7 +50,7 @@ void Environ::unset(StdStringView variable)
   envp.reset(g_environ_unsetenv(envp.release(), variable.c_str()));
 }
 
-std::vector<std::string> Environ::to_vector() const
+auto Environ::to_vector() const -> std::vector<std::string>
 {
   return Glib::ArrayHandler<std::string>::array_to_vector(envp.get(), Glib::OWNERSHIP_NONE);
 }

@@ -40,32 +40,32 @@ Rand::set_seed(guint32 seed)
   g_rand_set_seed(gobject_, seed);
 }
 
-bool
-Rand::get_bool()
+auto
+Rand::get_bool() -> bool
 {
   return g_rand_boolean(gobject_);
 }
 
-guint32
-Rand::get_int()
+auto
+Rand::get_int() -> guint32
 {
   return g_rand_int(gobject_);
 }
 
-gint32
-Rand::get_int_range(gint32 begin, gint32 end)
+auto
+Rand::get_int_range(gint32 begin, gint32 end) -> gint32
 {
   return g_rand_int_range(gobject_, begin, end);
 }
 
-double
-Rand::get_double()
+auto
+Rand::get_double() -> double
 {
   return g_rand_double(gobject_);
 }
 
-double
-Rand::get_double_range(double begin, double end)
+auto
+Rand::get_double_range(double begin, double end) -> double
 {
   return g_rand_double_range(gobject_, begin, end);
 }

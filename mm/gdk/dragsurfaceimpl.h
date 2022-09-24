@@ -48,12 +48,12 @@ protected:
 
   // noncopyable
   DragSurfaceImpl(const DragSurfaceImpl&) = delete;
-  DragSurfaceImpl& operator=(const DragSurfaceImpl&) = delete;
+  auto operator=(const DragSurfaceImpl&) -> DragSurfaceImpl& = delete;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
 public:
   DragSurfaceImpl(DragSurfaceImpl&& src) noexcept;
-  DragSurfaceImpl& operator=(DragSurfaceImpl&& src) noexcept;
+  auto operator=(DragSurfaceImpl&& src) noexcept -> DragSurfaceImpl&;
 
   ~DragSurfaceImpl() noexcept override;
 };

@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Gtk::PopoverMenuBar* wrap(GtkPopoverMenuBar* object, bool take_copy)
+auto wrap(GtkPopoverMenuBar* object, bool take_copy) -> Gtk::PopoverMenuBar*
 {
   return dynamic_cast<Gtk::PopoverMenuBar *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -46,7 +46,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& PopoverMenuBar_Class::init()
+auto PopoverMenuBar_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -77,7 +77,7 @@ void PopoverMenuBar_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* PopoverMenuBar_Class::wrap_new(GObject* o)
+auto PopoverMenuBar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new PopoverMenuBar((GtkPopoverMenuBar*)(o)));
 
@@ -103,7 +103,7 @@ PopoverMenuBar::PopoverMenuBar(PopoverMenuBar&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-PopoverMenuBar& PopoverMenuBar::operator=(PopoverMenuBar&& src) noexcept
+auto PopoverMenuBar::operator=(PopoverMenuBar&& src) noexcept -> PopoverMenuBar&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -116,13 +116,13 @@ PopoverMenuBar::~PopoverMenuBar() noexcept
 
 PopoverMenuBar::CppClassType PopoverMenuBar::popovermenubar_class_; // initialize static member
 
-GType PopoverMenuBar::get_type()
+auto PopoverMenuBar::get_type() -> GType
 {
   return popovermenubar_class_.init().get_type();
 }
 
 
-GType PopoverMenuBar::get_base_type()
+auto PopoverMenuBar::get_base_type() -> GType
 {
   return gtk_popover_menu_bar_get_type();
 }
@@ -143,7 +143,7 @@ void PopoverMenuBar::set_menu_model(const Glib::RefPtr<Gio::MenuModel>& model)
   gtk_popover_menu_bar_set_menu_model(gobj(), Glib::unwrap(model));
 }
 
-Glib::RefPtr<Gio::MenuModel> PopoverMenuBar::get_menu_model()
+auto PopoverMenuBar::get_menu_model() -> Glib::RefPtr<Gio::MenuModel>
 {
   auto retvalue = Glib::wrap(gtk_popover_menu_bar_get_menu_model(gobj()));
   if(retvalue)
@@ -151,17 +151,17 @@ Glib::RefPtr<Gio::MenuModel> PopoverMenuBar::get_menu_model()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::MenuModel> PopoverMenuBar::get_menu_model() const
+auto PopoverMenuBar::get_menu_model() const -> Glib::RefPtr<const Gio::MenuModel>
 {
   return const_cast<PopoverMenuBar*>(this)->get_menu_model();
 }
 
-bool PopoverMenuBar::add_child(Widget& child, const Glib::ustring& id)
+auto PopoverMenuBar::add_child(Widget& child, const Glib::ustring& id) -> bool
 {
   return gtk_popover_menu_bar_add_child(gobj(), (child).gobj(), id.c_str());
 }
 
-bool PopoverMenuBar::remove_child(Widget& child)
+auto PopoverMenuBar::remove_child(Widget& child) -> bool
 {
   return gtk_popover_menu_bar_remove_child(gobj(), (child).gobj());
 }
@@ -171,12 +171,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Me
   "Type Glib::RefPtr<Gio::MenuModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > PopoverMenuBar::property_menu_model()
+auto PopoverMenuBar::property_menu_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >(this, "menu-model");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> > PopoverMenuBar::property_menu_model() const
+auto PopoverMenuBar::property_menu_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >(this, "menu-model");
 }

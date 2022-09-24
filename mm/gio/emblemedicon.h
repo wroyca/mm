@@ -67,7 +67,7 @@ public:
 
   // noncopyable
   EmblemedIcon(const EmblemedIcon&) = delete;
-  EmblemedIcon& operator=(const EmblemedIcon&) = delete;
+  auto operator=(const EmblemedIcon&) -> EmblemedIcon& = delete;
 
 private:  friend class EmblemedIcon_Class;
   static CppClassType emblemedicon_class_;
@@ -81,28 +81,28 @@ protected:
 public:
 
   EmblemedIcon(EmblemedIcon&& src) noexcept;
-  EmblemedIcon& operator=(EmblemedIcon&& src) noexcept;
+  auto operator=(EmblemedIcon&& src) noexcept -> EmblemedIcon&;
 
   ~EmblemedIcon() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GEmblemedIcon*       gobj()       { return reinterpret_cast<GEmblemedIcon*>(gobject_); }
+  auto       gobj() -> GEmblemedIcon*       { return reinterpret_cast<GEmblemedIcon*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GEmblemedIcon* gobj() const { return reinterpret_cast<GEmblemedIcon*>(gobject_); }
+  auto gobj() const -> const GEmblemedIcon* { return reinterpret_cast<GEmblemedIcon*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GEmblemedIcon* gobj_copy();
+  auto gobj_copy() -> GEmblemedIcon*;
 
 private:
 
@@ -131,7 +131,7 @@ public:
    * @result An Icon.
    */
 
-  static Glib::RefPtr<EmblemedIcon> create(const Glib::RefPtr<Icon>& icon, const Glib::RefPtr<Emblem>& emblem);
+  static auto create(const Glib::RefPtr<Icon>& icon, const Glib::RefPtr<Emblem>& emblem) -> Glib::RefPtr<EmblemedIcon>;
 
 
   /** Creates a new emblemed icon for @a icon with no emblem.
@@ -141,7 +141,7 @@ public:
    * @newin{2,28}
    */
 
-  static Glib::RefPtr<EmblemedIcon> create(const Glib::RefPtr<Icon>& icon);
+  static auto create(const Glib::RefPtr<Icon>& icon) -> Glib::RefPtr<EmblemedIcon>;
 
 
   /** Gets the main icon for @a emblemed.
@@ -150,7 +150,7 @@ public:
    *
    * @return A Icon that is owned by @a emblemed.
    */
-  Glib::RefPtr<Icon> get_icon();
+  auto get_icon() -> Glib::RefPtr<Icon>;
 
   /** Gets the main icon for @a emblemed.
    *
@@ -158,7 +158,7 @@ public:
    *
    * @return A Icon that is owned by @a emblemed.
    */
-  Glib::RefPtr<const Icon> get_icon() const;
+  auto get_icon() const -> Glib::RefPtr<const Icon>;
 
 
   /** Gets the list of emblems for the @a icon.
@@ -168,7 +168,7 @@ public:
    * @return A List of
    * Emblems that is owned by @a emblemed.
    */
-  std::vector<Glib::RefPtr<Emblem>> get_emblems();
+  auto get_emblems() -> std::vector<Glib::RefPtr<Emblem>>;
 
 
   /** Gets the list of emblems for the @a icon.
@@ -178,7 +178,7 @@ public:
    * @return A List of
    * Emblems that is owned by @a emblemed.
    */
-  std::vector<Glib::RefPtr<const Emblem>> get_emblems() const;
+  auto get_emblems() const -> std::vector<Glib::RefPtr<const Emblem>>;
 
 
   /** Adds @a emblem to the List of Emblems.
@@ -223,7 +223,7 @@ namespace Glib
    * @relates Gio::EmblemedIcon
    */
   GIOMM_API
-  Glib::RefPtr<Gio::EmblemedIcon> wrap(GEmblemedIcon* object, bool take_copy = false);
+  auto wrap(GEmblemedIcon* object, bool take_copy = false) -> Glib::RefPtr<Gio::EmblemedIcon>;
 }
 
 

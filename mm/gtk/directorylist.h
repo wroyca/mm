@@ -82,7 +82,7 @@ public:
 
   // noncopyable
   DirectoryList(const DirectoryList&) = delete;
-  DirectoryList& operator=(const DirectoryList&) = delete;
+  auto operator=(const DirectoryList&) -> DirectoryList& = delete;
 
 private:  friend class DirectoryList_Class;
   static CppClassType directorylist_class_;
@@ -96,28 +96,28 @@ protected:
 public:
 
   DirectoryList(DirectoryList&& src) noexcept;
-  DirectoryList& operator=(DirectoryList&& src) noexcept;
+  auto operator=(DirectoryList&& src) noexcept -> DirectoryList&;
 
   ~DirectoryList() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkDirectoryList*       gobj()       { return reinterpret_cast<GtkDirectoryList*>(gobject_); }
+  auto       gobj() -> GtkDirectoryList*       { return reinterpret_cast<GtkDirectoryList*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkDirectoryList* gobj() const { return reinterpret_cast<GtkDirectoryList*>(gobject_); }
+  auto gobj() const -> const GtkDirectoryList* { return reinterpret_cast<GtkDirectoryList*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkDirectoryList* gobj_copy();
+  auto gobj_copy() -> GtkDirectoryList*;
 
 private:
 
@@ -128,7 +128,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<DirectoryList> create(const std::string& attributes, const Glib::RefPtr<Gio::File>& file =  {});
+  static auto create(const std::string& attributes, const Glib::RefPtr<Gio::File>& file =  {}) -> Glib::RefPtr<DirectoryList>;
 
 
   /** Sets the @a file to be enumerated and starts the enumeration.
@@ -143,13 +143,13 @@ public:
    *
    * @return The file whose children are enumerated.
    */
-  Glib::RefPtr<Gio::File> get_file();
+  auto get_file() -> Glib::RefPtr<Gio::File>;
 
   /** Gets the file whose children are currently enumerated.
    *
    * @return The file whose children are enumerated.
    */
-  Glib::RefPtr<const Gio::File> get_file() const;
+  auto get_file() const -> Glib::RefPtr<const Gio::File>;
 
   /** Sets the @a attributes to be enumerated and starts the enumeration.
    *
@@ -164,7 +164,7 @@ public:
    *
    * @return The queried attributes.
    */
-  std::string get_attributes() const;
+  auto get_attributes() const -> std::string;
 
   /** Sets the IO priority to use while loading directories.
    *
@@ -184,7 +184,7 @@ public:
    *
    * @return The IO priority.
    */
-  int get_io_priority() const;
+  auto get_io_priority() const -> int;
 
 
   /** Returns <tt>true</tt> if the children enumeration is currently in
@@ -196,7 +196,7 @@ public:
    *
    * @return <tt>true</tt> if @a self is loading.
    */
-  bool is_loading() const;
+  auto is_loading() const -> bool;
 
 
   /** Gets the loading error, if any.
@@ -211,7 +211,7 @@ public:
    * @return The loading error or <tt>nullptr</tt> if
    * loading finished successfully.
    */
-  Glib::Error get_error() const;
+  auto get_error() const -> Glib::Error;
 
 
   /** Sets whether the directory list will monitor the directory
@@ -235,7 +235,7 @@ public:
    *
    * @return <tt>true</tt> if the directory is monitored.
    */
-  bool get_monitored() const;
+  auto get_monitored() const -> bool;
 
   /** The attributes to query.
    *
@@ -244,7 +244,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< std::string > property_attributes() ;
+  auto property_attributes() -> Glib::PropertyProxy< std::string > ;
 
 /** The attributes to query.
    *
@@ -253,14 +253,14 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::string > property_attributes() const;
+  auto property_attributes() const -> Glib::PropertyProxy_ReadOnly< std::string >;
 
   /** Error encountered while loading files.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::Error > property_error() const;
+  auto property_error() const -> Glib::PropertyProxy_ReadOnly< Glib::Error >;
 
 
   /** File to query.
@@ -268,14 +268,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::File> > property_file() ;
+  auto property_file() -> Glib::PropertyProxy< Glib::RefPtr<Gio::File> > ;
 
 /** File to query.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> > property_file() const;
+  auto property_file() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >;
 
   /** Priority used when loading.
    *
@@ -284,7 +284,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_io_priority() ;
+  auto property_io_priority() -> Glib::PropertyProxy< int > ;
 
 /** Priority used when loading.
    *
@@ -293,7 +293,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_io_priority() const;
+  auto property_io_priority() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The type of items. See Gio::ListModel::get_item_type().
    *
@@ -302,7 +302,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< GType > property_item_type() const;
+  auto property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >;
 
 
   /** <tt>true</tt> if files are being loaded.
@@ -312,7 +312,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_loading() const;
+  auto property_loading() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** <tt>true</tt> if the directory is monitored for changed.
@@ -322,7 +322,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_monitored() ;
+  auto property_monitored() -> Glib::PropertyProxy< bool > ;
 
 /** <tt>true</tt> if the directory is monitored for changed.
    *
@@ -331,7 +331,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_monitored() const;
+  auto property_monitored() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The number of items. See Gio::ListModel::get_n_items().
    *
@@ -342,7 +342,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_n_items() const;
+  auto property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
 
 public:
@@ -372,7 +372,7 @@ namespace Glib
    * @relates Gtk::DirectoryList
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::DirectoryList> wrap(GtkDirectoryList* object, bool take_copy = false);
+  auto wrap(GtkDirectoryList* object, bool take_copy = false) -> Glib::RefPtr<Gtk::DirectoryList>;
 }
 
 

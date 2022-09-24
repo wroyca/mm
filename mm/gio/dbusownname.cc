@@ -108,16 +108,13 @@ Bus_Own_Name_giomm_callback_destroy(void* data)
 
 } // anonymous namespace
 
-namespace Gio
+namespace Gio::DBus
 {
 
-namespace DBus
-{
-
-guint
+auto
 own_name(BusType bus_type, const Glib::ustring& name, const SlotBusAcquired& bus_acquired_slot,
   const SlotNameAcquired& name_acquired_slot, const SlotNameLost& name_lost_slot,
-  BusNameOwnerFlags flags)
+  BusNameOwnerFlags flags) -> guint
 {
   auto slots = new OwnSlots;
 
@@ -138,8 +135,6 @@ unown_name(guint owner_id)
   g_bus_unown_name(owner_id);
 }
 
-} // namespace DBus
-
 } // namespace Gio
 
 namespace
@@ -147,7 +142,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::DBus::BusNameOwnerFlags>::value_type()
+auto Glib::Value<Gio::DBus::BusNameOwnerFlags>::value_type() -> GType
 {
   return g_bus_name_owner_flags_get_type();
 }

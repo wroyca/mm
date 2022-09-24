@@ -90,7 +90,7 @@ public:
 
   // noncopyable
   TextMark(const TextMark&) = delete;
-  TextMark& operator=(const TextMark&) = delete;
+  auto operator=(const TextMark&) -> TextMark& = delete;
 
 private:  friend class TextMark_Class;
   static CppClassType textmark_class_;
@@ -104,28 +104,28 @@ protected:
 public:
 
   TextMark(TextMark&& src) noexcept;
-  TextMark& operator=(TextMark&& src) noexcept;
+  auto operator=(TextMark&& src) noexcept -> TextMark&;
 
   ~TextMark() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkTextMark*       gobj()       { return reinterpret_cast<GtkTextMark*>(gobject_); }
+  auto       gobj() -> GtkTextMark*       { return reinterpret_cast<GtkTextMark*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkTextMark* gobj() const { return reinterpret_cast<GtkTextMark*>(gobject_); }
+  auto gobj() const -> const GtkTextMark* { return reinterpret_cast<GtkTextMark*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkTextMark* gobj_copy();
+  auto gobj_copy() -> GtkTextMark*;
 
 private:
 
@@ -177,7 +177,7 @@ public:
    * @newin{2,12}
    */
 
-  static Glib::RefPtr<TextMark> create(bool left_gravity =  true);
+  static auto create(bool left_gravity =  true) -> Glib::RefPtr<TextMark>;
 
 
 /** Creates a text mark. Add it to a buffer using Gtk::TextBuffer::add_mark().
@@ -195,7 +195,7 @@ public:
    * @newin{2,12}
    */
 
-  static Glib::RefPtr<TextMark> create(const Glib::ustring& name, bool left_gravity =  true);
+  static auto create(const Glib::ustring& name, bool left_gravity =  true) -> Glib::RefPtr<TextMark>;
 
 
   /** Sets the visibility of @a mark.
@@ -217,13 +217,13 @@ public:
    *
    * @return <tt>true</tt> if visible.
    */
-  bool get_visible() const;
+  auto get_visible() const -> bool;
 
   /** Returns the mark name.
    *
    * @return Mark name.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
   /** Returns <tt>true</tt> if the mark has been removed from its buffer.
    *
@@ -232,28 +232,28 @@ public:
    *
    * @return Whether the mark is deleted.
    */
-  bool get_deleted() const;
+  auto get_deleted() const -> bool;
 
   /** Gets the buffer this mark is located inside.
    *
    * @return The mark’s `Gtk::TextBuffer`.
    */
-  Glib::RefPtr<TextBuffer> get_buffer();
+  auto get_buffer() -> Glib::RefPtr<TextBuffer>;
 
   /** Gets the buffer this mark is located inside.
    *
    * @return The mark’s `Gtk::TextBuffer`.
    */
-  Glib::RefPtr<const TextBuffer> get_buffer() const;
+  auto get_buffer() const -> Glib::RefPtr<const TextBuffer>;
 
   /** Determines whether the mark has left gravity.
    *
    * @return <tt>true</tt> if the mark has left gravity, <tt>false</tt> otherwise.
    */
-  bool get_left_gravity() const;
+  auto get_left_gravity() const -> bool;
 
-  TextIter get_iter();
-  TextConstIter get_iter() const;
+  auto get_iter() -> TextIter;
+  auto get_iter() const -> TextConstIter;
 
   /** The name of the mark or <tt>nullptr</tt> if the mark is anonymous.
    *
@@ -262,7 +262,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_name() const;
+  auto property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** Whether the mark has left gravity.
@@ -276,7 +276,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_left_gravity() const;
+  auto property_left_gravity() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -306,7 +306,7 @@ namespace Glib
    * @relates Gtk::TextMark
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::TextMark> wrap(GtkTextMark* object, bool take_copy = false);
+  auto wrap(GtkTextMark* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TextMark>;
 }
 
 

@@ -39,7 +39,7 @@ void Script::add_from_recording_surface(const RefPtr<ScriptSurface>& recording_s
   check_status_and_throw_exception(status);
 }
 
-ScriptMode Script::get_mode() const
+auto Script::get_mode() const -> ScriptMode
 {
   return static_cast<ScriptMode>(cairo_script_get_mode(m_cobject));
 }
@@ -54,7 +54,7 @@ void Script::write_comment(const std::string& comment)
   cairo_script_write_comment(m_cobject, comment.data(), comment.length());
 }
 
-RefPtr<Script> Script::create(const std::string& filename)
+auto Script::create(const std::string& filename) -> RefPtr<Script>
 {
   auto cobject = cairo_script_create(filename.c_str());
   check_status_and_throw_exception(cairo_device_status(cobject));
@@ -70,8 +70,8 @@ static void device_free_slot(void* data)
   delete slot;
 }
 
-cairo_status_t device_write_func_wrapper(void* closure, const unsigned char* data,
-                                         unsigned int length)
+auto device_write_func_wrapper(void* closure, const unsigned char* data,
+                                         unsigned int length) -> cairo_status_t
 {
   // FIXME: duplicates free_slot in surface.cc
   if (!closure)
@@ -88,7 +88,7 @@ static void set_write_slot(cairo_device_t* surface,
                              &device_free_slot);
 }
 
-RefPtr<Script> Script::create_for_stream(const Surface::SlotWriteFunc& write_func)
+auto Script::create_for_stream(const Surface::SlotWriteFunc& write_func) -> RefPtr<Script>
 {
   auto slot_copy = new Surface::SlotWriteFunc(write_func);
   auto cobject = cairo_script_create_for_stream(device_write_func_wrapper,

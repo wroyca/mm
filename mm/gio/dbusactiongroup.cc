@@ -39,7 +39,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::DBus::ActionGroup> wrap(GDBusActionGroup* object, bool take_copy)
+auto wrap(GDBusActionGroup* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::ActionGroup>
 {
   return Glib::make_refptr_for_instance<Gio::DBus::ActionGroup>( dynamic_cast<Gio::DBus::ActionGroup*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,16 +48,13 @@ Glib::RefPtr<Gio::DBus::ActionGroup> wrap(GDBusActionGroup* object, bool take_co
 } /* namespace Glib */
 
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 
 /* The *_Class implementation: */
 
-const Glib::Class& ActionGroup_Class::init()
+auto ActionGroup_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -90,7 +87,7 @@ void ActionGroup_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* ActionGroup_Class::wrap_new(GObject* object)
+auto ActionGroup_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ActionGroup((GDBusActionGroup*)object);
 }
@@ -98,7 +95,7 @@ Glib::ObjectBase* ActionGroup_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GDBusActionGroup* ActionGroup::gobj_copy()
+auto ActionGroup::gobj_copy() -> GDBusActionGroup*
 {
   reference();
   return gobj();
@@ -123,7 +120,7 @@ ActionGroup::ActionGroup(ActionGroup&& src) noexcept
   , Gio::RemoteActionGroup(std::move(src))
 {}
 
-ActionGroup& ActionGroup::operator=(ActionGroup&& src) noexcept
+auto ActionGroup::operator=(ActionGroup&& src) noexcept -> ActionGroup&
 {
   Glib::Object::operator=(std::move(src));
   Gio::ActionGroup::operator=(std::move(src));
@@ -138,13 +135,13 @@ ActionGroup::~ActionGroup() noexcept
 
 ActionGroup::CppClassType ActionGroup::actiongroup_class_; // initialize static member
 
-GType ActionGroup::get_type()
+auto ActionGroup::get_type() -> GType
 {
   return actiongroup_class_.init().get_type();
 }
 
 
-GType ActionGroup::get_base_type()
+auto ActionGroup::get_base_type() -> GType
 {
   return g_dbus_action_group_get_type();
 }
@@ -160,13 +157,11 @@ ActionGroup::ActionGroup()
 
 }
 
-Glib::RefPtr<ActionGroup> ActionGroup::get(const Glib::RefPtr<Connection>& connection, const Glib::ustring& bus_name, const Glib::ustring& object_path)
+auto ActionGroup::get(const Glib::RefPtr<Connection>& connection, const Glib::ustring& bus_name, const Glib::ustring& object_path) -> Glib::RefPtr<ActionGroup>
 {
   return Glib::wrap(g_dbus_action_group_get(Glib::unwrap(connection), bus_name.c_str(), object_path.c_str()));
 }
 
-
-} // namespace DBus
 
 } // namespace Gio
 

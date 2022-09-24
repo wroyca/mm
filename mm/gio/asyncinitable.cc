@@ -117,9 +117,9 @@ Gio::AsyncInitable::init_async_vfunc(
       &SignalProxy_async_callback, const_cast<SlotAsyncReady*>(&slot));
   }
 }
-gboolean
+auto
 AsyncInitable_Class::init_finish_vfunc_callback(
-  GAsyncInitable* self, GAsyncResult* res, GError** error)
+  GAsyncInitable* self, GAsyncResult* res, GError** error) -> gboolean
 {
   const auto obj_base =
     static_cast<Glib::ObjectBase*>(Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -160,8 +160,8 @@ AsyncInitable_Class::init_finish_vfunc_callback(
   using RType = gboolean;
   return RType();
 }
-bool
-Gio::AsyncInitable::init_finish_vfunc(const Glib::RefPtr<AsyncResult>& res)
+auto
+Gio::AsyncInitable::init_finish_vfunc(const Glib::RefPtr<AsyncResult>& res) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
     g_type_interface_peek_parent( // Get the parent interface of the interface (The original
@@ -196,7 +196,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::AsyncInitable> wrap(GAsyncInitable* object, bool take_copy)
+auto wrap(GAsyncInitable* object, bool take_copy) -> Glib::RefPtr<Gio::AsyncInitable>
 {
   return Glib::make_refptr_for_instance<Gio::AsyncInitable>( dynamic_cast<Gio::AsyncInitable*> (Glib::wrap_auto_interface<Gio::AsyncInitable> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -211,7 +211,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& AsyncInitable_Class::init()
+auto AsyncInitable_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -240,7 +240,7 @@ void AsyncInitable_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* AsyncInitable_Class::wrap_new(GObject* object)
+auto AsyncInitable_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new AsyncInitable((GAsyncInitable*)(object));
 }
@@ -267,7 +267,7 @@ AsyncInitable::AsyncInitable(AsyncInitable&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-AsyncInitable& AsyncInitable::operator=(AsyncInitable&& src) noexcept
+auto AsyncInitable::operator=(AsyncInitable&& src) noexcept -> AsyncInitable&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -284,19 +284,19 @@ void AsyncInitable::add_interface(GType gtype_implementer)
 
 AsyncInitable::CppClassType AsyncInitable::asyncinitable_class_; // initialize static member
 
-GType AsyncInitable::get_type()
+auto AsyncInitable::get_type() -> GType
 {
   return asyncinitable_class_.init().get_type();
 }
 
 
-GType AsyncInitable::get_base_type()
+auto AsyncInitable::get_base_type() -> GType
 {
   return g_async_initable_get_type();
 }
 
 
-bool AsyncInitable::init_finish(const Glib::RefPtr<AsyncResult>& res)
+auto AsyncInitable::init_finish(const Glib::RefPtr<AsyncResult>& res) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_async_initable_init_finish(gobj(), Glib::unwrap(res), &(gerror));
@@ -305,7 +305,7 @@ bool AsyncInitable::init_finish(const Glib::RefPtr<AsyncResult>& res)
   return retvalue;
 }
 
-Glib::RefPtr<Glib::Object> AsyncInitable::create_finish(const Glib::RefPtr<AsyncResult>& res)
+auto AsyncInitable::create_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Glib::Object>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_async_initable_new_finish(gobj(), Glib::unwrap(res), &(gerror)));

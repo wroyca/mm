@@ -66,7 +66,7 @@ public:
 
   // noncopyable
   TreeDragSource(const TreeDragSource&) = delete;
-  TreeDragSource& operator=(const TreeDragSource&) = delete;
+  auto operator=(const TreeDragSource&) -> TreeDragSource& = delete;
 
 private:
   friend class TreeDragSource_Class;
@@ -100,7 +100,7 @@ protected:
 public:
 
   TreeDragSource(TreeDragSource&& src) noexcept;
-  TreeDragSource& operator=(TreeDragSource&& src) noexcept;
+  auto operator=(TreeDragSource&& src) noexcept -> TreeDragSource&;
 
   ~TreeDragSource() noexcept override;
 
@@ -108,17 +108,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkTreeDragSource*       gobj()       { return reinterpret_cast<GtkTreeDragSource*>(gobject_); }
+  auto       gobj() -> GtkTreeDragSource*       { return reinterpret_cast<GtkTreeDragSource*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkTreeDragSource* gobj() const { return reinterpret_cast<GtkTreeDragSource*>(gobject_); }
+  auto gobj() const -> const GtkTreeDragSource* { return reinterpret_cast<GtkTreeDragSource*>(gobject_); }
 
 private:
 
@@ -132,7 +132,7 @@ public:
    * @param path Row on which user is initiating a drag.
    * @return <tt>true</tt> if the row can be dragged.
    */
-  bool row_draggable(const TreeModel::Path& path) const;
+  auto row_draggable(const TreeModel::Path& path) const -> bool;
 
   // gtk_tree_drag_source_drag_data_get() returns a newly created GdkContentProvider.
 
@@ -144,7 +144,7 @@ public:
    * @return A `Gdk::ContentProvider` for the
    * given @a path.
    */
-  Glib::RefPtr<Gdk::ContentProvider> drag_data_get(const TreeModel::Path& path) const;
+  auto drag_data_get(const TreeModel::Path& path) const -> Glib::RefPtr<Gdk::ContentProvider>;
 
 
   /** Asks the `Gtk::TreeDragSource` to delete the row at @a path, because
@@ -156,16 +156,16 @@ public:
    * @param path Row that was being dragged.
    * @return <tt>true</tt> if the row was successfully deleted.
    */
-  bool drag_data_delete(const TreeModel::Path& path);
+  auto drag_data_delete(const TreeModel::Path& path) -> bool;
 
 protected:
 
-    virtual bool row_draggable_vfunc(const TreeModel::Path& path) const;
+    virtual auto row_draggable_vfunc(const TreeModel::Path& path) const -> bool;
 
 
-    virtual Glib::RefPtr<Gdk::ContentProvider> drag_data_get_vfunc(const TreeModel::Path& path) const;
+    virtual auto drag_data_get_vfunc(const TreeModel::Path& path) const -> Glib::RefPtr<Gdk::ContentProvider>;
 
-    virtual bool drag_data_delete_vfunc(const TreeModel::Path& path);
+    virtual auto drag_data_delete_vfunc(const TreeModel::Path& path) -> bool;
 
 
 public:
@@ -195,7 +195,7 @@ namespace Glib
    * @relates Gtk::TreeDragSource
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::TreeDragSource> wrap(GtkTreeDragSource* object, bool take_copy = false);
+  auto wrap(GtkTreeDragSource* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeDragSource>;
 
 } // namespace Glib
 

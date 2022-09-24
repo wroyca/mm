@@ -24,24 +24,7 @@
 
 // The corresponding gtk functions are declared in gtkaccelgroup.h.
 
-namespace Gtk
-{
-
-/** Utilities for keyboard accelerators.
- *
- * We have various utility functions to parse and generate
- * textual representations of keyboard accelerators.
- *
- * If you want to set up keyboard accelerators for widgets,
- * Gtk::ShortcutTrigger is probably more convenient than the
- * functions in this namespace.
- *
- * Key values are the codes which are sent whenever a key is pressed or released.
- * The complete list of key values can be found in the
- * <a href="https://gitlab.gnome.org/GNOME/gtk/tree/main/gdk/gdkkeysyms.h">gdk/gdkkeysyms.h</a>
- * header file. They are prefixed with <tt>GDK_KEY_</tt>.
- */
-namespace Accelerator
+namespace Gtk::Accelerator
 {
   /** Determines whether a given keyval and modifier mask constitute
    * a valid keyboard accelerator.
@@ -53,7 +36,7 @@ namespace Accelerator
    * @return <tt>true</tt> if the accelerator is valid.
    */
   GTKMM_API
-  bool valid(guint keyval, Gdk::ModifierType modifiers);
+  auto valid(guint keyval, Gdk::ModifierType modifiers) -> bool;
 
   /** Parses a string representing an accelerator.
    *
@@ -74,8 +57,8 @@ namespace Accelerator
    * @return <tt>true</tt> if parsing succeeded.
    */
   GTKMM_API
-  bool parse(const Glib::ustring& accelerator, guint& accelerator_key,
-    Gdk::ModifierType& accelerator_mods);
+  auto parse(const Glib::ustring& accelerator, guint& accelerator_key,
+    Gdk::ModifierType& accelerator_mods) -> bool;
 
   /** Converts an accelerator keyval and modifier mask
    * into a string parseable by parse().
@@ -90,7 +73,7 @@ namespace Accelerator
    * @return The accelerator name.
    */
   GTKMM_API
-  Glib::ustring name(guint accelerator_key, Gdk::ModifierType accelerator_mods);
+  auto name(guint accelerator_key, Gdk::ModifierType accelerator_mods) -> Glib::ustring;
 
   /** Converts an accelerator keyval and modifier mask into a string
    * which can be used to represent the accelerator to the user.
@@ -100,7 +83,7 @@ namespace Accelerator
    * @return A string representing the accelerator.
    */
   GTKMM_API
-  Glib::ustring get_label(guint accelerator_key, Gdk::ModifierType accelerator_mods);
+  auto get_label(guint accelerator_key, Gdk::ModifierType accelerator_mods) -> Glib::ustring;
 
   /** Gets the modifier mask.
    *
@@ -111,9 +94,7 @@ namespace Accelerator
    * @return The modifier mask for accelerators
    */
   GTKMM_API
-  Gdk::ModifierType get_default_mod_mask();
-
-} // namespace Accelerator
+  auto get_default_mod_mask() -> Gdk::ModifierType;
 
 } // namespace Gtk
 #endif /* _GTKMM_ACCELERATOR_H */

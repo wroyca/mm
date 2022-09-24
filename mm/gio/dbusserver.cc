@@ -31,10 +31,7 @@
 
 using Flags = Gio::DBus::Server::Flags;
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 Server::Server(const std::string& address, const std::string& guid,
@@ -73,42 +70,41 @@ Server::Server(const std::string& address, const std::string& guid, Flags flags)
   init();
 }
 
-Glib::RefPtr<Server>
+auto
 Server::create_sync(const std::string& address, const std::string& guid,
   const Glib::RefPtr<AuthObserver>& observer, const Glib::RefPtr<Cancellable>& cancellable,
-  Flags flags)
+  Flags flags) -> Glib::RefPtr<Server>
 {
   return Glib::make_refptr_for_instance<Server>(new Server(address, guid, observer, cancellable, flags));
 }
 
-Glib::RefPtr<Server>
+auto
 Server::create_sync(const std::string& address, const std::string& guid,
-  const Glib::RefPtr<Cancellable>& cancellable, Flags flags)
+  const Glib::RefPtr<Cancellable>& cancellable, Flags flags) -> Glib::RefPtr<Server>
 {
   return Glib::make_refptr_for_instance<Server>(new Server(address, guid, cancellable, flags));
 }
 
-Glib::RefPtr<Server>
+auto
 Server::create_sync(const std::string& address, const std::string& guid,
-  const Glib::RefPtr<AuthObserver>& observer, Flags flags)
+  const Glib::RefPtr<AuthObserver>& observer, Flags flags) -> Glib::RefPtr<Server>
 {
   return Glib::make_refptr_for_instance<Server>(new Server(address, guid, observer, flags));
 }
 
-Glib::RefPtr<Server>
-Server::create_sync(const std::string& address, const std::string& guid, Flags flags)
+auto
+Server::create_sync(const std::string& address, const std::string& guid, Flags flags) -> Glib::RefPtr<Server>
 {
   return Glib::make_refptr_for_instance<Server>(new Server(address, guid, flags));
 }
 
-} // namespace DBus
 } // namespace Gio
 
 namespace
 {
 
 
-static gboolean Server_signal_new_connection_callback(GDBusServer* self, GDBusConnection* p0,void* data)
+auto Server_signal_new_connection_callback(GDBusServer* self, GDBusConnection* p0,void* data) -> gboolean
 {
   using namespace Gio::DBus;
   using SlotType = sigc::slot<bool(const Glib::RefPtr<Connection>&)>;
@@ -133,7 +129,7 @@ static gboolean Server_signal_new_connection_callback(GDBusServer* self, GDBusCo
   return RType();
 }
 
-static gboolean Server_signal_new_connection_notify_callback(GDBusServer* self, GDBusConnection* p0, void* data)
+auto Server_signal_new_connection_notify_callback(GDBusServer* self, GDBusConnection* p0, void* data) -> gboolean
 {
   using namespace Gio::DBus;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Connection>&)>;
@@ -158,7 +154,7 @@ static gboolean Server_signal_new_connection_notify_callback(GDBusServer* self, 
   return RType();
 }
 
-static const Glib::SignalProxyInfo Server_signal_new_connection_info =
+const Glib::SignalProxyInfo Server_signal_new_connection_info =
 {
   "new-connection",
   (GCallback) &Server_signal_new_connection_callback,
@@ -169,7 +165,7 @@ static const Glib::SignalProxyInfo Server_signal_new_connection_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::DBus::Server::Flags>::value_type()
+auto Glib::Value<Gio::DBus::Server::Flags>::value_type() -> GType
 {
   return g_dbus_server_flags_get_type();
 }
@@ -178,7 +174,7 @@ GType Glib::Value<Gio::DBus::Server::Flags>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gio::DBus::Server> wrap(GDBusServer* object, bool take_copy)
+auto wrap(GDBusServer* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::Server>
 {
   return Glib::make_refptr_for_instance<Gio::DBus::Server>( dynamic_cast<Gio::DBus::Server*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -187,16 +183,13 @@ Glib::RefPtr<Gio::DBus::Server> wrap(GDBusServer* object, bool take_copy)
 } /* namespace Glib */
 
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 
 /* The *_Class implementation: */
 
-const Glib::Class& Server_Class::init()
+auto Server_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -228,7 +221,7 @@ void Server_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Server_Class::wrap_new(GObject* object)
+auto Server_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Server((GDBusServer*)object);
 }
@@ -236,7 +229,7 @@ Glib::ObjectBase* Server_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GDBusServer* Server::gobj_copy()
+auto Server::gobj_copy() -> GDBusServer*
 {
   reference();
   return gobj();
@@ -260,7 +253,7 @@ Server::Server(Server&& src) noexcept
   , Initable(std::move(src))
 {}
 
-Server& Server::operator=(Server&& src) noexcept
+auto Server::operator=(Server&& src) noexcept -> Server&
 {
   Glib::Object::operator=(std::move(src));
   Initable::operator=(std::move(src));
@@ -274,13 +267,13 @@ Server::~Server() noexcept
 
 Server::CppClassType Server::server_class_; // initialize static member
 
-GType Server::get_type()
+auto Server::get_type() -> GType
 {
   return server_class_.init().get_type();
 }
 
 
-GType Server::get_base_type()
+auto Server::get_base_type() -> GType
 {
   return g_dbus_server_get_type();
 }
@@ -296,39 +289,39 @@ void Server::stop()
   g_dbus_server_stop(gobj());
 }
 
-bool Server::is_active() const
+auto Server::is_active() const -> bool
 {
   return g_dbus_server_is_active(const_cast<GDBusServer*>(gobj()));
 }
 
-std::string Server::get_guid() const
+auto Server::get_guid() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_dbus_server_get_guid(const_cast<GDBusServer*>(gobj())));
 }
 
-Flags Server::get_flags() const
+auto Server::get_flags() const -> Flags
 {
   return static_cast<Flags>(g_dbus_server_get_flags(const_cast<GDBusServer*>(gobj())));
 }
 
-std::string Server::get_client_address() const
+auto Server::get_client_address() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_dbus_server_get_client_address(const_cast<GDBusServer*>(gobj())));
 }
 
 
-Glib::SignalProxy<bool(const Glib::RefPtr<Connection>&)> Server::signal_new_connection()
+auto Server::signal_new_connection() -> Glib::SignalProxy<bool(const Glib::RefPtr<Connection>&)>
 {
   return Glib::SignalProxy<bool(const Glib::RefPtr<Connection>&) >(this, &Server_signal_new_connection_info);
 }
 
 
-Glib::PropertyProxy_ReadOnly< bool > Server::property_active() const
+auto Server::property_active() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "active");
 }
 
-Glib::PropertyProxy_ReadOnly< std::string > Server::property_address() const
+auto Server::property_address() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
   return Glib::PropertyProxy_ReadOnly< std::string >(this, "address");
 }
@@ -337,12 +330,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<AuthObs
   "Type Glib::RefPtr<AuthObserver> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<AuthObserver> > Server::property_authentication_observer() const
+auto Server::property_authentication_observer() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<AuthObserver> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<AuthObserver> >(this, "authentication-observer");
 }
 
-Glib::PropertyProxy_ReadOnly< std::string > Server::property_client_address() const
+auto Server::property_client_address() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
   return Glib::PropertyProxy_ReadOnly< std::string >(this, "client-address");
 }
@@ -351,18 +344,16 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Flags>::value,
   "Type Flags cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Flags > Server::property_flags() const
+auto Server::property_flags() const -> Glib::PropertyProxy_ReadOnly< Flags >
 {
   return Glib::PropertyProxy_ReadOnly< Flags >(this, "flags");
 }
 
-Glib::PropertyProxy_ReadOnly< std::string > Server::property_guid() const
+auto Server::property_guid() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
   return Glib::PropertyProxy_ReadOnly< std::string >(this, "guid");
 }
 
-
-} // namespace DBus
 
 } // namespace Gio
 

@@ -54,68 +54,68 @@ extern "C"
 {
 //Declarations of the *_get_type() functions:
 
-GType gdk_app_launch_context_get_type(void);
-GType gdk_cairo_context_get_type(void);
-GType gdk_clipboard_get_type(void);
-GType gdk_content_provider_get_type(void);
-GType gdk_cursor_get_type(void);
-GType gdk_device_get_type(void);
-GType gdk_device_tool_get_type(void);
-GType gdk_display_get_type(void);
-GType gdk_display_manager_get_type(void);
-GType gdk_drag_get_type(void);
-GType gdk_draw_context_get_type(void);
-GType gdk_drop_get_type(void);
-GType gdk_frame_clock_get_type(void);
-GType gdk_gl_context_get_type(void);
-GType gdk_gl_texture_get_type(void);
-GType gdk_memory_texture_get_type(void);
-GType gdk_monitor_get_type(void);
-GType gdk_pixbuf_get_type(void);
-GType gdk_pixbuf_animation_get_type(void);
-GType gdk_pixbuf_animation_iter_get_type(void);
-GType gdk_pixbuf_loader_get_type(void);
-GType gdk_seat_get_type(void);
-GType gdk_snapshot_get_type(void);
-GType gdk_surface_get_type(void);
-GType gdk_texture_get_type(void);
+auto gdk_app_launch_context_get_type(void) -> GType;
+auto gdk_cairo_context_get_type(void) -> GType;
+auto gdk_clipboard_get_type(void) -> GType;
+auto gdk_content_provider_get_type(void) -> GType;
+auto gdk_cursor_get_type(void) -> GType;
+auto gdk_device_get_type(void) -> GType;
+auto gdk_device_tool_get_type(void) -> GType;
+auto gdk_display_get_type(void) -> GType;
+auto gdk_display_manager_get_type(void) -> GType;
+auto gdk_drag_get_type(void) -> GType;
+auto gdk_draw_context_get_type(void) -> GType;
+auto gdk_drop_get_type(void) -> GType;
+auto gdk_frame_clock_get_type(void) -> GType;
+auto gdk_gl_context_get_type(void) -> GType;
+auto gdk_gl_texture_get_type(void) -> GType;
+auto gdk_memory_texture_get_type(void) -> GType;
+auto gdk_monitor_get_type(void) -> GType;
+auto gdk_pixbuf_get_type(void) -> GType;
+auto gdk_pixbuf_animation_get_type(void) -> GType;
+auto gdk_pixbuf_animation_iter_get_type(void) -> GType;
+auto gdk_pixbuf_loader_get_type(void) -> GType;
+auto gdk_seat_get_type(void) -> GType;
+auto gdk_snapshot_get_type(void) -> GType;
+auto gdk_surface_get_type(void) -> GType;
+auto gdk_texture_get_type(void) -> GType;
 
 //Declarations of the *_error_quark() functions:
 
-GQuark gdk_gl_error_quark(void);
-GQuark gdk_pixbuf_error_quark(void);
-GQuark gdk_texture_error_quark(void);
+auto gdk_gl_error_quark(void) -> GQuark;
+auto gdk_pixbuf_error_quark(void) -> GQuark;
+auto gdk_texture_error_quark(void) -> GQuark;
 } // extern "C"
 
 namespace Gdk {
 
 //Declarations of the *_Class::wrap_new() methods, instead of including all the private headers:
 
-class AppLaunchContext_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class CairoContext_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Clipboard_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class ContentProvider_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Cursor_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Device_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class DeviceTool_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Display_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class DisplayManager_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Drag_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class DrawContext_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Drop_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class FrameClock_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class GLContext_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class GLTexture_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class MemoryTexture_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Monitor_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Pixbuf_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class PixbufAnimation_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class PixbufAnimationIter_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class PixbufLoader_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Seat_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Snapshot_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Surface_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Texture_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
+class AppLaunchContext_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class CairoContext_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Clipboard_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class ContentProvider_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Cursor_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Device_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class DeviceTool_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Display_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class DisplayManager_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Drag_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class DrawContext_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Drop_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class FrameClock_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class GLContext_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class GLTexture_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class MemoryTexture_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Monitor_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Pixbuf_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class PixbufAnimation_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class PixbufAnimationIter_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class PixbufLoader_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Seat_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Snapshot_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Surface_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Texture_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 
 void wrap_init()
 {

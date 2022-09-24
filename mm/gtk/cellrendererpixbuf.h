@@ -67,11 +67,11 @@ class GTKMM_API CellRendererPixbuf : public CellRenderer
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   CellRendererPixbuf(CellRendererPixbuf&& src) noexcept;
-  CellRendererPixbuf& operator=(CellRendererPixbuf&& src) noexcept;
+  auto operator=(CellRendererPixbuf&& src) noexcept -> CellRendererPixbuf&;
 
   // noncopyable
   CellRendererPixbuf(const CellRendererPixbuf&) = delete;
-  CellRendererPixbuf& operator=(const CellRendererPixbuf&) = delete;
+  auto operator=(const CellRendererPixbuf&) -> CellRendererPixbuf& = delete;
 
   ~CellRendererPixbuf() noexcept override;
 
@@ -91,19 +91,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkCellRendererPixbuf*       gobj()       { return reinterpret_cast<GtkCellRendererPixbuf*>(gobject_); }
+  auto       gobj() -> GtkCellRendererPixbuf*       { return reinterpret_cast<GtkCellRendererPixbuf*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkCellRendererPixbuf* gobj() const { return reinterpret_cast<GtkCellRendererPixbuf*>(gobject_); }
+  auto gobj() const -> const GtkCellRendererPixbuf* { return reinterpret_cast<GtkCellRendererPixbuf*>(gobject_); }
 
 private:
 
@@ -116,7 +116,7 @@ public:
    * @return A PropertyProxy_WriteOnly that allows you to set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_WriteOnly< Glib::RefPtr<Gdk::Pixbuf> > property_pixbuf() ;
+  auto property_pixbuf() -> Glib::PropertyProxy_WriteOnly< Glib::RefPtr<Gdk::Pixbuf> > ;
 
 
   /**
@@ -124,28 +124,28 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gdk::Pixbuf> > property_pixbuf_expander_open() ;
+  auto property_pixbuf_expander_open() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Pixbuf> > ;
 
 /**
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Pixbuf> > property_pixbuf_expander_open() const;
+  auto property_pixbuf_expander_open() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Pixbuf> >;
 
   /**
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gdk::Pixbuf> > property_pixbuf_expander_closed() ;
+  auto property_pixbuf_expander_closed() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Pixbuf> > ;
 
 /**
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Pixbuf> > property_pixbuf_expander_closed() const;
+  auto property_pixbuf_expander_closed() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Pixbuf> >;
 
   /** The `Gtk::IconSize` value that specifies the size of the rendered icon.
    *
@@ -154,7 +154,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Gtk::IconSize > property_icon_size() ;
+  auto property_icon_size() -> Glib::PropertyProxy< Gtk::IconSize > ;
 
 /** The `Gtk::IconSize` value that specifies the size of the rendered icon.
    *
@@ -163,7 +163,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Gtk::IconSize > property_icon_size() const;
+  auto property_icon_size() const -> Glib::PropertyProxy_ReadOnly< Gtk::IconSize >;
 
   /** The name of the themed icon to display.
    * This property only has an effect if not overridden by the "pixbuf" property.
@@ -173,7 +173,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_icon_name() ;
+  auto property_icon_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The name of the themed icon to display.
    * This property only has an effect if not overridden by the "pixbuf" property.
@@ -183,7 +183,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_icon_name() const;
+  auto property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The GIcon representing the icon to display.
    * If the icon theme is changed, the image will be updated
@@ -192,7 +192,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> > property_gicon() ;
+  auto property_gicon() -> Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> > ;
 
 /** The GIcon representing the icon to display.
    * If the icon theme is changed, the image will be updated
@@ -201,24 +201,24 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> > property_gicon() const;
+  auto property_gicon() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> >;
 
   /**
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gdk::Texture> > property_texture() ;
+  auto property_texture() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Texture> > ;
 
 /**
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Texture> > property_texture() const;
+  auto property_texture() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Texture> >;
 
 
-  Glib::PropertyProxy_Base _property_renderable() override;
+  auto _property_renderable() -> Glib::PropertyProxy_Base override;
 
 
 public:
@@ -248,7 +248,7 @@ namespace Glib
    * @relates Gtk::CellRendererPixbuf
    */
   GTKMM_API
-  Gtk::CellRendererPixbuf* wrap(GtkCellRendererPixbuf* object, bool take_copy = false);
+  auto wrap(GtkCellRendererPixbuf* object, bool take_copy = false) -> Gtk::CellRendererPixbuf*;
 } //namespace Glib
 
 

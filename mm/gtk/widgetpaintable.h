@@ -78,7 +78,7 @@ public:
 
   // noncopyable
   WidgetPaintable(const WidgetPaintable&) = delete;
-  WidgetPaintable& operator=(const WidgetPaintable&) = delete;
+  auto operator=(const WidgetPaintable&) -> WidgetPaintable& = delete;
 
 private:  friend class WidgetPaintable_Class;
   static CppClassType widgetpaintable_class_;
@@ -92,28 +92,28 @@ protected:
 public:
 
   WidgetPaintable(WidgetPaintable&& src) noexcept;
-  WidgetPaintable& operator=(WidgetPaintable&& src) noexcept;
+  auto operator=(WidgetPaintable&& src) noexcept -> WidgetPaintable&;
 
   ~WidgetPaintable() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkWidgetPaintable*       gobj()       { return reinterpret_cast<GtkWidgetPaintable*>(gobject_); }
+  auto       gobj() -> GtkWidgetPaintable*       { return reinterpret_cast<GtkWidgetPaintable*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkWidgetPaintable* gobj() const { return reinterpret_cast<GtkWidgetPaintable*>(gobject_); }
+  auto gobj() const -> const GtkWidgetPaintable* { return reinterpret_cast<GtkWidgetPaintable*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkWidgetPaintable* gobj_copy();
+  auto gobj_copy() -> GtkWidgetPaintable*;
 
 private:
 
@@ -125,23 +125,23 @@ protected:
 
 public:
 
-  static Glib::RefPtr<WidgetPaintable> create();
+  static auto create() -> Glib::RefPtr<WidgetPaintable>;
 
 
-  static Glib::RefPtr<WidgetPaintable> create(Widget& widget);
+  static auto create(Widget& widget) -> Glib::RefPtr<WidgetPaintable>;
 
 
   /** Returns the widget that is observed or <tt>nullptr</tt> if none.
    *
    * @return The observed widget.
    */
-  Widget* get_widget();
+  auto get_widget() -> Widget*;
 
   /** Returns the widget that is observed or <tt>nullptr</tt> if none.
    *
    * @return The observed widget.
    */
-  const Widget* get_widget() const;
+  auto get_widget() const -> const Widget*;
 
   /** Sets the widget that should be observed.
    *
@@ -155,14 +155,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_widget() ;
+  auto property_widget() -> Glib::PropertyProxy< Widget* > ;
 
 /** The observed widget or <tt>nullptr</tt> if none.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_widget() const;
+  auto property_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
   // There are no public signals or vfuncs.
@@ -195,7 +195,7 @@ namespace Glib
    * @relates Gtk::WidgetPaintable
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::WidgetPaintable> wrap(GtkWidgetPaintable* object, bool take_copy = false);
+  auto wrap(GtkWidgetPaintable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::WidgetPaintable>;
 }
 
 

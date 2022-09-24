@@ -80,7 +80,7 @@ template <>
 class GTKMM_API Value<Gtk::PrintDuplex> : public Glib::Value_Enum<Gtk::PrintDuplex>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -127,7 +127,7 @@ template <>
 class GTKMM_API Value<Gtk::PrintQuality> : public Glib::Value_Enum<Gtk::PrintQuality>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -174,7 +174,7 @@ template <>
 class GTKMM_API Value<Gtk::PrintPages> : public Glib::Value_Enum<Gtk::PrintPages>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -217,7 +217,7 @@ template <>
 class GTKMM_API Value<Gtk::PageSet> : public Glib::Value_Enum<Gtk::PageSet>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -281,7 +281,7 @@ template <>
 class GTKMM_API Value<Gtk::NumberUpLayout> : public Glib::Value_Enum<Gtk::NumberUpLayout>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -310,10 +310,10 @@ struct PageRangeTraits
   using CType         = GtkPageRange;
   using CTypeNonConst = GtkPageRange;
 
-  static CType   to_c_type      (CType c_obj)            { return c_obj; }
+  static auto   to_c_type      (CType c_obj) -> CType            { return c_obj; }
   static void    release_c_type (CType)                  {}
-  static CType   to_c_type      (const CppType& cpp_obj) { CTypeNonConst c_obj = {cpp_obj.start, cpp_obj.end}; return c_obj; }
-  static CppType to_cpp_type    (CType c_obj)            { return CppType (c_obj.start, c_obj.end); }
+  static auto   to_c_type      (const CppType& cpp_obj) -> CType { CTypeNonConst c_obj = {cpp_obj.start, cpp_obj.end}; return c_obj; }
+  static auto to_cpp_type    (CType c_obj) -> CppType            { return CppType (c_obj.start, c_obj.end); }
 };
 #endif // DOXYGEN_SHOULD_SKIP_THIS
 
@@ -344,7 +344,7 @@ public:
 
   // noncopyable
   PrintSettings(const PrintSettings&) = delete;
-  PrintSettings& operator=(const PrintSettings&) = delete;
+  auto operator=(const PrintSettings&) -> PrintSettings& = delete;
 
 private:  friend class PrintSettings_Class;
   static CppClassType printsettings_class_;
@@ -358,28 +358,28 @@ protected:
 public:
 
   PrintSettings(PrintSettings&& src) noexcept;
-  PrintSettings& operator=(PrintSettings&& src) noexcept;
+  auto operator=(PrintSettings&& src) noexcept -> PrintSettings&;
 
   ~PrintSettings() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkPrintSettings*       gobj()       { return reinterpret_cast<GtkPrintSettings*>(gobject_); }
+  auto       gobj() -> GtkPrintSettings*       { return reinterpret_cast<GtkPrintSettings*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkPrintSettings* gobj() const { return reinterpret_cast<GtkPrintSettings*>(gobject_); }
+  auto gobj() const -> const GtkPrintSettings* { return reinterpret_cast<GtkPrintSettings*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkPrintSettings* gobj_copy();
+  auto gobj_copy() -> GtkPrintSettings*;
 
 private:
 
@@ -388,7 +388,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<PrintSettings> create();
+  static auto create() -> Glib::RefPtr<PrintSettings>;
 
 
  /** Reads the print settings from the @a key_file.
@@ -403,7 +403,7 @@ public:
   *
   * @newin{2,14}
   */
-  static Glib::RefPtr<PrintSettings> create_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file);
+  static auto create_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file) -> Glib::RefPtr<PrintSettings>;
 
  /** Reads the print settings from the group @a group_name in @a key_file.
   * Returns a new PrintSettings object with the restored settings,
@@ -418,7 +418,7 @@ public:
   *
   * @newin{2,14}
   */
-  static Glib::RefPtr<PrintSettings> create_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file, const Glib::ustring& group_name);
+  static auto create_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file, const Glib::ustring& group_name) -> Glib::RefPtr<PrintSettings>;
 
 
  /** Reads the print settings from @a file_name. Returns a new PrintSettings
@@ -432,7 +432,7 @@ public:
   *
   * @newin{2,14}
   */
-  static Glib::RefPtr<PrintSettings> create_from_file(const std::string& file_name);
+  static auto create_from_file(const std::string& file_name) -> Glib::RefPtr<PrintSettings>;
 
 
   /** Print settings keys.
@@ -476,7 +476,7 @@ public:
    *
    * @return A newly allocated copy of @a other.
    */
-  Glib::RefPtr<PrintSettings> copy() const;
+  auto copy() const -> Glib::RefPtr<PrintSettings>;
 
   //The from_ infix was added to these functions to make them clearer. GTK+ didn't want to change them.
 
@@ -492,7 +492,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool load_from_file(const std::string& file_name);
+  auto load_from_file(const std::string& file_name) -> bool;
 
 
   /** Reads the print settings from the group @a group_name in @a key_file.
@@ -507,7 +507,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool load_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file, const Glib::ustring& group_name);
+  auto load_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file, const Glib::ustring& group_name) -> bool;
 
  /** Reads the print settings from the @a key_file.
   * See save_to_key_file().
@@ -519,7 +519,7 @@ public:
   *
   * @newin{2,14}
   */
-  bool load_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file);
+  auto load_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file) -> bool;
 
 
   //The save_ prefix was added to these functions to make them clearer. GTK+ didn't want to change them.
@@ -532,7 +532,7 @@ public:
    * @param file_name The file to save to.
    * @return <tt>true</tt> on success.
    */
-  bool save_to_file(const std::string& file_name) const;
+  auto save_to_file(const std::string& file_name) const -> bool;
 
 
   /** This function adds the print settings from @a settings to @a key_file.
@@ -557,7 +557,7 @@ public:
    * @param key A key.
    * @return <tt>true</tt>, if @a key has a value.
    */
-  bool has_key(const Glib::ustring& key) const;
+  auto has_key(const Glib::ustring& key) const -> bool;
 
 
   /** Looks up the string value associated with @a key.
@@ -565,7 +565,7 @@ public:
    * @param key A key.
    * @return The string value for @a key.
    */
-  Glib::ustring get(const Glib::ustring& key) const;
+  auto get(const Glib::ustring& key) const -> Glib::ustring;
 
 
   /** Associates @a value with @a key.
@@ -603,7 +603,7 @@ public:
    * @param key A key.
    * @return <tt>true</tt>, if @a key maps to a true value.
    */
-  bool get_bool(const Glib::ustring& key) const;
+  auto get_bool(const Glib::ustring& key) const -> bool;
 
   /** Sets @a key to a boolean value.
    *
@@ -618,7 +618,7 @@ public:
    * @param key A key.
    * @return The double value of @a key.
    */
-  double get_double(const Glib::ustring& key) const;
+  auto get_double(const Glib::ustring& key) const -> double;
 
   /** Returns the floating point number represented by
    * the value that is associated with @a key, or @a default_val
@@ -630,7 +630,7 @@ public:
    * @param def The default value.
    * @return The floating point number associated with @a key.
    */
-  double get_double_with_default(const Glib::ustring& key, double def) const;
+  auto get_double_with_default(const Glib::ustring& key, double def) const -> double;
 
   /** Sets @a key to a double value.
    *
@@ -649,7 +649,7 @@ public:
    * @param unit The unit of the return value.
    * @return The length value of @a key, converted to @a unit.
    */
-  double get_length(const Glib::ustring& key, Unit unit) const;
+  auto get_length(const Glib::ustring& key, Unit unit) const -> double;
 
   /** Associates a length in units of @a unit with @a key.
    *
@@ -665,7 +665,7 @@ public:
    * @param key A key.
    * @return The integer value of @a key.
    */
-  int get_int(const Glib::ustring& key) const;
+  auto get_int(const Glib::ustring& key) const -> int;
 
   /** Returns the value of @a key, interpreted as
    * an integer, or the default value.
@@ -674,7 +674,7 @@ public:
    * @param def The default value.
    * @return The integer value of @a key.
    */
-  int get_int_with_default(const Glib::ustring& key, int def) const;
+  auto get_int_with_default(const Glib::ustring& key, int def) const -> int;
 
   /** Sets @a key to an integer value.
    *
@@ -691,7 +691,7 @@ public:
    *
    * @return The printer name.
    */
-  Glib::ustring get_printer() const;
+  auto get_printer() const -> Glib::ustring;
 
   /** Convenience function to set GTK_PRINT_SETTINGS_PRINTER
    * to @a printer.
@@ -706,7 +706,7 @@ public:
    *
    * @return The orientation.
    */
-  PageOrientation get_orientation() const;
+  auto get_orientation() const -> PageOrientation;
 
   /** Sets the value of GTK_PRINT_SETTINGS_ORIENTATION.
    *
@@ -720,14 +720,14 @@ public:
    *
    * @return The paper size.
    */
-  PaperSize get_paper_size();
+  auto get_paper_size() -> PaperSize;
 
   /** Gets the value of GTK_PRINT_SETTINGS_PAPER_FORMAT,
    * converted to a `Gtk::PaperSize`.
    *
    * @return The paper size.
    */
-  const PaperSize get_paper_size() const;
+  auto get_paper_size() const -> const PaperSize;
 
   /** Sets the value of GTK_PRINT_SETTINGS_PAPER_FORMAT,
    * GTK_PRINT_SETTINGS_PAPER_WIDTH and
@@ -744,7 +744,7 @@ public:
    * @param unit The unit for the return value.
    * @return The paper width, in units of @a unit.
    */
-  double get_paper_width(Unit unit) const;
+  auto get_paper_width(Unit unit) const -> double;
 
   /** Sets the value of GTK_PRINT_SETTINGS_PAPER_WIDTH.
    *
@@ -759,7 +759,7 @@ public:
    * @param unit The unit for the return value.
    * @return The paper height, in units of @a unit.
    */
-  double get_paper_height(Unit unit) const;
+  auto get_paper_height(Unit unit) const -> double;
 
   /** Sets the value of GTK_PRINT_SETTINGS_PAPER_HEIGHT.
    *
@@ -773,7 +773,7 @@ public:
    *
    * @return Whether to use color.
    */
-  bool get_use_color() const;
+  auto get_use_color() const -> bool;
 
   /** Sets the value of GTK_PRINT_SETTINGS_USE_COLOR.
    *
@@ -786,7 +786,7 @@ public:
    *
    * @return Whether to collate the printed pages.
    */
-  bool get_collate() const;
+  auto get_collate() const -> bool;
 
   /** Sets the value of GTK_PRINT_SETTINGS_COLLATE.
    *
@@ -799,7 +799,7 @@ public:
    *
    * @return Whether to reverse the order of the printed pages.
    */
-  bool get_reverse() const;
+  auto get_reverse() const -> bool;
 
   /** Sets the value of GTK_PRINT_SETTINGS_REVERSE.
    *
@@ -812,7 +812,7 @@ public:
    *
    * @return Whether to print the output in duplex.
    */
-  PrintDuplex get_duplex() const;
+  auto get_duplex() const -> PrintDuplex;
 
   /** Sets the value of GTK_PRINT_SETTINGS_DUPLEX.
    *
@@ -825,7 +825,7 @@ public:
    *
    * @return The print quality.
    */
-  PrintQuality get_quality() const;
+  auto get_quality() const -> PrintQuality;
 
   /** Sets the value of GTK_PRINT_SETTINGS_QUALITY.
    *
@@ -838,7 +838,7 @@ public:
    *
    * @return The number of copies to print.
    */
-  int get_n_copies() const;
+  auto get_n_copies() const -> int;
 
   /** Sets the value of GTK_PRINT_SETTINGS_N_COPIES.
    *
@@ -851,7 +851,7 @@ public:
    *
    * @return The number of pages per sheet.
    */
-  int get_number_up() const;
+  auto get_number_up() const -> int;
 
   /** Sets the value of GTK_PRINT_SETTINGS_NUMBER_UP.
    *
@@ -864,7 +864,7 @@ public:
    *
    * @return Layout of page in number-up mode.
    */
-  NumberUpLayout get_number_up_layout() const;
+  auto get_number_up_layout() const -> NumberUpLayout;
 
   /** Sets the value of GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT.
    *
@@ -877,7 +877,7 @@ public:
    *
    * @return The resolution in dpi.
    */
-  int get_resolution() const;
+  auto get_resolution() const -> int;
 
   /** Sets the values of GTK_PRINT_SETTINGS_RESOLUTION,
    * GTK_PRINT_SETTINGS_RESOLUTION_X and
@@ -892,13 +892,13 @@ public:
    *
    * @return The horizontal resolution in dpi.
    */
-  int get_resolution_x() const;
+  auto get_resolution_x() const -> int;
 
   /** Gets the value of GTK_PRINT_SETTINGS_RESOLUTION_Y.
    *
    * @return The vertical resolution in dpi.
    */
-  int get_resolution_y() const;
+  auto get_resolution_y() const -> int;
 
   /** Sets the values of GTK_PRINT_SETTINGS_RESOLUTION,
    * GTK_PRINT_SETTINGS_RESOLUTION_X and
@@ -913,7 +913,7 @@ public:
    *
    * @return The resolution in lpi (lines per inch).
    */
-  double get_printer_lpi() const;
+  auto get_printer_lpi() const -> double;
 
   /** Sets the value of GTK_PRINT_SETTINGS_PRINTER_LPI.
    *
@@ -926,7 +926,7 @@ public:
    *
    * @return The scale in percent.
    */
-  double get_scale() const;
+  auto get_scale() const -> double;
 
   /** Sets the value of GTK_PRINT_SETTINGS_SCALE.
    *
@@ -939,7 +939,7 @@ public:
    *
    * @return Which pages to print.
    */
-  PrintPages get_print_pages() const;
+  auto get_print_pages() const -> PrintPages;
 
   /** Sets the value of GTK_PRINT_SETTINGS_PRINT_PAGES.
    *
@@ -947,7 +947,7 @@ public:
    */
   void set_print_pages(PrintPages pages);
 
-  std::vector<PageRange> get_page_ranges() const;
+  auto get_page_ranges() const -> std::vector<PageRange>;
   void set_page_ranges(const std::vector<PageRange>& page_ranges);
 
 
@@ -955,7 +955,7 @@ public:
    *
    * @return The set of pages to print.
    */
-  PageSet get_page_set() const;
+  auto get_page_set() const -> PageSet;
 
   /** Sets the value of GTK_PRINT_SETTINGS_PAGE_SET.
    *
@@ -968,7 +968,7 @@ public:
    *
    * @return The default source.
    */
-  Glib::ustring get_default_source() const;
+  auto get_default_source() const -> Glib::ustring;
 
   /** Sets the value of GTK_PRINT_SETTINGS_DEFAULT_SOURCE.
    *
@@ -983,7 +983,7 @@ public:
    *
    * @return The media type.
    */
-  Glib::ustring get_media_type() const;
+  auto get_media_type() const -> Glib::ustring;
 
   /** Sets the value of GTK_PRINT_SETTINGS_MEDIA_TYPE.
    *
@@ -998,7 +998,7 @@ public:
    *
    * @return The dithering that is used.
    */
-  Glib::ustring get_dither() const;
+  auto get_dither() const -> Glib::ustring;
 
   /** Sets the value of GTK_PRINT_SETTINGS_DITHER.
    *
@@ -1011,7 +1011,7 @@ public:
    *
    * @return The finishings.
    */
-  Glib::ustring get_finishings() const;
+  auto get_finishings() const -> Glib::ustring;
 
   /** Sets the value of GTK_PRINT_SETTINGS_FINISHINGS.
    *
@@ -1024,7 +1024,7 @@ public:
    *
    * @return The output bin.
    */
-  Glib::ustring get_output_bin() const;
+  auto get_output_bin() const -> Glib::ustring;
 
   /** Sets the value of GTK_PRINT_SETTINGS_OUTPUT_BIN.
    *
@@ -1062,7 +1062,7 @@ namespace Glib
    * @relates Gtk::PrintSettings
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::PrintSettings> wrap(GtkPrintSettings* object, bool take_copy = false);
+  auto wrap(GtkPrintSettings* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PrintSettings>;
 }
 
 

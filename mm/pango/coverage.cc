@@ -33,7 +33,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Pango::Coverage::Level>::value_type()
+auto Glib::Value<Pango::Coverage::Level>::value_type() -> GType
 {
   return pango_coverage_level_get_type();
 }
@@ -55,7 +55,7 @@ GType Glib::Value<Pango::Coverage::Level>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Pango::Coverage> wrap(PangoCoverage* object, bool take_copy)
+auto wrap(PangoCoverage* object, bool take_copy) -> Glib::RefPtr<Pango::Coverage>
 {
   if(take_copy && object)
     pango_coverage_ref(object);
@@ -71,7 +71,7 @@ namespace Pango
 {
 
 // static
-Glib::RefPtr<Coverage> Coverage::create()
+auto Coverage::create() -> Glib::RefPtr<Coverage>
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return Glib::make_refptr_for_instance<Coverage>(reinterpret_cast<Coverage*>(pango_coverage_new()));
@@ -89,19 +89,19 @@ void Coverage::unreference() const
   pango_coverage_unref(reinterpret_cast<PangoCoverage*>(const_cast<Coverage*>(this)));
 }
 
-PangoCoverage* Coverage::gobj()
+auto Coverage::gobj() -> PangoCoverage*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<PangoCoverage*>(this);
 }
 
-const PangoCoverage* Coverage::gobj() const
+auto Coverage::gobj() const -> const PangoCoverage*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<const PangoCoverage*>(this);
 }
 
-PangoCoverage* Coverage::gobj_copy() const
+auto Coverage::gobj_copy() const -> PangoCoverage*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   const auto gobject = reinterpret_cast<PangoCoverage*>(const_cast<Coverage*>(this));
@@ -110,7 +110,7 @@ PangoCoverage* Coverage::gobj_copy() const
 }
 
 
-Level Coverage::get(int index) const
+auto Coverage::get(int index) const -> Level
 {
   return static_cast<Level>(pango_coverage_get(const_cast<PangoCoverage*>(gobj()), index));
 }

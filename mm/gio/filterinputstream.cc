@@ -44,7 +44,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::FilterInputStream> wrap(GFilterInputStream* object, bool take_copy)
+auto wrap(GFilterInputStream* object, bool take_copy) -> Glib::RefPtr<Gio::FilterInputStream>
 {
   return Glib::make_refptr_for_instance<Gio::FilterInputStream>( dynamic_cast<Gio::FilterInputStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -59,7 +59,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& FilterInputStream_Class::init()
+auto FilterInputStream_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -90,7 +90,7 @@ void FilterInputStream_Class::class_init_function(void* g_class, void* class_dat
 }
 
 
-Glib::ObjectBase* FilterInputStream_Class::wrap_new(GObject* object)
+auto FilterInputStream_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new FilterInputStream((GFilterInputStream*)object);
 }
@@ -98,7 +98,7 @@ Glib::ObjectBase* FilterInputStream_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GFilterInputStream* FilterInputStream::gobj_copy()
+auto FilterInputStream::gobj_copy() -> GFilterInputStream*
 {
   reference();
   return gobj();
@@ -121,7 +121,7 @@ FilterInputStream::FilterInputStream(FilterInputStream&& src) noexcept
 : Gio::InputStream(std::move(src))
 {}
 
-FilterInputStream& FilterInputStream::operator=(FilterInputStream&& src) noexcept
+auto FilterInputStream::operator=(FilterInputStream&& src) noexcept -> FilterInputStream&
 {
   Gio::InputStream::operator=(std::move(src));
   return *this;
@@ -134,19 +134,19 @@ FilterInputStream::~FilterInputStream() noexcept
 
 FilterInputStream::CppClassType FilterInputStream::filterinputstream_class_; // initialize static member
 
-GType FilterInputStream::get_type()
+auto FilterInputStream::get_type() -> GType
 {
   return filterinputstream_class_.init().get_type();
 }
 
 
-GType FilterInputStream::get_base_type()
+auto FilterInputStream::get_base_type() -> GType
 {
   return g_filter_input_stream_get_type();
 }
 
 
-Glib::RefPtr<InputStream> FilterInputStream::get_base_stream()
+auto FilterInputStream::get_base_stream() -> Glib::RefPtr<InputStream>
 {
   auto retvalue = Glib::wrap(g_filter_input_stream_get_base_stream(gobj()));
   if(retvalue)
@@ -154,12 +154,12 @@ Glib::RefPtr<InputStream> FilterInputStream::get_base_stream()
   return retvalue;
 }
 
-Glib::RefPtr<const InputStream> FilterInputStream::get_base_stream() const
+auto FilterInputStream::get_base_stream() const -> Glib::RefPtr<const InputStream>
 {
   return const_cast<FilterInputStream*>(this)->get_base_stream();
 }
 
-bool FilterInputStream::get_close_base_stream() const
+auto FilterInputStream::get_close_base_stream() const -> bool
 {
   return g_filter_input_stream_get_close_base_stream(const_cast<GFilterInputStream*>(gobj()));
 }
@@ -174,17 +174,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<InputSt
   "Type Glib::RefPtr<InputStream> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InputStream> > FilterInputStream::property_base_stream() const
+auto FilterInputStream::property_base_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InputStream> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InputStream> >(this, "base-stream");
 }
 
-Glib::PropertyProxy< bool > FilterInputStream::property_close_base_stream()
+auto FilterInputStream::property_close_base_stream() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "close-base-stream");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > FilterInputStream::property_close_base_stream() const
+auto FilterInputStream::property_close_base_stream() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "close-base-stream");
 }

@@ -78,7 +78,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::UnixConnection> wrap(GUnixConnection* object, bool take_copy)
+auto wrap(GUnixConnection* object, bool take_copy) -> Glib::RefPtr<Gio::UnixConnection>
 {
   return Glib::make_refptr_for_instance<Gio::UnixConnection>( dynamic_cast<Gio::UnixConnection*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -93,7 +93,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& UnixConnection_Class::init()
+auto UnixConnection_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -124,7 +124,7 @@ void UnixConnection_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* UnixConnection_Class::wrap_new(GObject* object)
+auto UnixConnection_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new UnixConnection((GUnixConnection*)object);
 }
@@ -132,7 +132,7 @@ Glib::ObjectBase* UnixConnection_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GUnixConnection* UnixConnection::gobj_copy()
+auto UnixConnection::gobj_copy() -> GUnixConnection*
 {
   reference();
   return gobj();
@@ -155,7 +155,7 @@ UnixConnection::UnixConnection(UnixConnection&& src) noexcept
 : Gio::SocketConnection(std::move(src))
 {}
 
-UnixConnection& UnixConnection::operator=(UnixConnection&& src) noexcept
+auto UnixConnection::operator=(UnixConnection&& src) noexcept -> UnixConnection&
 {
   Gio::SocketConnection::operator=(std::move(src));
   return *this;
@@ -168,19 +168,19 @@ UnixConnection::~UnixConnection() noexcept
 
 UnixConnection::CppClassType UnixConnection::unixconnection_class_; // initialize static member
 
-GType UnixConnection::get_type()
+auto UnixConnection::get_type() -> GType
 {
   return unixconnection_class_.init().get_type();
 }
 
 
-GType UnixConnection::get_base_type()
+auto UnixConnection::get_base_type() -> GType
 {
   return g_unix_connection_get_type();
 }
 
 
-bool UnixConnection::send_fd(int fd, const Glib::RefPtr<Cancellable>& cancellable)
+auto UnixConnection::send_fd(int fd, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_unix_connection_send_fd(gobj(), fd, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -189,7 +189,7 @@ bool UnixConnection::send_fd(int fd, const Glib::RefPtr<Cancellable>& cancellabl
   return retvalue;
 }
 
-bool UnixConnection::send_fd(int fd)
+auto UnixConnection::send_fd(int fd) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_unix_connection_send_fd(gobj(), fd, nullptr, &(gerror));
@@ -198,7 +198,7 @@ bool UnixConnection::send_fd(int fd)
   return retvalue;
 }
 
-int UnixConnection::receive_fd(const Glib::RefPtr<Cancellable>& cancellable)
+auto UnixConnection::receive_fd(const Glib::RefPtr<Cancellable>& cancellable) -> int
 {
   GError* gerror = nullptr;
   auto retvalue = g_unix_connection_receive_fd(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -207,7 +207,7 @@ int UnixConnection::receive_fd(const Glib::RefPtr<Cancellable>& cancellable)
   return retvalue;
 }
 
-int UnixConnection::receive_fd()
+auto UnixConnection::receive_fd() -> int
 {
   GError* gerror = nullptr;
   auto retvalue = g_unix_connection_receive_fd(gobj(), nullptr, &(gerror));
@@ -216,7 +216,7 @@ int UnixConnection::receive_fd()
   return retvalue;
 }
 
-Glib::RefPtr<Credentials> UnixConnection::receive_credentials(const Glib::RefPtr<Cancellable>& cancellable)
+auto UnixConnection::receive_credentials(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Credentials>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_unix_connection_receive_credentials(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -225,7 +225,7 @@ Glib::RefPtr<Credentials> UnixConnection::receive_credentials(const Glib::RefPtr
   return retvalue;
 }
 
-Glib::RefPtr<Credentials> UnixConnection::receive_credentials()
+auto UnixConnection::receive_credentials() -> Glib::RefPtr<Credentials>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_unix_connection_receive_credentials(gobj(), nullptr, &(gerror)));
@@ -234,17 +234,17 @@ Glib::RefPtr<Credentials> UnixConnection::receive_credentials()
   return retvalue;
 }
 
-Glib::RefPtr<const Credentials> UnixConnection::receive_credentials(const Glib::RefPtr<Cancellable>& cancellable) const
+auto UnixConnection::receive_credentials(const Glib::RefPtr<Cancellable>& cancellable) const -> Glib::RefPtr<const Credentials>
 {
   return const_cast<UnixConnection*>(this)->receive_credentials(cancellable);
 }
 
-Glib::RefPtr<const Credentials> UnixConnection::receive_credentials() const
+auto UnixConnection::receive_credentials() const -> Glib::RefPtr<const Credentials>
 {
   return const_cast<UnixConnection*>(this)->receive_credentials();
 }
 
-Glib::RefPtr<Credentials> UnixConnection::receive_credentials_finish(const Glib::RefPtr<AsyncResult>& result)
+auto UnixConnection::receive_credentials_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<Credentials>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_unix_connection_receive_credentials_finish(gobj(), Glib::unwrap(result), &(gerror)));
@@ -253,7 +253,7 @@ Glib::RefPtr<Credentials> UnixConnection::receive_credentials_finish(const Glib:
   return retvalue;
 }
 
-bool UnixConnection::send_credentials(const Glib::RefPtr<Cancellable>& cancellable)
+auto UnixConnection::send_credentials(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_unix_connection_send_credentials(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -262,7 +262,7 @@ bool UnixConnection::send_credentials(const Glib::RefPtr<Cancellable>& cancellab
   return retvalue;
 }
 
-bool UnixConnection::send_credentials()
+auto UnixConnection::send_credentials() -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_unix_connection_send_credentials(gobj(), nullptr, &(gerror));
@@ -271,7 +271,7 @@ bool UnixConnection::send_credentials()
   return retvalue;
 }
 
-bool UnixConnection::send_credentials_finish(const Glib::RefPtr<AsyncResult>& result)
+auto UnixConnection::send_credentials_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_unix_connection_send_credentials_finish(gobj(), Glib::unwrap(result), &(gerror));

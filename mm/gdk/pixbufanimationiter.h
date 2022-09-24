@@ -59,7 +59,7 @@ public:
 
   // noncopyable
   PixbufAnimationIter(const PixbufAnimationIter&) = delete;
-  PixbufAnimationIter& operator=(const PixbufAnimationIter&) = delete;
+  auto operator=(const PixbufAnimationIter&) -> PixbufAnimationIter& = delete;
 
 private:  friend class PixbufAnimationIter_Class;
   static CppClassType pixbufanimationiter_class_;
@@ -73,28 +73,28 @@ protected:
 public:
 
   PixbufAnimationIter(PixbufAnimationIter&& src) noexcept;
-  PixbufAnimationIter& operator=(PixbufAnimationIter&& src) noexcept;
+  auto operator=(PixbufAnimationIter&& src) noexcept -> PixbufAnimationIter&;
 
   ~PixbufAnimationIter() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkPixbufAnimationIter*       gobj()       { return reinterpret_cast<GdkPixbufAnimationIter*>(gobject_); }
+  auto       gobj() -> GdkPixbufAnimationIter*       { return reinterpret_cast<GdkPixbufAnimationIter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkPixbufAnimationIter* gobj() const { return reinterpret_cast<GdkPixbufAnimationIter*>(gobject_); }
+  auto gobj() const -> const GdkPixbufAnimationIter* { return reinterpret_cast<GdkPixbufAnimationIter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkPixbufAnimationIter* gobj_copy();
+  auto gobj_copy() -> GdkPixbufAnimationIter*;
 
 private:
 
@@ -113,7 +113,7 @@ public:
    *
    * @return Delay time in milliseconds (thousandths of a second).
    */
-  int get_delay_time() const;
+  auto get_delay_time() const -> int;
 
 
   /** Gets the current pixbuf which should be displayed; the pixbuf will
@@ -129,7 +129,7 @@ public:
    *
    * @return The pixbuf to be displayed.
    */
-  Glib::RefPtr<Gdk::Pixbuf> get_pixbuf();
+  auto get_pixbuf() -> Glib::RefPtr<Gdk::Pixbuf>;
 
   /** Gets the current pixbuf which should be displayed; the pixbuf will
    * be the same size as the animation itself
@@ -144,7 +144,7 @@ public:
    *
    * @return The pixbuf to be displayed.
    */
-  Glib::RefPtr<const Gdk::Pixbuf> get_pixbuf() const;
+  auto get_pixbuf() const -> Glib::RefPtr<const Gdk::Pixbuf>;
 
 
   /** Used to determine how to respond to the area_updated signal on
@@ -157,7 +157,7 @@ public:
    *
    * @return <tt>true</tt> if the frame we're on is partially loaded, or the last frame.
    */
-  bool on_currently_loading_frame() const;
+  auto on_currently_loading_frame() const -> bool;
 
   /** Possibly advances an animation to a new frame. Chooses the frame based
    * on the start time passed to Gdk::PixbufAnimation::get_iter().
@@ -180,7 +180,7 @@ public:
    * @param current_time Current time.
    * @return <tt>true</tt> if the image may need updating.
    */
-  bool advance(gint64 current_time = g_get_real_time());
+  auto advance(gint64 current_time = g_get_real_time()) -> bool;
 
 
 public:
@@ -210,7 +210,7 @@ namespace Glib
    * @relates Gdk::PixbufAnimationIter
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::PixbufAnimationIter> wrap(GdkPixbufAnimationIter* object, bool take_copy = false);
+  auto wrap(GdkPixbufAnimationIter* object, bool take_copy = false) -> Glib::RefPtr<Gdk::PixbufAnimationIter>;
 }
 
 

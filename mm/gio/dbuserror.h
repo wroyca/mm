@@ -28,10 +28,7 @@
 #include <mm/glib/error.h>
 
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 //The GMMPROC_EXTRA_NAMESPACE() macro is a hint to generate_wrap_init.pl to put it in the DBus sub-namespace
@@ -242,7 +239,7 @@ public:
 
   GIOMM_API Error(Code error_code, const Glib::ustring& error_message);
   GIOMM_API explicit Error(GError* gobject);
-  GIOMM_API Code code() const;
+  GIOMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -254,8 +251,6 @@ private:
   #endif //DOXYGEN_SHOULD_SKIP_THIS
 };
 
-
-} //namespace DBus
 
 } // namespace Gio
 

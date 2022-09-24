@@ -67,7 +67,7 @@ public:
 
   // noncopyable
   Constraint(const Constraint&) = delete;
-  Constraint& operator=(const Constraint&) = delete;
+  auto operator=(const Constraint&) -> Constraint& = delete;
 
 private:  friend class Constraint_Class;
   static CppClassType constraint_class_;
@@ -81,28 +81,28 @@ protected:
 public:
 
   Constraint(Constraint&& src) noexcept;
-  Constraint& operator=(Constraint&& src) noexcept;
+  auto operator=(Constraint&& src) noexcept -> Constraint&;
 
   ~Constraint() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkConstraint*       gobj()       { return reinterpret_cast<GtkConstraint*>(gobject_); }
+  auto       gobj() -> GtkConstraint*       { return reinterpret_cast<GtkConstraint*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkConstraint* gobj() const { return reinterpret_cast<GtkConstraint*>(gobject_); }
+  auto gobj() const -> const GtkConstraint* { return reinterpret_cast<GtkConstraint*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkConstraint* gobj_copy();
+  auto gobj_copy() -> GtkConstraint*;
 
 private:
 
@@ -274,7 +274,7 @@ public:
    * @return The newly created %Gtk::Constraint.
    */
 
-  static Glib::RefPtr<Constraint> create(const Glib::RefPtr<ConstraintTarget>& target, Attribute target_attribute, Relation relation, const Glib::RefPtr<ConstraintTarget>& source, Attribute source_attribute, double multiplier, double constant, int strength);
+  static auto create(const Glib::RefPtr<ConstraintTarget>& target, Attribute target_attribute, Relation relation, const Glib::RefPtr<ConstraintTarget>& source, Attribute source_attribute, double multiplier, double constant, int strength) -> Glib::RefPtr<Constraint>;
 
 
   /** Creates a new %Gtk::Constraint representing a relation between a layout
@@ -288,7 +288,7 @@ public:
    * @return The newly created %Gtk::Constraint.
    */
 
-  static Glib::RefPtr<Constraint> create(const Glib::RefPtr<ConstraintTarget>& target, Attribute target_attribute, Relation relation, double constant, int strength);
+  static auto create(const Glib::RefPtr<ConstraintTarget>& target, Attribute target_attribute, Relation relation, double constant, int strength) -> Glib::RefPtr<Constraint>;
 
 
   /** Retrieves the Gtk::ConstraintTarget used as the target for
@@ -299,7 +299,7 @@ public:
    *
    * @return A `Gtk::ConstraintTarget`.
    */
-  Glib::RefPtr<ConstraintTarget> get_target();
+  auto get_target() -> Glib::RefPtr<ConstraintTarget>;
 
   /** Retrieves the Gtk::ConstraintTarget used as the target for
    * the constraint.
@@ -309,13 +309,13 @@ public:
    *
    * @return A `Gtk::ConstraintTarget`.
    */
-  Glib::RefPtr<const ConstraintTarget> get_target() const;
+  auto get_target() const -> Glib::RefPtr<const ConstraintTarget>;
 
   /** Retrieves the attribute of the target to be set by the constraint.
    *
    * @return The target's attribute.
    */
-  Attribute get_target_attribute() const;
+  auto get_target_attribute() const -> Attribute;
 
   /** Retrieves the Gtk::ConstraintTarget used as the source for the
    * constraint.
@@ -325,7 +325,7 @@ public:
    *
    * @return The source of the constraint.
    */
-  Glib::RefPtr<ConstraintTarget> get_source();
+  auto get_source() -> Glib::RefPtr<ConstraintTarget>;
 
   /** Retrieves the Gtk::ConstraintTarget used as the source for the
    * constraint.
@@ -335,59 +335,59 @@ public:
    *
    * @return The source of the constraint.
    */
-  Glib::RefPtr<const ConstraintTarget> get_source() const;
+  auto get_source() const -> Glib::RefPtr<const ConstraintTarget>;
 
   /** Retrieves the attribute of the source to be read by the constraint.
    *
    * @return The source's attribute.
    */
-  Attribute get_source_attribute() const;
+  auto get_source_attribute() const -> Attribute;
 
   /** The order relation between the terms of the constraint.
    *
    * @return A relation type.
    */
-  Relation get_relation() const;
+  auto get_relation() const -> Relation;
 
   /** Retrieves the multiplication factor applied to the source
    * attribute's value.
    *
    * @return A multiplication factor.
    */
-  double get_multiplier() const;
+  auto get_multiplier() const -> double;
 
   /** Retrieves the constant factor added to the source attributes' value.
    *
    * @return A constant factor.
    */
-  double get_constant() const;
+  auto get_constant() const -> double;
 
   /** Retrieves the strength of the constraint.
    *
    * @return The strength value.
    */
-  int get_strength() const;
+  auto get_strength() const -> int;
 
   /** Checks whether the constraint is a required relation for solving the
    * constraint layout.
    *
    * @return <tt>true</tt> if the constraint is required.
    */
-  bool is_required() const;
+  auto is_required() const -> bool;
 
   /** Checks whether the constraint is attached to a Gtk::ConstraintLayout,
    * and it is contributing to the layout.
    *
    * @return <tt>true</tt> if the constraint is attached.
    */
-  bool is_attached() const;
+  auto is_attached() const -> bool;
 
   /** Checks whether the constraint describes a relation between an attribute
    * on the property_target() and a constant value.
    *
    * @return <tt>true</tt> if the constraint is a constant relation.
    */
-  bool is_constant() const;
+  auto is_constant() const -> bool;
 
   /** The target of the constraint.
    *
@@ -398,7 +398,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ConstraintTarget> > property_target() const;
+  auto property_target() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ConstraintTarget> >;
 
 
   /** The attribute of the property_target() set by the constraint.
@@ -408,7 +408,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Attribute > property_target_attribute() const;
+  auto property_target_attribute() const -> Glib::PropertyProxy_ReadOnly< Attribute >;
 
 
   /** The order relation between the terms of the constraint.
@@ -418,7 +418,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Relation > property_relation() const;
+  auto property_relation() const -> Glib::PropertyProxy_ReadOnly< Relation >;
 
 
   /** The source of the constraint.
@@ -430,7 +430,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ConstraintTarget> > property_source() const;
+  auto property_source() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ConstraintTarget> >;
 
 
   /** The attribute of the property_source() read by the
@@ -441,7 +441,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Attribute > property_source_attribute() const;
+  auto property_source_attribute() const -> Glib::PropertyProxy_ReadOnly< Attribute >;
 
 
   /** The multiplication factor to be applied to
@@ -452,7 +452,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_multiplier() const;
+  auto property_multiplier() const -> Glib::PropertyProxy_ReadOnly< double >;
 
 
   /** The constant value to be added to the property_source_attribute().
@@ -462,7 +462,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_constant() const;
+  auto property_constant() const -> Glib::PropertyProxy_ReadOnly< double >;
 
 
   /** The strength of the constraint.
@@ -476,7 +476,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_strength() const;
+  auto property_strength() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
 public:
@@ -503,7 +503,7 @@ template <>
 class GTKMM_API Value<Gtk::Constraint::Attribute> : public Glib::Value_Enum<Gtk::Constraint::Attribute>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -518,7 +518,7 @@ template <>
 class GTKMM_API Value<Gtk::Constraint::Relation> : public Glib::Value_Enum<Gtk::Constraint::Relation>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -533,7 +533,7 @@ template <>
 class GTKMM_API Value<Gtk::Constraint::Strength> : public Glib::Value_Enum<Gtk::Constraint::Strength>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -551,7 +551,7 @@ namespace Glib
    * @relates Gtk::Constraint
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Constraint> wrap(GtkConstraint* object, bool take_copy = false);
+  auto wrap(GtkConstraint* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Constraint>;
 }
 
 

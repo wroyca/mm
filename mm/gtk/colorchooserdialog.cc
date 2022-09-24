@@ -46,7 +46,7 @@ namespace
 namespace Glib
 {
 
-Gtk::ColorChooserDialog* wrap(GtkColorChooserDialog* object, bool take_copy)
+auto wrap(GtkColorChooserDialog* object, bool take_copy) -> Gtk::ColorChooserDialog*
 {
   return dynamic_cast<Gtk::ColorChooserDialog *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -59,7 +59,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ColorChooserDialog_Class::init()
+auto ColorChooserDialog_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -90,7 +90,7 @@ void ColorChooserDialog_Class::class_init_function(void* g_class, void* class_da
 }
 
 
-Glib::ObjectBase* ColorChooserDialog_Class::wrap_new(GObject* o)
+auto ColorChooserDialog_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return new ColorChooserDialog((GtkColorChooserDialog*)(o)); //top-level windows can not be manage()ed.
 
@@ -116,7 +116,7 @@ ColorChooserDialog::ColorChooserDialog(ColorChooserDialog&& src) noexcept
 : Gtk::Dialog(std::move(src))
 {}
 
-ColorChooserDialog& ColorChooserDialog::operator=(ColorChooserDialog&& src) noexcept
+auto ColorChooserDialog::operator=(ColorChooserDialog&& src) noexcept -> ColorChooserDialog&
 {
   Gtk::Dialog::operator=(std::move(src));
   return *this;
@@ -129,13 +129,13 @@ ColorChooserDialog::~ColorChooserDialog() noexcept
 
 ColorChooserDialog::CppClassType ColorChooserDialog::colorchooserdialog_class_; // initialize static member
 
-GType ColorChooserDialog::get_type()
+auto ColorChooserDialog::get_type() -> GType
 {
   return colorchooserdialog_class_.init().get_type();
 }
 
 
-GType ColorChooserDialog::get_base_type()
+auto ColorChooserDialog::get_base_type() -> GType
 {
   return gtk_color_chooser_dialog_get_type();
 }
@@ -162,12 +162,12 @@ ColorChooserDialog::ColorChooserDialog(const Glib::ustring& title, Window& trans
 }
 
 
-Glib::PropertyProxy< bool > ColorChooserDialog::property_show_editor()
+auto ColorChooserDialog::property_show_editor() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "show-editor");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > ColorChooserDialog::property_show_editor() const
+auto ColorChooserDialog::property_show_editor() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "show-editor");
 }

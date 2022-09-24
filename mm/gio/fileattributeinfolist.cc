@@ -33,14 +33,14 @@ FileAttributeInfoList::operator bool() const
   return !empty();
 }
 
-bool
-FileAttributeInfoList::empty() const
+auto
+FileAttributeInfoList::empty() const -> bool
 {
   return gobj() == nullptr;
 }
 
-FileAttributeInfo
-FileAttributeInfoList::lookup(const std::string& name) const
+auto
+FileAttributeInfoList::lookup(const std::string& name) const -> FileAttributeInfo
 {
   auto cobject = const_cast<GFileAttributeInfoList*>(gobj());
   const GFileAttributeInfo* cinfo = g_file_attribute_info_list_lookup(cobject, name.c_str());
@@ -72,7 +72,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::FileAttributeInfoList> wrap(GFileAttributeInfoList* object, bool take_copy)
+auto wrap(GFileAttributeInfoList* object, bool take_copy) -> Glib::RefPtr<Gio::FileAttributeInfoList>
 {
   if(take_copy && object)
     g_file_attribute_info_list_ref(object);
@@ -88,7 +88,7 @@ namespace Gio
 {
 
 // static
-Glib::RefPtr<FileAttributeInfoList> FileAttributeInfoList::create()
+auto FileAttributeInfoList::create() -> Glib::RefPtr<FileAttributeInfoList>
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return Glib::make_refptr_for_instance<FileAttributeInfoList>(reinterpret_cast<FileAttributeInfoList*>(g_file_attribute_info_list_new()));
@@ -106,19 +106,19 @@ void FileAttributeInfoList::unreference() const
   g_file_attribute_info_list_unref(reinterpret_cast<GFileAttributeInfoList*>(const_cast<FileAttributeInfoList*>(this)));
 }
 
-GFileAttributeInfoList* FileAttributeInfoList::gobj()
+auto FileAttributeInfoList::gobj() -> GFileAttributeInfoList*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<GFileAttributeInfoList*>(this);
 }
 
-const GFileAttributeInfoList* FileAttributeInfoList::gobj() const
+auto FileAttributeInfoList::gobj() const -> const GFileAttributeInfoList*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<const GFileAttributeInfoList*>(this);
 }
 
-GFileAttributeInfoList* FileAttributeInfoList::gobj_copy() const
+auto FileAttributeInfoList::gobj_copy() const -> GFileAttributeInfoList*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   const auto gobject = reinterpret_cast<GFileAttributeInfoList*>(const_cast<FileAttributeInfoList*>(this));
@@ -127,7 +127,7 @@ GFileAttributeInfoList* FileAttributeInfoList::gobj_copy() const
 }
 
 
-Glib::RefPtr<FileAttributeInfoList> FileAttributeInfoList::dup() const
+auto FileAttributeInfoList::dup() const -> Glib::RefPtr<FileAttributeInfoList>
 {
   return Glib::wrap(g_file_attribute_info_list_dup(const_cast<GFileAttributeInfoList*>(gobj())));
 }

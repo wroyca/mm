@@ -69,7 +69,7 @@ public:
 
   // noncopyable
   EventControllerKey(const EventControllerKey&) = delete;
-  EventControllerKey& operator=(const EventControllerKey&) = delete;
+  auto operator=(const EventControllerKey&) -> EventControllerKey& = delete;
 
 private:  friend class EventControllerKey_Class;
   static CppClassType eventcontrollerkey_class_;
@@ -83,28 +83,28 @@ protected:
 public:
 
   EventControllerKey(EventControllerKey&& src) noexcept;
-  EventControllerKey& operator=(EventControllerKey&& src) noexcept;
+  auto operator=(EventControllerKey&& src) noexcept -> EventControllerKey&;
 
   ~EventControllerKey() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkEventControllerKey*       gobj()       { return reinterpret_cast<GtkEventControllerKey*>(gobject_); }
+  auto       gobj() -> GtkEventControllerKey*       { return reinterpret_cast<GtkEventControllerKey*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkEventControllerKey* gobj() const { return reinterpret_cast<GtkEventControllerKey*>(gobject_); }
+  auto gobj() const -> const GtkEventControllerKey* { return reinterpret_cast<GtkEventControllerKey*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkEventControllerKey* gobj_copy();
+  auto gobj_copy() -> GtkEventControllerKey*;
 
 private:
 
@@ -114,7 +114,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<EventControllerKey> create();
+  static auto create() -> Glib::RefPtr<EventControllerKey>;
 
 
   //TODO: GtkIMContext has not (yet) been wrapped in gtkmm.
@@ -133,7 +133,7 @@ public:
    * @param widget A `Gtk::Widget`.
    * @return Whether the @a widget handled the event.
    */
-  bool forward(Widget& widget);
+  auto forward(Widget& widget) -> bool;
 
   /** Gets the key group of the current event of this @a controller.
    *
@@ -141,7 +141,7 @@ public:
    *
    * @return The key group.
    */
-  guint get_group() const;
+  auto get_group() const -> guint;
 
   // no_default_handler because GtkEventControllerKeyClass is private.
 
@@ -159,7 +159,7 @@ public:
    * @return <tt>true</tt> if the key press was handled, <tt>false</tt> otherwise.
    */
 
-  Glib::SignalProxy<bool(guint, guint, Gdk::ModifierType)> signal_key_pressed();
+  auto signal_key_pressed() -> Glib::SignalProxy<bool(guint, guint, Gdk::ModifierType)>;
 
 
   /**
@@ -175,7 +175,7 @@ public:
    * @param state The bitmask, representing the state of modifier keys and pointer buttons. See `Gdk::ModifierType`.
    */
 
-  Glib::SignalProxy<void(guint, guint, Gdk::ModifierType)> signal_key_released();
+  auto signal_key_released() -> Glib::SignalProxy<void(guint, guint, Gdk::ModifierType)>;
 
 
   /**
@@ -191,7 +191,7 @@ public:
    * pointer buttons. See Gdk::ModifierType.
    */
 
-  Glib::SignalProxy<bool(Gdk::ModifierType)> signal_modifiers();
+  auto signal_modifiers() -> Glib::SignalProxy<bool(Gdk::ModifierType)>;
 
 
   /**
@@ -207,7 +207,7 @@ public:
    * Gtk::IMContext::filter_keypress().
    */
 
-  Glib::SignalProxy<void()> signal_im_update();
+  auto signal_im_update() -> Glib::SignalProxy<void()>;
 
 
 public:
@@ -237,7 +237,7 @@ namespace Glib
    * @relates Gtk::EventControllerKey
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::EventControllerKey> wrap(GtkEventControllerKey* object, bool take_copy = false);
+  auto wrap(GtkEventControllerKey* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerKey>;
 }
 
 

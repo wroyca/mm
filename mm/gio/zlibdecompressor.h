@@ -62,7 +62,7 @@ public:
 
   // noncopyable
   ZlibDecompressor(const ZlibDecompressor&) = delete;
-  ZlibDecompressor& operator=(const ZlibDecompressor&) = delete;
+  auto operator=(const ZlibDecompressor&) -> ZlibDecompressor& = delete;
 
 private:  friend class ZlibDecompressor_Class;
   static CppClassType zlibdecompressor_class_;
@@ -76,28 +76,28 @@ protected:
 public:
 
   ZlibDecompressor(ZlibDecompressor&& src) noexcept;
-  ZlibDecompressor& operator=(ZlibDecompressor&& src) noexcept;
+  auto operator=(ZlibDecompressor&& src) noexcept -> ZlibDecompressor&;
 
   ~ZlibDecompressor() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GZlibDecompressor*       gobj()       { return reinterpret_cast<GZlibDecompressor*>(gobject_); }
+  auto       gobj() -> GZlibDecompressor*       { return reinterpret_cast<GZlibDecompressor*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GZlibDecompressor* gobj() const { return reinterpret_cast<GZlibDecompressor*>(gobject_); }
+  auto gobj() const -> const GZlibDecompressor* { return reinterpret_cast<GZlibDecompressor*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GZlibDecompressor* gobj_copy();
+  auto gobj_copy() -> GZlibDecompressor*;
 
 private:
 
@@ -117,7 +117,7 @@ public:
    */
 
 
-  static Glib::RefPtr<ZlibDecompressor> create(ZlibCompressorFormat format);
+  static auto create(ZlibCompressorFormat format) -> Glib::RefPtr<ZlibDecompressor>;
 
 
   /** Retrieves the FileInfo constructed from the GZIP header data
@@ -130,7 +130,7 @@ public:
    *
    * @return A FileInfo, or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<FileInfo> get_file_info();
+  auto get_file_info() -> Glib::RefPtr<FileInfo>;
 
   /** Retrieves the FileInfo constructed from the GZIP header data
    * of compressed data processed by @a compressor, or <tt>nullptr</tt> if @a decompressor's
@@ -142,7 +142,7 @@ public:
    *
    * @return A FileInfo, or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<const FileInfo> get_file_info() const;
+  auto get_file_info() const -> Glib::RefPtr<const FileInfo>;
 
   /** A FileInfo containing the information found in the GZIP header
    * of the data stream processed, or <tt>nullptr</tt> if the header was not yet
@@ -154,7 +154,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<FileInfo> > property_file_info() const;
+  auto property_file_info() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<FileInfo> >;
 
 
   /** The format of the compressed data.
@@ -164,7 +164,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< ZlibCompressorFormat > property_format() const;
+  auto property_format() const -> Glib::PropertyProxy_ReadOnly< ZlibCompressorFormat >;
 
 
 public:
@@ -194,7 +194,7 @@ namespace Glib
    * @relates Gio::ZlibDecompressor
    */
   GIOMM_API
-  Glib::RefPtr<Gio::ZlibDecompressor> wrap(GZlibDecompressor* object, bool take_copy = false);
+  auto wrap(GZlibDecompressor* object, bool take_copy = false) -> Glib::RefPtr<Gio::ZlibDecompressor>;
 }
 
 

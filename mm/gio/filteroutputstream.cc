@@ -44,7 +44,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::FilterOutputStream> wrap(GFilterOutputStream* object, bool take_copy)
+auto wrap(GFilterOutputStream* object, bool take_copy) -> Glib::RefPtr<Gio::FilterOutputStream>
 {
   return Glib::make_refptr_for_instance<Gio::FilterOutputStream>( dynamic_cast<Gio::FilterOutputStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -59,7 +59,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& FilterOutputStream_Class::init()
+auto FilterOutputStream_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -90,7 +90,7 @@ void FilterOutputStream_Class::class_init_function(void* g_class, void* class_da
 }
 
 
-Glib::ObjectBase* FilterOutputStream_Class::wrap_new(GObject* object)
+auto FilterOutputStream_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new FilterOutputStream((GFilterOutputStream*)object);
 }
@@ -98,7 +98,7 @@ Glib::ObjectBase* FilterOutputStream_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GFilterOutputStream* FilterOutputStream::gobj_copy()
+auto FilterOutputStream::gobj_copy() -> GFilterOutputStream*
 {
   reference();
   return gobj();
@@ -121,7 +121,7 @@ FilterOutputStream::FilterOutputStream(FilterOutputStream&& src) noexcept
 : Gio::OutputStream(std::move(src))
 {}
 
-FilterOutputStream& FilterOutputStream::operator=(FilterOutputStream&& src) noexcept
+auto FilterOutputStream::operator=(FilterOutputStream&& src) noexcept -> FilterOutputStream&
 {
   Gio::OutputStream::operator=(std::move(src));
   return *this;
@@ -134,19 +134,19 @@ FilterOutputStream::~FilterOutputStream() noexcept
 
 FilterOutputStream::CppClassType FilterOutputStream::filteroutputstream_class_; // initialize static member
 
-GType FilterOutputStream::get_type()
+auto FilterOutputStream::get_type() -> GType
 {
   return filteroutputstream_class_.init().get_type();
 }
 
 
-GType FilterOutputStream::get_base_type()
+auto FilterOutputStream::get_base_type() -> GType
 {
   return g_filter_output_stream_get_type();
 }
 
 
-Glib::RefPtr<OutputStream> FilterOutputStream::get_base_stream()
+auto FilterOutputStream::get_base_stream() -> Glib::RefPtr<OutputStream>
 {
   auto retvalue = Glib::wrap(g_filter_output_stream_get_base_stream(gobj()));
   if(retvalue)
@@ -154,12 +154,12 @@ Glib::RefPtr<OutputStream> FilterOutputStream::get_base_stream()
   return retvalue;
 }
 
-Glib::RefPtr<const OutputStream> FilterOutputStream::get_base_stream() const
+auto FilterOutputStream::get_base_stream() const -> Glib::RefPtr<const OutputStream>
 {
   return const_cast<FilterOutputStream*>(this)->get_base_stream();
 }
 
-bool FilterOutputStream::get_close_base_stream() const
+auto FilterOutputStream::get_close_base_stream() const -> bool
 {
   return g_filter_output_stream_get_close_base_stream(const_cast<GFilterOutputStream*>(gobj()));
 }
@@ -174,12 +174,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<OutputS
   "Type Glib::RefPtr<OutputStream> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<OutputStream> > FilterOutputStream::property_base_stream() const
+auto FilterOutputStream::property_base_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<OutputStream> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<OutputStream> >(this, "base-stream");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > FilterOutputStream::property_close_base_stream() const
+auto FilterOutputStream::property_close_base_stream() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "close-base-stream");
 }

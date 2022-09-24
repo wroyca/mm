@@ -65,7 +65,7 @@ public:
 
   GIOMM_API ResourceError(Code error_code, const Glib::ustring& error_message);
   GIOMM_API explicit ResourceError(GError* gobject);
-  GIOMM_API Code code() const;
+  GIOMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -188,19 +188,19 @@ class GIOMM_API Resource final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GResource*       gobj();
+  auto       gobj() -> GResource*;
 
   ///Provides access to the underlying C instance.
-  const GResource* gobj() const;
+  auto gobj() const -> const GResource*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GResource* gobj_copy() const;
+  auto gobj_copy() const -> GResource*;
 
   Resource() = delete;
 
   // noncopyable
   Resource(const Resource&) = delete;
-  Resource& operator=(const Resource&) = delete;
+  auto operator=(const Resource&) -> Resource& = delete;
 
 protected:
   // Do not derive this.  Gio::Resource can neither be constructed nor deleted.
@@ -290,7 +290,7 @@ public:
    *
    * @throws Glib::FileError
    */
-  static Glib::RefPtr<Resource> create_from_data(const Glib::RefPtr<const Glib::Bytes>& data);
+  static auto create_from_data(const Glib::RefPtr<const Glib::Bytes>& data) -> Glib::RefPtr<Resource>;
 
   /** Loads a binary resource bundle and creates a Resource representation of it, allowing
    * you to query it for data.
@@ -310,7 +310,7 @@ public:
    *
    * @throws Glib::FileError
    */
-  static Glib::RefPtr<Resource> create_from_file(const std::string& filename);
+  static auto create_from_file(const std::string& filename) -> Glib::RefPtr<Resource>;
 
   /** Looks for a file at the specified @a path in the resource and
    * returns a InputStream that lets you read the data.
@@ -326,7 +326,7 @@ public:
    *
    * @throws Gio::ResourceError
    */
-  Glib::RefPtr<InputStream> open_stream(const std::string& path, LookupFlags lookup_flags =  LookupFlags::NONE) const;
+  auto open_stream(const std::string& path, LookupFlags lookup_flags =  LookupFlags::NONE) const -> Glib::RefPtr<InputStream>;
 
   /** Looks for a file at the specified @a path in the resource and
    * returns a Bytes that lets you directly access the data in
@@ -352,7 +352,7 @@ public:
    *
    * @throws Gio::ResourceError
    */
-  Glib::RefPtr<const Glib::Bytes> lookup_data(const std::string& path, LookupFlags lookup_flags =  LookupFlags::NONE) const;
+  auto lookup_data(const std::string& path, LookupFlags lookup_flags =  LookupFlags::NONE) const -> Glib::RefPtr<const Glib::Bytes>;
 
 
   /** Returns all the names of children at the specified @a path in the resource.
@@ -370,7 +370,7 @@ public:
    *
    * @throws Gio::ResourceError
    */
-  std::vector<std::string> enumerate_children(const std::string& path, LookupFlags lookup_flags =  LookupFlags::NONE) const;
+  auto enumerate_children(const std::string& path, LookupFlags lookup_flags =  LookupFlags::NONE) const -> std::vector<std::string>;
 
   /** Looks for a file at the specified @a path in the resource and
    * if found returns information about it.
@@ -411,7 +411,7 @@ public:
    * @param lookup_flags A LookupFlags.
    * @return <tt>true</tt> if the file was found, <tt>false</tt> if there were errors.
    */
-  bool get_file_exists_nothrow(const std::string& path, LookupFlags lookup_flags = LookupFlags::NONE) const;
+  auto get_file_exists_nothrow(const std::string& path, LookupFlags lookup_flags = LookupFlags::NONE) const -> bool;
 
   // 'register' is a keyword. Can't be the name of a method.
 
@@ -444,7 +444,7 @@ public:
    *
    * @throws Gio::ResourceError
    */
-  static Glib::RefPtr<InputStream> open_stream_global(const std::string& path, LookupFlags lookup_flags =  LookupFlags::NONE);
+  static auto open_stream_global(const std::string& path, LookupFlags lookup_flags =  LookupFlags::NONE) -> Glib::RefPtr<InputStream>;
 
   /** Looks for a file at the specified @a path in the set of
    * globally registered resources and returns a Bytes that
@@ -470,7 +470,7 @@ public:
    *
    * @throws Gio::ResourceError
    */
-  static Glib::RefPtr<const Glib::Bytes> lookup_data_global(const std::string& path, LookupFlags lookup_flags =  LookupFlags::NONE);
+  static auto lookup_data_global(const std::string& path, LookupFlags lookup_flags =  LookupFlags::NONE) -> Glib::RefPtr<const Glib::Bytes>;
 
   /** Returns all the names of children at the specified @a path in the set of
    * globally registered resources.
@@ -485,7 +485,7 @@ public:
    *
    * @throws Gio::ResourceError
    */
-  static std::vector<std::string> enumerate_children_global(const std::string& path, LookupFlags lookup_flags =  LookupFlags::NONE);
+  static auto enumerate_children_global(const std::string& path, LookupFlags lookup_flags =  LookupFlags::NONE) -> std::vector<std::string>;
 
   /** Looks for a file at the specified @a path in the set of
    * globally registered resources and if found returns information about it.
@@ -528,7 +528,7 @@ public:
    * @param lookup_flags A LookupFlags.
    * @return <tt>true</tt> if the file was found, <tt>false</tt> if there were errors.
    */
-  static bool get_file_exists_global_nothrow(const std::string& path, LookupFlags lookup_flags = LookupFlags::NONE);
+  static auto get_file_exists_global_nothrow(const std::string& path, LookupFlags lookup_flags = LookupFlags::NONE) -> bool;
 
 
 };
@@ -539,31 +539,31 @@ namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline Resource::Flags operator|(Resource::Flags lhs, Resource::Flags rhs)
+inline auto operator|(Resource::Flags lhs, Resource::Flags rhs) -> Resource::Flags
   { return static_cast<Resource::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Resource::Flags operator&(Resource::Flags lhs, Resource::Flags rhs)
+inline auto operator&(Resource::Flags lhs, Resource::Flags rhs) -> Resource::Flags
   { return static_cast<Resource::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Resource::Flags operator^(Resource::Flags lhs, Resource::Flags rhs)
+inline auto operator^(Resource::Flags lhs, Resource::Flags rhs) -> Resource::Flags
   { return static_cast<Resource::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Resource::Flags operator~(Resource::Flags flags)
+inline auto operator~(Resource::Flags flags) -> Resource::Flags
   { return static_cast<Resource::Flags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline Resource::Flags& operator|=(Resource::Flags& lhs, Resource::Flags rhs)
+inline auto operator|=(Resource::Flags& lhs, Resource::Flags rhs) -> Resource::Flags&
   { return (lhs = static_cast<Resource::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Resource::Flags& operator&=(Resource::Flags& lhs, Resource::Flags rhs)
+inline auto operator&=(Resource::Flags& lhs, Resource::Flags rhs) -> Resource::Flags&
   { return (lhs = static_cast<Resource::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Resource::Flags& operator^=(Resource::Flags& lhs, Resource::Flags rhs)
+inline auto operator^=(Resource::Flags& lhs, Resource::Flags rhs) -> Resource::Flags&
   { return (lhs = static_cast<Resource::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 
@@ -575,7 +575,7 @@ template <>
 class GIOMM_API Value<Gio::Resource::Flags> : public Glib::Value_Flags<Gio::Resource::Flags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -585,31 +585,31 @@ namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline Resource::LookupFlags operator|(Resource::LookupFlags lhs, Resource::LookupFlags rhs)
+inline auto operator|(Resource::LookupFlags lhs, Resource::LookupFlags rhs) -> Resource::LookupFlags
   { return static_cast<Resource::LookupFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Resource::LookupFlags operator&(Resource::LookupFlags lhs, Resource::LookupFlags rhs)
+inline auto operator&(Resource::LookupFlags lhs, Resource::LookupFlags rhs) -> Resource::LookupFlags
   { return static_cast<Resource::LookupFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Resource::LookupFlags operator^(Resource::LookupFlags lhs, Resource::LookupFlags rhs)
+inline auto operator^(Resource::LookupFlags lhs, Resource::LookupFlags rhs) -> Resource::LookupFlags
   { return static_cast<Resource::LookupFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Resource::LookupFlags operator~(Resource::LookupFlags flags)
+inline auto operator~(Resource::LookupFlags flags) -> Resource::LookupFlags
   { return static_cast<Resource::LookupFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline Resource::LookupFlags& operator|=(Resource::LookupFlags& lhs, Resource::LookupFlags rhs)
+inline auto operator|=(Resource::LookupFlags& lhs, Resource::LookupFlags rhs) -> Resource::LookupFlags&
   { return (lhs = static_cast<Resource::LookupFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Resource::LookupFlags& operator&=(Resource::LookupFlags& lhs, Resource::LookupFlags rhs)
+inline auto operator&=(Resource::LookupFlags& lhs, Resource::LookupFlags rhs) -> Resource::LookupFlags&
   { return (lhs = static_cast<Resource::LookupFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Resource::LookupFlags& operator^=(Resource::LookupFlags& lhs, Resource::LookupFlags rhs)
+inline auto operator^=(Resource::LookupFlags& lhs, Resource::LookupFlags rhs) -> Resource::LookupFlags&
   { return (lhs = static_cast<Resource::LookupFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 
@@ -621,7 +621,7 @@ template <>
 class GIOMM_API Value<Gio::Resource::LookupFlags> : public Glib::Value_Flags<Gio::Resource::LookupFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -640,7 +640,7 @@ namespace Glib
  * @relates Gio::Resource
  */
 GIOMM_API
-Glib::RefPtr<Gio::Resource> wrap(GResource* object, bool take_copy = false);
+auto wrap(GResource* object, bool take_copy = false) -> Glib::RefPtr<Gio::Resource>;
 
 } // namespace Glib
 

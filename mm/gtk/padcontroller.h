@@ -105,7 +105,7 @@ public:
 
   // noncopyable
   PadController(const PadController&) = delete;
-  PadController& operator=(const PadController&) = delete;
+  auto operator=(const PadController&) -> PadController& = delete;
 
 private:  friend class PadController_Class;
   static CppClassType padcontroller_class_;
@@ -119,28 +119,28 @@ protected:
 public:
 
   PadController(PadController&& src) noexcept;
-  PadController& operator=(PadController&& src) noexcept;
+  auto operator=(PadController&& src) noexcept -> PadController&;
 
   ~PadController() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkPadController*       gobj()       { return reinterpret_cast<GtkPadController*>(gobject_); }
+  auto       gobj() -> GtkPadController*       { return reinterpret_cast<GtkPadController*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkPadController* gobj() const { return reinterpret_cast<GtkPadController*>(gobject_); }
+  auto gobj() const -> const GtkPadController* { return reinterpret_cast<GtkPadController*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkPadController* gobj_copy();
+  auto gobj_copy() -> GtkPadController*;
 
 private:
 
@@ -169,7 +169,7 @@ public:
    * @return A newly created %Gtk::PadController.
    */
 
-  static Glib::RefPtr<PadController> create(const Glib::RefPtr<Gio::ActionGroup>& action_group, const Glib::RefPtr<Gdk::Device>& pad =  {});
+  static auto create(const Glib::RefPtr<Gio::ActionGroup>& action_group, const Glib::RefPtr<Gdk::Device>& pad =  {}) -> Glib::RefPtr<PadController>;
 
 
   /** This is a convenience function to add a group of action entries on the pad controller.
@@ -205,7 +205,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ActionGroup> > property_action_group() const;
+  auto property_action_group() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ActionGroup> >;
 
 
   /**
@@ -213,7 +213,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Device> > property_pad() const;
+  auto property_pad() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Device> >;
 
 
   // There are no signals or vfuncs.
@@ -246,7 +246,7 @@ namespace Glib
    * @relates Gtk::PadController
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::PadController> wrap(GtkPadController* object, bool take_copy = false);
+  auto wrap(GtkPadController* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PadController>;
 }
 
 

@@ -308,7 +308,7 @@ public:
   explicit Surface(cairo_surface_t* cobject, bool has_reference = false);
 
   Surface(const Surface&) = delete;
-  Surface& operator=(const Surface&) = delete;
+  auto operator=(const Surface&) -> Surface& = delete;
 
   virtual ~Surface();
 
@@ -322,7 +322,7 @@ public:
    * @returns The image data attached to the surface.
    * @since 1.10
    */
-  const unsigned char* get_mime_data(const std::string& mime_type, unsigned long& length);
+  auto get_mime_data(const std::string& mime_type, unsigned long& length) -> const unsigned char*;
 
 
   /** For instance,
@@ -468,7 +468,7 @@ public:
    *
    * @newin{1,18}
    */
-  double get_device_scale() const;
+  auto get_device_scale() const -> double;
 
   /**
    * Set the horizontal and vertical resolution for image fallbacks.
@@ -511,7 +511,7 @@ public:
    */
   void get_fallback_resolution(double& x_pixels_per_inch, double& y_pixels_per_inch) const;
 
-  Type get_type() const;
+  auto get_type() const -> Type;
 
   /**
    * This function returns the content type of surface which indicates whether
@@ -519,7 +519,7 @@ public:
    *
    * @since 1.8
    */
-  Content get_content() const;
+  auto get_content() const -> Content;
 
   /**
    * Emits the current page for backends that support multiple pages,
@@ -551,7 +551,7 @@ public:
    *
    * @since 1.8
    **/
-  bool has_show_text_glyphs() const;
+  auto has_show_text_glyphs() const -> bool;
 
 #ifdef CAIRO_HAS_PNG_FUNCTIONS
 
@@ -581,21 +581,21 @@ public:
   /** This function returns the device for a surface
    * @return The device for this surface, or an empty RefPtr if the surface has
    * no associated device */
-  RefPtr<Device> get_device();
+  auto get_device() -> RefPtr<Device>;
 
   /** The underlying C cairo surface type
    */
   typedef cairo_surface_t cobject;
   /** Provides acces to the underlying C cairo surface
    */
-  inline cobject* cobj() { return m_cobject; }
+  inline auto cobj() -> cobject* { return m_cobject; }
   /** Provides acces to the underlying C cairo surface
    */
-  inline const cobject* cobj() const { return m_cobject; }
+  inline auto cobj() const -> const cobject* { return m_cobject; }
 
   #ifndef DOXYGEN_IGNORE_THIS
   ///For use only by the cairomm implementation.
-  inline ErrorStatus get_status() const
+  inline auto get_status() const -> ErrorStatus
   { return cairo_surface_status(const_cast<cairo_surface_t*>(cobj())); }
 
   void reference() const;
@@ -612,7 +612,7 @@ public:
    * @param height 	height of the new surface (in device-space units)
    * @return 	a RefPtr to the newly allocated surface.
    */
-  static RefPtr<Surface> create(const RefPtr<Surface> other, Content content, int width, int height);
+  static auto create(const RefPtr<Surface> other, Content content, int width, int height) -> RefPtr<Surface>;
 
   /** Create a new surface that is a rectangle within the target surface. All
    * operations drawn to this surface are then clipped and translated onto the
@@ -635,7 +635,7 @@ public:
    *
    * @since 1.10
    */
-  static RefPtr<Surface> create(const RefPtr<Surface>& target, double x, double y, double width, double height);
+  static auto create(const RefPtr<Surface>& target, double x, double y, double width, double height) -> RefPtr<Surface>;
 
 protected:
   /** The underlying C cairo surface type that is wrapped by this Surface
@@ -682,11 +682,11 @@ public:
 
   /** Gets the width of the ImageSurface in pixels
    */
-  int get_width() const;
+  auto get_width() const -> int;
 
   /** Gets the height of the ImageSurface in pixels
    */
-  int get_height() const;
+  auto get_height() const -> int;
 
   /// @{
   /**
@@ -698,15 +698,15 @@ public:
    *
    * @since 1.2
    */
-  unsigned char* get_data();
-  const unsigned char* get_data() const;
+  auto get_data() -> unsigned char*;
+  auto get_data() const -> const unsigned char*;
   /// @}
 
   /**
    * Gets the format of the surface
    * @since 1.2
    */
-  Format get_format() const;
+  auto get_format() const -> Format;
 
   /**
    * Returns the stride of the image surface in bytes (or 0 if surface is not
@@ -715,7 +715,7 @@ public:
    *
    * @since 1.2
    */
-  int get_stride() const;
+  auto get_stride() const -> int;
 
   /**
    * This function provides a stride value that will respect all alignment
@@ -739,7 +739,7 @@ public:
    *
    * @since 1.6
    **/
-  static int format_stride_for_width(Format format, int width);
+  static auto format_stride_for_width(Format format, int width) -> int;
 
   /**
    * Creates an image surface of the specified format and dimensions. Initially
@@ -752,7 +752,7 @@ public:
    * @param height 	height of the surface, in pixels
    * @return 	a RefPtr to the newly created surface.
    */
-  static RefPtr<ImageSurface> create(Format format, int width, int height);
+  static auto create(Format format, int width, int height) -> RefPtr<ImageSurface>;
 
   /**
    * Creates an image surface for the provided pixel data. The output buffer
@@ -778,7 +778,7 @@ public:
    *        before allocating the data buffer.
    * @return a RefPtr to the newly created surface.
    */
-  static RefPtr<ImageSurface> create(unsigned char* data, Format format, int width, int height, int stride);
+  static auto create(unsigned char* data, Format format, int width, int height, int stride) -> RefPtr<ImageSurface>;
 
 #ifdef CAIRO_HAS_PNG_FUNCTIONS
 
@@ -792,7 +792,7 @@ public:
    * @return	a RefPtr to the new cairo_surface_t initialized with the
    * contents of the PNG image file.
    */
-  static RefPtr<ImageSurface> create_from_png(std::string filename);
+  static auto create_from_png(std::string filename) -> RefPtr<ImageSurface>;
 
   /** Creates a new image surface from PNG data read incrementally via the
    * read_func function.
@@ -804,7 +804,7 @@ public:
    * @return a RefPtr to the new cairo_surface_t initialized with the
    * contents of the PNG image file.
    */
-  static RefPtr<ImageSurface> create_from_png_stream(const SlotReadFunc& read_func);
+  static auto create_from_png_stream(const SlotReadFunc& read_func) -> RefPtr<ImageSurface>;
 
 #endif // CAIRO_HAS_PNG_FUNCTIONS
 
@@ -852,7 +852,7 @@ public:
    */
   explicit RecordingSurface(cairo_surface_t* cobject, bool has_reference = false);
 
-  virtual ~RecordingSurface();
+  ~RecordingSurface() override;
 
   /**
    * Measures the extents of the operations stored within the recording
@@ -863,7 +863,7 @@ public:
    * of the ink bounding box, and `width` and `height` set to the width and
    * height of the ink bounding box.
    */
-  Rectangle ink_extents() const;
+  auto ink_extents() const -> Rectangle;
 
   /**
    * Get the extents of the recording surface, if the surface is bounded.
@@ -872,7 +872,7 @@ public:
    * @return true if the recording surface is bounded, false if the recording
    * surface is unbounded (in which case `extents` will not be set).
    */
-  bool get_extents(Rectangle& extents) const;
+  auto get_extents(Rectangle& extents) const -> bool;
 
   /**
    * Creates a recording surface which can be used to record all drawing
@@ -889,7 +889,7 @@ public:
    * Cairo::Content::CONTENT_COLOR_ALPHA.
    * @return a RefPtr to the newly created recording surface.
    */
-  static RefPtr<RecordingSurface> create(Content content = Content::CONTENT_COLOR_ALPHA);
+  static auto create(Content content = Content::CONTENT_COLOR_ALPHA) -> RefPtr<RecordingSurface>;
 
   /**
    * Creates a recording surface which can be used to record all drawing
@@ -907,7 +907,7 @@ public:
    * Cairo::Content::CONTENT_COLOR_ALPHA.
    * @return	a RefPtr to the newly created recording surface.
    */
-  static RefPtr<RecordingSurface> create(const Rectangle& extents, Content content = Content::CONTENT_COLOR_ALPHA);
+  static auto create(const Rectangle& extents, Content content = Content::CONTENT_COLOR_ALPHA) -> RefPtr<RecordingSurface>;
 
 };
 
@@ -953,7 +953,7 @@ public:
    * @param height_in_points   The height of the PDF document in points
    * @since 1.2
    */
-  static RefPtr<PdfSurface> create(std::string filename, double width_in_points, double height_in_points);
+  static auto create(std::string filename, double width_in_points, double height_in_points) -> RefPtr<PdfSurface>;
 
   /** Creates a PdfSurface with a specified dimensions that will be written to
    * the given write function instead of saved directly to disk
@@ -964,7 +964,7 @@ public:
    * @param height_in_points   The height of the PDF document in points
    * @since 1.8
    */
-  static RefPtr<PdfSurface> create_for_stream(const SlotWriteFunc& write_func, double width_in_points, double height_in_points);
+  static auto create_for_stream(const SlotWriteFunc& write_func, double width_in_points, double height_in_points) -> RefPtr<PdfSurface>;
 
 /**
  * Changes the size of a PDF surface for the current (and subsequent) pages.
@@ -996,7 +996,7 @@ public:
    *
    * @since 1.10
    */
-  static const std::vector<PdfVersion> get_versions();
+  static auto get_versions() -> const std::vector<PdfVersion>;
 
   /** Get the string representation of the given version id. This function will
    * return an empty string if version isn't valid. See get_versions()
@@ -1004,7 +1004,7 @@ public:
    *
    * @since 1.10
    */
-  static std::string version_to_string(PdfVersion version);
+  static auto version_to_string(PdfVersion version) -> std::string;
 };
 
 #endif  // CAIRO_HAS_PDF_SURFACE
@@ -1053,7 +1053,7 @@ public:
    * @param width_in_points   The width of the PostScript document in points
    * @param height_in_points   The height of the PostScript document in points
    */
-  static RefPtr<PsSurface> create(std::string filename, double width_in_points, double height_in_points);
+  static auto create(std::string filename, double width_in_points, double height_in_points) -> RefPtr<PsSurface>;
 
   /** Creates a PsSurface with a specified dimensions that will be written to
    * the given write function instead of saved directly to disk
@@ -1065,7 +1065,7 @@ public:
    *
    * @since 1.8
    */
-  static RefPtr<PsSurface> create_for_stream(const SlotWriteFunc& write_func, double width_in_points, double height_in_points);
+  static auto create_for_stream(const SlotWriteFunc& write_func, double width_in_points, double height_in_points) -> RefPtr<PsSurface>;
 
   /**
    * Changes the size of a PostScript surface for the current (and
@@ -1125,7 +1125,7 @@ public:
    *
    * @since 1.8
    */
-  bool get_eps() const;
+  auto get_eps() const -> bool;
 
   /**
    * Restricts the generated PostSript file to @level. See get_levels() for a
@@ -1147,7 +1147,7 @@ public:
    *
    * @since 1.6
    **/
-  static const std::vector<PsLevel> get_levels();
+  static auto get_levels() -> const std::vector<PsLevel>;
 
   /**
    * Get the string representation of the given level id. This function will
@@ -1160,7 +1160,7 @@ public:
    *
    * @since 1.6
    **/
-  static std::string level_to_string(PsLevel level);
+  static auto level_to_string(PsLevel level) -> std::string;
 };
 
 #endif // CAIRO_HAS_PS_SURFACE
@@ -1207,7 +1207,7 @@ public:
    * @param width_in_points   The width of the SVG document in points
    * @param height_in_points   The height of the SVG document in points
    */
-  static RefPtr<SvgSurface> create(std::string filename, double width_in_points, double height_in_points);
+  static auto create(std::string filename, double width_in_points, double height_in_points) -> RefPtr<SvgSurface>;
 
   /** Creates a SvgSurface with a specified dimensions that will be written to
    * the given write function instead of saved directly to disk
@@ -1219,7 +1219,7 @@ public:
    *
    * @since 1.8
    */
-  static RefPtr<SvgSurface> create_for_stream(const SlotWriteFunc& write_func, double width_in_points, double height_in_points);
+  static auto create_for_stream(const SlotWriteFunc& write_func, double width_in_points, double height_in_points) -> RefPtr<SvgSurface>;
 
   /**
    * Restricts the generated SVG file to the given version. See get_versions()
@@ -1238,7 +1238,7 @@ public:
    *
    * @since 1.2
    */
-  static const std::vector<SvgVersion> get_versions();
+  static auto get_versions() -> const std::vector<SvgVersion>;
 
   /** Get the string representation of the given version id. The returned string
    * will be empty if version isn't valid. See get_versions() for a way to get
@@ -1246,7 +1246,7 @@ public:
    *
    * since: 1.2
    */
-  static std::string version_to_string(SvgVersion version);
+  static auto version_to_string(SvgVersion version) -> std::string;
 };
 
 #endif // CAIRO_HAS_SVG_SURFACE

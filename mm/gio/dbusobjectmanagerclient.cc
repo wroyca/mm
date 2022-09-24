@@ -27,8 +27,8 @@
 
 namespace
 {
-GType get_proxy_type_callback(GDBusObjectManagerClient* manager,
-  const gchar* object_path, const gchar* interface_name, gpointer user_data)
+auto get_proxy_type_callback(GDBusObjectManagerClient* manager,
+  const gchar* object_path, const gchar* interface_name, gpointer user_data) -> GType
 {
   auto slot_proxy_type = static_cast<Gio::DBus::ObjectManagerClient::SlotProxyType*>(user_data);
   try
@@ -46,10 +46,7 @@ GType get_proxy_type_callback(GDBusObjectManagerClient* manager,
 
 } // anonymous namespace
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 using MapChangedProperties = ObjectManagerClient::MapChangedProperties;
 using Flags = ObjectManagerClient::Flags;
@@ -120,11 +117,11 @@ void ObjectManagerClient::create(const Glib::RefPtr<Connection>& connection,
   ObjectManagerClient(connection, name, object_path, slot_async_ready, cancellable, slot_proxy_type, flags);
 }
 
-Glib::RefPtr<Gio::DBus::ObjectManagerClient> ObjectManagerClient::create_sync(
+auto ObjectManagerClient::create_sync(
   const Glib::RefPtr<Connection>& connection,
   const Glib::ustring& name, const Glib::ustring& object_path,
   const Glib::RefPtr<Cancellable>& cancellable,
-  const SlotProxyType& slot_proxy_type, Flags flags)
+  const SlotProxyType& slot_proxy_type, Flags flags) -> Glib::RefPtr<Gio::DBus::ObjectManagerClient>
 {
   return Glib::make_refptr_for_instance<ObjectManagerClient>(
     new ObjectManagerClient(connection, name, object_path, {}, cancellable, slot_proxy_type, flags));
@@ -140,17 +137,15 @@ void ObjectManagerClient::create_for_bus(BusType bus_type,
   ObjectManagerClient(bus_type, name, object_path, slot_async_ready, cancellable, slot_proxy_type, flags);
 }
 
-Glib::RefPtr<Gio::DBus::ObjectManagerClient> ObjectManagerClient::create_for_bus_sync(
+auto ObjectManagerClient::create_for_bus_sync(
   BusType bus_type,
   const Glib::ustring& name, const Glib::ustring& object_path,
   const Glib::RefPtr<Cancellable>& cancellable,
-  const SlotProxyType& slot_proxy_type, Flags flags)
+  const SlotProxyType& slot_proxy_type, Flags flags) -> Glib::RefPtr<Gio::DBus::ObjectManagerClient>
 {
   return Glib::make_refptr_for_instance<ObjectManagerClient>(
     new ObjectManagerClient(bus_type, name, object_path, {}, cancellable, slot_proxy_type, flags));
 }
-
-} // namespace DBus
 
 } // namespace Gio
 
@@ -158,7 +153,7 @@ namespace
 {
 
 
-static void ObjectManagerClient_signal_interface_proxy_signal_callback(GDBusObjectManagerClient* self, GDBusObjectProxy* p0,GDBusProxy* p1,const gchar* p2,const gchar* p3,GVariant* p4,void* data)
+void ObjectManagerClient_signal_interface_proxy_signal_callback(GDBusObjectManagerClient* self, GDBusObjectProxy* p0,GDBusProxy* p1,const gchar* p2,const gchar* p3,GVariant* p4,void* data)
 {
   using namespace Gio::DBus;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gio::DBus::ObjectProxy>&, const Glib::RefPtr<Gio::DBus::Proxy>&, const Glib::ustring&, const Glib::ustring&, const Glib::VariantContainerBase&)>;
@@ -184,7 +179,7 @@ static void ObjectManagerClient_signal_interface_proxy_signal_callback(GDBusObje
   }
 }
 
-static const Glib::SignalProxyInfo ObjectManagerClient_signal_interface_proxy_signal_info =
+const Glib::SignalProxyInfo ObjectManagerClient_signal_interface_proxy_signal_info =
 {
   "interface-proxy-signal",
   (GCallback) &ObjectManagerClient_signal_interface_proxy_signal_callback,
@@ -192,7 +187,7 @@ static const Glib::SignalProxyInfo ObjectManagerClient_signal_interface_proxy_si
 };
 
 
-static void ObjectManagerClient_signal_interface_proxy_properties_changed_callback(GDBusObjectManagerClient* self, GDBusObjectProxy* p0,GDBusProxy* p1,GVariant* p2,const gchar*const* p3,void* data)
+void ObjectManagerClient_signal_interface_proxy_properties_changed_callback(GDBusObjectManagerClient* self, GDBusObjectProxy* p0,GDBusProxy* p1,GVariant* p2,const gchar*const* p3,void* data)
 {
   using namespace Gio::DBus;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gio::DBus::ObjectProxy>&, const Glib::RefPtr<Gio::DBus::Proxy>&, const MapChangedProperties&, const std::vector<Glib::ustring>&)>;
@@ -217,7 +212,7 @@ static void ObjectManagerClient_signal_interface_proxy_properties_changed_callba
   }
 }
 
-static const Glib::SignalProxyInfo ObjectManagerClient_signal_interface_proxy_properties_changed_info =
+const Glib::SignalProxyInfo ObjectManagerClient_signal_interface_proxy_properties_changed_info =
 {
   "interface-proxy-properties-changed",
   (GCallback) &ObjectManagerClient_signal_interface_proxy_properties_changed_callback,
@@ -228,7 +223,7 @@ static const Glib::SignalProxyInfo ObjectManagerClient_signal_interface_proxy_pr
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::DBus::ObjectManagerClient::Flags>::value_type()
+auto Glib::Value<Gio::DBus::ObjectManagerClient::Flags>::value_type() -> GType
 {
   return g_dbus_object_manager_client_flags_get_type();
 }
@@ -237,7 +232,7 @@ GType Glib::Value<Gio::DBus::ObjectManagerClient::Flags>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gio::DBus::ObjectManagerClient> wrap(GDBusObjectManagerClient* object, bool take_copy)
+auto wrap(GDBusObjectManagerClient* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::ObjectManagerClient>
 {
   return Glib::make_refptr_for_instance<Gio::DBus::ObjectManagerClient>( dynamic_cast<Gio::DBus::ObjectManagerClient*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -246,16 +241,13 @@ Glib::RefPtr<Gio::DBus::ObjectManagerClient> wrap(GDBusObjectManagerClient* obje
 } /* namespace Glib */
 
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 
 /* The *_Class implementation: */
 
-const Glib::Class& ObjectManagerClient_Class::init()
+auto ObjectManagerClient_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -374,7 +366,7 @@ void ObjectManagerClient_Class::interface_proxy_properties_changed_callback(GDBu
 }
 
 
-Glib::ObjectBase* ObjectManagerClient_Class::wrap_new(GObject* object)
+auto ObjectManagerClient_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ObjectManagerClient((GDBusObjectManagerClient*)object);
 }
@@ -382,7 +374,7 @@ Glib::ObjectBase* ObjectManagerClient_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GDBusObjectManagerClient* ObjectManagerClient::gobj_copy()
+auto ObjectManagerClient::gobj_copy() -> GDBusObjectManagerClient*
 {
   reference();
   return gobj();
@@ -408,7 +400,7 @@ ObjectManagerClient::ObjectManagerClient(ObjectManagerClient&& src) noexcept
   , DBus::ObjectManager(std::move(src))
 {}
 
-ObjectManagerClient& ObjectManagerClient::operator=(ObjectManagerClient&& src) noexcept
+auto ObjectManagerClient::operator=(ObjectManagerClient&& src) noexcept -> ObjectManagerClient&
 {
   Glib::Object::operator=(std::move(src));
   Initable::operator=(std::move(src));
@@ -424,19 +416,19 @@ ObjectManagerClient::~ObjectManagerClient() noexcept
 
 ObjectManagerClient::CppClassType ObjectManagerClient::objectmanagerclient_class_; // initialize static member
 
-GType ObjectManagerClient::get_type()
+auto ObjectManagerClient::get_type() -> GType
 {
   return objectmanagerclient_class_.init().get_type();
 }
 
 
-GType ObjectManagerClient::get_base_type()
+auto ObjectManagerClient::get_base_type() -> GType
 {
   return g_dbus_object_manager_client_get_type();
 }
 
 
-Glib::RefPtr<Gio::DBus::ObjectManagerClient> ObjectManagerClient::create_finish(const Glib::RefPtr<AsyncResult>& res)
+auto ObjectManagerClient::create_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Gio::DBus::ObjectManagerClient>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap((GDBusObjectManagerClient*)(g_dbus_object_manager_client_new_finish(Glib::unwrap(res), &(gerror))));
@@ -445,7 +437,7 @@ Glib::RefPtr<Gio::DBus::ObjectManagerClient> ObjectManagerClient::create_finish(
   return retvalue;
 }
 
-Glib::RefPtr<Gio::DBus::ObjectManagerClient> ObjectManagerClient::create_for_bus_finish(const Glib::RefPtr<AsyncResult>& res)
+auto ObjectManagerClient::create_for_bus_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Gio::DBus::ObjectManagerClient>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap((GDBusObjectManagerClient*)(g_dbus_object_manager_client_new_for_bus_finish(Glib::unwrap(res), &(gerror))));
@@ -454,7 +446,7 @@ Glib::RefPtr<Gio::DBus::ObjectManagerClient> ObjectManagerClient::create_for_bus
   return retvalue;
 }
 
-Glib::RefPtr<Connection> ObjectManagerClient::get_connection()
+auto ObjectManagerClient::get_connection() -> Glib::RefPtr<Connection>
 {
   auto retvalue = Glib::wrap(g_dbus_object_manager_client_get_connection(gobj()));
   if(retvalue)
@@ -462,34 +454,34 @@ Glib::RefPtr<Connection> ObjectManagerClient::get_connection()
   return retvalue;
 }
 
-Glib::RefPtr<const Connection> ObjectManagerClient::get_connection() const
+auto ObjectManagerClient::get_connection() const -> Glib::RefPtr<const Connection>
 {
   return const_cast<ObjectManagerClient*>(this)->get_connection();
 }
 
-Flags ObjectManagerClient::get_flags() const
+auto ObjectManagerClient::get_flags() const -> Flags
 {
   return static_cast<Flags>(g_dbus_object_manager_client_get_flags(const_cast<GDBusObjectManagerClient*>(gobj())));
 }
 
-Glib::ustring ObjectManagerClient::get_name() const
+auto ObjectManagerClient::get_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_dbus_object_manager_client_get_name(const_cast<GDBusObjectManagerClient*>(gobj())));
 }
 
-Glib::ustring ObjectManagerClient::get_name_owner() const
+auto ObjectManagerClient::get_name_owner() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(g_dbus_object_manager_client_get_name_owner(const_cast<GDBusObjectManagerClient*>(gobj())));
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::ObjectProxy>&, const Glib::RefPtr<Gio::DBus::Proxy>&, const Glib::ustring&, const Glib::ustring&, const Glib::VariantContainerBase&)> ObjectManagerClient::signal_interface_proxy_signal()
+auto ObjectManagerClient::signal_interface_proxy_signal() -> Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::ObjectProxy>&, const Glib::RefPtr<Gio::DBus::Proxy>&, const Glib::ustring&, const Glib::ustring&, const Glib::VariantContainerBase&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::ObjectProxy>&, const Glib::RefPtr<Gio::DBus::Proxy>&, const Glib::ustring&, const Glib::ustring&, const Glib::VariantContainerBase&) >(this, &ObjectManagerClient_signal_interface_proxy_signal_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::ObjectProxy>&, const Glib::RefPtr<Gio::DBus::Proxy>&, const MapChangedProperties&, const std::vector<Glib::ustring>&)> ObjectManagerClient::signal_interface_proxy_properties_changed()
+auto ObjectManagerClient::signal_interface_proxy_properties_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::ObjectProxy>&, const Glib::RefPtr<Gio::DBus::Proxy>&, const MapChangedProperties&, const std::vector<Glib::ustring>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::ObjectProxy>&, const Glib::RefPtr<Gio::DBus::Proxy>&, const MapChangedProperties&, const std::vector<Glib::ustring>&) >(this, &ObjectManagerClient_signal_interface_proxy_properties_changed_info);
 }
@@ -499,7 +491,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Connect
   "Type Glib::RefPtr<Connection> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Connection> > ObjectManagerClient::property_connection() const
+auto ObjectManagerClient::property_connection() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Connection> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Connection> >(this, "connection");
 }
@@ -508,22 +500,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Flags>::value,
   "Type Flags cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Flags > ObjectManagerClient::property_flags() const
+auto ObjectManagerClient::property_flags() const -> Glib::PropertyProxy_ReadOnly< Flags >
 {
   return Glib::PropertyProxy_ReadOnly< Flags >(this, "flags");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > ObjectManagerClient::property_object_path() const
+auto ObjectManagerClient::property_object_path() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "object-path");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > ObjectManagerClient::property_name() const
+auto ObjectManagerClient::property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > ObjectManagerClient::property_name_owner() const
+auto ObjectManagerClient::property_name_owner() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name-owner");
 }
@@ -548,8 +540,6 @@ void Gio::DBus::ObjectManagerClient::on_interface_proxy_properties_changed(const
     (*base->interface_proxy_properties_changed)(gobj(),Glib::unwrap(object_proxy),Glib::unwrap(interface_proxy),const_cast<GVariant*>(Glib::Variant<MapChangedProperties>::create(changed_properties).gobj()),Glib::ArrayHandler<Glib::ustring>::vector_to_array(invalidated_properties).data());
 }
 
-
-} // namespace DBus
 
 } // namespace Gio
 

@@ -72,7 +72,7 @@ public:
 
   // noncopyable
   InetAddress(const InetAddress&) = delete;
-  InetAddress& operator=(const InetAddress&) = delete;
+  auto operator=(const InetAddress&) -> InetAddress& = delete;
 
 private:  friend class InetAddress_Class;
   static CppClassType inetaddress_class_;
@@ -86,28 +86,28 @@ protected:
 public:
 
   InetAddress(InetAddress&& src) noexcept;
-  InetAddress& operator=(InetAddress&& src) noexcept;
+  auto operator=(InetAddress&& src) noexcept -> InetAddress&;
 
   ~InetAddress() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GInetAddress*       gobj()       { return reinterpret_cast<GInetAddress*>(gobject_); }
+  auto       gobj() -> GInetAddress*       { return reinterpret_cast<GInetAddress*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GInetAddress* gobj() const { return reinterpret_cast<GInetAddress*>(gobject_); }
+  auto gobj() const -> const GInetAddress* { return reinterpret_cast<GInetAddress*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GInetAddress* gobj_copy();
+  auto gobj_copy() -> GInetAddress*;
 
 private:
 
@@ -117,12 +117,12 @@ protected:
 
 
 public:
-  static Glib::RefPtr<InetAddress> create(const Glib::ustring& string);
+  static auto create(const Glib::ustring& string) -> Glib::RefPtr<InetAddress>;
 
-  static Glib::RefPtr<InetAddress> create(const guint8 * bytes, SocketFamily family);
+  static auto create(const guint8 * bytes, SocketFamily family) -> Glib::RefPtr<InetAddress>;
 
-  static Glib::RefPtr<InetAddress> create_any(SocketFamily family);
-  static Glib::RefPtr<InetAddress> create_loopback(SocketFamily family);
+  static auto create_any(SocketFamily family) -> Glib::RefPtr<InetAddress>;
+  static auto create_loopback(SocketFamily family) -> Glib::RefPtr<InetAddress>;
 
 
   /** Checks if two InetAddress instances are equal, e.g.\ the same address.
@@ -132,7 +132,7 @@ public:
    * @param other_address Another InetAddress.
    * @return <tt>true</tt> if @a address and @a other_address are equal, <tt>false</tt> otherwise.
    */
-  bool address_equal(const Glib::RefPtr<const InetAddress>& other_address) const;
+  auto address_equal(const Glib::RefPtr<const InetAddress>& other_address) const -> bool;
 
 
   /** Gets the raw binary address data from @a address.
@@ -143,7 +143,7 @@ public:
    * which should not be modified, stored, or freed. The size of this
    * array can be gotten with g_inet_address_get_native_size().
    */
-  const guint8* to_bytes() const;
+  auto to_bytes() const -> const guint8*;
 
   /** Converts @a address to string form.
    *
@@ -152,7 +152,7 @@ public:
    * @return A representation of @a address as a string, which should be
    * freed after use.
    */
-  Glib::ustring to_string() const;
+  auto to_string() const -> Glib::ustring;
 
   /** Gets @a address's family
    *
@@ -160,7 +160,7 @@ public:
    *
    * @return  @a address's family.
    */
-  SocketFamily get_family() const;
+  auto get_family() const -> SocketFamily;
 
   /** Tests whether @a address is the "any" address for its family.
    *
@@ -168,7 +168,7 @@ public:
    *
    * @return <tt>true</tt> if @a address is the "any" address for its family.
    */
-  bool get_is_any() const;
+  auto get_is_any() const -> bool;
 
   /** Tests whether @a address is a link-local address (that is, if it
    * identifies a host on a local network that is not connected to the
@@ -178,7 +178,7 @@ public:
    *
    * @return <tt>true</tt> if @a address is a link-local address.
    */
-  bool get_is_link_local() const;
+  auto get_is_link_local() const -> bool;
 
   /** Tests whether @a address is the loopback address for its family.
    *
@@ -186,7 +186,7 @@ public:
    *
    * @return <tt>true</tt> if @a address is the loopback address for its family.
    */
-  bool get_is_loopback() const;
+  auto get_is_loopback() const -> bool;
 
   /** Tests whether @a address is a global multicast address.
    *
@@ -194,7 +194,7 @@ public:
    *
    * @return <tt>true</tt> if @a address is a global multicast address.
    */
-  bool get_is_mc_global() const;
+  auto get_is_mc_global() const -> bool;
 
   /** Tests whether @a address is a link-local multicast address.
    *
@@ -202,7 +202,7 @@ public:
    *
    * @return <tt>true</tt> if @a address is a link-local multicast address.
    */
-  bool get_is_mc_link_local() const;
+  auto get_is_mc_link_local() const -> bool;
 
   /** Tests whether @a address is a node-local multicast address.
    *
@@ -210,7 +210,7 @@ public:
    *
    * @return <tt>true</tt> if @a address is a node-local multicast address.
    */
-  bool get_is_mc_node_local() const;
+  auto get_is_mc_node_local() const -> bool;
 
   /** Tests whether @a address is an organization-local multicast address.
    *
@@ -218,7 +218,7 @@ public:
    *
    * @return <tt>true</tt> if @a address is an organization-local multicast address.
    */
-  bool get_is_mc_org_local() const;
+  auto get_is_mc_org_local() const -> bool;
 
   /** Tests whether @a address is a site-local multicast address.
    *
@@ -226,7 +226,7 @@ public:
    *
    * @return <tt>true</tt> if @a address is a site-local multicast address.
    */
-  bool get_is_mc_site_local() const;
+  auto get_is_mc_site_local() const -> bool;
 
   /** Tests whether @a address is a multicast address.
    *
@@ -234,7 +234,7 @@ public:
    *
    * @return <tt>true</tt> if @a address is a multicast address.
    */
-  bool get_is_multicast() const;
+  auto get_is_multicast() const -> bool;
 
   /** Tests whether @a address is a site-local address such as 10.0.0.1
    * (that is, the address identifies a host on a local network that can
@@ -245,7 +245,7 @@ public:
    *
    * @return <tt>true</tt> if @a address is a site-local address.
    */
-  bool get_is_site_local() const;
+  auto get_is_site_local() const -> bool;
 
   /** Gets the size of the native raw binary address for @a address. This
    * is the size of the data that you get from g_inet_address_to_bytes().
@@ -254,14 +254,14 @@ public:
    *
    * @return The number of bytes used for the native version of @a address.
    */
-  gsize get_native_size() const;
+  auto get_native_size() const -> gsize;
 
   /** The raw address data.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< void* > property_bytes() const;
+  auto property_bytes() const -> Glib::PropertyProxy_ReadOnly< void* >;
 
 
   /** The address family (IPv4 or IPv6).
@@ -271,7 +271,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< SocketFamily > property_family() const;
+  auto property_family() const -> Glib::PropertyProxy_ReadOnly< SocketFamily >;
 
 
   /** Whether this is the "any" address for its family.
@@ -284,7 +284,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_any() const;
+  auto property_is_any() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether this is a link-local address.
@@ -297,7 +297,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_link_local() const;
+  auto property_is_link_local() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether this is the loopback address for its family.
@@ -310,7 +310,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_loopback() const;
+  auto property_is_loopback() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether this is a global multicast address.
@@ -323,7 +323,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_mc_global() const;
+  auto property_is_mc_global() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether this is a link-local multicast address.
@@ -336,7 +336,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_mc_link_local() const;
+  auto property_is_mc_link_local() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether this is a node-local multicast address.
@@ -349,7 +349,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_mc_node_local() const;
+  auto property_is_mc_node_local() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether this is an organization-local multicast address.
@@ -362,7 +362,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_mc_org_local() const;
+  auto property_is_mc_org_local() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether this is a site-local multicast address.
@@ -375,7 +375,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_mc_site_local() const;
+  auto property_is_mc_site_local() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether this is a multicast address.
@@ -388,7 +388,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_multicast() const;
+  auto property_is_multicast() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether this is a site-local address.
@@ -401,7 +401,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_site_local() const;
+  auto property_is_site_local() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -431,7 +431,7 @@ namespace Glib
    * @relates Gio::InetAddress
    */
   GIOMM_API
-  Glib::RefPtr<Gio::InetAddress> wrap(GInetAddress* object, bool take_copy = false);
+  auto wrap(GInetAddress* object, bool take_copy = false) -> Glib::RefPtr<Gio::InetAddress>;
 }
 
 

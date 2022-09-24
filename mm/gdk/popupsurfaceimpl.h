@@ -48,12 +48,12 @@ protected:
 
   // noncopyable
   PopupSurfaceImpl(const PopupSurfaceImpl&) = delete;
-  PopupSurfaceImpl& operator=(const PopupSurfaceImpl&) = delete;
+  auto operator=(const PopupSurfaceImpl&) -> PopupSurfaceImpl& = delete;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
 public:
   PopupSurfaceImpl(PopupSurfaceImpl&& src) noexcept;
-  PopupSurfaceImpl& operator=(PopupSurfaceImpl&& src) noexcept;
+  auto operator=(PopupSurfaceImpl&& src) noexcept -> PopupSurfaceImpl&;
 
   ~PopupSurfaceImpl() noexcept override;
 };

@@ -31,7 +31,7 @@
 namespace Pango
 {
 
-std::vector<Glib::RefPtr<FontFamily>> Context::list_families() const
+auto Context::list_families() const -> std::vector<Glib::RefPtr<FontFamily>>
 {
   //Get array:
   PangoFontFamily** pFamilies = nullptr;
@@ -42,7 +42,7 @@ std::vector<Glib::RefPtr<FontFamily>> Context::list_families() const
       (pFamilies, n_families, Glib::OWNERSHIP_SHALLOW);
 }
 
-Pango::FontMetrics Context::get_metrics(const FontDescription& desc) const
+auto Context::get_metrics(const FontDescription& desc) const -> Pango::FontMetrics
 {
   return FontMetrics(pango_context_get_metrics(const_cast<PangoContext*>(gobj()), desc.gobj(), nullptr));
 }
@@ -53,15 +53,15 @@ struct ItemTraits
   typedef const PangoItem*  CType;
   typedef PangoItem*        CTypeNonConst;
 
-  static CType   to_c_type      (const CppType& obj) { return obj.gobj(); }
-  static CType   to_c_type      (CType ptr) { return ptr; }
-  static CppType to_cpp_type    (CType ptr) { return CppType(const_cast<CTypeNonConst>(ptr), true); }
+  static auto   to_c_type      (const CppType& obj) -> CType { return obj.gobj(); }
+  static auto   to_c_type      (CType ptr) -> CType { return ptr; }
+  static auto to_cpp_type    (CType ptr) -> CppType { return CppType(const_cast<CTypeNonConst>(ptr), true); }
   static void    release_c_type (CType ptr) { pango_item_free(const_cast<CTypeNonConst>(ptr)); }
 };
 
 using ListHandler_Item = Glib::ListHandler<Item, ItemTraits>;
 
-std::vector<Item> Context::itemize(const Glib::ustring& text, const AttrList& attrs) const
+auto Context::itemize(const Glib::ustring& text, const AttrList& attrs) const -> std::vector<Item>
 {
   return ListHandler_Item::list_to_vector(
       pango_itemize(const_cast<PangoContext*>(gobj()),
@@ -70,8 +70,8 @@ std::vector<Item> Context::itemize(const Glib::ustring& text, const AttrList& at
       Glib::OWNERSHIP_DEEP);
 }
 
-std::vector<Item> Context::itemize(const Glib::ustring& text, int start_index, int length,
-                                 const AttrList& attrs, AttrIter& cached_iter) const
+auto Context::itemize(const Glib::ustring& text, int start_index, int length,
+                                 const AttrList& attrs, AttrIter& cached_iter) const -> std::vector<Item>
 {
   return ListHandler_Item::list_to_vector(
       pango_itemize(const_cast<PangoContext*>(gobj()),
@@ -85,7 +85,7 @@ void Context::update_from_cairo_context(const Cairo::RefPtr<Cairo::Context>& con
   pango_cairo_update_context(context->cobj(), gobj());
 }
 
-Matrix Context::get_matrix() const
+auto Context::get_matrix() const -> Matrix
 {
   const auto* matrix = pango_context_get_matrix(const_cast<PangoContext*>(gobj()));
   if(matrix)
@@ -104,13 +104,13 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Pango::Direction>::value_type()
+auto Glib::Value<Pango::Direction>::value_type() -> GType
 {
   return pango_direction_get_type();
 }
 
 // static
-GType Glib::Value<Pango::GravityHint>::value_type()
+auto Glib::Value<Pango::GravityHint>::value_type() -> GType
 {
   return pango_gravity_hint_get_type();
 }
@@ -119,7 +119,7 @@ GType Glib::Value<Pango::GravityHint>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Pango::Context> wrap(PangoContext* object, bool take_copy)
+auto wrap(PangoContext* object, bool take_copy) -> Glib::RefPtr<Pango::Context>
 {
   return Glib::make_refptr_for_instance<Pango::Context>( dynamic_cast<Pango::Context*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -134,7 +134,7 @@ namespace Pango
 
 /* The *_Class implementation: */
 
-const Glib::Class& Context_Class::init()
+auto Context_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -165,7 +165,7 @@ void Context_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Context_Class::wrap_new(GObject* object)
+auto Context_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Context((PangoContext*)object);
 }
@@ -173,7 +173,7 @@ Glib::ObjectBase* Context_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-PangoContext* Context::gobj_copy()
+auto Context::gobj_copy() -> PangoContext*
 {
   reference();
   return gobj();
@@ -196,7 +196,7 @@ Context::Context(Context&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Context& Context::operator=(Context&& src) noexcept
+auto Context::operator=(Context&& src) noexcept -> Context&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -209,13 +209,13 @@ Context::~Context() noexcept
 
 Context::CppClassType Context::context_class_; // initialize static member
 
-GType Context::get_type()
+auto Context::get_type() -> GType
 {
   return context_class_.init().get_type();
 }
 
 
-GType Context::get_base_type()
+auto Context::get_base_type() -> GType
 {
   return pango_context_get_type();
 }
@@ -236,7 +236,7 @@ void Context::set_font_map(const Glib::RefPtr<FontMap>& font_map)
   pango_context_set_font_map(gobj(), Glib::unwrap(font_map));
 }
 
-Glib::RefPtr<FontMap> Context::get_font_map()
+auto Context::get_font_map() -> Glib::RefPtr<FontMap>
 {
   auto retvalue = Glib::wrap(pango_context_get_font_map(gobj()));
   if(retvalue)
@@ -244,27 +244,27 @@ Glib::RefPtr<FontMap> Context::get_font_map()
   return retvalue;
 }
 
-Glib::RefPtr<const FontMap> Context::get_font_map() const
+auto Context::get_font_map() const -> Glib::RefPtr<const FontMap>
 {
   return const_cast<Context*>(this)->get_font_map();
 }
 
-guint Context::get_serial() const
+auto Context::get_serial() const -> guint
 {
   return pango_context_get_serial(const_cast<PangoContext*>(gobj()));
 }
 
-Glib::RefPtr<Font> Context::load_font(const FontDescription& desc) const
+auto Context::load_font(const FontDescription& desc) const -> Glib::RefPtr<Font>
 {
   return Glib::wrap(pango_context_load_font(const_cast<PangoContext*>(gobj()), (desc).gobj()));
 }
 
-Glib::RefPtr<Fontset> Context::load_fontset(const FontDescription& desc, const Language& language) const
+auto Context::load_fontset(const FontDescription& desc, const Language& language) const -> Glib::RefPtr<Fontset>
 {
   return Glib::wrap(pango_context_load_fontset(const_cast<PangoContext*>(gobj()), (desc).gobj(), const_cast<PangoLanguage*>((language).gobj())));
 }
 
-FontMetrics Context::get_metrics(const FontDescription& desc, const Language& language) const
+auto Context::get_metrics(const FontDescription& desc, const Language& language) const -> FontMetrics
 {
   return FontMetrics((pango_context_get_metrics(const_cast<PangoContext*>(gobj()), (desc).gobj(), const_cast<PangoLanguage*>((language).gobj()))));
 }
@@ -274,12 +274,12 @@ void Context::set_font_description(const FontDescription& desc)
   pango_context_set_font_description(gobj(), (desc).gobj());
 }
 
-FontDescription Context::get_font_description() const
+auto Context::get_font_description() const -> FontDescription
 {
   return FontDescription((pango_context_get_font_description(const_cast<PangoContext*>(gobj()))));
 }
 
-Language Context::get_language() const
+auto Context::get_language() const -> Language
 {
   return Language(pango_context_get_language(const_cast<PangoContext*>(gobj())));
 }
@@ -294,7 +294,7 @@ void Context::set_base_dir(Direction direction)
   pango_context_set_base_dir(gobj(), static_cast<PangoDirection>(direction));
 }
 
-Direction Context::get_base_dir() const
+auto Context::get_base_dir() const -> Direction
 {
   return static_cast<Direction>(pango_context_get_base_dir(const_cast<PangoContext*>(gobj())));
 }
@@ -304,12 +304,12 @@ void Context::set_base_gravity(Gravity gravity)
   pango_context_set_base_gravity(gobj(), static_cast<PangoGravity>(gravity));
 }
 
-Gravity Context::get_base_gravity() const
+auto Context::get_base_gravity() const -> Gravity
 {
   return static_cast<Gravity>(pango_context_get_base_gravity(const_cast<PangoContext*>(gobj())));
 }
 
-Gravity Context::get_gravity() const
+auto Context::get_gravity() const -> Gravity
 {
   return static_cast<Gravity>(pango_context_get_gravity(const_cast<PangoContext*>(gobj())));
 }
@@ -319,7 +319,7 @@ void Context::set_gravity_hint(GravityHint hint)
   pango_context_set_gravity_hint(gobj(), static_cast<PangoGravityHint>(hint));
 }
 
-GravityHint Context::get_gravity_hint() const
+auto Context::get_gravity_hint() const -> GravityHint
 {
   return static_cast<GravityHint>(pango_context_get_gravity_hint(const_cast<PangoContext*>(gobj())));
 }
@@ -334,7 +334,7 @@ void Context::set_cairo_font_options(const Cairo::FontOptions& options)
   pango_cairo_context_set_font_options(gobj(), (options).cobj());
 }
 
-Cairo::FontOptions Context::get_font_options() const
+auto Context::get_font_options() const -> Cairo::FontOptions
 {
   return Cairo::FontOptions(const_cast< cairo_font_options_t*>(pango_cairo_context_get_font_options(const_cast<PangoContext*>(gobj()))), false /* take_copy */);
 }
@@ -344,7 +344,7 @@ void Context::set_resolution(double dpi)
   pango_cairo_context_set_resolution(gobj(), dpi);
 }
 
-double Context::get_resolution() const
+auto Context::get_resolution() const -> double
 {
   return pango_cairo_context_get_resolution(const_cast<PangoContext*>(gobj()));
 }

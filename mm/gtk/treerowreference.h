@@ -52,30 +52,30 @@ class GTKMM_API TreeRowReference
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   TreeRowReference();
 
   explicit TreeRowReference(GtkTreeRowReference* gobject, bool make_a_copy = true);
 
   TreeRowReference(const TreeRowReference& other);
-  TreeRowReference& operator=(const TreeRowReference& other);
+  auto operator=(const TreeRowReference& other) -> TreeRowReference&;
 
   TreeRowReference(TreeRowReference&& other) noexcept;
-  TreeRowReference& operator=(TreeRowReference&& other) noexcept;
+  auto operator=(TreeRowReference&& other) noexcept -> TreeRowReference&;
 
   ~TreeRowReference() noexcept;
 
   void swap(TreeRowReference& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  GtkTreeRowReference*       gobj()       { return gobject_; }
+  auto       gobj() -> GtkTreeRowReference*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const GtkTreeRowReference* gobj() const { return gobject_; }
+  auto gobj() const -> const GtkTreeRowReference* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  GtkTreeRowReference* gobj_copy() const;
+  auto gobj_copy() const -> GtkTreeRowReference*;
 
 protected:
   GtkTreeRowReference* gobject_;
@@ -103,20 +103,20 @@ public:
    *
    * @return A current path.
    */
-  TreeModel::Path get_path() const;
+  auto get_path() const -> TreeModel::Path;
 
 
   /** Returns the model that the row reference is monitoring.
    *
    * @return The model.
    */
-  Glib::RefPtr<TreeModel> get_model();
+  auto get_model() -> Glib::RefPtr<TreeModel>;
 
   /** Returns the model that the row reference is monitoring.
    *
    * @return The model.
    */
-  Glib::RefPtr<const TreeModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const TreeModel>;
 
 
   /** Returns <tt>true</tt> if the @a reference is non-<tt>nullptr</tt> and refers to
@@ -124,7 +124,7 @@ public:
    *
    * @return <tt>true</tt> if @a reference points to a valid path.
    */
-  bool is_valid() const;
+  auto is_valid() const -> bool;
 
 
 };
@@ -156,7 +156,7 @@ namespace Glib
  * @relates Gtk::TreeRowReference
  */
 GTKMM_API
-Gtk::TreeRowReference wrap(GtkTreeRowReference* object, bool take_copy = false);
+auto wrap(GtkTreeRowReference* object, bool take_copy = false) -> Gtk::TreeRowReference;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

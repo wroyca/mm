@@ -66,11 +66,11 @@ class GTKMM_API PopoverMenuBar : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   PopoverMenuBar(PopoverMenuBar&& src) noexcept;
-  PopoverMenuBar& operator=(PopoverMenuBar&& src) noexcept;
+  auto operator=(PopoverMenuBar&& src) noexcept -> PopoverMenuBar&;
 
   // noncopyable
   PopoverMenuBar(const PopoverMenuBar&) = delete;
-  PopoverMenuBar& operator=(const PopoverMenuBar&) = delete;
+  auto operator=(const PopoverMenuBar&) -> PopoverMenuBar& = delete;
 
   ~PopoverMenuBar() noexcept override;
 
@@ -90,19 +90,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkPopoverMenuBar*       gobj()       { return reinterpret_cast<GtkPopoverMenuBar*>(gobject_); }
+  auto       gobj() -> GtkPopoverMenuBar*       { return reinterpret_cast<GtkPopoverMenuBar*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkPopoverMenuBar* gobj() const { return reinterpret_cast<GtkPopoverMenuBar*>(gobject_); }
+  auto gobj() const -> const GtkPopoverMenuBar* { return reinterpret_cast<GtkPopoverMenuBar*>(gobject_); }
 
 private:
 
@@ -122,13 +122,13 @@ public:
    *
    * @return A `Gio::MenuModel`.
    */
-  Glib::RefPtr<Gio::MenuModel> get_menu_model();
+  auto get_menu_model() -> Glib::RefPtr<Gio::MenuModel>;
 
   /** Returns the model from which the contents of @a bar are taken.
    *
    * @return A `Gio::MenuModel`.
    */
-  Glib::RefPtr<const Gio::MenuModel> get_menu_model() const;
+  auto get_menu_model() const -> Glib::RefPtr<const Gio::MenuModel>;
 
 
   /** Adds a custom widget to a generated menubar.
@@ -140,7 +140,7 @@ public:
    * @param id The ID to insert @a child at.
    * @return <tt>true</tt> if @a id was found and the widget added.
    */
-  bool add_child(Widget& child, const Glib::ustring& id);
+  auto add_child(Widget& child, const Glib::ustring& id) -> bool;
 
   /** Removes a widget that has previously been added with
    * add_child().
@@ -148,7 +148,7 @@ public:
    * @param child The `Gtk::Widget` to remove.
    * @return <tt>true</tt> if the widget was removed.
    */
-  bool remove_child(Widget& child);
+  auto remove_child(Widget& child) -> bool;
 
   /** The `Gio::MenuModel` from which the menu bar is created.
    *
@@ -157,7 +157,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > property_menu_model() ;
+  auto property_menu_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > ;
 
 /** The `Gio::MenuModel` from which the menu bar is created.
    *
@@ -166,7 +166,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> > property_menu_model() const;
+  auto property_menu_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >;
 
 
   // PopoverMenuBar has no signals nor vfuncs.
@@ -199,7 +199,7 @@ namespace Glib
    * @relates Gtk::PopoverMenuBar
    */
   GTKMM_API
-  Gtk::PopoverMenuBar* wrap(GtkPopoverMenuBar* object, bool take_copy = false);
+  auto wrap(GtkPopoverMenuBar* object, bool take_copy = false) -> Gtk::PopoverMenuBar*;
 } //namespace Glib
 
 

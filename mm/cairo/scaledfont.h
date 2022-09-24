@@ -45,14 +45,14 @@ public:
   typedef cairo_scaled_font_t cobject;
 
   /** Provides acces to the underlying C cairo object */
-  inline cobject* cobj() { return m_cobject; }
+  inline auto cobj() -> cobject* { return m_cobject; }
 
   /** Provides acces to the underlying C cairo object */
-  inline const cobject* cobj() const { return m_cobject; }
+  inline auto cobj() const -> const cobject* { return m_cobject; }
 
 #ifndef DOXYGEN_IGNORE_THIS
   // For use only by the cairomm implementation.
-  inline ErrorStatus get_status() const
+  inline auto get_status() const -> ErrorStatus
   { return cairo_scaled_font_status(const_cast<cairo_scaled_font_t*>(cobj())); }
 
   // for RefPtr
@@ -66,7 +66,7 @@ public:
   explicit ScaledFont(cobject* cobj, bool has_reference = false);
 
   ScaledFont(const ScaledFont&) = delete;
-  ScaledFont& operator=(const ScaledFont&) = delete;
+  auto operator=(const ScaledFont&) -> ScaledFont& = delete;
 
   virtual ~ScaledFont();
 
@@ -83,8 +83,8 @@ public:
    * @param options options to use when getting metrics for the font and
    * rendering with it.
    */
-  static RefPtr<ScaledFont> create(const RefPtr<FontFace>& font_face, const Matrix& font_matrix,
-      const Matrix& ctm, const FontOptions& options = FontOptions());
+  static auto create(const RefPtr<FontFace>& font_face, const Matrix& font_matrix,
+      const Matrix& ctm, const FontOptions& options = FontOptions()) -> RefPtr<ScaledFont>;
   // NOTE: the constructor doesn't take a RefPtr<const FontFace> because the
   // FontFace object can be changed in this constructor (in the case of user
   // fonts, the FontFace becomes immutable, i.e. you can't call any set_*_func()
@@ -142,7 +142,7 @@ public:
   /** The FontFace with which this ScaledFont was created.
    * @since 1.2
    */
-  RefPtr<FontFace> get_font_face() const;
+  auto get_font_face() const -> RefPtr<FontFace>;
 
   /** Gets the FontOptions with which the ScaledFont was created.
    * @since 1.2
@@ -162,7 +162,7 @@ public:
   /** Gets the type of scaled Font
    * @since 1.2
    */
-  FontType get_type() const;
+  auto get_type() const -> FontType;
 
   // FIXME: it'd be really nice not to assume a specific container (e.g.
   // std::vector) here
@@ -224,8 +224,8 @@ public:
    *
    * @since 1.8
    */
-  static RefPtr<FtScaledFont> create(const RefPtr<FtFontFace>& font_face, const Matrix& font_matrix,
-      const Matrix& ctm, const FontOptions& options = FontOptions());
+  static auto create(const RefPtr<FtFontFace>& font_face, const Matrix& font_matrix,
+      const Matrix& ctm, const FontOptions& options = FontOptions()) -> RefPtr<FtScaledFont>;
 
   /** Gets the FT_Face object from a FreeType backend font and scales it
    * appropriately for the font. You must release the face with
@@ -249,7 +249,7 @@ public:
    *
    * @since 1.8
    */
-  FT_Face lock_face();
+  auto lock_face() -> FT_Face;
 
   /** Releases a face obtained with lock_face().
    *

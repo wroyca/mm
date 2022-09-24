@@ -404,31 +404,31 @@ enum class AsciiType
 };
 
 /** @ingroup glibmmEnums */
-inline AsciiType operator|(AsciiType lhs, AsciiType rhs)
+inline auto operator|(AsciiType lhs, AsciiType rhs) -> AsciiType
   { return static_cast<AsciiType>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline AsciiType operator&(AsciiType lhs, AsciiType rhs)
+inline auto operator&(AsciiType lhs, AsciiType rhs) -> AsciiType
   { return static_cast<AsciiType>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline AsciiType operator^(AsciiType lhs, AsciiType rhs)
+inline auto operator^(AsciiType lhs, AsciiType rhs) -> AsciiType
   { return static_cast<AsciiType>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline AsciiType operator~(AsciiType flags)
+inline auto operator~(AsciiType flags) -> AsciiType
   { return static_cast<AsciiType>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup glibmmEnums */
-inline AsciiType& operator|=(AsciiType& lhs, AsciiType rhs)
+inline auto operator|=(AsciiType& lhs, AsciiType rhs) -> AsciiType&
   { return (lhs = static_cast<AsciiType>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline AsciiType& operator&=(AsciiType& lhs, AsciiType rhs)
+inline auto operator&=(AsciiType& lhs, AsciiType rhs) -> AsciiType&
   { return (lhs = static_cast<AsciiType>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline AsciiType& operator^=(AsciiType& lhs, AsciiType rhs)
+inline auto operator^=(AsciiType& lhs, AsciiType rhs) -> AsciiType&
   { return (lhs = static_cast<AsciiType>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -495,53 +495,53 @@ enum class NormalizeMode
 namespace Unicode
 {
 
-inline bool validate(gunichar uc)
+inline auto validate(gunichar uc) -> bool
   { return (g_unichar_validate(uc) != 0); }
-inline bool isalnum(gunichar uc)
+inline auto isalnum(gunichar uc) -> bool
   { return (g_unichar_isalnum(uc) != 0); }
-inline bool isalpha(gunichar uc)
+inline auto isalpha(gunichar uc) -> bool
   { return (g_unichar_isalpha(uc) != 0); }
-inline bool iscntrl(gunichar uc)
+inline auto iscntrl(gunichar uc) -> bool
   { return (g_unichar_iscntrl(uc) != 0); }
-inline bool isdigit(gunichar uc)
+inline auto isdigit(gunichar uc) -> bool
   { return (g_unichar_isdigit(uc) != 0); }
-inline bool isgraph(gunichar uc)
+inline auto isgraph(gunichar uc) -> bool
   { return (g_unichar_isgraph(uc) != 0); }
-inline bool islower(gunichar uc)
+inline auto islower(gunichar uc) -> bool
   { return (g_unichar_islower(uc) != 0); }
-inline bool isprint(gunichar uc)
+inline auto isprint(gunichar uc) -> bool
   { return (g_unichar_isprint(uc) != 0); }
-inline bool ispunct(gunichar uc)
+inline auto ispunct(gunichar uc) -> bool
   { return (g_unichar_ispunct(uc) != 0); }
-inline bool isspace(gunichar uc)
+inline auto isspace(gunichar uc) -> bool
   { return (g_unichar_isspace(uc) != 0); }
-inline bool isupper(gunichar uc)
+inline auto isupper(gunichar uc) -> bool
   { return (g_unichar_isupper(uc) != 0); }
-inline bool isxdigit(gunichar uc)
+inline auto isxdigit(gunichar uc) -> bool
   { return (g_unichar_isxdigit(uc) != 0); }
-inline bool istitle(gunichar uc)
+inline auto istitle(gunichar uc) -> bool
   { return (g_unichar_istitle(uc) != 0); }
-inline bool isdefined(gunichar uc)
+inline auto isdefined(gunichar uc) -> bool
   { return (g_unichar_isdefined(uc) != 0); }
-inline bool iswide(gunichar uc)
+inline auto iswide(gunichar uc) -> bool
   { return (g_unichar_iswide(uc) != 0); }
 
-inline gunichar toupper(gunichar uc)
+inline auto toupper(gunichar uc) -> gunichar
   { return g_unichar_toupper(uc); }
-inline gunichar tolower(gunichar uc)
+inline auto tolower(gunichar uc) -> gunichar
   { return g_unichar_tolower(uc); }
-inline gunichar totitle(gunichar uc)
+inline auto totitle(gunichar uc) -> gunichar
   { return g_unichar_totitle(uc); }
 
-inline int digit_value(gunichar uc)
+inline auto digit_value(gunichar uc) -> int
   { return g_unichar_digit_value(uc); }
-inline int xdigit_value(gunichar uc)
+inline auto xdigit_value(gunichar uc) -> int
   { return g_unichar_xdigit_value(uc); }
 
-inline Glib::UnicodeType type(gunichar uc)
+inline auto type(gunichar uc) -> Glib::UnicodeType
   { return static_cast<Glib::UnicodeType>(static_cast<int>(g_unichar_type(uc))); }
 
-inline Glib::UnicodeBreakType break_type(gunichar uc)
+inline auto break_type(gunichar uc) -> Glib::UnicodeBreakType
   { return static_cast<Glib::UnicodeBreakType>(static_cast<int>(g_unichar_break_type(uc))); }
 
 } // namespace Unicode
@@ -550,37 +550,37 @@ inline Glib::UnicodeBreakType break_type(gunichar uc)
 namespace Ascii
 {
 
-inline bool isalnum(char c)
+inline auto isalnum(char c) -> bool
   { return g_ascii_isalnum(c); }
-inline bool isalpha(char c)
+inline auto isalpha(char c) -> bool
   { return g_ascii_isalpha(c); }
-inline bool iscntrl(char c)
+inline auto iscntrl(char c) -> bool
   { return g_ascii_iscntrl(c); }
-inline bool isdigit(char c)
+inline auto isdigit(char c) -> bool
   { return g_ascii_isdigit(c); }
-inline bool isgraph(char c)
+inline auto isgraph(char c) -> bool
   { return g_ascii_isgraph(c); }
-inline bool islower(char c)
+inline auto islower(char c) -> bool
   { return g_ascii_islower(c); }
-inline bool isprint(char c)
+inline auto isprint(char c) -> bool
   { return g_ascii_isprint(c); }
-inline bool ispunct(char c)
+inline auto ispunct(char c) -> bool
   { return g_ascii_ispunct(c); }
-inline bool isspace(char c)
+inline auto isspace(char c) -> bool
   { return g_ascii_isspace(c); }
-inline bool isupper(char c)
+inline auto isupper(char c) -> bool
   { return g_ascii_isupper(c); }
-inline bool isxdigit(char c)
+inline auto isxdigit(char c) -> bool
   { return g_ascii_isxdigit(c); }
 
-inline char tolower(char c)
+inline auto tolower(char c) -> char
   { return g_ascii_tolower(c); }
-inline char toupper(char c)
+inline auto toupper(char c) -> char
   { return g_ascii_toupper(c); }
 
-inline int digit_value(char c)
+inline auto digit_value(char c) -> int
   { return g_ascii_digit_value(c); }
-inline int xdigit_value(char c)
+inline auto xdigit_value(char c) -> int
   { return g_ascii_xdigit_value(c); }
 
 } // namespace Ascii

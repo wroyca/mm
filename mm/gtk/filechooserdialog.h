@@ -63,11 +63,11 @@ class GTKMM_API FileChooserDialog
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   FileChooserDialog(FileChooserDialog&& src) noexcept;
-  FileChooserDialog& operator=(FileChooserDialog&& src) noexcept;
+  auto operator=(FileChooserDialog&& src) noexcept -> FileChooserDialog&;
 
   // noncopyable
   FileChooserDialog(const FileChooserDialog&) = delete;
-  FileChooserDialog& operator=(const FileChooserDialog&) = delete;
+  auto operator=(const FileChooserDialog&) -> FileChooserDialog& = delete;
 
   ~FileChooserDialog() noexcept override;
 
@@ -87,19 +87,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkFileChooserDialog*       gobj()       { return reinterpret_cast<GtkFileChooserDialog*>(gobject_); }
+  auto       gobj() -> GtkFileChooserDialog*       { return reinterpret_cast<GtkFileChooserDialog*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkFileChooserDialog* gobj() const { return reinterpret_cast<GtkFileChooserDialog*>(gobject_); }
+  auto gobj() const -> const GtkFileChooserDialog* { return reinterpret_cast<GtkFileChooserDialog*>(gobject_); }
 
 private:
 
@@ -137,7 +137,7 @@ namespace Glib
    * @relates Gtk::FileChooserDialog
    */
   GTKMM_API
-  Gtk::FileChooserDialog* wrap(GtkFileChooserDialog* object, bool take_copy = false);
+  auto wrap(GtkFileChooserDialog* object, bool take_copy = false) -> Gtk::FileChooserDialog*;
 } //namespace Glib
 
 

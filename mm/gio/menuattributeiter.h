@@ -59,7 +59,7 @@ public:
 
   // noncopyable
   MenuAttributeIter(const MenuAttributeIter&) = delete;
-  MenuAttributeIter& operator=(const MenuAttributeIter&) = delete;
+  auto operator=(const MenuAttributeIter&) -> MenuAttributeIter& = delete;
 
 private:  friend class MenuAttributeIter_Class;
   static CppClassType menuattributeiter_class_;
@@ -73,28 +73,28 @@ protected:
 public:
 
   MenuAttributeIter(MenuAttributeIter&& src) noexcept;
-  MenuAttributeIter& operator=(MenuAttributeIter&& src) noexcept;
+  auto operator=(MenuAttributeIter&& src) noexcept -> MenuAttributeIter&;
 
   ~MenuAttributeIter() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GMenuAttributeIter*       gobj()       { return reinterpret_cast<GMenuAttributeIter*>(gobject_); }
+  auto       gobj() -> GMenuAttributeIter*       { return reinterpret_cast<GMenuAttributeIter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GMenuAttributeIter* gobj() const { return reinterpret_cast<GMenuAttributeIter*>(gobject_); }
+  auto gobj() const -> const GMenuAttributeIter* { return reinterpret_cast<GMenuAttributeIter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GMenuAttributeIter* gobj_copy();
+  auto gobj_copy() -> GMenuAttributeIter*;
 
 private:
 
@@ -128,7 +128,7 @@ public:
    * attribute.
    */
 
-  bool get_next(Glib::ustring& out_name, Glib::VariantBase& value);
+  auto get_next(Glib::ustring& out_name, Glib::VariantBase& value) -> bool;
 
 
   /** Gets the name of the attribute at the current iterator position, as
@@ -140,7 +140,7 @@ public:
    *
    * @return The name of the attribute.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
 
   /** Gets the value of the attribute at the current iterator position.
@@ -151,7 +151,7 @@ public:
    *
    * @return The value of the current attribute.
    */
-  Glib::VariantBase get_value() const;
+  auto get_value() const -> Glib::VariantBase;
 
 
   /** Attempts to advance the iterator to the next (possibly first)
@@ -168,7 +168,7 @@ public:
    *
    * @return <tt>true</tt> on success, or <tt>false</tt> when there are no more attributes.
    */
-  bool next();
+  auto next() -> bool;
 
 
 public:
@@ -198,7 +198,7 @@ namespace Glib
    * @relates Gio::MenuAttributeIter
    */
   GIOMM_API
-  Glib::RefPtr<Gio::MenuAttributeIter> wrap(GMenuAttributeIter* object, bool take_copy = false);
+  auto wrap(GMenuAttributeIter* object, bool take_copy = false) -> Glib::RefPtr<Gio::MenuAttributeIter>;
 }
 
 

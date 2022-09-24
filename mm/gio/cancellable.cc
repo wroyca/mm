@@ -49,8 +49,8 @@ slot_cancelled_proxy(GCancellable* /*cancellable*/, gpointer data)
 
 } // extern "C"
 
-gulong
-Cancellable::connect(const SlotCancelledCallback& slot)
+auto
+Cancellable::connect(const SlotCancelledCallback& slot) -> gulong
 {
   auto slot_copy = new SlotCancelledCallback(slot);
   return g_cancellable_connect(gobj(), G_CALLBACK(slot_cancelled_proxy), slot_copy, &delete_slot);
@@ -62,7 +62,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo Cancellable_signal_cancelled_info =
+const Glib::SignalProxyInfo Cancellable_signal_cancelled_info =
 {
   "cancelled",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -76,7 +76,7 @@ static const Glib::SignalProxyInfo Cancellable_signal_cancelled_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gio::Cancellable> wrap(GCancellable* object, bool take_copy)
+auto wrap(GCancellable* object, bool take_copy) -> Glib::RefPtr<Gio::Cancellable>
 {
   return Glib::make_refptr_for_instance<Gio::Cancellable>( dynamic_cast<Gio::Cancellable*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -91,7 +91,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& Cancellable_Class::init()
+auto Cancellable_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -161,7 +161,7 @@ void Cancellable_Class::cancelled_callback(GCancellable* self)
 }
 
 
-Glib::ObjectBase* Cancellable_Class::wrap_new(GObject* object)
+auto Cancellable_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Cancellable((GCancellable*)object);
 }
@@ -169,7 +169,7 @@ Glib::ObjectBase* Cancellable_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GCancellable* Cancellable::gobj_copy()
+auto Cancellable::gobj_copy() -> GCancellable*
 {
   reference();
   return gobj();
@@ -192,7 +192,7 @@ Cancellable::Cancellable(Cancellable&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Cancellable& Cancellable::operator=(Cancellable&& src) noexcept
+auto Cancellable::operator=(Cancellable&& src) noexcept -> Cancellable&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -205,13 +205,13 @@ Cancellable::~Cancellable() noexcept
 
 Cancellable::CppClassType Cancellable::cancellable_class_; // initialize static member
 
-GType Cancellable::get_type()
+auto Cancellable::get_type() -> GType
 {
   return cancellable_class_.init().get_type();
 }
 
 
-GType Cancellable::get_base_type()
+auto Cancellable::get_base_type() -> GType
 {
   return g_cancellable_get_type();
 }
@@ -227,22 +227,22 @@ Cancellable::Cancellable()
 
 }
 
-Glib::RefPtr<Cancellable> Cancellable::create()
+auto Cancellable::create() -> Glib::RefPtr<Cancellable>
 {
   return Glib::make_refptr_for_instance<Cancellable>( new Cancellable() );
 }
 
-bool Cancellable::is_cancelled() const
+auto Cancellable::is_cancelled() const -> bool
 {
   return g_cancellable_is_cancelled(const_cast<GCancellable*>(gobj()));
 }
 
-int Cancellable::get_fd() const
+auto Cancellable::get_fd() const -> int
 {
   return g_cancellable_get_fd(const_cast<GCancellable*>(gobj()));
 }
 
-bool Cancellable::make_pollfd(GPollFD* pollfd)
+auto Cancellable::make_pollfd(GPollFD* pollfd) -> bool
 {
   return g_cancellable_make_pollfd(gobj(), pollfd);
 }
@@ -257,7 +257,7 @@ void Cancellable::cancel()
   g_cancellable_cancel(gobj());
 }
 
-Glib::RefPtr<Cancellable> Cancellable::get_current()
+auto Cancellable::get_current() -> Glib::RefPtr<Cancellable>
 {
 
   auto retvalue = Glib::wrap(g_cancellable_get_current());
@@ -287,7 +287,7 @@ void Cancellable::disconnect(gulong handler_id)
 }
 
 
-Glib::SignalProxy<void()> Cancellable::signal_cancelled()
+auto Cancellable::signal_cancelled() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Cancellable_signal_cancelled_info);
 }

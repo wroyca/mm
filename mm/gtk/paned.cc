@@ -39,7 +39,7 @@ namespace
 namespace Glib
 {
 
-Gtk::Paned* wrap(GtkPaned* object, bool take_copy)
+auto wrap(GtkPaned* object, bool take_copy) -> Gtk::Paned*
 {
   return dynamic_cast<Gtk::Paned *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -52,7 +52,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Paned_Class::init()
+auto Paned_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -84,7 +84,7 @@ void Paned_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Paned_Class::wrap_new(GObject* o)
+auto Paned_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Paned((GtkPaned*)(o)));
 
@@ -111,7 +111,7 @@ Paned::Paned(Paned&& src) noexcept
   , Orientable(std::move(src))
 {}
 
-Paned& Paned::operator=(Paned&& src) noexcept
+auto Paned::operator=(Paned&& src) noexcept -> Paned&
 {
   Gtk::Widget::operator=(std::move(src));
   Orientable::operator=(std::move(src));
@@ -125,13 +125,13 @@ Paned::~Paned() noexcept
 
 Paned::CppClassType Paned::paned_class_; // initialize static member
 
-GType Paned::get_type()
+auto Paned::get_type() -> GType
 {
   return paned_class_.init().get_type();
 }
 
 
-GType Paned::get_base_type()
+auto Paned::get_base_type() -> GType
 {
   return gtk_paned_get_type();
 }
@@ -152,12 +152,12 @@ void Paned::set_start_child(Widget& child)
   gtk_paned_set_start_child(gobj(), (child).gobj());
 }
 
-Widget* Paned::get_start_child()
+auto Paned::get_start_child() -> Widget*
 {
   return Glib::wrap(gtk_paned_get_start_child(gobj()));
 }
 
-const Widget* Paned::get_start_child() const
+auto Paned::get_start_child() const -> const Widget*
 {
   return const_cast<Paned*>(this)->get_start_child();
 }
@@ -167,7 +167,7 @@ void Paned::set_resize_start_child(bool resize)
   gtk_paned_set_resize_start_child(gobj(), static_cast<int>(resize));
 }
 
-bool Paned::get_resize_start_child() const
+auto Paned::get_resize_start_child() const -> bool
 {
   return gtk_paned_get_resize_start_child(const_cast<GtkPaned*>(gobj()));
 }
@@ -177,7 +177,7 @@ void Paned::set_shrink_start_child(bool resize)
   gtk_paned_set_shrink_start_child(gobj(), static_cast<int>(resize));
 }
 
-bool Paned::get_shrink_start_child() const
+auto Paned::get_shrink_start_child() const -> bool
 {
   return gtk_paned_get_shrink_start_child(const_cast<GtkPaned*>(gobj()));
 }
@@ -187,12 +187,12 @@ void Paned::set_end_child(Widget& child)
   gtk_paned_set_end_child(gobj(), (child).gobj());
 }
 
-Widget* Paned::get_end_child()
+auto Paned::get_end_child() -> Widget*
 {
   return Glib::wrap(gtk_paned_get_end_child(gobj()));
 }
 
-const Widget* Paned::get_end_child() const
+auto Paned::get_end_child() const -> const Widget*
 {
   return const_cast<Paned*>(this)->get_end_child();
 }
@@ -202,7 +202,7 @@ void Paned::set_resize_end_child(bool resize)
   gtk_paned_set_resize_end_child(gobj(), static_cast<int>(resize));
 }
 
-bool Paned::get_resize_end_child() const
+auto Paned::get_resize_end_child() const -> bool
 {
   return gtk_paned_get_resize_end_child(const_cast<GtkPaned*>(gobj()));
 }
@@ -212,12 +212,12 @@ void Paned::set_shrink_end_child(bool resize)
   gtk_paned_set_shrink_end_child(gobj(), static_cast<int>(resize));
 }
 
-bool Paned::get_shrink_end_child() const
+auto Paned::get_shrink_end_child() const -> bool
 {
   return gtk_paned_get_shrink_end_child(const_cast<GtkPaned*>(gobj()));
 }
 
-int Paned::get_position() const
+auto Paned::get_position() const -> int
 {
   return gtk_paned_get_position(const_cast<GtkPaned*>(gobj()));
 }
@@ -232,108 +232,108 @@ void Paned::set_wide_handle(bool wide)
   gtk_paned_set_wide_handle(gobj(), static_cast<int>(wide));
 }
 
-bool Paned::get_wide_handle() const
+auto Paned::get_wide_handle() const -> bool
 {
   return gtk_paned_get_wide_handle(const_cast<GtkPaned*>(gobj()));
 }
 
 
-Glib::PropertyProxy< int > Paned::property_position()
+auto Paned::property_position() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "position");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Paned::property_position() const
+auto Paned::property_position() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "position");
 }
 
-Glib::PropertyProxy< bool > Paned::property_position_set()
+auto Paned::property_position_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "position-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Paned::property_position_set() const
+auto Paned::property_position_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "position-set");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Paned::property_min_position() const
+auto Paned::property_min_position() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "min-position");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Paned::property_max_position() const
+auto Paned::property_max_position() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "max-position");
 }
 
-Glib::PropertyProxy< bool > Paned::property_wide_handle()
+auto Paned::property_wide_handle() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "wide-handle");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Paned::property_wide_handle() const
+auto Paned::property_wide_handle() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "wide-handle");
 }
 
-Glib::PropertyProxy< bool > Paned::property_resize_start_child()
+auto Paned::property_resize_start_child() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "resize-start-child");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Paned::property_resize_start_child() const
+auto Paned::property_resize_start_child() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "resize-start-child");
 }
 
-Glib::PropertyProxy< bool > Paned::property_resize_end_child()
+auto Paned::property_resize_end_child() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "resize-end-child");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Paned::property_resize_end_child() const
+auto Paned::property_resize_end_child() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "resize-end-child");
 }
 
-Glib::PropertyProxy< bool > Paned::property_shrink_start_child()
+auto Paned::property_shrink_start_child() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "shrink-start-child");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Paned::property_shrink_start_child() const
+auto Paned::property_shrink_start_child() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "shrink-start-child");
 }
 
-Glib::PropertyProxy< bool > Paned::property_shrink_end_child()
+auto Paned::property_shrink_end_child() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "shrink-end-child");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Paned::property_shrink_end_child() const
+auto Paned::property_shrink_end_child() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "shrink-end-child");
 }
 
-Glib::PropertyProxy< Widget* > Paned::property_start_child()
+auto Paned::property_start_child() -> Glib::PropertyProxy< Widget* >
 {
   return Glib::PropertyProxy< Widget* >(this, "start-child");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > Paned::property_start_child() const
+auto Paned::property_start_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "start-child");
 }
 
-Glib::PropertyProxy< Widget* > Paned::property_end_child()
+auto Paned::property_end_child() -> Glib::PropertyProxy< Widget* >
 {
   return Glib::PropertyProxy< Widget* >(this, "end-child");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > Paned::property_end_child() const
+auto Paned::property_end_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "end-child");
 }

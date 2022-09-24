@@ -89,7 +89,7 @@ public:
 
   // noncopyable
   EventControllerScroll(const EventControllerScroll&) = delete;
-  EventControllerScroll& operator=(const EventControllerScroll&) = delete;
+  auto operator=(const EventControllerScroll&) -> EventControllerScroll& = delete;
 
 private:  friend class EventControllerScroll_Class;
   static CppClassType eventcontrollerscroll_class_;
@@ -103,28 +103,28 @@ protected:
 public:
 
   EventControllerScroll(EventControllerScroll&& src) noexcept;
-  EventControllerScroll& operator=(EventControllerScroll&& src) noexcept;
+  auto operator=(EventControllerScroll&& src) noexcept -> EventControllerScroll&;
 
   ~EventControllerScroll() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkEventControllerScroll*       gobj()       { return reinterpret_cast<GtkEventControllerScroll*>(gobject_); }
+  auto       gobj() -> GtkEventControllerScroll*       { return reinterpret_cast<GtkEventControllerScroll*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkEventControllerScroll* gobj() const { return reinterpret_cast<GtkEventControllerScroll*>(gobject_); }
+  auto gobj() const -> const GtkEventControllerScroll* { return reinterpret_cast<GtkEventControllerScroll*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkEventControllerScroll* gobj_copy();
+  auto gobj_copy() -> GtkEventControllerScroll*;
 
 private:
 
@@ -179,7 +179,7 @@ public:
   };
 
 
-  static Glib::RefPtr<EventControllerScroll> create();
+  static auto create() -> Glib::RefPtr<EventControllerScroll>;
 
 
   /** Sets the flags conditioning scroll controller behavior.
@@ -192,7 +192,7 @@ public:
    *
    * @return The controller flags.
    */
-  Flags get_flags() const;
+  auto get_flags() const -> Flags;
 
   /** Gets the scroll unit of the last
    * signal_scroll() signal received.
@@ -204,7 +204,7 @@ public:
    *
    * @return The scroll unit.
    */
-  Gdk::ScrollUnit get_unit() const;
+  auto get_unit() const -> Gdk::ScrollUnit;
 
   /** The flags affecting event controller behavior.
    *
@@ -213,7 +213,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Flags > property_flags() ;
+  auto property_flags() -> Glib::PropertyProxy< Flags > ;
 
 /** The flags affecting event controller behavior.
    *
@@ -222,7 +222,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Flags > property_flags() const;
+  auto property_flags() const -> Glib::PropertyProxy_ReadOnly< Flags >;
 
 
   // no_default_handler because GtkEventControllerScrollClass is private.
@@ -238,7 +238,7 @@ public:
    * It will only be emitted on devices capable of it.
    */
 
-  Glib::SignalProxy<void()> signal_scroll_begin();
+  auto signal_scroll_begin() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -259,7 +259,7 @@ public:
    * <tt>false</tt> otherwise.
    */
 
-  Glib::SignalProxy<bool(double, double)> signal_scroll();
+  auto signal_scroll() -> Glib::SignalProxy<bool(double, double)>;
 
 
   /**
@@ -273,7 +273,7 @@ public:
    * It will only be emitted on devices capable of it.
    */
 
-  Glib::SignalProxy<void()> signal_scroll_end();
+  auto signal_scroll_end() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -293,7 +293,7 @@ public:
    * @param vel_y Y velocity.
    */
 
-  Glib::SignalProxy<void(double, double)> signal_decelerate();
+  auto signal_decelerate() -> Glib::SignalProxy<void(double, double)>;
 
 
   // There are no vfuncs.
@@ -318,31 +318,31 @@ namespace Gtk
 {
 
 /** @ingroup gtkmmEnums */
-inline EventControllerScroll::Flags operator|(EventControllerScroll::Flags lhs, EventControllerScroll::Flags rhs)
+inline auto operator|(EventControllerScroll::Flags lhs, EventControllerScroll::Flags rhs) -> EventControllerScroll::Flags
   { return static_cast<EventControllerScroll::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline EventControllerScroll::Flags operator&(EventControllerScroll::Flags lhs, EventControllerScroll::Flags rhs)
+inline auto operator&(EventControllerScroll::Flags lhs, EventControllerScroll::Flags rhs) -> EventControllerScroll::Flags
   { return static_cast<EventControllerScroll::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline EventControllerScroll::Flags operator^(EventControllerScroll::Flags lhs, EventControllerScroll::Flags rhs)
+inline auto operator^(EventControllerScroll::Flags lhs, EventControllerScroll::Flags rhs) -> EventControllerScroll::Flags
   { return static_cast<EventControllerScroll::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline EventControllerScroll::Flags operator~(EventControllerScroll::Flags flags)
+inline auto operator~(EventControllerScroll::Flags flags) -> EventControllerScroll::Flags
   { return static_cast<EventControllerScroll::Flags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gtkmmEnums */
-inline EventControllerScroll::Flags& operator|=(EventControllerScroll::Flags& lhs, EventControllerScroll::Flags rhs)
+inline auto operator|=(EventControllerScroll::Flags& lhs, EventControllerScroll::Flags rhs) -> EventControllerScroll::Flags&
   { return (lhs = static_cast<EventControllerScroll::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline EventControllerScroll::Flags& operator&=(EventControllerScroll::Flags& lhs, EventControllerScroll::Flags rhs)
+inline auto operator&=(EventControllerScroll::Flags& lhs, EventControllerScroll::Flags rhs) -> EventControllerScroll::Flags&
   { return (lhs = static_cast<EventControllerScroll::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline EventControllerScroll::Flags& operator^=(EventControllerScroll::Flags& lhs, EventControllerScroll::Flags rhs)
+inline auto operator^=(EventControllerScroll::Flags& lhs, EventControllerScroll::Flags rhs) -> EventControllerScroll::Flags&
   { return (lhs = static_cast<EventControllerScroll::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gtk
 
@@ -354,7 +354,7 @@ template <>
 class GTKMM_API Value<Gtk::EventControllerScroll::Flags> : public Glib::Value_Flags<Gtk::EventControllerScroll::Flags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -372,7 +372,7 @@ namespace Glib
    * @relates Gtk::EventControllerScroll
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::EventControllerScroll> wrap(GtkEventControllerScroll* object, bool take_copy = false);
+  auto wrap(GtkEventControllerScroll* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerScroll>;
 }
 
 

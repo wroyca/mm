@@ -67,11 +67,11 @@ class GTKMM_API Inscription : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Inscription(Inscription&& src) noexcept;
-  Inscription& operator=(Inscription&& src) noexcept;
+  auto operator=(Inscription&& src) noexcept -> Inscription&;
 
   // noncopyable
   Inscription(const Inscription&) = delete;
-  Inscription& operator=(const Inscription&) = delete;
+  auto operator=(const Inscription&) -> Inscription& = delete;
 
   ~Inscription() noexcept override;
 
@@ -91,19 +91,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkInscription*       gobj()       { return reinterpret_cast<GtkInscription*>(gobject_); }
+  auto       gobj() -> GtkInscription*       { return reinterpret_cast<GtkInscription*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkInscription* gobj() const { return reinterpret_cast<GtkInscription*>(gobject_); }
+  auto gobj() const -> const GtkInscription* { return reinterpret_cast<GtkInscription*>(gobject_); }
 
 private:
 
@@ -156,7 +156,7 @@ public:
    *
    * @return The displayed text.
    */
-  Glib::ustring get_text() const;
+  auto get_text() const -> Glib::ustring;
 
   /** Sets the text to be displayed.
    *
@@ -172,7 +172,7 @@ public:
    *
    * @return The attribute list.
    */
-  Pango::AttrList get_attributes() const;
+  auto get_attributes() const -> Pango::AttrList;
 
   /** Apply attributes to the inscription text.
    *
@@ -200,7 +200,7 @@ public:
    *
    * @return The overflow method.
    */
-  Inscription::Overflow get_text_overflow() const;
+  auto get_text_overflow() const -> Inscription::Overflow;
 
   /** Sets what to do when the text doesn't fit.
    *
@@ -218,7 +218,7 @@ public:
    *
    * @return The line wrap mode.
    */
-  Pango::WrapMode get_wrap_mode() const;
+  auto get_wrap_mode() const -> Pango::WrapMode;
 
   /** Controls how line wrapping is done.
    *
@@ -236,7 +236,7 @@ public:
    *
    * @return The min-chars property.
    */
-  unsigned int get_min_chars() const;
+  auto get_min_chars() const -> unsigned int;
 
   /** Sets the `min-chars` of the inscription.
    *
@@ -256,7 +256,7 @@ public:
    *
    * @return The nat-chars property.
    */
-  unsigned int get_nat_chars() const;
+  auto get_nat_chars() const -> unsigned int;
 
   /** Sets the `nat-chars` of the inscription.
    *
@@ -276,7 +276,7 @@ public:
    *
    * @return The min-lines property.
    */
-  unsigned int get_min_lines() const;
+  auto get_min_lines() const -> unsigned int;
 
   /** Sets the `min-lines` of the inscription.
    *
@@ -296,7 +296,7 @@ public:
    *
    * @return The nat-lines property.
    */
-  unsigned int get_nat_lines() const;
+  auto get_nat_lines() const -> unsigned int;
 
   /** Sets the `nat-lines` of the inscription.
    *
@@ -316,7 +316,7 @@ public:
    *
    * @return The xalign property.
    */
-  float get_xalign() const;
+  auto get_xalign() const -> float;
 
   /** Sets the `xalign` of the inscription.
    *
@@ -336,7 +336,7 @@ public:
    *
    * @return The yalign property.
    */
-  float get_yalign() const;
+  auto get_yalign() const -> float;
 
   /** Sets the `yalign` of the inscription.
    *
@@ -355,7 +355,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::AttrList > property_attributes() ;
+  auto property_attributes() -> Glib::PropertyProxy< Pango::AttrList > ;
 
 /** A list of style attributes to apply to the text of the inscription.
    *
@@ -364,7 +364,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::AttrList > property_attributes() const;
+  auto property_attributes() const -> Glib::PropertyProxy_ReadOnly< Pango::AttrList >;
 
   /** Utility property that sets both the property_text() and
    * property_attributes() properties, mainly intended for use in
@@ -381,7 +381,7 @@ public:
    * @return A PropertyProxy_WriteOnly that allows you to set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_WriteOnly< Glib::ustring > property_markup() ;
+  auto property_markup() -> Glib::PropertyProxy_WriteOnly< Glib::ustring > ;
 
 
   /** The number of characters that should fit into the inscription at minimum.
@@ -403,7 +403,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< unsigned int > property_min_chars() ;
+  auto property_min_chars() -> Glib::PropertyProxy< unsigned int > ;
 
 /** The number of characters that should fit into the inscription at minimum.
    *
@@ -424,7 +424,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_min_chars() const;
+  auto property_min_chars() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
   /** The number of lines that should fit into the inscription at minimum.
    *
@@ -444,7 +444,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< unsigned int > property_min_lines() ;
+  auto property_min_lines() -> Glib::PropertyProxy< unsigned int > ;
 
 /** The number of lines that should fit into the inscription at minimum.
    *
@@ -464,7 +464,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_min_lines() const;
+  auto property_min_lines() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
   /** The number of characters that should ideally fit into the inscription.
    *
@@ -482,7 +482,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< unsigned int > property_nat_chars() ;
+  auto property_nat_chars() -> Glib::PropertyProxy< unsigned int > ;
 
 /** The number of characters that should ideally fit into the inscription.
    *
@@ -500,7 +500,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_nat_chars() const;
+  auto property_nat_chars() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
   /** The number of lines that should ideally fit into the inscription.
    *
@@ -518,7 +518,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< unsigned int > property_nat_lines() ;
+  auto property_nat_lines() -> Glib::PropertyProxy< unsigned int > ;
 
 /** The number of lines that should ideally fit into the inscription.
    *
@@ -536,7 +536,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_nat_lines() const;
+  auto property_nat_lines() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
   /** The displayed text.
    *
@@ -547,7 +547,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_text() ;
+  auto property_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The displayed text.
    *
@@ -558,7 +558,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_text() const;
+  auto property_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The overflow method to use for the text.
    *
@@ -569,7 +569,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Inscription::Overflow > property_text_overflow() ;
+  auto property_text_overflow() -> Glib::PropertyProxy< Inscription::Overflow > ;
 
 /** The overflow method to use for the text.
    *
@@ -580,7 +580,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Inscription::Overflow > property_text_overflow() const;
+  auto property_text_overflow() const -> Glib::PropertyProxy_ReadOnly< Inscription::Overflow >;
 
   /** Controls how the line wrapping is done.
    *
@@ -593,7 +593,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::WrapMode > property_wrap_mode() ;
+  auto property_wrap_mode() -> Glib::PropertyProxy< Pango::WrapMode > ;
 
 /** Controls how the line wrapping is done.
    *
@@ -606,7 +606,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::WrapMode > property_wrap_mode() const;
+  auto property_wrap_mode() const -> Glib::PropertyProxy_ReadOnly< Pango::WrapMode >;
 
   /** The horizontal alignment of the text inside the allocated size.
    *
@@ -620,7 +620,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< float > property_xalign() ;
+  auto property_xalign() -> Glib::PropertyProxy< float > ;
 
 /** The horizontal alignment of the text inside the allocated size.
    *
@@ -634,7 +634,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< float > property_xalign() const;
+  auto property_xalign() const -> Glib::PropertyProxy_ReadOnly< float >;
 
   /** The vertical alignment of the text inside the allocated size.
    *
@@ -648,7 +648,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< float > property_yalign() ;
+  auto property_yalign() -> Glib::PropertyProxy< float > ;
 
 /** The vertical alignment of the text inside the allocated size.
    *
@@ -662,7 +662,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< float > property_yalign() const;
+  auto property_yalign() const -> Glib::PropertyProxy_ReadOnly< float >;
 
 
 public:
@@ -689,7 +689,7 @@ template <>
 class GTKMM_API Value<Gtk::Inscription::Overflow> : public Glib::Value_Enum<Gtk::Inscription::Overflow>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -707,7 +707,7 @@ namespace Glib
    * @relates Gtk::Inscription
    */
   GTKMM_API
-  Gtk::Inscription* wrap(GtkInscription* object, bool take_copy = false);
+  auto wrap(GtkInscription* object, bool take_copy = false) -> Gtk::Inscription*;
 } //namespace Glib
 
 

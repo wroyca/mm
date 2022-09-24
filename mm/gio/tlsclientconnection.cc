@@ -35,7 +35,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::TlsClientConnection> wrap(GTlsClientConnection* object, bool take_copy)
+auto wrap(GTlsClientConnection* object, bool take_copy) -> Glib::RefPtr<Gio::TlsClientConnection>
 {
   return Glib::make_refptr_for_instance<Gio::TlsClientConnection>( dynamic_cast<Gio::TlsClientConnection*> (Glib::wrap_auto_interface<Gio::TlsClientConnection> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -50,7 +50,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& TlsClientConnection_Class::init()
+auto TlsClientConnection_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -77,7 +77,7 @@ void TlsClientConnection_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* TlsClientConnection_Class::wrap_new(GObject* object)
+auto TlsClientConnection_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new TlsClientConnection((GTlsClientConnection*)(object));
 }
@@ -104,7 +104,7 @@ TlsClientConnection::TlsClientConnection(TlsClientConnection&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-TlsClientConnection& TlsClientConnection::operator=(TlsClientConnection&& src) noexcept
+auto TlsClientConnection::operator=(TlsClientConnection&& src) noexcept -> TlsClientConnection&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -121,19 +121,19 @@ void TlsClientConnection::add_interface(GType gtype_implementer)
 
 TlsClientConnection::CppClassType TlsClientConnection::tlsclientconnection_class_; // initialize static member
 
-GType TlsClientConnection::get_type()
+auto TlsClientConnection::get_type() -> GType
 {
   return tlsclientconnection_class_.init().get_type();
 }
 
 
-GType TlsClientConnection::get_base_type()
+auto TlsClientConnection::get_base_type() -> GType
 {
   return g_tls_client_connection_get_type();
 }
 
 
-Glib::RefPtr<TlsClientConnectionImpl> TlsClientConnection::create(const Glib::RefPtr<IOStream>& base_io_stream, const Glib::RefPtr<const SocketConnectable>& server_identity)
+auto TlsClientConnection::create(const Glib::RefPtr<IOStream>& base_io_stream, const Glib::RefPtr<const SocketConnectable>& server_identity) -> Glib::RefPtr<TlsClientConnectionImpl>
 {
   GError* gerror = nullptr;
   auto retvalue = std::dynamic_pointer_cast<TlsClientConnectionImpl>(Glib::wrap(G_TLS_CONNECTION(g_tls_client_connection_new(Glib::unwrap(base_io_stream), const_cast<GSocketConnectable*>(Glib::unwrap(server_identity)), &(gerror)))));
@@ -142,7 +142,7 @@ Glib::RefPtr<TlsClientConnectionImpl> TlsClientConnection::create(const Glib::Re
   return retvalue;
 }
 
-Glib::RefPtr<TlsClientConnectionImpl> TlsClientConnection::create(const Glib::RefPtr<IOStream>& base_io_stream)
+auto TlsClientConnection::create(const Glib::RefPtr<IOStream>& base_io_stream) -> Glib::RefPtr<TlsClientConnectionImpl>
 {
   GError* gerror = nullptr;
   auto retvalue = std::dynamic_pointer_cast<TlsClientConnectionImpl>(Glib::wrap(G_TLS_CONNECTION(g_tls_client_connection_new(Glib::unwrap(base_io_stream), nullptr, &(gerror)))));
@@ -156,7 +156,7 @@ void TlsClientConnection::set_server_identity(const Glib::RefPtr<SocketConnectab
   g_tls_client_connection_set_server_identity(gobj(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)));
 }
 
-Glib::RefPtr<SocketConnectable> TlsClientConnection::get_server_identity()
+auto TlsClientConnection::get_server_identity() -> Glib::RefPtr<SocketConnectable>
 {
   auto retvalue = Glib::wrap(g_tls_client_connection_get_server_identity(gobj()));
   if(retvalue)
@@ -164,7 +164,7 @@ Glib::RefPtr<SocketConnectable> TlsClientConnection::get_server_identity()
   return retvalue;
 }
 
-Glib::RefPtr<const SocketConnectable> TlsClientConnection::get_server_identity() const
+auto TlsClientConnection::get_server_identity() const -> Glib::RefPtr<const SocketConnectable>
 {
   return const_cast<TlsClientConnection*>(this)->get_server_identity();
 }
@@ -180,19 +180,19 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 
 #ifndef GIOMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-TlsCertificateFlags TlsClientConnection::get_validation_flags() const
+auto TlsClientConnection::get_validation_flags() const -> TlsCertificateFlags
 {
   return static_cast<TlsCertificateFlags>(g_tls_client_connection_get_validation_flags(const_cast<GTlsClientConnection*>(gobj())));
 }
 G_GNUC_END_IGNORE_DEPRECATIONS
 #endif // GIOMM_DISABLE_DEPRECATED
 
-std::vector< Glib::RefPtr<Glib::ByteArray> > TlsClientConnection::get_accepted_cas()
+auto TlsClientConnection::get_accepted_cas() -> std::vector< Glib::RefPtr<Glib::ByteArray> >
 {
   return Glib::ListHandler< Glib::RefPtr<Glib::ByteArray> >::list_to_vector(g_tls_client_connection_get_accepted_cas(gobj()), Glib::OWNERSHIP_DEEP);
 }
 
-std::vector< Glib::RefPtr<const Glib::ByteArray> > TlsClientConnection::get_accepted_cas() const
+auto TlsClientConnection::get_accepted_cas() const -> std::vector< Glib::RefPtr<const Glib::ByteArray> >
 {
   return Glib::ListHandler< Glib::RefPtr<const Glib::ByteArray> >::list_to_vector(g_tls_client_connection_get_accepted_cas(const_cast<GTlsClientConnection*>(gobj())), Glib::OWNERSHIP_DEEP);
 }
@@ -207,12 +207,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<SocketC
   "Type Glib::RefPtr<SocketConnectable> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<SocketConnectable> > TlsClientConnection::property_server_identity()
+auto TlsClientConnection::property_server_identity() -> Glib::PropertyProxy< Glib::RefPtr<SocketConnectable> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<SocketConnectable> >(this, "server-identity");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketConnectable> > TlsClientConnection::property_server_identity() const
+auto TlsClientConnection::property_server_identity() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketConnectable> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketConnectable> >(this, "server-identity");
 }
@@ -223,7 +223,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<TlsCertificateFlags>
   "Type TlsCertificateFlags cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< TlsCertificateFlags > TlsClientConnection::property_validation_flags()
+auto TlsClientConnection::property_validation_flags() -> Glib::PropertyProxy< TlsCertificateFlags >
 {
   return Glib::PropertyProxy< TlsCertificateFlags >(this, "validation-flags");
 }
@@ -232,7 +232,7 @@ Glib::PropertyProxy< TlsCertificateFlags > TlsClientConnection::property_validat
 
 #ifndef GIOMM_DISABLE_DEPRECATED
 
-Glib::PropertyProxy_ReadOnly< TlsCertificateFlags > TlsClientConnection::property_validation_flags() const
+auto TlsClientConnection::property_validation_flags() const -> Glib::PropertyProxy_ReadOnly< TlsCertificateFlags >
 {
   return Glib::PropertyProxy_ReadOnly< TlsCertificateFlags >(this, "validation-flags");
 }

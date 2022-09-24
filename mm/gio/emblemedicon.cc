@@ -44,7 +44,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::EmblemedIcon> wrap(GEmblemedIcon* object, bool take_copy)
+auto wrap(GEmblemedIcon* object, bool take_copy) -> Glib::RefPtr<Gio::EmblemedIcon>
 {
   return Glib::make_refptr_for_instance<Gio::EmblemedIcon>( dynamic_cast<Gio::EmblemedIcon*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -59,7 +59,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& EmblemedIcon_Class::init()
+auto EmblemedIcon_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -91,7 +91,7 @@ void EmblemedIcon_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* EmblemedIcon_Class::wrap_new(GObject* object)
+auto EmblemedIcon_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new EmblemedIcon((GEmblemedIcon*)object);
 }
@@ -99,7 +99,7 @@ Glib::ObjectBase* EmblemedIcon_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GEmblemedIcon* EmblemedIcon::gobj_copy()
+auto EmblemedIcon::gobj_copy() -> GEmblemedIcon*
 {
   reference();
   return gobj();
@@ -123,7 +123,7 @@ EmblemedIcon::EmblemedIcon(EmblemedIcon&& src) noexcept
   , Icon(std::move(src))
 {}
 
-EmblemedIcon& EmblemedIcon::operator=(EmblemedIcon&& src) noexcept
+auto EmblemedIcon::operator=(EmblemedIcon&& src) noexcept -> EmblemedIcon&
 {
   Glib::Object::operator=(std::move(src));
   Icon::operator=(std::move(src));
@@ -137,13 +137,13 @@ EmblemedIcon::~EmblemedIcon() noexcept
 
 EmblemedIcon::CppClassType EmblemedIcon::emblemedicon_class_; // initialize static member
 
-GType EmblemedIcon::get_type()
+auto EmblemedIcon::get_type() -> GType
 {
   return emblemedicon_class_.init().get_type();
 }
 
 
-GType EmblemedIcon::get_base_type()
+auto EmblemedIcon::get_base_type() -> GType
 {
   return g_emblemed_icon_get_type();
 }
@@ -159,32 +159,32 @@ EmblemedIcon::EmblemedIcon(const Glib::RefPtr<Icon>& icon, const Glib::RefPtr<Em
 
 }
 
-Glib::RefPtr<EmblemedIcon> EmblemedIcon::create(const Glib::RefPtr<Icon>& icon, const Glib::RefPtr<Emblem>& emblem)
+auto EmblemedIcon::create(const Glib::RefPtr<Icon>& icon, const Glib::RefPtr<Emblem>& emblem) -> Glib::RefPtr<EmblemedIcon>
 {
   return Glib::make_refptr_for_instance<EmblemedIcon>( new EmblemedIcon(icon, emblem) );
 }
 
-Glib::RefPtr<EmblemedIcon> EmblemedIcon::create(const Glib::RefPtr<Icon>& icon)
+auto EmblemedIcon::create(const Glib::RefPtr<Icon>& icon) -> Glib::RefPtr<EmblemedIcon>
 {
   return Glib::make_refptr_for_instance<EmblemedIcon>( new EmblemedIcon(icon) );
 }
 
-Glib::RefPtr<Icon> EmblemedIcon::get_icon()
+auto EmblemedIcon::get_icon() -> Glib::RefPtr<Icon>
 {
   return Glib::wrap(g_emblemed_icon_get_icon(gobj()));
 }
 
-Glib::RefPtr<const Icon> EmblemedIcon::get_icon() const
+auto EmblemedIcon::get_icon() const -> Glib::RefPtr<const Icon>
 {
   return const_cast<EmblemedIcon*>(this)->get_icon();
 }
 
-std::vector<Glib::RefPtr<Emblem>> EmblemedIcon::get_emblems()
+auto EmblemedIcon::get_emblems() -> std::vector<Glib::RefPtr<Emblem>>
 {
   return Glib::ListHandler<Glib::RefPtr<Emblem>>::list_to_vector(g_emblemed_icon_get_emblems(gobj()), Glib::OWNERSHIP_NONE);
 }
 
-std::vector<Glib::RefPtr<const Emblem>> EmblemedIcon::get_emblems() const
+auto EmblemedIcon::get_emblems() const -> std::vector<Glib::RefPtr<const Emblem>>
 {
   return Glib::ListHandler<Glib::RefPtr<const Emblem>>::list_to_vector(g_emblemed_icon_get_emblems(const_cast<GEmblemedIcon*>(gobj())), Glib::OWNERSHIP_NONE);
 }

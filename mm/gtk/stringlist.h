@@ -84,7 +84,7 @@ public:
 
   // noncopyable
   StringList(const StringList&) = delete;
-  StringList& operator=(const StringList&) = delete;
+  auto operator=(const StringList&) -> StringList& = delete;
 
 private:  friend class StringList_Class;
   static CppClassType stringlist_class_;
@@ -98,28 +98,28 @@ protected:
 public:
 
   StringList(StringList&& src) noexcept;
-  StringList& operator=(StringList&& src) noexcept;
+  auto operator=(StringList&& src) noexcept -> StringList&;
 
   ~StringList() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkStringList*       gobj()       { return reinterpret_cast<GtkStringList*>(gobject_); }
+  auto       gobj() -> GtkStringList*       { return reinterpret_cast<GtkStringList*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkStringList* gobj() const { return reinterpret_cast<GtkStringList*>(gobject_); }
+  auto gobj() const -> const GtkStringList* { return reinterpret_cast<GtkStringList*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkStringList* gobj_copy();
+  auto gobj_copy() -> GtkStringList*;
 
 private:
 
@@ -129,7 +129,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<StringList> create(const std::vector<Glib::ustring>& strings);
+  static auto create(const std::vector<Glib::ustring>& strings) -> Glib::RefPtr<StringList>;
 
 
   /** Appends @a string to @a self.
@@ -181,7 +181,7 @@ public:
    * @param position The position to get the string for.
    * @return The string at the given position.
    */
-  Glib::ustring get_string(guint position) const;
+  auto get_string(guint position) const -> Glib::ustring;
 
 
 public:
@@ -211,7 +211,7 @@ namespace Glib
    * @relates Gtk::StringList
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::StringList> wrap(GtkStringList* object, bool take_copy = false);
+  auto wrap(GtkStringList* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StringList>;
 }
 
 

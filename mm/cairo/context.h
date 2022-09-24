@@ -235,9 +235,9 @@ public:
   explicit Context(cairo_t* cobject, bool has_reference = false);
 
   Context(const Context&) = delete;
-  Context& operator=(const Context&) = delete;
+  auto operator=(const Context&) -> Context& = delete;
 
-  static RefPtr<Context> create(const RefPtr<Surface>& target);
+  static auto create(const RefPtr<Surface>& target) -> RefPtr<Context>;
 
   virtual ~Context();
 
@@ -942,7 +942,7 @@ public:
    * @sa stroke_preserve().
    *
    */
-  bool in_stroke(double x, double y) const;
+  auto in_stroke(double x, double y) const -> bool;
 
   /**
    * Tests whether the given point is inside the area that would be
@@ -958,7 +958,7 @@ public:
    * @sa set_fill_rule()
    * @sa fill_preserve()
    */
-  bool in_fill(double x, double y) const;
+  auto in_fill(double x, double y) const -> bool;
 
   /**
    * Tests whether the given point is inside the area that would be visible
@@ -975,7 +975,7 @@ public:
    *
    * @since 1.10
    */
-  bool in_clip(double x, double y) const;
+  auto in_clip(double x, double y) const -> bool;
 
   /**
    * Computes a bounding box in user coordinates covering the area that would
@@ -1224,7 +1224,7 @@ public:
    *
    * @since 1.8
    **/
-  RefPtr<ScaledFont> get_scaled_font();
+  auto get_scaled_font() -> RefPtr<ScaledFont>;
 
   /**
    * A drawing operator that generates the shape from a string of UTF-8
@@ -1296,8 +1296,8 @@ public:
   /// @{
   /** Gets the current font face
    **/
-  RefPtr<FontFace> get_font_face();
-  RefPtr<const FontFace> get_font_face() const;
+  auto get_font_face() -> RefPtr<FontFace>;
+  auto get_font_face() const -> RefPtr<const FontFace>;
   /// @}
 
   /**
@@ -1381,30 +1381,30 @@ public:
 
   /** Gets the current compositing operator for a cairo Context
    */
-  Operator get_operator() const;
+  auto get_operator() const -> Operator;
 
   /// @{
   /** Gets the current source pattern for the %Context
    */
-  RefPtr<Pattern> get_source();
-  RefPtr<const Pattern> get_source() const;
+  auto get_source() -> RefPtr<Pattern>;
+  auto get_source() const -> RefPtr<const Pattern>;
 
   /** Gets the current source surface pattern for the %Context, if any.
    *
    * @returns The source pattern, if it is a surface pattern,
    *          else an empty RefPtr.
    */
-  RefPtr<SurfacePattern> get_source_for_surface();
-  RefPtr<const SurfacePattern> get_source_for_surface() const;
+  auto get_source_for_surface() -> RefPtr<SurfacePattern>;
+  auto get_source_for_surface() const -> RefPtr<const SurfacePattern>;
   /// @}
 
   /** Gets the current tolerance value, as set by set_tolerance()
    */
-  double get_tolerance() const;
+  auto get_tolerance() const -> double;
 
   /** Gets the current shape antialiasing mode, as set by set_antialias()
    */
-  Antialias get_antialias() const;
+  auto get_antialias() const -> Antialias;
 
   /** Gets the current point of the current path, which is conceptually the
    * final point reached by the path so far.
@@ -1439,30 +1439,30 @@ public:
    *
    * @since 1.6
    */
-  bool has_current_point() const;
+  auto has_current_point() const -> bool;
 
   /** Gets the current fill rule, as set by set_fill_rule().
    */
-  FillRule get_fill_rule() const;
+  auto get_fill_rule() const -> FillRule;
 
   /**
    * Gets the current line width, as set by set_line_width(). Note that the
    * value is unchanged even if the CTM has changed between the calls to
    * set_line_width() and get_line_width().
    */
-  double get_line_width() const;
+  auto get_line_width() const -> double;
 
   /** Gets the current line cap style, as set by set_line_cap()
    */
-  LineCap get_line_cap() const;
+  auto get_line_cap() const -> LineCap;
 
   /** Gets the current line join style, as set by set_line_join()
    */
-  LineJoin get_line_join() const;
+  auto get_line_join() const -> LineJoin;
 
   /** Gets the current miter limit, as set by set_miter_limit()
    */
-  double get_miter_limit() const;
+  auto get_miter_limit() const -> double;
 
   /**
    * Gets the current dash array and offset.
@@ -1485,15 +1485,15 @@ public:
    * Returns the current transformation matrix (CTM)
    * @since 1.8
    */
-  Matrix get_matrix() const;
+  auto get_matrix() const -> Matrix;
 
   /// @{
   /** Gets the target surface associated with this Context.
    *
    * @exception
    */
-  RefPtr<Surface> get_target();
-  RefPtr<const Surface> get_target() const;
+  auto get_target() -> RefPtr<Surface>;
+  auto get_target() const -> RefPtr<const Surface>;
   /// @}
 
   //TODO: Copy or reference-count a Path somethow instead of asking the caller to delete it?
@@ -1505,7 +1505,7 @@ public:
    * @note The caller owns the Path object returned from this function.  The
    * Path object must be freed when you are finished with it.
    */
-  Path* copy_path() const;
+  auto copy_path() const -> Path*;
 
   /**
    * Computes a bounding box in user-space coordinates covering the points on
@@ -1551,7 +1551,7 @@ public:
    * @note The caller owns the Path object returned from this function.  The
    * Path object must be freed when you are finished with it.
    */
-  Path* copy_path_flat() const;
+  auto copy_path_flat() const -> Path*;
 
   /** Append the path onto the current path. The path may be either the return
    * value from one of copy_path() or copy_path_flat() or it may be constructed
@@ -1633,7 +1633,7 @@ public:
    *
    * @since 1.2
    **/
-  RefPtr<Pattern> pop_group();
+  auto pop_group() -> RefPtr<Pattern>;
 
   /**
    * Terminates the redirection begun by a call to push_group() or
@@ -1670,13 +1670,13 @@ public:
    *
    * @since 1.2
    **/
-  RefPtr<Surface> get_group_target();
+  auto get_group_target() -> RefPtr<Surface>;
 
   /** Same as the non-const version but returns a reference to a const Surface
    *
    * @since 1.2
    */
-  RefPtr<const Surface> get_group_target() const;
+  auto get_group_target() const -> RefPtr<const Surface>;
 
   /** The base cairo C type that is wrapped by Cairo::Context
    */
@@ -1684,15 +1684,15 @@ public:
 
   /** Gets a pointer to the base C type that is wrapped by the Context
    */
-  inline cobject* cobj() { return m_cobject; }
+  inline auto cobj() -> cobject* { return m_cobject; }
 
   /** Gets a pointer to the base C type that is wrapped by the Context
    */
-  inline const cobject* cobj() const { return m_cobject; }
+  inline auto cobj() const -> const cobject* { return m_cobject; }
 
 #ifndef DOXYGEN_IGNORE_THIS
   ///For use only by the cairomm implementation.
-  inline ErrorStatus get_status() const
+  inline auto get_status() const -> ErrorStatus
   { return cairo_status(const_cast<cairo_t*>(cobj())); }
 
   void reference() const;
@@ -1727,10 +1727,10 @@ public:
 #ifndef DOXYGEN_IGNORE_THIS
   // noncopyable
   SaveGuard(const SaveGuard&) = delete;
-  SaveGuard& operator=(const SaveGuard&) = delete;
+  auto operator=(const SaveGuard&) -> SaveGuard& = delete;
   // nonmovable
   SaveGuard(SaveGuard&&) = delete;
-  SaveGuard& operator=(SaveGuard&&) = delete;
+  auto operator=(SaveGuard&&) -> SaveGuard& = delete;
 #endif //DOXYGEN_IGNORE_THIS
 
   /// Destructor, the context is restored.

@@ -47,7 +47,7 @@ namespace
 namespace Glib
 {
 
-Gtk::LockButton* wrap(GtkLockButton* object, bool take_copy)
+auto wrap(GtkLockButton* object, bool take_copy) -> Gtk::LockButton*
 {
   return dynamic_cast<Gtk::LockButton *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -60,7 +60,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& LockButton_Class::init()
+auto LockButton_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -91,7 +91,7 @@ void LockButton_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* LockButton_Class::wrap_new(GObject* o)
+auto LockButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new LockButton((GtkLockButton*)(o)));
 
@@ -117,7 +117,7 @@ LockButton::LockButton(LockButton&& src) noexcept
 : Gtk::Button(std::move(src))
 {}
 
-LockButton& LockButton::operator=(LockButton&& src) noexcept
+auto LockButton::operator=(LockButton&& src) noexcept -> LockButton&
 {
   Gtk::Button::operator=(std::move(src));
   return *this;
@@ -130,13 +130,13 @@ LockButton::~LockButton() noexcept
 
 LockButton::CppClassType LockButton::lockbutton_class_; // initialize static member
 
-GType LockButton::get_type()
+auto LockButton::get_type() -> GType
 {
   return lockbutton_class_.init().get_type();
 }
 
 
-GType LockButton::get_base_type()
+auto LockButton::get_base_type() -> GType
 {
   return gtk_lock_button_get_type();
 }
@@ -162,7 +162,7 @@ LockButton::LockButton(const Glib::RefPtr<const Gio::Permission>& permission)
 
 }
 
-Glib::RefPtr<Gio::Permission> LockButton::get_permission()
+auto LockButton::get_permission() -> Glib::RefPtr<Gio::Permission>
 {
   auto retvalue = Glib::wrap(gtk_lock_button_get_permission(gobj()));
   if(retvalue)
@@ -170,7 +170,7 @@ Glib::RefPtr<Gio::Permission> LockButton::get_permission()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::Permission> LockButton::get_permission() const
+auto LockButton::get_permission() const -> Glib::RefPtr<const Gio::Permission>
 {
   return const_cast<LockButton*>(this)->get_permission();
 }
@@ -185,62 +185,62 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Pe
   "Type Glib::RefPtr<Gio::Permission> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gio::Permission> > LockButton::property_permission()
+auto LockButton::property_permission() -> Glib::PropertyProxy< Glib::RefPtr<Gio::Permission> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gio::Permission> >(this, "permission");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Permission> > LockButton::property_permission() const
+auto LockButton::property_permission() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Permission> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Permission> >(this, "permission");
 }
 
-Glib::PropertyProxy< Glib::ustring > LockButton::property_text_lock()
+auto LockButton::property_text_lock() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "text-lock");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > LockButton::property_text_lock() const
+auto LockButton::property_text_lock() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "text-lock");
 }
 
-Glib::PropertyProxy< Glib::ustring > LockButton::property_text_unlock()
+auto LockButton::property_text_unlock() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "text-unlock");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > LockButton::property_text_unlock() const
+auto LockButton::property_text_unlock() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "text-unlock");
 }
 
-Glib::PropertyProxy< Glib::ustring > LockButton::property_tooltip_lock()
+auto LockButton::property_tooltip_lock() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "tooltip-lock");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > LockButton::property_tooltip_lock() const
+auto LockButton::property_tooltip_lock() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "tooltip-lock");
 }
 
-Glib::PropertyProxy< Glib::ustring > LockButton::property_tooltip_unlock()
+auto LockButton::property_tooltip_unlock() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "tooltip-unlock");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > LockButton::property_tooltip_unlock() const
+auto LockButton::property_tooltip_unlock() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "tooltip-unlock");
 }
 
-Glib::PropertyProxy< Glib::ustring > LockButton::property_tooltip_not_authorized()
+auto LockButton::property_tooltip_not_authorized() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "tooltip-not-authorized");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > LockButton::property_tooltip_not_authorized() const
+auto LockButton::property_tooltip_not_authorized() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "tooltip-not-authorized");
 }

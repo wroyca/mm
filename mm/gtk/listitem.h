@@ -74,7 +74,7 @@ public:
 
   // noncopyable
   ListItem(const ListItem&) = delete;
-  ListItem& operator=(const ListItem&) = delete;
+  auto operator=(const ListItem&) -> ListItem& = delete;
 
 private:  friend class ListItem_Class;
   static CppClassType listitem_class_;
@@ -88,28 +88,28 @@ protected:
 public:
 
   ListItem(ListItem&& src) noexcept;
-  ListItem& operator=(ListItem&& src) noexcept;
+  auto operator=(ListItem&& src) noexcept -> ListItem&;
 
   ~ListItem() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkListItem*       gobj()       { return reinterpret_cast<GtkListItem*>(gobject_); }
+  auto       gobj() -> GtkListItem*       { return reinterpret_cast<GtkListItem*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkListItem* gobj() const { return reinterpret_cast<GtkListItem*>(gobject_); }
+  auto gobj() const -> const GtkListItem* { return reinterpret_cast<GtkListItem*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkListItem* gobj_copy();
+  auto gobj_copy() -> GtkListItem*;
 
 private:
 
@@ -126,7 +126,7 @@ public:
    *
    * @return The item displayed.
    */
-  Glib::RefPtr<Glib::ObjectBase> get_item();
+  auto get_item() -> Glib::RefPtr<Glib::ObjectBase>;
 
   /** Gets the model item that associated with @a self.
    *
@@ -134,7 +134,7 @@ public:
    *
    * @return The item displayed.
    */
-  Glib::RefPtr<const Glib::ObjectBase> get_item() const;
+  auto get_item() const -> Glib::RefPtr<const Glib::ObjectBase>;
 
   /** Gets the position in the model that @a self currently displays.
    *
@@ -142,7 +142,7 @@ public:
    *
    * @return The position of this item.
    */
-  guint get_position() const;
+  auto get_position() const -> guint;
 
   /** Checks if the item is displayed as selected.
    *
@@ -151,7 +151,7 @@ public:
    *
    * @return <tt>true</tt> if the item is selected.
    */
-  bool get_selected() const;
+  auto get_selected() const -> bool;
 
   /** Checks if a list item has been set to be selectable via
    * set_selectable().
@@ -160,7 +160,7 @@ public:
    *
    * @return <tt>true</tt> if the item is selectable.
    */
-  bool get_selectable() const;
+  auto get_selectable() const -> bool;
 
   /** Sets @a self to be selectable.
    *
@@ -184,7 +184,7 @@ public:
    *
    * @return <tt>true</tt> if the item is activatable.
    */
-  bool get_activatable() const;
+  auto get_activatable() const -> bool;
 
   /** Sets @a self to be activatable.
    *
@@ -216,14 +216,14 @@ public:
    *
    * @return The child.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child previously set via set_child() or
    * <tt>nullptr</tt> if none was set.
    *
    * @return The child.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
   /** If the item can be activated by the user.
    *
@@ -232,7 +232,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_activatable() ;
+  auto property_activatable() -> Glib::PropertyProxy< bool > ;
 
 /** If the item can be activated by the user.
    *
@@ -241,28 +241,28 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_activatable() const;
+  auto property_activatable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Widget used for display.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** Widget used for display.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
   /** Displayed item.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> > property_item() const;
+  auto property_item() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> >;
 
 
   /** Position of the item.
@@ -272,7 +272,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_position() const;
+  auto property_position() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
   /** If the item can be selected by the user.
@@ -282,7 +282,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_selectable() ;
+  auto property_selectable() -> Glib::PropertyProxy< bool > ;
 
 /** If the item can be selected by the user.
    *
@@ -291,7 +291,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_selectable() const;
+  auto property_selectable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** If the item is currently selected.
    *
@@ -300,7 +300,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_selected() const;
+  auto property_selected() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -330,7 +330,7 @@ namespace Glib
    * @relates Gtk::ListItem
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::ListItem> wrap(GtkListItem* object, bool take_copy = false);
+  auto wrap(GtkListItem* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ListItem>;
 }
 
 

@@ -84,7 +84,7 @@ public:
 
   // noncopyable
   MultiFilter(const MultiFilter&) = delete;
-  MultiFilter& operator=(const MultiFilter&) = delete;
+  auto operator=(const MultiFilter&) -> MultiFilter& = delete;
 
 private:  friend class MultiFilter_Class;
   static CppClassType multifilter_class_;
@@ -98,28 +98,28 @@ protected:
 public:
 
   MultiFilter(MultiFilter&& src) noexcept;
-  MultiFilter& operator=(MultiFilter&& src) noexcept;
+  auto operator=(MultiFilter&& src) noexcept -> MultiFilter&;
 
   ~MultiFilter() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkMultiFilter*       gobj()       { return reinterpret_cast<GtkMultiFilter*>(gobject_); }
+  auto       gobj() -> GtkMultiFilter*       { return reinterpret_cast<GtkMultiFilter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkMultiFilter* gobj() const { return reinterpret_cast<GtkMultiFilter*>(gobject_); }
+  auto gobj() const -> const GtkMultiFilter* { return reinterpret_cast<GtkMultiFilter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkMultiFilter* gobj_copy();
+  auto gobj_copy() -> GtkMultiFilter*;
 
 private:
 
@@ -153,7 +153,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< GType > property_item_type() const;
+  auto property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >;
 
 
   /** The number of items. See Gio::ListModel::get_n_items().
@@ -165,7 +165,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_n_items() const;
+  auto property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
 
 public:
@@ -202,7 +202,7 @@ public:
 
   // noncopyable
   AnyFilter(const AnyFilter&) = delete;
-  AnyFilter& operator=(const AnyFilter&) = delete;
+  auto operator=(const AnyFilter&) -> AnyFilter& = delete;
 
 private:  friend class AnyFilter_Class;
   static CppClassType anyfilter_class_;
@@ -216,28 +216,28 @@ protected:
 public:
 
   AnyFilter(AnyFilter&& src) noexcept;
-  AnyFilter& operator=(AnyFilter&& src) noexcept;
+  auto operator=(AnyFilter&& src) noexcept -> AnyFilter&;
 
   ~AnyFilter() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkAnyFilter*       gobj()       { return reinterpret_cast<GtkAnyFilter*>(gobject_); }
+  auto       gobj() -> GtkAnyFilter*       { return reinterpret_cast<GtkAnyFilter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkAnyFilter* gobj() const { return reinterpret_cast<GtkAnyFilter*>(gobject_); }
+  auto gobj() const -> const GtkAnyFilter* { return reinterpret_cast<GtkAnyFilter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkAnyFilter* gobj_copy();
+  auto gobj_copy() -> GtkAnyFilter*;
 
 private:
 
@@ -247,7 +247,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<AnyFilter> create();
+  static auto create() -> Glib::RefPtr<AnyFilter>;
 
 
 public:
@@ -284,7 +284,7 @@ public:
 
   // noncopyable
   EveryFilter(const EveryFilter&) = delete;
-  EveryFilter& operator=(const EveryFilter&) = delete;
+  auto operator=(const EveryFilter&) -> EveryFilter& = delete;
 
 private:  friend class EveryFilter_Class;
   static CppClassType everyfilter_class_;
@@ -298,28 +298,28 @@ protected:
 public:
 
   EveryFilter(EveryFilter&& src) noexcept;
-  EveryFilter& operator=(EveryFilter&& src) noexcept;
+  auto operator=(EveryFilter&& src) noexcept -> EveryFilter&;
 
   ~EveryFilter() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkEveryFilter*       gobj()       { return reinterpret_cast<GtkEveryFilter*>(gobject_); }
+  auto       gobj() -> GtkEveryFilter*       { return reinterpret_cast<GtkEveryFilter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkEveryFilter* gobj() const { return reinterpret_cast<GtkEveryFilter*>(gobject_); }
+  auto gobj() const -> const GtkEveryFilter* { return reinterpret_cast<GtkEveryFilter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkEveryFilter* gobj_copy();
+  auto gobj_copy() -> GtkEveryFilter*;
 
 private:
 
@@ -329,7 +329,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<EveryFilter> create();
+  static auto create() -> Glib::RefPtr<EveryFilter>;
 
 
 public:
@@ -359,7 +359,7 @@ namespace Glib
    * @relates Gtk::MultiFilter
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::MultiFilter> wrap(GtkMultiFilter* object, bool take_copy = false);
+  auto wrap(GtkMultiFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MultiFilter>;
 }
 
 
@@ -374,7 +374,7 @@ namespace Glib
    * @relates Gtk::AnyFilter
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::AnyFilter> wrap(GtkAnyFilter* object, bool take_copy = false);
+  auto wrap(GtkAnyFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::AnyFilter>;
 }
 
 
@@ -389,7 +389,7 @@ namespace Glib
    * @relates Gtk::EveryFilter
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::EveryFilter> wrap(GtkEveryFilter* object, bool take_copy = false);
+  auto wrap(GtkEveryFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EveryFilter>;
 }
 
 

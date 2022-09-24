@@ -39,13 +39,13 @@ TextView::TextView(const Glib::RefPtr<TextBuffer>& buffer)
   set_buffer(buffer);
 }
 
-bool TextView::scroll_to(TextBuffer::iterator& iter, double within_margin)
+auto TextView::scroll_to(TextBuffer::iterator& iter, double within_margin) -> bool
 {
   //The last 2 arguments are ignored if use_align is FALSE.
   return gtk_text_view_scroll_to_iter(gobj(), (iter).gobj(), within_margin, FALSE, 0.0, 0.0);
 }
 
-bool TextView::scroll_to(TextBuffer::iterator& iter, double within_margin, double xalign, double yalign)
+auto TextView::scroll_to(TextBuffer::iterator& iter, double within_margin, double xalign, double yalign) -> bool
 {
   return gtk_text_view_scroll_to_iter(gobj(), (iter).gobj(), within_margin, TRUE /* use_align */, xalign, yalign);
 }
@@ -72,7 +72,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo TextView_signal_set_anchor_info =
+const Glib::SignalProxyInfo TextView_signal_set_anchor_info =
 {
   "set_anchor",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -80,7 +80,7 @@ static const Glib::SignalProxyInfo TextView_signal_set_anchor_info =
 };
 
 
-static void TextView_signal_insert_at_cursor_callback(GtkTextView* self, const gchar* p0,void* data)
+void TextView_signal_insert_at_cursor_callback(GtkTextView* self, const gchar* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -102,7 +102,7 @@ static void TextView_signal_insert_at_cursor_callback(GtkTextView* self, const g
   }
 }
 
-static const Glib::SignalProxyInfo TextView_signal_insert_at_cursor_info =
+const Glib::SignalProxyInfo TextView_signal_insert_at_cursor_info =
 {
   "insert_at_cursor",
   (GCallback) &TextView_signal_insert_at_cursor_callback,
@@ -113,7 +113,7 @@ static const Glib::SignalProxyInfo TextView_signal_insert_at_cursor_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::TextWindowType>::value_type()
+auto Glib::Value<Gtk::TextWindowType>::value_type() -> GType
 {
   return gtk_text_window_type_get_type();
 }
@@ -122,7 +122,7 @@ GType Glib::Value<Gtk::TextWindowType>::value_type()
 namespace Glib
 {
 
-Gtk::TextView* wrap(GtkTextView* object, bool take_copy)
+auto wrap(GtkTextView* object, bool take_copy) -> Gtk::TextView*
 {
   return dynamic_cast<Gtk::TextView *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -135,7 +135,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& TextView_Class::init()
+auto TextView_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -244,7 +244,7 @@ void TextView_Class::insert_at_cursor_callback(GtkTextView* self, const gchar* p
 }
 
 
-Glib::ObjectBase* TextView_Class::wrap_new(GObject* o)
+auto TextView_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new TextView((GtkTextView*)(o)));
 
@@ -271,7 +271,7 @@ TextView::TextView(TextView&& src) noexcept
   , Scrollable(std::move(src))
 {}
 
-TextView& TextView::operator=(TextView&& src) noexcept
+auto TextView::operator=(TextView&& src) noexcept -> TextView&
 {
   Gtk::Widget::operator=(std::move(src));
   Scrollable::operator=(std::move(src));
@@ -285,13 +285,13 @@ TextView::~TextView() noexcept
 
 TextView::CppClassType TextView::textview_class_; // initialize static member
 
-GType TextView::get_type()
+auto TextView::get_type() -> GType
 {
   return textview_class_.init().get_type();
 }
 
 
-GType TextView::get_base_type()
+auto TextView::get_base_type() -> GType
 {
   return gtk_text_view_get_type();
 }
@@ -312,7 +312,7 @@ void TextView::set_buffer(const Glib::RefPtr<TextBuffer>& buffer)
   gtk_text_view_set_buffer(gobj(), Glib::unwrap(buffer));
 }
 
-Glib::RefPtr<TextBuffer> TextView::get_buffer()
+auto TextView::get_buffer() -> Glib::RefPtr<TextBuffer>
 {
   auto retvalue = Glib::wrap(gtk_text_view_get_buffer(gobj()));
   if(retvalue)
@@ -320,17 +320,17 @@ Glib::RefPtr<TextBuffer> TextView::get_buffer()
   return retvalue;
 }
 
-Glib::RefPtr<const TextBuffer> TextView::get_buffer() const
+auto TextView::get_buffer() const -> Glib::RefPtr<const TextBuffer>
 {
   return const_cast<TextView*>(this)->get_buffer();
 }
 
-bool TextView::move_mark_onscreen(const Glib::RefPtr<TextBuffer::Mark>& mark)
+auto TextView::move_mark_onscreen(const Glib::RefPtr<TextBuffer::Mark>& mark) -> bool
 {
   return gtk_text_view_move_mark_onscreen(gobj(), Glib::unwrap(mark));
 }
 
-bool TextView::place_cursor_onscreen()
+auto TextView::place_cursor_onscreen() -> bool
 {
   return gtk_text_view_place_cursor_onscreen(gobj());
 }
@@ -345,7 +345,7 @@ void TextView::set_cursor_visible(bool setting)
   gtk_text_view_set_cursor_visible(gobj(), static_cast<int>(setting));
 }
 
-bool TextView::get_cursor_visible() const
+auto TextView::get_cursor_visible() const -> bool
 {
   return gtk_text_view_get_cursor_visible(const_cast<GtkTextView*>(gobj()));
 }
@@ -370,22 +370,22 @@ void TextView::get_iter_location(const TextBuffer::const_iterator& iter, Gdk::Re
   gtk_text_view_get_iter_location(const_cast<GtkTextView*>(gobj()), (iter).gobj(), (location).gobj());
 }
 
-bool TextView::get_iter_at_location(TextBuffer::iterator& iter, int x, int y)
+auto TextView::get_iter_at_location(TextBuffer::iterator& iter, int x, int y) -> bool
 {
   return gtk_text_view_get_iter_at_location(gobj(), (iter).gobj(), x, y);
 }
 
-bool TextView::get_iter_at_location(TextBuffer::const_iterator& iter, int x, int y) const
+auto TextView::get_iter_at_location(TextBuffer::const_iterator& iter, int x, int y) const -> bool
 {
   return gtk_text_view_get_iter_at_location(const_cast<GtkTextView*>(gobj()), (iter).gobj(), x, y);
 }
 
-bool TextView::get_iter_at_position(TextBuffer::iterator& iter, int& trailing, int x, int y)
+auto TextView::get_iter_at_position(TextBuffer::iterator& iter, int& trailing, int x, int y) -> bool
 {
   return gtk_text_view_get_iter_at_position(gobj(), (iter).gobj(), &(trailing), x, y);
 }
 
-bool TextView::get_iter_at_position(TextBuffer::const_iterator& iter, int& trailing, int x, int y) const
+auto TextView::get_iter_at_position(TextBuffer::const_iterator& iter, int& trailing, int x, int y) const -> bool
 {
   return gtk_text_view_get_iter_at_position(const_cast<GtkTextView*>(gobj()), (iter).gobj(), &(trailing), x, y);
 }
@@ -415,37 +415,37 @@ void TextView::window_to_buffer_coords(TextWindowType win, int window_x, int win
   gtk_text_view_window_to_buffer_coords(const_cast<GtkTextView*>(gobj()), static_cast<GtkTextWindowType>(win), window_x, window_y, &(buffer_x), &(buffer_y));
 }
 
-bool TextView::forward_display_line(TextBuffer::iterator& iter)
+auto TextView::forward_display_line(TextBuffer::iterator& iter) -> bool
 {
   return gtk_text_view_forward_display_line(gobj(), (iter).gobj());
 }
 
-bool TextView::backward_display_line(TextBuffer::iterator& iter)
+auto TextView::backward_display_line(TextBuffer::iterator& iter) -> bool
 {
   return gtk_text_view_backward_display_line(gobj(), (iter).gobj());
 }
 
-bool TextView::forward_display_line_end(TextBuffer::iterator& iter)
+auto TextView::forward_display_line_end(TextBuffer::iterator& iter) -> bool
 {
   return gtk_text_view_forward_display_line_end(gobj(), (iter).gobj());
 }
 
-bool TextView::backward_display_line_start(TextBuffer::iterator& iter)
+auto TextView::backward_display_line_start(TextBuffer::iterator& iter) -> bool
 {
   return gtk_text_view_backward_display_line_start(gobj(), (iter).gobj());
 }
 
-bool TextView::starts_display_line(const TextBuffer::iterator& iter)
+auto TextView::starts_display_line(const TextBuffer::iterator& iter) -> bool
 {
   return gtk_text_view_starts_display_line(gobj(), (iter).gobj());
 }
 
-bool TextView::move_visually(TextBuffer::iterator& iter, int count)
+auto TextView::move_visually(TextBuffer::iterator& iter, int count) -> bool
 {
   return gtk_text_view_move_visually(gobj(), (iter).gobj(), count);
 }
 
-bool TextView::im_context_filter_keypress(const Glib::RefPtr<Gdk::Event>& event)
+auto TextView::im_context_filter_keypress(const Glib::RefPtr<Gdk::Event>& event) -> bool
 {
   return gtk_text_view_im_context_filter_keypress(gobj(), Glib::unwrap(event));
 }
@@ -455,12 +455,12 @@ void TextView::reset_im_context()
   gtk_text_view_reset_im_context(gobj());
 }
 
-Widget* TextView::get_gutter(TextWindowType win)
+auto TextView::get_gutter(TextWindowType win) -> Widget*
 {
   return Glib::wrap(gtk_text_view_get_gutter(gobj(), static_cast<GtkTextWindowType>(win)));
 }
 
-const Widget* TextView::get_gutter(TextWindowType win) const
+auto TextView::get_gutter(TextWindowType win) const -> const Widget*
 {
   return const_cast<TextView*>(this)->get_gutter(win);
 }
@@ -495,7 +495,7 @@ void TextView::set_wrap_mode(WrapMode wrap_mode)
   gtk_text_view_set_wrap_mode(gobj(), static_cast<GtkWrapMode>(wrap_mode));
 }
 
-WrapMode TextView::get_wrap_mode() const
+auto TextView::get_wrap_mode() const -> WrapMode
 {
   return static_cast<WrapMode>(gtk_text_view_get_wrap_mode(const_cast<GtkTextView*>(gobj())));
 }
@@ -505,7 +505,7 @@ void TextView::set_editable(bool setting)
   gtk_text_view_set_editable(gobj(), static_cast<int>(setting));
 }
 
-bool TextView::get_editable() const
+auto TextView::get_editable() const -> bool
 {
   return gtk_text_view_get_editable(const_cast<GtkTextView*>(gobj()));
 }
@@ -515,7 +515,7 @@ void TextView::set_pixels_above_lines(int pixels_above_lines)
   gtk_text_view_set_pixels_above_lines(gobj(), pixels_above_lines);
 }
 
-int TextView::get_pixels_above_lines() const
+auto TextView::get_pixels_above_lines() const -> int
 {
   return gtk_text_view_get_pixels_above_lines(const_cast<GtkTextView*>(gobj()));
 }
@@ -525,7 +525,7 @@ void TextView::set_pixels_below_lines(int pixels_below_lines)
   gtk_text_view_set_pixels_below_lines(gobj(), pixels_below_lines);
 }
 
-int TextView::get_pixels_below_lines() const
+auto TextView::get_pixels_below_lines() const -> int
 {
   return gtk_text_view_get_pixels_below_lines(const_cast<GtkTextView*>(gobj()));
 }
@@ -535,7 +535,7 @@ void TextView::set_pixels_inside_wrap(int pixels_inside_wrap)
   gtk_text_view_set_pixels_inside_wrap(gobj(), pixels_inside_wrap);
 }
 
-int TextView::get_pixels_inside_wrap() const
+auto TextView::get_pixels_inside_wrap() const -> int
 {
   return gtk_text_view_get_pixels_inside_wrap(const_cast<GtkTextView*>(gobj()));
 }
@@ -545,7 +545,7 @@ void TextView::set_justification(Justification justification)
   gtk_text_view_set_justification(gobj(), static_cast<GtkJustification>(justification));
 }
 
-Justification TextView::get_justification() const
+auto TextView::get_justification() const -> Justification
 {
   return static_cast<Justification>(gtk_text_view_get_justification(const_cast<GtkTextView*>(gobj())));
 }
@@ -555,7 +555,7 @@ void TextView::set_left_margin(int left_margin)
   gtk_text_view_set_left_margin(gobj(), left_margin);
 }
 
-int TextView::get_left_margin() const
+auto TextView::get_left_margin() const -> int
 {
   return gtk_text_view_get_left_margin(const_cast<GtkTextView*>(gobj()));
 }
@@ -565,7 +565,7 @@ void TextView::set_right_margin(int right_margin)
   gtk_text_view_set_right_margin(gobj(), right_margin);
 }
 
-int TextView::get_right_margin() const
+auto TextView::get_right_margin() const -> int
 {
   return gtk_text_view_get_right_margin(const_cast<GtkTextView*>(gobj()));
 }
@@ -575,7 +575,7 @@ void TextView::set_top_margin(int top_margin)
   gtk_text_view_set_top_margin(gobj(), top_margin);
 }
 
-int TextView::get_top_margin() const
+auto TextView::get_top_margin() const -> int
 {
   return gtk_text_view_get_top_margin(const_cast<GtkTextView*>(gobj()));
 }
@@ -585,7 +585,7 @@ void TextView::set_bottom_margin(int bottom_margin)
   gtk_text_view_set_bottom_margin(gobj(), bottom_margin);
 }
 
-int TextView::get_bottom_margin() const
+auto TextView::get_bottom_margin() const -> int
 {
   return gtk_text_view_get_bottom_margin(const_cast<GtkTextView*>(gobj()));
 }
@@ -595,7 +595,7 @@ void TextView::set_indent(int indent)
   gtk_text_view_set_indent(gobj(), indent);
 }
 
-int TextView::get_indent() const
+auto TextView::get_indent() const -> int
 {
   return gtk_text_view_get_indent(const_cast<GtkTextView*>(gobj()));
 }
@@ -605,7 +605,7 @@ void TextView::set_tabs(Pango::TabArray& tabs)
   gtk_text_view_set_tabs(gobj(), (tabs).gobj());
 }
 
-Pango::TabArray TextView::get_tabs() const
+auto TextView::get_tabs() const -> Pango::TabArray
 {
   return Pango::TabArray((gtk_text_view_get_tabs(const_cast<GtkTextView*>(gobj()))), false);
 }
@@ -615,7 +615,7 @@ void TextView::set_overwrite(bool overwrite)
   gtk_text_view_set_overwrite(gobj(), static_cast<int>(overwrite));
 }
 
-bool TextView::get_overwrite() const
+auto TextView::get_overwrite() const -> bool
 {
   return gtk_text_view_get_overwrite(const_cast<GtkTextView*>(gobj()));
 }
@@ -625,7 +625,7 @@ void TextView::set_accepts_tab(bool accepts_tab)
   gtk_text_view_set_accepts_tab(gobj(), static_cast<int>(accepts_tab));
 }
 
-bool TextView::get_accepts_tab() const
+auto TextView::get_accepts_tab() const -> bool
 {
   return gtk_text_view_get_accepts_tab(const_cast<GtkTextView*>(gobj()));
 }
@@ -635,7 +635,7 @@ void TextView::set_input_purpose(InputPurpose purpose)
   gtk_text_view_set_input_purpose(gobj(), static_cast<GtkInputPurpose>(purpose));
 }
 
-InputPurpose TextView::get_input_purpose() const
+auto TextView::get_input_purpose() const -> InputPurpose
 {
   return static_cast<InputPurpose>(gtk_text_view_get_input_purpose(const_cast<GtkTextView*>(gobj())));
 }
@@ -645,7 +645,7 @@ void TextView::set_input_hints(InputHints hints)
   gtk_text_view_set_input_hints(gobj(), static_cast<GtkInputHints>(hints));
 }
 
-InputHints TextView::get_input_hints() const
+auto TextView::get_input_hints() const -> InputHints
 {
   return static_cast<InputHints>(gtk_text_view_get_input_hints(const_cast<GtkTextView*>(gobj())));
 }
@@ -655,7 +655,7 @@ void TextView::set_monospace(bool monospace)
   gtk_text_view_set_monospace(gobj(), static_cast<int>(monospace));
 }
 
-bool TextView::get_monospace() const
+auto TextView::get_monospace() const -> bool
 {
   return gtk_text_view_get_monospace(const_cast<GtkTextView*>(gobj()));
 }
@@ -665,7 +665,7 @@ void TextView::set_extra_menu(const Glib::RefPtr<Gio::MenuModel>& model)
   gtk_text_view_set_extra_menu(gobj(), Glib::unwrap(model));
 }
 
-Glib::RefPtr<Gio::MenuModel> TextView::get_extra_menu()
+auto TextView::get_extra_menu() -> Glib::RefPtr<Gio::MenuModel>
 {
   auto retvalue = Glib::wrap(gtk_text_view_get_extra_menu(gobj()));
   if(retvalue)
@@ -673,12 +673,12 @@ Glib::RefPtr<Gio::MenuModel> TextView::get_extra_menu()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::MenuModel> TextView::get_extra_menu() const
+auto TextView::get_extra_menu() const -> Glib::RefPtr<const Gio::MenuModel>
 {
   return const_cast<TextView*>(this)->get_extra_menu();
 }
 
-Glib::RefPtr<Pango::Context> TextView::get_rtl_context()
+auto TextView::get_rtl_context() -> Glib::RefPtr<Pango::Context>
 {
   auto retvalue = Glib::wrap(gtk_text_view_get_rtl_context(gobj()));
   if(retvalue)
@@ -686,12 +686,12 @@ Glib::RefPtr<Pango::Context> TextView::get_rtl_context()
   return retvalue;
 }
 
-Glib::RefPtr<const Pango::Context> TextView::get_rtl_context() const
+auto TextView::get_rtl_context() const -> Glib::RefPtr<const Pango::Context>
 {
   return const_cast<TextView*>(this)->get_rtl_context();
 }
 
-Glib::RefPtr<Pango::Context> TextView::get_ltr_context()
+auto TextView::get_ltr_context() -> Glib::RefPtr<Pango::Context>
 {
   auto retvalue = Glib::wrap(gtk_text_view_get_ltr_context(gobj()));
   if(retvalue)
@@ -699,60 +699,60 @@ Glib::RefPtr<Pango::Context> TextView::get_ltr_context()
   return retvalue;
 }
 
-Glib::RefPtr<const Pango::Context> TextView::get_ltr_context() const
+auto TextView::get_ltr_context() const -> Glib::RefPtr<const Pango::Context>
 {
   return const_cast<TextView*>(this)->get_ltr_context();
 }
 
 
-Glib::SignalProxy<void()> TextView::signal_set_anchor()
+auto TextView::signal_set_anchor() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &TextView_signal_set_anchor_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::ustring&)> TextView::signal_insert_at_cursor()
+auto TextView::signal_insert_at_cursor() -> Glib::SignalProxy<void(const Glib::ustring&)>
 {
   return Glib::SignalProxy<void(const Glib::ustring&) >(this, &TextView_signal_insert_at_cursor_info);
 }
 
 
-Glib::PropertyProxy< int > TextView::property_pixels_above_lines()
+auto TextView::property_pixels_above_lines() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "pixels-above-lines");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextView::property_pixels_above_lines() const
+auto TextView::property_pixels_above_lines() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "pixels-above-lines");
 }
 
-Glib::PropertyProxy< int > TextView::property_pixels_below_lines()
+auto TextView::property_pixels_below_lines() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "pixels-below-lines");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextView::property_pixels_below_lines() const
+auto TextView::property_pixels_below_lines() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "pixels-below-lines");
 }
 
-Glib::PropertyProxy< int > TextView::property_pixels_inside_wrap()
+auto TextView::property_pixels_inside_wrap() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "pixels-inside-wrap");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextView::property_pixels_inside_wrap() const
+auto TextView::property_pixels_inside_wrap() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "pixels-inside-wrap");
 }
 
-Glib::PropertyProxy< bool > TextView::property_editable()
+auto TextView::property_editable() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "editable");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextView::property_editable() const
+auto TextView::property_editable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "editable");
 }
@@ -761,12 +761,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<WrapMode>::value,
   "Type WrapMode cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< WrapMode > TextView::property_wrap_mode()
+auto TextView::property_wrap_mode() -> Glib::PropertyProxy< WrapMode >
 {
   return Glib::PropertyProxy< WrapMode >(this, "wrap-mode");
 }
 
-Glib::PropertyProxy_ReadOnly< WrapMode > TextView::property_wrap_mode() const
+auto TextView::property_wrap_mode() const -> Glib::PropertyProxy_ReadOnly< WrapMode >
 {
   return Glib::PropertyProxy_ReadOnly< WrapMode >(this, "wrap-mode");
 }
@@ -775,62 +775,62 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Justification>::valu
   "Type Justification cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Justification > TextView::property_justification()
+auto TextView::property_justification() -> Glib::PropertyProxy< Justification >
 {
   return Glib::PropertyProxy< Justification >(this, "justification");
 }
 
-Glib::PropertyProxy_ReadOnly< Justification > TextView::property_justification() const
+auto TextView::property_justification() const -> Glib::PropertyProxy_ReadOnly< Justification >
 {
   return Glib::PropertyProxy_ReadOnly< Justification >(this, "justification");
 }
 
-Glib::PropertyProxy< int > TextView::property_left_margin()
+auto TextView::property_left_margin() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "left-margin");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextView::property_left_margin() const
+auto TextView::property_left_margin() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "left-margin");
 }
 
-Glib::PropertyProxy< int > TextView::property_right_margin()
+auto TextView::property_right_margin() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "right-margin");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextView::property_right_margin() const
+auto TextView::property_right_margin() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "right-margin");
 }
 
-Glib::PropertyProxy< int > TextView::property_top_margin()
+auto TextView::property_top_margin() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "top-margin");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextView::property_top_margin() const
+auto TextView::property_top_margin() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "top-margin");
 }
 
-Glib::PropertyProxy< int > TextView::property_bottom_margin()
+auto TextView::property_bottom_margin() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "bottom-margin");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextView::property_bottom_margin() const
+auto TextView::property_bottom_margin() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "bottom-margin");
 }
 
-Glib::PropertyProxy< int > TextView::property_indent()
+auto TextView::property_indent() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "indent");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TextView::property_indent() const
+auto TextView::property_indent() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "indent");
 }
@@ -839,22 +839,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::TabArray>::va
   "Type Pango::TabArray cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::TabArray > TextView::property_tabs()
+auto TextView::property_tabs() -> Glib::PropertyProxy< Pango::TabArray >
 {
   return Glib::PropertyProxy< Pango::TabArray >(this, "tabs");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::TabArray > TextView::property_tabs() const
+auto TextView::property_tabs() const -> Glib::PropertyProxy_ReadOnly< Pango::TabArray >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::TabArray >(this, "tabs");
 }
 
-Glib::PropertyProxy< bool > TextView::property_cursor_visible()
+auto TextView::property_cursor_visible() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "cursor-visible");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextView::property_cursor_visible() const
+auto TextView::property_cursor_visible() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "cursor-visible");
 }
@@ -863,42 +863,42 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<TextBuf
   "Type Glib::RefPtr<TextBuffer> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<TextBuffer> > TextView::property_buffer()
+auto TextView::property_buffer() -> Glib::PropertyProxy< Glib::RefPtr<TextBuffer> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<TextBuffer> >(this, "buffer");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TextBuffer> > TextView::property_buffer() const
+auto TextView::property_buffer() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TextBuffer> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TextBuffer> >(this, "buffer");
 }
 
-Glib::PropertyProxy< bool > TextView::property_overwrite()
+auto TextView::property_overwrite() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "overwrite");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextView::property_overwrite() const
+auto TextView::property_overwrite() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "overwrite");
 }
 
-Glib::PropertyProxy< bool > TextView::property_accepts_tab()
+auto TextView::property_accepts_tab() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "accepts-tab");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextView::property_accepts_tab() const
+auto TextView::property_accepts_tab() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "accepts-tab");
 }
 
-Glib::PropertyProxy< Glib::ustring > TextView::property_im_module()
+auto TextView::property_im_module() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "im-module");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > TextView::property_im_module() const
+auto TextView::property_im_module() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "im-module");
 }
@@ -907,12 +907,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<InputPurpose>::value
   "Type InputPurpose cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< InputPurpose > TextView::property_input_purpose()
+auto TextView::property_input_purpose() -> Glib::PropertyProxy< InputPurpose >
 {
   return Glib::PropertyProxy< InputPurpose >(this, "input-purpose");
 }
 
-Glib::PropertyProxy_ReadOnly< InputPurpose > TextView::property_input_purpose() const
+auto TextView::property_input_purpose() const -> Glib::PropertyProxy_ReadOnly< InputPurpose >
 {
   return Glib::PropertyProxy_ReadOnly< InputPurpose >(this, "input-purpose");
 }
@@ -921,22 +921,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<InputHints>::value,
   "Type InputHints cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< InputHints > TextView::property_input_hints()
+auto TextView::property_input_hints() -> Glib::PropertyProxy< InputHints >
 {
   return Glib::PropertyProxy< InputHints >(this, "input-hints");
 }
 
-Glib::PropertyProxy_ReadOnly< InputHints > TextView::property_input_hints() const
+auto TextView::property_input_hints() const -> Glib::PropertyProxy_ReadOnly< InputHints >
 {
   return Glib::PropertyProxy_ReadOnly< InputHints >(this, "input-hints");
 }
 
-Glib::PropertyProxy< bool > TextView::property_monospace()
+auto TextView::property_monospace() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "monospace");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextView::property_monospace() const
+auto TextView::property_monospace() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "monospace");
 }
@@ -945,12 +945,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Me
   "Type Glib::RefPtr<Gio::MenuModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > TextView::property_extra_menu()
+auto TextView::property_extra_menu() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >(this, "extra-menu");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> > TextView::property_extra_menu() const
+auto TextView::property_extra_menu() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >(this, "extra-menu");
 }

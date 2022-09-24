@@ -85,7 +85,7 @@ public:
 
   // noncopyable
   SocketService(const SocketService&) = delete;
-  SocketService& operator=(const SocketService&) = delete;
+  auto operator=(const SocketService&) -> SocketService& = delete;
 
 private:  friend class SocketService_Class;
   static CppClassType socketservice_class_;
@@ -99,28 +99,28 @@ protected:
 public:
 
   SocketService(SocketService&& src) noexcept;
-  SocketService& operator=(SocketService&& src) noexcept;
+  auto operator=(SocketService&& src) noexcept -> SocketService&;
 
   ~SocketService() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GSocketService*       gobj()       { return reinterpret_cast<GSocketService*>(gobject_); }
+  auto       gobj() -> GSocketService*       { return reinterpret_cast<GSocketService*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GSocketService* gobj() const { return reinterpret_cast<GSocketService*>(gobject_); }
+  auto gobj() const -> const GSocketService* { return reinterpret_cast<GSocketService*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GSocketService* gobj_copy();
+  auto gobj_copy() -> GSocketService*;
 
 private:
 
@@ -130,7 +130,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<SocketService> create();
+  static auto create() -> Glib::RefPtr<SocketService>;
 
 
   /** Restarts the service, i.e.\ start accepting connections
@@ -174,7 +174,7 @@ public:
    *
    * @return <tt>true</tt> if the service is active, <tt>false</tt> otherwise.
    */
-  bool is_active();
+  auto is_active() -> bool;
 
 
   /**
@@ -199,7 +199,7 @@ public:
    * @return <tt>true</tt> to stop other handlers from being called.
    */
 
-  Glib::SignalProxy<bool(const Glib::RefPtr<SocketConnection>&, const Glib::RefPtr<Glib::Object>&)> signal_incoming();
+  auto signal_incoming() -> Glib::SignalProxy<bool(const Glib::RefPtr<SocketConnection>&, const Glib::RefPtr<Glib::Object>&)>;
 
 
   /** Whether the service is currently accepting connections.
@@ -211,7 +211,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_active() ;
+  auto property_active() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the service is currently accepting connections.
    *
@@ -222,7 +222,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_active() const;
+  auto property_active() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -235,7 +235,7 @@ protected:
 
   //Default Signal Handlers::
   /// This is a default handler for the signal signal_incoming().
-  virtual bool on_incoming(const Glib::RefPtr<SocketConnection>& connection, const Glib::RefPtr<Glib::Object>& source_object);
+  virtual auto on_incoming(const Glib::RefPtr<SocketConnection>& connection, const Glib::RefPtr<Glib::Object>& source_object) -> bool;
 
 
 };
@@ -254,7 +254,7 @@ namespace Glib
    * @relates Gio::SocketService
    */
   GIOMM_API
-  Glib::RefPtr<Gio::SocketService> wrap(GSocketService* object, bool take_copy = false);
+  auto wrap(GSocketService* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketService>;
 }
 
 

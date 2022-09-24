@@ -72,7 +72,7 @@ public:
 
   // noncopyable
   TreeStore(const TreeStore&) = delete;
-  TreeStore& operator=(const TreeStore&) = delete;
+  auto operator=(const TreeStore&) -> TreeStore& = delete;
 
 private:  friend class TreeStore_Class;
   static CppClassType treestore_class_;
@@ -86,28 +86,28 @@ protected:
 public:
 
   TreeStore(TreeStore&& src) noexcept;
-  TreeStore& operator=(TreeStore&& src) noexcept;
+  auto operator=(TreeStore&& src) noexcept -> TreeStore&;
 
   ~TreeStore() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkTreeStore*       gobj()       { return reinterpret_cast<GtkTreeStore*>(gobject_); }
+  auto       gobj() -> GtkTreeStore*       { return reinterpret_cast<GtkTreeStore*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkTreeStore* gobj() const { return reinterpret_cast<GtkTreeStore*>(gobject_); }
+  auto gobj() const -> const GtkTreeStore* { return reinterpret_cast<GtkTreeStore*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkTreeStore* gobj_copy();
+  auto gobj_copy() -> GtkTreeStore*;
 
 private:
 
@@ -129,7 +129,7 @@ public:
    * @result The new TreeStore.
    */
 
-  static Glib::RefPtr<TreeStore> create(const TreeModelColumnRecord& columns);
+  static auto create(const TreeModelColumnRecord& columns) -> Glib::RefPtr<TreeStore>;
 
 
   void set_column_types(const TreeModelColumnRecord& columns);
@@ -139,7 +139,7 @@ public:
    * @param iter The iterator to the row to be removed.
    * @result An iterator to the next row, or end() if there is none.
    */
-  iterator erase(const iterator& iter);
+  auto erase(const iterator& iter) -> iterator;
 
 
   //TODO: Make this documentation similar to documentation for Standard C++ insert methods.
@@ -151,7 +151,7 @@ public:
    * @param iter An iterator to the row before which the new row will be inserted.
    * @result An iterator to the new row.
    */
-  iterator insert(const iterator& iter);
+  auto insert(const iterator& iter) -> iterator;
 
 
   /** Creates a new row after the position.
@@ -162,7 +162,7 @@ public:
    * @param iter An iterator to the row after which the new row will be inserted.
    * @result An iterator to the new row.
    */
-  iterator insert_after(const iterator& iter);
+  auto insert_after(const iterator& iter) -> iterator;
 
 
   /** Creates a new row at the start of the top-level.
@@ -171,7 +171,7 @@ public:
    *
    * @result An iterator to the new row.
    */
-  iterator prepend();
+  auto prepend() -> iterator;
 
   /** Creates a new row at the start of the row's children.
    * The row will be empty - to fill in values, you need to dereference the returned iterator and use Row::operator[] or Row::set_value().
@@ -180,7 +180,7 @@ public:
    * @param node The list of the parent row's children, as returned by Gtk::TreeModel::iterator::children().
    * @result An iterator to the new row.
    */
-  iterator prepend(const TreeNodeChildren& node);
+  auto prepend(const TreeNodeChildren& node) -> iterator;
 
 
   /** Creates a new row at the end of the top-level.
@@ -189,7 +189,7 @@ public:
    *
    * @result An iterator to the new row.
    */
-  iterator append();
+  auto append() -> iterator;
 
   /** Creates a new row at the end of the row's children.
    * The row will be empty - to fill in values, you need to dereference the returned iterator and use Row::operator[] or Row::set_value().
@@ -198,7 +198,7 @@ public:
    * @param node The list of the parent row's children, as returned by Gtk::TreeModel::iterator::children().
    * @result An iterator to the new row.
    */
-  iterator append(const TreeNodeChildren& node);
+  auto append(const TreeNodeChildren& node) -> iterator;
 
 
   /** Swaps @a a and @a b in the same level of @a tree_store. Note that this function
@@ -234,7 +234,7 @@ public:
    * @param descendant A valid `Gtk::TreeIter`.
    * @return <tt>true</tt>, if @a iter is an ancestor of @a descendant.
    */
-  bool is_ancestor(const const_iterator& iter, const const_iterator& descendant) const;
+  auto is_ancestor(const const_iterator& iter, const const_iterator& descendant) const -> bool;
 
   /** Returns the depth of @a iter.  This will be 0 for anything on the root level, 1
    * for anything down a level, etc.
@@ -242,7 +242,7 @@ public:
    * @param iter A valid `Gtk::TreeIter`.
    * @return The depth of @a iter.
    */
-  int iter_depth(const const_iterator& iter) const;
+  auto iter_depth(const const_iterator& iter) const -> int;
 
 
   /** Checks if the given iter is a valid iter for this `Gtk::TreeStore`.
@@ -253,7 +253,7 @@ public:
    * @param iter The iterator to check.
    * @return <tt>true</tt> if the iter is valid, <tt>false</tt> if the iter is invalid.
    */
-  bool iter_is_valid(const const_iterator& iter) const;
+  auto iter_is_valid(const const_iterator& iter) const -> bool;
 
 protected:
   void set_value_impl(const iterator& row, int column, const Glib::ValueBase& value) override;
@@ -286,7 +286,7 @@ namespace Glib
    * @relates Gtk::TreeStore
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::TreeStore> wrap(GtkTreeStore* object, bool take_copy = false);
+  auto wrap(GtkTreeStore* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeStore>;
 }
 
 

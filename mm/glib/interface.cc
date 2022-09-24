@@ -131,8 +131,8 @@ Interface::Interface(Interface&& src) noexcept
   // ObjectBase::initialize_move(src.gobject_, &src);
 }
 
-Interface&
-Interface::operator=(Interface&& /* src */) noexcept
+auto
+Interface::operator=(Interface&& /* src */) noexcept -> Interface&
 {
   // We don't call ObjectBase::operator=(ObjectBase&& src) because we
   // want the derived move assignment operator to only cause it
@@ -147,20 +147,20 @@ Interface::~Interface() noexcept
 {
 }
 
-GType
-Interface::get_type()
+auto
+Interface::get_type() -> GType
 {
   return G_TYPE_INTERFACE;
 }
 
-GType
-Interface::get_base_type()
+auto
+Interface::get_base_type() -> GType
 {
   return G_TYPE_INTERFACE;
 }
 
-RefPtr<ObjectBase>
-wrap_interface(GObject* object, bool take_copy)
+auto
+wrap_interface(GObject* object, bool take_copy) -> RefPtr<ObjectBase>
 {
   return Glib::make_refptr_for_instance<ObjectBase>(wrap_auto(object, take_copy));
 }

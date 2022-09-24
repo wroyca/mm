@@ -70,7 +70,7 @@ public:
 
   // noncopyable
   Orientable(const Orientable&) = delete;
-  Orientable& operator=(const Orientable&) = delete;
+  auto operator=(const Orientable&) -> Orientable& = delete;
 
 private:
   friend class Orientable_Class;
@@ -104,7 +104,7 @@ protected:
 public:
 
   Orientable(Orientable&& src) noexcept;
-  Orientable& operator=(Orientable&& src) noexcept;
+  auto operator=(Orientable&& src) noexcept -> Orientable&;
 
   ~Orientable() noexcept override;
 
@@ -112,17 +112,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkOrientable*       gobj()       { return reinterpret_cast<GtkOrientable*>(gobject_); }
+  auto       gobj() -> GtkOrientable*       { return reinterpret_cast<GtkOrientable*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkOrientable* gobj() const { return reinterpret_cast<GtkOrientable*>(gobject_); }
+  auto gobj() const -> const GtkOrientable* { return reinterpret_cast<GtkOrientable*>(gobject_); }
 
 private:
 
@@ -139,7 +139,7 @@ public:
    *
    * @return The orientation of the @a orientable.
    */
-  Orientation get_orientation() const;
+  auto get_orientation() const -> Orientation;
 
   /** The orientation of the orientable.
    *
@@ -148,7 +148,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Orientation > property_orientation() ;
+  auto property_orientation() -> Glib::PropertyProxy< Orientation > ;
 
 /** The orientation of the orientable.
    *
@@ -157,7 +157,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Orientation > property_orientation() const;
+  auto property_orientation() const -> Glib::PropertyProxy_ReadOnly< Orientation >;
 
 
 public:
@@ -187,7 +187,7 @@ namespace Glib
    * @relates Gtk::Orientable
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Orientable> wrap(GtkOrientable* object, bool take_copy = false);
+  auto wrap(GtkOrientable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Orientable>;
 
 } // namespace Glib
 

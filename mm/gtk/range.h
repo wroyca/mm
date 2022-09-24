@@ -63,11 +63,11 @@ class GTKMM_API Range
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Range(Range&& src) noexcept;
-  Range& operator=(Range&& src) noexcept;
+  auto operator=(Range&& src) noexcept -> Range&;
 
   // noncopyable
   Range(const Range&) = delete;
-  Range& operator=(const Range&) = delete;
+  auto operator=(const Range&) -> Range& = delete;
 
   ~Range() noexcept override;
 
@@ -87,19 +87,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkRange*       gobj()       { return reinterpret_cast<GtkRange*>(gobject_); }
+  auto       gobj() -> GtkRange*       { return reinterpret_cast<GtkRange*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkRange* gobj() const { return reinterpret_cast<GtkRange*>(gobject_); }
+  auto gobj() const -> const GtkRange* { return reinterpret_cast<GtkRange*>(gobject_); }
 
 private:
 
@@ -129,13 +129,13 @@ public:
    *
    * @return A `Gtk::Adjustment`.
    */
-  Glib::RefPtr<Adjustment> get_adjustment();
+  auto get_adjustment() -> Glib::RefPtr<Adjustment>;
 
   /** Get the adjustment which is the “model” object for `Gtk::Range`.
    *
    * @return A `Gtk::Adjustment`.
    */
-  Glib::RefPtr<const Adjustment> get_adjustment() const;
+  auto get_adjustment() const -> Glib::RefPtr<const Adjustment>;
 
   /** Sets whether to invert the range.
    *
@@ -154,7 +154,7 @@ public:
    *
    * @return <tt>true</tt> if the range is inverted.
    */
-  bool get_inverted() const;
+  auto get_inverted() const -> bool;
 
   /** Sets whether the `Gtk::Range` respects text direction.
    *
@@ -173,7 +173,7 @@ public:
    *
    * @return <tt>true</tt> if the range is flippable.
    */
-  bool get_flippable() const;
+  auto get_flippable() const -> bool;
 
 
   /** Sets whether the range’s slider has a fixed size, or a size that
@@ -191,7 +191,7 @@ public:
    *
    * @return Whether the range’s slider has a fixed size.
    */
-  bool get_slider_size_fixed() const;
+  auto get_slider_size_fixed() const -> bool;
 
   /** This method returns the area that contains the range's trough
    * and its steppers, in the widget's Gdk::Surface coordinates.
@@ -202,7 +202,7 @@ public:
    *
    * @@newin{2,20}
    */
-  Gdk::Rectangle get_range_rect() const;
+  auto get_range_rect() const -> Gdk::Rectangle;
 
 
   /** This function returns sliders range along the long dimension,
@@ -252,7 +252,7 @@ public:
    *
    * @return Current value of the range.
    */
-  double get_value() const;
+  auto get_value() const -> double;
 
 
   /** Sets whether a graphical fill level is show on the trough.
@@ -268,7 +268,7 @@ public:
    *
    * @return <tt>true</tt> if @a range shows the fill level.
    */
-  bool get_show_fill_level() const;
+  auto get_show_fill_level() const -> bool;
 
   /** Sets whether the slider is restricted to the fill level.
    *
@@ -283,7 +283,7 @@ public:
    *
    * @return <tt>true</tt> if @a range is restricted to the fill level.
    */
-  bool get_restrict_to_fill_level() const;
+  auto get_restrict_to_fill_level() const -> bool;
 
   /** Set the new position of the fill level indicator.
    *
@@ -311,7 +311,7 @@ public:
    *
    * @return The current fill level.
    */
-  double get_fill_level() const;
+  auto get_fill_level() const -> double;
 
   /** Sets the number of digits to round the value to when
    * it changes.
@@ -329,7 +329,7 @@ public:
    *
    * @return The number of digits to round to.
    */
-  int get_round_digits() const;
+  auto get_round_digits() const -> int;
 
 
   /**
@@ -341,7 +341,7 @@ public:
    * Emitted when the range value changes.
    */
 
-  Glib::SignalProxy<void()> signal_value_changed();
+  auto signal_value_changed() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -356,7 +356,7 @@ public:
    * @param new_value The value before we clamp.
    */
 
-  Glib::SignalProxy<void(double)> signal_adjust_bounds();
+  auto signal_adjust_bounds() -> Glib::SignalProxy<void(double)>;
 
 
   /**
@@ -372,7 +372,7 @@ public:
    * @param scroll How to move the slider.
    */
 
-  Glib::SignalProxy<void(ScrollType)> signal_move_slider();
+  auto signal_move_slider() -> Glib::SignalProxy<void(ScrollType)>;
 
 
   /**
@@ -400,7 +400,7 @@ public:
    * the signal, <tt>false</tt> to propagate the signal further.
    */
 
-  Glib::SignalProxy<bool(ScrollType, double)> signal_change_value();
+  auto signal_change_value() -> Glib::SignalProxy<bool(ScrollType, double)>;
 
 
   /** The adjustment that is controlled by the range.
@@ -408,14 +408,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Adjustment> > property_adjustment() ;
+  auto property_adjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> > ;
 
 /** The adjustment that is controlled by the range.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> > property_adjustment() const;
+  auto property_adjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >;
 
   /** If <tt>true</tt>, the direction in which the slider moves is inverted.
    *
@@ -424,7 +424,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_inverted() ;
+  auto property_inverted() -> Glib::PropertyProxy< bool > ;
 
 /** If <tt>true</tt>, the direction in which the slider moves is inverted.
    *
@@ -433,7 +433,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_inverted() const;
+  auto property_inverted() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Controls whether fill level indicator graphics are displayed
    * on the trough.
@@ -443,7 +443,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_fill_level() ;
+  auto property_show_fill_level() -> Glib::PropertyProxy< bool > ;
 
 /** Controls whether fill level indicator graphics are displayed
    * on the trough.
@@ -453,7 +453,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_fill_level() const;
+  auto property_show_fill_level() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Controls whether slider movement is restricted to an
    * upper boundary set by the fill level.
@@ -463,7 +463,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_restrict_to_fill_level() ;
+  auto property_restrict_to_fill_level() -> Glib::PropertyProxy< bool > ;
 
 /** Controls whether slider movement is restricted to an
    * upper boundary set by the fill level.
@@ -473,7 +473,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_restrict_to_fill_level() const;
+  auto property_restrict_to_fill_level() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The fill level (e.g.\ prebuffering of a network stream).
    *
@@ -482,7 +482,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_fill_level() ;
+  auto property_fill_level() -> Glib::PropertyProxy< double > ;
 
 /** The fill level (e.g.\ prebuffering of a network stream).
    *
@@ -491,7 +491,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_fill_level() const;
+  auto property_fill_level() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** The number of digits to round the value to when
    * it changes.
@@ -503,7 +503,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_round_digits() ;
+  auto property_round_digits() -> Glib::PropertyProxy< int > ;
 
 /** The number of digits to round the value to when
    * it changes.
@@ -515,7 +515,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_round_digits() const;
+  auto property_round_digits() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
 protected:
@@ -538,7 +538,7 @@ protected:
   /// This is a default handler for the signal signal_move_slider().
   virtual void on_move_slider(ScrollType scroll);
   /// This is a default handler for the signal signal_change_value().
-  virtual bool on_change_value(ScrollType scroll, double new_value);
+  virtual auto on_change_value(ScrollType scroll, double new_value) -> bool;
 
 
 };
@@ -557,7 +557,7 @@ namespace Glib
    * @relates Gtk::Range
    */
   GTKMM_API
-  Gtk::Range* wrap(GtkRange* object, bool take_copy = false);
+  auto wrap(GtkRange* object, bool take_copy = false) -> Gtk::Range*;
 } //namespace Glib
 
 

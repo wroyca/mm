@@ -75,7 +75,7 @@ public:
 
   // noncopyable
   Permission(const Permission&) = delete;
-  Permission& operator=(const Permission&) = delete;
+  auto operator=(const Permission&) -> Permission& = delete;
 
 private:  friend class Permission_Class;
   static CppClassType permission_class_;
@@ -89,28 +89,28 @@ protected:
 public:
 
   Permission(Permission&& src) noexcept;
-  Permission& operator=(Permission&& src) noexcept;
+  auto operator=(Permission&& src) noexcept -> Permission&;
 
   ~Permission() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GPermission*       gobj()       { return reinterpret_cast<GPermission*>(gobject_); }
+  auto       gobj() -> GPermission*       { return reinterpret_cast<GPermission*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GPermission* gobj() const { return reinterpret_cast<GPermission*>(gobject_); }
+  auto gobj() const -> const GPermission* { return reinterpret_cast<GPermission*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GPermission* gobj_copy();
+  auto gobj_copy() -> GPermission*;
 
 private:
 
@@ -141,10 +141,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool acquire(const Glib::RefPtr<Cancellable>& cancellable);
+  auto acquire(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A acquire() convenience overload.
-  bool acquire();
+  auto acquire() -> bool;
 
   /** Attempts to acquire the permission represented by @a permission.
    *
@@ -174,7 +174,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool acquire_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto acquire_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Attempts to release the permission represented by @a permission.
@@ -200,10 +200,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool release(const Glib::RefPtr<Cancellable>& cancellable);
+  auto release(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A release() convenience overload.
-  bool release();
+  auto release() -> bool;
 
   /** Attempts to release the permission represented by @a permission.
    *
@@ -233,7 +233,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool release_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto release_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Gets the value of the 'allowed' property.  This property is <tt>true</tt> if
@@ -244,7 +244,7 @@ public:
    *
    * @return The value of the 'allowed' property.
    */
-  bool get_allowed() const;
+  auto get_allowed() const -> bool;
 
   /** Gets the value of the 'can-acquire' property.  This property is <tt>true</tt>
    * if it is generally possible to acquire the permission by calling
@@ -254,7 +254,7 @@ public:
    *
    * @return The value of the 'can-acquire' property.
    */
-  bool get_can_acquire() const;
+  auto get_can_acquire() const -> bool;
 
   /** Gets the value of the 'can-release' property.  This property is <tt>true</tt>
    * if it is generally possible to release the permission by calling
@@ -264,7 +264,7 @@ public:
    *
    * @return The value of the 'can-release' property.
    */
-  bool get_can_release() const;
+  auto get_can_release() const -> bool;
 
   /** <tt>true</tt> if the caller currently has permission to perform the action that
    *  @a permission represents the permission to perform.
@@ -274,7 +274,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_allowed() const;
+  auto property_allowed() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** <tt>true</tt> if it is generally possible to acquire the permission by calling
@@ -285,7 +285,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_can_acquire() const;
+  auto property_can_acquire() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** <tt>true</tt> if it is generally possible to release the permission by calling
@@ -296,7 +296,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_can_release() const;
+  auto property_can_release() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 protected:
@@ -307,21 +307,21 @@ protected:
 
 
   /// @throws Glib::Error.
-  virtual bool acquire_vfunc(const Glib::RefPtr<Cancellable>& cancellable);
+  virtual auto acquire_vfunc(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     virtual void acquire_async_vfunc(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable);
 
   /// @throws Glib::Error.
-  virtual bool acquire_finish_vfunc(const Glib::RefPtr<AsyncResult>& result);
+  virtual auto acquire_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /// @throws Glib::Error.
-  virtual bool release_vfunc(const Glib::RefPtr<Cancellable>& cancellable);
+  virtual auto release_vfunc(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     virtual void release_async_vfunc(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable);
 
   /// @throws Glib::Error.
-  virtual bool release_finish_vfunc(const Glib::RefPtr<AsyncResult>& result);
+  virtual auto release_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   // You should never call this function except from a Gio::Permission implementation.
@@ -368,7 +368,7 @@ namespace Glib
    * @relates Gio::Permission
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Permission> wrap(GPermission* object, bool take_copy = false);
+  auto wrap(GPermission* object, bool take_copy = false) -> Glib::RefPtr<Gio::Permission>;
 }
 
 

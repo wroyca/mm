@@ -72,7 +72,7 @@ public:
 
   // noncopyable
   ColumnViewColumn(const ColumnViewColumn&) = delete;
-  ColumnViewColumn& operator=(const ColumnViewColumn&) = delete;
+  auto operator=(const ColumnViewColumn&) -> ColumnViewColumn& = delete;
 
 private:  friend class ColumnViewColumn_Class;
   static CppClassType columnviewcolumn_class_;
@@ -86,28 +86,28 @@ protected:
 public:
 
   ColumnViewColumn(ColumnViewColumn&& src) noexcept;
-  ColumnViewColumn& operator=(ColumnViewColumn&& src) noexcept;
+  auto operator=(ColumnViewColumn&& src) noexcept -> ColumnViewColumn&;
 
   ~ColumnViewColumn() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkColumnViewColumn*       gobj()       { return reinterpret_cast<GtkColumnViewColumn*>(gobject_); }
+  auto       gobj() -> GtkColumnViewColumn*       { return reinterpret_cast<GtkColumnViewColumn*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkColumnViewColumn* gobj() const { return reinterpret_cast<GtkColumnViewColumn*>(gobject_); }
+  auto gobj() const -> const GtkColumnViewColumn* { return reinterpret_cast<GtkColumnViewColumn*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkColumnViewColumn* gobj_copy();
+  auto gobj_copy() -> GtkColumnViewColumn*;
 
 private:
 
@@ -118,7 +118,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<ColumnViewColumn> create(const Glib::ustring& title, const Glib::RefPtr<ListItemFactory>& factory =  {});
+  static auto create(const Glib::ustring& title, const Glib::RefPtr<ListItemFactory>& factory =  {}) -> Glib::RefPtr<ColumnViewColumn>;
 
 
   /** Gets the column view that's currently displaying this column.
@@ -127,7 +127,7 @@ public:
    *
    * @return The column view displaying @a self.
    */
-  ColumnView* get_column_view();
+  auto get_column_view() -> ColumnView*;
 
   /** Gets the column view that's currently displaying this column.
    *
@@ -135,7 +135,7 @@ public:
    *
    * @return The column view displaying @a self.
    */
-  const ColumnView* get_column_view() const;
+  auto get_column_view() const -> const ColumnView*;
 
   /** Sets the `Gtk::ListItemFactory` to use for populating list items for this
    * column.
@@ -149,14 +149,14 @@ public:
    *
    * @return The factory in use.
    */
-  Glib::RefPtr<ListItemFactory> get_factory();
+  auto get_factory() -> Glib::RefPtr<ListItemFactory>;
 
   /** Gets the factory that's currently used to populate list items for
    * this column.
    *
    * @return The factory in use.
    */
-  Glib::RefPtr<const ListItemFactory> get_factory() const;
+  auto get_factory() const -> Glib::RefPtr<const ListItemFactory>;
 
 
   /** Sets the title of this column.
@@ -173,7 +173,7 @@ public:
    *
    * @return The column's title.
    */
-  Glib::ustring get_title() const;
+  auto get_title() const -> Glib::ustring;
 
 
   /** Associates a sorter with the column.
@@ -195,13 +195,13 @@ public:
    *
    * @return The `Gtk::Sorter` of @a self.
    */
-  Glib::RefPtr<Sorter> get_sorter();
+  auto get_sorter() -> Glib::RefPtr<Sorter>;
 
   /** Returns the sorter that is associated with the column.
    *
    * @return The `Gtk::Sorter` of @a self.
    */
-  Glib::RefPtr<const Sorter> get_sorter() const;
+  auto get_sorter() const -> Glib::RefPtr<const Sorter>;
 
 
   /** Sets whether this column should be visible in views.
@@ -214,7 +214,7 @@ public:
    *
    * @return <tt>true</tt> if this column is visible.
    */
-  bool get_visible() const;
+  auto get_visible() const -> bool;
 
 
   /** Sets the menu model that is used to create the context menu
@@ -229,14 +229,14 @@ public:
    *
    * @return The `Gio::MenuModel`.
    */
-  Glib::RefPtr<Gio::MenuModel> get_header_menu();
+  auto get_header_menu() -> Glib::RefPtr<Gio::MenuModel>;
 
   /** Gets the menu model that is used to create the context menu
    * for the column header.
    *
    * @return The `Gio::MenuModel`.
    */
-  Glib::RefPtr<const Gio::MenuModel> get_header_menu() const;
+  auto get_header_menu() const -> Glib::RefPtr<const Gio::MenuModel>;
 
 
   /** If @a fixed_width is not -1, sets the fixed width of @a column;
@@ -253,7 +253,7 @@ public:
    *
    * @return The fixed with of the column.
    */
-  int get_fixed_width() const;
+  auto get_fixed_width() const -> int;
 
 
   /** Sets whether this column should be resizable by dragging.
@@ -266,7 +266,7 @@ public:
    *
    * @return <tt>true</tt> if this column is resizable.
    */
-  bool get_resizable() const;
+  auto get_resizable() const -> bool;
 
 
   /** Sets the column to take available extra space.
@@ -282,14 +282,14 @@ public:
    *
    * @return <tt>true</tt> if this column expands.
    */
-  bool get_expand() const;
+  auto get_expand() const -> bool;
 
   /** The `Gtk::ColumnView` this column is a part of.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< ColumnView* > property_column_view() const;
+  auto property_column_view() const -> Glib::PropertyProxy_ReadOnly< ColumnView* >;
 
 
   /** Factory for populating list items.
@@ -297,14 +297,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<ListItemFactory> > property_factory() ;
+  auto property_factory() -> Glib::PropertyProxy< Glib::RefPtr<ListItemFactory> > ;
 
 /** Factory for populating list items.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListItemFactory> > property_factory() const;
+  auto property_factory() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListItemFactory> >;
 
   /** Title displayed in the header.
    *
@@ -313,7 +313,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_title() ;
+  auto property_title() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Title displayed in the header.
    *
@@ -322,21 +322,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_title() const;
+  auto property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Sorter for sorting items according to this column.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Sorter> > property_sorter() ;
+  auto property_sorter() -> Glib::PropertyProxy< Glib::RefPtr<Sorter> > ;
 
 /** Sorter for sorting items according to this column.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Sorter> > property_sorter() const;
+  auto property_sorter() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Sorter> >;
 
   /** Whether this column is visible.
    *
@@ -345,7 +345,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_visible() ;
+  auto property_visible() -> Glib::PropertyProxy< bool > ;
 
 /** Whether this column is visible.
    *
@@ -354,21 +354,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_visible() const;
+  auto property_visible() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Menu model used to create the context menu for the column header.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > property_header_menu() ;
+  auto property_header_menu() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > ;
 
 /** Menu model used to create the context menu for the column header.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> > property_header_menu() const;
+  auto property_header_menu() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >;
 
   /** Whether this column is resizable.
    *
@@ -377,7 +377,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_resizable() ;
+  auto property_resizable() -> Glib::PropertyProxy< bool > ;
 
 /** Whether this column is resizable.
    *
@@ -386,7 +386,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_resizable() const;
+  auto property_resizable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Column gets share of extra width allocated to the view.
    *
@@ -395,7 +395,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_expand() ;
+  auto property_expand() -> Glib::PropertyProxy< bool > ;
 
 /** Column gets share of extra width allocated to the view.
    *
@@ -404,7 +404,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_expand() const;
+  auto property_expand() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** If not -1, this is the width that the column is allocated,
    * regardless of the size of its content.
@@ -414,7 +414,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_fixed_width() ;
+  auto property_fixed_width() -> Glib::PropertyProxy< int > ;
 
 /** If not -1, this is the width that the column is allocated,
    * regardless of the size of its content.
@@ -424,7 +424,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_fixed_width() const;
+  auto property_fixed_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
 public:
@@ -454,7 +454,7 @@ namespace Glib
    * @relates Gtk::ColumnViewColumn
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::ColumnViewColumn> wrap(GtkColumnViewColumn* object, bool take_copy = false);
+  auto wrap(GtkColumnViewColumn* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ColumnViewColumn>;
 }
 
 

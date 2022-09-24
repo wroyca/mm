@@ -79,11 +79,11 @@ class GTKMM_API Calendar : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Calendar(Calendar&& src) noexcept;
-  Calendar& operator=(Calendar&& src) noexcept;
+  auto operator=(Calendar&& src) noexcept -> Calendar&;
 
   // noncopyable
   Calendar(const Calendar&) = delete;
-  Calendar& operator=(const Calendar&) = delete;
+  auto operator=(const Calendar&) -> Calendar& = delete;
 
   ~Calendar() noexcept override;
 
@@ -103,19 +103,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkCalendar*       gobj()       { return reinterpret_cast<GtkCalendar*>(gobject_); }
+  auto       gobj() -> GtkCalendar*       { return reinterpret_cast<GtkCalendar*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkCalendar* gobj() const { return reinterpret_cast<GtkCalendar*>(gobject_); }
+  auto gobj() const -> const GtkCalendar* { return reinterpret_cast<GtkCalendar*>(gobject_); }
 
 private:
 
@@ -160,7 +160,7 @@ public:
    *
    * Return: Whether the calendar is showing week numbers.
    */
-  bool get_show_week_numbers() const;
+  auto get_show_week_numbers() const -> bool;
 
   /** Sets whether the calendar should show a heading.
    *
@@ -178,7 +178,7 @@ public:
    *
    * Return: Whether the calendar is showing a heading.
    */
-  bool get_show_heading() const;
+  auto get_show_heading() const -> bool;
 
   /** Sets whether the calendar shows day names.
    *
@@ -194,7 +194,7 @@ public:
    *
    * @return Whether the calendar shows day names.
    */
-  bool get_show_day_names() const;
+  auto get_show_day_names() const -> bool;
 
 
   /** Returns a `Glib::DateTime` representing the shown
@@ -204,7 +204,7 @@ public:
    *
    * @return The `Glib::Date` representing the shown date.
    */
-  Glib::DateTime get_date() const;
+  auto get_date() const -> Glib::DateTime;
 
 
   /** Returns if the @a day of the @a calendar is already marked.
@@ -212,7 +212,7 @@ public:
    * @param day The day number between 1 and 31.
    * @return Whether the day is marked.
    */
-  bool get_day_is_marked(guint day) const;
+  auto get_day_is_marked(guint day) const -> bool;
 
   // no_default_handler because GtkCalendarClass is private.
 
@@ -225,7 +225,7 @@ public:
    * Emitted when the user selects a day.
    */
 
-  Glib::SignalProxy<void()> signal_day_selected();
+  auto signal_day_selected() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -237,7 +237,7 @@ public:
    * Emitted when the user switched to the previous month.
    */
 
-  Glib::SignalProxy<void()> signal_prev_month();
+  auto signal_prev_month() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -249,7 +249,7 @@ public:
    * Emitted when the user switched to the next month.
    */
 
-  Glib::SignalProxy<void()> signal_next_month();
+  auto signal_next_month() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -261,7 +261,7 @@ public:
    * Emitted when user switched to the previous year.
    */
 
-  Glib::SignalProxy<void()> signal_prev_year();
+  auto signal_prev_year() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -273,7 +273,7 @@ public:
    * Emitted when user switched to the next year.
    */
 
-  Glib::SignalProxy<void()> signal_next_year();
+  auto signal_next_year() -> Glib::SignalProxy<void()>;
 
 
   /** The selected year.
@@ -285,7 +285,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_year() ;
+  auto property_year() -> Glib::PropertyProxy< int > ;
 
 /** The selected year.
    *
@@ -296,7 +296,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_year() const;
+  auto property_year() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The selected month (as a number between 0 and 11).
    *
@@ -307,7 +307,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_month() ;
+  auto property_month() -> Glib::PropertyProxy< int > ;
 
 /** The selected month (as a number between 0 and 11).
    *
@@ -318,7 +318,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_month() const;
+  auto property_month() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The selected day (as a number between 1 and 31).
    *
@@ -327,7 +327,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_day() ;
+  auto property_day() -> Glib::PropertyProxy< int > ;
 
 /** The selected day (as a number between 1 and 31).
    *
@@ -336,7 +336,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_day() const;
+  auto property_day() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Determines whether a heading is displayed.
    *
@@ -345,7 +345,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_heading() ;
+  auto property_show_heading() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether a heading is displayed.
    *
@@ -354,7 +354,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_heading() const;
+  auto property_show_heading() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Determines whether day names are displayed.
    *
@@ -363,7 +363,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_day_names() ;
+  auto property_show_day_names() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether day names are displayed.
    *
@@ -372,7 +372,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_day_names() const;
+  auto property_show_day_names() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Determines whether week numbers are displayed.
    *
@@ -381,7 +381,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_week_numbers() ;
+  auto property_show_week_numbers() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether week numbers are displayed.
    *
@@ -390,7 +390,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_week_numbers() const;
+  auto property_show_week_numbers() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -420,7 +420,7 @@ namespace Glib
    * @relates Gtk::Calendar
    */
   GTKMM_API
-  Gtk::Calendar* wrap(GtkCalendar* object, bool take_copy = false);
+  auto wrap(GtkCalendar* object, bool take_copy = false) -> Gtk::Calendar*;
 } //namespace Glib
 
 

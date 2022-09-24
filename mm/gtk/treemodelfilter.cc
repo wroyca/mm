@@ -28,7 +28,7 @@
 #include <gtk/gtk.h>
 
 
-static gboolean SignalProxy_Visible_gtk_callback(GtkTreeModel* model, GtkTreeIter* iter, gpointer data)
+static auto SignalProxy_Visible_gtk_callback(GtkTreeModel* model, GtkTreeIter* iter, gpointer data) -> gboolean
 {
   auto the_slot = static_cast<Gtk::TreeModelFilter::SlotVisible*>(data);
 
@@ -116,7 +116,7 @@ void TreeModelFilter::set_visible_func(const SlotVisible& slot)
 }
 
 
-TreeModel::iterator TreeModelFilter::convert_child_iter_to_iter(const iterator& child_iter)
+auto TreeModelFilter::convert_child_iter_to_iter(const iterator& child_iter) -> TreeModel::iterator
 {
   iterator filter_iter(this);
 
@@ -126,7 +126,7 @@ TreeModel::iterator TreeModelFilter::convert_child_iter_to_iter(const iterator& 
   return filter_iter;
 }
 
-TreeModel::const_iterator TreeModelFilter::convert_child_iter_to_iter(const const_iterator& child_iter) const
+auto TreeModelFilter::convert_child_iter_to_iter(const const_iterator& child_iter) const -> TreeModel::const_iterator
 {
   const_iterator filter_iter(const_cast<TreeModelFilter*>(this));
 
@@ -137,7 +137,7 @@ TreeModel::const_iterator TreeModelFilter::convert_child_iter_to_iter(const cons
   return filter_iter;
 }
 
-TreeModel::iterator TreeModelFilter::convert_iter_to_child_iter(const iterator& filter_iter)
+auto TreeModelFilter::convert_iter_to_child_iter(const iterator& filter_iter) -> TreeModel::iterator
 {
   const auto child_model = gtk_tree_model_filter_get_model(gobj());
 
@@ -149,7 +149,7 @@ TreeModel::iterator TreeModelFilter::convert_iter_to_child_iter(const iterator& 
   return child_iter;
 }
 
-TreeModel::const_iterator TreeModelFilter::convert_iter_to_child_iter(const const_iterator& filter_iter) const
+auto TreeModelFilter::convert_iter_to_child_iter(const const_iterator& filter_iter) const -> TreeModel::const_iterator
 {
   const auto child_model = gtk_tree_model_filter_get_model(const_cast<GtkTreeModelFilter*>(gobj()));
 
@@ -202,7 +202,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::TreeModelFilter> wrap(GtkTreeModelFilter* object, bool take_copy)
+auto wrap(GtkTreeModelFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::TreeModelFilter>
 {
   return Glib::make_refptr_for_instance<Gtk::TreeModelFilter>( dynamic_cast<Gtk::TreeModelFilter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -217,7 +217,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& TreeModelFilter_Class::init()
+auto TreeModelFilter_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -250,7 +250,7 @@ void TreeModelFilter_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* TreeModelFilter_Class::wrap_new(GObject* object)
+auto TreeModelFilter_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new TreeModelFilter((GtkTreeModelFilter*)object);
 }
@@ -258,7 +258,7 @@ Glib::ObjectBase* TreeModelFilter_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkTreeModelFilter* TreeModelFilter::gobj_copy()
+auto TreeModelFilter::gobj_copy() -> GtkTreeModelFilter*
 {
   reference();
   return gobj();
@@ -283,7 +283,7 @@ TreeModelFilter::TreeModelFilter(TreeModelFilter&& src) noexcept
   , TreeDragSource(std::move(src))
 {}
 
-TreeModelFilter& TreeModelFilter::operator=(TreeModelFilter&& src) noexcept
+auto TreeModelFilter::operator=(TreeModelFilter&& src) noexcept -> TreeModelFilter&
 {
   Glib::Object::operator=(std::move(src));
   TreeModel::operator=(std::move(src));
@@ -298,24 +298,24 @@ TreeModelFilter::~TreeModelFilter() noexcept
 
 TreeModelFilter::CppClassType TreeModelFilter::treemodelfilter_class_; // initialize static member
 
-GType TreeModelFilter::get_type()
+auto TreeModelFilter::get_type() -> GType
 {
   return treemodelfilter_class_.init().get_type();
 }
 
 
-GType TreeModelFilter::get_base_type()
+auto TreeModelFilter::get_base_type() -> GType
 {
   return gtk_tree_model_filter_get_type();
 }
 
 
-Glib::RefPtr<TreeModelFilter> TreeModelFilter::create(const Glib::RefPtr<TreeModel>& child_model)
+auto TreeModelFilter::create(const Glib::RefPtr<TreeModel>& child_model) -> Glib::RefPtr<TreeModelFilter>
 {
   return Glib::make_refptr_for_instance<TreeModelFilter>( new TreeModelFilter(child_model) );
 }
 
-Glib::RefPtr<TreeModelFilter> TreeModelFilter::create(const Glib::RefPtr<TreeModel>& child_model, const TreeModel::Path& virtual_root)
+auto TreeModelFilter::create(const Glib::RefPtr<TreeModel>& child_model, const TreeModel::Path& virtual_root) -> Glib::RefPtr<TreeModelFilter>
 {
   return Glib::make_refptr_for_instance<TreeModelFilter>( new TreeModelFilter(child_model, virtual_root) );
 }
@@ -330,7 +330,7 @@ void TreeModelFilter::set_visible_column(int column)
   gtk_tree_model_filter_set_visible_column(gobj(), column);
 }
 
-Glib::RefPtr<TreeModel> TreeModelFilter::get_model()
+auto TreeModelFilter::get_model() -> Glib::RefPtr<TreeModel>
 {
   auto retvalue = Glib::wrap(gtk_tree_model_filter_get_model(gobj()));
   if(retvalue)
@@ -338,17 +338,17 @@ Glib::RefPtr<TreeModel> TreeModelFilter::get_model()
   return retvalue;
 }
 
-Glib::RefPtr<const TreeModel> TreeModelFilter::get_model() const
+auto TreeModelFilter::get_model() const -> Glib::RefPtr<const TreeModel>
 {
   return const_cast<TreeModelFilter*>(this)->get_model();
 }
 
-Path TreeModelFilter::convert_child_path_to_path(const Path& child_path) const
+auto TreeModelFilter::convert_child_path_to_path(const Path& child_path) const -> Path
 {
   return Gtk::TreePath(gtk_tree_model_filter_convert_child_path_to_path(const_cast<GtkTreeModelFilter*>(gobj()), const_cast<GtkTreePath*>((child_path).gobj())), false);
 }
 
-Path TreeModelFilter::convert_path_to_child_path(const Path& filter_path) const
+auto TreeModelFilter::convert_path_to_child_path(const Path& filter_path) const -> Path
 {
   return Gtk::TreePath(gtk_tree_model_filter_convert_path_to_child_path(const_cast<GtkTreeModelFilter*>(gobj()), const_cast<GtkTreePath*>((filter_path).gobj())), false);
 }
@@ -368,7 +368,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<TreeMod
   "Type Glib::RefPtr<TreeModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> > TreeModelFilter::property_child_model() const
+auto TreeModelFilter::property_child_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> >(this, "child-model");
 }
@@ -377,7 +377,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<TreeModel::Path>::va
   "Type TreeModel::Path cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< TreeModel::Path > TreeModelFilter::property_virtual_root() const
+auto TreeModelFilter::property_virtual_root() const -> Glib::PropertyProxy_ReadOnly< TreeModel::Path >
 {
   return Glib::PropertyProxy_ReadOnly< TreeModel::Path >(this, "virtual-root");
 }

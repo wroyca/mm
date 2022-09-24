@@ -40,7 +40,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::Initable> wrap(GInitable* object, bool take_copy)
+auto wrap(GInitable* object, bool take_copy) -> Glib::RefPtr<Gio::Initable>
 {
   return Glib::make_refptr_for_instance<Gio::Initable>( dynamic_cast<Gio::Initable*> (Glib::wrap_auto_interface<Gio::Initable> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -55,7 +55,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& Initable_Class::init()
+auto Initable_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -82,7 +82,7 @@ void Initable_Class::iface_init_function(void* g_iface, void*)
 
 }
 
-gboolean Initable_Class::init_vfunc_callback(GInitable* self, GCancellable* cancellable, GError** error)
+auto Initable_Class::init_vfunc_callback(GInitable* self, GCancellable* cancellable, GError** error) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -124,7 +124,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* Initable_Class::wrap_new(GObject* object)
+auto Initable_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Initable((GInitable*)(object));
 }
@@ -151,7 +151,7 @@ Initable::Initable(Initable&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-Initable& Initable::operator=(Initable&& src) noexcept
+auto Initable::operator=(Initable&& src) noexcept -> Initable&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -168,13 +168,13 @@ void Initable::add_interface(GType gtype_implementer)
 
 Initable::CppClassType Initable::initable_class_; // initialize static member
 
-GType Initable::get_type()
+auto Initable::get_type() -> GType
 {
   return initable_class_.init().get_type();
 }
 
 
-GType Initable::get_base_type()
+auto Initable::get_base_type() -> GType
 {
   return g_initable_get_type();
 }
@@ -197,7 +197,7 @@ void Initable::init()
 }
 
 
-bool Gio::Initable::init_vfunc(const Glib::RefPtr<Cancellable>& cancellable, GError** error)
+auto Gio::Initable::init_vfunc(const Glib::RefPtr<Cancellable>& cancellable, GError** error) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

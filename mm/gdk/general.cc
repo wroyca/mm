@@ -20,10 +20,7 @@
 #include <gdk/gdk.h>
 
 
-namespace Gdk
-{
-
-namespace Cairo
+namespace Gdk::Cairo
 {
 
 void set_source_rgba(const ::Cairo::RefPtr< ::Cairo::Context >& context, const Gdk::RGBA& color)
@@ -47,7 +44,7 @@ void add_region_to_path(const ::Cairo::RefPtr< ::Cairo::Context >& context, cons
   gdk_cairo_region(context->cobj(), (region ? region->cobj() : nullptr));
 }
 
-::Cairo::RefPtr< ::Cairo::Region> create_region_from_surface(const ::Cairo::RefPtr< ::Cairo::Surface>& surface)
+auto create_region_from_surface(const ::Cairo::RefPtr< ::Cairo::Surface>& surface) -> ::Cairo::RefPtr< ::Cairo::Region>
 {
   return Gdk::Cairo::wrap(gdk_cairo_region_create_from_surface(surface->cobj()), true);
 }
@@ -63,7 +60,5 @@ void draw_from_gl(const ::Cairo::RefPtr< ::Cairo::Context >& context,
 }
 G_GNUC_END_IGNORE_DEPRECATIONS
 #endif // GDKMM_DISABLE_DEPRECATED
-
-} //namespace Cairo
 
 } //namespace Gdk

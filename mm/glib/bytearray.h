@@ -55,7 +55,7 @@ class GLIBMM_API ByteArray final
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
 
   /** Increment the reference count for this object.
@@ -69,19 +69,19 @@ class GLIBMM_API ByteArray final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GByteArray*       gobj();
+  auto       gobj() -> GByteArray*;
 
   ///Provides access to the underlying C instance.
-  const GByteArray* gobj() const;
+  auto gobj() const -> const GByteArray*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GByteArray* gobj_copy() const;
+  auto gobj_copy() const -> GByteArray*;
 
   ByteArray() = delete;
 
   // noncopyable
   ByteArray(const ByteArray&) = delete;
-  ByteArray& operator=(const ByteArray&) = delete;
+  auto operator=(const ByteArray&) -> ByteArray& = delete;
 
 protected:
   // Do not derive this.  Glib::ByteArray can neither be constructed nor deleted.
@@ -109,7 +109,7 @@ public:
    *
    * @return The new ByteArray.
    */
-  static Glib::RefPtr<ByteArray> create();
+  static auto create() -> Glib::RefPtr<ByteArray>;
 
 
   /** Adds the given bytes to the end of the ByteArray.
@@ -119,7 +119,7 @@ public:
    * @param len The number of bytes to add.
    * @return The ByteArray.
    */
-  Glib::RefPtr<ByteArray> append(const guint8* data, guint len);
+  auto append(const guint8* data, guint len) -> Glib::RefPtr<ByteArray>;
 
   /** Adds the given data to the start of the ByteArray.
    * The array will grow in size automatically if necessary.
@@ -128,25 +128,25 @@ public:
    * @param len The number of bytes to add.
    * @return The ByteArray.
    */
-  Glib::RefPtr<ByteArray> prepend(const guint8* data, guint len);
+  auto prepend(const guint8* data, guint len) -> Glib::RefPtr<ByteArray>;
 
   /** Gets the size of the byte array.
    * @return The size.
    * @newin{2,36}
    */
-  guint size() const;
+  auto size() const -> guint;
 
   /** Gets the data of the byte array.
    * @return The data.
    * @newin{2,36}
    */
-  guint8* get_data();
+  auto get_data() -> guint8*;
 
   /** Gets the data of the byte array.
    * @return The data.
    * @newin{2,36}
    */
-  const guint8* get_data() const;
+  auto get_data() const -> const guint8*;
 
 
   /** Removes the byte at the given index from a ByteArray.
@@ -155,7 +155,7 @@ public:
    * @param index The index of the byte to remove.
    * @return The ByteArray.
    */
-  Glib::RefPtr<ByteArray> remove_index(guint index);
+  auto remove_index(guint index) -> Glib::RefPtr<ByteArray>;
 
   /** Removes the byte at the given index from a ByteArray. The last
    * element in the array is used to fill in the space, so this function
@@ -165,7 +165,7 @@ public:
    * @param index The index of the byte to remove.
    * @return The ByteArray.
    */
-  Glib::RefPtr<ByteArray> remove_index_fast(guint index);
+  auto remove_index_fast(guint index) -> Glib::RefPtr<ByteArray>;
 
   /** Removes the given number of bytes starting at the given index from a
    * ByteArray.  The following elements are moved to close the gap.
@@ -176,7 +176,7 @@ public:
    * @param length The number of bytes to remove.
    * @return The ByteArray.
    */
-  Glib::RefPtr<ByteArray> remove_range(guint index, guint length);
+  auto remove_range(guint index, guint length) -> Glib::RefPtr<ByteArray>;
 
 
   /** Like g_byte_array_sort(), but the comparison function takes an extra
@@ -192,7 +192,7 @@ public:
    * @param length The new size of the ByteArray.
    * @return The ByteArray.
    */
-  Glib::RefPtr<ByteArray> set_size(guint length);
+  auto set_size(guint length) -> Glib::RefPtr<ByteArray>;
 
 
 };
@@ -212,14 +212,14 @@ namespace Glib
  * @relates Glib::ByteArray
  */
 GLIBMM_API
-Glib::RefPtr<Glib::ByteArray> wrap(GByteArray* object, bool take_copy = false);
+auto wrap(GByteArray* object, bool take_copy = false) -> Glib::RefPtr<Glib::ByteArray>;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>
 class GLIBMM_API Value<Glib::RefPtr<Glib::ByteArray>> : public Glib::Value_RefPtrBoxed<Glib::ByteArray>
 {
 public:
-  CppType get() const { return Glib::wrap(static_cast<GByteArray*>(get_boxed()), true); }
+  auto get() const -> CppType { return Glib::wrap(static_cast<GByteArray*>(get_boxed()), true); }
 };
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 

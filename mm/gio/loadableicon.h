@@ -62,7 +62,7 @@ public:
 
   // noncopyable
   LoadableIcon(const LoadableIcon&) = delete;
-  LoadableIcon& operator=(const LoadableIcon&) = delete;
+  auto operator=(const LoadableIcon&) -> LoadableIcon& = delete;
 
 private:
   friend class LoadableIcon_Class;
@@ -96,7 +96,7 @@ protected:
 public:
 
   LoadableIcon(LoadableIcon&& src) noexcept;
-  LoadableIcon& operator=(LoadableIcon&& src) noexcept;
+  auto operator=(LoadableIcon&& src) noexcept -> LoadableIcon&;
 
   ~LoadableIcon() noexcept override;
 
@@ -104,17 +104,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GLoadableIcon*       gobj()       { return reinterpret_cast<GLoadableIcon*>(gobject_); }
+  auto       gobj() -> GLoadableIcon*       { return reinterpret_cast<GLoadableIcon*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GLoadableIcon* gobj() const { return reinterpret_cast<GLoadableIcon*>(gobject_); }
+  auto gobj() const -> const GLoadableIcon* { return reinterpret_cast<GLoadableIcon*>(gobject_); }
 
 private:
 
@@ -130,10 +130,10 @@ public:
  *
  * @return a InputStream to read the icon from.
  **/
-  Glib::RefPtr<InputStream> load(int size, Glib::ustring& type, const Glib::RefPtr<Cancellable>& cancellable);
+  auto load(int size, Glib::ustring& type, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<InputStream>;
   /** Non-cancellable version of load()
    */
-  Glib::RefPtr<InputStream> load(int size, Glib::ustring& type);
+  auto load(int size, Glib::ustring& type) -> Glib::RefPtr<InputStream>;
   //TODO: 'type' can be nullptr as well, but I don't really want to add 2 more
   //overloads -- one cancellable, and one not...
 
@@ -183,7 +183,7 @@ namespace Glib
    * @relates Gio::LoadableIcon
    */
   GIOMM_API
-  Glib::RefPtr<Gio::LoadableIcon> wrap(GLoadableIcon* object, bool take_copy = false);
+  auto wrap(GLoadableIcon* object, bool take_copy = false) -> Glib::RefPtr<Gio::LoadableIcon>;
 
 } // namespace Glib
 

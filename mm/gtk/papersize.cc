@@ -76,7 +76,7 @@ PaperSize::PaperSize(const Glib::RefPtr<const Glib::KeyFile>& key_file, const Gl
     Glib::Error::throw_exception(gerror);
 }
 
-bool PaperSize::equal(const PaperSize& other) const
+auto PaperSize::equal(const PaperSize& other) const -> bool
 {
   return (static_cast<bool>(gtk_paper_size_is_equal(const_cast<GtkPaperSize*>(this->gobj()),
                                                     const_cast<GtkPaperSize*>(other.gobj()))));
@@ -105,7 +105,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::Unit>::value_type()
+auto Glib::Value<Gtk::Unit>::value_type() -> GType
 {
   return gtk_unit_get_type();
 }
@@ -114,7 +114,7 @@ GType Glib::Value<Gtk::Unit>::value_type()
 namespace Glib
 {
 
-Gtk::PaperSize wrap(GtkPaperSize* object, bool take_copy)
+auto wrap(GtkPaperSize* object, bool take_copy) -> Gtk::PaperSize
 {
   return Gtk::PaperSize(object, take_copy);
 }
@@ -127,7 +127,7 @@ namespace Gtk
 
 
 // static
-GType PaperSize::get_type()
+auto PaperSize::get_type() -> GType
 {
   return gtk_paper_size_get_type();
 }
@@ -149,7 +149,7 @@ PaperSize::PaperSize(PaperSize&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-PaperSize& PaperSize::operator=(PaperSize&& other) noexcept
+auto PaperSize::operator=(PaperSize&& other) noexcept -> PaperSize&
 {
   PaperSize temp (std::move(other));
   swap(temp);
@@ -164,7 +164,7 @@ PaperSize::PaperSize(GtkPaperSize* gobject, bool make_a_copy)
   gobject_ ((make_a_copy && gobject) ? gtk_paper_size_copy(gobject) : gobject)
 {}
 
-PaperSize& PaperSize::operator=(const PaperSize& other)
+auto PaperSize::operator=(const PaperSize& other) -> PaperSize&
 {
   PaperSize temp (other);
   swap(temp);
@@ -182,48 +182,48 @@ void PaperSize::swap(PaperSize& other) noexcept
   std::swap(gobject_, other.gobject_);
 }
 
-GtkPaperSize* PaperSize::gobj_copy() const
+auto PaperSize::gobj_copy() const -> GtkPaperSize*
 {
   return gtk_paper_size_copy(gobject_);
 }
 
 
-std::vector<PaperSize> PaperSize::get_paper_sizes(bool include_custom)
+auto PaperSize::get_paper_sizes(bool include_custom) -> std::vector<PaperSize>
 {
   return Glib::ListHandler<PaperSize, PaperSizeTraits>::list_to_vector(gtk_paper_size_get_paper_sizes(static_cast<int>(include_custom)), Glib::OWNERSHIP_DEEP);
 }
 
-Glib::ustring PaperSize::get_name() const
+auto PaperSize::get_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_paper_size_get_name(const_cast<GtkPaperSize*>(gobj())));
 }
 
-Glib::ustring PaperSize::get_display_name() const
+auto PaperSize::get_display_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_paper_size_get_display_name(const_cast<GtkPaperSize*>(gobj())));
 }
 
-Glib::ustring PaperSize::get_ppd_name() const
+auto PaperSize::get_ppd_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_paper_size_get_ppd_name(const_cast<GtkPaperSize*>(gobj())));
 }
 
-double PaperSize::get_width(Unit unit) const
+auto PaperSize::get_width(Unit unit) const -> double
 {
   return gtk_paper_size_get_width(const_cast<GtkPaperSize*>(gobj()), static_cast<GtkUnit>(unit));
 }
 
-double PaperSize::get_height(Unit unit) const
+auto PaperSize::get_height(Unit unit) const -> double
 {
   return gtk_paper_size_get_height(const_cast<GtkPaperSize*>(gobj()), static_cast<GtkUnit>(unit));
 }
 
-bool PaperSize::is_custom() const
+auto PaperSize::is_custom() const -> bool
 {
   return gtk_paper_size_is_custom(const_cast<GtkPaperSize*>(gobj()));
 }
 
-bool PaperSize::is_ipp() const
+auto PaperSize::is_ipp() const -> bool
 {
   return gtk_paper_size_is_ipp(const_cast<GtkPaperSize*>(gobj()));
 }
@@ -233,27 +233,27 @@ void PaperSize::set_size(double width, double height, Unit unit)
   gtk_paper_size_set_size(gobj(), width, height, static_cast<GtkUnit>(unit));
 }
 
-double PaperSize::get_default_top_margin(Unit unit) const
+auto PaperSize::get_default_top_margin(Unit unit) const -> double
 {
   return gtk_paper_size_get_default_top_margin(const_cast<GtkPaperSize*>(gobj()), static_cast<GtkUnit>(unit));
 }
 
-double PaperSize::get_default_bottom_margin(Unit unit) const
+auto PaperSize::get_default_bottom_margin(Unit unit) const -> double
 {
   return gtk_paper_size_get_default_bottom_margin(const_cast<GtkPaperSize*>(gobj()), static_cast<GtkUnit>(unit));
 }
 
-double PaperSize::get_default_left_margin(Unit unit) const
+auto PaperSize::get_default_left_margin(Unit unit) const -> double
 {
   return gtk_paper_size_get_default_left_margin(const_cast<GtkPaperSize*>(gobj()), static_cast<GtkUnit>(unit));
 }
 
-double PaperSize::get_default_right_margin(Unit unit) const
+auto PaperSize::get_default_right_margin(Unit unit) const -> double
 {
   return gtk_paper_size_get_default_right_margin(const_cast<GtkPaperSize*>(gobj()), static_cast<GtkUnit>(unit));
 }
 
-Glib::ustring PaperSize::get_default()
+auto PaperSize::get_default() -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_paper_size_get_default());
 }

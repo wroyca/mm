@@ -64,11 +64,11 @@ class GTKMM_API ComboBoxText
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ComboBoxText(ComboBoxText&& src) noexcept;
-  ComboBoxText& operator=(ComboBoxText&& src) noexcept;
+  auto operator=(ComboBoxText&& src) noexcept -> ComboBoxText&;
 
   // noncopyable
   ComboBoxText(const ComboBoxText&) = delete;
-  ComboBoxText& operator=(const ComboBoxText&) = delete;
+  auto operator=(const ComboBoxText&) -> ComboBoxText& = delete;
 
   ~ComboBoxText() noexcept override;
 
@@ -88,19 +88,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkComboBoxText*       gobj()       { return reinterpret_cast<GtkComboBoxText*>(gobject_); }
+  auto       gobj() -> GtkComboBoxText*       { return reinterpret_cast<GtkComboBoxText*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkComboBoxText* gobj() const { return reinterpret_cast<GtkComboBoxText*>(gobject_); }
+  auto gobj() const -> const GtkComboBoxText* { return reinterpret_cast<GtkComboBoxText*>(gobject_); }
 
 private:
 
@@ -196,7 +196,7 @@ public:
    * @return A newly allocated
    * string containing the currently active text.
    */
-  Glib::ustring get_active_text() const;
+  auto get_active_text() const -> Glib::ustring;
 
 
   /** Removes all the text entries from the combo box.
@@ -239,7 +239,7 @@ namespace Glib
    * @relates Gtk::ComboBoxText
    */
   GTKMM_API
-  Gtk::ComboBoxText* wrap(GtkComboBoxText* object, bool take_copy = false);
+  auto wrap(GtkComboBoxText* object, bool take_copy = false) -> Gtk::ComboBoxText*;
 } //namespace Glib
 
 

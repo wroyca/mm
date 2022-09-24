@@ -32,7 +32,7 @@ namespace
 {
 
 
-static void Filter_signal_changed_callback(GtkFilter* self, GtkFilterChange p0,void* data)
+void Filter_signal_changed_callback(GtkFilter* self, GtkFilterChange p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Change)>;
@@ -54,7 +54,7 @@ static void Filter_signal_changed_callback(GtkFilter* self, GtkFilterChange p0,v
   }
 }
 
-static const Glib::SignalProxyInfo Filter_signal_changed_info =
+const Glib::SignalProxyInfo Filter_signal_changed_info =
 {
   "changed",
   (GCallback) &Filter_signal_changed_callback,
@@ -65,13 +65,13 @@ static const Glib::SignalProxyInfo Filter_signal_changed_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::Filter::Match>::value_type()
+auto Glib::Value<Gtk::Filter::Match>::value_type() -> GType
 {
   return gtk_filter_match_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::Filter::Change>::value_type()
+auto Glib::Value<Gtk::Filter::Change>::value_type() -> GType
 {
   return gtk_filter_change_get_type();
 }
@@ -80,7 +80,7 @@ GType Glib::Value<Gtk::Filter::Change>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::Filter> wrap(GtkFilter* object, bool take_copy)
+auto wrap(GtkFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::Filter>
 {
   return Glib::make_refptr_for_instance<Gtk::Filter>( dynamic_cast<Gtk::Filter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -95,7 +95,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Filter_Class::init()
+auto Filter_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -127,7 +127,7 @@ void Filter_Class::class_init_function(void* g_class, void* class_data)
 
 }
 
-gboolean Filter_Class::match_vfunc_callback(GtkFilter* self, gpointer item)
+auto Filter_Class::match_vfunc_callback(GtkFilter* self, gpointer item) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -166,7 +166,7 @@ gboolean Filter_Class::match_vfunc_callback(GtkFilter* self, gpointer item)
   using RType = gboolean;
   return RType();
 }
-GtkFilterMatch Filter_Class::get_strictness_vfunc_callback(GtkFilter* self)
+auto Filter_Class::get_strictness_vfunc_callback(GtkFilter* self) -> GtkFilterMatch
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -206,7 +206,7 @@ GtkFilterMatch Filter_Class::get_strictness_vfunc_callback(GtkFilter* self)
 }
 
 
-Glib::ObjectBase* Filter_Class::wrap_new(GObject* object)
+auto Filter_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Filter((GtkFilter*)object);
 }
@@ -214,7 +214,7 @@ Glib::ObjectBase* Filter_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkFilter* Filter::gobj_copy()
+auto Filter::gobj_copy() -> GtkFilter*
 {
   reference();
   return gobj();
@@ -237,7 +237,7 @@ Filter::Filter(Filter&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Filter& Filter::operator=(Filter&& src) noexcept
+auto Filter::operator=(Filter&& src) noexcept -> Filter&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -250,13 +250,13 @@ Filter::~Filter() noexcept
 
 Filter::CppClassType Filter::filter_class_; // initialize static member
 
-GType Filter::get_type()
+auto Filter::get_type() -> GType
 {
   return filter_class_.init().get_type();
 }
 
 
-GType Filter::get_base_type()
+auto Filter::get_base_type() -> GType
 {
   return gtk_filter_get_type();
 }
@@ -272,12 +272,12 @@ Filter::Filter()
 
 }
 
-bool Filter::match(const Glib::RefPtr<Glib::ObjectBase>& item)
+auto Filter::match(const Glib::RefPtr<Glib::ObjectBase>& item) -> bool
 {
   return gtk_filter_match(gobj(), (item)->gobj());
 }
 
-Match Filter::get_strictness()
+auto Filter::get_strictness() -> Match
 {
   return static_cast<Match>(gtk_filter_get_strictness(gobj()));
 }
@@ -288,13 +288,13 @@ void Filter::changed(Change change)
 }
 
 
-Glib::SignalProxy<void(Change)> Filter::signal_changed()
+auto Filter::signal_changed() -> Glib::SignalProxy<void(Change)>
 {
   return Glib::SignalProxy<void(Change) >(this, &Filter_signal_changed_info);
 }
 
 
-bool Gtk::Filter::match_vfunc(const Glib::RefPtr<Glib::ObjectBase>& item)
+auto Gtk::Filter::match_vfunc(const Glib::RefPtr<Glib::ObjectBase>& item) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -309,7 +309,7 @@ bool Gtk::Filter::match_vfunc(const Glib::RefPtr<Glib::ObjectBase>& item)
   using RType = bool;
   return RType();
 }
-Match Gtk::Filter::get_strictness_vfunc()
+auto Gtk::Filter::get_strictness_vfunc() -> Match
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

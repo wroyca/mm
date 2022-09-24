@@ -72,11 +72,11 @@ class GTKMM_API ScaleButton
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ScaleButton(ScaleButton&& src) noexcept;
-  ScaleButton& operator=(ScaleButton&& src) noexcept;
+  auto operator=(ScaleButton&& src) noexcept -> ScaleButton&;
 
   // noncopyable
   ScaleButton(const ScaleButton&) = delete;
-  ScaleButton& operator=(const ScaleButton&) = delete;
+  auto operator=(const ScaleButton&) -> ScaleButton& = delete;
 
   ~ScaleButton() noexcept override;
 
@@ -96,19 +96,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkScaleButton*       gobj()       { return reinterpret_cast<GtkScaleButton*>(gobject_); }
+  auto       gobj() -> GtkScaleButton*       { return reinterpret_cast<GtkScaleButton*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkScaleButton* gobj() const { return reinterpret_cast<GtkScaleButton*>(gobject_); }
+  auto gobj() const -> const GtkScaleButton* { return reinterpret_cast<GtkScaleButton*>(gobject_); }
 
 private:
 
@@ -147,7 +147,7 @@ public:
    *
    * @return Current value of the scale button.
    */
-  double get_value() const;
+  auto get_value() const -> double;
 
   /** Sets the current value of the scale.
    *
@@ -168,7 +168,7 @@ public:
    *
    * @return The adjustment associated with the scale.
    */
-  Glib::RefPtr<Adjustment> get_adjustment();
+  auto get_adjustment() -> Glib::RefPtr<Adjustment>;
 
   /** Gets the `Gtk::Adjustment` associated with the `Gtk::ScaleButton`’s scale.
    *
@@ -176,7 +176,7 @@ public:
    *
    * @return The adjustment associated with the scale.
    */
-  Glib::RefPtr<const Adjustment> get_adjustment() const;
+  auto get_adjustment() const -> Glib::RefPtr<const Adjustment>;
 
 
   /** Sets the `Gtk::Adjustment` to be used as a model
@@ -194,14 +194,14 @@ public:
    * @return The plus button
    * of the `Gtk::ScaleButton`.
    */
-  Button* get_plus_button();
+  auto get_plus_button() -> Button*;
 
   /** Retrieves the plus button of the `GtkScaleButton.`
    *
    * @return The plus button
    * of the `Gtk::ScaleButton`.
    */
-  const Button* get_plus_button() const;
+  auto get_plus_button() const -> const Button*;
 
 
   /** Retrieves the minus button of the `Gtk::ScaleButton`.
@@ -209,14 +209,14 @@ public:
    * @return The minus button
    * of the `Gtk::ScaleButton`.
    */
-  Button* get_minus_button();
+  auto get_minus_button() -> Button*;
 
   /** Retrieves the minus button of the `Gtk::ScaleButton`.
    *
    * @return The minus button
    * of the `Gtk::ScaleButton`.
    */
-  const Button* get_minus_button() const;
+  auto get_minus_button() const -> const Button*;
 
   //TODO: Use a more specific return type?
   // It's a Popover now, but that fact is not documented. Can change in the future? (Kjell 2017-03-08)
@@ -225,13 +225,13 @@ public:
    *
    * @return The popup of the `Gtk::ScaleButton`.
    */
-  Gtk::Widget* get_popup();
+  auto get_popup() -> Gtk::Widget*;
 
   /** Retrieves the popup of the `Gtk::ScaleButton`.
    *
    * @return The popup of the `Gtk::ScaleButton`.
    */
-  const Gtk::Widget* get_popup() const;
+  auto get_popup() const -> const Gtk::Widget*;
 
 
   /**
@@ -245,7 +245,7 @@ public:
    * @param value The new value.
    */
 
-  Glib::SignalProxy<void(double)> signal_value_changed();
+  auto signal_value_changed() -> Glib::SignalProxy<void(double)>;
 
 
   //Ignore key-binding signals:
@@ -258,7 +258,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_value() ;
+  auto property_value() -> Glib::PropertyProxy< double > ;
 
 /** The value of the scale.
    *
@@ -267,21 +267,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_value() const;
+  auto property_value() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** The `Gtk::Adjustment` that is used as the model.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Adjustment> > property_adjustment() ;
+  auto property_adjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> > ;
 
 /** The `Gtk::Adjustment` that is used as the model.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> > property_adjustment() const;
+  auto property_adjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >;
 
   /** The names of the icons to be used by the scale button.
    *
@@ -303,7 +303,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< std::vector<Glib::ustring> > property_icons() ;
+  auto property_icons() -> Glib::PropertyProxy< std::vector<Glib::ustring> > ;
 
 /** The names of the icons to be used by the scale button.
    *
@@ -325,7 +325,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> > property_icons() const;
+  auto property_icons() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >;
 
 
 public:
@@ -357,7 +357,7 @@ namespace Glib
    * @relates Gtk::ScaleButton
    */
   GTKMM_API
-  Gtk::ScaleButton* wrap(GtkScaleButton* object, bool take_copy = false);
+  auto wrap(GtkScaleButton* object, bool take_copy = false) -> Gtk::ScaleButton*;
 } //namespace Glib
 
 

@@ -28,14 +28,11 @@
 #include <mm/glib/utility.h>
 #include <glib.h>
 
-namespace Glib
+namespace Glib::Markup
 {
 
-namespace Markup
-{
-
-Glib::ustring
-escape_text(const Glib::ustring& text)
+auto
+escape_text(const Glib::ustring& text) -> Glib::ustring
 {
   const auto buf = make_unique_ptr_gfree(g_markup_escape_text(text.data(), text.bytes()));
   return Glib::ustring(buf.get());
@@ -43,8 +40,8 @@ escape_text(const Glib::ustring& text)
 
 /**** Glib::Markup::AttributeKeyLess ***************************************/
 
-bool
-AttributeKeyLess::operator()(const Glib::ustring& lhs, const Glib::ustring& rhs) const
+auto
+AttributeKeyLess::operator()(const Glib::ustring& lhs, const Glib::ustring& rhs) const -> bool
 {
   return (lhs.raw() < rhs.raw());
 }
@@ -202,8 +199,8 @@ Parser::Parser(Parser&& other) noexcept : sigc::trackable(std::move(other))
 {
 }
 
-Parser&
-Parser::operator=(Parser&& other) noexcept
+auto
+Parser::operator=(Parser&& other) noexcept -> Parser&
 {
   sigc::trackable::operator=(std::move(other));
   return *this;
@@ -253,8 +250,8 @@ ParseContext::ParseContext(ParseContext&& other) noexcept : sigc::trackable(std:
 {
 }
 
-ParseContext&
-ParseContext::operator=(ParseContext&& other) noexcept
+auto
+ParseContext::operator=(ParseContext&& other) noexcept -> ParseContext&
 {
   sigc::trackable::operator=(std::move(other));
 
@@ -303,23 +300,23 @@ ParseContext::end_parse()
     Glib::Error::throw_exception(error);
 }
 
-Glib::ustring
-ParseContext::get_element() const
+auto
+ParseContext::get_element() const -> Glib::ustring
 {
   const char* const element_name = g_markup_parse_context_get_element(gobject_);
   return convert_const_gchar_ptr_to_ustring(element_name);
 }
 
-int
-ParseContext::get_line_number() const
+auto
+ParseContext::get_line_number() const -> int
 {
   int line_number = 0;
   g_markup_parse_context_get_position(gobject_, &line_number, nullptr);
   return line_number;
 }
 
-int
-ParseContext::get_char_number() const
+auto
+ParseContext::get_char_number() const -> int
 {
   int char_number = 0;
   g_markup_parse_context_get_position(gobject_, nullptr, &char_number);
@@ -335,8 +332,6 @@ ParseContext::destroy_notify_callback(void* data)
   // Detect premature destruction.
   g_return_if_fail(self->parser_ == nullptr);
 }
-
-} // namespace Markup
 
 } // namespace Glib
 
@@ -355,7 +350,7 @@ Glib::MarkupError::MarkupError(GError* gobject)
   Glib::Error (gobject)
 {}
 
-Glib::MarkupError::Code Glib::MarkupError::code() const
+auto Glib::MarkupError::code() const -> Glib::MarkupError::Code
 {
   return static_cast<Code>(Glib::Error::code());
 }

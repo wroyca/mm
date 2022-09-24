@@ -55,25 +55,25 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::Accessible::Role>::value_type()
+auto Glib::Value<Gtk::Accessible::Role>::value_type() -> GType
 {
   return gtk_accessible_role_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::Accessible::State>::value_type()
+auto Glib::Value<Gtk::Accessible::State>::value_type() -> GType
 {
   return gtk_accessible_state_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::Accessible::Property>::value_type()
+auto Glib::Value<Gtk::Accessible::Property>::value_type() -> GType
 {
   return gtk_accessible_property_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::Accessible::Relation>::value_type()
+auto Glib::Value<Gtk::Accessible::Relation>::value_type() -> GType
 {
   return gtk_accessible_relation_get_type();
 }
@@ -82,7 +82,7 @@ GType Glib::Value<Gtk::Accessible::Relation>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::Accessible> wrap(GtkAccessible* object, bool take_copy)
+auto wrap(GtkAccessible* object, bool take_copy) -> Glib::RefPtr<Gtk::Accessible>
 {
   return Glib::make_refptr_for_instance<Gtk::Accessible>( dynamic_cast<Gtk::Accessible*> (Glib::wrap_auto_interface<Gtk::Accessible> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -97,7 +97,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& Accessible_Class::init()
+auto Accessible_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -124,7 +124,7 @@ void Accessible_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* Accessible_Class::wrap_new(GObject* object)
+auto Accessible_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Accessible((GtkAccessible*)(object));
 }
@@ -151,7 +151,7 @@ Accessible::Accessible(Accessible&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-Accessible& Accessible::operator=(Accessible&& src) noexcept
+auto Accessible::operator=(Accessible&& src) noexcept -> Accessible&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -168,19 +168,19 @@ void Accessible::add_interface(GType gtype_implementer)
 
 Accessible::CppClassType Accessible::accessible_class_; // initialize static member
 
-GType Accessible::get_type()
+auto Accessible::get_type() -> GType
 {
   return accessible_class_.init().get_type();
 }
 
 
-GType Accessible::get_base_type()
+auto Accessible::get_base_type() -> GType
 {
   return gtk_accessible_get_type();
 }
 
 
-Role Accessible::get_accessible_role() const
+auto Accessible::get_accessible_role() const -> Role
 {
   return static_cast<Role>(gtk_accessible_get_accessible_role(const_cast<GtkAccessible*>(gobj())));
 }
@@ -205,12 +205,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Role>::value,
   "Type Role cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Role > Accessible::property_accessible_role()
+auto Accessible::property_accessible_role() -> Glib::PropertyProxy< Role >
 {
   return Glib::PropertyProxy< Role >(this, "accessible-role");
 }
 
-Glib::PropertyProxy_ReadOnly< Role > Accessible::property_accessible_role() const
+auto Accessible::property_accessible_role() const -> Glib::PropertyProxy_ReadOnly< Role >
 {
   return Glib::PropertyProxy_ReadOnly< Role >(this, "accessible-role");
 }

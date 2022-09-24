@@ -84,11 +84,11 @@ class GTKMM_API AppChooserButton
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   AppChooserButton(AppChooserButton&& src) noexcept;
-  AppChooserButton& operator=(AppChooserButton&& src) noexcept;
+  auto operator=(AppChooserButton&& src) noexcept -> AppChooserButton&;
 
   // noncopyable
   AppChooserButton(const AppChooserButton&) = delete;
-  AppChooserButton& operator=(const AppChooserButton&) = delete;
+  auto operator=(const AppChooserButton&) -> AppChooserButton& = delete;
 
   ~AppChooserButton() noexcept override;
 
@@ -108,19 +108,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkAppChooserButton*       gobj()       { return reinterpret_cast<GtkAppChooserButton*>(gobject_); }
+  auto       gobj() -> GtkAppChooserButton*       { return reinterpret_cast<GtkAppChooserButton*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkAppChooserButton* gobj() const { return reinterpret_cast<GtkAppChooserButton*>(gobject_); }
+  auto gobj() const -> const GtkAppChooserButton* { return reinterpret_cast<GtkAppChooserButton*>(gobject_); }
 
 private:
 
@@ -180,7 +180,7 @@ public:
    *
    * @return The value of property_show_dialog_item().
    */
-  bool get_show_dialog_item() const;
+  auto get_show_dialog_item() const -> bool;
 
   /** Sets the text to display at the top of the dialog.
    *
@@ -195,7 +195,7 @@ public:
    * @return The text to display at the top of the dialog,
    * or <tt>nullptr</tt>, in which case a default text is displayed.
    */
-  Glib::ustring get_heading() const;
+  auto get_heading() const -> Glib::ustring;
 
   /** Sets whether the dropdown menu of this button should show the
    * default application for the given content type at top.
@@ -209,7 +209,7 @@ public:
    *
    * @return The value of property_show_default_item().
    */
-  bool get_show_default_item() const;
+  auto get_show_default_item() const -> bool;
 
   /** Sets whether the dialog should be modal.
    *
@@ -221,7 +221,7 @@ public:
    *
    * @return <tt>true</tt> if the dialog is modal.
    */
-  bool get_modal() const;
+  auto get_modal() const -> bool;
 
   // no_default_handler because GtkAppChooserButtonClass is private.
 
@@ -234,7 +234,7 @@ public:
    * Emitted when the active application changes.
    */
 
-  Glib::SignalProxy<void()> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -251,7 +251,7 @@ public:
    * @param item_name The name of the activated item.
    */
 
-  Glib::SignalProxyDetailed<void(const Glib::ustring&)> signal_custom_item_activated(const Glib::ustring& custom_item_name = {});
+  auto signal_custom_item_activated(const Glib::ustring& custom_item_name = {}) -> Glib::SignalProxyDetailed<void(const Glib::ustring&)>;
 
 
   /** Determines whether the dropdown menu shows an item to open
@@ -262,7 +262,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_dialog_item() ;
+  auto property_show_dialog_item() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether the dropdown menu shows an item to open
    * a `Gtk::AppChooserDialog`.
@@ -272,7 +272,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_dialog_item() const;
+  auto property_show_dialog_item() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The text to show at the top of the dialog that can be
    * opened from the button.
@@ -284,7 +284,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_heading() ;
+  auto property_heading() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The text to show at the top of the dialog that can be
    * opened from the button.
@@ -296,7 +296,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_heading() const;
+  auto property_heading() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Determines whether the dropdown menu shows the default application
    * on top for the provided content type.
@@ -306,7 +306,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_default_item() ;
+  auto property_show_default_item() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether the dropdown menu shows the default application
    * on top for the provided content type.
@@ -316,7 +316,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_default_item() const;
+  auto property_show_default_item() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the app chooser dialog should be modal.
    *
@@ -325,7 +325,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_modal() ;
+  auto property_modal() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the app chooser dialog should be modal.
    *
@@ -334,7 +334,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_modal() const;
+  auto property_modal() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -364,7 +364,7 @@ namespace Glib
    * @relates Gtk::AppChooserButton
    */
   GTKMM_API
-  Gtk::AppChooserButton* wrap(GtkAppChooserButton* object, bool take_copy = false);
+  auto wrap(GtkAppChooserButton* object, bool take_copy = false) -> Gtk::AppChooserButton*;
 } //namespace Glib
 
 

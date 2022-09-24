@@ -37,9 +37,9 @@ namespace
 
 extern "C" {
 
-static char**
+static auto
 DBusSubtreeVTable_Enumerate_giomm_callback(
-  GDBusConnection* connection, const char* sender, const char* object_path, void* user_data)
+  GDBusConnection* connection, const char* sender, const char* object_path, void* user_data) -> char**
 {
   Gio::DBus::SubtreeVTable* vtable = static_cast<Gio::DBus::SubtreeVTable*>(user_data);
 
@@ -67,9 +67,9 @@ DBusSubtreeVTable_Enumerate_giomm_callback(
   return nullptr;
 }
 
-static GDBusInterfaceInfo**
+static auto
 DBusSubtreeVTable_Introspect_giomm_callback(GDBusConnection* connection, const char* sender,
-  const char* object_path, const char* node, void* user_data)
+  const char* object_path, const char* node, void* user_data) -> GDBusInterfaceInfo**
 {
   Gio::DBus::SubtreeVTable* vtable = static_cast<Gio::DBus::SubtreeVTable*>(user_data);
 
@@ -98,10 +98,10 @@ DBusSubtreeVTable_Introspect_giomm_callback(GDBusConnection* connection, const c
   return nullptr;
 }
 
-static const GDBusInterfaceVTable*
+static auto
 DBusSubtreeVTable_Dispatch_giomm_callback(GDBusConnection* connection, const char* sender,
   const char* object_path, const char* interface_name, const char* node, void** out_user_data,
-  void* user_data)
+  void* user_data) -> const GDBusInterfaceVTable*
 {
   Gio::DBus::SubtreeVTable* vtable_subtree = static_cast<Gio::DBus::SubtreeVTable*>(user_data);
 
@@ -127,10 +127,7 @@ DBusSubtreeVTable_Dispatch_giomm_callback(GDBusConnection* connection, const cha
 } // extern "C"
 }
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 SubtreeVTable::SubtreeVTable(const SlotSubtreeEnumerate& slot_enumerate,
@@ -155,8 +152,8 @@ SubtreeVTable::SubtreeVTable(SubtreeVTable&& other) noexcept
   other.slot_dispatch_ = nullptr;
 }
 
-SubtreeVTable&
-SubtreeVTable::operator=(SubtreeVTable&& other) noexcept
+auto
+SubtreeVTable::operator=(SubtreeVTable&& other) noexcept -> SubtreeVTable&
 {
   delete slot_enumerate_;
   delete slot_introspect_;
@@ -181,25 +178,23 @@ SubtreeVTable::~SubtreeVTable()
   delete slot_dispatch_;
 }
 
-SubtreeVTable::SlotSubtreeEnumerate*
-SubtreeVTable::get_slot_enumerate() const
+auto
+SubtreeVTable::get_slot_enumerate() const -> SubtreeVTable::SlotSubtreeEnumerate*
 {
   return slot_enumerate_;
 }
 
-SubtreeVTable::SlotSubtreeIntrospect*
-SubtreeVTable::get_slot_introspect() const
+auto
+SubtreeVTable::get_slot_introspect() const -> SubtreeVTable::SlotSubtreeIntrospect*
 {
   return slot_introspect_;
 }
 
-SubtreeVTable::SlotSubtreeDispatch*
-SubtreeVTable::get_slot_dispatch() const
+auto
+SubtreeVTable::get_slot_dispatch() const -> SubtreeVTable::SlotSubtreeDispatch*
 {
   return slot_dispatch_;
 }
-
-} // namespace DBus
 
 } // namespace Gio
 
@@ -208,14 +203,9 @@ namespace
 } // anonymous namespace
 
 
-namespace Gio
+namespace Gio::DBus
 {
 
-namespace DBus
-{
-
-
-} // namespace DBus
 
 } // namespace Gio
 

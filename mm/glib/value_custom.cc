@@ -21,7 +21,7 @@
 namespace
 {
 
-static void
+void
 warn_already_registered(const char* location, const std::string& full_name)
 {
   g_warning("file %s: (%s): The type name `%s' has been registered already.\n"
@@ -35,9 +35,9 @@ warn_already_registered(const char* location, const std::string& full_name)
 namespace Glib
 {
 
-GType
+auto
 custom_boxed_type_register(
-  const char* type_name, ValueInitFunc init_func, ValueFreeFunc free_func, ValueCopyFunc copy_func)
+  const char* type_name, ValueInitFunc init_func, ValueFreeFunc free_func, ValueCopyFunc copy_func) -> GType
 {
   std::string full_name("glibmm__CustomBoxed_");
   Glib::append_canonical_typename(full_name, type_name);
@@ -89,8 +89,8 @@ custom_boxed_type_register(
   return g_type_register_static(G_TYPE_BOXED, full_name.c_str(), &type_info, GTypeFlags(0));
 }
 
-GType
-custom_pointer_type_register(const char* type_name)
+auto
+custom_pointer_type_register(const char* type_name) -> GType
 {
   std::string full_name("glibmm__CustomPointer_");
   Glib::append_canonical_typename(full_name, type_name);

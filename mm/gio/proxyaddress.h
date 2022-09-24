@@ -60,7 +60,7 @@ public:
 
   // noncopyable
   ProxyAddress(const ProxyAddress&) = delete;
-  ProxyAddress& operator=(const ProxyAddress&) = delete;
+  auto operator=(const ProxyAddress&) -> ProxyAddress& = delete;
 
 private:  friend class ProxyAddress_Class;
   static CppClassType proxyaddress_class_;
@@ -74,28 +74,28 @@ protected:
 public:
 
   ProxyAddress(ProxyAddress&& src) noexcept;
-  ProxyAddress& operator=(ProxyAddress&& src) noexcept;
+  auto operator=(ProxyAddress&& src) noexcept -> ProxyAddress&;
 
   ~ProxyAddress() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GProxyAddress*       gobj()       { return reinterpret_cast<GProxyAddress*>(gobject_); }
+  auto       gobj() -> GProxyAddress*       { return reinterpret_cast<GProxyAddress*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GProxyAddress* gobj() const { return reinterpret_cast<GProxyAddress*>(gobject_); }
+  auto gobj() const -> const GProxyAddress* { return reinterpret_cast<GProxyAddress*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GProxyAddress* gobj_copy();
+  auto gobj_copy() -> GProxyAddress*;
 
 private:
 
@@ -106,7 +106,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<ProxyAddress> create(const Glib::RefPtr<InetAddress>& address, guint16 port, const Glib::ustring& protocol, const Glib::ustring& destination_hostname, guint16 destination_port, const Glib::ustring& username =  {}, const Glib::ustring& password =  {});
+  static auto create(const Glib::RefPtr<InetAddress>& address, guint16 port, const Glib::ustring& protocol, const Glib::ustring& destination_hostname, guint16 destination_port, const Glib::ustring& username =  {}, const Glib::ustring& password =  {}) -> Glib::RefPtr<ProxyAddress>;
 
 
   /** Gets @a proxy's protocol. eg, "socks" or "http"
@@ -115,7 +115,7 @@ public:
    *
    * @return The @a proxy's protocol.
    */
-  Glib::ustring get_protocol() const;
+  auto get_protocol() const -> Glib::ustring;
 
   /** Gets the protocol that is being spoken to the destination
    * server; eg, "http" or "ftp".
@@ -124,7 +124,7 @@ public:
    *
    * @return The @a proxy's destination protocol.
    */
-  Glib::ustring get_destination_protocol() const;
+  auto get_destination_protocol() const -> Glib::ustring;
 
   /** Gets @a proxy's destination hostname; that is, the name of the host
    * that will be connected to via the proxy, not the name of the proxy
@@ -134,7 +134,7 @@ public:
    *
    * @return The @a proxy's destination hostname.
    */
-  Glib::ustring get_destination_hostname() const;
+  auto get_destination_hostname() const -> Glib::ustring;
 
   /** Gets @a proxy's destination port; that is, the port on the
    * destination host that will be connected to via the proxy, not the
@@ -144,7 +144,7 @@ public:
    *
    * @return The @a proxy's destination port.
    */
-  guint16 get_destination_port() const;
+  auto get_destination_port() const -> guint16;
 
 
   /** Gets @a proxy's username.
@@ -153,7 +153,7 @@ public:
    *
    * @return The @a proxy's username.
    */
-  Glib::ustring get_username() const;
+  auto get_username() const -> Glib::ustring;
 
   /** Gets @a proxy's password.
    *
@@ -161,7 +161,7 @@ public:
    *
    * @return The @a proxy's password.
    */
-  Glib::ustring get_password() const;
+  auto get_password() const -> Glib::ustring;
 
 
   /** Gets the proxy URI that @a proxy was constructed from.
@@ -170,7 +170,7 @@ public:
    *
    * @return The @a proxy's URI, or <tt>nullptr</tt> if unknown.
    */
-  Glib::ustring get_uri() const;
+  auto get_uri() const -> Glib::ustring;
 
 
   /** The proxy protocol.
@@ -180,7 +180,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_protocol() const;
+  auto property_protocol() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The protocol being spoke to the destination host, or <tt>nullptr</tt> if
@@ -193,7 +193,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_destination_protocol() const;
+  auto property_destination_protocol() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The proxy destination hostname.
@@ -203,7 +203,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_destination_hostname() const;
+  auto property_destination_hostname() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   // Don't use guint16 in _WRAP_PROPERTY().
@@ -216,7 +216,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_destination_port() const;
+  auto property_destination_port() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
   /** The proxy username.
@@ -226,7 +226,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_username() const;
+  auto property_username() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The proxy password.
@@ -236,7 +236,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_password() const;
+  auto property_password() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The URI string that the proxy was constructed from (or <tt>nullptr</tt>
@@ -249,7 +249,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_uri() const;
+  auto property_uri() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -279,7 +279,7 @@ namespace Glib
    * @relates Gio::ProxyAddress
    */
   GIOMM_API
-  Glib::RefPtr<Gio::ProxyAddress> wrap(GProxyAddress* object, bool take_copy = false);
+  auto wrap(GProxyAddress* object, bool take_copy = false) -> Glib::RefPtr<Gio::ProxyAddress>;
 }
 
 

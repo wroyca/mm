@@ -84,7 +84,7 @@ class GTKMM_API Window : public Widget, public Native, public ShortcutManager, p
 
   // noncopyable
   Window(const Window&) = delete;
-  Window& operator=(const Window&) = delete;
+  auto operator=(const Window&) -> Window& = delete;
 
   ~Window() noexcept override;
 
@@ -104,19 +104,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkWindow*       gobj()       { return reinterpret_cast<GtkWindow*>(gobject_); }
+  auto       gobj() -> GtkWindow*       { return reinterpret_cast<GtkWindow*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkWindow* gobj() const { return reinterpret_cast<GtkWindow*>(gobject_); }
+  auto gobj() const -> const GtkWindow* { return reinterpret_cast<GtkWindow*>(gobject_); }
 
 private:
 
@@ -131,7 +131,7 @@ public:
 
 
   Window(Window&& src) noexcept;
-  Window& operator=(Window&& src) noexcept;
+  auto operator=(Window&& src) noexcept -> Window&;
 
   explicit Window();
 
@@ -143,7 +143,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_title() ;
+  auto property_title() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The title of the window.
    *
@@ -152,7 +152,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_title() const;
+  auto property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** A write-only property for setting window's startup notification identifier.
    *
@@ -161,7 +161,7 @@ public:
    * @return A PropertyProxy_WriteOnly that allows you to set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_WriteOnly< Glib::ustring > property_startup_id() ;
+  auto property_startup_id() -> Glib::PropertyProxy_WriteOnly< Glib::ustring > ;
 
 
   /** If <tt>true</tt>, users can resize the window.
@@ -171,7 +171,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_resizable() ;
+  auto property_resizable() -> Glib::PropertyProxy< bool > ;
 
 /** If <tt>true</tt>, users can resize the window.
    *
@@ -180,7 +180,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_resizable() const;
+  auto property_resizable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** If <tt>true</tt>, the window is modal.
    *
@@ -189,7 +189,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_modal() ;
+  auto property_modal() -> Glib::PropertyProxy< bool > ;
 
 /** If <tt>true</tt>, the window is modal.
    *
@@ -198,7 +198,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_modal() const;
+  auto property_modal() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The default width of the window.
    *
@@ -207,7 +207,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_default_width() ;
+  auto property_default_width() -> Glib::PropertyProxy< int > ;
 
 /** The default width of the window.
    *
@@ -216,7 +216,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_default_width() const;
+  auto property_default_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The default height of the window.
    *
@@ -225,7 +225,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_default_height() ;
+  auto property_default_height() -> Glib::PropertyProxy< int > ;
 
 /** The default height of the window.
    *
@@ -234,7 +234,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_default_height() const;
+  auto property_default_height() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** If this window should be destroyed when the parent is destroyed.
    *
@@ -243,7 +243,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_destroy_with_parent() ;
+  auto property_destroy_with_parent() -> Glib::PropertyProxy< bool > ;
 
 /** If this window should be destroyed when the parent is destroyed.
    *
@@ -252,7 +252,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_destroy_with_parent() const;
+  auto property_destroy_with_parent() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** If this window should be hidden when the users clicks the close button.
    *
@@ -261,7 +261,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_hide_on_close() ;
+  auto property_hide_on_close() -> Glib::PropertyProxy< bool > ;
 
 /** If this window should be hidden when the users clicks the close button.
    *
@@ -270,7 +270,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_hide_on_close() const;
+  auto property_hide_on_close() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether mnemonics are currently visible in this window.
    *
@@ -282,7 +282,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_mnemonics_visible() ;
+  auto property_mnemonics_visible() -> Glib::PropertyProxy< bool > ;
 
 /** Whether mnemonics are currently visible in this window.
    *
@@ -294,7 +294,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_mnemonics_visible() const;
+  auto property_mnemonics_visible() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Specifies the name of the themed icon to use as the window icon.
    *
@@ -305,7 +305,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_icon_name() ;
+  auto property_icon_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Specifies the name of the themed icon to use as the window icon.
    *
@@ -316,21 +316,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_icon_name() const;
+  auto property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The display that will display this window.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gdk::Display> > property_display() ;
+  auto property_display() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Display> > ;
 
 /** The display that will display this window.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Display> > property_display() const;
+  auto property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Display> >;
 
   /** Whether the toplevel is the currently active window.
    *
@@ -339,7 +339,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_active() const;
+  auto property_is_active() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether the window should have a frame (also known as *decorations*).
@@ -349,7 +349,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_decorated() ;
+  auto property_decorated() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the window should have a frame (also known as *decorations*).
    *
@@ -358,21 +358,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_decorated() const;
+  auto property_decorated() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The transient parent of the window.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Window* > property_transient_for() ;
+  auto property_transient_for() -> Glib::PropertyProxy< Window* > ;
 
 /** The transient parent of the window.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Window* > property_transient_for() const;
+  auto property_transient_for() const -> Glib::PropertyProxy_ReadOnly< Window* >;
 
 
   /** Whether the window frame should have a close button.
@@ -382,7 +382,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_deletable() ;
+  auto property_deletable() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the window frame should have a close button.
    *
@@ -391,7 +391,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_deletable() const;
+  auto property_deletable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The `Gtk::Application` associated with the window.
    *
@@ -406,7 +406,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Application> > property_application() ;
+  auto property_application() -> Glib::PropertyProxy< Glib::RefPtr<Application> > ;
 
 /** The `Gtk::Application` associated with the window.
    *
@@ -421,7 +421,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Application> > property_application() const;
+  auto property_application() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Application> >;
 
   /** Whether 'focus rectangles' are currently visible in this window.
    *
@@ -433,7 +433,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_focus_visible() ;
+  auto property_focus_visible() -> Glib::PropertyProxy< bool > ;
 
 /** Whether 'focus rectangles' are currently visible in this window.
    *
@@ -445,7 +445,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_focus_visible() const;
+  auto property_focus_visible() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the window is maximized.
    *
@@ -460,7 +460,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_maximized() ;
+  auto property_maximized() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the window is maximized.
    *
@@ -475,7 +475,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_maximized() const;
+  auto property_maximized() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the window is fullscreen.
    *
@@ -490,7 +490,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_fullscreened() ;
+  auto property_fullscreened() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the window is fullscreen.
    *
@@ -505,49 +505,49 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_fullscreened() const;
+  auto property_fullscreened() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The default widget.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_default_widget() ;
+  auto property_default_widget() -> Glib::PropertyProxy< Widget* > ;
 
 /** The default widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_default_widget() const;
+  auto property_default_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
   /** The focus widget.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_focus_widget() ;
+  auto property_focus_widget() -> Glib::PropertyProxy< Widget* > ;
 
 /** The focus widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_focus_widget() const;
+  auto property_focus_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
   /** The child widget.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The child widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
   /** The titlebar widget.
    *
@@ -556,7 +556,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_titlebar() ;
+  auto property_titlebar() -> Glib::PropertyProxy< Widget* > ;
 
 /** The titlebar widget.
    *
@@ -565,7 +565,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_titlebar() const;
+  auto property_titlebar() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
   /** Whether the window frame should handle F10 for activating
    * menubars.
@@ -577,7 +577,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_handle_menubar_accel() ;
+  auto property_handle_menubar_accel() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the window frame should handle F10 for activating
    * menubars.
@@ -589,7 +589,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_handle_menubar_accel() const;
+  auto property_handle_menubar_accel() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /**
@@ -602,7 +602,7 @@ public:
    * are associated with @a window changes.
    */
 
-  Glib::SignalProxy<void()> signal_keys_changed();
+  auto signal_keys_changed() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -616,7 +616,7 @@ public:
    * Return: <tt>true</tt> to stop other handlers from being invoked for the signal
    */
 
-  Glib::SignalProxy<bool()> signal_close_request();
+  auto signal_close_request() -> Glib::SignalProxy<bool()>;
 
 
   //Keybinding signals:
@@ -642,7 +642,7 @@ public:
    *
    * @return The title of the window.
    */
-  Glib::ustring get_title() const;
+  auto get_title() const -> Glib::ustring;
 
 
   /** Sets the startup notification ID.
@@ -685,7 +685,7 @@ public:
    *
    * @return The currently focused widget.
    */
-  Widget* get_focus();
+  auto get_focus() -> Widget*;
 
   /** Retrieves the current focused widget within the window.
    *
@@ -696,7 +696,7 @@ public:
    *
    * @return The currently focused widget.
    */
-  const Widget* get_focus() const;
+  auto get_focus() const -> const Widget*;
 
   /** Sets the default widget.
    *
@@ -713,13 +713,13 @@ public:
    *
    * @return The default widget.
    */
-  Widget* get_default_widget();
+  auto get_default_widget() -> Widget*;
 
   /** Returns the default widget for @a window.
    *
    * @return The default widget.
    */
-  const Widget* get_default_widget() const;
+  auto get_default_widget() const -> const Widget*;
 
 
   /** Dialog windows should be set transient for the main application
@@ -749,13 +749,13 @@ public:
    *
    * @return The transient parent for this window.
    */
-  Window* get_transient_for();
+  auto get_transient_for() -> Window*;
 
   /** Fetches the transient parent for this window.
    *
    * @return The transient parent for this window.
    */
-  const Window* get_transient_for() const;
+  auto get_transient_for() const -> const Window*;
 
 
   /** If @a setting is <tt>true</tt>, then destroying the transient parent of @a window
@@ -774,7 +774,7 @@ public:
    *
    * @return <tt>true</tt> if the window will be destroyed with its transient parent.
    */
-  bool get_destroy_with_parent() const;
+  auto get_destroy_with_parent() const -> bool;
 
   /** Drop the internal reference GTK holds on toplevel windows.
    *
@@ -809,7 +809,7 @@ public:
    *
    * @return <tt>true</tt> if the window will be hidden.
    */
-  bool get_hide_on_close() const;
+  auto get_hide_on_close() const -> bool;
 
 
   /** Sets whether mnemonics are supposed to be visible.
@@ -823,7 +823,7 @@ public:
    * @return <tt>true</tt> if mnemonics are supposed to be visible
    * in this window.
    */
-  bool get_mnemonics_visible() const;
+  auto get_mnemonics_visible() const -> bool;
 
 
   /** Sets whether “focus rectangles” are supposed to be visible.
@@ -837,7 +837,7 @@ public:
    * @return <tt>true</tt> if “focus rectangles” are supposed to be visible
    * in this window.
    */
-  bool get_focus_visible() const;
+  auto get_focus_visible() const -> bool;
 
 
   /** Sets whether the user can resize a window.
@@ -853,7 +853,7 @@ public:
    *
    * @return <tt>true</tt> if the user can resize the window.
    */
-  bool get_resizable() const;
+  auto get_resizable() const -> bool;
 
 
   /** Sets the `Gdk::Display` where the @a window is displayed.
@@ -876,7 +876,7 @@ public:
    *
    * @return <tt>true</tt> if the window part of the current active window.
    */
-  bool is_active() const;
+  auto is_active() const -> bool;
 
 
   /** Sets whether the window should be decorated.
@@ -901,7 +901,7 @@ public:
    *
    * @return <tt>true</tt> if the window has been set to have decorations.
    */
-  bool get_decorated() const;
+  auto get_decorated() const -> bool;
 
 
   /** Sets whether the window should be deletable.
@@ -925,7 +925,7 @@ public:
    *
    * @return <tt>true</tt> if the window has been set to have a close button.
    */
-  bool get_deletable() const;
+  auto get_deletable() const -> bool;
 
 
   /** Sets the icon for the window from a named themed icon.
@@ -946,7 +946,7 @@ public:
    *
    * @return The icon name.
    */
-  Glib::ustring get_icon_name() const;
+  auto get_icon_name() const -> Glib::ustring;
 
 
   /** Sets an icon to be used as fallback.
@@ -967,7 +967,7 @@ public:
    *
    * @return The fallback icon name for windows.
    */
-  static Glib::ustring get_default_icon_name();
+  static auto get_default_icon_name() -> Glib::ustring;
 
   /** Sets whether the window should request startup notification.
    *
@@ -1004,7 +1004,7 @@ public:
    * @return <tt>true</tt> if the window is set to be modal and
    * establishes a grab when shown.
    */
-  bool get_modal() const;
+  auto get_modal() const -> bool;
 
 
   /** Returns a list of all existing toplevel windows.
@@ -1016,7 +1016,7 @@ public:
    * @return The list
    * of toplevel widgets.
    */
-  static Glib::RefPtr<Gio::ListModel> get_toplevels();
+  static auto get_toplevels() -> Glib::RefPtr<Gio::ListModel>;
 
 
   /** Returns a list of all existing toplevel windows.
@@ -1030,7 +1030,7 @@ public:
    * @return List of
    * toplevel widgets.
    */
-  static std::vector<Window*> list_toplevels();
+  static auto list_toplevels() -> std::vector<Window*>;
 
 
   /** Presents a window to the user.
@@ -1236,7 +1236,7 @@ public:
    * @return The `Gtk::WindowGroup` for a window
    * or the default group.
    */
-  Glib::RefPtr<WindowGroup> get_group();
+  auto get_group() -> Glib::RefPtr<WindowGroup>;
 
   /** Returns the group for @a window.
    *
@@ -1245,27 +1245,27 @@ public:
    * @return The `Gtk::WindowGroup` for a window
    * or the default group.
    */
-  Glib::RefPtr<const WindowGroup> get_group() const;
+  auto get_group() const -> Glib::RefPtr<const WindowGroup>;
 
 
   /** Returns whether @a window has an explicit window group.
    *
    * @return <tt>true</tt> if @a window has an explicit window group.
    */
-  bool has_group() const;
+  auto has_group() const -> bool;
 
 
   /** Gets the `Gtk::Application` associated with the window.
    *
    * @return A `Gtk::Application`.
    */
-  Glib::RefPtr<Application> get_application();
+  auto get_application() -> Glib::RefPtr<Application>;
 
   /** Gets the `Gtk::Application` associated with the window.
    *
    * @return A `Gtk::Application`.
    */
-  Glib::RefPtr<const Application> get_application() const;
+  auto get_application() const -> Glib::RefPtr<const Application>;
 
   // Concerning the removal of a hidden window from the application, see
   // https://bugzilla.gnome.org/show_bug.cgi?id=639931 and Gtk::Widget_Class::hide_callback().
@@ -1304,13 +1304,13 @@ public:
    *
    * @return The child widget of @a window.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget of @a window.
    *
    * @return The child widget of @a window.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
 
   /** Sets a custom titlebar for @a window.
@@ -1340,14 +1340,14 @@ public:
    *
    * @return The custom titlebar.
    */
-  Widget* get_titlebar();
+  auto get_titlebar() -> Widget*;
 
   /** Returns the custom titlebar that has been set with
    * set_titlebar().
    *
    * @return The custom titlebar.
    */
-  const Widget* get_titlebar() const;
+  auto get_titlebar() const -> const Widget*;
 
 
   /** Retrieves the current maximized state of @a window.
@@ -1363,7 +1363,7 @@ public:
    *
    * @return Whether the window has a maximized state.
    */
-  bool is_maximized() const;
+  auto is_maximized() const -> bool;
 
   /** Retrieves the current fullscreen state of @a window.
    *
@@ -1378,7 +1378,7 @@ public:
    *
    * @return Whether the window has a fullscreen state.
    */
-  bool is_fullscreen() const;
+  auto is_fullscreen() const -> bool;
 
 
   /** Sets whether this window should react to F10 key presses
@@ -1397,7 +1397,7 @@ public:
    *
    * @return <tt>true</tt> if the window handles F10.
    */
-  bool get_handle_menubar_accel() const;
+  auto get_handle_menubar_accel() const -> bool;
 
   // from gtk/gtkshow.h:
   //TODO: _WRAP_METHOD(void show_uri(const Glib::ustring& uri, guint32 timestamp), gtk_show_uri)
@@ -1430,7 +1430,7 @@ protected:
   /// This is a default handler for the signal signal_keys_changed().
   virtual void on_keys_changed();
   /// This is a default handler for the signal signal_close_request().
-  virtual bool on_close_request();
+  virtual auto on_close_request() -> bool;
 
 
 };
@@ -1449,7 +1449,7 @@ namespace Glib
    * @relates Gtk::Window
    */
   GTKMM_API
-  Gtk::Window* wrap(GtkWindow* object, bool take_copy = false);
+  auto wrap(GtkWindow* object, bool take_copy = false) -> Gtk::Window*;
 } //namespace Glib
 
 

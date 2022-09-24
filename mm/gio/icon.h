@@ -77,7 +77,7 @@ public:
 
   // noncopyable
   Icon(const Icon&) = delete;
-  Icon& operator=(const Icon&) = delete;
+  auto operator=(const Icon&) -> Icon& = delete;
 
 private:
   friend class Icon_Class;
@@ -111,7 +111,7 @@ protected:
 public:
 
   Icon(Icon&& src) noexcept;
-  Icon& operator=(Icon&& src) noexcept;
+  auto operator=(Icon&& src) noexcept -> Icon&;
 
   ~Icon() noexcept override;
 
@@ -119,17 +119,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GIcon*       gobj()       { return reinterpret_cast<GIcon*>(gobject_); }
+  auto       gobj() -> GIcon*       { return reinterpret_cast<GIcon*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GIcon* gobj() const { return reinterpret_cast<GIcon*>(gobject_); }
+  auto gobj() const -> const GIcon* { return reinterpret_cast<GIcon*>(gobject_); }
 
 private:
 
@@ -151,7 +151,7 @@ public:
    * @return An object implementing the Icon interface, or throws an exception.
    * @throw Gio::Error
    */
-  static Glib::RefPtr<Icon> create(const std::string& str);
+  static auto create(const std::string& str) -> Glib::RefPtr<Icon>;
 
 
   /** Gets a hash for an icon.
@@ -161,7 +161,7 @@ public:
    * @return A <tt>unsigned int</tt> containing a hash for the @a icon, suitable for
    * use in a HashTable or similar data structure.
    */
-  guint hash() const;
+  auto hash() const -> guint;
 
   /** Generates a textual representation of @a icon that can be used for
    * serialization such as when passing @a icon to a different process or
@@ -186,12 +186,12 @@ public:
    * @return An allocated NUL-terminated UTF8 string or
    * <tt>nullptr</tt> if @a icon can't be serialized.
    */
-  std::string to_string() const;
+  auto to_string() const -> std::string;
 
 
   // TODO: should this, and File's equal(), be virtual, in order to
   // be available to derived classes?
-  bool equal(const Glib::RefPtr<Icon>& other) const;
+  auto equal(const Glib::RefPtr<Icon>& other) const -> bool;
 
 
   /** Serializes a Icon into a Variant. An equivalent Icon can be retrieved
@@ -204,7 +204,7 @@ public:
    *
    * @return A Variant, or <tt>nullptr</tt> when serialization fails. The Variant will not be floating.
    */
-  Glib::VariantBase serialize() const;
+  auto serialize() const -> Glib::VariantBase;
 
   /** Deserializes a Icon previously serialized using g_icon_serialize().
    *
@@ -213,7 +213,7 @@ public:
    * @param value A Variant created with g_icon_serialize().
    * @return A Icon, or <tt>nullptr</tt> when deserialization fails.
    */
-  static Glib::RefPtr<Icon> deserialize(const Glib::VariantBase& value);
+  static auto deserialize(const Glib::VariantBase& value) -> Glib::RefPtr<Icon>;
 
 protected:
   //_WRAP_VFUNC(guint hash() const, "hash")
@@ -250,7 +250,7 @@ namespace Glib
    * @relates Gio::Icon
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Icon> wrap(GIcon* object, bool take_copy = false);
+  auto wrap(GIcon* object, bool take_copy = false) -> Glib::RefPtr<Gio::Icon>;
 
 } // namespace Glib
 

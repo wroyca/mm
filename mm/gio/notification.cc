@@ -45,7 +45,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::Notification::Priority>::value_type()
+auto Glib::Value<Gio::Notification::Priority>::value_type() -> GType
 {
   return g_notification_priority_get_type();
 }
@@ -54,7 +54,7 @@ GType Glib::Value<Gio::Notification::Priority>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gio::Notification> wrap(GNotification* object, bool take_copy)
+auto wrap(GNotification* object, bool take_copy) -> Glib::RefPtr<Gio::Notification>
 {
   return Glib::make_refptr_for_instance<Gio::Notification>( dynamic_cast<Gio::Notification*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -69,7 +69,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& Notification_Class::init()
+auto Notification_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -100,7 +100,7 @@ void Notification_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Notification_Class::wrap_new(GObject* object)
+auto Notification_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Notification((GNotification*)object);
 }
@@ -108,7 +108,7 @@ Glib::ObjectBase* Notification_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GNotification* Notification::gobj_copy()
+auto Notification::gobj_copy() -> GNotification*
 {
   reference();
   return gobj();
@@ -131,7 +131,7 @@ Notification::Notification(Notification&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Notification& Notification::operator=(Notification&& src) noexcept
+auto Notification::operator=(Notification&& src) noexcept -> Notification&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -144,19 +144,19 @@ Notification::~Notification() noexcept
 
 Notification::CppClassType Notification::notification_class_; // initialize static member
 
-GType Notification::get_type()
+auto Notification::get_type() -> GType
 {
   return notification_class_.init().get_type();
 }
 
 
-GType Notification::get_base_type()
+auto Notification::get_base_type() -> GType
 {
   return g_notification_get_type();
 }
 
 
-Glib::RefPtr<Notification> Notification::create(const Glib::ustring& title)
+auto Notification::create(const Glib::ustring& title) -> Glib::RefPtr<Notification>
 {
   return Glib::make_refptr_for_instance<Notification>( new Notification(title) );
 }

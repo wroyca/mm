@@ -65,7 +65,7 @@ public:
 
   // noncopyable
   ConstraintGuide(const ConstraintGuide&) = delete;
-  ConstraintGuide& operator=(const ConstraintGuide&) = delete;
+  auto operator=(const ConstraintGuide&) -> ConstraintGuide& = delete;
 
 private:  friend class ConstraintGuide_Class;
   static CppClassType constraintguide_class_;
@@ -79,28 +79,28 @@ protected:
 public:
 
   ConstraintGuide(ConstraintGuide&& src) noexcept;
-  ConstraintGuide& operator=(ConstraintGuide&& src) noexcept;
+  auto operator=(ConstraintGuide&& src) noexcept -> ConstraintGuide&;
 
   ~ConstraintGuide() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkConstraintGuide*       gobj()       { return reinterpret_cast<GtkConstraintGuide*>(gobject_); }
+  auto       gobj() -> GtkConstraintGuide*       { return reinterpret_cast<GtkConstraintGuide*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkConstraintGuide* gobj() const { return reinterpret_cast<GtkConstraintGuide*>(gobject_); }
+  auto gobj() const -> const GtkConstraintGuide* { return reinterpret_cast<GtkConstraintGuide*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkConstraintGuide* gobj_copy();
+  auto gobj_copy() -> GtkConstraintGuide*;
 
 private:
 
@@ -110,7 +110,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<ConstraintGuide> create();
+  static auto create() -> Glib::RefPtr<ConstraintGuide>;
 
 
   /** Sets the minimum size of @a guide.
@@ -175,7 +175,7 @@ public:
    *
    * @return The strength of the constraint on the natural size.
    */
-  Constraint::Strength get_strength() const;
+  auto get_strength() const -> Constraint::Strength;
 
   /** Sets a name for the given `Gtk::ConstraintGuide`.
    *
@@ -189,7 +189,7 @@ public:
    *
    * @return The name of the guide.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
   /** The minimum width of the guide.
    *
@@ -198,7 +198,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_min_width() ;
+  auto property_min_width() -> Glib::PropertyProxy< int > ;
 
 /** The minimum width of the guide.
    *
@@ -207,7 +207,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_min_width() const;
+  auto property_min_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The minimum height of the guide.
    *
@@ -216,7 +216,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_min_height() ;
+  auto property_min_height() -> Glib::PropertyProxy< int > ;
 
 /** The minimum height of the guide.
    *
@@ -225,7 +225,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_min_height() const;
+  auto property_min_height() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The preferred, or natural, width of the guide.
    *
@@ -234,7 +234,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_nat_width() ;
+  auto property_nat_width() -> Glib::PropertyProxy< int > ;
 
 /** The preferred, or natural, width of the guide.
    *
@@ -243,7 +243,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_nat_width() const;
+  auto property_nat_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The preferred, or natural, height of the guide.
    *
@@ -252,7 +252,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_nat_height() ;
+  auto property_nat_height() -> Glib::PropertyProxy< int > ;
 
 /** The preferred, or natural, height of the guide.
    *
@@ -261,7 +261,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_nat_height() const;
+  auto property_nat_height() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The maximum width of the guide.
    *
@@ -270,7 +270,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_max_width() ;
+  auto property_max_width() -> Glib::PropertyProxy< int > ;
 
 /** The maximum width of the guide.
    *
@@ -279,7 +279,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_max_width() const;
+  auto property_max_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The maximum height of the guide.
    *
@@ -288,7 +288,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_max_height() ;
+  auto property_max_height() -> Glib::PropertyProxy< int > ;
 
 /** The maximum height of the guide.
    *
@@ -297,7 +297,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_max_height() const;
+  auto property_max_height() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The `Gtk::ConstraintStrength` to be used for the constraint on
    * the natural size of the guide.
@@ -307,7 +307,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Constraint::Strength > property_strength() ;
+  auto property_strength() -> Glib::PropertyProxy< Constraint::Strength > ;
 
 /** The `Gtk::ConstraintStrength` to be used for the constraint on
    * the natural size of the guide.
@@ -317,7 +317,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Constraint::Strength > property_strength() const;
+  auto property_strength() const -> Glib::PropertyProxy_ReadOnly< Constraint::Strength >;
 
   /** A name that identifies the `Gtk::ConstraintGuide`, for debugging.
    *
@@ -326,7 +326,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_name() ;
+  auto property_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** A name that identifies the `Gtk::ConstraintGuide`, for debugging.
    *
@@ -335,7 +335,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_name() const;
+  auto property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -365,7 +365,7 @@ namespace Glib
    * @relates Gtk::ConstraintGuide
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::ConstraintGuide> wrap(GtkConstraintGuide* object, bool take_copy = false);
+  auto wrap(GtkConstraintGuide* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ConstraintGuide>;
 }
 
 

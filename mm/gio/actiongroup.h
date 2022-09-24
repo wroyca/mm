@@ -87,7 +87,7 @@ public:
 
   // noncopyable
   ActionGroup(const ActionGroup&) = delete;
-  ActionGroup& operator=(const ActionGroup&) = delete;
+  auto operator=(const ActionGroup&) -> ActionGroup& = delete;
 
 private:
   friend class ActionGroup_Class;
@@ -121,7 +121,7 @@ protected:
 public:
 
   ActionGroup(ActionGroup&& src) noexcept;
-  ActionGroup& operator=(ActionGroup&& src) noexcept;
+  auto operator=(ActionGroup&& src) noexcept -> ActionGroup&;
 
   ~ActionGroup() noexcept override;
 
@@ -129,17 +129,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GActionGroup*       gobj()       { return reinterpret_cast<GActionGroup*>(gobject_); }
+  auto       gobj() -> GActionGroup*       { return reinterpret_cast<GActionGroup*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GActionGroup* gobj() const { return reinterpret_cast<GActionGroup*>(gobject_); }
+  auto gobj() const -> const GActionGroup* { return reinterpret_cast<GActionGroup*>(gobject_); }
 
 private:
 
@@ -153,7 +153,7 @@ public:
    * @param action_name The name of the action to check for.
    * @return Whether the named action exists.
    */
-  bool has_action(const Glib::ustring& action_name) const;
+  auto has_action(const Glib::ustring& action_name) const -> bool;
 
 
   /** Lists the actions contained within @a action_group.
@@ -163,7 +163,7 @@ public:
    * @return A <tt>nullptr</tt>-terminated array of the names of the
    * actions in the group.
    */
-  std::vector<Glib::ustring> list_actions() const;
+  auto list_actions() const -> std::vector<Glib::ustring>;
 
   //TODO: Add templated method, renaming this to query_action_variant).
 
@@ -205,28 +205,28 @@ public:
    * @param state The current state, or <tt>nullptr</tt> if stateless.
    * @return <tt>true</tt> if the action exists, else <tt>false</tt>.
    */
-  bool query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantType& parameter_type, Glib::VariantBase& state_hint, Glib::VariantType& state_type, Glib::VariantBase& state);
+  auto query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantType& parameter_type, Glib::VariantBase& state_hint, Glib::VariantType& state_type, Glib::VariantBase& state) -> bool;
 
   /// A query_action() convenience overload.
-  bool query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantType& parameter_type, Glib::VariantBase& state_hint, Glib::VariantType& state_type);
+  auto query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantType& parameter_type, Glib::VariantBase& state_hint, Glib::VariantType& state_type) -> bool;
 
   /// A query_action() convenience overload.
-  bool query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantType& parameter_type, Glib::VariantBase& state_hint, Glib::VariantBase& state);
+  auto query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantType& parameter_type, Glib::VariantBase& state_hint, Glib::VariantBase& state) -> bool;
 
   /// A query_action() convenience overload.
-  bool query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantType& parameter_type, Glib::VariantBase& state_hint);
+  auto query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantType& parameter_type, Glib::VariantBase& state_hint) -> bool;
 
   /// A query_action() convenience overload.
-  bool query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantBase& state_hint, Glib::VariantType& state_type, Glib::VariantBase& state);
+  auto query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantBase& state_hint, Glib::VariantType& state_type, Glib::VariantBase& state) -> bool;
 
   /// A query_action() convenience overload.
-  bool query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantBase& state_hint, Glib::VariantType& state_type);
+  auto query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantBase& state_hint, Glib::VariantType& state_type) -> bool;
 
   /// A query_action() convenience overload.
-  bool query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantBase& state_hint, Glib::VariantBase& state);
+  auto query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantBase& state_hint, Glib::VariantBase& state) -> bool;
 
   /// A query_action() convenience overload.
-  bool query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantBase& state_hint);
+  auto query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantBase& state_hint) -> bool;
 
 
   /** Checks if the named action within @a action_group is currently enabled.
@@ -239,7 +239,7 @@ public:
    * @param action_name The name of the action to query.
    * @return Whether or not the action is currently enabled.
    */
-  bool get_action_enabled(const Glib::ustring& action_name) const;
+  auto get_action_enabled(const Glib::ustring& action_name) const -> bool;
 
 
   /** Queries the type of the parameter that must be given when activating
@@ -261,7 +261,7 @@ public:
    * @param action_name The name of the action to query.
    * @return The parameter type.
    */
-  Glib::VariantType get_action_parameter_type(const Glib::ustring& action_name) const;
+  auto get_action_parameter_type(const Glib::ustring& action_name) const -> Glib::VariantType;
 
   /** Queries the type of the state of the named action within
    *  @a action_group.
@@ -285,7 +285,7 @@ public:
    * @param action_name The name of the action to query.
    * @return The state type, if the action is stateful.
    */
-  Glib::VariantType get_action_state_type(const Glib::ustring& action_name) const;
+  auto get_action_state_type(const Glib::ustring& action_name) const -> Glib::VariantType;
 
   //TODO: How do we check for a nullptr Variant?
   /**
@@ -336,7 +336,7 @@ public:
    * @param action_name The name of the action to query.
    * @return The state range hint.
    */
-  Glib::VariantContainerBase get_action_state_hint_variant(const Glib::ustring& action_name) const;
+  auto get_action_state_hint_variant(const Glib::ustring& action_name) const -> Glib::VariantContainerBase;
 
   //TODO: How do we check for a nullptr Variant?
   /** Queries the current state of the named action within the action group.
@@ -366,7 +366,7 @@ public:
    * @param action_name The name of the action to query.
    * @return The current state of the action.
    */
-  Glib::VariantBase get_action_state_variant(const Glib::ustring& action_name) const;
+  auto get_action_state_variant(const Glib::ustring& action_name) const -> Glib::VariantBase;
 
   //TODO: Add templated method, renaming this to change_action_state_variant().
 
@@ -487,7 +487,7 @@ public:
    * @param action_name The name of the action in @a action_group.
    */
 
-  Glib::SignalProxyDetailed<void(const Glib::ustring&)> signal_action_added(const Glib::ustring& action_name = {});
+  auto signal_action_added(const Glib::ustring& action_name = {}) -> Glib::SignalProxyDetailed<void(const Glib::ustring&)>;
 
 
   /**
@@ -504,7 +504,7 @@ public:
    * @param enabled Whether the action is enabled or not.
    */
 
-  Glib::SignalProxyDetailed<void(const Glib::ustring&, bool)> signal_action_enabled_changed(const Glib::ustring& action_name = {});
+  auto signal_action_enabled_changed(const Glib::ustring& action_name = {}) -> Glib::SignalProxyDetailed<void(const Glib::ustring&, bool)>;
 
 
   /**
@@ -522,7 +522,7 @@ public:
    * @param action_name The name of the action in @a action_group.
    */
 
-  Glib::SignalProxyDetailed<void(const Glib::ustring&)> signal_action_removed(const Glib::ustring& action_name = {});
+  auto signal_action_removed(const Glib::ustring& action_name = {}) -> Glib::SignalProxyDetailed<void(const Glib::ustring&)>;
 
 
   /**
@@ -539,27 +539,27 @@ public:
    * @param value The new value of the state.
    */
 
-  Glib::SignalProxyDetailed<void(const Glib::ustring&, const Glib::VariantBase&)> signal_action_state_changed(const Glib::ustring& action_name = {});
+  auto signal_action_state_changed(const Glib::ustring& action_name = {}) -> Glib::SignalProxyDetailed<void(const Glib::ustring&, const Glib::VariantBase&)>;
 
 
 protected:
-    virtual bool has_action_vfunc(const Glib::ustring& name) const;
+    virtual auto has_action_vfunc(const Glib::ustring& name) const -> bool;
 
 
-    virtual std::vector<Glib::ustring> list_actions_vfunc() const;
+    virtual auto list_actions_vfunc() const -> std::vector<Glib::ustring>;
 
 
-    virtual bool get_action_enabled_vfunc(const Glib::ustring& name) const;
+    virtual auto get_action_enabled_vfunc(const Glib::ustring& name) const -> bool;
 
 
-    virtual Glib::VariantType get_action_parameter_type_vfunc(const Glib::ustring& name) const;
+    virtual auto get_action_parameter_type_vfunc(const Glib::ustring& name) const -> Glib::VariantType;
 
-    virtual Glib::VariantType get_action_state_type_vfunc(const Glib::ustring& name) const;
+    virtual auto get_action_state_type_vfunc(const Glib::ustring& name) const -> Glib::VariantType;
 
 
-    virtual Glib::VariantBase get_action_state_hint_vfunc(const Glib::ustring& name) const;
+    virtual auto get_action_state_hint_vfunc(const Glib::ustring& name) const -> Glib::VariantBase;
 
-    virtual Glib::VariantBase get_action_state_vfunc(const Glib::ustring& name) const;
+    virtual auto get_action_state_vfunc(const Glib::ustring& name) const -> Glib::VariantBase;
 
 
     virtual void change_action_state_vfunc(const Glib::ustring& name, const Glib::VariantBase& value);
@@ -636,7 +636,7 @@ namespace Glib
    * @relates Gio::ActionGroup
    */
   GIOMM_API
-  Glib::RefPtr<Gio::ActionGroup> wrap(GActionGroup* object, bool take_copy = false);
+  auto wrap(GActionGroup* object, bool take_copy = false) -> Glib::RefPtr<Gio::ActionGroup>;
 
 } // namespace Glib
 

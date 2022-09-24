@@ -64,7 +64,7 @@ public:
 
   // noncopyable
   GestureDrag(const GestureDrag&) = delete;
-  GestureDrag& operator=(const GestureDrag&) = delete;
+  auto operator=(const GestureDrag&) -> GestureDrag& = delete;
 
 private:  friend class GestureDrag_Class;
   static CppClassType gesturedrag_class_;
@@ -78,28 +78,28 @@ protected:
 public:
 
   GestureDrag(GestureDrag&& src) noexcept;
-  GestureDrag& operator=(GestureDrag&& src) noexcept;
+  auto operator=(GestureDrag&& src) noexcept -> GestureDrag&;
 
   ~GestureDrag() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkGestureDrag*       gobj()       { return reinterpret_cast<GtkGestureDrag*>(gobject_); }
+  auto       gobj() -> GtkGestureDrag*       { return reinterpret_cast<GtkGestureDrag*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkGestureDrag* gobj() const { return reinterpret_cast<GtkGestureDrag*>(gobject_); }
+  auto gobj() const -> const GtkGestureDrag* { return reinterpret_cast<GtkGestureDrag*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkGestureDrag* gobj_copy();
+  auto gobj_copy() -> GtkGestureDrag*;
 
 private:
 
@@ -117,7 +117,7 @@ public:
    * @return A RefPtr to a new GestureDrag.
    */
 
-  static Glib::RefPtr<GestureDrag> create();
+  static auto create() -> Glib::RefPtr<GestureDrag>;
 
 
   /** Gets the point where the drag started.
@@ -130,7 +130,7 @@ public:
    * @param y Y coordinate for the drag start point.
    * @return <tt>true</tt> if the gesture is active.
    */
-  bool get_start_point(double& x, double& y) const;
+  auto get_start_point(double& x, double& y) const -> bool;
 
   /** Gets the offset from the start point.
    *
@@ -142,7 +142,7 @@ public:
    * @param y Y offset for the current point.
    * @return <tt>true</tt> if the gesture is active.
    */
-  bool get_offset(double& x, double& y) const;
+  auto get_offset(double& x, double& y) const -> bool;
 
   // no_default_handler because GtkGestureDragClass is private.
 
@@ -158,7 +158,7 @@ public:
    * @param start_y Y coordinate, relative to the widget allocation.
    */
 
-  Glib::SignalProxy<void(double, double)> signal_drag_begin();
+  auto signal_drag_begin() -> Glib::SignalProxy<void(double, double)>;
 
 
   /**
@@ -173,7 +173,7 @@ public:
    * @param offset_y Y offset, relative to the start point.
    */
 
-  Glib::SignalProxy<void(double, double)> signal_drag_update();
+  auto signal_drag_update() -> Glib::SignalProxy<void(double, double)>;
 
 
   /**
@@ -188,7 +188,7 @@ public:
    * @param offset_y Y offset, relative to the start point.
    */
 
-  Glib::SignalProxy<void(double, double)> signal_drag_end();
+  auto signal_drag_end() -> Glib::SignalProxy<void(double, double)>;
 
 
   // GestureDrag has no properties
@@ -221,7 +221,7 @@ namespace Glib
    * @relates Gtk::GestureDrag
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::GestureDrag> wrap(GtkGestureDrag* object, bool take_copy = false);
+  auto wrap(GtkGestureDrag* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureDrag>;
 }
 
 

@@ -100,7 +100,7 @@ template <>
 class GDKMM_API Value<Gdk::InputSource> : public Glib::Value_Enum<Gdk::InputSource>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -132,7 +132,7 @@ public:
 
   // noncopyable
   Device(const Device&) = delete;
-  Device& operator=(const Device&) = delete;
+  auto operator=(const Device&) -> Device& = delete;
 
 private:  friend class Device_Class;
   static CppClassType device_class_;
@@ -146,28 +146,28 @@ protected:
 public:
 
   Device(Device&& src) noexcept;
-  Device& operator=(Device&& src) noexcept;
+  auto operator=(Device&& src) noexcept -> Device&;
 
   ~Device() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkDevice*       gobj()       { return reinterpret_cast<GdkDevice*>(gobject_); }
+  auto       gobj() -> GdkDevice*       { return reinterpret_cast<GdkDevice*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkDevice* gobj() const { return reinterpret_cast<GdkDevice*>(gobject_); }
+  auto gobj() const -> const GdkDevice* { return reinterpret_cast<GdkDevice*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkDevice* gobj_copy();
+  auto gobj_copy() -> GdkDevice*;
 
 private:
 
@@ -181,7 +181,7 @@ public:
    *
    * @return A name.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
   /** Determines whether the pointer follows device motion.
    *
@@ -190,27 +190,27 @@ public:
    *
    * @return <tt>true</tt> if the pointer follows device motion.
    */
-  bool get_has_cursor() const;
+  auto get_has_cursor() const -> bool;
 
 
   /** Determines the type of the device.
    *
    * @return A `Gdk::InputSource`.
    */
-  InputSource get_source() const;
+  auto get_source() const -> InputSource;
 
 
   /** Returns the `Gdk::Display` to which @a device pertains.
    *
    * @return A `Gdk::Display`.
    */
-  Glib::RefPtr<Display> get_display();
+  auto get_display() -> Glib::RefPtr<Display>;
 
   /** Returns the `Gdk::Display` to which @a device pertains.
    *
    * @return A `Gdk::Display`.
    */
-  Glib::RefPtr<const Display> get_display() const;
+  auto get_display() const -> Glib::RefPtr<const Display>;
 
 
   /** Obtains the surface underneath @a device, returning the location of the
@@ -223,7 +223,7 @@ public:
    * @return The `Gdk::Surface` under the
    * device position.
    */
-  Glib::RefPtr<Surface> get_surface_at_position(double& win_x, double& win_y);
+  auto get_surface_at_position(double& win_x, double& win_y) -> Glib::RefPtr<Surface>;
 
   /** Obtains the surface underneath @a device, returning the location of the
    * device in @a win_x and @a win_y.
@@ -235,7 +235,7 @@ public:
    * @return The `Gdk::Surface` under the
    * device position.
    */
-  Glib::RefPtr<const Surface> get_surface_at_position(double& win_x, double& win_y) const;
+  auto get_surface_at_position(double& win_x, double& win_y) const -> Glib::RefPtr<const Surface>;
 
   /** Obtains the surface underneath the device.
    * Returns an empty RefPtr if the surface tree under the device is not known to GDK (for example, belongs to another application).
@@ -244,7 +244,7 @@ public:
    *
    * @return The Gdk::Surface under the device position.
    */
-  Glib::RefPtr<Surface> get_surface_at_position();
+  auto get_surface_at_position() -> Glib::RefPtr<Surface>;
 
   /** Obtains the surface underneath the device.
    * Returns an empty RefPtr if the surface tree under the device is not known to GDK (for example, belongs to another application).
@@ -253,7 +253,7 @@ public:
    *
    * @return The Gdk::Surface under the device position.
    */
-  Glib::RefPtr<const Surface> get_surface_at_position() const;
+  auto get_surface_at_position() const -> Glib::RefPtr<const Surface>;
 
 
   /** Returns the vendor ID of this device.
@@ -269,7 +269,7 @@ public:
    *
    * @return The vendor ID.
    */
-  Glib::ustring get_vendor_id() const;
+  auto get_vendor_id() const -> Glib::ustring;
 
   /** Returns the product ID of this device.
    *
@@ -278,27 +278,27 @@ public:
    *
    * @return The product ID.
    */
-  Glib::ustring get_product_id();
+  auto get_product_id() -> Glib::ustring;
 
 
   /** Returns the `Gdk::Seat` the device belongs to.
    *
    * @return A `Gdk::Seat`.
    */
-  Glib::RefPtr<Seat> get_seat();
+  auto get_seat() -> Glib::RefPtr<Seat>;
 
   /** Returns the `Gdk::Seat` the device belongs to.
    *
    * @return A `Gdk::Seat`.
    */
-  Glib::RefPtr<const Seat> get_seat() const;
+  auto get_seat() const -> Glib::RefPtr<const Seat>;
 
 
   /** Retrieves the number of touch points associated to @a device.
    *
    * @return The number of touch points.
    */
-  guint get_num_touches() const;
+  auto get_num_touches() const -> guint;
 
   //TODO: Has gdk_device_get_device_tool() been deprecated by mistake?
   //_WRAP_METHOD(Glib::RefPtr<DeviceTool> get_device_tool(), gdk_device_get_device_tool, refreturn)
@@ -309,14 +309,14 @@ public:
    * @return The `Gdk::DeviceTool`.
    */
 
-  Glib::RefPtr<DeviceTool> get_device_tool();
+  auto get_device_tool() -> Glib::RefPtr<DeviceTool>;
 
   /** Retrieves the current tool for @a device.
    *
    * @return The `Gdk::DeviceTool`.
    */
 
-  Glib::RefPtr<const DeviceTool> get_device_tool() const;
+  auto get_device_tool() const -> Glib::RefPtr<const DeviceTool>;
 
 
   /** Retrieves whether the Caps Lock modifier of the keyboard is locked.
@@ -325,7 +325,7 @@ public:
    *
    * @return <tt>true</tt> if Caps Lock is on for @a device.
    */
-  bool get_caps_lock_state() const;
+  auto get_caps_lock_state() const -> bool;
 
   /** Retrieves whether the Num Lock modifier of the keyboard is locked.
    *
@@ -333,7 +333,7 @@ public:
    *
    * @return <tt>true</tt> if Num Lock is on for @a device.
    */
-  bool get_num_lock_state() const;
+  auto get_num_lock_state() const -> bool;
 
   /** Retrieves whether the Scroll Lock modifier of the keyboard is locked.
    *
@@ -341,7 +341,7 @@ public:
    *
    * @return <tt>true</tt> if Scroll Lock is on for @a device.
    */
-  bool get_scroll_lock_state() const;
+  auto get_scroll_lock_state() const -> bool;
 
   /** Retrieves the current modifier state of the keyboard.
    *
@@ -349,7 +349,7 @@ public:
    *
    * @return The current modifier state.
    */
-  ModifierType get_modifier_state() const;
+  auto get_modifier_state() const -> ModifierType;
 
   /** Returns the direction of effective layout of the keyboard.
    *
@@ -362,7 +362,7 @@ public:
    * if it can determine the direction. Pango::Direction::NEUTRAL
    * otherwise.
    */
-  Pango::Direction get_direction() const;
+  auto get_direction() const -> Pango::Direction;
 
   /** Determines if layouts for both right-to-left and
    * left-to-right languages are in use on the keyboard.
@@ -371,7 +371,7 @@ public:
    *
    * @return <tt>true</tt> if there are layouts with both directions, <tt>false</tt> otherwise.
    */
-  bool has_bidi_layouts() const;
+  auto has_bidi_layouts() const -> bool;
 
   /** Returns the timestamp of the last activity for this device.
    *
@@ -384,7 +384,7 @@ public:
    *
    * @return The timestamp of the last activity for this device.
    */
-  guint32 get_timestamp() const;
+  auto get_timestamp() const -> guint32;
 
   /** Checks if this %Device instance is a DeviceWithPad.
    *
@@ -397,7 +397,7 @@ public:
    *
    * @newin{3,96}
    */
-  bool has_device_pad() const;
+  auto has_device_pad() const -> bool;
 
   /** Casts this %Device instance to a DeviceWithPad, if possible.
    *
@@ -406,7 +406,7 @@ public:
    *
    * @newin{3,96}
    */
-  Glib::RefPtr<DeviceWithPad> device_with_pad_cast();
+  auto device_with_pad_cast() -> Glib::RefPtr<DeviceWithPad>;
 
   /** Casts this %Device instance to a DeviceWithPad, if possible.
    *
@@ -415,7 +415,7 @@ public:
    *
    * @newin{3,96}
    */
-  Glib::RefPtr<const DeviceWithPad> device_with_pad_cast() const;
+  auto device_with_pad_cast() const -> Glib::RefPtr<const DeviceWithPad>;
 
   // We use no_default_handler because _GdkDeviceClass is private.
 
@@ -436,7 +436,7 @@ public:
    * @newin{3,22}
    */
 
-  Glib::SignalProxy<void()> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -452,7 +452,7 @@ public:
    * @param tool The new current tool.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<DeviceTool>&)> signal_tool_changed();
+  auto signal_tool_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<DeviceTool>&)>;
 
 
   /** The `Gdk::Display` the `Gdk::Device` pertains to.
@@ -462,7 +462,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> > property_display() const;
+  auto property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >;
 
 
   /** The device name.
@@ -474,7 +474,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_name() const;
+  auto property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** Source type for the device.
@@ -486,7 +486,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< InputSource > property_source() const;
+  auto property_source() const -> Glib::PropertyProxy_ReadOnly< InputSource >;
 
 
   /** Whether the device is represented by a cursor on the screen.
@@ -498,7 +498,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_cursor() const;
+  auto property_has_cursor() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Number of axes in the device.
@@ -510,7 +510,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_n_axes() const;
+  auto property_n_axes() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
   /** Vendor ID of this device.
@@ -524,7 +524,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_vendor_id() const;
+  auto property_vendor_id() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** Product ID of this device.
@@ -538,7 +538,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_product_id() const;
+  auto property_product_id() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** `Gdk::Seat` of this device.
@@ -548,7 +548,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Seat> > property_seat() ;
+  auto property_seat() -> Glib::PropertyProxy< Glib::RefPtr<Seat> > ;
 
 /** `Gdk::Seat` of this device.
    *
@@ -557,7 +557,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Seat> > property_seat() const;
+  auto property_seat() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Seat> >;
 
   /** The maximal number of concurrent touches on a touch device.
    *
@@ -571,7 +571,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_num_touches() const;
+  auto property_num_touches() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
   /** The `Gdk::DeviceTool` that is currently used with this device.
@@ -581,7 +581,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<DeviceTool> > property_tool() const;
+  auto property_tool() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<DeviceTool> >;
 
 
   /** The direction of the current layout.
@@ -593,7 +593,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::Direction > property_direction() const;
+  auto property_direction() const -> Glib::PropertyProxy_ReadOnly< Pango::Direction >;
 
 
   /** Whether the device has both right-to-left and left-to-right layouts.
@@ -605,7 +605,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_bidi_layouts() const;
+  auto property_has_bidi_layouts() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether Caps Lock is on.
@@ -617,7 +617,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_caps_lock_state() const;
+  auto property_caps_lock_state() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether Num Lock is on.
@@ -629,7 +629,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_num_lock_state() const;
+  auto property_num_lock_state() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether Scroll Lock is on.
@@ -641,7 +641,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_scroll_lock_state() const;
+  auto property_scroll_lock_state() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** The current modifier state of the device.
@@ -653,7 +653,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< ModifierType > property_modifier_state() const;
+  auto property_modifier_state() const -> Glib::PropertyProxy_ReadOnly< ModifierType >;
 
 
 public:
@@ -683,7 +683,7 @@ namespace Glib
    * @relates Gdk::Device
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::Device> wrap(GdkDevice* object, bool take_copy = false);
+  auto wrap(GdkDevice* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Device>;
 }
 
 

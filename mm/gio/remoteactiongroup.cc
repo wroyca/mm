@@ -36,7 +36,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::RemoteActionGroup> wrap(GRemoteActionGroup* object, bool take_copy)
+auto wrap(GRemoteActionGroup* object, bool take_copy) -> Glib::RefPtr<Gio::RemoteActionGroup>
 {
   return Glib::make_refptr_for_instance<Gio::RemoteActionGroup>( dynamic_cast<Gio::RemoteActionGroup*> (Glib::wrap_auto_interface<Gio::RemoteActionGroup> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -51,7 +51,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& RemoteActionGroup_Class::init()
+auto RemoteActionGroup_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -161,7 +161,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* RemoteActionGroup_Class::wrap_new(GObject* object)
+auto RemoteActionGroup_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new RemoteActionGroup((GRemoteActionGroup*)(object));
 }
@@ -188,7 +188,7 @@ RemoteActionGroup::RemoteActionGroup(RemoteActionGroup&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-RemoteActionGroup& RemoteActionGroup::operator=(RemoteActionGroup&& src) noexcept
+auto RemoteActionGroup::operator=(RemoteActionGroup&& src) noexcept -> RemoteActionGroup&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -205,13 +205,13 @@ void RemoteActionGroup::add_interface(GType gtype_implementer)
 
 RemoteActionGroup::CppClassType RemoteActionGroup::remoteactiongroup_class_; // initialize static member
 
-GType RemoteActionGroup::get_type()
+auto RemoteActionGroup::get_type() -> GType
 {
   return remoteactiongroup_class_.init().get_type();
 }
 
 
-GType RemoteActionGroup::get_base_type()
+auto RemoteActionGroup::get_base_type() -> GType
 {
   return g_remote_action_group_get_type();
 }

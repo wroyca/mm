@@ -67,11 +67,11 @@ class GTKMM_API Fixed : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Fixed(Fixed&& src) noexcept;
-  Fixed& operator=(Fixed&& src) noexcept;
+  auto operator=(Fixed&& src) noexcept -> Fixed&;
 
   // noncopyable
   Fixed(const Fixed&) = delete;
-  Fixed& operator=(const Fixed&) = delete;
+  auto operator=(const Fixed&) -> Fixed& = delete;
 
   ~Fixed() noexcept override;
 
@@ -91,19 +91,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkFixed*       gobj()       { return reinterpret_cast<GtkFixed*>(gobject_); }
+  auto       gobj() -> GtkFixed*       { return reinterpret_cast<GtkFixed*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkFixed* gobj() const { return reinterpret_cast<GtkFixed*>(gobject_); }
+  auto gobj() const -> const GtkFixed* { return reinterpret_cast<GtkFixed*>(gobject_); }
 
 private:
 
@@ -173,7 +173,7 @@ namespace Glib
    * @relates Gtk::Fixed
    */
   GTKMM_API
-  Gtk::Fixed* wrap(GtkFixed* object, bool take_copy = false);
+  auto wrap(GtkFixed* object, bool take_copy = false) -> Gtk::Fixed*;
 } //namespace Glib
 
 

@@ -62,7 +62,7 @@ public:
 
   // noncopyable
   SocketAddressEnumerator(const SocketAddressEnumerator&) = delete;
-  SocketAddressEnumerator& operator=(const SocketAddressEnumerator&) = delete;
+  auto operator=(const SocketAddressEnumerator&) -> SocketAddressEnumerator& = delete;
 
 private:  friend class SocketAddressEnumerator_Class;
   static CppClassType socketaddressenumerator_class_;
@@ -76,28 +76,28 @@ protected:
 public:
 
   SocketAddressEnumerator(SocketAddressEnumerator&& src) noexcept;
-  SocketAddressEnumerator& operator=(SocketAddressEnumerator&& src) noexcept;
+  auto operator=(SocketAddressEnumerator&& src) noexcept -> SocketAddressEnumerator&;
 
   ~SocketAddressEnumerator() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GSocketAddressEnumerator*       gobj()       { return reinterpret_cast<GSocketAddressEnumerator*>(gobject_); }
+  auto       gobj() -> GSocketAddressEnumerator*       { return reinterpret_cast<GSocketAddressEnumerator*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GSocketAddressEnumerator* gobj() const { return reinterpret_cast<GSocketAddressEnumerator*>(gobject_); }
+  auto gobj() const -> const GSocketAddressEnumerator* { return reinterpret_cast<GSocketAddressEnumerator*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GSocketAddressEnumerator* gobj_copy();
+  auto gobj_copy() -> GSocketAddressEnumerator*;
 
 private:
 
@@ -125,10 +125,10 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<SocketAddress> next(const Glib::RefPtr<Cancellable>& cancellable);
+  auto next(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketAddress>;
 
   /// A next() convenience overload.
-  Glib::RefPtr<SocketAddress> next();
+  auto next() -> Glib::RefPtr<SocketAddress>;
 
   /** Asynchronously retrieves the next SocketAddress from the enumerator and then calls @a slot,
    * which must call next_finish() to get the result.
@@ -158,7 +158,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<SocketAddress> next_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto next_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<SocketAddress>;
 
 
 public:
@@ -188,7 +188,7 @@ namespace Glib
    * @relates Gio::SocketAddressEnumerator
    */
   GIOMM_API
-  Glib::RefPtr<Gio::SocketAddressEnumerator> wrap(GSocketAddressEnumerator* object, bool take_copy = false);
+  auto wrap(GSocketAddressEnumerator* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketAddressEnumerator>;
 }
 
 

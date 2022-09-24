@@ -22,7 +22,7 @@
 namespace Cairo
 {
 
-inline static const char* string_or_empty(const char* text)
+inline static auto string_or_empty(const char* text) -> const char*
 {
   return (text ? text : "");
 }
@@ -37,7 +37,7 @@ logic_error::logic_error(ErrorStatus status)
 logic_error::~logic_error() noexcept
 {}
 
-ErrorStatus logic_error::get_status_code() const
+auto logic_error::get_status_code() const -> ErrorStatus
 {
   return m_status;
 }

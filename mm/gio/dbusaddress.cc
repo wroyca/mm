@@ -27,23 +27,17 @@
 #include <mm/glib/error.h>
 #include <mm/gio/slot_async.h>
 
-namespace Gio
+namespace Gio::DBus::Address
 {
 
-namespace DBus
-{
-
-namespace Address
-{
-
-bool
-is_address(const std::string& string)
+auto
+is_address(const std::string& string) -> bool
 {
   return static_cast<bool>(g_dbus_is_address(string.c_str()));
 }
 
-bool
-is_supported(const std::string& address)
+auto
+is_supported(const std::string& address) -> bool
 {
   GError* gerror = nullptr;
   bool const result = g_dbus_is_supported_address(address.c_str(), &gerror);
@@ -68,8 +62,8 @@ get_stream(const std::string& address, const SlotAsyncReady slot)
   g_dbus_address_get_stream(address.c_str(), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-Glib::RefPtr<IOStream>
-get_stream_finish(const Glib::RefPtr<AsyncResult>& res, std::string& out_guid)
+auto
+get_stream_finish(const Glib::RefPtr<AsyncResult>& res, std::string& out_guid) -> Glib::RefPtr<IOStream>
 {
   GError* gerror = nullptr;
   gchar* g_out_guid = nullptr;
@@ -84,8 +78,8 @@ get_stream_finish(const Glib::RefPtr<AsyncResult>& res, std::string& out_guid)
   return result;
 }
 
-Glib::RefPtr<IOStream>
-get_stream_finish(const Glib::RefPtr<AsyncResult>& res)
+auto
+get_stream_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<IOStream>
 {
   GError* gerror = nullptr;
 
@@ -97,9 +91,9 @@ get_stream_finish(const Glib::RefPtr<AsyncResult>& res)
   return result;
 }
 
-Glib::RefPtr<IOStream>
+auto
 get_stream_sync(
-  const std::string& address, const Glib::RefPtr<Cancellable>& cancellable, std::string& out_guid)
+  const std::string& address, const Glib::RefPtr<Cancellable>& cancellable, std::string& out_guid) -> Glib::RefPtr<IOStream>
 {
   GError* gerror = nullptr;
   gchar* g_out_guid = nullptr;
@@ -114,8 +108,8 @@ get_stream_sync(
   return result;
 }
 
-Glib::RefPtr<IOStream>
-get_stream_sync(const std::string& address, std::string& out_guid)
+auto
+get_stream_sync(const std::string& address, std::string& out_guid) -> Glib::RefPtr<IOStream>
 {
   GError* gerror = nullptr;
   gchar* g_out_guid = nullptr;
@@ -130,8 +124,8 @@ get_stream_sync(const std::string& address, std::string& out_guid)
   return result;
 }
 
-Glib::RefPtr<IOStream>
-get_stream_sync(const std::string& address, const Glib::RefPtr<Cancellable>& cancellable)
+auto
+get_stream_sync(const std::string& address, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<IOStream>
 {
   GError* gerror = nullptr;
 
@@ -144,8 +138,8 @@ get_stream_sync(const std::string& address, const Glib::RefPtr<Cancellable>& can
   return result;
 }
 
-Glib::RefPtr<IOStream>
-get_stream_sync(const std::string& address)
+auto
+get_stream_sync(const std::string& address) -> Glib::RefPtr<IOStream>
 {
   GError* gerror = nullptr;
 
@@ -158,8 +152,8 @@ get_stream_sync(const std::string& address)
   return result;
 }
 
-std::string
-get_for_bus_sync(BusType bus_type, const Glib::RefPtr<Cancellable>& cancellable)
+auto
+get_for_bus_sync(BusType bus_type, const Glib::RefPtr<Cancellable>& cancellable) -> std::string
 {
   GError* gerror = nullptr;
 
@@ -172,8 +166,8 @@ get_for_bus_sync(BusType bus_type, const Glib::RefPtr<Cancellable>& cancellable)
   return result;
 }
 
-std::string
-get_for_bus_sync(BusType bus_type)
+auto
+get_for_bus_sync(BusType bus_type) -> std::string
 {
   GError* gerror = nullptr;
 
@@ -185,10 +179,6 @@ get_for_bus_sync(BusType bus_type)
 
   return result;
 }
-
-} // namespace Address
-
-} // namespace DBus
 
 } // namespace Gio
 

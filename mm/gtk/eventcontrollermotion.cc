@@ -30,7 +30,7 @@ namespace
 {
 
 
-static void EventControllerMotion_signal_enter_callback(GtkEventControllerMotion* self, gdouble p0,gdouble p1,void* data)
+void EventControllerMotion_signal_enter_callback(GtkEventControllerMotion* self, gdouble p0,gdouble p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
@@ -53,7 +53,7 @@ static void EventControllerMotion_signal_enter_callback(GtkEventControllerMotion
   }
 }
 
-static const Glib::SignalProxyInfo EventControllerMotion_signal_enter_info =
+const Glib::SignalProxyInfo EventControllerMotion_signal_enter_info =
 {
   "enter",
   (GCallback) &EventControllerMotion_signal_enter_callback,
@@ -61,7 +61,7 @@ static const Glib::SignalProxyInfo EventControllerMotion_signal_enter_info =
 };
 
 
-static const Glib::SignalProxyInfo EventControllerMotion_signal_leave_info =
+const Glib::SignalProxyInfo EventControllerMotion_signal_leave_info =
 {
   "leave",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -69,7 +69,7 @@ static const Glib::SignalProxyInfo EventControllerMotion_signal_leave_info =
 };
 
 
-static void EventControllerMotion_signal_motion_callback(GtkEventControllerMotion* self, gdouble p0,gdouble p1,void* data)
+void EventControllerMotion_signal_motion_callback(GtkEventControllerMotion* self, gdouble p0,gdouble p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
@@ -92,7 +92,7 @@ static void EventControllerMotion_signal_motion_callback(GtkEventControllerMotio
   }
 }
 
-static const Glib::SignalProxyInfo EventControllerMotion_signal_motion_info =
+const Glib::SignalProxyInfo EventControllerMotion_signal_motion_info =
 {
   "motion",
   (GCallback) &EventControllerMotion_signal_motion_callback,
@@ -106,7 +106,7 @@ static const Glib::SignalProxyInfo EventControllerMotion_signal_motion_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::EventControllerMotion> wrap(GtkEventControllerMotion* object, bool take_copy)
+auto wrap(GtkEventControllerMotion* object, bool take_copy) -> Glib::RefPtr<Gtk::EventControllerMotion>
 {
   return Glib::make_refptr_for_instance<Gtk::EventControllerMotion>( dynamic_cast<Gtk::EventControllerMotion*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -121,7 +121,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& EventControllerMotion_Class::init()
+auto EventControllerMotion_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -152,7 +152,7 @@ void EventControllerMotion_Class::class_init_function(void* g_class, void* class
 }
 
 
-Glib::ObjectBase* EventControllerMotion_Class::wrap_new(GObject* object)
+auto EventControllerMotion_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new EventControllerMotion((GtkEventControllerMotion*)object);
 }
@@ -160,7 +160,7 @@ Glib::ObjectBase* EventControllerMotion_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkEventControllerMotion* EventControllerMotion::gobj_copy()
+auto EventControllerMotion::gobj_copy() -> GtkEventControllerMotion*
 {
   reference();
   return gobj();
@@ -183,7 +183,7 @@ EventControllerMotion::EventControllerMotion(EventControllerMotion&& src) noexce
 : EventController(std::move(src))
 {}
 
-EventControllerMotion& EventControllerMotion::operator=(EventControllerMotion&& src) noexcept
+auto EventControllerMotion::operator=(EventControllerMotion&& src) noexcept -> EventControllerMotion&
 {
   EventController::operator=(std::move(src));
   return *this;
@@ -196,13 +196,13 @@ EventControllerMotion::~EventControllerMotion() noexcept
 
 EventControllerMotion::CppClassType EventControllerMotion::eventcontrollermotion_class_; // initialize static member
 
-GType EventControllerMotion::get_type()
+auto EventControllerMotion::get_type() -> GType
 {
   return eventcontrollermotion_class_.init().get_type();
 }
 
 
-GType EventControllerMotion::get_base_type()
+auto EventControllerMotion::get_base_type() -> GType
 {
   return gtk_event_controller_motion_get_type();
 }
@@ -218,46 +218,46 @@ EventControllerMotion::EventControllerMotion()
 
 }
 
-Glib::RefPtr<EventControllerMotion> EventControllerMotion::create()
+auto EventControllerMotion::create() -> Glib::RefPtr<EventControllerMotion>
 {
   return Glib::make_refptr_for_instance<EventControllerMotion>( new EventControllerMotion() );
 }
 
-bool EventControllerMotion::contains_pointer() const
+auto EventControllerMotion::contains_pointer() const -> bool
 {
   return gtk_event_controller_motion_contains_pointer(const_cast<GtkEventControllerMotion*>(gobj()));
 }
 
-bool EventControllerMotion::is_pointer() const
+auto EventControllerMotion::is_pointer() const -> bool
 {
   return gtk_event_controller_motion_is_pointer(const_cast<GtkEventControllerMotion*>(gobj()));
 }
 
 
-Glib::SignalProxy<void(double, double)> EventControllerMotion::signal_enter()
+auto EventControllerMotion::signal_enter() -> Glib::SignalProxy<void(double, double)>
 {
   return Glib::SignalProxy<void(double, double) >(this, &EventControllerMotion_signal_enter_info);
 }
 
 
-Glib::SignalProxy<void()> EventControllerMotion::signal_leave()
+auto EventControllerMotion::signal_leave() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &EventControllerMotion_signal_leave_info);
 }
 
 
-Glib::SignalProxy<void(double, double)> EventControllerMotion::signal_motion()
+auto EventControllerMotion::signal_motion() -> Glib::SignalProxy<void(double, double)>
 {
   return Glib::SignalProxy<void(double, double) >(this, &EventControllerMotion_signal_motion_info);
 }
 
 
-Glib::PropertyProxy_ReadOnly< bool > EventControllerMotion::property_is_pointer() const
+auto EventControllerMotion::property_is_pointer() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-pointer");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > EventControllerMotion::property_contains_pointer() const
+auto EventControllerMotion::property_contains_pointer() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "contains-pointer");
 }

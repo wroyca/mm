@@ -97,7 +97,7 @@ template <>
 class GIOMM_API Value<Gio::FileAttributeType> : public Glib::Value_Enum<Gio::FileAttributeType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -140,7 +140,7 @@ template <>
 class GIOMM_API Value<Gio::FileAttributeStatus> : public Glib::Value_Enum<Gio::FileAttributeStatus>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -200,16 +200,16 @@ public:
   GIOMM_API explicit FileAttributeInfo(const GFileAttributeInfo* ginfo);
 
   GIOMM_API FileAttributeInfo(const FileAttributeInfo& other);
-  GIOMM_API FileAttributeInfo& operator=(const FileAttributeInfo& other);
+  GIOMM_API auto operator=(const FileAttributeInfo& other) -> FileAttributeInfo&;
 
   GIOMM_API FileAttributeInfo(FileAttributeInfo&& other) noexcept;
-  GIOMM_API FileAttributeInfo& operator=(FileAttributeInfo&& other) noexcept;
+  GIOMM_API auto operator=(FileAttributeInfo&& other) noexcept -> FileAttributeInfo&;
 
   GIOMM_API ~FileAttributeInfo();
 
-  GIOMM_API std::string get_name() const;
-  GIOMM_API FileAttributeType get_type() const;
-  GIOMM_API Flags get_flags() const;
+  GIOMM_API auto get_name() const -> std::string;
+  GIOMM_API auto get_type() const -> FileAttributeType;
+  GIOMM_API auto get_flags() const -> Flags;
 
 protected:
   std::string m_name;
@@ -226,31 +226,31 @@ namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline FileAttributeInfo::Flags operator|(FileAttributeInfo::Flags lhs, FileAttributeInfo::Flags rhs)
+inline auto operator|(FileAttributeInfo::Flags lhs, FileAttributeInfo::Flags rhs) -> FileAttributeInfo::Flags
   { return static_cast<FileAttributeInfo::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline FileAttributeInfo::Flags operator&(FileAttributeInfo::Flags lhs, FileAttributeInfo::Flags rhs)
+inline auto operator&(FileAttributeInfo::Flags lhs, FileAttributeInfo::Flags rhs) -> FileAttributeInfo::Flags
   { return static_cast<FileAttributeInfo::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline FileAttributeInfo::Flags operator^(FileAttributeInfo::Flags lhs, FileAttributeInfo::Flags rhs)
+inline auto operator^(FileAttributeInfo::Flags lhs, FileAttributeInfo::Flags rhs) -> FileAttributeInfo::Flags
   { return static_cast<FileAttributeInfo::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline FileAttributeInfo::Flags operator~(FileAttributeInfo::Flags flags)
+inline auto operator~(FileAttributeInfo::Flags flags) -> FileAttributeInfo::Flags
   { return static_cast<FileAttributeInfo::Flags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline FileAttributeInfo::Flags& operator|=(FileAttributeInfo::Flags& lhs, FileAttributeInfo::Flags rhs)
+inline auto operator|=(FileAttributeInfo::Flags& lhs, FileAttributeInfo::Flags rhs) -> FileAttributeInfo::Flags&
   { return (lhs = static_cast<FileAttributeInfo::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline FileAttributeInfo::Flags& operator&=(FileAttributeInfo::Flags& lhs, FileAttributeInfo::Flags rhs)
+inline auto operator&=(FileAttributeInfo::Flags& lhs, FileAttributeInfo::Flags rhs) -> FileAttributeInfo::Flags&
   { return (lhs = static_cast<FileAttributeInfo::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline FileAttributeInfo::Flags& operator^=(FileAttributeInfo::Flags& lhs, FileAttributeInfo::Flags rhs)
+inline auto operator^=(FileAttributeInfo::Flags& lhs, FileAttributeInfo::Flags rhs) -> FileAttributeInfo::Flags&
   { return (lhs = static_cast<FileAttributeInfo::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 
@@ -262,7 +262,7 @@ template <>
 class  Value<Gio::FileAttributeInfo::Flags> : public Glib::Value_Flags<Gio::FileAttributeInfo::Flags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib

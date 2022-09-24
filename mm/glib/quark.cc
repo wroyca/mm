@@ -33,8 +33,8 @@ QueryQuark::QueryQuark(const char* s) : quark_(g_quark_try_string(s))
 {
 }
 
-QueryQuark&
-QueryQuark::operator=(const QueryQuark& q)
+auto
+QueryQuark::operator=(const QueryQuark& q) -> QueryQuark&
 {
   quark_ = q.quark_;
   return *this;

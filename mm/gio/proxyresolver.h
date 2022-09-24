@@ -70,7 +70,7 @@ public:
 
   // noncopyable
   ProxyResolver(const ProxyResolver&) = delete;
-  ProxyResolver& operator=(const ProxyResolver&) = delete;
+  auto operator=(const ProxyResolver&) -> ProxyResolver& = delete;
 
 private:
   friend class ProxyResolver_Class;
@@ -104,7 +104,7 @@ protected:
 public:
 
   ProxyResolver(ProxyResolver&& src) noexcept;
-  ProxyResolver& operator=(ProxyResolver&& src) noexcept;
+  auto operator=(ProxyResolver&& src) noexcept -> ProxyResolver&;
 
   ~ProxyResolver() noexcept override;
 
@@ -112,17 +112,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GProxyResolver*       gobj()       { return reinterpret_cast<GProxyResolver*>(gobject_); }
+  auto       gobj() -> GProxyResolver*       { return reinterpret_cast<GProxyResolver*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GProxyResolver* gobj() const { return reinterpret_cast<GProxyResolver*>(gobject_); }
+  auto gobj() const -> const GProxyResolver* { return reinterpret_cast<GProxyResolver*>(gobject_); }
 
 private:
 
@@ -137,7 +137,7 @@ public:
    * @return The default ProxyResolver, which
    * will be a dummy object if no proxy resolver is available.
    */
-  static Glib::RefPtr<ProxyResolver> get_default();
+  static auto get_default() -> Glib::RefPtr<ProxyResolver>;
 
 
   /** Checks if @a resolver can be used on this system. (This is used
@@ -148,7 +148,7 @@ public:
    *
    * @return <tt>true</tt> if @a resolver is supported.
    */
-  bool is_supported() const;
+  auto is_supported() const -> bool;
 
   //TODO: Use std::string instead of ustring?:
 
@@ -178,7 +178,7 @@ public:
    *
    * @throws Glib::Error
    */
-  std::vector<Glib::ustring> lookup(const Glib::ustring& uri, const Glib::RefPtr<Cancellable>& cancellable);
+  auto lookup(const Glib::ustring& uri, const Glib::RefPtr<Cancellable>& cancellable) -> std::vector<Glib::ustring>;
 
   /** Looks into the system proxy configuration to determine what proxy, if any, to use to connect to uri.
    * The returned proxy URIs are of the form \<protocol\>://[user[:password]\@]host:port or direct://, where \<protocol\> could be http, rtsp, socks or other proxying protocol.
@@ -190,7 +190,7 @@ public:
    *
    * @param uri a URI representing the destination to connect to.
    */
-  std::vector<Glib::ustring> lookup(const Glib::ustring& uri);
+  auto lookup(const Glib::ustring& uri) -> std::vector<Glib::ustring>;
 
   /** Asynchronous lookup of proxy. See lookup() for more details.
    * @param uri a URI representing the destination to connect to.
@@ -218,7 +218,7 @@ public:
    *
    * @throws Glib::Error
    */
-  std::vector<Glib::ustring> lookup_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto lookup_finish(const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::ustring>;
 
 
 public:
@@ -249,7 +249,7 @@ namespace Glib
    * @relates Gio::ProxyResolver
    */
   GIOMM_API
-  Glib::RefPtr<Gio::ProxyResolver> wrap(GProxyResolver* object, bool take_copy = false);
+  auto wrap(GProxyResolver* object, bool take_copy = false) -> Glib::RefPtr<Gio::ProxyResolver>;
 
 } // namespace Glib
 

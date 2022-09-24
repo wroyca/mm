@@ -65,7 +65,7 @@ public:
 
   // noncopyable
   GestureClick(const GestureClick&) = delete;
-  GestureClick& operator=(const GestureClick&) = delete;
+  auto operator=(const GestureClick&) -> GestureClick& = delete;
 
 private:  friend class GestureClick_Class;
   static CppClassType gestureclick_class_;
@@ -79,28 +79,28 @@ protected:
 public:
 
   GestureClick(GestureClick&& src) noexcept;
-  GestureClick& operator=(GestureClick&& src) noexcept;
+  auto operator=(GestureClick&& src) noexcept -> GestureClick&;
 
   ~GestureClick() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkGestureClick*       gobj()       { return reinterpret_cast<GtkGestureClick*>(gobject_); }
+  auto       gobj() -> GtkGestureClick*       { return reinterpret_cast<GtkGestureClick*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkGestureClick* gobj() const { return reinterpret_cast<GtkGestureClick*>(gobject_); }
+  auto gobj() const -> const GtkGestureClick* { return reinterpret_cast<GtkGestureClick*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkGestureClick* gobj_copy();
+  auto gobj_copy() -> GtkGestureClick*;
 
 private:
 
@@ -118,7 +118,7 @@ public:
    * @return A RefPtr to a new GestureClick.
    */
 
-  static Glib::RefPtr<GestureClick> create();
+  static auto create() -> Glib::RefPtr<GestureClick>;
 
 
   // no_default_handler because GtkGestureClickClass is private.
@@ -136,7 +136,7 @@ public:
    * @param y The Y coordinate, in widget allocation coordinates.
    */
 
-  Glib::SignalProxy<void(int, double, double)> signal_pressed();
+  auto signal_pressed() -> Glib::SignalProxy<void(int, double, double)>;
 
 
   /**
@@ -157,7 +157,7 @@ public:
    * @param y The Y coordinate, in widget allocation coordinates.
    */
 
-  Glib::SignalProxy<void(int, double, double)> signal_released();
+  auto signal_released() -> Glib::SignalProxy<void(int, double, double)>;
 
 
   /**
@@ -169,7 +169,7 @@ public:
    * Emitted whenever any time/distance threshold has been exceeded.
    */
 
-  Glib::SignalProxy<void()> signal_stopped();
+  auto signal_stopped() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -191,7 +191,7 @@ public:
    * @param sequence Sequence being released.
    */
 
-  Glib::SignalProxy<void(double, double, guint, Gdk::EventSequence*)> signal_unpaired_release();
+  auto signal_unpaired_release() -> Glib::SignalProxy<void(double, double, guint, Gdk::EventSequence*)>;
 
 
   // GestureMultiPress has no properties
@@ -224,7 +224,7 @@ namespace Glib
    * @relates Gtk::GestureClick
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::GestureClick> wrap(GtkGestureClick* object, bool take_copy = false);
+  auto wrap(GtkGestureClick* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureClick>;
 }
 
 

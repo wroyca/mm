@@ -71,7 +71,7 @@ public:
 
   // noncopyable
   BufferedInputStream(const BufferedInputStream&) = delete;
-  BufferedInputStream& operator=(const BufferedInputStream&) = delete;
+  auto operator=(const BufferedInputStream&) -> BufferedInputStream& = delete;
 
 private:  friend class BufferedInputStream_Class;
   static CppClassType bufferedinputstream_class_;
@@ -85,28 +85,28 @@ protected:
 public:
 
   BufferedInputStream(BufferedInputStream&& src) noexcept;
-  BufferedInputStream& operator=(BufferedInputStream&& src) noexcept;
+  auto operator=(BufferedInputStream&& src) noexcept -> BufferedInputStream&;
 
   ~BufferedInputStream() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GBufferedInputStream*       gobj()       { return reinterpret_cast<GBufferedInputStream*>(gobject_); }
+  auto       gobj() -> GBufferedInputStream*       { return reinterpret_cast<GBufferedInputStream*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GBufferedInputStream* gobj() const { return reinterpret_cast<GBufferedInputStream*>(gobject_); }
+  auto gobj() const -> const GBufferedInputStream* { return reinterpret_cast<GBufferedInputStream*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GBufferedInputStream* gobj_copy();
+  auto gobj_copy() -> GBufferedInputStream*;
 
 private:
 
@@ -126,7 +126,7 @@ public:
    * @result an InputStream for the given base_stream.
 	 */
 
-  static Glib::RefPtr<BufferedInputStream> create(const Glib::RefPtr<InputStream>& base_stream);
+  static auto create(const Glib::RefPtr<InputStream>& base_stream) -> Glib::RefPtr<BufferedInputStream>;
 
 
   /** Creates a new InputStream from the given base_stream, with a buffer set to size.
@@ -135,14 +135,14 @@ public:
    * @param buffer_size A size.
    * @result an InputStream for the given base_stream.
 	 */
-  static Glib::RefPtr<BufferedInputStream> create_sized(const Glib::RefPtr<InputStream>& base_stream, gsize buffer_size);
+  static auto create_sized(const Glib::RefPtr<InputStream>& base_stream, gsize buffer_size) -> Glib::RefPtr<BufferedInputStream>;
 
 
   /** Gets the size of the input buffer.
    *
    * @return The current buffer size.
    */
-  gsize get_buffer_size() const;
+  auto get_buffer_size() const -> gsize;
 
   /** Sets the size of the internal buffer of @a stream to @a size, or to the
    * size of the contents of the buffer. The buffer can never be resized
@@ -156,7 +156,7 @@ public:
    *
    * @return Size of the available stream.
    */
-  gsize get_available() const;
+  auto get_available() const -> gsize;
 
   /** Peeks in the buffer, copying data of size @a count into @a buffer,
    * offset @a offset bytes.
@@ -167,7 +167,7 @@ public:
    * @param count A #gsize.
    * @return A #gsize of the number of bytes peeked, or -1 on error.
    */
-  gsize peek(void* buffer, gsize offset, gsize count) const;
+  auto peek(void* buffer, gsize offset, gsize count) const -> gsize;
 
   /** Returns the buffer with the currently available bytes. The returned
    * buffer must not be modified and will become invalid when reading from
@@ -176,7 +176,7 @@ public:
    * @param count A #gsize to get the number of bytes available in the buffer.
    * @return Read-only buffer.
    */
-  const void* peek_buffer(gsize& count) const;
+  auto peek_buffer(gsize& count) const -> const void*;
 
   /** Tries to read @a count bytes from the stream into the buffer.
    * Will block during this read.
@@ -207,10 +207,10 @@ public:
    *
    * @throws Glib::Error
    */
-  gssize fill(gssize count, const Glib::RefPtr<Cancellable>& cancellable);
+  auto fill(gssize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
   /// A fill() convenience overload.
-  gssize fill(gssize count);
+  auto fill(gssize count) -> gssize;
 
 
   /** Reads data into the stream's buffer asynchronously, up to @a count size.
@@ -247,7 +247,7 @@ public:
    *
    * @throws Glib::Error
    */
-  gssize fill_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto fill_finish(const Glib::RefPtr<AsyncResult>& result) -> gssize;
 
 
   /** Tries to read a single byte from the stream or the buffer. Will block
@@ -267,10 +267,10 @@ public:
    *
    * @throws Glib::Error
    */
-  int read_byte(const Glib::RefPtr<Cancellable>& cancellable);
+  auto read_byte(const Glib::RefPtr<Cancellable>& cancellable) -> int;
 
   /// A read_byte() convenience overload.
-  int read_byte();
+  auto read_byte() -> int;
 
   /** The size of the backend buffer.
    *
@@ -279,7 +279,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_buffer_size() ;
+  auto property_buffer_size() -> Glib::PropertyProxy< guint > ;
 
 /** The size of the backend buffer.
    *
@@ -288,14 +288,14 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_buffer_size() const;
+  auto property_buffer_size() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
 protected:
 
 
   /// @throws Glib::Error.
-  virtual gssize fill_vfunc(gssize count, const Glib::RefPtr<Cancellable>& cancellable);
+  virtual auto fill_vfunc(gssize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
 
 public:
@@ -325,7 +325,7 @@ namespace Glib
    * @relates Gio::BufferedInputStream
    */
   GIOMM_API
-  Glib::RefPtr<Gio::BufferedInputStream> wrap(GBufferedInputStream* object, bool take_copy = false);
+  auto wrap(GBufferedInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::BufferedInputStream>;
 }
 
 

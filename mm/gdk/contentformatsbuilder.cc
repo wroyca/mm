@@ -44,7 +44,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::ContentFormatsBuilder> wrap(GdkContentFormatsBuilder* object, bool take_copy)
+auto wrap(GdkContentFormatsBuilder* object, bool take_copy) -> Glib::RefPtr<Gdk::ContentFormatsBuilder>
 {
   if(take_copy && object)
     gdk_content_formats_builder_ref(object);
@@ -71,19 +71,19 @@ void ContentFormatsBuilder::unreference() const
   gdk_content_formats_builder_unref(reinterpret_cast<GdkContentFormatsBuilder*>(const_cast<ContentFormatsBuilder*>(this)));
 }
 
-GdkContentFormatsBuilder* ContentFormatsBuilder::gobj()
+auto ContentFormatsBuilder::gobj() -> GdkContentFormatsBuilder*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<GdkContentFormatsBuilder*>(this);
 }
 
-const GdkContentFormatsBuilder* ContentFormatsBuilder::gobj() const
+auto ContentFormatsBuilder::gobj() const -> const GdkContentFormatsBuilder*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<const GdkContentFormatsBuilder*>(this);
 }
 
-GdkContentFormatsBuilder* ContentFormatsBuilder::gobj_copy() const
+auto ContentFormatsBuilder::gobj_copy() const -> GdkContentFormatsBuilder*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   const auto gobject = reinterpret_cast<GdkContentFormatsBuilder*>(const_cast<ContentFormatsBuilder*>(this));
@@ -92,7 +92,7 @@ GdkContentFormatsBuilder* ContentFormatsBuilder::gobj_copy() const
 }
 
 
-Glib::RefPtr<ContentFormatsBuilder> ContentFormatsBuilder::create()
+auto ContentFormatsBuilder::create() -> Glib::RefPtr<ContentFormatsBuilder>
 {
   return Glib::wrap(gdk_content_formats_builder_new());
 }
@@ -112,7 +112,7 @@ void ContentFormatsBuilder::add_gtype(GType gtype)
   gdk_content_formats_builder_add_gtype(gobj(), gtype);
 }
 
-Glib::RefPtr<ContentFormats> ContentFormatsBuilder::to_formats()
+auto ContentFormatsBuilder::to_formats() -> Glib::RefPtr<ContentFormats>
 {
   return Glib::wrap(gdk_content_formats_builder_to_formats(gobj()));
 }

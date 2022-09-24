@@ -74,7 +74,7 @@ public:
 
   // noncopyable
   Proxy(const Proxy&) = delete;
-  Proxy& operator=(const Proxy&) = delete;
+  auto operator=(const Proxy&) -> Proxy& = delete;
 
 private:
   friend class Proxy_Class;
@@ -108,7 +108,7 @@ protected:
 public:
 
   Proxy(Proxy&& src) noexcept;
-  Proxy& operator=(Proxy&& src) noexcept;
+  auto operator=(Proxy&& src) noexcept -> Proxy&;
 
   ~Proxy() noexcept override;
 
@@ -116,17 +116,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GProxy*       gobj()       { return reinterpret_cast<GProxy*>(gobject_); }
+  auto       gobj() -> GProxy*       { return reinterpret_cast<GProxy*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GProxy* gobj() const { return reinterpret_cast<GProxy*>(gobject_); }
+  auto gobj() const -> const GProxy* { return reinterpret_cast<GProxy*>(gobject_); }
 
 private:
 
@@ -143,7 +143,7 @@ public:
    * @return Return a Proxy or <tt>nullptr</tt> if protocol
    * is not supported.
    */
-  static Glib::RefPtr<Proxy> get_default_for_protocol(const Glib::ustring& protocol);
+  static auto get_default_for_protocol(const Glib::ustring& protocol) -> Glib::RefPtr<Proxy>;
 
 
   /** Given @a connection to communicate with a proxy (eg, a
@@ -162,7 +162,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<IOStream> connect(const Glib::RefPtr<IOStream>& connection, const Glib::RefPtr<const ProxyAddress>& proxy_address, const Glib::RefPtr<Cancellable>& cancellable);
+  auto connect(const Glib::RefPtr<IOStream>& connection, const Glib::RefPtr<const ProxyAddress>& proxy_address, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<IOStream>;
 
   /** An Asynchronous version of connect().
    */
@@ -182,7 +182,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<IOStream> connect_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto connect_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<IOStream>;
 
 
   /** Some proxy protocols expect to be passed a hostname, which they
@@ -197,7 +197,7 @@ public:
    *
    * @return <tt>true</tt> if hostname resolution is supported.
    */
-  bool supports_hostname() const;
+  auto supports_hostname() const -> bool;
 
 
 public:
@@ -228,7 +228,7 @@ namespace Glib
    * @relates Gio::Proxy
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Proxy> wrap(GProxy* object, bool take_copy = false);
+  auto wrap(GProxy* object, bool take_copy = false) -> Glib::RefPtr<Gio::Proxy>;
 
 } // namespace Glib
 

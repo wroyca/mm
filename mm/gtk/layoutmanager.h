@@ -94,7 +94,7 @@ public:
 
   // noncopyable
   LayoutManager(const LayoutManager&) = delete;
-  LayoutManager& operator=(const LayoutManager&) = delete;
+  auto operator=(const LayoutManager&) -> LayoutManager& = delete;
 
 private:  friend class LayoutManager_Class;
   static CppClassType layoutmanager_class_;
@@ -108,28 +108,28 @@ protected:
 public:
 
   LayoutManager(LayoutManager&& src) noexcept;
-  LayoutManager& operator=(LayoutManager&& src) noexcept;
+  auto operator=(LayoutManager&& src) noexcept -> LayoutManager&;
 
   ~LayoutManager() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkLayoutManager*       gobj()       { return reinterpret_cast<GtkLayoutManager*>(gobject_); }
+  auto       gobj() -> GtkLayoutManager*       { return reinterpret_cast<GtkLayoutManager*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkLayoutManager* gobj() const { return reinterpret_cast<GtkLayoutManager*>(gobject_); }
+  auto gobj() const -> const GtkLayoutManager* { return reinterpret_cast<GtkLayoutManager*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkLayoutManager* gobj_copy();
+  auto gobj_copy() -> GtkLayoutManager*;
 
 private:
 
@@ -184,19 +184,19 @@ public:
    *
    * @return A `Gtk::SizeRequestMode`.
    */
-  SizeRequestMode get_request_mode() const;
+  auto get_request_mode() const -> SizeRequestMode;
 
   /** Retrieves the `Gtk::Widget` using the given `Gtk::LayoutManager`.
    *
    * @return A `Gtk::Widget`.
    */
-  Widget* get_widget();
+  auto get_widget() -> Widget*;
 
   /** Retrieves the `Gtk::Widget` using the given `Gtk::LayoutManager`.
    *
    * @return A `Gtk::Widget`.
    */
-  const Widget* get_widget() const;
+  auto get_widget() const -> const Widget*;
 
   /** Queues a resize on the `Gtk::Widget` using @a manager, if any.
    *
@@ -217,7 +217,7 @@ public:
    * @param child A `Gtk::Widget`.
    * @return A `Gtk::LayoutChild`.
    */
-  Glib::RefPtr<LayoutChild> get_layout_child(Widget& child);
+  auto get_layout_child(Widget& child) -> Glib::RefPtr<LayoutChild>;
 
   /** Retrieves a `Gtk::LayoutChild` instance for the `Gtk::LayoutManager`,
    * creating one if necessary.
@@ -231,17 +231,17 @@ public:
    * @param child A `Gtk::Widget`.
    * @return A `Gtk::LayoutChild`.
    */
-  Glib::RefPtr<const LayoutChild> get_layout_child(Widget& child) const;
+  auto get_layout_child(Widget& child) const -> Glib::RefPtr<const LayoutChild>;
 
 protected:
-    virtual SizeRequestMode get_request_mode_vfunc(const Widget& widget) const;
+    virtual auto get_request_mode_vfunc(const Widget& widget) const -> SizeRequestMode;
 
     virtual void measure_vfunc(const Widget& widget, Orientation orientation, int for_size, int& minimum, int& natural, int& minimum_baseline, int& natural_baseline) const;
 
     virtual void allocate_vfunc(const Widget& widget, int width, int height, int baseline);
 
 
-    virtual Glib::RefPtr<LayoutChild> create_layout_child_vfunc(const Widget& widget, const Widget& for_child);
+    virtual auto create_layout_child_vfunc(const Widget& widget, const Widget& for_child) -> Glib::RefPtr<LayoutChild>;
 
     virtual void root_vfunc();
 
@@ -278,7 +278,7 @@ namespace Glib
    * @relates Gtk::LayoutManager
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::LayoutManager> wrap(GtkLayoutManager* object, bool take_copy = false);
+  auto wrap(GtkLayoutManager* object, bool take_copy = false) -> Glib::RefPtr<Gtk::LayoutManager>;
 }
 
 

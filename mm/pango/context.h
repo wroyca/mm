@@ -124,7 +124,7 @@ template <>
 class PANGOMM_API Value<Pango::Direction> : public Glib::Value_Enum<Pango::Direction>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -179,7 +179,7 @@ template <>
 class PANGOMM_API Value<Pango::GravityHint> : public Glib::Value_Enum<Pango::GravityHint>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -228,7 +228,7 @@ public:
 
   // noncopyable
   Context(const Context&) = delete;
-  Context& operator=(const Context&) = delete;
+  auto operator=(const Context&) -> Context& = delete;
 
 private:  friend class Context_Class;
   static CppClassType context_class_;
@@ -242,28 +242,28 @@ protected:
 public:
 
   Context(Context&& src) noexcept;
-  Context& operator=(Context&& src) noexcept;
+  auto operator=(Context&& src) noexcept -> Context&;
 
   ~Context() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  PangoContext*       gobj()       { return reinterpret_cast<PangoContext*>(gobject_); }
+  auto       gobj() -> PangoContext*       { return reinterpret_cast<PangoContext*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const PangoContext* gobj() const { return reinterpret_cast<PangoContext*>(gobject_); }
+  auto gobj() const -> const PangoContext* { return reinterpret_cast<PangoContext*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  PangoContext* gobj_copy();
+  auto gobj_copy() -> PangoContext*;
 
 private:
 
@@ -279,7 +279,7 @@ public:
    * objects you use, e.g. in the default font description of the context.
    * @return An array of Pango::FontFamily objects.
    */
-  std::vector<Glib::RefPtr<FontFamily>> list_families() const;
+  auto list_families() const -> std::vector<Glib::RefPtr<FontFamily>>;
 
 
   /** Sets the font map to be searched when fonts are looked-up
@@ -301,7 +301,7 @@ public:
    * @return The font map for the `Pango::Context`.
    * This value is owned by Pango and should not be unreferenced.
    */
-  Glib::RefPtr<FontMap> get_font_map();
+  auto get_font_map() -> Glib::RefPtr<FontMap>;
 
   /** Gets the `Pango::FontMap` used to look up fonts for this context.
    *
@@ -310,7 +310,7 @@ public:
    * @return The font map for the `Pango::Context`.
    * This value is owned by Pango and should not be unreferenced.
    */
-  Glib::RefPtr<const FontMap> get_font_map() const;
+  auto get_font_map() const -> Glib::RefPtr<const FontMap>;
 
 
   /** Returns the current serial number of @a context.
@@ -330,7 +330,7 @@ public:
    *
    * @return The current serial number of @a context.
    */
-  guint get_serial() const;
+  auto get_serial() const -> guint;
 
 
   /** Loads the font in one of the fontmaps in the context
@@ -340,7 +340,7 @@ public:
    * @return The newly allocated `Pango::Font`
    * that was loaded, or <tt>nullptr</tt> if no font matched.
    */
-  Glib::RefPtr<Font> load_font(const FontDescription& desc) const;
+  auto load_font(const FontDescription& desc) const -> Glib::RefPtr<Font>;
 
   /** Load a set of fonts in the context that can be used to render
    * a font matching @a desc.
@@ -350,7 +350,7 @@ public:
    * @return The newly allocated
    * `Pango::Fontset` loaded, or <tt>nullptr</tt> if no font matched.
    */
-  Glib::RefPtr<Fontset> load_fontset(const FontDescription& desc, const Language& language) const;
+  auto load_fontset(const FontDescription& desc, const Language& language) const -> Glib::RefPtr<Fontset>;
 
   /** Get overall metric information for a particular font description.
    * The metrics may be substantially different for different scripts. However this
@@ -358,7 +358,7 @@ public:
    * @param desc A Pango::FontDescription object.
    * @return A Pango::FontMetrics object.
    */
-  FontMetrics get_metrics(const FontDescription& desc) const;
+  auto get_metrics(const FontDescription& desc) const -> FontMetrics;
 
   /** Get overall metric information for a font particular font
    * description.  Since the metrics may be substantially different for
@@ -378,7 +378,7 @@ public:
    * for.
    * @return A Pango::Metrics object.
    */
-  FontMetrics get_metrics(const FontDescription& desc, const Language& language) const;
+  auto get_metrics(const FontDescription& desc, const Language& language) const -> FontMetrics;
 
   /** Set the default font description for the context
    *
@@ -391,13 +391,13 @@ public:
    * @return A pointer to the context's default font
    * description. This value must not be modified or freed.
    */
-  FontDescription get_font_description() const;
+  auto get_font_description() const -> FontDescription;
 
   /** Retrieves the global language tag for the context.
    *
    * @return The global language tag.
    */
-  Language get_language() const;
+  auto get_language() const -> Language;
 
   /** Sets the global language tag for the context.
    *
@@ -427,7 +427,7 @@ public:
    *
    * @return The base direction for the context.
    */
-  Direction get_base_dir() const;
+  auto get_base_dir() const -> Direction;
 
 
   /** Sets the base gravity for the context.
@@ -448,7 +448,7 @@ public:
    *
    * @return The base gravity for the context.
    */
-  Gravity get_base_gravity() const;
+  auto get_base_gravity() const -> Gravity;
 
   /** Retrieves the gravity for the context.
    *
@@ -461,7 +461,7 @@ public:
    *
    * @return The resolved gravity for the context.
    */
-  Gravity get_gravity() const;
+  auto get_gravity() const -> Gravity;
 
   /** Sets the gravity hint for the context.
    *
@@ -484,7 +484,7 @@ public:
    *
    * @return The gravity hint for the context.
    */
-  GravityHint get_gravity_hint() const;
+  auto get_gravity_hint() const -> GravityHint;
 
 
   /** Sets the transformation matrix that will be applied when rendering
@@ -503,7 +503,7 @@ public:
    */
   void set_matrix(const Matrix& matrix);
 
-  Matrix get_matrix() const;
+  auto get_matrix() const -> Matrix;
 
 
   /** Breaks a piece of text into segments with consistent directional level and shaping engine.
@@ -514,7 +514,7 @@ public:
    * @param attrs The set of attributes that apply.
    * @return A list of Pango::Item objects.
    */
-  std::vector<Item> itemize(const Glib::ustring& text, const AttrList& attrs) const;
+  auto itemize(const Glib::ustring& text, const AttrList& attrs) const -> std::vector<Item>;
 
   /** Breaks a piece of text into segments with consistent directional level and shaping engine.
    * Each byte of @a text will be contained in exactly one of the items in the returned list.
@@ -533,8 +533,8 @@ public:
    * @param cached_iter Cached attribute iterator.
    * @return A list of Pango::Item structures.
    */
-  std::vector<Item> itemize(const Glib::ustring& text, int start_index, int length,
-                          const AttrList& attrs, AttrIter& cached_iter) const;
+  auto itemize(const Glib::ustring& text, int start_index, int length,
+                          const AttrList& attrs, AttrIter& cached_iter) const -> std::vector<Item>;
 
   /** Updates a Pango Context previously created for use with Cairo to
    * match the current transformation and target surface of a Cairo
@@ -572,7 +572,7 @@ public:
    * context, or <tt>nullptr</tt> if no options have been set. This value is
    * owned by the context and must not be modified or freed.
    */
-  Cairo::FontOptions get_font_options() const;
+  auto get_font_options() const -> Cairo::FontOptions;
 
 
   /** Sets the resolution for the context.
@@ -598,7 +598,7 @@ public:
    * @return The resolution in "dots per inch". A negative value will
    * be returned if no resolution has previously been set.
    */
-  double get_resolution() const;
+  auto get_resolution() const -> double;
 
 
 public:
@@ -628,7 +628,7 @@ namespace Glib
    * @relates Pango::Context
    */
   PANGOMM_API
-  Glib::RefPtr<Pango::Context> wrap(PangoContext* object, bool take_copy = false);
+  auto wrap(PangoContext* object, bool take_copy = false) -> Glib::RefPtr<Pango::Context>;
 }
 
 

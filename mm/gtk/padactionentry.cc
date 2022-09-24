@@ -66,7 +66,7 @@ PadActionEntry::PadActionEntry(const PadActionEntry& src)
   operator=(src);
 }
 
-PadActionEntry& PadActionEntry::operator=(const PadActionEntry& src)
+auto PadActionEntry::operator=(const PadActionEntry& src) -> PadActionEntry&
 {
   if (this == &src)
     return *this;
@@ -99,7 +99,7 @@ PadActionEntry::PadActionEntry(PadActionEntry&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-PadActionEntry& PadActionEntry::operator=(PadActionEntry&& other) noexcept
+auto PadActionEntry::operator=(PadActionEntry&& other) noexcept -> PadActionEntry&
 {
   release_gobject();
 
@@ -116,7 +116,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::PadActionType>::value_type()
+auto Glib::Value<Gtk::PadActionType>::value_type() -> GType
 {
   return gtk_pad_action_type_get_type();
 }
@@ -126,7 +126,7 @@ namespace Gtk
 {
 
 
-PadActionType PadActionEntry::get_type() const
+auto PadActionEntry::get_type() const -> PadActionType
 {
   return static_cast<PadActionType>(gobj()->type);
 }
@@ -136,7 +136,7 @@ void PadActionEntry::set_type(const PadActionType& value)
   gobj()->type = static_cast<GtkPadActionType>(value);
 }
 
-int PadActionEntry::get_index() const
+auto PadActionEntry::get_index() const -> int
 {
   return gobj()->index;
 }
@@ -146,7 +146,7 @@ void PadActionEntry::set_index(const int& value)
   gobj()->index = value;
 }
 
-int PadActionEntry::get_mode() const
+auto PadActionEntry::get_mode() const -> int
 {
   return gobj()->mode;
 }
@@ -156,7 +156,7 @@ void PadActionEntry::set_mode(const int& value)
   gobj()->mode = value;
 }
 
-Glib::ustring PadActionEntry::get_label() const
+auto PadActionEntry::get_label() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gobj()->label);
 }
@@ -167,7 +167,7 @@ void PadActionEntry::set_label(const Glib::ustring& value)
   gobj()->label = g_strdup((value).c_str());
 }
 
-Glib::ustring PadActionEntry::get_action_name() const
+auto PadActionEntry::get_action_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gobj()->action_name);
 }

@@ -61,30 +61,30 @@ class PANGOMM_API GlyphItem
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   GlyphItem();
 
   explicit GlyphItem(PangoGlyphItem* gobject, bool make_a_copy = true);
 
   GlyphItem(const GlyphItem& other);
-  GlyphItem& operator=(const GlyphItem& other);
+  auto operator=(const GlyphItem& other) -> GlyphItem&;
 
   GlyphItem(GlyphItem&& other) noexcept;
-  GlyphItem& operator=(GlyphItem&& other) noexcept;
+  auto operator=(GlyphItem&& other) noexcept -> GlyphItem&;
 
   ~GlyphItem() noexcept;
 
   void swap(GlyphItem& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  PangoGlyphItem*       gobj()       { return gobject_; }
+  auto       gobj() -> PangoGlyphItem*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const PangoGlyphItem* gobj() const { return gobject_; }
+  auto gobj() const -> const PangoGlyphItem* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  PangoGlyphItem* gobj_copy() const;
+  auto gobj_copy() const -> PangoGlyphItem*;
 
 protected:
   PangoGlyphItem* gobject_;
@@ -117,7 +117,7 @@ public:
    *  @a split_index, which should be freed
    * with free().
    */
-  GlyphItem split(const Glib::ustring& text, int split_index);
+  auto split(const Glib::ustring& text, int split_index) -> GlyphItem;
 
   //This takes ownership of the GlyphItem, which is strange:
   // _WRAP_METHOD(GSList* apply_attrs(const Glib::ustring& text, const AttrList& list), pango_glyph_item_apply_attrs)
@@ -142,12 +142,12 @@ public:
   /** Gets the Pango::Item object that provides information about the segment of text in this run.
    * @return A Pango::Item object.
    */
-  Item get_item() const;
+  auto get_item() const -> Item;
 
   /** Gets the string of glyphs obtained by shaping the text for this item.
    * @return A Pango::GlyphString object.
    */
-  GlyphString get_glyphs() const;
+  auto get_glyphs() const -> GlyphString;
 
 
 };
@@ -179,7 +179,7 @@ namespace Glib
  * @relates Pango::GlyphItem
  */
 PANGOMM_API
-Pango::GlyphItem wrap(PangoGlyphItem* object, bool take_copy = false);
+auto wrap(PangoGlyphItem* object, bool take_copy = false) -> Pango::GlyphItem;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

@@ -80,7 +80,7 @@ public:
 
   // noncopyable
   Actionable(const Actionable&) = delete;
-  Actionable& operator=(const Actionable&) = delete;
+  auto operator=(const Actionable&) -> Actionable& = delete;
 
 private:
   friend class Actionable_Class;
@@ -114,7 +114,7 @@ protected:
 public:
 
   Actionable(Actionable&& src) noexcept;
-  Actionable& operator=(Actionable&& src) noexcept;
+  auto operator=(Actionable&& src) noexcept -> Actionable&;
 
   ~Actionable() noexcept override;
 
@@ -122,17 +122,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkActionable*       gobj()       { return reinterpret_cast<GtkActionable*>(gobject_); }
+  auto       gobj() -> GtkActionable*       { return reinterpret_cast<GtkActionable*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkActionable* gobj() const { return reinterpret_cast<GtkActionable*>(gobject_); }
+  auto gobj() const -> const GtkActionable* { return reinterpret_cast<GtkActionable*>(gobject_); }
 
 private:
 
@@ -143,7 +143,7 @@ public:
    *
    * @return The action name.
    */
-  Glib::ustring get_action_name() const;
+  auto get_action_name() const -> Glib::ustring;
 
   /** Specifies the name of the action with which this widget should be
    * associated.
@@ -168,13 +168,13 @@ public:
    *
    * @return The current target value.
    */
-  Glib::VariantBase get_action_target_value();
+  auto get_action_target_value() -> Glib::VariantBase;
 
   /** Gets the current target value of @a actionable.
    *
    * @return The current target value.
    */
-  const Glib::VariantBase get_action_target_value() const;
+  auto get_action_target_value() const -> const Glib::VariantBase;
 
   /** Sets the target value of an actionable widget.
    *
@@ -217,40 +217,40 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_action_name() ;
+  auto property_action_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Default value: ""
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_action_name() const;
+  auto property_action_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /**
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::VariantBase > property_action_target() ;
+  auto property_action_target() -> Glib::PropertyProxy< Glib::VariantBase > ;
 
 /**
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::VariantBase > property_action_target() const;
+  auto property_action_target() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantBase >;
 
 
 protected:
 
 
-    virtual Glib::ustring get_action_name_vfunc() const;
+    virtual auto get_action_name_vfunc() const -> Glib::ustring;
 
 
     virtual void set_action_name_vfunc(const Glib::ustring& action_name);
 
 
-    virtual Glib::VariantBase get_action_target_value_vfunc() const;
+    virtual auto get_action_target_value_vfunc() const -> Glib::VariantBase;
 
 
     virtual void set_action_target_value_vfunc(const Glib::VariantBase& action_target_value);
@@ -283,7 +283,7 @@ namespace Glib
    * @relates Gtk::Actionable
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Actionable> wrap(GtkActionable* object, bool take_copy = false);
+  auto wrap(GtkActionable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Actionable>;
 
 } // namespace Glib
 

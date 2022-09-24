@@ -35,19 +35,11 @@ using GDBusInterfaceSkeletonClass = struct _GDBusInterfaceSkeletonClass;
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
-{
-
-namespace DBus
-{ class GIOMM_API InterfaceSkeleton_Class; } // namespace DBus
-
-} // namespace Gio
+namespace Gio::DBus
+{ class GIOMM_API InterfaceSkeleton_Class; } // namespace Gio
 #endif //DOXYGEN_SHOULD_SKIP_THIS
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 class GIOMM_API InterfaceInfo;
@@ -74,7 +66,7 @@ public:
 
   // noncopyable
   InterfaceSkeleton(const InterfaceSkeleton&) = delete;
-  InterfaceSkeleton& operator=(const InterfaceSkeleton&) = delete;
+  auto operator=(const InterfaceSkeleton&) -> InterfaceSkeleton& = delete;
 
 private:  friend class InterfaceSkeleton_Class;
   static CppClassType interfaceskeleton_class_;
@@ -88,28 +80,28 @@ protected:
 public:
 
   InterfaceSkeleton(InterfaceSkeleton&& src) noexcept;
-  InterfaceSkeleton& operator=(InterfaceSkeleton&& src) noexcept;
+  auto operator=(InterfaceSkeleton&& src) noexcept -> InterfaceSkeleton&;
 
   ~InterfaceSkeleton() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDBusInterfaceSkeleton*       gobj()       { return reinterpret_cast<GDBusInterfaceSkeleton*>(gobject_); }
+  auto       gobj() -> GDBusInterfaceSkeleton*       { return reinterpret_cast<GDBusInterfaceSkeleton*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDBusInterfaceSkeleton* gobj() const { return reinterpret_cast<GDBusInterfaceSkeleton*>(gobject_); }
+  auto gobj() const -> const GDBusInterfaceSkeleton* { return reinterpret_cast<GDBusInterfaceSkeleton*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusInterfaceSkeleton* gobj_copy();
+  auto gobj_copy() -> GDBusInterfaceSkeleton*;
 
 private:
 
@@ -171,7 +163,7 @@ public:
    *
    * @return A Gio::DBus::InterfaceInfo (never <tt>nullptr</tt>). Do not free.
    */
-  Glib::RefPtr<InterfaceInfo> get_info();
+  auto get_info() -> Glib::RefPtr<InterfaceInfo>;
 
   /** Gets D-Bus introspection information for the D-Bus interface
    * implemented by @a interface.
@@ -180,7 +172,7 @@ public:
    *
    * @return A Gio::DBus::InterfaceInfo (never <tt>nullptr</tt>). Do not free.
    */
-  Glib::RefPtr<const InterfaceInfo> get_info() const;
+  auto get_info() const -> Glib::RefPtr<const InterfaceInfo>;
 
   //TODO: _WRAP_METHOD(GDBusInterfaceVTable* get_vtable(), g_dbus_interface_skeleton_get_vtable)
 
@@ -193,7 +185,7 @@ public:
    * ['a{sv}'][G-VARIANT-TYPE-VARDICT:CAPS].
    * Free with Glib::variant_unref().
    */
-  Glib::VariantBase get_properties() const;
+  auto get_properties() const -> Glib::VariantBase;
 
   /** Exports @a interface at @a object_path on @a connection.
    *
@@ -240,7 +232,7 @@ public:
    * @return A Gio::DBus::Connection or <tt>nullptr</tt> if @a interface is
    * not exported anywhere. Do not free, the object belongs to @a interface.
    */
-  Glib::RefPtr<Connection> get_connection();
+  auto get_connection() -> Glib::RefPtr<Connection>;
 
   /** Gets the first connection that @a interface is exported on, if any.
    *
@@ -249,7 +241,7 @@ public:
    * @return A Gio::DBus::Connection or <tt>nullptr</tt> if @a interface is
    * not exported anywhere. Do not free, the object belongs to @a interface.
    */
-  Glib::RefPtr<const Connection> get_connection() const;
+  auto get_connection() const -> Glib::RefPtr<const Connection>;
 
 
   /** Gets a list of the connections that @a interface is exported on.
@@ -259,7 +251,7 @@ public:
    * @return A list of
    * all the connections that @a interface is exported on.
    */
-  std::vector< Glib::RefPtr<Connection> > get_connections();
+  auto get_connections() -> std::vector< Glib::RefPtr<Connection> >;
 
 
   /** Gets a list of the connections that @a interface is exported on.
@@ -269,7 +261,7 @@ public:
    * @return A list of
    * all the connections that @a interface is exported on.
    */
-  std::vector< Glib::RefPtr<const Connection> > get_connections() const;
+  auto get_connections() const -> std::vector< Glib::RefPtr<const Connection> >;
 
 
   /** Checks if @a interface is exported on @a connection.
@@ -279,7 +271,7 @@ public:
    * @param connection A Gio::DBus::Connection.
    * @return <tt>true</tt> if @a interface is exported on @a connection, <tt>false</tt> otherwise.
    */
-  bool has_connection(const Glib::RefPtr<const Connection>& connection) const;
+  auto has_connection(const Glib::RefPtr<const Connection>& connection) const -> bool;
 
 
   /** Gets the object path that @a interface is exported on, if any.
@@ -289,7 +281,7 @@ public:
    * @return A string owned by @a interface or <tt>nullptr</tt> if @a interface is not exported
    * anywhere. Do not free, the string belongs to @a interface.
    */
-  Glib::ustring get_object_path() const;
+  auto get_object_path() const -> Glib::ustring;
 
 
   /** Gets the Gio::DBus::InterfaceSkeleton::Flags that describes what the behavior
@@ -299,7 +291,7 @@ public:
    *
    * @return One or more flags from the Gio::DBus::InterfaceSkeleton::Flags enumeration.
    */
-  Flags get_flags() const;
+  auto get_flags() const -> Flags;
 
   /** Sets flags describing what the behavior of @a skeleton should be.
    *
@@ -318,7 +310,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Flags > property_g_flags() ;
+  auto property_g_flags() -> Glib::PropertyProxy< Flags > ;
 
 /** Flags from the Gio::DBus::InterfaceSkeleton::Flags enumeration.
    *
@@ -329,7 +321,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Flags > property_g_flags() const;
+  auto property_g_flags() const -> Glib::PropertyProxy_ReadOnly< Flags >;
 
 
   /**
@@ -378,7 +370,7 @@ public:
    * @return <tt>true</tt> if the call is authorized, <tt>false</tt> otherwise.
    */
 
-  Glib::SignalProxy<bool(const Glib::RefPtr<MethodInvocation>&)> signal_authorize_method();
+  auto signal_authorize_method() -> Glib::SignalProxy<bool(const Glib::RefPtr<MethodInvocation>&)>;
 
 
   //TODO: The virtual functions.
@@ -394,50 +386,43 @@ protected:
 
   //Default Signal Handlers::
   /// This is a default handler for the signal signal_authorize_method().
-  virtual bool on_authorize_method(const Glib::RefPtr<MethodInvocation>& invocation);
+  virtual auto on_authorize_method(const Glib::RefPtr<MethodInvocation>& invocation) -> bool;
 
 
 };
 
-} // namespace DBus
-
 } // namespace Gio
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 /** @ingroup giommEnums */
-inline InterfaceSkeleton::Flags operator|(InterfaceSkeleton::Flags lhs, InterfaceSkeleton::Flags rhs)
+inline auto operator|(InterfaceSkeleton::Flags lhs, InterfaceSkeleton::Flags rhs) -> InterfaceSkeleton::Flags
   { return static_cast<InterfaceSkeleton::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline InterfaceSkeleton::Flags operator&(InterfaceSkeleton::Flags lhs, InterfaceSkeleton::Flags rhs)
+inline auto operator&(InterfaceSkeleton::Flags lhs, InterfaceSkeleton::Flags rhs) -> InterfaceSkeleton::Flags
   { return static_cast<InterfaceSkeleton::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline InterfaceSkeleton::Flags operator^(InterfaceSkeleton::Flags lhs, InterfaceSkeleton::Flags rhs)
+inline auto operator^(InterfaceSkeleton::Flags lhs, InterfaceSkeleton::Flags rhs) -> InterfaceSkeleton::Flags
   { return static_cast<InterfaceSkeleton::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline InterfaceSkeleton::Flags operator~(InterfaceSkeleton::Flags flags)
+inline auto operator~(InterfaceSkeleton::Flags flags) -> InterfaceSkeleton::Flags
   { return static_cast<InterfaceSkeleton::Flags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline InterfaceSkeleton::Flags& operator|=(InterfaceSkeleton::Flags& lhs, InterfaceSkeleton::Flags rhs)
+inline auto operator|=(InterfaceSkeleton::Flags& lhs, InterfaceSkeleton::Flags rhs) -> InterfaceSkeleton::Flags&
   { return (lhs = static_cast<InterfaceSkeleton::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline InterfaceSkeleton::Flags& operator&=(InterfaceSkeleton::Flags& lhs, InterfaceSkeleton::Flags rhs)
+inline auto operator&=(InterfaceSkeleton::Flags& lhs, InterfaceSkeleton::Flags rhs) -> InterfaceSkeleton::Flags&
   { return (lhs = static_cast<InterfaceSkeleton::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline InterfaceSkeleton::Flags& operator^=(InterfaceSkeleton::Flags& lhs, InterfaceSkeleton::Flags rhs)
+inline auto operator^=(InterfaceSkeleton::Flags& lhs, InterfaceSkeleton::Flags rhs) -> InterfaceSkeleton::Flags&
   { return (lhs = static_cast<InterfaceSkeleton::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
-} // namespace DBus
-
 } // namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -448,7 +433,7 @@ template <>
 class GIOMM_API Value<Gio::DBus::InterfaceSkeleton::Flags> : public Glib::Value_Flags<Gio::DBus::InterfaceSkeleton::Flags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -466,7 +451,7 @@ namespace Glib
    * @relates Gio::DBus::InterfaceSkeleton
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DBus::InterfaceSkeleton> wrap(GDBusInterfaceSkeleton* object, bool take_copy = false);
+  auto wrap(GDBusInterfaceSkeleton* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::InterfaceSkeleton>;
 }
 
 

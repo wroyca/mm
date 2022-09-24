@@ -60,7 +60,7 @@ public:
 
   GLIBMM_API ShellError(Code error_code, const Glib::ustring& error_message);
   GLIBMM_API explicit ShellError(GError* gobject);
-  GLIBMM_API Code code() const;
+  GLIBMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -86,7 +86,7 @@ private:
  * @throw Glib::ShellError
  */
 GLIBMM_API
-std::vector<std::string> shell_parse_argv(const std::string& command_line);
+auto shell_parse_argv(const std::string& command_line) -> std::vector<std::string>;
 
 /** Quotes a string so that the shell (/bin/sh) will interpret the quoted
  * string to mean @a unquoted_string.  If you pass a filename to the shell,
@@ -96,7 +96,7 @@ std::vector<std::string> shell_parse_argv(const std::string& command_line);
  * @return A quoted string.
  */
 GLIBMM_API
-std::string shell_quote(const std::string& unquoted_string);
+auto shell_quote(const std::string& unquoted_string) -> std::string;
 
 /** Unquotes a string as the shell (/bin/sh) would.  Only handles quotes; if
  * a string contains file globs, arithmetic operators, variables, backticks,
@@ -122,7 +122,7 @@ std::string shell_quote(const std::string& unquoted_string);
  * @throw Glib::ShellError
  */
 GLIBMM_API
-std::string shell_unquote(const std::string& quoted_string);
+auto shell_unquote(const std::string& quoted_string) -> std::string;
 
 /** @} group ShellUtils */
 

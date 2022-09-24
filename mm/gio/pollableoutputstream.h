@@ -76,7 +76,7 @@ public:
 
   // noncopyable
   PollableOutputStream(const PollableOutputStream&) = delete;
-  PollableOutputStream& operator=(const PollableOutputStream&) = delete;
+  auto operator=(const PollableOutputStream&) -> PollableOutputStream& = delete;
 
 private:
   friend class PollableOutputStream_Class;
@@ -110,7 +110,7 @@ protected:
 public:
 
   PollableOutputStream(PollableOutputStream&& src) noexcept;
-  PollableOutputStream& operator=(PollableOutputStream&& src) noexcept;
+  auto operator=(PollableOutputStream&& src) noexcept -> PollableOutputStream&;
 
   ~PollableOutputStream() noexcept override;
 
@@ -118,17 +118,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GPollableOutputStream*       gobj()       { return reinterpret_cast<GPollableOutputStream*>(gobject_); }
+  auto       gobj() -> GPollableOutputStream*       { return reinterpret_cast<GPollableOutputStream*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GPollableOutputStream* gobj() const { return reinterpret_cast<GPollableOutputStream*>(gobject_); }
+  auto gobj() const -> const GPollableOutputStream* { return reinterpret_cast<GPollableOutputStream*>(gobject_); }
 
 private:
 
@@ -147,7 +147,7 @@ public:
    *
    * @return <tt>true</tt> if @a stream is pollable, <tt>false</tt> if not.
    */
-  bool can_poll() const;
+  auto can_poll() const -> bool;
 
   /** Checks if @a stream can be written.
    *
@@ -165,7 +165,7 @@ public:
    * g_pollable_output_stream_is_writable() returning <tt>true</tt>, and the
    * next attempt to write will return the error.
    */
-  bool is_writable() const;
+  auto is_writable() const -> bool;
 
   //TODO: _WRAP_METHOD(Glib::RefPtr<Source> create_source(const Glib::RefPtr<Cancellable>& cancellable), g_pollable_output_stream_create_source)
 
@@ -197,21 +197,21 @@ public:
    *
    * @throws Glib::Error
    */
-  gssize write_nonblocking(const void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable);
+  auto write_nonblocking(const void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
   /// A write_nonblocking() convenience overload.
-  gssize write_nonblocking(const void* buffer, gsize count);
+  auto write_nonblocking(const void* buffer, gsize count) -> gssize;
 
 protected:
-    virtual bool can_poll_vfunc() const;
+    virtual auto can_poll_vfunc() const -> bool;
 
-    virtual bool is_writable_vfunc() const;
+    virtual auto is_writable_vfunc() const -> bool;
 
 
   //TODO:_WRAP_VFUNC(Glib::RefPtr<Source> create_source(const Glib::RefPtr<Cancellable>& cancellable), "create_source")
 
   /// @throws Glib::Error.
-  virtual gssize write_nonblocking_vfunc(const void* buffer, gsize count);
+  virtual auto write_nonblocking_vfunc(const void* buffer, gsize count) -> gssize;
 
 
 public:
@@ -241,7 +241,7 @@ namespace Glib
    * @relates Gio::PollableOutputStream
    */
   GIOMM_API
-  Glib::RefPtr<Gio::PollableOutputStream> wrap(GPollableOutputStream* object, bool take_copy = false);
+  auto wrap(GPollableOutputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::PollableOutputStream>;
 
 } // namespace Glib
 

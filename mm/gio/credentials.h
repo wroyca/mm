@@ -79,7 +79,7 @@ public:
 
   // noncopyable
   Credentials(const Credentials&) = delete;
-  Credentials& operator=(const Credentials&) = delete;
+  auto operator=(const Credentials&) -> Credentials& = delete;
 
 private:  friend class Credentials_Class;
   static CppClassType credentials_class_;
@@ -93,28 +93,28 @@ protected:
 public:
 
   Credentials(Credentials&& src) noexcept;
-  Credentials& operator=(Credentials&& src) noexcept;
+  auto operator=(Credentials&& src) noexcept -> Credentials&;
 
   ~Credentials() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GCredentials*       gobj()       { return reinterpret_cast<GCredentials*>(gobject_); }
+  auto       gobj() -> GCredentials*       { return reinterpret_cast<GCredentials*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GCredentials* gobj() const { return reinterpret_cast<GCredentials*>(gobject_); }
+  auto gobj() const -> const GCredentials* { return reinterpret_cast<GCredentials*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GCredentials* gobj_copy();
+  auto gobj_copy() -> GCredentials*;
 
 private:
 
@@ -172,7 +172,7 @@ public:
   };
 
 
-  static Glib::RefPtr<Credentials> create();
+  static auto create() -> Glib::RefPtr<Credentials>;
 
 
   /** Creates a human-readable textual representation of @a credentials
@@ -183,7 +183,7 @@ public:
    *
    * @return A string.
    */
-  Glib::ustring to_string() const;
+  auto to_string() const -> Glib::ustring;
 
 
   /** Gets a pointer to native credentials of type @a native_type from
@@ -201,7 +201,7 @@ public:
    * isn't supported by the OS. Do not free the returned data, it is owned
    * by @a credentials.
    */
-  gpointer get_native(Type native_type);
+  auto get_native(Type native_type) -> gpointer;
 
   /** Copies the native credentials of type @a native_type from @a native
    * into @a credentials.
@@ -230,7 +230,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool is_same_user(const Glib::RefPtr<const Credentials>& other_credentials);
+  auto is_same_user(const Glib::RefPtr<const Credentials>& other_credentials) -> bool;
 
 
 #ifdef  G_OS_UNIX
@@ -248,7 +248,7 @@ public:
    *
    * @throws Gio::Error
    */
-  uid_t get_unix_user();
+  auto get_unix_user() -> uid_t;
 #endif //  G_OS_UNIX
 
 
@@ -269,7 +269,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool set_unix_user(uid_t uid);
+  auto set_unix_user(uid_t uid) -> bool;
 #endif //  G_OS_UNIX
 
 
@@ -288,7 +288,7 @@ public:
    *
    * @throws Gio::Error
    */
-  pid_t get_unix_pid() const;
+  auto get_unix_pid() const -> pid_t;
 #endif //  G_OS_UNIX
 
 
@@ -320,7 +320,7 @@ namespace Glib
    * @relates Gio::Credentials
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Credentials> wrap(GCredentials* object, bool take_copy = false);
+  auto wrap(GCredentials* object, bool take_copy = false) -> Glib::RefPtr<Gio::Credentials>;
 }
 
 

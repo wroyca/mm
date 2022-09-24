@@ -66,7 +66,7 @@ public:
 
   // noncopyable
   StackPage(const StackPage&) = delete;
-  StackPage& operator=(const StackPage&) = delete;
+  auto operator=(const StackPage&) -> StackPage& = delete;
 
 private:  friend class StackPage_Class;
   static CppClassType stackpage_class_;
@@ -80,28 +80,28 @@ protected:
 public:
 
   StackPage(StackPage&& src) noexcept;
-  StackPage& operator=(StackPage&& src) noexcept;
+  auto operator=(StackPage&& src) noexcept -> StackPage&;
 
   ~StackPage() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkStackPage*       gobj()       { return reinterpret_cast<GtkStackPage*>(gobject_); }
+  auto       gobj() -> GtkStackPage*       { return reinterpret_cast<GtkStackPage*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkStackPage* gobj() const { return reinterpret_cast<GtkStackPage*>(gobject_); }
+  auto gobj() const -> const GtkStackPage* { return reinterpret_cast<GtkStackPage*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkStackPage* gobj_copy();
+  auto gobj_copy() -> GtkStackPage*;
 
 private:
 
@@ -112,13 +112,13 @@ public:
    *
    * @return The child to which @a self belongs.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Returns the stack child to which @a self belongs.
    *
    * @return The child to which @a self belongs.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
 
   /** Returns whether @a page is visible in its `Gtk::Stack`.
@@ -128,7 +128,7 @@ public:
    *
    * @return <tt>true</tt> if @a page is visible.
    */
-  bool get_visible() const;
+  auto get_visible() const -> bool;
 
   /** Sets whether @a page is visible in its `Gtk::Stack`.
    *
@@ -142,7 +142,7 @@ public:
    * @return The value of the property_needs_attention()
    * property.
    */
-  bool get_needs_attention() const;
+  auto get_needs_attention() const -> bool;
 
   /** Sets whether the page is marked as “needs attention”.
    *
@@ -154,7 +154,7 @@ public:
    *
    * @return The value of the property_use_underline() property.
    */
-  bool get_use_underline() const;
+  auto get_use_underline() const -> bool;
 
   /** Sets whether underlines in the page title indicate mnemonics.
    *
@@ -166,7 +166,7 @@ public:
    *
    * @return The value of the property_name() property.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
   /** Sets the name of the page.
    *
@@ -178,7 +178,7 @@ public:
    *
    * @return The value of the property_title() property.
    */
-  Glib::ustring get_title() const;
+  auto get_title() const -> Glib::ustring;
 
   /** Sets the page title.
    *
@@ -190,7 +190,7 @@ public:
    *
    * @return The value of the property_icon_name() property.
    */
-  Glib::ustring get_icon_name() const;
+  auto get_icon_name() const -> Glib::ustring;
 
   /** Sets the icon name of the page.
    *
@@ -203,7 +203,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
   /** The name of the child page.
@@ -213,7 +213,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_name() ;
+  auto property_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The name of the child page.
    *
@@ -222,7 +222,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_name() const;
+  auto property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The title of the child page.
    *
@@ -231,7 +231,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_title() ;
+  auto property_title() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The title of the child page.
    *
@@ -240,7 +240,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_title() const;
+  auto property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The icon name of the child page.
    *
@@ -249,7 +249,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_icon_name() ;
+  auto property_icon_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The icon name of the child page.
    *
@@ -258,7 +258,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_icon_name() const;
+  auto property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Whether the page requires the user attention.
    *
@@ -271,7 +271,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_needs_attention() ;
+  auto property_needs_attention() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the page requires the user attention.
    *
@@ -284,7 +284,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_needs_attention() const;
+  auto property_needs_attention() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether this page is visible.
    *
@@ -293,7 +293,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_visible() ;
+  auto property_visible() -> Glib::PropertyProxy< bool > ;
 
 /** Whether this page is visible.
    *
@@ -302,7 +302,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_visible() const;
+  auto property_visible() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** If set, an underline in the title indicates a mnemonic.
    *
@@ -311,7 +311,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_use_underline() ;
+  auto property_use_underline() -> Glib::PropertyProxy< bool > ;
 
 /** If set, an underline in the title indicates a mnemonic.
    *
@@ -320,7 +320,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_underline() const;
+  auto property_use_underline() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   // There are no signals or vfuncs.
@@ -353,7 +353,7 @@ namespace Glib
    * @relates Gtk::StackPage
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::StackPage> wrap(GtkStackPage* object, bool take_copy = false);
+  auto wrap(GtkStackPage* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StackPage>;
 }
 
 

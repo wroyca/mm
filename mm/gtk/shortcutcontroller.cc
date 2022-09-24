@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::ShortcutController> wrap(GtkShortcutController* object, bool take_copy)
+auto wrap(GtkShortcutController* object, bool take_copy) -> Glib::RefPtr<Gtk::ShortcutController>
 {
   return Glib::make_refptr_for_instance<Gtk::ShortcutController>( dynamic_cast<Gtk::ShortcutController*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ShortcutController_Class::init()
+auto ShortcutController_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -81,7 +81,7 @@ void ShortcutController_Class::class_init_function(void* g_class, void* class_da
 }
 
 
-Glib::ObjectBase* ShortcutController_Class::wrap_new(GObject* object)
+auto ShortcutController_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ShortcutController((GtkShortcutController*)object);
 }
@@ -89,7 +89,7 @@ Glib::ObjectBase* ShortcutController_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkShortcutController* ShortcutController::gobj_copy()
+auto ShortcutController::gobj_copy() -> GtkShortcutController*
 {
   reference();
   return gobj();
@@ -114,7 +114,7 @@ ShortcutController::ShortcutController(ShortcutController&& src) noexcept
   , Buildable(std::move(src))
 {}
 
-ShortcutController& ShortcutController::operator=(ShortcutController&& src) noexcept
+auto ShortcutController::operator=(ShortcutController&& src) noexcept -> ShortcutController&
 {
   EventController::operator=(std::move(src));
   Gio::ListModel::operator=(std::move(src));
@@ -129,13 +129,13 @@ ShortcutController::~ShortcutController() noexcept
 
 ShortcutController::CppClassType ShortcutController::shortcutcontroller_class_; // initialize static member
 
-GType ShortcutController::get_type()
+auto ShortcutController::get_type() -> GType
 {
   return shortcutcontroller_class_.init().get_type();
 }
 
 
-GType ShortcutController::get_base_type()
+auto ShortcutController::get_base_type() -> GType
 {
   return gtk_shortcut_controller_get_type();
 }
@@ -161,12 +161,12 @@ ShortcutController::ShortcutController(const Glib::RefPtr<Gio::ListModel>& model
 
 }
 
-Glib::RefPtr<ShortcutController> ShortcutController::create()
+auto ShortcutController::create() -> Glib::RefPtr<ShortcutController>
 {
   return Glib::make_refptr_for_instance<ShortcutController>( new ShortcutController() );
 }
 
-Glib::RefPtr<ShortcutController> ShortcutController::create(const Glib::RefPtr<Gio::ListModel>& model)
+auto ShortcutController::create(const Glib::RefPtr<Gio::ListModel>& model) -> Glib::RefPtr<ShortcutController>
 {
   return Glib::make_refptr_for_instance<ShortcutController>( new ShortcutController(model) );
 }
@@ -176,7 +176,7 @@ void ShortcutController::set_mnemonics_modifiers(Gdk::ModifierType modifiers)
   gtk_shortcut_controller_set_mnemonics_modifiers(gobj(), static_cast<GdkModifierType>(modifiers));
 }
 
-Gdk::ModifierType ShortcutController::get_mnemonics_modifiers() const
+auto ShortcutController::get_mnemonics_modifiers() const -> Gdk::ModifierType
 {
   return static_cast<Gdk::ModifierType>(gtk_shortcut_controller_get_mnemonics_modifiers(const_cast<GtkShortcutController*>(gobj())));
 }
@@ -188,14 +188,14 @@ void ShortcutController::set_scope(ShortcutScope scope)
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-ShortcutScope ShortcutController::set_scope() const
+auto ShortcutController::set_scope() const -> ShortcutScope
 {
   return static_cast<ShortcutScope>(gtk_shortcut_controller_get_scope(const_cast<GtkShortcutController*>(gobj())));
 }
 G_GNUC_END_IGNORE_DEPRECATIONS
 #endif // GTKMM_DISABLE_DEPRECATED
 
-ShortcutScope ShortcutController::get_scope() const
+auto ShortcutController::get_scope() const -> ShortcutScope
 {
   return static_cast<ShortcutScope>(gtk_shortcut_controller_get_scope(const_cast<GtkShortcutController*>(gobj())));
 }
@@ -215,7 +215,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
   "Type GType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< GType > ShortcutController::property_item_type() const
+auto ShortcutController::property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >
 {
   return Glib::PropertyProxy_ReadOnly< GType >(this, "item-type");
 }
@@ -224,17 +224,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::ModifierType>::
   "Type Gdk::ModifierType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Gdk::ModifierType > ShortcutController::property_mnemonic_modifiers()
+auto ShortcutController::property_mnemonic_modifiers() -> Glib::PropertyProxy< Gdk::ModifierType >
 {
   return Glib::PropertyProxy< Gdk::ModifierType >(this, "mnemonic-modifiers");
 }
 
-Glib::PropertyProxy_ReadOnly< Gdk::ModifierType > ShortcutController::property_mnemonic_modifiers() const
+auto ShortcutController::property_mnemonic_modifiers() const -> Glib::PropertyProxy_ReadOnly< Gdk::ModifierType >
 {
   return Glib::PropertyProxy_ReadOnly< Gdk::ModifierType >(this, "mnemonic-modifiers");
 }
 
-Glib::PropertyProxy_ReadOnly< unsigned int > ShortcutController::property_n_items() const
+auto ShortcutController::property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
   return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "n-items");
 }
@@ -243,12 +243,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<ShortcutScope>::valu
   "Type ShortcutScope cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< ShortcutScope > ShortcutController::property_scope()
+auto ShortcutController::property_scope() -> Glib::PropertyProxy< ShortcutScope >
 {
   return Glib::PropertyProxy< ShortcutScope >(this, "scope");
 }
 
-Glib::PropertyProxy_ReadOnly< ShortcutScope > ShortcutController::property_scope() const
+auto ShortcutController::property_scope() const -> Glib::PropertyProxy_ReadOnly< ShortcutScope >
 {
   return Glib::PropertyProxy_ReadOnly< ShortcutScope >(this, "scope");
 }

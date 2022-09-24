@@ -98,7 +98,7 @@ template <>
 class GTKMM_API Value<Gtk::ButtonsType> : public Glib::Value_Enum<Gtk::ButtonsType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -133,11 +133,11 @@ class GTKMM_API MessageDialog : public Dialog
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   MessageDialog(MessageDialog&& src) noexcept;
-  MessageDialog& operator=(MessageDialog&& src) noexcept;
+  auto operator=(MessageDialog&& src) noexcept -> MessageDialog&;
 
   // noncopyable
   MessageDialog(const MessageDialog&) = delete;
-  MessageDialog& operator=(const MessageDialog&) = delete;
+  auto operator=(const MessageDialog&) -> MessageDialog& = delete;
 
   ~MessageDialog() noexcept override;
 
@@ -157,19 +157,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkMessageDialog*       gobj()       { return reinterpret_cast<GtkMessageDialog*>(gobject_); }
+  auto       gobj() -> GtkMessageDialog*       { return reinterpret_cast<GtkMessageDialog*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkMessageDialog* gobj() const { return reinterpret_cast<GtkMessageDialog*>(gobject_); }
+  auto gobj() const -> const GtkMessageDialog* { return reinterpret_cast<GtkMessageDialog*>(gobject_); }
 
 private:
 
@@ -208,7 +208,7 @@ public:
    * @return A `Gtk::Box` corresponding to the
    * “message area” in the @a message_dialog.
    */
-  Box* get_message_area();
+  auto get_message_area() -> Box*;
 
   /** Returns the message area of the dialog.
    *
@@ -220,7 +220,7 @@ public:
    * @return A `Gtk::Box` corresponding to the
    * “message area” in the @a message_dialog.
    */
-  const Box* get_message_area() const;
+  auto get_message_area() const -> const Box*;
 
   /** The type of the message.
    *
@@ -229,7 +229,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< MessageType > property_message_type() ;
+  auto property_message_type() -> Glib::PropertyProxy< MessageType > ;
 
 /** The type of the message.
    *
@@ -238,7 +238,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< MessageType > property_message_type() const;
+  auto property_message_type() const -> Glib::PropertyProxy_ReadOnly< MessageType >;
 
   //Not wrapped because it is write-only and construct: _WRAP_PROPERTY("buttons", ButtonsType)
   /** The primary text of the message dialog.
@@ -250,7 +250,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_text() ;
+  auto property_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The primary text of the message dialog.
    *
@@ -261,7 +261,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_text() const;
+  auto property_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** <tt>true</tt> if the primary text of the dialog includes Pango markup.
    *
@@ -272,7 +272,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_use_markup() ;
+  auto property_use_markup() -> Glib::PropertyProxy< bool > ;
 
 /** <tt>true</tt> if the primary text of the dialog includes Pango markup.
    *
@@ -283,7 +283,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_markup() const;
+  auto property_use_markup() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The secondary text of the message dialog.
    *
@@ -292,7 +292,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_secondary_text() ;
+  auto property_secondary_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The secondary text of the message dialog.
    *
@@ -301,7 +301,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_secondary_text() const;
+  auto property_secondary_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** <tt>true</tt> if the secondary text of the dialog includes Pango markup.
    *
@@ -312,7 +312,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_secondary_use_markup() ;
+  auto property_secondary_use_markup() -> Glib::PropertyProxy< bool > ;
 
 /** <tt>true</tt> if the secondary text of the dialog includes Pango markup.
    *
@@ -323,7 +323,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_secondary_use_markup() const;
+  auto property_secondary_use_markup() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The `Gtk::Box` that corresponds to the message area of this dialog.
    *
@@ -333,7 +333,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Box* > property_message_area() const;
+  auto property_message_area() const -> Glib::PropertyProxy_ReadOnly< Box* >;
 
 
 public:
@@ -363,7 +363,7 @@ namespace Glib
    * @relates Gtk::MessageDialog
    */
   GTKMM_API
-  Gtk::MessageDialog* wrap(GtkMessageDialog* object, bool take_copy = false);
+  auto wrap(GtkMessageDialog* object, bool take_copy = false) -> Gtk::MessageDialog*;
 } //namespace Glib
 
 

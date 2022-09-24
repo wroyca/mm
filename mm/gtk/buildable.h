@@ -74,7 +74,7 @@ public:
 
   // noncopyable
   Buildable(const Buildable&) = delete;
-  Buildable& operator=(const Buildable&) = delete;
+  auto operator=(const Buildable&) -> Buildable& = delete;
 
 private:
   friend class Buildable_Class;
@@ -108,7 +108,7 @@ protected:
 public:
 
   Buildable(Buildable&& src) noexcept;
-  Buildable& operator=(Buildable&& src) noexcept;
+  auto operator=(Buildable&& src) noexcept -> Buildable&;
 
   ~Buildable() noexcept override;
 
@@ -116,17 +116,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkBuildable*       gobj()       { return reinterpret_cast<GtkBuildable*>(gobject_); }
+  auto       gobj() -> GtkBuildable*       { return reinterpret_cast<GtkBuildable*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkBuildable* gobj() const { return reinterpret_cast<GtkBuildable*>(gobject_); }
+  auto gobj() const -> const GtkBuildable* { return reinterpret_cast<GtkBuildable*>(gobject_); }
 
 private:
 
@@ -140,7 +140,7 @@ public:
    *
    * @return The ID of the buildable object.
    */
-  Glib::ustring get_buildable_id() const;
+  auto get_buildable_id() const -> Glib::ustring;
 
   //TODO: Properties, signals, vfuncs.
 
@@ -172,7 +172,7 @@ namespace Glib
    * @relates Gtk::Buildable
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Buildable> wrap(GtkBuildable* object, bool take_copy = false);
+  auto wrap(GtkBuildable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Buildable>;
 
 } // namespace Glib
 

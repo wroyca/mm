@@ -24,7 +24,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-static int SignalProxy_Compare_gtk_callback(GtkTreeModel* model, GtkTreeIter* lhs, GtkTreeIter* rhs, void* data)
+static auto SignalProxy_Compare_gtk_callback(GtkTreeModel* model, GtkTreeIter* lhs, GtkTreeIter* rhs, void* data) -> int
 {
   auto the_slot = static_cast<Gtk::TreeSortable::SlotCompare*>(data);
 
@@ -86,7 +86,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo TreeSortable_signal_sort_column_changed_info =
+const Glib::SignalProxyInfo TreeSortable_signal_sort_column_changed_info =
 {
   "sort_column_changed",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -100,7 +100,7 @@ static const Glib::SignalProxyInfo TreeSortable_signal_sort_column_changed_info 
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::TreeSortable> wrap(GtkTreeSortable* object, bool take_copy)
+auto wrap(GtkTreeSortable* object, bool take_copy) -> Glib::RefPtr<Gtk::TreeSortable>
 {
   return Glib::make_refptr_for_instance<Gtk::TreeSortable>( dynamic_cast<Gtk::TreeSortable*> (Glib::wrap_auto_interface<Gtk::TreeSortable> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -115,7 +115,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& TreeSortable_Class::init()
+auto TreeSortable_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -148,7 +148,7 @@ void TreeSortable_Class::iface_init_function(void* g_iface, void*)
   klass->sort_column_changed = &sort_column_changed_callback;
 }
 
-gboolean TreeSortable_Class::get_sort_column_id_vfunc_callback(GtkTreeSortable* self, int* sort_column_id, GtkSortType* order)
+auto TreeSortable_Class::get_sort_column_id_vfunc_callback(GtkTreeSortable* self, int* sort_column_id, GtkSortType* order) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -302,7 +302,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->set_default_sort_func)
     (*base->set_default_sort_func)(self, func, data, destroy);
 }
-gboolean TreeSortable_Class::has_default_sort_func_vfunc_callback(GtkTreeSortable* self)
+auto TreeSortable_Class::has_default_sort_func_vfunc_callback(GtkTreeSortable* self) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -418,7 +418,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* TreeSortable_Class::wrap_new(GObject* object)
+auto TreeSortable_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new TreeSortable((GtkTreeSortable*)(object));
 }
@@ -445,7 +445,7 @@ TreeSortable::TreeSortable(TreeSortable&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-TreeSortable& TreeSortable::operator=(TreeSortable&& src) noexcept
+auto TreeSortable::operator=(TreeSortable&& src) noexcept -> TreeSortable&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -462,19 +462,19 @@ void TreeSortable::add_interface(GType gtype_implementer)
 
 TreeSortable::CppClassType TreeSortable::treesortable_class_; // initialize static member
 
-GType TreeSortable::get_type()
+auto TreeSortable::get_type() -> GType
 {
   return treesortable_class_.init().get_type();
 }
 
 
-GType TreeSortable::get_base_type()
+auto TreeSortable::get_base_type() -> GType
 {
   return gtk_tree_sortable_get_type();
 }
 
 
-bool TreeSortable::get_sort_column_id(int& sort_column_id, SortType& order) const
+auto TreeSortable::get_sort_column_id(int& sort_column_id, SortType& order) const -> bool
 {
   return gtk_tree_sortable_get_sort_column_id(const_cast<GtkTreeSortable*>(gobj()), &(sort_column_id), ((GtkSortType*) &(order)));
 }
@@ -489,7 +489,7 @@ void TreeSortable::set_sort_column(int sort_column_id, SortType order)
   gtk_tree_sortable_set_sort_column_id(gobj(), sort_column_id, static_cast<GtkSortType>(order));
 }
 
-bool TreeSortable::has_default_sort_func() const
+auto TreeSortable::has_default_sort_func() const -> bool
 {
   return gtk_tree_sortable_has_default_sort_func(const_cast<GtkTreeSortable*>(gobj()));
 }
@@ -500,7 +500,7 @@ void TreeSortable::sort_column_changed()
 }
 
 
-Glib::SignalProxy<void()> TreeSortable::signal_sort_column_changed()
+auto TreeSortable::signal_sort_column_changed() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &TreeSortable_signal_sort_column_changed_info);
 }
@@ -517,7 +517,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->sort_column_changed)(gobj());
 }
 
-bool Gtk::TreeSortable::get_sort_column_id_vfunc(int* sort_column_id, SortType* order) const
+auto Gtk::TreeSortable::get_sort_column_id_vfunc(int* sort_column_id, SortType* order) const -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -569,7 +569,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->set_default_sort_func)(gobj(),func,data,destroy);
   }
 }
-bool Gtk::TreeSortable::has_default_sort_func_vfunc() const
+auto Gtk::TreeSortable::has_default_sort_func_vfunc() const -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

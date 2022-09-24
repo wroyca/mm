@@ -69,7 +69,7 @@ Window::Window(Window&& src) noexcept
 
 // The move assignment is identical to the one that gmmproc can generate.
 // _CUSTOM_MOVE_OPERATIONS() suppresses both move contructor and move assignment.
-Window& Window::operator=(Window&& src) noexcept
+auto Window::operator=(Window&& src) noexcept -> Window&
 {
   Gtk::Widget::operator=(std::move(src));
   Native::operator=(std::move(src));
@@ -266,7 +266,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo Window_signal_keys_changed_info =
+const Glib::SignalProxyInfo Window_signal_keys_changed_info =
 {
   "keys_changed",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -274,7 +274,7 @@ static const Glib::SignalProxyInfo Window_signal_keys_changed_info =
 };
 
 
-static gboolean Window_signal_close_request_callback(GtkWindow* self, void* data)
+auto Window_signal_close_request_callback(GtkWindow* self, void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<bool()>;
@@ -298,7 +298,7 @@ static gboolean Window_signal_close_request_callback(GtkWindow* self, void* data
   return RType();
 }
 
-static gboolean Window_signal_close_request_notify_callback(GtkWindow* self,  void* data)
+auto Window_signal_close_request_notify_callback(GtkWindow* self,  void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void()>;
@@ -322,7 +322,7 @@ static gboolean Window_signal_close_request_notify_callback(GtkWindow* self,  vo
   return RType();
 }
 
-static const Glib::SignalProxyInfo Window_signal_close_request_info =
+const Glib::SignalProxyInfo Window_signal_close_request_info =
 {
   "close-request",
   (GCallback) &Window_signal_close_request_callback,
@@ -336,7 +336,7 @@ static const Glib::SignalProxyInfo Window_signal_close_request_info =
 namespace Glib
 {
 
-Gtk::Window* wrap(GtkWindow* object, bool take_copy)
+auto wrap(GtkWindow* object, bool take_copy) -> Gtk::Window*
 {
   return dynamic_cast<Gtk::Window *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -349,7 +349,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Window_Class::init()
+auto Window_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -422,7 +422,7 @@ void Window_Class::keys_changed_callback(GtkWindow* self)
   if(base && base->keys_changed)
     (*base->keys_changed)(self);
 }
-gboolean Window_Class::close_request_callback(GtkWindow* self)
+auto Window_Class::close_request_callback(GtkWindow* self) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -462,7 +462,7 @@ gboolean Window_Class::close_request_callback(GtkWindow* self)
 }
 
 
-Glib::ObjectBase* Window_Class::wrap_new(GObject* o)
+auto Window_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return new Window((GtkWindow*)(o)); //top-level windows can not be manage()ed.
 
@@ -479,13 +479,13 @@ Window::~Window() noexcept
 
 Window::CppClassType Window::window_class_; // initialize static member
 
-GType Window::get_type()
+auto Window::get_type() -> GType
 {
   return window_class_.init().get_type();
 }
 
 
-GType Window::get_base_type()
+auto Window::get_base_type() -> GType
 {
   return gtk_window_get_type();
 }
@@ -496,7 +496,7 @@ void Window::set_title(const Glib::ustring& title)
   gtk_window_set_title(gobj(), title.c_str());
 }
 
-Glib::ustring Window::get_title() const
+auto Window::get_title() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_window_get_title(const_cast<GtkWindow*>(gobj())));
 }
@@ -511,12 +511,12 @@ void Window::set_focus(Gtk::Widget& focus)
   gtk_window_set_focus(gobj(), (focus).gobj());
 }
 
-Widget* Window::get_focus()
+auto Window::get_focus() -> Widget*
 {
   return Glib::wrap(gtk_window_get_focus(gobj()));
 }
 
-const Widget* Window::get_focus() const
+auto Window::get_focus() const -> const Widget*
 {
   return const_cast<Window*>(this)->get_focus();
 }
@@ -526,12 +526,12 @@ void Window::set_default_widget(Gtk::Widget& default_widget)
   gtk_window_set_default_widget(gobj(), (default_widget).gobj());
 }
 
-Widget* Window::get_default_widget()
+auto Window::get_default_widget() -> Widget*
 {
   return Glib::wrap(gtk_window_get_default_widget(gobj()));
 }
 
-const Widget* Window::get_default_widget() const
+auto Window::get_default_widget() const -> const Widget*
 {
   return const_cast<Window*>(this)->get_default_widget();
 }
@@ -541,12 +541,12 @@ void Window::set_transient_for(Window& parent)
   gtk_window_set_transient_for(gobj(), (parent).gobj());
 }
 
-Window* Window::get_transient_for()
+auto Window::get_transient_for() -> Window*
 {
   return Glib::wrap(gtk_window_get_transient_for(gobj()));
 }
 
-const Window* Window::get_transient_for() const
+auto Window::get_transient_for() const -> const Window*
 {
   return const_cast<Window*>(this)->get_transient_for();
 }
@@ -556,7 +556,7 @@ void Window::set_destroy_with_parent(bool setting)
   gtk_window_set_destroy_with_parent(gobj(), static_cast<int>(setting));
 }
 
-bool Window::get_destroy_with_parent() const
+auto Window::get_destroy_with_parent() const -> bool
 {
   return gtk_window_get_destroy_with_parent(const_cast<GtkWindow*>(gobj()));
 }
@@ -566,7 +566,7 @@ void Window::set_hide_on_close(bool setting)
   gtk_window_set_hide_on_close(gobj(), static_cast<int>(setting));
 }
 
-bool Window::get_hide_on_close() const
+auto Window::get_hide_on_close() const -> bool
 {
   return gtk_window_get_hide_on_close(const_cast<GtkWindow*>(gobj()));
 }
@@ -576,7 +576,7 @@ void Window::set_mnemonics_visible(bool setting)
   gtk_window_set_mnemonics_visible(gobj(), static_cast<int>(setting));
 }
 
-bool Window::get_mnemonics_visible() const
+auto Window::get_mnemonics_visible() const -> bool
 {
   return gtk_window_get_mnemonics_visible(const_cast<GtkWindow*>(gobj()));
 }
@@ -586,7 +586,7 @@ void Window::set_focus_visible(bool setting)
   gtk_window_set_focus_visible(gobj(), static_cast<int>(setting));
 }
 
-bool Window::get_focus_visible() const
+auto Window::get_focus_visible() const -> bool
 {
   return gtk_window_get_focus_visible(const_cast<GtkWindow*>(gobj()));
 }
@@ -596,7 +596,7 @@ void Window::set_resizable(bool resizable)
   gtk_window_set_resizable(gobj(), static_cast<int>(resizable));
 }
 
-bool Window::get_resizable() const
+auto Window::get_resizable() const -> bool
 {
   return gtk_window_get_resizable(const_cast<GtkWindow*>(gobj()));
 }
@@ -606,7 +606,7 @@ void Window::set_display(const Glib::RefPtr<Gdk::Display>& display)
   gtk_window_set_display(gobj(), Glib::unwrap(display));
 }
 
-bool Window::is_active() const
+auto Window::is_active() const -> bool
 {
   return gtk_window_is_active(const_cast<GtkWindow*>(gobj()));
 }
@@ -616,7 +616,7 @@ void Window::set_decorated(bool setting)
   gtk_window_set_decorated(gobj(), static_cast<int>(setting));
 }
 
-bool Window::get_decorated() const
+auto Window::get_decorated() const -> bool
 {
   return gtk_window_get_decorated(const_cast<GtkWindow*>(gobj()));
 }
@@ -626,7 +626,7 @@ void Window::set_deletable(bool setting)
   gtk_window_set_deletable(gobj(), static_cast<int>(setting));
 }
 
-bool Window::get_deletable() const
+auto Window::get_deletable() const -> bool
 {
   return gtk_window_get_deletable(const_cast<GtkWindow*>(gobj()));
 }
@@ -636,7 +636,7 @@ void Window::set_icon_name(const Glib::ustring& name)
   gtk_window_set_icon_name(gobj(), name.c_str());
 }
 
-Glib::ustring Window::get_icon_name() const
+auto Window::get_icon_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_window_get_icon_name(const_cast<GtkWindow*>(gobj())));
 }
@@ -646,7 +646,7 @@ void Window::set_default_icon_name(const Glib::ustring& name)
   gtk_window_set_default_icon_name(name.c_str());
 }
 
-Glib::ustring Window::get_default_icon_name()
+auto Window::get_default_icon_name() -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_window_get_default_icon_name());
 }
@@ -661,12 +661,12 @@ void Window::set_modal(bool modal)
   gtk_window_set_modal(gobj(), static_cast<int>(modal));
 }
 
-bool Window::get_modal() const
+auto Window::get_modal() const -> bool
 {
   return gtk_window_get_modal(const_cast<GtkWindow*>(gobj()));
 }
 
-Glib::RefPtr<Gio::ListModel> Window::get_toplevels()
+auto Window::get_toplevels() -> Glib::RefPtr<Gio::ListModel>
 {
 
   auto retvalue = Glib::wrap(gtk_window_get_toplevels());
@@ -675,7 +675,7 @@ Glib::RefPtr<Gio::ListModel> Window::get_toplevels()
   return retvalue;
 }
 
-std::vector<Window*> Window::list_toplevels()
+auto Window::list_toplevels() -> std::vector<Window*>
 {
   return Glib::ListHandler<Window*>::list_to_vector(gtk_window_list_toplevels(), Glib::OWNERSHIP_SHALLOW);
 }
@@ -740,7 +740,7 @@ void Window::get_default_size(int& width, int& height) const
   gtk_window_get_default_size(const_cast<GtkWindow*>(gobj()), &(width), &(height));
 }
 
-Glib::RefPtr<WindowGroup> Window::get_group()
+auto Window::get_group() -> Glib::RefPtr<WindowGroup>
 {
   auto retvalue = Glib::wrap(gtk_window_get_group(gobj()));
   if(retvalue)
@@ -748,17 +748,17 @@ Glib::RefPtr<WindowGroup> Window::get_group()
   return retvalue;
 }
 
-Glib::RefPtr<const WindowGroup> Window::get_group() const
+auto Window::get_group() const -> Glib::RefPtr<const WindowGroup>
 {
   return const_cast<Window*>(this)->get_group();
 }
 
-bool Window::has_group() const
+auto Window::has_group() const -> bool
 {
   return gtk_window_has_group(const_cast<GtkWindow*>(gobj()));
 }
 
-Glib::RefPtr<Application> Window::get_application()
+auto Window::get_application() -> Glib::RefPtr<Application>
 {
   auto retvalue = Glib::wrap(gtk_window_get_application(gobj()));
   if(retvalue)
@@ -766,7 +766,7 @@ Glib::RefPtr<Application> Window::get_application()
   return retvalue;
 }
 
-Glib::RefPtr<const Application> Window::get_application() const
+auto Window::get_application() const -> Glib::RefPtr<const Application>
 {
   auto retvalue = Glib::wrap(gtk_window_get_application(const_cast<GtkWindow*>(gobj())));
   if(retvalue)
@@ -784,12 +784,12 @@ void Window::set_child(Widget& child)
   gtk_window_set_child(gobj(), (child).gobj());
 }
 
-Widget* Window::get_child()
+auto Window::get_child() -> Widget*
 {
   return Glib::wrap(gtk_window_get_child(gobj()));
 }
 
-const Widget* Window::get_child() const
+auto Window::get_child() const -> const Widget*
 {
   return const_cast<Window*>(this)->get_child();
 }
@@ -799,22 +799,22 @@ void Window::set_titlebar(Widget& titlebar)
   gtk_window_set_titlebar(gobj(), (titlebar).gobj());
 }
 
-Widget* Window::get_titlebar()
+auto Window::get_titlebar() -> Widget*
 {
   return Glib::wrap(gtk_window_get_titlebar(gobj()));
 }
 
-const Widget* Window::get_titlebar() const
+auto Window::get_titlebar() const -> const Widget*
 {
   return const_cast<Window*>(this)->get_titlebar();
 }
 
-bool Window::is_maximized() const
+auto Window::is_maximized() const -> bool
 {
   return gtk_window_is_maximized(const_cast<GtkWindow*>(gobj()));
 }
 
-bool Window::is_fullscreen() const
+auto Window::is_fullscreen() const -> bool
 {
   return gtk_window_is_fullscreen(const_cast<GtkWindow*>(gobj()));
 }
@@ -824,115 +824,115 @@ void Window::set_handle_menubar_accel(bool handle_menubar_accel)
   gtk_window_set_handle_menubar_accel(gobj(), static_cast<int>(handle_menubar_accel));
 }
 
-bool Window::get_handle_menubar_accel() const
+auto Window::get_handle_menubar_accel() const -> bool
 {
   return gtk_window_get_handle_menubar_accel(const_cast<GtkWindow*>(gobj()));
 }
 
 
-Glib::SignalProxy<void()> Window::signal_keys_changed()
+auto Window::signal_keys_changed() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Window_signal_keys_changed_info);
 }
 
 
-Glib::SignalProxy<bool()> Window::signal_close_request()
+auto Window::signal_close_request() -> Glib::SignalProxy<bool()>
 {
   return Glib::SignalProxy<bool() >(this, &Window_signal_close_request_info);
 }
 
 
-Glib::PropertyProxy< Glib::ustring > Window::property_title()
+auto Window::property_title() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "title");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Window::property_title() const
+auto Window::property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "title");
 }
 
-Glib::PropertyProxy_WriteOnly< Glib::ustring > Window::property_startup_id()
+auto Window::property_startup_id() -> Glib::PropertyProxy_WriteOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_WriteOnly< Glib::ustring >(this, "startup-id");
 }
 
-Glib::PropertyProxy< bool > Window::property_resizable()
+auto Window::property_resizable() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "resizable");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Window::property_resizable() const
+auto Window::property_resizable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "resizable");
 }
 
-Glib::PropertyProxy< bool > Window::property_modal()
+auto Window::property_modal() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "modal");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Window::property_modal() const
+auto Window::property_modal() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "modal");
 }
 
-Glib::PropertyProxy< int > Window::property_default_width()
+auto Window::property_default_width() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "default-width");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Window::property_default_width() const
+auto Window::property_default_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "default-width");
 }
 
-Glib::PropertyProxy< int > Window::property_default_height()
+auto Window::property_default_height() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "default-height");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Window::property_default_height() const
+auto Window::property_default_height() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "default-height");
 }
 
-Glib::PropertyProxy< bool > Window::property_destroy_with_parent()
+auto Window::property_destroy_with_parent() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "destroy-with-parent");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Window::property_destroy_with_parent() const
+auto Window::property_destroy_with_parent() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "destroy-with-parent");
 }
 
-Glib::PropertyProxy< bool > Window::property_hide_on_close()
+auto Window::property_hide_on_close() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "hide-on-close");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Window::property_hide_on_close() const
+auto Window::property_hide_on_close() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "hide-on-close");
 }
 
-Glib::PropertyProxy< bool > Window::property_mnemonics_visible()
+auto Window::property_mnemonics_visible() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "mnemonics-visible");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Window::property_mnemonics_visible() const
+auto Window::property_mnemonics_visible() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "mnemonics-visible");
 }
 
-Glib::PropertyProxy< Glib::ustring > Window::property_icon_name()
+auto Window::property_icon_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "icon-name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Window::property_icon_name() const
+auto Window::property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "icon-name");
 }
@@ -941,27 +941,27 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Di
   "Type Glib::RefPtr<Gdk::Display> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gdk::Display> > Window::property_display()
+auto Window::property_display() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Display> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gdk::Display> >(this, "display");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Display> > Window::property_display() const
+auto Window::property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Display> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Display> >(this, "display");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Window::property_is_active() const
+auto Window::property_is_active() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-active");
 }
 
-Glib::PropertyProxy< bool > Window::property_decorated()
+auto Window::property_decorated() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "decorated");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Window::property_decorated() const
+auto Window::property_decorated() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "decorated");
 }
@@ -970,22 +970,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Window*>::value,
   "Type Window* cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Window* > Window::property_transient_for()
+auto Window::property_transient_for() -> Glib::PropertyProxy< Window* >
 {
   return Glib::PropertyProxy< Window* >(this, "transient-for");
 }
 
-Glib::PropertyProxy_ReadOnly< Window* > Window::property_transient_for() const
+auto Window::property_transient_for() const -> Glib::PropertyProxy_ReadOnly< Window* >
 {
   return Glib::PropertyProxy_ReadOnly< Window* >(this, "transient-for");
 }
 
-Glib::PropertyProxy< bool > Window::property_deletable()
+auto Window::property_deletable() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "deletable");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Window::property_deletable() const
+auto Window::property_deletable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "deletable");
 }
@@ -994,92 +994,92 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Applica
   "Type Glib::RefPtr<Application> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Application> > Window::property_application()
+auto Window::property_application() -> Glib::PropertyProxy< Glib::RefPtr<Application> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Application> >(this, "application");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Application> > Window::property_application() const
+auto Window::property_application() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Application> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Application> >(this, "application");
 }
 
-Glib::PropertyProxy< bool > Window::property_focus_visible()
+auto Window::property_focus_visible() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "focus-visible");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Window::property_focus_visible() const
+auto Window::property_focus_visible() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "focus-visible");
 }
 
-Glib::PropertyProxy< bool > Window::property_maximized()
+auto Window::property_maximized() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "maximized");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Window::property_maximized() const
+auto Window::property_maximized() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "maximized");
 }
 
-Glib::PropertyProxy< bool > Window::property_fullscreened()
+auto Window::property_fullscreened() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "fullscreened");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Window::property_fullscreened() const
+auto Window::property_fullscreened() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "fullscreened");
 }
 
-Glib::PropertyProxy< Widget* > Window::property_default_widget()
+auto Window::property_default_widget() -> Glib::PropertyProxy< Widget* >
 {
   return Glib::PropertyProxy< Widget* >(this, "default-widget");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > Window::property_default_widget() const
+auto Window::property_default_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "default-widget");
 }
 
-Glib::PropertyProxy< Widget* > Window::property_focus_widget()
+auto Window::property_focus_widget() -> Glib::PropertyProxy< Widget* >
 {
   return Glib::PropertyProxy< Widget* >(this, "focus-widget");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > Window::property_focus_widget() const
+auto Window::property_focus_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "focus-widget");
 }
 
-Glib::PropertyProxy< Widget* > Window::property_child()
+auto Window::property_child() -> Glib::PropertyProxy< Widget* >
 {
   return Glib::PropertyProxy< Widget* >(this, "child");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > Window::property_child() const
+auto Window::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
 }
 
-Glib::PropertyProxy< Widget* > Window::property_titlebar()
+auto Window::property_titlebar() -> Glib::PropertyProxy< Widget* >
 {
   return Glib::PropertyProxy< Widget* >(this, "titlebar");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > Window::property_titlebar() const
+auto Window::property_titlebar() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "titlebar");
 }
 
-Glib::PropertyProxy< bool > Window::property_handle_menubar_accel()
+auto Window::property_handle_menubar_accel() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "handle-menubar-accel");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Window::property_handle_menubar_accel() const
+auto Window::property_handle_menubar_accel() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "handle-menubar-accel");
 }
@@ -1094,7 +1094,7 @@ void Gtk::Window::on_keys_changed()
   if(base && base->keys_changed)
     (*base->keys_changed)(gobj());
 }
-bool Gtk::Window::on_close_request()
+auto Gtk::Window::on_close_request() -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

@@ -76,31 +76,31 @@ enum class FileTest
 };
 
 /** @ingroup glibmmEnums */
-inline FileTest operator|(FileTest lhs, FileTest rhs)
+inline auto operator|(FileTest lhs, FileTest rhs) -> FileTest
   { return static_cast<FileTest>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline FileTest operator&(FileTest lhs, FileTest rhs)
+inline auto operator&(FileTest lhs, FileTest rhs) -> FileTest
   { return static_cast<FileTest>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline FileTest operator^(FileTest lhs, FileTest rhs)
+inline auto operator^(FileTest lhs, FileTest rhs) -> FileTest
   { return static_cast<FileTest>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline FileTest operator~(FileTest flags)
+inline auto operator~(FileTest flags) -> FileTest
   { return static_cast<FileTest>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup glibmmEnums */
-inline FileTest& operator|=(FileTest& lhs, FileTest rhs)
+inline auto operator|=(FileTest& lhs, FileTest rhs) -> FileTest&
   { return (lhs = static_cast<FileTest>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline FileTest& operator&=(FileTest& lhs, FileTest rhs)
+inline auto operator&=(FileTest& lhs, FileTest rhs) -> FileTest&
   { return (lhs = static_cast<FileTest>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline FileTest& operator^=(FileTest& lhs, FileTest rhs)
+inline auto operator^=(FileTest& lhs, FileTest rhs) -> FileTest&
   { return (lhs = static_cast<FileTest>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -277,7 +277,7 @@ public:
 
   GLIBMM_API FileError(Code error_code, const Glib::ustring& error_message);
   GLIBMM_API explicit FileError(GError* gobject);
-  GLIBMM_API Code code() const;
+  GLIBMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -385,8 +385,8 @@ public:
   DirIterator(GDir* gobject, const char* current);
 #endif
 
-  std::string  operator*() const;
-  DirIterator& operator++();
+  auto  operator*() const -> std::string;
+  auto operator++() -> DirIterator&;
 
   /** @note DirIterator has input iterator semantics, which means real
    * postfix increment is impossible. The return type is @c void to
@@ -394,8 +394,8 @@ public:
    */
   void operator++(int);
 
-  bool operator==(const DirIterator& rhs) const;
-  bool operator!=(const DirIterator& rhs) const;
+  auto operator==(const DirIterator& rhs) const -> bool;
+  auto operator!=(const DirIterator& rhs) const -> bool;
 
 private:
   GDir*       gobject_;
@@ -432,7 +432,7 @@ public:
 #endif
 
   Dir(const Dir&) = delete;
-  Dir& operator=(const Dir&) = delete;
+  auto operator=(const Dir&) -> Dir& = delete;
 
   /** Closes the directory and deallocates all related resources.
    */
@@ -443,7 +443,7 @@ public:
    * @return The entry's name or <tt>""</tt> if there are no more entries.
    * @see begin(), end()
    */
-  std::string read_name();
+  auto read_name() -> std::string;
 
   /** Resets the directory.  The next call to
    * read_name() will return the first entry again.
@@ -460,12 +460,12 @@ public:
   /** Get the begin of an input iterator sequence.
    * @return An input iterator pointing to the first directory entry.
    */
-  DirIterator begin();
+  auto begin() -> DirIterator;
 
   /** Get the end of an input iterator sequence.
    * @return An input iterator pointing behind the last directory entry.
    */
-  DirIterator end();
+  auto end() -> DirIterator;
 
 private:
   GDir* gobject_;
@@ -492,7 +492,7 @@ private:
  * @return Whether a test was true.
  */
 GLIBMM_API
-bool file_test(const std::string& filename, FileTest test);
+auto file_test(const std::string& filename, FileTest test) -> bool;
 
 /** Opens a temporary file.
  * @ingroup FileUtils
@@ -508,7 +508,7 @@ bool file_test(const std::string& filename, FileTest test);
  *   case of errors, <tt>-1</tt> is returned.
  */
 GLIBMM_API
-int mkstemp(std::string& filename_template);
+auto mkstemp(std::string& filename_template) -> int;
 
 /** Opens a file for writing in the preferred directory for temporary files
  * (as returned by Glib::get_tmp_dir()).
@@ -526,7 +526,7 @@ int mkstemp(std::string& filename_template);
  * @throw Glib::FileError
  */
 GLIBMM_API
-int file_open_tmp(std::string& name_used, const std::string& prefix);
+auto file_open_tmp(std::string& name_used, const std::string& prefix) -> int;
 
 /** Opens a file for writing in the preferred directory for temporary files
  * (as returned by Glib::get_tmp_dir()).
@@ -541,7 +541,7 @@ int file_open_tmp(std::string& name_used, const std::string& prefix);
  * @throw Glib::FileError
  */
 GLIBMM_API
-int file_open_tmp(std::string& name_used);
+auto file_open_tmp(std::string& name_used) -> int;
 
 /** Reads an entire file into a string, with good error checking.
  * @ingroup FileUtils
@@ -550,7 +550,7 @@ int file_open_tmp(std::string& name_used);
  * @throw Glib::FileError
  */
 GLIBMM_API
-std::string file_get_contents(const std::string& filename);
+auto file_get_contents(const std::string& filename) -> std::string;
 
 /** Writes all of @a contents to a file named @a filename, with good error checking.
  *

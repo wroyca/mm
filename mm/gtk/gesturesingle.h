@@ -68,7 +68,7 @@ public:
 
   // noncopyable
   GestureSingle(const GestureSingle&) = delete;
-  GestureSingle& operator=(const GestureSingle&) = delete;
+  auto operator=(const GestureSingle&) -> GestureSingle& = delete;
 
 private:  friend class GestureSingle_Class;
   static CppClassType gesturesingle_class_;
@@ -82,28 +82,28 @@ protected:
 public:
 
   GestureSingle(GestureSingle&& src) noexcept;
-  GestureSingle& operator=(GestureSingle&& src) noexcept;
+  auto operator=(GestureSingle&& src) noexcept -> GestureSingle&;
 
   ~GestureSingle() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkGestureSingle*       gobj()       { return reinterpret_cast<GtkGestureSingle*>(gobject_); }
+  auto       gobj() -> GtkGestureSingle*       { return reinterpret_cast<GtkGestureSingle*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkGestureSingle* gobj() const { return reinterpret_cast<GtkGestureSingle*>(gobject_); }
+  auto gobj() const -> const GtkGestureSingle* { return reinterpret_cast<GtkGestureSingle*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkGestureSingle* gobj_copy();
+  auto gobj_copy() -> GtkGestureSingle*;
 
 private:
 
@@ -122,7 +122,7 @@ public:
    *
    * @return <tt>true</tt> if the gesture only handles touch events.
    */
-  bool get_touch_only() const;
+  auto get_touch_only() const -> bool;
 
   /** Sets whether to handle only touch events.
    *
@@ -140,7 +140,7 @@ public:
    *
    * @return Whether the gesture is exclusive.
    */
-  bool get_exclusive() const;
+  auto get_exclusive() const -> bool;
 
   /** Sets whether @a gesture is exclusive.
    *
@@ -158,7 +158,7 @@ public:
    *
    * @return The button number, or 0 for any button.
    */
-  unsigned int get_button() const;
+  auto get_button() const -> unsigned int;
 
   /** Sets the button number @a gesture listens to.
    *
@@ -175,7 +175,7 @@ public:
    *
    * @return The current button number.
    */
-  unsigned int get_current_button() const;
+  auto get_current_button() const -> unsigned int;
 
   /** Returns the event sequence currently interacting with @a gesture.
    *
@@ -184,7 +184,7 @@ public:
    *
    * @return The current sequence.
    */
-  Gdk::EventSequence* get_current_sequence();
+  auto get_current_sequence() -> Gdk::EventSequence*;
 
   /** Returns the event sequence currently interacting with @a gesture.
    *
@@ -193,7 +193,7 @@ public:
    *
    * @return The current sequence.
    */
-  const Gdk::EventSequence* get_current_sequence() const;
+  auto get_current_sequence() const -> const Gdk::EventSequence*;
 
   /** Whether the gesture handles only touch events.
    *
@@ -202,7 +202,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_touch_only() ;
+  auto property_touch_only() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the gesture handles only touch events.
    *
@@ -211,7 +211,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_touch_only() const;
+  auto property_touch_only() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the gesture is exclusive.
    *
@@ -222,7 +222,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_exclusive() ;
+  auto property_exclusive() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the gesture is exclusive.
    *
@@ -233,7 +233,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_exclusive() const;
+  auto property_exclusive() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Mouse button number to listen to, or 0 to listen for any button.
    *
@@ -242,7 +242,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< unsigned int > property_button() ;
+  auto property_button() -> Glib::PropertyProxy< unsigned int > ;
 
 /** Mouse button number to listen to, or 0 to listen for any button.
    *
@@ -251,7 +251,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_button() const;
+  auto property_button() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
 
   // GestureSingle has no signals
@@ -284,7 +284,7 @@ namespace Glib
    * @relates Gtk::GestureSingle
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::GestureSingle> wrap(GtkGestureSingle* object, bool take_copy = false);
+  auto wrap(GtkGestureSingle* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureSingle>;
 }
 
 

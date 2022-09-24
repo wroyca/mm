@@ -61,19 +61,19 @@ class PANGOMM_API LayoutLine final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  PangoLayoutLine*       gobj();
+  auto       gobj() -> PangoLayoutLine*;
 
   ///Provides access to the underlying C instance.
-  const PangoLayoutLine* gobj() const;
+  auto gobj() const -> const PangoLayoutLine*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  PangoLayoutLine* gobj_copy() const;
+  auto gobj_copy() const -> PangoLayoutLine*;
 
   LayoutLine() = delete;
 
   // noncopyable
   LayoutLine(const LayoutLine&) = delete;
-  LayoutLine& operator=(const LayoutLine&) = delete;
+  auto operator=(const LayoutLine&) -> LayoutLine& = delete;
 
 protected:
   // Do not derive this.  Pango::LayoutLine can neither be constructed nor deleted.
@@ -106,14 +106,14 @@ public:
    * characters in the grapheme. 0 represents the leading edge of the grapheme.
    * @return <tt>false</tt> if @a x_pos was outside the line, <tt>true</tt> if inside.
    */
-  bool x_to_index(int x_pos, int& index, int& trailing) const;
+  auto x_to_index(int x_pos, int& index, int& trailing) const -> bool;
 
   /** Converts an index within a line to a @a x position.
    * @param index Byte offset of a grapheme within the layout.
    * @param trailing  A boolean indicating the edge of the grapheme to retrieve the position of. If <tt>false</tt>, the trailing edge of the grapheme, if <tt>true</tt> the leading of the grapheme.
    * @return The x offset (in thousands of a device unit).
    */
-  int index_to_x(int index, bool trailing) const;
+  auto index_to_x(int index, bool trailing) const -> int;
 
 
   /** Get a list of visual ranges corresponding to a given logical range.
@@ -130,7 +130,7 @@ public:
    * Otherwise, it will end at the trailing edge of the last character.
    * @return An array of ranges represented by pairs of integers marking the start and end pixel coordinates of the ranges.
    */
-  std::vector<std::pair<int,int> > get_x_ranges(int start_index, int end_index) const;
+  auto get_x_ranges(int start_index, int end_index) const -> std::vector<std::pair<int,int> >;
 
 
   /** Compute the logical and ink extents of a layout line. See the documentation
@@ -145,12 +145,12 @@ public:
   /** Compute the ink extents of a layout line.
    * @return The extents of the layout line as drawn.
    */
-  Rectangle get_ink_extents() const;
+  auto get_ink_extents() const -> Rectangle;
 
   /** Compute the logical extents of a layout line.
    * @return The logical extents of the layout line.
    */
-  Rectangle get_logical_extents() const;
+  auto get_logical_extents() const -> Rectangle;
 
 
   /** Compute the logical and ink extents of a layout line. See the documentation
@@ -167,12 +167,12 @@ public:
   /** Compute the ink extents of a layout line in device units.
    * @return The extents of the layout line as drawn.
    */
-  Rectangle get_pixel_ink_extents() const;
+  auto get_pixel_ink_extents() const -> Rectangle;
 
   /** Compute the logical extents of a layout line in device units.
    * @return The logical extents of the layout line.
    */
-  Rectangle get_pixel_logical_extents() const;
+  auto get_pixel_logical_extents() const -> Rectangle;
 
   /** Draws this LayoutLine in the specified Cairo context.
    * The origin of the glyphs (the left edge of the line) will
@@ -190,11 +190,11 @@ public:
    */
   void add_to_cairo_context(const Cairo::RefPtr<Cairo::Context>& context);
 
-  Glib::RefPtr<Pango::Layout> get_layout();
-  Glib::RefPtr<const Pango::Layout> get_layout() const;
+  auto get_layout() -> Glib::RefPtr<Pango::Layout>;
+  auto get_layout() const -> Glib::RefPtr<const Pango::Layout>;
   //_MEMBER_SET_GOBJECT(layout, layout, Pango::Layout, PangoLayout*)
-  int get_length() const;
-  int get_start_index() const;
+  auto get_length() const -> int;
+  auto get_start_index() const -> int;
 
 
 };
@@ -214,7 +214,7 @@ namespace Glib
  * @relates Pango::LayoutLine
  */
 PANGOMM_API
-Glib::RefPtr<Pango::LayoutLine> wrap(PangoLayoutLine* object, bool take_copy = false);
+auto wrap(PangoLayoutLine* object, bool take_copy = false) -> Glib::RefPtr<Pango::LayoutLine>;
 
 } // namespace Glib
 

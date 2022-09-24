@@ -69,7 +69,7 @@ public:
 
   // noncopyable
   FileInputStream(const FileInputStream&) = delete;
-  FileInputStream& operator=(const FileInputStream&) = delete;
+  auto operator=(const FileInputStream&) -> FileInputStream& = delete;
 
 private:  friend class FileInputStream_Class;
   static CppClassType fileinputstream_class_;
@@ -83,28 +83,28 @@ protected:
 public:
 
   FileInputStream(FileInputStream&& src) noexcept;
-  FileInputStream& operator=(FileInputStream&& src) noexcept;
+  auto operator=(FileInputStream&& src) noexcept -> FileInputStream&;
 
   ~FileInputStream() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GFileInputStream*       gobj()       { return reinterpret_cast<GFileInputStream*>(gobject_); }
+  auto       gobj() -> GFileInputStream*       { return reinterpret_cast<GFileInputStream*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GFileInputStream* gobj() const { return reinterpret_cast<GFileInputStream*>(gobject_); }
+  auto gobj() const -> const GFileInputStream* { return reinterpret_cast<GFileInputStream*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GFileInputStream* gobj_copy();
+  auto gobj_copy() -> GFileInputStream*;
 
 private:
 
@@ -121,7 +121,7 @@ public:
    * @param cancellable A Cancellable object.
    * @return A FileInfo, or an empty RefPtr on error.
    */
-  Glib::RefPtr<FileInfo> query_info(const Glib::RefPtr<Cancellable>& cancellable, const std::string& attributes = "*");
+  auto query_info(const Glib::RefPtr<Cancellable>& cancellable, const std::string& attributes = "*") -> Glib::RefPtr<FileInfo>;
 
   /** Queries a file input stream the given @a attributes. This function blocks
    * while querying the stream. For the asynchronous (non-blocking) version
@@ -132,7 +132,7 @@ public:
    * @param attributes A file attribute query string.
    * @return A FileInfo, or an empty RefPtr on error.
    */
-  Glib::RefPtr<FileInfo> query_info(const std::string& attributes = "*");
+  auto query_info(const std::string& attributes = "*") -> Glib::RefPtr<FileInfo>;
 
 
   /** Queries the stream information asynchronously. For the synchronous version of this function, see query_info().
@@ -167,7 +167,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<FileInfo> query_info_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto query_info_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<FileInfo>;
 
 
 public:
@@ -197,7 +197,7 @@ namespace Glib
    * @relates Gio::FileInputStream
    */
   GIOMM_API
-  Glib::RefPtr<Gio::FileInputStream> wrap(GFileInputStream* object, bool take_copy = false);
+  auto wrap(GFileInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileInputStream>;
 }
 
 

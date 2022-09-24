@@ -70,7 +70,7 @@ template <>
 class GIOMM_API Value<Gio::DataStreamByteOrder> : public Glib::Value_Enum<Gio::DataStreamByteOrder>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -117,7 +117,7 @@ template <>
 class GIOMM_API Value<Gio::DataStreamNewlineType> : public Glib::Value_Enum<Gio::DataStreamNewlineType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -168,7 +168,7 @@ template <>
 class GIOMM_API Value<Gio::SocketFamily> : public Glib::Value_Enum<Gio::SocketFamily>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -213,7 +213,7 @@ template <>
 class GIOMM_API Value<Gio::TlsAuthenticationMode> : public Glib::Value_Enum<Gio::TlsAuthenticationMode>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -297,31 +297,31 @@ enum class TlsCertificateFlags
 };
 
 /** @ingroup giommEnums */
-inline TlsCertificateFlags operator|(TlsCertificateFlags lhs, TlsCertificateFlags rhs)
+inline auto operator|(TlsCertificateFlags lhs, TlsCertificateFlags rhs) -> TlsCertificateFlags
   { return static_cast<TlsCertificateFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline TlsCertificateFlags operator&(TlsCertificateFlags lhs, TlsCertificateFlags rhs)
+inline auto operator&(TlsCertificateFlags lhs, TlsCertificateFlags rhs) -> TlsCertificateFlags
   { return static_cast<TlsCertificateFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline TlsCertificateFlags operator^(TlsCertificateFlags lhs, TlsCertificateFlags rhs)
+inline auto operator^(TlsCertificateFlags lhs, TlsCertificateFlags rhs) -> TlsCertificateFlags
   { return static_cast<TlsCertificateFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline TlsCertificateFlags operator~(TlsCertificateFlags flags)
+inline auto operator~(TlsCertificateFlags flags) -> TlsCertificateFlags
   { return static_cast<TlsCertificateFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline TlsCertificateFlags& operator|=(TlsCertificateFlags& lhs, TlsCertificateFlags rhs)
+inline auto operator|=(TlsCertificateFlags& lhs, TlsCertificateFlags rhs) -> TlsCertificateFlags&
   { return (lhs = static_cast<TlsCertificateFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline TlsCertificateFlags& operator&=(TlsCertificateFlags& lhs, TlsCertificateFlags rhs)
+inline auto operator&=(TlsCertificateFlags& lhs, TlsCertificateFlags rhs) -> TlsCertificateFlags&
   { return (lhs = static_cast<TlsCertificateFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline TlsCertificateFlags& operator^=(TlsCertificateFlags& lhs, TlsCertificateFlags rhs)
+inline auto operator^=(TlsCertificateFlags& lhs, TlsCertificateFlags rhs) -> TlsCertificateFlags&
   { return (lhs = static_cast<TlsCertificateFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -335,7 +335,7 @@ template <>
 class GIOMM_API Value<Gio::TlsCertificateFlags> : public Glib::Value_Flags<Gio::TlsCertificateFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib

@@ -85,7 +85,7 @@ public:
 
   // noncopyable
   ApplicationCommandLine(const ApplicationCommandLine&) = delete;
-  ApplicationCommandLine& operator=(const ApplicationCommandLine&) = delete;
+  auto operator=(const ApplicationCommandLine&) -> ApplicationCommandLine& = delete;
 
 private:  friend class ApplicationCommandLine_Class;
   static CppClassType applicationcommandline_class_;
@@ -99,28 +99,28 @@ protected:
 public:
 
   ApplicationCommandLine(ApplicationCommandLine&& src) noexcept;
-  ApplicationCommandLine& operator=(ApplicationCommandLine&& src) noexcept;
+  auto operator=(ApplicationCommandLine&& src) noexcept -> ApplicationCommandLine&;
 
   ~ApplicationCommandLine() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GApplicationCommandLine*       gobj()       { return reinterpret_cast<GApplicationCommandLine*>(gobject_); }
+  auto       gobj() -> GApplicationCommandLine*       { return reinterpret_cast<GApplicationCommandLine*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GApplicationCommandLine* gobj() const { return reinterpret_cast<GApplicationCommandLine*>(gobject_); }
+  auto gobj() const -> const GApplicationCommandLine* { return reinterpret_cast<GApplicationCommandLine*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GApplicationCommandLine* gobj_copy();
+  auto gobj_copy() -> GApplicationCommandLine*;
 
 private:
 
@@ -148,7 +148,7 @@ public:
    * @param[out] argc The length of the arguments array.
    * @return The string array containing the arguments (the argv).
    */
-  char** get_arguments(int& argc) const;
+  auto get_arguments(int& argc) const -> char**;
 
   //TODO: Wrap the GVariantDict*. See also Application's handle-local-options signal.
 
@@ -166,7 +166,7 @@ public:
    *
    * @return A VariantDict with the options.
    */
-  Glib::RefPtr<Glib::VariantDict> get_options_dict();
+  auto get_options_dict() -> Glib::RefPtr<Glib::VariantDict>;
 
   /** Gets the options there were passed to Glib::application_command_line().
    *
@@ -182,7 +182,7 @@ public:
    *
    * @return A VariantDict with the options.
    */
-  Glib::RefPtr<const Glib::VariantDict> get_options_dict() const;
+  auto get_options_dict() const -> Glib::RefPtr<const Glib::VariantDict>;
 
 
   /** Gets the stdin of the invoking process.
@@ -200,7 +200,7 @@ public:
    *
    * @return A InputStream for stdin.
    */
-  Glib::RefPtr<InputStream> get_stdin();
+  auto get_stdin() -> Glib::RefPtr<InputStream>;
 
   /** Gets the stdin of the invoking process.
    *
@@ -217,7 +217,7 @@ public:
    *
    * @return A InputStream for stdin.
    */
-  Glib::RefPtr<const InputStream> get_stdin() const;
+  auto get_stdin() const -> Glib::RefPtr<const InputStream>;
 
 
   //We use std::string instead of ustring because the C documentation says that it may be non-UTF-8 data:
@@ -235,7 +235,7 @@ public:
    *
    * @return The current directory, or <tt>nullptr</tt>.
    */
-  std::string get_cwd() const;
+  auto get_cwd() const -> std::string;
 
   //We use std::string instead of ustring because the C documentation says that it may be non-UTF-8 data:
 
@@ -260,7 +260,7 @@ public:
    *
    * @return The environment strings, or <tt>nullptr</tt> if they were not sent.
    */
-  std::vector<std::string> get_environ() const;
+  auto get_environ() const -> std::vector<std::string>;
 
   //We use std::string instead of ustring because the C documentation says that it may be non-UTF-8 data:
 
@@ -281,7 +281,7 @@ public:
    * @param name The environment variable to get.
    * @return The value of the variable, or <tt>nullptr</tt> if unset or unsent.
    */
-  std::string getenv(const Glib::ustring& name) const;
+  auto getenv(const Glib::ustring& name) const -> std::string;
 
 
   /** Determines if @a cmdline represents a remote invocation.
@@ -290,7 +290,7 @@ public:
    *
    * @return <tt>true</tt> if the invocation was remote.
    */
-  bool is_remote() const;
+  auto is_remote() const -> bool;
 
 
   /** Gets the platform data associated with the invocation of @a cmdline.
@@ -306,7 +306,7 @@ public:
    *
    * @return The platform data, or <tt>nullptr</tt>.
    */
-  Glib::Variant< std::map<Glib::ustring, Glib::VariantBase> > get_platform_data() const;
+  auto get_platform_data() const -> Glib::Variant< std::map<Glib::ustring, Glib::VariantBase> >;
 
 
   /** Sets the exit status that will be used when the invoking process
@@ -344,7 +344,7 @@ public:
    *
    * @return The exit status.
    */
-  int get_exit_status() const;
+  auto get_exit_status() const -> int;
 
   /** Formats a message and prints it using the stdout print handler in the invoking process.
    * If this is a local invocation then this is exactly equivalent to g_print().
@@ -376,7 +376,7 @@ public:
    * @param arg An argument from @a cmdline.
    * @return A new File.
    */
-  Glib::RefPtr<File> create_file_for_arg(const Glib::ustring& arg) const;
+  auto create_file_for_arg(const Glib::ustring& arg) const -> Glib::RefPtr<File>;
 
 
 public:
@@ -407,7 +407,7 @@ namespace Glib
    * @relates Gio::ApplicationCommandLine
    */
   GIOMM_API
-  Glib::RefPtr<Gio::ApplicationCommandLine> wrap(GApplicationCommandLine* object, bool take_copy = false);
+  auto wrap(GApplicationCommandLine* object, bool take_copy = false) -> Glib::RefPtr<Gio::ApplicationCommandLine>;
 }
 
 

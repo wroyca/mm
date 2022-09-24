@@ -55,29 +55,29 @@ class GDKMM_API RGBA
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
 
   explicit RGBA(GdkRGBA* gobject, bool make_a_copy = true);
 
   RGBA(const RGBA& other);
-  RGBA& operator=(const RGBA& other);
+  auto operator=(const RGBA& other) -> RGBA&;
 
   RGBA(RGBA&& other) noexcept;
-  RGBA& operator=(RGBA&& other) noexcept;
+  auto operator=(RGBA&& other) noexcept -> RGBA&;
 
   ~RGBA() noexcept;
 
   void swap(RGBA& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  GdkRGBA*       gobj()       { return gobject_; }
+  auto       gobj() -> GdkRGBA*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const GdkRGBA* gobj() const { return gobject_; }
+  auto gobj() const -> const GdkRGBA* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  GdkRGBA* gobj_copy() const;
+  auto gobj_copy() const -> GdkRGBA*;
 
 protected:
   GdkRGBA* gobject_;
@@ -192,27 +192,27 @@ public:
    * @param spec The string specifying the color.
    * @return <tt>true</tt> if the parsing succeeded.
    */
-  bool set(const Glib::ustring& spec);
+  auto set(const Glib::ustring& spec) -> bool;
 
   /** Get the red component of the color.
    * @result The red component of the color, in the range 0..65535.
    */
-  gushort get_red_u() const;
+  auto get_red_u() const -> gushort;
 
   /** Get the green component of the color.
    * @result The green component of the color, in the range 0..65535.
    */
-  gushort get_green_u() const;
+  auto get_green_u() const -> gushort;
 
   /** Get the blue component of the color.
    * @result The blue component of the color, in the range 0..65535.
    */
-  gushort get_blue_u() const;
+  auto get_blue_u() const -> gushort;
 
   /** Get the alpha component of the color.
    * @result The alpha component of the color, in the range 0..65535.
    */
-  gushort get_alpha_u() const;
+  auto get_alpha_u() const -> gushort;
 
   /** Set the red component of the color.
    * @param value The red component of the color, in the range 0..65535.
@@ -238,22 +238,22 @@ public:
   /** Get the red component of the color, as a fraction.
    * @result The red component of the color, as a fraction.
    */
-  float get_red() const;
+  auto get_red() const -> float;
 
   /** Get the green component of the color, as a fraction.
    * @result The green component of the color, as a fraction.
    */
-  float get_green() const;
+  auto get_green() const -> float;
 
   /** Get the blue component of the color, as a fraction.
    * @result The blue component of the color, as a fraction.
    */
-  float get_blue() const;
+  auto get_blue() const -> float;
 
   /** Get the alpha component of the color, as a fraction.
    * @result The alpha component of the color, as a fraction.
    */
-  float get_alpha() const;
+  auto get_alpha() const -> float;
 
   /** Set the red component of the color, as a fraction.
    * @param value The red component of the color, as a fraction.
@@ -292,7 +292,7 @@ public:
    *
    * @return A newly allocated text string.
    */
-  Glib::ustring to_string() const;
+  auto to_string() const -> Glib::ustring;
 
 
   /** Checks if an @a rgba value is transparent.
@@ -301,7 +301,7 @@ public:
    *
    * @return <tt>true</tt> if the @a rgba is clear.
    */
-  bool is_clear() const;
+  auto is_clear() const -> bool;
 
   /** Checks if an @a rgba value is opaque.
    *
@@ -310,7 +310,7 @@ public:
    *
    * @return <tt>true</tt> if the @a rgba is opaque.
    */
-  bool is_opaque() const;
+  auto is_opaque() const -> bool;
 
 
 };
@@ -325,9 +325,9 @@ struct RGBATraits
   typedef GdkRGBA    CType;
   typedef GdkRGBA    CTypeNonConst;
 
-  static CType   to_c_type      (const CppType& obj) { return *obj.gobj(); }
-  static CType   to_c_type      (const CType&   obj) { return obj; }
-  static CppType to_cpp_type    (const CType&   obj) { return CppType(const_cast<CType*>(&obj), true); }
+  static auto   to_c_type      (const CppType& obj) -> CType { return *obj.gobj(); }
+  static auto   to_c_type      (const CType&   obj) -> CType { return obj; }
+  static auto to_cpp_type    (const CType&   obj) -> CppType { return CppType(const_cast<CType*>(&obj), true); }
   static void    release_c_type (const CType&)       {}
 };
 #endif //DOXYGEN_SHOULD_SKIP_THIS
@@ -344,7 +344,7 @@ namespace Gdk
  * @result The result
  */
 GDKMM_API
-bool operator==(const RGBA& lhs, const RGBA& rhs);
+auto operator==(const RGBA& lhs, const RGBA& rhs) -> bool;
 
 /** @relates Gdk::RGBA
  * @param lhs The left-hand side
@@ -352,7 +352,7 @@ bool operator==(const RGBA& lhs, const RGBA& rhs);
  * @result The result
  */
 GDKMM_API
-bool operator!=(const RGBA& lhs, const RGBA& rhs);
+auto operator!=(const RGBA& lhs, const RGBA& rhs) -> bool;
 
 
 } // namespace Gdk
@@ -382,7 +382,7 @@ namespace Glib
  * @relates Gdk::RGBA
  */
 GDKMM_API
-Gdk::RGBA wrap(GdkRGBA* object, bool take_copy = false);
+auto wrap(GdkRGBA* object, bool take_copy = false) -> Gdk::RGBA;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

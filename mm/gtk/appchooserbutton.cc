@@ -36,7 +36,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo AppChooserButton_signal_changed_info =
+const Glib::SignalProxyInfo AppChooserButton_signal_changed_info =
 {
   "changed",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -44,7 +44,7 @@ static const Glib::SignalProxyInfo AppChooserButton_signal_changed_info =
 };
 
 
-static void AppChooserButton_signal_custom_item_activated_callback(GtkAppChooserButton* self, const gchar* p0,void* data)
+void AppChooserButton_signal_custom_item_activated_callback(GtkAppChooserButton* self, const gchar* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -66,7 +66,7 @@ static void AppChooserButton_signal_custom_item_activated_callback(GtkAppChooser
   }
 }
 
-static const Glib::SignalProxyInfo AppChooserButton_signal_custom_item_activated_info =
+const Glib::SignalProxyInfo AppChooserButton_signal_custom_item_activated_info =
 {
   "custom-item-activated",
   (GCallback) &AppChooserButton_signal_custom_item_activated_callback,
@@ -80,7 +80,7 @@ static const Glib::SignalProxyInfo AppChooserButton_signal_custom_item_activated
 namespace Glib
 {
 
-Gtk::AppChooserButton* wrap(GtkAppChooserButton* object, bool take_copy)
+auto wrap(GtkAppChooserButton* object, bool take_copy) -> Gtk::AppChooserButton*
 {
   return dynamic_cast<Gtk::AppChooserButton *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -93,7 +93,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& AppChooserButton_Class::init()
+auto AppChooserButton_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -125,7 +125,7 @@ void AppChooserButton_Class::class_init_function(void* g_class, void* class_data
 }
 
 
-Glib::ObjectBase* AppChooserButton_Class::wrap_new(GObject* o)
+auto AppChooserButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new AppChooserButton((GtkAppChooserButton*)(o)));
 
@@ -152,7 +152,7 @@ AppChooserButton::AppChooserButton(AppChooserButton&& src) noexcept
   , AppChooser(std::move(src))
 {}
 
-AppChooserButton& AppChooserButton::operator=(AppChooserButton&& src) noexcept
+auto AppChooserButton::operator=(AppChooserButton&& src) noexcept -> AppChooserButton&
 {
   Widget::operator=(std::move(src));
   AppChooser::operator=(std::move(src));
@@ -166,13 +166,13 @@ AppChooserButton::~AppChooserButton() noexcept
 
 AppChooserButton::CppClassType AppChooserButton::appchooserbutton_class_; // initialize static member
 
-GType AppChooserButton::get_type()
+auto AppChooserButton::get_type() -> GType
 {
   return appchooserbutton_class_.init().get_type();
 }
 
 
-GType AppChooserButton::get_base_type()
+auto AppChooserButton::get_base_type() -> GType
 {
   return gtk_app_chooser_button_get_type();
 }
@@ -208,7 +208,7 @@ void AppChooserButton::set_show_dialog_item(bool setting)
   gtk_app_chooser_button_set_show_dialog_item(gobj(), static_cast<int>(setting));
 }
 
-bool AppChooserButton::get_show_dialog_item() const
+auto AppChooserButton::get_show_dialog_item() const -> bool
 {
   return gtk_app_chooser_button_get_show_dialog_item(const_cast<GtkAppChooserButton*>(gobj()));
 }
@@ -218,7 +218,7 @@ void AppChooserButton::set_heading(const Glib::ustring& heading)
   gtk_app_chooser_button_set_heading(gobj(), heading.c_str());
 }
 
-Glib::ustring AppChooserButton::get_heading() const
+auto AppChooserButton::get_heading() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_app_chooser_button_get_heading(const_cast<GtkAppChooserButton*>(gobj())));
 }
@@ -228,7 +228,7 @@ void AppChooserButton::set_show_default_item(bool setting)
   gtk_app_chooser_button_set_show_default_item(gobj(), static_cast<int>(setting));
 }
 
-bool AppChooserButton::get_show_default_item() const
+auto AppChooserButton::get_show_default_item() const -> bool
 {
   return gtk_app_chooser_button_get_show_default_item(const_cast<GtkAppChooserButton*>(gobj()));
 }
@@ -238,60 +238,60 @@ void AppChooserButton::set_modal(bool modal)
   gtk_app_chooser_button_set_modal(gobj(), static_cast<int>(modal));
 }
 
-bool AppChooserButton::get_modal() const
+auto AppChooserButton::get_modal() const -> bool
 {
   return gtk_app_chooser_button_get_modal(const_cast<GtkAppChooserButton*>(gobj()));
 }
 
 
-Glib::SignalProxy<void()> AppChooserButton::signal_changed()
+auto AppChooserButton::signal_changed() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &AppChooserButton_signal_changed_info);
 }
 
 
-Glib::SignalProxyDetailed<void(const Glib::ustring&)> AppChooserButton::signal_custom_item_activated(const Glib::ustring& custom_item_name)
+auto AppChooserButton::signal_custom_item_activated(const Glib::ustring& custom_item_name) -> Glib::SignalProxyDetailed<void(const Glib::ustring&)>
 {
   return Glib::SignalProxyDetailed<void(const Glib::ustring&)>(this, &AppChooserButton_signal_custom_item_activated_info, custom_item_name);
 }
 
 
-Glib::PropertyProxy< bool > AppChooserButton::property_show_dialog_item()
+auto AppChooserButton::property_show_dialog_item() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "show-dialog-item");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > AppChooserButton::property_show_dialog_item() const
+auto AppChooserButton::property_show_dialog_item() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "show-dialog-item");
 }
 
-Glib::PropertyProxy< Glib::ustring > AppChooserButton::property_heading()
+auto AppChooserButton::property_heading() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "heading");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > AppChooserButton::property_heading() const
+auto AppChooserButton::property_heading() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "heading");
 }
 
-Glib::PropertyProxy< bool > AppChooserButton::property_show_default_item()
+auto AppChooserButton::property_show_default_item() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "show-default-item");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > AppChooserButton::property_show_default_item() const
+auto AppChooserButton::property_show_default_item() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "show-default-item");
 }
 
-Glib::PropertyProxy< bool > AppChooserButton::property_modal()
+auto AppChooserButton::property_modal() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "modal");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > AppChooserButton::property_modal() const
+auto AppChooserButton::property_modal() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "modal");
 }

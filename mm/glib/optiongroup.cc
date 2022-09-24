@@ -51,11 +51,11 @@ public:
   {
   }
 
-  bool is_filename_option() const { return slot_filename_ != nullptr; }
+  auto is_filename_option() const -> bool { return slot_filename_ != nullptr; }
 
-  const OptionGroup::SlotOptionArgString* get_slot_string() const { return slot_string_; }
+  auto get_slot_string() const -> const OptionGroup::SlotOptionArgString* { return slot_string_; }
 
-  const OptionGroup::SlotOptionArgFilename* get_slot_filename() const { return slot_filename_; }
+  auto get_slot_filename() const -> const OptionGroup::SlotOptionArgFilename* { return slot_filename_; }
 
   ~OptionArgCallback()
   {
@@ -70,14 +70,14 @@ private:
 
   // Not copyable
   OptionArgCallback(const OptionArgCallback&);
-  OptionArgCallback& operator=(const OptionArgCallback&);
+  auto operator=(const OptionArgCallback&) -> OptionArgCallback&;
 };
 
 extern "C" {
 
-static gboolean
+static auto
 g_callback_pre_parse(
-  GOptionContext* context, GOptionGroup* /* group */, gpointer data, GError** error)
+  GOptionContext* context, GOptionGroup* /* group */, gpointer data, GError** error) -> gboolean
 {
   OptionContext cppContext(context, false /* take_ownership */);
 
@@ -128,8 +128,8 @@ g_callback_error(
   }
 }
 
-const gchar*
-OptionGroup_Translate_glibmm_callback(const gchar* string, gpointer data)
+auto
+OptionGroup_Translate_glibmm_callback(const gchar* string, gpointer data) -> const gchar*
 {
   Glib::OptionGroup::SlotTranslate* the_slot = static_cast<Glib::OptionGroup::SlotTranslate*>(data);
 
@@ -157,9 +157,9 @@ OptionGroup_Translate_glibmm_callback_destroy(void* data)
 } // anonymous namespace
 
 // static
-gboolean
+auto
 OptionGroup::post_parse_callback(
-  GOptionContext* context, GOptionGroup* /* group */, gpointer data, GError** error)
+  GOptionContext* context, GOptionGroup* /* group */, gpointer data, GError** error) -> gboolean
 {
   OptionContext cppContext(context, false /* take_ownership */);
 
@@ -196,9 +196,9 @@ OptionGroup::post_parse_callback(
 }
 
 // static
-gboolean
+auto
 OptionGroup::option_arg_callback(
-  const gchar* option_name, const gchar* value, gpointer data, GError** error)
+  const gchar* option_name, const gchar* value, gpointer data, GError** error) -> gboolean
 {
   const Glib::ustring cpp_option_name(option_name);
   const OptionGroup* const option_group = static_cast<const OptionGroup*>(data);
@@ -471,14 +471,14 @@ OptionGroup::add_entry_with_wrapper(const OptionEntry& entry, GOptionArg arg_typ
   }
 }
 
-bool
-OptionGroup::on_pre_parse(OptionContext& /* context */)
+auto
+OptionGroup::on_pre_parse(OptionContext& /* context */) -> bool
 {
   return true;
 }
 
-bool
-OptionGroup::on_post_parse(OptionContext& /* context */)
+auto
+OptionGroup::on_post_parse(OptionContext& /* context */) -> bool
 {
   return true;
 }
@@ -829,8 +829,8 @@ OptionGroup::CppOptionEntry::convert_c_to_cpp()
   }
 }
 
-GOptionGroup*
-OptionGroup::gobj_copy() const
+auto
+OptionGroup::gobj_copy() const -> GOptionGroup*
 {
   return g_option_group_ref(gobject_);
 }

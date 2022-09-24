@@ -77,11 +77,11 @@ class Entry
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Entry(Entry&& src) noexcept;
-  Entry& operator=(Entry&& src) noexcept;
+  auto operator=(Entry&& src) noexcept -> Entry&;
 
   // noncopyable
   Entry(const Entry&) = delete;
-  Entry& operator=(const Entry&) = delete;
+  auto operator=(const Entry&) -> Entry& = delete;
 
   ~Entry() noexcept override;
 
@@ -101,19 +101,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkEntry*       gobj()       { return reinterpret_cast<GtkEntry*>(gobject_); }
+  auto       gobj() -> GtkEntry*       { return reinterpret_cast<GtkEntry*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkEntry* gobj() const { return reinterpret_cast<GtkEntry*>(gobject_); }
+  auto gobj() const -> const GtkEntry* { return reinterpret_cast<GtkEntry*>(gobject_); }
 
 private:
 
@@ -150,14 +150,14 @@ public:
    *
    * @return A `Gtk::EntryBuffer` object.
    */
-  Glib::RefPtr<EntryBuffer> get_buffer();
+  auto get_buffer() -> Glib::RefPtr<EntryBuffer>;
 
   /** Get the `Gtk::EntryBuffer` object which holds the text for
    * this widget.
    *
    * @return A `Gtk::EntryBuffer` object.
    */
-  Glib::RefPtr<const EntryBuffer> get_buffer() const;
+  auto get_buffer() const -> Glib::RefPtr<const EntryBuffer>;
 
 
   /** Set the `Gtk::EntryBuffer` object which holds the text for
@@ -192,7 +192,7 @@ public:
    *
    * @return <tt>true</tt> if the text is currently visible.
    */
-  bool get_visibility() const;
+  auto get_visibility() const -> bool;
 
   /** Sets the character to use in place of the actual text
    * in “password mode”.
@@ -220,7 +220,7 @@ public:
    * @return The current invisible char, or 0, if the entry does not
    * show invisible text at all.
    */
-  gunichar get_invisible_char() const;
+  auto get_invisible_char() const -> gunichar;
 
   /** Sets whether the entry has a beveled frame around it.
    *
@@ -232,7 +232,7 @@ public:
    *
    * @return Whether the entry has a beveled frame.
    */
-  bool get_has_frame() const;
+  auto get_has_frame() const -> bool;
 
 
   /** Sets whether the text is overwritten when typing in the `Gtk::Entry`.
@@ -245,7 +245,7 @@ public:
    *
    * @return Whether the text is overwritten when typing.
    */
-  bool get_overwrite_mode() const;
+  auto get_overwrite_mode() const -> bool;
 
   /** Sets the maximum allowed length of the contents of the widget.
    *
@@ -268,7 +268,7 @@ public:
    * @return The maximum allowed number of characters
    * in `Gtk::Entry`, or 0 if there is no maximum.
    */
-  int get_max_length() const;
+  auto get_max_length() const -> int;
 
   /** Retrieves the current length of the text in @a entry.
    *
@@ -278,7 +278,7 @@ public:
    * @return The current number of characters
    * in `Gtk::Entry`, or 0 if there are none.
    */
-  guint16 get_text_length() const;
+  auto get_text_length() const -> guint16;
 
   /** Sets whether pressing Enter in the @a entry will activate the default
    * widget for the window containing the entry.
@@ -294,7 +294,7 @@ public:
    *
    * @return <tt>true</tt> if the entry will activate the default widget.
    */
-  gboolean get_activates_default() const;
+  auto get_activates_default() const -> gboolean;
 
 
   /** Sets the alignment for the contents of the entry.
@@ -327,7 +327,7 @@ public:
    *
    * @return The alignment.
    */
-  float get_alignment() const;
+  auto get_alignment() const -> float;
 
 
   /** Sets @a completion to be the auxiliary completion object
@@ -347,7 +347,7 @@ public:
    * @return The auxiliary
    * completion object currently in use by @a entry.
    */
-  Glib::RefPtr<EntryCompletion> get_completion();
+  auto get_completion() -> Glib::RefPtr<EntryCompletion>;
 
   /** Returns the auxiliary completion object currently
    * in use by @a entry.
@@ -355,7 +355,7 @@ public:
    * @return The auxiliary
    * completion object currently in use by @a entry.
    */
-  Glib::RefPtr<const EntryCompletion> get_completion() const;
+  auto get_completion() const -> Glib::RefPtr<const EntryCompletion>;
 
 
   /** Causes the entry’s progress indicator to “fill in” the given
@@ -373,7 +373,7 @@ public:
    *
    * @return A fraction from 0.0 to 1.0.
    */
-  double get_progress_fraction() const;
+  auto get_progress_fraction() const -> double;
 
   /** Sets the fraction of total entry width to move the progress
    * bouncing block for each pulse.
@@ -390,7 +390,7 @@ public:
    *
    * @return A fraction from 0.0 to 1.0.
    */
-  double get_progress_pulse_step();
+  auto get_progress_pulse_step() -> double;
 
   /** Indicates that some progress is made, but you don’t
    * know how much.
@@ -413,7 +413,7 @@ public:
    * not be freed, modified or stored. If no placeholder
    * text has been set, <tt>nullptr</tt> will be returned.
    */
-  Glib::ustring get_placeholder_text() const;
+  auto get_placeholder_text() const -> Glib::ustring;
 
   /** Sets text to be displayed in @a entry when it is empty.
    *
@@ -486,7 +486,7 @@ public:
    * @param icon_pos Icon position.
    * @return Image representation being used.
    */
-  Image::Type get_icon_storage_type(IconPosition icon_pos =  IconPosition::PRIMARY) const;
+  auto get_icon_storage_type(IconPosition icon_pos =  IconPosition::PRIMARY) const -> Image::Type;
 
   /** Retrieves the `Gdk::Paintable` used for the icon.
    *
@@ -497,7 +497,7 @@ public:
    * if no icon is set for this position or the icon set is not
    * a `Gdk::Paintable`.
    */
-  Glib::RefPtr<Gdk::Paintable> get_icon_paintable(IconPosition icon_pos =  IconPosition::PRIMARY);
+  auto get_icon_paintable(IconPosition icon_pos =  IconPosition::PRIMARY) -> Glib::RefPtr<Gdk::Paintable>;
 
   /** Retrieves the `Gdk::Paintable` used for the icon.
    *
@@ -508,7 +508,7 @@ public:
    * if no icon is set for this position or the icon set is not
    * a `Gdk::Paintable`.
    */
-  Glib::RefPtr<const Gdk::Paintable> get_icon_paintable(IconPosition icon_pos =  IconPosition::PRIMARY) const;
+  auto get_icon_paintable(IconPosition icon_pos =  IconPosition::PRIMARY) const -> Glib::RefPtr<const Gdk::Paintable>;
 
   /** Retrieves the icon name used for the icon.
    *
@@ -518,7 +518,7 @@ public:
    * @param icon_pos Icon position.
    * @return An icon name.
    */
-  Glib::ustring get_icon_name(IconPosition icon_pos =  IconPosition::PRIMARY) const;
+  auto get_icon_name(IconPosition icon_pos =  IconPosition::PRIMARY) const -> Glib::ustring;
 
   /** Retrieves the `Gio::Icon` used for the icon.
    *
@@ -528,7 +528,7 @@ public:
    * @param icon_pos Icon position.
    * @return A `Gio::Icon`.
    */
-  Glib::RefPtr<Gio::Icon> get_icon_gicon(IconPosition icon_pos =  IconPosition::PRIMARY);
+  auto get_icon_gicon(IconPosition icon_pos =  IconPosition::PRIMARY) -> Glib::RefPtr<Gio::Icon>;
 
   /** Retrieves the `Gio::Icon` used for the icon.
    *
@@ -538,7 +538,7 @@ public:
    * @param icon_pos Icon position.
    * @return A `Gio::Icon`.
    */
-  Glib::RefPtr<const Gio::Icon> get_icon_gicon(IconPosition icon_pos =  IconPosition::PRIMARY) const;
+  auto get_icon_gicon(IconPosition icon_pos =  IconPosition::PRIMARY) const -> Glib::RefPtr<const Gio::Icon>;
 
 
   /** Sets whether the icon is activatable.
@@ -555,7 +555,7 @@ public:
    * @param icon_pos Icon position.
    * @return <tt>true</tt> if the icon is activatable.
    */
-  bool get_icon_activatable(IconPosition icon_pos =  IconPosition::PRIMARY) const;
+  auto get_icon_activatable(IconPosition icon_pos =  IconPosition::PRIMARY) const -> bool;
 
   /** Sets the sensitivity for the specified icon.
    *
@@ -570,7 +570,7 @@ public:
    * @param icon_pos Icon position.
    * @return <tt>true</tt> if the icon is sensitive.
    */
-  bool get_icon_sensitive(IconPosition icon_pos =  IconPosition::PRIMARY);
+  auto get_icon_sensitive(IconPosition icon_pos =  IconPosition::PRIMARY) -> bool;
 
   /** Finds the icon at the given position and return its index.
    *
@@ -583,7 +583,7 @@ public:
    * @param y The y coordinate of the position to find, relative to @a entry.
    * @return The index of the icon at the given position, or -1.
    */
-  int get_icon_at_pos(int x, int y) const;
+  auto get_icon_at_pos(int x, int y) const -> int;
 
 
   /** Sets @a tooltip as the contents of the tooltip for the icon
@@ -617,7 +617,7 @@ public:
    * @param icon_pos The icon position.
    * @return The tooltip text.
    */
-  Glib::ustring get_icon_tooltip_text(IconPosition icon_pos =  IconPosition::PRIMARY) const;
+  auto get_icon_tooltip_text(IconPosition icon_pos =  IconPosition::PRIMARY) const -> Glib::ustring;
 
 
   /** Sets @a tooltip as the contents of the tooltip for the icon at
@@ -643,7 +643,7 @@ public:
    * @param icon_pos The icon position.
    * @return The tooltip text.
    */
-  Glib::ustring get_icon_tooltip_markup(IconPosition icon_pos =  IconPosition::PRIMARY) const;
+  auto get_icon_tooltip_markup(IconPosition icon_pos =  IconPosition::PRIMARY) const -> Glib::ustring;
 
 
   /** Sets up the icon at the given position as drag source.
@@ -666,7 +666,7 @@ public:
    *
    * @newin{3,0}
    */
-  Gdk::Rectangle get_icon_area(IconPosition icon_pos = IconPosition::PRIMARY) const;
+  auto get_icon_area(IconPosition icon_pos = IconPosition::PRIMARY) const -> Gdk::Rectangle;
 
 
   /** Returns the index of the icon which is the source of the
@@ -675,7 +675,7 @@ public:
    * @return Index of the icon which is the source of the
    * current DND operation, or -1.
    */
-  int get_current_icon_drag_source();
+  auto get_current_icon_drag_source() -> int;
 
   /** Reset the input method context of the entry if needed.
    *
@@ -696,7 +696,7 @@ public:
    *
    * @return The input purpose.
    */
-  InputPurpose get_input_purpose() const;
+  auto get_input_purpose() const -> InputPurpose;
 
 
   /** Set additional hints which allow input methods to
@@ -710,7 +710,7 @@ public:
    *
    * @return The input hints.
    */
-  InputHints get_input_hints() const;
+  auto get_input_hints() const -> InputHints;
 
 
   /** Sets a `Pango::AttrList`.
@@ -731,7 +731,7 @@ public:
    *
    * @return The attribute list.
    */
-  Pango::AttrList get_attributes() const;
+  auto get_attributes() const -> Pango::AttrList;
 
 
   /** Sets a `Pango::TabArray`.
@@ -748,7 +748,7 @@ public:
    *
    * @return The tabstops.
    */
-  Pango::TabArray get_tabs() const;
+  auto get_tabs() const -> Pango::TabArray;
 
 
   /** Causes @a entry to have keyboard focus.
@@ -772,13 +772,13 @@ public:
    *
    * @return The menu model.
    */
-  Glib::RefPtr<Gio::MenuModel> get_extra_menu();
+  auto get_extra_menu() -> Glib::RefPtr<Gio::MenuModel>;
 
   /** Gets the menu model set with set_extra_menu().
    *
    * @return The menu model.
    */
-  Glib::RefPtr<const Gio::MenuModel> get_extra_menu() const;
+  auto get_extra_menu() const -> Glib::RefPtr<const Gio::MenuModel>;
 
   //TODO: Remove no_default_handler on "activate" when we can break ABI.
   // "activate" is an action signal. Nevertheless it can be used by applications.
@@ -798,7 +798,7 @@ public:
    * @newin{4,8}
    */
 
-  Glib::SignalProxy<void()> signal_activate();
+  auto signal_activate() -> Glib::SignalProxy<void()>;
 
 
   // no_default_handler because the wrapped C signals have no default handlers.
@@ -815,7 +815,7 @@ public:
    * @param icon_position The position of the clicked icon.
    */
 
-  Glib::SignalProxy<void(IconPosition)> signal_icon_release();
+  auto signal_icon_release() -> Glib::SignalProxy<void(IconPosition)>;
 
 
   /**
@@ -829,7 +829,7 @@ public:
    * @param icon_position The position of the clicked icon.
    */
 
-  Glib::SignalProxy<void(IconPosition)> signal_icon_press();
+  auto signal_icon_press() -> Glib::SignalProxy<void(IconPosition)>;
 
 
   /** The buffer object which actually stores the text.
@@ -837,14 +837,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<EntryBuffer> > property_buffer() ;
+  auto property_buffer() -> Glib::PropertyProxy< Glib::RefPtr<EntryBuffer> > ;
 
 /** The buffer object which actually stores the text.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<EntryBuffer> > property_buffer() const;
+  auto property_buffer() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<EntryBuffer> >;
 
   /** Maximum number of characters for this entry.
    *
@@ -853,7 +853,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_max_length() ;
+  auto property_max_length() -> Glib::PropertyProxy< int > ;
 
 /** Maximum number of characters for this entry.
    *
@@ -862,7 +862,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_max_length() const;
+  auto property_max_length() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Whether the entry should show the “invisible char” instead of the
    * actual text (“password mode”).
@@ -872,7 +872,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_visibility() ;
+  auto property_visibility() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the entry should show the “invisible char” instead of the
    * actual text (“password mode”).
@@ -882,7 +882,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_visibility() const;
+  auto property_visibility() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whehter the entry should draw a frame.
    *
@@ -891,7 +891,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_has_frame() ;
+  auto property_has_frame() -> Glib::PropertyProxy< bool > ;
 
 /** Whehter the entry should draw a frame.
    *
@@ -900,7 +900,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_frame() const;
+  auto property_has_frame() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The character to use when masking entry contents (“password mode”).
    *
@@ -909,7 +909,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< gunichar > property_invisible_char() ;
+  auto property_invisible_char() -> Glib::PropertyProxy< gunichar > ;
 
 /** The character to use when masking entry contents (“password mode”).
    *
@@ -918,7 +918,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< gunichar > property_invisible_char() const;
+  auto property_invisible_char() const -> Glib::PropertyProxy_ReadOnly< gunichar >;
 
   /** Whether the invisible char has been set for the `Gtk::Entry`.
    *
@@ -927,7 +927,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_invisible_char_set() ;
+  auto property_invisible_char_set() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the invisible char has been set for the `Gtk::Entry`.
    *
@@ -936,7 +936,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_invisible_char_set() const;
+  auto property_invisible_char_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether to activate the default widget when Enter is pressed.
    *
@@ -945,7 +945,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_activates_default() ;
+  auto property_activates_default() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to activate the default widget when Enter is pressed.
    *
@@ -954,7 +954,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_activates_default() const;
+  auto property_activates_default() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Number of pixels of the entry scrolled off the screen to the left.
    *
@@ -963,7 +963,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_scroll_offset() const;
+  auto property_scroll_offset() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** When <tt>true</tt>, pasted multi-line text is truncated to the first line.
@@ -973,7 +973,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_truncate_multiline() ;
+  auto property_truncate_multiline() -> Glib::PropertyProxy< bool > ;
 
 /** When <tt>true</tt>, pasted multi-line text is truncated to the first line.
    *
@@ -982,7 +982,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_truncate_multiline() const;
+  auto property_truncate_multiline() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** If text is overwritten when typing in the `Gtk::Entry`.
    *
@@ -991,7 +991,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_overwrite_mode() ;
+  auto property_overwrite_mode() -> Glib::PropertyProxy< bool > ;
 
 /** If text is overwritten when typing in the `Gtk::Entry`.
    *
@@ -1000,7 +1000,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_overwrite_mode() const;
+  auto property_overwrite_mode() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The length of the text in the `Gtk::Entry`.
    *
@@ -1009,7 +1009,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_text_length() const;
+  auto property_text_length() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
   /** The current fraction of the task that's been completed.
@@ -1019,7 +1019,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_progress_fraction() ;
+  auto property_progress_fraction() -> Glib::PropertyProxy< double > ;
 
 /** The current fraction of the task that's been completed.
    *
@@ -1028,7 +1028,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_progress_fraction() const;
+  auto property_progress_fraction() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** The fraction of total entry width to move the progress
    * bouncing block for each pulse.
@@ -1040,7 +1040,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_progress_pulse_step() ;
+  auto property_progress_pulse_step() -> Glib::PropertyProxy< double > ;
 
 /** The fraction of total entry width to move the progress
    * bouncing block for each pulse.
@@ -1052,35 +1052,35 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_progress_pulse_step() const;
+  auto property_progress_pulse_step() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** A `Gdk::Paintable` to use as the primary icon for the entry.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> > property_primary_icon_paintable() ;
+  auto property_primary_icon_paintable() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> > ;
 
 /** A `Gdk::Paintable` to use as the primary icon for the entry.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> > property_primary_icon_paintable() const;
+  auto property_primary_icon_paintable() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> >;
 
   /** A `Gdk::Paintable` to use as the secondary icon for the entry.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> > property_secondary_icon_paintable() ;
+  auto property_secondary_icon_paintable() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> > ;
 
 /** A `Gdk::Paintable` to use as the secondary icon for the entry.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> > property_secondary_icon_paintable() const;
+  auto property_secondary_icon_paintable() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> >;
 
   /** The icon name to use for the primary icon for the entry.
    *
@@ -1089,7 +1089,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_primary_icon_name() ;
+  auto property_primary_icon_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The icon name to use for the primary icon for the entry.
    *
@@ -1098,7 +1098,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_primary_icon_name() const;
+  auto property_primary_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The icon name to use for the secondary icon for the entry.
    *
@@ -1107,7 +1107,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_secondary_icon_name() ;
+  auto property_secondary_icon_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The icon name to use for the secondary icon for the entry.
    *
@@ -1116,35 +1116,35 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_secondary_icon_name() const;
+  auto property_secondary_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The `Gio::Icon` to use for the primary icon for the entry.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> > property_primary_icon_gicon() ;
+  auto property_primary_icon_gicon() -> Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> > ;
 
 /** The `Gio::Icon` to use for the primary icon for the entry.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> > property_primary_icon_gicon() const;
+  auto property_primary_icon_gicon() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> >;
 
   /** The `Gio::Icon` to use for the secondary icon for the entry.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> > property_secondary_icon_gicon() ;
+  auto property_secondary_icon_gicon() -> Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> > ;
 
 /** The `Gio::Icon` to use for the secondary icon for the entry.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> > property_secondary_icon_gicon() const;
+  auto property_secondary_icon_gicon() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> >;
 
   /** The representation which is used for the primary icon of the entry.
    *
@@ -1153,7 +1153,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Image::Type > property_primary_icon_storage_type() const;
+  auto property_primary_icon_storage_type() const -> Glib::PropertyProxy_ReadOnly< Image::Type >;
 
 
   /** The representation which is used for the secondary icon of the entry.
@@ -1163,7 +1163,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Image::Type > property_secondary_icon_storage_type() const;
+  auto property_secondary_icon_storage_type() const -> Glib::PropertyProxy_ReadOnly< Image::Type >;
 
 
   /** Whether the primary icon is activatable.
@@ -1180,7 +1180,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_primary_icon_activatable() ;
+  auto property_primary_icon_activatable() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the primary icon is activatable.
    *
@@ -1196,7 +1196,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_primary_icon_activatable() const;
+  auto property_primary_icon_activatable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the secondary icon is activatable.
    *
@@ -1212,7 +1212,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_secondary_icon_activatable() ;
+  auto property_secondary_icon_activatable() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the secondary icon is activatable.
    *
@@ -1228,7 +1228,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_secondary_icon_activatable() const;
+  auto property_secondary_icon_activatable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the primary icon is sensitive.
    *
@@ -1244,7 +1244,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_primary_icon_sensitive() ;
+  auto property_primary_icon_sensitive() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the primary icon is sensitive.
    *
@@ -1260,7 +1260,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_primary_icon_sensitive() const;
+  auto property_primary_icon_sensitive() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the secondary icon is sensitive.
    *
@@ -1276,7 +1276,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_secondary_icon_sensitive() ;
+  auto property_secondary_icon_sensitive() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the secondary icon is sensitive.
    *
@@ -1292,7 +1292,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_secondary_icon_sensitive() const;
+  auto property_secondary_icon_sensitive() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The contents of the tooltip on the primary icon.
    *
@@ -1303,7 +1303,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_primary_icon_tooltip_text() ;
+  auto property_primary_icon_tooltip_text() -> Glib::PropertyProxy< bool > ;
 
 /** The contents of the tooltip on the primary icon.
    *
@@ -1314,7 +1314,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_primary_icon_tooltip_text() const;
+  auto property_primary_icon_tooltip_text() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The contents of the tooltip on the secondary icon.
    *
@@ -1325,7 +1325,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_secondary_icon_tooltip_text() ;
+  auto property_secondary_icon_tooltip_text() -> Glib::PropertyProxy< bool > ;
 
 /** The contents of the tooltip on the secondary icon.
    *
@@ -1336,7 +1336,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_secondary_icon_tooltip_text() const;
+  auto property_secondary_icon_tooltip_text() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The contents of the tooltip on the primary icon, with markup.
    *
@@ -1347,7 +1347,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_primary_icon_tooltip_markup() ;
+  auto property_primary_icon_tooltip_markup() -> Glib::PropertyProxy< bool > ;
 
 /** The contents of the tooltip on the primary icon, with markup.
    *
@@ -1358,7 +1358,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_primary_icon_tooltip_markup() const;
+  auto property_primary_icon_tooltip_markup() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The contents of the tooltip on the secondary icon, with markup.
    *
@@ -1369,7 +1369,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_secondary_icon_tooltip_markup() ;
+  auto property_secondary_icon_tooltip_markup() -> Glib::PropertyProxy< bool > ;
 
 /** The contents of the tooltip on the secondary icon, with markup.
    *
@@ -1380,7 +1380,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_secondary_icon_tooltip_markup() const;
+  auto property_secondary_icon_tooltip_markup() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Which IM (input method) module should be used for this entry.
    *
@@ -1395,7 +1395,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_im_module() ;
+  auto property_im_module() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Which IM (input method) module should be used for this entry.
    *
@@ -1410,7 +1410,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_im_module() const;
+  auto property_im_module() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The text that will be displayed in the `Gtk::Entry` when it is empty
    * and unfocused.
@@ -1420,7 +1420,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_placeholder_text() ;
+  auto property_placeholder_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The text that will be displayed in the `Gtk::Entry` when it is empty
    * and unfocused.
@@ -1430,21 +1430,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_placeholder_text() const;
+  auto property_placeholder_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The auxiliary completion object to use with the entry.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<EntryCompletion> > property_completion() ;
+  auto property_completion() -> Glib::PropertyProxy< Glib::RefPtr<EntryCompletion> > ;
 
 /** The auxiliary completion object to use with the entry.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<EntryCompletion> > property_completion() const;
+  auto property_completion() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<EntryCompletion> >;
 
   /** The purpose of this text field.
    *
@@ -1460,7 +1460,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< InputPurpose > property_input_purpose() ;
+  auto property_input_purpose() -> Glib::PropertyProxy< InputPurpose > ;
 
 /** The purpose of this text field.
    *
@@ -1476,7 +1476,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< InputPurpose > property_input_purpose() const;
+  auto property_input_purpose() const -> Glib::PropertyProxy_ReadOnly< InputPurpose >;
 
   /** Additional hints that allow input methods to fine-tune their behavior.
    *
@@ -1487,7 +1487,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< InputHints > property_input_hints() ;
+  auto property_input_hints() -> Glib::PropertyProxy< InputHints > ;
 
 /** Additional hints that allow input methods to fine-tune their behavior.
    *
@@ -1498,7 +1498,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< InputHints > property_input_hints() const;
+  auto property_input_hints() const -> Glib::PropertyProxy_ReadOnly< InputHints >;
 
   /** A list of Pango attributes to apply to the text of the entry.
    *
@@ -1510,7 +1510,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::AttrList > property_attributes() ;
+  auto property_attributes() -> Glib::PropertyProxy< Pango::AttrList > ;
 
 /** A list of Pango attributes to apply to the text of the entry.
    *
@@ -1522,49 +1522,49 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::AttrList > property_attributes() const;
+  auto property_attributes() const -> Glib::PropertyProxy_ReadOnly< Pango::AttrList >;
 
   /**
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::TabArray > property_tabs() ;
+  auto property_tabs() -> Glib::PropertyProxy< Pango::TabArray > ;
 
 /**
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::TabArray > property_tabs() const;
+  auto property_tabs() const -> Glib::PropertyProxy_ReadOnly< Pango::TabArray >;
 
   /** A menu model whose contents will be appended to the context menu.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > property_extra_menu() ;
+  auto property_extra_menu() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > ;
 
 /** A menu model whose contents will be appended to the context menu.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> > property_extra_menu() const;
+  auto property_extra_menu() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_emoji_icon() ;
+  auto property_show_emoji_icon() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_emoji_icon() const;
+  auto property_show_emoji_icon() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether to suggest Emoji replacements for :-delimited names
    * like `:heart:`.
@@ -1574,7 +1574,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_enable_emoji_completion() ;
+  auto property_enable_emoji_completion() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to suggest Emoji replacements for :-delimited names
    * like `:heart:`.
@@ -1584,7 +1584,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_enable_emoji_completion() const;
+  auto property_enable_emoji_completion() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -1611,7 +1611,7 @@ template <>
 class GTKMM_API Value<Gtk::Entry::IconPosition> : public Glib::Value_Enum<Gtk::Entry::IconPosition>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1629,7 +1629,7 @@ namespace Glib
    * @relates Gtk::Entry
    */
   GTKMM_API
-  Gtk::Entry* wrap(GtkEntry* object, bool take_copy = false);
+  auto wrap(GtkEntry* object, bool take_copy = false) -> Gtk::Entry*;
 } //namespace Glib
 
 

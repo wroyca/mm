@@ -29,7 +29,7 @@ namespace
 {
 
 
-static void GesturePan_signal_pan_callback(GtkGesturePan* self, GtkPanDirection p0,gdouble p1,void* data)
+void GesturePan_signal_pan_callback(GtkGesturePan* self, GtkPanDirection p0,gdouble p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(PanDirection, double)>;
@@ -52,7 +52,7 @@ static void GesturePan_signal_pan_callback(GtkGesturePan* self, GtkPanDirection 
   }
 }
 
-static const Glib::SignalProxyInfo GesturePan_signal_pan_info =
+const Glib::SignalProxyInfo GesturePan_signal_pan_info =
 {
   "pan",
   (GCallback) &GesturePan_signal_pan_callback,
@@ -63,7 +63,7 @@ static const Glib::SignalProxyInfo GesturePan_signal_pan_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::PanDirection>::value_type()
+auto Glib::Value<Gtk::PanDirection>::value_type() -> GType
 {
   return gtk_pan_direction_get_type();
 }
@@ -72,7 +72,7 @@ GType Glib::Value<Gtk::PanDirection>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::GesturePan> wrap(GtkGesturePan* object, bool take_copy)
+auto wrap(GtkGesturePan* object, bool take_copy) -> Glib::RefPtr<Gtk::GesturePan>
 {
   return Glib::make_refptr_for_instance<Gtk::GesturePan>( dynamic_cast<Gtk::GesturePan*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -87,7 +87,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& GesturePan_Class::init()
+auto GesturePan_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -118,7 +118,7 @@ void GesturePan_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* GesturePan_Class::wrap_new(GObject* object)
+auto GesturePan_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new GesturePan((GtkGesturePan*)object);
 }
@@ -126,7 +126,7 @@ Glib::ObjectBase* GesturePan_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkGesturePan* GesturePan::gobj_copy()
+auto GesturePan::gobj_copy() -> GtkGesturePan*
 {
   reference();
   return gobj();
@@ -149,7 +149,7 @@ GesturePan::GesturePan(GesturePan&& src) noexcept
 : GestureDrag(std::move(src))
 {}
 
-GesturePan& GesturePan::operator=(GesturePan&& src) noexcept
+auto GesturePan::operator=(GesturePan&& src) noexcept -> GesturePan&
 {
   GestureDrag::operator=(std::move(src));
   return *this;
@@ -162,13 +162,13 @@ GesturePan::~GesturePan() noexcept
 
 GesturePan::CppClassType GesturePan::gesturepan_class_; // initialize static member
 
-GType GesturePan::get_type()
+auto GesturePan::get_type() -> GType
 {
   return gesturepan_class_.init().get_type();
 }
 
 
-GType GesturePan::get_base_type()
+auto GesturePan::get_base_type() -> GType
 {
   return gtk_gesture_pan_get_type();
 }
@@ -194,12 +194,12 @@ GesturePan::GesturePan(Orientation orientation)
 
 }
 
-Glib::RefPtr<GesturePan> GesturePan::create(Orientation orientation)
+auto GesturePan::create(Orientation orientation) -> Glib::RefPtr<GesturePan>
 {
   return Glib::make_refptr_for_instance<GesturePan>( new GesturePan(orientation) );
 }
 
-Orientation GesturePan::get_orientation() const
+auto GesturePan::get_orientation() const -> Orientation
 {
   return static_cast<Orientation>(gtk_gesture_pan_get_orientation(const_cast<GtkGesturePan*>(gobj())));
 }
@@ -210,7 +210,7 @@ void GesturePan::set_orientation(Orientation orientation)
 }
 
 
-Glib::SignalProxy<void(PanDirection, double)> GesturePan::signal_pan()
+auto GesturePan::signal_pan() -> Glib::SignalProxy<void(PanDirection, double)>
 {
   return Glib::SignalProxy<void(PanDirection, double) >(this, &GesturePan_signal_pan_info);
 }
@@ -220,12 +220,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Orientation>::value,
   "Type Orientation cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Orientation > GesturePan::property_orientation()
+auto GesturePan::property_orientation() -> Glib::PropertyProxy< Orientation >
 {
   return Glib::PropertyProxy< Orientation >(this, "orientation");
 }
 
-Glib::PropertyProxy_ReadOnly< Orientation > GesturePan::property_orientation() const
+auto GesturePan::property_orientation() const -> Glib::PropertyProxy_ReadOnly< Orientation >
 {
   return Glib::PropertyProxy_ReadOnly< Orientation >(this, "orientation");
 }

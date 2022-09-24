@@ -84,7 +84,7 @@ template <>
 class GDKMM_API Value<Gdk::DragCancelReason> : public Glib::Value_Enum<Gdk::DragCancelReason>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -118,7 +118,7 @@ public:
 
   // noncopyable
   Drag(const Drag&) = delete;
-  Drag& operator=(const Drag&) = delete;
+  auto operator=(const Drag&) -> Drag& = delete;
 
 private:  friend class Drag_Class;
   static CppClassType drag_class_;
@@ -132,28 +132,28 @@ protected:
 public:
 
   Drag(Drag&& src) noexcept;
-  Drag& operator=(Drag&& src) noexcept;
+  auto operator=(Drag&& src) noexcept -> Drag&;
 
   ~Drag() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkDrag*       gobj()       { return reinterpret_cast<GdkDrag*>(gobject_); }
+  auto       gobj() -> GdkDrag*       { return reinterpret_cast<GdkDrag*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkDrag* gobj() const { return reinterpret_cast<GdkDrag*>(gobject_); }
+  auto gobj() const -> const GdkDrag* { return reinterpret_cast<GdkDrag*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkDrag* gobj_copy();
+  auto gobj_copy() -> GdkDrag*;
 
 private:
 
@@ -168,52 +168,52 @@ public:
    *
    * @return A `Gdk::Display`.
    */
-  Glib::RefPtr<Display> get_display();
+  auto get_display() -> Glib::RefPtr<Display>;
 
   /** Gets the `Gdk::Display` that the drag object was created for.
    *
    * @return A `Gdk::Display`.
    */
-  Glib::RefPtr<const Display> get_display() const;
+  auto get_display() const -> Glib::RefPtr<const Display>;
 
 
   /** Returns the `Gdk::Device` associated to the `Gdk::Drag` object.
    *
    * @return The `Gdk::Device` associated to @a drag.
    */
-  Glib::RefPtr<Device> get_device();
+  auto get_device() -> Glib::RefPtr<Device>;
 
   /** Returns the `Gdk::Device` associated to the `Gdk::Drag` object.
    *
    * @return The `Gdk::Device` associated to @a drag.
    */
-  Glib::RefPtr<const Device> get_device() const;
+  auto get_device() const -> Glib::RefPtr<const Device>;
 
 
   /** Retrieves the formats supported by this `Gdk::Drag` object.
    *
    * @return A `Gdk::ContentFormats`.
    */
-  Glib::RefPtr<ContentFormats> get_formats();
+  auto get_formats() -> Glib::RefPtr<ContentFormats>;
 
   /** Retrieves the formats supported by this `Gdk::Drag` object.
    *
    * @return A `Gdk::ContentFormats`.
    */
-  Glib::RefPtr<const ContentFormats> get_formats() const;
+  auto get_formats() const -> Glib::RefPtr<const ContentFormats>;
 
 
   /** Determines the bitmask of possible actions proposed by the source.
    *
    * @return The `Gdk::DragAction` flags.
    */
-  DragAction get_actions() const;
+  auto get_actions() const -> DragAction;
 
   /** Determines the action chosen by the drag destination.
    *
    * @return A `Gdk::DragAction` value.
    */
-  DragAction get_selected_action() const;
+  auto get_selected_action() const -> DragAction;
 
   /** Checks if @a action represents a single action or includes
    * multiple actions.
@@ -224,7 +224,7 @@ public:
    * @param action A `Gdk::DragAction`.
    * @return <tt>true</tt> if exactly one action was given.
    */
-  static bool action_is_unique(DragAction action);
+  static auto action_is_unique(DragAction action) -> bool;
 
 
   /** Informs GDK that the drop ended.
@@ -261,11 +261,11 @@ public:
    *
    * @return The drag surface, or an empty RefPtr.
    */
-  Glib::RefPtr<Surface> get_drag_surface();
+  auto get_drag_surface() -> Glib::RefPtr<Surface>;
 
   /** See the non-const version.
    */
-  Glib::RefPtr<const Surface> get_drag_surface() const;
+  auto get_drag_surface() const -> Glib::RefPtr<const Surface>;
 
 
   /** Sets the position of the drag surface that will be kept
@@ -283,33 +283,33 @@ public:
    *
    * @return The `Gdk::ContentProvider` associated to @a drag.
    */
-  Glib::RefPtr<ContentProvider> get_content();
+  auto get_content() -> Glib::RefPtr<ContentProvider>;
 
   /** Returns the `Gdk::ContentProvider` associated to the `Gdk::Drag` object.
    *
    * @return The `Gdk::ContentProvider` associated to @a drag.
    */
-  Glib::RefPtr<const ContentProvider> get_content() const;
+  auto get_content() const -> Glib::RefPtr<const ContentProvider>;
 
 
   /** Returns the `Gdk::Surface` where the drag originates.
    *
    * @return The `Gdk::Surface` where the drag originates.
    */
-  Glib::RefPtr<Surface> get_surface();
+  auto get_surface() -> Glib::RefPtr<Surface>;
 
   /** Returns the `Gdk::Surface` where the drag originates.
    *
    * @return The `Gdk::Surface` where the drag originates.
    */
-  Glib::RefPtr<const Surface> get_surface() const;
+  auto get_surface() const -> Glib::RefPtr<const Surface>;
 
   /** The `Gdk::ContentProvider`.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentProvider> > property_content() const;
+  auto property_content() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentProvider> >;
 
 
   /** The `Gdk::Device` that is performing the drag.
@@ -317,7 +317,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Device> > property_device() const;
+  auto property_device() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Device> >;
 
 
   /** The `Gdk::Display` that the drag belongs to.
@@ -325,7 +325,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> > property_display() const;
+  auto property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >;
 
 
   /** The possible formats that the drag can provide its data in.
@@ -333,7 +333,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> > property_formats() const;
+  auto property_formats() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> >;
 
 
   /** The currently selected action of the drag.
@@ -343,7 +343,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< DragAction > property_selected_action() ;
+  auto property_selected_action() -> Glib::PropertyProxy< DragAction > ;
 
 /** The currently selected action of the drag.
    *
@@ -352,7 +352,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< DragAction > property_selected_action() const;
+  auto property_selected_action() const -> Glib::PropertyProxy_ReadOnly< DragAction >;
 
   /** The possible actions of this drag.
    *
@@ -361,7 +361,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< DragAction > property_actions() ;
+  auto property_actions() -> Glib::PropertyProxy< DragAction > ;
 
 /** The possible actions of this drag.
    *
@@ -370,14 +370,14 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< DragAction > property_actions() const;
+  auto property_actions() const -> Glib::PropertyProxy_ReadOnly< DragAction >;
 
   /** The surface where the drag originates.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> > property_surface() const;
+  auto property_surface() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >;
 
 
   // no_default_handler because GdkDragClass is private.
@@ -393,7 +393,7 @@ public:
    * @param reason The reason the drag was cancelled.
    */
 
-  Glib::SignalProxy<void(DragCancelReason)> signal_cancel();
+  auto signal_cancel() -> Glib::SignalProxy<void(DragCancelReason)>;
 
 
   /**
@@ -405,7 +405,7 @@ public:
    * Emitted when the drop operation is performed on an accepting client.
    */
 
-  Glib::SignalProxy<void()> signal_drop_performed();
+  auto signal_drop_performed() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -419,7 +419,7 @@ public:
    * The drag object can now free all miscellaneous data.
    */
 
-  Glib::SignalProxy<void()> signal_dnd_finished();
+  auto signal_dnd_finished() -> Glib::SignalProxy<void()>;
 
 
 public:
@@ -449,7 +449,7 @@ namespace Glib
    * @relates Gdk::Drag
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::Drag> wrap(GdkDrag* object, bool take_copy = false);
+  auto wrap(GdkDrag* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Drag>;
 }
 
 

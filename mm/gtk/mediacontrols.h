@@ -59,11 +59,11 @@ class GTKMM_API MediaControls : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   MediaControls(MediaControls&& src) noexcept;
-  MediaControls& operator=(MediaControls&& src) noexcept;
+  auto operator=(MediaControls&& src) noexcept -> MediaControls&;
 
   // noncopyable
   MediaControls(const MediaControls&) = delete;
-  MediaControls& operator=(const MediaControls&) = delete;
+  auto operator=(const MediaControls&) -> MediaControls& = delete;
 
   ~MediaControls() noexcept override;
 
@@ -83,19 +83,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkMediaControls*       gobj()       { return reinterpret_cast<GtkMediaControls*>(gobject_); }
+  auto       gobj() -> GtkMediaControls*       { return reinterpret_cast<GtkMediaControls*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkMediaControls* gobj() const { return reinterpret_cast<GtkMediaControls*>(gobject_); }
+  auto gobj() const -> const GtkMediaControls* { return reinterpret_cast<GtkMediaControls*>(gobject_); }
 
 private:
 
@@ -109,13 +109,13 @@ public:
    *
    * @return The media stream managed by @a controls.
    */
-  Glib::RefPtr<MediaStream> get_media_stream();
+  auto get_media_stream() -> Glib::RefPtr<MediaStream>;
 
   /** Gets the media stream managed by @a controls or <tt>nullptr</tt> if none.
    *
    * @return The media stream managed by @a controls.
    */
-  Glib::RefPtr<const MediaStream> get_media_stream() const;
+  auto get_media_stream() const -> Glib::RefPtr<const MediaStream>;
 
   /** Sets the stream that is controlled by @a controls.
    *
@@ -128,14 +128,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<MediaStream> > property_media_stream() ;
+  auto property_media_stream() -> Glib::PropertyProxy< Glib::RefPtr<MediaStream> > ;
 
 /** The media-stream managed by this object or <tt>nullptr</tt> if none.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<MediaStream> > property_media_stream() const;
+  auto property_media_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<MediaStream> >;
 
 
   // There are no signals or vfuncs.
@@ -168,7 +168,7 @@ namespace Glib
    * @relates Gtk::MediaControls
    */
   GTKMM_API
-  Gtk::MediaControls* wrap(GtkMediaControls* object, bool take_copy = false);
+  auto wrap(GtkMediaControls* object, bool take_copy = false) -> Gtk::MediaControls*;
 } //namespace Glib
 
 

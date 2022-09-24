@@ -47,7 +47,7 @@ void ListStore::set_column_types(const TreeModelColumnRecord& columns)
 }
 
 
-TreeModel::iterator ListStore::erase(const iterator& iter)
+auto ListStore::erase(const iterator& iter) -> TreeModel::iterator
 {
   g_assert(iter.get_gobject_if_not_end() != nullptr);
 
@@ -60,7 +60,7 @@ TreeModel::iterator ListStore::erase(const iterator& iter)
   return next;
 }
 
-TreeModel::iterator ListStore::insert(const iterator& iter)
+auto ListStore::insert(const iterator& iter) -> TreeModel::iterator
 {
   iterator new_pos(this);
 
@@ -82,7 +82,7 @@ TreeModel::iterator ListStore::insert(const iterator& iter)
   return new_pos;
 }
 
-TreeModel::iterator ListStore::insert_after(const iterator& iter)
+auto ListStore::insert_after(const iterator& iter) -> TreeModel::iterator
 {
   iterator new_pos(this);
 
@@ -104,14 +104,14 @@ TreeModel::iterator ListStore::insert_after(const iterator& iter)
   return new_pos;
 }
 
-TreeModel::iterator ListStore::prepend()
+auto ListStore::prepend() -> TreeModel::iterator
 {
   iterator new_pos(this);
   gtk_list_store_prepend(gobj(), new_pos.gobj());
   return new_pos;
 }
 
-TreeModel::iterator ListStore::append()
+auto ListStore::append() -> TreeModel::iterator
 {
   iterator new_pos(this);
   gtk_list_store_append(gobj(), new_pos.gobj());
@@ -148,7 +148,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::ListStore> wrap(GtkListStore* object, bool take_copy)
+auto wrap(GtkListStore* object, bool take_copy) -> Glib::RefPtr<Gtk::ListStore>
 {
   return Glib::make_refptr_for_instance<Gtk::ListStore>( dynamic_cast<Gtk::ListStore*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -163,7 +163,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ListStore_Class::init()
+auto ListStore_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -199,7 +199,7 @@ void ListStore_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* ListStore_Class::wrap_new(GObject* object)
+auto ListStore_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ListStore((GtkListStore*)object);
 }
@@ -207,7 +207,7 @@ Glib::ObjectBase* ListStore_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkListStore* ListStore::gobj_copy()
+auto ListStore::gobj_copy() -> GtkListStore*
 {
   reference();
   return gobj();
@@ -235,7 +235,7 @@ ListStore::ListStore(ListStore&& src) noexcept
   , Buildable(std::move(src))
 {}
 
-ListStore& ListStore::operator=(ListStore&& src) noexcept
+auto ListStore::operator=(ListStore&& src) noexcept -> ListStore&
 {
   Glib::Object::operator=(std::move(src));
   TreeModel::operator=(std::move(src));
@@ -253,13 +253,13 @@ ListStore::~ListStore() noexcept
 
 ListStore::CppClassType ListStore::liststore_class_; // initialize static member
 
-GType ListStore::get_type()
+auto ListStore::get_type() -> GType
 {
   return liststore_class_.init().get_type();
 }
 
 
-GType ListStore::get_base_type()
+auto ListStore::get_base_type() -> GType
 {
   return gtk_list_store_get_type();
 }
@@ -275,7 +275,7 @@ ListStore::ListStore()
 
 }
 
-Glib::RefPtr<ListStore> ListStore::create(const TreeModelColumnRecord& columns)
+auto ListStore::create(const TreeModelColumnRecord& columns) -> Glib::RefPtr<ListStore>
 {
   return Glib::make_refptr_for_instance<ListStore>( new ListStore(columns) );
 }
@@ -290,7 +290,7 @@ void ListStore::clear()
   gtk_list_store_clear(gobj());
 }
 
-bool ListStore::iter_is_valid(const const_iterator& iter) const
+auto ListStore::iter_is_valid(const const_iterator& iter) const -> bool
 {
   return gtk_list_store_iter_is_valid(const_cast<GtkListStore*>(gobj()), const_cast<GtkTreeIter*>((iter).gobj()));
 }

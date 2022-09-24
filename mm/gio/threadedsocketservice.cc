@@ -34,7 +34,7 @@ namespace
 {
 
 
-static gboolean ThreadedSocketService_signal_run_callback(GThreadedSocketService* self, GSocketConnection* p0,GObject* p1,void* data)
+auto ThreadedSocketService_signal_run_callback(GThreadedSocketService* self, GSocketConnection* p0,GObject* p1,void* data) -> gboolean
 {
   using namespace Gio;
   using SlotType = sigc::slot<bool(const Glib::RefPtr<SocketConnection>&, const Glib::RefPtr<Glib::Object>&)>;
@@ -60,7 +60,7 @@ static gboolean ThreadedSocketService_signal_run_callback(GThreadedSocketService
   return RType();
 }
 
-static gboolean ThreadedSocketService_signal_run_notify_callback(GThreadedSocketService* self, GSocketConnection* p0,GObject* p1, void* data)
+auto ThreadedSocketService_signal_run_notify_callback(GThreadedSocketService* self, GSocketConnection* p0,GObject* p1, void* data) -> gboolean
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<SocketConnection>&, const Glib::RefPtr<Glib::Object>&)>;
@@ -86,7 +86,7 @@ static gboolean ThreadedSocketService_signal_run_notify_callback(GThreadedSocket
   return RType();
 }
 
-static const Glib::SignalProxyInfo ThreadedSocketService_signal_run_info =
+const Glib::SignalProxyInfo ThreadedSocketService_signal_run_info =
 {
   "run",
   (GCallback) &ThreadedSocketService_signal_run_callback,
@@ -100,7 +100,7 @@ static const Glib::SignalProxyInfo ThreadedSocketService_signal_run_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gio::ThreadedSocketService> wrap(GThreadedSocketService* object, bool take_copy)
+auto wrap(GThreadedSocketService* object, bool take_copy) -> Glib::RefPtr<Gio::ThreadedSocketService>
 {
   return Glib::make_refptr_for_instance<Gio::ThreadedSocketService>( dynamic_cast<Gio::ThreadedSocketService*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -115,7 +115,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& ThreadedSocketService_Class::init()
+auto ThreadedSocketService_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -147,7 +147,7 @@ void ThreadedSocketService_Class::class_init_function(void* g_class, void* class
 }
 
 
-gboolean ThreadedSocketService_Class::run_callback(GThreadedSocketService* self, GSocketConnection* p0, GObject* p1)
+auto ThreadedSocketService_Class::run_callback(GThreadedSocketService* self, GSocketConnection* p0, GObject* p1) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -189,7 +189,7 @@ gboolean ThreadedSocketService_Class::run_callback(GThreadedSocketService* self,
 }
 
 
-Glib::ObjectBase* ThreadedSocketService_Class::wrap_new(GObject* object)
+auto ThreadedSocketService_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ThreadedSocketService((GThreadedSocketService*)object);
 }
@@ -197,7 +197,7 @@ Glib::ObjectBase* ThreadedSocketService_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GThreadedSocketService* ThreadedSocketService::gobj_copy()
+auto ThreadedSocketService::gobj_copy() -> GThreadedSocketService*
 {
   reference();
   return gobj();
@@ -220,7 +220,7 @@ ThreadedSocketService::ThreadedSocketService(ThreadedSocketService&& src) noexce
 : Gio::SocketService(std::move(src))
 {}
 
-ThreadedSocketService& ThreadedSocketService::operator=(ThreadedSocketService&& src) noexcept
+auto ThreadedSocketService::operator=(ThreadedSocketService&& src) noexcept -> ThreadedSocketService&
 {
   Gio::SocketService::operator=(std::move(src));
   return *this;
@@ -233,13 +233,13 @@ ThreadedSocketService::~ThreadedSocketService() noexcept
 
 ThreadedSocketService::CppClassType ThreadedSocketService::threadedsocketservice_class_; // initialize static member
 
-GType ThreadedSocketService::get_type()
+auto ThreadedSocketService::get_type() -> GType
 {
   return threadedsocketservice_class_.init().get_type();
 }
 
 
-GType ThreadedSocketService::get_base_type()
+auto ThreadedSocketService::get_base_type() -> GType
 {
   return g_threaded_socket_service_get_type();
 }
@@ -255,25 +255,25 @@ ThreadedSocketService::ThreadedSocketService(int max_threads)
 
 }
 
-Glib::RefPtr<ThreadedSocketService> ThreadedSocketService::create(int max_threads)
+auto ThreadedSocketService::create(int max_threads) -> Glib::RefPtr<ThreadedSocketService>
 {
   return Glib::make_refptr_for_instance<ThreadedSocketService>( new ThreadedSocketService(max_threads) );
 }
 
 
-Glib::SignalProxy<bool(const Glib::RefPtr<SocketConnection>&, const Glib::RefPtr<Glib::Object>&)> ThreadedSocketService::signal_run()
+auto ThreadedSocketService::signal_run() -> Glib::SignalProxy<bool(const Glib::RefPtr<SocketConnection>&, const Glib::RefPtr<Glib::Object>&)>
 {
   return Glib::SignalProxy<bool(const Glib::RefPtr<SocketConnection>&, const Glib::RefPtr<Glib::Object>&) >(this, &ThreadedSocketService_signal_run_info);
 }
 
 
-Glib::PropertyProxy_ReadOnly< int > ThreadedSocketService::property_max_threads() const
+auto ThreadedSocketService::property_max_threads() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "max-threads");
 }
 
 
-bool Gio::ThreadedSocketService::on_run(const Glib::RefPtr<SocketConnection>& connection, const Glib::RefPtr<Glib::Object>& source_object)
+auto Gio::ThreadedSocketService::on_run(const Glib::RefPtr<SocketConnection>& connection, const Glib::RefPtr<Glib::Object>& source_object) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

@@ -68,7 +68,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo Button_signal_clicked_info =
+const Glib::SignalProxyInfo Button_signal_clicked_info =
 {
   "clicked",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -82,7 +82,7 @@ static const Glib::SignalProxyInfo Button_signal_clicked_info =
 namespace Glib
 {
 
-Gtk::Button* wrap(GtkButton* object, bool take_copy)
+auto wrap(GtkButton* object, bool take_copy) -> Gtk::Button*
 {
   return dynamic_cast<Gtk::Button *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -95,7 +95,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Button_Class::init()
+auto Button_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -166,7 +166,7 @@ void Button_Class::clicked_callback(GtkButton* self)
 }
 
 
-Glib::ObjectBase* Button_Class::wrap_new(GObject* o)
+auto Button_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Button((GtkButton*)(o)));
 
@@ -193,7 +193,7 @@ Button::Button(Button&& src) noexcept
   , Actionable(std::move(src))
 {}
 
-Button& Button::operator=(Button&& src) noexcept
+auto Button::operator=(Button&& src) noexcept -> Button&
 {
   Gtk::Widget::operator=(std::move(src));
   Actionable::operator=(std::move(src));
@@ -207,13 +207,13 @@ Button::~Button() noexcept
 
 Button::CppClassType Button::button_class_; // initialize static member
 
-GType Button::get_type()
+auto Button::get_type() -> GType
 {
   return button_class_.init().get_type();
 }
 
 
-GType Button::get_base_type()
+auto Button::get_base_type() -> GType
 {
   return gtk_button_get_type();
 }
@@ -234,7 +234,7 @@ void Button::set_has_frame(bool has_frame)
   gtk_button_set_has_frame(gobj(), static_cast<int>(has_frame));
 }
 
-bool Button::get_has_frame() const
+auto Button::get_has_frame() const -> bool
 {
   return gtk_button_get_has_frame(const_cast<GtkButton*>(gobj()));
 }
@@ -244,7 +244,7 @@ void Button::set_label(const Glib::ustring& label)
   gtk_button_set_label(gobj(), label.c_str());
 }
 
-Glib::ustring Button::get_label() const
+auto Button::get_label() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_button_get_label(const_cast<GtkButton*>(gobj())));
 }
@@ -254,7 +254,7 @@ void Button::set_use_underline(bool use_underline)
   gtk_button_set_use_underline(gobj(), static_cast<int>(use_underline));
 }
 
-bool Button::get_use_underline() const
+auto Button::get_use_underline() const -> bool
 {
   return gtk_button_get_use_underline(const_cast<GtkButton*>(gobj()));
 }
@@ -264,7 +264,7 @@ void Button::set_icon_name(const Glib::ustring& icon_name)
   gtk_button_set_icon_name(gobj(), icon_name.c_str());
 }
 
-Glib::ustring Button::get_icon_name() const
+auto Button::get_icon_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_button_get_icon_name(const_cast<GtkButton*>(gobj())));
 }
@@ -274,69 +274,69 @@ void Button::set_child(Widget& child)
   gtk_button_set_child(gobj(), (child).gobj());
 }
 
-Widget* Button::get_child()
+auto Button::get_child() -> Widget*
 {
   return Glib::wrap(gtk_button_get_child(gobj()));
 }
 
-const Widget* Button::get_child() const
+auto Button::get_child() const -> const Widget*
 {
   return const_cast<Button*>(this)->get_child();
 }
 
 
-Glib::SignalProxy<void()> Button::signal_clicked()
+auto Button::signal_clicked() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Button_signal_clicked_info);
 }
 
 
-Glib::PropertyProxy< Glib::ustring > Button::property_label()
+auto Button::property_label() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "label");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Button::property_label() const
+auto Button::property_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "label");
 }
 
-Glib::PropertyProxy< bool > Button::property_has_frame()
+auto Button::property_has_frame() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "has-frame");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Button::property_has_frame() const
+auto Button::property_has_frame() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "has-frame");
 }
 
-Glib::PropertyProxy< bool > Button::property_use_underline()
+auto Button::property_use_underline() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "use-underline");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Button::property_use_underline() const
+auto Button::property_use_underline() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "use-underline");
 }
 
-Glib::PropertyProxy< Glib::ustring > Button::property_icon_name()
+auto Button::property_icon_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "icon-name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Button::property_icon_name() const
+auto Button::property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "icon-name");
 }
 
-Glib::PropertyProxy< Widget* > Button::property_child()
+auto Button::property_child() -> Glib::PropertyProxy< Widget* >
 {
   return Glib::PropertyProxy< Widget* >(this, "child");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > Button::property_child() const
+auto Button::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
 }

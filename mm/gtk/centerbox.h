@@ -75,11 +75,11 @@ class GTKMM_API CenterBox : public Widget, public Orientable
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   CenterBox(CenterBox&& src) noexcept;
-  CenterBox& operator=(CenterBox&& src) noexcept;
+  auto operator=(CenterBox&& src) noexcept -> CenterBox&;
 
   // noncopyable
   CenterBox(const CenterBox&) = delete;
-  CenterBox& operator=(const CenterBox&) = delete;
+  auto operator=(const CenterBox&) -> CenterBox& = delete;
 
   ~CenterBox() noexcept override;
 
@@ -99,19 +99,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkCenterBox*       gobj()       { return reinterpret_cast<GtkCenterBox*>(gobject_); }
+  auto       gobj() -> GtkCenterBox*       { return reinterpret_cast<GtkCenterBox*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkCenterBox* gobj() const { return reinterpret_cast<GtkCenterBox*>(gobject_); }
+  auto gobj() const -> const GtkCenterBox* { return reinterpret_cast<GtkCenterBox*>(gobject_); }
 
 private:
 
@@ -132,14 +132,14 @@ public:
    *
    * @return The start widget.
    */
-  Widget* get_start_widget();
+  auto get_start_widget() -> Widget*;
 
   /** Gets the start widget, or <tt>nullptr</tt> if there is none.
    *
    * @return The start widget.
    */
-  const Widget* get_start_widget() const;
-  /** Removes the start widget.
+  auto get_start_widget() const -> const Widget*;
+  /** Removes the start widget.
    * @newin{3,92}
    */
   void unset_start_widget();
@@ -157,14 +157,14 @@ public:
    *
    * @return The center widget.
    */
-  Widget* get_center_widget();
+  auto get_center_widget() -> Widget*;
 
   /** Gets the center widget, or <tt>nullptr</tt> if there is none.
    *
    * @return The center widget.
    */
-  const Widget* get_center_widget() const;
-  /** Removes the center widget.
+  auto get_center_widget() const -> const Widget*;
+  /** Removes the center widget.
    * @newin{3,92}
    */
   void unset_center_widget();
@@ -182,14 +182,14 @@ public:
    *
    * @return The end widget.
    */
-  Widget* get_end_widget();
+  auto get_end_widget() -> Widget*;
 
   /** Gets the end widget, or <tt>nullptr</tt> if there is none.
    *
    * @return The end widget.
    */
-  const Widget* get_end_widget() const;
-  /** Removes the end widget.
+  auto get_end_widget() const -> const Widget*;
+  /** Removes the end widget.
    * @newin{3,92}
    */
   void unset_end_widget();
@@ -211,7 +211,7 @@ public:
    *
    * @return The baseline position.
    */
-  BaselinePosition get_baseline_position();
+  auto get_baseline_position() -> BaselinePosition;
 
   /** The position of the baseline aligned widget if extra space is available.
    *
@@ -220,7 +220,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< BaselinePosition > property_baseline_position() ;
+  auto property_baseline_position() -> Glib::PropertyProxy< BaselinePosition > ;
 
 /** The position of the baseline aligned widget if extra space is available.
    *
@@ -229,7 +229,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< BaselinePosition > property_baseline_position() const;
+  auto property_baseline_position() const -> Glib::PropertyProxy_ReadOnly< BaselinePosition >;
 
 
   // There are no signals or vfuncs.
@@ -262,7 +262,7 @@ namespace Glib
    * @relates Gtk::CenterBox
    */
   GTKMM_API
-  Gtk::CenterBox* wrap(GtkCenterBox* object, bool take_copy = false);
+  auto wrap(GtkCenterBox* object, bool take_copy = false) -> Gtk::CenterBox*;
 } //namespace Glib
 
 

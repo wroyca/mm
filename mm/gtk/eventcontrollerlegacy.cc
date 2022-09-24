@@ -30,7 +30,7 @@ namespace
 {
 
 
-static gboolean EventControllerLegacy_signal_event_callback(GtkEventControllerLegacy* self, GdkEvent* p0,void* data)
+auto EventControllerLegacy_signal_event_callback(GtkEventControllerLegacy* self, GdkEvent* p0,void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<bool(const Glib::RefPtr<const Gdk::Event>&)>;
@@ -55,7 +55,7 @@ static gboolean EventControllerLegacy_signal_event_callback(GtkEventControllerLe
   return RType();
 }
 
-static gboolean EventControllerLegacy_signal_event_notify_callback(GtkEventControllerLegacy* self, GdkEvent* p0, void* data)
+auto EventControllerLegacy_signal_event_notify_callback(GtkEventControllerLegacy* self, GdkEvent* p0, void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<const Gdk::Event>&)>;
@@ -80,7 +80,7 @@ static gboolean EventControllerLegacy_signal_event_notify_callback(GtkEventContr
   return RType();
 }
 
-static const Glib::SignalProxyInfo EventControllerLegacy_signal_event_info =
+const Glib::SignalProxyInfo EventControllerLegacy_signal_event_info =
 {
   "event",
   (GCallback) &EventControllerLegacy_signal_event_callback,
@@ -94,7 +94,7 @@ static const Glib::SignalProxyInfo EventControllerLegacy_signal_event_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::EventControllerLegacy> wrap(GtkEventControllerLegacy* object, bool take_copy)
+auto wrap(GtkEventControllerLegacy* object, bool take_copy) -> Glib::RefPtr<Gtk::EventControllerLegacy>
 {
   return Glib::make_refptr_for_instance<Gtk::EventControllerLegacy>( dynamic_cast<Gtk::EventControllerLegacy*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -109,7 +109,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& EventControllerLegacy_Class::init()
+auto EventControllerLegacy_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -140,7 +140,7 @@ void EventControllerLegacy_Class::class_init_function(void* g_class, void* class
 }
 
 
-Glib::ObjectBase* EventControllerLegacy_Class::wrap_new(GObject* object)
+auto EventControllerLegacy_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new EventControllerLegacy((GtkEventControllerLegacy*)object);
 }
@@ -148,7 +148,7 @@ Glib::ObjectBase* EventControllerLegacy_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkEventControllerLegacy* EventControllerLegacy::gobj_copy()
+auto EventControllerLegacy::gobj_copy() -> GtkEventControllerLegacy*
 {
   reference();
   return gobj();
@@ -171,7 +171,7 @@ EventControllerLegacy::EventControllerLegacy(EventControllerLegacy&& src) noexce
 : EventController(std::move(src))
 {}
 
-EventControllerLegacy& EventControllerLegacy::operator=(EventControllerLegacy&& src) noexcept
+auto EventControllerLegacy::operator=(EventControllerLegacy&& src) noexcept -> EventControllerLegacy&
 {
   EventController::operator=(std::move(src));
   return *this;
@@ -184,13 +184,13 @@ EventControllerLegacy::~EventControllerLegacy() noexcept
 
 EventControllerLegacy::CppClassType EventControllerLegacy::eventcontrollerlegacy_class_; // initialize static member
 
-GType EventControllerLegacy::get_type()
+auto EventControllerLegacy::get_type() -> GType
 {
   return eventcontrollerlegacy_class_.init().get_type();
 }
 
 
-GType EventControllerLegacy::get_base_type()
+auto EventControllerLegacy::get_base_type() -> GType
 {
   return gtk_event_controller_legacy_get_type();
 }
@@ -206,13 +206,13 @@ EventControllerLegacy::EventControllerLegacy()
 
 }
 
-Glib::RefPtr<EventControllerLegacy> EventControllerLegacy::create()
+auto EventControllerLegacy::create() -> Glib::RefPtr<EventControllerLegacy>
 {
   return Glib::make_refptr_for_instance<EventControllerLegacy>( new EventControllerLegacy() );
 }
 
 
-Glib::SignalProxy<bool(const Glib::RefPtr<const Gdk::Event>&)> EventControllerLegacy::signal_event()
+auto EventControllerLegacy::signal_event() -> Glib::SignalProxy<bool(const Glib::RefPtr<const Gdk::Event>&)>
 {
   return Glib::SignalProxy<bool(const Glib::RefPtr<const Gdk::Event>&) >(this, &EventControllerLegacy_signal_event_info);
 }

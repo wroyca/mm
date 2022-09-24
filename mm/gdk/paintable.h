@@ -105,7 +105,7 @@ public:
 
   // noncopyable
   Paintable(const Paintable&) = delete;
-  Paintable& operator=(const Paintable&) = delete;
+  auto operator=(const Paintable&) -> Paintable& = delete;
 
 private:
   friend class Paintable_Class;
@@ -139,7 +139,7 @@ protected:
 public:
 
   Paintable(Paintable&& src) noexcept;
-  Paintable& operator=(Paintable&& src) noexcept;
+  auto operator=(Paintable&& src) noexcept -> Paintable&;
 
   ~Paintable() noexcept override;
 
@@ -147,17 +147,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkPaintable*       gobj()       { return reinterpret_cast<GdkPaintable*>(gobject_); }
+  auto       gobj() -> GdkPaintable*       { return reinterpret_cast<GdkPaintable*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkPaintable* gobj() const { return reinterpret_cast<GdkPaintable*>(gobject_); }
+  auto gobj() const -> const GdkPaintable* { return reinterpret_cast<GdkPaintable*>(gobject_); }
 
 private:
 
@@ -221,7 +221,7 @@ public:
    * @return An immutable paintable for the current
    * contents of @a paintable.
    */
-  Glib::RefPtr<const Paintable> get_current_image() const;
+  auto get_current_image() const -> Glib::RefPtr<const Paintable>;
 
   /** Get flags for the paintable.
    *
@@ -231,7 +231,7 @@ public:
    *
    * @return The `Gdk::PaintableFlags` for this paintable.
    */
-  Flags get_flags() const;
+  auto get_flags() const -> Flags;
 
   /** Gets the preferred width the @a paintable would like to be displayed at.
    *
@@ -246,7 +246,7 @@ public:
    *
    * @return The intrinsic width of @a paintable or 0 if none.
    */
-  int get_intrinsic_width() const;
+  auto get_intrinsic_width() const -> int;
 
   /** Gets the preferred height the @a paintable would like to be displayed at.
    *
@@ -261,7 +261,7 @@ public:
    *
    * @return The intrinsic height of @a paintable or 0 if none.
    */
-  int get_intrinsic_height() const;
+  auto get_intrinsic_height() const -> int;
 
   /** Gets the preferred aspect ratio the @a paintable would like to be displayed at.
    *
@@ -283,7 +283,7 @@ public:
    *
    * @return The intrinsic aspect ratio of @a paintable or 0 if none.
    */
-  double get_intrinsic_aspect_ratio() const;
+  auto get_intrinsic_aspect_ratio() const -> double;
 
   /** Compute a concrete size for the `Gdk::Paintable`.
    *
@@ -349,7 +349,7 @@ public:
    * the icon theme for an icon changing.
    */
 
-  Glib::SignalProxy<void()> signal_invalidate_contents();
+  auto signal_invalidate_contents() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -370,7 +370,7 @@ public:
    * the contents of a toplevel surface being resized.
    */
 
-  Glib::SignalProxy<void()> signal_invalidate_size();
+  auto signal_invalidate_size() -> Glib::SignalProxy<void()>;
 
 
 protected:
@@ -379,15 +379,15 @@ protected:
     virtual void snapshot_vfunc(const Glib::RefPtr<Gdk::Snapshot>& snapshot, double width, double height);
 
 
-    virtual Glib::RefPtr<Paintable> get_current_image_vfunc() const;
+    virtual auto get_current_image_vfunc() const -> Glib::RefPtr<Paintable>;
 
-    virtual Flags get_flags_vfunc() const;
+    virtual auto get_flags_vfunc() const -> Flags;
 
-    virtual int get_intrinsic_width_vfunc() const;
+    virtual auto get_intrinsic_width_vfunc() const -> int;
 
-    virtual int get_intrinsic_height_vfunc() const;
+    virtual auto get_intrinsic_height_vfunc() const -> int;
 
-    virtual double get_intrinsic_aspect_ratio_vfunc() const;
+    virtual auto get_intrinsic_aspect_ratio_vfunc() const -> double;
 
 
   // There are no properties.
@@ -412,31 +412,31 @@ namespace Gdk
 {
 
 /** @ingroup gdkmmEnums */
-inline Paintable::Flags operator|(Paintable::Flags lhs, Paintable::Flags rhs)
+inline auto operator|(Paintable::Flags lhs, Paintable::Flags rhs) -> Paintable::Flags
   { return static_cast<Paintable::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline Paintable::Flags operator&(Paintable::Flags lhs, Paintable::Flags rhs)
+inline auto operator&(Paintable::Flags lhs, Paintable::Flags rhs) -> Paintable::Flags
   { return static_cast<Paintable::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline Paintable::Flags operator^(Paintable::Flags lhs, Paintable::Flags rhs)
+inline auto operator^(Paintable::Flags lhs, Paintable::Flags rhs) -> Paintable::Flags
   { return static_cast<Paintable::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline Paintable::Flags operator~(Paintable::Flags flags)
+inline auto operator~(Paintable::Flags flags) -> Paintable::Flags
   { return static_cast<Paintable::Flags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gdkmmEnums */
-inline Paintable::Flags& operator|=(Paintable::Flags& lhs, Paintable::Flags rhs)
+inline auto operator|=(Paintable::Flags& lhs, Paintable::Flags rhs) -> Paintable::Flags&
   { return (lhs = static_cast<Paintable::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline Paintable::Flags& operator&=(Paintable::Flags& lhs, Paintable::Flags rhs)
+inline auto operator&=(Paintable::Flags& lhs, Paintable::Flags rhs) -> Paintable::Flags&
   { return (lhs = static_cast<Paintable::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline Paintable::Flags& operator^=(Paintable::Flags& lhs, Paintable::Flags rhs)
+inline auto operator^=(Paintable::Flags& lhs, Paintable::Flags rhs) -> Paintable::Flags&
   { return (lhs = static_cast<Paintable::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gdk
 
@@ -448,7 +448,7 @@ template <>
 class GDKMM_API Value<Gdk::Paintable::Flags> : public Glib::Value_Flags<Gdk::Paintable::Flags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -466,7 +466,7 @@ namespace Glib
    * @relates Gdk::Paintable
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::Paintable> wrap(GdkPaintable* object, bool take_copy = false);
+  auto wrap(GdkPaintable* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Paintable>;
 
 } // namespace Glib
 

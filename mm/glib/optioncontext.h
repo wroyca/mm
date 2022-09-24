@@ -62,7 +62,7 @@ public:
 
   GLIBMM_API OptionError(Code error_code, const Glib::ustring& error_message);
   GLIBMM_API explicit OptionError(GError* gobject);
-  GLIBMM_API Code code() const;
+  GLIBMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -148,10 +148,10 @@ public:
   explicit OptionContext(GOptionContext* castitem, bool take_ownership = false);
 
   OptionContext(const OptionContext& other) = delete;
-  OptionContext& operator=(const OptionContext& other) = delete;
+  auto operator=(const OptionContext& other) -> OptionContext& = delete;
 
   OptionContext(OptionContext&& other) noexcept;
-  OptionContext& operator=(OptionContext&& other) noexcept;
+  auto operator=(OptionContext&& other) noexcept -> OptionContext&;
 
   virtual ~OptionContext();
 
@@ -174,7 +174,7 @@ public:
    *
    * @return <tt>true</tt> if automatic help generation is turned on.
    */
-  bool get_help_enabled() const;
+  auto get_help_enabled() const -> bool;
 
   /** Sets whether to ignore unknown options or not. If an argument is
    * ignored, it is left in the @a argv array after parsing. By default,
@@ -198,7 +198,7 @@ public:
    *
    * @return <tt>true</tt> if unknown options are ignored.
    */
-  bool get_ignore_unknown_options() const;
+  auto get_ignore_unknown_options() const -> bool;
 
 
   /** Sets strict POSIX mode.
@@ -240,7 +240,7 @@ public:
    *
    * @return <tt>true</tt> if strict POSIX is enabled, <tt>false</tt> otherwise.
    */
-  bool get_strict_posix() const;
+  auto get_strict_posix() const -> bool;
 
 
   /** Parses the command line arguments, recognizing options
@@ -275,7 +275,7 @@ public:
    * @throws Glib::OptionError
    * @throws Glib::ConvertError
    */
-  bool parse(int& argc, char**& argv);
+  auto parse(int& argc, char**& argv) -> bool;
 
 
   /** Parses the command line arguments.
@@ -304,7 +304,7 @@ public:
    * @throw Glib::OptionError
    * @throw Glib::ConvertError
    */
-  bool parse(char**& argv);
+  auto parse(char**& argv) -> bool;
 
   //g_option_context_add_main_entries(), just creates a group internally, adds them to it, and does a set_main_group()
   //- a group without callbacks seems to do some simple default parsing.
@@ -346,7 +346,7 @@ public:
    * @param group The OptionGroup to create help for, or <tt>nullptr</tt>.
    * @return A newly allocated string containing the help text.
    */
-  Glib::ustring get_help(bool main_help, const OptionGroup& group) const;
+  auto get_help(bool main_help, const OptionGroup& group) const -> Glib::ustring;
 
   /** Returns a formatted, translated help text for the given context.
    *
@@ -357,10 +357,10 @@ public:
    * @param main_help If true, only include the main group.
    * @result string containing the help text.
    */
-  Glib::ustring get_help(bool main_help = true) const;
+  auto get_help(bool main_help = true) const -> Glib::ustring;
 
-  GOptionContext*       gobj()       { return gobject_; }
-  const GOptionContext* gobj() const { return gobject_; }
+  auto       gobj() -> GOptionContext*       { return gobject_; }
+  auto gobj() const -> const GOptionContext* { return gobject_; }
 
 
   /** Adds a string to be displayed in `--help` output before the list
@@ -383,7 +383,7 @@ public:
    *
    * @return The summary.
    */
-  Glib::ustring get_summary() const;
+  auto get_summary() const -> Glib::ustring;
 
   /** Adds a string to be displayed in `--help` output after the list
    * of options. This text often includes a bug reporting address.
@@ -404,7 +404,7 @@ public:
    *
    * @return The description.
    */
-  Glib::ustring get_description() const;
+  auto get_description() const -> Glib::ustring;
 
 
   /** A convenience function to use gettext() for translating

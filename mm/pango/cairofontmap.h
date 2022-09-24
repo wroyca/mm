@@ -71,7 +71,7 @@ public:
 
   // noncopyable
   CairoFontMap(const CairoFontMap&) = delete;
-  CairoFontMap& operator=(const CairoFontMap&) = delete;
+  auto operator=(const CairoFontMap&) -> CairoFontMap& = delete;
 
 private:
   friend class CairoFontMap_Class;
@@ -105,7 +105,7 @@ protected:
 public:
 
   CairoFontMap(CairoFontMap&& src) noexcept;
-  CairoFontMap& operator=(CairoFontMap&& src) noexcept;
+  auto operator=(CairoFontMap&& src) noexcept -> CairoFontMap&;
 
   ~CairoFontMap() noexcept override;
 
@@ -113,17 +113,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  PangoCairoFontMap*       gobj()       { return reinterpret_cast<PangoCairoFontMap*>(gobject_); }
+  auto       gobj() -> PangoCairoFontMap*       { return reinterpret_cast<PangoCairoFontMap*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const PangoCairoFontMap* gobj() const { return reinterpret_cast<PangoCairoFontMap*>(gobject_); }
+  auto gobj() const -> const PangoCairoFontMap* { return reinterpret_cast<PangoCairoFontMap*>(gobject_); }
 
 private:
 
@@ -157,7 +157,7 @@ public:
    *
    * @return The default PangoCairo fontmap for the current thread.
    */
-  static Glib::RefPtr<FontMap> get_default();
+  static auto get_default() -> Glib::RefPtr<FontMap>;
 
 
   /** Sets a default `Pango::CairoFontMap` to use with Cairo.
@@ -187,7 +187,7 @@ public:
    *
    * @return The `cairo_font_type_t` cairo font backend type.
    */
-  Cairo::FontType get_font_type() const;
+  auto get_font_type() const -> Cairo::FontType;
 
 
   /** Sets the resolution for the fontmap.
@@ -212,7 +212,7 @@ public:
    *
    * @return The resolution in "dots per inch".
    */
-  double get_resolution() const;
+  auto get_resolution() const -> double;
 
 
 public:
@@ -242,7 +242,7 @@ namespace Glib
    * @relates Pango::CairoFontMap
    */
   PANGOMM_API
-  Glib::RefPtr<Pango::CairoFontMap> wrap(PangoCairoFontMap* object, bool take_copy = false);
+  auto wrap(PangoCairoFontMap* object, bool take_copy = false) -> Glib::RefPtr<Pango::CairoFontMap>;
 
 } // namespace Glib
 

@@ -73,7 +73,7 @@ public:
 
   // noncopyable
   Snapshot(const Snapshot&) = delete;
-  Snapshot& operator=(const Snapshot&) = delete;
+  auto operator=(const Snapshot&) -> Snapshot& = delete;
 
 private:  friend class Snapshot_Class;
   static CppClassType snapshot_class_;
@@ -87,28 +87,28 @@ protected:
 public:
 
   Snapshot(Snapshot&& src) noexcept;
-  Snapshot& operator=(Snapshot&& src) noexcept;
+  auto operator=(Snapshot&& src) noexcept -> Snapshot&;
 
   ~Snapshot() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkSnapshot*       gobj()       { return reinterpret_cast<GtkSnapshot*>(gobject_); }
+  auto       gobj() -> GtkSnapshot*       { return reinterpret_cast<GtkSnapshot*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkSnapshot* gobj() const { return reinterpret_cast<GtkSnapshot*>(gobject_); }
+  auto gobj() const -> const GtkSnapshot* { return reinterpret_cast<GtkSnapshot*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkSnapshot* gobj_copy();
+  auto gobj_copy() -> GtkSnapshot*;
 
 private:
 
@@ -127,7 +127,7 @@ public:
    *
    * @return A newly-allocated `Gtk::Snapshot`.
    */
-  static Glib::RefPtr<Snapshot> create();
+  static auto create() -> Glib::RefPtr<Snapshot>;
 
   /** Creates a new debug node.
    *
@@ -290,7 +290,7 @@ public:
    * @return A `cairo_t` suitable for drawing the contents of
    * the newly created render node.
    */
-  Cairo::RefPtr<Cairo::Context> append_cairo(const graphene_rect_t* bounds);
+  auto append_cairo(const graphene_rect_t* bounds) -> Cairo::RefPtr<Cairo::Context>;
 
   /** Creates a new Gsk::CairoNode and appends it to the current
    * render node of @a snapshot, without changing the current node.
@@ -299,7 +299,7 @@ public:
    * @return A `cairo_t` suitable for drawing the contents of
    * the newly created render node.
    */
-  Cairo::RefPtr<Cairo::Context> append_cairo(const Gdk::Rectangle& bounds);
+  auto append_cairo(const Gdk::Rectangle& bounds) -> Cairo::RefPtr<Cairo::Context>;
 
 
   /** Creates a new render node drawing the @a texture
@@ -442,7 +442,7 @@ namespace Glib
    * @relates Gtk::Snapshot
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Snapshot> wrap_gtk_snapshot(GtkSnapshot* object, bool take_copy = false);
+  auto wrap_gtk_snapshot(GtkSnapshot* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Snapshot>;
 }
 
 

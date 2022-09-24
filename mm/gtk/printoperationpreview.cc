@@ -30,7 +30,7 @@ namespace
 {
 
 
-static void PrintOperationPreview_signal_ready_callback(GtkPrintOperationPreview* self, GtkPrintContext* p0,void* data)
+void PrintOperationPreview_signal_ready_callback(GtkPrintOperationPreview* self, GtkPrintContext* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<PrintContext>&)>;
@@ -52,7 +52,7 @@ static void PrintOperationPreview_signal_ready_callback(GtkPrintOperationPreview
   }
 }
 
-static const Glib::SignalProxyInfo PrintOperationPreview_signal_ready_info =
+const Glib::SignalProxyInfo PrintOperationPreview_signal_ready_info =
 {
   "ready",
   (GCallback) &PrintOperationPreview_signal_ready_callback,
@@ -60,7 +60,7 @@ static const Glib::SignalProxyInfo PrintOperationPreview_signal_ready_info =
 };
 
 
-static void PrintOperationPreview_signal_got_page_size_callback(GtkPrintOperationPreview* self, GtkPrintContext* p0,GtkPageSetup* p1,void* data)
+void PrintOperationPreview_signal_got_page_size_callback(GtkPrintOperationPreview* self, GtkPrintContext* p0,GtkPageSetup* p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<PrintContext>&, const Glib::RefPtr<PageSetup>&)>;
@@ -83,7 +83,7 @@ static void PrintOperationPreview_signal_got_page_size_callback(GtkPrintOperatio
   }
 }
 
-static const Glib::SignalProxyInfo PrintOperationPreview_signal_got_page_size_info =
+const Glib::SignalProxyInfo PrintOperationPreview_signal_got_page_size_info =
 {
   "got_page_size",
   (GCallback) &PrintOperationPreview_signal_got_page_size_callback,
@@ -97,7 +97,7 @@ static const Glib::SignalProxyInfo PrintOperationPreview_signal_got_page_size_in
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::PrintOperationPreview> wrap(GtkPrintOperationPreview* object, bool take_copy)
+auto wrap(GtkPrintOperationPreview* object, bool take_copy) -> Glib::RefPtr<Gtk::PrintOperationPreview>
 {
   return Glib::make_refptr_for_instance<Gtk::PrintOperationPreview>( dynamic_cast<Gtk::PrintOperationPreview*> (Glib::wrap_auto_interface<Gtk::PrintOperationPreview> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -112,7 +112,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& PrintOperationPreview_Class::init()
+auto PrintOperationPreview_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -218,7 +218,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->end_preview)
     (*base->end_preview)(self);
 }
-gboolean PrintOperationPreview_Class::is_selected_vfunc_callback(GtkPrintOperationPreview* self, gint page_nr)
+auto PrintOperationPreview_Class::is_selected_vfunc_callback(GtkPrintOperationPreview* self, gint page_nr) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -338,7 +338,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* PrintOperationPreview_Class::wrap_new(GObject* object)
+auto PrintOperationPreview_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new PrintOperationPreview((GtkPrintOperationPreview*)(object));
 }
@@ -365,7 +365,7 @@ PrintOperationPreview::PrintOperationPreview(PrintOperationPreview&& src) noexce
 : Glib::Interface(std::move(src))
 {}
 
-PrintOperationPreview& PrintOperationPreview::operator=(PrintOperationPreview&& src) noexcept
+auto PrintOperationPreview::operator=(PrintOperationPreview&& src) noexcept -> PrintOperationPreview&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -382,13 +382,13 @@ void PrintOperationPreview::add_interface(GType gtype_implementer)
 
 PrintOperationPreview::CppClassType PrintOperationPreview::printoperationpreview_class_; // initialize static member
 
-GType PrintOperationPreview::get_type()
+auto PrintOperationPreview::get_type() -> GType
 {
   return printoperationpreview_class_.init().get_type();
 }
 
 
-GType PrintOperationPreview::get_base_type()
+auto PrintOperationPreview::get_base_type() -> GType
 {
   return gtk_print_operation_preview_get_type();
 }
@@ -404,19 +404,19 @@ void PrintOperationPreview::end_preview()
   gtk_print_operation_preview_end_preview(gobj());
 }
 
-bool PrintOperationPreview::is_selected(int page_nr) const
+auto PrintOperationPreview::is_selected(int page_nr) const -> bool
 {
   return gtk_print_operation_preview_is_selected(const_cast<GtkPrintOperationPreview*>(gobj()), page_nr);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&)> PrintOperationPreview::signal_ready()
+auto PrintOperationPreview::signal_ready() -> Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&) >(this, &PrintOperationPreview_signal_ready_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&, const Glib::RefPtr<PageSetup>&)> PrintOperationPreview::signal_got_page_size()
+auto PrintOperationPreview::signal_got_page_size() -> Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&, const Glib::RefPtr<PageSetup>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&, const Glib::RefPtr<PageSetup>&) >(this, &PrintOperationPreview_signal_got_page_size_info);
 }
@@ -467,7 +467,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->end_preview)(gobj());
   }
 }
-bool Gtk::PrintOperationPreview::is_selected_vfunc(int page_nr) const
+auto Gtk::PrintOperationPreview::is_selected_vfunc(int page_nr) const -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

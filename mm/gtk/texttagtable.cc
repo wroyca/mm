@@ -56,7 +56,7 @@ namespace
 {
 
 
-static void TextTagTable_signal_tag_changed_callback(GtkTextTagTable* self, GtkTextTag* p0,gboolean p1,void* data)
+void TextTagTable_signal_tag_changed_callback(GtkTextTagTable* self, GtkTextTag* p0,gboolean p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<TextTag>&, bool)>;
@@ -79,7 +79,7 @@ static void TextTagTable_signal_tag_changed_callback(GtkTextTagTable* self, GtkT
   }
 }
 
-static const Glib::SignalProxyInfo TextTagTable_signal_tag_changed_info =
+const Glib::SignalProxyInfo TextTagTable_signal_tag_changed_info =
 {
   "tag_changed",
   (GCallback) &TextTagTable_signal_tag_changed_callback,
@@ -87,7 +87,7 @@ static const Glib::SignalProxyInfo TextTagTable_signal_tag_changed_info =
 };
 
 
-static void TextTagTable_signal_tag_added_callback(GtkTextTagTable* self, GtkTextTag* p0,void* data)
+void TextTagTable_signal_tag_added_callback(GtkTextTagTable* self, GtkTextTag* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<TextTag>&)>;
@@ -109,7 +109,7 @@ static void TextTagTable_signal_tag_added_callback(GtkTextTagTable* self, GtkTex
   }
 }
 
-static const Glib::SignalProxyInfo TextTagTable_signal_tag_added_info =
+const Glib::SignalProxyInfo TextTagTable_signal_tag_added_info =
 {
   "tag_added",
   (GCallback) &TextTagTable_signal_tag_added_callback,
@@ -117,7 +117,7 @@ static const Glib::SignalProxyInfo TextTagTable_signal_tag_added_info =
 };
 
 
-static void TextTagTable_signal_tag_removed_callback(GtkTextTagTable* self, GtkTextTag* p0,void* data)
+void TextTagTable_signal_tag_removed_callback(GtkTextTagTable* self, GtkTextTag* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<TextTag>&)>;
@@ -139,7 +139,7 @@ static void TextTagTable_signal_tag_removed_callback(GtkTextTagTable* self, GtkT
   }
 }
 
-static const Glib::SignalProxyInfo TextTagTable_signal_tag_removed_info =
+const Glib::SignalProxyInfo TextTagTable_signal_tag_removed_info =
 {
   "tag_removed",
   (GCallback) &TextTagTable_signal_tag_removed_callback,
@@ -153,7 +153,7 @@ static const Glib::SignalProxyInfo TextTagTable_signal_tag_removed_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::TextTagTable> wrap(GtkTextTagTable* object, bool take_copy)
+auto wrap(GtkTextTagTable* object, bool take_copy) -> Glib::RefPtr<Gtk::TextTagTable>
 {
   return Glib::make_refptr_for_instance<Gtk::TextTagTable>( dynamic_cast<Gtk::TextTagTable*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -168,7 +168,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& TextTagTable_Class::init()
+auto TextTagTable_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -200,7 +200,7 @@ void TextTagTable_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* TextTagTable_Class::wrap_new(GObject* object)
+auto TextTagTable_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new TextTagTable((GtkTextTagTable*)object);
 }
@@ -208,7 +208,7 @@ Glib::ObjectBase* TextTagTable_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkTextTagTable* TextTagTable::gobj_copy()
+auto TextTagTable::gobj_copy() -> GtkTextTagTable*
 {
   reference();
   return gobj();
@@ -232,7 +232,7 @@ TextTagTable::TextTagTable(TextTagTable&& src) noexcept
   , Buildable(std::move(src))
 {}
 
-TextTagTable& TextTagTable::operator=(TextTagTable&& src) noexcept
+auto TextTagTable::operator=(TextTagTable&& src) noexcept -> TextTagTable&
 {
   Glib::Object::operator=(std::move(src));
   Buildable::operator=(std::move(src));
@@ -246,13 +246,13 @@ TextTagTable::~TextTagTable() noexcept
 
 TextTagTable::CppClassType TextTagTable::texttagtable_class_; // initialize static member
 
-GType TextTagTable::get_type()
+auto TextTagTable::get_type() -> GType
 {
   return texttagtable_class_.init().get_type();
 }
 
 
-GType TextTagTable::get_base_type()
+auto TextTagTable::get_base_type() -> GType
 {
   return gtk_text_tag_table_get_type();
 }
@@ -268,12 +268,12 @@ TextTagTable::TextTagTable()
 
 }
 
-Glib::RefPtr<TextTagTable> TextTagTable::create()
+auto TextTagTable::create() -> Glib::RefPtr<TextTagTable>
 {
   return Glib::make_refptr_for_instance<TextTagTable>( new TextTagTable() );
 }
 
-bool TextTagTable::add(const Glib::RefPtr<TextTag>& tag)
+auto TextTagTable::add(const Glib::RefPtr<TextTag>& tag) -> bool
 {
   return gtk_text_tag_table_add(gobj(), Glib::unwrap(tag));
 }
@@ -283,7 +283,7 @@ void TextTagTable::remove(const Glib::RefPtr<TextTag>& tag)
   gtk_text_tag_table_remove(gobj(), Glib::unwrap(tag));
 }
 
-Glib::RefPtr<TextTag> TextTagTable::lookup(const Glib::ustring& name)
+auto TextTagTable::lookup(const Glib::ustring& name) -> Glib::RefPtr<TextTag>
 {
   auto retvalue = Glib::wrap(gtk_text_tag_table_lookup(gobj(), name.c_str()));
   if(retvalue)
@@ -291,30 +291,30 @@ Glib::RefPtr<TextTag> TextTagTable::lookup(const Glib::ustring& name)
   return retvalue;
 }
 
-Glib::RefPtr<const TextTag> TextTagTable::lookup(const Glib::ustring& name) const
+auto TextTagTable::lookup(const Glib::ustring& name) const -> Glib::RefPtr<const TextTag>
 {
   return const_cast<TextTagTable*>(this)->lookup(name);
 }
 
-int TextTagTable::get_size() const
+auto TextTagTable::get_size() const -> int
 {
   return gtk_text_tag_table_get_size(const_cast<GtkTextTagTable*>(gobj()));
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&, bool)> TextTagTable::signal_tag_changed()
+auto TextTagTable::signal_tag_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&, bool)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&, bool) >(this, &TextTagTable_signal_tag_changed_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&)> TextTagTable::signal_tag_added()
+auto TextTagTable::signal_tag_added() -> Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&) >(this, &TextTagTable_signal_tag_added_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&)> TextTagTable::signal_tag_removed()
+auto TextTagTable::signal_tag_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&) >(this, &TextTagTable_signal_tag_removed_info);
 }

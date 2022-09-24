@@ -60,15 +60,15 @@ public:
 
   ~AttrIter();
 
-  AttrIter& operator=(const AttrIter& src);
+  auto operator=(const AttrIter& src) -> AttrIter&;
 
   /** Advance the iterator until the next change of style.
    * The iterator becomes invalid if the end of the list is reached.
    * @return The iterator itself.
    */
-  AttrIter&      operator++();
+  auto      operator++() -> AttrIter&;
 
-  const AttrIter operator++(int);
+  auto operator++(int) -> const AttrIter;
 
   /** Check whether the iterator is valid.
    * @return <tt>true</tt> if the iterator is valid.
@@ -78,7 +78,7 @@ public:
   /** The same as operator++().
    * @return <tt>false</tt> if the end of the list is reached.
    */
-  bool next();
+  auto next() -> bool;
 
 
   /** Get the range of the current segment.
@@ -105,34 +105,34 @@ public:
    * attribute of the given type, or <tt>nullptr</tt> if no attribute
    * of that type applies to the current location.
    */
-  Attribute get_attribute(AttrType type) const;
+  auto get_attribute(AttrType type) const -> Attribute;
 
   /** Get the font description used at the current iterator position.
    * @return The font description used at the current iterator position.
    */
-  FontDescription get_font_desc() const;
+  auto get_font_desc() const -> FontDescription;
 
   /** Gets the language tag used at current iterator position.
    * @return The language tag or an empty Pango::Language object if non is found.
    */
-  Language get_language() const;
+  auto get_language() const -> Language;
 
   /** Gets a list of non-font attributes at the the current iterator position.
    * Only the highest priority value of each attribute will be added to this list.
    * @return The list of non-font attributes at the current iterator position.
    */
-  std::vector<Attribute> get_extra_attrs() const;
+  auto get_extra_attrs() const -> std::vector<Attribute>;
 
   /** Gets a list all attributes a the current position of the
    * iterator.
    *
    * @result A list of all attributes for the current range.
    */
-  std::vector<Attribute> get_attrs() const;
+  auto get_attrs() const -> std::vector<Attribute>;
 
 
-  PangoAttrIterator*       gobj()       { return gobject_; }
-  const PangoAttrIterator* gobj() const { return gobject_; }
+  auto       gobj() -> PangoAttrIterator*       { return gobject_; }
+  auto gobj() const -> const PangoAttrIterator* { return gobject_; }
 
 protected:
   PangoAttrIterator* gobject_;
@@ -148,7 +148,7 @@ namespace Glib
 
 /** @relates Pango::AttrIter */
 PANGOMM_API
-Pango::AttrIter wrap(PangoAttrIterator* object, bool take_copy=false);
+auto wrap(PangoAttrIterator* object, bool take_copy=false) -> Pango::AttrIter;
 
 } // namespace Glib
 

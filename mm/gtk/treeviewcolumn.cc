@@ -35,7 +35,7 @@ namespace Gtk
 {
 
 // Only necessary because of the templated ctor, see .hg file.
-const Glib::Class& TreeViewColumn::class_init_()
+auto TreeViewColumn::class_init_() -> const Glib::Class&
 {
   return treeviewcolumn_class_.init();
 }
@@ -102,7 +102,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo TreeViewColumn_signal_clicked_info =
+const Glib::SignalProxyInfo TreeViewColumn_signal_clicked_info =
 {
   "clicked",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -113,7 +113,7 @@ static const Glib::SignalProxyInfo TreeViewColumn_signal_clicked_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::TreeViewColumn::Sizing>::value_type()
+auto Glib::Value<Gtk::TreeViewColumn::Sizing>::value_type() -> GType
 {
   return gtk_tree_view_column_sizing_get_type();
 }
@@ -122,7 +122,7 @@ GType Glib::Value<Gtk::TreeViewColumn::Sizing>::value_type()
 namespace Glib
 {
 
-Gtk::TreeViewColumn* wrap(GtkTreeViewColumn* object, bool take_copy)
+auto wrap(GtkTreeViewColumn* object, bool take_copy) -> Gtk::TreeViewColumn*
 {
   return dynamic_cast<Gtk::TreeViewColumn *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -135,7 +135,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& TreeViewColumn_Class::init()
+auto TreeViewColumn_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -168,7 +168,7 @@ void TreeViewColumn_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* TreeViewColumn_Class::wrap_new(GObject* o)
+auto TreeViewColumn_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new TreeViewColumn((GtkTreeViewColumn*)(o)));
 
@@ -196,7 +196,7 @@ TreeViewColumn::TreeViewColumn(TreeViewColumn&& src) noexcept
   , Buildable(std::move(src))
 {}
 
-TreeViewColumn& TreeViewColumn::operator=(TreeViewColumn&& src) noexcept
+auto TreeViewColumn::operator=(TreeViewColumn&& src) noexcept -> TreeViewColumn&
 {
   Object::operator=(std::move(src));
   CellLayout::operator=(std::move(src));
@@ -211,13 +211,13 @@ TreeViewColumn::~TreeViewColumn() noexcept
 
 TreeViewColumn::CppClassType TreeViewColumn::treeviewcolumn_class_; // initialize static member
 
-GType TreeViewColumn::get_type()
+auto TreeViewColumn::get_type() -> GType
 {
   return treeviewcolumn_class_.init().get_type();
 }
 
 
-GType TreeViewColumn::get_base_type()
+auto TreeViewColumn::get_base_type() -> GType
 {
   return gtk_tree_view_column_get_type();
 }
@@ -263,7 +263,7 @@ void TreeViewColumn::set_spacing(int spacing)
   gtk_tree_view_column_set_spacing(gobj(), spacing);
 }
 
-int TreeViewColumn::get_spacing() const
+auto TreeViewColumn::get_spacing() const -> int
 {
   return gtk_tree_view_column_get_spacing(const_cast<GtkTreeViewColumn*>(gobj()));
 }
@@ -273,7 +273,7 @@ void TreeViewColumn::set_visible(bool visible)
   gtk_tree_view_column_set_visible(gobj(), static_cast<int>(visible));
 }
 
-bool TreeViewColumn::get_visible() const
+auto TreeViewColumn::get_visible() const -> bool
 {
   return gtk_tree_view_column_get_visible(const_cast<GtkTreeViewColumn*>(gobj()));
 }
@@ -283,7 +283,7 @@ void TreeViewColumn::set_resizable(bool resizable)
   gtk_tree_view_column_set_resizable(gobj(), static_cast<int>(resizable));
 }
 
-bool TreeViewColumn::get_resizable() const
+auto TreeViewColumn::get_resizable() const -> bool
 {
   return gtk_tree_view_column_get_resizable(const_cast<GtkTreeViewColumn*>(gobj()));
 }
@@ -293,22 +293,22 @@ void TreeViewColumn::set_sizing(Sizing type)
   gtk_tree_view_column_set_sizing(gobj(), static_cast<GtkTreeViewColumnSizing>(type));
 }
 
-Sizing TreeViewColumn::get_sizing()
+auto TreeViewColumn::get_sizing() -> Sizing
 {
   return static_cast<Sizing>(gtk_tree_view_column_get_sizing(gobj()));
 }
 
-int TreeViewColumn::get_x_offset() const
+auto TreeViewColumn::get_x_offset() const -> int
 {
   return gtk_tree_view_column_get_x_offset(const_cast<GtkTreeViewColumn*>(gobj()));
 }
 
-int TreeViewColumn::get_width() const
+auto TreeViewColumn::get_width() const -> int
 {
   return gtk_tree_view_column_get_width(const_cast<GtkTreeViewColumn*>(gobj()));
 }
 
-int TreeViewColumn::get_fixed_width() const
+auto TreeViewColumn::get_fixed_width() const -> int
 {
   return gtk_tree_view_column_get_fixed_width(const_cast<GtkTreeViewColumn*>(gobj()));
 }
@@ -323,7 +323,7 @@ void TreeViewColumn::set_min_width(int min_width)
   gtk_tree_view_column_set_min_width(gobj(), min_width);
 }
 
-int TreeViewColumn::get_min_width() const
+auto TreeViewColumn::get_min_width() const -> int
 {
   return gtk_tree_view_column_get_min_width(const_cast<GtkTreeViewColumn*>(gobj()));
 }
@@ -333,7 +333,7 @@ void TreeViewColumn::set_max_width(int max_width)
   gtk_tree_view_column_set_max_width(gobj(), max_width);
 }
 
-int TreeViewColumn::get_max_width() const
+auto TreeViewColumn::get_max_width() const -> int
 {
   return gtk_tree_view_column_get_max_width(const_cast<GtkTreeViewColumn*>(gobj()));
 }
@@ -348,7 +348,7 @@ void TreeViewColumn::set_title(const Glib::ustring& title)
   gtk_tree_view_column_set_title(gobj(), title.c_str());
 }
 
-Glib::ustring TreeViewColumn::get_title() const
+auto TreeViewColumn::get_title() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_tree_view_column_get_title(const_cast<GtkTreeViewColumn*>(gobj())));
 }
@@ -358,7 +358,7 @@ void TreeViewColumn::set_expand(bool expand)
   gtk_tree_view_column_set_expand(gobj(), static_cast<int>(expand));
 }
 
-bool TreeViewColumn::get_expand() const
+auto TreeViewColumn::get_expand() const -> bool
 {
   return gtk_tree_view_column_get_expand(const_cast<GtkTreeViewColumn*>(gobj()));
 }
@@ -368,7 +368,7 @@ void TreeViewColumn::set_clickable(bool clickable)
   gtk_tree_view_column_set_clickable(gobj(), static_cast<int>(clickable));
 }
 
-bool TreeViewColumn::get_clickable() const
+auto TreeViewColumn::get_clickable() const -> bool
 {
   return gtk_tree_view_column_get_clickable(const_cast<GtkTreeViewColumn*>(gobj()));
 }
@@ -378,12 +378,12 @@ void TreeViewColumn::set_widget(Gtk::Widget& widget)
   gtk_tree_view_column_set_widget(gobj(), (widget).gobj());
 }
 
-Widget* TreeViewColumn::get_widget()
+auto TreeViewColumn::get_widget() -> Widget*
 {
   return Glib::wrap(gtk_tree_view_column_get_widget(gobj()));
 }
 
-const Widget* TreeViewColumn::get_widget() const
+auto TreeViewColumn::get_widget() const -> const Widget*
 {
   return Glib::wrap(gtk_tree_view_column_get_widget(const_cast<GtkTreeViewColumn*>(gobj())));
 }
@@ -398,7 +398,7 @@ void TreeViewColumn::set_alignment(Align xalign)
   gtk_tree_view_column_set_alignment(gobj(), _gtkmm_align_float_from_enum(xalign));
 }
 
-float TreeViewColumn::get_alignment() const
+auto TreeViewColumn::get_alignment() const -> float
 {
   return gtk_tree_view_column_get_alignment(const_cast<GtkTreeViewColumn*>(gobj()));
 }
@@ -408,7 +408,7 @@ void TreeViewColumn::set_reorderable(bool reorderable)
   gtk_tree_view_column_set_reorderable(gobj(), static_cast<int>(reorderable));
 }
 
-bool TreeViewColumn::get_reorderable() const
+auto TreeViewColumn::get_reorderable() const -> bool
 {
   return gtk_tree_view_column_get_reorderable(const_cast<GtkTreeViewColumn*>(gobj()));
 }
@@ -423,7 +423,7 @@ void TreeViewColumn::set_sort_column(int sort_column_id)
   gtk_tree_view_column_set_sort_column_id(gobj(), sort_column_id);
 }
 
-int TreeViewColumn::get_sort_column_id() const
+auto TreeViewColumn::get_sort_column_id() const -> int
 {
   return gtk_tree_view_column_get_sort_column_id(const_cast<GtkTreeViewColumn*>(gobj()));
 }
@@ -433,7 +433,7 @@ void TreeViewColumn::set_sort_indicator(bool setting)
   gtk_tree_view_column_set_sort_indicator(gobj(), static_cast<int>(setting));
 }
 
-bool TreeViewColumn::get_sort_indicator() const
+auto TreeViewColumn::get_sort_indicator() const -> bool
 {
   return gtk_tree_view_column_get_sort_indicator(const_cast<GtkTreeViewColumn*>(gobj()));
 }
@@ -443,7 +443,7 @@ void TreeViewColumn::set_sort_order(SortType order)
   gtk_tree_view_column_set_sort_order(gobj(), static_cast<GtkSortType>(order));
 }
 
-SortType TreeViewColumn::get_sort_order() const
+auto TreeViewColumn::get_sort_order() const -> SortType
 {
   return static_cast<SortType>(gtk_tree_view_column_get_sort_order(const_cast<GtkTreeViewColumn*>(gobj())));
 }
@@ -458,7 +458,7 @@ void TreeViewColumn::cell_get_size(int& x_offset, int& y_offset, int& width, int
   gtk_tree_view_column_cell_get_size(const_cast<GtkTreeViewColumn*>(gobj()), &(x_offset), &(y_offset), &(width), &(height));
 }
 
-bool TreeViewColumn::cell_is_visible() const
+auto TreeViewColumn::cell_is_visible() const -> bool
 {
   return gtk_tree_view_column_cell_is_visible(const_cast<GtkTreeViewColumn*>(gobj()));
 }
@@ -468,7 +468,7 @@ void TreeViewColumn::focus_cell(CellRenderer& cell)
   gtk_tree_view_column_focus_cell(gobj(), (cell).gobj());
 }
 
-bool TreeViewColumn::get_cell_position(const CellRenderer& cell_renderer, int& start_pos, int& width) const
+auto TreeViewColumn::get_cell_position(const CellRenderer& cell_renderer, int& start_pos, int& width) const -> bool
 {
   return gtk_tree_view_column_cell_get_position(const_cast<GtkTreeViewColumn*>(gobj()), const_cast<GtkCellRenderer*>((cell_renderer).gobj()), &(start_pos), &(width));
 }
@@ -478,7 +478,7 @@ void TreeViewColumn::queue_resize()
   gtk_tree_view_column_queue_resize(gobj());
 }
 
-TreeView* TreeViewColumn::get_tree_view()
+auto TreeViewColumn::get_tree_view() -> TreeView*
 {
   auto retvalue = Glib::wrap((GtkTreeView*)(gtk_tree_view_column_get_tree_view(gobj())));
   if(retvalue)
@@ -486,12 +486,12 @@ TreeView* TreeViewColumn::get_tree_view()
   return retvalue;
 }
 
-const TreeView* TreeViewColumn::get_tree_view() const
+auto TreeViewColumn::get_tree_view() const -> const TreeView*
 {
   return const_cast<TreeViewColumn*>(this)->get_tree_view();
 }
 
-Button* TreeViewColumn::get_button()
+auto TreeViewColumn::get_button() -> Button*
 {
   auto retvalue = Glib::wrap((GtkButton*)(gtk_tree_view_column_get_button(gobj())));
   if(retvalue)
@@ -499,54 +499,54 @@ Button* TreeViewColumn::get_button()
   return retvalue;
 }
 
-const Button* TreeViewColumn::get_button() const
+auto TreeViewColumn::get_button() const -> const Button*
 {
   return const_cast<TreeViewColumn*>(this)->get_button();
 }
 
 
-Glib::SignalProxy<void()> TreeViewColumn::signal_clicked()
+auto TreeViewColumn::signal_clicked() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &TreeViewColumn_signal_clicked_info);
 }
 
 
-Glib::PropertyProxy< bool > TreeViewColumn::property_visible()
+auto TreeViewColumn::property_visible() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "visible");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TreeViewColumn::property_visible() const
+auto TreeViewColumn::property_visible() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "visible");
 }
 
-Glib::PropertyProxy< bool > TreeViewColumn::property_resizable()
+auto TreeViewColumn::property_resizable() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "resizable");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TreeViewColumn::property_resizable() const
+auto TreeViewColumn::property_resizable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "resizable");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TreeViewColumn::property_x_offset() const
+auto TreeViewColumn::property_x_offset() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "x-offset");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TreeViewColumn::property_width() const
+auto TreeViewColumn::property_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "width");
 }
 
-Glib::PropertyProxy< int > TreeViewColumn::property_spacing()
+auto TreeViewColumn::property_spacing() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "spacing");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TreeViewColumn::property_spacing() const
+auto TreeViewColumn::property_spacing() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "spacing");
 }
@@ -555,112 +555,112 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Sizing>::value,
   "Type Sizing cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Sizing > TreeViewColumn::property_sizing()
+auto TreeViewColumn::property_sizing() -> Glib::PropertyProxy< Sizing >
 {
   return Glib::PropertyProxy< Sizing >(this, "sizing");
 }
 
-Glib::PropertyProxy_ReadOnly< Sizing > TreeViewColumn::property_sizing() const
+auto TreeViewColumn::property_sizing() const -> Glib::PropertyProxy_ReadOnly< Sizing >
 {
   return Glib::PropertyProxy_ReadOnly< Sizing >(this, "sizing");
 }
 
-Glib::PropertyProxy< int > TreeViewColumn::property_fixed_width()
+auto TreeViewColumn::property_fixed_width() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "fixed-width");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TreeViewColumn::property_fixed_width() const
+auto TreeViewColumn::property_fixed_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "fixed-width");
 }
 
-Glib::PropertyProxy< int > TreeViewColumn::property_min_width()
+auto TreeViewColumn::property_min_width() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "min-width");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TreeViewColumn::property_min_width() const
+auto TreeViewColumn::property_min_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "min-width");
 }
 
-Glib::PropertyProxy< int > TreeViewColumn::property_max_width()
+auto TreeViewColumn::property_max_width() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "max-width");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TreeViewColumn::property_max_width() const
+auto TreeViewColumn::property_max_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "max-width");
 }
 
-Glib::PropertyProxy< Glib::ustring > TreeViewColumn::property_title()
+auto TreeViewColumn::property_title() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "title");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > TreeViewColumn::property_title() const
+auto TreeViewColumn::property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "title");
 }
 
-Glib::PropertyProxy< bool > TreeViewColumn::property_expand()
+auto TreeViewColumn::property_expand() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "expand");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TreeViewColumn::property_expand() const
+auto TreeViewColumn::property_expand() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "expand");
 }
 
-Glib::PropertyProxy< bool > TreeViewColumn::property_clickable()
+auto TreeViewColumn::property_clickable() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "clickable");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TreeViewColumn::property_clickable() const
+auto TreeViewColumn::property_clickable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "clickable");
 }
 
-Glib::PropertyProxy< Widget* > TreeViewColumn::property_widget()
+auto TreeViewColumn::property_widget() -> Glib::PropertyProxy< Widget* >
 {
   return Glib::PropertyProxy< Widget* >(this, "widget");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > TreeViewColumn::property_widget() const
+auto TreeViewColumn::property_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "widget");
 }
 
-Glib::PropertyProxy< float > TreeViewColumn::property_alignment()
+auto TreeViewColumn::property_alignment() -> Glib::PropertyProxy< float >
 {
   return Glib::PropertyProxy< float >(this, "alignment");
 }
 
-Glib::PropertyProxy_ReadOnly< float > TreeViewColumn::property_alignment() const
+auto TreeViewColumn::property_alignment() const -> Glib::PropertyProxy_ReadOnly< float >
 {
   return Glib::PropertyProxy_ReadOnly< float >(this, "alignment");
 }
 
-Glib::PropertyProxy< bool > TreeViewColumn::property_reorderable()
+auto TreeViewColumn::property_reorderable() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "reorderable");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TreeViewColumn::property_reorderable() const
+auto TreeViewColumn::property_reorderable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "reorderable");
 }
 
-Glib::PropertyProxy< bool > TreeViewColumn::property_sort_indicator()
+auto TreeViewColumn::property_sort_indicator() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "sort-indicator");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TreeViewColumn::property_sort_indicator() const
+auto TreeViewColumn::property_sort_indicator() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "sort-indicator");
 }
@@ -669,22 +669,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<SortType>::value,
   "Type SortType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< SortType > TreeViewColumn::property_sort_order()
+auto TreeViewColumn::property_sort_order() -> Glib::PropertyProxy< SortType >
 {
   return Glib::PropertyProxy< SortType >(this, "sort-order");
 }
 
-Glib::PropertyProxy_ReadOnly< SortType > TreeViewColumn::property_sort_order() const
+auto TreeViewColumn::property_sort_order() const -> Glib::PropertyProxy_ReadOnly< SortType >
 {
   return Glib::PropertyProxy_ReadOnly< SortType >(this, "sort-order");
 }
 
-Glib::PropertyProxy< int > TreeViewColumn::property_sort_column_id()
+auto TreeViewColumn::property_sort_column_id() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "sort-column-id");
 }
 
-Glib::PropertyProxy_ReadOnly< int > TreeViewColumn::property_sort_column_id() const
+auto TreeViewColumn::property_sort_column_id() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "sort-column-id");
 }
@@ -693,7 +693,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<CellAre
   "Type Glib::RefPtr<CellArea> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> > TreeViewColumn::property_cell_area() const
+auto TreeViewColumn::property_cell_area() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> >(this, "cell-area");
 }

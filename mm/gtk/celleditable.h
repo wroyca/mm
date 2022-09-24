@@ -69,7 +69,7 @@ public:
 
   // noncopyable
   CellEditable(const CellEditable&) = delete;
-  CellEditable& operator=(const CellEditable&) = delete;
+  auto operator=(const CellEditable&) -> CellEditable& = delete;
 
 private:
   friend class CellEditable_Class;
@@ -103,7 +103,7 @@ protected:
 public:
 
   CellEditable(CellEditable&& src) noexcept;
-  CellEditable& operator=(CellEditable&& src) noexcept;
+  auto operator=(CellEditable&& src) noexcept -> CellEditable&;
 
   ~CellEditable() noexcept override;
 
@@ -111,17 +111,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkCellEditable*       gobj()       { return reinterpret_cast<GtkCellEditable*>(gobject_); }
+  auto       gobj() -> GtkCellEditable*       { return reinterpret_cast<GtkCellEditable*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkCellEditable* gobj() const { return reinterpret_cast<GtkCellEditable*>(gobject_); }
+  auto gobj() const -> const GtkCellEditable* { return reinterpret_cast<GtkCellEditable*>(gobject_); }
 
 private:
 
@@ -172,7 +172,7 @@ public:
    * for emitting `GtkCellEditable::editing-done`.
    */
 
-  Glib::SignalProxy<void()> signal_editing_done();
+  auto signal_editing_done() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -195,7 +195,7 @@ public:
    * for emitting `GtkCellEditable::remove-widget`.
    */
 
-  Glib::SignalProxy<void()> signal_remove_widget();
+  auto signal_remove_widget() -> Glib::SignalProxy<void()>;
 
 
   /** Indicates whether editing on the cell has been canceled.
@@ -205,7 +205,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_editing_canceled() ;
+  auto property_editing_canceled() -> Glib::PropertyProxy< bool > ;
 
 /** Indicates whether editing on the cell has been canceled.
    *
@@ -214,7 +214,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_editing_canceled() const;
+  auto property_editing_canceled() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 protected:
@@ -254,7 +254,7 @@ namespace Glib
    * @relates Gtk::CellEditable
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::CellEditable> wrap(GtkCellEditable* object, bool take_copy = false);
+  auto wrap(GtkCellEditable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CellEditable>;
 
 } // namespace Glib
 

@@ -75,7 +75,7 @@ public:
 
   // noncopyable
   TreeSortable(const TreeSortable&) = delete;
-  TreeSortable& operator=(const TreeSortable&) = delete;
+  auto operator=(const TreeSortable&) -> TreeSortable& = delete;
 
 private:
   friend class TreeSortable_Class;
@@ -109,7 +109,7 @@ protected:
 public:
 
   TreeSortable(TreeSortable&& src) noexcept;
-  TreeSortable& operator=(TreeSortable&& src) noexcept;
+  auto operator=(TreeSortable&& src) noexcept -> TreeSortable&;
 
   ~TreeSortable() noexcept override;
 
@@ -117,17 +117,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkTreeSortable*       gobj()       { return reinterpret_cast<GtkTreeSortable*>(gobject_); }
+  auto       gobj() -> GtkTreeSortable*       { return reinterpret_cast<GtkTreeSortable*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkTreeSortable* gobj() const { return reinterpret_cast<GtkTreeSortable*>(gobject_); }
+  auto gobj() const -> const GtkTreeSortable* { return reinterpret_cast<GtkTreeSortable*>(gobject_); }
 
 private:
 
@@ -152,7 +152,7 @@ public:
    * @return <tt>true</tt> if the sort column is not one of the special sort
    * column ids.
    */
-  bool get_sort_column_id(int& sort_column_id, SortType& order) const;
+  auto get_sort_column_id(int& sort_column_id, SortType& order) const -> bool;
 
 
   /** Sets the current sort column to be @a sort_column_id. The @a sortable will
@@ -228,7 +228,7 @@ public:
    *
    * @return <tt>true</tt>, if the model has a default sort function.
    */
-  bool has_default_sort_func() const;
+  auto has_default_sort_func() const -> bool;
 
 
   /** Emits a `GtkTreeSortable::sort-column-changed` signal on @a sortable.
@@ -246,11 +246,11 @@ public:
    * the contents of @a sortable are resorted.
    */
 
-  Glib::SignalProxy<void()> signal_sort_column_changed();
+  auto signal_sort_column_changed() -> Glib::SignalProxy<void()>;
 
 
 protected:
-    virtual bool get_sort_column_id_vfunc(int* sort_column_id, SortType* order) const;
+    virtual auto get_sort_column_id_vfunc(int* sort_column_id, SortType* order) const -> bool;
 
     virtual void set_sort_column_id_vfunc(int sort_column_id, SortType order);
 
@@ -258,7 +258,7 @@ protected:
 
     virtual void set_default_sort_func_vfunc(GtkTreeIterCompareFunc func, void* data, GDestroyNotify destroy);
 
-    virtual bool has_default_sort_func_vfunc() const;
+    virtual auto has_default_sort_func_vfunc() const -> bool;
 
     virtual void sort_column_changed_vfunc() const;
 
@@ -292,7 +292,7 @@ namespace Glib
    * @relates Gtk::TreeSortable
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::TreeSortable> wrap(GtkTreeSortable* object, bool take_copy = false);
+  auto wrap(GtkTreeSortable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeSortable>;
 
 } // namespace Glib
 

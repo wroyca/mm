@@ -30,8 +30,8 @@
 namespace Gio
 {
 
-std::vector<int>
-UnixFDMessage::steal_fds()
+auto
+UnixFDMessage::steal_fds() -> std::vector<int>
 {
   int length = 0;
   const auto fds = g_unix_fd_message_steal_fds(gobj(), &length);
@@ -50,7 +50,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::UnixFDMessage> wrap(GUnixFDMessage* object, bool take_copy)
+auto wrap(GUnixFDMessage* object, bool take_copy) -> Glib::RefPtr<Gio::UnixFDMessage>
 {
   return Glib::make_refptr_for_instance<Gio::UnixFDMessage>( dynamic_cast<Gio::UnixFDMessage*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -65,7 +65,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& UnixFDMessage_Class::init()
+auto UnixFDMessage_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -96,7 +96,7 @@ void UnixFDMessage_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* UnixFDMessage_Class::wrap_new(GObject* object)
+auto UnixFDMessage_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new UnixFDMessage((GUnixFDMessage*)object);
 }
@@ -104,7 +104,7 @@ Glib::ObjectBase* UnixFDMessage_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GUnixFDMessage* UnixFDMessage::gobj_copy()
+auto UnixFDMessage::gobj_copy() -> GUnixFDMessage*
 {
   reference();
   return gobj();
@@ -127,7 +127,7 @@ UnixFDMessage::UnixFDMessage(UnixFDMessage&& src) noexcept
 : Gio::SocketControlMessage(std::move(src))
 {}
 
-UnixFDMessage& UnixFDMessage::operator=(UnixFDMessage&& src) noexcept
+auto UnixFDMessage::operator=(UnixFDMessage&& src) noexcept -> UnixFDMessage&
 {
   Gio::SocketControlMessage::operator=(std::move(src));
   return *this;
@@ -140,13 +140,13 @@ UnixFDMessage::~UnixFDMessage() noexcept
 
 UnixFDMessage::CppClassType UnixFDMessage::unixfdmessage_class_; // initialize static member
 
-GType UnixFDMessage::get_type()
+auto UnixFDMessage::get_type() -> GType
 {
   return unixfdmessage_class_.init().get_type();
 }
 
 
-GType UnixFDMessage::get_base_type()
+auto UnixFDMessage::get_base_type() -> GType
 {
   return g_unix_fd_message_get_type();
 }
@@ -172,17 +172,17 @@ UnixFDMessage::UnixFDMessage(const Glib::RefPtr<UnixFDList>& fd_list)
 
 }
 
-Glib::RefPtr<UnixFDMessage> UnixFDMessage::create()
+auto UnixFDMessage::create() -> Glib::RefPtr<UnixFDMessage>
 {
   return Glib::make_refptr_for_instance<UnixFDMessage>( new UnixFDMessage() );
 }
 
-Glib::RefPtr<UnixFDMessage> UnixFDMessage::create(const Glib::RefPtr<UnixFDList>& fd_list)
+auto UnixFDMessage::create(const Glib::RefPtr<UnixFDList>& fd_list) -> Glib::RefPtr<UnixFDMessage>
 {
   return Glib::make_refptr_for_instance<UnixFDMessage>( new UnixFDMessage(fd_list) );
 }
 
-Glib::RefPtr<UnixFDList> UnixFDMessage::get_fd_list()
+auto UnixFDMessage::get_fd_list() -> Glib::RefPtr<UnixFDList>
 {
   auto retvalue = Glib::wrap(g_unix_fd_message_get_fd_list(gobj()));
   if(retvalue)
@@ -190,12 +190,12 @@ Glib::RefPtr<UnixFDList> UnixFDMessage::get_fd_list()
   return retvalue;
 }
 
-Glib::RefPtr<const UnixFDList> UnixFDMessage::get_fd_list() const
+auto UnixFDMessage::get_fd_list() const -> Glib::RefPtr<const UnixFDList>
 {
   return const_cast<UnixFDMessage*>(this)->get_fd_list();
 }
 
-bool UnixFDMessage::append_fd(int fd)
+auto UnixFDMessage::append_fd(int fd) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_unix_fd_message_append_fd(gobj(), fd, &(gerror));
@@ -209,7 +209,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<UnixFDL
   "Type Glib::RefPtr<UnixFDList> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<UnixFDList> > UnixFDMessage::property_fd_list() const
+auto UnixFDMessage::property_fd_list() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<UnixFDList> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<UnixFDList> >(this, "fd-list");
 }

@@ -84,7 +84,7 @@ public:
 
   // noncopyable
   Clipboard(const Clipboard&) = delete;
-  Clipboard& operator=(const Clipboard&) = delete;
+  auto operator=(const Clipboard&) -> Clipboard& = delete;
 
 private:  friend class Clipboard_Class;
   static CppClassType clipboard_class_;
@@ -98,28 +98,28 @@ protected:
 public:
 
   Clipboard(Clipboard&& src) noexcept;
-  Clipboard& operator=(Clipboard&& src) noexcept;
+  auto operator=(Clipboard&& src) noexcept -> Clipboard&;
 
   ~Clipboard() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkClipboard*       gobj()       { return reinterpret_cast<GdkClipboard*>(gobject_); }
+  auto       gobj() -> GdkClipboard*       { return reinterpret_cast<GdkClipboard*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkClipboard* gobj() const { return reinterpret_cast<GdkClipboard*>(gobject_); }
+  auto gobj() const -> const GdkClipboard* { return reinterpret_cast<GdkClipboard*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkClipboard* gobj_copy();
+  auto gobj_copy() -> GdkClipboard*;
 
 private:
 
@@ -130,25 +130,25 @@ public:
    *
    * @return A `Gdk::Display`.
    */
-  Glib::RefPtr<Display> get_display();
+  auto get_display() -> Glib::RefPtr<Display>;
 
   /** Gets the `Gdk::Display` that the clipboard was created for.
    *
    * @return A `Gdk::Display`.
    */
-  Glib::RefPtr<const Display> get_display() const;
+  auto get_display() const -> Glib::RefPtr<const Display>;
 
   /** Gets the formats that the clipboard can provide its current contents in.
    *
    * @return The formats of the clipboard.
    */
-  Glib::RefPtr<ContentFormats> get_formats();
+  auto get_formats() -> Glib::RefPtr<ContentFormats>;
 
   /** Gets the formats that the clipboard can provide its current contents in.
    *
    * @return The formats of the clipboard.
    */
-  Glib::RefPtr<const ContentFormats> get_formats() const;
+  auto get_formats() const -> Glib::RefPtr<const ContentFormats>;
 
   /** Returns if the clipboard is local.
    *
@@ -160,7 +160,7 @@ public:
    *
    * @return <tt>true</tt> if the clipboard is local.
    */
-  bool is_local() const;
+  auto is_local() const -> bool;
 
   /** Returns the `Gdk::ContentProvider` currently set on @a clipboard.
    *
@@ -170,7 +170,7 @@ public:
    * @return The content of a clipboard
    * if the clipboard does not maintain any content.
    */
-  Glib::RefPtr<ContentProvider> get_content();
+  auto get_content() -> Glib::RefPtr<ContentProvider>;
 
   /** Returns the `Gdk::ContentProvider` currently set on @a clipboard.
    *
@@ -180,7 +180,7 @@ public:
    * @return The content of a clipboard
    * if the clipboard does not maintain any content.
    */
-  Glib::RefPtr<const ContentProvider> get_content() const;
+  auto get_content() const -> Glib::RefPtr<const ContentProvider>;
 
   //TODO: Wrap or ignore gdk_clipboard_store_async() and gdk_clipboard_store_finish()?
   // From the documentation of gdk_clipboard_store_async():
@@ -219,7 +219,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<Gio::InputStream> read_finish(const Glib::RefPtr<Gio::AsyncResult>& result, Glib::ustring& out_mime_type);
+  auto read_finish(const Glib::RefPtr<Gio::AsyncResult>& result, Glib::ustring& out_mime_type) -> Glib::RefPtr<Gio::InputStream>;
 
 
   /** Asynchronously request the @a clipboard contents converted to a `Gdk::Pixbuf`.
@@ -248,7 +248,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<Texture> read_texture_finish(const Glib::RefPtr<Gio::AsyncResult>& result);
+  auto read_texture_finish(const Glib::RefPtr<Gio::AsyncResult>& result) -> Glib::RefPtr<Texture>;
 
 
   /** Asynchronously request the @a clipboard contents converted to a string.
@@ -277,7 +277,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::ustring read_text_finish(const Glib::RefPtr<Gio::AsyncResult>& result);
+  auto read_text_finish(const Glib::RefPtr<Gio::AsyncResult>& result) -> Glib::ustring;
 
 
   /** Sets a new content provider on @a clipboard.
@@ -297,7 +297,7 @@ public:
    * or <tt>nullptr</tt> to clear the clipboard.
    * @return <tt>true</tt> if setting the clipboard succeeded.
    */
-  bool set_content(const Glib::RefPtr<const ContentProvider>& provider);
+  auto set_content(const Glib::RefPtr<const ContentProvider>& provider) -> bool;
   /** Clears the clipboard.
    *
    * In the rare case of a failure, this function will return <tt>false</tt>.
@@ -305,7 +305,7 @@ public:
    *
    * @return <tt>true</tt> if unsetting the clipboard succeeded.
    */
-  bool unset_content();
+  auto unset_content() -> bool;
 
   /** Puts the given @a text into the clipboard.
    *
@@ -324,7 +324,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> > property_display() const;
+  auto property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >;
 
 
   /** The possible formats that the clipboard can provide its data in.
@@ -332,7 +332,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> > property_formats() const;
+  auto property_formats() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> >;
 
 
   /** <tt>true</tt> if the contents of the clipboard are owned by this process.
@@ -342,7 +342,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_local() const;
+  auto property_local() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** The `Gdk::ContentProvider` or <tt>nullptr</tt> if the clipboard is empty or contents are
@@ -351,7 +351,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentProvider> > property_content() const;
+  auto property_content() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentProvider> >;
 
 
   // no_default_handler because GdkClipbaordClass is private.
@@ -365,7 +365,7 @@ public:
    * Emitted when the clipboard changes ownership.
    */
 
-  Glib::SignalProxy<void()> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void()>;
 
 
 public:
@@ -395,7 +395,7 @@ namespace Glib
    * @relates Gdk::Clipboard
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::Clipboard> wrap(GdkClipboard* object, bool take_copy = false);
+  auto wrap(GdkClipboard* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Clipboard>;
 }
 
 

@@ -126,7 +126,7 @@ public:
   explicit Pattern(cairo_pattern_t* cobject, bool has_reference = false);
 
   Pattern(const Pattern&) = delete;
-  Pattern& operator=(const Pattern&) = delete;
+  auto operator=(const Pattern&) -> Pattern& = delete;
 
   virtual ~Pattern();
 
@@ -167,14 +167,14 @@ public:
    * Returns the pattern's transformation matrix
    * @since 1.8
    */
-  Matrix get_matrix() const;
+  auto get_matrix() const -> Matrix;
 
   /**
    * Returns the type of the pattern
    *
    * @since 1.2
    */
-  Type get_type() const;
+  auto get_type() const -> Type;
 
   /**
    * Sets the mode to be used for drawing outside the area of a pattern. See
@@ -195,15 +195,15 @@ public:
    * semantics of each extend strategy.
    * @since 1.12
    */
-  Extend get_extend() const;
+  auto get_extend() const -> Extend;
 
   typedef cairo_pattern_t cobject;
-  inline cobject* cobj() { return m_cobject; }
-  inline const cobject* cobj() const { return m_cobject; }
+  inline auto cobj() -> cobject* { return m_cobject; }
+  inline auto cobj() const -> const cobject* { return m_cobject; }
 
   #ifndef DOXYGEN_IGNORE_THIS
   ///For use only by the cairomm implementation.
-  inline ErrorStatus get_status() const
+  inline auto get_status() const -> ErrorStatus
   { return cairo_pattern_status(const_cast<cairo_pattern_t*>(cobj())); }
   #endif //DOXYGEN_IGNORE_THIS
 
@@ -251,7 +251,7 @@ public:
    * @param green green component of the color
    * @param blue blue component of the color
    */
-  static RefPtr<SolidPattern> create_rgb(double red, double green, double blue);
+  static auto create_rgb(double red, double green, double blue) -> RefPtr<SolidPattern>;
 
   /**
    * Creates a new Cairo::Pattern corresponding to a translucent color. The color
@@ -263,8 +263,8 @@ public:
    * @param blue blue component of the color
    * @param alpha alpha component of the color
    */
-  static RefPtr<SolidPattern> create_rgba(double red, double green,
-                                          double blue, double alpha);
+  static auto create_rgba(double red, double green,
+                                          double blue, double alpha) -> RefPtr<SolidPattern>;
 
   //TODO?: SolidPattern(cairo_pattern_t *target);
   ~SolidPattern() override;
@@ -333,8 +333,8 @@ public:
    *
    * @since 1.4
    **/
-  RefPtr<const Surface> get_surface () const;
-  RefPtr<Surface> get_surface ();
+  auto get_surface () const -> RefPtr<const Surface>;
+  auto get_surface () -> RefPtr<Surface>;
   /// @}
 
   ~SurfacePattern() override;
@@ -342,7 +342,7 @@ public:
   /**
    * Create a new Cairo::Pattern for the given surface.
    */
-  static RefPtr<SurfacePattern> create(const RefPtr<Surface>& surface);
+  static auto create(const RefPtr<Surface>& surface) -> RefPtr<SurfacePattern>;
 
   /**
    * Sets the filter to be used for resizing when using this pattern.
@@ -363,7 +363,7 @@ public:
    * Gets the current filter for a pattern. See Cairo::Filter for details on
    * each filter.
    */
-  Filter get_filter() const;
+  auto get_filter() const -> Filter;
 };
 
 class CAIROMM_API Gradient : public Pattern
@@ -433,7 +433,7 @@ public:
    *
    * @since 1.4
    */
-  std::vector<ColorStop> get_color_stops() const;
+  auto get_color_stops() const -> std::vector<ColorStop>;
 
 
 protected:
@@ -485,7 +485,7 @@ public:
    * @param x1 x coordinate of the end point
    * @param y1 y coordinate of the end point
    */
-  static RefPtr<LinearGradient> create(double x0, double y0, double x1, double y1);
+  static auto create(double x0, double y0, double x1, double y1) -> RefPtr<LinearGradient>;
 };
 
 class CAIROMM_API RadialGradient : public Gradient
@@ -540,7 +540,7 @@ public:
    * @param cy1 y coordinate for the center of the end circle
    * @param radius1 radius of the end circle
    */
-  static RefPtr<RadialGradient> create(double cx0, double cy0, double radius0, double cx1, double cy1, double radius1);
+  static auto create(double cx0, double cy0, double radius0, double cx1, double cy1, double radius1) -> RefPtr<RadialGradient>;
 };
 
 } // namespace Cairo

@@ -75,11 +75,11 @@ class GTKMM_API TreeExpander : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   TreeExpander(TreeExpander&& src) noexcept;
-  TreeExpander& operator=(TreeExpander&& src) noexcept;
+  auto operator=(TreeExpander&& src) noexcept -> TreeExpander&;
 
   // noncopyable
   TreeExpander(const TreeExpander&) = delete;
-  TreeExpander& operator=(const TreeExpander&) = delete;
+  auto operator=(const TreeExpander&) -> TreeExpander& = delete;
 
   ~TreeExpander() noexcept override;
 
@@ -99,19 +99,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkTreeExpander*       gobj()       { return reinterpret_cast<GtkTreeExpander*>(gobject_); }
+  auto       gobj() -> GtkTreeExpander*       { return reinterpret_cast<GtkTreeExpander*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkTreeExpander* gobj() const { return reinterpret_cast<GtkTreeExpander*>(gobject_); }
+  auto gobj() const -> const GtkTreeExpander* { return reinterpret_cast<GtkTreeExpander*>(gobject_); }
 
 private:
 
@@ -124,13 +124,13 @@ public:
    *
    * @return The child displayed by @a self.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget displayed by @a self.
    *
    * @return The child displayed by @a self.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
   /** Sets the content widget to display.
    *
@@ -151,7 +151,7 @@ public:
    *
    * @return The item of the row.
    */
-  Glib::RefPtr<Glib::ObjectBase> get_item();
+  auto get_item() -> Glib::RefPtr<Glib::ObjectBase>;
 
   /** Forwards the item set on the `Gtk::TreeListRow` that @a self is managing.
    *
@@ -162,20 +162,20 @@ public:
    *
    * @return The item of the row.
    */
-  Glib::RefPtr<const Glib::ObjectBase> get_item() const;
+  auto get_item() const -> Glib::RefPtr<const Glib::ObjectBase>;
 
 
   /** Gets the list row managed by @a self.
    *
    * @return The list row displayed by @a self.
    */
-  Glib::RefPtr<TreeListRow> get_list_row();
+  auto get_list_row() -> Glib::RefPtr<TreeListRow>;
 
   /** Gets the list row managed by @a self.
    *
    * @return The list row displayed by @a self.
    */
-  Glib::RefPtr<const TreeListRow> get_list_row() const;
+  auto get_list_row() const -> Glib::RefPtr<const TreeListRow>;
 
   /** Sets the tree list row that this expander should manage.
    *
@@ -193,7 +193,7 @@ public:
    *
    * @return <tt>true</tt> if the child should be indented when not expandable. Otherwise <tt>false</tt>.
    */
-  bool get_indent_for_icon() const;
+  auto get_indent_for_icon() const -> bool;
 
   /** Sets if the TreeExpander should indent the child by the width of an expander-icon when it is not expandable.
    *
@@ -208,21 +208,21 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The child widget with the actual contents.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
   /** The item held by this expander's row.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> > property_item() const;
+  auto property_item() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> >;
 
 
   /** The list row to track for expander state.
@@ -230,14 +230,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<TreeListRow> > property_list_row() ;
+  auto property_list_row() -> Glib::PropertyProxy< Glib::RefPtr<TreeListRow> > ;
 
 /** The list row to track for expander state.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeListRow> > property_list_row() const;
+  auto property_list_row() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeListRow> >;
 
   /** TreeExpander indents the child by the width of an expander-icon if it is not expandable.
    *
@@ -248,7 +248,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_indent_for_icon() ;
+  auto property_indent_for_icon() -> Glib::PropertyProxy< bool > ;
 
 /** TreeExpander indents the child by the width of an expander-icon if it is not expandable.
    *
@@ -259,7 +259,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_indent_for_icon() const;
+  auto property_indent_for_icon() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -289,7 +289,7 @@ namespace Glib
    * @relates Gtk::TreeExpander
    */
   GTKMM_API
-  Gtk::TreeExpander* wrap(GtkTreeExpander* object, bool take_copy = false);
+  auto wrap(GtkTreeExpander* object, bool take_copy = false) -> Gtk::TreeExpander*;
 } //namespace Glib
 
 

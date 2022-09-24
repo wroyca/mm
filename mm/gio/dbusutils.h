@@ -25,10 +25,7 @@
  */
 
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 /** Generate a D-Bus GUID that can be used with e.g.
@@ -42,7 +39,7 @@ namespace DBus
  * @ingroup DBus
  */
 GIOMM_API
-std::string generate_guid();
+auto generate_guid() -> std::string;
 
 /** Checks if @a string is a D-Bus GUID.
  *
@@ -55,7 +52,7 @@ std::string generate_guid();
  * @ingroup DBus
  */
 GIOMM_API
-bool is_guid(const std::string& string);
+auto is_guid(const std::string& string) -> bool;
 
 /** Checks if @a string is a valid D-Bus bus name (either unique or
  * well-known).
@@ -66,7 +63,7 @@ bool is_guid(const std::string& string);
  * @ingroup DBus
  */
 GIOMM_API
-bool is_name(const Glib::ustring& string);
+auto is_name(const Glib::ustring& string) -> bool;
 
 /** Checks if @a string is a valid D-Bus unique bus name.
  *
@@ -76,7 +73,7 @@ bool is_name(const Glib::ustring& string);
  * @ingroup DBus
  */
 GIOMM_API
-bool is_unique_name(const Glib::ustring& string);
+auto is_unique_name(const Glib::ustring& string) -> bool;
 
 /** Checks if @a string is a valid D-Bus member (e.g. signal or method) name.
  *
@@ -86,7 +83,7 @@ bool is_unique_name(const Glib::ustring& string);
  * @ingroup DBus
  */
 GIOMM_API
-bool is_member_name(const Glib::ustring& string);
+auto is_member_name(const Glib::ustring& string) -> bool;
 
 /** Checks if @a string is a valid D-Bus interface name.
  *
@@ -96,9 +93,7 @@ bool is_member_name(const Glib::ustring& string);
  * @ingroup DBus
  */
 GIOMM_API
-bool is_interface_name(const Glib::ustring& string);
-
-}
+auto is_interface_name(const Glib::ustring& string) -> bool;
 
 } // namespace Gio
 

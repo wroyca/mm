@@ -39,7 +39,7 @@ namespace
 namespace Glib
 {
 
-Gio::SrvTarget wrap(GSrvTarget* object, bool take_copy)
+auto wrap(GSrvTarget* object, bool take_copy) -> Gio::SrvTarget
 {
   return Gio::SrvTarget(object, take_copy);
 }
@@ -52,7 +52,7 @@ namespace Gio
 
 
 // static
-GType SrvTarget::get_type()
+auto SrvTarget::get_type() -> GType
 {
   return g_srv_target_get_type();
 }
@@ -74,7 +74,7 @@ SrvTarget::SrvTarget(SrvTarget&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-SrvTarget& SrvTarget::operator=(SrvTarget&& other) noexcept
+auto SrvTarget::operator=(SrvTarget&& other) noexcept -> SrvTarget&
 {
   SrvTarget temp (std::move(other));
   swap(temp);
@@ -89,7 +89,7 @@ SrvTarget::SrvTarget(GSrvTarget* gobject, bool make_a_copy)
   gobject_ ((make_a_copy && gobject) ? g_srv_target_copy(gobject) : gobject)
 {}
 
-SrvTarget& SrvTarget::operator=(const SrvTarget& other)
+auto SrvTarget::operator=(const SrvTarget& other) -> SrvTarget&
 {
   SrvTarget temp (other);
   swap(temp);
@@ -107,28 +107,28 @@ void SrvTarget::swap(SrvTarget& other) noexcept
   std::swap(gobject_, other.gobject_);
 }
 
-GSrvTarget* SrvTarget::gobj_copy() const
+auto SrvTarget::gobj_copy() const -> GSrvTarget*
 {
   return g_srv_target_copy(gobject_);
 }
 
 
-Glib::ustring SrvTarget::get_hostname() const
+auto SrvTarget::get_hostname() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_srv_target_get_hostname(const_cast<GSrvTarget*>(gobj())));
 }
 
-guint16 SrvTarget::get_port() const
+auto SrvTarget::get_port() const -> guint16
 {
   return g_srv_target_get_port(const_cast<GSrvTarget*>(gobj()));
 }
 
-guint16 SrvTarget::get_priority() const
+auto SrvTarget::get_priority() const -> guint16
 {
   return g_srv_target_get_priority(const_cast<GSrvTarget*>(gobj()));
 }
 
-guint16 SrvTarget::get_weight() const
+auto SrvTarget::get_weight() const -> guint16
 {
   return g_srv_target_get_weight(const_cast<GSrvTarget*>(gobj()));
 }

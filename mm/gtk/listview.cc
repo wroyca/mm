@@ -29,7 +29,7 @@ namespace
 {
 
 
-static void ListView_signal_activate_callback(GtkListView* self, guint p0,void* data)
+void ListView_signal_activate_callback(GtkListView* self, guint p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint)>;
@@ -50,7 +50,7 @@ static void ListView_signal_activate_callback(GtkListView* self, guint p0,void* 
   }
 }
 
-static const Glib::SignalProxyInfo ListView_signal_activate_info =
+const Glib::SignalProxyInfo ListView_signal_activate_info =
 {
   "activate",
   (GCallback) &ListView_signal_activate_callback,
@@ -64,7 +64,7 @@ static const Glib::SignalProxyInfo ListView_signal_activate_info =
 namespace Glib
 {
 
-Gtk::ListView* wrap(GtkListView* object, bool take_copy)
+auto wrap(GtkListView* object, bool take_copy) -> Gtk::ListView*
 {
   return dynamic_cast<Gtk::ListView *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -77,7 +77,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ListView_Class::init()
+auto ListView_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -108,7 +108,7 @@ void ListView_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* ListView_Class::wrap_new(GObject* o)
+auto ListView_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new ListView((GtkListView*)(o)));
 
@@ -134,7 +134,7 @@ ListView::ListView(ListView&& src) noexcept
 : ListBase(std::move(src))
 {}
 
-ListView& ListView::operator=(ListView&& src) noexcept
+auto ListView::operator=(ListView&& src) noexcept -> ListView&
 {
   ListBase::operator=(std::move(src));
   return *this;
@@ -147,13 +147,13 @@ ListView::~ListView() noexcept
 
 ListView::CppClassType ListView::listview_class_; // initialize static member
 
-GType ListView::get_type()
+auto ListView::get_type() -> GType
 {
   return listview_class_.init().get_type();
 }
 
 
-GType ListView::get_base_type()
+auto ListView::get_base_type() -> GType
 {
   return gtk_list_view_get_type();
 }
@@ -169,7 +169,7 @@ ListView::ListView(const Glib::RefPtr<SelectionModel>& model, const Glib::RefPtr
 
 }
 
-Glib::RefPtr<SelectionModel> ListView::get_model()
+auto ListView::get_model() -> Glib::RefPtr<SelectionModel>
 {
   auto retvalue = Glib::wrap(gtk_list_view_get_model(gobj()));
   if(retvalue)
@@ -177,7 +177,7 @@ Glib::RefPtr<SelectionModel> ListView::get_model()
   return retvalue;
 }
 
-Glib::RefPtr<const SelectionModel> ListView::get_model() const
+auto ListView::get_model() const -> Glib::RefPtr<const SelectionModel>
 {
   return const_cast<ListView*>(this)->get_model();
 }
@@ -192,7 +192,7 @@ void ListView::set_factory(const Glib::RefPtr<ListItemFactory>& factory)
   gtk_list_view_set_factory(gobj(), Glib::unwrap(factory));
 }
 
-Glib::RefPtr<ListItemFactory> ListView::get_factory()
+auto ListView::get_factory() -> Glib::RefPtr<ListItemFactory>
 {
   auto retvalue = Glib::wrap(gtk_list_view_get_factory(gobj()));
   if(retvalue)
@@ -200,7 +200,7 @@ Glib::RefPtr<ListItemFactory> ListView::get_factory()
   return retvalue;
 }
 
-Glib::RefPtr<const ListItemFactory> ListView::get_factory() const
+auto ListView::get_factory() const -> Glib::RefPtr<const ListItemFactory>
 {
   return const_cast<ListView*>(this)->get_factory();
 }
@@ -210,7 +210,7 @@ void ListView::set_show_separators(bool show_separators)
   gtk_list_view_set_show_separators(gobj(), static_cast<int>(show_separators));
 }
 
-bool ListView::get_show_separators() const
+auto ListView::get_show_separators() const -> bool
 {
   return gtk_list_view_get_show_separators(const_cast<GtkListView*>(gobj()));
 }
@@ -220,7 +220,7 @@ void ListView::set_single_click_activate(bool single_click_activate)
   gtk_list_view_set_single_click_activate(gobj(), static_cast<int>(single_click_activate));
 }
 
-bool ListView::get_single_click_activate() const
+auto ListView::get_single_click_activate() const -> bool
 {
   return gtk_list_view_get_single_click_activate(const_cast<GtkListView*>(gobj()));
 }
@@ -230,13 +230,13 @@ void ListView::set_enable_rubberband(bool enable_rubberband)
   gtk_list_view_set_enable_rubberband(gobj(), static_cast<int>(enable_rubberband));
 }
 
-bool ListView::get_enable_rubberband() const
+auto ListView::get_enable_rubberband() const -> bool
 {
   return gtk_list_view_get_enable_rubberband(const_cast<GtkListView*>(gobj()));
 }
 
 
-Glib::SignalProxy<void(guint)> ListView::signal_activate()
+auto ListView::signal_activate() -> Glib::SignalProxy<void(guint)>
 {
   return Glib::SignalProxy<void(guint) >(this, &ListView_signal_activate_info);
 }
@@ -246,12 +246,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<ListIte
   "Type Glib::RefPtr<ListItemFactory> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<ListItemFactory> > ListView::property_factory()
+auto ListView::property_factory() -> Glib::PropertyProxy< Glib::RefPtr<ListItemFactory> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<ListItemFactory> >(this, "factory");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListItemFactory> > ListView::property_factory() const
+auto ListView::property_factory() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListItemFactory> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListItemFactory> >(this, "factory");
 }
@@ -260,42 +260,42 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Selecti
   "Type Glib::RefPtr<SelectionModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<SelectionModel> > ListView::property_model()
+auto ListView::property_model() -> Glib::PropertyProxy< Glib::RefPtr<SelectionModel> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<SelectionModel> >(this, "model");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> > ListView::property_model() const
+auto ListView::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> >(this, "model");
 }
 
-Glib::PropertyProxy< bool > ListView::property_show_separators()
+auto ListView::property_show_separators() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "show-separators");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > ListView::property_show_separators() const
+auto ListView::property_show_separators() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "show-separators");
 }
 
-Glib::PropertyProxy< bool > ListView::property_single_click_activate()
+auto ListView::property_single_click_activate() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "single-click-activate");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > ListView::property_single_click_activate() const
+auto ListView::property_single_click_activate() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "single-click-activate");
 }
 
-Glib::PropertyProxy< bool > ListView::property_enable_rubberband()
+auto ListView::property_enable_rubberband() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "enable-rubberband");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > ListView::property_enable_rubberband() const
+auto ListView::property_enable_rubberband() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "enable-rubberband");
 }

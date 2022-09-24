@@ -32,7 +32,7 @@
 namespace Gtk
 {
 
-Glib::RefPtr<SelectionModel> Stack::get_pages()
+auto Stack::get_pages() -> Glib::RefPtr<SelectionModel>
 {
   // gtk_stack_get_pages() returns a pointer to a private GObject class that
   // implements GListModel and GtkSelectionModel.
@@ -60,7 +60,7 @@ namespace
 namespace Glib
 {
 
-Gtk::Stack* wrap(GtkStack* object, bool take_copy)
+auto wrap(GtkStack* object, bool take_copy) -> Gtk::Stack*
 {
   return dynamic_cast<Gtk::Stack *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -73,7 +73,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Stack_Class::init()
+auto Stack_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -104,7 +104,7 @@ void Stack_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Stack_Class::wrap_new(GObject* o)
+auto Stack_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Stack((GtkStack*)(o)));
 
@@ -130,7 +130,7 @@ Stack::Stack(Stack&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-Stack& Stack::operator=(Stack&& src) noexcept
+auto Stack::operator=(Stack&& src) noexcept -> Stack&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -143,13 +143,13 @@ Stack::~Stack() noexcept
 
 Stack::CppClassType Stack::stack_class_; // initialize static member
 
-GType Stack::get_type()
+auto Stack::get_type() -> GType
 {
   return stack_class_.init().get_type();
 }
 
 
-GType Stack::get_base_type()
+auto Stack::get_base_type() -> GType
 {
   return gtk_stack_get_type();
 }
@@ -165,7 +165,7 @@ Stack::Stack()
 
 }
 
-Glib::RefPtr<StackPage> Stack::add(Widget& child)
+auto Stack::add(Widget& child) -> Glib::RefPtr<StackPage>
 {
   auto retvalue = Glib::wrap(gtk_stack_add_child(gobj(), (child).gobj()));
   if(retvalue)
@@ -173,7 +173,7 @@ Glib::RefPtr<StackPage> Stack::add(Widget& child)
   return retvalue;
 }
 
-Glib::RefPtr<StackPage> Stack::add(Widget& child, const Glib::ustring& name)
+auto Stack::add(Widget& child, const Glib::ustring& name) -> Glib::RefPtr<StackPage>
 {
   auto retvalue = Glib::wrap(gtk_stack_add_named(gobj(), (child).gobj(), name.c_str()));
   if(retvalue)
@@ -181,7 +181,7 @@ Glib::RefPtr<StackPage> Stack::add(Widget& child, const Glib::ustring& name)
   return retvalue;
 }
 
-Glib::RefPtr<StackPage> Stack::add(Widget& child, const Glib::ustring& name, const Glib::ustring& title)
+auto Stack::add(Widget& child, const Glib::ustring& name, const Glib::ustring& title) -> Glib::RefPtr<StackPage>
 {
   auto retvalue = Glib::wrap(gtk_stack_add_titled(gobj(), (child).gobj(), name.c_str(), title.c_str()));
   if(retvalue)
@@ -194,7 +194,7 @@ void Stack::remove(Widget& child)
   gtk_stack_remove(gobj(), (child).gobj());
 }
 
-Glib::RefPtr<StackPage> Stack::get_page(Widget& child)
+auto Stack::get_page(Widget& child) -> Glib::RefPtr<StackPage>
 {
   auto retvalue = Glib::wrap(gtk_stack_get_page(gobj(), (child).gobj()));
   if(retvalue)
@@ -202,7 +202,7 @@ Glib::RefPtr<StackPage> Stack::get_page(Widget& child)
   return retvalue;
 }
 
-Glib::RefPtr<const StackPage> Stack::get_page(const Widget& child) const
+auto Stack::get_page(const Widget& child) const -> Glib::RefPtr<const StackPage>
 {
   auto retvalue = Glib::wrap(gtk_stack_get_page(const_cast<GtkStack*>(gobj()), const_cast<GtkWidget*>((child).gobj())));
   if(retvalue)
@@ -215,12 +215,12 @@ void Stack::set_visible_child(Widget& child)
   gtk_stack_set_visible_child(gobj(), (child).gobj());
 }
 
-Widget* Stack::get_visible_child()
+auto Stack::get_visible_child() -> Widget*
 {
   return Glib::wrap(gtk_stack_get_visible_child(gobj()));
 }
 
-const Widget* Stack::get_visible_child() const
+auto Stack::get_visible_child() const -> const Widget*
 {
   return const_cast<Stack*>(this)->get_visible_child();
 }
@@ -235,7 +235,7 @@ void Stack::set_visible_child(const Glib::ustring& name, StackTransitionType tra
   gtk_stack_set_visible_child_full(gobj(), name.c_str(), static_cast<GtkStackTransitionType>(transition));
 }
 
-Glib::ustring Stack::get_visible_child_name() const
+auto Stack::get_visible_child_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_stack_get_visible_child_name(const_cast<GtkStack*>(gobj())));
 }
@@ -245,7 +245,7 @@ void Stack::set_hhomogeneous(bool hhomogeneous)
   gtk_stack_set_hhomogeneous(gobj(), static_cast<int>(hhomogeneous));
 }
 
-bool Stack::get_hhomogeneous() const
+auto Stack::get_hhomogeneous() const -> bool
 {
   return gtk_stack_get_hhomogeneous(const_cast<GtkStack*>(gobj()));
 }
@@ -255,7 +255,7 @@ void Stack::set_vhomogeneous(bool vhomogeneous)
   gtk_stack_set_vhomogeneous(gobj(), static_cast<int>(vhomogeneous));
 }
 
-bool Stack::get_vhomogeneous() const
+auto Stack::get_vhomogeneous() const -> bool
 {
   return gtk_stack_get_vhomogeneous(const_cast<GtkStack*>(gobj()));
 }
@@ -265,7 +265,7 @@ void Stack::set_transition_duration(guint duration)
   gtk_stack_set_transition_duration(gobj(), duration);
 }
 
-guint Stack::get_transition_duration() const
+auto Stack::get_transition_duration() const -> guint
 {
   return gtk_stack_get_transition_duration(const_cast<GtkStack*>(gobj()));
 }
@@ -275,22 +275,22 @@ void Stack::set_transition_type(StackTransitionType transition)
   gtk_stack_set_transition_type(gobj(), static_cast<GtkStackTransitionType>(transition));
 }
 
-StackTransitionType Stack::get_transition_type() const
+auto Stack::get_transition_type() const -> StackTransitionType
 {
   return static_cast<StackTransitionType>(gtk_stack_get_transition_type(const_cast<GtkStack*>(gobj())));
 }
 
-bool Stack::get_transition_running() const
+auto Stack::get_transition_running() const -> bool
 {
   return gtk_stack_get_transition_running(const_cast<GtkStack*>(gobj()));
 }
 
-Widget* Stack::get_child_by_name(const Glib::ustring& name)
+auto Stack::get_child_by_name(const Glib::ustring& name) -> Widget*
 {
   return Glib::wrap(gtk_stack_get_child_by_name(gobj(), name.c_str()));
 }
 
-const Widget* Stack::get_child_by_name(const Glib::ustring& name) const
+auto Stack::get_child_by_name(const Glib::ustring& name) const -> const Widget*
 {
   return const_cast<Stack*>(this)->get_child_by_name(name);
 }
@@ -300,38 +300,38 @@ void Stack::set_interpolate_size(bool interpolate_size)
   gtk_stack_set_interpolate_size(gobj(), static_cast<int>(interpolate_size));
 }
 
-bool Stack::get_interpolate_size() const
+auto Stack::get_interpolate_size() const -> bool
 {
   return gtk_stack_get_interpolate_size(const_cast<GtkStack*>(gobj()));
 }
 
-Glib::RefPtr<const SelectionModel> Stack::get_pages() const
+auto Stack::get_pages() const -> Glib::RefPtr<const SelectionModel>
 {
   return const_cast<Stack*>(this)->get_pages();
 }
 
 
-Glib::PropertyProxy< bool > Stack::property_hhomogeneous()
+auto Stack::property_hhomogeneous() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "hhomogeneous");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Stack::property_hhomogeneous() const
+auto Stack::property_hhomogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "hhomogeneous");
 }
 
-Glib::PropertyProxy< unsigned int > Stack::property_transition_duration()
+auto Stack::property_transition_duration() -> Glib::PropertyProxy< unsigned int >
 {
   return Glib::PropertyProxy< unsigned int >(this, "transition-duration");
 }
 
-Glib::PropertyProxy_ReadOnly< unsigned int > Stack::property_transition_duration() const
+auto Stack::property_transition_duration() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
   return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "transition-duration");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Stack::property_transition_running() const
+auto Stack::property_transition_running() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "transition-running");
 }
@@ -340,52 +340,52 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<StackTransitionType>
   "Type StackTransitionType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< StackTransitionType > Stack::property_transition_type()
+auto Stack::property_transition_type() -> Glib::PropertyProxy< StackTransitionType >
 {
   return Glib::PropertyProxy< StackTransitionType >(this, "transition-type");
 }
 
-Glib::PropertyProxy_ReadOnly< StackTransitionType > Stack::property_transition_type() const
+auto Stack::property_transition_type() const -> Glib::PropertyProxy_ReadOnly< StackTransitionType >
 {
   return Glib::PropertyProxy_ReadOnly< StackTransitionType >(this, "transition-type");
 }
 
-Glib::PropertyProxy< bool > Stack::property_vhomogeneous()
+auto Stack::property_vhomogeneous() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "vhomogeneous");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Stack::property_vhomogeneous() const
+auto Stack::property_vhomogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "vhomogeneous");
 }
 
-Glib::PropertyProxy< Widget* > Stack::property_visible_child()
+auto Stack::property_visible_child() -> Glib::PropertyProxy< Widget* >
 {
   return Glib::PropertyProxy< Widget* >(this, "visible-child");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > Stack::property_visible_child() const
+auto Stack::property_visible_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "visible-child");
 }
 
-Glib::PropertyProxy< Glib::ustring > Stack::property_visible_child_name()
+auto Stack::property_visible_child_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "visible-child-name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Stack::property_visible_child_name() const
+auto Stack::property_visible_child_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "visible-child-name");
 }
 
-Glib::PropertyProxy< bool > Stack::property_interpolate_size()
+auto Stack::property_interpolate_size() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "interpolate-size");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Stack::property_interpolate_size() const
+auto Stack::property_interpolate_size() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "interpolate-size");
 }
@@ -394,7 +394,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Selecti
   "Type Glib::RefPtr<SelectionModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> > Stack::property_pages() const
+auto Stack::property_pages() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> >(this, "pages");
 }

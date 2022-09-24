@@ -65,7 +65,7 @@ public:
 
   // noncopyable
   Menu(const Menu&) = delete;
-  Menu& operator=(const Menu&) = delete;
+  auto operator=(const Menu&) -> Menu& = delete;
 
 private:  friend class Menu_Class;
   static CppClassType menu_class_;
@@ -79,28 +79,28 @@ protected:
 public:
 
   Menu(Menu&& src) noexcept;
-  Menu& operator=(Menu&& src) noexcept;
+  auto operator=(Menu&& src) noexcept -> Menu&;
 
   ~Menu() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GMenu*       gobj()       { return reinterpret_cast<GMenu*>(gobject_); }
+  auto       gobj() -> GMenu*       { return reinterpret_cast<GMenu*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GMenu* gobj() const { return reinterpret_cast<GMenu*>(gobject_); }
+  auto gobj() const -> const GMenu* { return reinterpret_cast<GMenu*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GMenu* gobj_copy();
+  auto gobj_copy() -> GMenu*;
 
 private:
 
@@ -111,7 +111,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<Menu> create();
+  static auto create() -> Glib::RefPtr<Menu>;
 
 
   /** Marks @a menu as frozen.
@@ -352,7 +352,7 @@ namespace Glib
    * @relates Gio::Menu
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Menu> wrap(GMenu* object, bool take_copy = false);
+  auto wrap(GMenu* object, bool take_copy = false) -> Glib::RefPtr<Gio::Menu>;
 }
 
 

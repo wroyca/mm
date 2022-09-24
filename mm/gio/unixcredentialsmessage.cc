@@ -39,7 +39,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::UnixCredentialsMessage> wrap(GUnixCredentialsMessage* object, bool take_copy)
+auto wrap(GUnixCredentialsMessage* object, bool take_copy) -> Glib::RefPtr<Gio::UnixCredentialsMessage>
 {
   return Glib::make_refptr_for_instance<Gio::UnixCredentialsMessage>( dynamic_cast<Gio::UnixCredentialsMessage*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -54,7 +54,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& UnixCredentialsMessage_Class::init()
+auto UnixCredentialsMessage_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -85,7 +85,7 @@ void UnixCredentialsMessage_Class::class_init_function(void* g_class, void* clas
 }
 
 
-Glib::ObjectBase* UnixCredentialsMessage_Class::wrap_new(GObject* object)
+auto UnixCredentialsMessage_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new UnixCredentialsMessage((GUnixCredentialsMessage*)object);
 }
@@ -93,7 +93,7 @@ Glib::ObjectBase* UnixCredentialsMessage_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GUnixCredentialsMessage* UnixCredentialsMessage::gobj_copy()
+auto UnixCredentialsMessage::gobj_copy() -> GUnixCredentialsMessage*
 {
   reference();
   return gobj();
@@ -116,7 +116,7 @@ UnixCredentialsMessage::UnixCredentialsMessage(UnixCredentialsMessage&& src) noe
 : Gio::SocketControlMessage(std::move(src))
 {}
 
-UnixCredentialsMessage& UnixCredentialsMessage::operator=(UnixCredentialsMessage&& src) noexcept
+auto UnixCredentialsMessage::operator=(UnixCredentialsMessage&& src) noexcept -> UnixCredentialsMessage&
 {
   Gio::SocketControlMessage::operator=(std::move(src));
   return *this;
@@ -129,13 +129,13 @@ UnixCredentialsMessage::~UnixCredentialsMessage() noexcept
 
 UnixCredentialsMessage::CppClassType UnixCredentialsMessage::unixcredentialsmessage_class_; // initialize static member
 
-GType UnixCredentialsMessage::get_type()
+auto UnixCredentialsMessage::get_type() -> GType
 {
   return unixcredentialsmessage_class_.init().get_type();
 }
 
 
-GType UnixCredentialsMessage::get_base_type()
+auto UnixCredentialsMessage::get_base_type() -> GType
 {
   return g_unix_credentials_message_get_type();
 }
@@ -161,27 +161,27 @@ UnixCredentialsMessage::UnixCredentialsMessage(const Glib::RefPtr<Credentials>& 
 
 }
 
-Glib::RefPtr<UnixCredentialsMessage> UnixCredentialsMessage::create()
+auto UnixCredentialsMessage::create() -> Glib::RefPtr<UnixCredentialsMessage>
 {
   return Glib::make_refptr_for_instance<UnixCredentialsMessage>( new UnixCredentialsMessage() );
 }
 
-Glib::RefPtr<UnixCredentialsMessage> UnixCredentialsMessage::create(const Glib::RefPtr<Credentials>& credentials)
+auto UnixCredentialsMessage::create(const Glib::RefPtr<Credentials>& credentials) -> Glib::RefPtr<UnixCredentialsMessage>
 {
   return Glib::make_refptr_for_instance<UnixCredentialsMessage>( new UnixCredentialsMessage(credentials) );
 }
 
-Glib::RefPtr<Credentials> UnixCredentialsMessage::get_credentials()
+auto UnixCredentialsMessage::get_credentials() -> Glib::RefPtr<Credentials>
 {
   return Glib::wrap(g_unix_credentials_message_get_credentials(gobj()));
 }
 
-Glib::RefPtr<const Credentials> UnixCredentialsMessage::get_credentials() const
+auto UnixCredentialsMessage::get_credentials() const -> Glib::RefPtr<const Credentials>
 {
   return const_cast<UnixCredentialsMessage*>(this)->get_credentials();
 }
 
-bool UnixCredentialsMessage::is_supported()
+auto UnixCredentialsMessage::is_supported() -> bool
 {
   return g_unix_credentials_message_is_supported();
 }
@@ -191,7 +191,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Credent
   "Type Glib::RefPtr<Credentials> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Credentials> > UnixCredentialsMessage::property_credentials() const
+auto UnixCredentialsMessage::property_credentials() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Credentials> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Credentials> >(this, "credentials");
 }

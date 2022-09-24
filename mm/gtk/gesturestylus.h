@@ -70,7 +70,7 @@ public:
 
   // noncopyable
   GestureStylus(const GestureStylus&) = delete;
-  GestureStylus& operator=(const GestureStylus&) = delete;
+  auto operator=(const GestureStylus&) -> GestureStylus& = delete;
 
 private:  friend class GestureStylus_Class;
   static CppClassType gesturestylus_class_;
@@ -84,28 +84,28 @@ protected:
 public:
 
   GestureStylus(GestureStylus&& src) noexcept;
-  GestureStylus& operator=(GestureStylus&& src) noexcept;
+  auto operator=(GestureStylus&& src) noexcept -> GestureStylus&;
 
   ~GestureStylus() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkGestureStylus*       gobj()       { return reinterpret_cast<GtkGestureStylus*>(gobject_); }
+  auto       gobj() -> GtkGestureStylus*       { return reinterpret_cast<GtkGestureStylus*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkGestureStylus* gobj() const { return reinterpret_cast<GtkGestureStylus*>(gobject_); }
+  auto gobj() const -> const GtkGestureStylus* { return reinterpret_cast<GtkGestureStylus*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkGestureStylus* gobj_copy();
+  auto gobj_copy() -> GtkGestureStylus*;
 
 private:
 
@@ -121,7 +121,7 @@ public:
    * @return A RefPtr to a new %GestureStylus.
    */
 
-  static Glib::RefPtr<GestureStylus> create();
+  static auto create() -> Glib::RefPtr<GestureStylus>;
 
 
   /** Returns the current value for the requested @a axis.
@@ -131,7 +131,7 @@ public:
    * @param axis Requested device axis.
    * @return The current value for the axis, if any.
    */
-  std::optional<double> get_axis(Gdk::AxisUse axis) const;
+  auto get_axis(Gdk::AxisUse axis) const -> std::optional<double>;
 
 
   /** Returns the current values for the requested @a axes.
@@ -144,7 +144,7 @@ public:
    * @return The current values for the axes.
    *         If there are no values, an empty vector is returned.
    */
-  std::vector<double> get_axes(const std::vector<Gdk::AxisUse>& axes) const;
+  auto get_axes(const std::vector<Gdk::AxisUse>& axes) const -> std::vector<double>;
 
   /** By default, GTK+ will limit rate of input events. On stylus input where
    * accuracy of strokes is paramount, this function returns the accumulated
@@ -158,7 +158,7 @@ public:
    *         If there is no backlog to unfold in the current state, an empty
    *         vector is returned.
    */
-  std::vector<Gdk::TimeCoord> get_backlog() const;
+  auto get_backlog() const -> std::vector<Gdk::TimeCoord>;
 
 
   /** Returns the Gdk::DeviceTool currently driving input through this gesture.
@@ -167,7 +167,7 @@ public:
    *
    * @return The current stylus tool.
    */
-  Glib::RefPtr<Gdk::DeviceTool> get_device_tool();
+  auto get_device_tool() -> Glib::RefPtr<Gdk::DeviceTool>;
 
   /** Returns the Gdk::DeviceTool currently driving input through this gesture.
    * This function must be called from either the signal_down(),
@@ -175,7 +175,7 @@ public:
    *
    * @return The current stylus tool.
    */
-  Glib::RefPtr<const Gdk::DeviceTool> get_device_tool() const;
+  auto get_device_tool() const -> Glib::RefPtr<const Gdk::DeviceTool>;
 
   // no_default_handler because GtkGestureStylusClass is private.
 
@@ -191,7 +191,7 @@ public:
    * @param y The Y coordinate of the stylus event.
    */
 
-  Glib::SignalProxy<void(double, double)> signal_proximity();
+  auto signal_proximity() -> Glib::SignalProxy<void(double, double)>;
 
 
   /**
@@ -206,7 +206,7 @@ public:
    * @param y The Y coordinate of the stylus event.
    */
 
-  Glib::SignalProxy<void(double, double)> signal_down();
+  auto signal_down() -> Glib::SignalProxy<void(double, double)>;
 
 
   /**
@@ -221,7 +221,7 @@ public:
    * @param y The Y coordinate of the stylus event.
    */
 
-  Glib::SignalProxy<void(double, double)> signal_motion();
+  auto signal_motion() -> Glib::SignalProxy<void(double, double)>;
 
 
   /**
@@ -236,7 +236,7 @@ public:
    * @param y The Y coordinate of the stylus event.
    */
 
-  Glib::SignalProxy<void(double, double)> signal_up();
+  auto signal_up() -> Glib::SignalProxy<void(double, double)>;
 
 
   // GestureStylus has no properties
@@ -269,7 +269,7 @@ namespace Glib
    * @relates Gtk::GestureStylus
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::GestureStylus> wrap(GtkGestureStylus* object, bool take_copy = false);
+  auto wrap(GtkGestureStylus* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureStylus>;
 }
 
 

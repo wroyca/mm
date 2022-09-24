@@ -32,8 +32,8 @@ namespace Gtk
 // Allow GtkBuilder to instantiate a gtkmm derived GType instead of the regular
 // GTK GType, so we can, for instance, use our vfuncs and default signal handlers.
 // static
-GType BuilderScope_Class::get_type_from_name_vfunc_callback(
-  GtkBuilderScope* self, GtkBuilder* builder, const char* type_name)
+auto BuilderScope_Class::get_type_from_name_vfunc_callback(
+  GtkBuilderScope* self, GtkBuilder* builder, const char* type_name) -> GType
 {
   if (!type_name)
     return G_TYPE_INVALID;
@@ -82,7 +82,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::BuilderScope> wrap(GtkBuilderScope* object, bool take_copy)
+auto wrap(GtkBuilderScope* object, bool take_copy) -> Glib::RefPtr<Gtk::BuilderScope>
 {
   return Glib::make_refptr_for_instance<Gtk::BuilderScope>( dynamic_cast<Gtk::BuilderScope*> (Glib::wrap_auto_interface<Gtk::BuilderScope> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -97,7 +97,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& BuilderScope_Class::init()
+auto BuilderScope_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -125,7 +125,7 @@ void BuilderScope_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* BuilderScope_Class::wrap_new(GObject* object)
+auto BuilderScope_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new BuilderScope((GtkBuilderScope*)(object));
 }
@@ -152,7 +152,7 @@ BuilderScope::BuilderScope(BuilderScope&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-BuilderScope& BuilderScope::operator=(BuilderScope&& src) noexcept
+auto BuilderScope::operator=(BuilderScope&& src) noexcept -> BuilderScope&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -169,13 +169,13 @@ void BuilderScope::add_interface(GType gtype_implementer)
 
 BuilderScope::CppClassType BuilderScope::builderscope_class_; // initialize static member
 
-GType BuilderScope::get_type()
+auto BuilderScope::get_type() -> GType
 {
   return builderscope_class_.init().get_type();
 }
 
 
-GType BuilderScope::get_base_type()
+auto BuilderScope::get_base_type() -> GType
 {
   return gtk_builder_scope_get_type();
 }

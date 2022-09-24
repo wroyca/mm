@@ -65,11 +65,11 @@ class GTKMM_API StackSidebar : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   StackSidebar(StackSidebar&& src) noexcept;
-  StackSidebar& operator=(StackSidebar&& src) noexcept;
+  auto operator=(StackSidebar&& src) noexcept -> StackSidebar&;
 
   // noncopyable
   StackSidebar(const StackSidebar&) = delete;
-  StackSidebar& operator=(const StackSidebar&) = delete;
+  auto operator=(const StackSidebar&) -> StackSidebar& = delete;
 
   ~StackSidebar() noexcept override;
 
@@ -89,19 +89,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkStackSidebar*       gobj()       { return reinterpret_cast<GtkStackSidebar*>(gobject_); }
+  auto       gobj() -> GtkStackSidebar*       { return reinterpret_cast<GtkStackSidebar*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkStackSidebar* gobj() const { return reinterpret_cast<GtkStackSidebar*>(gobject_); }
+  auto gobj() const -> const GtkStackSidebar* { return reinterpret_cast<GtkStackSidebar*>(gobject_); }
 
 private:
 
@@ -129,28 +129,28 @@ public:
    * @return The associated `Gtk::Stack` or
    * <tt>nullptr</tt> if none has been set explicitly.
    */
-  Stack* get_stack();
+  auto get_stack() -> Stack*;
 
   /** Retrieves the stack.
    *
    * @return The associated `Gtk::Stack` or
    * <tt>nullptr</tt> if none has been set explicitly.
    */
-  const Stack* get_stack() const;
+  auto get_stack() const -> const Stack*;
 
   /** The stack.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Stack* > property_stack() ;
+  auto property_stack() -> Glib::PropertyProxy< Stack* > ;
 
 /** The stack.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Stack* > property_stack() const;
+  auto property_stack() const -> Glib::PropertyProxy_ReadOnly< Stack* >;
 
 
   // There are no signals or vfuncs.
@@ -183,7 +183,7 @@ namespace Glib
    * @relates Gtk::StackSidebar
    */
   GTKMM_API
-  Gtk::StackSidebar* wrap(GtkStackSidebar* object, bool take_copy = false);
+  auto wrap(GtkStackSidebar* object, bool take_copy = false) -> Gtk::StackSidebar*;
 } //namespace Glib
 
 

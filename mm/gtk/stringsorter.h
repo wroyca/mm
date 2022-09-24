@@ -64,7 +64,7 @@ public:
 
   // noncopyable
   StringSorter(const StringSorter&) = delete;
-  StringSorter& operator=(const StringSorter&) = delete;
+  auto operator=(const StringSorter&) -> StringSorter& = delete;
 
 private:  friend class StringSorter_Class;
   static CppClassType stringsorter_class_;
@@ -78,28 +78,28 @@ protected:
 public:
 
   StringSorter(StringSorter&& src) noexcept;
-  StringSorter& operator=(StringSorter&& src) noexcept;
+  auto operator=(StringSorter&& src) noexcept -> StringSorter&;
 
   ~StringSorter() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkStringSorter*       gobj()       { return reinterpret_cast<GtkStringSorter*>(gobject_); }
+  auto       gobj() -> GtkStringSorter*       { return reinterpret_cast<GtkStringSorter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkStringSorter* gobj() const { return reinterpret_cast<GtkStringSorter*>(gobject_); }
+  auto gobj() const -> const GtkStringSorter* { return reinterpret_cast<GtkStringSorter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkStringSorter* gobj_copy();
+  auto gobj_copy() -> GtkStringSorter*;
 
 private:
 
@@ -110,20 +110,20 @@ protected:
 
 public:
 
-  static Glib::RefPtr<StringSorter> create(const Glib::RefPtr<Expression<Glib::ustring>>& expression);
+  static auto create(const Glib::RefPtr<Expression<Glib::ustring>>& expression) -> Glib::RefPtr<StringSorter>;
 
 
   /** Gets the expression that is evaluated to obtain strings from items.
    *
    * @return A `Gtk::Expression`.
    */
-  Glib::RefPtr<Expression<Glib::ustring>> get_expression();
+  auto get_expression() -> Glib::RefPtr<Expression<Glib::ustring>>;
 
   /** Gets the expression that is evaluated to obtain strings from items.
    *
    * @return A `Gtk::Expression`.
    */
-  Glib::RefPtr<const Expression<Glib::ustring>> get_expression() const;
+  auto get_expression() const -> Glib::RefPtr<const Expression<Glib::ustring>>;
 
   /** Sets the expression that is evaluated to obtain strings from items.
    *
@@ -137,7 +137,7 @@ public:
    *
    * @return <tt>true</tt> if @a self is ignoring case differences.
    */
-  bool get_ignore_case() const;
+  auto get_ignore_case() const -> bool;
 
   /** Sets whether the sorter will ignore case differences.
    *
@@ -150,14 +150,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Expression<Glib::ustring>> > property_expression() ;
+  auto property_expression() -> Glib::PropertyProxy< Glib::RefPtr<Expression<Glib::ustring>> > ;
 
 /** The expression to evaluate on item to get a string to compare with.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Expression<Glib::ustring>> > property_expression() const;
+  auto property_expression() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Expression<Glib::ustring>> >;
 
   /** If matching is case sensitive.
    *
@@ -166,7 +166,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_ignore_case() ;
+  auto property_ignore_case() -> Glib::PropertyProxy< bool > ;
 
 /** If matching is case sensitive.
    *
@@ -175,7 +175,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_ignore_case() const;
+  auto property_ignore_case() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -205,7 +205,7 @@ namespace Glib
    * @relates Gtk::StringSorter
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::StringSorter> wrap(GtkStringSorter* object, bool take_copy = false);
+  auto wrap(GtkStringSorter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StringSorter>;
 }
 
 

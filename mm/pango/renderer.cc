@@ -32,7 +32,7 @@ using Part = Pango::Renderer::Part;
 namespace Pango
 {
 
-Matrix Renderer::get_matrix() const
+auto Renderer::get_matrix() const -> Matrix
 {
   const auto* matrix = pango_renderer_get_matrix(const_cast<PangoRenderer*>(gobj()));
   if(matrix)
@@ -51,7 +51,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Pango::Renderer::Part>::value_type()
+auto Glib::Value<Pango::Renderer::Part>::value_type() -> GType
 {
   return pango_render_part_get_type();
 }
@@ -60,7 +60,7 @@ GType Glib::Value<Pango::Renderer::Part>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Pango::Renderer> wrap(PangoRenderer* object, bool take_copy)
+auto wrap(PangoRenderer* object, bool take_copy) -> Glib::RefPtr<Pango::Renderer>
 {
   return Glib::make_refptr_for_instance<Pango::Renderer>( dynamic_cast<Pango::Renderer*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -75,7 +75,7 @@ namespace Pango
 
 /* The *_Class implementation: */
 
-const Glib::Class& Renderer_Class::init()
+auto Renderer_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -525,7 +525,7 @@ void Renderer_Class::draw_glyph_item_vfunc_callback(PangoRenderer* self, const c
 }
 
 
-Glib::ObjectBase* Renderer_Class::wrap_new(GObject* object)
+auto Renderer_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Renderer((PangoRenderer*)object);
 }
@@ -533,7 +533,7 @@ Glib::ObjectBase* Renderer_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-PangoRenderer* Renderer::gobj_copy()
+auto Renderer::gobj_copy() -> PangoRenderer*
 {
   reference();
   return gobj();
@@ -556,7 +556,7 @@ Renderer::Renderer(Renderer&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Renderer& Renderer::operator=(Renderer&& src) noexcept
+auto Renderer::operator=(Renderer&& src) noexcept -> Renderer&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -569,13 +569,13 @@ Renderer::~Renderer() noexcept
 
 Renderer::CppClassType Renderer::renderer_class_; // initialize static member
 
-GType Renderer::get_type()
+auto Renderer::get_type() -> GType
 {
   return renderer_class_.init().get_type();
 }
 
 
-GType Renderer::get_base_type()
+auto Renderer::get_base_type() -> GType
 {
   return pango_renderer_get_type();
 }
@@ -641,7 +641,7 @@ void Renderer::set_color(Part part, const Color& color)
   pango_renderer_set_color(gobj(), static_cast<PangoRenderPart>(part), (color).gobj());
 }
 
-Color Renderer::get_color(Part part) const
+auto Renderer::get_color(Part part) const -> Color
 {
   return Color(pango_renderer_get_color(const_cast<PangoRenderer*>(gobj()), static_cast<PangoRenderPart>(part)));
 }
@@ -651,7 +651,7 @@ void Renderer::set_alpha(Part part, guint16 alpha)
   pango_renderer_set_alpha(gobj(), static_cast<PangoRenderPart>(part), alpha);
 }
 
-guint16 Renderer::get_alpha(Part part) const
+auto Renderer::get_alpha(Part part) const -> guint16
 {
   return pango_renderer_get_alpha(const_cast<PangoRenderer*>(gobj()), static_cast<PangoRenderPart>(part));
 }
@@ -661,7 +661,7 @@ void Renderer::set_matrix(const Matrix& matrix)
   pango_renderer_set_matrix(gobj(), &(matrix));
 }
 
-Glib::RefPtr<Layout> Renderer::get_layout()
+auto Renderer::get_layout() -> Glib::RefPtr<Layout>
 {
   auto retvalue = Glib::wrap(pango_renderer_get_layout(gobj()));
   if(retvalue)
@@ -669,12 +669,12 @@ Glib::RefPtr<Layout> Renderer::get_layout()
   return retvalue;
 }
 
-Glib::RefPtr<const Layout> Renderer::get_layout() const
+auto Renderer::get_layout() const -> Glib::RefPtr<const Layout>
 {
   return const_cast<Renderer*>(this)->get_layout();
 }
 
-Glib::RefPtr<LayoutLine> Renderer::get_layout_line()
+auto Renderer::get_layout_line() -> Glib::RefPtr<LayoutLine>
 {
   auto retvalue = Glib::wrap(pango_renderer_get_layout_line(gobj()));
   if(retvalue)
@@ -682,7 +682,7 @@ Glib::RefPtr<LayoutLine> Renderer::get_layout_line()
   return retvalue;
 }
 
-Glib::RefPtr<const LayoutLine> Renderer::get_layout_line() const
+auto Renderer::get_layout_line() const -> Glib::RefPtr<const LayoutLine>
 {
   return const_cast<Renderer*>(this)->get_layout_line();
 }

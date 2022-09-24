@@ -34,7 +34,7 @@ namespace
 {
 
 
-static void ListModel_signal_items_changed_callback(GListModel* self, guint p0,guint p1,guint p2,void* data)
+void ListModel_signal_items_changed_callback(GListModel* self, guint p0,guint p1,guint p2,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(guint, guint, guint)>;
@@ -55,7 +55,7 @@ static void ListModel_signal_items_changed_callback(GListModel* self, guint p0,g
   }
 }
 
-static const Glib::SignalProxyInfo ListModel_signal_items_changed_info =
+const Glib::SignalProxyInfo ListModel_signal_items_changed_info =
 {
   "items-changed",
   (GCallback) &ListModel_signal_items_changed_callback,
@@ -69,7 +69,7 @@ static const Glib::SignalProxyInfo ListModel_signal_items_changed_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gio::ListModel> wrap(GListModel* object, bool take_copy)
+auto wrap(GListModel* object, bool take_copy) -> Glib::RefPtr<Gio::ListModel>
 {
   return Glib::make_refptr_for_instance<Gio::ListModel>( dynamic_cast<Gio::ListModel*> (Glib::wrap_auto_interface<Gio::ListModel> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -84,7 +84,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& ListModel_Class::init()
+auto ListModel_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -113,7 +113,7 @@ void ListModel_Class::iface_init_function(void* g_iface, void*)
 
 }
 
-GType ListModel_Class::get_item_type_vfunc_callback(GListModel* self)
+auto ListModel_Class::get_item_type_vfunc_callback(GListModel* self) -> GType
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -152,7 +152,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = GType;
   return RType();
 }
-guint ListModel_Class::get_n_items_vfunc_callback(GListModel* self)
+auto ListModel_Class::get_n_items_vfunc_callback(GListModel* self) -> guint
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -191,7 +191,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = guint;
   return RType();
 }
-gpointer ListModel_Class::get_item_vfunc_callback(GListModel* self, guint position)
+auto ListModel_Class::get_item_vfunc_callback(GListModel* self, guint position) -> gpointer
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -232,7 +232,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* ListModel_Class::wrap_new(GObject* object)
+auto ListModel_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ListModel((GListModel*)(object));
 }
@@ -259,7 +259,7 @@ ListModel::ListModel(ListModel&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-ListModel& ListModel::operator=(ListModel&& src) noexcept
+auto ListModel::operator=(ListModel&& src) noexcept -> ListModel&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -276,13 +276,13 @@ void ListModel::add_interface(GType gtype_implementer)
 
 ListModel::CppClassType ListModel::listmodel_class_; // initialize static member
 
-GType ListModel::get_type()
+auto ListModel::get_type() -> GType
 {
   return listmodel_class_.init().get_type();
 }
 
 
-GType ListModel::get_base_type()
+auto ListModel::get_base_type() -> GType
 {
   return g_list_model_get_type();
 }
@@ -293,34 +293,34 @@ void ListModel::items_changed(guint position, guint removed, guint added)
   g_list_model_items_changed(gobj(), position, removed, added);
 }
 
-GType ListModel::get_item_type() const
+auto ListModel::get_item_type() const -> GType
 {
   return g_list_model_get_item_type(const_cast<GListModel*>(gobj()));
 }
 
-guint ListModel::get_n_items() const
+auto ListModel::get_n_items() const -> guint
 {
   return g_list_model_get_n_items(const_cast<GListModel*>(gobj()));
 }
 
-Glib::RefPtr<Glib::ObjectBase> ListModel::get_object(guint position)
+auto ListModel::get_object(guint position) -> Glib::RefPtr<Glib::ObjectBase>
 {
   return Glib::make_refptr_for_instance<Glib::ObjectBase>(Glib::wrap_auto(g_list_model_get_object(gobj(), position)));
 }
 
-Glib::RefPtr<const Glib::ObjectBase> ListModel::get_object(guint position) const
+auto ListModel::get_object(guint position) const -> Glib::RefPtr<const Glib::ObjectBase>
 {
   return const_cast<ListModel*>(this)->get_object(position);
 }
 
 
-Glib::SignalProxy<void(guint, guint, guint)> ListModel::signal_items_changed()
+auto ListModel::signal_items_changed() -> Glib::SignalProxy<void(guint, guint, guint)>
 {
   return Glib::SignalProxy<void(guint, guint, guint) >(this, &ListModel_signal_items_changed_info);
 }
 
 
-GType Gio::ListModel::get_item_type_vfunc()
+auto Gio::ListModel::get_item_type_vfunc() -> GType
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -336,7 +336,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = GType;
   return RType();
 }
-guint Gio::ListModel::get_n_items_vfunc()
+auto Gio::ListModel::get_n_items_vfunc() -> guint
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -352,7 +352,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = guint;
   return RType();
 }
-gpointer Gio::ListModel::get_item_vfunc(guint position)
+auto Gio::ListModel::get_item_vfunc(guint position) -> gpointer
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

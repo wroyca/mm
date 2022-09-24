@@ -65,7 +65,7 @@ public:
 
   // noncopyable
   OutputStream(const OutputStream&) = delete;
-  OutputStream& operator=(const OutputStream&) = delete;
+  auto operator=(const OutputStream&) -> OutputStream& = delete;
 
 private:  friend class OutputStream_Class;
   static CppClassType outputstream_class_;
@@ -79,28 +79,28 @@ protected:
 public:
 
   OutputStream(OutputStream&& src) noexcept;
-  OutputStream& operator=(OutputStream&& src) noexcept;
+  auto operator=(OutputStream&& src) noexcept -> OutputStream&;
 
   ~OutputStream() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GOutputStream*       gobj()       { return reinterpret_cast<GOutputStream*>(gobject_); }
+  auto       gobj() -> GOutputStream*       { return reinterpret_cast<GOutputStream*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GOutputStream* gobj() const { return reinterpret_cast<GOutputStream*>(gobject_); }
+  auto gobj() const -> const GOutputStream* { return reinterpret_cast<GOutputStream*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GOutputStream* gobj_copy();
+  auto gobj_copy() -> GOutputStream*;
 
 private:
 
@@ -170,10 +170,10 @@ public:
    *
    * @throws Glib::Error
    */
-  gssize write(const void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable);
+  auto write(const void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
   /// A write() convenience overload.
-  gssize write(const void* buffer, gsize count);
+  auto write(const void* buffer, gsize count) -> gssize;
 
   /** Tries to write @a count  bytes from @a buffer  into the stream. Will block
    * during the operation.
@@ -192,7 +192,7 @@ public:
    * @param cancellable Cancellable object.
    * @return Number of bytes written, or -1 on error.
    */
-  gssize write(const std::string& buffer, const Glib::RefPtr<Cancellable>& cancellable);
+  auto write(const std::string& buffer, const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
   /** Tries to write @a count  bytes from @a buffer  into the stream. Will block
    * during the operation.
@@ -209,7 +209,7 @@ public:
    * @param buffer The buffer containing the data to write.
    * @return Number of bytes written, or -1 on error.
    */
-  gssize write(const std::string& buffer);
+  auto write(const std::string& buffer) -> gssize;
 
 
   /** Tries to write @a count bytes from @a buffer into the stream. Will block
@@ -241,10 +241,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool write_all(const void* buffer, gsize count, gsize& bytes_written, const Glib::RefPtr<Cancellable>& cancellable);
+  auto write_all(const void* buffer, gsize count, gsize& bytes_written, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A write_all() convenience overload.
-  bool write_all(const void* buffer, gsize count, gsize& bytes_written);
+  auto write_all(const void* buffer, gsize count, gsize& bytes_written) -> bool;
 
   /** Tries to write @a count  bytes from @a buffer into the stream. Will block
    * during the operation.
@@ -264,7 +264,7 @@ public:
    * @param cancellable Cancellable object.
    * @return <tt>true</tt> on success, <tt>false</tt> if there was an error.
    */
-  bool write_all(const std::string& buffer, gsize& bytes_written, const Glib::RefPtr<Cancellable>& cancellable);
+  auto write_all(const std::string& buffer, gsize& bytes_written, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /** Tries to write @a count  bytes from @a buffer into the stream. Will block
    * during the operation.
@@ -283,7 +283,7 @@ public:
    * written to the stream.
    * @return <tt>true</tt> on success, <tt>false</tt> if there was an error.
    */
-  bool write_all(const std::string& buffer, gsize& bytes_written);
+  auto write_all(const std::string& buffer, gsize& bytes_written) -> bool;
 
 
   /** A wrapper function for g_output_stream_write() which takes a
@@ -304,10 +304,10 @@ public:
    *
    * @throws Glib::Error
    */
-  gssize write_bytes(const Glib::RefPtr<const Glib::Bytes>& bytes, const Glib::RefPtr<Cancellable>& cancellable);
+  auto write_bytes(const Glib::RefPtr<const Glib::Bytes>& bytes, const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
   /// A write_bytes() convenience overload.
-  gssize write_bytes(const Glib::RefPtr<const Glib::Bytes>& bytes);
+  auto write_bytes(const Glib::RefPtr<const Glib::Bytes>& bytes) -> gssize;
 
   /** Request an asynchronous write of the data in @a bytes to the stream.
    * When the operation is finished @a slot will be called. You can
@@ -386,7 +386,7 @@ public:
    *
    * @throws Glib::Error
    */
-  gssize write_bytes_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto write_bytes_finish(const Glib::RefPtr<AsyncResult>& result) -> gssize;
 
   /** Splices an input stream into an output stream.
    *
@@ -396,7 +396,7 @@ public:
    * ignore.
    * @return A #gssize containing the size of the data spliced.
    */
-  gssize splice(const Glib::RefPtr<InputStream>& source, const Glib::RefPtr<Cancellable>& cancellable, SpliceFlags flags = SpliceFlags::NONE);
+  auto splice(const Glib::RefPtr<InputStream>& source, const Glib::RefPtr<Cancellable>& cancellable, SpliceFlags flags = SpliceFlags::NONE) -> gssize;
 
   /** Splices an input stream into an output stream.
    *
@@ -405,7 +405,7 @@ public:
    * ignore.
    * @return A #gssize containing the size of the data spliced.
    */
-  gssize splice(const Glib::RefPtr<InputStream>& source, SpliceFlags flags = SpliceFlags::NONE);
+  auto splice(const Glib::RefPtr<InputStream>& source, SpliceFlags flags = SpliceFlags::NONE) -> gssize;
 
 
   /** Flushed any outstanding buffers in the stream. Will block during
@@ -422,10 +422,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool flush(const Glib::RefPtr<Cancellable>& cancellable);
+  auto flush(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A flush() convenience overload.
-  bool flush();
+  auto flush() -> bool;
 
 
   /** Closes the stream, releasing resources related to it.
@@ -464,10 +464,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool close(const Glib::RefPtr<Cancellable>& cancellable);
+  auto close(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A close() convenience overload.
-  bool close();
+  auto close() -> bool;
 
   /** Request an asynchronous write of @a count bytes from @a buffer into
    * the stream. When the operation is finished @a slot will be called.
@@ -556,7 +556,7 @@ public:
    *
    * @throws Glib::Error
    */
-  gssize write_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto write_finish(const Glib::RefPtr<AsyncResult>& result) -> gssize;
 
 
   /** Request an asynchronous write of @a count bytes from @a buffer into
@@ -658,7 +658,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool write_all_finish(const Glib::RefPtr<AsyncResult>& result, gsize& bytes_written);
+  auto write_all_finish(const Glib::RefPtr<AsyncResult>& result, gsize& bytes_written) -> bool;
 
 
   /** Splices a stream asynchronously.
@@ -703,7 +703,7 @@ public:
    *
    * @throws Glib::Error
    */
-  gssize splice_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto splice_finish(const Glib::RefPtr<AsyncResult>& result) -> gssize;
 
   /** Flushes a stream asynchronously.
    * When the operation is finished the @a slot will be called, giving the results.
@@ -734,7 +734,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool flush_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto flush_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
   /** Requests an asynchronous close of the stream, releasing resources related to it.
    * When the operation is finished the @a slot will be called, giving the results.
@@ -771,7 +771,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool close_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto close_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Checks if an output stream has already been closed.
@@ -780,7 +780,7 @@ public:
    *
    * @return <tt>true</tt> if @a stream is closed. <tt>false</tt> otherwise.
    */
-  bool is_closed() const;
+  auto is_closed() const -> bool;
 
   /** Checks if an output stream is being closed. This can be
    * used inside e.g. a flush implementation to see if the
@@ -791,7 +791,7 @@ public:
    *
    * @return <tt>true</tt> if @a stream is being closed. <tt>false</tt> otherwise.
    */
-  bool is_closing() const;
+  auto is_closing() const -> bool;
 
   /** Checks if an output stream has pending actions.
    *
@@ -799,7 +799,7 @@ public:
    *
    * @return <tt>true</tt> if @a stream has pending actions.
    */
-  bool has_pending() const;
+  auto has_pending() const -> bool;
 
 protected:
 
@@ -813,7 +813,7 @@ protected:
    *
    * @throws Glib::Error
    */
-  bool set_pending();
+  auto set_pending() -> bool;
 
   /** Clears the pending flag on @a stream.
    *
@@ -823,16 +823,16 @@ protected:
 
 
   /// @throws Glib::Error.
-  virtual gssize write_vfunc(const void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable);
+  virtual auto write_vfunc(const void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
   /// @throws Glib::Error.
-  virtual gssize splice_vfunc(const Glib::RefPtr<InputStream>& source, const Glib::RefPtr<Cancellable>& cancellable, SpliceFlags flags);
+  virtual auto splice_vfunc(const Glib::RefPtr<InputStream>& source, const Glib::RefPtr<Cancellable>& cancellable, SpliceFlags flags) -> gssize;
 
   /// @throws Glib::Error.
-  virtual bool flush_vfunc(const Glib::RefPtr<Cancellable>& cancellable);
+  virtual auto flush_vfunc(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// @throws Glib::Error.
-  virtual bool close_vfunc(const Glib::RefPtr<Cancellable>& cancellable);
+  virtual auto close_vfunc(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
 
 public:
@@ -854,31 +854,31 @@ namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline OutputStream::SpliceFlags operator|(OutputStream::SpliceFlags lhs, OutputStream::SpliceFlags rhs)
+inline auto operator|(OutputStream::SpliceFlags lhs, OutputStream::SpliceFlags rhs) -> OutputStream::SpliceFlags
   { return static_cast<OutputStream::SpliceFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline OutputStream::SpliceFlags operator&(OutputStream::SpliceFlags lhs, OutputStream::SpliceFlags rhs)
+inline auto operator&(OutputStream::SpliceFlags lhs, OutputStream::SpliceFlags rhs) -> OutputStream::SpliceFlags
   { return static_cast<OutputStream::SpliceFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline OutputStream::SpliceFlags operator^(OutputStream::SpliceFlags lhs, OutputStream::SpliceFlags rhs)
+inline auto operator^(OutputStream::SpliceFlags lhs, OutputStream::SpliceFlags rhs) -> OutputStream::SpliceFlags
   { return static_cast<OutputStream::SpliceFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline OutputStream::SpliceFlags operator~(OutputStream::SpliceFlags flags)
+inline auto operator~(OutputStream::SpliceFlags flags) -> OutputStream::SpliceFlags
   { return static_cast<OutputStream::SpliceFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline OutputStream::SpliceFlags& operator|=(OutputStream::SpliceFlags& lhs, OutputStream::SpliceFlags rhs)
+inline auto operator|=(OutputStream::SpliceFlags& lhs, OutputStream::SpliceFlags rhs) -> OutputStream::SpliceFlags&
   { return (lhs = static_cast<OutputStream::SpliceFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline OutputStream::SpliceFlags& operator&=(OutputStream::SpliceFlags& lhs, OutputStream::SpliceFlags rhs)
+inline auto operator&=(OutputStream::SpliceFlags& lhs, OutputStream::SpliceFlags rhs) -> OutputStream::SpliceFlags&
   { return (lhs = static_cast<OutputStream::SpliceFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline OutputStream::SpliceFlags& operator^=(OutputStream::SpliceFlags& lhs, OutputStream::SpliceFlags rhs)
+inline auto operator^=(OutputStream::SpliceFlags& lhs, OutputStream::SpliceFlags rhs) -> OutputStream::SpliceFlags&
   { return (lhs = static_cast<OutputStream::SpliceFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 
@@ -893,7 +893,7 @@ namespace Glib
    * @relates Gio::OutputStream
    */
   GIOMM_API
-  Glib::RefPtr<Gio::OutputStream> wrap(GOutputStream* object, bool take_copy = false);
+  auto wrap(GOutputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::OutputStream>;
 }
 
 

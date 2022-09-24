@@ -109,9 +109,9 @@ public:
 
   virtual ~FontOptions();
 
-  FontOptions& operator=(const FontOptions& src);
+  auto operator=(const FontOptions& src) -> FontOptions&;
 
-  bool operator ==(const FontOptions& src) const;
+  auto operator ==(const FontOptions& src) const -> bool;
   //bool operator !=(const FontOptions& src) const;
 
   /**
@@ -130,7 +130,7 @@ public:
    * @return the hash value for the font options object.  The return value can
    * be cast to a 32-bit type if a 32-bit hash value is needed.
    **/
-  unsigned long hash() const;
+  auto hash() const -> unsigned long;
 
   /**
    * Sets the antialiasing mode for the font options object. This
@@ -145,7 +145,7 @@ public:
    *
    * @return the antialiasing mode
    **/
-  Antialias get_antialias() const;
+  auto get_antialias() const -> Antialias;
 
   /**
    * Sets the subpixel order for the font options object. The subpixel order
@@ -164,7 +164,7 @@ public:
    *
    * @return the subpixel order for the font options object.
    **/
-  SubpixelOrder get_subpixel_order() const;
+  auto get_subpixel_order() const -> SubpixelOrder;
 
   /**
    * Sets the hint style for font outlines for the font options object.  This
@@ -182,7 +182,7 @@ public:
    *
    * @return the hint style for the font options object.
    **/
-  HintStyle get_hint_style() const;
+  auto get_hint_style() const -> HintStyle;
 
   /**
    * Sets the metrics hinting mode for the font options object. This
@@ -200,7 +200,7 @@ public:
    *
    * Return value: the metrics hinting mode for the font options object.
    **/
-  HintMetrics get_hint_metrics() const;
+  auto get_hint_metrics() const -> HintMetrics;
 
 #ifdef CAIRO_HAS_FT_FONT
 #ifdef CAIRO_HAS_FC_FONT
@@ -219,12 +219,12 @@ public:
 #endif // CAIRO_HAS_FT_FONT
 
   typedef cairo_font_options_t cobject;
-  inline cobject* cobj() { return m_cobject; }
-  inline const cobject* cobj() const { return m_cobject; }
+  inline auto cobj() -> cobject* { return m_cobject; }
+  inline auto cobj() const -> const cobject* { return m_cobject; }
 
   #ifndef DOXYGEN_IGNORE_THIS
   ///For use only by the cairomm implementation.
-  inline ErrorStatus get_status() const
+  inline auto get_status() const -> ErrorStatus
   { return cairo_font_options_status(const_cast<cairo_font_options_t*>(cobj())); }
   #endif //DOXYGEN_IGNORE_THIS
 

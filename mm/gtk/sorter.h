@@ -77,7 +77,7 @@ public:
 
   // noncopyable
   Sorter(const Sorter&) = delete;
-  Sorter& operator=(const Sorter&) = delete;
+  auto operator=(const Sorter&) -> Sorter& = delete;
 
 private:  friend class Sorter_Class;
   static CppClassType sorter_class_;
@@ -91,28 +91,28 @@ protected:
 public:
 
   Sorter(Sorter&& src) noexcept;
-  Sorter& operator=(Sorter&& src) noexcept;
+  auto operator=(Sorter&& src) noexcept -> Sorter&;
 
   ~Sorter() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkSorter*       gobj()       { return reinterpret_cast<GtkSorter*>(gobject_); }
+  auto       gobj() -> GtkSorter*       { return reinterpret_cast<GtkSorter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkSorter* gobj() const { return reinterpret_cast<GtkSorter*>(gobject_); }
+  auto gobj() const -> const GtkSorter* { return reinterpret_cast<GtkSorter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkSorter* gobj_copy();
+  auto gobj_copy() -> GtkSorter*;
 
 private:
 
@@ -203,7 +203,7 @@ public:
    * Gtk::Ordering::SMALLER if @a item1 < @a item2,
    * Gtk::Ordering::LARGER if @a item1 > @a item2.
    */
-  Ordering compare(gpointer item1, gpointer item2);
+  auto compare(gpointer item1, gpointer item2) -> Ordering;
 
   /** Gets the order that @a self conforms to.
    *
@@ -214,7 +214,7 @@ public:
    *
    * @return The order.
    */
-  Order get_order() const;
+  auto get_order() const -> Order;
 
   /** Notifies all users of the sorter that it has changed.
    *
@@ -254,13 +254,13 @@ public:
    * @param change How the sorter changed.
    */
 
-  Glib::SignalProxy<void(Change)> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void(Change)>;
 
 
 protected:
-    virtual Ordering compare_vfunc(gpointer item1, gpointer item2);
+    virtual auto compare_vfunc(gpointer item1, gpointer item2) -> Ordering;
 
-    virtual Order get_order_vfunc();
+    virtual auto get_order_vfunc() -> Order;
 
 
 public:
@@ -287,7 +287,7 @@ template <>
 class GTKMM_API Value<Gtk::Sorter::Order> : public Glib::Value_Enum<Gtk::Sorter::Order>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -302,7 +302,7 @@ template <>
 class GTKMM_API Value<Gtk::Sorter::Change> : public Glib::Value_Enum<Gtk::Sorter::Change>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -320,7 +320,7 @@ namespace Glib
    * @relates Gtk::Sorter
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Sorter> wrap(GtkSorter* object, bool take_copy = false);
+  auto wrap(GtkSorter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Sorter>;
 }
 
 

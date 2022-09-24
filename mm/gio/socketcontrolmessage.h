@@ -82,7 +82,7 @@ public:
 
   // noncopyable
   SocketControlMessage(const SocketControlMessage&) = delete;
-  SocketControlMessage& operator=(const SocketControlMessage&) = delete;
+  auto operator=(const SocketControlMessage&) -> SocketControlMessage& = delete;
 
 private:  friend class SocketControlMessage_Class;
   static CppClassType socketcontrolmessage_class_;
@@ -96,28 +96,28 @@ protected:
 public:
 
   SocketControlMessage(SocketControlMessage&& src) noexcept;
-  SocketControlMessage& operator=(SocketControlMessage&& src) noexcept;
+  auto operator=(SocketControlMessage&& src) noexcept -> SocketControlMessage&;
 
   ~SocketControlMessage() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GSocketControlMessage*       gobj()       { return reinterpret_cast<GSocketControlMessage*>(gobject_); }
+  auto       gobj() -> GSocketControlMessage*       { return reinterpret_cast<GSocketControlMessage*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GSocketControlMessage* gobj() const { return reinterpret_cast<GSocketControlMessage*>(gobject_); }
+  auto gobj() const -> const GSocketControlMessage* { return reinterpret_cast<GSocketControlMessage*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GSocketControlMessage* gobj_copy();
+  auto gobj_copy() -> GSocketControlMessage*;
 
 private:
 
@@ -143,7 +143,7 @@ public:
    * @param data Pointer to the message data.
    * @return The deserialized message or <tt>nullptr</tt>.
    */
-  static Glib::RefPtr<SocketControlMessage> deserialize(int level, int type, gsize size, gpointer data);
+  static auto deserialize(int level, int type, gsize size, gpointer data) -> Glib::RefPtr<SocketControlMessage>;
 
   /** Returns the "level" (i.e.\ the originating protocol) of the control message.
    * This is often SOL_SOCKET.
@@ -152,7 +152,7 @@ public:
    *
    * @return An integer describing the level.
    */
-  int get_level() const;
+  auto get_level() const -> int;
 
   /** Returns the protocol specific type of the control message.
    * For instance, for UNIX fd passing this would be SCM_RIGHTS.
@@ -161,7 +161,7 @@ public:
    *
    * @return An integer describing the type of control message.
    */
-  int get_msg_type() const;
+  auto get_msg_type() const -> int;
 
   /** Returns the space required for the control message, not including
    * headers or alignment.
@@ -170,7 +170,7 @@ public:
    *
    * @return The number of bytes required.
    */
-  gsize get_size() const;
+  auto get_size() const -> gsize;
 
   /** Converts the data in the message to bytes placed in the
    * message.
@@ -224,11 +224,11 @@ protected:
    */
   static void add_deserialize_func(DeserializeFunc func);
 
-    virtual gsize get_size_vfunc() const;
+    virtual auto get_size_vfunc() const -> gsize;
 
-    virtual int get_level_vfunc() const;
+    virtual auto get_level_vfunc() const -> int;
 
-    virtual int get_type_vfunc() const;
+    virtual auto get_type_vfunc() const -> int;
 
     virtual void serialize_vfunc(gpointer data);
 
@@ -265,7 +265,7 @@ namespace Glib
    * @relates Gio::SocketControlMessage
    */
   GIOMM_API
-  Glib::RefPtr<Gio::SocketControlMessage> wrap(GSocketControlMessage* object, bool take_copy = false);
+  auto wrap(GSocketControlMessage* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketControlMessage>;
 }
 
 

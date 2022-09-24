@@ -68,11 +68,11 @@ class GTKMM_API ColorButton
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ColorButton(ColorButton&& src) noexcept;
-  ColorButton& operator=(ColorButton&& src) noexcept;
+  auto operator=(ColorButton&& src) noexcept -> ColorButton&;
 
   // noncopyable
   ColorButton(const ColorButton&) = delete;
-  ColorButton& operator=(const ColorButton&) = delete;
+  auto operator=(const ColorButton&) -> ColorButton& = delete;
 
   ~ColorButton() noexcept override;
 
@@ -92,19 +92,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkColorButton*       gobj()       { return reinterpret_cast<GtkColorButton*>(gobject_); }
+  auto       gobj() -> GtkColorButton*       { return reinterpret_cast<GtkColorButton*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkColorButton* gobj() const { return reinterpret_cast<GtkColorButton*>(gobject_); }
+  auto gobj() const -> const GtkColorButton* { return reinterpret_cast<GtkColorButton*>(gobject_); }
 
 private:
 
@@ -146,7 +146,7 @@ public:
    *
    * @return The title.
    */
-  Glib::ustring get_title() const;
+  auto get_title() const -> Glib::ustring;
 
 
   /** Sets whether the dialog should be modal.
@@ -159,7 +159,7 @@ public:
    *
    * @return <tt>true</tt> if the dialog is modal.
    */
-  bool get_modal() const;
+  auto get_modal() const -> bool;
 
   /** The title of the color chooser dialog
    *
@@ -168,7 +168,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_title() ;
+  auto property_title() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The title of the color chooser dialog
    *
@@ -177,7 +177,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_title() const;
+  auto property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Whether the color chooser should open in editor mode.
    *
@@ -190,7 +190,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_editor() ;
+  auto property_show_editor() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the color chooser should open in editor mode.
    *
@@ -203,7 +203,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_editor() const;
+  auto property_show_editor() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the color chooser dialog should be modal.
    *
@@ -212,7 +212,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_modal() ;
+  auto property_modal() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the color chooser dialog should be modal.
    *
@@ -221,7 +221,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_modal() const;
+  auto property_modal() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   // no_default_handler because GtkColorButtonClass is private.
@@ -242,7 +242,7 @@ public:
    * the notify::rgba signal.
    */
 
-  Glib::SignalProxy<void()> signal_color_set();
+  auto signal_color_set() -> Glib::SignalProxy<void()>;
 
 
 public:
@@ -272,7 +272,7 @@ namespace Glib
    * @relates Gtk::ColorButton
    */
   GTKMM_API
-  Gtk::ColorButton* wrap(GtkColorButton* object, bool take_copy = false);
+  auto wrap(GtkColorButton* object, bool take_copy = false) -> Gtk::ColorButton*;
 } //namespace Glib
 
 

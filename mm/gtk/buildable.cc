@@ -36,13 +36,13 @@ namespace Gtk
 {
 
 //static
-gboolean Buildable_Class::custom_tag_start_vfunc_callback(
+auto Buildable_Class::custom_tag_start_vfunc_callback(
   GtkBuildable* buildable,
   GtkBuilder* builder,
   GObject* child,
   const char* tagname,
   GtkBuildableParser* parser,
-  gpointer* data)
+  gpointer* data) -> gboolean
 {
   // If it's a TreeModel (such as ListStore or TreeStore) and it's the start
   // of a <columns> element, inform the Builder that the get_type_from_name()
@@ -109,7 +109,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::Buildable> wrap(GtkBuildable* object, bool take_copy)
+auto wrap(GtkBuildable* object, bool take_copy) -> Glib::RefPtr<Gtk::Buildable>
 {
   return Glib::make_refptr_for_instance<Gtk::Buildable>( dynamic_cast<Gtk::Buildable*> (Glib::wrap_auto_interface<Gtk::Buildable> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -124,7 +124,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& Buildable_Class::init()
+auto Buildable_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -153,7 +153,7 @@ void Buildable_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* Buildable_Class::wrap_new(GObject* object)
+auto Buildable_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Buildable((GtkBuildable*)(object));
 }
@@ -180,7 +180,7 @@ Buildable::Buildable(Buildable&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-Buildable& Buildable::operator=(Buildable&& src) noexcept
+auto Buildable::operator=(Buildable&& src) noexcept -> Buildable&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -197,19 +197,19 @@ void Buildable::add_interface(GType gtype_implementer)
 
 Buildable::CppClassType Buildable::buildable_class_; // initialize static member
 
-GType Buildable::get_type()
+auto Buildable::get_type() -> GType
 {
   return buildable_class_.init().get_type();
 }
 
 
-GType Buildable::get_base_type()
+auto Buildable::get_base_type() -> GType
 {
   return gtk_buildable_get_type();
 }
 
 
-Glib::ustring Buildable::get_buildable_id() const
+auto Buildable::get_buildable_id() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_buildable_get_buildable_id(const_cast<GtkBuildable*>(gobj())));
 }

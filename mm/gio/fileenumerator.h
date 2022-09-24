@@ -75,7 +75,7 @@ public:
 
   // noncopyable
   FileEnumerator(const FileEnumerator&) = delete;
-  FileEnumerator& operator=(const FileEnumerator&) = delete;
+  auto operator=(const FileEnumerator&) -> FileEnumerator& = delete;
 
 private:  friend class FileEnumerator_Class;
   static CppClassType fileenumerator_class_;
@@ -89,28 +89,28 @@ protected:
 public:
 
   FileEnumerator(FileEnumerator&& src) noexcept;
-  FileEnumerator& operator=(FileEnumerator&& src) noexcept;
+  auto operator=(FileEnumerator&& src) noexcept -> FileEnumerator&;
 
   ~FileEnumerator() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GFileEnumerator*       gobj()       { return reinterpret_cast<GFileEnumerator*>(gobject_); }
+  auto       gobj() -> GFileEnumerator*       { return reinterpret_cast<GFileEnumerator*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GFileEnumerator* gobj() const { return reinterpret_cast<GFileEnumerator*>(gobject_); }
+  auto gobj() const -> const GFileEnumerator* { return reinterpret_cast<GFileEnumerator*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GFileEnumerator* gobj_copy();
+  auto gobj_copy() -> GFileEnumerator*;
 
 private:
 
@@ -136,10 +136,10 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<FileInfo> next_file(const Glib::RefPtr<Cancellable>& cancellable);
+  auto next_file(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<FileInfo>;
 
   /// A next_file() convenience overload.
-  Glib::RefPtr<FileInfo> next_file();
+  auto next_file() -> Glib::RefPtr<FileInfo>;
 
 
   /** Releases all resources used by this enumerator, making the
@@ -154,10 +154,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool close(const Glib::RefPtr<Cancellable>& cancellable);
+  auto close(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A close() convenience overload.
-  bool close();
+  auto close() -> bool;
 
 
   /** Request information for a number of files from the enumerator asynchronously.
@@ -203,7 +203,7 @@ public:
    *
    * @throws Glib::Error
    */
-  std::vector<Glib::RefPtr<FileInfo>> next_files_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto next_files_finish(const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::RefPtr<FileInfo>>;
 
 
   /** Asynchronously closes the file enumerator.
@@ -245,20 +245,20 @@ public:
    *
    * @throws Glib::Error
    */
-  bool close_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto close_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Checks if the file enumerator has been closed.
    *
    * @return <tt>true</tt> if the @a enumerator is closed.
    */
-  bool is_closed() const;
+  auto is_closed() const -> bool;
 
   /** Checks if the file enumerator has pending operations.
    *
    * @return <tt>true</tt> if the @a enumerator has pending operations.
    */
-  bool has_pending() const;
+  auto has_pending() const -> bool;
 
   /** Sets the file enumerator as having pending operations.
    *
@@ -273,7 +273,7 @@ public:
    *
    * @return The File which is being enumerated.
    */
-  Glib::RefPtr<File> get_container();
+  auto get_container() -> Glib::RefPtr<File>;
 
   /** Get the File container which is being enumerated.
    *
@@ -281,7 +281,7 @@ public:
    *
    * @return The File which is being enumerated.
    */
-  Glib::RefPtr<const File> get_container() const;
+  auto get_container() const -> Glib::RefPtr<const File>;
 
 
   /** Return a new File which refers to the file named by @a info in the source
@@ -301,7 +301,7 @@ public:
    * or the async equivalents.
    * @return A File for the FileInfo passed it.
    */
-  Glib::RefPtr<File> get_child(const Glib::RefPtr<FileInfo>& info);
+  auto get_child(const Glib::RefPtr<FileInfo>& info) -> Glib::RefPtr<File>;
 
   /** Return a new File which refers to the file named by @a info in the source
    * directory of @a enumerator.  This function is primarily intended to be used
@@ -320,7 +320,7 @@ public:
    * or the async equivalents.
    * @return A File for the FileInfo passed it.
    */
-  Glib::RefPtr<const File> get_child(const Glib::RefPtr<FileInfo>& info) const;
+  auto get_child(const Glib::RefPtr<FileInfo>& info) const -> Glib::RefPtr<const File>;
 
 
 public:
@@ -350,7 +350,7 @@ namespace Glib
    * @relates Gio::FileEnumerator
    */
   GIOMM_API
-  Glib::RefPtr<Gio::FileEnumerator> wrap(GFileEnumerator* object, bool take_copy = false);
+  auto wrap(GFileEnumerator* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileEnumerator>;
 }
 
 

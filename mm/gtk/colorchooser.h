@@ -71,7 +71,7 @@ public:
 
   // noncopyable
   ColorChooser(const ColorChooser&) = delete;
-  ColorChooser& operator=(const ColorChooser&) = delete;
+  auto operator=(const ColorChooser&) -> ColorChooser& = delete;
 
 private:
   friend class ColorChooser_Class;
@@ -105,7 +105,7 @@ protected:
 public:
 
   ColorChooser(ColorChooser&& src) noexcept;
-  ColorChooser& operator=(ColorChooser&& src) noexcept;
+  auto operator=(ColorChooser&& src) noexcept -> ColorChooser&;
 
   ~ColorChooser() noexcept override;
 
@@ -113,17 +113,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkColorChooser*       gobj()       { return reinterpret_cast<GtkColorChooser*>(gobject_); }
+  auto       gobj() -> GtkColorChooser*       { return reinterpret_cast<GtkColorChooser*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkColorChooser* gobj() const { return reinterpret_cast<GtkColorChooser*>(gobject_); }
+  auto gobj() const -> const GtkColorChooser* { return reinterpret_cast<GtkColorChooser*>(gobject_); }
 
 private:
 
@@ -133,7 +133,7 @@ public:
    * @return The currently selected color.
    * @newin{3,4}
    */
-  Gdk::RGBA get_rgba() const;
+  auto get_rgba() const -> Gdk::RGBA;
 
 
   /** Sets the color.
@@ -147,7 +147,7 @@ public:
    * @return <tt>true</tt> if the color chooser uses the alpha channel,
    * <tt>false</tt> if not.
    */
-  bool get_use_alpha() const;
+  auto get_use_alpha() const -> bool;
 
   /** Sets whether or not the color chooser should use the alpha channel.
    *
@@ -197,7 +197,7 @@ public:
    * @param color The color.
    */
 
-  Glib::SignalProxy<void(const Gdk::RGBA&)> signal_color_activated();
+  auto signal_color_activated() -> Glib::SignalProxy<void(const Gdk::RGBA&)>;
 
 
   /** The currently selected color, as a `GdkRGBA` struct.
@@ -208,7 +208,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Gdk::RGBA > property_rgba() ;
+  auto property_rgba() -> Glib::PropertyProxy< Gdk::RGBA > ;
 
 /** The currently selected color, as a `GdkRGBA` struct.
    *
@@ -218,7 +218,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Gdk::RGBA > property_rgba() const;
+  auto property_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >;
 
   /** Whether colors may have alpha (translucency).
    *
@@ -234,7 +234,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_use_alpha() ;
+  auto property_use_alpha() -> Glib::PropertyProxy< bool > ;
 
 /** Whether colors may have alpha (translucency).
    *
@@ -250,7 +250,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_alpha() const;
+  auto property_use_alpha() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -282,7 +282,7 @@ namespace Glib
    * @relates Gtk::ColorChooser
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::ColorChooser> wrap(GtkColorChooser* object, bool take_copy = false);
+  auto wrap(GtkColorChooser* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ColorChooser>;
 
 } // namespace Glib
 

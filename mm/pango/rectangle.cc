@@ -49,7 +49,7 @@ Rectangle::Rectangle(const PangoRectangle* src)
   gobject_.height = src->height;
 }
 
-bool Rectangle::equal(const Rectangle& rhs) const
+auto Rectangle::equal(const Rectangle& rhs) const -> bool
 {
   return (get_x() == rhs.get_x() && get_y() == rhs.get_y() &&
           get_width() == rhs.get_width() && get_height() == rhs.get_height());
@@ -61,12 +61,12 @@ bool Rectangle::equal(const Rectangle& rhs) const
 namespace Glib
 {
 
-Pango::Rectangle& wrap(PangoRectangle* object)
+auto wrap(PangoRectangle* object) -> Pango::Rectangle&
 {
   return *reinterpret_cast<Pango::Rectangle*>(object);
 }
 
-const Pango::Rectangle& wrap(const PangoRectangle* object)
+auto wrap(const PangoRectangle* object) -> const Pango::Rectangle&
 {
   return *reinterpret_cast<const Pango::Rectangle*>(object);
 }

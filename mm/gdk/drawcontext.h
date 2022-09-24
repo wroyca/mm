@@ -69,7 +69,7 @@ public:
 
   // noncopyable
   DrawContext(const DrawContext&) = delete;
-  DrawContext& operator=(const DrawContext&) = delete;
+  auto operator=(const DrawContext&) -> DrawContext& = delete;
 
 private:  friend class DrawContext_Class;
   static CppClassType drawcontext_class_;
@@ -83,28 +83,28 @@ protected:
 public:
 
   DrawContext(DrawContext&& src) noexcept;
-  DrawContext& operator=(DrawContext&& src) noexcept;
+  auto operator=(DrawContext&& src) noexcept -> DrawContext&;
 
   ~DrawContext() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkDrawContext*       gobj()       { return reinterpret_cast<GdkDrawContext*>(gobject_); }
+  auto       gobj() -> GdkDrawContext*       { return reinterpret_cast<GdkDrawContext*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkDrawContext* gobj() const { return reinterpret_cast<GdkDrawContext*>(gobject_); }
+  auto gobj() const -> const GdkDrawContext* { return reinterpret_cast<GdkDrawContext*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkDrawContext* gobj_copy();
+  auto gobj_copy() -> GdkDrawContext*;
 
 private:
 
@@ -119,25 +119,25 @@ public:
    *
    * @return The `Gdk::Display`.
    */
-  Glib::RefPtr<Display> get_display();
+  auto get_display() -> Glib::RefPtr<Display>;
 
   /** Retrieves the `Gdk::Display` the @a context is created for
    *
    * @return The `Gdk::Display`.
    */
-  Glib::RefPtr<const Display> get_display() const;
+  auto get_display() const -> Glib::RefPtr<const Display>;
 
   /** Retrieves the surface that @a context is bound to.
    *
    * @return A `Gdk::Surface`.
    */
-  Glib::RefPtr<Surface> get_surface();
+  auto get_surface() -> Glib::RefPtr<Surface>;
 
   /** Retrieves the surface that @a context is bound to.
    *
    * @return A `Gdk::Surface`.
    */
-  Glib::RefPtr<const Surface> get_surface() const;
+  auto get_surface() const -> Glib::RefPtr<const Surface>;
 
   /** Indicates that you are beginning the process of redrawing @a region
    * on the @a context's surface.
@@ -188,7 +188,7 @@ public:
    * @return <tt>true</tt> if the context is between begin_frame()
    * and end_frame() calls.
    */
-  bool is_in_frame() const;
+  auto is_in_frame() const -> bool;
 
   /** Retrieves the region that is currently being repainted.
    *
@@ -201,14 +201,14 @@ public:
    *
    * @return A Cairo region.
    */
-  ::Cairo::RefPtr<const ::Cairo::Region> get_frame_region() const;
+  auto get_frame_region() const -> ::Cairo::RefPtr<const ::Cairo::Region>;
 
   /** The `Gdk::Display` used to create the `Gdk::DrawContext`.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> > property_display() const;
+  auto property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >;
 
 
   /** The `Gdk::Surface` the context is bound to.
@@ -216,7 +216,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> > property_surface() const;
+  auto property_surface() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >;
 
 
   // There are no signals or vfuncs.
@@ -249,7 +249,7 @@ namespace Glib
    * @relates Gdk::DrawContext
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::DrawContext> wrap(GdkDrawContext* object, bool take_copy = false);
+  auto wrap(GdkDrawContext* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DrawContext>;
 }
 
 

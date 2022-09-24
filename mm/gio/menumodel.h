@@ -131,7 +131,7 @@ public:
 
   // noncopyable
   MenuModel(const MenuModel&) = delete;
-  MenuModel& operator=(const MenuModel&) = delete;
+  auto operator=(const MenuModel&) -> MenuModel& = delete;
 
 private:  friend class MenuModel_Class;
   static CppClassType menumodel_class_;
@@ -145,28 +145,28 @@ protected:
 public:
 
   MenuModel(MenuModel&& src) noexcept;
-  MenuModel& operator=(MenuModel&& src) noexcept;
+  auto operator=(MenuModel&& src) noexcept -> MenuModel&;
 
   ~MenuModel() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GMenuModel*       gobj()       { return reinterpret_cast<GMenuModel*>(gobject_); }
+  auto       gobj() -> GMenuModel*       { return reinterpret_cast<GMenuModel*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GMenuModel* gobj() const { return reinterpret_cast<GMenuModel*>(gobject_); }
+  auto gobj() const -> const GMenuModel* { return reinterpret_cast<GMenuModel*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GMenuModel* gobj_copy();
+  auto gobj_copy() -> GMenuModel*;
 
 private:
 
@@ -276,7 +276,7 @@ enum class Link
    * <tt>nullptr</tt>.
    * @return The value of the attribute.
    */
-  Glib::VariantBase get_item_attribute(int item_index, Attribute attribute, const Glib::VariantType& expected_type) const;
+  auto get_item_attribute(int item_index, Attribute attribute, const Glib::VariantType& expected_type) const -> Glib::VariantBase;
 
   // Ignore varargs function
 
@@ -293,7 +293,7 @@ enum class Link
    * @param link The link to query.
    * @return The linked MenuModel, or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<MenuModel> get_item_link(int item_index, Link link);
+  auto get_item_link(int item_index, Link link) -> Glib::RefPtr<MenuModel>;
 
   /** Queries the item at position @a item_index in @a model for the link
    * specified by @a link.
@@ -307,7 +307,7 @@ enum class Link
    * @param link The link to query.
    * @return The linked MenuModel, or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<const MenuModel> get_item_link(int item_index, Link link) const;
+  auto get_item_link(int item_index, Link link) const -> Glib::RefPtr<const MenuModel>;
 
 
   /** Queries if @a model is mutable.
@@ -320,7 +320,7 @@ enum class Link
    * @return <tt>true</tt> if the model is mutable (ie: "items-changed" may be
    * emitted).
    */
-  bool is_mutable() const;
+  auto is_mutable() const -> bool;
 
   /** Query the number of items in @a model.
    *
@@ -328,7 +328,7 @@ enum class Link
    *
    * @return The number of items.
    */
-  int get_n_items() const;
+  auto get_n_items() const -> int;
 
 
   /** Creates a MenuAttributeIter to iterate over the attributes of
@@ -341,7 +341,7 @@ enum class Link
    * @param item_index The index of the item.
    * @return A new MenuAttributeIter.
    */
-  Glib::RefPtr<MenuAttributeIter> iterate_item_attributes(int item_index);
+  auto iterate_item_attributes(int item_index) -> Glib::RefPtr<MenuAttributeIter>;
 
   /** Creates a MenuAttributeIter to iterate over the attributes of
    * the item at position @a item_index in @a model.
@@ -353,7 +353,7 @@ enum class Link
    * @param item_index The index of the item.
    * @return A new MenuAttributeIter.
    */
-  Glib::RefPtr<const MenuAttributeIter> iterate_item_attributes(int item_index) const;
+  auto iterate_item_attributes(int item_index) const -> Glib::RefPtr<const MenuAttributeIter>;
 
 
   /** Creates a MenuLinkIter to iterate over the links of the item at
@@ -366,7 +366,7 @@ enum class Link
    * @param item_index The index of the item.
    * @return A new MenuLinkIter.
    */
-  Glib::RefPtr<MenuLinkIter> iterate_item_links(int item_index);
+  auto iterate_item_links(int item_index) -> Glib::RefPtr<MenuLinkIter>;
 
   /** Creates a MenuLinkIter to iterate over the links of the item at
    * position @a item_index in @a model.
@@ -378,7 +378,7 @@ enum class Link
    * @param item_index The index of the item.
    * @return A new MenuLinkIter.
    */
-  Glib::RefPtr<const MenuLinkIter> iterate_item_links(int item_index) const;
+  auto iterate_item_links(int item_index) const -> Glib::RefPtr<const MenuLinkIter>;
 
 
   /** Requests emission of the MenuModel::signal_items_changed() signal on @a model.
@@ -439,7 +439,7 @@ enum class Link
    * @param added The number of items added.
    */
 
-  Glib::SignalProxy<void(int, int, int)> signal_items_changed();
+  auto signal_items_changed() -> Glib::SignalProxy<void(int, int, int)>;
 
 
 public:
@@ -469,7 +469,7 @@ namespace Glib
    * @relates Gio::MenuModel
    */
   GIOMM_API
-  Glib::RefPtr<Gio::MenuModel> wrap(GMenuModel* object, bool take_copy = false);
+  auto wrap(GMenuModel* object, bool take_copy = false) -> Glib::RefPtr<Gio::MenuModel>;
 }
 
 

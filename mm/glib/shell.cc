@@ -30,8 +30,8 @@ namespace Glib
 
 /**** shell utility functions **********************************************/
 
-std::vector<std::string>
-shell_parse_argv(const std::string& command_line)
+auto
+shell_parse_argv(const std::string& command_line) -> std::vector<std::string>
 {
   char** argv = nullptr;
   int argc = 0;
@@ -45,15 +45,15 @@ shell_parse_argv(const std::string& command_line)
   return Glib::ArrayHandler<std::string>::array_to_vector(argv, argc, Glib::OWNERSHIP_DEEP);
 }
 
-std::string
-shell_quote(const std::string& unquoted_string)
+auto
+shell_quote(const std::string& unquoted_string) -> std::string
 {
   const auto buf = make_unique_ptr_gfree(g_shell_quote(unquoted_string.c_str()));
   return std::string(buf.get());
 }
 
-std::string
-shell_unquote(const std::string& quoted_string)
+auto
+shell_unquote(const std::string& quoted_string) -> std::string
 {
   GError* error = nullptr;
   char* const buf = g_shell_unquote(quoted_string.c_str(), &error);
@@ -81,7 +81,7 @@ Glib::ShellError::ShellError(GError* gobject)
   Glib::Error (gobject)
 {}
 
-Glib::ShellError::Code Glib::ShellError::code() const
+auto Glib::ShellError::code() const -> Glib::ShellError::Code
 {
   return static_cast<Code>(Glib::Error::code());
 }

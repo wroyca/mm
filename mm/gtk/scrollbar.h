@@ -71,11 +71,11 @@ class GTKMM_API Scrollbar : public Widget, public Orientable
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Scrollbar(Scrollbar&& src) noexcept;
-  Scrollbar& operator=(Scrollbar&& src) noexcept;
+  auto operator=(Scrollbar&& src) noexcept -> Scrollbar&;
 
   // noncopyable
   Scrollbar(const Scrollbar&) = delete;
-  Scrollbar& operator=(const Scrollbar&) = delete;
+  auto operator=(const Scrollbar&) -> Scrollbar& = delete;
 
   ~Scrollbar() noexcept override;
 
@@ -95,19 +95,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkScrollbar*       gobj()       { return reinterpret_cast<GtkScrollbar*>(gobject_); }
+  auto       gobj() -> GtkScrollbar*       { return reinterpret_cast<GtkScrollbar*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkScrollbar* gobj() const { return reinterpret_cast<GtkScrollbar*>(gobject_); }
+  auto gobj() const -> const GtkScrollbar* { return reinterpret_cast<GtkScrollbar*>(gobject_); }
 
 private:
 
@@ -131,27 +131,27 @@ public:
    *
    * @return The scrollbar's adjustment.
    */
-  Glib::RefPtr<Adjustment> get_adjustment();
+  auto get_adjustment() -> Glib::RefPtr<Adjustment>;
 
   /** Returns the scrollbar's adjustment.
    *
    * @return The scrollbar's adjustment.
    */
-  Glib::RefPtr<const Adjustment> get_adjustment() const;
+  auto get_adjustment() const -> Glib::RefPtr<const Adjustment>;
 
   /** The `Gtk::Adjustment` controlled by this scrollbar.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Adjustment> > property_adjustment() ;
+  auto property_adjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> > ;
 
 /** The `Gtk::Adjustment` controlled by this scrollbar.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> > property_adjustment() const;
+  auto property_adjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >;
 
 
 public:
@@ -181,7 +181,7 @@ namespace Glib
    * @relates Gtk::Scrollbar
    */
   GTKMM_API
-  Gtk::Scrollbar* wrap(GtkScrollbar* object, bool take_copy = false);
+  auto wrap(GtkScrollbar* object, bool take_copy = false) -> Gtk::Scrollbar*;
 } //namespace Glib
 
 

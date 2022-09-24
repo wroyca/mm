@@ -126,11 +126,11 @@ class GTKMM_API DrawingArea : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   DrawingArea(DrawingArea&& src) noexcept;
-  DrawingArea& operator=(DrawingArea&& src) noexcept;
+  auto operator=(DrawingArea&& src) noexcept -> DrawingArea&;
 
   // noncopyable
   DrawingArea(const DrawingArea&) = delete;
-  DrawingArea& operator=(const DrawingArea&) = delete;
+  auto operator=(const DrawingArea&) -> DrawingArea& = delete;
 
   ~DrawingArea() noexcept override;
 
@@ -150,19 +150,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkDrawingArea*       gobj()       { return reinterpret_cast<GtkDrawingArea*>(gobject_); }
+  auto       gobj() -> GtkDrawingArea*       { return reinterpret_cast<GtkDrawingArea*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkDrawingArea* gobj() const { return reinterpret_cast<GtkDrawingArea*>(gobject_); }
+  auto gobj() const -> const GtkDrawingArea* { return reinterpret_cast<GtkDrawingArea*>(gobject_); }
 
 private:
 
@@ -208,7 +208,7 @@ public:
    *
    * @return The width requested for content of the drawing area.
    */
-  int get_content_width() const;
+  auto get_content_width() const -> int;
 
   /** Sets the desired height of the contents of the drawing area.
    *
@@ -227,7 +227,7 @@ public:
    *
    * @return The height requested for content of the drawing area.
    */
-  int get_content_height() const;
+  auto get_content_height() const -> int;
 
   /** Sets a draw function.
    *
@@ -267,7 +267,7 @@ public:
    * @param height The height of the viewport.
    */
 
-  Glib::SignalProxy<void(int, int)> signal_resize();
+  auto signal_resize() -> Glib::SignalProxy<void(int, int)>;
 
 
   /** The content width.
@@ -277,7 +277,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_content_width() ;
+  auto property_content_width() -> Glib::PropertyProxy< int > ;
 
 /** The content width.
    *
@@ -286,7 +286,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_content_width() const;
+  auto property_content_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The content height.
    *
@@ -295,7 +295,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_content_height() ;
+  auto property_content_height() -> Glib::PropertyProxy< int > ;
 
 /** The content height.
    *
@@ -304,7 +304,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_content_height() const;
+  auto property_content_height() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
 public:
@@ -336,7 +336,7 @@ namespace Glib
    * @relates Gtk::DrawingArea
    */
   GTKMM_API
-  Gtk::DrawingArea* wrap(GtkDrawingArea* object, bool take_copy = false);
+  auto wrap(GtkDrawingArea* object, bool take_copy = false) -> Gtk::DrawingArea*;
 } //namespace Glib
 
 

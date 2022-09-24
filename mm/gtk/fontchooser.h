@@ -81,7 +81,7 @@ public:
 
   // noncopyable
   FontChooser(const FontChooser&) = delete;
-  FontChooser& operator=(const FontChooser&) = delete;
+  auto operator=(const FontChooser&) -> FontChooser& = delete;
 
 private:
   friend class FontChooser_Class;
@@ -115,7 +115,7 @@ protected:
 public:
 
   FontChooser(FontChooser&& src) noexcept;
-  FontChooser& operator=(FontChooser&& src) noexcept;
+  auto operator=(FontChooser&& src) noexcept -> FontChooser&;
 
   ~FontChooser() noexcept override;
 
@@ -123,17 +123,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkFontChooser*       gobj()       { return reinterpret_cast<GtkFontChooser*>(gobject_); }
+  auto       gobj() -> GtkFontChooser*       { return reinterpret_cast<GtkFontChooser*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkFontChooser* gobj() const { return reinterpret_cast<GtkFontChooser*>(gobject_); }
+  auto gobj() const -> const GtkFontChooser* { return reinterpret_cast<GtkFontChooser*>(gobject_); }
 
 private:
 
@@ -193,7 +193,7 @@ public:
    * @return A `Pango::FontFamily` representing the
    * selected font family.
    */
-  Glib::RefPtr<Pango::FontFamily> get_font_family();
+  auto get_font_family() -> Glib::RefPtr<Pango::FontFamily>;
 
   /** Gets the `Pango::FontFamily` representing the selected font family.
    *
@@ -204,7 +204,7 @@ public:
    * @return A `Pango::FontFamily` representing the
    * selected font family.
    */
-  Glib::RefPtr<const Pango::FontFamily> get_font_family() const;
+  auto get_font_family() const -> Glib::RefPtr<const Pango::FontFamily>;
 
 
   /** Gets the `Pango::FontFace` representing the selected font group
@@ -215,7 +215,7 @@ public:
    * @return A `Pango::FontFace` representing the
    * selected font group details.
    */
-  Glib::RefPtr<Pango::FontFace> get_font_face();
+  auto get_font_face() -> Glib::RefPtr<Pango::FontFace>;
 
   /** Gets the `Pango::FontFace` representing the selected font group
    * details (i.e.\ family, slant, weight, width, etc).
@@ -225,7 +225,7 @@ public:
    * @return A `Pango::FontFace` representing the
    * selected font group details.
    */
-  Glib::RefPtr<const Pango::FontFace> get_font_face() const;
+  auto get_font_face() const -> Glib::RefPtr<const Pango::FontFace>;
 
 
   /** The selected font size.
@@ -233,7 +233,7 @@ public:
    * @return A n integer representing the selected font size,
    * or -1 if no font size is selected.
    */
-  int get_font_size() const;
+  auto get_font_size() const -> int;
 
 
   /** Gets the currently-selected font.
@@ -250,7 +250,7 @@ public:
    * @return A `Pango::FontDescription` for the
    * current font.
    */
-  Pango::FontDescription get_font_desc() const;
+  auto get_font_desc() const -> Pango::FontDescription;
 
   /** Sets the currently-selected font from @a font_desc.
    *
@@ -273,7 +273,7 @@ public:
    * @return A string with the name
    * of the current font.
    */
-  Glib::ustring get_font() const;
+  auto get_font() const -> Glib::ustring;
 
   /** Sets the currently-selected font.
    *
@@ -285,7 +285,7 @@ public:
    *
    * @return The text displayed in the preview area.
    */
-  Glib::ustring get_preview_text() const;
+  auto get_preview_text() const -> Glib::ustring;
 
   /** Sets the text displayed in the preview area.
    *
@@ -300,7 +300,7 @@ public:
    *
    * @return <tt>true</tt> if the preview entry is shown or <tt>false</tt> if it is hidden.
    */
-  bool get_show_preview_entry() const;
+  auto get_show_preview_entry() const -> bool;
 
   /** Shows or hides the editable preview entry.
    *
@@ -358,14 +358,14 @@ public:
    *
    * @return A `Pango::FontMap`.
    */
-  Glib::RefPtr<Pango::FontMap> get_font_map();
+  auto get_font_map() -> Glib::RefPtr<Pango::FontMap>;
 
   /** Gets the custom font map of this font chooser widget,
    * or <tt>nullptr</tt> if it does not have one.
    *
    * @return A `Pango::FontMap`.
    */
-  Glib::RefPtr<const Pango::FontMap> get_font_map() const;
+  auto get_font_map() const -> Glib::RefPtr<const Pango::FontMap>;
 
 
   /** Sets the desired level of granularity for selecting fonts.
@@ -378,19 +378,19 @@ public:
    *
    * @return The current granularity level.
    */
-  Level get_level() const;
+  auto get_level() const -> Level;
 
   /** Gets the currently-selected font features.
    *
    * @return The currently selected font features.
    */
-  Glib::ustring get_font_features() const;
+  auto get_font_features() const -> Glib::ustring;
 
   /** Gets the language that is used for font features.
    *
    * @return The currently selected language.
    */
-  Glib::ustring get_language() const;
+  auto get_language() const -> Glib::ustring;
 
   /** Sets the language to use for font features.
    *
@@ -414,7 +414,7 @@ public:
    * @param fontname The font name.
    */
 
-  Glib::SignalProxy<void(const Glib::ustring&)> signal_font_activated();
+  auto signal_font_activated() -> Glib::SignalProxy<void(const Glib::ustring&)>;
 
 
   /** The font description as a string, e.g.\ "Sans Italic 12".
@@ -424,7 +424,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_font() ;
+  auto property_font() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The font description as a string, e.g.\ "Sans Italic 12".
    *
@@ -433,21 +433,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_font() const;
+  auto property_font() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The font description as a `Pango::FontDescription`.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::FontDescription > property_font_desc() ;
+  auto property_font_desc() -> Glib::PropertyProxy< Pango::FontDescription > ;
 
 /** The font description as a `Pango::FontDescription`.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::FontDescription > property_font_desc() const;
+  auto property_font_desc() const -> Glib::PropertyProxy_ReadOnly< Pango::FontDescription >;
 
   /** The string with which to preview the font.
    *
@@ -456,7 +456,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_preview_text() ;
+  auto property_preview_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The string with which to preview the font.
    *
@@ -465,7 +465,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_preview_text() const;
+  auto property_preview_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Whether to show an entry to change the preview text.
    *
@@ -474,7 +474,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_preview_entry() ;
+  auto property_show_preview_entry() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to show an entry to change the preview text.
    *
@@ -483,7 +483,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_preview_entry() const;
+  auto property_show_preview_entry() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The level of granularity to offer for selecting fonts.
    *
@@ -492,7 +492,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Level > property_level() ;
+  auto property_level() -> Glib::PropertyProxy< Level > ;
 
 /** The level of granularity to offer for selecting fonts.
    *
@@ -501,7 +501,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Level > property_level() const;
+  auto property_level() const -> Glib::PropertyProxy_ReadOnly< Level >;
 
   /** The selected font features.
    *
@@ -513,7 +513,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_font_features() const;
+  auto property_font_features() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The language for which the font features were selected.
@@ -523,7 +523,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_language() ;
+  auto property_language() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The language for which the font features were selected.
    *
@@ -532,7 +532,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_language() const;
+  auto property_language() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -556,31 +556,31 @@ namespace Gtk
 {
 
 /** @ingroup gtkmmEnums */
-inline FontChooser::Level operator|(FontChooser::Level lhs, FontChooser::Level rhs)
+inline auto operator|(FontChooser::Level lhs, FontChooser::Level rhs) -> FontChooser::Level
   { return static_cast<FontChooser::Level>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline FontChooser::Level operator&(FontChooser::Level lhs, FontChooser::Level rhs)
+inline auto operator&(FontChooser::Level lhs, FontChooser::Level rhs) -> FontChooser::Level
   { return static_cast<FontChooser::Level>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline FontChooser::Level operator^(FontChooser::Level lhs, FontChooser::Level rhs)
+inline auto operator^(FontChooser::Level lhs, FontChooser::Level rhs) -> FontChooser::Level
   { return static_cast<FontChooser::Level>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline FontChooser::Level operator~(FontChooser::Level flags)
+inline auto operator~(FontChooser::Level flags) -> FontChooser::Level
   { return static_cast<FontChooser::Level>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gtkmmEnums */
-inline FontChooser::Level& operator|=(FontChooser::Level& lhs, FontChooser::Level rhs)
+inline auto operator|=(FontChooser::Level& lhs, FontChooser::Level rhs) -> FontChooser::Level&
   { return (lhs = static_cast<FontChooser::Level>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline FontChooser::Level& operator&=(FontChooser::Level& lhs, FontChooser::Level rhs)
+inline auto operator&=(FontChooser::Level& lhs, FontChooser::Level rhs) -> FontChooser::Level&
   { return (lhs = static_cast<FontChooser::Level>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline FontChooser::Level& operator^=(FontChooser::Level& lhs, FontChooser::Level rhs)
+inline auto operator^=(FontChooser::Level& lhs, FontChooser::Level rhs) -> FontChooser::Level&
   { return (lhs = static_cast<FontChooser::Level>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gtk
 
@@ -592,7 +592,7 @@ template <>
 class GTKMM_API Value<Gtk::FontChooser::Level> : public Glib::Value_Flags<Gtk::FontChooser::Level>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -610,7 +610,7 @@ namespace Glib
    * @relates Gtk::FontChooser
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::FontChooser> wrap(GtkFontChooser* object, bool take_copy = false);
+  auto wrap(GtkFontChooser* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FontChooser>;
 
 } // namespace Glib
 

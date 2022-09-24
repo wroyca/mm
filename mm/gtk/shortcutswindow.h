@@ -70,11 +70,11 @@ class GTKMM_API ShortcutsWindow : public Window
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ShortcutsWindow(ShortcutsWindow&& src) noexcept;
-  ShortcutsWindow& operator=(ShortcutsWindow&& src) noexcept;
+  auto operator=(ShortcutsWindow&& src) noexcept -> ShortcutsWindow&;
 
   // noncopyable
   ShortcutsWindow(const ShortcutsWindow&) = delete;
-  ShortcutsWindow& operator=(const ShortcutsWindow&) = delete;
+  auto operator=(const ShortcutsWindow&) -> ShortcutsWindow& = delete;
 
   ~ShortcutsWindow() noexcept override;
 
@@ -94,19 +94,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkShortcutsWindow*       gobj()       { return reinterpret_cast<GtkShortcutsWindow*>(gobject_); }
+  auto       gobj() -> GtkShortcutsWindow*       { return reinterpret_cast<GtkShortcutsWindow*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkShortcutsWindow* gobj() const { return reinterpret_cast<GtkShortcutsWindow*>(gobject_); }
+  auto gobj() const -> const GtkShortcutsWindow* { return reinterpret_cast<GtkShortcutsWindow*>(gobject_); }
 
 private:
 
@@ -132,7 +132,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_section_name() ;
+  auto property_section_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The name of the section to show.
    *
@@ -144,7 +144,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_section_name() const;
+  auto property_section_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The view name by which to filter the contents.
    *
@@ -159,7 +159,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_view_name() ;
+  auto property_view_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The view name by which to filter the contents.
    *
@@ -174,7 +174,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_view_name() const;
+  auto property_view_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -204,7 +204,7 @@ namespace Glib
    * @relates Gtk::ShortcutsWindow
    */
   GTKMM_API
-  Gtk::ShortcutsWindow* wrap(GtkShortcutsWindow* object, bool take_copy = false);
+  auto wrap(GtkShortcutsWindow* object, bool take_copy = false) -> Gtk::ShortcutsWindow*;
 } //namespace Glib
 
 

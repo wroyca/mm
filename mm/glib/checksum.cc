@@ -38,14 +38,14 @@ Checksum::operator bool() const
   return gobject_ != nullptr;
 }
 
-gssize
-Checksum::get_length(Type checksum_type)
+auto
+Checksum::get_length(Type checksum_type) -> gssize
 {
   return g_checksum_type_get_length((GChecksumType)checksum_type);
 }
 
-std::string
-Checksum::compute_checksum(Type checksum_type, const std::string& data)
+auto
+Checksum::compute_checksum(Type checksum_type, const std::string& data) -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(
     g_compute_checksum_for_string(((GChecksumType)checksum_type), data.c_str(), data.size()));
@@ -67,7 +67,7 @@ namespace
 namespace Glib
 {
 
-Glib::Checksum wrap(GChecksum* object, bool take_copy)
+auto wrap(GChecksum* object, bool take_copy) -> Glib::Checksum
 {
   return Glib::Checksum(object, take_copy);
 }
@@ -80,7 +80,7 @@ namespace Glib
 
 
 // static
-GType Checksum::get_type()
+auto Checksum::get_type() -> GType
 {
   return g_checksum_get_type();
 }
@@ -102,7 +102,7 @@ Checksum::Checksum(Checksum&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-Checksum& Checksum::operator=(Checksum&& other) noexcept
+auto Checksum::operator=(Checksum&& other) noexcept -> Checksum&
 {
   Checksum temp (std::move(other));
   swap(temp);
@@ -117,7 +117,7 @@ Checksum::Checksum(GChecksum* gobject, bool make_a_copy)
   gobject_ ((make_a_copy && gobject) ? g_checksum_copy(gobject) : gobject)
 {}
 
-Checksum& Checksum::operator=(const Checksum& other)
+auto Checksum::operator=(const Checksum& other) -> Checksum&
 {
   Checksum temp (other);
   swap(temp);
@@ -135,7 +135,7 @@ void Checksum::swap(Checksum& other) noexcept
   std::swap(gobject_, other.gobject_);
 }
 
-GChecksum* Checksum::gobj_copy() const
+auto Checksum::gobj_copy() const -> GChecksum*
 {
   return g_checksum_copy(gobject_);
 }
@@ -156,12 +156,12 @@ void Checksum::get_digest(guint8 * buffer, gsize * digest_len) const
   g_checksum_get_digest(const_cast<GChecksum*>(gobj()), buffer, digest_len);
 }
 
-std::string Checksum::get_string() const
+auto Checksum::get_string() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_checksum_get_string(const_cast<GChecksum*>(gobj())));
 }
 
-std::string Checksum::compute_checksum(Type checksum_type, const guchar* data, gsize length)
+auto Checksum::compute_checksum(Type checksum_type, const guchar* data, gsize length) -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(g_compute_checksum_for_data((static_cast<GChecksumType>(checksum_type)), data, length));
 }

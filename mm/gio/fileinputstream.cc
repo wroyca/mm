@@ -30,9 +30,9 @@
 namespace Gio
 {
 
-Glib::RefPtr<FileInfo>
+auto
 FileInputStream::query_info(
-  const Glib::RefPtr<Cancellable>& cancellable, const std::string& attributes)
+  const Glib::RefPtr<Cancellable>& cancellable, const std::string& attributes) -> Glib::RefPtr<FileInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_input_stream_query_info(gobj(), g_strdup((attributes).c_str()),
@@ -43,8 +43,8 @@ FileInputStream::query_info(
   return retvalue;
 }
 
-Glib::RefPtr<FileInfo>
-FileInputStream::query_info(const std::string& attributes)
+auto
+FileInputStream::query_info(const std::string& attributes) -> Glib::RefPtr<FileInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(
@@ -91,7 +91,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::FileInputStream> wrap(GFileInputStream* object, bool take_copy)
+auto wrap(GFileInputStream* object, bool take_copy) -> Glib::RefPtr<Gio::FileInputStream>
 {
   return Glib::make_refptr_for_instance<Gio::FileInputStream>( dynamic_cast<Gio::FileInputStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -106,7 +106,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& FileInputStream_Class::init()
+auto FileInputStream_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -138,7 +138,7 @@ void FileInputStream_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* FileInputStream_Class::wrap_new(GObject* object)
+auto FileInputStream_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new FileInputStream((GFileInputStream*)object);
 }
@@ -146,7 +146,7 @@ Glib::ObjectBase* FileInputStream_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GFileInputStream* FileInputStream::gobj_copy()
+auto FileInputStream::gobj_copy() -> GFileInputStream*
 {
   reference();
   return gobj();
@@ -170,7 +170,7 @@ FileInputStream::FileInputStream(FileInputStream&& src) noexcept
   , Seekable(std::move(src))
 {}
 
-FileInputStream& FileInputStream::operator=(FileInputStream&& src) noexcept
+auto FileInputStream::operator=(FileInputStream&& src) noexcept -> FileInputStream&
 {
   Gio::InputStream::operator=(std::move(src));
   Seekable::operator=(std::move(src));
@@ -184,19 +184,19 @@ FileInputStream::~FileInputStream() noexcept
 
 FileInputStream::CppClassType FileInputStream::fileinputstream_class_; // initialize static member
 
-GType FileInputStream::get_type()
+auto FileInputStream::get_type() -> GType
 {
   return fileinputstream_class_.init().get_type();
 }
 
 
-GType FileInputStream::get_base_type()
+auto FileInputStream::get_base_type() -> GType
 {
   return g_file_input_stream_get_type();
 }
 
 
-Glib::RefPtr<FileInfo> FileInputStream::query_info_finish(const Glib::RefPtr<AsyncResult>& result)
+auto FileInputStream::query_info_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<FileInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_input_stream_query_info_finish(gobj(), Glib::unwrap(result), &(gerror)));

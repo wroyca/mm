@@ -41,8 +41,8 @@ SignalProxyNormal::~SignalProxyNormal() noexcept
 {
 }
 
-sigc::slot_base&
-SignalProxyNormal::connect_impl_(bool notify, const sigc::slot_base& slot, bool after)
+auto
+SignalProxyNormal::connect_impl_(bool notify, const sigc::slot_base& slot, bool after) -> sigc::slot_base&
 {
   // create a proxy to hold our connection info
   auto pConnectionNode = new SignalProxyConnectionNode(slot, obj_->gobj());
@@ -57,8 +57,8 @@ SignalProxyNormal::connect_impl_(bool notify, const sigc::slot_base& slot, bool 
   return pConnectionNode->slot_;
 }
 
-sigc::slot_base&
-SignalProxyNormal::connect_impl_(bool notify, sigc::slot_base&& slot, bool after)
+auto
+SignalProxyNormal::connect_impl_(bool notify, sigc::slot_base&& slot, bool after) -> sigc::slot_base&
 {
   // create a proxy to hold our connection info
   auto pConnectionNode = new SignalProxyConnectionNode(std::move(slot), obj_->gobj());
@@ -113,8 +113,8 @@ SignalProxyDetailedBase::~SignalProxyDetailedBase() noexcept
 {
 }
 
-sigc::slot_base&
-SignalProxyDetailedBase::connect_impl_(bool notify, const sigc::slot_base& slot, bool after)
+auto
+SignalProxyDetailedBase::connect_impl_(bool notify, const sigc::slot_base& slot, bool after) -> sigc::slot_base&
 {
   // create a proxy to hold our connection info
   auto pConnectionNode = new SignalProxyConnectionNode(slot, obj_->gobj());
@@ -129,8 +129,8 @@ SignalProxyDetailedBase::connect_impl_(bool notify, const sigc::slot_base& slot,
   return pConnectionNode->slot_;
 }
 
-sigc::slot_base&
-SignalProxyDetailedBase::connect_impl_(bool notify, sigc::slot_base&& slot, bool after)
+auto
+SignalProxyDetailedBase::connect_impl_(bool notify, sigc::slot_base&& slot, bool after) -> sigc::slot_base&
 {
   // create a proxy to hold our connection info
   auto pConnectionNode = new SignalProxyConnectionNode(std::move(slot), obj_->gobj());

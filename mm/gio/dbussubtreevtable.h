@@ -27,10 +27,7 @@
 #include <gio/gio.h>
 
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 /** This represents a virtual table for
@@ -146,20 +143,20 @@ public:
   );
 
   SubtreeVTable(const SubtreeVTable& other) = delete;
-  SubtreeVTable& operator=(const SubtreeVTable& other) = delete;
+  auto operator=(const SubtreeVTable& other) -> SubtreeVTable& = delete;
 
   SubtreeVTable(SubtreeVTable&& other) noexcept;
-  SubtreeVTable& operator=(SubtreeVTable&& other) noexcept;
+  auto operator=(SubtreeVTable&& other) noexcept -> SubtreeVTable&;
 
   /// Destructor.
   virtual ~SubtreeVTable();
 
   /// Provides access to the underlying C object.
-  GDBusSubtreeVTable* gobj()
+  auto gobj() -> GDBusSubtreeVTable*
     { return reinterpret_cast<GDBusSubtreeVTable*>(&gobject_); }
 
   /// Provides access to the underlying C object.
-  const GDBusSubtreeVTable* gobj() const
+  auto gobj() const -> const GDBusSubtreeVTable*
     { return reinterpret_cast<const GDBusSubtreeVTable*>(&gobject_); }
 
 public:
@@ -167,9 +164,9 @@ public:
   // These are so the C callbacks and the
   // Gio::DBus::Connection::register_subtreee() method can have access to the
   // copies of the slots used for creation when registering.
-  SlotSubtreeEnumerate*         get_slot_enumerate() const;
-  SlotSubtreeIntrospect*        get_slot_introspect() const;
-  SlotSubtreeDispatch*          get_slot_dispatch() const;
+  auto         get_slot_enumerate() const -> SlotSubtreeEnumerate*;
+  auto        get_slot_introspect() const -> SlotSubtreeIntrospect*;
+  auto          get_slot_dispatch() const -> SlotSubtreeDispatch*;
 #endif
 
 protected:
@@ -184,8 +181,6 @@ protected:
 
 };
 
-
-} //namespace DBus
 
 } // namespace Gio
 

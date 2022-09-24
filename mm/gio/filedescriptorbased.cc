@@ -34,7 +34,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::FileDescriptorBased> wrap(GFileDescriptorBased* object, bool take_copy)
+auto wrap(GFileDescriptorBased* object, bool take_copy) -> Glib::RefPtr<Gio::FileDescriptorBased>
 {
   return Glib::make_refptr_for_instance<Gio::FileDescriptorBased>( dynamic_cast<Gio::FileDescriptorBased*> (Glib::wrap_auto_interface<Gio::FileDescriptorBased> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -49,7 +49,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& FileDescriptorBased_Class::init()
+auto FileDescriptorBased_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -76,7 +76,7 @@ void FileDescriptorBased_Class::iface_init_function(void* g_iface, void*)
 
 }
 
-int FileDescriptorBased_Class::get_fd_vfunc_callback(GFileDescriptorBased* self)
+auto FileDescriptorBased_Class::get_fd_vfunc_callback(GFileDescriptorBased* self) -> int
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -117,7 +117,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* FileDescriptorBased_Class::wrap_new(GObject* object)
+auto FileDescriptorBased_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new FileDescriptorBased((GFileDescriptorBased*)(object));
 }
@@ -144,7 +144,7 @@ FileDescriptorBased::FileDescriptorBased(FileDescriptorBased&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-FileDescriptorBased& FileDescriptorBased::operator=(FileDescriptorBased&& src) noexcept
+auto FileDescriptorBased::operator=(FileDescriptorBased&& src) noexcept -> FileDescriptorBased&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -161,25 +161,25 @@ void FileDescriptorBased::add_interface(GType gtype_implementer)
 
 FileDescriptorBased::CppClassType FileDescriptorBased::filedescriptorbased_class_; // initialize static member
 
-GType FileDescriptorBased::get_type()
+auto FileDescriptorBased::get_type() -> GType
 {
   return filedescriptorbased_class_.init().get_type();
 }
 
 
-GType FileDescriptorBased::get_base_type()
+auto FileDescriptorBased::get_base_type() -> GType
 {
   return g_file_descriptor_based_get_type();
 }
 
 
-int FileDescriptorBased::get_fd() const
+auto FileDescriptorBased::get_fd() const -> int
 {
   return g_file_descriptor_based_get_fd(const_cast<GFileDescriptorBased*>(gobj()));
 }
 
 
-int Gio::FileDescriptorBased::get_fd_vfunc() const
+auto Gio::FileDescriptorBased::get_fd_vfunc() const -> int
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

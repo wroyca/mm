@@ -30,13 +30,13 @@
 namespace Gdk
 {
 
-Glib::RefPtr<ContentProvider> ContentProvider::create(
-  const std::vector<Glib::RefPtr<ContentProvider>>& providers)
+auto ContentProvider::create(
+  const std::vector<Glib::RefPtr<ContentProvider>>& providers) -> Glib::RefPtr<ContentProvider>
 {
   // gdk_content_provider_new_union() does not take a reference on the
   // supplied elements, but it unrefs them when the created
   // content provider union is deleted. [transfer elements]
-  for (auto provider : providers)
+  for (const auto &provider : providers)
     provider->reference();
 
   return Glib::wrap(gdk_content_provider_new_union(
@@ -50,7 +50,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo ContentProvider_signal_content_changed_info =
+const Glib::SignalProxyInfo ContentProvider_signal_content_changed_info =
 {
   "content-changed",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -64,7 +64,7 @@ static const Glib::SignalProxyInfo ContentProvider_signal_content_changed_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::ContentProvider> wrap(GdkContentProvider* object, bool take_copy)
+auto wrap(GdkContentProvider* object, bool take_copy) -> Glib::RefPtr<Gdk::ContentProvider>
 {
   return Glib::make_refptr_for_instance<Gdk::ContentProvider>( dynamic_cast<Gdk::ContentProvider*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -79,7 +79,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ContentProvider_Class::init()
+auto ContentProvider_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -149,7 +149,7 @@ void ContentProvider_Class::content_changed_callback(GdkContentProvider* self)
 }
 
 
-Glib::ObjectBase* ContentProvider_Class::wrap_new(GObject* object)
+auto ContentProvider_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ContentProvider((GdkContentProvider*)object);
 }
@@ -157,7 +157,7 @@ Glib::ObjectBase* ContentProvider_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GdkContentProvider* ContentProvider::gobj_copy()
+auto ContentProvider::gobj_copy() -> GdkContentProvider*
 {
   reference();
   return gobj();
@@ -180,7 +180,7 @@ ContentProvider::ContentProvider(ContentProvider&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-ContentProvider& ContentProvider::operator=(ContentProvider&& src) noexcept
+auto ContentProvider::operator=(ContentProvider&& src) noexcept -> ContentProvider&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -193,13 +193,13 @@ ContentProvider::~ContentProvider() noexcept
 
 ContentProvider::CppClassType ContentProvider::contentprovider_class_; // initialize static member
 
-GType ContentProvider::get_type()
+auto ContentProvider::get_type() -> GType
 {
   return contentprovider_class_.init().get_type();
 }
 
 
-GType ContentProvider::get_base_type()
+auto ContentProvider::get_base_type() -> GType
 {
   return gdk_content_provider_get_type();
 }
@@ -215,22 +215,22 @@ ContentProvider::ContentProvider()
 
 }
 
-Glib::RefPtr<ContentProvider> ContentProvider::create(const Glib::ValueBase& value)
+auto ContentProvider::create(const Glib::ValueBase& value) -> Glib::RefPtr<ContentProvider>
 {
   return Glib::wrap(gdk_content_provider_new_for_value((value).gobj()));
 }
 
-Glib::RefPtr<ContentProvider> ContentProvider::create(const Glib::ustring& mime_type, const Glib::RefPtr<const Glib::Bytes>& bytes)
+auto ContentProvider::create(const Glib::ustring& mime_type, const Glib::RefPtr<const Glib::Bytes>& bytes) -> Glib::RefPtr<ContentProvider>
 {
   return Glib::wrap(gdk_content_provider_new_for_bytes(mime_type.c_str(), const_cast<GBytes*>(Glib::unwrap<Glib::Bytes>(bytes))));
 }
 
-Glib::RefPtr<ContentFormats> ContentProvider::ref_formats() const
+auto ContentProvider::ref_formats() const -> Glib::RefPtr<ContentFormats>
 {
   return Glib::wrap(gdk_content_provider_ref_formats(const_cast<GdkContentProvider*>(gobj())));
 }
 
-Glib::RefPtr<ContentFormats> ContentProvider::ref_storable_formats() const
+auto ContentProvider::ref_storable_formats() const -> Glib::RefPtr<ContentFormats>
 {
   return Glib::wrap(gdk_content_provider_ref_storable_formats(const_cast<GdkContentProvider*>(gobj())));
 }
@@ -273,7 +273,7 @@ void ContentProvider::get_value(Glib::ValueBase& value) const
 }
 
 
-Glib::SignalProxy<void()> ContentProvider::signal_content_changed()
+auto ContentProvider::signal_content_changed() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &ContentProvider_signal_content_changed_info);
 }
@@ -283,7 +283,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Content
   "Type Glib::RefPtr<ContentFormats> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> > ContentProvider::property_formats() const
+auto ContentProvider::property_formats() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> >(this, "formats");
 }
@@ -292,7 +292,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Content
   "Type Glib::RefPtr<ContentFormats> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> > ContentProvider::property_storable_formats() const
+auto ContentProvider::property_storable_formats() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> >(this, "storable-formats");
 }

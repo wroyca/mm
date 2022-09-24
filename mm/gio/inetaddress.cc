@@ -28,20 +28,20 @@
 namespace Gio
 {
 
-Glib::RefPtr<InetAddress>
-InetAddress::create(const Glib::ustring& string)
+auto
+InetAddress::create(const Glib::ustring& string) -> Glib::RefPtr<InetAddress>
 {
   return Glib::wrap(g_inet_address_new_from_string(string.c_str()));
 }
 
-Glib::RefPtr<InetAddress>
-InetAddress::create_any(SocketFamily family)
+auto
+InetAddress::create_any(SocketFamily family) -> Glib::RefPtr<InetAddress>
 {
   return Glib::wrap(g_inet_address_new_any((GSocketFamily)family));
 }
 
-Glib::RefPtr<InetAddress>
-InetAddress::create_loopback(SocketFamily family)
+auto
+InetAddress::create_loopback(SocketFamily family) -> Glib::RefPtr<InetAddress>
 {
   return Glib::wrap(g_inet_address_new_loopback((GSocketFamily)family));
 }
@@ -56,7 +56,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::InetAddress> wrap(GInetAddress* object, bool take_copy)
+auto wrap(GInetAddress* object, bool take_copy) -> Glib::RefPtr<Gio::InetAddress>
 {
   return Glib::make_refptr_for_instance<Gio::InetAddress>( dynamic_cast<Gio::InetAddress*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -71,7 +71,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& InetAddress_Class::init()
+auto InetAddress_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -102,7 +102,7 @@ void InetAddress_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* InetAddress_Class::wrap_new(GObject* object)
+auto InetAddress_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new InetAddress((GInetAddress*)object);
 }
@@ -110,7 +110,7 @@ Glib::ObjectBase* InetAddress_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GInetAddress* InetAddress::gobj_copy()
+auto InetAddress::gobj_copy() -> GInetAddress*
 {
   reference();
   return gobj();
@@ -133,7 +133,7 @@ InetAddress::InetAddress(InetAddress&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-InetAddress& InetAddress::operator=(InetAddress&& src) noexcept
+auto InetAddress::operator=(InetAddress&& src) noexcept -> InetAddress&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -146,13 +146,13 @@ InetAddress::~InetAddress() noexcept
 
 InetAddress::CppClassType InetAddress::inetaddress_class_; // initialize static member
 
-GType InetAddress::get_type()
+auto InetAddress::get_type() -> GType
 {
   return inetaddress_class_.init().get_type();
 }
 
 
-GType InetAddress::get_base_type()
+auto InetAddress::get_base_type() -> GType
 {
   return g_inet_address_get_type();
 }
@@ -168,82 +168,82 @@ InetAddress::InetAddress(const guint8 * bytes, SocketFamily family)
 
 }
 
-Glib::RefPtr<InetAddress> InetAddress::create(const guint8 * bytes, SocketFamily family)
+auto InetAddress::create(const guint8 * bytes, SocketFamily family) -> Glib::RefPtr<InetAddress>
 {
   return Glib::make_refptr_for_instance<InetAddress>( new InetAddress(bytes, family) );
 }
 
-bool InetAddress::address_equal(const Glib::RefPtr<const InetAddress>& other_address) const
+auto InetAddress::address_equal(const Glib::RefPtr<const InetAddress>& other_address) const -> bool
 {
   return g_inet_address_equal(const_cast<GInetAddress*>(gobj()), const_cast<GInetAddress*>(Glib::unwrap(other_address)));
 }
 
-const guint8* InetAddress::to_bytes() const
+auto InetAddress::to_bytes() const -> const guint8*
 {
   return g_inet_address_to_bytes(const_cast<GInetAddress*>(gobj()));
 }
 
-Glib::ustring InetAddress::to_string() const
+auto InetAddress::to_string() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(g_inet_address_to_string(const_cast<GInetAddress*>(gobj())));
 }
 
-SocketFamily InetAddress::get_family() const
+auto InetAddress::get_family() const -> SocketFamily
 {
   return static_cast<SocketFamily>(g_inet_address_get_family(const_cast<GInetAddress*>(gobj())));
 }
 
-bool InetAddress::get_is_any() const
+auto InetAddress::get_is_any() const -> bool
 {
   return g_inet_address_get_is_any(const_cast<GInetAddress*>(gobj()));
 }
 
-bool InetAddress::get_is_link_local() const
+auto InetAddress::get_is_link_local() const -> bool
 {
   return g_inet_address_get_is_link_local(const_cast<GInetAddress*>(gobj()));
 }
 
-bool InetAddress::get_is_loopback() const
+auto InetAddress::get_is_loopback() const -> bool
 {
   return g_inet_address_get_is_loopback(const_cast<GInetAddress*>(gobj()));
 }
 
-bool InetAddress::get_is_mc_global() const
+auto InetAddress::get_is_mc_global() const -> bool
 {
   return g_inet_address_get_is_mc_global(const_cast<GInetAddress*>(gobj()));
 }
 
-bool InetAddress::get_is_mc_link_local() const
+auto InetAddress::get_is_mc_link_local() const -> bool
 {
   return g_inet_address_get_is_mc_link_local(const_cast<GInetAddress*>(gobj()));
 }
 
-bool InetAddress::get_is_mc_node_local() const
+auto InetAddress::get_is_mc_node_local() const -> bool
 {
   return g_inet_address_get_is_mc_node_local(const_cast<GInetAddress*>(gobj()));
 }
 
-bool InetAddress::get_is_mc_org_local() const
+auto InetAddress::get_is_mc_org_local() const -> bool
 {
   return g_inet_address_get_is_mc_org_local(const_cast<GInetAddress*>(gobj()));
 }
 
-bool InetAddress::get_is_mc_site_local() const
+auto InetAddress::get_is_mc_site_local() const -> bool
 {
   return g_inet_address_get_is_mc_site_local(const_cast<GInetAddress*>(gobj()));
 }
 
-bool InetAddress::get_is_multicast() const
+auto InetAddress::get_is_multicast() const -> bool
 {
   return g_inet_address_get_is_multicast(const_cast<GInetAddress*>(gobj()));
 }
 
-bool InetAddress::get_is_site_local() const
+auto InetAddress::get_is_site_local() const -> bool
 {
   return g_inet_address_get_is_site_local(const_cast<GInetAddress*>(gobj()));
 }
 
-gsize InetAddress::get_native_size() const
+auto InetAddress::get_native_size() const -> gsize
 {
   return g_inet_address_get_native_size(const_cast<GInetAddress*>(gobj()));
 }
@@ -253,7 +253,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<void*>::value,
   "Type void* cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< void* > InetAddress::property_bytes() const
+auto InetAddress::property_bytes() const -> Glib::PropertyProxy_ReadOnly< void* >
 {
   return Glib::PropertyProxy_ReadOnly< void* >(this, "bytes");
 }
@@ -262,57 +262,57 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<SocketFamily>::value
   "Type SocketFamily cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< SocketFamily > InetAddress::property_family() const
+auto InetAddress::property_family() const -> Glib::PropertyProxy_ReadOnly< SocketFamily >
 {
   return Glib::PropertyProxy_ReadOnly< SocketFamily >(this, "family");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > InetAddress::property_is_any() const
+auto InetAddress::property_is_any() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-any");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > InetAddress::property_is_link_local() const
+auto InetAddress::property_is_link_local() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-link-local");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > InetAddress::property_is_loopback() const
+auto InetAddress::property_is_loopback() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-loopback");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > InetAddress::property_is_mc_global() const
+auto InetAddress::property_is_mc_global() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-mc-global");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > InetAddress::property_is_mc_link_local() const
+auto InetAddress::property_is_mc_link_local() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-mc-link-local");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > InetAddress::property_is_mc_node_local() const
+auto InetAddress::property_is_mc_node_local() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-mc-node-local");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > InetAddress::property_is_mc_org_local() const
+auto InetAddress::property_is_mc_org_local() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-mc-org-local");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > InetAddress::property_is_mc_site_local() const
+auto InetAddress::property_is_mc_site_local() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-mc-site-local");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > InetAddress::property_is_multicast() const
+auto InetAddress::property_is_multicast() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-multicast");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > InetAddress::property_is_site_local() const
+auto InetAddress::property_is_site_local() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-site-local");
 }

@@ -75,7 +75,7 @@ void Range_Class::get_range_border_vfunc_callback(GtkRange* self, GtkBorder* bor
 
 }
 
-Gdk::Rectangle Range::get_range_rect() const
+auto Range::get_range_rect() const -> Gdk::Rectangle
 {
   Gdk::Rectangle result;
   gtk_range_get_range_rect(const_cast<GtkRange*>(gobj()), result.gobj());
@@ -88,7 +88,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo Range_signal_value_changed_info =
+const Glib::SignalProxyInfo Range_signal_value_changed_info =
 {
   "value_changed",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -96,7 +96,7 @@ static const Glib::SignalProxyInfo Range_signal_value_changed_info =
 };
 
 
-static void Range_signal_adjust_bounds_callback(GtkRange* self, gdouble p0,void* data)
+void Range_signal_adjust_bounds_callback(GtkRange* self, gdouble p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double)>;
@@ -118,7 +118,7 @@ static void Range_signal_adjust_bounds_callback(GtkRange* self, gdouble p0,void*
   }
 }
 
-static const Glib::SignalProxyInfo Range_signal_adjust_bounds_info =
+const Glib::SignalProxyInfo Range_signal_adjust_bounds_info =
 {
   "adjust_bounds",
   (GCallback) &Range_signal_adjust_bounds_callback,
@@ -126,7 +126,7 @@ static const Glib::SignalProxyInfo Range_signal_adjust_bounds_info =
 };
 
 
-static void Range_signal_move_slider_callback(GtkRange* self, GtkScrollType p0,void* data)
+void Range_signal_move_slider_callback(GtkRange* self, GtkScrollType p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(ScrollType)>;
@@ -148,7 +148,7 @@ static void Range_signal_move_slider_callback(GtkRange* self, GtkScrollType p0,v
   }
 }
 
-static const Glib::SignalProxyInfo Range_signal_move_slider_info =
+const Glib::SignalProxyInfo Range_signal_move_slider_info =
 {
   "move_slider",
   (GCallback) &Range_signal_move_slider_callback,
@@ -156,7 +156,7 @@ static const Glib::SignalProxyInfo Range_signal_move_slider_info =
 };
 
 
-static gboolean Range_signal_change_value_callback(GtkRange* self, GtkScrollType p0,gdouble p1,void* data)
+auto Range_signal_change_value_callback(GtkRange* self, GtkScrollType p0,gdouble p1,void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<bool(ScrollType, double)>;
@@ -182,7 +182,7 @@ static gboolean Range_signal_change_value_callback(GtkRange* self, GtkScrollType
   return RType();
 }
 
-static gboolean Range_signal_change_value_notify_callback(GtkRange* self, GtkScrollType p0,gdouble p1, void* data)
+auto Range_signal_change_value_notify_callback(GtkRange* self, GtkScrollType p0,gdouble p1, void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(ScrollType, double)>;
@@ -208,7 +208,7 @@ static gboolean Range_signal_change_value_notify_callback(GtkRange* self, GtkScr
   return RType();
 }
 
-static const Glib::SignalProxyInfo Range_signal_change_value_info =
+const Glib::SignalProxyInfo Range_signal_change_value_info =
 {
   "change_value",
   (GCallback) &Range_signal_change_value_callback,
@@ -222,7 +222,7 @@ static const Glib::SignalProxyInfo Range_signal_change_value_info =
 namespace Glib
 {
 
-Gtk::Range* wrap(GtkRange* object, bool take_copy)
+auto wrap(GtkRange* object, bool take_copy) -> Gtk::Range*
 {
   return dynamic_cast<Gtk::Range *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -235,7 +235,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Range_Class::init()
+auto Range_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -382,7 +382,7 @@ void Range_Class::move_slider_callback(GtkRange* self, GtkScrollType p0)
   if(base && base->move_slider)
     (*base->move_slider)(self, p0);
 }
-gboolean Range_Class::change_value_callback(GtkRange* self, GtkScrollType p0, gdouble p1)
+auto Range_Class::change_value_callback(GtkRange* self, GtkScrollType p0, gdouble p1) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -424,7 +424,7 @@ gboolean Range_Class::change_value_callback(GtkRange* self, GtkScrollType p0, gd
 }
 
 
-Glib::ObjectBase* Range_Class::wrap_new(GObject* o)
+auto Range_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Range((GtkRange*)(o)));
 
@@ -451,7 +451,7 @@ Range::Range(Range&& src) noexcept
   , Orientable(std::move(src))
 {}
 
-Range& Range::operator=(Range&& src) noexcept
+auto Range::operator=(Range&& src) noexcept -> Range&
 {
   Gtk::Widget::operator=(std::move(src));
   Orientable::operator=(std::move(src));
@@ -465,13 +465,13 @@ Range::~Range() noexcept
 
 Range::CppClassType Range::range_class_; // initialize static member
 
-GType Range::get_type()
+auto Range::get_type() -> GType
 {
   return range_class_.init().get_type();
 }
 
 
-GType Range::get_base_type()
+auto Range::get_base_type() -> GType
 {
   return gtk_range_get_type();
 }
@@ -492,7 +492,7 @@ void Range::set_adjustment(const Glib::RefPtr<Adjustment>& adjustment)
   gtk_range_set_adjustment(gobj(), Glib::unwrap(adjustment));
 }
 
-Glib::RefPtr<Adjustment> Range::get_adjustment()
+auto Range::get_adjustment() -> Glib::RefPtr<Adjustment>
 {
   auto retvalue = Glib::wrap(gtk_range_get_adjustment(gobj()));
   if(retvalue)
@@ -500,7 +500,7 @@ Glib::RefPtr<Adjustment> Range::get_adjustment()
   return retvalue;
 }
 
-Glib::RefPtr<const Adjustment> Range::get_adjustment() const
+auto Range::get_adjustment() const -> Glib::RefPtr<const Adjustment>
 {
   return const_cast<Range*>(this)->get_adjustment();
 }
@@ -510,7 +510,7 @@ void Range::set_inverted(bool setting)
   gtk_range_set_inverted(gobj(), static_cast<int>(setting));
 }
 
-bool Range::get_inverted() const
+auto Range::get_inverted() const -> bool
 {
   return gtk_range_get_inverted(const_cast<GtkRange*>(gobj()));
 }
@@ -520,7 +520,7 @@ void Range::set_flippable(bool flippable)
   gtk_range_set_flippable(gobj(), static_cast<int>(flippable));
 }
 
-bool Range::get_flippable() const
+auto Range::get_flippable() const -> bool
 {
   return gtk_range_get_flippable(const_cast<GtkRange*>(gobj()));
 }
@@ -530,7 +530,7 @@ void Range::set_slider_size_fixed(bool size_fixed)
   gtk_range_set_slider_size_fixed(gobj(), static_cast<int>(size_fixed));
 }
 
-bool Range::get_slider_size_fixed() const
+auto Range::get_slider_size_fixed() const -> bool
 {
   return gtk_range_get_slider_size_fixed(const_cast<GtkRange*>(gobj()));
 }
@@ -555,7 +555,7 @@ void Range::set_value(double value)
   gtk_range_set_value(gobj(), value);
 }
 
-double Range::get_value() const
+auto Range::get_value() const -> double
 {
   return gtk_range_get_value(const_cast<GtkRange*>(gobj()));
 }
@@ -565,7 +565,7 @@ void Range::set_show_fill_level(bool show_fill_level)
   gtk_range_set_show_fill_level(gobj(), static_cast<int>(show_fill_level));
 }
 
-bool Range::get_show_fill_level() const
+auto Range::get_show_fill_level() const -> bool
 {
   return gtk_range_get_show_fill_level(const_cast<GtkRange*>(gobj()));
 }
@@ -575,7 +575,7 @@ void Range::set_restrict_to_fill_level(bool restrict_to_fill_level)
   gtk_range_set_restrict_to_fill_level(gobj(), static_cast<int>(restrict_to_fill_level));
 }
 
-bool Range::get_restrict_to_fill_level() const
+auto Range::get_restrict_to_fill_level() const -> bool
 {
   return gtk_range_get_restrict_to_fill_level(const_cast<GtkRange*>(gobj()));
 }
@@ -585,7 +585,7 @@ void Range::set_fill_level(double fill_level)
   gtk_range_set_fill_level(gobj(), fill_level);
 }
 
-double Range::get_fill_level() const
+auto Range::get_fill_level() const -> double
 {
   return gtk_range_get_fill_level(const_cast<GtkRange*>(gobj()));
 }
@@ -595,31 +595,31 @@ void Range::set_round_digits(int round_digits)
   gtk_range_set_round_digits(gobj(), round_digits);
 }
 
-int Range::get_round_digits() const
+auto Range::get_round_digits() const -> int
 {
   return gtk_range_get_round_digits(const_cast<GtkRange*>(gobj()));
 }
 
 
-Glib::SignalProxy<void()> Range::signal_value_changed()
+auto Range::signal_value_changed() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Range_signal_value_changed_info);
 }
 
 
-Glib::SignalProxy<void(double)> Range::signal_adjust_bounds()
+auto Range::signal_adjust_bounds() -> Glib::SignalProxy<void(double)>
 {
   return Glib::SignalProxy<void(double) >(this, &Range_signal_adjust_bounds_info);
 }
 
 
-Glib::SignalProxy<void(ScrollType)> Range::signal_move_slider()
+auto Range::signal_move_slider() -> Glib::SignalProxy<void(ScrollType)>
 {
   return Glib::SignalProxy<void(ScrollType) >(this, &Range_signal_move_slider_info);
 }
 
 
-Glib::SignalProxy<bool(ScrollType, double)> Range::signal_change_value()
+auto Range::signal_change_value() -> Glib::SignalProxy<bool(ScrollType, double)>
 {
   return Glib::SignalProxy<bool(ScrollType, double) >(this, &Range_signal_change_value_info);
 }
@@ -629,62 +629,62 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Adjustm
   "Type Glib::RefPtr<Adjustment> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Adjustment> > Range::property_adjustment()
+auto Range::property_adjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Adjustment> >(this, "adjustment");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> > Range::property_adjustment() const
+auto Range::property_adjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >(this, "adjustment");
 }
 
-Glib::PropertyProxy< bool > Range::property_inverted()
+auto Range::property_inverted() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "inverted");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Range::property_inverted() const
+auto Range::property_inverted() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "inverted");
 }
 
-Glib::PropertyProxy< bool > Range::property_show_fill_level()
+auto Range::property_show_fill_level() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "show-fill-level");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Range::property_show_fill_level() const
+auto Range::property_show_fill_level() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "show-fill-level");
 }
 
-Glib::PropertyProxy< bool > Range::property_restrict_to_fill_level()
+auto Range::property_restrict_to_fill_level() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "restrict-to-fill-level");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Range::property_restrict_to_fill_level() const
+auto Range::property_restrict_to_fill_level() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "restrict-to-fill-level");
 }
 
-Glib::PropertyProxy< double > Range::property_fill_level()
+auto Range::property_fill_level() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "fill-level");
 }
 
-Glib::PropertyProxy_ReadOnly< double > Range::property_fill_level() const
+auto Range::property_fill_level() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "fill-level");
 }
 
-Glib::PropertyProxy< int > Range::property_round_digits()
+auto Range::property_round_digits() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "round-digits");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Range::property_round_digits() const
+auto Range::property_round_digits() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "round-digits");
 }
@@ -717,7 +717,7 @@ void Gtk::Range::on_move_slider(ScrollType scroll)
   if(base && base->move_slider)
     (*base->move_slider)(gobj(),static_cast<GtkScrollType>(scroll));
 }
-bool Gtk::Range::on_change_value(ScrollType scroll, double new_value)
+auto Gtk::Range::on_change_value(ScrollType scroll, double new_value) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

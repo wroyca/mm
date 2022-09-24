@@ -26,49 +26,44 @@
 #include <gio/gio.h>
 #include <mm/glib/utility.h>
 
-namespace Gio
+namespace Gio::DBus
 {
 
-namespace DBus
-{
-
-std::string
-generate_guid()
+auto
+generate_guid() -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_dbus_generate_guid());
 }
 
-bool
-is_guid(const std::string& string)
+auto
+is_guid(const std::string& string) -> bool
 {
   return static_cast<bool>(g_dbus_is_guid(string.c_str()));
 }
 
-bool
-is_name(const Glib::ustring& string)
+auto
+is_name(const Glib::ustring& string) -> bool
 {
   return static_cast<bool>(g_dbus_is_name(string.c_str()));
 }
 
-bool
-is_unique_name(const Glib::ustring& string)
+auto
+is_unique_name(const Glib::ustring& string) -> bool
 {
   return static_cast<bool>(g_dbus_is_unique_name(string.c_str()));
 }
 
-bool
-is_member_name(const Glib::ustring& string)
+auto
+is_member_name(const Glib::ustring& string) -> bool
 {
   return static_cast<bool>(g_dbus_is_member_name(string.c_str()));
 }
 
-bool
-is_interface_name(const Glib::ustring& string)
+auto
+is_interface_name(const Glib::ustring& string) -> bool
 {
   return static_cast<bool>(g_dbus_is_interface_name(string.c_str()));
 }
-
-} // namespace DBus
 
 } // namespace Gio
 

@@ -66,7 +66,7 @@ public:
 
   // noncopyable
   PixbufAnimation(const PixbufAnimation&) = delete;
-  PixbufAnimation& operator=(const PixbufAnimation&) = delete;
+  auto operator=(const PixbufAnimation&) -> PixbufAnimation& = delete;
 
 private:  friend class PixbufAnimation_Class;
   static CppClassType pixbufanimation_class_;
@@ -80,28 +80,28 @@ protected:
 public:
 
   PixbufAnimation(PixbufAnimation&& src) noexcept;
-  PixbufAnimation& operator=(PixbufAnimation&& src) noexcept;
+  auto operator=(PixbufAnimation&& src) noexcept -> PixbufAnimation&;
 
   ~PixbufAnimation() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkPixbufAnimation*       gobj()       { return reinterpret_cast<GdkPixbufAnimation*>(gobject_); }
+  auto       gobj() -> GdkPixbufAnimation*       { return reinterpret_cast<GdkPixbufAnimation*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkPixbufAnimation* gobj() const { return reinterpret_cast<GdkPixbufAnimation*>(gobject_); }
+  auto gobj() const -> const GdkPixbufAnimation* { return reinterpret_cast<GdkPixbufAnimation*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkPixbufAnimation* gobj_copy();
+  auto gobj_copy() -> GdkPixbufAnimation*;
 
 private:
 
@@ -125,7 +125,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<PixbufAnimation> create_from_file(const std::string& filename);
+  static auto create_from_file(const std::string& filename) -> Glib::RefPtr<PixbufAnimation>;
 
   /** Creates a new animation by loading it from an input stream.
    *
@@ -148,7 +148,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<PixbufAnimation> create_from_stream(const Glib::RefPtr<Gio::InputStream>& stream, const Glib::RefPtr<Gio::Cancellable>& cancellable =  {});
+  static auto create_from_stream(const Glib::RefPtr<Gio::InputStream>& stream, const Glib::RefPtr<Gio::Cancellable>& cancellable =  {}) -> Glib::RefPtr<PixbufAnimation>;
 
   /** Creates a new animation by asynchronously loading an image from an input stream.
    *
@@ -177,7 +177,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<PixbufAnimation> create_from_stream_finish(const Glib::RefPtr<Gio::AsyncResult>& result);
+  static auto create_from_stream_finish(const Glib::RefPtr<Gio::AsyncResult>& result) -> Glib::RefPtr<PixbufAnimation>;
 
   /** Creates a new pixbuf animation by loading an image from an resource.
    *
@@ -191,20 +191,20 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<PixbufAnimation> create_from_resource(const std::string& resource_path);
+  static auto create_from_resource(const std::string& resource_path) -> Glib::RefPtr<PixbufAnimation>;
 
 
   /** Queries the width of the bounding box of a pixbuf animation.
    *
    * @return Width of the bounding box of the animation.
    */
-  int get_width() const;
+  auto get_width() const -> int;
 
   /** Queries the height of the bounding box of a pixbuf animation.
    *
    * @return Height of the bounding box of the animation.
    */
-  int get_height() const;
+  auto get_height() const -> int;
 
   /** Checks whether the animation is a static image.
    *
@@ -215,7 +215,7 @@ public:
    *
    * @return <tt>true</tt> if the "animation" was really just an image.
    */
-  bool is_static_image() const;
+  auto is_static_image() const -> bool;
 
   /** Retrieves a static image for the animation.
    *
@@ -231,7 +231,7 @@ public:
    *
    * @return Unanimated image representing the animation.
    */
-  Glib::RefPtr<Pixbuf> get_static_image();
+  auto get_static_image() -> Glib::RefPtr<Pixbuf>;
 
   /** Get an iterator for displaying an animation.
    * The iterator provides the frames that should be displayed at a given time.
@@ -268,7 +268,7 @@ public:
    * @param start_time Time when the animation starts playing.
    * @return An iterator to move over the animation.
    */
-  Glib::RefPtr<PixbufAnimationIter> get_iter(gint64 start_time = g_get_real_time());
+  auto get_iter(gint64 start_time = g_get_real_time()) -> Glib::RefPtr<PixbufAnimationIter>;
 
 
 public:
@@ -298,7 +298,7 @@ namespace Glib
    * @relates Gdk::PixbufAnimation
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::PixbufAnimation> wrap(GdkPixbufAnimation* object, bool take_copy = false);
+  auto wrap(GdkPixbufAnimation* object, bool take_copy = false) -> Glib::RefPtr<Gdk::PixbufAnimation>;
 }
 
 

@@ -62,19 +62,19 @@ class GIOMM_API SettingsSchemaKey final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GSettingsSchemaKey*       gobj();
+  auto       gobj() -> GSettingsSchemaKey*;
 
   ///Provides access to the underlying C instance.
-  const GSettingsSchemaKey* gobj() const;
+  auto gobj() const -> const GSettingsSchemaKey*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GSettingsSchemaKey* gobj_copy() const;
+  auto gobj_copy() const -> GSettingsSchemaKey*;
 
   SettingsSchemaKey() = delete;
 
   // noncopyable
   SettingsSchemaKey(const SettingsSchemaKey&) = delete;
-  SettingsSchemaKey& operator=(const SettingsSchemaKey&) = delete;
+  auto operator=(const SettingsSchemaKey&) -> SettingsSchemaKey& = delete;
 
 protected:
   // Do not derive this.  Gio::SettingsSchemaKey can neither be constructed nor deleted.
@@ -98,7 +98,7 @@ public:
    *
    * @return The name of @a key.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
   /** Gets the summary for @a key.
    *
@@ -118,7 +118,7 @@ public:
    *
    * @return The summary for @a key, or <tt>nullptr</tt>.
    */
-  Glib::ustring get_summary() const;
+  auto get_summary() const -> Glib::ustring;
 
   /** Gets the description for @a key.
    *
@@ -139,7 +139,7 @@ public:
    *
    * @return The description for @a key, or <tt>nullptr</tt>.
    */
-  Glib::ustring get_description() const;
+  auto get_description() const -> Glib::ustring;
 
 
   /** Gets the VariantType of @a key.
@@ -148,7 +148,7 @@ public:
    *
    * @return The type of @a key.
    */
-  Glib::VariantType get_value_type() const;
+  auto get_value_type() const -> Glib::VariantType;
 
   /** Gets the default value for @a key.
    *
@@ -159,7 +159,7 @@ public:
    *
    * @return The default value for the key.
    */
-  Glib::VariantBase get_default_value() const;
+  auto get_default_value() const -> Glib::VariantBase;
 
   /** Queries the range of a key.
    *
@@ -202,7 +202,7 @@ public:
    *
    * @return A Variant describing the range.
    */
-  Glib::VariantBase get_range() const;
+  auto get_range() const -> Glib::VariantBase;
 
   /** Checks if the given @a value is within the
    * permitted range for @a key.
@@ -215,7 +215,7 @@ public:
    * @param value The value to check.
    * @return <tt>true</tt> if @a value is valid for @a key.
    */
-  bool range_check(const Glib::VariantBase& value) const;
+  auto range_check(const Glib::VariantBase& value) const -> bool;
 
 
 };
@@ -235,7 +235,7 @@ namespace Glib
  * @relates Gio::SettingsSchemaKey
  */
 GIOMM_API
-Glib::RefPtr<Gio::SettingsSchemaKey> wrap(GSettingsSchemaKey* object, bool take_copy = false);
+auto wrap(GSettingsSchemaKey* object, bool take_copy = false) -> Glib::RefPtr<Gio::SettingsSchemaKey>;
 
 } // namespace Glib
 

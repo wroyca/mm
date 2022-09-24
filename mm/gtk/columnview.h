@@ -86,11 +86,11 @@ class GTKMM_API ColumnView : public Widget, public Scrollable
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ColumnView(ColumnView&& src) noexcept;
-  ColumnView& operator=(ColumnView&& src) noexcept;
+  auto operator=(ColumnView&& src) noexcept -> ColumnView&;
 
   // noncopyable
   ColumnView(const ColumnView&) = delete;
-  ColumnView& operator=(const ColumnView&) = delete;
+  auto operator=(const ColumnView&) -> ColumnView& = delete;
 
   ~ColumnView() noexcept override;
 
@@ -110,19 +110,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkColumnView*       gobj()       { return reinterpret_cast<GtkColumnView*>(gobject_); }
+  auto       gobj() -> GtkColumnView*       { return reinterpret_cast<GtkColumnView*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkColumnView* gobj() const { return reinterpret_cast<GtkColumnView*>(gobject_); }
+  auto gobj() const -> const GtkColumnView* { return reinterpret_cast<GtkColumnView*>(gobject_); }
 
 private:
 
@@ -139,7 +139,7 @@ public:
    *
    * @return The list managing the columns.
    */
-  Glib::RefPtr<Gio::ListModel> get_columns();
+  auto get_columns() -> Glib::RefPtr<Gio::ListModel>;
 
   /** Gets the list of columns in this column view.
    *
@@ -149,7 +149,7 @@ public:
    *
    * @return The list managing the columns.
    */
-  Glib::RefPtr<const Gio::ListModel> get_columns() const;
+  auto get_columns() const -> Glib::RefPtr<const Gio::ListModel>;
 
 
   /** Appends the @a column to the end of the columns in @a self.
@@ -179,13 +179,13 @@ public:
    *
    * @return The model in use.
    */
-  Glib::RefPtr<SelectionModel> get_model();
+  auto get_model() -> Glib::RefPtr<SelectionModel>;
 
   /** Gets the model that's currently used to read the items displayed.
    *
    * @return The model in use.
    */
-  Glib::RefPtr<const SelectionModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const SelectionModel>;
 
   /** Sets the model to use.
    *
@@ -201,7 +201,7 @@ public:
    *
    * @return <tt>true</tt> if the list shows separators.
    */
-  bool get_show_row_separators() const;
+  auto get_show_row_separators() const -> bool;
 
   /** Sets whether the list should show separators
    * between rows.
@@ -216,7 +216,7 @@ public:
    *
    * @return <tt>true</tt> if the list shows column separators.
    */
-  bool get_show_column_separators() const;
+  auto get_show_column_separators() const -> bool;
 
   /** Sets whether the list should show separators
    * between columns.
@@ -242,7 +242,7 @@ public:
    *
    * @return The `Gtk::Sorter` of @a self.
    */
-  Glib::RefPtr<Sorter> get_sorter();
+  auto get_sorter() -> Glib::RefPtr<Sorter>;
 
   /** Returns a special sorter that reflects the users sorting
    * choices in the column view.
@@ -260,7 +260,7 @@ public:
    *
    * @return The `Gtk::Sorter` of @a self.
    */
-  Glib::RefPtr<const Sorter> get_sorter() const;
+  auto get_sorter() const -> Glib::RefPtr<const Sorter>;
 
   /** Sets the sorting of the view.
    *
@@ -293,7 +293,7 @@ public:
    *
    * @return <tt>true</tt> if rows are activated on single click.
    */
-  bool get_single_click_activate() const;
+  auto get_single_click_activate() const -> bool;
 
   /** Sets whether columns should be reorderable by dragging.
    *
@@ -305,7 +305,7 @@ public:
    *
    * @return <tt>true</tt> if columns are reorderable.
    */
-  bool get_reorderable() const;
+  auto get_reorderable() const -> bool;
 
   /** Sets whether selections can be changed by dragging with the mouse.
    *
@@ -317,14 +317,14 @@ public:
    *
    * @return <tt>true</tt> if rubberband selection is enabled.
    */
-  bool get_enable_rubberband() const;
+  auto get_enable_rubberband() const -> bool;
 
   /** The list of columns.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > property_columns() const;
+  auto property_columns() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >;
 
 
   /** Model for the items displayed.
@@ -332,14 +332,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<SelectionModel> > property_model() ;
+  auto property_model() -> Glib::PropertyProxy< Glib::RefPtr<SelectionModel> > ;
 
 /** Model for the items displayed.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> >;
 
   /** Show separators between rows.
    *
@@ -348,7 +348,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_row_separators() ;
+  auto property_show_row_separators() -> Glib::PropertyProxy< bool > ;
 
 /** Show separators between rows.
    *
@@ -357,7 +357,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_row_separators() const;
+  auto property_show_row_separators() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Show separators between columns.
    *
@@ -366,7 +366,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_column_separators() ;
+  auto property_show_column_separators() -> Glib::PropertyProxy< bool > ;
 
 /** Show separators between columns.
    *
@@ -375,14 +375,14 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_column_separators() const;
+  auto property_show_column_separators() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Sorter with the sorting choices of the user.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Sorter> > property_sorter() const;
+  auto property_sorter() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Sorter> >;
 
 
   /** Activate rows on single click and select them on hover.
@@ -392,7 +392,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_single_click_activate() ;
+  auto property_single_click_activate() -> Glib::PropertyProxy< bool > ;
 
 /** Activate rows on single click and select them on hover.
    *
@@ -401,7 +401,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_single_click_activate() const;
+  auto property_single_click_activate() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether columns are reorderable.
    *
@@ -410,7 +410,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_reorderable() ;
+  auto property_reorderable() -> Glib::PropertyProxy< bool > ;
 
 /** Whether columns are reorderable.
    *
@@ -419,7 +419,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_reorderable() const;
+  auto property_reorderable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Allow rubberband selection.
    *
@@ -428,7 +428,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_enable_rubberband() ;
+  auto property_enable_rubberband() -> Glib::PropertyProxy< bool > ;
 
 /** Allow rubberband selection.
    *
@@ -437,7 +437,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_enable_rubberband() const;
+  auto property_enable_rubberband() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /**
@@ -456,7 +456,7 @@ public:
    * @param pos Position of item to activate.
    */
 
-  Glib::SignalProxy<void(guint)> signal_activate();
+  auto signal_activate() -> Glib::SignalProxy<void(guint)>;
 
 
 public:
@@ -486,7 +486,7 @@ namespace Glib
    * @relates Gtk::ColumnView
    */
   GTKMM_API
-  Gtk::ColumnView* wrap(GtkColumnView* object, bool take_copy = false);
+  auto wrap(GtkColumnView* object, bool take_copy = false) -> Gtk::ColumnView*;
 } //namespace Glib
 
 

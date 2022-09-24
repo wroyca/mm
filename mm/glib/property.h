@@ -56,19 +56,19 @@ class GLIBMM_API PropertyBase
 public:
   // noncopyable
   PropertyBase(const PropertyBase&) = delete;
-  PropertyBase& operator=(const PropertyBase&) = delete;
+  auto operator=(const PropertyBase&) -> PropertyBase& = delete;
 
   /** Returns the name of the property.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
   /** Returns the nickname of the property.
    */
-  Glib::ustring get_nick() const;
+  auto get_nick() const -> Glib::ustring;
 
   /** Returns the short description of the property.
    */
-  Glib::ustring get_blurb() const;
+  auto get_blurb() const -> Glib::ustring;
 
   /** Notifies the object containing the property that the property has changed.
    * This emits the "notify" signal, passing the property name.
@@ -94,7 +94,7 @@ protected:
   /**
    * Checks if the property has already been installed.
    */
-  bool lookup_property(const Glib::ustring& name);
+  auto lookup_property(const Glib::ustring& name) -> bool;
 
   /**
    * Installs the property specified by the given @a param_spec.
@@ -104,7 +104,7 @@ protected:
   /**
    * Returns the name of the property.
    */
-  const char* get_name_internal() const;
+  auto get_name_internal() const -> const char*;
 
 private:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -224,12 +224,12 @@ public:
 
   /** Returns the value of the property.
    */
-  inline PropertyType get_value() const;
+  inline auto get_value() const -> PropertyType;
 
   /** Sets the value of the property to @a data.
    * The object containing the property will be notified about the change.
    */
-  inline Property<T>& operator=(const PropertyType& data);
+  inline auto operator=(const PropertyType& data) -> Property<T>&;
 
   /** Returns the value of the property.
    */
@@ -237,11 +237,11 @@ public:
 
   /** Returns a proxy object that can be used to read or write this property.
    */
-  inline Glib::PropertyProxy<T> get_proxy();
+  inline auto get_proxy() -> Glib::PropertyProxy<T>;
 
   /** Returns a proxy object that can be used to read this property.
    */
-  inline Glib::PropertyProxy_ReadOnly<T> get_proxy() const;
+  inline auto get_proxy() const -> Glib::PropertyProxy_ReadOnly<T>;
 };
 
 /** See Property.
@@ -280,7 +280,7 @@ public:
 
   /** Returns the value of the property.
    */
-  inline PropertyType get_value() const;
+  inline auto get_value() const -> PropertyType;
 
   /** Returns the value of the property.
    */
@@ -288,7 +288,7 @@ public:
 
   /** Returns a proxy object that can be used to read this property.
    */
-  inline Glib::PropertyProxy_ReadOnly<T> get_proxy() const;
+  inline auto get_proxy() const -> Glib::PropertyProxy_ReadOnly<T>;
 };
 
 /** See Property.
@@ -333,11 +333,11 @@ public:
   /** Sets the value of the property to @a data.
    * The object containing the property will be notified about the change.
    */
-  inline Property_WriteOnly<T>& operator=(const PropertyType& data);
+  inline auto operator=(const PropertyType& data) -> Property_WriteOnly<T>&;
 
   /** Returns a proxy object that can be used to write this property.
    */
-  inline Glib::PropertyProxy_WriteOnly<T> get_proxy();
+  inline auto get_proxy() -> Glib::PropertyProxy_WriteOnly<T>;
 };
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -392,15 +392,15 @@ Property<T>::set_value(const typename Property<T>::PropertyType& data)
 }
 
 template <class T>
-inline typename Property<T>::PropertyType
-Property<T>::get_value() const
+inline auto
+Property<T>::get_value() const -> typename Property<T>::PropertyType
 {
   return static_cast<const ValueType&>(value_).get();
 }
 
 template <class T>
-inline Property<T>&
-Property<T>::operator=(const typename Property<T>::PropertyType& data)
+inline auto
+Property<T>::operator=(const typename Property<T>::PropertyType& data) -> Property<T>&
 {
   static_cast<ValueType&>(value_).set(data);
   this->notify();
@@ -414,15 +414,15 @@ inline Property<T>::operator T() const
 }
 
 template <class T>
-inline Glib::PropertyProxy<T>
-Property<T>::get_proxy()
+inline auto
+Property<T>::get_proxy() -> Glib::PropertyProxy<T>
 {
   return Glib::PropertyProxy<T>(object_, get_name_internal());
 }
 
 template <class T>
-inline Glib::PropertyProxy_ReadOnly<T>
-Property<T>::get_proxy() const
+inline auto
+Property<T>::get_proxy() const -> Glib::PropertyProxy_ReadOnly<T>
 {
   return Glib::PropertyProxy_ReadOnly<T>(object_, get_name_internal());
 }
@@ -470,8 +470,8 @@ Property_ReadOnly<T>::Property_ReadOnly(Glib::Object& object, const Glib::ustrin
 }
 
 template <class T>
-inline typename Property_ReadOnly<T>::PropertyType
-Property_ReadOnly<T>::get_value() const
+inline auto
+Property_ReadOnly<T>::get_value() const -> typename Property_ReadOnly<T>::PropertyType
 {
   return static_cast<const ValueType&>(value_).get();
 }
@@ -483,8 +483,8 @@ inline Property_ReadOnly<T>::operator T() const
 }
 
 template <class T>
-inline Glib::PropertyProxy_ReadOnly<T>
-Property_ReadOnly<T>::get_proxy() const
+inline auto
+Property_ReadOnly<T>::get_proxy() const -> Glib::PropertyProxy_ReadOnly<T>
 {
   return Glib::PropertyProxy_ReadOnly<T>(object_, get_name_internal());
 }
@@ -542,8 +542,8 @@ Property_WriteOnly<T>::set_value(const typename Property_WriteOnly<T>::PropertyT
 }
 
 template <class T>
-inline Property_WriteOnly<T>&
-Property_WriteOnly<T>::operator=(const typename Property_WriteOnly<T>::PropertyType& data)
+inline auto
+Property_WriteOnly<T>::operator=(const typename Property_WriteOnly<T>::PropertyType& data) -> Property_WriteOnly<T>&
 {
   static_cast<ValueType&>(value_).set(data);
   this->notify();
@@ -551,8 +551,8 @@ Property_WriteOnly<T>::operator=(const typename Property_WriteOnly<T>::PropertyT
 }
 
 template <class T>
-inline Glib::PropertyProxy_WriteOnly<T>
-Property_WriteOnly<T>::get_proxy()
+inline auto
+Property_WriteOnly<T>::get_proxy() -> Glib::PropertyProxy_WriteOnly<T>
 {
   return Glib::PropertyProxy_WriteOnly<T>(object_, get_name_internal());
 }

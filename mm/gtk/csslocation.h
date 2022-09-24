@@ -65,33 +65,33 @@ public:
 
   /** @returns Number of bytes parsed since the beginning.
    */
-  std::size_t get_bytes() const;
+  auto get_bytes() const -> std::size_t;
   void set_bytes(const std::size_t& value);
 
   /** @returns Number of characters parsed since the beginning.
    */
-  std::size_t get_chars() const;
+  auto get_chars() const -> std::size_t;
   void set_chars(const std::size_t& value);
 
   /** @returns Number of full lines that have been parsed.
    *           If you want to display this as a line number, you
    *           need to add 1 to this.
    */
-  std::size_t get_lines() const;
+  auto get_lines() const -> std::size_t;
   void set_lines(const std::size_t& value);
 
   /** @returns Number of bytes parsed since the last line break.
    */
-  std::size_t get_line_bytes() const;
+  auto get_line_bytes() const -> std::size_t;
   void set_line_bytes(const std::size_t& value);
 
   /** @returns Number of characters parsed since the last line break.
    */
-  std::size_t get_line_chars() const;
+  auto get_line_chars() const -> std::size_t;
   void set_line_chars(const std::size_t& value);
 
-  GtkCssLocation*       gobj()       { return &gobject_; }
-  const GtkCssLocation* gobj() const { return &gobject_; }
+  auto       gobj() -> GtkCssLocation*       { return &gobject_; }
+  auto gobj() const -> const GtkCssLocation* { return &gobject_; }
 
 protected:
   GtkCssLocation gobject_;
@@ -111,7 +111,7 @@ namespace Glib
    * @relates Gtk::CssLocation
    */
 GTKMM_API
-Gtk::CssLocation wrap(const GtkCssLocation* object);
+auto wrap(const GtkCssLocation* object) -> Gtk::CssLocation;
 
 } // namespace Glib
 

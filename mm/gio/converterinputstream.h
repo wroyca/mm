@@ -64,7 +64,7 @@ public:
 
   // noncopyable
   ConverterInputStream(const ConverterInputStream&) = delete;
-  ConverterInputStream& operator=(const ConverterInputStream&) = delete;
+  auto operator=(const ConverterInputStream&) -> ConverterInputStream& = delete;
 
 private:  friend class ConverterInputStream_Class;
   static CppClassType converterinputstream_class_;
@@ -78,28 +78,28 @@ protected:
 public:
 
   ConverterInputStream(ConverterInputStream&& src) noexcept;
-  ConverterInputStream& operator=(ConverterInputStream&& src) noexcept;
+  auto operator=(ConverterInputStream&& src) noexcept -> ConverterInputStream&;
 
   ~ConverterInputStream() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GConverterInputStream*       gobj()       { return reinterpret_cast<GConverterInputStream*>(gobject_); }
+  auto       gobj() -> GConverterInputStream*       { return reinterpret_cast<GConverterInputStream*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GConverterInputStream* gobj() const { return reinterpret_cast<GConverterInputStream*>(gobject_); }
+  auto gobj() const -> const GConverterInputStream* { return reinterpret_cast<GConverterInputStream*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GConverterInputStream* gobj_copy();
+  auto gobj_copy() -> GConverterInputStream*;
 
 private:
 
@@ -118,7 +118,7 @@ public:
    */
 
 
-  static Glib::RefPtr<ConverterInputStream> create(const Glib::RefPtr<InputStream>& base_stream, const Glib::RefPtr<Converter>& converter);
+  static auto create(const Glib::RefPtr<InputStream>& base_stream, const Glib::RefPtr<Converter>& converter) -> Glib::RefPtr<ConverterInputStream>;
 
 
   // The C function returns an unreffed private member.
@@ -129,7 +129,7 @@ public:
    *
    * @return The converter of the converter input stream.
    */
-  Glib::RefPtr<Converter> get_converter();
+  auto get_converter() -> Glib::RefPtr<Converter>;
 
   /** Gets the Converter that is used by @a converter_stream.
    *
@@ -137,14 +137,14 @@ public:
    *
    * @return The converter of the converter input stream.
    */
-  Glib::RefPtr<const Converter> get_converter() const;
+  auto get_converter() const -> Glib::RefPtr<const Converter>;
 
   /** The converter object.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Converter> > property_converter() const;
+  auto property_converter() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Converter> >;
 
 
 public:
@@ -174,7 +174,7 @@ namespace Glib
    * @relates Gio::ConverterInputStream
    */
   GIOMM_API
-  Glib::RefPtr<Gio::ConverterInputStream> wrap(GConverterInputStream* object, bool take_copy = false);
+  auto wrap(GConverterInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::ConverterInputStream>;
 }
 
 

@@ -68,11 +68,11 @@ class GTKMM_API StackSwitcher : public Widget //TODO: When we can break ABI: pub
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   StackSwitcher(StackSwitcher&& src) noexcept;
-  StackSwitcher& operator=(StackSwitcher&& src) noexcept;
+  auto operator=(StackSwitcher&& src) noexcept -> StackSwitcher&;
 
   // noncopyable
   StackSwitcher(const StackSwitcher&) = delete;
-  StackSwitcher& operator=(const StackSwitcher&) = delete;
+  auto operator=(const StackSwitcher&) -> StackSwitcher& = delete;
 
   ~StackSwitcher() noexcept override;
 
@@ -92,19 +92,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkStackSwitcher*       gobj()       { return reinterpret_cast<GtkStackSwitcher*>(gobject_); }
+  auto       gobj() -> GtkStackSwitcher*       { return reinterpret_cast<GtkStackSwitcher*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkStackSwitcher* gobj() const { return reinterpret_cast<GtkStackSwitcher*>(gobject_); }
+  auto gobj() const -> const GtkStackSwitcher* { return reinterpret_cast<GtkStackSwitcher*>(gobject_); }
 
 private:
 
@@ -129,27 +129,27 @@ public:
    *
    * @return The stack.
    */
-  Stack* get_stack();
+  auto get_stack() -> Stack*;
 
   /** Retrieves the stack.
    *
    * @return The stack.
    */
-  const Stack* get_stack() const;
+  auto get_stack() const -> const Stack*;
 
   /** The stack.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Stack* > property_stack() ;
+  auto property_stack() -> Glib::PropertyProxy< Stack* > ;
 
 /** The stack.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Stack* > property_stack() const;
+  auto property_stack() const -> Glib::PropertyProxy_ReadOnly< Stack* >;
 
 
   // There are no signals or vfuncs.
@@ -182,7 +182,7 @@ namespace Glib
    * @relates Gtk::StackSwitcher
    */
   GTKMM_API
-  Gtk::StackSwitcher* wrap(GtkStackSwitcher* object, bool take_copy = false);
+  auto wrap(GtkStackSwitcher* object, bool take_copy = false) -> Gtk::StackSwitcher*;
 } //namespace Glib
 
 

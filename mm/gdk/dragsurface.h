@@ -69,7 +69,7 @@ public:
 
   // noncopyable
   DragSurface(const DragSurface&) = delete;
-  DragSurface& operator=(const DragSurface&) = delete;
+  auto operator=(const DragSurface&) -> DragSurface& = delete;
 
 private:
   friend class DragSurface_Class;
@@ -103,7 +103,7 @@ protected:
 public:
 
   DragSurface(DragSurface&& src) noexcept;
-  DragSurface& operator=(DragSurface&& src) noexcept;
+  auto operator=(DragSurface&& src) noexcept -> DragSurface&;
 
   ~DragSurface() noexcept override;
 
@@ -111,17 +111,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkDragSurface*       gobj()       { return reinterpret_cast<GdkDragSurface*>(gobject_); }
+  auto       gobj() -> GdkDragSurface*       { return reinterpret_cast<GdkDragSurface*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkDragSurface* gobj() const { return reinterpret_cast<GdkDragSurface*>(gobject_); }
+  auto gobj() const -> const GdkDragSurface* { return reinterpret_cast<GdkDragSurface*>(gobject_); }
 
 private:
 
@@ -134,7 +134,7 @@ public:
    * @param height The unconstrained drag_surface height to layout.
    * @return <tt>false</tt> if it failed to be presented, otherwise <tt>true</tt>.
    */
-  bool present(int width, int height);
+  auto present(int width, int height) -> bool;
 
   // There are no properties, signals or public vfuncs.
 
@@ -166,7 +166,7 @@ namespace Glib
    * @relates Gdk::DragSurface
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::DragSurface> wrap(GdkDragSurface* object, bool take_copy = false);
+  auto wrap(GdkDragSurface* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DragSurface>;
 
 } // namespace Glib
 

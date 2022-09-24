@@ -77,30 +77,30 @@ class GLIBMM_API DateTime
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   DateTime();
 
   explicit DateTime(GDateTime* gobject, bool make_a_copy = true);
 
   DateTime(const DateTime& other);
-  DateTime& operator=(const DateTime& other);
+  auto operator=(const DateTime& other) -> DateTime&;
 
   DateTime(DateTime&& other) noexcept;
-  DateTime& operator=(DateTime&& other) noexcept;
+  auto operator=(DateTime&& other) noexcept -> DateTime&;
 
   ~DateTime() noexcept;
 
   void swap(DateTime& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  GDateTime*       gobj()       { return gobject_; }
+  auto       gobj() -> GDateTime*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const GDateTime* gobj() const { return gobject_; }
+  auto gobj() const -> const GDateTime* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  GDateTime* gobj_copy() const;
+  auto gobj_copy() const -> GDateTime*;
 
 protected:
   GDateTime* gobject_;
@@ -125,7 +125,7 @@ public:
    * @param tz A TimeZone.
    * @return A new DateTime, or <tt>nullptr</tt>.
    */
-  static DateTime create_now(const TimeZone& tz);
+  static auto create_now(const TimeZone& tz) -> DateTime;
 
   /** Creates a DateTime corresponding to this exact instant in the local
    * time zone.
@@ -137,7 +137,7 @@ public:
    *
    * @return A new DateTime, or <tt>nullptr</tt>.
    */
-  static DateTime create_now_local();
+  static auto create_now_local() -> DateTime;
 
   /** Creates a DateTime corresponding to this exact instant in UTC.
    *
@@ -148,7 +148,7 @@ public:
    *
    * @return A new DateTime, or <tt>nullptr</tt>.
    */
-  static DateTime create_now_utc();
+  static auto create_now_utc() -> DateTime;
 
 
   /** Creates a DateTime corresponding to the given Unix time @a t in the
@@ -168,7 +168,7 @@ public:
    * @param t The Unix time.
    * @return A new DateTime, or <tt>nullptr</tt>.
    */
-  static DateTime create_now_local(gint64 t);
+  static auto create_now_local(gint64 t) -> DateTime;
 
   /** Creates a DateTime corresponding to the given Unix time @a t in UTC.
    *
@@ -186,7 +186,7 @@ public:
    * @param t The Unix time.
    * @return A new DateTime, or <tt>nullptr</tt>.
    */
-  static DateTime create_now_utc(gint64 t);
+  static auto create_now_utc(gint64 t) -> DateTime;
 
 
   /** Creates a DateTime corresponding to the given
@@ -240,10 +240,10 @@ public:
    * timezone, or <tt>nullptr</tt>.
    * @return A new DateTime, or <tt>nullptr</tt>.
    */
-  static DateTime create_from_iso8601(const Glib::ustring& text, const TimeZone& default_tz);
+  static auto create_from_iso8601(const Glib::ustring& text, const TimeZone& default_tz) -> DateTime;
 
   /// A create_from_iso8601() convenience overload.
-  static DateTime create_from_iso8601(const Glib::ustring& text);
+  static auto create_from_iso8601(const Glib::ustring& text) -> DateTime;
 
   /** Creates a new DateTime corresponding to the given date and time in
    * the time zone @a tz.
@@ -285,7 +285,7 @@ public:
    * @param seconds The number of seconds past the minute.
    * @return A new DateTime, or <tt>nullptr</tt>.
    */
-  static DateTime create(const TimeZone& tz, int year, int month, int day, int hour, int minute, double seconds);
+  static auto create(const TimeZone& tz, int year, int month, int day, int hour, int minute, double seconds) -> DateTime;
 
   /** Creates a new DateTime corresponding to the given date and time in
    * the local time zone.
@@ -303,7 +303,7 @@ public:
    * @param seconds The number of seconds past the minute.
    * @return A DateTime, or <tt>nullptr</tt>.
    */
-  static DateTime create_local(int year, int month, int day, int hour, int minute, double seconds);
+  static auto create_local(int year, int month, int day, int hour, int minute, double seconds) -> DateTime;
 
   /** Creates a new DateTime corresponding to the given date and time in
    * UTC.
@@ -321,7 +321,7 @@ public:
    * @param seconds The number of seconds past the minute.
    * @return A DateTime, or <tt>nullptr</tt>.
    */
-  static DateTime create_utc(int year, int month, int day, int hour, int minute, double seconds);
+  static auto create_utc(int year, int month, int day, int hour, int minute, double seconds) -> DateTime;
 
   /** Returns true if the %DateTime object is valid.
    * This will return false, for instance, if the @a text in create_from_iso8601()
@@ -338,7 +338,7 @@ public:
    * @return The newly created DateTime which
    * should be freed with g_date_time_unref(), or <tt>nullptr</tt>.
    */
-  DateTime add(TimeSpan timespan) const;
+  auto add(TimeSpan timespan) const -> DateTime;
 
   /** Creates a copy of @a datetime and adds the specified number of years to the
    * copy. Add negative values to subtract years.
@@ -352,7 +352,7 @@ public:
    * @return The newly created DateTime which
    * should be freed with g_date_time_unref(), or <tt>nullptr</tt>.
    */
-  DateTime add_years(int years) const;
+  auto add_years(int years) const -> DateTime;
 
   /** Creates a copy of @a datetime and adds the specified number of months to the
    * copy. Add negative values to subtract months.
@@ -368,7 +368,7 @@ public:
    * @return The newly created DateTime which
    * should be freed with g_date_time_unref(), or <tt>nullptr</tt>.
    */
-  DateTime add_months(int months) const;
+  auto add_months(int months) const -> DateTime;
 
   /** Creates a copy of @a datetime and adds the specified number of weeks to the
    * copy. Add negative values to subtract weeks.
@@ -379,7 +379,7 @@ public:
    * @return The newly created DateTime which
    * should be freed with g_date_time_unref(), or <tt>nullptr</tt>.
    */
-  DateTime add_weeks(int weeks) const;
+  auto add_weeks(int weeks) const -> DateTime;
 
   /** Creates a copy of @a datetime and adds the specified number of days to the
    * copy. Add negative values to subtract days.
@@ -390,7 +390,7 @@ public:
    * @return The newly created DateTime which
    * should be freed with g_date_time_unref(), or <tt>nullptr</tt>.
    */
-  DateTime add_days(int days) const;
+  auto add_days(int days) const -> DateTime;
 
   /** Creates a copy of @a datetime and adds the specified number of hours.
    * Add negative values to subtract hours.
@@ -401,7 +401,7 @@ public:
    * @return The newly created DateTime which
    * should be freed with g_date_time_unref(), or <tt>nullptr</tt>.
    */
-  DateTime add_hours(int hours) const;
+  auto add_hours(int hours) const -> DateTime;
 
   /** Creates a copy of @a datetime adding the specified number of minutes.
    * Add negative values to subtract minutes.
@@ -412,7 +412,7 @@ public:
    * @return The newly created DateTime which
    * should be freed with g_date_time_unref(), or <tt>nullptr</tt>.
    */
-  DateTime add_minutes(int minutes) const;
+  auto add_minutes(int minutes) const -> DateTime;
 
   /** Creates a copy of @a datetime and adds the specified number of seconds.
    * Add negative values to subtract seconds.
@@ -423,7 +423,7 @@ public:
    * @return The newly created DateTime which
    * should be freed with g_date_time_unref(), or <tt>nullptr</tt>.
    */
-  DateTime add_seconds(double seconds) const;
+  auto add_seconds(double seconds) const -> DateTime;
 
   /** Creates a new DateTime adding the specified values to the current date and
    * time in @a datetime. Add negative values to subtract.
@@ -439,7 +439,7 @@ public:
    * @return The newly created DateTime which
    * should be freed with g_date_time_unref(), or <tt>nullptr</tt>.
    */
-  DateTime add_full(int years, int months, int days, int hours, int minutes, double seconds) const;
+  auto add_full(int years, int months, int days, int hours, int minutes, double seconds) const -> DateTime;
 
 
   /** Calculates the difference in time between @a *this and @a other.  The
@@ -451,7 +451,7 @@ public:
    * @return The difference between the two DateTime, as a time
    * span expressed in microseconds.
    */
-  TimeSpan difference(const DateTime& other) const;
+  auto difference(const DateTime& other) const -> TimeSpan;
 
 
   /** A comparison function for DateTimes that is suitable
@@ -463,7 +463,7 @@ public:
    * @return -1, 0 or 1 if @a *this is less than, equal to or greater
    * than @a other.
    */
-  int compare(const DateTime& other) const;
+  auto compare(const DateTime& other) const -> int;
 
 
   /** Hashes @a datetime into a <tt>unsigned int</tt>, suitable for use within HashTable.
@@ -472,7 +472,7 @@ public:
    *
    * @return A <tt>unsigned int</tt> containing the hash.
    */
-  guint hash() const;
+  auto hash() const -> guint;
 
 
   /** Checks to see if @a *this and @a other are equal.
@@ -485,7 +485,7 @@ public:
    * @param other The DateTime to compare with.
    * @return <tt>true</tt> if @a *this and @a other are equal.
    */
-  bool equal(const DateTime& other) const;
+  auto equal(const DateTime& other) const -> bool;
 
 
   /** Retrieves the Gregorian day, month, and year of a given DateTime.
@@ -504,7 +504,7 @@ public:
    *
    * @return The year represented by @a datetime.
    */
-  int get_year() const;
+  auto get_year() const -> int;
 
   /** Retrieves the month of the year represented by @a datetime in the Gregorian
    * calendar.
@@ -513,7 +513,7 @@ public:
    *
    * @return The month represented by @a datetime.
    */
-  int get_month() const;
+  auto get_month() const -> int;
 
   /** Retrieves the day of the month represented by @a datetime in the gregorian
    * calendar.
@@ -522,7 +522,7 @@ public:
    *
    * @return The day of the month.
    */
-  int get_day_of_month() const;
+  auto get_day_of_month() const -> int;
 
   /** Returns the ISO 8601 week-numbering year in which the week containing
    *  @a datetime falls.
@@ -560,7 +560,7 @@ public:
    *
    * @return The ISO 8601 week-numbering year for @a datetime.
    */
-  int get_week_numbering_year() const;
+  auto get_week_numbering_year() const -> int;
 
   /** Returns the ISO 8601 week number for the week containing @a datetime.
    * The ISO 8601 week number is the same for every day of the week (from
@@ -582,7 +582,7 @@ public:
    *
    * @return The ISO 8601 week number for @a datetime.
    */
-  int get_week_of_year() const;
+  auto get_week_of_year() const -> int;
 
   /** Retrieves the ISO 8601 day of the week on which @a datetime falls (1 is
    * Monday, 2 is Tuesday... 7 is Sunday).
@@ -591,7 +591,7 @@ public:
    *
    * @return The day of the week.
    */
-  int get_day_of_week() const;
+  auto get_day_of_week() const -> int;
 
   /** Retrieves the day of the year represented by @a datetime in the Gregorian
    * calendar.
@@ -600,7 +600,7 @@ public:
    *
    * @return The day of the year.
    */
-  int get_day_of_year() const;
+  auto get_day_of_year() const -> int;
 
   /** Retrieves the hour of the day represented by @a datetime
    *
@@ -608,7 +608,7 @@ public:
    *
    * @return The hour of the day.
    */
-  int get_hour() const;
+  auto get_hour() const -> int;
 
   /** Retrieves the minute of the hour represented by @a datetime
    *
@@ -616,7 +616,7 @@ public:
    *
    * @return The minute of the hour.
    */
-  int get_minute() const;
+  auto get_minute() const -> int;
 
   /** Retrieves the second of the minute represented by @a datetime
    *
@@ -624,7 +624,7 @@ public:
    *
    * @return The second represented by @a datetime.
    */
-  int get_second() const;
+  auto get_second() const -> int;
 
   /** Retrieves the microsecond of the date represented by @a datetime
    *
@@ -632,7 +632,7 @@ public:
    *
    * @return The microsecond of the second.
    */
-  int get_microsecond() const;
+  auto get_microsecond() const -> int;
 
   /** Retrieves the number of seconds since the start of the last minute,
    * including the fractional part.
@@ -641,7 +641,7 @@ public:
    *
    * @return The number of seconds.
    */
-  double get_seconds() const;
+  auto get_seconds() const -> double;
 
   /** Gives the Unix time corresponding to @a datetime, rounding down to the
    * nearest second.
@@ -653,7 +653,7 @@ public:
    *
    * @return The Unix time corresponding to @a datetime.
    */
-  gint64 to_unix() const;
+  auto to_unix() const -> gint64;
 
   /** Determines the offset to UTC in effect at the time and in the time
    * zone of @a datetime.
@@ -669,7 +669,7 @@ public:
    * @return The number of microseconds that should be added to UTC to
    * get the local time.
    */
-  TimeSpan get_utc_offset() const;
+  auto get_utc_offset() const -> TimeSpan;
 
 
   /** Get the time zone for this @a datetime.
@@ -678,7 +678,7 @@ public:
    *
    * @return The time zone.
    */
-  TimeZone get_timezone() const;
+  auto get_timezone() const -> TimeZone;
 
   /** Determines the time zone abbreviation to be used at the time and in
    * the time zone of @a datetime.
@@ -693,7 +693,7 @@ public:
    * string is owned by the DateTime and it should not be
    * modified or freed.
    */
-  Glib::ustring get_timezone_abbreviation() const;
+  auto get_timezone_abbreviation() const -> Glib::ustring;
 
   /** Determines if daylight savings time is in effect at the time and in
    * the time zone of @a datetime.
@@ -702,7 +702,7 @@ public:
    *
    * @return <tt>true</tt> if daylight savings time is in effect.
    */
-  bool is_daylight_savings() const;
+  auto is_daylight_savings() const -> bool;
 
   /** Create a new DateTime corresponding to the same instant in time as
    *  @a datetime, but in the time zone @a tz.
@@ -717,7 +717,7 @@ public:
    * @return The newly created DateTime which
    * should be freed with g_date_time_unref(), or <tt>nullptr</tt>.
    */
-  DateTime to_timezone(const TimeZone& tz) const;
+  auto to_timezone(const TimeZone& tz) const -> DateTime;
 
   /** Creates a new DateTime corresponding to the same instant in time as
    *  @a datetime, but in the local time zone.
@@ -730,7 +730,7 @@ public:
    * @return The newly created DateTime which
    * should be freed with g_date_time_unref(), or <tt>nullptr</tt>.
    */
-  DateTime to_local() const;
+  auto to_local() const -> DateTime;
 
   /** Creates a new DateTime corresponding to the same instant in time as
    *  @a datetime, but in UTC.
@@ -743,7 +743,7 @@ public:
    * @return The newly created DateTime which
    * should be freed with g_date_time_unref(), or <tt>nullptr</tt>.
    */
-  DateTime to_utc() const;
+  auto to_utc() const -> DateTime;
 
   /** Creates a newly allocated string representing the requested @a format_str.
    *
@@ -854,7 +854,7 @@ public:
    * the requested format or <tt>nullptr</tt> in the case that there was an error (such
    * as a format specifier not being supported in the current locale).
    */
-  Glib::ustring format(const Glib::ustring& format_str) const;
+  auto format(const Glib::ustring& format_str) const -> Glib::ustring;
 
   /** Format @a datetime in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601),
    * including the date, time and time zone, and return that as a UTF-8 encoded
@@ -867,7 +867,7 @@ public:
    * @return A newly allocated string formatted in
    * ISO 8601 format or <tt>nullptr</tt> in the case that there was an error.
    */
-  Glib::ustring format_iso8601() const;
+  auto format_iso8601() const -> Glib::ustring;
 
 
 };
@@ -899,7 +899,7 @@ namespace Glib
  * @relates Glib::DateTime
  */
 GLIBMM_API
-Glib::DateTime wrap(GDateTime* object, bool take_copy = false);
+auto wrap(GDateTime* object, bool take_copy = false) -> Glib::DateTime;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

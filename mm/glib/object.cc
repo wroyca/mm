@@ -113,8 +113,8 @@ ConstructParams::~ConstructParams() noexcept
 
 /**** Glib::Object_Class ***************************************************/
 
-const Glib::Class&
-Object_Class::init()
+auto
+Object_Class::init() -> const Glib::Class&
 {
   if (!gtype_)
   {
@@ -130,8 +130,8 @@ Object_Class::class_init_function(void*, void*)
 {
 }
 
-Object*
-Object_Class::wrap_new(GObject* object)
+auto
+Object_Class::wrap_new(GObject* object) -> Object*
 {
   return new Object(object);
 }
@@ -237,8 +237,8 @@ Object::Object(Object&& src) noexcept
   ObjectBase::initialize_move(src.gobject_, &src);
 }
 
-Object&
-Object::operator=(Object&& src) noexcept
+auto
+Object::operator=(Object&& src) noexcept -> Object&
 {
   ObjectBase::operator=(std::move(src));
   return *this;
@@ -257,21 +257,21 @@ RefPtr<Object> Object::create()
 }
 */
 
-GType
-Object::get_type()
+auto
+Object::get_type() -> GType
 {
   return object_class_.init().get_type();
 }
 
-GType
-Object::get_base_type()
+auto
+Object::get_base_type() -> GType
 {
   return G_TYPE_OBJECT;
 }
 
 // Data services
-void*
-Object::get_data(const QueryQuark& id)
+auto
+Object::get_data(const QueryQuark& id) -> void*
 {
   return g_object_get_qdata(gobj(), id);
 }
@@ -296,8 +296,8 @@ Object::remove_data(const QueryQuark& id)
   g_datalist_id_remove_data(&gobj()->qdata, id);
 }
 
-void*
-Object::steal_data(const QueryQuark& id)
+auto
+Object::steal_data(const QueryQuark& id) -> void*
 {
   return g_object_steal_qdata(gobj(), id);
 }

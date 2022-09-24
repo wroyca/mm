@@ -82,11 +82,11 @@ class GTKMM_API WindowControls : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   WindowControls(WindowControls&& src) noexcept;
-  WindowControls& operator=(WindowControls&& src) noexcept;
+  auto operator=(WindowControls&& src) noexcept -> WindowControls&;
 
   // noncopyable
   WindowControls(const WindowControls&) = delete;
-  WindowControls& operator=(const WindowControls&) = delete;
+  auto operator=(const WindowControls&) -> WindowControls& = delete;
 
   ~WindowControls() noexcept override;
 
@@ -106,19 +106,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkWindowControls*       gobj()       { return reinterpret_cast<GtkWindowControls*>(gobject_); }
+  auto       gobj() -> GtkWindowControls*       { return reinterpret_cast<GtkWindowControls*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkWindowControls* gobj() const { return reinterpret_cast<GtkWindowControls*>(gobject_); }
+  auto gobj() const -> const GtkWindowControls* { return reinterpret_cast<GtkWindowControls*>(gobject_); }
 
 private:
 
@@ -141,7 +141,7 @@ public:
    *
    * @return The side.
    */
-  PackType get_side() const;
+  auto get_side() const -> PackType;
 
 
   /** Sets the decoration layout for the title buttons, overriding
@@ -174,14 +174,14 @@ public:
    *
    * @return The decoration layout or <tt>nullptr</tt> if it is unset.
    */
-  Glib::ustring get_decoration_layout() const;
+  auto get_decoration_layout() const -> Glib::ustring;
 
 
   /** Gets whether the widget has any window buttons.
    *
    * @return <tt>true</tt> if the widget has window buttons, otherwise <tt>false</tt>.
    */
-  bool get_empty() const;
+  auto get_empty() const -> bool;
 
   /** Whether the widget shows start or end side of the decoration layout.
    *
@@ -192,7 +192,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< PackType > property_side() ;
+  auto property_side() -> Glib::PropertyProxy< PackType > ;
 
 /** Whether the widget shows start or end side of the decoration layout.
    *
@@ -203,7 +203,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< PackType > property_side() const;
+  auto property_side() const -> Glib::PropertyProxy_ReadOnly< PackType >;
 
   /** The decoration layout for window buttons.
    *
@@ -215,7 +215,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_decoration_layout() ;
+  auto property_decoration_layout() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The decoration layout for window buttons.
    *
@@ -227,7 +227,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_decoration_layout() const;
+  auto property_decoration_layout() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Whether the widget has any window buttons.
    *
@@ -236,7 +236,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_empty() const;
+  auto property_empty() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   // Gtk::WindowControls has no signals nor vfuncs.
@@ -269,7 +269,7 @@ namespace Glib
    * @relates Gtk::WindowControls
    */
   GTKMM_API
-  Gtk::WindowControls* wrap(GtkWindowControls* object, bool take_copy = false);
+  auto wrap(GtkWindowControls* object, bool take_copy = false) -> Gtk::WindowControls*;
 } //namespace Glib
 
 

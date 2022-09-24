@@ -80,7 +80,7 @@ public:
 
   // noncopyable
   Font(const Font&) = delete;
-  Font& operator=(const Font&) = delete;
+  auto operator=(const Font&) -> Font& = delete;
 
 private:  friend class Font_Class;
   static CppClassType font_class_;
@@ -94,28 +94,28 @@ protected:
 public:
 
   Font(Font&& src) noexcept;
-  Font& operator=(Font&& src) noexcept;
+  auto operator=(Font&& src) noexcept -> Font&;
 
   ~Font() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  PangoFont*       gobj()       { return reinterpret_cast<PangoFont*>(gobject_); }
+  auto       gobj() -> PangoFont*       { return reinterpret_cast<PangoFont*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const PangoFont* gobj() const { return reinterpret_cast<PangoFont*>(gobject_); }
+  auto gobj() const -> const PangoFont* { return reinterpret_cast<PangoFont*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  PangoFont* gobj_copy();
+  auto gobj_copy() -> PangoFont*;
 
 private:
 
@@ -130,7 +130,7 @@ public:
    *
    * @return A newly-allocated `Pango::FontDescription` object.
    */
-  FontDescription describe() const;
+  auto describe() const -> FontDescription;
 
   /** Returns a description of the font, with absolute font size set
    * in device units.
@@ -141,7 +141,7 @@ public:
    *
    * @return A newly-allocated `Pango::FontDescription` object.
    */
-  FontDescription describe_with_absolute_size() const;
+  auto describe_with_absolute_size() const -> FontDescription;
 
   /** Computes the coverage map for a given font and language tag.
    *
@@ -149,13 +149,13 @@ public:
    * @return A newly-allocated `Pango::Coverage`
    * object.
    */
-  Glib::RefPtr<Coverage> get_coverage(const Language& language) const;
+  auto get_coverage(const Language& language) const -> Glib::RefPtr<Coverage>;
 
   /** Gets overall metric information for a font.
    * The metrics may be substantially different for different scripts.
    * However, this function overload returns the metrics for the entire font.
    */
-  FontMetrics get_metrics() const;
+  auto get_metrics() const -> FontMetrics;
 
   /** Gets overall metric information for a font. Since the metrics may be
    * substantially different for different scripts, a language tag can
@@ -166,7 +166,7 @@ public:
    * for.
    * @return A Pango::Metrics object.
    */
-  FontMetrics get_metrics(const Language& language) const;
+  auto get_metrics(const Language& language) const -> FontMetrics;
 
 
   /** Gets the logical and ink extents of a glyph within a font. The
@@ -201,7 +201,7 @@ public:
    * @return The `Pango::FontMap`
    * for the font.
    */
-  Glib::RefPtr<FontMap> get_font_map();
+  auto get_font_map() -> Glib::RefPtr<FontMap>;
 
   /** Gets the font map for which the font was created.
    *
@@ -220,7 +220,7 @@ public:
    * @return The `Pango::FontMap`
    * for the font.
    */
-  Glib::RefPtr<const FontMap> get_font_map() const;
+  auto get_font_map() const -> Glib::RefPtr<const FontMap>;
 
 
   /** Gets the `Pango::FontFace` to which @a font belongs.
@@ -229,7 +229,7 @@ public:
    *
    * @return The `Pango::FontFace`.
    */
-  Glib::RefPtr<FontFace> get_face();
+  auto get_face() -> Glib::RefPtr<FontFace>;
 
   /** Gets the `Pango::FontFace` to which @a font belongs.
    *
@@ -237,7 +237,7 @@ public:
    *
    * @return The `Pango::FontFace`.
    */
-  Glib::RefPtr<const FontFace> get_face() const;
+  auto get_face() const -> Glib::RefPtr<const FontFace>;
 
 
   /** Returns whether the font provides a glyph for this character.
@@ -247,19 +247,19 @@ public:
    * @param wc A Unicode character.
    * @return <tt>true</tt> if @a font can render @a wc.
    */
-  bool has_char(gunichar wc) const;
+  auto has_char(gunichar wc) const -> bool;
 
   /** Get the ink extents of a glyph within the font.
    * @param glyph The glyph index.
    * @return The extents of the glyph as drawn.
    */
-  Rectangle get_glyph_ink_extents(Glyph glyph) const;
+  auto get_glyph_ink_extents(Glyph glyph) const -> Rectangle;
 
   /** Gets the logical extents of a glyph within the font.
    * @param glyph The glyph index.
    * @return The logical extents of the glyph.
    */
-  Rectangle get_glyph_logical_extents(Glyph glyph) const;
+  auto get_glyph_logical_extents(Glyph glyph) const -> Rectangle;
 
 // PangoFontClass is hidden when PANGO_DISABLE_DEPRECATED is defined.
 // Don't wrap vfuncs.
@@ -292,7 +292,7 @@ namespace Glib
    * @relates Pango::Font
    */
   PANGOMM_API
-  Glib::RefPtr<Pango::Font> wrap(PangoFont* object, bool take_copy = false);
+  auto wrap(PangoFont* object, bool take_copy = false) -> Glib::RefPtr<Pango::Font>;
 }
 
 

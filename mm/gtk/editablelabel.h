@@ -69,11 +69,11 @@ class GTKMM_API EditableLabel : public Widget, public Editable
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   EditableLabel(EditableLabel&& src) noexcept;
-  EditableLabel& operator=(EditableLabel&& src) noexcept;
+  auto operator=(EditableLabel&& src) noexcept -> EditableLabel&;
 
   // noncopyable
   EditableLabel(const EditableLabel&) = delete;
-  EditableLabel& operator=(const EditableLabel&) = delete;
+  auto operator=(const EditableLabel&) -> EditableLabel& = delete;
 
   ~EditableLabel() noexcept override;
 
@@ -93,19 +93,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkEditableLabel*       gobj()       { return reinterpret_cast<GtkEditableLabel*>(gobject_); }
+  auto       gobj() -> GtkEditableLabel*       { return reinterpret_cast<GtkEditableLabel*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkEditableLabel* gobj() const { return reinterpret_cast<GtkEditableLabel*>(gobject_); }
+  auto gobj() const -> const GtkEditableLabel* { return reinterpret_cast<GtkEditableLabel*>(gobject_); }
 
 private:
 
@@ -120,7 +120,7 @@ public:
    *
    * @return <tt>true</tt> if @a self is currently in editing mode.
    */
-  bool get_editing() const;
+  auto get_editing() const -> bool;
 
   /** Switches the label into “editing mode”.
    */
@@ -144,7 +144,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_editing() ;
+  auto property_editing() -> Glib::PropertyProxy< bool > ;
 
 /** This property is <tt>true</tt> while the widget is in edit mode.
    *
@@ -153,7 +153,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_editing() const;
+  auto property_editing() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   // EditableLabel has no signals nor vfuncs.
@@ -186,7 +186,7 @@ namespace Glib
    * @relates Gtk::EditableLabel
    */
   GTKMM_API
-  Gtk::EditableLabel* wrap(GtkEditableLabel* object, bool take_copy = false);
+  auto wrap(GtkEditableLabel* object, bool take_copy = false) -> Gtk::EditableLabel*;
 } //namespace Glib
 
 

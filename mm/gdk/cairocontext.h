@@ -64,7 +64,7 @@ public:
 
   // noncopyable
   CairoContext(const CairoContext&) = delete;
-  CairoContext& operator=(const CairoContext&) = delete;
+  auto operator=(const CairoContext&) -> CairoContext& = delete;
 
 private:  friend class CairoContext_Class;
   static CppClassType cairocontext_class_;
@@ -78,28 +78,28 @@ protected:
 public:
 
   CairoContext(CairoContext&& src) noexcept;
-  CairoContext& operator=(CairoContext&& src) noexcept;
+  auto operator=(CairoContext&& src) noexcept -> CairoContext&;
 
   ~CairoContext() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkCairoContext*       gobj()       { return reinterpret_cast<GdkCairoContext*>(gobject_); }
+  auto       gobj() -> GdkCairoContext*       { return reinterpret_cast<GdkCairoContext*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkCairoContext* gobj() const { return reinterpret_cast<GdkCairoContext*>(gobject_); }
+  auto gobj() const -> const GdkCairoContext* { return reinterpret_cast<GdkCairoContext*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkCairoContext* gobj_copy();
+  auto gobj_copy() -> GdkCairoContext*;
 
 private:
 
@@ -121,7 +121,7 @@ public:
    * @return A Cairo context
    * to draw on `GdkSurface.
    */
-  ::Cairo::RefPtr< ::Cairo::Context> cairo_create();
+  auto cairo_create() -> ::Cairo::RefPtr< ::Cairo::Context>;
 
   // There are no public signals, properties or vfuncs.
 
@@ -153,7 +153,7 @@ namespace Glib
    * @relates Gdk::CairoContext
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::CairoContext> wrap(GdkCairoContext* object, bool take_copy = false);
+  auto wrap(GdkCairoContext* object, bool take_copy = false) -> Glib::RefPtr<Gdk::CairoContext>;
 }
 
 

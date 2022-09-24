@@ -49,7 +49,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::Image::Type>::value_type()
+auto Glib::Value<Gtk::Image::Type>::value_type() -> GType
 {
   return gtk_image_type_get_type();
 }
@@ -58,7 +58,7 @@ GType Glib::Value<Gtk::Image::Type>::value_type()
 namespace Glib
 {
 
-Gtk::Image* wrap(GtkImage* object, bool take_copy)
+auto wrap(GtkImage* object, bool take_copy) -> Gtk::Image*
 {
   return dynamic_cast<Gtk::Image *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -71,7 +71,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Image_Class::init()
+auto Image_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -102,7 +102,7 @@ void Image_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Image_Class::wrap_new(GObject* o)
+auto Image_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Image((GtkImage*)(o)));
 
@@ -128,7 +128,7 @@ Image::Image(Image&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-Image& Image::operator=(Image&& src) noexcept
+auto Image::operator=(Image&& src) noexcept -> Image&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -141,13 +141,13 @@ Image::~Image() noexcept
 
 Image::CppClassType Image::image_class_; // initialize static member
 
-GType Image::get_type()
+auto Image::get_type() -> GType
 {
   return image_class_.init().get_type();
 }
 
 
-GType Image::get_base_type()
+auto Image::get_base_type() -> GType
 {
   return gtk_image_get_type();
 }
@@ -228,12 +228,12 @@ void Image::clear()
   gtk_image_clear(gobj());
 }
 
-Type Image::get_storage_type() const
+auto Image::get_storage_type() const -> Type
 {
   return static_cast<Type>(gtk_image_get_storage_type(const_cast<GtkImage*>(gobj())));
 }
 
-Glib::RefPtr<Gdk::Paintable> Image::get_paintable()
+auto Image::get_paintable() -> Glib::RefPtr<Gdk::Paintable>
 {
   auto retvalue = Glib::wrap(gtk_image_get_paintable(gobj()));
   if(retvalue)
@@ -241,7 +241,7 @@ Glib::RefPtr<Gdk::Paintable> Image::get_paintable()
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::Paintable> Image::get_paintable() const
+auto Image::get_paintable() const -> Glib::RefPtr<const Gdk::Paintable>
 {
   return const_cast<Image*>(this)->get_paintable();
 }
@@ -251,12 +251,12 @@ void Image::set_icon_size(IconSize icon_size)
   gtk_image_set_icon_size(gobj(), static_cast<GtkIconSize>(icon_size));
 }
 
-IconSize Image::get_icon_size() const
+auto Image::get_icon_size() const -> IconSize
 {
   return static_cast<IconSize>(gtk_image_get_icon_size(const_cast<GtkImage*>(gobj())));
 }
 
-Glib::RefPtr<Gio::Icon> Image::get_gicon()
+auto Image::get_gicon() -> Glib::RefPtr<Gio::Icon>
 {
   auto retvalue = Glib::wrap(gtk_image_get_gicon(gobj()));
   if(retvalue)
@@ -264,17 +264,17 @@ Glib::RefPtr<Gio::Icon> Image::get_gicon()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::Icon> Image::get_gicon() const
+auto Image::get_gicon() const -> Glib::RefPtr<const Gio::Icon>
 {
   return const_cast<Image*>(this)->get_gicon();
 }
 
-Glib::ustring Image::get_icon_name() const
+auto Image::get_icon_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_image_get_icon_name(const_cast<GtkImage*>(gobj())));
 }
 
-int Image::get_pixel_size() const
+auto Image::get_pixel_size() const -> int
 {
   return gtk_image_get_pixel_size(const_cast<GtkImage*>(gobj()));
 }
@@ -285,12 +285,12 @@ void Image::set_pixel_size(int pixel_size)
 }
 
 
-Glib::PropertyProxy< Glib::ustring > Image::property_file()
+auto Image::property_file() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "file");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Image::property_file() const
+auto Image::property_file() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "file");
 }
@@ -299,32 +299,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<IconSize>::value,
   "Type IconSize cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< IconSize > Image::property_icon_size()
+auto Image::property_icon_size() -> Glib::PropertyProxy< IconSize >
 {
   return Glib::PropertyProxy< IconSize >(this, "icon-size");
 }
 
-Glib::PropertyProxy_ReadOnly< IconSize > Image::property_icon_size() const
+auto Image::property_icon_size() const -> Glib::PropertyProxy_ReadOnly< IconSize >
 {
   return Glib::PropertyProxy_ReadOnly< IconSize >(this, "icon-size");
 }
 
-Glib::PropertyProxy< int > Image::property_pixel_size()
+auto Image::property_pixel_size() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "pixel-size");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Image::property_pixel_size() const
+auto Image::property_pixel_size() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "pixel-size");
 }
 
-Glib::PropertyProxy< Glib::ustring > Image::property_icon_name()
+auto Image::property_icon_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "icon-name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Image::property_icon_name() const
+auto Image::property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "icon-name");
 }
@@ -333,7 +333,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Type>::value,
   "Type Type cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Type > Image::property_storage_type() const
+auto Image::property_storage_type() const -> Glib::PropertyProxy_ReadOnly< Type >
 {
   return Glib::PropertyProxy_ReadOnly< Type >(this, "storage-type");
 }
@@ -342,32 +342,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Ic
   "Type Glib::RefPtr<Gio::Icon> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> > Image::property_gicon()
+auto Image::property_gicon() -> Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> >(this, "gicon");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> > Image::property_gicon() const
+auto Image::property_gicon() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> >(this, "gicon");
 }
 
-Glib::PropertyProxy< bool > Image::property_use_fallback()
+auto Image::property_use_fallback() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "use-fallback");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Image::property_use_fallback() const
+auto Image::property_use_fallback() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "use-fallback");
 }
 
-Glib::PropertyProxy< std::string > Image::property_resource()
+auto Image::property_resource() -> Glib::PropertyProxy< std::string >
 {
   return Glib::PropertyProxy< std::string >(this, "resource");
 }
 
-Glib::PropertyProxy_ReadOnly< std::string > Image::property_resource() const
+auto Image::property_resource() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
   return Glib::PropertyProxy_ReadOnly< std::string >(this, "resource");
 }
@@ -376,12 +376,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Pa
   "Type Glib::RefPtr<Gdk::Paintable> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> > Image::property_paintable()
+auto Image::property_paintable() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> >(this, "paintable");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> > Image::property_paintable() const
+auto Image::property_paintable() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> >(this, "paintable");
 }

@@ -45,24 +45,24 @@ class PANGOMM_API Color
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Color(const Color& other) noexcept;
-  Color& operator=(const Color& other) noexcept;
+  auto operator=(const Color& other) noexcept -> Color&;
 
   Color(Color&& other) noexcept;
-  Color& operator=(Color&& other) noexcept;
+  auto operator=(Color&& other) noexcept -> Color&;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   Color();
 
   explicit Color(const PangoColor* gobject); // always takes a copy
 
   ///Provides access to the underlying C instance.
-  PangoColor*       gobj()       { return &gobject_; }
+  auto       gobj() -> PangoColor*       { return &gobject_; }
 
   ///Provides access to the underlying C instance.
-  const PangoColor* gobj() const { return &gobject_; }
+  auto gobj() const -> const PangoColor* { return &gobject_; }
 
 protected:
   PangoColor gobject_;
@@ -78,17 +78,17 @@ public:
   /** Gets the red component of the color.
    * @return The red component of the color. This is a value between 0 and 65535, with 65535 indicating full intensity.
    */
-  guint16 get_red() const;
+  auto get_red() const -> guint16;
 
   /** Gets the green component of the color.
    * @return The green component of the color. This is a value between 0 and 65535, with 65535 indicating full intensity.
    */
-  guint16 get_green() const;
+  auto get_green() const -> guint16;
 
   /** Gets the blue component of the color.
    * @return The blue component of the color. This is a value between 0 and 65535, with 65535 indicating full intensity.
    */
-  guint16 get_blue() const;
+  auto get_blue() const -> guint16;
 
   /** Sets the red component of the color.
    * @param value The red component of the color. This is a value between 0 and 65535, with 65535 indicating full intensity.
@@ -118,7 +118,7 @@ public:
    * @return <tt>true</tt> if parsing of the specifier succeeded,
    * otherwise <tt>false</tt>.
    */
-  bool parse(const Glib::ustring& spec);
+  auto parse(const Glib::ustring& spec) -> bool;
 
 
   /** Returns a textual specification of @a color.
@@ -132,7 +132,7 @@ public:
    * @return A newly-allocated text string that must
    * be freed with Glib::free().
    */
-  Glib::ustring to_string() const;
+  auto to_string() const -> Glib::ustring;
 
 
 };
@@ -148,14 +148,14 @@ namespace Glib
  * @result A C++ instance that wraps this C instance.
  */
 PANGOMM_API
-Pango::Color& wrap(PangoColor* object);
+auto wrap(PangoColor* object) -> Pango::Color&;
 
 /** @relates Pango::Color
  * @param object The C instance
  * @result A C++ instance that wraps this C instance.
  */
 PANGOMM_API
-const Pango::Color& wrap(const PangoColor* object);
+auto wrap(const PangoColor* object) -> const Pango::Color&;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

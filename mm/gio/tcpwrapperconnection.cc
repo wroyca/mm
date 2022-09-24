@@ -37,7 +37,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::TcpWrapperConnection> wrap(GTcpWrapperConnection* object, bool take_copy)
+auto wrap(GTcpWrapperConnection* object, bool take_copy) -> Glib::RefPtr<Gio::TcpWrapperConnection>
 {
   return Glib::make_refptr_for_instance<Gio::TcpWrapperConnection>( dynamic_cast<Gio::TcpWrapperConnection*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -52,7 +52,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& TcpWrapperConnection_Class::init()
+auto TcpWrapperConnection_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -83,7 +83,7 @@ void TcpWrapperConnection_Class::class_init_function(void* g_class, void* class_
 }
 
 
-Glib::ObjectBase* TcpWrapperConnection_Class::wrap_new(GObject* object)
+auto TcpWrapperConnection_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new TcpWrapperConnection((GTcpWrapperConnection*)object);
 }
@@ -91,7 +91,7 @@ Glib::ObjectBase* TcpWrapperConnection_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GTcpWrapperConnection* TcpWrapperConnection::gobj_copy()
+auto TcpWrapperConnection::gobj_copy() -> GTcpWrapperConnection*
 {
   reference();
   return gobj();
@@ -114,7 +114,7 @@ TcpWrapperConnection::TcpWrapperConnection(TcpWrapperConnection&& src) noexcept
 : Gio::TcpConnection(std::move(src))
 {}
 
-TcpWrapperConnection& TcpWrapperConnection::operator=(TcpWrapperConnection&& src) noexcept
+auto TcpWrapperConnection::operator=(TcpWrapperConnection&& src) noexcept -> TcpWrapperConnection&
 {
   Gio::TcpConnection::operator=(std::move(src));
   return *this;
@@ -127,13 +127,13 @@ TcpWrapperConnection::~TcpWrapperConnection() noexcept
 
 TcpWrapperConnection::CppClassType TcpWrapperConnection::tcpwrapperconnection_class_; // initialize static member
 
-GType TcpWrapperConnection::get_type()
+auto TcpWrapperConnection::get_type() -> GType
 {
   return tcpwrapperconnection_class_.init().get_type();
 }
 
 
-GType TcpWrapperConnection::get_base_type()
+auto TcpWrapperConnection::get_base_type() -> GType
 {
   return g_tcp_wrapper_connection_get_type();
 }
@@ -149,7 +149,7 @@ TcpWrapperConnection::TcpWrapperConnection(const Glib::RefPtr<IOStream>& base_io
 
 }
 
-Glib::RefPtr<IOStream> TcpWrapperConnection::get_base_io_stream()
+auto TcpWrapperConnection::get_base_io_stream() -> Glib::RefPtr<IOStream>
 {
   auto retvalue = Glib::wrap(g_tcp_wrapper_connection_get_base_io_stream(gobj()));
   if(retvalue)
@@ -157,7 +157,7 @@ Glib::RefPtr<IOStream> TcpWrapperConnection::get_base_io_stream()
   return retvalue;
 }
 
-Glib::RefPtr<const IOStream> TcpWrapperConnection::get_base_io_stream() const
+auto TcpWrapperConnection::get_base_io_stream() const -> Glib::RefPtr<const IOStream>
 {
   return const_cast<TcpWrapperConnection*>(this)->get_base_io_stream();
 }
@@ -167,7 +167,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<IOStrea
   "Type Glib::RefPtr<IOStream> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<IOStream> > TcpWrapperConnection::property_base_io_stream() const
+auto TcpWrapperConnection::property_base_io_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<IOStream> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<IOStream> >(this, "base-io-stream");
 }

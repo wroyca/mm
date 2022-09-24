@@ -117,7 +117,7 @@ public:
 
   // noncopyable
   StyleContext(const StyleContext&) = delete;
-  StyleContext& operator=(const StyleContext&) = delete;
+  auto operator=(const StyleContext&) -> StyleContext& = delete;
 
 private:  friend class StyleContext_Class;
   static CppClassType stylecontext_class_;
@@ -131,28 +131,28 @@ protected:
 public:
 
   StyleContext(StyleContext&& src) noexcept;
-  StyleContext& operator=(StyleContext&& src) noexcept;
+  auto operator=(StyleContext&& src) noexcept -> StyleContext&;
 
   ~StyleContext() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkStyleContext*       gobj()       { return reinterpret_cast<GtkStyleContext*>(gobject_); }
+  auto       gobj() -> GtkStyleContext*       { return reinterpret_cast<GtkStyleContext*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkStyleContext* gobj() const { return reinterpret_cast<GtkStyleContext*>(gobject_); }
+  auto gobj() const -> const GtkStyleContext* { return reinterpret_cast<GtkStyleContext*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkStyleContext* gobj_copy();
+  auto gobj_copy() -> GtkStyleContext*;
 
 private:
 
@@ -295,7 +295,7 @@ public:
    *
    * @return The state flags.
    */
-  StateFlags get_state() const;
+  auto get_state() const -> StateFlags;
 
 
   /** Sets the scale to use when getting image assets for the style.
@@ -308,7 +308,7 @@ public:
    *
    * @return The scale.
    */
-  int get_scale() const;
+  auto get_scale() const -> int;
 
 
   /** Adds a style class to @a context, so later uses of the
@@ -341,7 +341,7 @@ public:
    * @param class_name A class name.
    * @return <tt>true</tt> if @a context has @a class_name defined.
    */
-  bool has_class(const Glib::ustring& class_name);
+  auto has_class(const Glib::ustring& class_name) -> bool;
 
 
   /** Attaches @a context to the given display.
@@ -362,13 +362,13 @@ public:
    *
    * @return A `Gdk::Display`.
    */
-  Glib::RefPtr<Gdk::Display> get_display();
+  auto get_display() -> Glib::RefPtr<Gdk::Display>;
 
   /** Returns the `Gdk::Display` to which @a context is attached.
    *
    * @return A `Gdk::Display`.
    */
-  Glib::RefPtr<const Gdk::Display> get_display() const;
+  auto get_display() const -> Glib::RefPtr<const Gdk::Display>;
 
 
   /** Looks up and resolves a color name in the @a context color map.
@@ -377,7 +377,7 @@ public:
    * @param color Return location for the looked up color.
    * @return <tt>true</tt> if @a color_name was found and resolved, <tt>false</tt> otherwise.
    */
-  bool lookup_color(const Glib::ustring& color_name, Gdk::RGBA& color);
+  auto lookup_color(const Glib::ustring& color_name, Gdk::RGBA& color) -> bool;
 
   /** Gets the foreground color for a given state.
    *
@@ -385,16 +385,16 @@ public:
    *
    * @return The foreground color for the given state.
    */
-  Gdk::RGBA get_color() const;
+  auto get_color() const -> Gdk::RGBA;
 
 
-  Border get_border() const;
+  auto get_border() const -> Border;
 
 
-  Border get_padding() const;
+  auto get_padding() const -> Border;
 
 
-  Border get_margin() const;
+  auto get_margin() const -> Border;
 
 
   /** Renders a checkmark (as in a `Gtk::CheckButton`).
@@ -579,21 +579,21 @@ public:
    * @param flags Flags that determine what to print.
    * @return A newly allocated string representing @a context.
    */
-  Glib::ustring to_string(PrintFlags flags) const;
+  auto to_string(PrintFlags flags) const -> Glib::ustring;
 
   /**
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gdk::Display> > property_display() ;
+  auto property_display() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Display> > ;
 
 /**
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Display> > property_display() const;
+  auto property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Display> >;
 
 
 public:
@@ -615,31 +615,31 @@ namespace Gtk
 {
 
 /** @ingroup gtkmmEnums */
-inline StyleContext::PrintFlags operator|(StyleContext::PrintFlags lhs, StyleContext::PrintFlags rhs)
+inline auto operator|(StyleContext::PrintFlags lhs, StyleContext::PrintFlags rhs) -> StyleContext::PrintFlags
   { return static_cast<StyleContext::PrintFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline StyleContext::PrintFlags operator&(StyleContext::PrintFlags lhs, StyleContext::PrintFlags rhs)
+inline auto operator&(StyleContext::PrintFlags lhs, StyleContext::PrintFlags rhs) -> StyleContext::PrintFlags
   { return static_cast<StyleContext::PrintFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline StyleContext::PrintFlags operator^(StyleContext::PrintFlags lhs, StyleContext::PrintFlags rhs)
+inline auto operator^(StyleContext::PrintFlags lhs, StyleContext::PrintFlags rhs) -> StyleContext::PrintFlags
   { return static_cast<StyleContext::PrintFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline StyleContext::PrintFlags operator~(StyleContext::PrintFlags flags)
+inline auto operator~(StyleContext::PrintFlags flags) -> StyleContext::PrintFlags
   { return static_cast<StyleContext::PrintFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gtkmmEnums */
-inline StyleContext::PrintFlags& operator|=(StyleContext::PrintFlags& lhs, StyleContext::PrintFlags rhs)
+inline auto operator|=(StyleContext::PrintFlags& lhs, StyleContext::PrintFlags rhs) -> StyleContext::PrintFlags&
   { return (lhs = static_cast<StyleContext::PrintFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline StyleContext::PrintFlags& operator&=(StyleContext::PrintFlags& lhs, StyleContext::PrintFlags rhs)
+inline auto operator&=(StyleContext::PrintFlags& lhs, StyleContext::PrintFlags rhs) -> StyleContext::PrintFlags&
   { return (lhs = static_cast<StyleContext::PrintFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline StyleContext::PrintFlags& operator^=(StyleContext::PrintFlags& lhs, StyleContext::PrintFlags rhs)
+inline auto operator^=(StyleContext::PrintFlags& lhs, StyleContext::PrintFlags rhs) -> StyleContext::PrintFlags&
   { return (lhs = static_cast<StyleContext::PrintFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gtk
 
@@ -651,7 +651,7 @@ template <>
 class GTKMM_API Value<Gtk::StyleContext::PrintFlags> : public Glib::Value_Flags<Gtk::StyleContext::PrintFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -669,7 +669,7 @@ namespace Glib
    * @relates Gtk::StyleContext
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::StyleContext> wrap(GtkStyleContext* object, bool take_copy = false);
+  auto wrap(GtkStyleContext* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StyleContext>;
 }
 
 

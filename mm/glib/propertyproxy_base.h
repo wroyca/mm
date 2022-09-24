@@ -39,16 +39,16 @@ public:
   ~SignalProxyProperty() noexcept;
 
   using SlotType = sigc::slot<void()>;
-  sigc::connection connect(const SlotType& slot);
+  auto connect(const SlotType& slot) -> sigc::connection;
   /** @newin{2,48}
    */
-  sigc::connection connect(SlotType&& slot);
+  auto connect(SlotType&& slot) -> sigc::connection;
 
 protected:
   const char* property_name_; // Should be a static string literal.
 
 private:
-  SignalProxyProperty& operator=(const SignalProxyProperty&); // not implemented
+  auto operator=(const SignalProxyProperty&) -> SignalProxyProperty&; // not implemented
 };
 
 class GLIBMM_API PropertyProxy_Base
@@ -58,10 +58,10 @@ public:
   PropertyProxy_Base(const PropertyProxy_Base& other);
 
   /// This signal will be emitted when the property changes.
-  SignalProxyProperty signal_changed();
+  auto signal_changed() -> SignalProxyProperty;
 
-  ObjectBase* get_object() const { return obj_; }
-  const char* get_name() const { return property_name_; }
+  auto get_object() const -> ObjectBase* { return obj_; }
+  auto get_name() const -> const char* { return property_name_; }
 
 protected:
   void set_property_(const Glib::ValueBase& value);
@@ -74,7 +74,7 @@ protected:
 
 private:
   // Declared as private, but not implemented to prevent any automatically generated implementation.
-  PropertyProxy_Base& operator=(const PropertyProxy_Base&);
+  auto operator=(const PropertyProxy_Base&) -> PropertyProxy_Base&;
 };
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -100,7 +100,7 @@ public:
    *
    * @newin{2,48}
    */
-  sigc::connection connect_changed(const Glib::ustring& property_name);
+  auto connect_changed(const Glib::ustring& property_name) -> sigc::connection;
 
   static void callback(GObject* object, GParamSpec* pspec, gpointer data);
 };

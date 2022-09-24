@@ -71,11 +71,11 @@ class GTKMM_API Label : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Label(Label&& src) noexcept;
-  Label& operator=(Label&& src) noexcept;
+  auto operator=(Label&& src) noexcept -> Label&;
 
   // noncopyable
   Label(const Label&) = delete;
-  Label& operator=(const Label&) = delete;
+  auto operator=(const Label&) -> Label& = delete;
 
   ~Label() noexcept override;
 
@@ -95,19 +95,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkLabel*       gobj()       { return reinterpret_cast<GtkLabel*>(gobject_); }
+  auto       gobj() -> GtkLabel*       { return reinterpret_cast<GtkLabel*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkLabel* gobj() const { return reinterpret_cast<GtkLabel*>(gobject_); }
+  auto gobj() const -> const GtkLabel* { return reinterpret_cast<GtkLabel*>(gobject_); }
 
 private:
 
@@ -155,7 +155,7 @@ public:
    *
    * @return The text in the label widget.
    */
-  Glib::ustring get_text() const;
+  auto get_text() const -> Glib::ustring;
 
 
   /** Apply attributes to the label text.
@@ -182,7 +182,7 @@ public:
    *
    * @return The attribute list.
    */
-  Pango::AttrList get_attributes() const;
+  auto get_attributes() const -> Pango::AttrList;
 
 
   /** Sets the text of the label.
@@ -202,7 +202,7 @@ public:
    *
    * @return The text of the label widget.
    */
-  Glib::ustring get_label() const;
+  auto get_label() const -> Glib::ustring;
 
   /** Sets the labels text and attributes from markup.
    *
@@ -242,7 +242,7 @@ public:
    *
    * @return <tt>true</tt> if the label’s text will be parsed for markup.
    */
-  bool get_use_markup() const;
+  auto get_use_markup() const -> bool;
 
   /** Sets whether underlines in the text indicate mnemonics.
    *
@@ -257,7 +257,7 @@ public:
    * @return <tt>true</tt> whether an embedded underline in the label indicates
    * the mnemonic accelerator keys.
    */
-  bool get_use_underline() const;
+  auto get_use_underline() const -> bool;
 
 
   /** Sets the labels text, attributes and mnemonic from markup.
@@ -282,7 +282,7 @@ public:
    *
    * @return GDK keyval usable for accelerators, or `GDK_KEY_VoidSymbol`.
    */
-  guint get_mnemonic_keyval() const;
+  auto get_mnemonic_keyval() const -> guint;
 
   /** Associate the label with its mnemonic target.
    *
@@ -314,7 +314,7 @@ public:
    * @return The target of the label’s mnemonic,
    * or <tt>nullptr</tt> if none has been set and the default algorithm will be used.
    */
-  Widget* get_mnemonic_widget();
+  auto get_mnemonic_widget() -> Widget*;
 
   /** Retrieves the target of the mnemonic (keyboard shortcut) of this
    * label.
@@ -324,7 +324,7 @@ public:
    * @return The target of the label’s mnemonic,
    * or <tt>nullptr</tt> if none has been set and the default algorithm will be used.
    */
-  const Widget* get_mnemonic_widget() const;
+  auto get_mnemonic_widget() const -> const Widget*;
 
   /** Sets the label’s text from the string @a str.
    *
@@ -356,7 +356,7 @@ public:
    *
    * @return `Gtk::Justification`.
    */
-  Justification get_justify() const;
+  auto get_justify() const -> Justification;
 
 
   /** Sets the mode used to ellipsizei the text.
@@ -374,7 +374,7 @@ public:
    *
    * @return `Pango::EllipsizeMode`.
    */
-  Pango::EllipsizeMode get_ellipsize() const;
+  auto get_ellipsize() const -> Pango::EllipsizeMode;
 
 
   /** Sets the desired width in characters of @a label to @a n_chars.
@@ -389,7 +389,7 @@ public:
    *
    * @return The width of the label in characters.
    */
-  int get_width_chars() const;
+  auto get_width_chars() const -> int;
 
 
   /** Sets the desired maximum width in characters of @a label to @a n_chars.
@@ -404,7 +404,7 @@ public:
    *
    * @return The maximum width of the label in characters.
    */
-  int get_max_width_chars() const;
+  auto get_max_width_chars() const -> int;
 
 
   /** Sets the number of lines to which an ellipsized, wrapping label
@@ -424,7 +424,7 @@ public:
    *
    * @return The number of lines.
    */
-  int get_lines() const;
+  auto get_lines() const -> int;
 
 
   /** Toggles line wrapping within the `Gtk::Label` widget.
@@ -449,7 +449,7 @@ public:
    *
    * @return <tt>true</tt> if the lines of the label are automatically wrapped.
    */
-  bool get_wrap() const;
+  auto get_wrap() const -> bool;
 
   /** Controls how line wrapping is done.
    *
@@ -470,7 +470,7 @@ public:
    *
    * @return The line wrap mode.
    */
-  Pango::WrapMode get_wrap_mode() const;
+  auto get_wrap_mode() const -> Pango::WrapMode;
 
   /** Select the line wrapping for the natural size request.
    *
@@ -491,7 +491,7 @@ public:
    *
    * @return The natural line wrap mode.
    */
-  NaturalWrapMode get_natural_wrap_mode() const;
+  auto get_natural_wrap_mode() const -> NaturalWrapMode;
 
   /** Makes text in the label selectable.
    *
@@ -506,7 +506,7 @@ public:
    *
    * @return <tt>true</tt> if the user can copy text from the label.
    */
-  bool get_selectable() const;
+  auto get_selectable() const -> bool;
 
   /** Selects a range of characters in the label, if the label is selectable.
    *
@@ -535,7 +535,7 @@ public:
    * @param end Return location for end of selection, as a character offset.
    * @return <tt>true</tt> if selection is non-empty.
    */
-  bool get_selection_bounds(int& start, int& end) const;
+  auto get_selection_bounds(int& start, int& end) const -> bool;
 
 
   /** Gets the Pango::Layout used to display the label.
@@ -544,7 +544,7 @@ public:
    *
    * @return The Pango::Layout for this label.
    */
-  Glib::RefPtr<Pango::Layout> get_layout();
+  auto get_layout() -> Glib::RefPtr<Pango::Layout>;
 
   /** Gets the Pango::Layout used to display the label.
    * The layout is useful to e.g. convert text positions to
@@ -552,7 +552,7 @@ public:
    *
    * @return The Pango::Layout for this label.
    */
-  Glib::RefPtr<const Pango::Layout> get_layout() const;
+  auto get_layout() const -> Glib::RefPtr<const Pango::Layout>;
 
   /** Obtains the coordinates where the label will draw its `Pango::Layout`.
    *
@@ -578,7 +578,7 @@ public:
    *
    * @return <tt>true</tt> when the label is in single line mode.
    */
-  bool get_single_line_mode() const;
+  auto get_single_line_mode() const -> bool;
 
 
   /** Returns the URI for the currently active link in the label.
@@ -592,7 +592,7 @@ public:
    *
    * @return The currently active URI.
    */
-  Glib::ustring get_current_uri() const;
+  auto get_current_uri() const -> Glib::ustring;
 
 
   /** Sets the `xalign` of the label.
@@ -609,7 +609,7 @@ public:
    *
    * @return The xalign property.
    */
-  float get_xalign() const;
+  auto get_xalign() const -> float;
 
   /** Sets the `yalign` of the label.
    *
@@ -625,7 +625,7 @@ public:
    *
    * @return The yalign property.
    */
-  float get_yalign() const;
+  auto get_yalign() const -> float;
 
 
   /** Sets a menu model to add when constructing
@@ -641,7 +641,7 @@ public:
    *
    * @return The menu model.
    */
-  Glib::RefPtr<Gio::MenuModel> get_extra_menu();
+  auto get_extra_menu() -> Glib::RefPtr<Gio::MenuModel>;
 
   /** Gets the extra menu model of @a label.
    *
@@ -649,7 +649,7 @@ public:
    *
    * @return The menu model.
    */
-  Glib::RefPtr<const Gio::MenuModel> get_extra_menu() const;
+  auto get_extra_menu() const -> Glib::RefPtr<const Gio::MenuModel>;
 
 
   /** Sets the default tab stops for paragraphs in @a self.
@@ -671,7 +671,7 @@ public:
    * or <tt>nullptr</tt> if standard tabs are used; must be freed with
    * Pango::TabArray::free().
    */
-  Pango::TabArray get_tabs() const;
+  auto get_tabs() const -> Pango::TabArray;
 
 
   /**
@@ -689,7 +689,7 @@ public:
    * @return <tt>true</tt> if the link has been activated.
    */
 
-  Glib::SignalProxy<bool(const Glib::ustring&)> signal_activate_link();
+  auto signal_activate_link() -> Glib::SignalProxy<bool(const Glib::ustring&)>;
 
 
   //Keybinding signals:
@@ -713,7 +713,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_label() ;
+  auto property_label() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The contents of the label.
    *
@@ -733,21 +733,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_label() const;
+  auto property_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** A list of style attributes to apply to the text of the label.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::AttrList > property_attributes() ;
+  auto property_attributes() -> Glib::PropertyProxy< Pango::AttrList > ;
 
 /** A list of style attributes to apply to the text of the label.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::AttrList > property_attributes() const;
+  auto property_attributes() const -> Glib::PropertyProxy_ReadOnly< Pango::AttrList >;
 
   /** <tt>true</tt> if the text of the label includes Pango markup.
    *
@@ -758,7 +758,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_use_markup() ;
+  auto property_use_markup() -> Glib::PropertyProxy< bool > ;
 
 /** <tt>true</tt> if the text of the label includes Pango markup.
    *
@@ -769,7 +769,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_markup() const;
+  auto property_use_markup() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** <tt>true</tt> if the text of the label indicates a mnemonic with _.
    *
@@ -778,7 +778,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_use_underline() ;
+  auto property_use_underline() -> Glib::PropertyProxy< bool > ;
 
 /** <tt>true</tt> if the text of the label indicates a mnemonic with _.
    *
@@ -787,7 +787,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_underline() const;
+  auto property_use_underline() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The alignment of the lines in the text of the label, relative to each other.
    *
@@ -799,7 +799,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Justification > property_justify() ;
+  auto property_justify() -> Glib::PropertyProxy< Justification > ;
 
 /** The alignment of the lines in the text of the label, relative to each other.
    *
@@ -811,7 +811,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Justification > property_justify() const;
+  auto property_justify() const -> Glib::PropertyProxy_ReadOnly< Justification >;
 
   /** <tt>true</tt> if the label text will wrap if it gets too wide.
    *
@@ -820,7 +820,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_wrap() ;
+  auto property_wrap() -> Glib::PropertyProxy< bool > ;
 
 /** <tt>true</tt> if the label text will wrap if it gets too wide.
    *
@@ -829,7 +829,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_wrap() const;
+  auto property_wrap() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Controls how the line wrapping is done.
    *
@@ -845,7 +845,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::WrapMode > property_wrap_mode() ;
+  auto property_wrap_mode() -> Glib::PropertyProxy< Pango::WrapMode > ;
 
 /** Controls how the line wrapping is done.
    *
@@ -861,7 +861,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::WrapMode > property_wrap_mode() const;
+  auto property_wrap_mode() const -> Glib::PropertyProxy_ReadOnly< Pango::WrapMode >;
 
   /** Select the line wrapping for the natural size request.
    *
@@ -878,7 +878,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< NaturalWrapMode > property_natural_wrap_mode() ;
+  auto property_natural_wrap_mode() -> Glib::PropertyProxy< NaturalWrapMode > ;
 
 /** Select the line wrapping for the natural size request.
    *
@@ -895,7 +895,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< NaturalWrapMode > property_natural_wrap_mode() const;
+  auto property_natural_wrap_mode() const -> Glib::PropertyProxy_ReadOnly< NaturalWrapMode >;
 
   /** Whether the label text can be selected with the mouse.
    *
@@ -904,7 +904,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_selectable() ;
+  auto property_selectable() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the label text can be selected with the mouse.
    *
@@ -913,7 +913,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_selectable() const;
+  auto property_selectable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The mnemonic accelerator key for the label.
    *
@@ -922,7 +922,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_mnemonic_keyval() const;
+  auto property_mnemonic_keyval() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
   /** The widget to be activated when the labels mnemonic key is pressed.
@@ -930,14 +930,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_mnemonic_widget() ;
+  auto property_mnemonic_widget() -> Glib::PropertyProxy< Widget* > ;
 
 /** The widget to be activated when the labels mnemonic key is pressed.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_mnemonic_widget() const;
+  auto property_mnemonic_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
   /** The preferred place to ellipsize the string, if the label does
    * not have enough room to display the entire string.
@@ -955,7 +955,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::EllipsizeMode > property_ellipsize() ;
+  auto property_ellipsize() -> Glib::PropertyProxy< Pango::EllipsizeMode > ;
 
 /** The preferred place to ellipsize the string, if the label does
    * not have enough room to display the entire string.
@@ -973,7 +973,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::EllipsizeMode > property_ellipsize() const;
+  auto property_ellipsize() const -> Glib::PropertyProxy_ReadOnly< Pango::EllipsizeMode >;
 
   /** The desired width of the label, in characters.
    *
@@ -988,7 +988,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_width_chars() ;
+  auto property_width_chars() -> Glib::PropertyProxy< int > ;
 
 /** The desired width of the label, in characters.
    *
@@ -1003,7 +1003,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_width_chars() const;
+  auto property_width_chars() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Whether the label is in single line mode.
    *
@@ -1017,7 +1017,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_single_line_mode() ;
+  auto property_single_line_mode() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the label is in single line mode.
    *
@@ -1031,7 +1031,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_single_line_mode() const;
+  auto property_single_line_mode() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The desired maximum width of the label, in characters.
    *
@@ -1046,7 +1046,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_max_width_chars() ;
+  auto property_max_width_chars() -> Glib::PropertyProxy< int > ;
 
 /** The desired maximum width of the label, in characters.
    *
@@ -1061,7 +1061,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_max_width_chars() const;
+  auto property_max_width_chars() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The number of lines to which an ellipsized, wrapping label
    * should be limited.
@@ -1074,7 +1074,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_lines() ;
+  auto property_lines() -> Glib::PropertyProxy< int > ;
 
 /** The number of lines to which an ellipsized, wrapping label
    * should be limited.
@@ -1087,7 +1087,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_lines() const;
+  auto property_lines() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The horizontal alignment of the label text inside its size allocation.
    *
@@ -1099,7 +1099,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< float > property_xalign() ;
+  auto property_xalign() -> Glib::PropertyProxy< float > ;
 
 /** The horizontal alignment of the label text inside its size allocation.
    *
@@ -1111,7 +1111,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< float > property_xalign() const;
+  auto property_xalign() const -> Glib::PropertyProxy_ReadOnly< float >;
 
   /** The vertical alignment of the label text inside its size allocation.
    *
@@ -1123,7 +1123,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< float > property_yalign() ;
+  auto property_yalign() -> Glib::PropertyProxy< float > ;
 
 /** The vertical alignment of the label text inside its size allocation.
    *
@@ -1135,21 +1135,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< float > property_yalign() const;
+  auto property_yalign() const -> Glib::PropertyProxy_ReadOnly< float >;
 
   /** A menu model whose contents will be appended to the context menu.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > property_extra_menu() ;
+  auto property_extra_menu() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > ;
 
 /** A menu model whose contents will be appended to the context menu.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> > property_extra_menu() const;
+  auto property_extra_menu() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >;
 
   /** Custom tabs for this label.
    *
@@ -1158,7 +1158,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::TabArray > property_tabs() ;
+  auto property_tabs() -> Glib::PropertyProxy< Pango::TabArray > ;
 
 /** Custom tabs for this label.
    *
@@ -1167,7 +1167,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::TabArray > property_tabs() const;
+  auto property_tabs() const -> Glib::PropertyProxy_ReadOnly< Pango::TabArray >;
 
 
 public:
@@ -1197,7 +1197,7 @@ namespace Glib
    * @relates Gtk::Label
    */
   GTKMM_API
-  Gtk::Label* wrap(GtkLabel* object, bool take_copy = false);
+  auto wrap(GtkLabel* object, bool take_copy = false) -> Gtk::Label*;
 } //namespace Glib
 
 

@@ -68,7 +68,7 @@ public:
 
   // noncopyable
   NetworkService(const NetworkService&) = delete;
-  NetworkService& operator=(const NetworkService&) = delete;
+  auto operator=(const NetworkService&) -> NetworkService& = delete;
 
 private:  friend class NetworkService_Class;
   static CppClassType networkservice_class_;
@@ -82,28 +82,28 @@ protected:
 public:
 
   NetworkService(NetworkService&& src) noexcept;
-  NetworkService& operator=(NetworkService&& src) noexcept;
+  auto operator=(NetworkService&& src) noexcept -> NetworkService&;
 
   ~NetworkService() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GNetworkService*       gobj()       { return reinterpret_cast<GNetworkService*>(gobject_); }
+  auto       gobj() -> GNetworkService*       { return reinterpret_cast<GNetworkService*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GNetworkService* gobj() const { return reinterpret_cast<GNetworkService*>(gobject_); }
+  auto gobj() const -> const GNetworkService* { return reinterpret_cast<GNetworkService*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GNetworkService* gobj_copy();
+  auto gobj_copy() -> GNetworkService*;
 
 private:
 
@@ -113,7 +113,7 @@ private:
 
 public:
 
-  static Glib::RefPtr<NetworkService> create(const Glib::ustring& service, const Glib::ustring& protocol, const Glib::ustring& domain);
+  static auto create(const Glib::ustring& service, const Glib::ustring& protocol, const Glib::ustring& domain) -> Glib::RefPtr<NetworkService>;
 
 
   /** Gets @a srv's service name (eg, "ldap").
@@ -122,7 +122,7 @@ public:
    *
    * @return  @a srv's service name.
    */
-  Glib::ustring get_service() const;
+  auto get_service() const -> Glib::ustring;
 
   /** Gets @a srv's protocol name (eg, "tcp").
    *
@@ -130,7 +130,7 @@ public:
    *
    * @return  @a srv's protocol name.
    */
-  Glib::ustring get_protocol() const;
+  auto get_protocol() const -> Glib::ustring;
 
   /** Gets the domain that @a srv serves. This might be either UTF-8 or
    * ASCII-encoded, depending on what @a srv was created with.
@@ -139,7 +139,7 @@ public:
    *
    * @return  @a srv's domain name.
    */
-  Glib::ustring get_domain() const;
+  auto get_domain() const -> Glib::ustring;
 
 
   /** Gets the URI scheme used to resolve proxies. By default, the service name
@@ -149,7 +149,7 @@ public:
    *
    * @return  @a srv's scheme name.
    */
-  Glib::ustring get_scheme() const;
+  auto get_scheme() const -> Glib::ustring;
 
   /** Set's the URI scheme used to resolve proxies. By default, the service name
    * is used as scheme.
@@ -167,7 +167,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_domain() const;
+  auto property_domain() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** Network protocol, eg 'tcp'.
@@ -177,7 +177,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_protocol() const;
+  auto property_protocol() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** Network scheme (default is to use service).
@@ -187,7 +187,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_scheme() ;
+  auto property_scheme() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Network scheme (default is to use service).
    *
@@ -196,7 +196,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_scheme() const;
+  auto property_scheme() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Service name, eg 'ldap'.
    *
@@ -205,7 +205,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_service() const;
+  auto property_service() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -235,7 +235,7 @@ namespace Glib
    * @relates Gio::NetworkService
    */
   GIOMM_API
-  Glib::RefPtr<Gio::NetworkService> wrap(GNetworkService* object, bool take_copy = false);
+  auto wrap(GNetworkService* object, bool take_copy = false) -> Glib::RefPtr<Gio::NetworkService>;
 }
 
 

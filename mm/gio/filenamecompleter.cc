@@ -36,7 +36,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo FilenameCompleter_signal_got_completion_data_info =
+const Glib::SignalProxyInfo FilenameCompleter_signal_got_completion_data_info =
 {
   "got_completion_data",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -50,7 +50,7 @@ static const Glib::SignalProxyInfo FilenameCompleter_signal_got_completion_data_
 namespace Glib
 {
 
-Glib::RefPtr<Gio::FilenameCompleter> wrap(GFilenameCompleter* object, bool take_copy)
+auto wrap(GFilenameCompleter* object, bool take_copy) -> Glib::RefPtr<Gio::FilenameCompleter>
 {
   return Glib::make_refptr_for_instance<Gio::FilenameCompleter>( dynamic_cast<Gio::FilenameCompleter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -65,7 +65,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& FilenameCompleter_Class::init()
+auto FilenameCompleter_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -135,7 +135,7 @@ void FilenameCompleter_Class::got_completion_data_callback(GFilenameCompleter* s
 }
 
 
-Glib::ObjectBase* FilenameCompleter_Class::wrap_new(GObject* object)
+auto FilenameCompleter_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new FilenameCompleter((GFilenameCompleter*)object);
 }
@@ -143,7 +143,7 @@ Glib::ObjectBase* FilenameCompleter_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GFilenameCompleter* FilenameCompleter::gobj_copy()
+auto FilenameCompleter::gobj_copy() -> GFilenameCompleter*
 {
   reference();
   return gobj();
@@ -166,7 +166,7 @@ FilenameCompleter::FilenameCompleter(FilenameCompleter&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-FilenameCompleter& FilenameCompleter::operator=(FilenameCompleter&& src) noexcept
+auto FilenameCompleter::operator=(FilenameCompleter&& src) noexcept -> FilenameCompleter&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -179,13 +179,13 @@ FilenameCompleter::~FilenameCompleter() noexcept
 
 FilenameCompleter::CppClassType FilenameCompleter::filenamecompleter_class_; // initialize static member
 
-GType FilenameCompleter::get_type()
+auto FilenameCompleter::get_type() -> GType
 {
   return filenamecompleter_class_.init().get_type();
 }
 
 
-GType FilenameCompleter::get_base_type()
+auto FilenameCompleter::get_base_type() -> GType
 {
   return g_filename_completer_get_type();
 }
@@ -201,17 +201,17 @@ FilenameCompleter::FilenameCompleter()
 
 }
 
-Glib::RefPtr<FilenameCompleter> FilenameCompleter::create()
+auto FilenameCompleter::create() -> Glib::RefPtr<FilenameCompleter>
 {
   return Glib::make_refptr_for_instance<FilenameCompleter>( new FilenameCompleter() );
 }
 
-std::string FilenameCompleter::get_completion_suffix(const std::string& initial_text) const
+auto FilenameCompleter::get_completion_suffix(const std::string& initial_text) const -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(g_filename_completer_get_completion_suffix(const_cast<GFilenameCompleter*>(gobj()), initial_text.c_str()));
 }
 
-std::vector<Glib::ustring> FilenameCompleter::get_completions(const std::string& initial_text) const
+auto FilenameCompleter::get_completions(const std::string& initial_text) const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_filename_completer_get_completions(const_cast<GFilenameCompleter*>(gobj()), initial_text.c_str()), Glib::OWNERSHIP_DEEP);
 }
@@ -222,7 +222,7 @@ void FilenameCompleter::set_dirs_only(bool dirs_only)
 }
 
 
-Glib::SignalProxy<void()> FilenameCompleter::signal_got_completion_data()
+auto FilenameCompleter::signal_got_completion_data() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &FilenameCompleter_signal_got_completion_data_info);
 }

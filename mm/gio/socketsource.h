@@ -73,16 +73,16 @@ public:
    * @param priority The priority of the new event source.
    * @return A connection handle, which can be used to disconnect the handler.
    */
-  sigc::connection connect(const sigc::slot<bool(Glib::IOCondition)>& slot,
+  auto connect(const sigc::slot<bool(Glib::IOCondition)>& slot,
     const Glib::RefPtr<Socket>& socket, Glib::IOCondition condition,
     const Glib::RefPtr<Cancellable>& cancellable = {},
-    int priority = Glib::PRIORITY_DEFAULT);
+    int priority = Glib::PRIORITY_DEFAULT) -> sigc::connection;
 
 private:
   GMainContext* context_;
 
   // no copy assignment
-  SignalSocket& operator=(const SignalSocket&) = delete;
+  auto operator=(const SignalSocket&) -> SignalSocket& = delete;
 };
 
 /** Convenience socket signal.
@@ -93,8 +93,8 @@ private:
  * @ingroup NetworkIO
  */
 GIOMM_API
-SignalSocket signal_socket(
-  const Glib::RefPtr<Glib::MainContext>& context = {});
+auto signal_socket(
+  const Glib::RefPtr<Glib::MainContext>& context = {}) -> SignalSocket;
 
 /** An event source that can monitor a Gio::Socket.
  * @see Gio::Socket::create_source().
@@ -107,9 +107,9 @@ class SocketSource : public Glib::IOSource
 public:
   using CppObjectType = Gio::SocketSource;
 
-  GIOMM_API static Glib::RefPtr<SocketSource> create(const Glib::RefPtr<Socket>& socket,
+  GIOMM_API static auto create(const Glib::RefPtr<Socket>& socket,
     Glib::IOCondition condition,
-    const Glib::RefPtr<Cancellable>& cancellable = {});
+    const Glib::RefPtr<Cancellable>& cancellable = {}) -> Glib::RefPtr<SocketSource>;
 
 
 protected:
@@ -121,9 +121,9 @@ private:
   friend GIOMM_API Socket;
 
   // This is just to avoid the need for Gio::Socket to create a RefPtr<> to itself.
-  GIOMM_API static Glib::RefPtr<SocketSource> create(GSocket* socket,
+  GIOMM_API static auto create(GSocket* socket,
     Glib::IOCondition condition,
-    const Glib::RefPtr<Cancellable>& cancellable = {});
+    const Glib::RefPtr<Cancellable>& cancellable = {}) -> Glib::RefPtr<SocketSource>;
 
   // This is just to avoid the need for Gio::Socket to create a RefPtr<> to itself.
   GIOMM_API SocketSource(GSocket* socket, Glib::IOCondition condition,

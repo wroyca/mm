@@ -164,7 +164,7 @@ public:
 
   GLIBMM_API VariantParseError(Code error_code, const Glib::ustring& error_message);
   GLIBMM_API explicit VariantParseError(GError* gobject);
-  GLIBMM_API Code code() const;
+  GLIBMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -211,20 +211,20 @@ class GLIBMM_API VariantBase
   explicit VariantBase(GVariant* castitem, bool make_a_copy = false);
 
   VariantBase(const VariantBase& src);
-  VariantBase& operator=(const VariantBase& src);
+  auto operator=(const VariantBase& src) -> VariantBase&;
 
   VariantBase(VariantBase&& other) noexcept;
-  VariantBase& operator=(VariantBase&& other) noexcept;
+  auto operator=(VariantBase&& other) noexcept -> VariantBase&;
 
   ~VariantBase() noexcept;
 
   void swap(VariantBase& other) noexcept;
 
-  GVariant*       gobj()       { return gobject_; }
-  const GVariant* gobj() const { return gobject_; }
+  auto       gobj() -> GVariant*       { return gobject_; }
+  auto gobj() const -> const GVariant* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  GVariant* gobj_copy() const;
+  auto gobj_copy() const -> GVariant*;
 
 protected:
   GVariant* gobject_;
@@ -263,7 +263,7 @@ public:
    *
    * @return A VariantType.
    */
-  VariantType get_type() const;
+  auto get_type() const -> VariantType;
 
 
   /** Returns the type string of @a value.  Unlike the result of calling
@@ -274,7 +274,7 @@ public:
    *
    * @return The type string for the type of @a value.
    */
-  std::string get_type_string() const;
+  auto get_type_string() const -> std::string;
 
   /** Checks whether @a value has a floating reference count.
    *
@@ -290,7 +290,7 @@ public:
    *
    * @return Whether @a value is floating.
    */
-  bool is_floating() const;
+  auto is_floating() const -> bool;
 
   /** Checks if a value has a type matching the provided type.
    *
@@ -299,7 +299,7 @@ public:
    * @param type A VariantType.
    * @return <tt>true</tt> if the type of @a value matches @a type.
    */
-  bool is_of_type(const VariantType& type) const;
+  auto is_of_type(const VariantType& type) const -> bool;
 
   /** Checks if @a value is a container.
    *
@@ -307,7 +307,7 @@ public:
    *
    * @return <tt>true</tt> if @a value is a container.
    */
-  bool is_container() const;
+  auto is_container() const -> bool;
 
   /** Classifies @a value according to its top-level type.
    *
@@ -315,7 +315,7 @@ public:
    *
    * @return The VariantClass of @a value.
    */
-  GVariantClass classify() const;
+  auto classify() const -> GVariantClass;
 
 
   /** Determines the number of bytes that would be required to store @a value
@@ -334,7 +334,7 @@ public:
    *
    * @return The serialized size of @a value.
    */
-  gsize get_size() const;
+  auto get_size() const -> gsize;
 
   /** Returns a pointer to the serialized form of a Variant instance.
    * The returned data may not be in fully-normalised form if read from an
@@ -366,7 +366,7 @@ public:
    *
    * @return The serialized form of @a value, or <tt>nullptr</tt>.
    */
-  gconstpointer get_data() const;
+  auto get_data() const -> gconstpointer;
 
   /** Returns a pointer to the serialized form of a Variant instance.
    * The semantics of this function are exactly the same as
@@ -377,7 +377,7 @@ public:
    *
    * @return A new Bytes representing the variant data.
    */
-  Glib::RefPtr<const Glib::Bytes> get_data_as_bytes() const;
+  auto get_data_as_bytes() const -> Glib::RefPtr<const Glib::Bytes>;
 
   /** Stores the serialized form of @a value at @a data.  @a data should be
    * large enough.  See g_variant_get_size().
@@ -412,7 +412,7 @@ public:
    * the output.
    * @return A newly-allocated string holding the result.
    */
-  Glib::ustring print(bool type_annotate =  false) const;
+  auto print(bool type_annotate =  false) const -> Glib::ustring;
 
 
   /** Generates a hash value for a Variant instance.
@@ -429,7 +429,7 @@ public:
    *
    * @return A hash value corresponding to @a value.
    */
-  guint hash() const;
+  auto hash() const -> guint;
 
 
   /** Checks if @a *this and @a other have the same type and value.
@@ -439,7 +439,7 @@ public:
    * @param other The Variant to compare with.
    * @return <tt>true</tt> if @a *this and @a other are equal.
    */
-  bool equal(const VariantBase& other) const;
+  auto equal(const VariantBase& other) const -> bool;
 
   /** Checks if @a *this and @a other have the same type and value.
    *
@@ -448,7 +448,7 @@ public:
    * @param other The Variant to compare with.
    * @return <tt>true</tt> if @a *this and @a other are equal.
    */
-  bool operator==(const VariantBase& other) const;
+  auto operator==(const VariantBase& other) const -> bool;
 
   /** Checks if @a *this and @a other have the same type and value.
    *
@@ -457,22 +457,22 @@ public:
    * @param other The Variant to compare with.
    * @return <tt>true</tt> if @a *this and @a other are not equal.
    */
-  bool operator!=(const VariantBase& other) const;
+  auto operator!=(const VariantBase& other) const -> bool;
 
   /** Ordering relational operators.
    * These are explicitly deleted to prevent the compiler from generating
    * error messages containing long lists of operators that can't be used.
    */
-  bool operator<(const VariantBase& other) const = delete;
+  auto operator<(const VariantBase& other) const -> bool = delete;
 
   /// See operator<().
-  bool operator<=(const VariantBase& other) const = delete;
+  auto operator<=(const VariantBase& other) const -> bool = delete;
 
   /// See operator<().
-  bool operator>(const VariantBase& other) const = delete;
+  auto operator>(const VariantBase& other) const -> bool = delete;
 
   /// See operator<().
-  bool operator>=(const VariantBase& other) const = delete;
+  auto operator>=(const VariantBase& other) const -> bool = delete;
 
   /** Gets a VariantBase instance that has the same value as this variant and
    * is trusted to be in normal form.
@@ -515,7 +515,7 @@ public:
    *
    * @return <tt>true</tt> if @a value is in normal form.
    */
-  bool is_normal_form() const;
+  auto is_normal_form() const -> bool;
 
   /** Performs a byteswapping operation on the contents of this variant. The
    * result is that all multi-byte numeric data contained in the variant is
@@ -556,7 +556,7 @@ public:
    * @param copy_only <tt>true</tt> to ensure the format string makes deep copies.
    * @return <tt>true</tt> if @a format_string is safe to use.
    */
-  bool check_format_string(const std::string& format_string, bool copy_only =  false) const;
+  auto check_format_string(const std::string& format_string, bool copy_only =  false) const -> bool;
 
    //Ignore private API from gvariant-core.h:
 
@@ -572,7 +572,7 @@ public:
     * @throws std::bad_cast if the Variant was not of the expected type.
     */
    template<class V_CastTo>
-   static V_CastTo cast_dynamic(const VariantBase& v);
+   static auto cast_dynamic(const VariantBase& v) -> V_CastTo;
 
 
 protected:
@@ -590,14 +590,14 @@ protected:
    * can be VARIANT_TYPE_OBJECT_PATH and the vector's elements can be VARIANT_TYPE_SIGNATURE.
    * @newin{2,46}
    */
-  bool is_castable_to(const VariantType& supertype) const;
+  auto is_castable_to(const VariantType& supertype) const -> bool;
 #endif //DOXYGEN_SHOULD_SKIP_THIS
 
 
 };
 
 template<class V_CastTo>
-V_CastTo VariantBase::cast_dynamic(const VariantBase& v)
+auto VariantBase::cast_dynamic(const VariantBase& v) -> V_CastTo
 {
   if(!(v.gobj()))
   {
@@ -670,7 +670,7 @@ public:
    * @param string A normal C nul-terminated string.
    * @return <tt>true</tt> if @a string is a D-Bus object path.
    */
-  static bool is_object_path(const std::string& string);
+  static auto is_object_path(const std::string& string) -> bool;
 
   /** Creates a D-Bus type signature variant with the contents of @a signature.
    * @a signature must be a valid D-Bus type signature. Use is_signature() if unsure.
@@ -696,7 +696,7 @@ public:
    * @param string A normal C nul-terminated string.
    * @return <tt>true</tt> if @a string is a D-Bus type signature.
    */
-  static bool is_signature(const std::string& string);
+  static auto is_signature(const std::string& string) -> bool;
 
 
 };
@@ -738,13 +738,13 @@ public:
    * @param children The vector containing the children of the container.
    * @return The newly created tuple variant (as a VariantContainerBase).
    */
-  static VariantContainerBase create_tuple(const std::vector<VariantBase>& children);
+  static auto create_tuple(const std::vector<VariantBase>& children) -> VariantContainerBase;
 
   /** Create a tuple variant with a single variant child.
    * @param child The child variant.
    * @return The newly created tuple variant (as a VariantContainerBase).
    */
-  static VariantContainerBase create_tuple(const VariantBase& child);
+  static auto create_tuple(const VariantBase& child) -> VariantContainerBase;
 
 
   /** Depending on if @a child is <tt>nullptr</tt>, either wraps @a child inside of a
@@ -765,8 +765,8 @@ public:
    * @return A floating reference to a new Variant maybe instance.
    */
 
-  static VariantContainerBase create_maybe(const VariantType& child_type,
-    const VariantBase& child = {});
+  static auto create_maybe(const VariantType& child_type,
+    const VariantBase& child = {}) -> VariantContainerBase;
 
 
   /** Determines the number of children in a container Variant instance.
@@ -785,7 +785,7 @@ public:
    *
    * @return The number of children in the container.
    */
-  gsize get_n_children() const;
+  auto get_n_children() const -> gsize;
 
   /** Reads a child item out of this instance. This method is valid for
    * variants, maybes, arrays, tuples and dictionary entries.
@@ -833,7 +833,7 @@ public:
    * @param index The index of the child to fetch.
    * @return The child at the specified index.
    */
-  VariantBase get_child(gsize index =  0);
+  auto get_child(gsize index =  0) -> VariantBase;
 
   /* TODO?:
   /// A get() method to return the contents of the variant in the container.
@@ -849,7 +849,7 @@ public:
    * <tt>nothing</tt>.
    * @newin{2,28}
    */
-  bool get_maybe(VariantBase& maybe) const;
+  auto get_maybe(VariantBase& maybe) const -> bool;
 
 
 protected:
@@ -857,14 +857,14 @@ protected:
   /** Used by get_iter() in the subclasses.
    * @newin{2,46}
    */
-  VariantIter get_iter(const VariantType& container_variant_type) const;
+  auto get_iter(const VariantType& container_variant_type) const -> VariantIter;
 #endif //DOXYGEN_SHOULD_SKIP_THIS
 
 
 };
 
 template<>
-GLIBMM_API VariantContainerBase VariantBase::cast_dynamic<VariantContainerBase>(const VariantBase& v);
+GLIBMM_API auto VariantBase::cast_dynamic<VariantContainerBase>(const VariantBase& v) -> VariantContainerBase;
 
 /** Template class used for the specialization of the Variant<> classes.
  * @newin{2,28}
@@ -921,7 +921,7 @@ public:
    * @return The VariantType.
    * @newin{2,28}
    */
-  static const VariantType& variant_type() G_GNUC_CONST;
+  static auto variant_type() -> const VariantType& G_GNUC_CONST;
 
   //This must have a create() method because otherwise it would be a copy
   //constructor.
@@ -930,7 +930,7 @@ public:
    * @return The new Variant.
    * @newin{2,28}
    */
-  static Variant<VariantBase> create(const VariantBase& data);
+  static auto create(const VariantBase& data) -> Variant<VariantBase>;
 
 
   //TODO: Documentation
@@ -945,7 +945,7 @@ public:
    *
    * @return The item contained in the variant.
    */
-  VariantBase get() const;
+  auto get() const -> VariantBase;
 
 
 };
@@ -983,20 +983,20 @@ public:
    * @return The VariantType.
    * @newin{2,36}
    */
-  static const VariantType& variant_type() G_GNUC_CONST;
+  static auto variant_type() -> const VariantType& G_GNUC_CONST;
 
   /** Creates a new Variant< Variant<T> >.
    * @param data The value of the new Variant.
    * @return The new Variant.
    * @newin{2,36}
    */
-  static Variant< Variant<T> > create(const Variant<T>& data);
+  static auto create(const Variant<T>& data) -> Variant< Variant<T> >;
 
   /** Gets the contents of the Variant.
    * @return The contents of the Variant.
    * @newin{2,36}
    */
-  Variant<T> get() const;
+  auto get() const -> Variant<T>;
 };
 
 /** Specialization of Variant containing a Glib::ustring, for variants of type
@@ -1035,21 +1035,21 @@ public:
    * @return The VariantType.
    * @newin{2,28}
    */
-  static const VariantType& variant_type() G_GNUC_CONST;
+  static auto variant_type() -> const VariantType& G_GNUC_CONST;
 
   /** Creates a new Variant<Glib::ustring>.
    * @param data The value of the new Variant.
    * @return The new Variant.
    * @newin{2,28}
    */
-  static Variant<Glib::ustring> create(const Glib::ustring& data);
+  static auto create(const Glib::ustring& data) -> Variant<Glib::ustring>;
 
   //We can't use WRAP_METHOD() here because g_variant_get_string() takes an extra length parameter.
   /** Gets the contents of the Variant.
    * @return The contents of the Variant.
    * @newin{2,28}
    */
-  Glib::ustring get() const;
+  auto get() const -> Glib::ustring;
 
 
 };
@@ -1090,21 +1090,21 @@ public:
    * @return The VariantType.
    * @newin{2,54}
    */
-  static const VariantType& variant_type() G_GNUC_CONST;
+  static auto variant_type() -> const VariantType& G_GNUC_CONST;
 
   /** Creates a new Variant<Glib::DBusObjectPathString>.
    * @param data The value of the new Variant.
    * @return The new Variant.
    * @newin{2,54}
    */
-  static Variant<CppType> create(const CppType& data);
+  static auto create(const CppType& data) -> Variant<CppType>;
 
   //We can't use WRAP_METHOD() here because g_variant_get_string() takes an extra length parameter.
   /** Gets the contents of the Variant.
    * @return The contents of the Variant.
    * @newin{2,54}
    */
-  CppType get() const;
+  auto get() const -> CppType;
 
 
 };
@@ -1145,21 +1145,21 @@ public:
    * @return The VariantType.
    * @newin{2,54}
    */
-  static const VariantType& variant_type() G_GNUC_CONST;
+  static auto variant_type() -> const VariantType& G_GNUC_CONST;
 
   /** Creates a new Variant<Glib::DBusSignatureString>.
    * @param data The value of the new Variant.
    * @return The new Variant.
    * @newin{2,54}
    */
-  static Variant<CppType> create(const CppType& data);
+  static auto create(const CppType& data) -> Variant<CppType>;
 
   //We can't use WRAP_METHOD() here because g_variant_get_string() takes an extra length parameter.
   /** Gets the contents of the Variant.
    * @return The contents of the Variant.
    * @newin{2,54}
    */
-  CppType get() const;
+  auto get() const -> CppType;
 
 
 };
@@ -1201,17 +1201,17 @@ public:
    * @return The VariantType.
    * @newin{2,28}
    */
-  static const VariantType& variant_type() G_GNUC_CONST;
+  static auto variant_type() -> const VariantType& G_GNUC_CONST;
 
   /** Creates a new Variant<std::string>.
    * @param data The value of the new Variant.
    * @return The new Variant.
    * @newin{2,28}
    */
-  static Variant<std::string> create(const std::string& data);
+  static auto create(const std::string& data) -> Variant<std::string>;
 
   //TODO: Documentation.
-  std::string get() const;
+  auto get() const -> std::string;
 
 
 };
@@ -1248,14 +1248,14 @@ public:
    * @return The VariantType.
    * @newin{2,28}
    */
-  static const VariantType& variant_type() G_GNUC_CONST;
+  static auto variant_type() -> const VariantType& G_GNUC_CONST;
 
   /** Creates a new Variant< std::pair<K, V> >.
    * @param data The value of the new Variant.
    * @return The new Variant.
    * @newin{2,28}
    */
-  static Variant< std::pair<K, V> > create(const std::pair<K, V>& data);
+  static auto create(const std::pair<K, V>& data) -> Variant< std::pair<K, V> >;
 
 
   /** Gets the contents of the Variant.
@@ -1263,7 +1263,7 @@ public:
    * @throw std::out_of_range
    * @newin{2,28}
    */
-  std::pair<K, V> get() const;
+  auto get() const -> std::pair<K, V>;
 };
 
 /** Specialization of Variant containing an array of items.
@@ -1297,14 +1297,14 @@ public:
    * @return The VariantType.
    * @newin{2,28}
    */
-  static const VariantType& variant_type() G_GNUC_CONST;
+  static auto variant_type() -> const VariantType& G_GNUC_CONST;
 
   /** Creates a new Variant from an array of numeric types.
    * @param data The array to use for creation.
    * @return The new Variant.
    * @newin{2,28}
    */
-  static Variant< std::vector<T> > create(const std::vector<T>& data);
+  static auto create(const std::vector<T>& data) -> Variant< std::vector<T> >;
 
 
   /** Gets a specific element of the array.  It is an error if @a index is
@@ -1318,20 +1318,20 @@ public:
    * @throw std::out_of_range
    * @newin{2,28}
    */
-  T get_child(gsize index) const;
+  auto get_child(gsize index) const -> T;
 
   /** Gets the vector of the Variant.
    * @return The vector.
    * @newin{2,28}
    */
-  std::vector<T> get() const;
+  auto get() const -> std::vector<T>;
 
 
   /** Gets a VariantIter of the Variant.
    * @return the VariantIter.
    * @newin{2,28}
    */
-  VariantIter get_iter() const;
+  auto get_iter() const -> VariantIter;
 };
 
 /** Specialization of Variant containing an array of UTF-8 capable
@@ -1361,15 +1361,15 @@ public:
    * @return The VariantType.
    * @newin{2,28}
    */
-  static const VariantType& variant_type() G_GNUC_CONST;
+  static auto variant_type() -> const VariantType& G_GNUC_CONST;
 
   /** Creates a new Variant from an array of strings.
    * @param data The array to use for creation.
    * @return The new Variant.
    * @newin{2,28}
    */
-  static Variant< std::vector<Glib::ustring> >
-    create(const std::vector<Glib::ustring>& data);
+  static auto
+    create(const std::vector<Glib::ustring>& data) -> Variant< std::vector<Glib::ustring> >;
 
   /** Gets a specific element of the string array.  It is an error if @a index
    * is greater than the number of child items in the container.  See
@@ -1382,20 +1382,20 @@ public:
    * @throw std::out_of_range
    * @newin{2,28}
    */
-  Glib::ustring get_child(gsize index) const;
+  auto get_child(gsize index) const -> Glib::ustring;
 
   /** Gets the string vector of the Variant.
    * @return The vector.
    * @newin{2,28}
    */
-  std::vector<Glib::ustring> get() const;
+  auto get() const -> std::vector<Glib::ustring>;
 
 
   /** Gets a VariantIter of the Variant.
    * @return the VariantIter.
    * @newin{2,28}
    */
-  VariantIter get_iter() const;
+  auto get_iter() const -> VariantIter;
 };
 
 /** Specialization of Variant containing an array of D-Bus object paths.
@@ -1425,14 +1425,14 @@ public:
    * @return The VariantType.
    * @newin{2,54}
    */
-  static const VariantType& variant_type() G_GNUC_CONST;
+  static auto variant_type() -> const VariantType& G_GNUC_CONST;
 
   /** Creates a new Variant from an array of strings.
    * @param data The array to use for creation.
    * @return The new Variant.
    * @newin{2,54}
    */
-  static Variant<CppContainerType> create(const CppContainerType& data);
+  static auto create(const CppContainerType& data) -> Variant<CppContainerType>;
 
   /** Gets a specific element of the string array.  It is an error if @a index
    * is greater than the number of child items in the container.  See
@@ -1445,19 +1445,19 @@ public:
    * @throw std::out_of_range
    * @newin{2,54}
    */
-  CppType get_child(gsize index) const;
+  auto get_child(gsize index) const -> CppType;
 
   /** Gets the string vector of the Variant.
    * @return The vector.
    * @newin{2,54}
    */
-  CppContainerType get() const;
+  auto get() const -> CppContainerType;
 
   /** Gets a VariantIter of the Variant.
    * @return the VariantIter.
    * @newin{2,54}
    */
-  VariantIter get_iter() const;
+  auto get_iter() const -> VariantIter;
 };
 
 /** Specialization of Variant containing an array of non-UTF-8 strings
@@ -1487,23 +1487,23 @@ public:
    * @return The VariantType.
    * @newin{2,28}
    */
-  static const VariantType& variant_type() G_GNUC_CONST;
+  static auto variant_type() -> const VariantType& G_GNUC_CONST;
 
   /** Creates a new Variant from an array of strings.
    * @param data The array to use for creation.
    * @return The new Variant.
    * @newin{2,28}
    */
-  static Variant< std::vector<std::string> >
-    create(const std::vector<std::string>& data);
+  static auto
+    create(const std::vector<std::string>& data) -> Variant< std::vector<std::string> >;
 
   /** Creates a new Variant from an array of D-Bus object paths.
    * @param paths The array to use for creation.
    * @return The new Variant.
    * @newin{2,36}
    */
-  static Variant< std::vector<std::string> >
-    create_from_object_paths(const std::vector<std::string>& paths);
+  static auto
+    create_from_object_paths(const std::vector<std::string>& paths) -> Variant< std::vector<std::string> >;
 
   /** Gets a specific element of the string array.  It is an error if @a index
    * is greater than the number of child items in the container.  See
@@ -1516,13 +1516,13 @@ public:
    * @throw std::out_of_range
    * @newin{2,28}
    */
-  std::string get_child(gsize index) const;
+  auto get_child(gsize index) const -> std::string;
 
   /** Gets the string vector of the Variant.
    * @return The vector.
    * @newin{2,28}
    */
-  std::vector<std::string> get() const;
+  auto get() const -> std::vector<std::string>;
 
 
   // Object paths are merely strings so it is possible to get them already with
@@ -1533,7 +1533,7 @@ public:
    * @return the VariantIter.
    * @newin{2,28}
    */
-  VariantIter get_iter() const;
+  auto get_iter() const -> VariantIter;
 };
 
 /** Specialization of Variant containing a dictionary (a map of (key,
@@ -1568,14 +1568,14 @@ public:
    * @return The VariantType.
    * @newin{2,28}
    */
-  static const VariantType& variant_type() G_GNUC_CONST;
+  static auto variant_type() -> const VariantType& G_GNUC_CONST;
 
   /** Creates a new Variant containing a dictionary from a map.
    * @param data The map to use for creation.
    * @return The new Variant holding a dictionary.
    * @newin{2,28}
    */
-  static Variant< std::map<K, V> > create(const std::map<K, V>& data);
+  static auto create(const std::map<K, V>& data) -> Variant< std::map<K, V> >;
 
   /** Gets a specific dictionary entry from the string array.  It is an error
    * if @a index is greater than the number of child items in the container.
@@ -1588,27 +1588,27 @@ public:
    * @throw std::out_of_range
    * @newin{2,28}
    */
-  std::pair<K, V> get_child(gsize index) const;
+  auto get_child(gsize index) const -> std::pair<K, V>;
 
   /** Looks up a value in a dictionary Variant.
    * @param key The key to look up.
    * @param value A location in which to store the value if found.
    * @return <tt>true</tt> if the key is found, <tt>false</tt> otherwise.
    */
-  bool lookup(const K& key, V& value) const;
+  auto lookup(const K& key, V& value) const -> bool;
 
 
   /** Gets the map (the dictionary) of the Variant.
    * @return The vector.
    * @newin{2,28}
    */
-  std::map<K, V> get() const;
+  auto get() const -> std::map<K, V>;
 
   /** Gets a VariantIter of the Variant.
    * @return the VariantIter.
    * @newin{2,28}
    */
-  VariantIter get_iter() const;
+  auto get_iter() const -> VariantIter;
 };
 
 /** Specialization of Variant containing a tuple.
@@ -1640,13 +1640,13 @@ public:
    * @return The new Variant holding a tuple.
    * @newin{2,54}
    */
-  static Variant<std::tuple<Types...>> create(const std::tuple<Types...>& data);
+  static auto create(const std::tuple<Types...>& data) -> Variant<std::tuple<Types...>>;
 
   /** Gets the VariantType.
    * @return The VariantType.
    * @newin{2,54}
    */
-  static const VariantType& variant_type() G_GNUC_CONST;
+  static auto variant_type() -> const VariantType& G_GNUC_CONST;
 
   /** Gets a specific element from the tuple.
    * It is an error if @a index is greater than or equal to the number of
@@ -1658,22 +1658,22 @@ public:
    * @newin{2,54}
    */
   template<class T>
-  T get_child(gsize index) const;
+  auto get_child(gsize index) const -> T;
 
   template<class T>
-  Variant<T> get_child_variant(gsize index) const;
+  auto get_child_variant(gsize index) const -> Variant<T>;
 
   /** Gets the tuple of the Variant.
    * @return The tuple.
    * @newin{2,54}
    */
-  std::tuple<Types...> get() const;
+  auto get() const -> std::tuple<Types...>;
 
   /** Gets a VariantIter of the Variant.
    * @return The VariantIter.
    * @newin{2,54}
    */
-  VariantIter get_iter() const;
+  auto get_iter() const -> VariantIter;
 };
 
 } // namespace Glib
@@ -1707,13 +1707,13 @@ Variant< Variant<T> >::Variant(GVariant* castitem, bool take_a_reference)
 
 // static
 template<class T>
-const VariantType& Variant< Variant<T> >::variant_type()
+auto Variant< Variant<T> >::variant_type() -> const VariantType&
 {
   return VARIANT_TYPE_VARIANT;
 }
 
 template<class T>
-Variant< Variant<T> > Variant< Variant<T> >::create(const Variant<T>& data)
+auto Variant< Variant<T> >::create(const Variant<T>& data) -> Variant< Variant<T> >
 {
   Variant< Variant<T> > result = Variant< Variant<T> >(
     g_variant_new_variant(const_cast<GVariant*>(data.gobj())));
@@ -1721,7 +1721,7 @@ Variant< Variant<T> > Variant< Variant<T> >::create(const Variant<T>& data)
 }
 
 template<class T>
-Variant<T> Variant< Variant<T> >::get() const
+auto Variant< Variant<T> >::get() const -> Variant<T>
 {
   GVariant* const gvariant = g_variant_get_variant(gobject_);
   return Variant<T>(gvariant);
@@ -1731,7 +1731,7 @@ Variant<T> Variant< Variant<T> >::get() const
 
 // static
 template<class K, class V>
-const VariantType& Variant< std::pair<K, V> >::variant_type()
+auto Variant< std::pair<K, V> >::variant_type() -> const VariantType&
 {
   static VariantType type(
     g_variant_type_new_dict_entry(Variant<K>::variant_type().gobj(),
@@ -1741,8 +1741,8 @@ const VariantType& Variant< std::pair<K, V> >::variant_type()
 }
 
 template<class K, class V>
-Variant< std::pair<K, V> >
-Variant< std::pair<K, V> >::create(const std::pair<K, V>& data)
+auto
+Variant< std::pair<K, V> >::create(const std::pair<K, V>& data) -> Variant< std::pair<K, V> >
 {
   Variant<K> key = Variant<K>::create(data.first);
   Variant<V> value = Variant<V>::create(data.second);
@@ -1754,7 +1754,7 @@ Variant< std::pair<K, V> >::create(const std::pair<K, V>& data)
 }
 
 template<class K, class V>
-std::pair<K, V> Variant< std::pair<K, V> >::get() const
+auto Variant< std::pair<K, V> >::get() const -> std::pair<K, V>
 {
   // Get the key (the first element of this VariantContainerBase).
   Variant<K> key;
@@ -1773,7 +1773,7 @@ std::pair<K, V> Variant< std::pair<K, V> >::get() const
 
 // static
 template<class T>
-const VariantType& Variant< std::vector<T> >::variant_type()
+auto Variant< std::vector<T> >::variant_type() -> const VariantType&
 {
   static VariantType type =
     VariantType::create_array(Variant<T>::variant_type());
@@ -1782,8 +1782,8 @@ const VariantType& Variant< std::vector<T> >::variant_type()
 }
 
 template<class T>
-Variant< std::vector<T> >
-Variant< std::vector<T> >::create(const std::vector<T>& data)
+auto
+Variant< std::vector<T> >::create(const std::vector<T>& data) -> Variant< std::vector<T> >
 {
   // Get the variant type of the array.
   VariantType array_variant_type = Variant< std::vector<T> >::variant_type();
@@ -1809,7 +1809,7 @@ Variant< std::vector<T> >::create(const std::vector<T>& data)
 }
 
 template<class T>
-T Variant< std::vector<T> >::get_child(gsize index) const
+auto Variant< std::vector<T> >::get_child(gsize index) const -> T
 {
   if (index >= get_n_children())
     throw std::out_of_range(
@@ -1825,7 +1825,7 @@ T Variant< std::vector<T> >::get_child(gsize index) const
 }
 
 template<class T>
-std::vector<T> Variant< std::vector<T> >::get() const
+auto Variant< std::vector<T> >::get() const -> std::vector<T>
 {
   std::vector<T> result;
 
@@ -1844,7 +1844,7 @@ std::vector<T> Variant< std::vector<T> >::get() const
 }
 
 template<class T>
-VariantIter Variant< std::vector<T> >::get_iter() const
+auto Variant< std::vector<T> >::get_iter() const -> VariantIter
 {
   return VariantContainerBase::get_iter(variant_type());
 }
@@ -1853,7 +1853,7 @@ VariantIter Variant< std::vector<T> >::get_iter() const
 
 // static
 template<class K, class V>
-const VariantType& Variant< std::map<K, V> >::variant_type()
+auto Variant< std::map<K, V> >::variant_type() -> const VariantType&
 {
   static VariantType type =
     VariantType::create_array(Variant< std::pair<K, V> >::variant_type());
@@ -1862,8 +1862,8 @@ const VariantType& Variant< std::map<K, V> >::variant_type()
 }
 
 template<class K, class V>
-Variant< std::map<K, V> >
-Variant< std::map<K, V> >::create(const std::map<K, V>& data)
+auto
+Variant< std::map<K, V> >::create(const std::map<K, V>& data) -> Variant< std::map<K, V> >
 {
   // Get the variant type of the elements.
   VariantType element_variant_type =
@@ -1894,8 +1894,8 @@ Variant< std::map<K, V> >::create(const std::map<K, V>& data)
 }
 
 template<class K, class V>
-std::pair<K, V>
-Variant< std::map<K, V> >::get_child(gsize index) const
+auto
+Variant< std::map<K, V> >::get_child(gsize index) const -> std::pair<K, V>
 {
   Variant< std::pair<K, V> > dict_entry;
   VariantContainerBase::get_child(dict_entry, index);
@@ -1903,7 +1903,7 @@ Variant< std::map<K, V> >::get_child(gsize index) const
 }
 
 template<class K, class V>
-bool Variant< std::map<K, V> >::lookup(const K& key, V& value) const
+auto Variant< std::map<K, V> >::lookup(const K& key, V& value) const -> bool
 {
   // The code in this method pretty much reflects the g_variant_lookup_value()
   // function except that it's more general to deal with keys that are not
@@ -1927,7 +1927,7 @@ bool Variant< std::map<K, V> >::lookup(const K& key, V& value) const
 }
 
 template<class K, class V>
-std::map<K, V> Variant< std::map<K, V> >::get() const
+auto Variant< std::map<K, V> >::get() const -> std::map<K, V>
 {
   std::map<K, V> result;
   VariantIter iter = get_iter();
@@ -1942,7 +1942,7 @@ std::map<K, V> Variant< std::map<K, V> >::get() const
 }
 
 template<class K, class V>
-VariantIter Variant< std::map<K, V> >::get_iter() const
+auto Variant< std::map<K, V> >::get_iter() const -> VariantIter
 {
   return VariantContainerBase::get_iter(variant_type());
 }
@@ -1951,7 +1951,7 @@ VariantIter Variant< std::map<K, V> >::get_iter() const
 
 // static
 template <class... Types>
-const VariantType& Variant<std::tuple<Types...>>::variant_type()
+auto Variant<std::tuple<Types...>>::variant_type() -> const VariantType&
 {
   std::vector<VariantType> types;
   auto expander = [&types](const VariantType &type) mutable -> int
@@ -1987,8 +1987,8 @@ void expand_tuple(std::vector<VariantBase> &variants, const Tuple & t,
 #endif // DOXYGEN_SHOULD_SKIP_THIS
 
 template <class... Types>
-Variant<std::tuple<Types...>>
-Variant<std::tuple<Types...>>::create(const std::tuple<Types...>& data)
+auto
+Variant<std::tuple<Types...>>::create(const std::tuple<Types...>& data) -> Variant<std::tuple<Types...>>
 {
   // create a vector containing all tuple values as variants
   std::vector<Glib::VariantBase> variants;
@@ -2008,7 +2008,7 @@ Variant<std::tuple<Types...>>::create(const std::tuple<Types...>& data)
 
 template <class... Types>
 template <class T>
-T Variant<std::tuple<Types...>>::get_child(gsize index) const
+auto Variant<std::tuple<Types...>>::get_child(gsize index) const -> T
 {
   Variant<T> entry;
   VariantContainerBase::get_child(entry, index);
@@ -2017,7 +2017,7 @@ T Variant<std::tuple<Types...>>::get_child(gsize index) const
 
 template <class... Types>
 template <class T>
-Variant<T> Variant<std::tuple<Types...>>::get_child_variant(gsize index) const
+auto Variant<std::tuple<Types...>>::get_child_variant(gsize index) const -> Variant<T>
 {
   Variant<T> entry;
   VariantContainerBase::get_child(entry, index);
@@ -2029,7 +2029,7 @@ namespace detail
 {
 // swallows any argument
 template <class T>
-constexpr int any_arg(T&& arg)
+constexpr auto any_arg(T&& arg) -> int
 {
   (void)arg;
   return 0;
@@ -2046,7 +2046,7 @@ void assign_tuple(std::vector<VariantBase> &variants, Tuple & t, std::index_sequ
 #endif // DOXYGEN_SHOULD_SKIP_THIS
 
 template <class... Types>
-std::tuple<Types...> Variant<std::tuple<Types...>>::get() const
+auto Variant<std::tuple<Types...>>::get() const -> std::tuple<Types...>
 {
   std::tuple<Types...> data;
   int i = 0;
@@ -2065,7 +2065,7 @@ std::tuple<Types...> Variant<std::tuple<Types...>>::get() const
 }
 
 template< class... Types>
-VariantIter Variant<std::tuple<Types...>>::get_iter() const
+auto Variant<std::tuple<Types...>>::get_iter() const -> VariantIter
 {
   const auto type = variant_type();
   return VariantContainerBase::get_iter(type);
@@ -2081,7 +2081,7 @@ public:
   using CppType = Glib::VariantBase;
 
   void set(CppType data);
-  CppType get() const;
+  auto get() const -> CppType;
 };
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
@@ -2112,7 +2112,7 @@ namespace Glib
    * @relates Glib::VariantBase
    */
   GLIBMM_API
-  Glib::VariantBase wrap(GVariant* object, bool take_copy = false);
+  auto wrap(GVariant* object, bool take_copy = false) -> Glib::VariantBase;
 
 } // namespace Glib
 

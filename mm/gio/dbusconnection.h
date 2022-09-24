@@ -43,13 +43,8 @@ using GDBusConnectionClass = struct _GDBusConnectionClass;
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
-{
-
-namespace DBus
-{ class GIOMM_API Connection_Class; } // namespace DBus
-
-} // namespace Gio
+namespace Gio::DBus
+{ class GIOMM_API Connection_Class; } // namespace Gio
 #endif //DOXYGEN_SHOULD_SKIP_THIS
 
 namespace Gio
@@ -107,16 +102,13 @@ template <>
 class GIOMM_API Value<Gio::DBus::BusType> : public Glib::Value_Enum<Gio::DBus::BusType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 /**
@@ -156,31 +148,31 @@ enum class CallFlags
 };
 
 /** @ingroup giommEnums */
-inline CallFlags operator|(CallFlags lhs, CallFlags rhs)
+inline auto operator|(CallFlags lhs, CallFlags rhs) -> CallFlags
   { return static_cast<CallFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline CallFlags operator&(CallFlags lhs, CallFlags rhs)
+inline auto operator&(CallFlags lhs, CallFlags rhs) -> CallFlags
   { return static_cast<CallFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline CallFlags operator^(CallFlags lhs, CallFlags rhs)
+inline auto operator^(CallFlags lhs, CallFlags rhs) -> CallFlags
   { return static_cast<CallFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline CallFlags operator~(CallFlags flags)
+inline auto operator~(CallFlags flags) -> CallFlags
   { return static_cast<CallFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline CallFlags& operator|=(CallFlags& lhs, CallFlags rhs)
+inline auto operator|=(CallFlags& lhs, CallFlags rhs) -> CallFlags&
   { return (lhs = static_cast<CallFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline CallFlags& operator&=(CallFlags& lhs, CallFlags rhs)
+inline auto operator&=(CallFlags& lhs, CallFlags rhs) -> CallFlags&
   { return (lhs = static_cast<CallFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline CallFlags& operator^=(CallFlags& lhs, CallFlags rhs)
+inline auto operator^=(CallFlags& lhs, CallFlags rhs) -> CallFlags&
   { return (lhs = static_cast<CallFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -248,35 +240,33 @@ enum class ConnectionFlags
 };
 
 /** @ingroup giommEnums */
-inline ConnectionFlags operator|(ConnectionFlags lhs, ConnectionFlags rhs)
+inline auto operator|(ConnectionFlags lhs, ConnectionFlags rhs) -> ConnectionFlags
   { return static_cast<ConnectionFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline ConnectionFlags operator&(ConnectionFlags lhs, ConnectionFlags rhs)
+inline auto operator&(ConnectionFlags lhs, ConnectionFlags rhs) -> ConnectionFlags
   { return static_cast<ConnectionFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline ConnectionFlags operator^(ConnectionFlags lhs, ConnectionFlags rhs)
+inline auto operator^(ConnectionFlags lhs, ConnectionFlags rhs) -> ConnectionFlags
   { return static_cast<ConnectionFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline ConnectionFlags operator~(ConnectionFlags flags)
+inline auto operator~(ConnectionFlags flags) -> ConnectionFlags
   { return static_cast<ConnectionFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline ConnectionFlags& operator|=(ConnectionFlags& lhs, ConnectionFlags rhs)
+inline auto operator|=(ConnectionFlags& lhs, ConnectionFlags rhs) -> ConnectionFlags&
   { return (lhs = static_cast<ConnectionFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline ConnectionFlags& operator&=(ConnectionFlags& lhs, ConnectionFlags rhs)
+inline auto operator&=(ConnectionFlags& lhs, ConnectionFlags rhs) -> ConnectionFlags&
   { return (lhs = static_cast<ConnectionFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline ConnectionFlags& operator^=(ConnectionFlags& lhs, ConnectionFlags rhs)
+inline auto operator^=(ConnectionFlags& lhs, ConnectionFlags rhs) -> ConnectionFlags&
   { return (lhs = static_cast<ConnectionFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
-
-} // namespace DBus
 
 } // namespace Gio
 
@@ -288,16 +278,13 @@ template <>
 class GIOMM_API Value<Gio::DBus::ConnectionFlags> : public Glib::Value_Flags<Gio::DBus::ConnectionFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 /**
@@ -332,31 +319,31 @@ enum class SendMessageFlags
 };
 
 /** @ingroup giommEnums */
-inline SendMessageFlags operator|(SendMessageFlags lhs, SendMessageFlags rhs)
+inline auto operator|(SendMessageFlags lhs, SendMessageFlags rhs) -> SendMessageFlags
   { return static_cast<SendMessageFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline SendMessageFlags operator&(SendMessageFlags lhs, SendMessageFlags rhs)
+inline auto operator&(SendMessageFlags lhs, SendMessageFlags rhs) -> SendMessageFlags
   { return static_cast<SendMessageFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline SendMessageFlags operator^(SendMessageFlags lhs, SendMessageFlags rhs)
+inline auto operator^(SendMessageFlags lhs, SendMessageFlags rhs) -> SendMessageFlags
   { return static_cast<SendMessageFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline SendMessageFlags operator~(SendMessageFlags flags)
+inline auto operator~(SendMessageFlags flags) -> SendMessageFlags
   { return static_cast<SendMessageFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline SendMessageFlags& operator|=(SendMessageFlags& lhs, SendMessageFlags rhs)
+inline auto operator|=(SendMessageFlags& lhs, SendMessageFlags rhs) -> SendMessageFlags&
   { return (lhs = static_cast<SendMessageFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline SendMessageFlags& operator&=(SendMessageFlags& lhs, SendMessageFlags rhs)
+inline auto operator&=(SendMessageFlags& lhs, SendMessageFlags rhs) -> SendMessageFlags&
   { return (lhs = static_cast<SendMessageFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline SendMessageFlags& operator^=(SendMessageFlags& lhs, SendMessageFlags rhs)
+inline auto operator^=(SendMessageFlags& lhs, SendMessageFlags rhs) -> SendMessageFlags&
   { return (lhs = static_cast<SendMessageFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -403,31 +390,31 @@ enum class SignalFlags
 };
 
 /** @ingroup giommEnums */
-inline SignalFlags operator|(SignalFlags lhs, SignalFlags rhs)
+inline auto operator|(SignalFlags lhs, SignalFlags rhs) -> SignalFlags
   { return static_cast<SignalFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline SignalFlags operator&(SignalFlags lhs, SignalFlags rhs)
+inline auto operator&(SignalFlags lhs, SignalFlags rhs) -> SignalFlags
   { return static_cast<SignalFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline SignalFlags operator^(SignalFlags lhs, SignalFlags rhs)
+inline auto operator^(SignalFlags lhs, SignalFlags rhs) -> SignalFlags
   { return static_cast<SignalFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline SignalFlags operator~(SignalFlags flags)
+inline auto operator~(SignalFlags flags) -> SignalFlags
   { return static_cast<SignalFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline SignalFlags& operator|=(SignalFlags& lhs, SignalFlags rhs)
+inline auto operator|=(SignalFlags& lhs, SignalFlags rhs) -> SignalFlags&
   { return (lhs = static_cast<SignalFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline SignalFlags& operator&=(SignalFlags& lhs, SignalFlags rhs)
+inline auto operator&=(SignalFlags& lhs, SignalFlags rhs) -> SignalFlags&
   { return (lhs = static_cast<SignalFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline SignalFlags& operator^=(SignalFlags& lhs, SignalFlags rhs)
+inline auto operator^=(SignalFlags& lhs, SignalFlags rhs) -> SignalFlags&
   { return (lhs = static_cast<SignalFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -463,31 +450,31 @@ enum class SubtreeFlags
 };
 
 /** @ingroup giommEnums */
-inline SubtreeFlags operator|(SubtreeFlags lhs, SubtreeFlags rhs)
+inline auto operator|(SubtreeFlags lhs, SubtreeFlags rhs) -> SubtreeFlags
   { return static_cast<SubtreeFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline SubtreeFlags operator&(SubtreeFlags lhs, SubtreeFlags rhs)
+inline auto operator&(SubtreeFlags lhs, SubtreeFlags rhs) -> SubtreeFlags
   { return static_cast<SubtreeFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline SubtreeFlags operator^(SubtreeFlags lhs, SubtreeFlags rhs)
+inline auto operator^(SubtreeFlags lhs, SubtreeFlags rhs) -> SubtreeFlags
   { return static_cast<SubtreeFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline SubtreeFlags operator~(SubtreeFlags flags)
+inline auto operator~(SubtreeFlags flags) -> SubtreeFlags
   { return static_cast<SubtreeFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline SubtreeFlags& operator|=(SubtreeFlags& lhs, SubtreeFlags rhs)
+inline auto operator|=(SubtreeFlags& lhs, SubtreeFlags rhs) -> SubtreeFlags&
   { return (lhs = static_cast<SubtreeFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline SubtreeFlags& operator&=(SubtreeFlags& lhs, SubtreeFlags rhs)
+inline auto operator&=(SubtreeFlags& lhs, SubtreeFlags rhs) -> SubtreeFlags&
   { return (lhs = static_cast<SubtreeFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline SubtreeFlags& operator^=(SubtreeFlags& lhs, SubtreeFlags rhs)
+inline auto operator^=(SubtreeFlags& lhs, SubtreeFlags rhs) -> SubtreeFlags&
   { return (lhs = static_cast<SubtreeFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -528,7 +515,7 @@ public:
 
   // noncopyable
   Connection(const Connection&) = delete;
-  Connection& operator=(const Connection&) = delete;
+  auto operator=(const Connection&) -> Connection& = delete;
 
 private:  friend class Connection_Class;
   static CppClassType connection_class_;
@@ -542,28 +529,28 @@ protected:
 public:
 
   Connection(Connection&& src) noexcept;
-  Connection& operator=(Connection&& src) noexcept;
+  auto operator=(Connection&& src) noexcept -> Connection&;
 
   ~Connection() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDBusConnection*       gobj()       { return reinterpret_cast<GDBusConnection*>(gobject_); }
+  auto       gobj() -> GDBusConnection*       { return reinterpret_cast<GDBusConnection*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDBusConnection* gobj() const { return reinterpret_cast<GDBusConnection*>(gobject_); }
+  auto gobj() const -> const GDBusConnection* { return reinterpret_cast<GDBusConnection*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusConnection* gobj_copy();
+  auto gobj_copy() -> GDBusConnection*;
 
 private:
 
@@ -728,7 +715,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<Connection> get_finish(const Glib::RefPtr<AsyncResult>& res);
+  static auto get_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Connection>;
 
 
   /** Synchronously connects to the message bus specified by @a bus_type.
@@ -759,10 +746,10 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<Connection> get_sync(BusType bus_type, const Glib::RefPtr<Cancellable>& cancellable);
+  static auto get_sync(BusType bus_type, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Connection>;
 
   /// A get_sync() convenience overload.
-  static Glib::RefPtr<Connection> get_sync(BusType bus_type);
+  static auto get_sync(BusType bus_type) -> Glib::RefPtr<Connection>;
 
 
   /** Asynchronously sets up a D-Bus connection for exchanging D-Bus messages
@@ -868,7 +855,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<Connection> create_finish(const Glib::RefPtr<AsyncResult>& res);
+  static auto create_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Connection>;
 
 
   /** Asynchronously connects and sets up a D-Bus client connection for
@@ -972,7 +959,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<Connection> create_for_address_finish(const Glib::RefPtr<AsyncResult>& res);
+  static auto create_for_address_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Connection>;
 
 
   /** Synchronously sets up a D-Bus connection for exchanging D-Bus messages
@@ -1004,12 +991,12 @@ public:
    * @throws Glib::Error
    */
 
-  static Glib::RefPtr<Connection> create_sync(
+  static auto create_sync(
     const Glib::RefPtr<IOStream>& stream,
     const std::string& guid,
     const Glib::RefPtr<AuthObserver>& observer,
     const Glib::RefPtr<Cancellable>& cancellable,
-    ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE);
+    ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE) -> Glib::RefPtr<Connection>;
 
 
   /** Synchronously sets up a D-Bus connection for exchanging D-Bus messages
@@ -1041,24 +1028,24 @@ public:
    * @throws Glib::Error
    */
 
-  static Glib::RefPtr<Connection> create_sync(
+  static auto create_sync(
     const Glib::RefPtr<IOStream>& stream,
     const std::string& guid,
     const Glib::RefPtr<Cancellable>& cancellable,
-    ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE);
+    ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE) -> Glib::RefPtr<Connection>;
 
   /// Non-cancellable version of create_sync().
-  static Glib::RefPtr<Connection> create_sync(
+  static auto create_sync(
     const Glib::RefPtr<IOStream>& stream,
     const std::string& guid,
     const Glib::RefPtr<AuthObserver>& observer,
-    ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE);
+    ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE) -> Glib::RefPtr<Connection>;
 
   /// Non-cancellable version of create_sync().
-  static Glib::RefPtr<Connection> create_sync(
+  static auto create_sync(
     const Glib::RefPtr<IOStream>& stream,
     const std::string& guid,
-    ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE);
+    ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE) -> Glib::RefPtr<Connection>;
 
 
   /** Synchronously connects and sets up a D-Bus client connection for
@@ -1091,11 +1078,11 @@ public:
    * @throws Glib::Error
    */
 
-  static Glib::RefPtr<Connection> create_for_address_sync(
+  static auto create_for_address_sync(
     const std::string& address,
     const Glib::RefPtr<AuthObserver>& observer,
     const Glib::RefPtr<Cancellable>& cancellable,
-    ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE);
+    ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE) -> Glib::RefPtr<Connection>;
 
 
   /** Synchronously connects and sets up a D-Bus client connection for
@@ -1128,21 +1115,21 @@ public:
    * @throws Glib::Error
    */
 
-  static Glib::RefPtr<Connection> create_for_address_sync(
+  static auto create_for_address_sync(
     const std::string& address,
     const Glib::RefPtr<Cancellable>& cancellable,
-    ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE);
+    ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE) -> Glib::RefPtr<Connection>;
 
   /// Non-cancellable version of create_for_address_sync().
-  static Glib::RefPtr<Connection> create_for_address_sync(
+  static auto create_for_address_sync(
     const std::string& address,
     const Glib::RefPtr<AuthObserver>& observer,
-    ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE);
+    ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE) -> Glib::RefPtr<Connection>;
 
   /// Non-cancellable version of create_for_address_sync().
-  static Glib::RefPtr<Connection> create_for_address_sync(
+  static auto create_for_address_sync(
     const std::string& address,
-    ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE);
+    ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE) -> Glib::RefPtr<Connection>;
 
   /** Closes the connection. Note that this never causes the process to exit
    * (this might only happen if the other end of a shared message bus
@@ -1233,7 +1220,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool close_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto close_finish(const Glib::RefPtr<AsyncResult>& res) -> bool;
 
 
   /** Synchronously closes @a connection. The calling thread is blocked
@@ -1314,7 +1301,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool flush_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto flush_finish(const Glib::RefPtr<AsyncResult>& res) -> bool;
 
 
   /** Synchronously flushes @a connection. The calling thread is blocked
@@ -1343,7 +1330,7 @@ public:
    * @return Whether the process is terminated when @a connection is
    * closed by the remote peer.
    */
-  bool get_exit_on_close() const;
+  auto get_exit_on_close() const -> bool;
 
   /** Sets whether the process should be terminated when @a connection is
    * closed by the remote peer. See Gio::DBus::Connection::property_exit_on_close() for
@@ -1399,11 +1386,11 @@ public:
    *
    * @throws Glib::Error
    */
-  bool send_message(const Glib::RefPtr<Message>& message, SendMessageFlags flags, guint32& out_serial);
+  auto send_message(const Glib::RefPtr<Message>& message, SendMessageFlags flags, guint32& out_serial) -> bool;
 
   /// A send_message() without an "out_serial" parameter.
-  bool send_message(const Glib::RefPtr<Message>& message,
-    SendMessageFlags flags = Gio::DBus::SendMessageFlags::NONE);
+  auto send_message(const Glib::RefPtr<Message>& message,
+    SendMessageFlags flags = Gio::DBus::SendMessageFlags::NONE) -> bool;
 
   /** Asynchronously sends message to the peer represented by the connection.
    *
@@ -1467,7 +1454,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<Message> send_message_with_reply_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto send_message_with_reply_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Message>;
 
   /** Synchronously sends @a message to the peer represented by the connection
    * and blocks the calling thread until a reply is received or the timeout is
@@ -1502,16 +1489,16 @@ public:
    * @throw Glib::Error.
    * @newin{2,28}
    */
-  Glib::RefPtr<Message> send_message_with_reply_sync(
+  auto send_message_with_reply_sync(
     const Glib::RefPtr<Message>& message,
     const Glib::RefPtr<Cancellable>& cancellable,
-    gint timeout_msec);
+    gint timeout_msec) -> Glib::RefPtr<Message>;
 
 
   /// A non-cancellable version of send_message_with_reply_sync().
-  Glib::RefPtr<Message> send_message_with_reply_sync(
+  auto send_message_with_reply_sync(
     const Glib::RefPtr<Message>& message,
-    gint timeout_msec);
+    gint timeout_msec) -> Glib::RefPtr<Message>;
 
 
   /** If @a connection was created with
@@ -1529,7 +1516,7 @@ public:
    *
    * @return <tt>true</tt> if the connection is closed, <tt>false</tt> otherwise.
    */
-  bool is_closed() const;
+  auto is_closed() const -> bool;
 
 
   /** Gets the underlying stream used for IO.
@@ -1542,7 +1529,7 @@ public:
    *
    * @return The stream used for IO.
    */
-  Glib::RefPtr<IOStream> get_stream();
+  auto get_stream() -> Glib::RefPtr<IOStream>;
 
   /** Gets the underlying stream used for IO.
    *
@@ -1554,7 +1541,7 @@ public:
    *
    * @return The stream used for IO.
    */
-  Glib::RefPtr<const IOStream> get_stream() const;
+  auto get_stream() const -> Glib::RefPtr<const IOStream>;
 
 
   /** The GUID of the peer performing the role of server when
@@ -1565,7 +1552,7 @@ public:
    * @return The GUID. Do not free this string, it is owned by
    *  @a connection.
    */
-  std::string get_guid() const;
+  auto get_guid() const -> std::string;
 
   /** Gets the unique name of @a connection as assigned by the message
    * bus. This can also be used to figure out if @a connection is a
@@ -1577,7 +1564,7 @@ public:
    * bus connection. Do not free this string, it is owned by
    *  @a connection.
    */
-  Glib::ustring get_unique_name() const;
+  auto get_unique_name() const -> Glib::ustring;
 
 
   /** Gets the capabilities negotiated with the remote peer
@@ -1586,7 +1573,7 @@ public:
    *
    * @return Zero or more flags from the DBusCapabilityFlags enumeration.
    */
-  CapabilityFlags get_capabilities() const;
+  auto get_capabilities() const -> CapabilityFlags;
 
   /** Gets the flags used to construct this connection
    *
@@ -1594,7 +1581,7 @@ public:
    *
    * @return Zero or more flags from the DBusConnectionFlags enumeration.
    */
-  ConnectionFlags get_flags() const;
+  auto get_flags() const -> ConnectionFlags;
 
 
   /** Gets the credentials of the authenticated peer. This will always
@@ -1612,7 +1599,7 @@ public:
    * @return A Credentials or <tt>nullptr</tt> if not
    * available. Do not free this object, it is owned by @a connection.
    */
-  Glib::RefPtr<Credentials> get_peer_credentials();
+  auto get_peer_credentials() -> Glib::RefPtr<Credentials>;
 
   /** Gets the credentials of the authenticated peer. This will always
    * return <tt>nullptr</tt> unless @a connection acted as a server
@@ -1629,7 +1616,7 @@ public:
    * @return A Credentials or <tt>nullptr</tt> if not
    * available. Do not free this object, it is owned by @a connection.
    */
-  Glib::RefPtr<const Credentials> get_peer_credentials() const;
+  auto get_peer_credentials() const -> Glib::RefPtr<const Credentials>;
 
 
   /** Retrieves the last serial number assigned to a Gio::DBus::Message on
@@ -1643,7 +1630,7 @@ public:
    * @return The last used serial or zero when no message has been sent
    * within the current thread.
    */
-  guint32 get_last_serial() const;
+  auto get_last_serial() const -> guint32;
 
   /** Asynchronously invokes the @a method_name method on the @a
    * interface_name D-Bus interface on the remote object at @a object_path
@@ -1714,7 +1701,7 @@ public:
    * @throw Glib::Error.
    * @newin{2,28}
    */
-  Glib::VariantContainerBase call_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto call_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::VariantContainerBase;
 
   /** Synchronously invokes the @a method_name method on the @a interface_name
    * D-Bus interface on the remote object at @a object_path owned by @a
@@ -1750,7 +1737,7 @@ public:
    * @throw Glib::Error.
    * @newin{2,28}
    */
-  Glib::VariantContainerBase call_sync(
+  auto call_sync(
     const Glib::ustring&                object_path,
     const Glib::ustring&                interface_name,
     const Glib::ustring&                method_name,
@@ -1759,11 +1746,11 @@ public:
     const Glib::ustring&                bus_name = {},
     int                                 timeout_msec = -1,
     CallFlags                           flags = Gio::DBus::CallFlags::NONE,
-    const Glib::VariantType&            reply_type = {});
+    const Glib::VariantType&            reply_type = {}) -> Glib::VariantContainerBase;
 
 
   /// A non-cancellable version of call_sync().
-  Glib::VariantContainerBase call_sync(
+  auto call_sync(
     const Glib::ustring&                object_path,
     const Glib::ustring&                interface_name,
     const Glib::ustring&                method_name,
@@ -1771,7 +1758,7 @@ public:
     const Glib::ustring&                bus_name = {},
     int                                 timeout_msec = -1,
     CallFlags                           flags = Gio::DBus::CallFlags::NONE,
-    const Glib::VariantType&            reply_type = {});
+    const Glib::VariantType&            reply_type = {}) -> Glib::VariantContainerBase;
 
 #ifdef G_OS_UNIX
   /** Like call() but also takes a GUnixFDList object.
@@ -1840,7 +1827,7 @@ public:
    * @throw Glib::Error.
    * @newin{2,34}
    */
-  Glib::VariantContainerBase call_finish(const Glib::RefPtr<AsyncResult>& res, Glib::RefPtr<UnixFDList>& out_fd_list);
+  auto call_finish(const Glib::RefPtr<AsyncResult>& res, Glib::RefPtr<UnixFDList>& out_fd_list) -> Glib::VariantContainerBase;
 #endif //  G_OS_UNIX
 
 
@@ -1873,14 +1860,14 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::VariantContainerBase call_sync(const Glib::ustring& object_path, const Glib::ustring& interface_name, const Glib::ustring& method_name, const Glib::VariantContainerBase& parameters, const Glib::RefPtr<Cancellable>& cancellable, const Glib::RefPtr<UnixFDList>& fd_list, Glib::RefPtr<UnixFDList>& out_fd_list, const Glib::ustring& bus_name =  {}, int timeout_msec =  -1, CallFlags flags =  Gio::DBus::CallFlags::NONE, const Glib::VariantType& reply_type =  {});
+  auto call_sync(const Glib::ustring& object_path, const Glib::ustring& interface_name, const Glib::ustring& method_name, const Glib::VariantContainerBase& parameters, const Glib::RefPtr<Cancellable>& cancellable, const Glib::RefPtr<UnixFDList>& fd_list, Glib::RefPtr<UnixFDList>& out_fd_list, const Glib::ustring& bus_name =  {}, int timeout_msec =  -1, CallFlags flags =  Gio::DBus::CallFlags::NONE, const Glib::VariantType& reply_type =  {}) -> Glib::VariantContainerBase;
 #endif //  G_OS_UNIX
 
 #ifdef  G_OS_UNIX
 
 
   /// A call_sync() convenience overload.
-  Glib::VariantContainerBase call_sync(const Glib::ustring& object_path, const Glib::ustring& interface_name, const Glib::ustring& method_name, const Glib::VariantContainerBase& parameters, const Glib::RefPtr<UnixFDList>& fd_list, Glib::RefPtr<UnixFDList>& out_fd_list, const Glib::ustring& bus_name =  {}, int timeout_msec =  -1, CallFlags flags =  Gio::DBus::CallFlags::NONE, const Glib::VariantType& reply_type =  {});
+  auto call_sync(const Glib::ustring& object_path, const Glib::ustring& interface_name, const Glib::ustring& method_name, const Glib::VariantContainerBase& parameters, const Glib::RefPtr<UnixFDList>& fd_list, Glib::RefPtr<UnixFDList>& out_fd_list, const Glib::ustring& bus_name =  {}, int timeout_msec =  -1, CallFlags flags =  Gio::DBus::CallFlags::NONE, const Glib::VariantType& reply_type =  {}) -> Glib::VariantContainerBase;
 #endif //  G_OS_UNIX
 
 
@@ -1938,14 +1925,14 @@ public:
    * signal_unsubscribe().
    * @newin{2,28}
    */
-  guint signal_subscribe(
+  auto signal_subscribe(
     const SlotSignal& slot,
     const Glib::ustring& sender = {},
     const Glib::ustring& interface_name = {},
     const Glib::ustring& member = {},
     const Glib::ustring& object_path = {},
     const Glib::ustring& arg0 = {},
-    SignalFlags flags = Gio::DBus::SignalFlags::NONE);
+    SignalFlags flags = Gio::DBus::SignalFlags::NONE) -> guint;
 
 
   /** Unsubscribes from signals.
@@ -1990,7 +1977,7 @@ public:
    * @return A filter identifier that can be used with remove_filter().
    * @newin{2,28}
    */
-  guint add_filter(const SlotMessageFilter& slot);
+  auto add_filter(const SlotMessageFilter& slot) -> guint;
 
 
   /** Removes a filter.
@@ -2046,9 +2033,9 @@ public:
    * @throw Glib::Error.
    * @newin{2,28}
    */
-  guint register_object(const Glib::ustring& object_path,
+  auto register_object(const Glib::ustring& object_path,
     const Glib::RefPtr<InterfaceInfo>& interface_info,
-    const InterfaceVTable& vtable);
+    const InterfaceVTable& vtable) -> guint;
 
 
   /** Registers exported objects at @a object_path with the D-Bus
@@ -2072,8 +2059,8 @@ public:
    * @throw Glib::Error.
    * @newin{2,28}
    */
-  guint register_object(const Glib::ustring& object_path,
-    const Glib::RefPtr<InterfaceInfo>& interface_info);
+  auto register_object(const Glib::ustring& object_path,
+    const Glib::RefPtr<InterfaceInfo>& interface_info) -> guint;
 
 
   /** Unregisters an object.
@@ -2084,7 +2071,7 @@ public:
    * g_dbus_connection_register_object().
    * @return <tt>true</tt> if the object was unregistered, <tt>false</tt> otherwise.
    */
-  bool unregister_object(guint registration_id);
+  auto unregister_object(guint registration_id) -> bool;
 
   /** Registers a whole subtree of “dynamic” objects.
    *
@@ -2122,9 +2109,9 @@ public:
    *
    * @newin{2,28}
    */
-  guint register_subtree(const Glib::ustring& object_path,
+  auto register_subtree(const Glib::ustring& object_path,
     const SubtreeVTable& vtable,
-    SubtreeFlags flags = Gio::DBus::SubtreeFlags::NONE);
+    SubtreeFlags flags = Gio::DBus::SubtreeFlags::NONE) -> guint;
 
 
   /** Unregisters a subtree.
@@ -2135,7 +2122,7 @@ public:
    * g_dbus_connection_register_subtree().
    * @return <tt>true</tt> if the subtree was unregistered, <tt>false</tt> otherwise.
    */
-  bool unregister_subtree(guint registration_id);
+  auto unregister_subtree(guint registration_id) -> bool;
 
 
   /** Exports @a action_group on @a connection at @a object_path.
@@ -2168,7 +2155,7 @@ public:
    *
    * @throws Glib::Error
    */
-  guint export_action_group(const Glib::ustring& object_path, const Glib::RefPtr<ActionGroup>& action_group);
+  auto export_action_group(const Glib::ustring& object_path, const Glib::RefPtr<ActionGroup>& action_group) -> guint;
 
   /** Reverses the effect of a previous call to
    * g_dbus_connection_export_action_group().
@@ -2205,7 +2192,7 @@ public:
    *
    * @throws Glib::Error
    */
-  guint export_menu_model(const Glib::ustring& object_path, const Glib::RefPtr<MenuModel>& menu);
+  auto export_menu_model(const Glib::ustring& object_path, const Glib::RefPtr<MenuModel>& menu) -> guint;
 
   /** Reverses the effect of a previous call to
    * g_dbus_connection_export_menu_model().
@@ -2232,7 +2219,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< CapabilityFlags > property_capabilities() const;
+  auto property_capabilities() const -> Glib::PropertyProxy_ReadOnly< CapabilityFlags >;
 
 
   /** A boolean specifying whether the connection has been closed.
@@ -2244,7 +2231,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_closed() const;
+  auto property_closed() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** A boolean specifying whether the process will be terminated (by
@@ -2261,7 +2248,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_exit_on_close() ;
+  auto property_exit_on_close() -> Glib::PropertyProxy< bool > ;
 
 /** A boolean specifying whether the process will be terminated (by
    * calling `raise(SIGTERM)`) if the connection is closed by the
@@ -2277,7 +2264,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_exit_on_close() const;
+  auto property_exit_on_close() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Flags from the DBusConnectionFlags enumeration.
    *
@@ -2288,7 +2275,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< ConnectionFlags > property_flags() const;
+  auto property_flags() const -> Glib::PropertyProxy_ReadOnly< ConnectionFlags >;
 
 
   /** The GUID of the peer performing the role of server when
@@ -2321,7 +2308,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::string > property_guid() const;
+  auto property_guid() const -> Glib::PropertyProxy_ReadOnly< std::string >;
 
 
   /** The underlying IOStream used for I/O.
@@ -2338,7 +2325,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<IOStream> > property_stream() const;
+  auto property_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<IOStream> >;
 
 
   /** The unique name as assigned by the message bus or <tt>nullptr</tt> if the
@@ -2351,7 +2338,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_unique_name() const;
+  auto property_unique_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /**
@@ -2384,7 +2371,7 @@ public:
    * @param error A Error with more details about the event or <tt>nullptr</tt>.
    */
 
-  Glib::SignalProxy<void(bool, const Glib::Error&)> signal_closed();
+  auto signal_closed() -> Glib::SignalProxy<void(bool, const Glib::Error&)>;
 
 
 public:
@@ -2401,8 +2388,6 @@ protected:
 };
 
 
-} //namespace DBus
-
 } // namespace Gio
 
 
@@ -2417,7 +2402,7 @@ namespace Glib
    * @relates Gio::DBus::Connection
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DBus::Connection> wrap(GDBusConnection* object, bool take_copy = false);
+  auto wrap(GDBusConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::Connection>;
 }
 
 

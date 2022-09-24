@@ -28,8 +28,8 @@
 
 namespace Gtk
 {
-Glib::RefPtr<DropTargetAsync> DropTargetAsync::create(
-  const Glib::RefPtr<const Gdk::ContentFormats>& formats, Gdk::DragAction actions)
+auto DropTargetAsync::create(
+  const Glib::RefPtr<const Gdk::ContentFormats>& formats, Gdk::DragAction actions) -> Glib::RefPtr<DropTargetAsync>
 {
   // gtk_drop_target_async_new() drops our reference from formats. (transfer full)
   if (formats)
@@ -39,7 +39,7 @@ Glib::RefPtr<DropTargetAsync> DropTargetAsync::create(
     static_cast<GdkDragAction>(actions)));
 }
 
-Glib::RefPtr<DropTargetAsync> DropTargetAsync::create(Gdk::DragAction actions)
+auto DropTargetAsync::create(Gdk::DragAction actions) -> Glib::RefPtr<DropTargetAsync>
 {
   return Glib::wrap(gtk_drop_target_async_new(nullptr, static_cast<GdkDragAction>(actions)));
 }
@@ -49,7 +49,7 @@ namespace
 {
 
 
-static gboolean DropTargetAsync_signal_accept_callback(GtkDropTargetAsync* self, GdkDrop* p0,void* data)
+auto DropTargetAsync_signal_accept_callback(GtkDropTargetAsync* self, GdkDrop* p0,void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<bool(const Glib::RefPtr<Gdk::Drop>&)>;
@@ -74,7 +74,7 @@ static gboolean DropTargetAsync_signal_accept_callback(GtkDropTargetAsync* self,
   return RType();
 }
 
-static gboolean DropTargetAsync_signal_accept_notify_callback(GtkDropTargetAsync* self, GdkDrop* p0, void* data)
+auto DropTargetAsync_signal_accept_notify_callback(GtkDropTargetAsync* self, GdkDrop* p0, void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gdk::Drop>&)>;
@@ -99,7 +99,7 @@ static gboolean DropTargetAsync_signal_accept_notify_callback(GtkDropTargetAsync
   return RType();
 }
 
-static const Glib::SignalProxyInfo DropTargetAsync_signal_accept_info =
+const Glib::SignalProxyInfo DropTargetAsync_signal_accept_info =
 {
   "accept",
   (GCallback) &DropTargetAsync_signal_accept_callback,
@@ -107,7 +107,7 @@ static const Glib::SignalProxyInfo DropTargetAsync_signal_accept_info =
 };
 
 
-static GdkDragAction DropTargetAsync_signal_drag_enter_callback(GtkDropTargetAsync* self, GdkDrop* p0,gdouble p1,gdouble p2,void* data)
+auto DropTargetAsync_signal_drag_enter_callback(GtkDropTargetAsync* self, GdkDrop* p0,gdouble p1,gdouble p2,void* data) -> GdkDragAction
 {
   using namespace Gtk;
   using SlotType = sigc::slot<Gdk::DragAction(const Glib::RefPtr<Gdk::Drop>&, double, double)>;
@@ -134,7 +134,7 @@ static GdkDragAction DropTargetAsync_signal_drag_enter_callback(GtkDropTargetAsy
   return RType();
 }
 
-static GdkDragAction DropTargetAsync_signal_drag_enter_notify_callback(GtkDropTargetAsync* self, GdkDrop* p0,gdouble p1,gdouble p2, void* data)
+auto DropTargetAsync_signal_drag_enter_notify_callback(GtkDropTargetAsync* self, GdkDrop* p0,gdouble p1,gdouble p2, void* data) -> GdkDragAction
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gdk::Drop>&, double, double)>;
@@ -161,7 +161,7 @@ static GdkDragAction DropTargetAsync_signal_drag_enter_notify_callback(GtkDropTa
   return RType();
 }
 
-static const Glib::SignalProxyInfo DropTargetAsync_signal_drag_enter_info =
+const Glib::SignalProxyInfo DropTargetAsync_signal_drag_enter_info =
 {
   "drag-enter",
   (GCallback) &DropTargetAsync_signal_drag_enter_callback,
@@ -169,7 +169,7 @@ static const Glib::SignalProxyInfo DropTargetAsync_signal_drag_enter_info =
 };
 
 
-static GdkDragAction DropTargetAsync_signal_drag_motion_callback(GtkDropTargetAsync* self, GdkDrop* p0,gdouble p1,gdouble p2,void* data)
+auto DropTargetAsync_signal_drag_motion_callback(GtkDropTargetAsync* self, GdkDrop* p0,gdouble p1,gdouble p2,void* data) -> GdkDragAction
 {
   using namespace Gtk;
   using SlotType = sigc::slot<Gdk::DragAction(const Glib::RefPtr<Gdk::Drop>&, double, double)>;
@@ -196,7 +196,7 @@ static GdkDragAction DropTargetAsync_signal_drag_motion_callback(GtkDropTargetAs
   return RType();
 }
 
-static GdkDragAction DropTargetAsync_signal_drag_motion_notify_callback(GtkDropTargetAsync* self, GdkDrop* p0,gdouble p1,gdouble p2, void* data)
+auto DropTargetAsync_signal_drag_motion_notify_callback(GtkDropTargetAsync* self, GdkDrop* p0,gdouble p1,gdouble p2, void* data) -> GdkDragAction
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gdk::Drop>&, double, double)>;
@@ -223,7 +223,7 @@ static GdkDragAction DropTargetAsync_signal_drag_motion_notify_callback(GtkDropT
   return RType();
 }
 
-static const Glib::SignalProxyInfo DropTargetAsync_signal_drag_motion_info =
+const Glib::SignalProxyInfo DropTargetAsync_signal_drag_motion_info =
 {
   "drag-motion",
   (GCallback) &DropTargetAsync_signal_drag_motion_callback,
@@ -231,7 +231,7 @@ static const Glib::SignalProxyInfo DropTargetAsync_signal_drag_motion_info =
 };
 
 
-static void DropTargetAsync_signal_drag_leave_callback(GtkDropTargetAsync* self, GdkDrop* p0,void* data)
+void DropTargetAsync_signal_drag_leave_callback(GtkDropTargetAsync* self, GdkDrop* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gdk::Drop>&)>;
@@ -253,7 +253,7 @@ static void DropTargetAsync_signal_drag_leave_callback(GtkDropTargetAsync* self,
   }
 }
 
-static const Glib::SignalProxyInfo DropTargetAsync_signal_drag_leave_info =
+const Glib::SignalProxyInfo DropTargetAsync_signal_drag_leave_info =
 {
   "drag-leave",
   (GCallback) &DropTargetAsync_signal_drag_leave_callback,
@@ -261,7 +261,7 @@ static const Glib::SignalProxyInfo DropTargetAsync_signal_drag_leave_info =
 };
 
 
-static gboolean DropTargetAsync_signal_drop_callback(GtkDropTargetAsync* self, GdkDrop* p0,gdouble p1,gdouble p2,void* data)
+auto DropTargetAsync_signal_drop_callback(GtkDropTargetAsync* self, GdkDrop* p0,gdouble p1,gdouble p2,void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<bool(const Glib::RefPtr<Gdk::Drop>&, double, double)>;
@@ -288,7 +288,7 @@ static gboolean DropTargetAsync_signal_drop_callback(GtkDropTargetAsync* self, G
   return RType();
 }
 
-static gboolean DropTargetAsync_signal_drop_notify_callback(GtkDropTargetAsync* self, GdkDrop* p0,gdouble p1,gdouble p2, void* data)
+auto DropTargetAsync_signal_drop_notify_callback(GtkDropTargetAsync* self, GdkDrop* p0,gdouble p1,gdouble p2, void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gdk::Drop>&, double, double)>;
@@ -315,7 +315,7 @@ static gboolean DropTargetAsync_signal_drop_notify_callback(GtkDropTargetAsync* 
   return RType();
 }
 
-static const Glib::SignalProxyInfo DropTargetAsync_signal_drop_info =
+const Glib::SignalProxyInfo DropTargetAsync_signal_drop_info =
 {
   "drop",
   (GCallback) &DropTargetAsync_signal_drop_callback,
@@ -329,7 +329,7 @@ static const Glib::SignalProxyInfo DropTargetAsync_signal_drop_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::DropTargetAsync> wrap(GtkDropTargetAsync* object, bool take_copy)
+auto wrap(GtkDropTargetAsync* object, bool take_copy) -> Glib::RefPtr<Gtk::DropTargetAsync>
 {
   return Glib::make_refptr_for_instance<Gtk::DropTargetAsync>( dynamic_cast<Gtk::DropTargetAsync*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -344,7 +344,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& DropTargetAsync_Class::init()
+auto DropTargetAsync_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -375,7 +375,7 @@ void DropTargetAsync_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* DropTargetAsync_Class::wrap_new(GObject* object)
+auto DropTargetAsync_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new DropTargetAsync((GtkDropTargetAsync*)object);
 }
@@ -383,7 +383,7 @@ Glib::ObjectBase* DropTargetAsync_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkDropTargetAsync* DropTargetAsync::gobj_copy()
+auto DropTargetAsync::gobj_copy() -> GtkDropTargetAsync*
 {
   reference();
   return gobj();
@@ -406,7 +406,7 @@ DropTargetAsync::DropTargetAsync(DropTargetAsync&& src) noexcept
 : EventController(std::move(src))
 {}
 
-DropTargetAsync& DropTargetAsync::operator=(DropTargetAsync&& src) noexcept
+auto DropTargetAsync::operator=(DropTargetAsync&& src) noexcept -> DropTargetAsync&
 {
   EventController::operator=(std::move(src));
   return *this;
@@ -419,13 +419,13 @@ DropTargetAsync::~DropTargetAsync() noexcept
 
 DropTargetAsync::CppClassType DropTargetAsync::droptargetasync_class_; // initialize static member
 
-GType DropTargetAsync::get_type()
+auto DropTargetAsync::get_type() -> GType
 {
   return droptargetasync_class_.init().get_type();
 }
 
 
-GType DropTargetAsync::get_base_type()
+auto DropTargetAsync::get_base_type() -> GType
 {
   return gtk_drop_target_async_get_type();
 }
@@ -436,7 +436,7 @@ void DropTargetAsync::set_formats(const Glib::RefPtr<const Gdk::ContentFormats>&
   gtk_drop_target_async_set_formats(gobj(), const_cast<GdkContentFormats*>(Glib::unwrap(formats)));
 }
 
-Glib::RefPtr<Gdk::ContentFormats> DropTargetAsync::get_formats()
+auto DropTargetAsync::get_formats() -> Glib::RefPtr<Gdk::ContentFormats>
 {
   auto retvalue = Glib::wrap(gtk_drop_target_async_get_formats(gobj()));
   if(retvalue)
@@ -444,7 +444,7 @@ Glib::RefPtr<Gdk::ContentFormats> DropTargetAsync::get_formats()
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::ContentFormats> DropTargetAsync::get_formats() const
+auto DropTargetAsync::get_formats() const -> Glib::RefPtr<const Gdk::ContentFormats>
 {
   return const_cast<DropTargetAsync*>(this)->get_formats();
 }
@@ -454,7 +454,7 @@ void DropTargetAsync::set_actions(Gdk::DragAction actions)
   gtk_drop_target_async_set_actions(gobj(), static_cast<GdkDragAction>(actions));
 }
 
-Gdk::DragAction DropTargetAsync::get_actions() const
+auto DropTargetAsync::get_actions() const -> Gdk::DragAction
 {
   return static_cast<Gdk::DragAction>(gtk_drop_target_async_get_actions(const_cast<GtkDropTargetAsync*>(gobj())));
 }
@@ -465,31 +465,31 @@ void DropTargetAsync::reject_drop(const Glib::RefPtr<Gdk::Drop>& drop)
 }
 
 
-Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drop>&)> DropTargetAsync::signal_accept()
+auto DropTargetAsync::signal_accept() -> Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drop>&)>
 {
   return Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drop>&) >(this, &DropTargetAsync_signal_accept_info);
 }
 
 
-Glib::SignalProxy<Gdk::DragAction(const Glib::RefPtr<Gdk::Drop>&, double, double)> DropTargetAsync::signal_drag_enter()
+auto DropTargetAsync::signal_drag_enter() -> Glib::SignalProxy<Gdk::DragAction(const Glib::RefPtr<Gdk::Drop>&, double, double)>
 {
   return Glib::SignalProxy<Gdk::DragAction(const Glib::RefPtr<Gdk::Drop>&, double, double) >(this, &DropTargetAsync_signal_drag_enter_info);
 }
 
 
-Glib::SignalProxy<Gdk::DragAction(const Glib::RefPtr<Gdk::Drop>&, double, double)> DropTargetAsync::signal_drag_motion()
+auto DropTargetAsync::signal_drag_motion() -> Glib::SignalProxy<Gdk::DragAction(const Glib::RefPtr<Gdk::Drop>&, double, double)>
 {
   return Glib::SignalProxy<Gdk::DragAction(const Glib::RefPtr<Gdk::Drop>&, double, double) >(this, &DropTargetAsync_signal_drag_motion_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Gdk::Drop>&)> DropTargetAsync::signal_drag_leave()
+auto DropTargetAsync::signal_drag_leave() -> Glib::SignalProxy<void(const Glib::RefPtr<Gdk::Drop>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Gdk::Drop>&) >(this, &DropTargetAsync_signal_drag_leave_info);
 }
 
 
-Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drop>&, double, double)> DropTargetAsync::signal_drop()
+auto DropTargetAsync::signal_drop() -> Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drop>&, double, double)>
 {
   return Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drop>&, double, double) >(this, &DropTargetAsync_signal_drop_info);
 }
@@ -499,12 +499,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::DragAction>::va
   "Type Gdk::DragAction cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Gdk::DragAction > DropTargetAsync::property_actions()
+auto DropTargetAsync::property_actions() -> Glib::PropertyProxy< Gdk::DragAction >
 {
   return Glib::PropertyProxy< Gdk::DragAction >(this, "actions");
 }
 
-Glib::PropertyProxy_ReadOnly< Gdk::DragAction > DropTargetAsync::property_actions() const
+auto DropTargetAsync::property_actions() const -> Glib::PropertyProxy_ReadOnly< Gdk::DragAction >
 {
   return Glib::PropertyProxy_ReadOnly< Gdk::DragAction >(this, "actions");
 }
@@ -513,12 +513,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Co
   "Type Glib::RefPtr<Gdk::ContentFormats> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gdk::ContentFormats> > DropTargetAsync::property_formats()
+auto DropTargetAsync::property_formats() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::ContentFormats> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gdk::ContentFormats> >(this, "formats");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::ContentFormats> > DropTargetAsync::property_formats() const
+auto DropTargetAsync::property_formats() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::ContentFormats> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::ContentFormats> >(this, "formats");
 }

@@ -63,30 +63,30 @@ class GIOMM_API SrvTarget
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   SrvTarget();
 
   explicit SrvTarget(GSrvTarget* gobject, bool make_a_copy = true);
 
   SrvTarget(const SrvTarget& other);
-  SrvTarget& operator=(const SrvTarget& other);
+  auto operator=(const SrvTarget& other) -> SrvTarget&;
 
   SrvTarget(SrvTarget&& other) noexcept;
-  SrvTarget& operator=(SrvTarget&& other) noexcept;
+  auto operator=(SrvTarget&& other) noexcept -> SrvTarget&;
 
   ~SrvTarget() noexcept;
 
   void swap(SrvTarget& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  GSrvTarget*       gobj()       { return gobject_; }
+  auto       gobj() -> GSrvTarget*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const GSrvTarget* gobj() const { return gobject_; }
+  auto gobj() const -> const GSrvTarget* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  GSrvTarget* gobj_copy() const;
+  auto gobj_copy() const -> GSrvTarget*;
 
 protected:
   GSrvTarget* gobject_;
@@ -106,7 +106,7 @@ public:
    *
    * @return  @a target's hostname.
    */
-  Glib::ustring get_hostname() const;
+  auto get_hostname() const -> Glib::ustring;
 
   /** Gets @a target's port
    *
@@ -114,7 +114,7 @@ public:
    *
    * @return  @a target's port.
    */
-  guint16 get_port() const;
+  auto get_port() const -> guint16;
 
   /** Gets @a target's priority. You should not need to look at this;
    * Resolver already sorts the targets according to the algorithm in
@@ -124,7 +124,7 @@ public:
    *
    * @return  @a target's priority.
    */
-  guint16 get_priority() const;
+  auto get_priority() const -> guint16;
 
   /** Gets @a target's weight. You should not need to look at this;
    * Resolver already sorts the targets according to the algorithm in
@@ -134,7 +134,7 @@ public:
    *
    * @return  @a target's weight.
    */
-  guint16 get_weight() const;
+  auto get_weight() const -> guint16;
 
 
 };
@@ -167,7 +167,7 @@ namespace Glib
  * @relates Gio::SrvTarget
  */
 GIOMM_API
-Gio::SrvTarget wrap(GSrvTarget* object, bool take_copy = false);
+auto wrap(GSrvTarget* object, bool take_copy = false) -> Gio::SrvTarget;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

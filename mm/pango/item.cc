@@ -39,7 +39,7 @@ Analysis::Analysis(const PangoAnalysis* src)
   gobject_ (*src)
 {}
 
-std::vector<Attribute> Analysis::get_extra_attrs() const
+auto Analysis::get_extra_attrs() const -> std::vector<Attribute>
 {
   using SListHandler_Attribute = Glib::SListHandler<Attribute, AttributeTraits>;
   return SListHandler_Attribute::slist_to_vector(gobj()->extra_attrs, Glib::OWNERSHIP_NONE);
@@ -71,7 +71,7 @@ Item::Item(PangoItem* castitem, bool make_a_copy)
   }
 }
 
-Item& Item::operator=(const Item& src)
+auto Item::operator=(const Item& src) -> Item&
 {
   auto* const new_gobject = (src.gobject_) ? pango_item_copy(src.gobject_) : nullptr;
 
@@ -88,29 +88,29 @@ Item::~Item()
     pango_item_free(gobject_);
 }
 
-PangoItem* Item::gobj_copy() const
+auto Item::gobj_copy() const -> PangoItem*
 {
   return pango_item_copy(gobject_);
 }
 
-Analysis Item::get_analysis() const
+auto Item::get_analysis() const -> Analysis
 {
   return Analysis(&gobj()->analysis);
 }
 
-Glib::ustring Item::get_segment(const Glib::ustring& text) const
+auto Item::get_segment(const Glib::ustring& text) const -> Glib::ustring
 {
   const char *const start = text.data() + gobj()->offset;
   return Glib::ustring(start, start + gobj()->length);
 }
 
-Pango::GlyphString Item::shape(const Glib::ustring& text) const
+auto Item::shape(const Glib::ustring& text) const -> Pango::GlyphString
 {
   return GlyphString(text, get_analysis());
 }
 
-Pango::GlyphString Item::shape(const Glib::ustring& item_text,
-  const Glib::ustring& paragraph_text, ShapeFlags flags) const
+auto Item::shape(const Glib::ustring& item_text,
+  const Glib::ustring& paragraph_text, ShapeFlags flags) const -> Pango::GlyphString
 {
   return GlyphString(item_text, paragraph_text, get_analysis(), flags);
 }
@@ -121,17 +121,17 @@ Pango::GlyphString Item::shape(const Glib::ustring& item_text,
 namespace Glib
 {
 
-Pango::Analysis& wrap(PangoAnalysis* object)
+auto wrap(PangoAnalysis* object) -> Pango::Analysis&
 {
   return *reinterpret_cast<Pango::Analysis*>(object);
 }
 
-const Pango::Analysis& wrap(const PangoAnalysis* object)
+auto wrap(const PangoAnalysis* object) -> const Pango::Analysis&
 {
   return *reinterpret_cast<const Pango::Analysis*>(object);
 }
 
-Pango::Item wrap(PangoItem* object, bool take_copy)
+auto wrap(PangoItem* object, bool take_copy) -> Pango::Item
 {
   return Pango::Item(object, take_copy);
 }
@@ -143,7 +143,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Pango::ShapeFlags>::value_type()
+auto Glib::Value<Pango::ShapeFlags>::value_type() -> GType
 {
   return pango_shape_flags_get_type();
 }
@@ -153,7 +153,7 @@ namespace Pango
 {
 
 
-Glib::RefPtr<Font> Analysis::get_font()
+auto Analysis::get_font() -> Glib::RefPtr<Font>
 {
   Glib::RefPtr<Font> ref_ptr(Glib::wrap(gobj()->font));
 
@@ -163,7 +163,7 @@ Glib::RefPtr<Font> Analysis::get_font()
   return ref_ptr;
 }
 
-Glib::RefPtr<const Font> Analysis::get_font() const
+auto Analysis::get_font() const -> Glib::RefPtr<const Font>
 {
   Glib::RefPtr<const Font> ref_ptr(Glib::wrap(gobj()->font));
 
@@ -173,12 +173,12 @@ Glib::RefPtr<const Font> Analysis::get_font() const
   return ref_ptr;
 }
 
-guint8 Analysis::get_level() const
+auto Analysis::get_level() const -> guint8
 {
   return gobj()->level;
 }
 
-Language Analysis::get_language() const
+auto Analysis::get_language() const -> Language
 {
   return Language(gobj()->language);
 }
@@ -191,22 +191,22 @@ namespace Pango
 {
 
 
-Item Item::split(int split_index, int split_offset)
+auto Item::split(int split_index, int split_offset) -> Item
 {
   return Item((pango_item_split(gobj(), split_index, split_offset)));
 }
 
-int Item::get_offset() const
+auto Item::get_offset() const -> int
 {
   return gobj()->offset;
 }
 
-int Item::get_length() const
+auto Item::get_length() const -> int
 {
   return gobj()->length;
 }
 
-int Item::get_num_chars() const
+auto Item::get_num_chars() const -> int
 {
   return gobj()->num_chars;
 }

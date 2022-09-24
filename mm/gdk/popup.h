@@ -74,7 +74,7 @@ public:
 
   // noncopyable
   Popup(const Popup&) = delete;
-  Popup& operator=(const Popup&) = delete;
+  auto operator=(const Popup&) -> Popup& = delete;
 
 private:
   friend class Popup_Class;
@@ -108,7 +108,7 @@ protected:
 public:
 
   Popup(Popup&& src) noexcept;
-  Popup& operator=(Popup&& src) noexcept;
+  auto operator=(Popup&& src) noexcept -> Popup&;
 
   ~Popup() noexcept override;
 
@@ -116,17 +116,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkPopup*       gobj()       { return reinterpret_cast<GdkPopup*>(gobject_); }
+  auto       gobj() -> GdkPopup*       { return reinterpret_cast<GdkPopup*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkPopup* gobj() const { return reinterpret_cast<GdkPopup*>(gobject_); }
+  auto gobj() const -> const GdkPopup* { return reinterpret_cast<GdkPopup*>(gobject_); }
 
 private:
 
@@ -154,7 +154,7 @@ public:
    * @param layout The `Gdk::PopupLayout` object used to layout.
    * @return <tt>false</tt> if it failed to be presented, otherwise <tt>true</tt>.
    */
-  bool present(int width, int height, const Glib::RefPtr<PopupLayout>& layout);
+  auto present(int width, int height, const Glib::RefPtr<PopupLayout>& layout) -> bool;
 
   /** Gets the current popup surface anchor.
    *
@@ -163,7 +163,7 @@ public:
    *
    * @return The current surface anchor value of @a popup.
    */
-  Gravity get_surface_anchor() const;
+  auto get_surface_anchor() const -> Gravity;
 
   /** Gets the current popup rectangle anchor.
    *
@@ -172,44 +172,44 @@ public:
    *
    * @return The current rectangle anchor value of @a popup.
    */
-  Gravity get_rect_anchor() const;
+  auto get_rect_anchor() const -> Gravity;
 
   /** Returns the parent surface of a popup.
    *
    * @return The parent surface.
    */
-  Glib::RefPtr<Surface> get_parent();
+  auto get_parent() -> Glib::RefPtr<Surface>;
 
   /** Returns the parent surface of a popup.
    *
    * @return The parent surface.
    */
-  Glib::RefPtr<const Surface> get_parent() const;
+  auto get_parent() const -> Glib::RefPtr<const Surface>;
 
   /** Obtains the position of the popup relative to its parent.
    *
    * @return The X coordinate of @a popup position.
    */
-  int get_position_x() const;
+  auto get_position_x() const -> int;
 
   /** Obtains the position of the popup relative to its parent.
    *
    * @return The Y coordinate of @a popup position.
    */
-  int get_position_y() const;
+  auto get_position_y() const -> int;
 
   /** Returns whether this popup is set to hide on outside clicks.
    *
    * @return <tt>true</tt> if @a popup will autohide.
    */
-  bool get_autohide() const;
+  auto get_autohide() const -> bool;
 
   /** The parent surface.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> > property_parent() const;
+  auto property_parent() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >;
 
 
   /** Whether to hide on outside clicks.
@@ -219,7 +219,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_autohide() const;
+  auto property_autohide() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -249,7 +249,7 @@ namespace Glib
    * @relates Gdk::Popup
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::Popup> wrap(GdkPopup* object, bool take_copy = false);
+  auto wrap(GdkPopup* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Popup>;
 
 } // namespace Glib
 

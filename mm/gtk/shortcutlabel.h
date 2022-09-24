@@ -61,11 +61,11 @@ class GTKMM_API ShortcutLabel : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ShortcutLabel(ShortcutLabel&& src) noexcept;
-  ShortcutLabel& operator=(ShortcutLabel&& src) noexcept;
+  auto operator=(ShortcutLabel&& src) noexcept -> ShortcutLabel&;
 
   // noncopyable
   ShortcutLabel(const ShortcutLabel&) = delete;
-  ShortcutLabel& operator=(const ShortcutLabel&) = delete;
+  auto operator=(const ShortcutLabel&) -> ShortcutLabel& = delete;
 
   ~ShortcutLabel() noexcept override;
 
@@ -85,19 +85,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkShortcutLabel*       gobj()       { return reinterpret_cast<GtkShortcutLabel*>(gobject_); }
+  auto       gobj() -> GtkShortcutLabel*       { return reinterpret_cast<GtkShortcutLabel*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkShortcutLabel* gobj() const { return reinterpret_cast<GtkShortcutLabel*>(gobject_); }
+  auto gobj() const -> const GtkShortcutLabel* { return reinterpret_cast<GtkShortcutLabel*>(gobject_); }
 
 private:
 
@@ -119,7 +119,7 @@ public:
    *
    * @return The current accelerator.
    */
-  Glib::ustring get_accelerator() const;
+  auto get_accelerator() const -> Glib::ustring;
 
   /** Sets the accelerator to be displayed by @a self.
    *
@@ -132,7 +132,7 @@ public:
    * @return The current text displayed when no
    * accelerator is set.
    */
-  Glib::ustring get_disabled_text() const;
+  auto get_disabled_text() const -> Glib::ustring;
 
   /** Sets the text to be displayed by @a self when no accelerator is set.
    *
@@ -150,7 +150,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_accelerator() ;
+  auto property_accelerator() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The accelerator that @a self displays.
    *
@@ -162,7 +162,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_accelerator() const;
+  auto property_accelerator() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The text that is displayed when no accelerator is set.
    *
@@ -171,7 +171,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_disabled_text() ;
+  auto property_disabled_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The text that is displayed when no accelerator is set.
    *
@@ -180,7 +180,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_disabled_text() const;
+  auto property_disabled_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   // There are no signals or vfuncs.
@@ -213,7 +213,7 @@ namespace Glib
    * @relates Gtk::ShortcutLabel
    */
   GTKMM_API
-  Gtk::ShortcutLabel* wrap(GtkShortcutLabel* object, bool take_copy = false);
+  auto wrap(GtkShortcutLabel* object, bool take_copy = false) -> Gtk::ShortcutLabel*;
 } //namespace Glib
 
 

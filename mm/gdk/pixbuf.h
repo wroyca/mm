@@ -85,7 +85,7 @@ template <>
 class GDKMM_API Value<Gdk::Colorspace> : public Glib::Value_Enum<Gdk::Colorspace>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -157,7 +157,7 @@ template <>
 class GDKMM_API Value<Gdk::InterpType> : public Glib::Value_Enum<Gdk::InterpType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -214,7 +214,7 @@ public:
 
   GDKMM_API PixbufError(Code error_code, const Glib::ustring& error_message);
   GDKMM_API explicit PixbufError(GError* gobject);
-  GDKMM_API Code code() const;
+  GDKMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -236,7 +236,7 @@ template <>
 class GDKMM_API Value<Gdk::PixbufError::Code> : public Glib::Value_Enum<Gdk::PixbufError::Code>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -262,7 +262,7 @@ public:
 
   // noncopyable
   Pixbuf(const Pixbuf&) = delete;
-  Pixbuf& operator=(const Pixbuf&) = delete;
+  auto operator=(const Pixbuf&) -> Pixbuf& = delete;
 
 private:  friend class Pixbuf_Class;
   static CppClassType pixbuf_class_;
@@ -276,28 +276,28 @@ protected:
 public:
 
   Pixbuf(Pixbuf&& src) noexcept;
-  Pixbuf& operator=(Pixbuf&& src) noexcept;
+  auto operator=(Pixbuf&& src) noexcept -> Pixbuf&;
 
   ~Pixbuf() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkPixbuf*       gobj()       { return reinterpret_cast<GdkPixbuf*>(gobject_); }
+  auto       gobj() -> GdkPixbuf*       { return reinterpret_cast<GdkPixbuf*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkPixbuf* gobj() const { return reinterpret_cast<GdkPixbuf*>(gobject_); }
+  auto gobj() const -> const GdkPixbuf* { return reinterpret_cast<GdkPixbuf*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkPixbuf* gobj_copy();
+  auto gobj_copy() -> GdkPixbuf*;
 
 private:
 
@@ -376,7 +376,7 @@ public:
    * @newin{2,30}
    */
 
-  static Glib::RefPtr<Pixbuf> create(const ::Cairo::RefPtr< ::Cairo::Surface>& src, int src_x, int src_y, int width, int height);
+  static auto create(const ::Cairo::RefPtr< ::Cairo::Surface>& src, int src_x, int src_y, int width, int height) -> Glib::RefPtr<Pixbuf>;
 
 
   /** Creates a new `Gdk::Pixbuf` with a copy of the information in the specified
@@ -387,7 +387,7 @@ public:
    *
    * @return A newly-created pixbuf.
    */
-  Glib::RefPtr<Pixbuf> copy() const;
+  auto copy() const -> Glib::RefPtr<Pixbuf>;
 
 
   /** Creates a new `Gdk::Pixbuf` structure and allocates a buffer for it.
@@ -404,7 +404,7 @@ public:
    * @param height Height of image in pixels, must be > 0.
    * @return A newly-created pixel buffer.
    */
-  static Glib::RefPtr<Pixbuf> create(Colorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height);
+  static auto create(Colorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height) -> Glib::RefPtr<Pixbuf>;
 
 
   /** Creates a new pixbuf which represents a sub-region of `src_pixbuf`.
@@ -424,7 +424,7 @@ public:
    * @param height Height of region in @a src_pixbuf.
    * @return A new pixbuf.
    */
-  static Glib::RefPtr<Pixbuf> create_subpixbuf(const Glib::RefPtr<Pixbuf>& src_pixbuf, int src_x, int src_y, int width, int height);
+  static auto create_subpixbuf(const Glib::RefPtr<Pixbuf>& src_pixbuf, int src_x, int src_y, int width, int height) -> Glib::RefPtr<Pixbuf>;
 
 
   /** Creates a new pixbuf by loading an image from a file. The file format is detected automatically.
@@ -433,7 +433,7 @@ public:
    * @throw Glib::FileError
    * @throw Gdk::PixbufError
    */
-  static Glib::RefPtr<Pixbuf> create_from_file(const std::string& filename);
+  static auto create_from_file(const std::string& filename) -> Glib::RefPtr<Pixbuf>;
 
 
   /** Creates a new pixbuf by loading an image from a file. The file format is detected automatically.
@@ -446,7 +446,7 @@ public:
    * @throw Glib::FileError
    * @throw Gdk::PixbufError
    */
-  static Glib::RefPtr<Pixbuf> create_from_file(const std::string& filename, int width, int height, bool preserve_aspect_ratio =  true);
+  static auto create_from_file(const std::string& filename, int width, int height, bool preserve_aspect_ratio =  true) -> Glib::RefPtr<Pixbuf>;
    //gdk_pixbuf_new_from_file_at_size() just calls gdk_pixbuf_new_from_file_at_scale().
 
 
@@ -458,7 +458,7 @@ public:
    *
    * @newin{3,12}
    */
-  static Glib::RefPtr<Pixbuf> create_from_resource(const std::string& resource_path);
+  static auto create_from_resource(const std::string& resource_path) -> Glib::RefPtr<Pixbuf>;
 
 
   /** Creates a new pixbuf by loading an image from a resource. The file format is detected automatically.
@@ -478,7 +478,7 @@ public:
    *
    * @newin{3,12}
    */
-  static Glib::RefPtr<Pixbuf> create_from_resource(const std::string& resource_path, int width, int height, bool preserve_aspect_ratio =  true);
+  static auto create_from_resource(const std::string& resource_path, int width, int height, bool preserve_aspect_ratio =  true) -> Glib::RefPtr<Pixbuf>;
 
 
   /** Creates a new Gdk::Pixbuf out of in-memory image data.
@@ -493,9 +493,9 @@ public:
    * @param rowstride Distance in bytes between rows.
    * @return A newly-created Gdk::Pixbuf object.
    */
-  static Glib::RefPtr<Pixbuf> create_from_data(const guint8* data, Colorspace colorspace,
+  static auto create_from_data(const guint8* data, Colorspace colorspace,
                                                bool has_alpha, int bits_per_sample,
-                                               int width, int height, int rowstride);
+                                               int width, int height, int rowstride) -> Glib::RefPtr<Pixbuf>;
 
   /** Creates a new Gdk::Pixbuf out of in-memory image data.
    * Currently only RGB images with 8 bits per sample are supported.
@@ -511,10 +511,10 @@ public:
    * reference count drops to zero.
    * @return A newly-created Gdk::Pixbuf object.
    */
-  static Glib::RefPtr<Pixbuf> create_from_data(const guint8* data, Colorspace colorspace,
+  static auto create_from_data(const guint8* data, Colorspace colorspace,
                                                bool has_alpha, int bits_per_sample,
                                                int width, int height, int rowstride,
-                                               const SlotDestroyData& destroy_slot);
+                                               const SlotDestroyData& destroy_slot) -> Glib::RefPtr<Pixbuf>;
 
 
   /** Creates a new pixbuf by parsing XPM data in memory.
@@ -525,7 +525,7 @@ public:
    * @param data Pointer to inline XPM data.
    * @return A newly-created pixbuf.
    */
-  static Glib::RefPtr<Pixbuf> create_from_xpm_data(const char *const * data);
+  static auto create_from_xpm_data(const char *const * data) -> Glib::RefPtr<Pixbuf>;
 
 
   /** Creates a new pixbuf by loading an image from an input stream.
@@ -549,8 +549,8 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<Pixbuf> create_from_stream(const Glib::RefPtr<Gio::InputStream>& stream, const Glib::RefPtr<Gio::Cancellable>& cancellable);
-  static Glib::RefPtr<Pixbuf> create_from_stream(const Glib::RefPtr<Gio::InputStream>& stream);
+  static auto create_from_stream(const Glib::RefPtr<Gio::InputStream>& stream, const Glib::RefPtr<Gio::Cancellable>& cancellable) -> Glib::RefPtr<Pixbuf>;
+  static auto create_from_stream(const Glib::RefPtr<Gio::InputStream>& stream) -> Glib::RefPtr<Pixbuf>;
 
 
   /** Creates a new pixbuf by loading an image from an input stream.
@@ -586,34 +586,34 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<Pixbuf> create_from_stream_at_scale(const Glib::RefPtr<Gio::InputStream>& stream, int width, int height, bool preserve_aspect_ratio, const Glib::RefPtr<Gio::Cancellable>& cancellable);
-  static Glib::RefPtr<Pixbuf> create_from_stream_at_scale(const Glib::RefPtr<Gio::InputStream>& stream, int width, int height, bool preserve_aspect_ratio);
+  static auto create_from_stream_at_scale(const Glib::RefPtr<Gio::InputStream>& stream, int width, int height, bool preserve_aspect_ratio, const Glib::RefPtr<Gio::Cancellable>& cancellable) -> Glib::RefPtr<Pixbuf>;
+  static auto create_from_stream_at_scale(const Glib::RefPtr<Gio::InputStream>& stream, int width, int height, bool preserve_aspect_ratio) -> Glib::RefPtr<Pixbuf>;
 
 
   /** Queries the color space of a pixbuf.
    *
    * @return Color space.
    */
-  Colorspace get_colorspace() const;
+  auto get_colorspace() const -> Colorspace;
 
 
   /** Queries the number of channels of a pixbuf.
    *
    * @return Number of channels.
    */
-  int get_n_channels() const;
+  auto get_n_channels() const -> int;
 
   /** Queries whether a pixbuf has an alpha channel (opacity information).
    *
    * @return <tt>true</tt> if it has an alpha channel, <tt>false</tt> otherwise.
    */
-  bool get_has_alpha() const;
+  auto get_has_alpha() const -> bool;
 
   /** Queries the number of bits per color sample in a pixbuf.
    *
    * @return Number of bits per color sample.
    */
-  int get_bits_per_sample() const;
+  auto get_bits_per_sample() const -> int;
 
   // Note that the const version uses gdk_pixbuf_read_pixels, not gdk_pixbuf_get_pixels(),
   // because gdk_pixbuf_get_pixels() is documented as sometimes copying data internally
@@ -629,7 +629,7 @@ public:
    *
    * @return A pointer to the pixbuf's pixel data.
    */
-  guint8* get_pixels();
+  auto get_pixels() -> guint8*;
 
   /** Provides a read-only pointer to the raw pixel data.
    *
@@ -640,7 +640,7 @@ public:
    *
    * @return A read-only pointer to the raw pixel data.
    */
-  const guint8* get_pixels() const;
+  auto get_pixels() const -> const guint8*;
 
 
   /** Queries a pointer to the pixel data of a pixbuf.
@@ -657,30 +657,30 @@ public:
    * @return A pointer to the pixbuf's
    * pixel data.
    */
-  guint8* get_pixels(guint& length);
+  auto get_pixels(guint& length) -> guint8*;
 
   // We hand-code this because there is no gdk_pixbuf_read_pixels_with_length().
-  const guint8* get_pixels(guint& length) const;
+  auto get_pixels(guint& length) const -> const guint8*;
 
 
   /** Queries the width of a pixbuf.
    *
    * @return Width in pixels.
    */
-  int get_width() const;
+  auto get_width() const -> int;
 
   /** Queries the height of a pixbuf.
    *
    * @return Height in pixels.
    */
-  int get_height() const;
+  auto get_height() const -> int;
 
   /** Queries the rowstride of a pixbuf, which is the number of bytes between
    * the start of a row and the start of the next row.
    *
    * @return Distance between row starts.
    */
-  int get_rowstride() const;
+  auto get_rowstride() const -> int;
 
   /** Returns the length of the pixel data, in bytes.
    *
@@ -688,7 +688,7 @@ public:
    *
    * @return The length of the pixel data.
    */
-  gsize get_byte_length() const;
+  auto get_byte_length() const -> gsize;
 
 
   /** Clears a pixbuf to the given RGBA value, converting the RGBA value into
@@ -842,7 +842,7 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    * @param b Blue value to substitute.
    * @return A newly-created pixbuf.
    */
-  Glib::RefPtr<Gdk::Pixbuf> add_alpha(bool substitute_color, guint8 r, guint8 g, guint8 b) const;
+  auto add_alpha(bool substitute_color, guint8 r, guint8 g, guint8 b) const -> Glib::RefPtr<Gdk::Pixbuf>;
 
 
   /** Copies a rectangular area from `src_pixbuf` to `dest_pixbuf`.
@@ -1000,7 +1000,7 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    * @param interp_type The interpolation type for the transformation.
    * @return The new pixbuf.
    */
-  Glib::RefPtr<Gdk::Pixbuf> scale_simple(int dest_width, int dest_height, InterpType interp_type) const;
+  auto scale_simple(int dest_width, int dest_height, InterpType interp_type) const -> Glib::RefPtr<Gdk::Pixbuf>;
 
 
   /** Creates a new pixbuf by scaling `src` to `dest_width` x `dest_height`
@@ -1016,7 +1016,7 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    * @param color2 The color of the other check.
    * @return The new pixbuf.
    */
-  Glib::RefPtr<Gdk::Pixbuf> composite_color_simple(int dest_width, int dest_height, InterpType interp_type, int overall_alpha, int check_size, guint32 color1, guint32 color2) const;
+  auto composite_color_simple(int dest_width, int dest_height, InterpType interp_type, int overall_alpha, int check_size, guint32 color1, guint32 color2) const -> Glib::RefPtr<Gdk::Pixbuf>;
 
 
   /** Rotates a pixbuf by a multiple of 90 degrees, and returns the
@@ -1029,7 +1029,7 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    * @param angle The angle to rotate by.
    * @return The new pixbuf.
    */
-  Glib::RefPtr<Gdk::Pixbuf> rotate_simple(Rotation angle) const;
+  auto rotate_simple(Rotation angle) const -> Glib::RefPtr<Gdk::Pixbuf>;
 
   /** Flips a pixbuf horizontally or vertically and returns the
    * result in a new pixbuf.
@@ -1039,7 +1039,7 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    * @param horizontal <tt>true</tt> to flip horizontally, <tt>false</tt> to flip vertically.
    * @return The new pixbuf.
    */
-  Glib::RefPtr<Gdk::Pixbuf> flip(bool horizontal =  true) const;
+  auto flip(bool horizontal =  true) const -> Glib::RefPtr<Gdk::Pixbuf>;
 
 
   /** Looks up @a key in the list of options that may have been attached to the
@@ -1061,7 +1061,7 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    * @param key A nul-terminated string.
    * @return The value associated with `key`.
    */
-  Glib::ustring get_option(const Glib::ustring& key) const;
+  auto get_option(const Glib::ustring& key) const -> Glib::ustring;
 
   /** Attaches a key/value pair as an option to a `Gdk::Pixbuf`.
    *
@@ -1074,7 +1074,7 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    * @param value A nul-terminated string.
    * @return <tt>true</tt> on success.
    */
-  bool set_option(const Glib::ustring& key, const Glib::ustring& value);
+  auto set_option(const Glib::ustring& key, const Glib::ustring& value) -> bool;
 
   /** Removes the key/value pair option attached to a `Gdk::Pixbuf`.
    *
@@ -1083,7 +1083,7 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    * @param key A nul-terminated string representing the key to remove.
    * @return <tt>true</tt> if an option was removed, <tt>false</tt> if not.
    */
-  bool remove_option(const Glib::ustring& key);
+  auto remove_option(const Glib::ustring& key) -> bool;
 
   /** Copies the key/value pair options attached to a `Gdk::Pixbuf` to another
    * `Gdk::Pixbuf`.
@@ -1097,7 +1097,7 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    * @param dest_pixbuf The destination pixbuf.
    * @return <tt>true</tt> on success.
    */
-  bool copy_options(const Glib::RefPtr<Pixbuf>& dest_pixbuf) const;
+  auto copy_options(const Glib::RefPtr<Pixbuf>& dest_pixbuf) const -> bool;
 
   //This creates a new GdkPixbuf or returns the original with a reference.
 
@@ -1116,12 +1116,12 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    *
    * @return A newly-created pixbuf.
    */
-  Glib::RefPtr<Pixbuf> apply_embedded_orientation();
+  auto apply_embedded_orientation() -> Glib::RefPtr<Pixbuf>;
 
   /** Obtains the available information about the image formats supported by GdkPixbuf.
    * @result A list of PixbufFormats describing the supported image formats.
    */
-  static std::vector<PixbufFormat> get_formats();
+  static auto get_formats() -> std::vector<PixbufFormat>;
 
 
   /** The color space of the pixbuf.
@@ -1133,7 +1133,7 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Colorspace > property_colorspace() const;
+  auto property_colorspace() const -> Glib::PropertyProxy_ReadOnly< Colorspace >;
 
 
   /** The number of samples per pixel.
@@ -1145,7 +1145,7 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_n_channels() const;
+  auto property_n_channels() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** Whether the pixbuf has an alpha channel.
@@ -1155,7 +1155,7 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_alpha() const;
+  auto property_has_alpha() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** The number of bits per sample.
@@ -1167,7 +1167,7 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_bits_per_sample() const;
+  auto property_bits_per_sample() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** The number of columns of the pixbuf.
@@ -1177,7 +1177,7 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_width() const;
+  auto property_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** The number of rows of the pixbuf.
@@ -1187,7 +1187,7 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_height() const;
+  auto property_height() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** The number of bytes between the start of a row and
@@ -1201,7 +1201,7 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_rowstride() const;
+  auto property_rowstride() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** A pointer to the pixel data of the pixbuf.
@@ -1209,7 +1209,7 @@ gboolean gdk_pixbuf_save_to_callbackv   (GdkPixbuf  *pixbuf,
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< void* > property_pixels() const;
+  auto property_pixels() const -> Glib::PropertyProxy_ReadOnly< void* >;
 
 
 public:
@@ -1236,7 +1236,7 @@ template <>
 class GDKMM_API Value<Gdk::Pixbuf::Rotation> : public Glib::Value_Enum<Gdk::Pixbuf::Rotation>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1254,7 +1254,7 @@ namespace Glib
    * @relates Gdk::Pixbuf
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::Pixbuf> wrap(GdkPixbuf* object, bool take_copy = false);
+  auto wrap(GdkPixbuf* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Pixbuf>;
 }
 
 

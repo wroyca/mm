@@ -73,7 +73,7 @@ public:
 
   // noncopyable
   SocketListener(const SocketListener&) = delete;
-  SocketListener& operator=(const SocketListener&) = delete;
+  auto operator=(const SocketListener&) -> SocketListener& = delete;
 
 private:  friend class SocketListener_Class;
   static CppClassType socketlistener_class_;
@@ -87,28 +87,28 @@ protected:
 public:
 
   SocketListener(SocketListener&& src) noexcept;
-  SocketListener& operator=(SocketListener&& src) noexcept;
+  auto operator=(SocketListener&& src) noexcept -> SocketListener&;
 
   ~SocketListener() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GSocketListener*       gobj()       { return reinterpret_cast<GSocketListener*>(gobject_); }
+  auto       gobj() -> GSocketListener*       { return reinterpret_cast<GSocketListener*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GSocketListener* gobj() const { return reinterpret_cast<GSocketListener*>(gobject_); }
+  auto gobj() const -> const GSocketListener* { return reinterpret_cast<GSocketListener*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GSocketListener* gobj_copy();
+  auto gobj_copy() -> GSocketListener*;
 
 private:
 
@@ -118,7 +118,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<SocketListener> create();
+  static auto create() -> Glib::RefPtr<SocketListener>;
 
 
   /** Sets the listen backlog on the sockets in the listener. This must be called
@@ -156,7 +156,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool add_socket(const Glib::RefPtr<Socket>& socket, const Glib::RefPtr<Glib::Object>& source_object);
+  auto add_socket(const Glib::RefPtr<Socket>& socket, const Glib::RefPtr<Glib::Object>& source_object) -> bool;
 
  //TODO: The use of WRAP_METHOD_DOCS_ONLY here is almost certainly not good enough.
  //Check the HTML actually outputed and probably hand-code them as for Gio::File.
@@ -183,7 +183,7 @@ public:
    * @return <tt>true</tt> on success, <tt>false</tt> on error.
    */
 
-  bool add_socket(const Glib::RefPtr<Socket>& socket);
+  auto add_socket(const Glib::RefPtr<Socket>& socket) -> bool;
 
 
   /** Creates a socket of type @a type and protocol @a protocol, binds
@@ -220,7 +220,7 @@ public:
    * @return <tt>true</tt> on success, <tt>false</tt> on error.
    */
 
-bool add_address(const Glib::RefPtr<SocketAddress>& address, Socket::Type type, Socket::Protocol protocol, const Glib::RefPtr<Glib::Object>& source_object, Glib::RefPtr<SocketAddress>& effective_address);
+auto add_address(const Glib::RefPtr<SocketAddress>& address, Socket::Type type, Socket::Protocol protocol, const Glib::RefPtr<Glib::Object>& source_object, Glib::RefPtr<SocketAddress>& effective_address) -> bool;
 
 
   /** Creates a socket of type @a type and protocol @a protocol, binds
@@ -257,7 +257,7 @@ bool add_address(const Glib::RefPtr<SocketAddress>& address, Socket::Type type, 
    * @return <tt>true</tt> on success, <tt>false</tt> on error.
    */
 
-  bool add_address(const Glib::RefPtr<SocketAddress>& address, Socket::Type type, Socket::Protocol protocol, Glib::RefPtr<SocketAddress>& effective_address);
+  auto add_address(const Glib::RefPtr<SocketAddress>& address, Socket::Type type, Socket::Protocol protocol, Glib::RefPtr<SocketAddress>& effective_address) -> bool;
 
 
   /** Helper function for g_socket_listener_add_address() that
@@ -281,7 +281,7 @@ bool add_address(const Glib::RefPtr<SocketAddress>& address, Socket::Type type, 
    *
    * @throws Glib::Error
    */
-  bool add_inet_port(guint16 port, const Glib::RefPtr<Glib::Object>& source_object);
+  auto add_inet_port(guint16 port, const Glib::RefPtr<Glib::Object>& source_object) -> bool;
 
 
   /** Helper function for g_socket_listener_add_address() that
@@ -304,7 +304,7 @@ bool add_address(const Glib::RefPtr<SocketAddress>& address, Socket::Type type, 
    * @return <tt>true</tt> on success, <tt>false</tt> on error.
    */
 
-bool add_inet_port(guint16 port);
+auto add_inet_port(guint16 port) -> bool;
 
 
   /** Listens for TCP connections on any available port number for both
@@ -325,7 +325,7 @@ bool add_inet_port(guint16 port);
    *
    * @throws Glib::Error
    */
-  guint16 add_any_inet_port(const Glib::RefPtr<Glib::Object>& source_object);
+  auto add_any_inet_port(const Glib::RefPtr<Glib::Object>& source_object) -> guint16;
 
 
   /** Listens for TCP connections on any available port number for both
@@ -345,7 +345,7 @@ bool add_inet_port(guint16 port);
    * @return The port number, or 0 in case of failure.
    */
 
-  guint16 add_any_inet_port();
+  auto add_any_inet_port() -> guint16;
 
 
   /** Blocks waiting for a client to connect to any of the sockets added
@@ -370,7 +370,7 @@ bool add_inet_port(guint16 port);
    * @return A Socket on success, <tt>nullptr</tt> on error.
    */
 
-Glib::RefPtr<Socket> accept_socket(Glib::RefPtr<Glib::Object>& source_object, const Glib::RefPtr<Cancellable>& cancellable);
+auto accept_socket(Glib::RefPtr<Glib::Object>& source_object, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Socket>;
 
 
   /** Blocks waiting for a client to connect to any of the sockets added
@@ -395,7 +395,7 @@ Glib::RefPtr<Socket> accept_socket(Glib::RefPtr<Glib::Object>& source_object, co
    * @return A Socket on success, <tt>nullptr</tt> on error.
    */
 
-  Glib::RefPtr<Socket> accept_socket(Glib::RefPtr<Glib::Object>& source_object);
+  auto accept_socket(Glib::RefPtr<Glib::Object>& source_object) -> Glib::RefPtr<Socket>;
 
 
   /** Blocks waiting for a client to connect to any of the sockets added
@@ -420,7 +420,7 @@ Glib::RefPtr<Socket> accept_socket(Glib::RefPtr<Glib::Object>& source_object, co
    * @return A Socket on success, <tt>nullptr</tt> on error.
    */
 
-  Glib::RefPtr<Socket> accept_socket(const Glib::RefPtr<Cancellable>& cancellable);
+  auto accept_socket(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Socket>;
 
 
   /** Blocks waiting for a client to connect to any of the sockets added
@@ -445,7 +445,7 @@ Glib::RefPtr<Socket> accept_socket(Glib::RefPtr<Glib::Object>& source_object, co
    * @return A Socket on success, <tt>nullptr</tt> on error.
    */
 
-  Glib::RefPtr<Socket> accept_socket();
+  auto accept_socket() -> Glib::RefPtr<Socket>;
 
 
   /** This is the asynchronous version of g_socket_listener_accept_socket().
@@ -489,7 +489,7 @@ Glib::RefPtr<Socket> accept_socket(Glib::RefPtr<Glib::Object>& source_object, co
    * @return A Socket on success, <tt>nullptr</tt> on error.
    */
 
-  Glib::RefPtr<Socket> accept_socket_finish(const Glib::RefPtr<AsyncResult>& result, Glib::RefPtr<Glib::Object>& source_object);
+  auto accept_socket_finish(const Glib::RefPtr<AsyncResult>& result, Glib::RefPtr<Glib::Object>& source_object) -> Glib::RefPtr<Socket>;
 
 
   /** Finishes an async accept operation. See g_socket_listener_accept_socket_async()
@@ -501,7 +501,7 @@ Glib::RefPtr<Socket> accept_socket(Glib::RefPtr<Glib::Object>& source_object, co
    * @return A Socket on success, <tt>nullptr</tt> on error.
    */
 
-  Glib::RefPtr<Socket> accept_socket_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto accept_socket_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<Socket>;
 
 
   /** Blocks waiting for a client to connect to any of the sockets added
@@ -523,7 +523,7 @@ Glib::RefPtr<Socket> accept_socket(Glib::RefPtr<Glib::Object>& source_object, co
    * @return A SocketConnection on success, <tt>nullptr</tt> on error.
    */
 
-  Glib::RefPtr<SocketConnection> accept(Glib::RefPtr<Object>& source_object, const Glib::RefPtr<Cancellable>& cancellable);
+  auto accept(Glib::RefPtr<Object>& source_object, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketConnection>;
 
 
   /** Blocks waiting for a client to connect to any of the sockets added
@@ -545,7 +545,7 @@ Glib::RefPtr<Socket> accept_socket(Glib::RefPtr<Glib::Object>& source_object, co
    * @return A SocketConnection on success, <tt>nullptr</tt> on error.
    */
 
-  Glib::RefPtr<SocketConnection> accept(Glib::RefPtr<Object>& source_object);
+  auto accept(Glib::RefPtr<Object>& source_object) -> Glib::RefPtr<SocketConnection>;
 
 
   /** Blocks waiting for a client to connect to any of the sockets added
@@ -567,7 +567,7 @@ Glib::RefPtr<Socket> accept_socket(Glib::RefPtr<Glib::Object>& source_object, co
    * @return A SocketConnection on success, <tt>nullptr</tt> on error.
    */
 
-  Glib::RefPtr<SocketConnection> accept(const Glib::RefPtr<Cancellable>& cancellable);
+  auto accept(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketConnection>;
 
 
   /** Blocks waiting for a client to connect to any of the sockets added
@@ -589,7 +589,7 @@ Glib::RefPtr<Socket> accept_socket(Glib::RefPtr<Glib::Object>& source_object, co
    * @return A SocketConnection on success, <tt>nullptr</tt> on error.
    */
 
-  Glib::RefPtr<SocketConnection> accept();
+  auto accept() -> Glib::RefPtr<SocketConnection>;
 
 
   /** This is the asynchronous version of g_socket_listener_accept().
@@ -633,7 +633,7 @@ Glib::RefPtr<Socket> accept_socket(Glib::RefPtr<Glib::Object>& source_object, co
    * @return A SocketConnection on success, <tt>nullptr</tt> on error.
    */
 
-  Glib::RefPtr<SocketConnection> accept_finish(const Glib::RefPtr<AsyncResult>& result, Glib::RefPtr<Glib::Object>& source_object);
+  auto accept_finish(const Glib::RefPtr<AsyncResult>& result, Glib::RefPtr<Glib::Object>& source_object) -> Glib::RefPtr<SocketConnection>;
 
 
   /** Finishes an async accept operation. See g_socket_listener_accept_async()
@@ -645,7 +645,7 @@ Glib::RefPtr<Socket> accept_socket(Glib::RefPtr<Glib::Object>& source_object, co
    * @return A SocketConnection on success, <tt>nullptr</tt> on error.
    */
 
-  Glib::RefPtr<SocketConnection> accept_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto accept_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<SocketConnection>;
 
 
   /** Closes all the sockets in the listener.
@@ -661,7 +661,7 @@ Glib::RefPtr<Socket> accept_socket(Glib::RefPtr<Glib::Object>& source_object, co
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_listen_backlog() ;
+  auto property_listen_backlog() -> Glib::PropertyProxy< int > ;
 
 /** outstanding connections in the listen queue.
    *
@@ -670,7 +670,7 @@ Glib::RefPtr<Socket> accept_socket(Glib::RefPtr<Glib::Object>& source_object, co
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_listen_backlog() const;
+  auto property_listen_backlog() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
 public:
@@ -700,7 +700,7 @@ namespace Glib
    * @relates Gio::SocketListener
    */
   GIOMM_API
-  Glib::RefPtr<Gio::SocketListener> wrap(GSocketListener* object, bool take_copy = false);
+  auto wrap(GSocketListener* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketListener>;
 }
 
 

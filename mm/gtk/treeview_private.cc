@@ -19,10 +19,7 @@
 #include <mm/gtk/treeview_private.h>
 
 
-namespace Gtk
-{
-
-namespace TreeView_Private
+namespace Gtk::TreeView_Private
 {
 
 void SignalProxy_CellData_gtk_callback(GtkTreeViewColumn*, GtkCellRenderer* cell,
@@ -57,7 +54,7 @@ void SignalProxy_CellData_gtk_callback_destroy(void* data)
 }
 
 
-gboolean SignalProxy_RowSeparator_gtk_callback(GtkTreeModel* model, GtkTreeIter* iter, void* data)
+auto SignalProxy_RowSeparator_gtk_callback(GtkTreeModel* model, GtkTreeIter* iter, void* data) -> gboolean
 {
   TreeView::SlotRowSeparator* the_slot = static_cast<TreeView::SlotRowSeparator*>(data);
 
@@ -77,7 +74,5 @@ void SignalProxy_RowSeparator_gtk_callback_destroy(void* data)
 {
   delete static_cast<TreeView::SlotRowSeparator*>(data);
 }
-
-} // namespace TreeView_Private
 
 } // namespace Gtk

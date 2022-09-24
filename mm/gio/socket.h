@@ -113,7 +113,7 @@ public:
 
   // noncopyable
   Socket(const Socket&) = delete;
-  Socket& operator=(const Socket&) = delete;
+  auto operator=(const Socket&) -> Socket& = delete;
 
 private:  friend class Socket_Class;
   static CppClassType socket_class_;
@@ -127,28 +127,28 @@ protected:
 public:
 
   Socket(Socket&& src) noexcept;
-  Socket& operator=(Socket&& src) noexcept;
+  auto operator=(Socket&& src) noexcept -> Socket&;
 
   ~Socket() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GSocket*       gobj()       { return reinterpret_cast<GSocket*>(gobject_); }
+  auto       gobj() -> GSocket*       { return reinterpret_cast<GSocket*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GSocket* gobj() const { return reinterpret_cast<GSocket*>(gobject_); }
+  auto gobj() const -> const GSocket* { return reinterpret_cast<GSocket*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GSocket* gobj_copy();
+  auto gobj_copy() -> GSocket*;
 
 private:
 
@@ -308,9 +308,9 @@ public:
   /** @param cancellable A Cancellable object which can be used to cancel the operation.
    * @throw Glib::Error
    */
-  static Glib::RefPtr<Socket>
+  static auto
   create(SocketFamily family, Type type, Protocol protocol,
-         const Glib::RefPtr<Cancellable>& cancellable = {});
+         const Glib::RefPtr<Cancellable>& cancellable = {}) -> Glib::RefPtr<Socket>;
 
   // gmmproc thinks that this function should be wrapped in this class because
   // its only parameter is a GSocket.  In fact, it is wrapped in the
@@ -341,8 +341,8 @@ public:
   /** @param cancellable A Cancellable object which can be used to cancel the operation.
    * @throw Glib::Error
    */
-  static Glib::RefPtr<Socket> create_from_fd(int fd, const Glib::RefPtr<Cancellable>&
-                                             cancellable = {});
+  static auto create_from_fd(int fd, const Glib::RefPtr<Cancellable>&
+                                             cancellable = {}) -> Glib::RefPtr<Socket>;
 
 
   /** When a socket is created it is attached to an address family, but it doesn't
@@ -405,10 +405,10 @@ public:
    *
    * @throw Gio::Error
    */
-  Glib::RefPtr<Socket> accept(const Glib::RefPtr<Cancellable>& cancellable);
+  auto accept(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Socket>;
 
   /// A accept() convenience overload.
-  Glib::RefPtr<Socket> accept();
+  auto accept() -> Glib::RefPtr<Socket>;
 
 
   /** Connect the socket to the specified remote address.
@@ -485,14 +485,14 @@ public:
    *
    * @throws Glib::Error
    */
-  gssize receive(char* buffer, gsize size, const Glib::RefPtr<Cancellable>& cancellable);
+  auto receive(char* buffer, gsize size, const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
   /// A receive() convenience overload.
-  gssize receive(char* buffer, gsize size);
+  auto receive(char* buffer, gsize size) -> gssize;
 
 
-  gssize receive_from(Glib::RefPtr<SocketAddress>& address, char* buffer, gsize size, const Glib::RefPtr<Cancellable>& cancellable);
-  gssize receive_from(Glib::RefPtr<SocketAddress>& address, char* buffer, gsize size);
+  auto receive_from(Glib::RefPtr<SocketAddress>& address, char* buffer, gsize size, const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
+  auto receive_from(Glib::RefPtr<SocketAddress>& address, char* buffer, gsize size) -> gssize;
   // TODO: wrap g_socket_receive_message -- figure out this GInputVector thing
   // TODO: std::string overload?
 
@@ -523,10 +523,10 @@ public:
    *
    * @throws Glib::Error
    */
-  gssize send(const gchar* buffer, gsize size, const Glib::RefPtr<Cancellable>& cancellable);
+  auto send(const gchar* buffer, gsize size, const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
   /// A send() convenience overload.
-  gssize send(const gchar* buffer, gsize size);
+  auto send(const gchar* buffer, gsize size) -> gssize;
 
   // TODO: std::string overload?
 
@@ -548,10 +548,10 @@ public:
    *
    * @throws Glib::Error
    */
-  gssize send_to(const Glib::RefPtr<SocketAddress>& address, const char* buffer, gsize size, const Glib::RefPtr<Cancellable>& cancellable);
+  auto send_to(const Glib::RefPtr<SocketAddress>& address, const char* buffer, gsize size, const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
   /// A send_to() convenience overload.
-  gssize send_to(const Glib::RefPtr<SocketAddress>& address, const char* buffer, gsize size);
+  auto send_to(const Glib::RefPtr<SocketAddress>& address, const char* buffer, gsize size) -> gssize;
 
   // TODO: wrap g_socket_send_message -- figure out this GOutputVector thing
 
@@ -598,7 +598,7 @@ public:
    *
    * @return <tt>true</tt> if socket is closed, <tt>false</tt> otherwise.
    */
-  bool is_closed();
+  auto is_closed() -> bool;
 
   /** Creates a SocketSource that can be attached to a Glib::MainContext to monitor
    * for the availability of the specified @a condition on the socket.
@@ -632,7 +632,7 @@ public:
    * @param cancellable A Cancellable. The default value means the source is not cancellable.
    * @return A newly allocated SocketSource.
    */
-  Glib::RefPtr<SocketSource> create_source(Glib::IOCondition condition, const Glib::RefPtr<Cancellable>& cancellable = {});
+  auto create_source(Glib::IOCondition condition, const Glib::RefPtr<Cancellable>& cancellable = {}) -> Glib::RefPtr<SocketSource>;
 
 
   /** Shut down part or all of a full-duplex connection.
@@ -671,7 +671,7 @@ public:
    *
    * @return <tt>true</tt> if socket is connected, <tt>false</tt> otherwise.
    */
-  bool is_connected();
+  auto is_connected() -> bool;
 
 
   /** Get the amount of data pending in the OS input buffer, without blocking.
@@ -692,7 +692,7 @@ public:
    * @return The number of bytes that can be read from the socket
    * without blocking or truncating, or -1 on error.
    */
-  gssize get_available_bytes() const;
+  auto get_available_bytes() const -> gssize;
 
 
   /** Checks on the readiness of @a socket to perform operations.
@@ -718,7 +718,7 @@ public:
    * @param condition A IOCondition mask to check.
    * @return The @a GIOCondition mask of the current state.
    */
-  Glib::IOCondition condition_check(Glib::IOCondition condition);
+  auto condition_check(Glib::IOCondition condition) -> Glib::IOCondition;
 
 
   /** Waits for @a condition to become true on @a socket. When the condition
@@ -797,7 +797,7 @@ public:
    *
    * @return The maximum number of pending connections.
    */
-  int get_listen_backlog() const;
+  auto get_listen_backlog() const -> int;
 
   /** Sets the blocking mode of the socket. In blocking mode
    * all operations (which don’t take an explicit blocking parameter) block until
@@ -822,7 +822,7 @@ public:
    *
    * @return <tt>true</tt> if blocking I/O is used, <tt>false</tt> otherwise.
    */
-  bool get_blocking() const;
+  auto get_blocking() const -> bool;
 
   /** Sets or unsets the SO_KEEPALIVE flag on the underlying socket. When
    * this flag is set on a socket, the system will attempt to verify that the
@@ -853,7 +853,7 @@ public:
    *
    * @return <tt>true</tt> if keepalive is active, <tt>false</tt> otherwise.
    */
-  bool get_keepalive() const;
+  auto get_keepalive() const -> bool;
 
   /** Gets the socket family of the socket.
    *
@@ -861,7 +861,7 @@ public:
    *
    * @return A SocketFamily.
    */
-  SocketFamily get_family() const;
+  auto get_family() const -> SocketFamily;
 
   /** Returns the underlying OS socket object. On unix this
    * is a socket file descriptor, and on Windows this is
@@ -873,7 +873,7 @@ public:
    *
    * @return The file descriptor of the socket.
    */
-  int get_fd() const;
+  auto get_fd() const -> int;
 
   /** Try to get the local address of a bound socket. This is only
    * useful if the socket has been bound to a local address,
@@ -886,7 +886,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<SocketAddress> get_local_address() const;
+  auto get_local_address() const -> Glib::RefPtr<SocketAddress>;
 
   /** Try to get the remote address of a connected socket. This is only
    * useful for connection oriented sockets that have been connected.
@@ -898,7 +898,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<SocketAddress> get_remote_address() const;
+  auto get_remote_address() const -> Glib::RefPtr<SocketAddress>;
 
   /** Gets the socket protocol id the socket was created with.
    * In case the protocol is unknown, -1 is returned.
@@ -907,7 +907,7 @@ public:
    *
    * @return A protocol id, or -1 if unknown.
    */
-  Protocol get_protocol() const;
+  auto get_protocol() const -> Protocol;
 
   /** Gets the socket type of the socket.
    *
@@ -915,7 +915,7 @@ public:
    *
    * @return A Gio::Socket::Type.
    */
-  Type get_socket_type() const;
+  auto get_socket_type() const -> Type;
 
   /** Checks if a socket is capable of speaking IPv4.
    *
@@ -931,7 +931,7 @@ public:
    *
    * @return <tt>true</tt> if this socket can be used with IPv4.
    */
-  bool speaks_ipv4() const;
+  auto speaks_ipv4() const -> bool;
 
 
   /** Returns the credentials of the foreign process connected to this
@@ -962,7 +962,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<Credentials> get_credentials();
+  auto get_credentials() -> Glib::RefPtr<Credentials>;
 
   /** Returns the credentials of the foreign process connected to this
    * socket, if any (e.g.\ it is only supported for Gio::SocketFamily::UNIX
@@ -992,7 +992,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<const Credentials> get_credentials() const;
+  auto get_credentials() const -> Glib::RefPtr<const Credentials>;
 
 
   /** Gets the timeout setting of the socket. For details on this, see
@@ -1002,7 +1002,7 @@ public:
    *
    * @return The timeout in seconds.
    */
-  guint get_timeout() const;
+  auto get_timeout() const -> guint;
 
   /** Sets the time in seconds after which I/O operations on @a socket will
    * time out if they have not yet completed.
@@ -1046,7 +1046,7 @@ public:
    * the peer, or -1 on error.
    */
 
-  gssize receive_with_blocking(gchar* buffer, gsize size, bool blocking, const Glib::RefPtr<Cancellable>& cancellable = {});
+  auto receive_with_blocking(gchar* buffer, gsize size, bool blocking, const Glib::RefPtr<Cancellable>& cancellable = {}) -> gssize;
 
 
   /** This behaves exactly the same as g_socket_send(), except that
@@ -1064,7 +1064,7 @@ public:
    * on error.
    */
 
-  gssize send_with_blocking(gchar* buffer, gsize size, bool blocking, const Glib::RefPtr<Cancellable>& cancellable = {});
+  auto send_with_blocking(gchar* buffer, gsize size, bool blocking, const Glib::RefPtr<Cancellable>& cancellable = {}) -> gssize;
 
 
   /** Gets the value of an integer-valued option on @a socket, as with
@@ -1092,7 +1092,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool get_option(int level, int optname, int& value) const;
+  auto get_option(int level, int optname, int& value) const -> bool;
 
   /** Sets the value of an integer-valued option on @a socket, as with
    * setsockopt(). (If you need to set a non-integer-valued option,
@@ -1115,7 +1115,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool set_option(int level, int optname, int value);
+  auto set_option(int level, int optname, int value) -> bool;
 
 
   /** Gets the unicast time-to-live setting on @a socket; see
@@ -1125,7 +1125,7 @@ public:
    *
    * @return The time-to-live setting on @a socket.
    */
-  guint get_ttl() const;
+  auto get_ttl() const -> guint;
 
   /** Sets the time-to-live for outgoing unicast packets on @a socket.
    * By default the platform-specific default value is used.
@@ -1145,7 +1145,7 @@ public:
    *
    * @return The broadcast setting on @a socket.
    */
-  bool get_broadcast() const;
+  auto get_broadcast() const -> bool;
 
   /** Sets whether @a socket should allow sending to broadcast addresses.
    * This is <tt>false</tt> by default.
@@ -1166,7 +1166,7 @@ public:
    *
    * @return The multicast loopback setting on @a socket.
    */
-  bool get_multicast_loopback() const;
+  auto get_multicast_loopback() const -> bool;
 
   /** Sets whether outgoing multicast packets will be received by sockets
    * listening on that multicast address on the same host. This is <tt>true</tt>
@@ -1186,7 +1186,7 @@ public:
    *
    * @return The multicast time-to-live setting on @a socket.
    */
-  guint get_multicast_ttl() const;
+  auto get_multicast_ttl() const -> guint;
 
   /** Sets the time-to-live for outgoing multicast datagrams on @a socket.
    * By default, this is 1, meaning that multicast packets will not leave
@@ -1223,10 +1223,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool join_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific, const std::string& iface);
+  auto join_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific, const std::string& iface) -> bool;
 
   /// A join_multicast_group() convenience overload.
-  bool join_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific);
+  auto join_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific) -> bool;
 
   /** Removes @a socket from the multicast group defined by @a group, @a iface,
    * and @a source_specific (which must all have the same values they had
@@ -1247,10 +1247,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool leave_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific, const std::string& iface);
+  auto leave_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific, const std::string& iface) -> bool;
 
   /// A leave_multicast_group() convenience overload.
-  bool leave_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific);
+  auto leave_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific) -> bool;
 
 
   /** Whether or not I/O on this socket is blocking.
@@ -1260,7 +1260,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_blocking() ;
+  auto property_blocking() -> Glib::PropertyProxy< bool > ;
 
 /** Whether or not I/O on this socket is blocking.
    *
@@ -1269,7 +1269,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_blocking() const;
+  auto property_blocking() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The sockets address family.
    *
@@ -1278,7 +1278,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< SocketFamily > property_family() const;
+  auto property_family() const -> Glib::PropertyProxy_ReadOnly< SocketFamily >;
 
 
   /** The sockets file descriptor.
@@ -1288,7 +1288,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_fd() const;
+  auto property_fd() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** Keep connection alive by sending periodic pings.
@@ -1298,7 +1298,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_keepalive() ;
+  auto property_keepalive() -> Glib::PropertyProxy< bool > ;
 
 /** Keep connection alive by sending periodic pings.
    *
@@ -1307,7 +1307,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_keepalive() const;
+  auto property_keepalive() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Outstanding connections in the listen queue.
    *
@@ -1316,7 +1316,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_listen_backlog() ;
+  auto property_listen_backlog() -> Glib::PropertyProxy< int > ;
 
 /** Outstanding connections in the listen queue.
    *
@@ -1325,14 +1325,14 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_listen_backlog() const;
+  auto property_listen_backlog() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The local address the socket is bound to.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> > property_local_address() const;
+  auto property_local_address() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> >;
 
 
   /** The remote address the socket is connected to.
@@ -1340,7 +1340,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> > property_remote_address() const;
+  auto property_remote_address() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> >;
 
 
   /** The timeout in seconds on socket I/O
@@ -1352,7 +1352,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_timeout() ;
+  auto property_timeout() -> Glib::PropertyProxy< guint > ;
 
 /** The timeout in seconds on socket I/O
    *
@@ -1363,7 +1363,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_timeout() const;
+  auto property_timeout() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** The id of the protocol to use, or -1 for unknown.
    *
@@ -1372,7 +1372,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Protocol > property_protocol() const;
+  auto property_protocol() const -> Glib::PropertyProxy_ReadOnly< Protocol >;
 
 
   /** Whether the socket should allow sending to broadcast addresses.
@@ -1384,7 +1384,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_broadcast() ;
+  auto property_broadcast() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the socket should allow sending to broadcast addresses.
    *
@@ -1395,7 +1395,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_broadcast() const;
+  auto property_broadcast() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The sockets type.
    *
@@ -1404,7 +1404,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Type > property_type() const;
+  auto property_type() const -> Glib::PropertyProxy_ReadOnly< Type >;
 
 
   /** Time-to-live for outgoing unicast packets
@@ -1416,7 +1416,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_ttl() ;
+  auto property_ttl() -> Glib::PropertyProxy< guint > ;
 
 /** Time-to-live for outgoing unicast packets
    *
@@ -1427,7 +1427,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_ttl() const;
+  auto property_ttl() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** Whether outgoing multicast packets loop back to the local host.
    *
@@ -1438,7 +1438,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_multicast_loopback() ;
+  auto property_multicast_loopback() -> Glib::PropertyProxy< bool > ;
 
 /** Whether outgoing multicast packets loop back to the local host.
    *
@@ -1449,7 +1449,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_multicast_loopback() const;
+  auto property_multicast_loopback() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Time-to-live out outgoing multicast packets
    *
@@ -1460,7 +1460,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_multicast_ttl() ;
+  auto property_multicast_ttl() -> Glib::PropertyProxy< guint > ;
 
 /** Time-to-live out outgoing multicast packets
    *
@@ -1471,7 +1471,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_multicast_ttl() const;
+  auto property_multicast_ttl() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
 public:
@@ -1498,7 +1498,7 @@ template <>
 class GIOMM_API Value<Gio::Socket::Type> : public Glib::Value_Enum<Gio::Socket::Type>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1513,7 +1513,7 @@ template <>
 class GIOMM_API Value<Gio::Socket::Protocol> : public Glib::Value_Enum<Gio::Socket::Protocol>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1523,31 +1523,31 @@ namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline Socket::MsgFlags operator|(Socket::MsgFlags lhs, Socket::MsgFlags rhs)
+inline auto operator|(Socket::MsgFlags lhs, Socket::MsgFlags rhs) -> Socket::MsgFlags
   { return static_cast<Socket::MsgFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Socket::MsgFlags operator&(Socket::MsgFlags lhs, Socket::MsgFlags rhs)
+inline auto operator&(Socket::MsgFlags lhs, Socket::MsgFlags rhs) -> Socket::MsgFlags
   { return static_cast<Socket::MsgFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Socket::MsgFlags operator^(Socket::MsgFlags lhs, Socket::MsgFlags rhs)
+inline auto operator^(Socket::MsgFlags lhs, Socket::MsgFlags rhs) -> Socket::MsgFlags
   { return static_cast<Socket::MsgFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Socket::MsgFlags operator~(Socket::MsgFlags flags)
+inline auto operator~(Socket::MsgFlags flags) -> Socket::MsgFlags
   { return static_cast<Socket::MsgFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline Socket::MsgFlags& operator|=(Socket::MsgFlags& lhs, Socket::MsgFlags rhs)
+inline auto operator|=(Socket::MsgFlags& lhs, Socket::MsgFlags rhs) -> Socket::MsgFlags&
   { return (lhs = static_cast<Socket::MsgFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Socket::MsgFlags& operator&=(Socket::MsgFlags& lhs, Socket::MsgFlags rhs)
+inline auto operator&=(Socket::MsgFlags& lhs, Socket::MsgFlags rhs) -> Socket::MsgFlags&
   { return (lhs = static_cast<Socket::MsgFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Socket::MsgFlags& operator^=(Socket::MsgFlags& lhs, Socket::MsgFlags rhs)
+inline auto operator^=(Socket::MsgFlags& lhs, Socket::MsgFlags rhs) -> Socket::MsgFlags&
   { return (lhs = static_cast<Socket::MsgFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 
@@ -1559,7 +1559,7 @@ template <>
 class GIOMM_API Value<Gio::Socket::MsgFlags> : public Glib::Value_Flags<Gio::Socket::MsgFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1577,7 +1577,7 @@ namespace Glib
    * @relates Gio::Socket
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Socket> wrap(GSocket* object, bool take_copy = false);
+  auto wrap(GSocket* object, bool take_copy = false) -> Glib::RefPtr<Gio::Socket>;
 }
 
 

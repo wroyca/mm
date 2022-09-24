@@ -78,7 +78,7 @@ void CellLayout::set_cell_data_func(CellRenderer& cell, const SlotCellData& slot
       &SignalProxy_CellData_gtk_callback_destroy);
 }
 
-CellRenderer* CellLayout::get_first_cell()
+auto CellLayout::get_first_cell() -> CellRenderer*
 {
   auto vecCellRenderers = get_cells();
   if(!vecCellRenderers.empty())
@@ -87,7 +87,7 @@ CellRenderer* CellLayout::get_first_cell()
     return nullptr;
 }
 
-const CellRenderer* CellLayout::get_first_cell() const
+auto CellLayout::get_first_cell() const -> const CellRenderer*
 {
   //Do some const_cast-ing to avoid repetition of code:
   return const_cast<CellLayout*>(this)->get_first_cell();
@@ -105,7 +105,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::CellLayout> wrap(GtkCellLayout* object, bool take_copy)
+auto wrap(GtkCellLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::CellLayout>
 {
   return Glib::make_refptr_for_instance<Gtk::CellLayout>( dynamic_cast<Gtk::CellLayout*> (Glib::wrap_auto_interface<Gtk::CellLayout> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -120,7 +120,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& CellLayout_Class::init()
+auto CellLayout_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -386,7 +386,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* CellLayout_Class::wrap_new(GObject* object)
+auto CellLayout_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new CellLayout((GtkCellLayout*)(object));
 }
@@ -413,7 +413,7 @@ CellLayout::CellLayout(CellLayout&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-CellLayout& CellLayout::operator=(CellLayout&& src) noexcept
+auto CellLayout::operator=(CellLayout&& src) noexcept -> CellLayout&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -430,13 +430,13 @@ void CellLayout::add_interface(GType gtype_implementer)
 
 CellLayout::CppClassType CellLayout::celllayout_class_; // initialize static member
 
-GType CellLayout::get_type()
+auto CellLayout::get_type() -> GType
 {
   return celllayout_class_.init().get_type();
 }
 
 
-GType CellLayout::get_base_type()
+auto CellLayout::get_base_type() -> GType
 {
   return gtk_cell_layout_get_type();
 }
@@ -452,12 +452,12 @@ void CellLayout::pack_end(CellRenderer& cell, bool expand)
   gtk_cell_layout_pack_end(gobj(), (cell).gobj(), static_cast<int>(expand));
 }
 
-std::vector<CellRenderer*> CellLayout::get_cells()
+auto CellLayout::get_cells() -> std::vector<CellRenderer*>
 {
   return Glib::ListHandler<CellRenderer*>::list_to_vector(gtk_cell_layout_get_cells(gobj()), Glib::OWNERSHIP_SHALLOW);
 }
 
-std::vector<const CellRenderer*> CellLayout::get_cells() const
+auto CellLayout::get_cells() const -> std::vector<const CellRenderer*>
 {
   return Glib::ListHandler<const CellRenderer*>::list_to_vector(gtk_cell_layout_get_cells(const_cast<GtkCellLayout*>(gobj())), Glib::OWNERSHIP_SHALLOW);
 }
@@ -482,7 +482,7 @@ void CellLayout::reorder(CellRenderer& cell, int position)
   gtk_cell_layout_reorder(gobj(), (cell).gobj(), position);
 }
 
-Glib::RefPtr<CellArea> CellLayout::get_area()
+auto CellLayout::get_area() -> Glib::RefPtr<CellArea>
 {
   auto retvalue = Glib::wrap(gtk_cell_layout_get_area(gobj()));
   if(retvalue)
@@ -490,7 +490,7 @@ Glib::RefPtr<CellArea> CellLayout::get_area()
   return retvalue;
 }
 
-Glib::RefPtr<const CellArea> CellLayout::get_area() const
+auto CellLayout::get_area() const -> Glib::RefPtr<const CellArea>
 {
   return const_cast<CellLayout*>(this)->get_area();
 }

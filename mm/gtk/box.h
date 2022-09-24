@@ -77,11 +77,11 @@ class GTKMM_API Box
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Box(Box&& src) noexcept;
-  Box& operator=(Box&& src) noexcept;
+  auto operator=(Box&& src) noexcept -> Box&;
 
   // noncopyable
   Box(const Box&) = delete;
-  Box& operator=(const Box&) = delete;
+  auto operator=(const Box&) -> Box& = delete;
 
   ~Box() noexcept override;
 
@@ -101,19 +101,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkBox*       gobj()       { return reinterpret_cast<GtkBox*>(gobject_); }
+  auto       gobj() -> GtkBox*       { return reinterpret_cast<GtkBox*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkBox* gobj() const { return reinterpret_cast<GtkBox*>(gobject_); }
+  auto gobj() const -> const GtkBox* { return reinterpret_cast<GtkBox*>(gobject_); }
 
 private:
 
@@ -141,7 +141,7 @@ public:
    *
    * @return <tt>true</tt> if the box is homogeneous.
    */
-  bool get_homogeneous() const;
+  auto get_homogeneous() const -> bool;
 
 
   /** Sets the number of pixels to place between children of @a box.
@@ -154,7 +154,7 @@ public:
    *
    * @return Spacing between children.
    */
-  int get_spacing() const;
+  auto get_spacing() const -> int;
 
 
   /** Sets the baseline position of a box.
@@ -173,7 +173,7 @@ public:
    *
    * @return The baseline position.
    */
-  BaselinePosition get_baseline_position() const;
+  auto get_baseline_position() const -> BaselinePosition;
 
 
   /** Adds @a child as the last child to @a box.
@@ -233,7 +233,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_spacing() ;
+  auto property_spacing() -> Glib::PropertyProxy< int > ;
 
 /** The amount of space between children.
    *
@@ -242,7 +242,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_spacing() const;
+  auto property_spacing() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Whether the children should all be the same size.
    *
@@ -251,7 +251,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_homogeneous() ;
+  auto property_homogeneous() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the children should all be the same size.
    *
@@ -260,7 +260,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_homogeneous() const;
+  auto property_homogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The position of the baseline aligned widgets if extra space is available.
    *
@@ -269,7 +269,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< BaselinePosition > property_baseline_position() ;
+  auto property_baseline_position() -> Glib::PropertyProxy< BaselinePosition > ;
 
 /** The position of the baseline aligned widgets if extra space is available.
    *
@@ -278,7 +278,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< BaselinePosition > property_baseline_position() const;
+  auto property_baseline_position() const -> Glib::PropertyProxy_ReadOnly< BaselinePosition >;
 
 
 public:
@@ -308,7 +308,7 @@ namespace Glib
    * @relates Gtk::Box
    */
   GTKMM_API
-  Gtk::Box* wrap(GtkBox* object, bool take_copy = false);
+  auto wrap(GtkBox* object, bool take_copy = false) -> Gtk::Box*;
 } //namespace Glib
 
 

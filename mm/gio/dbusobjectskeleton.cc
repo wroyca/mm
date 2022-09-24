@@ -29,7 +29,7 @@ namespace
 {
 
 
-static gboolean ObjectSkeleton_signal_authorize_method_callback(GDBusObjectSkeleton* self, GDBusInterfaceSkeleton* p0,GDBusMethodInvocation* p1,void* data)
+auto ObjectSkeleton_signal_authorize_method_callback(GDBusObjectSkeleton* self, GDBusInterfaceSkeleton* p0,GDBusMethodInvocation* p1,void* data) -> gboolean
 {
   using namespace Gio::DBus;
   using SlotType = sigc::slot<bool(const Glib::RefPtr<Gio::DBus::InterfaceSkeleton>&, const Glib::RefPtr<Gio::DBus::MethodInvocation>&)>;
@@ -55,7 +55,7 @@ static gboolean ObjectSkeleton_signal_authorize_method_callback(GDBusObjectSkele
   return RType();
 }
 
-static gboolean ObjectSkeleton_signal_authorize_method_notify_callback(GDBusObjectSkeleton* self, GDBusInterfaceSkeleton* p0,GDBusMethodInvocation* p1, void* data)
+auto ObjectSkeleton_signal_authorize_method_notify_callback(GDBusObjectSkeleton* self, GDBusInterfaceSkeleton* p0,GDBusMethodInvocation* p1, void* data) -> gboolean
 {
   using namespace Gio::DBus;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gio::DBus::InterfaceSkeleton>&, const Glib::RefPtr<Gio::DBus::MethodInvocation>&)>;
@@ -81,7 +81,7 @@ static gboolean ObjectSkeleton_signal_authorize_method_notify_callback(GDBusObje
   return RType();
 }
 
-static const Glib::SignalProxyInfo ObjectSkeleton_signal_authorize_method_info =
+const Glib::SignalProxyInfo ObjectSkeleton_signal_authorize_method_info =
 {
   "authorize-method",
   (GCallback) &ObjectSkeleton_signal_authorize_method_callback,
@@ -95,7 +95,7 @@ static const Glib::SignalProxyInfo ObjectSkeleton_signal_authorize_method_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gio::DBus::ObjectSkeleton> wrap(GDBusObjectSkeleton* object, bool take_copy)
+auto wrap(GDBusObjectSkeleton* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::ObjectSkeleton>
 {
   return Glib::make_refptr_for_instance<Gio::DBus::ObjectSkeleton>( dynamic_cast<Gio::DBus::ObjectSkeleton*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -104,16 +104,13 @@ Glib::RefPtr<Gio::DBus::ObjectSkeleton> wrap(GDBusObjectSkeleton* object, bool t
 } /* namespace Glib */
 
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 
 /* The *_Class implementation: */
 
-const Glib::Class& ObjectSkeleton_Class::init()
+auto ObjectSkeleton_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -146,7 +143,7 @@ void ObjectSkeleton_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-gboolean ObjectSkeleton_Class::authorize_method_callback(GDBusObjectSkeleton* self, GDBusInterfaceSkeleton* p0, GDBusMethodInvocation* p1)
+auto ObjectSkeleton_Class::authorize_method_callback(GDBusObjectSkeleton* self, GDBusInterfaceSkeleton* p0, GDBusMethodInvocation* p1) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -188,7 +185,7 @@ gboolean ObjectSkeleton_Class::authorize_method_callback(GDBusObjectSkeleton* se
 }
 
 
-Glib::ObjectBase* ObjectSkeleton_Class::wrap_new(GObject* object)
+auto ObjectSkeleton_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ObjectSkeleton((GDBusObjectSkeleton*)object);
 }
@@ -196,7 +193,7 @@ Glib::ObjectBase* ObjectSkeleton_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GDBusObjectSkeleton* ObjectSkeleton::gobj_copy()
+auto ObjectSkeleton::gobj_copy() -> GDBusObjectSkeleton*
 {
   reference();
   return gobj();
@@ -220,7 +217,7 @@ ObjectSkeleton::ObjectSkeleton(ObjectSkeleton&& src) noexcept
   , DBus::Object(std::move(src))
 {}
 
-ObjectSkeleton& ObjectSkeleton::operator=(ObjectSkeleton&& src) noexcept
+auto ObjectSkeleton::operator=(ObjectSkeleton&& src) noexcept -> ObjectSkeleton&
 {
   Glib::Object::operator=(std::move(src));
   DBus::Object::operator=(std::move(src));
@@ -234,13 +231,13 @@ ObjectSkeleton::~ObjectSkeleton() noexcept
 
 ObjectSkeleton::CppClassType ObjectSkeleton::objectskeleton_class_; // initialize static member
 
-GType ObjectSkeleton::get_type()
+auto ObjectSkeleton::get_type() -> GType
 {
   return objectskeleton_class_.init().get_type();
 }
 
 
-GType ObjectSkeleton::get_base_type()
+auto ObjectSkeleton::get_base_type() -> GType
 {
   return g_dbus_object_skeleton_get_type();
 }
@@ -256,7 +253,7 @@ ObjectSkeleton::ObjectSkeleton(const Glib::ustring& object_path)
 
 }
 
-Glib::RefPtr<ObjectSkeleton> ObjectSkeleton::create(const Glib::ustring& object_path)
+auto ObjectSkeleton::create(const Glib::ustring& object_path) -> Glib::RefPtr<ObjectSkeleton>
 {
   return Glib::make_refptr_for_instance<ObjectSkeleton>( new ObjectSkeleton(object_path) );
 }
@@ -287,24 +284,24 @@ void ObjectSkeleton::set_object_path(const Glib::ustring& object_path)
 }
 
 
-Glib::SignalProxy<bool(const Glib::RefPtr<Gio::DBus::InterfaceSkeleton>&, const Glib::RefPtr<Gio::DBus::MethodInvocation>&)> ObjectSkeleton::signal_authorize_method()
+auto ObjectSkeleton::signal_authorize_method() -> Glib::SignalProxy<bool(const Glib::RefPtr<Gio::DBus::InterfaceSkeleton>&, const Glib::RefPtr<Gio::DBus::MethodInvocation>&)>
 {
   return Glib::SignalProxy<bool(const Glib::RefPtr<Gio::DBus::InterfaceSkeleton>&, const Glib::RefPtr<Gio::DBus::MethodInvocation>&) >(this, &ObjectSkeleton_signal_authorize_method_info);
 }
 
 
-Glib::PropertyProxy< Glib::ustring > ObjectSkeleton::property_g_object_path()
+auto ObjectSkeleton::property_g_object_path() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "g-object-path");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > ObjectSkeleton::property_g_object_path() const
+auto ObjectSkeleton::property_g_object_path() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "g-object-path");
 }
 
 
-bool Gio::DBus::ObjectSkeleton::on_authorize_method(const Glib::RefPtr<Gio::DBus::InterfaceSkeleton>& iface, const Glib::RefPtr<Gio::DBus::MethodInvocation>& invocation)
+auto Gio::DBus::ObjectSkeleton::on_authorize_method(const Glib::RefPtr<Gio::DBus::InterfaceSkeleton>& iface, const Glib::RefPtr<Gio::DBus::MethodInvocation>& invocation) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -317,8 +314,6 @@ bool Gio::DBus::ObjectSkeleton::on_authorize_method(const Glib::RefPtr<Gio::DBus
   return RType();
 }
 
-
-} // namespace DBus
 
 } // namespace Gio
 

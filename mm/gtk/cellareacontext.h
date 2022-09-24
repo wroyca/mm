@@ -74,7 +74,7 @@ public:
 
   // noncopyable
   CellAreaContext(const CellAreaContext&) = delete;
-  CellAreaContext& operator=(const CellAreaContext&) = delete;
+  auto operator=(const CellAreaContext&) -> CellAreaContext& = delete;
 
 private:  friend class CellAreaContext_Class;
   static CppClassType cellareacontext_class_;
@@ -88,28 +88,28 @@ protected:
 public:
 
   CellAreaContext(CellAreaContext&& src) noexcept;
-  CellAreaContext& operator=(CellAreaContext&& src) noexcept;
+  auto operator=(CellAreaContext&& src) noexcept -> CellAreaContext&;
 
   ~CellAreaContext() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkCellAreaContext*       gobj()       { return reinterpret_cast<GtkCellAreaContext*>(gobject_); }
+  auto       gobj() -> GtkCellAreaContext*       { return reinterpret_cast<GtkCellAreaContext*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkCellAreaContext* gobj() const { return reinterpret_cast<GtkCellAreaContext*>(gobject_); }
+  auto gobj() const -> const GtkCellAreaContext* { return reinterpret_cast<GtkCellAreaContext*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkCellAreaContext* gobj_copy();
+  auto gobj_copy() -> GtkCellAreaContext*;
 
 private:
 
@@ -134,7 +134,7 @@ public:
    *
    * @return The `Gtk::CellArea` this context was created by.
    */
-  Glib::RefPtr<CellArea> get_area();
+  auto get_area() -> Glib::RefPtr<CellArea>;
 
   /** Fetches the `Gtk::CellArea` this @a context was created by.
    *
@@ -149,7 +149,7 @@ public:
    *
    * @return The `Gtk::CellArea` this context was created by.
    */
-  Glib::RefPtr<const CellArea> get_area() const;
+  auto get_area() const -> Glib::RefPtr<const CellArea>;
 
 
   /** Allocates a width and/or a height for all rows which are to be
@@ -286,7 +286,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< CellArea* > property_area() const;
+  auto property_area() const -> Glib::PropertyProxy_ReadOnly< CellArea* >;
 
 
   /** The minimum width for the `Gtk::CellArea` in this context
@@ -298,7 +298,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_minimum_width() const;
+  auto property_minimum_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** The natural width for the `Gtk::CellArea` in this context
@@ -310,7 +310,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_natural_width() const;
+  auto property_natural_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** The minimum height for the `Gtk::CellArea` in this context
@@ -322,7 +322,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_minimum_height() const;
+  auto property_minimum_height() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** The natural height for the `Gtk::CellArea` in this context
@@ -334,7 +334,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_natural_height() const;
+  auto property_natural_height() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
 public:
@@ -364,7 +364,7 @@ namespace Glib
    * @relates Gtk::CellAreaContext
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::CellAreaContext> wrap(GtkCellAreaContext* object, bool take_copy = false);
+  auto wrap(GtkCellAreaContext* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CellAreaContext>;
 }
 
 

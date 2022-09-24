@@ -112,7 +112,7 @@ public:
 
   GLIBMM_API MarkupError(Code error_code, const Glib::ustring& error_message);
   GLIBMM_API explicit MarkupError(GError* gobject);
-  GLIBMM_API Code code() const;
+  GLIBMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -168,7 +168,7 @@ using Error = Glib::MarkupError;
  * @return Escaped text.
  */
 GLIBMM_API
-Glib::ustring escape_text(const Glib::ustring& text);
+auto escape_text(const Glib::ustring& text) -> Glib::ustring;
 
 /** @addtogroup glibmmEnums glibmm Enums and Flags */
 
@@ -223,31 +223,31 @@ enum class ParseFlags
 };
 
 /** @ingroup glibmmEnums */
-inline ParseFlags operator|(ParseFlags lhs, ParseFlags rhs)
+inline auto operator|(ParseFlags lhs, ParseFlags rhs) -> ParseFlags
   { return static_cast<ParseFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline ParseFlags operator&(ParseFlags lhs, ParseFlags rhs)
+inline auto operator&(ParseFlags lhs, ParseFlags rhs) -> ParseFlags
   { return static_cast<ParseFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline ParseFlags operator^(ParseFlags lhs, ParseFlags rhs)
+inline auto operator^(ParseFlags lhs, ParseFlags rhs) -> ParseFlags
   { return static_cast<ParseFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline ParseFlags operator~(ParseFlags flags)
+inline auto operator~(ParseFlags flags) -> ParseFlags
   { return static_cast<ParseFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup glibmmEnums */
-inline ParseFlags& operator|=(ParseFlags& lhs, ParseFlags rhs)
+inline auto operator|=(ParseFlags& lhs, ParseFlags rhs) -> ParseFlags&
   { return (lhs = static_cast<ParseFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline ParseFlags& operator&=(ParseFlags& lhs, ParseFlags rhs)
+inline auto operator&=(ParseFlags& lhs, ParseFlags rhs) -> ParseFlags&
   { return (lhs = static_cast<ParseFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline ParseFlags& operator^=(ParseFlags& lhs, ParseFlags rhs)
+inline auto operator^=(ParseFlags& lhs, ParseFlags rhs) -> ParseFlags&
   { return (lhs = static_cast<ParseFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -265,7 +265,7 @@ public:
   using second_argument_type = Glib::ustring;
   typedef bool          result_type;
 
-  bool operator()(const Glib::ustring& lhs, const Glib::ustring& rhs) const;
+  auto operator()(const Glib::ustring& lhs, const Glib::ustring& rhs) const -> bool;
 };
 
 
@@ -303,10 +303,10 @@ protected:
   Parser();
 
   Parser(const Parser&) = delete;
-  Parser& operator=(const Parser&) = delete;
+  auto operator=(const Parser&) -> Parser& = delete;
 
   Parser(Parser&& other) noexcept;
-  Parser& operator=(Parser&& other) noexcept;
+  auto operator=(Parser&& other) noexcept -> Parser&;
 
   /** Called for open tags <tt>\<foo bar="baz"\></tt>.
    * This virtual method is invoked when the opening tag of an element is seen.
@@ -393,10 +393,10 @@ public:
   explicit ParseContext(Parser& parser, ParseFlags flags = ParseFlags(0));
 
   ParseContext(const ParseContext&) = delete;
-  ParseContext& operator=(const ParseContext&) = delete;
+  auto operator=(const ParseContext&) -> ParseContext& = delete;
 
   ParseContext(ParseContext&& other) noexcept;
-  ParseContext& operator=(ParseContext&& other) noexcept;
+  auto operator=(ParseContext&& other) noexcept -> ParseContext&;
 
   virtual ~ParseContext();
 
@@ -437,28 +437,28 @@ public:
   /** Retrieves the name of the currently open element.
    * @return The name of the currently open element, or <tt>""</tt>.
    */
-  Glib::ustring get_element() const;
+  auto get_element() const -> Glib::ustring;
 
   /** Retrieves the current line number.
    * Intended for use in error messages; there are no strict semantics for what
    * constitutes the "current" line number other than "the best number we could
    * come up with for error messages."
    */
-  int get_line_number() const;
+  auto get_line_number() const -> int;
 
   /** Retrieves the number of the current character on the current line.
    * Intended for use in error messages; there are no strict semantics for what
    * constitutes the "current" character number other than "the best number we
    * could come up with for error messages."
    */
-  int get_char_number() const;
+  auto get_char_number() const -> int;
 
-  Parser*       get_parser()       { return parser_; }
-  const Parser* get_parser() const { return parser_; }
+  auto       get_parser() -> Parser*       { return parser_; }
+  auto get_parser() const -> const Parser* { return parser_; }
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  GMarkupParseContext*       gobj()       { return gobject_; }
-  const GMarkupParseContext* gobj() const { return gobject_; }
+  auto       gobj() -> GMarkupParseContext*       { return gobject_; }
+  auto gobj() const -> const GMarkupParseContext* { return gobject_; }
 #endif
 
 private:

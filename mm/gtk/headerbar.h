@@ -65,11 +65,11 @@ class GTKMM_API HeaderBar
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   HeaderBar(HeaderBar&& src) noexcept;
-  HeaderBar& operator=(HeaderBar&& src) noexcept;
+  auto operator=(HeaderBar&& src) noexcept -> HeaderBar&;
 
   // noncopyable
   HeaderBar(const HeaderBar&) = delete;
-  HeaderBar& operator=(const HeaderBar&) = delete;
+  auto operator=(const HeaderBar&) -> HeaderBar& = delete;
 
   ~HeaderBar() noexcept override;
 
@@ -89,19 +89,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkHeaderBar*       gobj()       { return reinterpret_cast<GtkHeaderBar*>(gobject_); }
+  auto       gobj() -> GtkHeaderBar*       { return reinterpret_cast<GtkHeaderBar*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkHeaderBar* gobj() const { return reinterpret_cast<GtkHeaderBar*>(gobject_); }
+  auto gobj() const -> const GtkHeaderBar* { return reinterpret_cast<GtkHeaderBar*>(gobject_); }
 
 private:
 
@@ -134,7 +134,7 @@ public:
    *
    * @return The title widget of the header.
    */
-  Widget* get_title_widget();
+  auto get_title_widget() -> Widget*;
 
   /** Retrieves the title widget of the header.
    *
@@ -142,7 +142,7 @@ public:
    *
    * @return The title widget of the header.
    */
-  const Widget* get_title_widget() const;
+  auto get_title_widget() const -> const Widget*;
 
 
   /** Adds @a child to @a bar, packed with reference to the
@@ -183,7 +183,7 @@ public:
    *
    * @return <tt>true</tt> if title buttons are shown.
    */
-  bool get_show_title_buttons() const;
+  auto get_show_title_buttons() const -> bool;
 
 
   /** Sets the decoration layout for this header bar.
@@ -218,21 +218,21 @@ public:
    *
    * @return The decoration layout.
    */
-  Glib::ustring get_decoration_layout() const;
+  auto get_decoration_layout() const -> Glib::ustring;
 
   /**
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Gtk::Widget* > property_title_widget() ;
+  auto property_title_widget() -> Glib::PropertyProxy< Gtk::Widget* > ;
 
 /**
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Gtk::Widget* > property_title_widget() const;
+  auto property_title_widget() const -> Glib::PropertyProxy_ReadOnly< Gtk::Widget* >;
 
   /** Whether to show title buttons like close, minimize, maximize.
    *
@@ -246,7 +246,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_title_buttons() ;
+  auto property_show_title_buttons() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to show title buttons like close, minimize, maximize.
    *
@@ -260,7 +260,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_title_buttons() const;
+  auto property_show_title_buttons() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The decoration layout for buttons.
    *
@@ -272,7 +272,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_decoration_layout() ;
+  auto property_decoration_layout() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The decoration layout for buttons.
    *
@@ -284,7 +284,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_decoration_layout() const;
+  auto property_decoration_layout() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   // Gtk::HeaderBar has no signals nor vfuncs as of 3.12.
@@ -317,7 +317,7 @@ namespace Glib
    * @relates Gtk::HeaderBar
    */
   GTKMM_API
-  Gtk::HeaderBar* wrap(GtkHeaderBar* object, bool take_copy = false);
+  auto wrap(GtkHeaderBar* object, bool take_copy = false) -> Gtk::HeaderBar*;
 } //namespace Glib
 
 

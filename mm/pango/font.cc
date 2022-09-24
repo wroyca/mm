@@ -32,19 +32,19 @@
 namespace Pango
 {
 
-FontMetrics Font::get_metrics() const
+auto Font::get_metrics() const -> FontMetrics
 {
   return FontMetrics(pango_font_get_metrics(const_cast<PangoFont*>(gobj()), 0));
 }
 
-Rectangle Font::get_glyph_ink_extents(Glyph glyph) const
+auto Font::get_glyph_ink_extents(Glyph glyph) const -> Rectangle
 {
   Rectangle ink_rect;
   pango_font_get_glyph_extents(const_cast<PangoFont*>(gobj()), glyph, ink_rect.gobj(), 0);
   return ink_rect;
 }
 
-Rectangle Font::get_glyph_logical_extents(Glyph glyph) const
+auto Font::get_glyph_logical_extents(Glyph glyph) const -> Rectangle
 {
   Rectangle logical_rect;
   pango_font_get_glyph_extents(const_cast<PangoFont*>(gobj()), glyph, 0, logical_rect.gobj());
@@ -61,7 +61,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Pango::Font> wrap(PangoFont* object, bool take_copy)
+auto wrap(PangoFont* object, bool take_copy) -> Glib::RefPtr<Pango::Font>
 {
   return Glib::make_refptr_for_instance<Pango::Font>( dynamic_cast<Pango::Font*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -76,7 +76,7 @@ namespace Pango
 
 /* The *_Class implementation: */
 
-const Glib::Class& Font_Class::init()
+auto Font_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -107,7 +107,7 @@ void Font_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Font_Class::wrap_new(GObject* object)
+auto Font_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Font((PangoFont*)object);
 }
@@ -115,7 +115,7 @@ Glib::ObjectBase* Font_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-PangoFont* Font::gobj_copy()
+auto Font::gobj_copy() -> PangoFont*
 {
   reference();
   return gobj();
@@ -138,7 +138,7 @@ Font::Font(Font&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Font& Font::operator=(Font&& src) noexcept
+auto Font::operator=(Font&& src) noexcept -> Font&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -151,34 +151,34 @@ Font::~Font() noexcept
 
 Font::CppClassType Font::font_class_; // initialize static member
 
-GType Font::get_type()
+auto Font::get_type() -> GType
 {
   return font_class_.init().get_type();
 }
 
 
-GType Font::get_base_type()
+auto Font::get_base_type() -> GType
 {
   return pango_font_get_type();
 }
 
 
-FontDescription Font::describe() const
+auto Font::describe() const -> FontDescription
 {
   return FontDescription((pango_font_describe(const_cast<PangoFont*>(gobj()))));
 }
 
-FontDescription Font::describe_with_absolute_size() const
+auto Font::describe_with_absolute_size() const -> FontDescription
 {
   return FontDescription((pango_font_describe_with_absolute_size(const_cast<PangoFont*>(gobj()))));
 }
 
-Glib::RefPtr<Coverage> Font::get_coverage(const Language& language) const
+auto Font::get_coverage(const Language& language) const -> Glib::RefPtr<Coverage>
 {
   return Glib::wrap(pango_font_get_coverage(const_cast<PangoFont*>(gobj()), const_cast<PangoLanguage*>((language).gobj())));
 }
 
-FontMetrics Font::get_metrics(const Language& language) const
+auto Font::get_metrics(const Language& language) const -> FontMetrics
 {
   return FontMetrics((pango_font_get_metrics(const_cast<PangoFont*>(gobj()), const_cast<PangoLanguage*>((language).gobj()))));
 }
@@ -188,17 +188,17 @@ void Font::get_glyph_extents(Glyph glyph, Rectangle& ink_rect, Rectangle& logica
   pango_font_get_glyph_extents(const_cast<PangoFont*>(gobj()), glyph, (ink_rect).gobj(), (logical_rect).gobj());
 }
 
-Glib::RefPtr<FontMap> Font::get_font_map()
+auto Font::get_font_map() -> Glib::RefPtr<FontMap>
 {
   return Glib::wrap(pango_font_get_font_map(gobj()));
 }
 
-Glib::RefPtr<const FontMap> Font::get_font_map() const
+auto Font::get_font_map() const -> Glib::RefPtr<const FontMap>
 {
   return const_cast<Font*>(this)->get_font_map();
 }
 
-Glib::RefPtr<FontFace> Font::get_face()
+auto Font::get_face() -> Glib::RefPtr<FontFace>
 {
   auto retvalue = Glib::wrap(pango_font_get_face(gobj()));
   if(retvalue)
@@ -206,12 +206,12 @@ Glib::RefPtr<FontFace> Font::get_face()
   return retvalue;
 }
 
-Glib::RefPtr<const FontFace> Font::get_face() const
+auto Font::get_face() const -> Glib::RefPtr<const FontFace>
 {
   return const_cast<Font*>(this)->get_face();
 }
 
-bool Font::has_char(gunichar wc) const
+auto Font::has_char(gunichar wc) const -> bool
 {
   return pango_font_has_char(const_cast<PangoFont*>(gobj()), wc);
 }

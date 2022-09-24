@@ -30,10 +30,7 @@
 #include <mm/gio/unixfdlist.h>
 #endif // G_OS_UNIX
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 using ByteOrder = Message::ByteOrder;
@@ -69,8 +66,6 @@ Message::unset_unix_fd_list()
 }
 #endif // G_OS_UNIX
 
-} // namespace DBus
-
 } // namespace Gio
 
 namespace
@@ -78,7 +73,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::DBus::CapabilityFlags>::value_type()
+auto Glib::Value<Gio::DBus::CapabilityFlags>::value_type() -> GType
 {
   return g_dbus_capability_flags_get_type();
 }
@@ -87,7 +82,7 @@ GType Glib::Value<Gio::DBus::CapabilityFlags>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gio::DBus::Message> wrap(GDBusMessage* object, bool take_copy)
+auto wrap(GDBusMessage* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::Message>
 {
   return Glib::make_refptr_for_instance<Gio::DBus::Message>( dynamic_cast<Gio::DBus::Message*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -96,16 +91,13 @@ Glib::RefPtr<Gio::DBus::Message> wrap(GDBusMessage* object, bool take_copy)
 } /* namespace Glib */
 
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 
 /* The *_Class implementation: */
 
-const Glib::Class& Message_Class::init()
+auto Message_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -136,7 +128,7 @@ void Message_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Message_Class::wrap_new(GObject* object)
+auto Message_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Message((GDBusMessage*)object);
 }
@@ -144,7 +136,7 @@ Glib::ObjectBase* Message_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GDBusMessage* Message::gobj_copy()
+auto Message::gobj_copy() -> GDBusMessage*
 {
   reference();
   return gobj();
@@ -167,7 +159,7 @@ Message::Message(Message&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Message& Message::operator=(Message&& src) noexcept
+auto Message::operator=(Message&& src) noexcept -> Message&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -180,13 +172,13 @@ Message::~Message() noexcept
 
 Message::CppClassType Message::message_class_; // initialize static member
 
-GType Message::get_type()
+auto Message::get_type() -> GType
 {
   return message_class_.init().get_type();
 }
 
 
-GType Message::get_base_type()
+auto Message::get_base_type() -> GType
 {
   return g_dbus_message_get_type();
 }
@@ -202,32 +194,32 @@ Message::Message()
 
 }
 
-Glib::RefPtr<Message> Message::create()
+auto Message::create() -> Glib::RefPtr<Message>
 {
   return Glib::make_refptr_for_instance<Message>( new Message() );
 }
 
-Glib::RefPtr<Message> Message::create_signal(const Glib::ustring& path, const Glib::ustring& iface, const Glib::ustring& signal)
+auto Message::create_signal(const Glib::ustring& path, const Glib::ustring& iface, const Glib::ustring& signal) -> Glib::RefPtr<Message>
 {
   return Glib::wrap(g_dbus_message_new_signal(path.c_str(), iface.c_str(), signal.c_str()));
 }
 
-Glib::RefPtr<Message> Message::create_method_call(const Glib::ustring& name, const Glib::ustring& path, const Glib::ustring& iface, const Glib::ustring& method)
+auto Message::create_method_call(const Glib::ustring& name, const Glib::ustring& path, const Glib::ustring& iface, const Glib::ustring& method) -> Glib::RefPtr<Message>
 {
   return Glib::wrap(g_dbus_message_new_method_call(name.c_str(), path.c_str(), iface.c_str(), method.c_str()));
 }
 
-Glib::RefPtr<Message> Message::create_method_reply(const Glib::RefPtr<Message>& method_call_message)
+auto Message::create_method_reply(const Glib::RefPtr<Message>& method_call_message) -> Glib::RefPtr<Message>
 {
   return Glib::wrap(g_dbus_message_new_method_reply(Glib::unwrap(method_call_message)));
 }
 
-Glib::RefPtr<Message> Message::create_method_error_literal(const Glib::RefPtr<const Message>& method_call_message, const Glib::ustring& error_name, const Glib::ustring& error_message)
+auto Message::create_method_error_literal(const Glib::RefPtr<const Message>& method_call_message, const Glib::ustring& error_name, const Glib::ustring& error_message) -> Glib::RefPtr<Message>
 {
   return Glib::wrap(g_dbus_message_new_method_error_literal(const_cast<GDBusMessage*>(Glib::unwrap(method_call_message)), error_name.c_str(), error_message.c_str()));
 }
 
-Glib::RefPtr<Message> Message::create_from_blob(const guchar* blob, gsize blob_len, CapabilityFlags capabilities)
+auto Message::create_from_blob(const guchar* blob, gsize blob_len, CapabilityFlags capabilities) -> Glib::RefPtr<Message>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_dbus_message_new_from_blob(const_cast<guchar*>(blob), blob_len, static_cast<GDBusCapabilityFlags>(capabilities), &(gerror)));
@@ -236,12 +228,12 @@ Glib::RefPtr<Message> Message::create_from_blob(const guchar* blob, gsize blob_l
   return retvalue;
 }
 
-Glib::ustring Message::print(guint indent)
+auto Message::print(guint indent) -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(g_dbus_message_print(gobj(), indent));
 }
 
-bool Message::get_locked() const
+auto Message::get_locked() const -> bool
 {
   return g_dbus_message_get_locked(const_cast<GDBusMessage*>(gobj()));
 }
@@ -251,7 +243,7 @@ void Message::lock()
   g_dbus_message_lock(gobj());
 }
 
-Glib::RefPtr<Message> Message::copy() const
+auto Message::copy() const -> Glib::RefPtr<Message>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_dbus_message_copy(const_cast<GDBusMessage*>(gobj()), &(gerror)));
@@ -260,7 +252,7 @@ Glib::RefPtr<Message> Message::copy() const
   return retvalue;
 }
 
-MessageType Message::get_message_type() const
+auto Message::get_message_type() const -> MessageType
 {
   return static_cast<MessageType>(g_dbus_message_get_message_type(const_cast<GDBusMessage*>(gobj())));
 }
@@ -270,7 +262,7 @@ void Message::set_message_type(MessageType type)
   g_dbus_message_set_message_type(gobj(), static_cast<GDBusMessageType>(type));
 }
 
-ByteOrder Message::get_byte_order() const
+auto Message::get_byte_order() const -> ByteOrder
 {
   return static_cast<ByteOrder>(g_dbus_message_get_byte_order(const_cast<GDBusMessage*>(gobj())));
 }
@@ -280,7 +272,7 @@ void Message::set_byte_order(ByteOrder byte_order)
   g_dbus_message_set_byte_order(gobj(), static_cast<GDBusMessageByteOrder>(byte_order));
 }
 
-guint32 Message::get_serial() const
+auto Message::get_serial() const -> guint32
 {
   return g_dbus_message_get_serial(const_cast<GDBusMessage*>(gobj()));
 }
@@ -290,7 +282,7 @@ void Message::set_serial(guint32 serial)
   g_dbus_message_set_serial(gobj(), serial);
 }
 
-MessageFlags Message::get_flags() const
+auto Message::get_flags() const -> MessageFlags
 {
   return static_cast<MessageFlags>(g_dbus_message_get_flags(const_cast<GDBusMessage*>(gobj())));
 }
@@ -306,7 +298,7 @@ void Message::set_body(const Glib::VariantBase& body)
 }
 
 #ifdef G_OS_UNIX
-Glib::RefPtr<UnixFDList> Message::get_unix_fd_list()
+auto Message::get_unix_fd_list() -> Glib::RefPtr<UnixFDList>
 {
   auto retvalue = Glib::wrap(g_dbus_message_get_unix_fd_list(gobj()));
   if(retvalue)
@@ -316,7 +308,7 @@ Glib::RefPtr<UnixFDList> Message::get_unix_fd_list()
 #endif // G_OS_UNIX
 
 #ifdef G_OS_UNIX
-Glib::RefPtr<const UnixFDList> Message::get_unix_fd_list() const
+auto Message::get_unix_fd_list() const -> Glib::RefPtr<const UnixFDList>
 {
   return const_cast<Message*>(this)->get_unix_fd_list();
 }
@@ -329,7 +321,7 @@ void Message::set_unix_fd_list(const Glib::RefPtr<UnixFDList>& fd_list)
 }
 #endif // G_OS_UNIX
 
-guint32 Message::get_num_unix_fds() const
+auto Message::get_num_unix_fds() const -> guint32
 {
   return g_dbus_message_get_num_unix_fds(const_cast<GDBusMessage*>(gobj()));
 }
@@ -344,12 +336,12 @@ void Message::set_header(MessageHeaderField header_field, const Glib::VariantBas
   g_dbus_message_set_header(gobj(), static_cast<GDBusMessageHeaderField>(header_field), const_cast<GVariant*>((value).gobj()));
 }
 
-std::vector<guchar> Message::get_header_fields() const
+auto Message::get_header_fields() const -> std::vector<guchar>
 {
   return Glib::ArrayHandler<guchar>::array_to_vector(g_dbus_message_get_header_fields(const_cast<GDBusMessage*>(gobj())), Glib::OWNERSHIP_SHALLOW);
 }
 
-Glib::ustring Message::get_destination() const
+auto Message::get_destination() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_dbus_message_get_destination(const_cast<GDBusMessage*>(gobj())));
 }
@@ -359,7 +351,7 @@ void Message::set_destination(const Glib::ustring& value)
   g_dbus_message_set_destination(gobj(), value.c_str());
 }
 
-Glib::ustring Message::get_error_name() const
+auto Message::get_error_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_dbus_message_get_error_name(const_cast<GDBusMessage*>(gobj())));
 }
@@ -369,7 +361,7 @@ void Message::set_error_name(const Glib::ustring& value)
   g_dbus_message_set_error_name(gobj(), value.c_str());
 }
 
-Glib::ustring Message::get_interface() const
+auto Message::get_interface() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_dbus_message_get_interface(const_cast<GDBusMessage*>(gobj())));
 }
@@ -379,7 +371,7 @@ void Message::set_interface(const Glib::ustring& value)
   g_dbus_message_set_interface(gobj(), value.c_str());
 }
 
-Glib::ustring Message::get_member() const
+auto Message::get_member() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_dbus_message_get_member(const_cast<GDBusMessage*>(gobj())));
 }
@@ -389,7 +381,7 @@ void Message::set_member(const Glib::ustring& value)
   g_dbus_message_set_member(gobj(), value.c_str());
 }
 
-Glib::ustring Message::get_path() const
+auto Message::get_path() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_dbus_message_get_path(const_cast<GDBusMessage*>(gobj())));
 }
@@ -399,7 +391,7 @@ void Message::set_path(const Glib::ustring& value)
   g_dbus_message_set_path(gobj(), value.c_str());
 }
 
-guint32 Message::get_reply_serial() const
+auto Message::get_reply_serial() const -> guint32
 {
   return g_dbus_message_get_reply_serial(const_cast<GDBusMessage*>(gobj()));
 }
@@ -409,7 +401,7 @@ void Message::set_reply_serial(guint32 value)
   g_dbus_message_set_reply_serial(gobj(), value);
 }
 
-Glib::ustring Message::get_sender() const
+auto Message::get_sender() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_dbus_message_get_sender(const_cast<GDBusMessage*>(gobj())));
 }
@@ -419,7 +411,7 @@ void Message::set_sender(const Glib::ustring& value)
   g_dbus_message_set_sender(gobj(), value.c_str());
 }
 
-Glib::ustring Message::get_signature() const
+auto Message::get_signature() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_dbus_message_get_signature(const_cast<GDBusMessage*>(gobj())));
 }
@@ -429,12 +421,12 @@ void Message::set_signature(const Glib::ustring& value)
   g_dbus_message_set_signature(gobj(), value.c_str());
 }
 
-Glib::ustring Message::get_arg0() const
+auto Message::get_arg0() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_dbus_message_get_arg0(const_cast<GDBusMessage*>(gobj())));
 }
 
-gssize Message::bytes_needed(const guchar* blob, gsize blob_len)
+auto Message::bytes_needed(const guchar* blob, gsize blob_len) -> gssize
 {
   GError* gerror = nullptr;
   auto retvalue = g_dbus_message_bytes_needed(const_cast<guchar*>(blob), blob_len, &(gerror));
@@ -443,7 +435,7 @@ gssize Message::bytes_needed(const guchar* blob, gsize blob_len)
   return retvalue;
 }
 
-guchar* Message::to_blob(gsize& out_size, CapabilityFlags capabilities)
+auto Message::to_blob(gsize& out_size, CapabilityFlags capabilities) -> guchar*
 {
   GError* gerror = nullptr;
   auto retvalue = g_dbus_message_to_blob(gobj(), &(out_size), static_cast<GDBusCapabilityFlags>(capabilities), &(gerror));
@@ -461,13 +453,11 @@ void Message::to_exception()
 }
 
 
-Glib::PropertyProxy_ReadOnly< bool > Message::property_locked() const
+auto Message::property_locked() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "locked");
 }
 
-
-} // namespace DBus
 
 } // namespace Gio
 

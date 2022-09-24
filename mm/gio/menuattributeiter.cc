@@ -28,8 +28,8 @@
 namespace Gio
 {
 
-bool
-MenuAttributeIter::get_next(Glib::ustring& out_name, Glib::VariantBase& value)
+auto
+MenuAttributeIter::get_next(Glib::ustring& out_name, Glib::VariantBase& value) -> bool
 {
   const char* g_out_name = nullptr;
   GVariant* g_value = nullptr;
@@ -52,7 +52,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::MenuAttributeIter> wrap(GMenuAttributeIter* object, bool take_copy)
+auto wrap(GMenuAttributeIter* object, bool take_copy) -> Glib::RefPtr<Gio::MenuAttributeIter>
 {
   return Glib::make_refptr_for_instance<Gio::MenuAttributeIter>( dynamic_cast<Gio::MenuAttributeIter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -67,7 +67,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& MenuAttributeIter_Class::init()
+auto MenuAttributeIter_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -98,7 +98,7 @@ void MenuAttributeIter_Class::class_init_function(void* g_class, void* class_dat
 }
 
 
-Glib::ObjectBase* MenuAttributeIter_Class::wrap_new(GObject* object)
+auto MenuAttributeIter_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new MenuAttributeIter((GMenuAttributeIter*)object);
 }
@@ -106,7 +106,7 @@ Glib::ObjectBase* MenuAttributeIter_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GMenuAttributeIter* MenuAttributeIter::gobj_copy()
+auto MenuAttributeIter::gobj_copy() -> GMenuAttributeIter*
 {
   reference();
   return gobj();
@@ -129,7 +129,7 @@ MenuAttributeIter::MenuAttributeIter(MenuAttributeIter&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-MenuAttributeIter& MenuAttributeIter::operator=(MenuAttributeIter&& src) noexcept
+auto MenuAttributeIter::operator=(MenuAttributeIter&& src) noexcept -> MenuAttributeIter&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -142,13 +142,13 @@ MenuAttributeIter::~MenuAttributeIter() noexcept
 
 MenuAttributeIter::CppClassType MenuAttributeIter::menuattributeiter_class_; // initialize static member
 
-GType MenuAttributeIter::get_type()
+auto MenuAttributeIter::get_type() -> GType
 {
   return menuattributeiter_class_.init().get_type();
 }
 
 
-GType MenuAttributeIter::get_base_type()
+auto MenuAttributeIter::get_base_type() -> GType
 {
   return g_menu_attribute_iter_get_type();
 }
@@ -164,17 +164,17 @@ MenuAttributeIter::MenuAttributeIter()
 
 }
 
-Glib::ustring MenuAttributeIter::get_name() const
+auto MenuAttributeIter::get_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_menu_attribute_iter_get_name(const_cast<GMenuAttributeIter*>(gobj())));
 }
 
-Glib::VariantBase MenuAttributeIter::get_value() const
+auto MenuAttributeIter::get_value() const -> Glib::VariantBase
 {
   return Glib::wrap(g_menu_attribute_iter_get_value(const_cast<GMenuAttributeIter*>(gobj())), false);
 }
 
-bool MenuAttributeIter::next()
+auto MenuAttributeIter::next() -> bool
 {
   return g_menu_attribute_iter_next(gobj());
 }

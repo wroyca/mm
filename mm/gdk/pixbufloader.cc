@@ -33,7 +33,7 @@ namespace
 /* We use this helper function in the constructor to be able to throw
  * before the base class' (Glib::Object) constructor is called.
  */
-static GdkPixbufLoader* pixbuf_loader_create_with_type(const Glib::ustring& image_type, bool mime_type)
+auto pixbuf_loader_create_with_type(const Glib::ustring& image_type, bool mime_type) -> GdkPixbufLoader*
 {
   GError* error = nullptr;
   GdkPixbufLoader* loader = nullptr;
@@ -68,7 +68,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo PixbufLoader_signal_area_prepared_info =
+const Glib::SignalProxyInfo PixbufLoader_signal_area_prepared_info =
 {
   "area_prepared",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -76,7 +76,7 @@ static const Glib::SignalProxyInfo PixbufLoader_signal_area_prepared_info =
 };
 
 
-static void PixbufLoader_signal_area_updated_callback(GdkPixbufLoader* self, gint p0,gint p1,gint p2,gint p3,void* data)
+void PixbufLoader_signal_area_updated_callback(GdkPixbufLoader* self, gint p0,gint p1,gint p2,gint p3,void* data)
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(int, int, int, int)>;
@@ -101,7 +101,7 @@ static void PixbufLoader_signal_area_updated_callback(GdkPixbufLoader* self, gin
   }
 }
 
-static const Glib::SignalProxyInfo PixbufLoader_signal_area_updated_info =
+const Glib::SignalProxyInfo PixbufLoader_signal_area_updated_info =
 {
   "area_updated",
   (GCallback) &PixbufLoader_signal_area_updated_callback,
@@ -109,7 +109,7 @@ static const Glib::SignalProxyInfo PixbufLoader_signal_area_updated_info =
 };
 
 
-static const Glib::SignalProxyInfo PixbufLoader_signal_closed_info =
+const Glib::SignalProxyInfo PixbufLoader_signal_closed_info =
 {
   "closed",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -117,7 +117,7 @@ static const Glib::SignalProxyInfo PixbufLoader_signal_closed_info =
 };
 
 
-static void PixbufLoader_signal_size_prepared_callback(GdkPixbufLoader* self, gint p0,gint p1,void* data)
+void PixbufLoader_signal_size_prepared_callback(GdkPixbufLoader* self, gint p0,gint p1,void* data)
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(int, int)>;
@@ -140,7 +140,7 @@ static void PixbufLoader_signal_size_prepared_callback(GdkPixbufLoader* self, gi
   }
 }
 
-static const Glib::SignalProxyInfo PixbufLoader_signal_size_prepared_info =
+const Glib::SignalProxyInfo PixbufLoader_signal_size_prepared_info =
 {
   "size_prepared",
   (GCallback) &PixbufLoader_signal_size_prepared_callback,
@@ -154,7 +154,7 @@ static const Glib::SignalProxyInfo PixbufLoader_signal_size_prepared_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::PixbufLoader> wrap(GdkPixbufLoader* object, bool take_copy)
+auto wrap(GdkPixbufLoader* object, bool take_copy) -> Glib::RefPtr<Gdk::PixbufLoader>
 {
   return Glib::make_refptr_for_instance<Gdk::PixbufLoader>( dynamic_cast<Gdk::PixbufLoader*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -169,7 +169,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Class& PixbufLoader_Class::init()
+auto PixbufLoader_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -356,7 +356,7 @@ void PixbufLoader_Class::size_prepared_callback(GdkPixbufLoader* self, gint p0, 
 }
 
 
-Glib::ObjectBase* PixbufLoader_Class::wrap_new(GObject* object)
+auto PixbufLoader_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new PixbufLoader((GdkPixbufLoader*)object);
 }
@@ -364,7 +364,7 @@ Glib::ObjectBase* PixbufLoader_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GdkPixbufLoader* PixbufLoader::gobj_copy()
+auto PixbufLoader::gobj_copy() -> GdkPixbufLoader*
 {
   reference();
   return gobj();
@@ -387,7 +387,7 @@ PixbufLoader::PixbufLoader(PixbufLoader&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-PixbufLoader& PixbufLoader::operator=(PixbufLoader&& src) noexcept
+auto PixbufLoader::operator=(PixbufLoader&& src) noexcept -> PixbufLoader&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -400,13 +400,13 @@ PixbufLoader::~PixbufLoader() noexcept
 
 PixbufLoader::CppClassType PixbufLoader::pixbufloader_class_; // initialize static member
 
-GType PixbufLoader::get_type()
+auto PixbufLoader::get_type() -> GType
 {
   return pixbufloader_class_.init().get_type();
 }
 
 
-GType PixbufLoader::get_base_type()
+auto PixbufLoader::get_base_type() -> GType
 {
   return gdk_pixbuf_loader_get_type();
 }
@@ -422,12 +422,12 @@ PixbufLoader::PixbufLoader()
 
 }
 
-Glib::RefPtr<PixbufLoader> PixbufLoader::create()
+auto PixbufLoader::create() -> Glib::RefPtr<PixbufLoader>
 {
   return Glib::make_refptr_for_instance<PixbufLoader>( new PixbufLoader() );
 }
 
-Glib::RefPtr<PixbufLoader> PixbufLoader::create(const Glib::ustring& image_type, bool mime_type)
+auto PixbufLoader::create(const Glib::ustring& image_type, bool mime_type) -> Glib::RefPtr<PixbufLoader>
 {
   return Glib::make_refptr_for_instance<PixbufLoader>( new PixbufLoader(image_type, mime_type) );
 }
@@ -453,7 +453,7 @@ void PixbufLoader::close()
     ::Glib::Error::throw_exception(gerror);
 }
 
-Glib::RefPtr<Gdk::Pixbuf> PixbufLoader::get_pixbuf()
+auto PixbufLoader::get_pixbuf() -> Glib::RefPtr<Gdk::Pixbuf>
 {
   auto retvalue = Glib::wrap(gdk_pixbuf_loader_get_pixbuf(gobj()));
   if(retvalue)
@@ -461,7 +461,7 @@ Glib::RefPtr<Gdk::Pixbuf> PixbufLoader::get_pixbuf()
   return retvalue;
 }
 
-Glib::RefPtr<Gdk::PixbufAnimation> PixbufLoader::get_animation()
+auto PixbufLoader::get_animation() -> Glib::RefPtr<Gdk::PixbufAnimation>
 {
   auto retvalue = Glib::wrap(gdk_pixbuf_loader_get_animation(gobj()));
   if(retvalue)
@@ -469,31 +469,31 @@ Glib::RefPtr<Gdk::PixbufAnimation> PixbufLoader::get_animation()
   return retvalue;
 }
 
-PixbufFormat PixbufLoader::get_format() const
+auto PixbufLoader::get_format() const -> PixbufFormat
 {
   return PixbufFormat(gdk_pixbuf_loader_get_format(const_cast<GdkPixbufLoader*>(gobj())));
 }
 
 
-Glib::SignalProxy<void()> PixbufLoader::signal_area_prepared()
+auto PixbufLoader::signal_area_prepared() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &PixbufLoader_signal_area_prepared_info);
 }
 
 
-Glib::SignalProxy<void(int, int, int, int)> PixbufLoader::signal_area_updated()
+auto PixbufLoader::signal_area_updated() -> Glib::SignalProxy<void(int, int, int, int)>
 {
   return Glib::SignalProxy<void(int, int, int, int) >(this, &PixbufLoader_signal_area_updated_info);
 }
 
 
-Glib::SignalProxy<void()> PixbufLoader::signal_closed()
+auto PixbufLoader::signal_closed() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &PixbufLoader_signal_closed_info);
 }
 
 
-Glib::SignalProxy<void(int, int)> PixbufLoader::signal_size_prepared()
+auto PixbufLoader::signal_size_prepared() -> Glib::SignalProxy<void(int, int)>
 {
   return Glib::SignalProxy<void(int, int) >(this, &PixbufLoader_signal_size_prepared_info);
 }

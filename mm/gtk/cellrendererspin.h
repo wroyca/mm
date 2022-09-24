@@ -71,11 +71,11 @@ class GTKMM_API CellRendererSpin : public CellRendererText
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   CellRendererSpin(CellRendererSpin&& src) noexcept;
-  CellRendererSpin& operator=(CellRendererSpin&& src) noexcept;
+  auto operator=(CellRendererSpin&& src) noexcept -> CellRendererSpin&;
 
   // noncopyable
   CellRendererSpin(const CellRendererSpin&) = delete;
-  CellRendererSpin& operator=(const CellRendererSpin&) = delete;
+  auto operator=(const CellRendererSpin&) -> CellRendererSpin& = delete;
 
   ~CellRendererSpin() noexcept override;
 
@@ -95,19 +95,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkCellRendererSpin*       gobj()       { return reinterpret_cast<GtkCellRendererSpin*>(gobject_); }
+  auto       gobj() -> GtkCellRendererSpin*       { return reinterpret_cast<GtkCellRendererSpin*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkCellRendererSpin* gobj() const { return reinterpret_cast<GtkCellRendererSpin*>(gobject_); }
+  auto gobj() const -> const GtkCellRendererSpin* { return reinterpret_cast<GtkCellRendererSpin*>(gobject_); }
 
 private:
 
@@ -121,7 +121,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Adjustment> > property_adjustment() ;
+  auto property_adjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> > ;
 
 /** The adjustment that holds the value of the spinbutton.
    * This must be non-<tt>nullptr</tt> for the cell renderer to be editable.
@@ -129,7 +129,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> > property_adjustment() const;
+  auto property_adjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >;
 
   /** The acceleration rate when you hold down a button.
    *
@@ -138,7 +138,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_climb_rate() ;
+  auto property_climb_rate() -> Glib::PropertyProxy< double > ;
 
 /** The acceleration rate when you hold down a button.
    *
@@ -147,7 +147,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_climb_rate() const;
+  auto property_climb_rate() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** The number of decimal places to display.
    *
@@ -156,7 +156,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_digits() ;
+  auto property_digits() -> Glib::PropertyProxy< guint > ;
 
 /** The number of decimal places to display.
    *
@@ -165,10 +165,10 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_digits() const;
+  auto property_digits() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
-  Glib::PropertyProxy_Base _property_renderable() override;
+  auto _property_renderable() -> Glib::PropertyProxy_Base override;
 
 
 public:
@@ -198,7 +198,7 @@ namespace Glib
    * @relates Gtk::CellRendererSpin
    */
   GTKMM_API
-  Gtk::CellRendererSpin* wrap(GtkCellRendererSpin* object, bool take_copy = false);
+  auto wrap(GtkCellRendererSpin* object, bool take_copy = false) -> Gtk::CellRendererSpin*;
 } //namespace Glib
 
 

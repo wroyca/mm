@@ -39,7 +39,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::DBus::MenuModel> wrap(GDBusMenuModel* object, bool take_copy)
+auto wrap(GDBusMenuModel* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::MenuModel>
 {
   return Glib::make_refptr_for_instance<Gio::DBus::MenuModel>( dynamic_cast<Gio::DBus::MenuModel*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,16 +48,13 @@ Glib::RefPtr<Gio::DBus::MenuModel> wrap(GDBusMenuModel* object, bool take_copy)
 } /* namespace Glib */
 
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 
 /* The *_Class implementation: */
 
-const Glib::Class& MenuModel_Class::init()
+auto MenuModel_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -88,7 +85,7 @@ void MenuModel_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* MenuModel_Class::wrap_new(GObject* object)
+auto MenuModel_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new MenuModel((GDBusMenuModel*)object);
 }
@@ -96,7 +93,7 @@ Glib::ObjectBase* MenuModel_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GDBusMenuModel* MenuModel::gobj_copy()
+auto MenuModel::gobj_copy() -> GDBusMenuModel*
 {
   reference();
   return gobj();
@@ -119,7 +116,7 @@ MenuModel::MenuModel(MenuModel&& src) noexcept
 : ::Gio::MenuModel(std::move(src))
 {}
 
-MenuModel& MenuModel::operator=(MenuModel&& src) noexcept
+auto MenuModel::operator=(MenuModel&& src) noexcept -> MenuModel&
 {
   ::Gio::MenuModel::operator=(std::move(src));
   return *this;
@@ -132,13 +129,13 @@ MenuModel::~MenuModel() noexcept
 
 MenuModel::CppClassType MenuModel::menumodel_class_; // initialize static member
 
-GType MenuModel::get_type()
+auto MenuModel::get_type() -> GType
 {
   return menumodel_class_.init().get_type();
 }
 
 
-GType MenuModel::get_base_type()
+auto MenuModel::get_base_type() -> GType
 {
   return g_dbus_menu_model_get_type();
 }
@@ -154,13 +151,11 @@ MenuModel::MenuModel()
 
 }
 
-Glib::RefPtr<MenuModel> MenuModel::get(const Glib::RefPtr<Connection>& connection, const Glib::ustring& bus_name, const Glib::ustring& object_path)
+auto MenuModel::get(const Glib::RefPtr<Connection>& connection, const Glib::ustring& bus_name, const Glib::ustring& object_path) -> Glib::RefPtr<MenuModel>
 {
   return Glib::wrap(g_dbus_menu_model_get(Glib::unwrap(connection), bus_name.c_str(), object_path.c_str()));
 }
 
-
-} // namespace DBus
 
 } // namespace Gio
 

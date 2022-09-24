@@ -57,10 +57,10 @@ public:
    * @return The value of the environment variable, or an empty std::optional
    *         if the environment variable is not set in this %Environ.
    */
-  GLIBMM_API std::optional<std::string> get(StdStringView variable) const;
+  GLIBMM_API auto get(StdStringView variable) const -> std::optional<std::string>;
 
   /// Same as get().
-  GLIBMM_API std::optional<std::string> operator[](StdStringView variable) const
+  GLIBMM_API auto operator[](StdStringView variable) const -> std::optional<std::string>
   { return get(variable); }
 
   /** Sets the environment variable @a variable in the provided list to @a value.
@@ -82,7 +82,7 @@ public:
    * @return A vector with the environment variables. Each element in the vector
    *         is of the form 'NAME=VALUE'.
    */
-  GLIBMM_API std::vector<std::string> to_vector() const;
+  GLIBMM_API auto to_vector() const -> std::vector<std::string>;
 
 private:
   std::unique_ptr<char*, decltype(&g_strfreev)> envp;

@@ -250,7 +250,7 @@ Glib::SpawnError::SpawnError(GError* gobject)
   Glib::Error (gobject)
 {}
 
-Glib::SpawnError::Code Glib::SpawnError::code() const
+auto Glib::SpawnError::code() const -> Glib::SpawnError::Code
 {
   return static_cast<Code>(Glib::Error::code());
 }

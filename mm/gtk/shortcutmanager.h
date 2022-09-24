@@ -78,7 +78,7 @@ public:
 
   // noncopyable
   ShortcutManager(const ShortcutManager&) = delete;
-  ShortcutManager& operator=(const ShortcutManager&) = delete;
+  auto operator=(const ShortcutManager&) -> ShortcutManager& = delete;
 
 private:
   friend class ShortcutManager_Class;
@@ -112,7 +112,7 @@ protected:
 public:
 
   ShortcutManager(ShortcutManager&& src) noexcept;
-  ShortcutManager& operator=(ShortcutManager&& src) noexcept;
+  auto operator=(ShortcutManager&& src) noexcept -> ShortcutManager&;
 
   ~ShortcutManager() noexcept override;
 
@@ -120,17 +120,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkShortcutManager*       gobj()       { return reinterpret_cast<GtkShortcutManager*>(gobject_); }
+  auto       gobj() -> GtkShortcutManager*       { return reinterpret_cast<GtkShortcutManager*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkShortcutManager* gobj() const { return reinterpret_cast<GtkShortcutManager*>(gobject_); }
+  auto gobj() const -> const GtkShortcutManager* { return reinterpret_cast<GtkShortcutManager*>(gobject_); }
 
 private:
 
@@ -172,7 +172,7 @@ namespace Glib
    * @relates Gtk::ShortcutManager
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::ShortcutManager> wrap(GtkShortcutManager* object, bool take_copy = false);
+  auto wrap(GtkShortcutManager* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ShortcutManager>;
 
 } // namespace Glib
 

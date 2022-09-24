@@ -42,7 +42,7 @@ namespace
 namespace Glib
 {
 
-Gtk::FileChooserWidget* wrap(GtkFileChooserWidget* object, bool take_copy)
+auto wrap(GtkFileChooserWidget* object, bool take_copy) -> Gtk::FileChooserWidget*
 {
   return dynamic_cast<Gtk::FileChooserWidget *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -55,7 +55,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& FileChooserWidget_Class::init()
+auto FileChooserWidget_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -87,7 +87,7 @@ void FileChooserWidget_Class::class_init_function(void* g_class, void* class_dat
 }
 
 
-Glib::ObjectBase* FileChooserWidget_Class::wrap_new(GObject* o)
+auto FileChooserWidget_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new FileChooserWidget((GtkFileChooserWidget*)(o)));
 
@@ -114,7 +114,7 @@ FileChooserWidget::FileChooserWidget(FileChooserWidget&& src) noexcept
   , FileChooser(std::move(src))
 {}
 
-FileChooserWidget& FileChooserWidget::operator=(FileChooserWidget&& src) noexcept
+auto FileChooserWidget::operator=(FileChooserWidget&& src) noexcept -> FileChooserWidget&
 {
   Gtk::Widget::operator=(std::move(src));
   FileChooser::operator=(std::move(src));
@@ -128,13 +128,13 @@ FileChooserWidget::~FileChooserWidget() noexcept
 
 FileChooserWidget::CppClassType FileChooserWidget::filechooserwidget_class_; // initialize static member
 
-GType FileChooserWidget::get_type()
+auto FileChooserWidget::get_type() -> GType
 {
   return filechooserwidget_class_.init().get_type();
 }
 
 
-GType FileChooserWidget::get_base_type()
+auto FileChooserWidget::get_base_type() -> GType
 {
   return gtk_file_chooser_widget_get_type();
 }

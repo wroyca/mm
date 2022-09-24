@@ -51,7 +51,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::SettingsSchemaKey> wrap(GSettingsSchemaKey* object, bool take_copy)
+auto wrap(GSettingsSchemaKey* object, bool take_copy) -> Glib::RefPtr<Gio::SettingsSchemaKey>
 {
   if(take_copy && object)
     g_settings_schema_key_ref(object);
@@ -78,19 +78,19 @@ void SettingsSchemaKey::unreference() const
   g_settings_schema_key_unref(reinterpret_cast<GSettingsSchemaKey*>(const_cast<SettingsSchemaKey*>(this)));
 }
 
-GSettingsSchemaKey* SettingsSchemaKey::gobj()
+auto SettingsSchemaKey::gobj() -> GSettingsSchemaKey*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<GSettingsSchemaKey*>(this);
 }
 
-const GSettingsSchemaKey* SettingsSchemaKey::gobj() const
+auto SettingsSchemaKey::gobj() const -> const GSettingsSchemaKey*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<const GSettingsSchemaKey*>(this);
 }
 
-GSettingsSchemaKey* SettingsSchemaKey::gobj_copy() const
+auto SettingsSchemaKey::gobj_copy() const -> GSettingsSchemaKey*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   const auto gobject = reinterpret_cast<GSettingsSchemaKey*>(const_cast<SettingsSchemaKey*>(this));
@@ -99,37 +99,37 @@ GSettingsSchemaKey* SettingsSchemaKey::gobj_copy() const
 }
 
 
-Glib::ustring SettingsSchemaKey::get_name() const
+auto SettingsSchemaKey::get_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_settings_schema_key_get_name(const_cast<GSettingsSchemaKey*>(gobj())));
 }
 
-Glib::ustring SettingsSchemaKey::get_summary() const
+auto SettingsSchemaKey::get_summary() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_settings_schema_key_get_summary(const_cast<GSettingsSchemaKey*>(gobj())));
 }
 
-Glib::ustring SettingsSchemaKey::get_description() const
+auto SettingsSchemaKey::get_description() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_settings_schema_key_get_description(const_cast<GSettingsSchemaKey*>(gobj())));
 }
 
-Glib::VariantType SettingsSchemaKey::get_value_type() const
+auto SettingsSchemaKey::get_value_type() const -> Glib::VariantType
 {
   return Glib::wrap(const_cast<GVariantType*>(g_settings_schema_key_get_value_type(const_cast<GSettingsSchemaKey*>(gobj()))), true);
 }
 
-Glib::VariantBase SettingsSchemaKey::get_default_value() const
+auto SettingsSchemaKey::get_default_value() const -> Glib::VariantBase
 {
   return Glib::wrap(g_settings_schema_key_get_default_value(const_cast<GSettingsSchemaKey*>(gobj())), false);
 }
 
-Glib::VariantBase SettingsSchemaKey::get_range() const
+auto SettingsSchemaKey::get_range() const -> Glib::VariantBase
 {
   return Glib::wrap(g_settings_schema_key_get_range(const_cast<GSettingsSchemaKey*>(gobj())), false);
 }
 
-bool SettingsSchemaKey::range_check(const Glib::VariantBase& value) const
+auto SettingsSchemaKey::range_check(const Glib::VariantBase& value) const -> bool
 {
   return g_settings_schema_key_range_check(const_cast<GSettingsSchemaKey*>(gobj()), const_cast<GVariant*>((value).gobj()));
 }

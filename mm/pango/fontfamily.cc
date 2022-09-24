@@ -32,7 +32,7 @@
 namespace Pango
 {
 
-std::vector<Glib::RefPtr<FontFace>> FontFamily::list_faces() const
+auto FontFamily::list_faces() const -> std::vector<Glib::RefPtr<FontFace>>
 {
   //Get the array:
   PangoFontFace** pFontFaces = nullptr;
@@ -53,7 +53,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Pango::FontFamily> wrap(PangoFontFamily* object, bool take_copy)
+auto wrap(PangoFontFamily* object, bool take_copy) -> Glib::RefPtr<Pango::FontFamily>
 {
   return Glib::make_refptr_for_instance<Pango::FontFamily>( dynamic_cast<Pango::FontFamily*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -68,7 +68,7 @@ namespace Pango
 
 /* The *_Class implementation: */
 
-const Glib::Class& FontFamily_Class::init()
+auto FontFamily_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -100,7 +100,7 @@ void FontFamily_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* FontFamily_Class::wrap_new(GObject* object)
+auto FontFamily_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new FontFamily((PangoFontFamily*)object);
 }
@@ -108,7 +108,7 @@ Glib::ObjectBase* FontFamily_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-PangoFontFamily* FontFamily::gobj_copy()
+auto FontFamily::gobj_copy() -> PangoFontFamily*
 {
   reference();
   return gobj();
@@ -132,7 +132,7 @@ FontFamily::FontFamily(FontFamily&& src) noexcept
   , Gio::ListModel(std::move(src))
 {}
 
-FontFamily& FontFamily::operator=(FontFamily&& src) noexcept
+auto FontFamily::operator=(FontFamily&& src) noexcept -> FontFamily&
 {
   Glib::Object::operator=(std::move(src));
   Gio::ListModel::operator=(std::move(src));
@@ -146,34 +146,34 @@ FontFamily::~FontFamily() noexcept
 
 FontFamily::CppClassType FontFamily::fontfamily_class_; // initialize static member
 
-GType FontFamily::get_type()
+auto FontFamily::get_type() -> GType
 {
   return fontfamily_class_.init().get_type();
 }
 
 
-GType FontFamily::get_base_type()
+auto FontFamily::get_base_type() -> GType
 {
   return pango_font_family_get_type();
 }
 
 
-Glib::ustring FontFamily::get_name() const
+auto FontFamily::get_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(pango_font_family_get_name(const_cast<PangoFontFamily*>(gobj())));
 }
 
-bool FontFamily::is_monospace() const
+auto FontFamily::is_monospace() const -> bool
 {
   return pango_font_family_is_monospace(const_cast<PangoFontFamily*>(gobj()));
 }
 
-bool FontFamily::is_variable() const
+auto FontFamily::is_variable() const -> bool
 {
   return pango_font_family_is_variable(const_cast<PangoFontFamily*>(gobj()));
 }
 
-Glib::RefPtr<FontFace> FontFamily::get_face(const Glib::ustring& name)
+auto FontFamily::get_face(const Glib::ustring& name) -> Glib::RefPtr<FontFace>
 {
   auto retvalue = Glib::wrap(pango_font_family_get_face(gobj(), name.empty() ? nullptr : name.c_str()));
   if(retvalue)
@@ -181,7 +181,7 @@ Glib::RefPtr<FontFace> FontFamily::get_face(const Glib::ustring& name)
   return retvalue;
 }
 
-Glib::RefPtr<const FontFace> FontFamily::get_face(const Glib::ustring& name) const
+auto FontFamily::get_face(const Glib::ustring& name) const -> Glib::RefPtr<const FontFace>
 {
   return const_cast<FontFamily*>(this)->get_face(name);
 }

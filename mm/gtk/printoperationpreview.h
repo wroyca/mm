@@ -71,7 +71,7 @@ public:
 
   // noncopyable
   PrintOperationPreview(const PrintOperationPreview&) = delete;
-  PrintOperationPreview& operator=(const PrintOperationPreview&) = delete;
+  auto operator=(const PrintOperationPreview&) -> PrintOperationPreview& = delete;
 
 private:
   friend class PrintOperationPreview_Class;
@@ -105,7 +105,7 @@ protected:
 public:
 
   PrintOperationPreview(PrintOperationPreview&& src) noexcept;
-  PrintOperationPreview& operator=(PrintOperationPreview&& src) noexcept;
+  auto operator=(PrintOperationPreview&& src) noexcept -> PrintOperationPreview&;
 
   ~PrintOperationPreview() noexcept override;
 
@@ -113,17 +113,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkPrintOperationPreview*       gobj()       { return reinterpret_cast<GtkPrintOperationPreview*>(gobject_); }
+  auto       gobj() -> GtkPrintOperationPreview*       { return reinterpret_cast<GtkPrintOperationPreview*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkPrintOperationPreview* gobj() const { return reinterpret_cast<GtkPrintOperationPreview*>(gobject_); }
+  auto gobj() const -> const GtkPrintOperationPreview* { return reinterpret_cast<GtkPrintOperationPreview*>(gobject_); }
 
 private:
 
@@ -158,7 +158,7 @@ public:
    * @param page_nr A page number.
    * @return <tt>true</tt> if the page has been selected for printing.
    */
-  bool is_selected(int page_nr) const;
+  auto is_selected(int page_nr) const -> bool;
 
 
   /**
@@ -175,7 +175,7 @@ public:
    * @param context The current `Gtk::PrintContext`.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&)> signal_ready();
+  auto signal_ready() -> Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&)>;
 
 
   /**
@@ -194,7 +194,7 @@ public:
    * @param page_setup The `Gtk::PageSetup` for the current page.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&, const Glib::RefPtr<PageSetup>&)> signal_got_page_size();
+  auto signal_got_page_size() -> Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&, const Glib::RefPtr<PageSetup>&)>;
 
 
 protected:
@@ -202,7 +202,7 @@ protected:
 
     virtual void end_preview_vfunc();
 
-    virtual bool is_selected_vfunc(int page_nr) const;
+    virtual auto is_selected_vfunc(int page_nr) const -> bool;
 
 
 public:
@@ -236,7 +236,7 @@ namespace Glib
    * @relates Gtk::PrintOperationPreview
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::PrintOperationPreview> wrap(GtkPrintOperationPreview* object, bool take_copy = false);
+  auto wrap(GtkPrintOperationPreview* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PrintOperationPreview>;
 
 } // namespace Glib
 

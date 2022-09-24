@@ -69,7 +69,7 @@ public:
 
   // noncopyable
   ThemedIcon(const ThemedIcon&) = delete;
-  ThemedIcon& operator=(const ThemedIcon&) = delete;
+  auto operator=(const ThemedIcon&) -> ThemedIcon& = delete;
 
 private:  friend class ThemedIcon_Class;
   static CppClassType themedicon_class_;
@@ -83,28 +83,28 @@ protected:
 public:
 
   ThemedIcon(ThemedIcon&& src) noexcept;
-  ThemedIcon& operator=(ThemedIcon&& src) noexcept;
+  auto operator=(ThemedIcon&& src) noexcept -> ThemedIcon&;
 
   ~ThemedIcon() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GThemedIcon*       gobj()       { return reinterpret_cast<GThemedIcon*>(gobject_); }
+  auto       gobj() -> GThemedIcon*       { return reinterpret_cast<GThemedIcon*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GThemedIcon* gobj() const { return reinterpret_cast<GThemedIcon*>(gobject_); }
+  auto gobj() const -> const GThemedIcon* { return reinterpret_cast<GThemedIcon*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GThemedIcon* gobj_copy();
+  auto gobj_copy() -> GThemedIcon*;
 
 private:
 
@@ -146,7 +146,7 @@ public:
    * @param use_default_fallbacks Whether to use all the names that can be created by shortening @a iconname at '-' characters.
    */
 
-  static Glib::RefPtr<ThemedIcon> create(const Glib::ustring& iconname, bool use_default_fallbacks =  false);
+  static auto create(const Glib::ustring& iconname, bool use_default_fallbacks =  false) -> Glib::RefPtr<ThemedIcon>;
 
 
   /** Creates a new themed icon for @a iconnames.
@@ -156,7 +156,7 @@ public:
    * @newin{2,60}
    */
 
-  static Glib::RefPtr<ThemedIcon> create(const std::vector<Glib::ustring>& iconnames);
+  static auto create(const std::vector<Glib::ustring>& iconnames) -> Glib::RefPtr<ThemedIcon>;
 
 
   /** Prepend a name to the list of icons from within @a icon.
@@ -184,7 +184,7 @@ public:
    *
    * @return A list of icon names.
    */
-  std::vector<Glib::ustring> get_names() const;
+  auto get_names() const -> std::vector<Glib::ustring>;
 
   //There are no signals.
 
@@ -194,7 +194,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> > property_names() const;
+  auto property_names() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >;
 
 
   /** Whether to use the default fallbacks found by shortening the icon name
@@ -211,7 +211,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_default_fallbacks() const;
+  auto property_use_default_fallbacks() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -241,7 +241,7 @@ namespace Glib
    * @relates Gio::ThemedIcon
    */
   GIOMM_API
-  Glib::RefPtr<Gio::ThemedIcon> wrap(GThemedIcon* object, bool take_copy = false);
+  auto wrap(GThemedIcon* object, bool take_copy = false) -> Glib::RefPtr<Gio::ThemedIcon>;
 }
 
 

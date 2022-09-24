@@ -68,7 +68,7 @@ public:
 
   // noncopyable
   SingleSelection(const SingleSelection&) = delete;
-  SingleSelection& operator=(const SingleSelection&) = delete;
+  auto operator=(const SingleSelection&) -> SingleSelection& = delete;
 
 private:  friend class SingleSelection_Class;
   static CppClassType singleselection_class_;
@@ -82,28 +82,28 @@ protected:
 public:
 
   SingleSelection(SingleSelection&& src) noexcept;
-  SingleSelection& operator=(SingleSelection&& src) noexcept;
+  auto operator=(SingleSelection&& src) noexcept -> SingleSelection&;
 
   ~SingleSelection() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkSingleSelection*       gobj()       { return reinterpret_cast<GtkSingleSelection*>(gobject_); }
+  auto       gobj() -> GtkSingleSelection*       { return reinterpret_cast<GtkSingleSelection*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkSingleSelection* gobj() const { return reinterpret_cast<GtkSingleSelection*>(gobject_); }
+  auto gobj() const -> const GtkSingleSelection* { return reinterpret_cast<GtkSingleSelection*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkSingleSelection* gobj_copy();
+  auto gobj_copy() -> GtkSingleSelection*;
 
 private:
 
@@ -115,23 +115,23 @@ protected:
 
 public:
 
-  static Glib::RefPtr<SingleSelection> create();
+  static auto create() -> Glib::RefPtr<SingleSelection>;
 
 
-  static Glib::RefPtr<SingleSelection> create(const Glib::RefPtr<Gio::ListModel>& model);
+  static auto create(const Glib::RefPtr<Gio::ListModel>& model) -> Glib::RefPtr<SingleSelection>;
 
 
   /** Gets the model that @a self is wrapping.
    *
    * @return The model being wrapped.
    */
-  Glib::RefPtr<Gio::ListModel> get_model();
+  auto get_model() -> Glib::RefPtr<Gio::ListModel>;
 
   /** Gets the model that @a self is wrapping.
    *
    * @return The model being wrapped.
    */
-  Glib::RefPtr<const Gio::ListModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const Gio::ListModel>;
 
   /** Sets the model that @a self should wrap.
    *
@@ -148,7 +148,7 @@ public:
    *
    * @return The position of the selected item.
    */
-  guint get_selected() const;
+  auto get_selected() const -> guint;
 
   /** Selects the item at the given position.
    *
@@ -170,7 +170,7 @@ public:
    *
    * @return The selected item.
    */
-  Glib::RefPtr<Glib::ObjectBase> get_selected_item();
+  auto get_selected_item() -> Glib::RefPtr<Glib::ObjectBase>;
 
   /** Gets the selected item.
    *
@@ -178,7 +178,7 @@ public:
    *
    * @return The selected item.
    */
-  Glib::RefPtr<const Glib::ObjectBase> get_selected_item() const;
+  auto get_selected_item() const -> Glib::RefPtr<const Glib::ObjectBase>;
 
 
   /** Checks if autoselect has been enabled or disabled via
@@ -186,7 +186,7 @@ public:
    *
    * @return <tt>true</tt> if autoselect is enabled.
    */
-  bool get_autoselect() const;
+  auto get_autoselect() const -> bool;
 
   /** Enables or disables autoselect.
    *
@@ -203,7 +203,7 @@ public:
    *
    * @return <tt>true</tt> to support unselecting.
    */
-  bool get_can_unselect() const;
+  auto get_can_unselect() const -> bool;
 
   /** If <tt>true</tt>, unselecting the current item via
    * Gtk::SelectionModel::unselect_item() is supported.
@@ -223,7 +223,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_autoselect() ;
+  auto property_autoselect() -> Glib::PropertyProxy< bool > ;
 
 /** If the selection will always select an item.
    *
@@ -232,7 +232,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_autoselect() const;
+  auto property_autoselect() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** If unselecting the selected item is allowed.
    *
@@ -241,7 +241,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_can_unselect() ;
+  auto property_can_unselect() -> Glib::PropertyProxy< bool > ;
 
 /** If unselecting the selected item is allowed.
    *
@@ -250,7 +250,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_can_unselect() const;
+  auto property_can_unselect() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Position of the selected item.
    *
@@ -259,7 +259,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_selected() ;
+  auto property_selected() -> Glib::PropertyProxy< guint > ;
 
 /** Position of the selected item.
    *
@@ -268,14 +268,14 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_selected() const;
+  auto property_selected() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** The selected item.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> > property_selected_item() const;
+  auto property_selected_item() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> >;
 
 
   /** The type of items. See Gio::ListModel::get_item_type().
@@ -285,7 +285,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< GType > property_item_type() const;
+  auto property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >;
 
 
   /** The model being managed.
@@ -293,14 +293,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > property_model() ;
+  auto property_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > ;
 
 /** The model being managed.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >;
 
   /** The number of items. See Gio::ListModel::get_n_items().
    *
@@ -311,7 +311,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_n_items() const;
+  auto property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
 
   // There are no signals or vfuncs.
@@ -344,7 +344,7 @@ namespace Glib
    * @relates Gtk::SingleSelection
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::SingleSelection> wrap(GtkSingleSelection* object, bool take_copy = false);
+  auto wrap(GtkSingleSelection* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SingleSelection>;
 }
 
 

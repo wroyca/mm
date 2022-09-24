@@ -40,7 +40,7 @@ namespace
 namespace Glib
 {
 
-Gtk::Fixed* wrap(GtkFixed* object, bool take_copy)
+auto wrap(GtkFixed* object, bool take_copy) -> Gtk::Fixed*
 {
   return dynamic_cast<Gtk::Fixed *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -53,7 +53,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Fixed_Class::init()
+auto Fixed_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -84,7 +84,7 @@ void Fixed_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Fixed_Class::wrap_new(GObject* o)
+auto Fixed_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Fixed((GtkFixed*)(o)));
 
@@ -110,7 +110,7 @@ Fixed::Fixed(Fixed&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-Fixed& Fixed::operator=(Fixed&& src) noexcept
+auto Fixed::operator=(Fixed&& src) noexcept -> Fixed&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -123,13 +123,13 @@ Fixed::~Fixed() noexcept
 
 Fixed::CppClassType Fixed::fixed_class_; // initialize static member
 
-GType Fixed::get_type()
+auto Fixed::get_type() -> GType
 {
   return fixed_class_.init().get_type();
 }
 
 
-GType Fixed::get_base_type()
+auto Fixed::get_base_type() -> GType
 {
   return gtk_fixed_get_type();
 }

@@ -88,7 +88,7 @@ template <>
 class GDKMM_API Value<Gdk::SubpixelLayout> : public Glib::Value_Enum<Gdk::SubpixelLayout>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -123,7 +123,7 @@ public:
 
   // noncopyable
   Monitor(const Monitor&) = delete;
-  Monitor& operator=(const Monitor&) = delete;
+  auto operator=(const Monitor&) -> Monitor& = delete;
 
 private:  friend class Monitor_Class;
   static CppClassType monitor_class_;
@@ -137,28 +137,28 @@ protected:
 public:
 
   Monitor(Monitor&& src) noexcept;
-  Monitor& operator=(Monitor&& src) noexcept;
+  auto operator=(Monitor&& src) noexcept -> Monitor&;
 
   ~Monitor() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkMonitor*       gobj()       { return reinterpret_cast<GdkMonitor*>(gobject_); }
+  auto       gobj() -> GdkMonitor*       { return reinterpret_cast<GdkMonitor*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkMonitor* gobj() const { return reinterpret_cast<GdkMonitor*>(gobject_); }
+  auto gobj() const -> const GdkMonitor* { return reinterpret_cast<GdkMonitor*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkMonitor* gobj_copy();
+  auto gobj_copy() -> GdkMonitor*;
 
 private:
 
@@ -172,13 +172,13 @@ public:
    *
    * @return The display.
    */
-  Glib::RefPtr<Display> get_display();
+  auto get_display() -> Glib::RefPtr<Display>;
 
   /** Gets the display that this monitor belongs to.
    *
    * @return The display.
    */
-  Glib::RefPtr<const Display> get_display() const;
+  auto get_display() const -> Glib::RefPtr<const Display>;
 
   /** Retrieves the size and position of the monitor within the
    * display coordinate space.
@@ -194,13 +194,13 @@ public:
    *
    * @return The physical width of the monitor.
    */
-  int get_width_mm() const;
+  auto get_width_mm() const -> int;
 
   /** Gets the height in millimeters of the monitor.
    *
    * @return The physical height of the monitor.
    */
-  int get_height_mm() const;
+  auto get_height_mm() const -> int;
 
   /** Gets the name or PNP ID of the monitor's manufacturer.
    *
@@ -212,19 +212,19 @@ public:
    *
    * @return The name of the manufacturer.
    */
-  Glib::ustring get_manufacturer() const;
+  auto get_manufacturer() const -> Glib::ustring;
 
   /** Gets the string identifying the monitor model, if available.
    *
    * @return The monitor model.
    */
-  Glib::ustring get_model() const;
+  auto get_model() const -> Glib::ustring;
 
   /** Gets the name of the monitor's connector, if available.
    *
    * @return The name of the connector.
    */
-  Glib::ustring get_connector() const;
+  auto get_connector() const -> Glib::ustring;
 
   /** Gets the internal scale factor that maps from monitor coordinates
    * to device pixels.
@@ -238,7 +238,7 @@ public:
    *
    * @return The scale factor.
    */
-  int get_scale_factor() const;
+  auto get_scale_factor() const -> int;
 
   /** Gets the refresh rate of the monitor, if available.
    *
@@ -247,14 +247,14 @@ public:
    *
    * @return The refresh rate in milli-Hertz, or 0.
    */
-  int get_refresh_rate() const;
+  auto get_refresh_rate() const -> int;
 
   /** Gets information about the layout of red, green and blue
    * primaries for pixels.
    *
    * @return The subpixel layout.
    */
-  SubpixelLayout get_subpixel_layout() const;
+  auto get_subpixel_layout() const -> SubpixelLayout;
 
   /** Returns <tt>true</tt> if the @a monitor object corresponds to a
    * physical monitor.
@@ -264,7 +264,7 @@ public:
    *
    * @return <tt>true</tt> if the object corresponds to a physical monitor.
    */
-  bool is_valid() const;
+  auto is_valid() const -> bool;
 
   // We use no_default_handler because _GdkMonitorClass is private
   // and there is no default handler in gtk+.
@@ -278,7 +278,7 @@ public:
    * Emitted when the output represented by @a monitor gets disconnected.
    */
 
-  Glib::SignalProxy<void()> signal_invalidate();
+  auto signal_invalidate() -> Glib::SignalProxy<void()>;
 
 
   /** The `Gdk::Display` of the monitor.
@@ -286,7 +286,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> > property_display() const;
+  auto property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >;
 
 
   /** The manufacturer name.
@@ -296,7 +296,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_manufacturer() const;
+  auto property_manufacturer() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The model name.
@@ -306,7 +306,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The connector name.
@@ -316,7 +316,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_connector() const;
+  auto property_connector() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The scale factor.
@@ -326,7 +326,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_scale_factor() const;
+  auto property_scale_factor() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** The geometry of the monitor.
@@ -334,7 +334,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Gdk::Rectangle > property_geometry() const;
+  auto property_geometry() const -> Glib::PropertyProxy_ReadOnly< Gdk::Rectangle >;
 
 
   /** The width of the monitor, in millimeters.
@@ -344,7 +344,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_width_mm() const;
+  auto property_width_mm() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** The height of the monitor, in millimeters.
@@ -354,7 +354,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_height_mm() const;
+  auto property_height_mm() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** The refresh rate, in milli-Hertz.
@@ -364,7 +364,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_refresh_rate() const;
+  auto property_refresh_rate() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** The subpixel layout.
@@ -374,7 +374,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< SubpixelLayout > property_subpixel_layout() const;
+  auto property_subpixel_layout() const -> Glib::PropertyProxy_ReadOnly< SubpixelLayout >;
 
 
   /** Whether the object is still valid.
@@ -384,7 +384,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_valid() const;
+  auto property_valid() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -414,7 +414,7 @@ namespace Glib
    * @relates Gdk::Monitor
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::Monitor> wrap(GdkMonitor* object, bool take_copy = false);
+  auto wrap(GdkMonitor* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Monitor>;
 }
 
 

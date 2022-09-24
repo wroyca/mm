@@ -29,13 +29,8 @@
 #include <mm/gio/dbusmessage.h>
 #include <mm/gio/dbusintrospection.h>
 
-namespace Gio
+namespace Gio::DBus
 {
-
-namespace DBus
-{
-
-} // namespace DBus
 
 } // namespace Gio
 
@@ -47,7 +42,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::DBus::MethodInvocation> wrap(GDBusMethodInvocation* object, bool take_copy)
+auto wrap(GDBusMethodInvocation* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::MethodInvocation>
 {
   return Glib::make_refptr_for_instance<Gio::DBus::MethodInvocation>( dynamic_cast<Gio::DBus::MethodInvocation*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -56,16 +51,13 @@ Glib::RefPtr<Gio::DBus::MethodInvocation> wrap(GDBusMethodInvocation* object, bo
 } /* namespace Glib */
 
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 
 /* The *_Class implementation: */
 
-const Glib::Class& MethodInvocation_Class::init()
+auto MethodInvocation_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -96,7 +88,7 @@ void MethodInvocation_Class::class_init_function(void* g_class, void* class_data
 }
 
 
-Glib::ObjectBase* MethodInvocation_Class::wrap_new(GObject* object)
+auto MethodInvocation_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new MethodInvocation((GDBusMethodInvocation*)object);
 }
@@ -104,7 +96,7 @@ Glib::ObjectBase* MethodInvocation_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GDBusMethodInvocation* MethodInvocation::gobj_copy()
+auto MethodInvocation::gobj_copy() -> GDBusMethodInvocation*
 {
   reference();
   return gobj();
@@ -127,7 +119,7 @@ MethodInvocation::MethodInvocation(MethodInvocation&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-MethodInvocation& MethodInvocation::operator=(MethodInvocation&& src) noexcept
+auto MethodInvocation::operator=(MethodInvocation&& src) noexcept -> MethodInvocation&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -140,39 +132,39 @@ MethodInvocation::~MethodInvocation() noexcept
 
 MethodInvocation::CppClassType MethodInvocation::methodinvocation_class_; // initialize static member
 
-GType MethodInvocation::get_type()
+auto MethodInvocation::get_type() -> GType
 {
   return methodinvocation_class_.init().get_type();
 }
 
 
-GType MethodInvocation::get_base_type()
+auto MethodInvocation::get_base_type() -> GType
 {
   return g_dbus_method_invocation_get_type();
 }
 
 
-Glib::ustring MethodInvocation::get_sender() const
+auto MethodInvocation::get_sender() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_dbus_method_invocation_get_sender(const_cast<GDBusMethodInvocation*>(gobj())));
 }
 
-Glib::ustring MethodInvocation::get_object_path() const
+auto MethodInvocation::get_object_path() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_dbus_method_invocation_get_object_path(const_cast<GDBusMethodInvocation*>(gobj())));
 }
 
-Glib::ustring MethodInvocation::get_interface_name() const
+auto MethodInvocation::get_interface_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_dbus_method_invocation_get_interface_name(const_cast<GDBusMethodInvocation*>(gobj())));
 }
 
-Glib::ustring MethodInvocation::get_method_name() const
+auto MethodInvocation::get_method_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_dbus_method_invocation_get_method_name(const_cast<GDBusMethodInvocation*>(gobj())));
 }
 
-Glib::RefPtr<const MethodInfo> MethodInvocation::get_method_info() const
+auto MethodInvocation::get_method_info() const -> Glib::RefPtr<const MethodInfo>
 {
   auto retvalue = Glib::wrap(const_cast<GDBusMethodInfo*>(g_dbus_method_invocation_get_method_info(const_cast<GDBusMethodInvocation*>(gobj()))));
   if(retvalue)
@@ -180,7 +172,7 @@ Glib::RefPtr<const MethodInfo> MethodInvocation::get_method_info() const
   return retvalue;
 }
 
-Glib::RefPtr<Connection> MethodInvocation::get_connection()
+auto MethodInvocation::get_connection() -> Glib::RefPtr<Connection>
 {
   auto retvalue = Glib::wrap(g_dbus_method_invocation_get_connection(gobj()));
   if(retvalue)
@@ -188,12 +180,12 @@ Glib::RefPtr<Connection> MethodInvocation::get_connection()
   return retvalue;
 }
 
-Glib::RefPtr<const Connection> MethodInvocation::get_connection() const
+auto MethodInvocation::get_connection() const -> Glib::RefPtr<const Connection>
 {
   return const_cast<MethodInvocation*>(this)->get_connection();
 }
 
-Glib::RefPtr<Message> MethodInvocation::get_message()
+auto MethodInvocation::get_message() -> Glib::RefPtr<Message>
 {
   auto retvalue = Glib::wrap(g_dbus_method_invocation_get_message(gobj()));
   if(retvalue)
@@ -201,12 +193,12 @@ Glib::RefPtr<Message> MethodInvocation::get_message()
   return retvalue;
 }
 
-Glib::RefPtr<const Message> MethodInvocation::get_message() const
+auto MethodInvocation::get_message() const -> Glib::RefPtr<const Message>
 {
   return const_cast<MethodInvocation*>(this)->get_message();
 }
 
-Glib::VariantContainerBase MethodInvocation::get_parameters() const
+auto MethodInvocation::get_parameters() const -> Glib::VariantContainerBase
 {
   return Glib::VariantContainerBase(g_dbus_method_invocation_get_parameters(const_cast<GDBusMethodInvocation*>(gobj())), false);
 }
@@ -238,8 +230,6 @@ void MethodInvocation::return_dbus_error(const Glib::ustring& error_name, const 
   g_dbus_method_invocation_return_dbus_error(gobj(), error_name.c_str(), error_message.c_str());
 }
 
-
-} // namespace DBus
 
 } // namespace Gio
 

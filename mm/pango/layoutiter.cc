@@ -30,63 +30,63 @@
 namespace Pango
 {
 
-Rectangle LayoutIter::get_char_extents() const
+auto LayoutIter::get_char_extents() const -> Rectangle
 {
   Rectangle logical_rect;
   pango_layout_iter_get_char_extents(const_cast<PangoLayoutIter*>(gobj()), logical_rect.gobj());
   return logical_rect;
 }
 
-Rectangle LayoutIter::get_cluster_ink_extents() const
+auto LayoutIter::get_cluster_ink_extents() const -> Rectangle
 {
   Rectangle ink_rect;
   pango_layout_iter_get_cluster_extents(const_cast<PangoLayoutIter*>(gobj()), ink_rect.gobj(), 0);
   return ink_rect;
 }
 
-Rectangle LayoutIter::get_cluster_logical_extents() const
+auto LayoutIter::get_cluster_logical_extents() const -> Rectangle
 {
   Rectangle logical_rect;
   pango_layout_iter_get_cluster_extents(const_cast<PangoLayoutIter*>(gobj()), 0, logical_rect.gobj());
   return logical_rect;
 }
 
-Rectangle LayoutIter::get_run_ink_extents() const
+auto LayoutIter::get_run_ink_extents() const -> Rectangle
 {
   Rectangle ink_rect;
   pango_layout_iter_get_run_extents(const_cast<PangoLayoutIter*>(gobj()), ink_rect.gobj(), 0);
   return ink_rect;
 }
 
-Rectangle LayoutIter::get_run_logical_extents() const
+auto LayoutIter::get_run_logical_extents() const -> Rectangle
 {
   Rectangle logical_rect;
   pango_layout_iter_get_run_extents(const_cast<PangoLayoutIter*>(gobj()), 0, logical_rect.gobj());
   return logical_rect;
 }
 
-Rectangle LayoutIter::get_line_ink_extents() const
+auto LayoutIter::get_line_ink_extents() const -> Rectangle
 {
   Rectangle ink_rect;
   pango_layout_iter_get_line_extents(const_cast<PangoLayoutIter*>(gobj()), ink_rect.gobj(), 0);
   return ink_rect;
 }
 
-Rectangle LayoutIter::get_line_logical_extents() const
+auto LayoutIter::get_line_logical_extents() const -> Rectangle
 {
   Rectangle logical_rect;
   pango_layout_iter_get_line_extents(const_cast<PangoLayoutIter*>(gobj()), 0, logical_rect.gobj());
   return logical_rect;
 }
 
-Rectangle LayoutIter::get_layout_ink_extents() const
+auto LayoutIter::get_layout_ink_extents() const -> Rectangle
 {
   Rectangle ink_rect;
   pango_layout_iter_get_layout_extents(const_cast<PangoLayoutIter*>(gobj()), ink_rect.gobj(), 0);
   return ink_rect;
 }
 
-Rectangle LayoutIter::get_layout_logical_extents() const
+auto LayoutIter::get_layout_logical_extents() const -> Rectangle
 {
   Rectangle logical_rect;
   pango_layout_iter_get_layout_extents(const_cast<PangoLayoutIter*>(gobj()), 0, logical_rect.gobj());
@@ -103,7 +103,7 @@ namespace
 namespace Glib
 {
 
-Pango::LayoutIter wrap(PangoLayoutIter* object, bool take_copy)
+auto wrap(PangoLayoutIter* object, bool take_copy) -> Pango::LayoutIter
 {
   return Pango::LayoutIter(object, take_copy);
 }
@@ -116,7 +116,7 @@ namespace Pango
 
 
 // static
-GType LayoutIter::get_type()
+auto LayoutIter::get_type() -> GType
 {
   return pango_layout_iter_get_type();
 }
@@ -138,7 +138,7 @@ LayoutIter::LayoutIter(LayoutIter&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-LayoutIter& LayoutIter::operator=(LayoutIter&& other) noexcept
+auto LayoutIter::operator=(LayoutIter&& other) noexcept -> LayoutIter&
 {
   LayoutIter temp (std::move(other));
   swap(temp);
@@ -153,7 +153,7 @@ LayoutIter::LayoutIter(PangoLayoutIter* gobject, bool make_a_copy)
   gobject_ ((make_a_copy && gobject) ? pango_layout_iter_copy(gobject) : gobject)
 {}
 
-LayoutIter& LayoutIter::operator=(const LayoutIter& other)
+auto LayoutIter::operator=(const LayoutIter& other) -> LayoutIter&
 {
   LayoutIter temp (other);
   swap(temp);
@@ -171,23 +171,23 @@ void LayoutIter::swap(LayoutIter& other) noexcept
   std::swap(gobject_, other.gobject_);
 }
 
-PangoLayoutIter* LayoutIter::gobj_copy() const
+auto LayoutIter::gobj_copy() const -> PangoLayoutIter*
 {
   return pango_layout_iter_copy(gobject_);
 }
 
 
-int LayoutIter::get_index() const
+auto LayoutIter::get_index() const -> int
 {
   return pango_layout_iter_get_index(const_cast<PangoLayoutIter*>(gobj()));
 }
 
-GlyphItem LayoutIter::get_run() const
+auto LayoutIter::get_run() const -> GlyphItem
 {
   return GlyphItem((pango_layout_iter_get_run_readonly(const_cast<PangoLayoutIter*>(gobj()))));
 }
 
-Glib::RefPtr<LayoutLine> LayoutIter::get_line()
+auto LayoutIter::get_line() -> Glib::RefPtr<LayoutLine>
 {
   auto retvalue = Glib::wrap(pango_layout_iter_get_line(gobj()));
   if(retvalue)
@@ -195,7 +195,7 @@ Glib::RefPtr<LayoutLine> LayoutIter::get_line()
   return retvalue;
 }
 
-Glib::RefPtr<const LayoutLine> LayoutIter::get_line() const
+auto LayoutIter::get_line() const -> Glib::RefPtr<const LayoutLine>
 {
   auto retvalue = Glib::wrap(pango_layout_iter_get_line_readonly(const_cast<PangoLayoutIter*>(gobj())));
   if(retvalue)
@@ -203,7 +203,7 @@ Glib::RefPtr<const LayoutLine> LayoutIter::get_line() const
   return retvalue;
 }
 
-Glib::RefPtr<const LayoutLine> LayoutIter::get_const_line() const
+auto LayoutIter::get_const_line() const -> Glib::RefPtr<const LayoutLine>
 {
   auto retvalue = Glib::wrap(pango_layout_iter_get_line_readonly(const_cast<PangoLayoutIter*>(gobj())));
   if(retvalue)
@@ -211,12 +211,12 @@ Glib::RefPtr<const LayoutLine> LayoutIter::get_const_line() const
   return retvalue;
 }
 
-bool LayoutIter::at_last_line() const
+auto LayoutIter::at_last_line() const -> bool
 {
   return pango_layout_iter_at_last_line(const_cast<PangoLayoutIter*>(gobj()));
 }
 
-Glib::RefPtr<Layout> LayoutIter::get_layout()
+auto LayoutIter::get_layout() -> Glib::RefPtr<Layout>
 {
   auto retvalue = Glib::wrap(pango_layout_iter_get_layout(gobj()));
   if(retvalue)
@@ -224,27 +224,27 @@ Glib::RefPtr<Layout> LayoutIter::get_layout()
   return retvalue;
 }
 
-Glib::RefPtr<const Layout> LayoutIter::get_layout() const
+auto LayoutIter::get_layout() const -> Glib::RefPtr<const Layout>
 {
   return const_cast<LayoutIter*>(this)->get_layout();
 }
 
-bool LayoutIter::next_char()
+auto LayoutIter::next_char() -> bool
 {
   return pango_layout_iter_next_char(gobj());
 }
 
-bool LayoutIter::next_cluster()
+auto LayoutIter::next_cluster() -> bool
 {
   return pango_layout_iter_next_cluster(gobj());
 }
 
-bool LayoutIter::next_run()
+auto LayoutIter::next_run() -> bool
 {
   return pango_layout_iter_next_run(gobj());
 }
 
-bool LayoutIter::next_line()
+auto LayoutIter::next_line() -> bool
 {
   return pango_layout_iter_next_line(gobj());
 }
@@ -274,7 +274,7 @@ void LayoutIter::get_layout_extents(Rectangle& ink_rect, Rectangle& logical_rect
   pango_layout_iter_get_layout_extents(const_cast<PangoLayoutIter*>(gobj()), (ink_rect).gobj(), (logical_rect).gobj());
 }
 
-int LayoutIter::get_baseline() const
+auto LayoutIter::get_baseline() const -> int
 {
   return pango_layout_iter_get_baseline(const_cast<PangoLayoutIter*>(gobj()));
 }

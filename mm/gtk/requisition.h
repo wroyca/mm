@@ -44,24 +44,24 @@ class GTKMM_API Requisition
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Requisition(const Requisition& other) noexcept;
-  Requisition& operator=(const Requisition& other) noexcept;
+  auto operator=(const Requisition& other) noexcept -> Requisition&;
 
   Requisition(Requisition&& other) noexcept;
-  Requisition& operator=(Requisition&& other) noexcept;
+  auto operator=(Requisition&& other) noexcept -> Requisition&;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   Requisition();
 
   explicit Requisition(const GtkRequisition* gobject); // always takes a copy
 
   ///Provides access to the underlying C instance.
-  GtkRequisition*       gobj()       { return &gobject_; }
+  auto       gobj() -> GtkRequisition*       { return &gobject_; }
 
   ///Provides access to the underlying C instance.
-  const GtkRequisition* gobj() const { return &gobject_; }
+  auto gobj() const -> const GtkRequisition* { return &gobject_; }
 
 protected:
   GtkRequisition gobject_;
@@ -74,9 +74,9 @@ public:
    */
   Requisition(int width, int height);
 
-  int get_width() const;
+  auto get_width() const -> int;
   void set_width(const int& value);
-  int get_height() const;
+  auto get_height() const -> int;
   void set_height(const int& value);
 
 
@@ -93,14 +93,14 @@ namespace Glib
  * @result A C++ instance that wraps this C instance.
  */
 GTKMM_API
-Gtk::Requisition& wrap(GtkRequisition* object);
+auto wrap(GtkRequisition* object) -> Gtk::Requisition&;
 
 /** @relates Gtk::Requisition
  * @param object The C instance
  * @result A C++ instance that wraps this C instance.
  */
 GTKMM_API
-const Gtk::Requisition& wrap(const GtkRequisition* object);
+auto wrap(const GtkRequisition* object) -> const Gtk::Requisition&;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

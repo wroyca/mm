@@ -67,11 +67,11 @@ class GTKMM_API FontButton
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   FontButton(FontButton&& src) noexcept;
-  FontButton& operator=(FontButton&& src) noexcept;
+  auto operator=(FontButton&& src) noexcept -> FontButton&;
 
   // noncopyable
   FontButton(const FontButton&) = delete;
-  FontButton& operator=(const FontButton&) = delete;
+  auto operator=(const FontButton&) -> FontButton& = delete;
 
   ~FontButton() noexcept override;
 
@@ -91,19 +91,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkFontButton*       gobj()       { return reinterpret_cast<GtkFontButton*>(gobject_); }
+  auto       gobj() -> GtkFontButton*       { return reinterpret_cast<GtkFontButton*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkFontButton* gobj() const { return reinterpret_cast<GtkFontButton*>(gobject_); }
+  auto gobj() const -> const GtkFontButton* { return reinterpret_cast<GtkFontButton*>(gobject_); }
 
 private:
 
@@ -118,7 +118,7 @@ public:
    * @return An internal copy of the title string
    * which must not be freed.
    */
-  Glib::ustring get_title() const;
+  auto get_title() const -> Glib::ustring;
 
   /** Sets the title for the font chooser dialog.
    *
@@ -130,7 +130,7 @@ public:
    *
    * @return <tt>true</tt> if the dialog is modal.
    */
-  bool get_modal() const;
+  auto get_modal() const -> bool;
 
   /** Sets whether the dialog should be modal.
    *
@@ -142,7 +142,7 @@ public:
    *
    * @return Whether the selected font is used in the label.
    */
-  bool get_use_font() const;
+  auto get_use_font() const -> bool;
 
   /** If @a use_font is <tt>true</tt>, the font name will be written
    * using the selected font.
@@ -155,7 +155,7 @@ public:
    *
    * @return Whether the selected size is used in the label.
    */
-  bool get_use_size() const;
+  auto get_use_size() const -> bool;
 
   /** If @a use_size is <tt>true</tt>, the font name will be written using
    * the selected size.
@@ -172,7 +172,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_title() ;
+  auto property_title() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The title of the font chooser dialog.
    *
@@ -181,7 +181,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_title() const;
+  auto property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Whether the font chooser dialog should be modal.
    *
@@ -190,7 +190,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_modal() ;
+  auto property_modal() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the font chooser dialog should be modal.
    *
@@ -199,7 +199,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_modal() const;
+  auto property_modal() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the buttons label will be drawn in the selected font.
    *
@@ -208,7 +208,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_use_font() ;
+  auto property_use_font() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the buttons label will be drawn in the selected font.
    *
@@ -217,7 +217,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_font() const;
+  auto property_use_font() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the buttons label will use the selected font size.
    *
@@ -226,7 +226,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_use_size() ;
+  auto property_use_size() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the buttons label will use the selected font size.
    *
@@ -235,7 +235,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_size() const;
+  auto property_use_size() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   // no_default_handler because GtkFontButtonClass is private.
@@ -256,7 +256,7 @@ public:
    * the notify::font signal.
    */
 
-  Glib::SignalProxy<void()> signal_font_set();
+  auto signal_font_set() -> Glib::SignalProxy<void()>;
 
 
 public:
@@ -286,7 +286,7 @@ namespace Glib
    * @relates Gtk::FontButton
    */
   GTKMM_API
-  Gtk::FontButton* wrap(GtkFontButton* object, bool take_copy = false);
+  auto wrap(GtkFontButton* object, bool take_copy = false) -> Gtk::FontButton*;
 } //namespace Glib
 
 

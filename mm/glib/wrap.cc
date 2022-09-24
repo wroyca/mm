@@ -34,7 +34,7 @@ namespace
 
 using WrapFuncTable = std::vector<Glib::WrapNewFunction>;
 
-static WrapFuncTable* wrap_func_table = nullptr;
+WrapFuncTable* wrap_func_table = nullptr;
 
 } // anonymous namespace
 
@@ -91,8 +91,8 @@ wrap_register(GType type, WrapNewFunction func)
   g_type_set_qdata(type, Glib::quark_, GUINT_TO_POINTER(idx));
 }
 
-static Glib::ObjectBase*
-wrap_create_new_wrapper(GObject* object)
+static auto
+wrap_create_new_wrapper(GObject* object) -> Glib::ObjectBase*
 {
   g_return_val_if_fail(wrap_func_table != nullptr, nullptr);
 
@@ -123,8 +123,8 @@ wrap_create_new_wrapper(GObject* object)
   return nullptr;
 }
 
-static gboolean
-gtype_wraps_interface(GType implementer_type, GType interface_type)
+static auto
+gtype_wraps_interface(GType implementer_type, GType interface_type) -> gboolean
 {
   guint n_ifaces = 0;
   GType* ifaces = g_type_interfaces(implementer_type, &n_ifaces);
@@ -140,8 +140,8 @@ gtype_wraps_interface(GType implementer_type, GType interface_type)
   return found;
 }
 
-Glib::ObjectBase*
-wrap_create_new_wrapper_for_interface(GObject* object, GType interface_gtype)
+auto
+wrap_create_new_wrapper_for_interface(GObject* object, GType interface_gtype) -> Glib::ObjectBase*
 {
   g_return_val_if_fail(wrap_func_table != nullptr, nullptr);
 
@@ -178,8 +178,8 @@ wrap_create_new_wrapper_for_interface(GObject* object, GType interface_gtype)
 // This is a factory function that converts any type to
 // its C++ wrapper instance by looking up a wrap_new() function in a map.
 //
-ObjectBase*
-wrap_auto(GObject* object, bool take_copy)
+auto
+wrap_auto(GObject* object, bool take_copy) -> ObjectBase*
 {
   if (!object)
     return nullptr;
@@ -209,8 +209,8 @@ wrap_auto(GObject* object, bool take_copy)
   return pCppObject;
 }
 
-Glib::RefPtr<Object>
-wrap(GObject* object, bool take_copy /* = false */)
+auto
+wrap(GObject* object, bool take_copy /* = false */) -> Glib::RefPtr<Object>
 {
   return Glib::make_refptr_for_instance<Object>(dynamic_cast<Object*>(wrap_auto(object, take_copy)));
 }

@@ -22,21 +22,18 @@
 
 //template specializations:
 
-namespace Gtk
-{
-
-namespace CellRenderer_Generation
+namespace Gtk::CellRenderer_Generation
 {
 
 template<>
-CellRenderer* generate_cellrenderer< Glib::RefPtr<Gdk::Pixbuf> >(bool /*editable*/)
+auto generate_cellrenderer< Glib::RefPtr<Gdk::Pixbuf> >(bool /*editable*/) -> CellRenderer*
 {
   //Ignore editable because there is no way for the user to edit a Pixbuf.
   return new CellRendererPixbuf();
 }
 
 template<>
-CellRenderer* generate_cellrenderer<bool>(bool editable)
+auto generate_cellrenderer<bool>(bool editable) -> CellRenderer*
 {
   CellRendererToggle* pCellRenderer = new CellRendererToggle();
 
@@ -47,7 +44,7 @@ CellRenderer* generate_cellrenderer<bool>(bool editable)
 }
 
 template<>
-CellRenderer* generate_cellrenderer<AccelKey>(bool editable)
+auto generate_cellrenderer<AccelKey>(bool editable) -> CellRenderer*
 {
   CellRendererAccel* pCellRenderer = new CellRendererAccel();
 
@@ -56,8 +53,5 @@ CellRenderer* generate_cellrenderer<AccelKey>(bool editable)
 
   return pCellRenderer;
 }
-
-} //CellRenderer_Generation
-
 
 } //namespace Gtk

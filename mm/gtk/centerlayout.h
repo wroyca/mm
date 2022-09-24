@@ -63,7 +63,7 @@ public:
 
   // noncopyable
   CenterLayout(const CenterLayout&) = delete;
-  CenterLayout& operator=(const CenterLayout&) = delete;
+  auto operator=(const CenterLayout&) -> CenterLayout& = delete;
 
 private:  friend class CenterLayout_Class;
   static CppClassType centerlayout_class_;
@@ -77,28 +77,28 @@ protected:
 public:
 
   CenterLayout(CenterLayout&& src) noexcept;
-  CenterLayout& operator=(CenterLayout&& src) noexcept;
+  auto operator=(CenterLayout&& src) noexcept -> CenterLayout&;
 
   ~CenterLayout() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkCenterLayout*       gobj()       { return reinterpret_cast<GtkCenterLayout*>(gobject_); }
+  auto       gobj() -> GtkCenterLayout*       { return reinterpret_cast<GtkCenterLayout*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkCenterLayout* gobj() const { return reinterpret_cast<GtkCenterLayout*>(gobject_); }
+  auto gobj() const -> const GtkCenterLayout* { return reinterpret_cast<GtkCenterLayout*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkCenterLayout* gobj_copy();
+  auto gobj_copy() -> GtkCenterLayout*;
 
 private:
 
@@ -108,7 +108,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<CenterLayout> create();
+  static auto create() -> Glib::RefPtr<CenterLayout>;
 
 
   /** Sets the orientation of @a self.
@@ -121,7 +121,7 @@ public:
    *
    * @return The current orientation of @a self.
    */
-  Orientation get_orientation() const;
+  auto get_orientation() const -> Orientation;
 
 
   /** Sets the new baseline position of @a self
@@ -134,7 +134,7 @@ public:
    *
    * @return The current baseline position of @a self.
    */
-  BaselinePosition get_baseline_position() const;
+  auto get_baseline_position() const -> BaselinePosition;
 
 
   /** Sets the new start widget of @a self.
@@ -149,13 +149,13 @@ public:
    *
    * @return The current start widget of @a self.
    */
-  Widget* get_start_widget();
+  auto get_start_widget() -> Widget*;
 
   /** Returns the start widget fo the layout.
    *
    * @return The current start widget of @a self.
    */
-  const Widget* get_start_widget() const;
+  auto get_start_widget() const -> const Widget*;
 
 
   /** Sets the new center widget of @a self.
@@ -170,13 +170,13 @@ public:
    *
    * @return The current center widget of @a self.
    */
-  Widget* get_center_widget();
+  auto get_center_widget() -> Widget*;
 
   /** Returns the center widget of the layout.
    *
    * @return The current center widget of @a self.
    */
-  const Widget* get_center_widget() const;
+  auto get_center_widget() const -> const Widget*;
 
 
   /** Sets the new end widget of @a self.
@@ -191,13 +191,13 @@ public:
    *
    * @return The current end widget of @a self.
    */
-  Widget* get_end_widget();
+  auto get_end_widget() -> Widget*;
 
   /** Returns the end widget of the layout.
    *
    * @return The current end widget of @a self.
    */
-  const Widget* get_end_widget() const;
+  auto get_end_widget() const -> const Widget*;
 
   // There are no signals, properties or vfuncs.
 
@@ -229,7 +229,7 @@ namespace Glib
    * @relates Gtk::CenterLayout
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::CenterLayout> wrap(GtkCenterLayout* object, bool take_copy = false);
+  auto wrap(GtkCenterLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CenterLayout>;
 }
 
 

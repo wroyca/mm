@@ -77,11 +77,11 @@ class GTKMM_API Overlay
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Overlay(Overlay&& src) noexcept;
-  Overlay& operator=(Overlay&& src) noexcept;
+  auto operator=(Overlay&& src) noexcept -> Overlay&;
 
   // noncopyable
   Overlay(const Overlay&) = delete;
-  Overlay& operator=(const Overlay&) = delete;
+  auto operator=(const Overlay&) -> Overlay& = delete;
 
   ~Overlay() noexcept override;
 
@@ -101,19 +101,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkOverlay*       gobj()       { return reinterpret_cast<GtkOverlay*>(gobject_); }
+  auto       gobj() -> GtkOverlay*       { return reinterpret_cast<GtkOverlay*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkOverlay* gobj() const { return reinterpret_cast<GtkOverlay*>(gobject_); }
+  auto gobj() const -> const GtkOverlay* { return reinterpret_cast<GtkOverlay*>(gobject_); }
 
 private:
 
@@ -155,13 +155,13 @@ public:
    *
    * @return The child widget of @a overlay.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget of @a overlay.
    *
    * @return The child widget of @a overlay.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
 
   /** Gets whether @a widget's size is included in the measurement of
@@ -170,7 +170,7 @@ public:
    * @param widget An overlay child of `Gtk::Overlay`.
    * @return Whether the widget is measured.
    */
-  bool get_measure_overlay(Widget& widget) const;
+  auto get_measure_overlay(Widget& widget) const -> bool;
 
   /** Sets whether @a widget is included in the measured size of @a overlay.
    *
@@ -188,7 +188,7 @@ public:
    * @param widget An overlay child of `Gtk::Overlay`.
    * @return Whether the widget is clipped within the parent.
    */
-  bool get_clip_overlay(const Widget& widget) const;
+  auto get_clip_overlay(const Widget& widget) const -> bool;
 
   /** Sets whether @a widget should be clipped within the parent.
    *
@@ -227,7 +227,7 @@ public:
    * @return <tt>true</tt> if the @a allocation has been filled.
    */
 
-  Glib::SignalProxy<bool(Gtk::Widget*, Gdk::Rectangle&)> signal_get_child_position();
+  auto signal_get_child_position() -> Glib::SignalProxy<bool(Gtk::Widget*, Gdk::Rectangle&)>;
 
 
   /**
@@ -235,14 +235,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /**
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
 public:
@@ -272,7 +272,7 @@ namespace Glib
    * @relates Gtk::Overlay
    */
   GTKMM_API
-  Gtk::Overlay* wrap(GtkOverlay* object, bool take_copy = false);
+  auto wrap(GtkOverlay* object, bool take_copy = false) -> Gtk::Overlay*;
 } //namespace Glib
 
 

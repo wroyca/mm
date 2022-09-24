@@ -85,7 +85,7 @@ template <>
 class PANGOMM_API Value<Pango::TabAlign> : public Glib::Value_Enum<Pango::TabAlign>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -108,30 +108,30 @@ class PANGOMM_API TabArray
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   TabArray();
 
   explicit TabArray(PangoTabArray* gobject, bool make_a_copy = true);
 
   TabArray(const TabArray& other);
-  TabArray& operator=(const TabArray& other);
+  auto operator=(const TabArray& other) -> TabArray&;
 
   TabArray(TabArray&& other) noexcept;
-  TabArray& operator=(TabArray&& other) noexcept;
+  auto operator=(TabArray&& other) noexcept -> TabArray&;
 
   ~TabArray() noexcept;
 
   void swap(TabArray& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  PangoTabArray*       gobj()       { return gobject_; }
+  auto       gobj() -> PangoTabArray*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const PangoTabArray* gobj() const { return gobject_; }
+  auto gobj() const -> const PangoTabArray* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  PangoTabArray* gobj_copy() const;
+  auto gobj_copy() const -> PangoTabArray*;
 
 protected:
   PangoTabArray* gobject_;
@@ -147,7 +147,7 @@ public:
    *
    * @return The number of tab stops in the array.
    */
-  int get_size() const;
+  auto get_size() const -> int;
 
   /** Resizes a tab array.
    *
@@ -169,12 +169,12 @@ public:
   /** Gets the alignment and position of a tab stop.
    * @return An std::pair<TabAlign, int>. The first element represents the tab stop alignment, the second one is the tab position.
    */
-  std::pair<TabAlign, int> get_tab(int tab_index) const;
+  auto get_tab(int tab_index) const -> std::pair<TabAlign, int>;
 
   /** Gets an array of std::pairs containing the tab stop alignments and tab positions.
    * @return An array of std::pair<TabAlign, int>. The first element in each pair represents the tab stop alignment, the second one is the tab position.
    */
-  std::vector<std::pair<TabAlign, int>> get_tabs() const;
+  auto get_tabs() const -> std::vector<std::pair<TabAlign, int>>;
 
 
   /** Returns <tt>true</tt> if the tab positions are in pixels,
@@ -182,7 +182,7 @@ public:
    *
    * @return Whether positions are in pixels.
    */
-  bool get_positions_in_pixels() const;
+  auto get_positions_in_pixels() const -> bool;
 
 
 };
@@ -214,7 +214,7 @@ namespace Glib
  * @relates Pango::TabArray
  */
 PANGOMM_API
-Pango::TabArray wrap(PangoTabArray* object, bool take_copy = false);
+auto wrap(PangoTabArray* object, bool take_copy = false) -> Pango::TabArray;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

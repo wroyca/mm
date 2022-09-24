@@ -49,14 +49,14 @@ public:
   explicit TimeCoord(GdkTimeCoord* gobject, bool make_a_copy = true);
 
   TimeCoord(const TimeCoord& other);
-  TimeCoord& operator=(const TimeCoord& other);
+  auto operator=(const TimeCoord& other) -> TimeCoord&;
 
   TimeCoord(TimeCoord&& other) noexcept;
-  TimeCoord& operator=(TimeCoord&& other) noexcept;
+  auto operator=(TimeCoord&& other) noexcept -> TimeCoord&;
 
   ~TimeCoord() noexcept;
 
-  guint32 get_time() const;
+  auto get_time() const -> guint32;
 
   /** Gets value at @a index axis.
    * @note
@@ -65,12 +65,12 @@ public:
    * @param index Index of an axis from which the value will be taken.
    * @return A value at @a index.
    */
-  double get_value_at_axis(guint index) const;
+  auto get_value_at_axis(guint index) const -> double;
 
   ///Provides access to the underlying C object.
-  GdkTimeCoord* gobj() {return gobject_;}
+  auto gobj() -> GdkTimeCoord* {return gobject_;}
   ///Provides access to the underlying C object.
-  const GdkTimeCoord* gobj() const {return gobject_;}
+  auto gobj() const -> const GdkTimeCoord* {return gobject_;}
 protected:
   GdkTimeCoord* gobject_;
 
@@ -86,9 +86,9 @@ struct TimeCoordPtrTraits
   using CType = GdkTimeCoord*;
   using CTypeNonConst = GdkTimeCoord*;
 
-  static CType to_c_type(const CppType& obj) { return const_cast<CType>(obj.gobj()); }
-  static CType to_c_type(const CType& obj) { return obj; }
-  static CppType to_cpp_type(const CType& obj) { return CppType(const_cast<CType>(obj)); }
+  static auto to_c_type(const CppType& obj) -> CType { return const_cast<CType>(obj.gobj()); }
+  static auto to_c_type(const CType& obj) -> CType { return obj; }
+  static auto to_cpp_type(const CType& obj) -> CppType { return CppType(const_cast<CType>(obj)); }
   static void release_c_type(const CType& obj) { g_free(const_cast<CType>(obj)); }
 };
 
@@ -100,9 +100,9 @@ struct TimeCoordTraits
   using CType = GdkTimeCoord;
   using CTypeNonConst = GdkTimeCoord;
 
-  static CType to_c_type(const CppType& obj) { return *obj.gobj(); }
-  static CType to_c_type(const CType& obj) { return obj; }
-  static CppType to_cpp_type(const CType& obj) { return CppType(const_cast<CType*>(&obj), true); }
+  static auto to_c_type(const CppType& obj) -> CType { return *obj.gobj(); }
+  static auto to_c_type(const CType& obj) -> CType { return obj; }
+  static auto to_cpp_type(const CType& obj) -> CppType { return CppType(const_cast<CType*>(&obj), true); }
   static void release_c_type(const CType&) {}
 };
 #endif //DOXYGEN_SHOULD_SKIP_THIS

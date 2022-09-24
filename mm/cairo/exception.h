@@ -36,7 +36,7 @@ public:
   CAIROMM_API ~logic_error() noexcept override;
 
   //virtual const char* what() const noexcept;
-  CAIROMM_API ErrorStatus get_status_code() const;
+  CAIROMM_API auto get_status_code() const -> ErrorStatus;
 
 private:
   ErrorStatus m_status;

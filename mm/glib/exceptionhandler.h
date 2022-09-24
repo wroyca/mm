@@ -28,7 +28,7 @@ namespace Glib
 /** Specify a slot to be called when an exception is thrown by a signal handler.
  */
 GLIBMM_API
-sigc::connection add_exception_handler(const sigc::slot<void()>& slot);
+auto add_exception_handler(const sigc::slot<void()>& slot) -> sigc::connection;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 // internal

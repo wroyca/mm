@@ -49,7 +49,7 @@ namespace
 {
 
 
-static void NetworkMonitor_signal_network_changed_callback(GNetworkMonitor* self, gboolean p0,void* data)
+void NetworkMonitor_signal_network_changed_callback(GNetworkMonitor* self, gboolean p0,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(bool)>;
@@ -71,7 +71,7 @@ static void NetworkMonitor_signal_network_changed_callback(GNetworkMonitor* self
   }
 }
 
-static const Glib::SignalProxyInfo NetworkMonitor_signal_network_changed_info =
+const Glib::SignalProxyInfo NetworkMonitor_signal_network_changed_info =
 {
   "network-changed",
   (GCallback) &NetworkMonitor_signal_network_changed_callback,
@@ -82,7 +82,7 @@ static const Glib::SignalProxyInfo NetworkMonitor_signal_network_changed_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::NetworkConnectivity>::value_type()
+auto Glib::Value<Gio::NetworkConnectivity>::value_type() -> GType
 {
   return g_network_connectivity_get_type();
 }
@@ -91,7 +91,7 @@ GType Glib::Value<Gio::NetworkConnectivity>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gio::NetworkMonitor> wrap(GNetworkMonitor* object, bool take_copy)
+auto wrap(GNetworkMonitor* object, bool take_copy) -> Glib::RefPtr<Gio::NetworkMonitor>
 {
   return Glib::make_refptr_for_instance<Gio::NetworkMonitor>( dynamic_cast<Gio::NetworkMonitor*> (Glib::wrap_auto_interface<Gio::NetworkMonitor> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -106,7 +106,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& NetworkMonitor_Class::init()
+auto NetworkMonitor_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -174,7 +174,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* NetworkMonitor_Class::wrap_new(GObject* object)
+auto NetworkMonitor_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new NetworkMonitor((GNetworkMonitor*)(object));
 }
@@ -201,7 +201,7 @@ NetworkMonitor::NetworkMonitor(NetworkMonitor&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-NetworkMonitor& NetworkMonitor::operator=(NetworkMonitor&& src) noexcept
+auto NetworkMonitor::operator=(NetworkMonitor&& src) noexcept -> NetworkMonitor&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -218,39 +218,39 @@ void NetworkMonitor::add_interface(GType gtype_implementer)
 
 NetworkMonitor::CppClassType NetworkMonitor::networkmonitor_class_; // initialize static member
 
-GType NetworkMonitor::get_type()
+auto NetworkMonitor::get_type() -> GType
 {
   return networkmonitor_class_.init().get_type();
 }
 
 
-GType NetworkMonitor::get_base_type()
+auto NetworkMonitor::get_base_type() -> GType
 {
   return g_network_monitor_get_type();
 }
 
 
-Glib::RefPtr<NetworkMonitor> NetworkMonitor::get_default()
+auto NetworkMonitor::get_default() -> Glib::RefPtr<NetworkMonitor>
 {
   return Glib::wrap(g_network_monitor_get_default());
 }
 
-bool NetworkMonitor::get_network_available() const
+auto NetworkMonitor::get_network_available() const -> bool
 {
   return g_network_monitor_get_network_available(const_cast<GNetworkMonitor*>(gobj()));
 }
 
-bool NetworkMonitor::get_network_metered() const
+auto NetworkMonitor::get_network_metered() const -> bool
 {
   return g_network_monitor_get_network_metered(const_cast<GNetworkMonitor*>(gobj()));
 }
 
-NetworkConnectivity NetworkMonitor::get_connectivity() const
+auto NetworkMonitor::get_connectivity() const -> NetworkConnectivity
 {
   return static_cast<NetworkConnectivity>(g_network_monitor_get_connectivity(const_cast<GNetworkMonitor*>(gobj())));
 }
 
-bool NetworkMonitor::can_reach(const Glib::RefPtr<SocketConnectable>& connectable, const Glib::RefPtr<Cancellable>& cancellable)
+auto NetworkMonitor::can_reach(const Glib::RefPtr<SocketConnectable>& connectable, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_network_monitor_can_reach(gobj(), const_cast<GSocketConnectable*>(Glib::unwrap(connectable)), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -259,7 +259,7 @@ bool NetworkMonitor::can_reach(const Glib::RefPtr<SocketConnectable>& connectabl
   return retvalue;
 }
 
-bool NetworkMonitor::can_reach(const Glib::RefPtr<SocketConnectable>& connectable)
+auto NetworkMonitor::can_reach(const Glib::RefPtr<SocketConnectable>& connectable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_network_monitor_can_reach(gobj(), const_cast<GSocketConnectable*>(Glib::unwrap(connectable)), nullptr, &(gerror));
@@ -268,7 +268,7 @@ bool NetworkMonitor::can_reach(const Glib::RefPtr<SocketConnectable>& connectabl
   return retvalue;
 }
 
-bool NetworkMonitor::can_reach_finish(const Glib::RefPtr<AsyncResult>& result)
+auto NetworkMonitor::can_reach_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_network_monitor_can_reach_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -278,13 +278,13 @@ bool NetworkMonitor::can_reach_finish(const Glib::RefPtr<AsyncResult>& result)
 }
 
 
-Glib::SignalProxy<void(bool)> NetworkMonitor::signal_network_changed()
+auto NetworkMonitor::signal_network_changed() -> Glib::SignalProxy<void(bool)>
 {
   return Glib::SignalProxy<void(bool) >(this, &NetworkMonitor_signal_network_changed_info);
 }
 
 
-Glib::PropertyProxy_ReadOnly< bool > NetworkMonitor::property_network_available() const
+auto NetworkMonitor::property_network_available() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "network-available");
 }
@@ -293,12 +293,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<NetworkConnectivity>
   "Type NetworkConnectivity cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< NetworkConnectivity > NetworkMonitor::property_connectivity() const
+auto NetworkMonitor::property_connectivity() const -> Glib::PropertyProxy_ReadOnly< NetworkConnectivity >
 {
   return Glib::PropertyProxy_ReadOnly< NetworkConnectivity >(this, "connectivity");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > NetworkMonitor::property_network_metered() const
+auto NetworkMonitor::property_network_metered() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "network-metered");
 }

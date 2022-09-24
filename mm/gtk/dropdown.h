@@ -80,11 +80,11 @@ class GTKMM_API DropDown : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   DropDown(DropDown&& src) noexcept;
-  DropDown& operator=(DropDown&& src) noexcept;
+  auto operator=(DropDown&& src) noexcept -> DropDown&;
 
   // noncopyable
   DropDown(const DropDown&) = delete;
-  DropDown& operator=(const DropDown&) = delete;
+  auto operator=(const DropDown&) -> DropDown& = delete;
 
   ~DropDown() noexcept override;
 
@@ -104,19 +104,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkDropDown*       gobj()       { return reinterpret_cast<GtkDropDown*>(gobject_); }
+  auto       gobj() -> GtkDropDown*       { return reinterpret_cast<GtkDropDown*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkDropDown* gobj() const { return reinterpret_cast<GtkDropDown*>(gobject_); }
+  auto gobj() const -> const GtkDropDown* { return reinterpret_cast<GtkDropDown*>(gobject_); }
 
 private:
 
@@ -142,13 +142,13 @@ public:
    *
    * @return The model in use.
    */
-  Glib::RefPtr<Gio::ListModel> get_model();
+  auto get_model() -> Glib::RefPtr<Gio::ListModel>;
 
   /** Gets the model that provides the displayed items.
    *
    * @return The model in use.
    */
-  Glib::RefPtr<const Gio::ListModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const Gio::ListModel>;
 
   /** Selects the item at the given position.
    *
@@ -161,20 +161,20 @@ public:
    * @return The position of the selected item, or GTK_INVALID_LIST_POSITION
    * if not item is selected.
    */
-  guint get_selected() const;
+  auto get_selected() const -> guint;
 
 
   /** Gets the selected item. If no item is selected, <tt>nullptr</tt> is returned.
    *
    * @return The selected item.
    */
-  Glib::RefPtr<Glib::ObjectBase> get_selected_item();
+  auto get_selected_item() -> Glib::RefPtr<Glib::ObjectBase>;
 
   /** Gets the selected item. If no item is selected, <tt>nullptr</tt> is returned.
    *
    * @return The selected item.
    */
-  Glib::RefPtr<const Glib::ObjectBase> get_selected_item() const;
+  auto get_selected_item() const -> Glib::RefPtr<const Glib::ObjectBase>;
 
 
   /** Sets the `Gtk::ListItemFactory` to use for populating list items.
@@ -191,7 +191,7 @@ public:
    *
    * @return The factory in use.
    */
-  Glib::RefPtr<ListItemFactory> get_factory();
+  auto get_factory() -> Glib::RefPtr<ListItemFactory>;
 
   /** Gets the factory that's currently used to populate list items.
    *
@@ -201,7 +201,7 @@ public:
    *
    * @return The factory in use.
    */
-  Glib::RefPtr<const ListItemFactory> get_factory() const;
+  auto get_factory() const -> Glib::RefPtr<const ListItemFactory>;
 
   /** Sets the `Gtk::ListItemFactory` to use for populating list items in the popup.
    *
@@ -213,13 +213,13 @@ public:
    *
    * @return The factory in use.
    */
-  Glib::RefPtr<ListItemFactory> get_list_factory();
+  auto get_list_factory() -> Glib::RefPtr<ListItemFactory>;
 
   /** Gets the factory that's currently used to populate list items in the popup.
    *
    * @return The factory in use.
    */
-  Glib::RefPtr<const ListItemFactory> get_list_factory() const;
+  auto get_list_factory() const -> Glib::RefPtr<const ListItemFactory>;
 
   /** Sets the expression that gets evaluated to obtain strings from items.
    *
@@ -236,7 +236,7 @@ public:
    *
    * @return A `Gtk::Expression`.
    */
-  Glib::RefPtr<Expression<Glib::ustring>> get_expression();
+  auto get_expression() -> Glib::RefPtr<Expression<Glib::ustring>>;
 
   /** Gets the expression set that is used to obtain strings from items.
    *
@@ -244,7 +244,7 @@ public:
    *
    * @return A `Gtk::Expression`.
    */
-  Glib::RefPtr<const Expression<Glib::ustring>> get_expression() const;
+  auto get_expression() const -> Glib::RefPtr<const Expression<Glib::ustring>>;
 
 
   /** Sets whether a search entry will be shown in the popup that
@@ -261,7 +261,7 @@ public:
    *
    * @return <tt>true</tt> if the popup includes a search entry.
    */
-  bool get_enable_search() const;
+  auto get_enable_search() const -> bool;
 
   /** Sets whether an arrow will be displayed within the widget.
    *
@@ -277,7 +277,7 @@ public:
    *
    * @return <tt>true</tt> if an arrow will be shown.
    */
-  bool set_show_arrow() const;
+  auto set_show_arrow() const -> bool;
 
   // Action signal:
 
@@ -287,14 +287,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<ListItemFactory> > property_factory() ;
+  auto property_factory() -> Glib::PropertyProxy< Glib::RefPtr<ListItemFactory> > ;
 
 /** Factory for populating list items.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListItemFactory> > property_factory() const;
+  auto property_factory() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListItemFactory> >;
 
   /** The factory for populating list items in the popup.
    *
@@ -303,7 +303,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<ListItemFactory> > property_list_factory() ;
+  auto property_list_factory() -> Glib::PropertyProxy< Glib::RefPtr<ListItemFactory> > ;
 
 /** The factory for populating list items in the popup.
    *
@@ -312,21 +312,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListItemFactory> > property_list_factory() const;
+  auto property_list_factory() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListItemFactory> >;
 
   /** Model for the displayed items.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > property_model() ;
+  auto property_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > ;
 
 /** Model for the displayed items.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >;
 
   /** The position of the selected item.
    *
@@ -338,7 +338,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_selected() ;
+  auto property_selected() -> Glib::PropertyProxy< guint > ;
 
 /** The position of the selected item.
    *
@@ -350,14 +350,14 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_selected() const;
+  auto property_selected() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** The selected item.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> > property_selected_item() const;
+  auto property_selected_item() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> >;
 
 
   /** Whether to show a search entry in the popup.
@@ -370,7 +370,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_enable_search() ;
+  auto property_enable_search() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to show a search entry in the popup.
    *
@@ -382,7 +382,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_enable_search() const;
+  auto property_enable_search() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** An expression to evaluate to obtain strings to match against the search
    * term.
@@ -394,7 +394,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Expression<Glib::ustring>> > property_expression() ;
+  auto property_expression() -> Glib::PropertyProxy< Glib::RefPtr<Expression<Glib::ustring>> > ;
 
 /** An expression to evaluate to obtain strings to match against the search
    * term.
@@ -406,7 +406,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Expression<Glib::ustring>> > property_expression() const;
+  auto property_expression() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Expression<Glib::ustring>> >;
 
   /** Whether to show an arrow within the GtkDropDown widget.
    *
@@ -417,7 +417,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_arrow() ;
+  auto property_show_arrow() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to show an arrow within the GtkDropDown widget.
    *
@@ -428,7 +428,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_arrow() const;
+  auto property_show_arrow() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -458,7 +458,7 @@ namespace Glib
    * @relates Gtk::DropDown
    */
   GTKMM_API
-  Gtk::DropDown* wrap(GtkDropDown* object, bool take_copy = false);
+  auto wrap(GtkDropDown* object, bool take_copy = false) -> Gtk::DropDown*;
 } //namespace Glib
 
 

@@ -35,7 +35,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::DrawContext> wrap(GdkDrawContext* object, bool take_copy)
+auto wrap(GdkDrawContext* object, bool take_copy) -> Glib::RefPtr<Gdk::DrawContext>
 {
   return Glib::make_refptr_for_instance<Gdk::DrawContext>( dynamic_cast<Gdk::DrawContext*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -50,7 +50,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Class& DrawContext_Class::init()
+auto DrawContext_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -81,7 +81,7 @@ void DrawContext_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* DrawContext_Class::wrap_new(GObject* object)
+auto DrawContext_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new DrawContext((GdkDrawContext*)object);
 }
@@ -89,7 +89,7 @@ Glib::ObjectBase* DrawContext_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GdkDrawContext* DrawContext::gobj_copy()
+auto DrawContext::gobj_copy() -> GdkDrawContext*
 {
   reference();
   return gobj();
@@ -112,7 +112,7 @@ DrawContext::DrawContext(DrawContext&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-DrawContext& DrawContext::operator=(DrawContext&& src) noexcept
+auto DrawContext::operator=(DrawContext&& src) noexcept -> DrawContext&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -125,13 +125,13 @@ DrawContext::~DrawContext() noexcept
 
 DrawContext::CppClassType DrawContext::drawcontext_class_; // initialize static member
 
-GType DrawContext::get_type()
+auto DrawContext::get_type() -> GType
 {
   return drawcontext_class_.init().get_type();
 }
 
 
-GType DrawContext::get_base_type()
+auto DrawContext::get_base_type() -> GType
 {
   return gdk_draw_context_get_type();
 }
@@ -147,7 +147,7 @@ DrawContext::DrawContext()
 
 }
 
-Glib::RefPtr<Display> DrawContext::get_display()
+auto DrawContext::get_display() -> Glib::RefPtr<Display>
 {
   auto retvalue = Glib::wrap(gdk_draw_context_get_display(gobj()));
   if(retvalue)
@@ -155,12 +155,12 @@ Glib::RefPtr<Display> DrawContext::get_display()
   return retvalue;
 }
 
-Glib::RefPtr<const Display> DrawContext::get_display() const
+auto DrawContext::get_display() const -> Glib::RefPtr<const Display>
 {
   return const_cast<DrawContext*>(this)->get_display();
 }
 
-Glib::RefPtr<Surface> DrawContext::get_surface()
+auto DrawContext::get_surface() -> Glib::RefPtr<Surface>
 {
   auto retvalue = Glib::wrap(gdk_draw_context_get_surface(gobj()));
   if(retvalue)
@@ -168,7 +168,7 @@ Glib::RefPtr<Surface> DrawContext::get_surface()
   return retvalue;
 }
 
-Glib::RefPtr<const Surface> DrawContext::get_surface() const
+auto DrawContext::get_surface() const -> Glib::RefPtr<const Surface>
 {
   return const_cast<DrawContext*>(this)->get_surface();
 }
@@ -183,12 +183,12 @@ void DrawContext::end_frame()
   gdk_draw_context_end_frame(gobj());
 }
 
-bool DrawContext::is_in_frame() const
+auto DrawContext::is_in_frame() const -> bool
 {
   return gdk_draw_context_is_in_frame(const_cast<GdkDrawContext*>(gobj()));
 }
 
-::Cairo::RefPtr<const ::Cairo::Region> DrawContext::get_frame_region() const
+auto DrawContext::get_frame_region() const -> ::Cairo::RefPtr<const ::Cairo::Region>
 {
   auto retvalue = Gdk::Cairo::wrap(const_cast<cairo_region_t*>(gdk_draw_context_get_frame_region(const_cast<GdkDrawContext*>(gobj()))));
   if(retvalue)
@@ -201,7 +201,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Display
   "Type Glib::RefPtr<Display> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> > DrawContext::property_display() const
+auto DrawContext::property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >(this, "display");
 }
@@ -210,7 +210,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Surface
   "Type Glib::RefPtr<Surface> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> > DrawContext::property_surface() const
+auto DrawContext::property_surface() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >(this, "surface");
 }

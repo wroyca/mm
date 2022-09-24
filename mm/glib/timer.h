@@ -42,7 +42,7 @@ public:
 
   // not copyable
   Timer(const Timer&) = delete;
-  Timer& operator=(const Timer&) = delete;
+  auto operator=(const Timer&) -> Timer& = delete;
 
   void start();
   void stop();
@@ -59,24 +59,24 @@ public:
   /** Get the elapsed time.
    * @return The value in seconds.
    */
-  double elapsed() const;
+  auto elapsed() const -> double;
 
   /** Get the elapsed time.
    * @return The value in seconds.  Also fills @p microseconds
    * with the corresponding @htmlonly&micro;s@endhtmlonly value.
    */
-  double elapsed(unsigned long& microseconds) const;
+  auto elapsed(unsigned long& microseconds) const -> double;
 
   /** Exposes whether the timer is currently active.
    *
    * @newin{2,70]
    * @return <tt>true</tt> if the timer is running, <tt>false</tt> otherwise.
    */
-  bool is_active() const;
+  auto is_active() const -> bool;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  GTimer* gobj() { return gobject_; }
-  const GTimer* gobj() const { return gobject_; }
+  auto gobj() -> GTimer* { return gobject_; }
+  auto gobj() const -> const GTimer* { return gobject_; }
 #endif
 
 private:

@@ -59,11 +59,11 @@ class GTKMM_API CellRendererToggle : public CellRenderer
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   CellRendererToggle(CellRendererToggle&& src) noexcept;
-  CellRendererToggle& operator=(CellRendererToggle&& src) noexcept;
+  auto operator=(CellRendererToggle&& src) noexcept -> CellRendererToggle&;
 
   // noncopyable
   CellRendererToggle(const CellRendererToggle&) = delete;
-  CellRendererToggle& operator=(const CellRendererToggle&) = delete;
+  auto operator=(const CellRendererToggle&) -> CellRendererToggle& = delete;
 
   ~CellRendererToggle() noexcept override;
 
@@ -83,19 +83,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkCellRendererToggle*       gobj()       { return reinterpret_cast<GtkCellRendererToggle*>(gobject_); }
+  auto       gobj() -> GtkCellRendererToggle*       { return reinterpret_cast<GtkCellRendererToggle*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkCellRendererToggle* gobj() const { return reinterpret_cast<GtkCellRendererToggle*>(gobject_); }
+  auto gobj() const -> const GtkCellRendererToggle* { return reinterpret_cast<GtkCellRendererToggle*>(gobject_); }
 
 private:
 
@@ -108,7 +108,7 @@ public:
    *
    * @return <tt>true</tt> if we’re rendering radio toggles rather than checkboxes.
    */
-  bool get_radio() const;
+  auto get_radio() const -> bool;
 
   /** If @a radio is <tt>true</tt>, the cell renderer renders a radio toggle
    * (i.e.\ a toggle in a group of mutually-exclusive toggles).
@@ -127,7 +127,7 @@ public:
    *
    * @return <tt>true</tt> if the cell renderer is active.
    */
-  bool get_active() const;
+  auto get_active() const -> bool;
 
   /** Activates or deactivates a cell renderer.
    *
@@ -140,7 +140,7 @@ public:
    *
    * @return <tt>true</tt> if the cell renderer is activatable.
    */
-  bool get_activatable() const;
+  auto get_activatable() const -> bool;
 
   /** Makes the cell renderer activatable.
    *
@@ -167,7 +167,7 @@ public:
    * event location.
    */
 
-  Glib::SignalProxy<void(const Glib::ustring&)> signal_toggled();
+  auto signal_toggled() -> Glib::SignalProxy<void(const Glib::ustring&)>;
 
 
   /** Default value: <tt>true</tt>
@@ -175,59 +175,59 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_activatable() ;
+  auto property_activatable() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>true</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_activatable() const;
+  auto property_activatable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_active() ;
+  auto property_active() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_active() const;
+  auto property_active() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_inconsistent() ;
+  auto property_inconsistent() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_inconsistent() const;
+  auto property_inconsistent() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_radio() ;
+  auto property_radio() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_radio() const;
+  auto property_radio() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
-  Glib::PropertyProxy_Base _property_renderable() override;
+  auto _property_renderable() -> Glib::PropertyProxy_Base override;
 
 
 public:
@@ -257,7 +257,7 @@ namespace Glib
    * @relates Gtk::CellRendererToggle
    */
   GTKMM_API
-  Gtk::CellRendererToggle* wrap(GtkCellRendererToggle* object, bool take_copy = false);
+  auto wrap(GtkCellRendererToggle* object, bool take_copy = false) -> Gtk::CellRendererToggle*;
 } //namespace Glib
 
 

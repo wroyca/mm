@@ -38,13 +38,13 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::Converter::Result>::value_type()
+auto Glib::Value<Gio::Converter::Result>::value_type() -> GType
 {
   return g_converter_result_get_type();
 }
 
 // static
-GType Glib::Value<Gio::Converter::Flags>::value_type()
+auto Glib::Value<Gio::Converter::Flags>::value_type() -> GType
 {
   return g_converter_flags_get_type();
 }
@@ -53,7 +53,7 @@ GType Glib::Value<Gio::Converter::Flags>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gio::Converter> wrap(GConverter* object, bool take_copy)
+auto wrap(GConverter* object, bool take_copy) -> Glib::RefPtr<Gio::Converter>
 {
   return Glib::make_refptr_for_instance<Gio::Converter>( dynamic_cast<Gio::Converter*> (Glib::wrap_auto_interface<Gio::Converter> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -68,7 +68,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& Converter_Class::init()
+auto Converter_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -96,7 +96,7 @@ void Converter_Class::iface_init_function(void* g_iface, void*)
 
 }
 
-GConverterResult Converter_Class::convert_vfunc_callback(GConverter* self, const void* inbuf, gsize inbuf_size, void* outbuf, gsize outbuf_size, GConverterFlags flags, gsize* bytes_read, gsize* bytes_written, GError** error)
+auto Converter_Class::convert_vfunc_callback(GConverter* self, const void* inbuf, gsize inbuf_size, void* outbuf, gsize outbuf_size, GConverterFlags flags, gsize* bytes_read, gsize* bytes_written, GError** error) -> GConverterResult
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -183,7 +183,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* Converter_Class::wrap_new(GObject* object)
+auto Converter_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Converter((GConverter*)(object));
 }
@@ -210,7 +210,7 @@ Converter::Converter(Converter&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-Converter& Converter::operator=(Converter&& src) noexcept
+auto Converter::operator=(Converter&& src) noexcept -> Converter&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -227,19 +227,19 @@ void Converter::add_interface(GType gtype_implementer)
 
 Converter::CppClassType Converter::converter_class_; // initialize static member
 
-GType Converter::get_type()
+auto Converter::get_type() -> GType
 {
   return converter_class_.init().get_type();
 }
 
 
-GType Converter::get_base_type()
+auto Converter::get_base_type() -> GType
 {
   return g_converter_get_type();
 }
 
 
-Result Converter::convert(const void* inbuf, gsize inbuf_size, void* outbuf, gsize outbuf_size, Flags flags, gsize& bytes_read, gsize& bytes_written)
+auto Converter::convert(const void* inbuf, gsize inbuf_size, void* outbuf, gsize outbuf_size, Flags flags, gsize& bytes_read, gsize& bytes_written) -> Result
 {
   GError* gerror = nullptr;
   auto retvalue = static_cast<Result>(g_converter_convert(gobj(), inbuf, inbuf_size, outbuf, outbuf_size, static_cast<GConverterFlags>(flags), &(bytes_read), &(bytes_written), &(gerror)));
@@ -254,7 +254,7 @@ void Converter::reset()
 }
 
 
-Result Gio::Converter::convert_vfunc(const void* inbuf, gsize inbuf_size, void* outbuf, gsize outbuf_size, Flags flags, gsize& bytes_read, gsize& bytes_written)
+auto Gio::Converter::convert_vfunc(const void* inbuf, gsize inbuf_size, void* outbuf, gsize outbuf_size, Flags flags, gsize& bytes_read, gsize& bytes_written) -> Result
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

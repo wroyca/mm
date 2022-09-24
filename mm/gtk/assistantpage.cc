@@ -33,7 +33,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::AssistantPage::Type>::value_type()
+auto Glib::Value<Gtk::AssistantPage::Type>::value_type() -> GType
 {
   return gtk_assistant_page_type_get_type();
 }
@@ -42,7 +42,7 @@ GType Glib::Value<Gtk::AssistantPage::Type>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::AssistantPage> wrap(GtkAssistantPage* object, bool take_copy)
+auto wrap(GtkAssistantPage* object, bool take_copy) -> Glib::RefPtr<Gtk::AssistantPage>
 {
   return Glib::make_refptr_for_instance<Gtk::AssistantPage>( dynamic_cast<Gtk::AssistantPage*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -57,7 +57,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& AssistantPage_Class::init()
+auto AssistantPage_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -88,7 +88,7 @@ void AssistantPage_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* AssistantPage_Class::wrap_new(GObject* object)
+auto AssistantPage_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new AssistantPage((GtkAssistantPage*)object);
 }
@@ -96,7 +96,7 @@ Glib::ObjectBase* AssistantPage_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkAssistantPage* AssistantPage::gobj_copy()
+auto AssistantPage::gobj_copy() -> GtkAssistantPage*
 {
   reference();
   return gobj();
@@ -119,7 +119,7 @@ AssistantPage::AssistantPage(AssistantPage&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-AssistantPage& AssistantPage::operator=(AssistantPage&& src) noexcept
+auto AssistantPage::operator=(AssistantPage&& src) noexcept -> AssistantPage&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -132,24 +132,24 @@ AssistantPage::~AssistantPage() noexcept
 
 AssistantPage::CppClassType AssistantPage::assistantpage_class_; // initialize static member
 
-GType AssistantPage::get_type()
+auto AssistantPage::get_type() -> GType
 {
   return assistantpage_class_.init().get_type();
 }
 
 
-GType AssistantPage::get_base_type()
+auto AssistantPage::get_base_type() -> GType
 {
   return gtk_assistant_page_get_type();
 }
 
 
-Widget* AssistantPage::get_child()
+auto AssistantPage::get_child() -> Widget*
 {
   return Glib::wrap(gtk_assistant_page_get_child(gobj()));
 }
 
-const Widget* AssistantPage::get_child() const
+auto AssistantPage::get_child() const -> const Widget*
 {
   return const_cast<AssistantPage*>(this)->get_child();
 }
@@ -159,37 +159,37 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Type>::value,
   "Type Type cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Type > AssistantPage::property_page_type()
+auto AssistantPage::property_page_type() -> Glib::PropertyProxy< Type >
 {
   return Glib::PropertyProxy< Type >(this, "page-type");
 }
 
-Glib::PropertyProxy_ReadOnly< Type > AssistantPage::property_page_type() const
+auto AssistantPage::property_page_type() const -> Glib::PropertyProxy_ReadOnly< Type >
 {
   return Glib::PropertyProxy_ReadOnly< Type >(this, "page-type");
 }
 
-Glib::PropertyProxy< Glib::ustring > AssistantPage::property_title()
+auto AssistantPage::property_title() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "title");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > AssistantPage::property_title() const
+auto AssistantPage::property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "title");
 }
 
-Glib::PropertyProxy< bool > AssistantPage::property_complete()
+auto AssistantPage::property_complete() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "complete");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > AssistantPage::property_complete() const
+auto AssistantPage::property_complete() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "complete");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > AssistantPage::property_child() const
+auto AssistantPage::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
 }

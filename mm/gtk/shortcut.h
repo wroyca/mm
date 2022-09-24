@@ -78,7 +78,7 @@ public:
 
   // noncopyable
   Shortcut(const Shortcut&) = delete;
-  Shortcut& operator=(const Shortcut&) = delete;
+  auto operator=(const Shortcut&) -> Shortcut& = delete;
 
 private:  friend class Shortcut_Class;
   static CppClassType shortcut_class_;
@@ -92,28 +92,28 @@ protected:
 public:
 
   Shortcut(Shortcut&& src) noexcept;
-  Shortcut& operator=(Shortcut&& src) noexcept;
+  auto operator=(Shortcut&& src) noexcept -> Shortcut&;
 
   ~Shortcut() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkShortcut*       gobj()       { return reinterpret_cast<GtkShortcut*>(gobject_); }
+  auto       gobj() -> GtkShortcut*       { return reinterpret_cast<GtkShortcut*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkShortcut* gobj() const { return reinterpret_cast<GtkShortcut*>(gobject_); }
+  auto gobj() const -> const GtkShortcut* { return reinterpret_cast<GtkShortcut*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkShortcut* gobj_copy();
+  auto gobj_copy() -> GtkShortcut*;
 
 private:
 
@@ -124,7 +124,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<Shortcut> create(const Glib::RefPtr<const ShortcutTrigger>& trigger, const Glib::RefPtr<const ShortcutAction>& action);
+  static auto create(const Glib::RefPtr<const ShortcutTrigger>& trigger, const Glib::RefPtr<const ShortcutAction>& action) -> Glib::RefPtr<Shortcut>;
 
 
   // gtk_shortcut_set_trigger() and gtk_shortcut_set_action() don't take a ref (transfer full).
@@ -137,7 +137,7 @@ public:
    *
    * @return The trigger used.
    */
-  Glib::RefPtr<ShortcutTrigger> get_trigger() const;
+  auto get_trigger() const -> Glib::RefPtr<ShortcutTrigger>;
 
   /** Sets the new trigger for @a self to be @a trigger.
    *
@@ -150,7 +150,7 @@ public:
    *
    * @return The action.
    */
-  Glib::RefPtr<ShortcutAction> get_action() const;
+  auto get_action() const -> Glib::RefPtr<ShortcutAction>;
 
   /** Sets the new action for @a self to be @a action.
    *
@@ -163,7 +163,7 @@ public:
    *
    * @return The arguments.
    */
-  Glib::VariantBase get_arguments() const;
+  auto get_arguments() const -> Glib::VariantBase;
 
   /** Sets the arguments to pass when activating the shortcut.
    *
@@ -176,42 +176,42 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<ShortcutTrigger> > property_trigger() ;
+  auto property_trigger() -> Glib::PropertyProxy< Glib::RefPtr<ShortcutTrigger> > ;
 
 /** The trigger that triggers this shortcut.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ShortcutTrigger> > property_trigger() const;
+  auto property_trigger() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ShortcutTrigger> >;
 
   /** The action that gets activated by this shortcut.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<ShortcutAction> > property_action() ;
+  auto property_action() -> Glib::PropertyProxy< Glib::RefPtr<ShortcutAction> > ;
 
 /** The action that gets activated by this shortcut.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ShortcutAction> > property_action() const;
+  auto property_action() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ShortcutAction> >;
 
   /** Arguments passed to activation.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::VariantBase > property_arguments() ;
+  auto property_arguments() -> Glib::PropertyProxy< Glib::VariantBase > ;
 
 /** Arguments passed to activation.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::VariantBase > property_arguments() const;
+  auto property_arguments() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantBase >;
 
 
 public:
@@ -241,7 +241,7 @@ namespace Glib
    * @relates Gtk::Shortcut
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Shortcut> wrap(GtkShortcut* object, bool take_copy = false);
+  auto wrap(GtkShortcut* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Shortcut>;
 }
 
 

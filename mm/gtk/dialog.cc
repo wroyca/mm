@@ -55,7 +55,7 @@ namespace
 {
 
 
-static void Dialog_signal_response_callback(GtkDialog* self, gint p0,void* data)
+void Dialog_signal_response_callback(GtkDialog* self, gint p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(int)>;
@@ -77,7 +77,7 @@ static void Dialog_signal_response_callback(GtkDialog* self, gint p0,void* data)
   }
 }
 
-static const Glib::SignalProxyInfo Dialog_signal_response_info =
+const Glib::SignalProxyInfo Dialog_signal_response_info =
 {
   "response",
   (GCallback) &Dialog_signal_response_callback,
@@ -88,7 +88,7 @@ static const Glib::SignalProxyInfo Dialog_signal_response_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::ResponseType>::value_type()
+auto Glib::Value<Gtk::ResponseType>::value_type() -> GType
 {
   return gtk_response_type_get_type();
 }
@@ -97,7 +97,7 @@ GType Glib::Value<Gtk::ResponseType>::value_type()
 namespace Glib
 {
 
-Gtk::Dialog* wrap(GtkDialog* object, bool take_copy)
+auto wrap(GtkDialog* object, bool take_copy) -> Gtk::Dialog*
 {
   return dynamic_cast<Gtk::Dialog *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -110,7 +110,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Dialog_Class::init()
+auto Dialog_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -181,7 +181,7 @@ void Dialog_Class::response_callback(GtkDialog* self, gint p0)
 }
 
 
-Glib::ObjectBase* Dialog_Class::wrap_new(GObject* o)
+auto Dialog_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return new Dialog((GtkDialog*)(o)); //top-level windows can not be manage()ed.
 
@@ -207,7 +207,7 @@ Dialog::Dialog(Dialog&& src) noexcept
 : Gtk::Window(std::move(src))
 {}
 
-Dialog& Dialog::operator=(Dialog&& src) noexcept
+auto Dialog::operator=(Dialog&& src) noexcept -> Dialog&
 {
   Gtk::Window::operator=(std::move(src));
   return *this;
@@ -220,13 +220,13 @@ Dialog::~Dialog() noexcept
 
 Dialog::CppClassType Dialog::dialog_class_; // initialize static member
 
-GType Dialog::get_type()
+auto Dialog::get_type() -> GType
 {
   return dialog_class_.init().get_type();
 }
 
 
-GType Dialog::get_base_type()
+auto Dialog::get_base_type() -> GType
 {
   return gtk_dialog_get_type();
 }
@@ -247,7 +247,7 @@ void Dialog::add_action_widget(Widget& child, int response_id)
   gtk_dialog_add_action_widget(gobj(), (child).gobj(), response_id);
 }
 
-Button* Dialog::add_button(const Glib::ustring& button_text, int response_id)
+auto Dialog::add_button(const Glib::ustring& button_text, int response_id) -> Button*
 {
   return Glib::wrap((GtkButton*)(gtk_dialog_add_button(gobj(), button_text.c_str(), response_id)));
 }
@@ -262,17 +262,17 @@ void Dialog::set_default_response(int response_id)
   gtk_dialog_set_default_response(gobj(), response_id);
 }
 
-Widget* Dialog::get_widget_for_response(int response_id)
+auto Dialog::get_widget_for_response(int response_id) -> Widget*
 {
   return Glib::wrap(gtk_dialog_get_widget_for_response(gobj(), response_id));
 }
 
-const Widget* Dialog::get_widget_for_response(int response_id) const
+auto Dialog::get_widget_for_response(int response_id) const -> const Widget*
 {
   return const_cast<Dialog*>(this)->get_widget_for_response(response_id);
 }
 
-int Dialog::get_response_for_widget(const Gtk::Widget& widget) const
+auto Dialog::get_response_for_widget(const Gtk::Widget& widget) const -> int
 {
   return gtk_dialog_get_response_for_widget(const_cast<GtkDialog*>(gobj()), const_cast<GtkWidget*>(widget.gobj()));
 }
@@ -282,34 +282,34 @@ void Dialog::response(int response_id)
   gtk_dialog_response(gobj(), response_id);
 }
 
-Box* Dialog::get_content_area()
+auto Dialog::get_content_area() -> Box*
 {
   return Glib::wrap((GtkBox*)(gtk_dialog_get_content_area(gobj())));
 }
 
-const Box* Dialog::get_content_area() const
+auto Dialog::get_content_area() const -> const Box*
 {
   return const_cast<Dialog*>(this)->get_content_area();
 }
 
-HeaderBar* Dialog::get_header_bar()
+auto Dialog::get_header_bar() -> HeaderBar*
 {
   return Glib::wrap((GtkHeaderBar*)(gtk_dialog_get_header_bar(gobj())));
 }
 
-const HeaderBar* Dialog::get_header_bar() const
+auto Dialog::get_header_bar() const -> const HeaderBar*
 {
   return const_cast<Dialog*>(this)->get_header_bar();
 }
 
 
-Glib::SignalProxy<void(int)> Dialog::signal_response()
+auto Dialog::signal_response() -> Glib::SignalProxy<void(int)>
 {
   return Glib::SignalProxy<void(int) >(this, &Dialog_signal_response_info);
 }
 
 
-Glib::PropertyProxy_ReadOnly< bool > Dialog::property_use_header_bar() const
+auto Dialog::property_use_header_bar() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "use-header-bar");
 }

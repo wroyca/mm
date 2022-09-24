@@ -50,7 +50,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::SizeGroup::Mode>::value_type()
+auto Glib::Value<Gtk::SizeGroup::Mode>::value_type() -> GType
 {
   return gtk_size_group_mode_get_type();
 }
@@ -59,7 +59,7 @@ GType Glib::Value<Gtk::SizeGroup::Mode>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::SizeGroup> wrap(GtkSizeGroup* object, bool take_copy)
+auto wrap(GtkSizeGroup* object, bool take_copy) -> Glib::RefPtr<Gtk::SizeGroup>
 {
   return Glib::make_refptr_for_instance<Gtk::SizeGroup>( dynamic_cast<Gtk::SizeGroup*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -74,7 +74,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& SizeGroup_Class::init()
+auto SizeGroup_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -106,7 +106,7 @@ void SizeGroup_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* SizeGroup_Class::wrap_new(GObject* object)
+auto SizeGroup_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new SizeGroup((GtkSizeGroup*)object);
 }
@@ -114,7 +114,7 @@ Glib::ObjectBase* SizeGroup_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkSizeGroup* SizeGroup::gobj_copy()
+auto SizeGroup::gobj_copy() -> GtkSizeGroup*
 {
   reference();
   return gobj();
@@ -138,7 +138,7 @@ SizeGroup::SizeGroup(SizeGroup&& src) noexcept
   , Buildable(std::move(src))
 {}
 
-SizeGroup& SizeGroup::operator=(SizeGroup&& src) noexcept
+auto SizeGroup::operator=(SizeGroup&& src) noexcept -> SizeGroup&
 {
   Glib::Object::operator=(std::move(src));
   Buildable::operator=(std::move(src));
@@ -152,19 +152,19 @@ SizeGroup::~SizeGroup() noexcept
 
 SizeGroup::CppClassType SizeGroup::sizegroup_class_; // initialize static member
 
-GType SizeGroup::get_type()
+auto SizeGroup::get_type() -> GType
 {
   return sizegroup_class_.init().get_type();
 }
 
 
-GType SizeGroup::get_base_type()
+auto SizeGroup::get_base_type() -> GType
 {
   return gtk_size_group_get_type();
 }
 
 
-Glib::RefPtr<SizeGroup> SizeGroup::create(Mode mode)
+auto SizeGroup::create(Mode mode) -> Glib::RefPtr<SizeGroup>
 {
   return Glib::make_refptr_for_instance<SizeGroup>( new SizeGroup(mode) );
 }
@@ -174,7 +174,7 @@ void SizeGroup::set_mode(Mode mode)
   gtk_size_group_set_mode(gobj(), static_cast<GtkSizeGroupMode>(mode));
 }
 
-Mode SizeGroup::get_mode() const
+auto SizeGroup::get_mode() const -> Mode
 {
   return static_cast<Mode>(gtk_size_group_get_mode(const_cast<GtkSizeGroup*>(gobj())));
 }
@@ -189,12 +189,12 @@ void SizeGroup::remove_widget(Widget& widget)
   gtk_size_group_remove_widget(gobj(), (widget).gobj());
 }
 
-std::vector<Widget*> SizeGroup::get_widgets()
+auto SizeGroup::get_widgets() -> std::vector<Widget*>
 {
   return Glib::SListHandler<Widget*>::slist_to_vector(gtk_size_group_get_widgets(gobj()), Glib::OWNERSHIP_NONE);
 }
 
-std::vector<const Widget*> SizeGroup::get_widgets() const
+auto SizeGroup::get_widgets() const -> std::vector<const Widget*>
 {
   return Glib::SListHandler<const Widget*>::slist_to_vector(gtk_size_group_get_widgets(const_cast<GtkSizeGroup*>(gobj())), Glib::OWNERSHIP_NONE);
 }
@@ -204,12 +204,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Mode>::value,
   "Type Mode cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Mode > SizeGroup::property_mode()
+auto SizeGroup::property_mode() -> Glib::PropertyProxy< Mode >
 {
   return Glib::PropertyProxy< Mode >(this, "mode");
 }
 
-Glib::PropertyProxy_ReadOnly< Mode > SizeGroup::property_mode() const
+auto SizeGroup::property_mode() const -> Glib::PropertyProxy_ReadOnly< Mode >
 {
   return Glib::PropertyProxy_ReadOnly< Mode >(this, "mode");
 }

@@ -82,7 +82,7 @@ public:
 
   // noncopyable
   Root(const Root&) = delete;
-  Root& operator=(const Root&) = delete;
+  auto operator=(const Root&) -> Root& = delete;
 
 private:
   friend class Root_Class;
@@ -116,7 +116,7 @@ protected:
 public:
 
   Root(Root&& src) noexcept;
-  Root& operator=(Root&& src) noexcept;
+  auto operator=(Root&& src) noexcept -> Root&;
 
   ~Root() noexcept override;
 
@@ -124,17 +124,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkRoot*       gobj()       { return reinterpret_cast<GtkRoot*>(gobject_); }
+  auto       gobj() -> GtkRoot*       { return reinterpret_cast<GtkRoot*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkRoot* gobj() const { return reinterpret_cast<GtkRoot*>(gobject_); }
+  auto gobj() const -> const GtkRoot* { return reinterpret_cast<GtkRoot*>(gobject_); }
 
 private:
 
@@ -145,13 +145,13 @@ public:
    *
    * @return The display of @a root.
    */
-  Glib::RefPtr<Gdk::Display> get_display();
+  auto get_display() -> Glib::RefPtr<Gdk::Display>;
 
   /** Returns the display that this `Gtk::Root` is on.
    *
    * @return The display of @a root.
    */
-  Glib::RefPtr<const Gdk::Display> get_display() const;
+  auto get_display() const -> Glib::RefPtr<const Gdk::Display>;
 
 
   /** If @a focus is not the current focus widget, and is focusable, sets
@@ -178,7 +178,7 @@ public:
    *
    * @return The currently focused widget.
    */
-  Widget* get_focus();
+  auto get_focus() -> Widget*;
 
   /** Retrieves the current focused widget within the root.
    *
@@ -189,7 +189,7 @@ public:
    *
    * @return The currently focused widget.
    */
-  const Widget* get_focus() const;
+  auto get_focus() const -> const Widget*;
 
 
 public:
@@ -219,7 +219,7 @@ namespace Glib
    * @relates Gtk::Root
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Root> wrap(GtkRoot* object, bool take_copy = false);
+  auto wrap(GtkRoot* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Root>;
 
 } // namespace Glib
 

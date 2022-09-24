@@ -91,7 +91,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::IOStream> wrap(GIOStream* object, bool take_copy)
+auto wrap(GIOStream* object, bool take_copy) -> Glib::RefPtr<Gio::IOStream>
 {
   return Glib::make_refptr_for_instance<Gio::IOStream>( dynamic_cast<Gio::IOStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -106,7 +106,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& IOStream_Class::init()
+auto IOStream_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -137,7 +137,7 @@ void IOStream_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* IOStream_Class::wrap_new(GObject* object)
+auto IOStream_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new IOStream((GIOStream*)object);
 }
@@ -145,7 +145,7 @@ Glib::ObjectBase* IOStream_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GIOStream* IOStream::gobj_copy()
+auto IOStream::gobj_copy() -> GIOStream*
 {
   reference();
   return gobj();
@@ -168,7 +168,7 @@ IOStream::IOStream(IOStream&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-IOStream& IOStream::operator=(IOStream&& src) noexcept
+auto IOStream::operator=(IOStream&& src) noexcept -> IOStream&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -181,19 +181,19 @@ IOStream::~IOStream() noexcept
 
 IOStream::CppClassType IOStream::iostream_class_; // initialize static member
 
-GType IOStream::get_type()
+auto IOStream::get_type() -> GType
 {
   return iostream_class_.init().get_type();
 }
 
 
-GType IOStream::get_base_type()
+auto IOStream::get_base_type() -> GType
 {
   return g_io_stream_get_type();
 }
 
 
-bool IOStream::splice_finish(const Glib::RefPtr<AsyncResult>& result)
+auto IOStream::splice_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_io_stream_splice_finish(Glib::unwrap(result), &(gerror));
@@ -202,7 +202,7 @@ bool IOStream::splice_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-Glib::RefPtr<InputStream> IOStream::get_input_stream()
+auto IOStream::get_input_stream() -> Glib::RefPtr<InputStream>
 {
   auto retvalue = Glib::wrap(g_io_stream_get_input_stream(gobj()));
   if(retvalue)
@@ -210,7 +210,7 @@ Glib::RefPtr<InputStream> IOStream::get_input_stream()
   return retvalue;
 }
 
-Glib::RefPtr<OutputStream> IOStream::get_output_stream()
+auto IOStream::get_output_stream() -> Glib::RefPtr<OutputStream>
 {
   auto retvalue = Glib::wrap(g_io_stream_get_output_stream(gobj()));
   if(retvalue)
@@ -218,7 +218,7 @@ Glib::RefPtr<OutputStream> IOStream::get_output_stream()
   return retvalue;
 }
 
-bool IOStream::close(const Glib::RefPtr<Cancellable>& cancellable)
+auto IOStream::close(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_io_stream_close(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -227,7 +227,7 @@ bool IOStream::close(const Glib::RefPtr<Cancellable>& cancellable)
   return retvalue;
 }
 
-bool IOStream::close()
+auto IOStream::close() -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_io_stream_close(gobj(), nullptr, &(gerror));
@@ -236,7 +236,7 @@ bool IOStream::close()
   return retvalue;
 }
 
-bool IOStream::close_finish(const Glib::RefPtr<AsyncResult>& result)
+auto IOStream::close_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_io_stream_close_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -245,17 +245,17 @@ bool IOStream::close_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool IOStream::is_closed() const
+auto IOStream::is_closed() const -> bool
 {
   return g_io_stream_is_closed(const_cast<GIOStream*>(gobj()));
 }
 
-bool IOStream::has_pending() const
+auto IOStream::has_pending() const -> bool
 {
   return g_io_stream_has_pending(const_cast<GIOStream*>(gobj()));
 }
 
-bool IOStream::set_pending()
+auto IOStream::set_pending() -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_io_stream_set_pending(gobj(), &(gerror));

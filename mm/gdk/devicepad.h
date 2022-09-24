@@ -84,7 +84,7 @@ public:
 
   // noncopyable
   DevicePad(const DevicePad&) = delete;
-  DevicePad& operator=(const DevicePad&) = delete;
+  auto operator=(const DevicePad&) -> DevicePad& = delete;
 
 private:
   friend class DevicePad_Class;
@@ -118,7 +118,7 @@ protected:
 public:
 
   DevicePad(DevicePad&& src) noexcept;
-  DevicePad& operator=(DevicePad&& src) noexcept;
+  auto operator=(DevicePad&& src) noexcept -> DevicePad&;
 
   ~DevicePad() noexcept override;
 
@@ -126,17 +126,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkDevicePad*       gobj()       { return reinterpret_cast<GdkDevicePad*>(gobject_); }
+  auto       gobj() -> GdkDevicePad*       { return reinterpret_cast<GdkDevicePad*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkDevicePad* gobj() const { return reinterpret_cast<GdkDevicePad*>(gobject_); }
+  auto gobj() const -> const GdkDevicePad* { return reinterpret_cast<GdkDevicePad*>(gobject_); }
 
 private:
 
@@ -176,21 +176,21 @@ public:
    *
    * @return The number of button/ring/strip groups in the pad.
    */
-  int get_n_groups() const;
+  auto get_n_groups() const -> int;
 
   /** Returns the number of modes that @a group may have.
    *
    * @param group_idx Group to get the number of available modes from.
    * @return The number of modes available in @a group.
    */
-  int get_group_n_modes(int group_idx) const;
+  auto get_group_n_modes(int group_idx) const -> int;
 
   /** Returns the number of features a tablet pad has.
    *
    * @param feature A pad feature.
    * @return The amount of elements of type @a feature that this pad has.
    */
-  int get_n_features(Feature feature) const;
+  auto get_n_features(Feature feature) const -> int;
 
   /** Returns the group the given @a feature and @a idx belong to.
    *
@@ -200,7 +200,7 @@ public:
    * @param feature_idx The index of the feature to get the group from.
    * @return The group number of the queried pad feature.
    */
-  int get_feature_group(Feature feature, int feature_idx) const;
+  auto get_feature_group(Feature feature, int feature_idx) const -> int;
 
   // There are no properties, signals or vfuncs.
 
@@ -229,7 +229,7 @@ template <>
 class GDKMM_API Value<Gdk::DevicePad::Feature> : public Glib::Value_Enum<Gdk::DevicePad::Feature>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -247,7 +247,7 @@ namespace Glib
    * @relates Gdk::DevicePad
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::DevicePad> wrap(GdkDevicePad* object, bool take_copy = false);
+  auto wrap(GdkDevicePad* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DevicePad>;
 
 } // namespace Glib
 

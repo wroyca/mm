@@ -63,7 +63,7 @@ public:
 
   // noncopyable
   FileIcon(const FileIcon&) = delete;
-  FileIcon& operator=(const FileIcon&) = delete;
+  auto operator=(const FileIcon&) -> FileIcon& = delete;
 
 private:  friend class FileIcon_Class;
   static CppClassType fileicon_class_;
@@ -77,28 +77,28 @@ protected:
 public:
 
   FileIcon(FileIcon&& src) noexcept;
-  FileIcon& operator=(FileIcon&& src) noexcept;
+  auto operator=(FileIcon&& src) noexcept -> FileIcon&;
 
   ~FileIcon() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GFileIcon*       gobj()       { return reinterpret_cast<GFileIcon*>(gobject_); }
+  auto       gobj() -> GFileIcon*       { return reinterpret_cast<GFileIcon*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GFileIcon* gobj() const { return reinterpret_cast<GFileIcon*>(gobject_); }
+  auto gobj() const -> const GFileIcon* { return reinterpret_cast<GFileIcon*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GFileIcon* gobj_copy();
+  auto gobj_copy() -> GFileIcon*;
 
 private:
 
@@ -108,27 +108,27 @@ protected:
 
 public:
 
-  static Glib::RefPtr<FileIcon> create();
+  static auto create() -> Glib::RefPtr<FileIcon>;
 
 
   /** Gets the File associated with the given @a icon.
    *
    * @return A File.
    */
-  Glib::RefPtr<File> get_file();
+  auto get_file() -> Glib::RefPtr<File>;
 
   /** Gets the File associated with the given @a icon.
    *
    * @return A File.
    */
-  Glib::RefPtr<const File> get_file() const;
+  auto get_file() const -> Glib::RefPtr<const File>;
 
   /** The file containing the icon.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<File> > property_file() const;
+  auto property_file() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<File> >;
 
 
 public:
@@ -158,7 +158,7 @@ namespace Glib
    * @relates Gio::FileIcon
    */
   GIOMM_API
-  Glib::RefPtr<Gio::FileIcon> wrap(GFileIcon* object, bool take_copy = false);
+  auto wrap(GFileIcon* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileIcon>;
 }
 
 

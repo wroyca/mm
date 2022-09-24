@@ -65,7 +65,7 @@ public:
 
   // noncopyable
   GestureLongPress(const GestureLongPress&) = delete;
-  GestureLongPress& operator=(const GestureLongPress&) = delete;
+  auto operator=(const GestureLongPress&) -> GestureLongPress& = delete;
 
 private:  friend class GestureLongPress_Class;
   static CppClassType gesturelongpress_class_;
@@ -79,28 +79,28 @@ protected:
 public:
 
   GestureLongPress(GestureLongPress&& src) noexcept;
-  GestureLongPress& operator=(GestureLongPress&& src) noexcept;
+  auto operator=(GestureLongPress&& src) noexcept -> GestureLongPress&;
 
   ~GestureLongPress() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkGestureLongPress*       gobj()       { return reinterpret_cast<GtkGestureLongPress*>(gobject_); }
+  auto       gobj() -> GtkGestureLongPress*       { return reinterpret_cast<GtkGestureLongPress*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkGestureLongPress* gobj() const { return reinterpret_cast<GtkGestureLongPress*>(gobject_); }
+  auto gobj() const -> const GtkGestureLongPress* { return reinterpret_cast<GtkGestureLongPress*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkGestureLongPress* gobj_copy();
+  auto gobj_copy() -> GtkGestureLongPress*;
 
 private:
 
@@ -118,7 +118,7 @@ public:
    * @return A RefPtr to a new GestureLongPress.
    */
 
-  static Glib::RefPtr<GestureLongPress> create();
+  static auto create() -> Glib::RefPtr<GestureLongPress>;
 
 
   /** Applies the given delay factor.
@@ -134,7 +134,7 @@ public:
    *
    * @return The delay factor.
    */
-  double get_delay_factor() const;
+  auto get_delay_factor() const -> double;
 
   // no_default_handler because GtkGestureLongPressClass is private.
 
@@ -151,7 +151,7 @@ public:
    * @param y The Y coordinate where the press happened, relative to the widget allocation.
    */
 
-  Glib::SignalProxy<void(double, double)> signal_pressed();
+  auto signal_pressed() -> Glib::SignalProxy<void(double, double)>;
 
 
   /**
@@ -164,7 +164,7 @@ public:
    * before signal_pressed() happened.
    */
 
-  Glib::SignalProxy<void()> signal_cancelled();
+  auto signal_cancelled() -> Glib::SignalProxy<void()>;
 
 
   /** Factor by which to modify the default timeout.
@@ -176,7 +176,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_delay_factor() ;
+  auto property_delay_factor() -> Glib::PropertyProxy< double > ;
 
 /** Factor by which to modify the default timeout.
    *
@@ -187,7 +187,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_delay_factor() const;
+  auto property_delay_factor() const -> Glib::PropertyProxy_ReadOnly< double >;
 
 
   // GestureLongPress has no methods
@@ -220,7 +220,7 @@ namespace Glib
    * @relates Gtk::GestureLongPress
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::GestureLongPress> wrap(GtkGestureLongPress* object, bool take_copy = false);
+  auto wrap(GtkGestureLongPress* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureLongPress>;
 }
 
 

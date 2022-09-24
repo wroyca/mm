@@ -92,10 +92,10 @@ Class::register_derived_type(GType base_type, GTypeModule* module)
   g_free(derived_name);
 }
 
-GType
+auto
 Class::clone_custom_type(
   const char* custom_type_name, const interface_classes_type* interface_classes,
-  const class_init_funcs_type* class_init_funcs, GInstanceInitFunc instance_init_func) const
+  const class_init_funcs_type* class_init_funcs, GInstanceInitFunc instance_init_func) const -> GType
 {
   std::string full_name("gtkmm__CustomObject_");
   Glib::append_canonical_typename(full_name, custom_type_name);

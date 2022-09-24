@@ -66,7 +66,7 @@ public:
 
   // noncopyable
   TreeModelFilter(const TreeModelFilter&) = delete;
-  TreeModelFilter& operator=(const TreeModelFilter&) = delete;
+  auto operator=(const TreeModelFilter&) -> TreeModelFilter& = delete;
 
 private:  friend class TreeModelFilter_Class;
   static CppClassType treemodelfilter_class_;
@@ -80,28 +80,28 @@ protected:
 public:
 
   TreeModelFilter(TreeModelFilter&& src) noexcept;
-  TreeModelFilter& operator=(TreeModelFilter&& src) noexcept;
+  auto operator=(TreeModelFilter&& src) noexcept -> TreeModelFilter&;
 
   ~TreeModelFilter() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkTreeModelFilter*       gobj()       { return reinterpret_cast<GtkTreeModelFilter*>(gobject_); }
+  auto       gobj() -> GtkTreeModelFilter*       { return reinterpret_cast<GtkTreeModelFilter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkTreeModelFilter* gobj() const { return reinterpret_cast<GtkTreeModelFilter*>(gobject_); }
+  auto gobj() const -> const GtkTreeModelFilter* { return reinterpret_cast<GtkTreeModelFilter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkTreeModelFilter* gobj_copy();
+  auto gobj_copy() -> GtkTreeModelFilter*;
 
 private:
 
@@ -118,7 +118,7 @@ public:
    * model to parent model.
    */
 
-  static Glib::RefPtr<TreeModelFilter> create(const Glib::RefPtr<TreeModel>& child_model);
+  static auto create(const Glib::RefPtr<TreeModel>& child_model) -> Glib::RefPtr<TreeModelFilter>;
 
 
   /** This creates a TreeModelFilter with @a child_model as the child model, and @a root as the virtual root.
@@ -126,7 +126,7 @@ public:
    * model to parent model.
    */
 
-  static Glib::RefPtr<TreeModelFilter> create(const Glib::RefPtr<TreeModel>& child_model, const TreeModel::Path& virtual_root);
+  static auto create(const Glib::RefPtr<TreeModel>& child_model, const TreeModel::Path& virtual_root) -> Glib::RefPtr<TreeModelFilter>;
 
 
   /** For instance,
@@ -196,27 +196,27 @@ public:
    *
    * @return A pointer to a `Gtk::TreeModel`.
    */
-  Glib::RefPtr<TreeModel> get_model();
+  auto get_model() -> Glib::RefPtr<TreeModel>;
 
   /** Returns a pointer to the child model of @a filter.
    *
    * @return A pointer to a `Gtk::TreeModel`.
    */
-  Glib::RefPtr<const TreeModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const TreeModel>;
 
   /** Gets an iterator that points to the filtered row that corresponds to the child row pointed at by child_iter.
    *
    * @param child_iter A valid iterator pointing to a row on the child model.
    * @result A valid iterator that points to the row in this filtered model.
    */
-  iterator convert_child_iter_to_iter(const iterator& child_iter);
+  auto convert_child_iter_to_iter(const iterator& child_iter) -> iterator;
 
   /** Gets an iterator that points to the filtered row that corresponds to the child row pointed at by child_iter.
    *
    * @param child_iter A valid iterator pointing to a row on the child model.
    * @result A valid iterator that points to the row in this filtered model.
    */
-  const_iterator convert_child_iter_to_iter(const const_iterator& child_iter) const;
+  auto convert_child_iter_to_iter(const const_iterator& child_iter) const -> const_iterator;
 
 
   /** Gets an iterator that points to the child row that corresponds to the filtered row pointed at by sorted_iter.
@@ -224,14 +224,14 @@ public:
    * @param filter_iter A valid iterator pointing to a row on the filtered model.
    * @result A valid iterator that points to the row in the child model.
    */
-  iterator convert_iter_to_child_iter(const iterator& filter_iter);
+  auto convert_iter_to_child_iter(const iterator& filter_iter) -> iterator;
 
   /** Gets an iterator that points to the child row that corresponds to the filtered row pointed at by sorted_iter.
    *
    * @param filter_iter A valid iterator pointing to a row on the filtered model.
    * @result A valid iterator that points to the row in the child model.
    */
-  const_iterator convert_iter_to_child_iter(const const_iterator& filter_iter) const;
+  auto convert_iter_to_child_iter(const const_iterator& filter_iter) const -> const_iterator;
 
 
   /** Converts @a child_path to a path relative to @a filter. That is, @a child_path
@@ -243,7 +243,7 @@ public:
    * @param child_path A `Gtk::TreePath` to convert.
    * @return A newly allocated `Gtk::TreePath`.
    */
-  Path convert_child_path_to_path(const Path& child_path) const;
+  auto convert_child_path_to_path(const Path& child_path) const -> Path;
 
   /** Converts @a filter_path to a path on the child model of @a filter. That is,
    *  @a filter_path points to a location in @a filter. The returned path will
@@ -253,7 +253,7 @@ public:
    * @param filter_path A `Gtk::TreePath` to convert.
    * @return A newly allocated `Gtk::TreePath`.
    */
-  Path convert_path_to_child_path(const Path& filter_path) const;
+  auto convert_path_to_child_path(const Path& filter_path) const -> Path;
 
 
   /** Emits ::row_changed for each row in the child model, which causes
@@ -275,7 +275,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> > property_child_model() const;
+  auto property_child_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> >;
 
 
   /**
@@ -283,7 +283,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< TreeModel::Path > property_virtual_root() const;
+  auto property_virtual_root() const -> Glib::PropertyProxy_ReadOnly< TreeModel::Path >;
 
 
 protected:
@@ -317,7 +317,7 @@ namespace Glib
    * @relates Gtk::TreeModelFilter
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::TreeModelFilter> wrap(GtkTreeModelFilter* object, bool take_copy = false);
+  auto wrap(GtkTreeModelFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeModelFilter>;
 }
 
 

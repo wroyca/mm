@@ -70,7 +70,7 @@ public:
 
   // noncopyable
   TlsServerConnection(const TlsServerConnection&) = delete;
-  TlsServerConnection& operator=(const TlsServerConnection&) = delete;
+  auto operator=(const TlsServerConnection&) -> TlsServerConnection& = delete;
 
 private:
   friend class TlsServerConnection_Class;
@@ -104,7 +104,7 @@ protected:
 public:
 
   TlsServerConnection(TlsServerConnection&& src) noexcept;
-  TlsServerConnection& operator=(TlsServerConnection&& src) noexcept;
+  auto operator=(TlsServerConnection&& src) noexcept -> TlsServerConnection&;
 
   ~TlsServerConnection() noexcept override;
 
@@ -112,17 +112,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GTlsServerConnection*       gobj()       { return reinterpret_cast<GTlsServerConnection*>(gobject_); }
+  auto       gobj() -> GTlsServerConnection*       { return reinterpret_cast<GTlsServerConnection*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GTlsServerConnection* gobj() const { return reinterpret_cast<GTlsServerConnection*>(gobject_); }
+  auto gobj() const -> const GTlsServerConnection* { return reinterpret_cast<GTlsServerConnection*>(gobject_); }
 
 private:
 
@@ -148,7 +148,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<TlsServerConnectionImpl> create(const Glib::RefPtr<IOStream>& base_io_stream, const Glib::RefPtr<TlsCertificate>& certificate);
+  static auto create(const Glib::RefPtr<IOStream>& base_io_stream, const Glib::RefPtr<TlsCertificate>& certificate) -> Glib::RefPtr<TlsServerConnectionImpl>;
 
   /** The TlsAuthenticationMode for the server. This can be changed
    * before calling g_tls_connection_handshake() if you want to
@@ -161,7 +161,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< TlsAuthenticationMode > property_authentication_mode() ;
+  auto property_authentication_mode() -> Glib::PropertyProxy< TlsAuthenticationMode > ;
 
 /** The TlsAuthenticationMode for the server. This can be changed
    * before calling g_tls_connection_handshake() if you want to
@@ -174,7 +174,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< TlsAuthenticationMode > property_authentication_mode() const;
+  auto property_authentication_mode() const -> Glib::PropertyProxy_ReadOnly< TlsAuthenticationMode >;
 
 
 public:
@@ -204,7 +204,7 @@ namespace Glib
    * @relates Gio::TlsServerConnection
    */
   GIOMM_API
-  Glib::RefPtr<Gio::TlsServerConnection> wrap(GTlsServerConnection* object, bool take_copy = false);
+  auto wrap(GTlsServerConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsServerConnection>;
 
 } // namespace Glib
 

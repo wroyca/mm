@@ -76,7 +76,7 @@ public:
 
   // noncopyable
   CellAreaBox(const CellAreaBox&) = delete;
-  CellAreaBox& operator=(const CellAreaBox&) = delete;
+  auto operator=(const CellAreaBox&) -> CellAreaBox& = delete;
 
 private:  friend class CellAreaBox_Class;
   static CppClassType cellareabox_class_;
@@ -90,28 +90,28 @@ protected:
 public:
 
   CellAreaBox(CellAreaBox&& src) noexcept;
-  CellAreaBox& operator=(CellAreaBox&& src) noexcept;
+  auto operator=(CellAreaBox&& src) noexcept -> CellAreaBox&;
 
   ~CellAreaBox() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkCellAreaBox*       gobj()       { return reinterpret_cast<GtkCellAreaBox*>(gobject_); }
+  auto       gobj() -> GtkCellAreaBox*       { return reinterpret_cast<GtkCellAreaBox*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkCellAreaBox* gobj() const { return reinterpret_cast<GtkCellAreaBox*>(gobject_); }
+  auto gobj() const -> const GtkCellAreaBox* { return reinterpret_cast<GtkCellAreaBox*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkCellAreaBox* gobj_copy();
+  auto gobj_copy() -> GtkCellAreaBox*;
 
 private:
 
@@ -120,7 +120,7 @@ protected:
   CellAreaBox();
 public:
 
-  static Glib::RefPtr<CellAreaBox> create();
+  static auto create() -> Glib::RefPtr<CellAreaBox>;
 
 
   // The default values of expand, align and fixed are the default values of
@@ -156,7 +156,7 @@ public:
    *
    * @return The space added between cell renderers in @a box.
    */
-  int get_spacing() const;
+  auto get_spacing() const -> int;
 
   /** Sets the spacing to add between cell renderers in @a box.
    *
@@ -171,7 +171,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_spacing() ;
+  auto property_spacing() -> Glib::PropertyProxy< int > ;
 
 /** The amount of space to reserve between cells.
    *
@@ -180,7 +180,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_spacing() const;
+  auto property_spacing() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
 public:
@@ -210,7 +210,7 @@ namespace Glib
    * @relates Gtk::CellAreaBox
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::CellAreaBox> wrap(GtkCellAreaBox* object, bool take_copy = false);
+  auto wrap(GtkCellAreaBox* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CellAreaBox>;
 }
 
 

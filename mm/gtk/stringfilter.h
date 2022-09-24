@@ -63,7 +63,7 @@ public:
 
   // noncopyable
   StringFilter(const StringFilter&) = delete;
-  StringFilter& operator=(const StringFilter&) = delete;
+  auto operator=(const StringFilter&) -> StringFilter& = delete;
 
 private:  friend class StringFilter_Class;
   static CppClassType stringfilter_class_;
@@ -77,28 +77,28 @@ protected:
 public:
 
   StringFilter(StringFilter&& src) noexcept;
-  StringFilter& operator=(StringFilter&& src) noexcept;
+  auto operator=(StringFilter&& src) noexcept -> StringFilter&;
 
   ~StringFilter() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkStringFilter*       gobj()       { return reinterpret_cast<GtkStringFilter*>(gobject_); }
+  auto       gobj() -> GtkStringFilter*       { return reinterpret_cast<GtkStringFilter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkStringFilter* gobj() const { return reinterpret_cast<GtkStringFilter*>(gobject_); }
+  auto gobj() const -> const GtkStringFilter* { return reinterpret_cast<GtkStringFilter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkStringFilter* gobj_copy();
+  auto gobj_copy() -> GtkStringFilter*;
 
 private:
 
@@ -137,14 +137,14 @@ public:
   };
 
 
-  static Glib::RefPtr<StringFilter> create(const Glib::RefPtr<Expression<Glib::ustring>>& expression);
+  static auto create(const Glib::RefPtr<Expression<Glib::ustring>>& expression) -> Glib::RefPtr<StringFilter>;
 
 
   /** Gets the search term.
    *
    * @return The search term.
    */
-  Glib::ustring get_search() const;
+  auto get_search() const -> Glib::ustring;
 
   /** Sets the string to search for.
    *
@@ -158,14 +158,14 @@ public:
    *
    * @return A `Gtk::Expression`.
    */
-  Glib::RefPtr<Expression<Glib::ustring>> get_expression();
+  auto get_expression() -> Glib::RefPtr<Expression<Glib::ustring>>;
 
   /** Gets the expression that the string filter uses to
    * obtain strings from items.
    *
    * @return A `Gtk::Expression`.
    */
-  Glib::RefPtr<const Expression<Glib::ustring>> get_expression() const;
+  auto get_expression() const -> Glib::RefPtr<const Expression<Glib::ustring>>;
 
   /** Sets the expression that the string filter uses to
    * obtain strings from items.
@@ -180,7 +180,7 @@ public:
    *
    * @return <tt>true</tt> if the filter ignores case.
    */
-  bool get_ignore_case() const;
+  auto get_ignore_case() const -> bool;
 
   /** Sets whether the filter ignores case differences.
    *
@@ -192,7 +192,7 @@ public:
    *
    * @return The match mode of the filter.
    */
-  MatchMode get_match_mode() const;
+  auto get_match_mode() const -> MatchMode;
 
   /** Sets the match mode for the filter.
    *
@@ -205,14 +205,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Expression<Glib::ustring>> > property_expression() ;
+  auto property_expression() -> Glib::PropertyProxy< Glib::RefPtr<Expression<Glib::ustring>> > ;
 
 /** The expression to evaluate on item to get a string to compare with.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Expression<Glib::ustring>> > property_expression() const;
+  auto property_expression() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Expression<Glib::ustring>> >;
 
   /** If matching is case sensitive.
    *
@@ -221,7 +221,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_ignore_case() ;
+  auto property_ignore_case() -> Glib::PropertyProxy< bool > ;
 
 /** If matching is case sensitive.
    *
@@ -230,7 +230,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_ignore_case() const;
+  auto property_ignore_case() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** If exact matches are necessary or if substrings are allowed.
    *
@@ -239,7 +239,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< MatchMode > property_match_mode() ;
+  auto property_match_mode() -> Glib::PropertyProxy< MatchMode > ;
 
 /** If exact matches are necessary or if substrings are allowed.
    *
@@ -248,7 +248,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< MatchMode > property_match_mode() const;
+  auto property_match_mode() const -> Glib::PropertyProxy_ReadOnly< MatchMode >;
 
   /** The search term.
    *
@@ -257,7 +257,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_search() ;
+  auto property_search() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The search term.
    *
@@ -266,7 +266,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_search() const;
+  auto property_search() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -293,7 +293,7 @@ template <>
 class GTKMM_API Value<Gtk::StringFilter::MatchMode> : public Glib::Value_Enum<Gtk::StringFilter::MatchMode>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -311,7 +311,7 @@ namespace Glib
    * @relates Gtk::StringFilter
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::StringFilter> wrap(GtkStringFilter* object, bool take_copy = false);
+  auto wrap(GtkStringFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StringFilter>;
 }
 
 

@@ -65,7 +65,7 @@ public:
 
   // noncopyable
   NoSelection(const NoSelection&) = delete;
-  NoSelection& operator=(const NoSelection&) = delete;
+  auto operator=(const NoSelection&) -> NoSelection& = delete;
 
 private:  friend class NoSelection_Class;
   static CppClassType noselection_class_;
@@ -79,28 +79,28 @@ protected:
 public:
 
   NoSelection(NoSelection&& src) noexcept;
-  NoSelection& operator=(NoSelection&& src) noexcept;
+  auto operator=(NoSelection&& src) noexcept -> NoSelection&;
 
   ~NoSelection() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkNoSelection*       gobj()       { return reinterpret_cast<GtkNoSelection*>(gobject_); }
+  auto       gobj() -> GtkNoSelection*       { return reinterpret_cast<GtkNoSelection*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkNoSelection* gobj() const { return reinterpret_cast<GtkNoSelection*>(gobject_); }
+  auto gobj() const -> const GtkNoSelection* { return reinterpret_cast<GtkNoSelection*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkNoSelection* gobj_copy();
+  auto gobj_copy() -> GtkNoSelection*;
 
 private:
 
@@ -112,23 +112,23 @@ protected:
 
 public:
 
-  static Glib::RefPtr<NoSelection> create();
+  static auto create() -> Glib::RefPtr<NoSelection>;
 
 
-  static Glib::RefPtr<NoSelection> create(const Glib::RefPtr<Gio::ListModel>& model);
+  static auto create(const Glib::RefPtr<Gio::ListModel>& model) -> Glib::RefPtr<NoSelection>;
 
 
   /** Gets the model that @a self is wrapping.
    *
    * @return The model being wrapped.
    */
-  Glib::RefPtr<Gio::ListModel> get_model();
+  auto get_model() -> Glib::RefPtr<Gio::ListModel>;
 
   /** Gets the model that @a self is wrapping.
    *
    * @return The model being wrapped.
    */
-  Glib::RefPtr<const Gio::ListModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const Gio::ListModel>;
 
   /** Sets the model that @a self should wrap.
    *
@@ -145,7 +145,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< GType > property_item_type() const;
+  auto property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >;
 
 
   /** The model being managed.
@@ -153,14 +153,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > property_model() ;
+  auto property_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > ;
 
 /** The model being managed.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >;
 
   /** The number of items. See Gio::ListModel::get_n_items().
    *
@@ -171,7 +171,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_n_items() const;
+  auto property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
 
   // There are no signals or vfuncs.
@@ -204,7 +204,7 @@ namespace Glib
    * @relates Gtk::NoSelection
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::NoSelection> wrap(GtkNoSelection* object, bool take_copy = false);
+  auto wrap(GtkNoSelection* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NoSelection>;
 }
 
 

@@ -171,7 +171,7 @@ Object::Object(Object&& src) noexcept
   referenced_(std::move(src.referenced_))
 {}
 
-Object& Object::operator=(Object&& src) noexcept
+auto Object::operator=(Object&& src) noexcept -> Object&
 {
   Glib::Object::operator=(std::move(src));
   referenced_ = std::move(src.referenced_);
@@ -307,7 +307,7 @@ void Object::set_manage()
   referenced_ = false;
 }
 
-bool Object::is_managed_() const
+auto Object::is_managed_() const -> bool
 {
   return !referenced_;
 }
@@ -319,7 +319,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Object_Class::init()
+auto Object_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -350,7 +350,7 @@ void Object_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Object_Class::wrap_new(GObject* o)
+auto Object_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Object((GObject*)(o)));
 
@@ -361,13 +361,13 @@ Glib::ObjectBase* Object_Class::wrap_new(GObject* o)
 
 Object::CppClassType Object::object_class_; // initialize static member
 
-GType Object::get_type()
+auto Object::get_type() -> GType
 {
   return object_class_.init().get_type();
 }
 
 
-GType Object::get_base_type()
+auto Object::get_base_type() -> GType
 {
   return g_object_get_type();
 }

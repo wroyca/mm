@@ -59,7 +59,7 @@ public:
 
   // noncopyable
   BoolFilter(const BoolFilter&) = delete;
-  BoolFilter& operator=(const BoolFilter&) = delete;
+  auto operator=(const BoolFilter&) -> BoolFilter& = delete;
 
 private:  friend class BoolFilter_Class;
   static CppClassType boolfilter_class_;
@@ -73,28 +73,28 @@ protected:
 public:
 
   BoolFilter(BoolFilter&& src) noexcept;
-  BoolFilter& operator=(BoolFilter&& src) noexcept;
+  auto operator=(BoolFilter&& src) noexcept -> BoolFilter&;
 
   ~BoolFilter() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkBoolFilter*       gobj()       { return reinterpret_cast<GtkBoolFilter*>(gobject_); }
+  auto       gobj() -> GtkBoolFilter*       { return reinterpret_cast<GtkBoolFilter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkBoolFilter* gobj() const { return reinterpret_cast<GtkBoolFilter*>(gobject_); }
+  auto gobj() const -> const GtkBoolFilter* { return reinterpret_cast<GtkBoolFilter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkBoolFilter* gobj_copy();
+  auto gobj_copy() -> GtkBoolFilter*;
 
 private:
 
@@ -105,7 +105,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<BoolFilter> create(const Glib::RefPtr<Expression<bool>>& expression);
+  static auto create(const Glib::RefPtr<Expression<bool>>& expression) -> Glib::RefPtr<BoolFilter>;
 
 
   /** Gets the expression that the filter uses to evaluate if
@@ -113,14 +113,14 @@ public:
    *
    * @return A `Gtk::Expression`.
    */
-  Glib::RefPtr<Expression<bool>> get_expression();
+  auto get_expression() -> Glib::RefPtr<Expression<bool>>;
 
   /** Gets the expression that the filter uses to evaluate if
    * an item should be filtered.
    *
    * @return A `Gtk::Expression`.
    */
-  Glib::RefPtr<const Expression<bool>> get_expression() const;
+  auto get_expression() const -> Glib::RefPtr<const Expression<bool>>;
 
   /** Sets the expression that the filter uses to check if items
    * should be filtered.
@@ -135,7 +135,7 @@ public:
    *
    * @return <tt>true</tt> if the filter inverts.
    */
-  bool get_invert() const;
+  auto get_invert() const -> bool;
 
   /** Sets whether the filter should invert the expression.
    *
@@ -148,14 +148,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Expression<bool>> > property_expression() ;
+  auto property_expression() -> Glib::PropertyProxy< Glib::RefPtr<Expression<bool>> > ;
 
 /** The boolean expression to evaluate on item.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Expression<bool>> > property_expression() const;
+  auto property_expression() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Expression<bool>> >;
 
   /** If the expression result should be inverted.
    *
@@ -164,7 +164,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_invert() ;
+  auto property_invert() -> Glib::PropertyProxy< bool > ;
 
 /** If the expression result should be inverted.
    *
@@ -173,7 +173,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_invert() const;
+  auto property_invert() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -203,7 +203,7 @@ namespace Glib
    * @relates Gtk::BoolFilter
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::BoolFilter> wrap(GtkBoolFilter* object, bool take_copy = false);
+  auto wrap(GtkBoolFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BoolFilter>;
 }
 
 

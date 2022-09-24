@@ -62,7 +62,7 @@ public:
 
   // noncopyable
   GestureZoom(const GestureZoom&) = delete;
-  GestureZoom& operator=(const GestureZoom&) = delete;
+  auto operator=(const GestureZoom&) -> GestureZoom& = delete;
 
 private:  friend class GestureZoom_Class;
   static CppClassType gesturezoom_class_;
@@ -76,28 +76,28 @@ protected:
 public:
 
   GestureZoom(GestureZoom&& src) noexcept;
-  GestureZoom& operator=(GestureZoom&& src) noexcept;
+  auto operator=(GestureZoom&& src) noexcept -> GestureZoom&;
 
   ~GestureZoom() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkGestureZoom*       gobj()       { return reinterpret_cast<GtkGestureZoom*>(gobject_); }
+  auto       gobj() -> GtkGestureZoom*       { return reinterpret_cast<GtkGestureZoom*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkGestureZoom* gobj() const { return reinterpret_cast<GtkGestureZoom*>(gobject_); }
+  auto gobj() const -> const GtkGestureZoom* { return reinterpret_cast<GtkGestureZoom*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkGestureZoom* gobj_copy();
+  auto gobj_copy() -> GtkGestureZoom*;
 
 private:
 
@@ -117,7 +117,7 @@ public:
    * @return A RefPtr to a new GestureZoom.
    */
 
-  static Glib::RefPtr<GestureZoom> create();
+  static auto create() -> Glib::RefPtr<GestureZoom>;
 
 
   /** Gets the scale delta.
@@ -129,7 +129,7 @@ public:
    *
    * @return The scale delta.
    */
-  double get_scale_delta() const;
+  auto get_scale_delta() const -> double;
 
   // no_default_handler because GtkGestureZoomClass is private.
 
@@ -144,7 +144,7 @@ public:
    * @param scale Scale delta, taking the initial state as 1:1.
    */
 
-  Glib::SignalProxy<void(double)> signal_scale_changed();
+  auto signal_scale_changed() -> Glib::SignalProxy<void(double)>;
 
 
   // GestureZoom has no properties
@@ -177,7 +177,7 @@ namespace Glib
    * @relates Gtk::GestureZoom
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::GestureZoom> wrap(GtkGestureZoom* object, bool take_copy = false);
+  auto wrap(GtkGestureZoom* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureZoom>;
 }
 
 

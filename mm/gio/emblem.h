@@ -67,7 +67,7 @@ public:
 
   // noncopyable
   Emblem(const Emblem&) = delete;
-  Emblem& operator=(const Emblem&) = delete;
+  auto operator=(const Emblem&) -> Emblem& = delete;
 
 private:  friend class Emblem_Class;
   static CppClassType emblem_class_;
@@ -81,28 +81,28 @@ protected:
 public:
 
   Emblem(Emblem&& src) noexcept;
-  Emblem& operator=(Emblem&& src) noexcept;
+  auto operator=(Emblem&& src) noexcept -> Emblem&;
 
   ~Emblem() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GEmblem*       gobj()       { return reinterpret_cast<GEmblem*>(gobject_); }
+  auto       gobj() -> GEmblem*       { return reinterpret_cast<GEmblem*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GEmblem* gobj() const { return reinterpret_cast<GEmblem*>(gobject_); }
+  auto gobj() const -> const GEmblem* { return reinterpret_cast<GEmblem*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GEmblem* gobj_copy();
+  auto gobj_copy() -> GEmblem*;
 
 private:
 
@@ -160,7 +160,7 @@ public:
    * @param icon A Gio::Icon containing the icon.
    */
 
-  static Glib::RefPtr<Emblem> create(const Glib::RefPtr<Icon>& icon);
+  static auto create(const Glib::RefPtr<Icon>& icon) -> Glib::RefPtr<Emblem>;
 
 
   /** Creates a new emblem for @a icon.
@@ -168,7 +168,7 @@ public:
    * @param origin An Origin value defining the emblem's origin
    */
 
-  static Glib::RefPtr<Emblem> create(const Glib::RefPtr<Icon>& icon, Origin origin);
+  static auto create(const Glib::RefPtr<Icon>& icon, Origin origin) -> Glib::RefPtr<Emblem>;
 
 
   /** Gives back the icon from @a emblem.
@@ -178,7 +178,7 @@ public:
    * @return A Icon. The returned object belongs to
    * the emblem and should not be modified or freed.
    */
-  Glib::RefPtr<Icon> get_icon();
+  auto get_icon() -> Glib::RefPtr<Icon>;
 
   /** Gives back the icon from @a emblem.
    *
@@ -187,7 +187,7 @@ public:
    * @return A Icon. The returned object belongs to
    * the emblem and should not be modified or freed.
    */
-  Glib::RefPtr<const Icon> get_icon() const;
+  auto get_icon() const -> Glib::RefPtr<const Icon>;
 
   /** Gets the origin of the emblem.
    *
@@ -195,7 +195,7 @@ public:
    *
    * @return The origin of the emblem.
    */
-  Origin get_origin() const;
+  auto get_origin() const -> Origin;
 
 
 public:
@@ -225,7 +225,7 @@ namespace Glib
    * @relates Gio::Emblem
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Emblem> wrap(GEmblem* object, bool take_copy = false);
+  auto wrap(GEmblem* object, bool take_copy = false) -> Glib::RefPtr<Gio::Emblem>;
 }
 
 

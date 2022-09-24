@@ -28,7 +28,7 @@
 
 namespace
 {
-static void CssProvider_signal_parsing_error_callback(GtkCssProvider* self, GtkCssSection* p0,const GError* p1,void* data)
+void CssProvider_signal_parsing_error_callback(GtkCssProvider* self, GtkCssSection* p0,const GError* p1,void* data)
 {
   using namespace Gtk;
   typedef sigc::slot<void(const Glib::RefPtr<const CssSection>&,const Glib::Error&)> SlotType;
@@ -73,7 +73,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo CssProvider_signal_parsing_error_info =
+const Glib::SignalProxyInfo CssProvider_signal_parsing_error_info =
 {
   "parsing-error",
   (GCallback) &CssProvider_signal_parsing_error_callback,
@@ -94,7 +94,7 @@ Gtk::CssParserError::CssParserError(GError* gobject)
   Glib::Error (gobject)
 {}
 
-Gtk::CssParserError::Code Gtk::CssParserError::code() const
+auto Gtk::CssParserError::code() const -> Gtk::CssParserError::Code
 {
   return static_cast<Code>(Glib::Error::code());
 }
@@ -105,7 +105,7 @@ void Gtk::CssParserError::throw_func(GError* gobject)
 }
 
 // static
-GType Glib::Value<Gtk::CssParserError::Code>::value_type()
+auto Glib::Value<Gtk::CssParserError::Code>::value_type() -> GType
 {
   return gtk_css_parser_error_get_type();
 }
@@ -121,7 +121,7 @@ Gtk::CssParserWarning::CssParserWarning(GError* gobject)
   Glib::Error (gobject)
 {}
 
-Gtk::CssParserWarning::Code Gtk::CssParserWarning::code() const
+auto Gtk::CssParserWarning::code() const -> Gtk::CssParserWarning::Code
 {
   return static_cast<Code>(Glib::Error::code());
 }
@@ -132,7 +132,7 @@ void Gtk::CssParserWarning::throw_func(GError* gobject)
 }
 
 // static
-GType Glib::Value<Gtk::CssParserWarning::Code>::value_type()
+auto Glib::Value<Gtk::CssParserWarning::Code>::value_type() -> GType
 {
   return gtk_css_parser_warning_get_type();
 }
@@ -141,7 +141,7 @@ GType Glib::Value<Gtk::CssParserWarning::Code>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::CssProvider> wrap(GtkCssProvider* object, bool take_copy)
+auto wrap(GtkCssProvider* object, bool take_copy) -> Glib::RefPtr<Gtk::CssProvider>
 {
   return Glib::make_refptr_for_instance<Gtk::CssProvider>( dynamic_cast<Gtk::CssProvider*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -156,7 +156,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& CssProvider_Class::init()
+auto CssProvider_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -188,7 +188,7 @@ void CssProvider_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* CssProvider_Class::wrap_new(GObject* object)
+auto CssProvider_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new CssProvider((GtkCssProvider*)object);
 }
@@ -196,7 +196,7 @@ Glib::ObjectBase* CssProvider_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkCssProvider* CssProvider::gobj_copy()
+auto CssProvider::gobj_copy() -> GtkCssProvider*
 {
   reference();
   return gobj();
@@ -220,7 +220,7 @@ CssProvider::CssProvider(CssProvider&& src) noexcept
   , StyleProvider(std::move(src))
 {}
 
-CssProvider& CssProvider::operator=(CssProvider&& src) noexcept
+auto CssProvider::operator=(CssProvider&& src) noexcept -> CssProvider&
 {
   Glib::Object::operator=(std::move(src));
   StyleProvider::operator=(std::move(src));
@@ -234,13 +234,13 @@ CssProvider::~CssProvider() noexcept
 
 CssProvider::CppClassType CssProvider::cssprovider_class_; // initialize static member
 
-GType CssProvider::get_type()
+auto CssProvider::get_type() -> GType
 {
   return cssprovider_class_.init().get_type();
 }
 
 
-GType CssProvider::get_base_type()
+auto CssProvider::get_base_type() -> GType
 {
   return gtk_css_provider_get_type();
 }
@@ -256,12 +256,12 @@ CssProvider::CssProvider()
 
 }
 
-Glib::RefPtr<CssProvider> CssProvider::create()
+auto CssProvider::create() -> Glib::RefPtr<CssProvider>
 {
   return Glib::make_refptr_for_instance<CssProvider>( new CssProvider() );
 }
 
-Glib::ustring CssProvider::to_string() const
+auto CssProvider::to_string() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_css_provider_to_string(const_cast<GtkCssProvider*>(gobj())));
 }
@@ -287,7 +287,7 @@ void CssProvider::load_named(const Glib::ustring& name, const Glib::ustring& var
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<const CssSection>&, const Glib::Error&)> CssProvider::signal_parsing_error()
+auto CssProvider::signal_parsing_error() -> Glib::SignalProxy<void(const Glib::RefPtr<const CssSection>&, const Glib::Error&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<const CssSection>&, const Glib::Error&) >(this, &CssProvider_signal_parsing_error_info);
 }

@@ -28,7 +28,7 @@ ToplevelSurfaceImpl::ToplevelSurfaceImpl(ToplevelSurfaceImpl&& src) noexcept
   Surface(std::move(src))
 {}
 
-ToplevelSurfaceImpl& ToplevelSurfaceImpl::operator=(ToplevelSurfaceImpl&& src) noexcept
+auto ToplevelSurfaceImpl::operator=(ToplevelSurfaceImpl&& src) noexcept -> ToplevelSurfaceImpl&
 {
   Toplevel::operator=(std::move(src));
   Surface::operator=(std::move(src));

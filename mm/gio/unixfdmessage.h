@@ -68,7 +68,7 @@ public:
 
   // noncopyable
   UnixFDMessage(const UnixFDMessage&) = delete;
-  UnixFDMessage& operator=(const UnixFDMessage&) = delete;
+  auto operator=(const UnixFDMessage&) -> UnixFDMessage& = delete;
 
 private:  friend class UnixFDMessage_Class;
   static CppClassType unixfdmessage_class_;
@@ -82,28 +82,28 @@ protected:
 public:
 
   UnixFDMessage(UnixFDMessage&& src) noexcept;
-  UnixFDMessage& operator=(UnixFDMessage&& src) noexcept;
+  auto operator=(UnixFDMessage&& src) noexcept -> UnixFDMessage&;
 
   ~UnixFDMessage() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GUnixFDMessage*       gobj()       { return reinterpret_cast<GUnixFDMessage*>(gobject_); }
+  auto       gobj() -> GUnixFDMessage*       { return reinterpret_cast<GUnixFDMessage*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GUnixFDMessage* gobj() const { return reinterpret_cast<GUnixFDMessage*>(gobject_); }
+  auto gobj() const -> const GUnixFDMessage* { return reinterpret_cast<GUnixFDMessage*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GUnixFDMessage* gobj_copy();
+  auto gobj_copy() -> GUnixFDMessage*;
 
 private:
 
@@ -128,7 +128,7 @@ public:
    */
 
 
-  static Glib::RefPtr<UnixFDMessage> create();
+  static auto create() -> Glib::RefPtr<UnixFDMessage>;
 
 
   /** Creates a new UnixFDMessage containing @a list.
@@ -140,7 +140,7 @@ public:
    */
 
 
-  static Glib::RefPtr<UnixFDMessage> create(const Glib::RefPtr<UnixFDList>& fd_list);
+  static auto create(const Glib::RefPtr<UnixFDList>& fd_list) -> Glib::RefPtr<UnixFDMessage>;
 
 
   /** Gets the UnixFDList contained in @a message.  This function does not
@@ -151,7 +151,7 @@ public:
    *
    * @return The UnixFDList from @a message.
    */
-  Glib::RefPtr<UnixFDList> get_fd_list();
+  auto get_fd_list() -> Glib::RefPtr<UnixFDList>;
 
   /** Gets the UnixFDList contained in @a message.  This function does not
    * return a reference to the caller, but the returned list is valid for
@@ -161,7 +161,7 @@ public:
    *
    * @return The UnixFDList from @a message.
    */
-  Glib::RefPtr<const UnixFDList> get_fd_list() const;
+  auto get_fd_list() const -> Glib::RefPtr<const UnixFDList>;
 
 
   /** Adds a file descriptor to @a message.
@@ -180,7 +180,7 @@ public:
    *
    * @throws Gio::Error
    */
-  bool append_fd(int fd);
+  auto append_fd(int fd) -> bool;
 
   /** Returns the array of file descriptors that is contained in this object.
    *
@@ -194,7 +194,7 @@ public:
    *
    * @newin{2,28}
    */
-  std::vector<int> steal_fds();
+  auto steal_fds() -> std::vector<int>;
 
 
   /** The GUnixFDList object to send with the message.
@@ -202,7 +202,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<UnixFDList> > property_fd_list() const;
+  auto property_fd_list() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<UnixFDList> >;
 
 
 public:
@@ -232,7 +232,7 @@ namespace Glib
    * @relates Gio::UnixFDMessage
    */
   GIOMM_API
-  Glib::RefPtr<Gio::UnixFDMessage> wrap(GUnixFDMessage* object, bool take_copy = false);
+  auto wrap(GUnixFDMessage* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixFDMessage>;
 }
 
 

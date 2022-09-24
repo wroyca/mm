@@ -64,7 +64,7 @@ public:
 
   // noncopyable
   TextChildAnchor(const TextChildAnchor&) = delete;
-  TextChildAnchor& operator=(const TextChildAnchor&) = delete;
+  auto operator=(const TextChildAnchor&) -> TextChildAnchor& = delete;
 
 private:  friend class TextChildAnchor_Class;
   static CppClassType textchildanchor_class_;
@@ -78,28 +78,28 @@ protected:
 public:
 
   TextChildAnchor(TextChildAnchor&& src) noexcept;
-  TextChildAnchor& operator=(TextChildAnchor&& src) noexcept;
+  auto operator=(TextChildAnchor&& src) noexcept -> TextChildAnchor&;
 
   ~TextChildAnchor() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkTextChildAnchor*       gobj()       { return reinterpret_cast<GtkTextChildAnchor*>(gobject_); }
+  auto       gobj() -> GtkTextChildAnchor*       { return reinterpret_cast<GtkTextChildAnchor*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkTextChildAnchor* gobj() const { return reinterpret_cast<GtkTextChildAnchor*>(gobject_); }
+  auto gobj() const -> const GtkTextChildAnchor* { return reinterpret_cast<GtkTextChildAnchor*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkTextChildAnchor* gobj_copy();
+  auto gobj_copy() -> GtkTextChildAnchor*;
 
 private:
 
@@ -108,7 +108,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<TextChildAnchor> create();
+  static auto create() -> Glib::RefPtr<TextChildAnchor>;
 
 
   // gtk_text_child_anchor_new_with_replacement() does more than call g_object_new().
@@ -125,19 +125,19 @@ public:
    *
    * @return A new `Gtk::TextChildAnchor`.
    */
-  static Glib::RefPtr<TextChildAnchor> create(const Glib::ustring& replacement_character);
+  static auto create(const Glib::ustring& replacement_character) -> Glib::RefPtr<TextChildAnchor>;
 
   /** Gets a list of all widgets anchored at this child anchor.
    *
    * @return A vector of widgets anchored at this %TextChildAnchor.
    */
-  std::vector<Widget*> get_widgets();
+  auto get_widgets() -> std::vector<Widget*>;
 
   /** Gets a list of all widgets anchored at this child anchor.
    *
    * @return A vector of widgets anchored at this %TextChildAnchor.
    */
-  std::vector<const Widget*> get_widgets() const;
+  auto get_widgets() const -> std::vector<const Widget*>;
 
 
   /** Determines whether a child anchor has been deleted from
@@ -151,7 +151,7 @@ public:
    *
    * @return <tt>true</tt> if the child anchor has been deleted from its buffer.
    */
-  bool get_deleted() const;
+  auto get_deleted() const -> bool;
 
 
 public:
@@ -181,7 +181,7 @@ namespace Glib
    * @relates Gtk::TextChildAnchor
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::TextChildAnchor> wrap(GtkTextChildAnchor* object, bool take_copy = false);
+  auto wrap(GtkTextChildAnchor* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TextChildAnchor>;
 }
 
 

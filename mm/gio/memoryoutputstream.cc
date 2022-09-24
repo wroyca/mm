@@ -47,7 +47,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::MemoryOutputStream> wrap(GMemoryOutputStream* object, bool take_copy)
+auto wrap(GMemoryOutputStream* object, bool take_copy) -> Glib::RefPtr<Gio::MemoryOutputStream>
 {
   return Glib::make_refptr_for_instance<Gio::MemoryOutputStream>( dynamic_cast<Gio::MemoryOutputStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -62,7 +62,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& MemoryOutputStream_Class::init()
+auto MemoryOutputStream_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -95,7 +95,7 @@ void MemoryOutputStream_Class::class_init_function(void* g_class, void* class_da
 }
 
 
-Glib::ObjectBase* MemoryOutputStream_Class::wrap_new(GObject* object)
+auto MemoryOutputStream_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new MemoryOutputStream((GMemoryOutputStream*)object);
 }
@@ -103,7 +103,7 @@ Glib::ObjectBase* MemoryOutputStream_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GMemoryOutputStream* MemoryOutputStream::gobj_copy()
+auto MemoryOutputStream::gobj_copy() -> GMemoryOutputStream*
 {
   reference();
   return gobj();
@@ -128,7 +128,7 @@ MemoryOutputStream::MemoryOutputStream(MemoryOutputStream&& src) noexcept
   , PollableOutputStream(std::move(src))
 {}
 
-MemoryOutputStream& MemoryOutputStream::operator=(MemoryOutputStream&& src) noexcept
+auto MemoryOutputStream::operator=(MemoryOutputStream&& src) noexcept -> MemoryOutputStream&
 {
   Gio::OutputStream::operator=(std::move(src));
   Seekable::operator=(std::move(src));
@@ -143,13 +143,13 @@ MemoryOutputStream::~MemoryOutputStream() noexcept
 
 MemoryOutputStream::CppClassType MemoryOutputStream::memoryoutputstream_class_; // initialize static member
 
-GType MemoryOutputStream::get_type()
+auto MemoryOutputStream::get_type() -> GType
 {
   return memoryoutputstream_class_.init().get_type();
 }
 
 
-GType MemoryOutputStream::get_base_type()
+auto MemoryOutputStream::get_base_type() -> GType
 {
   return g_memory_output_stream_get_type();
 }
@@ -165,42 +165,42 @@ MemoryOutputStream::MemoryOutputStream(void* data, gsize size, GReallocFunc real
 
 }
 
-Glib::RefPtr<MemoryOutputStream> MemoryOutputStream::create()
+auto MemoryOutputStream::create() -> Glib::RefPtr<MemoryOutputStream>
 {
   return Glib::make_refptr_for_instance<MemoryOutputStream>( new MemoryOutputStream() );
 }
 
-Glib::RefPtr<MemoryOutputStream> MemoryOutputStream::create(void* data, gsize size, GReallocFunc realloc_function, GDestroyNotify destroy_function)
+auto MemoryOutputStream::create(void* data, gsize size, GReallocFunc realloc_function, GDestroyNotify destroy_function) -> Glib::RefPtr<MemoryOutputStream>
 {
   return Glib::make_refptr_for_instance<MemoryOutputStream>( new MemoryOutputStream(data, size, realloc_function, destroy_function) );
 }
 
-void* MemoryOutputStream::get_data()
+auto MemoryOutputStream::get_data() -> void*
 {
   return g_memory_output_stream_get_data(gobj());
 }
 
-const void* MemoryOutputStream::get_data() const
+auto MemoryOutputStream::get_data() const -> const void*
 {
   return const_cast<MemoryOutputStream*>(this)->get_data();
 }
 
-void* MemoryOutputStream::steal_data()
+auto MemoryOutputStream::steal_data() -> void*
 {
   return g_memory_output_stream_steal_data(gobj());
 }
 
-gsize MemoryOutputStream::get_size() const
+auto MemoryOutputStream::get_size() const -> gsize
 {
   return g_memory_output_stream_get_size(const_cast<GMemoryOutputStream*>(gobj()));
 }
 
-gsize MemoryOutputStream::get_data_size() const
+auto MemoryOutputStream::get_data_size() const -> gsize
 {
   return g_memory_output_stream_get_data_size(const_cast<GMemoryOutputStream*>(gobj()));
 }
 
-Glib::RefPtr<Glib::Bytes> MemoryOutputStream::steal_as_bytes()
+auto MemoryOutputStream::steal_as_bytes() -> Glib::RefPtr<Glib::Bytes>
 {
   return Glib::wrap(g_memory_output_stream_steal_as_bytes(gobj()));
 }
@@ -210,7 +210,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<void*>::value,
   "Type void* cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< void* > MemoryOutputStream::property_data() const
+auto MemoryOutputStream::property_data() const -> Glib::PropertyProxy_ReadOnly< void* >
 {
   return Glib::PropertyProxy_ReadOnly< void* >(this, "data");
 }
@@ -219,7 +219,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<gulong>::value,
   "Type gulong cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< gulong > MemoryOutputStream::property_data_size() const
+auto MemoryOutputStream::property_data_size() const -> Glib::PropertyProxy_ReadOnly< gulong >
 {
   return Glib::PropertyProxy_ReadOnly< gulong >(this, "data-size");
 }
@@ -228,7 +228,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<gulong>::value,
   "Type gulong cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< gulong > MemoryOutputStream::property_size() const
+auto MemoryOutputStream::property_size() const -> Glib::PropertyProxy_ReadOnly< gulong >
 {
   return Glib::PropertyProxy_ReadOnly< gulong >(this, "size");
 }

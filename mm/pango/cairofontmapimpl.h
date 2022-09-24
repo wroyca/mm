@@ -48,12 +48,12 @@ protected:
 
   // noncopyable
   CairoFontMapImpl(const CairoFontMapImpl&) = delete;
-  CairoFontMapImpl& operator=(const CairoFontMapImpl&) = delete;
+  auto operator=(const CairoFontMapImpl&) -> CairoFontMapImpl& = delete;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
 public:
   CairoFontMapImpl(CairoFontMapImpl&& src) noexcept;
-  CairoFontMapImpl& operator=(CairoFontMapImpl&& src) noexcept;
+  auto operator=(CairoFontMapImpl&& src) noexcept -> CairoFontMapImpl&;
 
   ~CairoFontMapImpl() noexcept override;
 };

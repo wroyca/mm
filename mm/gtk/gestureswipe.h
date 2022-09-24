@@ -69,7 +69,7 @@ public:
 
   // noncopyable
   GestureSwipe(const GestureSwipe&) = delete;
-  GestureSwipe& operator=(const GestureSwipe&) = delete;
+  auto operator=(const GestureSwipe&) -> GestureSwipe& = delete;
 
 private:  friend class GestureSwipe_Class;
   static CppClassType gestureswipe_class_;
@@ -83,28 +83,28 @@ protected:
 public:
 
   GestureSwipe(GestureSwipe&& src) noexcept;
-  GestureSwipe& operator=(GestureSwipe&& src) noexcept;
+  auto operator=(GestureSwipe&& src) noexcept -> GestureSwipe&;
 
   ~GestureSwipe() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkGestureSwipe*       gobj()       { return reinterpret_cast<GtkGestureSwipe*>(gobject_); }
+  auto       gobj() -> GtkGestureSwipe*       { return reinterpret_cast<GtkGestureSwipe*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkGestureSwipe* gobj() const { return reinterpret_cast<GtkGestureSwipe*>(gobject_); }
+  auto gobj() const -> const GtkGestureSwipe* { return reinterpret_cast<GtkGestureSwipe*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkGestureSwipe* gobj_copy();
+  auto gobj_copy() -> GtkGestureSwipe*;
 
 private:
 
@@ -122,7 +122,7 @@ public:
    * @return A RefPtr to a new GestureSwipe.
    */
 
-  static Glib::RefPtr<GestureSwipe> create();
+  static auto create() -> Glib::RefPtr<GestureSwipe>;
 
 
   /** Gets the current velocity.
@@ -135,7 +135,7 @@ public:
    * @param velocity_y Return value for the velocity in the Y axis, in pixels/sec.
    * @return Whether velocity could be calculated.
    */
-  bool get_velocity(double& velocity_x, double& velocity_y) const;
+  auto get_velocity(double& velocity_x, double& velocity_y) const -> bool;
 
   // no_default_handler because GtkGestureSwipeClass is private.
 
@@ -153,7 +153,7 @@ public:
    * @param velocity_y Velocity in the Y axis, in pixels/sec.
    */
 
-  Glib::SignalProxy<void(double, double)> signal_swipe();
+  auto signal_swipe() -> Glib::SignalProxy<void(double, double)>;
 
 
   // GestureSwipe has no properties
@@ -186,7 +186,7 @@ namespace Glib
    * @relates Gtk::GestureSwipe
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::GestureSwipe> wrap(GtkGestureSwipe* object, bool take_copy = false);
+  auto wrap(GtkGestureSwipe* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureSwipe>;
 }
 
 

@@ -86,7 +86,7 @@ public:
 
   // noncopyable
   Notification(const Notification&) = delete;
-  Notification& operator=(const Notification&) = delete;
+  auto operator=(const Notification&) -> Notification& = delete;
 
 private:  friend class Notification_Class;
   static CppClassType notification_class_;
@@ -100,28 +100,28 @@ protected:
 public:
 
   Notification(Notification&& src) noexcept;
-  Notification& operator=(Notification&& src) noexcept;
+  auto operator=(Notification&& src) noexcept -> Notification&;
 
   ~Notification() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GNotification*       gobj()       { return reinterpret_cast<GNotification*>(gobject_); }
+  auto       gobj() -> GNotification*       { return reinterpret_cast<GNotification*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GNotification* gobj() const { return reinterpret_cast<GNotification*>(gobject_); }
+  auto gobj() const -> const GNotification* { return reinterpret_cast<GNotification*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GNotification* gobj_copy();
+  auto gobj_copy() -> GNotification*;
 
 private:
 
@@ -186,7 +186,7 @@ public:
    */
 
 
-  static Glib::RefPtr<Notification> create(const Glib::ustring& title);
+  static auto create(const Glib::ustring& title) -> Glib::RefPtr<Notification>;
 
 
   /** Sets the title of @a notification to @a title.
@@ -380,7 +380,7 @@ template <>
 class GIOMM_API Value<Gio::Notification::Priority> : public Glib::Value_Enum<Gio::Notification::Priority>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -398,7 +398,7 @@ namespace Glib
    * @relates Gio::Notification
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Notification> wrap(GNotification* object, bool take_copy = false);
+  auto wrap(GNotification* object, bool take_copy = false) -> Glib::RefPtr<Gio::Notification>;
 }
 
 

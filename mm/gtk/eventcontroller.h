@@ -106,7 +106,7 @@ template <>
 class GTKMM_API Value<Gtk::PropagationPhase> : public Glib::Value_Enum<Gtk::PropagationPhase>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -149,7 +149,7 @@ template <>
 class GTKMM_API Value<Gtk::PropagationLimit> : public Glib::Value_Enum<Gtk::PropagationLimit>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -183,7 +183,7 @@ public:
 
   // noncopyable
   EventController(const EventController&) = delete;
-  EventController& operator=(const EventController&) = delete;
+  auto operator=(const EventController&) -> EventController& = delete;
 
 private:  friend class EventController_Class;
   static CppClassType eventcontroller_class_;
@@ -197,28 +197,28 @@ protected:
 public:
 
   EventController(EventController&& src) noexcept;
-  EventController& operator=(EventController&& src) noexcept;
+  auto operator=(EventController&& src) noexcept -> EventController&;
 
   ~EventController() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkEventController*       gobj()       { return reinterpret_cast<GtkEventController*>(gobject_); }
+  auto       gobj() -> GtkEventController*       { return reinterpret_cast<GtkEventController*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkEventController* gobj() const { return reinterpret_cast<GtkEventController*>(gobject_); }
+  auto gobj() const -> const GtkEventController* { return reinterpret_cast<GtkEventController*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkEventController* gobj_copy();
+  auto gobj_copy() -> GtkEventController*;
 
 private:
 
@@ -237,13 +237,13 @@ public:
    *
    * @return A `Gtk::Widget`.
    */
-  Widget* get_widget();
+  auto get_widget() -> Widget*;
 
   /** Returns the `Gtk::Widget` this controller relates to.
    *
    * @return A `Gtk::Widget`.
    */
-  const Widget* get_widget() const;
+  auto get_widget() const -> const Widget*;
 
   /** Resets the @a controller to a clean state.
    */
@@ -253,7 +253,7 @@ public:
    *
    * @return The propagation phase.
    */
-  PropagationPhase get_propagation_phase() const;
+  auto get_propagation_phase() const -> PropagationPhase;
 
   /** Sets the propagation phase at which a controller handles events.
    *
@@ -268,7 +268,7 @@ public:
    *
    * @return The propagation limit.
    */
-  PropagationLimit get_propagation_limit() const;
+  auto get_propagation_limit() const -> PropagationLimit;
 
   /** Sets the event propagation limit on the event controller.
    *
@@ -284,7 +284,7 @@ public:
    *
    * @return The controller name.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
   /** Sets a name on the controller that can be used for debugging.
    *
@@ -300,7 +300,7 @@ public:
    * @return The event that is currently
    * handled by @a controller.
    */
-  Glib::RefPtr<const Gdk::Event> get_current_event() const;
+  auto get_current_event() const -> Glib::RefPtr<const Gdk::Event>;
 
   /** Returns the timestamp of the event that is currently being
    * handled by the controller.
@@ -309,7 +309,7 @@ public:
    *
    * @return Timestamp of the event is currently handled by @a controller.
    */
-  guint32 get_current_event_time() const;
+  auto get_current_event_time() const -> guint32;
 
   /** Returns the device of the event that is currently being
    * handled by the controller.
@@ -319,7 +319,7 @@ public:
    * @return Device of the event is
    * currently handled by @a controller.
    */
-  Glib::RefPtr<Gdk::Device> get_current_event_device();
+  auto get_current_event_device() -> Glib::RefPtr<Gdk::Device>;
 
   /** Returns the event that is currently being handled by the controller.
    *
@@ -328,7 +328,7 @@ public:
    * @return The event that is currently
    * handled by @a controller.
    */
-  Glib::RefPtr<const Gdk::Device> get_current_event_device() const;
+  auto get_current_event_device() const -> Glib::RefPtr<const Gdk::Device>;
 
   /** Returns the modifier state of the event that is currently being
    * handled by the controller.
@@ -337,14 +337,14 @@ public:
    *
    * @return Modifier state of the event is currently handled by @a controller.
    */
-  Gdk::ModifierType get_current_event_state() const;
+  auto get_current_event_state() const -> Gdk::ModifierType;
 
   /** The widget receiving the `Gdk::Events` that the controller will handle.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_widget() const;
+  auto property_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
   /** The propagation phase at which this controller will handle events.
@@ -354,7 +354,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< PropagationPhase > property_propagation_phase() ;
+  auto property_propagation_phase() -> Glib::PropertyProxy< PropagationPhase > ;
 
 /** The propagation phase at which this controller will handle events.
    *
@@ -363,7 +363,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< PropagationPhase > property_propagation_phase() const;
+  auto property_propagation_phase() const -> Glib::PropertyProxy_ReadOnly< PropagationPhase >;
 
   /** The limit for which events this controller will handle.
    *
@@ -372,7 +372,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< PropagationLimit > property_propagation_limit() ;
+  auto property_propagation_limit() -> Glib::PropertyProxy< PropagationLimit > ;
 
 /** The limit for which events this controller will handle.
    *
@@ -381,7 +381,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< PropagationLimit > property_propagation_limit() const;
+  auto property_propagation_limit() const -> Glib::PropertyProxy_ReadOnly< PropagationLimit >;
 
   /** The name for this controller, typically used for debugging purposes.
    *
@@ -390,7 +390,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_name() ;
+  auto property_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The name for this controller, typically used for debugging purposes.
    *
@@ -399,7 +399,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_name() const;
+  auto property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   // EventController has no signals
@@ -432,7 +432,7 @@ namespace Glib
    * @relates Gtk::EventController
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::EventController> wrap(GtkEventController* object, bool take_copy = false);
+  auto wrap(GtkEventController* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventController>;
 }
 
 

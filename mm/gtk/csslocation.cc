@@ -51,7 +51,7 @@ CssLocation::CssLocation(std::size_t bytes, std::size_t chars,
 namespace Glib
 {
 
-Gtk::CssLocation wrap(const GtkCssLocation* object)
+auto wrap(const GtkCssLocation* object) -> Gtk::CssLocation
 {
   return Gtk::CssLocation(object);
 }
@@ -67,7 +67,7 @@ namespace Gtk
 {
 
 
-std::size_t CssLocation::get_bytes() const
+auto CssLocation::get_bytes() const -> std::size_t
 {
   return gobj()->bytes;
 }
@@ -77,7 +77,7 @@ void CssLocation::set_bytes(const std::size_t& value)
   gobj()->bytes = value;
 }
 
-std::size_t CssLocation::get_chars() const
+auto CssLocation::get_chars() const -> std::size_t
 {
   return gobj()->chars;
 }
@@ -87,7 +87,7 @@ void CssLocation::set_chars(const std::size_t& value)
   gobj()->chars = value;
 }
 
-std::size_t CssLocation::get_lines() const
+auto CssLocation::get_lines() const -> std::size_t
 {
   return gobj()->lines;
 }
@@ -97,7 +97,7 @@ void CssLocation::set_lines(const std::size_t& value)
   gobj()->lines = value;
 }
 
-std::size_t CssLocation::get_line_bytes() const
+auto CssLocation::get_line_bytes() const -> std::size_t
 {
   return gobj()->line_bytes;
 }
@@ -107,7 +107,7 @@ void CssLocation::set_line_bytes(const std::size_t& value)
   gobj()->line_bytes = value;
 }
 
-std::size_t CssLocation::get_line_chars() const
+auto CssLocation::get_line_chars() const -> std::size_t
 {
   return gobj()->line_chars;
 }

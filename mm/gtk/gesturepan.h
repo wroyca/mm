@@ -79,7 +79,7 @@ template <>
 class GTKMM_API Value<Gtk::PanDirection> : public Glib::Value_Enum<Gtk::PanDirection>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -123,7 +123,7 @@ public:
 
   // noncopyable
   GesturePan(const GesturePan&) = delete;
-  GesturePan& operator=(const GesturePan&) = delete;
+  auto operator=(const GesturePan&) -> GesturePan& = delete;
 
 private:  friend class GesturePan_Class;
   static CppClassType gesturepan_class_;
@@ -137,28 +137,28 @@ protected:
 public:
 
   GesturePan(GesturePan&& src) noexcept;
-  GesturePan& operator=(GesturePan&& src) noexcept;
+  auto operator=(GesturePan&& src) noexcept -> GesturePan&;
 
   ~GesturePan() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkGesturePan*       gobj()       { return reinterpret_cast<GtkGesturePan*>(gobject_); }
+  auto       gobj() -> GtkGesturePan*       { return reinterpret_cast<GtkGesturePan*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkGesturePan* gobj() const { return reinterpret_cast<GtkGesturePan*>(gobject_); }
+  auto gobj() const -> const GtkGesturePan* { return reinterpret_cast<GtkGesturePan*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkGesturePan* gobj_copy();
+  auto gobj_copy() -> GtkGesturePan*;
 
 private:
 
@@ -183,14 +183,14 @@ public:
    * @return A RefPtr to a new GesturePan.
    */
 
-  static Glib::RefPtr<GesturePan> create(Orientation orientation);
+  static auto create(Orientation orientation) -> Glib::RefPtr<GesturePan>;
 
 
   /** Returns the orientation of the pan gestures that this @a gesture expects.
    *
    * @return The expected orientation for pan gestures.
    */
-  Orientation get_orientation() const;
+  auto get_orientation() const -> Orientation;
 
   /** Sets the orientation to be expected on pan gestures.
    *
@@ -212,7 +212,7 @@ public:
    * @param offset Offset along the gesture orientation.
    */
 
-  Glib::SignalProxy<void(PanDirection, double)> signal_pan();
+  auto signal_pan() -> Glib::SignalProxy<void(PanDirection, double)>;
 
 
   /** The expected orientation of pan gestures.
@@ -222,7 +222,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Orientation > property_orientation() ;
+  auto property_orientation() -> Glib::PropertyProxy< Orientation > ;
 
 /** The expected orientation of pan gestures.
    *
@@ -231,7 +231,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Orientation > property_orientation() const;
+  auto property_orientation() const -> Glib::PropertyProxy_ReadOnly< Orientation >;
 
 
 public:
@@ -261,7 +261,7 @@ namespace Glib
    * @relates Gtk::GesturePan
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::GesturePan> wrap(GtkGesturePan* object, bool take_copy = false);
+  auto wrap(GtkGesturePan* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GesturePan>;
 }
 
 

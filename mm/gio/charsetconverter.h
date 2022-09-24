@@ -60,7 +60,7 @@ public:
 
   // noncopyable
   CharsetConverter(const CharsetConverter&) = delete;
-  CharsetConverter& operator=(const CharsetConverter&) = delete;
+  auto operator=(const CharsetConverter&) -> CharsetConverter& = delete;
 
 private:  friend class CharsetConverter_Class;
   static CppClassType charsetconverter_class_;
@@ -74,28 +74,28 @@ protected:
 public:
 
   CharsetConverter(CharsetConverter&& src) noexcept;
-  CharsetConverter& operator=(CharsetConverter&& src) noexcept;
+  auto operator=(CharsetConverter&& src) noexcept -> CharsetConverter&;
 
   ~CharsetConverter() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GCharsetConverter*       gobj()       { return reinterpret_cast<GCharsetConverter*>(gobject_); }
+  auto       gobj() -> GCharsetConverter*       { return reinterpret_cast<GCharsetConverter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GCharsetConverter* gobj() const { return reinterpret_cast<GCharsetConverter*>(gobject_); }
+  auto gobj() const -> const GCharsetConverter* { return reinterpret_cast<GCharsetConverter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GCharsetConverter* gobj_copy();
+  auto gobj_copy() -> GCharsetConverter*;
 
 private:
 
@@ -117,7 +117,7 @@ public:
    * @throw Gio::Error
    */
 
-  static Glib::RefPtr<CharsetConverter> create(const Glib::ustring& to_charset, const Glib::ustring& from_charset);
+  static auto create(const Glib::ustring& to_charset, const Glib::ustring& from_charset) -> Glib::RefPtr<CharsetConverter>;
 
 
   /** Sets the CharsetConverter::property_use_fallback() property.
@@ -134,7 +134,7 @@ public:
    *
    * @return <tt>true</tt> if fallbacks are used by @a converter.
    */
-  bool get_use_fallback() const;
+  auto get_use_fallback() const -> bool;
 
   /** Gets the number of fallbacks that @a converter has applied so far.
    *
@@ -142,7 +142,7 @@ public:
    *
    * @return The number of fallbacks that @a converter has applied.
    */
-  guint get_num_fallbacks() const;
+  auto get_num_fallbacks() const -> guint;
 
   /** The character encoding to convert from.
    *
@@ -151,7 +151,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_from_charset() const;
+  auto property_from_charset() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The character encoding to convert to.
@@ -161,7 +161,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_to_charset() const;
+  auto property_to_charset() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** Use fallback (of form \\<hexval>) for invalid bytes.
@@ -171,7 +171,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_use_fallback() ;
+  auto property_use_fallback() -> Glib::PropertyProxy< bool > ;
 
 /** Use fallback (of form \\<hexval>) for invalid bytes.
    *
@@ -180,7 +180,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_fallback() const;
+  auto property_use_fallback() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -210,7 +210,7 @@ namespace Glib
    * @relates Gio::CharsetConverter
    */
   GIOMM_API
-  Glib::RefPtr<Gio::CharsetConverter> wrap(GCharsetConverter* object, bool take_copy = false);
+  auto wrap(GCharsetConverter* object, bool take_copy = false) -> Glib::RefPtr<Gio::CharsetConverter>;
 }
 
 

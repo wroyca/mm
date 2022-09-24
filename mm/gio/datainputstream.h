@@ -62,7 +62,7 @@ public:
 
   // noncopyable
   DataInputStream(const DataInputStream&) = delete;
-  DataInputStream& operator=(const DataInputStream&) = delete;
+  auto operator=(const DataInputStream&) -> DataInputStream& = delete;
 
 private:  friend class DataInputStream_Class;
   static CppClassType datainputstream_class_;
@@ -76,28 +76,28 @@ protected:
 public:
 
   DataInputStream(DataInputStream&& src) noexcept;
-  DataInputStream& operator=(DataInputStream&& src) noexcept;
+  auto operator=(DataInputStream&& src) noexcept -> DataInputStream&;
 
   ~DataInputStream() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDataInputStream*       gobj()       { return reinterpret_cast<GDataInputStream*>(gobject_); }
+  auto       gobj() -> GDataInputStream*       { return reinterpret_cast<GDataInputStream*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDataInputStream* gobj() const { return reinterpret_cast<GDataInputStream*>(gobject_); }
+  auto gobj() const -> const GDataInputStream* { return reinterpret_cast<GDataInputStream*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDataInputStream* gobj_copy();
+  auto gobj_copy() -> GDataInputStream*;
 
 private:
 
@@ -109,7 +109,7 @@ protected:
 public:
 
 
-  static Glib::RefPtr<DataInputStream> create(const Glib::RefPtr<InputStream>& base_stream);
+  static auto create(const Glib::RefPtr<InputStream>& base_stream) -> Glib::RefPtr<DataInputStream>;
 
 
   /** This function sets the byte order for the given @a stream. All subsequent
@@ -123,7 +123,7 @@ public:
    *
    * @return The @a stream's current DataStreamByteOrder.
    */
-  DataStreamByteOrder get_byte_order() const;
+  auto get_byte_order() const -> DataStreamByteOrder;
 
   /** Sets the newline type for the @a stream.
    *
@@ -139,7 +139,7 @@ public:
    *
    * @return DataStreamNewlineType for the given @a stream.
    */
-  DataStreamNewlineType get_newline_type() const;
+  auto get_newline_type() const -> DataStreamNewlineType;
 
 
   /** Reads an unsigned 8-bit/1-byte value from @a stream.
@@ -150,10 +150,10 @@ public:
    *
    * @throws Glib::Error
    */
-  guchar read_byte(const Glib::RefPtr<Cancellable>& cancellable);
+  auto read_byte(const Glib::RefPtr<Cancellable>& cancellable) -> guchar;
 
   /// A read_byte() convenience overload.
-  guchar read_byte();
+  auto read_byte() -> guchar;
 
 
   /** Reads a 16-bit/2-byte value from @a stream.
@@ -167,10 +167,10 @@ public:
    *
    * @throws Glib::Error
    */
-  gint16 read_int16(const Glib::RefPtr<Cancellable>& cancellable);
+  auto read_int16(const Glib::RefPtr<Cancellable>& cancellable) -> gint16;
 
   /// A read_int16() convenience overload.
-  gint16 read_int16();
+  auto read_int16() -> gint16;
 
 
   /** Reads an unsigned 16-bit/2-byte value from @a stream.
@@ -184,10 +184,10 @@ public:
    *
    * @throws Glib::Error
    */
-  guint16 read_uint16(const Glib::RefPtr<Cancellable>& cancellable);
+  auto read_uint16(const Glib::RefPtr<Cancellable>& cancellable) -> guint16;
 
   /// A read_uint16() convenience overload.
-  guint16 read_uint16();
+  auto read_uint16() -> guint16;
 
 
   /** Reads a signed 32-bit/4-byte value from @a stream.
@@ -205,10 +205,10 @@ public:
    *
    * @throws Glib::Error
    */
-  gint32 read_int32(const Glib::RefPtr<Cancellable>& cancellable);
+  auto read_int32(const Glib::RefPtr<Cancellable>& cancellable) -> gint32;
 
   /// A read_int32() convenience overload.
-  gint32 read_int32();
+  auto read_int32() -> gint32;
 
 
   /** Reads an unsigned 32-bit/4-byte value from @a stream.
@@ -226,10 +226,10 @@ public:
    *
    * @throws Glib::Error
    */
-  guint32 read_uint32(const Glib::RefPtr<Cancellable>& cancellable);
+  auto read_uint32(const Glib::RefPtr<Cancellable>& cancellable) -> guint32;
 
   /// A read_uint32() convenience overload.
-  guint32 read_uint32();
+  auto read_uint32() -> guint32;
 
 
   /** Reads a 64-bit/8-byte value from @a stream.
@@ -247,10 +247,10 @@ public:
    *
    * @throws Glib::Error
    */
-  gint64 read_int64(const Glib::RefPtr<Cancellable>& cancellable);
+  auto read_int64(const Glib::RefPtr<Cancellable>& cancellable) -> gint64;
 
   /// A read_int64() convenience overload.
-  gint64 read_int64();
+  auto read_int64() -> gint64;
 
 
   /** Reads an unsigned 64-bit/8-byte value from @a stream.
@@ -268,10 +268,10 @@ public:
    *
    * @throws Glib::Error
    */
-  guint64 read_uint64(const Glib::RefPtr<Cancellable>& cancellable);
+  auto read_uint64(const Glib::RefPtr<Cancellable>& cancellable) -> guint64;
 
   /// A read_uint64() convenience overload.
-  guint64 read_uint64();
+  auto read_uint64() -> guint64;
 
   //Note that we return a bool because we can't use std::string to distinguish between an empty string and a nullptr.
 
@@ -285,7 +285,7 @@ public:
    * @param cancellable A cancellable object.
    * @result true if the read succeeded without error.
    */
-  bool read_line(std::string& line, const Glib::RefPtr<Cancellable>& cancellable);
+  auto read_line(std::string& line, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
 
   /** A non-cancellable version of read_line().
@@ -293,7 +293,7 @@ public:
    * @param[out] line A string to fill with the read data (without the newlines).
    * @result true if the read succeeded without error.
    */
-  bool read_line(std::string& line);
+  auto read_line(std::string& line) -> bool;
 
 
   /** Reads a UTF-8 encoded line from the data input stream.
@@ -341,7 +341,7 @@ public:
    * @param[out] data A string to fill with the read data.
    * @result true if the read succeeded without error.
    */
-  bool read_line_finish(const Glib::RefPtr<AsyncResult>& result, std::string& data);
+  auto read_line_finish(const Glib::RefPtr<AsyncResult>& result, std::string& data) -> bool;
 
 
   /** Finish an asynchronous call started by read_line_async().
@@ -374,7 +374,7 @@ public:
    * @param cancellable A cancellable object.
    * @result true if the read succeeded without error.
    */
-  bool read_upto(std::string& data, const std::string& stop_chars, const Glib::RefPtr<Cancellable>& cancellable);
+  auto read_upto(std::string& data, const std::string& stop_chars, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
 
   /** A non-cancellable version of read_upto().
@@ -382,7 +382,7 @@ public:
    * @param stop_chars Characters to terminate the read.
    * @result true if the read succeeded without error.
    */
-  bool read_upto(std::string& data, const std::string& stop_chars);
+  auto read_upto(std::string& data, const std::string& stop_chars) -> bool;
 
   //TODO: Add a version that takes the stop_chars length, to allow a 0 in the middle?
 
@@ -410,7 +410,7 @@ public:
    * @param[out] data A string to fill with the read data.
    * @result true if the read succeeded without error.
    */
-  bool read_upto_finish(const Glib::RefPtr<AsyncResult>& result, std::string& data);
+  auto read_upto_finish(const Glib::RefPtr<AsyncResult>& result, std::string& data) -> bool;
 
 
   /** The :byte-order property determines the byte ordering that
@@ -422,7 +422,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< DataStreamByteOrder > property_byte_order() ;
+  auto property_byte_order() -> Glib::PropertyProxy< DataStreamByteOrder > ;
 
 /** The :byte-order property determines the byte ordering that
    * is used when reading multi-byte entities (such as integers)
@@ -433,7 +433,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< DataStreamByteOrder > property_byte_order() const;
+  auto property_byte_order() const -> Glib::PropertyProxy_ReadOnly< DataStreamByteOrder >;
 
   /** The :newline-type property determines what is considered
    * as a line ending when reading complete lines from the stream.
@@ -443,7 +443,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< DataStreamNewlineType > property_newline_type() ;
+  auto property_newline_type() -> Glib::PropertyProxy< DataStreamNewlineType > ;
 
 /** The :newline-type property determines what is considered
    * as a line ending when reading complete lines from the stream.
@@ -453,7 +453,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< DataStreamNewlineType > property_newline_type() const;
+  auto property_newline_type() const -> Glib::PropertyProxy_ReadOnly< DataStreamNewlineType >;
 
 
 public:
@@ -483,7 +483,7 @@ namespace Glib
    * @relates Gio::DataInputStream
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DataInputStream> wrap(GDataInputStream* object, bool take_copy = false);
+  auto wrap(GDataInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::DataInputStream>;
 }
 
 

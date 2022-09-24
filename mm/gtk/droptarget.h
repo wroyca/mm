@@ -87,7 +87,7 @@ public:
 
   // noncopyable
   DropTarget(const DropTarget&) = delete;
-  DropTarget& operator=(const DropTarget&) = delete;
+  auto operator=(const DropTarget&) -> DropTarget& = delete;
 
 private:  friend class DropTarget_Class;
   static CppClassType droptarget_class_;
@@ -101,28 +101,28 @@ protected:
 public:
 
   DropTarget(DropTarget&& src) noexcept;
-  DropTarget& operator=(DropTarget&& src) noexcept;
+  auto operator=(DropTarget&& src) noexcept -> DropTarget&;
 
   ~DropTarget() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkDropTarget*       gobj()       { return reinterpret_cast<GtkDropTarget*>(gobject_); }
+  auto       gobj() -> GtkDropTarget*       { return reinterpret_cast<GtkDropTarget*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkDropTarget* gobj() const { return reinterpret_cast<GtkDropTarget*>(gobject_); }
+  auto gobj() const -> const GtkDropTarget* { return reinterpret_cast<GtkDropTarget*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkDropTarget* gobj_copy();
+  auto gobj_copy() -> GtkDropTarget*;
 
 private:
 
@@ -141,7 +141,7 @@ public:
    * @param actions The supported actions.
    * @return The new `Gtk::DropTarget`.
    */
-  static Glib::RefPtr<DropTarget> create(GType type, Gdk::DragAction actions);
+  static auto create(GType type, Gdk::DragAction actions) -> Glib::RefPtr<DropTarget>;
 
   /** Sets the supported Types for this drop target.
    *
@@ -155,7 +155,7 @@ public:
    *
    * @return Vector of types.
    */
-  std::vector<GType> get_gtypes() const;
+  auto get_gtypes() const -> std::vector<GType>;
 
 
   /** Gets the data formats that this drop target accepts.
@@ -164,7 +164,7 @@ public:
    *
    * @return The supported data formats.
    */
-  Glib::RefPtr<Gdk::ContentFormats> get_formats();
+  auto get_formats() -> Glib::RefPtr<Gdk::ContentFormats>;
 
   /** Gets the data formats that this drop target accepts.
    *
@@ -172,7 +172,7 @@ public:
    *
    * @return The supported data formats.
    */
-  Glib::RefPtr<const Gdk::ContentFormats> get_formats() const;
+  auto get_formats() const -> Glib::RefPtr<const Gdk::ContentFormats>;
 
 
   /** Sets the actions that this drop target supports.
@@ -185,7 +185,7 @@ public:
    *
    * @return The actions that this drop target supports.
    */
-  Gdk::DragAction get_actions() const;
+  auto get_actions() const -> Gdk::DragAction;
 
 
   /** Sets whether data should be preloaded on hover.
@@ -198,7 +198,7 @@ public:
    *
    * @return <tt>true</tt> if drop data should be preloaded.
    */
-  bool get_preload() const;
+  auto get_preload() const -> bool;
 
 
 #ifndef GTKMM_DISABLE_DEPRECATED
@@ -213,7 +213,7 @@ public:
    *
    * @return The current drop.
    */
-  Glib::RefPtr<Gdk::Drop> get_drop();
+  auto get_drop() -> Glib::RefPtr<Gdk::Drop>;
 #endif // GTKMM_DISABLE_DEPRECATED
 
 
@@ -229,7 +229,7 @@ public:
    *
    * @return The current drop.
    */
-  Glib::RefPtr<const Gdk::Drop> get_drop() const;
+  auto get_drop() const -> Glib::RefPtr<const Gdk::Drop>;
 #endif // GTKMM_DISABLE_DEPRECATED
 
 
@@ -241,7 +241,7 @@ public:
    *
    * @return The current drop.
    */
-  Glib::RefPtr<Gdk::Drop> get_current_drop();
+  auto get_current_drop() -> Glib::RefPtr<Gdk::Drop>;
 
   /** Gets the currently handled drop operation.
    *
@@ -251,7 +251,7 @@ public:
    *
    * @return The current drop.
    */
-  Glib::RefPtr<const Gdk::Drop> get_current_drop() const;
+  auto get_current_drop() const -> Glib::RefPtr<const Gdk::Drop>;
 
 
   /** Gets the current drop data, as a `Glib::Value`.
@@ -259,7 +259,7 @@ public:
    * @return The current drop data.
    */
 
-  Glib::ValueBase get_value() const;
+  auto get_value() const -> Glib::ValueBase;
 
 
   /** Rejects the ongoing drop operation.
@@ -280,7 +280,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Gdk::DragAction > property_actions() ;
+  auto property_actions() -> Glib::PropertyProxy< Gdk::DragAction > ;
 
 /** The `Gdk::DragActions` that this drop target supports.
    *
@@ -289,7 +289,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Gdk::DragAction > property_actions() const;
+  auto property_actions() const -> Glib::PropertyProxy_ReadOnly< Gdk::DragAction >;
 
 
 #ifndef GTKMM_DISABLE_DEPRECATED
@@ -303,7 +303,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Drop> > property_drop() const;
+  auto property_drop() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Drop> >;
 
 
 #endif // GTKMM_DISABLE_DEPRECATED
@@ -315,7 +315,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Drop> > property_current_drop() const;
+  auto property_current_drop() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Drop> >;
 
 
   /** The `Gdk::ContentFormats` that determine the supported data formats.
@@ -323,7 +323,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::ContentFormats> > property_formats() const;
+  auto property_formats() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::ContentFormats> >;
 
 
   /** Whether the drop data should be preloaded when the pointer is only
@@ -350,7 +350,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_preload() ;
+  auto property_preload() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the drop data should be preloaded when the pointer is only
    * hovering over the widget but has not been released.
@@ -376,7 +376,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_preload() const;
+  auto property_preload() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The value for this drop operation.
    *
@@ -391,7 +391,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< GValue* > property_value() const;
+  auto property_value() const -> Glib::PropertyProxy_ReadOnly< GValue* >;
 
 
   // no_default_handler because GtkDropTargetClass is private.
@@ -427,7 +427,7 @@ public:
    * @return <tt>true</tt> if @a drop is accepted.
    */
 
-  Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drop>&)> signal_accept();
+  auto signal_accept() -> Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drop>&)>;
 
 
   /** Only one signal handler is called. If you connect a handler, it must be
@@ -449,7 +449,7 @@ public:
    * dropping is not supported at the current @a x, @a y location.
    */
 
-  Glib::SignalProxy<Gdk::DragAction(double, double)> signal_enter();
+  auto signal_enter() -> Glib::SignalProxy<Gdk::DragAction(double, double)>;
 
 
   /** Only one signal handler is called. If you connect a handler, it must be
@@ -469,7 +469,7 @@ public:
    * dropping is not supported at the current @a x, @a y location.
    */
 
-  Glib::SignalProxy<Gdk::DragAction(double, double)> signal_motion();
+  auto signal_motion() -> Glib::SignalProxy<Gdk::DragAction(double, double)>;
 
 
   /**
@@ -484,7 +484,7 @@ public:
    * signal_enter().
    */
 
-  Glib::SignalProxy<void()> signal_leave();
+  auto signal_leave() -> Glib::SignalProxy<void()>;
 
 
   /** Only one signal handler is called. If you connect a handler, it must be
@@ -512,7 +512,7 @@ public:
    * @return Whether the drop was accepted at the given pointer position.
    */
 
-  Glib::SignalProxy<bool(const Glib::ValueBase&, double, double)> signal_drop();
+  auto signal_drop() -> Glib::SignalProxy<bool(const Glib::ValueBase&, double, double)>;
 
 
 public:
@@ -542,7 +542,7 @@ namespace Glib
    * @relates Gtk::DropTarget
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::DropTarget> wrap(GtkDropTarget* object, bool take_copy = false);
+  auto wrap(GtkDropTarget* object, bool take_copy = false) -> Glib::RefPtr<Gtk::DropTarget>;
 }
 
 

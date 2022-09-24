@@ -40,7 +40,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::SocketAddress> wrap(GSocketAddress* object, bool take_copy)
+auto wrap(GSocketAddress* object, bool take_copy) -> Glib::RefPtr<Gio::SocketAddress>
 {
   return Glib::make_refptr_for_instance<Gio::SocketAddress>( dynamic_cast<Gio::SocketAddress*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -55,7 +55,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& SocketAddress_Class::init()
+auto SocketAddress_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -87,7 +87,7 @@ void SocketAddress_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* SocketAddress_Class::wrap_new(GObject* object)
+auto SocketAddress_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new SocketAddress((GSocketAddress*)object);
 }
@@ -95,7 +95,7 @@ Glib::ObjectBase* SocketAddress_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GSocketAddress* SocketAddress::gobj_copy()
+auto SocketAddress::gobj_copy() -> GSocketAddress*
 {
   reference();
   return gobj();
@@ -119,7 +119,7 @@ SocketAddress::SocketAddress(SocketAddress&& src) noexcept
   , SocketConnectable(std::move(src))
 {}
 
-SocketAddress& SocketAddress::operator=(SocketAddress&& src) noexcept
+auto SocketAddress::operator=(SocketAddress&& src) noexcept -> SocketAddress&
 {
   Glib::Object::operator=(std::move(src));
   SocketConnectable::operator=(std::move(src));
@@ -133,29 +133,29 @@ SocketAddress::~SocketAddress() noexcept
 
 SocketAddress::CppClassType SocketAddress::socketaddress_class_; // initialize static member
 
-GType SocketAddress::get_type()
+auto SocketAddress::get_type() -> GType
 {
   return socketaddress_class_.init().get_type();
 }
 
 
-GType SocketAddress::get_base_type()
+auto SocketAddress::get_base_type() -> GType
 {
   return g_socket_address_get_type();
 }
 
 
-Glib::RefPtr<SocketAddress> SocketAddress::create(gpointer native, gsize len)
+auto SocketAddress::create(gpointer native, gsize len) -> Glib::RefPtr<SocketAddress>
 {
   return Glib::wrap(g_socket_address_new_from_native(native, len));
 }
 
-SocketFamily SocketAddress::get_family() const
+auto SocketAddress::get_family() const -> SocketFamily
 {
   return static_cast<SocketFamily>(g_socket_address_get_family(const_cast<GSocketAddress*>(gobj())));
 }
 
-bool SocketAddress::to_native(gpointer dest, gsize destlen)
+auto SocketAddress::to_native(gpointer dest, gsize destlen) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_socket_address_to_native(gobj(), dest, destlen, &(gerror));
@@ -164,7 +164,7 @@ bool SocketAddress::to_native(gpointer dest, gsize destlen)
   return retvalue;
 }
 
-gssize SocketAddress::get_native_size() const
+auto SocketAddress::get_native_size() const -> gssize
 {
   return g_socket_address_get_native_size(const_cast<GSocketAddress*>(gobj()));
 }
@@ -174,7 +174,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<SocketFamily>::value
   "Type SocketFamily cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< SocketFamily > SocketAddress::property_family() const
+auto SocketAddress::property_family() const -> Glib::PropertyProxy_ReadOnly< SocketFamily >
 {
   return Glib::PropertyProxy_ReadOnly< SocketFamily >(this, "family");
 }

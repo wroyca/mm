@@ -83,7 +83,7 @@ public:
 
   // noncopyable
   Accessible(const Accessible&) = delete;
-  Accessible& operator=(const Accessible&) = delete;
+  auto operator=(const Accessible&) -> Accessible& = delete;
 
 private:
   friend class Accessible_Class;
@@ -117,7 +117,7 @@ protected:
 public:
 
   Accessible(Accessible&& src) noexcept;
-  Accessible& operator=(Accessible&& src) noexcept;
+  auto operator=(Accessible&& src) noexcept -> Accessible&;
 
   ~Accessible() noexcept override;
 
@@ -125,17 +125,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkAccessible*       gobj()       { return reinterpret_cast<GtkAccessible*>(gobject_); }
+  auto       gobj() -> GtkAccessible*       { return reinterpret_cast<GtkAccessible*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkAccessible* gobj() const { return reinterpret_cast<GtkAccessible*>(gobject_); }
+  auto gobj() const -> const GtkAccessible* { return reinterpret_cast<GtkAccessible*>(gobject_); }
 
 private:
 
@@ -778,7 +778,7 @@ public:
    *
    * @return A `Gtk::Accessible::Role`.
    */
-  Role get_accessible_role() const;
+  auto get_accessible_role() const -> Role;
 
 
   /** Updates an accessible state.
@@ -839,7 +839,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Role > property_accessible_role() ;
+  auto property_accessible_role() -> Glib::PropertyProxy< Role > ;
 
 /** The accessible role of the given `Gtk::Accessible` implementation.
    *
@@ -850,7 +850,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Role > property_accessible_role() const;
+  auto property_accessible_role() const -> Glib::PropertyProxy_ReadOnly< Role >;
 
 
 public:
@@ -877,7 +877,7 @@ template <>
 class GTKMM_API Value<Gtk::Accessible::Role> : public Glib::Value_Enum<Gtk::Accessible::Role>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -892,7 +892,7 @@ template <>
 class GTKMM_API Value<Gtk::Accessible::State> : public Glib::Value_Enum<Gtk::Accessible::State>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -907,7 +907,7 @@ template <>
 class GTKMM_API Value<Gtk::Accessible::Property> : public Glib::Value_Enum<Gtk::Accessible::Property>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -922,7 +922,7 @@ template <>
 class GTKMM_API Value<Gtk::Accessible::Relation> : public Glib::Value_Enum<Gtk::Accessible::Relation>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -940,7 +940,7 @@ namespace Glib
    * @relates Gtk::Accessible
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Accessible> wrap(GtkAccessible* object, bool take_copy = false);
+  auto wrap(GtkAccessible* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Accessible>;
 
 } // namespace Glib
 

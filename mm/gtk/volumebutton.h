@@ -62,11 +62,11 @@ class GTKMM_API VolumeButton : public ScaleButton
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   VolumeButton(VolumeButton&& src) noexcept;
-  VolumeButton& operator=(VolumeButton&& src) noexcept;
+  auto operator=(VolumeButton&& src) noexcept -> VolumeButton&;
 
   // noncopyable
   VolumeButton(const VolumeButton&) = delete;
-  VolumeButton& operator=(const VolumeButton&) = delete;
+  auto operator=(const VolumeButton&) -> VolumeButton& = delete;
 
   ~VolumeButton() noexcept override;
 
@@ -86,19 +86,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkVolumeButton*       gobj()       { return reinterpret_cast<GtkVolumeButton*>(gobject_); }
+  auto       gobj() -> GtkVolumeButton*       { return reinterpret_cast<GtkVolumeButton*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkVolumeButton* gobj() const { return reinterpret_cast<GtkVolumeButton*>(gobject_); }
+  auto gobj() const -> const GtkVolumeButton* { return reinterpret_cast<GtkVolumeButton*>(gobject_); }
 
 private:
 
@@ -121,7 +121,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_use_symbolic() ;
+  auto property_use_symbolic() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to use symbolic icons as the icons.
    *
@@ -133,7 +133,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_symbolic() const;
+  auto property_use_symbolic() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -163,7 +163,7 @@ namespace Glib
    * @relates Gtk::VolumeButton
    */
   GTKMM_API
-  Gtk::VolumeButton* wrap(GtkVolumeButton* object, bool take_copy = false);
+  auto wrap(GtkVolumeButton* object, bool take_copy = false) -> Gtk::VolumeButton*;
 } //namespace Glib
 
 

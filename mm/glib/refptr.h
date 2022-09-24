@@ -94,8 +94,8 @@ make_refptr(T_Arg... arg)
  * (not Gtk::Widget-derived) classes, such as derived Gtk::TreeModels.
  */
 template <class T_CppObject>
-RefPtr<T_CppObject>
-make_refptr_for_instance(T_CppObject* object)
+auto
+make_refptr_for_instance(T_CppObject* object) -> RefPtr<T_CppObject>
 {
   return RefPtr<T_CppObject>(object, &RefPtrDeleter<T_CppObject>);
 }

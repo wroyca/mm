@@ -35,36 +35,36 @@ namespace Glib
  * This just creates a std::unique_ptr that uses g_free() as its deleter.
  */
 template <typename T>
-std::unique_ptr<T[], decltype(&g_free)>
-make_unique_ptr_gfree(T* p)
+auto
+make_unique_ptr_gfree(T* p) -> std::unique_ptr<T[], decltype(&g_free)>
 {
   return std::unique_ptr<T[], decltype(&g_free)>(p, &g_free);
 }
 
 // Convert const gchar* to ustring, while treating NULL as empty string.
-inline Glib::ustring
-convert_const_gchar_ptr_to_ustring(const char* str)
+inline auto
+convert_const_gchar_ptr_to_ustring(const char* str) -> Glib::ustring
 {
   return (str) ? Glib::ustring(str) : Glib::ustring();
 }
 
 // Convert const gchar* to std::string, while treating NULL as empty string.
-inline std::string
-convert_const_gchar_ptr_to_stdstring(const char* str)
+inline auto
+convert_const_gchar_ptr_to_stdstring(const char* str) -> std::string
 {
   return (str) ? std::string(str) : std::string();
 }
 
 // Convert a non-const gchar* return value to ustring, freeing it too.
-inline Glib::ustring
-convert_return_gchar_ptr_to_ustring(char* str)
+inline auto
+convert_return_gchar_ptr_to_ustring(char* str) -> Glib::ustring
 {
   return (str) ? Glib::ustring(Glib::make_unique_ptr_gfree(str).get()) : Glib::ustring();
 }
 
 // Convert a non-const gchar* return value to std::string, freeing it too.
-inline std::string
-convert_return_gchar_ptr_to_stdstring(char* str)
+inline auto
+convert_return_gchar_ptr_to_stdstring(char* str) -> std::string
 {
   return (str) ? std::string(Glib::make_unique_ptr_gfree(str).get()) : std::string();
 }
@@ -73,8 +73,8 @@ convert_return_gchar_ptr_to_stdstring(char* str)
  * If the string is empty, a nullptr is returned.
  */
 template <typename T>
-inline const char*
-c_str_or_nullptr(const T& str)
+inline auto
+c_str_or_nullptr(const T& str) -> const char*
 {
   return str.empty() ? nullptr : str.c_str();
 }
@@ -109,7 +109,7 @@ destroy_notify_delete(void* data)
  * (argument-dependent lookup).
  */
 template <typename T_out, typename T_in>
-inline T_out function_pointer_cast(T_in in)
+inline auto function_pointer_cast(T_in in) -> T_out
 {
   // The double reinterpret_cast suppresses a warning from gcc8 with the
   // -Wcast-function-type option.

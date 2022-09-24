@@ -47,42 +47,42 @@ GlyphString::GlyphString(const Glib::ustring& item_text, const Glib::ustring& pa
    paragraph_text.bytes(), analysis.gobj(), gobj(), static_cast<PangoShapeFlags>(flags));
 }
 
-Rectangle GlyphString::get_ink_extents(const Glib::RefPtr<const Font>& font) const
+auto GlyphString::get_ink_extents(const Glib::RefPtr<const Font>& font) const -> Rectangle
 {
   Rectangle ink_rect;
   pango_glyph_string_extents(const_cast<PangoGlyphString*>(gobj()), const_cast<PangoFont*>(font->gobj()), ink_rect.gobj(), 0);
   return ink_rect;
 }
 
-Rectangle GlyphString::get_ink_extents(int start, int end, const Glib::RefPtr<const Font>& font) const
+auto GlyphString::get_ink_extents(int start, int end, const Glib::RefPtr<const Font>& font) const -> Rectangle
 {
   Rectangle ink_rect;
   pango_glyph_string_extents_range(const_cast<PangoGlyphString*>(gobj()), start, end, const_cast<PangoFont*>(font->gobj()), ink_rect.gobj(), 0);
   return ink_rect;
 }
 
-Rectangle GlyphString::get_logical_extents(const Glib::RefPtr<const Font>& font) const
+auto GlyphString::get_logical_extents(const Glib::RefPtr<const Font>& font) const -> Rectangle
 {
   Rectangle logical_rect;
   pango_glyph_string_extents(const_cast<PangoGlyphString*>(gobj()), const_cast<PangoFont*>(font->gobj()), 0, logical_rect.gobj());
   return logical_rect;
 }
 
-Rectangle GlyphString::get_logical_extents(int start, int end, const Glib::RefPtr<const Font>& font) const
+auto GlyphString::get_logical_extents(int start, int end, const Glib::RefPtr<const Font>& font) const -> Rectangle
 {
   Rectangle logical_rect;
   pango_glyph_string_extents_range(const_cast<PangoGlyphString*>(gobj()), start, end, const_cast<PangoFont*>(font->gobj()), 0, logical_rect.gobj());
   return logical_rect;
 }
 
-std::vector<int> GlyphString::get_logical_widths(const Glib::ustring& text, int embedding_level) const
+auto GlyphString::get_logical_widths(const Glib::ustring& text, int embedding_level) const -> std::vector<int>
 {
   int* logical_widths = g_new(int, text.length());
   pango_glyph_string_get_logical_widths(const_cast<PangoGlyphString*>(gobj()), text.c_str(), text.bytes(), embedding_level, logical_widths);
   return Glib::ArrayHandler<int>::array_to_vector(logical_widths, text.length(), Glib::OWNERSHIP_SHALLOW);
 }
 
-int GlyphString::index_to_x(const Glib::ustring& text, const Analysis& analysis, int index, bool trailing) const
+auto GlyphString::index_to_x(const Glib::ustring& text, const Analysis& analysis, int index, bool trailing) const -> int
 {
   int x_pos;
   pango_glyph_string_index_to_x(const_cast<PangoGlyphString*>(gobj()), const_cast<gchar*>(text.c_str()), text.bytes(), const_cast<PangoAnalysis*>(analysis.gobj()), index, static_cast<int>(trailing), &x_pos);
@@ -96,7 +96,7 @@ void GlyphString::x_to_index(const Glib::ustring& text, const Analysis& analysis
   trailing = trailing_temp;
 }
 
-std::vector<GlyphInfo> GlyphString::get_glyphs() const
+auto GlyphString::get_glyphs() const -> std::vector<GlyphInfo>
 {
   return Glib::ArrayHandler<GlyphInfo>::array_to_vector(reinterpret_cast<GlyphInfo*>(gobj()->glyphs), gobj()->num_glyphs, Glib::OWNERSHIP_NONE);
 }
@@ -111,7 +111,7 @@ namespace
 namespace Glib
 {
 
-Pango::GlyphString wrap(PangoGlyphString* object, bool take_copy)
+auto wrap(PangoGlyphString* object, bool take_copy) -> Pango::GlyphString
 {
   return Pango::GlyphString(object, take_copy);
 }
@@ -124,7 +124,7 @@ namespace Pango
 
 
 // static
-GType GlyphString::get_type()
+auto GlyphString::get_type() -> GType
 {
   return pango_glyph_string_get_type();
 }
@@ -146,7 +146,7 @@ GlyphString::GlyphString(GlyphString&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-GlyphString& GlyphString::operator=(GlyphString&& other) noexcept
+auto GlyphString::operator=(GlyphString&& other) noexcept -> GlyphString&
 {
   GlyphString temp (std::move(other));
   swap(temp);
@@ -161,7 +161,7 @@ GlyphString::GlyphString(PangoGlyphString* gobject, bool make_a_copy)
   gobject_ ((make_a_copy && gobject) ? pango_glyph_string_copy(gobject) : gobject)
 {}
 
-GlyphString& GlyphString::operator=(const GlyphString& other)
+auto GlyphString::operator=(const GlyphString& other) -> GlyphString&
 {
   GlyphString temp (other);
   swap(temp);
@@ -179,7 +179,7 @@ void GlyphString::swap(GlyphString& other) noexcept
   std::swap(gobject_, other.gobject_);
 }
 
-PangoGlyphString* GlyphString::gobj_copy() const
+auto GlyphString::gobj_copy() const -> PangoGlyphString*
 {
   return pango_glyph_string_copy(gobject_);
 }
@@ -200,7 +200,7 @@ void GlyphString::get_extents(int start, int end, const Glib::RefPtr<const Font>
   pango_glyph_string_extents_range(const_cast<PangoGlyphString*>(gobj()), start, end, const_cast<PangoFont*>(Glib::unwrap<Font>(font)), (ink_rect).gobj(), (logical_rect).gobj());
 }
 
-int GlyphString::get_width() const
+auto GlyphString::get_width() const -> int
 {
   return pango_glyph_string_get_width(const_cast<PangoGlyphString*>(gobj()));
 }

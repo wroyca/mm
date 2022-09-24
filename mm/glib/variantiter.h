@@ -54,20 +54,20 @@ class GLIBMM_API VariantIter
   explicit VariantIter(GVariantIter* castitem, bool make_a_copy = false);
 
   VariantIter(const VariantIter& src);
-  VariantIter& operator=(const VariantIter& src);
+  auto operator=(const VariantIter& src) -> VariantIter&;
 
   VariantIter(VariantIter&& other) noexcept;
-  VariantIter& operator=(VariantIter&& other) noexcept;
+  auto operator=(VariantIter&& other) noexcept -> VariantIter&;
 
   ~VariantIter() noexcept;
 
   void swap(VariantIter& other) noexcept;
 
-  GVariantIter*       gobj()       { return gobject_; }
-  const GVariantIter* gobj() const { return gobject_; }
+  auto       gobj() -> GVariantIter*       { return gobject_; }
+  auto gobj() const -> const GVariantIter* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  GVariantIter* gobj_copy() const;
+  auto gobj_copy() const -> GVariantIter*;
 
 protected:
   GVariantIter* gobject_;
@@ -91,7 +91,7 @@ public:
    * @param value A container Variant.
    * @return The number of items in @a value.
    */
-  gsize init(const VariantContainerBase& value);
+  auto init(const VariantContainerBase& value) -> gsize;
 
 
   /** Queries the number of child items in the container that we are
@@ -104,9 +104,9 @@ public:
    *
    * @return The number of children in the container.
    */
-  gsize get_n_children() const;
+  auto get_n_children() const -> gsize;
 
-  bool next_value(VariantBase& value);
+  auto next_value(VariantBase& value) -> bool;
 
 
   // Ignore varargs functions
@@ -141,7 +141,7 @@ namespace Glib
    * @relates Glib::VariantIter
    */
   GLIBMM_API
-  Glib::VariantIter wrap(GVariantIter* object, bool take_copy = false);
+  auto wrap(GVariantIter* object, bool take_copy = false) -> Glib::VariantIter;
 
 } // namespace Glib
 

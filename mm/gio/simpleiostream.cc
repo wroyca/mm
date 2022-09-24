@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::SimpleIOStream> wrap(GSimpleIOStream* object, bool take_copy)
+auto wrap(GSimpleIOStream* object, bool take_copy) -> Glib::RefPtr<Gio::SimpleIOStream>
 {
   return Glib::make_refptr_for_instance<Gio::SimpleIOStream>( dynamic_cast<Gio::SimpleIOStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& SimpleIOStream_Class::init()
+auto SimpleIOStream_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -79,7 +79,7 @@ void SimpleIOStream_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* SimpleIOStream_Class::wrap_new(GObject* object)
+auto SimpleIOStream_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new SimpleIOStream((GSimpleIOStream*)object);
 }
@@ -87,7 +87,7 @@ Glib::ObjectBase* SimpleIOStream_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GSimpleIOStream* SimpleIOStream::gobj_copy()
+auto SimpleIOStream::gobj_copy() -> GSimpleIOStream*
 {
   reference();
   return gobj();
@@ -110,7 +110,7 @@ SimpleIOStream::SimpleIOStream(SimpleIOStream&& src) noexcept
 : Gio::IOStream(std::move(src))
 {}
 
-SimpleIOStream& SimpleIOStream::operator=(SimpleIOStream&& src) noexcept
+auto SimpleIOStream::operator=(SimpleIOStream&& src) noexcept -> SimpleIOStream&
 {
   Gio::IOStream::operator=(std::move(src));
   return *this;
@@ -123,13 +123,13 @@ SimpleIOStream::~SimpleIOStream() noexcept
 
 SimpleIOStream::CppClassType SimpleIOStream::simpleiostream_class_; // initialize static member
 
-GType SimpleIOStream::get_type()
+auto SimpleIOStream::get_type() -> GType
 {
   return simpleiostream_class_.init().get_type();
 }
 
 
-GType SimpleIOStream::get_base_type()
+auto SimpleIOStream::get_base_type() -> GType
 {
   return g_simple_io_stream_get_type();
 }
@@ -145,7 +145,7 @@ SimpleIOStream::SimpleIOStream(const Glib::RefPtr<InputStream>& input_stream, co
 
 }
 
-Glib::RefPtr<SimpleIOStream> SimpleIOStream::create(const Glib::RefPtr<InputStream>& input_stream, const Glib::RefPtr<OutputStream>& output_stream)
+auto SimpleIOStream::create(const Glib::RefPtr<InputStream>& input_stream, const Glib::RefPtr<OutputStream>& output_stream) -> Glib::RefPtr<SimpleIOStream>
 {
   return Glib::make_refptr_for_instance<SimpleIOStream>( new SimpleIOStream(input_stream, output_stream) );
 }
@@ -155,7 +155,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<InputSt
   "Type Glib::RefPtr<InputStream> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InputStream> > SimpleIOStream::property_input_stream() const
+auto SimpleIOStream::property_input_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InputStream> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InputStream> >(this, "input-stream");
 }
@@ -164,7 +164,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<OutputS
   "Type Glib::RefPtr<OutputStream> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<OutputStream> > SimpleIOStream::property_output_stream() const
+auto SimpleIOStream::property_output_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<OutputStream> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<OutputStream> >(this, "output-stream");
 }

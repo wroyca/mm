@@ -25,11 +25,7 @@
 #include <mm/gtk/treeviewcolumn.h>
 #include <mm/gtk/treeview.h>
 
-namespace Gtk
-{
-
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace TreeView_Private
+namespace Gtk::TreeView_Private
 {
 
 GTKMM_API
@@ -39,13 +35,10 @@ GTKMM_API
 void SignalProxy_CellData_gtk_callback_destroy(void* data);
 
 GTKMM_API
-gboolean SignalProxy_RowSeparator_gtk_callback(GtkTreeModel* model, GtkTreeIter* iter, void* data);
+auto SignalProxy_RowSeparator_gtk_callback(GtkTreeModel* model, GtkTreeIter* iter, void* data) -> gboolean;
 GTKMM_API
 void SignalProxy_RowSeparator_gtk_callback_destroy(void* data);
 
-
-} /* namespace TreeView_Private */
-#endif //DOXYGEN_SHOULD_SKIP_THIS
 
 } /* namespace Gtk */
 

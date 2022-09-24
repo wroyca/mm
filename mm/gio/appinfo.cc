@@ -45,9 +45,9 @@ struct TypeTraits_AppInfo
   using CType = typename T::BaseObjectType*;
   using CTypeNonConst = typename T::BaseObjectType*;
 
-  static CType to_c_type(const CppType& ptr) { return Glib::unwrap(ptr); }
-  static CType to_c_type(CType ptr) { return ptr; }
-  static CppType to_cpp_type(CType ptr) { return Glib::wrap(ptr, true); }
+  static auto to_c_type(const CppType& ptr) -> CType { return Glib::unwrap(ptr); }
+  static auto to_c_type(CType ptr) -> CType { return ptr; }
+  static auto to_cpp_type(CType ptr) -> CppType { return Glib::wrap(ptr, true); }
 
   static void release_c_type(CType ptr)
   {
@@ -60,9 +60,9 @@ struct TypeTraits_AppInfo
 namespace Gio
 {
 
-Glib::RefPtr<AppInfo>
+auto
 AppInfo::create_from_commandline(
-  const std::string& commandline, const std::string& application_name, CreateFlags flags)
+  const std::string& commandline, const std::string& application_name, CreateFlags flags) -> Glib::RefPtr<AppInfo>
 {
   GAppInfo* capp_info = nullptr;
   GError* gerror = nullptr;
@@ -76,15 +76,15 @@ AppInfo::create_from_commandline(
   return Glib::wrap(capp_info);
 }
 
-Glib::RefPtr<AppInfo>
-AppInfo::create_duplicate() const
+auto
+AppInfo::create_duplicate() const -> Glib::RefPtr<AppInfo>
 {
   return Glib::wrap(g_app_info_dup(const_cast<GAppInfo*>(gobj())));
 }
 
-bool
+auto
 AppInfo::launch(
-  const Glib::RefPtr<Gio::File>& file, const Glib::RefPtr<AppLaunchContext>& launch_context)
+  const Glib::RefPtr<Gio::File>& file, const Glib::RefPtr<AppLaunchContext>& launch_context) -> bool
 {
   std::vector<Glib::RefPtr<Gio::File>> vec = { file };
 
@@ -98,8 +98,8 @@ AppInfo::launch(
   return retvalue;
 }
 
-bool
-AppInfo::launch(const Glib::RefPtr<Gio::File>& file)
+auto
+AppInfo::launch(const Glib::RefPtr<Gio::File>& file) -> bool
 {
   std::vector<Glib::RefPtr<Gio::File>> vec = { file };
 
@@ -112,8 +112,8 @@ AppInfo::launch(const Glib::RefPtr<Gio::File>& file)
   return retvalue;
 }
 
-bool
-AppInfo::launch_uri(const std::string& uri, const Glib::RefPtr<AppLaunchContext>& launch_context)
+auto
+AppInfo::launch_uri(const std::string& uri, const Glib::RefPtr<AppLaunchContext>& launch_context) -> bool
 {
   std::vector<std::string> vec = { uri };
 
@@ -127,8 +127,8 @@ AppInfo::launch_uri(const std::string& uri, const Glib::RefPtr<AppLaunchContext>
   return retvalue;
 }
 
-bool
-AppInfo::launch_uri(const std::string& uri)
+auto
+AppInfo::launch_uri(const std::string& uri) -> bool
 {
   std::vector<std::string> vec = { uri };
 
@@ -151,7 +151,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::AppInfo> wrap(GAppInfo* object, bool take_copy)
+auto wrap(GAppInfo* object, bool take_copy) -> Glib::RefPtr<Gio::AppInfo>
 {
   return Glib::make_refptr_for_instance<Gio::AppInfo>( dynamic_cast<Gio::AppInfo*> (Glib::wrap_auto_interface<Gio::AppInfo> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -166,7 +166,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& AppInfo_Class::init()
+auto AppInfo_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -193,7 +193,7 @@ void AppInfo_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* AppInfo_Class::wrap_new(GObject* object)
+auto AppInfo_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new AppInfo((GAppInfo*)(object));
 }
@@ -220,7 +220,7 @@ AppInfo::AppInfo(AppInfo&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-AppInfo& AppInfo::operator=(AppInfo&& src) noexcept
+auto AppInfo::operator=(AppInfo&& src) noexcept -> AppInfo&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -237,54 +237,54 @@ void AppInfo::add_interface(GType gtype_implementer)
 
 AppInfo::CppClassType AppInfo::appinfo_class_; // initialize static member
 
-GType AppInfo::get_type()
+auto AppInfo::get_type() -> GType
 {
   return appinfo_class_.init().get_type();
 }
 
 
-GType AppInfo::get_base_type()
+auto AppInfo::get_base_type() -> GType
 {
   return g_app_info_get_type();
 }
 
 
-bool AppInfo::equal(const Glib::RefPtr<AppInfo>& other) const
+auto AppInfo::equal(const Glib::RefPtr<AppInfo>& other) const -> bool
 {
   return g_app_info_equal(const_cast<GAppInfo*>(gobj()), Glib::unwrap(other));
 }
 
-std::string AppInfo::get_id() const
+auto AppInfo::get_id() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_app_info_get_id(const_cast<GAppInfo*>(gobj())));
 }
 
-std::string AppInfo::get_name() const
+auto AppInfo::get_name() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_app_info_get_name(const_cast<GAppInfo*>(gobj())));
 }
 
-std::string AppInfo::get_display_name() const
+auto AppInfo::get_display_name() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_app_info_get_display_name(const_cast<GAppInfo*>(gobj())));
 }
 
-std::string AppInfo::get_description() const
+auto AppInfo::get_description() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_app_info_get_description(const_cast<GAppInfo*>(gobj())));
 }
 
-std::string AppInfo::get_executable() const
+auto AppInfo::get_executable() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_app_info_get_executable(const_cast<GAppInfo*>(gobj())));
 }
 
-std::string AppInfo::get_commandline() const
+auto AppInfo::get_commandline() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_app_info_get_commandline(const_cast<GAppInfo*>(gobj())));
 }
 
-Glib::RefPtr<Icon> AppInfo::get_icon()
+auto AppInfo::get_icon() -> Glib::RefPtr<Icon>
 {
   auto retvalue = Glib::wrap(g_app_info_get_icon(gobj()));
   if(retvalue)
@@ -292,12 +292,12 @@ Glib::RefPtr<Icon> AppInfo::get_icon()
   return retvalue;
 }
 
-const Glib::RefPtr<const Icon> AppInfo::get_icon() const
+auto AppInfo::get_icon() const -> const Glib::RefPtr<const Icon>
 {
   return const_cast<AppInfo*>(this)->get_icon();
 }
 
-bool AppInfo::launch(const std::vector< Glib::RefPtr<Gio::File> >& files, const Glib::RefPtr<AppLaunchContext>& context)
+auto AppInfo::launch(const std::vector< Glib::RefPtr<Gio::File> >& files, const Glib::RefPtr<AppLaunchContext>& context) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_app_info_launch(gobj(), Glib::ListHandler<Glib::RefPtr<Gio::File> >::vector_to_list(files).data (), Glib::unwrap(context), &(gerror));
@@ -306,7 +306,7 @@ bool AppInfo::launch(const std::vector< Glib::RefPtr<Gio::File> >& files, const 
   return retvalue;
 }
 
-bool AppInfo::launch(const std::vector< Glib::RefPtr<Gio::File> >& files)
+auto AppInfo::launch(const std::vector< Glib::RefPtr<Gio::File> >& files) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_app_info_launch(gobj(), Glib::ListHandler<Glib::RefPtr<Gio::File> >::vector_to_list(files).data (), nullptr, &(gerror));
@@ -315,17 +315,17 @@ bool AppInfo::launch(const std::vector< Glib::RefPtr<Gio::File> >& files)
   return retvalue;
 }
 
-bool AppInfo::supports_uris() const
+auto AppInfo::supports_uris() const -> bool
 {
   return g_app_info_supports_uris(const_cast<GAppInfo*>(gobj()));
 }
 
-bool AppInfo::supports_files() const
+auto AppInfo::supports_files() const -> bool
 {
   return g_app_info_supports_files(const_cast<GAppInfo*>(gobj()));
 }
 
-bool AppInfo::launch_uris(const std::vector<std::string>& uris, const Glib::RefPtr<AppLaunchContext>& context)
+auto AppInfo::launch_uris(const std::vector<std::string>& uris, const Glib::RefPtr<AppLaunchContext>& context) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_app_info_launch_uris(gobj(), Glib::ListHandler<std::string>::vector_to_list(uris).data(), Glib::unwrap(context), &(gerror));
@@ -334,7 +334,7 @@ bool AppInfo::launch_uris(const std::vector<std::string>& uris, const Glib::RefP
   return retvalue;
 }
 
-bool AppInfo::launch_uris(const std::vector<std::string>& uris)
+auto AppInfo::launch_uris(const std::vector<std::string>& uris) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_app_info_launch_uris(gobj(), Glib::ListHandler<std::string>::vector_to_list(uris).data(), nullptr, &(gerror));
@@ -356,7 +356,7 @@ void AppInfo::launch_uris_async(const std::vector<std::string>& uris, const Glib
   g_app_info_launch_uris_async(gobj(), Glib::ListHandler<std::string>::vector_to_list(uris).data(), Glib::unwrap(context), const_cast<GCancellable*>(Glib::unwrap(cancellable)), nullptr, nullptr);
 }
 
-bool AppInfo::launch_uris_finish(const Glib::RefPtr<AsyncResult>& result)
+auto AppInfo::launch_uris_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_app_info_launch_uris_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -365,22 +365,22 @@ bool AppInfo::launch_uris_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool AppInfo::should_show() const
+auto AppInfo::should_show() const -> bool
 {
   return g_app_info_should_show(const_cast<GAppInfo*>(gobj()));
 }
 
-bool AppInfo::can_delete() const
+auto AppInfo::can_delete() const -> bool
 {
   return g_app_info_can_delete(const_cast<GAppInfo*>(gobj()));
 }
 
-bool AppInfo::do_delete()
+auto AppInfo::do_delete() -> bool
 {
   return g_app_info_delete(gobj());
 }
 
-bool AppInfo::set_as_default_for_type(const std::string& content_type)
+auto AppInfo::set_as_default_for_type(const std::string& content_type) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_app_info_set_as_default_for_type(gobj(), content_type.c_str(), &(gerror));
@@ -389,7 +389,7 @@ bool AppInfo::set_as_default_for_type(const std::string& content_type)
   return retvalue;
 }
 
-bool AppInfo::set_as_default_for_extension(const std::string& extension)
+auto AppInfo::set_as_default_for_extension(const std::string& extension) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_app_info_set_as_default_for_extension(gobj(), extension.c_str(), &(gerror));
@@ -398,7 +398,7 @@ bool AppInfo::set_as_default_for_extension(const std::string& extension)
   return retvalue;
 }
 
-bool AppInfo::add_supports_type(const std::string& content_type)
+auto AppInfo::add_supports_type(const std::string& content_type) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_app_info_add_supports_type(gobj(), content_type.c_str(), &(gerror));
@@ -407,12 +407,12 @@ bool AppInfo::add_supports_type(const std::string& content_type)
   return retvalue;
 }
 
-bool AppInfo::can_remove_supports_type() const
+auto AppInfo::can_remove_supports_type() const -> bool
 {
   return g_app_info_can_remove_supports_type(const_cast<GAppInfo*>(gobj()));
 }
 
-bool AppInfo::remove_supports_type(const std::string& content_type)
+auto AppInfo::remove_supports_type(const std::string& content_type) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_app_info_remove_supports_type(gobj(), content_type.c_str(), &(gerror));
@@ -421,12 +421,12 @@ bool AppInfo::remove_supports_type(const std::string& content_type)
   return retvalue;
 }
 
-std::vector<Glib::ustring> AppInfo::get_supported_types() const
+auto AppInfo::get_supported_types() const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_app_info_get_supported_types(const_cast<GAppInfo*>(gobj())), Glib::OWNERSHIP_NONE);
 }
 
-bool AppInfo::set_as_last_used_for_type(const std::string& content_type)
+auto AppInfo::set_as_last_used_for_type(const std::string& content_type) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_app_info_set_as_last_used_for_type(gobj(), content_type.c_str(), &(gerror));
@@ -435,17 +435,17 @@ bool AppInfo::set_as_last_used_for_type(const std::string& content_type)
   return retvalue;
 }
 
-std::vector<Glib::RefPtr<AppInfo>> AppInfo::get_all()
+auto AppInfo::get_all() -> std::vector<Glib::RefPtr<AppInfo>>
 {
   return Glib::ListHandler<Glib::RefPtr<AppInfo>, TypeTraits_AppInfo>::list_to_vector(g_app_info_get_all(), Glib::OWNERSHIP_DEEP);
 }
 
-std::vector<Glib::RefPtr<AppInfo>> AppInfo::get_all_for_type(const std::string& content_type)
+auto AppInfo::get_all_for_type(const std::string& content_type) -> std::vector<Glib::RefPtr<AppInfo>>
 {
   return Glib::ListHandler<Glib::RefPtr<AppInfo>, TypeTraits_AppInfo>::list_to_vector(g_app_info_get_all_for_type(content_type.c_str()), Glib::OWNERSHIP_DEEP);
 }
 
-Glib::RefPtr<AppInfo> AppInfo::get_default_for_type(const std::string& content_type, bool must_support_uris)
+auto AppInfo::get_default_for_type(const std::string& content_type, bool must_support_uris) -> Glib::RefPtr<AppInfo>
 {
   return Glib::wrap(g_app_info_get_default_for_type(content_type.c_str(), static_cast<int>(must_support_uris)));
 }
@@ -463,7 +463,7 @@ void AppInfo::get_default_for_type_async(const std::string& content_type, bool m
   g_app_info_get_default_for_type_async(content_type.c_str(), static_cast<int>(must_support_uris), const_cast<GCancellable*>(Glib::unwrap(cancellable)), nullptr, nullptr);
 }
 
-Glib::RefPtr<AppInfo> AppInfo::get_default_for_type_finish(const Glib::RefPtr<AsyncResult>& result)
+auto AppInfo::get_default_for_type_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<AppInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_app_info_get_default_for_type_finish(Glib::unwrap(result), &(gerror)));
@@ -472,7 +472,7 @@ Glib::RefPtr<AppInfo> AppInfo::get_default_for_type_finish(const Glib::RefPtr<As
   return retvalue;
 }
 
-Glib::RefPtr<AppInfo> AppInfo::get_default_for_uri_scheme(const std::string& uri_scheme)
+auto AppInfo::get_default_for_uri_scheme(const std::string& uri_scheme) -> Glib::RefPtr<AppInfo>
 {
   return Glib::wrap(g_app_info_get_default_for_uri_scheme(uri_scheme.c_str()));
 }
@@ -490,7 +490,7 @@ void AppInfo::get_default_for_uri_scheme_async(const std::string& content_type, 
   g_app_info_get_default_for_uri_scheme_async(content_type.c_str(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), nullptr, nullptr);
 }
 
-Glib::RefPtr<AppInfo> AppInfo::get_default_for_uri_scheme_finish(const Glib::RefPtr<AsyncResult>& result)
+auto AppInfo::get_default_for_uri_scheme_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<AppInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_app_info_get_default_for_uri_scheme_finish(Glib::unwrap(result), &(gerror)));
@@ -504,7 +504,7 @@ void AppInfo::reset_type_associations(const std::string& content_type)
   g_app_info_reset_type_associations(content_type.c_str());
 }
 
-bool AppInfo::launch_default_for_uri(const std::string& uri, const Glib::RefPtr<AppLaunchContext>& context)
+auto AppInfo::launch_default_for_uri(const std::string& uri, const Glib::RefPtr<AppLaunchContext>& context) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_app_info_launch_default_for_uri(uri.c_str(), Glib::unwrap(context), &(gerror));
@@ -513,7 +513,7 @@ bool AppInfo::launch_default_for_uri(const std::string& uri, const Glib::RefPtr<
   return retvalue;
 }
 
-bool AppInfo::launch_default_for_uri(const std::string& uri)
+auto AppInfo::launch_default_for_uri(const std::string& uri) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_app_info_launch_default_for_uri(uri.c_str(), nullptr, &(gerror));
@@ -574,7 +574,7 @@ void AppInfo::launch_default_for_uri_async(const std::string& uri)
   g_app_info_launch_default_for_uri_async(uri.c_str(), nullptr, nullptr, nullptr, nullptr);
 }
 
-bool AppInfo::launch_default_for_uri_finish(const Glib::RefPtr<AsyncResult>& result)
+auto AppInfo::launch_default_for_uri_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_app_info_launch_default_for_uri_finish(Glib::unwrap(result), &(gerror));

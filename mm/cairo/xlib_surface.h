@@ -74,7 +74,7 @@ public:
    * @param height	the current height of drawable.
    * @return	A RefPtr to the newly created surface
    */
-  static RefPtr<XlibSurface> create(Display* dpy, Drawable drawable, Visual* visual, int width, int height);
+  static auto create(Display* dpy, Drawable drawable, Visual* visual, int width, int height) -> RefPtr<XlibSurface>;
 
   /** Creates an Xlib surface that draws to the given bitmap. This will be
    * drawn to as a CAIRO_FORMAT_A1 object.
@@ -86,7 +86,7 @@ public:
    * @param height	the current height of bitmap.
    * @return	A RefPtr to the newly created surface
    */
-  static RefPtr<XlibSurface> create(Display *dpy, Pixmap bitmap, Screen *screen, int width, int height);
+  static auto create(Display *dpy, Pixmap bitmap, Screen *screen, int width, int height) -> RefPtr<XlibSurface>;
 
   /** Informs cairo of the new size of the X Drawable underlying the surface.
    * For a surface created for a Window (rather than a Pixmap), this function
@@ -114,31 +114,31 @@ public:
   void set_drawable(Drawable drawable, int width, int height);
 
   /** gets the Drawable object associated with this surface */
-  Drawable get_drawable() const;
+  auto get_drawable() const -> Drawable;
 
   /** Get the X Display for the underlying X Drawable. */
-  const Display* get_display() const;
+  auto get_display() const -> const Display*;
   /** Get the X Display for the underlying X Drawable. */
-  Display* get_display();
+  auto get_display() -> Display*;
 
   /** Get the X Screen for the underlying X Drawable */
-  Screen* get_screen();
+  auto get_screen() -> Screen*;
   /** Get the X Screen for the underlying X Drawable */
-  const Screen* get_screen() const;
+  auto get_screen() const -> const Screen*;
 
   /** Get the X Visual for the underlying X Drawable */
-  Visual* get_visual();
+  auto get_visual() -> Visual*;
   /** Get the X Visual for the underlying X Drawable */
-  const Visual* get_visual() const;
+  auto get_visual() const -> const Visual*;
 
   /** Get the number of bits used to represent each pixel value. */
-  int get_depth() const;
+  auto get_depth() const -> int;
 
   /** Get the height in pixels of the X Drawable underlying the surface */
-  int get_height() const;
+  auto get_height() const -> int;
 
   /** Get the width in pixels of the X Drawable underlying the surface */
-  int get_width() const;
+  auto get_width() const -> int;
 
 #if CAIRO_HAS_XLIB_XRENDER_SURFACE
   /**
@@ -159,13 +159,13 @@ public:
    *
    * @return the newly created surface
    **/
-  static Cairo::RefPtr<Cairo::XlibSurface>
+  static auto
   create_with_xrender_format (Display *dpy,
                               Drawable drawable,
                               Screen *screen,
                               XRenderPictFormat *format,
                               int width,
-                              int height);
+                              int height) -> Cairo::RefPtr<Cairo::XlibSurface>;
 
   /**
    * Gets the X Render picture format that @surface uses for rendering with the
@@ -179,7 +179,7 @@ public:
    *
    * Since: 1.6
    **/
-  XRenderPictFormat * get_xrender_format() const;
+  auto get_xrender_format() const -> XRenderPictFormat *;
 
 #endif // CAIRO_HAS_XLIB_XRENDER_SURFACE
 

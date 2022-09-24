@@ -71,11 +71,11 @@ class GTKMM_API Notebook : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Notebook(Notebook&& src) noexcept;
-  Notebook& operator=(Notebook&& src) noexcept;
+  auto operator=(Notebook&& src) noexcept -> Notebook&;
 
   // noncopyable
   Notebook(const Notebook&) = delete;
-  Notebook& operator=(const Notebook&) = delete;
+  auto operator=(const Notebook&) -> Notebook& = delete;
 
   ~Notebook() noexcept override;
 
@@ -95,19 +95,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkNotebook*       gobj()       { return reinterpret_cast<GtkNotebook*>(gobject_); }
+  auto       gobj() -> GtkNotebook*       { return reinterpret_cast<GtkNotebook*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkNotebook* gobj() const { return reinterpret_cast<GtkNotebook*>(gobject_); }
+  auto gobj() const -> const GtkNotebook* { return reinterpret_cast<GtkNotebook*>(gobject_); }
 
 private:
 
@@ -122,10 +122,10 @@ public:
    * @param child The Gtk::Widget to use as the contents of the page.
    * @param tab_label The Gtk::Widget to be used as the label for the page.
    */
-  int prepend_page(Widget& child, Widget& tab_label);
-  int prepend_page(Widget& child);
+  auto prepend_page(Widget& child, Widget& tab_label) -> int;
+  auto prepend_page(Widget& child) -> int;
 
-  int prepend_page(Widget& child, const Glib::ustring& tab_label, bool use_mnemonic = false);
+  auto prepend_page(Widget& child, const Glib::ustring& tab_label, bool use_mnemonic = false) -> int;
 
   /** Prepends a page to @a notebook, specifying the widget to use as the
    * label in the popup menu.
@@ -135,10 +135,10 @@ public:
    * @param menu_label The widget to use as a label for the page-switch
    * menu.
    */
-  int prepend_page(Widget& child, Widget& tab_label, Widget& menu_label);
+  auto prepend_page(Widget& child, Widget& tab_label, Widget& menu_label) -> int;
   //Ignore the possible-0 menu_label version of this method. It would have the same signature as another method.
 
-  int prepend_page(Widget& child, const Glib::ustring& tab_label, const Glib::ustring& menu_label, bool use_mnemonic);
+  auto prepend_page(Widget& child, const Glib::ustring& tab_label, const Glib::ustring& menu_label, bool use_mnemonic) -> int;
 
 
   /** Appends a page to @a notebook.
@@ -146,9 +146,9 @@ public:
    * @param child The Gtk::Widget to use as the contents of the page.
    * @param tab_label The Gtk::Widget to be used as the label for the page.
    */
-  int append_page(Widget& child, Widget& tab_label);
-  int append_page(Widget& child);
-  int append_page(Widget& child, const Glib::ustring& tab_label, bool use_mnemonic = false);
+  auto append_page(Widget& child, Widget& tab_label) -> int;
+  auto append_page(Widget& child) -> int;
+  auto append_page(Widget& child, const Glib::ustring& tab_label, bool use_mnemonic = false) -> int;
 
 
   /** Appends a page to @a notebook, specifying the widget to use as the
@@ -159,10 +159,10 @@ public:
    * @param menu_label The widget to use as a label for the page-switch
    * menu.
    */
-  int append_page(Widget& child, Widget& tab_label, Widget& menu_label);
+  auto append_page(Widget& child, Widget& tab_label, Widget& menu_label) -> int;
   //Ignore the possible-0 menu_label version of this method. It would have the same signature as another method.
 
-  int append_page(Widget& child, const Glib::ustring& tab_label, const Glib::ustring& menu_label, bool use_mnemonic = false);
+  auto append_page(Widget& child, const Glib::ustring& tab_label, const Glib::ustring& menu_label, bool use_mnemonic = false) -> int;
 
 
   /** Insert a page into @a notebook at the given position.
@@ -172,10 +172,10 @@ public:
    * @param position The index (starting at 0) at which to insert the page,
    * or -1 to append the page after all other pages.
    */
-  int insert_page(Widget& child, Widget& tab_label, int position);
-  int insert_page(Widget& child, int position);
+  auto insert_page(Widget& child, Widget& tab_label, int position) -> int;
+  auto insert_page(Widget& child, int position) -> int;
 
-  int insert_page(Widget& child, const Glib::ustring& tab_label, int position, bool use_mnemonic = false);
+  auto insert_page(Widget& child, const Glib::ustring& tab_label, int position, bool use_mnemonic = false) -> int;
 
   /** Insert a page into @a notebook at the given position, specifying
    * the widget to use as the label in the popup menu.
@@ -187,10 +187,10 @@ public:
    * @param position The index (starting at 0) at which to insert the page,
    * or -1 to append the page after all other pages.
    */
-  int insert_page(Widget& child, Widget& tab_label, Widget& menu_label, int position);
+  auto insert_page(Widget& child, Widget& tab_label, Widget& menu_label, int position) -> int;
   //Ignore the possible-0 menu_label version of this method. It would have the same signature as another method.
 
-  int insert_page(Widget& child, const Glib::ustring& tab_label, const Glib::ustring& menu_label, int position, bool use_mnemonic = false);
+  auto insert_page(Widget& child, const Glib::ustring& tab_label, const Glib::ustring& menu_label, int position, bool use_mnemonic = false) -> int;
 
 
   /** Removes a page from the notebook given its index
@@ -219,7 +219,7 @@ public:
    * @return The group name,
    * or <tt>nullptr</tt> if none is set.
    */
-  Glib::ustring get_group_name() const;
+  auto get_group_name() const -> Glib::ustring;
 
 
   /** Returns the page number of the current page.
@@ -228,7 +228,7 @@ public:
    * page in the notebook. If the notebook has no pages,
    * then -1 will be returned.
    */
-  int get_current_page() const;
+  auto get_current_page() const -> int;
 
   /** Returns the child widget contained in page number @a page_number.
    *
@@ -237,7 +237,7 @@ public:
    * @return The child widget, or <tt>nullptr</tt> if @a page_number
    * is out of bounds.
    */
-  Widget* get_nth_page(int page_number);
+  auto get_nth_page(int page_number) -> Widget*;
 
   /** Returns the child widget contained in page number @a page_number.
    *
@@ -246,13 +246,13 @@ public:
    * @return The child widget, or <tt>nullptr</tt> if @a page_number
    * is out of bounds.
    */
-  const Widget* get_nth_page(int page_number) const;
+  auto get_nth_page(int page_number) const -> const Widget*;
 
   /** Gets the number of pages in a notebook.
    *
    * @return The number of pages in the notebook.
    */
-  int get_n_pages() const;
+  auto get_n_pages() const -> int;
   /*Widget* get_current_page();*/ /*inconsistency with set_current_page*/
 
   /** Finds the index of the page which contains the given child
@@ -262,7 +262,7 @@ public:
    * @return The index of the page containing @a child, or
    * -1 if @a child is not in the notebook.
    */
-  int page_num(const Widget& child) const;
+  auto page_num(const Widget& child) const -> int;
 
 
   /** Switches to the page number @a page_number.
@@ -305,7 +305,7 @@ public:
    *
    * @return <tt>true</tt> if the bevel is drawn.
    */
-  bool get_show_border() const;
+  auto get_show_border() const -> bool;
 
   /** Sets whether to show the tabs for the notebook or not.
    *
@@ -317,7 +317,7 @@ public:
    *
    * @return <tt>true</tt> if the tabs are shown.
    */
-  bool get_show_tabs() const;
+  auto get_show_tabs() const -> bool;
 
 
   /** Sets the edge at which the tabs are drawn.
@@ -330,7 +330,7 @@ public:
    *
    * @return The edge at which the tabs are drawn.
    */
-  PositionType get_tab_pos() const;
+  auto get_tab_pos() const -> PositionType;
 
 
   /** Sets whether the tab label area will have arrows for
@@ -344,7 +344,7 @@ public:
    *
    * @return <tt>true</tt> if arrows for scrolling are present.
    */
-  bool get_scrollable() const;
+  auto get_scrollable() const -> bool;
 
 
   /** Enables the popup menu.
@@ -368,7 +368,7 @@ public:
    * @param child The page.
    * @return The tab label.
    */
-  Widget* get_tab_label(Widget& child);
+  auto get_tab_label(Widget& child) -> Widget*;
 
   /** Returns the tab label widget for the page @a child.
    *
@@ -378,7 +378,7 @@ public:
    * @param child The page.
    * @return The tab label.
    */
-  const Widget* get_tab_label(Widget& child) const;
+  auto get_tab_label(Widget& child) const -> const Widget*;
 
   /** Changes the tab label for @a child.
    *
@@ -405,7 +405,7 @@ public:
    * @param child A widget contained in a page of @a notebook.
    * @return The text of the tab label.
    */
-  Glib::ustring get_tab_label_text(Widget& child) const;
+  auto get_tab_label_text(Widget& child) const -> Glib::ustring;
 
   /** Retrieves the menu label widget of the page containing @a child.
    *
@@ -414,7 +414,7 @@ public:
    * if the notebook page does not have a menu label other than
    * the default (the tab label).
    */
-  Widget* get_menu_label(Widget& child);
+  auto get_menu_label(Widget& child) -> Widget*;
 
   /** Retrieves the menu label widget of the page containing @a child.
    *
@@ -423,7 +423,7 @@ public:
    * if the notebook page does not have a menu label other than
    * the default (the tab label).
    */
-  const Widget* get_menu_label(Widget& child) const;
+  auto get_menu_label(Widget& child) const -> const Widget*;
 
   /** Changes the menu label for the page containing @a child.
    *
@@ -445,7 +445,7 @@ public:
    * @param child The child widget of a page of the notebook.
    * @return The text of the tab label.
    */
-  Glib::ustring get_menu_label_text(Widget& child) const;
+  auto get_menu_label_text(Widget& child) const -> Glib::ustring;
 
 
   /** Reorders the page containing @a child, so that it appears in position
@@ -465,7 +465,7 @@ public:
    * @param child A child `Gtk::Widget`.
    * @return <tt>true</tt> if the tab is reorderable.
    */
-  bool get_tab_reorderable(Widget& child) const;
+  auto get_tab_reorderable(Widget& child) const -> bool;
 
   /** Sets whether the notebook tab can be reordered
    * via drag and drop or not.
@@ -480,7 +480,7 @@ public:
    * @param child A child `Gtk::Widget`.
    * @return <tt>true</tt> if the tab is detachable.
    */
-  bool get_tab_detachable(Widget& child) const;
+  auto get_tab_detachable(Widget& child) const -> bool;
 
   /** Sets whether the tab can be detached from @a notebook to another
    * notebook or widget.
@@ -534,7 +534,7 @@ public:
    * with the given @a pack_type or <tt>nullptr</tt> when this action
    * widget has not been set.
    */
-  Widget* get_action_widget(PackType pack_type =  PackType::START);
+  auto get_action_widget(PackType pack_type =  PackType::START) -> Widget*;
 
   /** Sets @a widget as one of the action widgets.
    *
@@ -553,14 +553,14 @@ public:
    * @param child A child of @a notebook.
    * @return The `Gtk::NotebookPage` for @a child.
    */
-  Glib::RefPtr<NotebookPage> get_page(Widget& child);
+  auto get_page(Widget& child) -> Glib::RefPtr<NotebookPage>;
 
   /** Returns the `Gtk::NotebookPage` for @a child.
    *
    * @param child A child of @a notebook.
    * @return The `Gtk::NotebookPage` for @a child.
    */
-  Glib::RefPtr<const NotebookPage> get_page(const Widget& child) const;
+  auto get_page(const Widget& child) const -> Glib::RefPtr<const NotebookPage>;
 
 
   /** Returns a `Gio::ListModel` that contains the pages of the notebook.
@@ -572,7 +572,7 @@ public:
    * @return A
    * `Gio::ListModel` for the notebook's children.
    */
-  Glib::RefPtr<Gio::ListModel> get_pages();
+  auto get_pages() -> Glib::RefPtr<Gio::ListModel>;
 
   /** Returns a `Gio::ListModel` that contains the pages of the notebook.
    *
@@ -583,7 +583,7 @@ public:
    * @return A
    * `Gio::ListModel` for the notebook's children.
    */
-  Glib::RefPtr<const Gio::ListModel> get_pages() const;
+  auto get_pages() const -> Glib::RefPtr<const Gio::ListModel>;
 
   // no_default_handler because GtkNotebookClass is private.
 
@@ -599,7 +599,7 @@ public:
    * @param page_number The index of the page.
    */
 
-  Glib::SignalProxy<void(Widget*, guint)> signal_switch_page();
+  auto signal_switch_page() -> Glib::SignalProxy<void(Widget*, guint)>;
 
 
   /**
@@ -615,7 +615,7 @@ public:
    * @param page_num The new page number for @a page.
    */
 
-  Glib::SignalProxy<void(Widget*, guint)> signal_page_reordered();
+  auto signal_page_reordered() -> Glib::SignalProxy<void(Widget*, guint)>;
 
 
   /**
@@ -631,7 +631,7 @@ public:
    * @param page_num The @a page page number.
    */
 
-  Glib::SignalProxy<void(Widget*, guint)> signal_page_removed();
+  auto signal_page_removed() -> Glib::SignalProxy<void(Widget*, guint)>;
 
 
   /**
@@ -647,7 +647,7 @@ public:
    * @param page_num The new page number for @a page.
    */
 
-  Glib::SignalProxy<void(Widget*, guint)> signal_page_added();
+  auto signal_page_added() -> Glib::SignalProxy<void(Widget*, guint)>;
 
 
   //Key-binding signals:
@@ -663,7 +663,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< PositionType > property_tab_pos() ;
+  auto property_tab_pos() -> Glib::PropertyProxy< PositionType > ;
 
 /** Which side of the notebook holds the tabs.
    *
@@ -672,7 +672,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< PositionType > property_tab_pos() const;
+  auto property_tab_pos() const -> Glib::PropertyProxy_ReadOnly< PositionType >;
 
   /** Whether tabs should be shown.
    *
@@ -681,7 +681,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_tabs() ;
+  auto property_show_tabs() -> Glib::PropertyProxy< bool > ;
 
 /** Whether tabs should be shown.
    *
@@ -690,7 +690,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_tabs() const;
+  auto property_show_tabs() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the border should be shown.
    *
@@ -699,7 +699,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_border() ;
+  auto property_show_border() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the border should be shown.
    *
@@ -708,7 +708,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_border() const;
+  auto property_show_border() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** If <tt>true</tt>, scroll arrows are added if there are too many pages to fit.
    *
@@ -717,7 +717,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_scrollable() ;
+  auto property_scrollable() -> Glib::PropertyProxy< bool > ;
 
 /** If <tt>true</tt>, scroll arrows are added if there are too many pages to fit.
    *
@@ -726,7 +726,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_scrollable() const;
+  auto property_scrollable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The index of the current page.
    *
@@ -735,7 +735,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_page() ;
+  auto property_page() -> Glib::PropertyProxy< int > ;
 
 /** The index of the current page.
    *
@@ -744,7 +744,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_page() const;
+  auto property_page() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Group name for tab drag and drop.
    *
@@ -753,7 +753,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_group_name() ;
+  auto property_group_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Group name for tab drag and drop.
    *
@@ -762,7 +762,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_group_name() const;
+  auto property_group_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** If <tt>true</tt>, pressing the right mouse button on the notebook shows a page switching menu.
    *
@@ -771,7 +771,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_enable_popup() ;
+  auto property_enable_popup() -> Glib::PropertyProxy< bool > ;
 
 /** If <tt>true</tt>, pressing the right mouse button on the notebook shows a page switching menu.
    *
@@ -780,14 +780,14 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_enable_popup() const;
+  auto property_enable_popup() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** A selection model with the pages.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > property_pages() const;
+  auto property_pages() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >;
 
 
 public:
@@ -817,7 +817,7 @@ namespace Glib
    * @relates Gtk::Notebook
    */
   GTKMM_API
-  Gtk::Notebook* wrap(GtkNotebook* object, bool take_copy = false);
+  auto wrap(GtkNotebook* object, bool take_copy = false) -> Gtk::Notebook*;
 } //namespace Glib
 
 

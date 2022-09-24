@@ -90,11 +90,11 @@ class GTKMM_API LockButton : public Button
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   LockButton(LockButton&& src) noexcept;
-  LockButton& operator=(LockButton&& src) noexcept;
+  auto operator=(LockButton&& src) noexcept -> LockButton&;
 
   // noncopyable
   LockButton(const LockButton&) = delete;
-  LockButton& operator=(const LockButton&) = delete;
+  auto operator=(const LockButton&) -> LockButton& = delete;
 
   ~LockButton() noexcept override;
 
@@ -114,19 +114,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkLockButton*       gobj()       { return reinterpret_cast<GtkLockButton*>(gobject_); }
+  auto       gobj() -> GtkLockButton*       { return reinterpret_cast<GtkLockButton*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkLockButton* gobj() const { return reinterpret_cast<GtkLockButton*>(gobject_); }
+  auto gobj() const -> const GtkLockButton* { return reinterpret_cast<GtkLockButton*>(gobject_); }
 
 private:
 
@@ -143,13 +143,13 @@ public:
    *
    * @return The `Gio::Permission` of @a button.
    */
-  Glib::RefPtr<Gio::Permission> get_permission();
+  auto get_permission() -> Glib::RefPtr<Gio::Permission>;
 
   /** Obtains the `Gio::Permission` object that controls @a button.
    *
    * @return The `Gio::Permission` of @a button.
    */
-  Glib::RefPtr<const Gio::Permission> get_permission() const;
+  auto get_permission() const -> Glib::RefPtr<const Gio::Permission>;
 
   /** Sets the `Gio::Permission` object that controls @a button.
    *
@@ -167,14 +167,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::Permission> > property_permission() ;
+  auto property_permission() -> Glib::PropertyProxy< Glib::RefPtr<Gio::Permission> > ;
 
 /** The `GPermission object controlling this button.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Permission> > property_permission() const;
+  auto property_permission() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Permission> >;
 
   /** The text to display when prompting the user to lock.
    *
@@ -183,7 +183,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_text_lock() ;
+  auto property_text_lock() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The text to display when prompting the user to lock.
    *
@@ -192,7 +192,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_text_lock() const;
+  auto property_text_lock() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The text to display when prompting the user to unlock.
    *
@@ -201,7 +201,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_text_unlock() ;
+  auto property_text_unlock() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The text to display when prompting the user to unlock.
    *
@@ -210,7 +210,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_text_unlock() const;
+  auto property_text_unlock() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The tooltip to display when prompting the user to lock.
    *
@@ -219,7 +219,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_tooltip_lock() ;
+  auto property_tooltip_lock() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The tooltip to display when prompting the user to lock.
    *
@@ -228,7 +228,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_tooltip_lock() const;
+  auto property_tooltip_lock() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The tooltip to display when prompting the user to unlock.
    *
@@ -237,7 +237,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_tooltip_unlock() ;
+  auto property_tooltip_unlock() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The tooltip to display when prompting the user to unlock.
    *
@@ -246,7 +246,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_tooltip_unlock() const;
+  auto property_tooltip_unlock() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The tooltip to display when the user cannot obtain authorization.
    *
@@ -255,7 +255,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_tooltip_not_authorized() ;
+  auto property_tooltip_not_authorized() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The tooltip to display when the user cannot obtain authorization.
    *
@@ -264,7 +264,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_tooltip_not_authorized() const;
+  auto property_tooltip_not_authorized() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   // Gtk::LockButton has no signals as of 3.2.
@@ -297,7 +297,7 @@ namespace Glib
    * @relates Gtk::LockButton
    */
   GTKMM_API
-  Gtk::LockButton* wrap(GtkLockButton* object, bool take_copy = false);
+  auto wrap(GtkLockButton* object, bool take_copy = false) -> Gtk::LockButton*;
 } //namespace Glib
 
 

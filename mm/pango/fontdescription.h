@@ -75,7 +75,7 @@ template <>
 class PANGOMM_API Value<Pango::Style> : public Glib::Value_Enum<Pango::Style>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -147,7 +147,7 @@ template <>
 class PANGOMM_API Value<Pango::Variant> : public Glib::Value_Enum<Pango::Variant>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -215,7 +215,7 @@ template <>
 class PANGOMM_API Value<Pango::Stretch> : public Glib::Value_Enum<Pango::Stretch>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -316,7 +316,7 @@ template <>
 class PANGOMM_API Value<Pango::Weight> : public Glib::Value_Enum<Pango::Weight>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -378,31 +378,31 @@ enum class FontMask
 };
 
 /** @ingroup pangommEnums */
-inline FontMask operator|(FontMask lhs, FontMask rhs)
+inline auto operator|(FontMask lhs, FontMask rhs) -> FontMask
   { return static_cast<FontMask>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup pangommEnums */
-inline FontMask operator&(FontMask lhs, FontMask rhs)
+inline auto operator&(FontMask lhs, FontMask rhs) -> FontMask
   { return static_cast<FontMask>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup pangommEnums */
-inline FontMask operator^(FontMask lhs, FontMask rhs)
+inline auto operator^(FontMask lhs, FontMask rhs) -> FontMask
   { return static_cast<FontMask>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup pangommEnums */
-inline FontMask operator~(FontMask flags)
+inline auto operator~(FontMask flags) -> FontMask
   { return static_cast<FontMask>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup pangommEnums */
-inline FontMask& operator|=(FontMask& lhs, FontMask rhs)
+inline auto operator|=(FontMask& lhs, FontMask rhs) -> FontMask&
   { return (lhs = static_cast<FontMask>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup pangommEnums */
-inline FontMask& operator&=(FontMask& lhs, FontMask rhs)
+inline auto operator&=(FontMask& lhs, FontMask rhs) -> FontMask&
   { return (lhs = static_cast<FontMask>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup pangommEnums */
-inline FontMask& operator^=(FontMask& lhs, FontMask rhs)
+inline auto operator^=(FontMask& lhs, FontMask rhs) -> FontMask&
   { return (lhs = static_cast<FontMask>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -416,7 +416,7 @@ template <>
 class PANGOMM_API Value<Pango::FontMask> : public Glib::Value_Flags<Pango::FontMask>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -481,7 +481,7 @@ template <>
 class PANGOMM_API Value<Pango::Gravity> : public Glib::Value_Enum<Pango::Gravity>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -504,30 +504,30 @@ class PANGOMM_API FontDescription
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   FontDescription();
 
   explicit FontDescription(PangoFontDescription* gobject, bool make_a_copy = true);
 
   FontDescription(const FontDescription& other);
-  FontDescription& operator=(const FontDescription& other);
+  auto operator=(const FontDescription& other) -> FontDescription&;
 
   FontDescription(FontDescription&& other) noexcept;
-  FontDescription& operator=(FontDescription&& other) noexcept;
+  auto operator=(FontDescription&& other) noexcept -> FontDescription&;
 
   ~FontDescription() noexcept;
 
   void swap(FontDescription& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  PangoFontDescription*       gobj()       { return gobject_; }
+  auto       gobj() -> PangoFontDescription*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const PangoFontDescription* gobj() const { return gobject_; }
+  auto gobj() const -> const PangoFontDescription* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  PangoFontDescription* gobj_copy() const;
+  auto gobj_copy() const -> PangoFontDescription*;
 
 protected:
   PangoFontDescription* gobject_;
@@ -568,7 +568,7 @@ public:
    *
    * @return The hash value.
    */
-  guint hash() const;
+  auto hash() const -> guint;
 
   /** Sets the family name field of a font description.
    *
@@ -590,7 +590,7 @@ public:
    * description, or <tt>nullptr</tt> if not previously set. This has the same
    * life-time as the font description itself and should not be freed.
    */
-  Glib::ustring get_family() const;
+  auto get_family() const -> Glib::ustring;
 
   /** Sets the style field of a `Pango::FontDescription`.
    *
@@ -615,7 +615,7 @@ public:
    * Use get_set_fields() to
    * find out if the field was explicitly set or not.
    */
-  Style get_style() const;
+  auto get_style() const -> Style;
 
   /** Sets the variant field of a font description.
    *
@@ -634,7 +634,7 @@ public:
    * Use get_set_fields() to find
    * out if the field was explicitly set or not.
    */
-  Variant get_variant() const;
+  auto get_variant() const -> Variant;
 
   /** Sets the weight field of a font description.
    *
@@ -655,7 +655,7 @@ public:
    * Use get_set_fields() to find
    * out if the field was explicitly set or not.
    */
-  Weight get_weight() const;
+  auto get_weight() const -> Weight;
 
   /** Sets the stretch field of a font description.
    *
@@ -674,7 +674,7 @@ public:
    * Use get_set_fields() to find
    * out if the field was explicitly set or not.
    */
-  Stretch get_stretch() const;
+  auto get_stretch() const -> Stretch;
 
   /** Sets the size field of a font description in fractional points.
    *
@@ -704,7 +704,7 @@ public:
    * Use get_set_fields() to find out
    * if the field was explicitly set or not.
    */
-  int get_size() const;
+  auto get_size() const -> int;
 
   /** Sets the size field of a font description, in device units.
    *
@@ -732,7 +732,7 @@ public:
    * to find out if the size field of the font description was explicitly
    * set or not.
    */
-  bool get_size_is_absolute() const;
+  auto get_size_is_absolute() const -> bool;
 
   /** Sets the gravity field of a font description.
    *
@@ -760,7 +760,7 @@ public:
    * Use get_set_fields() to find out
    * if the field was explicitly set or not.
    */
-  Gravity get_gravity() const;
+  auto get_gravity() const -> Gravity;
 
 
   /** Sets the variations field of a font description.
@@ -795,14 +795,14 @@ public:
    * description, or <tt>nullptr</tt> if not previously set. This has the same
    * life-time as the font description itself and should not be freed.
    */
-  Glib::ustring get_variations() const;
+  auto get_variations() const -> Glib::ustring;
 
   /** Determines which fields in a font description have been set.
    *
    * @return A bitmask with bits set corresponding to the
    * fields in @a desc that have been set.
    */
-  FontMask get_set_fields() const;
+  auto get_set_fields() const -> FontMask;
 
   /** Unsets some of the fields in a `Pango::FontDescription`.
    *
@@ -845,7 +845,7 @@ public:
    * @param new_match A `Pango::FontDescription`.
    * @return <tt>true</tt> if @a new_match is a better match.
    */
-  bool better_match(const FontDescription& old_match, const FontDescription& new_match) const;
+  auto better_match(const FontDescription& old_match, const FontDescription& new_match) const -> bool;
 
   /** Creates a string representation of a font description. See
    * from_string() for a description of the
@@ -855,7 +855,7 @@ public:
    *
    * @return The string.
    */
-  Glib::ustring to_string() const;
+  auto to_string() const -> Glib::ustring;
 
   /** Creates a filename representation of a font description. The
    * filename is identical to the result from calling
@@ -864,7 +864,7 @@ public:
    *
    * @return The filename.
    */
-  Glib::ustring to_filename() const;
+  auto to_filename() const -> Glib::ustring;
 
 
 };
@@ -881,7 +881,7 @@ namespace Pango
  * @result The result
  */
 PANGOMM_API
-bool operator==(const FontDescription& lhs, const FontDescription& rhs);
+auto operator==(const FontDescription& lhs, const FontDescription& rhs) -> bool;
 
 /** @relates Pango::FontDescription
  * @param lhs The left-hand side
@@ -889,7 +889,7 @@ bool operator==(const FontDescription& lhs, const FontDescription& rhs);
  * @result The result
  */
 PANGOMM_API
-bool operator!=(const FontDescription& lhs, const FontDescription& rhs);
+auto operator!=(const FontDescription& lhs, const FontDescription& rhs) -> bool;
 
 
 } // namespace Pango
@@ -919,7 +919,7 @@ namespace Glib
  * @relates Pango::FontDescription
  */
 PANGOMM_API
-Pango::FontDescription wrap(PangoFontDescription* object, bool take_copy = false);
+auto wrap(PangoFontDescription* object, bool take_copy = false) -> Pango::FontDescription;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

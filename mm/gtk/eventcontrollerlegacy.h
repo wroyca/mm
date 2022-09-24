@@ -64,7 +64,7 @@ public:
 
   // noncopyable
   EventControllerLegacy(const EventControllerLegacy&) = delete;
-  EventControllerLegacy& operator=(const EventControllerLegacy&) = delete;
+  auto operator=(const EventControllerLegacy&) -> EventControllerLegacy& = delete;
 
 private:  friend class EventControllerLegacy_Class;
   static CppClassType eventcontrollerlegacy_class_;
@@ -78,28 +78,28 @@ protected:
 public:
 
   EventControllerLegacy(EventControllerLegacy&& src) noexcept;
-  EventControllerLegacy& operator=(EventControllerLegacy&& src) noexcept;
+  auto operator=(EventControllerLegacy&& src) noexcept -> EventControllerLegacy&;
 
   ~EventControllerLegacy() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkEventControllerLegacy*       gobj()       { return reinterpret_cast<GtkEventControllerLegacy*>(gobject_); }
+  auto       gobj() -> GtkEventControllerLegacy*       { return reinterpret_cast<GtkEventControllerLegacy*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkEventControllerLegacy* gobj() const { return reinterpret_cast<GtkEventControllerLegacy*>(gobject_); }
+  auto gobj() const -> const GtkEventControllerLegacy* { return reinterpret_cast<GtkEventControllerLegacy*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkEventControllerLegacy* gobj_copy();
+  auto gobj_copy() -> GtkEventControllerLegacy*;
 
 private:
 
@@ -109,7 +109,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<EventControllerLegacy> create();
+  static auto create() -> Glib::RefPtr<EventControllerLegacy>;
 
 
   // no_default_handler because GtkEventControllerLegacyClass is private.
@@ -128,7 +128,7 @@ public:
    * and the emission of this signal. <tt>false</tt> to propagate the event further.
    */
 
-  Glib::SignalProxy<bool(const Glib::RefPtr<const Gdk::Event>&)> signal_event();
+  auto signal_event() -> Glib::SignalProxy<bool(const Glib::RefPtr<const Gdk::Event>&)>;
 
 
 public:
@@ -158,7 +158,7 @@ namespace Glib
    * @relates Gtk::EventControllerLegacy
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::EventControllerLegacy> wrap(GtkEventControllerLegacy* object, bool take_copy = false);
+  auto wrap(GtkEventControllerLegacy* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerLegacy>;
 }
 
 

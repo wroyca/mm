@@ -33,8 +33,8 @@
 namespace Gio
 {
 
-std::vector<Glib::ustring>
-ProxyResolver::lookup(const Glib::ustring& uri)
+auto
+ProxyResolver::lookup(const Glib::ustring& uri) -> std::vector<Glib::ustring>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::ArrayHandler<Glib::ustring>::array_to_vector(
@@ -80,7 +80,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::ProxyResolver> wrap(GProxyResolver* object, bool take_copy)
+auto wrap(GProxyResolver* object, bool take_copy) -> Glib::RefPtr<Gio::ProxyResolver>
 {
   return Glib::make_refptr_for_instance<Gio::ProxyResolver>( dynamic_cast<Gio::ProxyResolver*> (Glib::wrap_auto_interface<Gio::ProxyResolver> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -95,7 +95,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& ProxyResolver_Class::init()
+auto ProxyResolver_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -122,7 +122,7 @@ void ProxyResolver_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* ProxyResolver_Class::wrap_new(GObject* object)
+auto ProxyResolver_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ProxyResolver((GProxyResolver*)(object));
 }
@@ -149,7 +149,7 @@ ProxyResolver::ProxyResolver(ProxyResolver&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-ProxyResolver& ProxyResolver::operator=(ProxyResolver&& src) noexcept
+auto ProxyResolver::operator=(ProxyResolver&& src) noexcept -> ProxyResolver&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -166,29 +166,29 @@ void ProxyResolver::add_interface(GType gtype_implementer)
 
 ProxyResolver::CppClassType ProxyResolver::proxyresolver_class_; // initialize static member
 
-GType ProxyResolver::get_type()
+auto ProxyResolver::get_type() -> GType
 {
   return proxyresolver_class_.init().get_type();
 }
 
 
-GType ProxyResolver::get_base_type()
+auto ProxyResolver::get_base_type() -> GType
 {
   return g_proxy_resolver_get_type();
 }
 
 
-Glib::RefPtr<ProxyResolver> ProxyResolver::get_default()
+auto ProxyResolver::get_default() -> Glib::RefPtr<ProxyResolver>
 {
   return Glib::wrap(g_proxy_resolver_get_default());
 }
 
-bool ProxyResolver::is_supported() const
+auto ProxyResolver::is_supported() const -> bool
 {
   return g_proxy_resolver_is_supported(const_cast<GProxyResolver*>(gobj()));
 }
 
-std::vector<Glib::ustring> ProxyResolver::lookup(const Glib::ustring& uri, const Glib::RefPtr<Cancellable>& cancellable)
+auto ProxyResolver::lookup(const Glib::ustring& uri, const Glib::RefPtr<Cancellable>& cancellable) -> std::vector<Glib::ustring>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_proxy_resolver_lookup(gobj(), uri.c_str(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)), Glib::OWNERSHIP_DEEP);
@@ -197,7 +197,7 @@ std::vector<Glib::ustring> ProxyResolver::lookup(const Glib::ustring& uri, const
   return retvalue;
 }
 
-std::vector<Glib::ustring> ProxyResolver::lookup_finish(const Glib::RefPtr<AsyncResult>& result)
+auto ProxyResolver::lookup_finish(const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::ustring>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_proxy_resolver_lookup_finish(gobj(), Glib::unwrap(result), &(gerror)), Glib::OWNERSHIP_DEEP);

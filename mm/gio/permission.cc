@@ -38,7 +38,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::Permission> wrap(GPermission* object, bool take_copy)
+auto wrap(GPermission* object, bool take_copy) -> Glib::RefPtr<Gio::Permission>
 {
   return Glib::make_refptr_for_instance<Gio::Permission>( dynamic_cast<Gio::Permission*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -53,7 +53,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& Permission_Class::init()
+auto Permission_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -89,7 +89,7 @@ void Permission_Class::class_init_function(void* g_class, void* class_data)
 
 }
 
-gboolean Permission_Class::acquire_vfunc_callback(GPermission* self, GCancellable* cancellable, GError** error)
+auto Permission_Class::acquire_vfunc_callback(GPermission* self, GCancellable* cancellable, GError** error) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -173,7 +173,7 @@ void Permission_Class::acquire_async_vfunc_callback(GPermission* self, GCancella
   if(base && base->acquire_async)
     (*base->acquire_async)(self, cancellable, callback, user_data);
 }
-gboolean Permission_Class::acquire_finish_vfunc_callback(GPermission* self, GAsyncResult* result, GError** error)
+auto Permission_Class::acquire_finish_vfunc_callback(GPermission* self, GAsyncResult* result, GError** error) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -218,7 +218,7 @@ gboolean Permission_Class::acquire_finish_vfunc_callback(GPermission* self, GAsy
   using RType = gboolean;
   return RType();
 }
-gboolean Permission_Class::release_vfunc_callback(GPermission* self, GCancellable* cancellable, GError** error)
+auto Permission_Class::release_vfunc_callback(GPermission* self, GCancellable* cancellable, GError** error) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -302,7 +302,7 @@ void Permission_Class::release_async_vfunc_callback(GPermission* self, GCancella
   if(base && base->release_async)
     (*base->release_async)(self, cancellable, callback, user_data);
 }
-gboolean Permission_Class::release_finish_vfunc_callback(GPermission* self, GAsyncResult* result, GError** error)
+auto Permission_Class::release_finish_vfunc_callback(GPermission* self, GAsyncResult* result, GError** error) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -349,7 +349,7 @@ gboolean Permission_Class::release_finish_vfunc_callback(GPermission* self, GAsy
 }
 
 
-Glib::ObjectBase* Permission_Class::wrap_new(GObject* object)
+auto Permission_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Permission((GPermission*)object);
 }
@@ -357,7 +357,7 @@ Glib::ObjectBase* Permission_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GPermission* Permission::gobj_copy()
+auto Permission::gobj_copy() -> GPermission*
 {
   reference();
   return gobj();
@@ -380,7 +380,7 @@ Permission::Permission(Permission&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Permission& Permission::operator=(Permission&& src) noexcept
+auto Permission::operator=(Permission&& src) noexcept -> Permission&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -393,19 +393,19 @@ Permission::~Permission() noexcept
 
 Permission::CppClassType Permission::permission_class_; // initialize static member
 
-GType Permission::get_type()
+auto Permission::get_type() -> GType
 {
   return permission_class_.init().get_type();
 }
 
 
-GType Permission::get_base_type()
+auto Permission::get_base_type() -> GType
 {
   return g_permission_get_type();
 }
 
 
-bool Permission::acquire(const Glib::RefPtr<Cancellable>& cancellable)
+auto Permission::acquire(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_permission_acquire(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -414,7 +414,7 @@ bool Permission::acquire(const Glib::RefPtr<Cancellable>& cancellable)
   return retvalue;
 }
 
-bool Permission::acquire()
+auto Permission::acquire() -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_permission_acquire(gobj(), nullptr, &(gerror));
@@ -439,7 +439,7 @@ void Permission::acquire_async(const SlotAsyncReady& slot)
   g_permission_acquire_async(gobj(), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-bool Permission::acquire_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Permission::acquire_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_permission_acquire_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -448,7 +448,7 @@ bool Permission::acquire_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool Permission::release(const Glib::RefPtr<Cancellable>& cancellable)
+auto Permission::release(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_permission_release(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -457,7 +457,7 @@ bool Permission::release(const Glib::RefPtr<Cancellable>& cancellable)
   return retvalue;
 }
 
-bool Permission::release()
+auto Permission::release() -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_permission_release(gobj(), nullptr, &(gerror));
@@ -482,7 +482,7 @@ void Permission::release_async(const SlotAsyncReady& slot)
   g_permission_release_async(gobj(), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-bool Permission::release_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Permission::release_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_permission_release_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -491,17 +491,17 @@ bool Permission::release_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool Permission::get_allowed() const
+auto Permission::get_allowed() const -> bool
 {
   return g_permission_get_allowed(const_cast<GPermission*>(gobj()));
 }
 
-bool Permission::get_can_acquire() const
+auto Permission::get_can_acquire() const -> bool
 {
   return g_permission_get_can_acquire(const_cast<GPermission*>(gobj()));
 }
 
-bool Permission::get_can_release() const
+auto Permission::get_can_release() const -> bool
 {
   return g_permission_get_can_release(const_cast<GPermission*>(gobj()));
 }
@@ -522,23 +522,23 @@ void Permission::impl_update(bool allowed, bool can_acquire, bool can_release)
 }
 
 
-Glib::PropertyProxy_ReadOnly< bool > Permission::property_allowed() const
+auto Permission::property_allowed() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "allowed");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Permission::property_can_acquire() const
+auto Permission::property_can_acquire() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "can-acquire");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Permission::property_can_release() const
+auto Permission::property_can_release() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "can-release");
 }
 
 
-bool Gio::Permission::acquire_vfunc(const Glib::RefPtr<Cancellable>& cancellable)
+auto Gio::Permission::acquire_vfunc(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -570,7 +570,7 @@ void Gio::Permission::acquire_async_vfunc(const SlotAsyncReady& slot, const Glib
     (*base->acquire_async)(gobj(),const_cast<GCancellable*>(Glib::unwrap(cancellable)),&SignalProxy_async_callback,slot_copy);
   }
 }
-bool Gio::Permission::acquire_finish_vfunc(const Glib::RefPtr<AsyncResult>& result)
+auto Gio::Permission::acquire_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -588,7 +588,7 @@ bool Gio::Permission::acquire_finish_vfunc(const Glib::RefPtr<AsyncResult>& resu
   using RType = bool;
   return RType();
 }
-bool Gio::Permission::release_vfunc(const Glib::RefPtr<Cancellable>& cancellable)
+auto Gio::Permission::release_vfunc(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -620,7 +620,7 @@ void Gio::Permission::release_async_vfunc(const SlotAsyncReady& slot, const Glib
     (*base->release_async)(gobj(),const_cast<GCancellable*>(Glib::unwrap(cancellable)),&SignalProxy_async_callback,slot_copy);
   }
 }
-bool Gio::Permission::release_finish_vfunc(const Glib::RefPtr<AsyncResult>& result)
+auto Gio::Permission::release_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

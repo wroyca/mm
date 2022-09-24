@@ -75,7 +75,7 @@ public:
 
   // noncopyable
   PollableInputStream(const PollableInputStream&) = delete;
-  PollableInputStream& operator=(const PollableInputStream&) = delete;
+  auto operator=(const PollableInputStream&) -> PollableInputStream& = delete;
 
 private:
   friend class PollableInputStream_Class;
@@ -109,7 +109,7 @@ protected:
 public:
 
   PollableInputStream(PollableInputStream&& src) noexcept;
-  PollableInputStream& operator=(PollableInputStream&& src) noexcept;
+  auto operator=(PollableInputStream&& src) noexcept -> PollableInputStream&;
 
   ~PollableInputStream() noexcept override;
 
@@ -117,17 +117,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GPollableInputStream*       gobj()       { return reinterpret_cast<GPollableInputStream*>(gobject_); }
+  auto       gobj() -> GPollableInputStream*       { return reinterpret_cast<GPollableInputStream*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GPollableInputStream* gobj() const { return reinterpret_cast<GPollableInputStream*>(gobject_); }
+  auto gobj() const -> const GPollableInputStream* { return reinterpret_cast<GPollableInputStream*>(gobject_); }
 
 private:
 
@@ -146,7 +146,7 @@ public:
    *
    * @return <tt>true</tt> if @a stream is pollable, <tt>false</tt> if not.
    */
-  bool can_poll() const;
+  auto can_poll() const -> bool;
 
   /** Checks if @a stream can be read.
    *
@@ -164,7 +164,7 @@ public:
    * g_pollable_input_stream_is_readable() returning <tt>true</tt>, and the
    * next attempt to read will return the error.
    */
-  bool is_readable() const;
+  auto is_readable() const -> bool;
 
   //TODO: _WRAP_METHOD(Glib::RefPtr<Source> create_source(const Glib::RefPtr<Cancellable>& cancellable), g_pollable_input_stream_create_source)
 
@@ -192,21 +192,21 @@ public:
    *
    * @throws Glib::Error
    */
-  gssize read_nonblocking(void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable);
+  auto read_nonblocking(void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
   /// A read_nonblocking() convenience overload.
-  gssize read_nonblocking(void* buffer, gsize count);
+  auto read_nonblocking(void* buffer, gsize count) -> gssize;
 
 protected:
-    virtual bool can_poll_vfunc() const;
+    virtual auto can_poll_vfunc() const -> bool;
 
-    virtual bool is_readable_vfunc() const;
+    virtual auto is_readable_vfunc() const -> bool;
 
 
   //TODO: _WRAP_VFUNC(Glib::RefPtr<Source> create_source(const Glib::RefPtr<Cancellable>& cancellable), "create_source")
 
   /// @throws Glib::Error.
-  virtual gssize read_nonblocking_vfunc(void* buffer, gsize count);
+  virtual auto read_nonblocking_vfunc(void* buffer, gsize count) -> gssize;
 
 
 public:
@@ -236,7 +236,7 @@ namespace Glib
    * @relates Gio::PollableInputStream
    */
   GIOMM_API
-  Glib::RefPtr<Gio::PollableInputStream> wrap(GPollableInputStream* object, bool take_copy = false);
+  auto wrap(GPollableInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::PollableInputStream>;
 
 } // namespace Glib
 

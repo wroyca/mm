@@ -93,7 +93,7 @@ public:
 
   // noncopyable
   FrameClock(const FrameClock&) = delete;
-  FrameClock& operator=(const FrameClock&) = delete;
+  auto operator=(const FrameClock&) -> FrameClock& = delete;
 
 private:  friend class FrameClock_Class;
   static CppClassType frameclock_class_;
@@ -107,28 +107,28 @@ protected:
 public:
 
   FrameClock(FrameClock&& src) noexcept;
-  FrameClock& operator=(FrameClock&& src) noexcept;
+  auto operator=(FrameClock&& src) noexcept -> FrameClock&;
 
   ~FrameClock() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkFrameClock*       gobj()       { return reinterpret_cast<GdkFrameClock*>(gobject_); }
+  auto       gobj() -> GdkFrameClock*       { return reinterpret_cast<GdkFrameClock*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkFrameClock* gobj() const { return reinterpret_cast<GdkFrameClock*>(gobject_); }
+  auto gobj() const -> const GdkFrameClock* { return reinterpret_cast<GdkFrameClock*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkFrameClock* gobj_copy();
+  auto gobj_copy() -> GdkFrameClock*;
 
 private:
 
@@ -201,7 +201,7 @@ public:
    * @return A timestamp in microseconds, in the timescale of
    * of Glib::get_monotonic_time().
    */
-  gint64 get_frame_time() const;
+  auto get_frame_time() const -> gint64;
 
   /** Asks the frame clock to run a particular phase.
    *
@@ -242,7 +242,7 @@ public:
    * for the current frame. Outside of frame processing, the frame
    * counter for the last frame.
    */
-  gint64 get_frame_counter() const;
+  auto get_frame_counter() const -> gint64;
 
   /** Returns the frame counter for the oldest frame available in history.
    *
@@ -257,7 +257,7 @@ public:
    * that is available in the internal frame history of the
    * `Gdk::FrameClock`.
    */
-  gint64 get_history_start() const;
+  auto get_history_start() const -> gint64;
 
   /** Retrieves a `Gdk::FrameTimings` object holding timing information
    * for the current frame or a recent frame.
@@ -271,7 +271,7 @@ public:
    * @return The `Gdk::FrameTimings` object
    * for the specified frame, or <tt>nullptr</tt> if it is not available.
    */
-  Glib::RefPtr<FrameTimings> get_timings(gint64 frame_counter);
+  auto get_timings(gint64 frame_counter) -> Glib::RefPtr<FrameTimings>;
 
   /** Retrieves a `Gdk::FrameTimings` object holding timing information
    * for the current frame or a recent frame.
@@ -285,7 +285,7 @@ public:
    * @return The `Gdk::FrameTimings` object
    * for the specified frame, or <tt>nullptr</tt> if it is not available.
    */
-  Glib::RefPtr<const FrameTimings> get_timings(gint64 frame_counter) const;
+  auto get_timings(gint64 frame_counter) const -> Glib::RefPtr<const FrameTimings>;
 
   /** Gets the frame timings for the current frame.
    *
@@ -294,7 +294,7 @@ public:
    * processed, for the previous frame. Before any frames have been
    * processed, returns <tt>nullptr</tt>.
    */
-  Glib::RefPtr<FrameTimings> get_current_timings();
+  auto get_current_timings() -> Glib::RefPtr<FrameTimings>;
 
   /** Gets the frame timings for the current frame.
    *
@@ -303,7 +303,7 @@ public:
    * processed, for the previous frame. Before any frames have been
    * processed, returns <tt>nullptr</tt>.
    */
-  Glib::RefPtr<const FrameTimings> get_current_timings() const;
+  auto get_current_timings() const -> Glib::RefPtr<const FrameTimings>;
 
   /** Predicts a presentation time, based on history.
    *
@@ -328,7 +328,7 @@ public:
    *
    * @return The current fps, as a `double`.
    */
-  double get_fps() const;
+  auto get_fps() const -> double;
 
 
   // no_default_handler because the wrapped C signals have no default handlers.
@@ -347,7 +347,7 @@ public:
    * Gtk::Widget::add_tick_callback() as a more convenient interface.
    */
 
-  Glib::SignalProxy<void()> signal_update();
+  auto signal_update() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -363,7 +363,7 @@ public:
    * should be performed. GTK normally handles this internally.
    */
 
-  Glib::SignalProxy<void()> signal_layout();
+  auto signal_layout() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -380,7 +380,7 @@ public:
    * Gtk::Widget::signal_snapshot() signals by GTK.
    */
 
-  Glib::SignalProxy<void()> signal_paint();
+  auto signal_paint() -> Glib::SignalProxy<void()>;
 
 
   // There are no properties or vfuncs.
@@ -405,31 +405,31 @@ namespace Gdk
 {
 
 /** @ingroup gdkmmEnums */
-inline FrameClock::Phase operator|(FrameClock::Phase lhs, FrameClock::Phase rhs)
+inline auto operator|(FrameClock::Phase lhs, FrameClock::Phase rhs) -> FrameClock::Phase
   { return static_cast<FrameClock::Phase>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline FrameClock::Phase operator&(FrameClock::Phase lhs, FrameClock::Phase rhs)
+inline auto operator&(FrameClock::Phase lhs, FrameClock::Phase rhs) -> FrameClock::Phase
   { return static_cast<FrameClock::Phase>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline FrameClock::Phase operator^(FrameClock::Phase lhs, FrameClock::Phase rhs)
+inline auto operator^(FrameClock::Phase lhs, FrameClock::Phase rhs) -> FrameClock::Phase
   { return static_cast<FrameClock::Phase>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline FrameClock::Phase operator~(FrameClock::Phase flags)
+inline auto operator~(FrameClock::Phase flags) -> FrameClock::Phase
   { return static_cast<FrameClock::Phase>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gdkmmEnums */
-inline FrameClock::Phase& operator|=(FrameClock::Phase& lhs, FrameClock::Phase rhs)
+inline auto operator|=(FrameClock::Phase& lhs, FrameClock::Phase rhs) -> FrameClock::Phase&
   { return (lhs = static_cast<FrameClock::Phase>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline FrameClock::Phase& operator&=(FrameClock::Phase& lhs, FrameClock::Phase rhs)
+inline auto operator&=(FrameClock::Phase& lhs, FrameClock::Phase rhs) -> FrameClock::Phase&
   { return (lhs = static_cast<FrameClock::Phase>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline FrameClock::Phase& operator^=(FrameClock::Phase& lhs, FrameClock::Phase rhs)
+inline auto operator^=(FrameClock::Phase& lhs, FrameClock::Phase rhs) -> FrameClock::Phase&
   { return (lhs = static_cast<FrameClock::Phase>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gdk
 
@@ -441,7 +441,7 @@ template <>
 class GDKMM_API Value<Gdk::FrameClock::Phase> : public Glib::Value_Flags<Gdk::FrameClock::Phase>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -459,7 +459,7 @@ namespace Glib
    * @relates Gdk::FrameClock
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::FrameClock> wrap(GdkFrameClock* object, bool take_copy = false);
+  auto wrap(GdkFrameClock* object, bool take_copy = false) -> Glib::RefPtr<Gdk::FrameClock>;
 }
 
 

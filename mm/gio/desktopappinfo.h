@@ -77,7 +77,7 @@ public:
 
   // noncopyable
   DesktopAppInfo(const DesktopAppInfo&) = delete;
-  DesktopAppInfo& operator=(const DesktopAppInfo&) = delete;
+  auto operator=(const DesktopAppInfo&) -> DesktopAppInfo& = delete;
 
 private:  friend class DesktopAppInfo_Class;
   static CppClassType desktopappinfo_class_;
@@ -91,28 +91,28 @@ protected:
 public:
 
   DesktopAppInfo(DesktopAppInfo&& src) noexcept;
-  DesktopAppInfo& operator=(DesktopAppInfo&& src) noexcept;
+  auto operator=(DesktopAppInfo&& src) noexcept -> DesktopAppInfo&;
 
   ~DesktopAppInfo() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDesktopAppInfo*       gobj()       { return reinterpret_cast<GDesktopAppInfo*>(gobject_); }
+  auto       gobj() -> GDesktopAppInfo*       { return reinterpret_cast<GDesktopAppInfo*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDesktopAppInfo* gobj() const { return reinterpret_cast<GDesktopAppInfo*>(gobject_); }
+  auto gobj() const -> const GDesktopAppInfo* { return reinterpret_cast<GDesktopAppInfo*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDesktopAppInfo* gobj_copy();
+  auto gobj_copy() -> GDesktopAppInfo*;
 
 private:
 
@@ -137,7 +137,7 @@ public:
    * @return A new DesktopAppInfo, or <tt>nullptr</tt> if no desktop
    * file with that id exists.
    */
-  static Glib::RefPtr<DesktopAppInfo> create(const std::string& desktop_id);
+  static auto create(const std::string& desktop_id) -> Glib::RefPtr<DesktopAppInfo>;
 
   /** Creates a new DesktopAppInfo.
    *
@@ -146,7 +146,7 @@ public:
    * @param key_file An opened KeyFile.
    * @return A new DesktopAppInfo or <tt>nullptr</tt> on error.
    */
-  static Glib::RefPtr<DesktopAppInfo> create_from_keyfile(const Glib::RefPtr<Glib::KeyFile>& key_file);
+  static auto create_from_keyfile(const Glib::RefPtr<Glib::KeyFile>& key_file) -> Glib::RefPtr<DesktopAppInfo>;
 
   /** Creates a new DesktopAppInfo.
    *
@@ -154,7 +154,7 @@ public:
    * filename encoding.
    * @return A new DesktopAppInfo or <tt>nullptr</tt> on error.
    */
-  static Glib::RefPtr<DesktopAppInfo> create_from_filename(const std::string& filename);
+  static auto create_from_filename(const std::string& filename) -> Glib::RefPtr<DesktopAppInfo>;
 
 
   /** When @a info was created from a known filename, return it.  In some
@@ -166,14 +166,14 @@ public:
    * @return The full path to the file for @a info,
    * or <tt>nullptr</tt> if not known.
    */
-  std::string get_filename() const;
+  auto get_filename() const -> std::string;
 
   /** A desktop file is hidden if the Hidden key in it is
    * set to True.
    *
    * @return <tt>true</tt> if hidden, <tt>false</tt> otherwise.
    */
-  bool is_hidden() const;
+  auto is_hidden() const -> bool;
 
 
   /** Gets the keywords from the desktop file.
@@ -182,7 +182,7 @@ public:
    *
    * @return The value of the Keywords key.
    */
-  std::vector<Glib::ustring> get_keywords() const;
+  auto get_keywords() const -> std::vector<Glib::ustring>;
 
 
   /** Retrieves the StartupWMClass field from @a info. This represents the
@@ -194,7 +194,7 @@ public:
    * @return The startup WM class, or <tt>nullptr</tt> if none is set
    * in the desktop file.
    */
-  std::string get_startup_wm_class() const;
+  auto get_startup_wm_class() const -> std::string;
 
   /** Gets the value of the NoDisplay key, which helps determine if the
    * application info should be shown in menus. See
@@ -204,7 +204,7 @@ public:
    *
    * @return The value of the NoDisplay key.
    */
-  bool get_nodisplay() const;
+  auto get_nodisplay() const -> bool;
 
   /** Checks if the application info should be shown in menus that list available
    * applications for a specific name of the desktop, based on the
@@ -225,20 +225,20 @@ public:
    * `OnlyShowIn` and `NotShowIn` keys, <tt>false</tt>
    * otherwise.
    */
-  bool get_show_in(const std::string& desktop_env) const;
+  auto get_show_in(const std::string& desktop_env) const -> bool;
 
   /** Gets the generic name from the desktop file.
    *
    * @return The value of the GenericName key.
    */
-  std::string get_generic_name() const;
+  auto get_generic_name() const -> std::string;
 
   /** Gets the categories from the desktop file.
    *
    * @return The unparsed Categories key from the desktop file;
    * i.e. no attempt is made to split it by ';' or validate it.
    */
-  std::string get_categories() const;
+  auto get_categories() const -> std::string;
 
 
   /** Returns whether @a key exists in the "Desktop Entry" group
@@ -249,7 +249,7 @@ public:
    * @param key The key to look up.
    * @return <tt>true</tt> if the @a key exists.
    */
-  bool has_key(const Glib::ustring& key) const;
+  auto has_key(const Glib::ustring& key) const -> bool;
 
   /** Looks up a string value in the keyfile backing @a info.
    *
@@ -261,7 +261,7 @@ public:
    * @return A newly allocated string, or <tt>nullptr</tt> if the key
    * is not found.
    */
-  Glib::ustring get_string(const Glib::ustring& key);
+  auto get_string(const Glib::ustring& key) -> Glib::ustring;
 
   /** Looks up a localized string value in the keyfile backing @a info
    * translated to the current locale.
@@ -274,7 +274,7 @@ public:
    * @return A newly allocated string, or <tt>nullptr</tt> if the key
    * is not found.
    */
-  Glib::ustring get_locale_string(const Glib::ustring& key);
+  auto get_locale_string(const Glib::ustring& key) -> Glib::ustring;
 
   /** Looks up a boolean value in the keyfile backing @a info.
    *
@@ -286,7 +286,7 @@ public:
    * @return The boolean value, or <tt>false</tt> if the key
    * is not found.
    */
-  bool get_boolean(const Glib::ustring& key) const;
+  auto get_boolean(const Glib::ustring& key) const -> bool;
 
 
   /** Returns the list of "additional application actions" supported on the
@@ -299,7 +299,7 @@ public:
    *
    * @return A list of strings, always non-<tt>nullptr</tt>.
    */
-  std::vector<Glib::ustring> list_actions() const;
+  auto list_actions() const -> std::vector<Glib::ustring>;
 
 
   /** Activates the named application action.
@@ -342,7 +342,7 @@ public:
    * g_desktop_app_info_list_actions().
    * @return The locale-specific action name.
    */
-  Glib::ustring get_action_name(const Glib::ustring& action_name) const;
+  auto get_action_name(const Glib::ustring& action_name) const -> Glib::ustring;
 
 
 public:
@@ -372,7 +372,7 @@ namespace Glib
    * @relates Gio::DesktopAppInfo
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DesktopAppInfo> wrap(GDesktopAppInfo* object, bool take_copy = false);
+  auto wrap(GDesktopAppInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DesktopAppInfo>;
 }
 
 

@@ -20,13 +20,10 @@
 #include <mm/cairo/context_private.h>
 #include <mm/cairo/win32_surface.h>
 
-namespace Cairo
+namespace Cairo::Private
 {
 
-namespace Private
-{
-
-RefPtr<Surface> wrap_surface_win32(cairo_surface_t* surface)
+auto wrap_surface_win32(cairo_surface_t* surface) -> RefPtr<Surface>
 {
 #if CAIRO_HAS_WIN32_SURFACE
     return make_refptr_for_instance<Win32Surface>(new Win32Surface(surface, false /* does not have reference */));
@@ -34,8 +31,6 @@ RefPtr<Surface> wrap_surface_win32(cairo_surface_t* surface)
     return make_refptr_for_instance<Surface>(new Surface(surface, false /* does not have reference */));
 #endif
 }
-
-} // namespace Private
 
 } // namespace Cairo
 

@@ -30,28 +30,28 @@ Matrix::Matrix(double xx, double yx, double xy, double yy, double x0, double y0)
   cairo_matrix_init(this, xx, yx, xy, yy, x0, y0);
 }
 
-Matrix identity_matrix()
+auto identity_matrix() -> Matrix
 {
   Matrix m;
   cairo_matrix_init_identity(&m);
   return m;
 }
 
-Matrix translation_matrix(double tx, double ty)
+auto translation_matrix(double tx, double ty) -> Matrix
 {
   Matrix m;
   cairo_matrix_init_translate(&m, tx, ty);
   return m;
 }
 
-Matrix scaling_matrix(double sx, double sy)
+auto scaling_matrix(double sx, double sy) -> Matrix
 {
   Matrix m;
   cairo_matrix_init_scale(&m, sx, sy);
   return m;
 }
 
-Matrix rotation_matrix(double radians)
+auto rotation_matrix(double radians) -> Matrix
 {
   Matrix m;
   cairo_matrix_init_rotate(&m, radians);
@@ -95,7 +95,7 @@ void Matrix::transform_point(double& x, double& y) const
   cairo_matrix_transform_point(this, &x, &y);
 }
 
-Matrix operator*(const Matrix& a, const Matrix& b)
+auto operator*(const Matrix& a, const Matrix& b) -> Matrix
 {
   Matrix m;
   cairo_matrix_multiply(&m, &a, &b);

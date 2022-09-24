@@ -87,7 +87,7 @@ public:
    *
    * @since 1.12
    */
-  ScriptMode get_mode() const;
+  auto get_mode() const -> ScriptMode;
 
   /**
    * Change the output mode of the script.
@@ -115,7 +115,7 @@ public:
    *
    * @since 1.12
    */
-  static RefPtr<Script> create(const std::string& filename);
+  static auto create(const std::string& filename) -> RefPtr<Script>;
 
   /**
    * Creates a output device for emitting the script, used when creating the
@@ -125,7 +125,7 @@ public:
    *
    * @since 1.12
    */
-  static RefPtr<Script> create_for_stream(const Surface::SlotWriteFunc& write_func);
+  static auto create_for_stream(const Surface::SlotWriteFunc& write_func) -> RefPtr<Script>;
 
 };
 

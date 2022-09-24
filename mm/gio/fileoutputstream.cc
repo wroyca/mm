@@ -32,9 +32,9 @@
 namespace Gio
 {
 
-Glib::RefPtr<FileInfo>
+auto
 FileOutputStream::query_info(
-  const Glib::RefPtr<Cancellable>& cancellable, const std::string& attributes)
+  const Glib::RefPtr<Cancellable>& cancellable, const std::string& attributes) -> Glib::RefPtr<FileInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_output_stream_query_info(gobj(), g_strdup((attributes).c_str()),
@@ -47,8 +47,8 @@ FileOutputStream::query_info(
   return retvalue;
 }
 
-Glib::RefPtr<FileInfo>
-FileOutputStream::query_info(const std::string& attributes)
+auto
+FileOutputStream::query_info(const std::string& attributes) -> Glib::RefPtr<FileInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(
@@ -97,7 +97,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::FileOutputStream> wrap(GFileOutputStream* object, bool take_copy)
+auto wrap(GFileOutputStream* object, bool take_copy) -> Glib::RefPtr<Gio::FileOutputStream>
 {
   return Glib::make_refptr_for_instance<Gio::FileOutputStream>( dynamic_cast<Gio::FileOutputStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -112,7 +112,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& FileOutputStream_Class::init()
+auto FileOutputStream_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -144,7 +144,7 @@ void FileOutputStream_Class::class_init_function(void* g_class, void* class_data
 }
 
 
-Glib::ObjectBase* FileOutputStream_Class::wrap_new(GObject* object)
+auto FileOutputStream_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new FileOutputStream((GFileOutputStream*)object);
 }
@@ -152,7 +152,7 @@ Glib::ObjectBase* FileOutputStream_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GFileOutputStream* FileOutputStream::gobj_copy()
+auto FileOutputStream::gobj_copy() -> GFileOutputStream*
 {
   reference();
   return gobj();
@@ -176,7 +176,7 @@ FileOutputStream::FileOutputStream(FileOutputStream&& src) noexcept
   , Seekable(std::move(src))
 {}
 
-FileOutputStream& FileOutputStream::operator=(FileOutputStream&& src) noexcept
+auto FileOutputStream::operator=(FileOutputStream&& src) noexcept -> FileOutputStream&
 {
   Gio::OutputStream::operator=(std::move(src));
   Seekable::operator=(std::move(src));
@@ -190,19 +190,19 @@ FileOutputStream::~FileOutputStream() noexcept
 
 FileOutputStream::CppClassType FileOutputStream::fileoutputstream_class_; // initialize static member
 
-GType FileOutputStream::get_type()
+auto FileOutputStream::get_type() -> GType
 {
   return fileoutputstream_class_.init().get_type();
 }
 
 
-GType FileOutputStream::get_base_type()
+auto FileOutputStream::get_base_type() -> GType
 {
   return g_file_output_stream_get_type();
 }
 
 
-Glib::RefPtr<FileInfo> FileOutputStream::query_info_finish(const Glib::RefPtr<AsyncResult>& result)
+auto FileOutputStream::query_info_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<FileInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_output_stream_query_info_finish(gobj(), Glib::unwrap(result), &(gerror)));
@@ -213,7 +213,7 @@ Glib::RefPtr<FileInfo> FileOutputStream::query_info_finish(const Glib::RefPtr<As
   return retvalue;
 }
 
-Glib::ustring FileOutputStream::get_etag() const
+auto FileOutputStream::get_etag() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(g_file_output_stream_get_etag(const_cast<GFileOutputStream*>(gobj())));
 }

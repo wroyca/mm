@@ -69,7 +69,7 @@ public:
 
   // noncopyable
   FileMonitor(const FileMonitor&) = delete;
-  FileMonitor& operator=(const FileMonitor&) = delete;
+  auto operator=(const FileMonitor&) -> FileMonitor& = delete;
 
 private:  friend class FileMonitor_Class;
   static CppClassType filemonitor_class_;
@@ -83,28 +83,28 @@ protected:
 public:
 
   FileMonitor(FileMonitor&& src) noexcept;
-  FileMonitor& operator=(FileMonitor&& src) noexcept;
+  auto operator=(FileMonitor&& src) noexcept -> FileMonitor&;
 
   ~FileMonitor() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GFileMonitor*       gobj()       { return reinterpret_cast<GFileMonitor*>(gobject_); }
+  auto       gobj() -> GFileMonitor*       { return reinterpret_cast<GFileMonitor*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GFileMonitor* gobj() const { return reinterpret_cast<GFileMonitor*>(gobject_); }
+  auto gobj() const -> const GFileMonitor* { return reinterpret_cast<GFileMonitor*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GFileMonitor* gobj_copy();
+  auto gobj_copy() -> GFileMonitor*;
 
 private:
 
@@ -181,13 +181,13 @@ public:
    *
    * @return Always <tt>true</tt>.
    */
-  bool cancel();
+  auto cancel() -> bool;
 
   /** Returns whether the monitor is canceled.
    *
    * @return <tt>true</tt> if monitor is canceled. <tt>false</tt> otherwise.
    */
-  bool is_cancelled() const;
+  auto is_cancelled() const -> bool;
 
   /** Sets the rate limit to which the @a monitor will report
    * consecutive change events to the same file.
@@ -240,7 +240,7 @@ public:
    * @param event_type A Gio::FileMonitor::Event.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<File>&, const Glib::RefPtr<File>&, Event)> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<File>&, const Glib::RefPtr<File>&, Event)>;
 
 
   /** The limit of the monitor to watch for changes, in milliseconds.
@@ -250,7 +250,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_rate_limit() ;
+  auto property_rate_limit() -> Glib::PropertyProxy< int > ;
 
 /** The limit of the monitor to watch for changes, in milliseconds.
    *
@@ -259,7 +259,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_rate_limit() const;
+  auto property_rate_limit() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Whether the monitor has been cancelled.
    *
@@ -268,7 +268,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_cancelled() const;
+  auto property_cancelled() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 protected:
@@ -304,7 +304,7 @@ namespace Glib
    * @relates Gio::FileMonitor
    */
   GIOMM_API
-  Glib::RefPtr<Gio::FileMonitor> wrap(GFileMonitor* object, bool take_copy = false);
+  auto wrap(GFileMonitor* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileMonitor>;
 }
 
 

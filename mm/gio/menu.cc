@@ -38,7 +38,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::Menu> wrap(GMenu* object, bool take_copy)
+auto wrap(GMenu* object, bool take_copy) -> Glib::RefPtr<Gio::Menu>
 {
   return Glib::make_refptr_for_instance<Gio::Menu>( dynamic_cast<Gio::Menu*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -53,7 +53,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& Menu_Class::init()
+auto Menu_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -84,7 +84,7 @@ void Menu_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Menu_Class::wrap_new(GObject* object)
+auto Menu_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Menu((GMenu*)object);
 }
@@ -92,7 +92,7 @@ Glib::ObjectBase* Menu_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GMenu* Menu::gobj_copy()
+auto Menu::gobj_copy() -> GMenu*
 {
   reference();
   return gobj();
@@ -115,7 +115,7 @@ Menu::Menu(Menu&& src) noexcept
 : ::Gio::MenuModel(std::move(src))
 {}
 
-Menu& Menu::operator=(Menu&& src) noexcept
+auto Menu::operator=(Menu&& src) noexcept -> Menu&
 {
   ::Gio::MenuModel::operator=(std::move(src));
   return *this;
@@ -128,13 +128,13 @@ Menu::~Menu() noexcept
 
 Menu::CppClassType Menu::menu_class_; // initialize static member
 
-GType Menu::get_type()
+auto Menu::get_type() -> GType
 {
   return menu_class_.init().get_type();
 }
 
 
-GType Menu::get_base_type()
+auto Menu::get_base_type() -> GType
 {
   return g_menu_get_type();
 }
@@ -150,7 +150,7 @@ Menu::Menu()
 
 }
 
-Glib::RefPtr<Menu> Menu::create()
+auto Menu::create() -> Glib::RefPtr<Menu>
 {
   return Glib::make_refptr_for_instance<Menu>( new Menu() );
 }

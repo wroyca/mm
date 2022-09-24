@@ -27,7 +27,7 @@
 
 #include <gtk/gtk.h>
 
-static int SignalProxy_SlotForwardPage_gtk_callback(int current_page, gpointer data)
+static auto SignalProxy_SlotForwardPage_gtk_callback(int current_page, gpointer data) -> int
 {
   auto the_slot = static_cast<Gtk::Assistant::SlotForwardPage*>(data);
 
@@ -81,7 +81,7 @@ namespace
 {
 
 
-static void Assistant_signal_prepare_callback(GtkAssistant* self, GtkWidget* p0,void* data)
+void Assistant_signal_prepare_callback(GtkAssistant* self, GtkWidget* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Gtk::Widget*)>;
@@ -103,7 +103,7 @@ static void Assistant_signal_prepare_callback(GtkAssistant* self, GtkWidget* p0,
   }
 }
 
-static const Glib::SignalProxyInfo Assistant_signal_prepare_info =
+const Glib::SignalProxyInfo Assistant_signal_prepare_info =
 {
   "prepare",
   (GCallback) &Assistant_signal_prepare_callback,
@@ -111,7 +111,7 @@ static const Glib::SignalProxyInfo Assistant_signal_prepare_info =
 };
 
 
-static const Glib::SignalProxyInfo Assistant_signal_apply_info =
+const Glib::SignalProxyInfo Assistant_signal_apply_info =
 {
   "apply",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -119,7 +119,7 @@ static const Glib::SignalProxyInfo Assistant_signal_apply_info =
 };
 
 
-static const Glib::SignalProxyInfo Assistant_signal_close_info =
+const Glib::SignalProxyInfo Assistant_signal_close_info =
 {
   "close",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -127,7 +127,7 @@ static const Glib::SignalProxyInfo Assistant_signal_close_info =
 };
 
 
-static const Glib::SignalProxyInfo Assistant_signal_cancel_info =
+const Glib::SignalProxyInfo Assistant_signal_cancel_info =
 {
   "cancel",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -141,7 +141,7 @@ static const Glib::SignalProxyInfo Assistant_signal_cancel_info =
 namespace Glib
 {
 
-Gtk::Assistant* wrap(GtkAssistant* object, bool take_copy)
+auto wrap(GtkAssistant* object, bool take_copy) -> Gtk::Assistant*
 {
   return dynamic_cast<Gtk::Assistant *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -154,7 +154,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Assistant_Class::init()
+auto Assistant_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -185,7 +185,7 @@ void Assistant_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Assistant_Class::wrap_new(GObject* o)
+auto Assistant_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return new Assistant((GtkAssistant*)(o)); //top-level windows can not be manage()ed.
 
@@ -211,7 +211,7 @@ Assistant::Assistant(Assistant&& src) noexcept
 : Gtk::Window(std::move(src))
 {}
 
-Assistant& Assistant::operator=(Assistant&& src) noexcept
+auto Assistant::operator=(Assistant&& src) noexcept -> Assistant&
 {
   Gtk::Window::operator=(std::move(src));
   return *this;
@@ -224,13 +224,13 @@ Assistant::~Assistant() noexcept
 
 Assistant::CppClassType Assistant::assistant_class_; // initialize static member
 
-GType Assistant::get_type()
+auto Assistant::get_type() -> GType
 {
   return assistant_class_.init().get_type();
 }
 
 
-GType Assistant::get_base_type()
+auto Assistant::get_base_type() -> GType
 {
   return gtk_assistant_get_type();
 }
@@ -256,7 +256,7 @@ void Assistant::previous_page()
   gtk_assistant_previous_page(gobj());
 }
 
-int Assistant::get_current_page() const
+auto Assistant::get_current_page() const -> int
 {
   return gtk_assistant_get_current_page(const_cast<GtkAssistant*>(gobj()));
 }
@@ -266,32 +266,32 @@ void Assistant::set_current_page(int page_num)
   gtk_assistant_set_current_page(gobj(), page_num);
 }
 
-int Assistant::get_n_pages() const
+auto Assistant::get_n_pages() const -> int
 {
   return gtk_assistant_get_n_pages(const_cast<GtkAssistant*>(gobj()));
 }
 
-Widget* Assistant::get_nth_page(int page_num)
+auto Assistant::get_nth_page(int page_num) -> Widget*
 {
   return Glib::wrap(gtk_assistant_get_nth_page(gobj(), page_num));
 }
 
-const Widget* Assistant::get_nth_page(int page_num) const
+auto Assistant::get_nth_page(int page_num) const -> const Widget*
 {
   return const_cast<Assistant*>(this)->get_nth_page(page_num);
 }
 
-int Assistant::prepend_page(Widget& page)
+auto Assistant::prepend_page(Widget& page) -> int
 {
   return gtk_assistant_prepend_page(gobj(), (page).gobj());
 }
 
-int Assistant::append_page(Widget& page)
+auto Assistant::append_page(Widget& page) -> int
 {
   return gtk_assistant_append_page(gobj(), (page).gobj());
 }
 
-int Assistant::insert_page(Widget& page, int position)
+auto Assistant::insert_page(Widget& page, int position) -> int
 {
   return gtk_assistant_insert_page(gobj(), (page).gobj(), position);
 }
@@ -306,7 +306,7 @@ void Assistant::set_page_type(const Widget& page, AssistantPage::Type type)
   gtk_assistant_set_page_type(gobj(), const_cast<GtkWidget*>((page).gobj()), static_cast<GtkAssistantPageType>(type));
 }
 
-AssistantPage::Type Assistant::get_page_type(const Widget& page) const
+auto Assistant::get_page_type(const Widget& page) const -> AssistantPage::Type
 {
   return static_cast<AssistantPage::Type>(gtk_assistant_get_page_type(const_cast<GtkAssistant*>(gobj()), const_cast<GtkWidget*>((page).gobj())));
 }
@@ -316,7 +316,7 @@ void Assistant::set_page_title(const Widget& page, const Glib::ustring& title)
   gtk_assistant_set_page_title(gobj(), const_cast<GtkWidget*>((page).gobj()), title.c_str());
 }
 
-Glib::ustring Assistant::get_page_title(const Widget& page) const
+auto Assistant::get_page_title(const Widget& page) const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_assistant_get_page_title(const_cast<GtkAssistant*>(gobj()), const_cast<GtkWidget*>((page).gobj())));
 }
@@ -326,7 +326,7 @@ void Assistant::set_page_complete(const Widget& page, bool complete)
   gtk_assistant_set_page_complete(gobj(), const_cast<GtkWidget*>((page).gobj()), static_cast<int>(complete));
 }
 
-bool Assistant::get_page_complete(const Widget& page) const
+auto Assistant::get_page_complete(const Widget& page) const -> bool
 {
   return gtk_assistant_get_page_complete(const_cast<GtkAssistant*>(gobj()), const_cast<GtkWidget*>((page).gobj()));
 }
@@ -351,7 +351,7 @@ void Assistant::commit()
   gtk_assistant_commit(gobj());
 }
 
-Glib::RefPtr<AssistantPage> Assistant::get_page(Widget& child)
+auto Assistant::get_page(Widget& child) -> Glib::RefPtr<AssistantPage>
 {
   auto retvalue = Glib::wrap(gtk_assistant_get_page(gobj(), (child).gobj()));
   if(retvalue)
@@ -359,7 +359,7 @@ Glib::RefPtr<AssistantPage> Assistant::get_page(Widget& child)
   return retvalue;
 }
 
-Glib::RefPtr<const AssistantPage> Assistant::get_page(const Widget& child) const
+auto Assistant::get_page(const Widget& child) const -> Glib::RefPtr<const AssistantPage>
 {
   auto retvalue = Glib::wrap(gtk_assistant_get_page(const_cast<GtkAssistant*>(gobj()), const_cast<GtkWidget*>((child).gobj())));
   if(retvalue)
@@ -367,42 +367,42 @@ Glib::RefPtr<const AssistantPage> Assistant::get_page(const Widget& child) const
   return retvalue;
 }
 
-Glib::RefPtr<Gio::ListModel> Assistant::get_pages()
+auto Assistant::get_pages() -> Glib::RefPtr<Gio::ListModel>
 {
   return Glib::wrap(gtk_assistant_get_pages(gobj()));
 }
 
-Glib::RefPtr<const Gio::ListModel> Assistant::get_pages() const
+auto Assistant::get_pages() const -> Glib::RefPtr<const Gio::ListModel>
 {
   return const_cast<Assistant*>(this)->get_pages();
 }
 
 
-Glib::SignalProxy<void(Gtk::Widget*)> Assistant::signal_prepare()
+auto Assistant::signal_prepare() -> Glib::SignalProxy<void(Gtk::Widget*)>
 {
   return Glib::SignalProxy<void(Gtk::Widget*) >(this, &Assistant_signal_prepare_info);
 }
 
 
-Glib::SignalProxy<void()> Assistant::signal_apply()
+auto Assistant::signal_apply() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Assistant_signal_apply_info);
 }
 
 
-Glib::SignalProxy<void()> Assistant::signal_close()
+auto Assistant::signal_close() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Assistant_signal_close_info);
 }
 
 
-Glib::SignalProxy<void()> Assistant::signal_cancel()
+auto Assistant::signal_cancel() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Assistant_signal_cancel_info);
 }
 
 
-Glib::PropertyProxy_ReadOnly< bool > Assistant::property_use_header_bar() const
+auto Assistant::property_use_header_bar() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "use-header-bar");
 }
@@ -411,7 +411,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Li
   "Type Glib::RefPtr<Gio::ListModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > Assistant::property_pages() const
+auto Assistant::property_pages() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >(this, "pages");
 }

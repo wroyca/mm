@@ -30,7 +30,7 @@ namespace
 {
 
 
-static void MountOperation_signal_ask_password_callback(GMountOperation* self, const gchar* p0,const gchar* p1,const gchar* p2,GAskPasswordFlags p3,void* data)
+void MountOperation_signal_ask_password_callback(GMountOperation* self, const gchar* p0,const gchar* p1,const gchar* p2,GAskPasswordFlags p3,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::ustring&, const Glib::ustring&, const Glib::ustring&, AskPasswordFlags)>;
@@ -55,7 +55,7 @@ static void MountOperation_signal_ask_password_callback(GMountOperation* self, c
   }
 }
 
-static const Glib::SignalProxyInfo MountOperation_signal_ask_password_info =
+const Glib::SignalProxyInfo MountOperation_signal_ask_password_info =
 {
   "ask_password",
   (GCallback) &MountOperation_signal_ask_password_callback,
@@ -63,7 +63,7 @@ static const Glib::SignalProxyInfo MountOperation_signal_ask_password_info =
 };
 
 
-static void MountOperation_signal_ask_question_callback(GMountOperation* self, const gchar* p0,const gchar** p1,void* data)
+void MountOperation_signal_ask_question_callback(GMountOperation* self, const gchar* p0,const gchar** p1,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::ustring&, const std::vector<Glib::ustring>&)>;
@@ -86,7 +86,7 @@ static void MountOperation_signal_ask_question_callback(GMountOperation* self, c
   }
 }
 
-static const Glib::SignalProxyInfo MountOperation_signal_ask_question_info =
+const Glib::SignalProxyInfo MountOperation_signal_ask_question_info =
 {
   "ask_question",
   (GCallback) &MountOperation_signal_ask_question_callback,
@@ -94,7 +94,7 @@ static const Glib::SignalProxyInfo MountOperation_signal_ask_question_info =
 };
 
 
-static void MountOperation_signal_reply_callback(GMountOperation* self, GMountOperationResult p0,void* data)
+void MountOperation_signal_reply_callback(GMountOperation* self, GMountOperationResult p0,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(MountOperationResult)>;
@@ -116,7 +116,7 @@ static void MountOperation_signal_reply_callback(GMountOperation* self, GMountOp
   }
 }
 
-static const Glib::SignalProxyInfo MountOperation_signal_reply_info =
+const Glib::SignalProxyInfo MountOperation_signal_reply_info =
 {
   "reply",
   (GCallback) &MountOperation_signal_reply_callback,
@@ -124,7 +124,7 @@ static const Glib::SignalProxyInfo MountOperation_signal_reply_info =
 };
 
 
-static const Glib::SignalProxyInfo MountOperation_signal_aborted_info =
+const Glib::SignalProxyInfo MountOperation_signal_aborted_info =
 {
   "aborted",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -132,7 +132,7 @@ static const Glib::SignalProxyInfo MountOperation_signal_aborted_info =
 };
 
 
-static void MountOperation_signal_show_unmount_progress_callback(GMountOperation* self, const gchar* p0,gint64 p1,gint64 p2,void* data)
+void MountOperation_signal_show_unmount_progress_callback(GMountOperation* self, const gchar* p0,gint64 p1,gint64 p2,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::ustring&, gint64, gint64)>;
@@ -154,7 +154,7 @@ static void MountOperation_signal_show_unmount_progress_callback(GMountOperation
   }
 }
 
-static const Glib::SignalProxyInfo MountOperation_signal_show_unmount_progress_info =
+const Glib::SignalProxyInfo MountOperation_signal_show_unmount_progress_info =
 {
   "show_unmount_progress",
   (GCallback) &MountOperation_signal_show_unmount_progress_callback,
@@ -165,7 +165,7 @@ static const Glib::SignalProxyInfo MountOperation_signal_show_unmount_progress_i
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::PasswordSave>::value_type()
+auto Glib::Value<Gio::PasswordSave>::value_type() -> GType
 {
   return g_password_save_get_type();
 }
@@ -174,7 +174,7 @@ GType Glib::Value<Gio::PasswordSave>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gio::MountOperation> wrap(GMountOperation* object, bool take_copy)
+auto wrap(GMountOperation* object, bool take_copy) -> Glib::RefPtr<Gio::MountOperation>
 {
   return Glib::make_refptr_for_instance<Gio::MountOperation>( dynamic_cast<Gio::MountOperation*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -189,7 +189,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& MountOperation_Class::init()
+auto MountOperation_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -415,7 +415,7 @@ void MountOperation_Class::show_unmount_progress_callback(GMountOperation* self,
 }
 
 
-Glib::ObjectBase* MountOperation_Class::wrap_new(GObject* object)
+auto MountOperation_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new MountOperation((GMountOperation*)object);
 }
@@ -423,7 +423,7 @@ Glib::ObjectBase* MountOperation_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GMountOperation* MountOperation::gobj_copy()
+auto MountOperation::gobj_copy() -> GMountOperation*
 {
   reference();
   return gobj();
@@ -446,7 +446,7 @@ MountOperation::MountOperation(MountOperation&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-MountOperation& MountOperation::operator=(MountOperation&& src) noexcept
+auto MountOperation::operator=(MountOperation&& src) noexcept -> MountOperation&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -459,13 +459,13 @@ MountOperation::~MountOperation() noexcept
 
 MountOperation::CppClassType MountOperation::mountoperation_class_; // initialize static member
 
-GType MountOperation::get_type()
+auto MountOperation::get_type() -> GType
 {
   return mountoperation_class_.init().get_type();
 }
 
 
-GType MountOperation::get_base_type()
+auto MountOperation::get_base_type() -> GType
 {
   return g_mount_operation_get_type();
 }
@@ -481,12 +481,12 @@ MountOperation::MountOperation()
 
 }
 
-Glib::RefPtr<MountOperation> MountOperation::create()
+auto MountOperation::create() -> Glib::RefPtr<MountOperation>
 {
   return Glib::make_refptr_for_instance<MountOperation>( new MountOperation() );
 }
 
-Glib::ustring MountOperation::get_username() const
+auto MountOperation::get_username() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_mount_operation_get_username(const_cast<GMountOperation*>(gobj())));
 }
@@ -496,7 +496,7 @@ void MountOperation::set_username(const Glib::ustring& username)
   g_mount_operation_set_username(gobj(), username.c_str());
 }
 
-Glib::ustring MountOperation::get_password() const
+auto MountOperation::get_password() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_mount_operation_get_password(const_cast<GMountOperation*>(gobj())));
 }
@@ -506,7 +506,7 @@ void MountOperation::set_password(const Glib::ustring& password)
   g_mount_operation_set_password(gobj(), password.c_str());
 }
 
-bool MountOperation::get_anonymous() const
+auto MountOperation::get_anonymous() const -> bool
 {
   return g_mount_operation_get_anonymous(const_cast<GMountOperation*>(gobj()));
 }
@@ -516,7 +516,7 @@ void MountOperation::set_anonymous(bool anonymous)
   g_mount_operation_set_anonymous(gobj(), static_cast<int>(anonymous));
 }
 
-Glib::ustring MountOperation::get_domain() const
+auto MountOperation::get_domain() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_mount_operation_get_domain(const_cast<GMountOperation*>(gobj())));
 }
@@ -526,7 +526,7 @@ void MountOperation::set_domain(const Glib::ustring& domain)
   g_mount_operation_set_domain(gobj(), domain.c_str());
 }
 
-PasswordSave MountOperation::get_password_save() const
+auto MountOperation::get_password_save() const -> PasswordSave
 {
   return (PasswordSave)g_mount_operation_get_password_save(const_cast<GMountOperation*>(gobj()));
 }
@@ -536,7 +536,7 @@ void MountOperation::set_password_save(PasswordSave save)
   g_mount_operation_set_password_save(gobj(), (GPasswordSave)save);
 }
 
-int MountOperation::get_choice() const
+auto MountOperation::get_choice() const -> int
 {
   return g_mount_operation_get_choice(const_cast<GMountOperation*>(gobj()));
 }
@@ -552,72 +552,72 @@ void MountOperation::reply(MountOperationResult result)
 }
 
 
-Glib::SignalProxy<void(const Glib::ustring&, const Glib::ustring&, const Glib::ustring&, AskPasswordFlags)> MountOperation::signal_ask_password()
+auto MountOperation::signal_ask_password() -> Glib::SignalProxy<void(const Glib::ustring&, const Glib::ustring&, const Glib::ustring&, AskPasswordFlags)>
 {
   return Glib::SignalProxy<void(const Glib::ustring&, const Glib::ustring&, const Glib::ustring&, AskPasswordFlags) >(this, &MountOperation_signal_ask_password_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::ustring&, const std::vector<Glib::ustring>&)> MountOperation::signal_ask_question()
+auto MountOperation::signal_ask_question() -> Glib::SignalProxy<void(const Glib::ustring&, const std::vector<Glib::ustring>&)>
 {
   return Glib::SignalProxy<void(const Glib::ustring&, const std::vector<Glib::ustring>&) >(this, &MountOperation_signal_ask_question_info);
 }
 
 
-Glib::SignalProxy<void(MountOperationResult)> MountOperation::signal_reply()
+auto MountOperation::signal_reply() -> Glib::SignalProxy<void(MountOperationResult)>
 {
   return Glib::SignalProxy<void(MountOperationResult) >(this, &MountOperation_signal_reply_info);
 }
 
 
-Glib::SignalProxy<void()> MountOperation::signal_aborted()
+auto MountOperation::signal_aborted() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &MountOperation_signal_aborted_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::ustring&, gint64, gint64)> MountOperation::signal_show_unmount_progress()
+auto MountOperation::signal_show_unmount_progress() -> Glib::SignalProxy<void(const Glib::ustring&, gint64, gint64)>
 {
   return Glib::SignalProxy<void(const Glib::ustring&, gint64, gint64) >(this, &MountOperation_signal_show_unmount_progress_info);
 }
 
 
-Glib::PropertyProxy< Glib::ustring > MountOperation::property_username()
+auto MountOperation::property_username() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "username");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > MountOperation::property_username() const
+auto MountOperation::property_username() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "username");
 }
 
-Glib::PropertyProxy< Glib::ustring > MountOperation::property_password()
+auto MountOperation::property_password() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "password");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > MountOperation::property_password() const
+auto MountOperation::property_password() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "password");
 }
 
-Glib::PropertyProxy< bool > MountOperation::property_anonymous()
+auto MountOperation::property_anonymous() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "anonymous");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > MountOperation::property_anonymous() const
+auto MountOperation::property_anonymous() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "anonymous");
 }
 
-Glib::PropertyProxy< Glib::ustring > MountOperation::property_domain()
+auto MountOperation::property_domain() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "domain");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > MountOperation::property_domain() const
+auto MountOperation::property_domain() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "domain");
 }
@@ -626,22 +626,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<PasswordSave>::value
   "Type PasswordSave cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< PasswordSave > MountOperation::property_password_save()
+auto MountOperation::property_password_save() -> Glib::PropertyProxy< PasswordSave >
 {
   return Glib::PropertyProxy< PasswordSave >(this, "password-save");
 }
 
-Glib::PropertyProxy_ReadOnly< PasswordSave > MountOperation::property_password_save() const
+auto MountOperation::property_password_save() const -> Glib::PropertyProxy_ReadOnly< PasswordSave >
 {
   return Glib::PropertyProxy_ReadOnly< PasswordSave >(this, "password-save");
 }
 
-Glib::PropertyProxy< int > MountOperation::property_choice()
+auto MountOperation::property_choice() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "choice");
 }
 
-Glib::PropertyProxy_ReadOnly< int > MountOperation::property_choice() const
+auto MountOperation::property_choice() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "choice");
 }

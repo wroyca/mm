@@ -86,7 +86,7 @@ public:
 
   // noncopyable
   Tooltip(const Tooltip&) = delete;
-  Tooltip& operator=(const Tooltip&) = delete;
+  auto operator=(const Tooltip&) -> Tooltip& = delete;
 
 private:  friend class Tooltip_Class;
   static CppClassType tooltip_class_;
@@ -100,28 +100,28 @@ protected:
 public:
 
   Tooltip(Tooltip&& src) noexcept;
-  Tooltip& operator=(Tooltip&& src) noexcept;
+  auto operator=(Tooltip&& src) noexcept -> Tooltip&;
 
   ~Tooltip() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkTooltip*       gobj()       { return reinterpret_cast<GtkTooltip*>(gobject_); }
+  auto       gobj() -> GtkTooltip*       { return reinterpret_cast<GtkTooltip*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkTooltip* gobj() const { return reinterpret_cast<GtkTooltip*>(gobject_); }
+  auto gobj() const -> const GtkTooltip* { return reinterpret_cast<GtkTooltip*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkTooltip* gobj_copy();
+  auto gobj_copy() -> GtkTooltip*;
 
 private:
 
@@ -245,7 +245,7 @@ namespace Glib
    * @relates Gtk::Tooltip
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Tooltip> wrap(GtkTooltip* object, bool take_copy = false);
+  auto wrap(GtkTooltip* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Tooltip>;
 }
 
 

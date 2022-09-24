@@ -73,7 +73,7 @@ public:
 
   // noncopyable
   MediaFile(const MediaFile&) = delete;
-  MediaFile& operator=(const MediaFile&) = delete;
+  auto operator=(const MediaFile&) -> MediaFile& = delete;
 
 private:  friend class MediaFile_Class;
   static CppClassType mediafile_class_;
@@ -87,28 +87,28 @@ protected:
 public:
 
   MediaFile(MediaFile&& src) noexcept;
-  MediaFile& operator=(MediaFile&& src) noexcept;
+  auto operator=(MediaFile&& src) noexcept -> MediaFile&;
 
   ~MediaFile() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkMediaFile*       gobj()       { return reinterpret_cast<GtkMediaFile*>(gobject_); }
+  auto       gobj() -> GtkMediaFile*       { return reinterpret_cast<GtkMediaFile*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkMediaFile* gobj() const { return reinterpret_cast<GtkMediaFile*>(gobject_); }
+  auto gobj() const -> const GtkMediaFile* { return reinterpret_cast<GtkMediaFile*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkMediaFile* gobj_copy();
+  auto gobj_copy() -> GtkMediaFile*;
 
 private:
 
@@ -125,7 +125,7 @@ public:
    *
    * @return A new `Gtk::MediaFile`.
    */
-  static Glib::RefPtr<MediaFile> create();
+  static auto create() -> Glib::RefPtr<MediaFile>;
 
   /** Creates a new media file for the given filename.
    *
@@ -135,7 +135,7 @@ public:
    * @param filename Filename to open.
    * @return A new `Gtk::MediaFile` playing @a filename.
    */
-  static Glib::RefPtr<MediaFile> create_for_filename(const std::string& filename);
+  static auto create_for_filename(const std::string& filename) -> Glib::RefPtr<MediaFile>;
 
   /** Creates a new new media file for the given resource.
    *
@@ -145,14 +145,14 @@ public:
    * @param resource_path Resource path to open.
    * @return A new `Gtk::MediaFile` playing @a resource_path.
    */
-  static Glib::RefPtr<MediaFile> create_for_resource(const std::string& resource_path);
+  static auto create_for_resource(const std::string& resource_path) -> Glib::RefPtr<MediaFile>;
 
   /** Creates a new media file to play @a file.
    *
    * @param file The file to play.
    * @return A new `Gtk::MediaFile` playing @a file.
    */
-  static Glib::RefPtr<MediaFile> create(const Glib::RefPtr<Gio::File>& file);
+  static auto create(const Glib::RefPtr<Gio::File>& file) -> Glib::RefPtr<MediaFile>;
 
   /** Creates a new media file to play @a stream.
    *
@@ -162,7 +162,7 @@ public:
    * @param stream The stream to play.
    * @return A new `Gtk::MediaFile`.
    */
-  static Glib::RefPtr<MediaFile> create(const Glib::RefPtr<Gio::InputStream>& stream);
+  static auto create(const Glib::RefPtr<Gio::InputStream>& stream) -> Glib::RefPtr<MediaFile>;
 
 
   /** Resets the media file to be empty.
@@ -203,7 +203,7 @@ public:
    *
    * @return The currently playing file.
    */
-  Glib::RefPtr<Gio::File> get_file();
+  auto get_file() -> Glib::RefPtr<Gio::File>;
 
   /** Returns the file that @a self is currently playing from.
    *
@@ -212,7 +212,7 @@ public:
    *
    * @return The currently playing file.
    */
-  Glib::RefPtr<const Gio::File> get_file() const;
+  auto get_file() const -> Glib::RefPtr<const Gio::File>;
 
 
   /** Sets the `Gtk::MediaFile` to play the given stream.
@@ -233,7 +233,7 @@ public:
    *
    * @return The currently playing stream.
    */
-  Glib::RefPtr<Gio::InputStream> get_input_stream();
+  auto get_input_stream() -> Glib::RefPtr<Gio::InputStream>;
 
   /** Returns the stream that @a self is currently playing from.
    *
@@ -242,21 +242,21 @@ public:
    *
    * @return The currently playing stream.
    */
-  Glib::RefPtr<const Gio::InputStream> get_input_stream() const;
+  auto get_input_stream() const -> Glib::RefPtr<const Gio::InputStream>;
 
   /** The file being played back or <tt>nullptr</tt> if not playing a file.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::File> > property_file() ;
+  auto property_file() -> Glib::PropertyProxy< Glib::RefPtr<Gio::File> > ;
 
 /** The file being played back or <tt>nullptr</tt> if not playing a file.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> > property_file() const;
+  auto property_file() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >;
 
   /** The stream being played back or <tt>nullptr</tt> if not playing a stream.
    *
@@ -265,7 +265,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::InputStream> > property_input_stream() ;
+  auto property_input_stream() -> Glib::PropertyProxy< Glib::RefPtr<Gio::InputStream> > ;
 
 /** The stream being played back or <tt>nullptr</tt> if not playing a stream.
    *
@@ -274,7 +274,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::InputStream> > property_input_stream() const;
+  auto property_input_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::InputStream> >;
 
 
 protected:
@@ -313,7 +313,7 @@ namespace Glib
    * @relates Gtk::MediaFile
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::MediaFile> wrap(GtkMediaFile* object, bool take_copy = false);
+  auto wrap(GtkMediaFile* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MediaFile>;
 }
 
 

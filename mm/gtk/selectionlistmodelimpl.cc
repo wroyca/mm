@@ -29,7 +29,7 @@ SelectionListModelImpl::SelectionListModelImpl(SelectionListModelImpl&& src) noe
   Glib::Object(std::move(src))
 {}
 
-SelectionListModelImpl& SelectionListModelImpl::operator=(SelectionListModelImpl&& src) noexcept
+auto SelectionListModelImpl::operator=(SelectionListModelImpl&& src) noexcept -> SelectionListModelImpl&
 {
   Gio::ListModel::operator=(std::move(src));
   SelectionModel::operator=(std::move(src));

@@ -137,31 +137,31 @@ enum class FormatSizeFlags
 };
 
 /** @ingroup glibmmEnums */
-inline FormatSizeFlags operator|(FormatSizeFlags lhs, FormatSizeFlags rhs)
+inline auto operator|(FormatSizeFlags lhs, FormatSizeFlags rhs) -> FormatSizeFlags
   { return static_cast<FormatSizeFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline FormatSizeFlags operator&(FormatSizeFlags lhs, FormatSizeFlags rhs)
+inline auto operator&(FormatSizeFlags lhs, FormatSizeFlags rhs) -> FormatSizeFlags
   { return static_cast<FormatSizeFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline FormatSizeFlags operator^(FormatSizeFlags lhs, FormatSizeFlags rhs)
+inline auto operator^(FormatSizeFlags lhs, FormatSizeFlags rhs) -> FormatSizeFlags
   { return static_cast<FormatSizeFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline FormatSizeFlags operator~(FormatSizeFlags flags)
+inline auto operator~(FormatSizeFlags flags) -> FormatSizeFlags
   { return static_cast<FormatSizeFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup glibmmEnums */
-inline FormatSizeFlags& operator|=(FormatSizeFlags& lhs, FormatSizeFlags rhs)
+inline auto operator|=(FormatSizeFlags& lhs, FormatSizeFlags rhs) -> FormatSizeFlags&
   { return (lhs = static_cast<FormatSizeFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline FormatSizeFlags& operator&=(FormatSizeFlags& lhs, FormatSizeFlags rhs)
+inline auto operator&=(FormatSizeFlags& lhs, FormatSizeFlags rhs) -> FormatSizeFlags&
   { return (lhs = static_cast<FormatSizeFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline FormatSizeFlags& operator^=(FormatSizeFlags& lhs, FormatSizeFlags rhs)
+inline auto operator^=(FormatSizeFlags& lhs, FormatSizeFlags rhs) -> FormatSizeFlags&
   { return (lhs = static_cast<FormatSizeFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -182,7 +182,7 @@ inline FormatSizeFlags& operator^=(FormatSizeFlags& lhs, FormatSizeFlags rhs)
  * @return Human-readable application name. May return <tt>""</tt>.
  */
 GLIBMM_API
-Glib::ustring get_application_name();
+auto get_application_name() -> Glib::ustring;
 
 /** Sets a human-readable name for the application.
  * This name should be localized if possible, and is intended for display to
@@ -212,7 +212,7 @@ void set_application_name(UStringView application_name);
  * @return The name of the program.
  */
 GLIBMM_API
-std::string get_prgname();
+auto get_prgname() -> std::string;
 
 /** Sets the name of the program.
  * @param prgname The name of the program.
@@ -232,7 +232,7 @@ void set_prgname(StdStringView prgname);
  * @return The value of the environment variable, or <tt>""</tt> if not found.
  */
 GLIBMM_API
-std::string getenv(StdStringView variable, bool& found);
+auto getenv(StdStringView variable, bool& found) -> std::string;
 
 /** Returns the value of an environment variable. The name and value
  * are in the GLib file name encoding. On Unix, this means the actual
@@ -245,7 +245,7 @@ std::string getenv(StdStringView variable, bool& found);
  * @return The value of the environment variable, or <tt>""</tt> if not found.
  */
 GLIBMM_API
-std::string getenv(StdStringView variable);
+auto getenv(StdStringView variable) -> std::string;
 
 
 /** Sets an environment variable. Both the variable's name and value
@@ -262,7 +262,7 @@ std::string getenv(StdStringView variable);
  * @result false if the environment variable couldn't be set.
  */
 GLIBMM_API
-bool setenv(StdStringView variable, StdStringView value, bool overwrite = true);
+auto setenv(StdStringView variable, StdStringView value, bool overwrite = true) -> bool;
 
 /** Removes an environment variable from the environment.
  *
@@ -288,7 +288,7 @@ void unsetenv(StdStringView variable);
  * @return Vector of environment names.
  */
 GLIBMM_API
-std::vector<std::string> listenv();
+auto listenv() -> std::vector<std::string>;
 
 /** Gets the user name of the current user.
  *
@@ -300,7 +300,7 @@ std::vector<std::string> listenv();
  * @return The name of the current user.
  */
 GLIBMM_API
-std::string get_user_name();
+auto get_user_name() -> std::string;
 
 /** Gets the real name of the current user.
  *
@@ -312,7 +312,7 @@ std::string get_user_name();
  * @return The current user's real name.
  */
 GLIBMM_API
-std::string get_real_name();
+auto get_real_name() -> std::string;
 
 /** Return a name for the machine.
  *
@@ -330,13 +330,13 @@ std::string get_real_name();
  * @newin{2,64}
  */
 GLIBMM_API
-Glib::ustring get_host_name();
+auto get_host_name() -> Glib::ustring;
 
 /** Gets the current user's home directory.
  * @return The current user's home directory or an empty string if not defined.
  */
 GLIBMM_API
-std::string get_home_dir();
+auto get_home_dir() -> std::string;
 
 /** Gets the directory to use for temporary files.
  * This is found from inspecting the environment variables <tt>TMPDIR</tt>,
@@ -345,13 +345,13 @@ std::string get_home_dir();
  * @return The directory to use for temporary files.
  */
 GLIBMM_API
-std::string get_tmp_dir();
+auto get_tmp_dir() -> std::string;
 
 /** Gets the current directory.
  * @return The current directory.
  */
 GLIBMM_API
-std::string get_current_dir();
+auto get_current_dir() -> std::string;
 
 /** Returns the full path of a special directory using its logical id.
  *
@@ -371,7 +371,7 @@ std::string get_current_dir();
  * @newin{2,46}
  */
 GLIBMM_API
-std::string get_user_special_dir(UserDirectory directory);
+auto get_user_special_dir(UserDirectory directory) -> std::string;
 
 /** Returns a base directory in which to access application data such as icons
  * that is customized for a particular user.
@@ -382,7 +382,7 @@ std::string get_user_special_dir(UserDirectory directory);
  * @newin{2,14}
  */
 GLIBMM_API
-std::string get_user_data_dir();
+auto get_user_data_dir() -> std::string;
 
 /** Returns a base directory in which to store user-specific application
  * configuration information such as user preferences and settings.
@@ -393,7 +393,7 @@ std::string get_user_data_dir();
  * @newin{2,14}
  */
 GLIBMM_API
-std::string get_user_config_dir();
+auto get_user_config_dir() -> std::string;
 
 /** Returns an ordered list of base directories in which to access system-wide application data.
  * On Unix platforms this is determined using the mechanisms described in the XDG Base Directory Specification.
@@ -401,7 +401,7 @@ std::string get_user_config_dir();
  * @newin{2,18}
  */
 GLIBMM_API
-std::vector<std::string> get_system_data_dirs();
+auto get_system_data_dirs() -> std::vector<std::string>;
 
 /** Returns an ordered list of base directories in which to access system-wide configuration information.
  * On Unix platforms this is determined using the mechanisms described in the XDG Base Directory Specification.
@@ -409,7 +409,7 @@ std::vector<std::string> get_system_data_dirs();
  * @newin{2,18}
  */
 GLIBMM_API
-std::vector<std::string> get_system_config_dirs();
+auto get_system_config_dirs() -> std::vector<std::string>;
 
 /** Returns a base directory in which to store non-essential, cached data
  * specific to particular user.
@@ -420,7 +420,7 @@ std::vector<std::string> get_system_config_dirs();
  * @newin{2,14}
  */
 GLIBMM_API
-std::string get_user_cache_dir();
+auto get_user_cache_dir() -> std::string;
 
 /** Returns a directory that is unique to the current user on the local system.
  *
@@ -431,7 +431,7 @@ std::string get_user_cache_dir();
  * @newin{2,64}
  */
 GLIBMM_API
-std::string get_user_runtime_dir();
+auto get_user_runtime_dir() -> std::string;
 
 /** Returns @c true if the given @a filename is an absolute file name, i.e.\ it
  * contains a full path from the root directory such as <tt>"/usr/local"</tt>
@@ -440,7 +440,7 @@ std::string get_user_runtime_dir();
  * @return Whether @a filename is an absolute path.
  */
 GLIBMM_API
-bool path_is_absolute(StdStringView filename);
+auto path_is_absolute(StdStringView filename) -> bool;
 
 /** Returns the remaining part of @a filename after the root component,
  * i.e.\ after the <tt>"/"</tt> on UNIX or <tt>"C:\\"</tt> on Windows.
@@ -449,14 +449,14 @@ bool path_is_absolute(StdStringView filename);
  * @return The file name without the root component, or <tt>""</tt>.
  */
 GLIBMM_API
-std::string path_skip_root(StdStringView filename);
+auto path_skip_root(StdStringView filename) -> std::string;
 
 /** Gets the name of the file without any leading directory components.
  * @param filename The name of the file.
  * @return The name of the file without any leading directory components.
  */
 GLIBMM_API
-std::string path_get_basename(StdStringView filename);
+auto path_get_basename(StdStringView filename) -> std::string;
 
 /** Gets the directory components of a file name.
  * If the file name has no directory components <tt>"."</tt> is returned.
@@ -464,7 +464,7 @@ std::string path_get_basename(StdStringView filename);
  * @return The directory components of the file.
  */
 GLIBMM_API
-std::string path_get_dirname(StdStringView filename);
+auto path_get_dirname(StdStringView filename) -> std::string;
 
 /** Gets the canonical file name from @a filename.
  *
@@ -490,7 +490,7 @@ std::string path_get_dirname(StdStringView filename);
  * @newin{2,64}
  */
 GLIBMM_API
-std::string canonicalize_filename(StdStringView filename, StdStringView relative_to = nullptr);
+auto canonicalize_filename(StdStringView filename, StdStringView relative_to = nullptr) -> std::string;
 
 /** Creates a filename from a series of elements using the correct
  * separator for filenames.
@@ -502,7 +502,7 @@ std::string canonicalize_filename(StdStringView filename, StdStringView relative
  * @return The resulting path.
  */
 GLIBMM_API
-std::string build_filename(const std::vector<std::string>&  elements);
+auto build_filename(const std::vector<std::string>&  elements) -> std::string;
 
 /** Creates a filename from one or more elements using the correct separator for filenames.
  * No attempt is made to force the resulting filename to be an absolute path.
@@ -512,7 +512,7 @@ std::string build_filename(const std::vector<std::string>&  elements);
  * @return The resulting path.
  */
 template <typename... Strings>
-std::string build_filename(const Strings&... strings)
+auto build_filename(const Strings&... strings) -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(
     g_build_filename(StdStringView(strings).c_str()..., nullptr));
@@ -552,8 +552,8 @@ std::string build_filename(const Strings&... strings)
  * @return The resulting path.
  */
 GLIBMM_API
-std::string build_path(const std::string& separator,
-                       const std::vector<std::string>&  elements);
+auto build_path(const std::string& separator,
+                       const std::vector<std::string>&  elements) -> std::string;
 
 /** Locates the first executable named @a program in the user's path, in the
  * same way that <tt>execvp()</tt> would locate it.
@@ -576,7 +576,7 @@ std::string build_path(const std::string& separator,
  * @return An absolute path, or <tt>""</tt>.
  */
 GLIBMM_API
-std::string find_program_in_path(StdStringView program);
+auto find_program_in_path(StdStringView program) -> std::string;
 
 /** Formats a size (for example the size of a file) into a human readable string.
  *
@@ -594,7 +594,7 @@ std::string find_program_in_path(StdStringView program);
  * @newin{2,46}
  */
 GLIBMM_API
-Glib::ustring format_size(guint64 size, FormatSizeFlags flags = FormatSizeFlags::DEFAULT);
+auto format_size(guint64 size, FormatSizeFlags flags = FormatSizeFlags::DEFAULT) -> Glib::ustring;
 
 /** @} group MiscUtils */
 

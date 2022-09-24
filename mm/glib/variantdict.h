@@ -58,19 +58,19 @@ class GLIBMM_API VariantDict final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GVariantDict*       gobj();
+  auto       gobj() -> GVariantDict*;
 
   ///Provides access to the underlying C instance.
-  const GVariantDict* gobj() const;
+  auto gobj() const -> const GVariantDict*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GVariantDict* gobj_copy() const;
+  auto gobj_copy() const -> GVariantDict*;
 
   VariantDict() = delete;
 
   // noncopyable
   VariantDict(const VariantDict&) = delete;
-  VariantDict& operator=(const VariantDict&) = delete;
+  auto operator=(const VariantDict&) -> VariantDict& = delete;
 
 protected:
   // Do not derive this.  Glib::VariantDict can neither be constructed nor deleted.
@@ -99,10 +99,10 @@ public:
    * dictionary.
    * @return A VariantDict.
    */
-  static Glib::RefPtr<VariantDict> create(const VariantBase& from_asv);
+  static auto create(const VariantBase& from_asv) -> Glib::RefPtr<VariantDict>;
 
   /// A create() convenience overload.
-  static Glib::RefPtr<VariantDict> create();
+  static auto create() -> Glib::RefPtr<VariantDict>;
 
 
 //TODO: Add a method overload that does not take expected_type (which can be null),
@@ -119,7 +119,7 @@ public:
    * If the key is found and the value has the correct type, it is
    * returned in the @a value output variable.
    */
-  bool lookup_value_variant(const Glib::ustring& key, const VariantType& expected_type, VariantBase& value) const;
+  auto lookup_value_variant(const Glib::ustring& key, const VariantType& expected_type, VariantBase& value) const -> bool;
 
 
   /** Looks up a value in the VariantDict.
@@ -133,7 +133,7 @@ public:
    * returned in the @a value output variable.
    */
   template <typename T_Value>
-  bool lookup_value(const Glib::ustring& key, T_Value& value) const;
+  auto lookup_value(const Glib::ustring& key, T_Value& value) const -> bool;
 
 
   /** Checks if @a key exists in @a dict.
@@ -143,7 +143,7 @@ public:
    * @param key The key to look up in the dictionary.
    * @return <tt>true</tt> if @a key is in @a dict.
    */
-  bool contains(const Glib::ustring& key) const;
+  auto contains(const Glib::ustring& key) const -> bool;
 
 
   /** Inserts (or replaces) a key in a VariantDict.
@@ -173,7 +173,7 @@ public:
    * @param key The key to remove.
    * @return <tt>true</tt> if the key was found and removed.
    */
-  bool remove(const Glib::ustring& key);
+  auto remove(const Glib::ustring& key) -> bool;
 
 
   /** Releases all memory associated with a VariantDict without freeing
@@ -211,7 +211,7 @@ void VariantDict::insert_value(const Glib::ustring& key, const T_Value& value)
 }
 
 template <typename T_Value>
-bool VariantDict::lookup_value(const Glib::ustring& key, T_Value& value) const
+auto VariantDict::lookup_value(const Glib::ustring& key, T_Value& value) const -> bool
 {
   value = T_Value(); //Make sure that it is initialized.
 
@@ -253,7 +253,7 @@ namespace Glib
  * @relates Glib::VariantDict
  */
 GLIBMM_API
-Glib::RefPtr<Glib::VariantDict> wrap(GVariantDict* object, bool take_copy = false);
+auto wrap(GVariantDict* object, bool take_copy = false) -> Glib::RefPtr<Glib::VariantDict>;
 
 } // namespace Glib
 

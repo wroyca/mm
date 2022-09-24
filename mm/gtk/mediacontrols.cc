@@ -34,7 +34,7 @@ namespace
 namespace Glib
 {
 
-Gtk::MediaControls* wrap(GtkMediaControls* object, bool take_copy)
+auto wrap(GtkMediaControls* object, bool take_copy) -> Gtk::MediaControls*
 {
   return dynamic_cast<Gtk::MediaControls *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -47,7 +47,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& MediaControls_Class::init()
+auto MediaControls_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -72,7 +72,7 @@ void MediaControls_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* MediaControls_Class::wrap_new(GObject* o)
+auto MediaControls_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new MediaControls((GtkMediaControls*)(o)));
 
@@ -98,7 +98,7 @@ MediaControls::MediaControls(MediaControls&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-MediaControls& MediaControls::operator=(MediaControls&& src) noexcept
+auto MediaControls::operator=(MediaControls&& src) noexcept -> MediaControls&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -111,13 +111,13 @@ MediaControls::~MediaControls() noexcept
 
 MediaControls::CppClassType MediaControls::mediacontrols_class_; // initialize static member
 
-GType MediaControls::get_type()
+auto MediaControls::get_type() -> GType
 {
   return mediacontrols_class_.init().get_type();
 }
 
 
-GType MediaControls::get_base_type()
+auto MediaControls::get_base_type() -> GType
 {
   return gtk_media_controls_get_type();
 }
@@ -143,7 +143,7 @@ MediaControls::MediaControls(const Glib::RefPtr<MediaStream>& media_stream)
 
 }
 
-Glib::RefPtr<MediaStream> MediaControls::get_media_stream()
+auto MediaControls::get_media_stream() -> Glib::RefPtr<MediaStream>
 {
   auto retvalue = Glib::wrap(gtk_media_controls_get_media_stream(gobj()));
   if(retvalue)
@@ -151,7 +151,7 @@ Glib::RefPtr<MediaStream> MediaControls::get_media_stream()
   return retvalue;
 }
 
-Glib::RefPtr<const MediaStream> MediaControls::get_media_stream() const
+auto MediaControls::get_media_stream() const -> Glib::RefPtr<const MediaStream>
 {
   return const_cast<MediaControls*>(this)->get_media_stream();
 }
@@ -166,12 +166,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<MediaSt
   "Type Glib::RefPtr<MediaStream> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<MediaStream> > MediaControls::property_media_stream()
+auto MediaControls::property_media_stream() -> Glib::PropertyProxy< Glib::RefPtr<MediaStream> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<MediaStream> >(this, "media-stream");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<MediaStream> > MediaControls::property_media_stream() const
+auto MediaControls::property_media_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<MediaStream> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<MediaStream> >(this, "media-stream");
 }

@@ -80,15 +80,15 @@ public:
    */
   GTKMM_API void add(TreeModelColumnBase& column);
 
-  GTKMM_API unsigned int size()  const;
-  GTKMM_API const GType* types() const;
+  GTKMM_API auto size()  const -> unsigned int;
+  GTKMM_API auto types() const -> const GType*;
 
 private:
   std::vector<GType> column_types_;
 
   // noncopyable
   GTKMM_API TreeModelColumnRecord(const TreeModelColumnRecord&);
-  GTKMM_API TreeModelColumnRecord& operator=(const TreeModelColumnRecord&);
+  GTKMM_API auto operator=(const TreeModelColumnRecord&) -> TreeModelColumnRecord&;
 };
 
 
@@ -98,8 +98,8 @@ private:
 class GTKMM_API TreeModelColumnBase
 {
 public:
-  GType type()  const { return type_;  }
-  int index() const { return index_; }
+  auto type()  const -> GType { return type_;  }
+  auto index() const -> int { return index_; }
 
 protected:
   explicit TreeModelColumnBase(GType g_type);
@@ -112,11 +112,11 @@ private:
 };
 
 /** @relates Gtk::TreeModelColumnBase */
-inline bool operator==(const TreeModelColumnBase& lhs, const TreeModelColumnBase& rhs)
+inline auto operator==(const TreeModelColumnBase& lhs, const TreeModelColumnBase& rhs) -> bool
   { return (lhs.index() == rhs.index()); }
 
 /** @relates Gtk::TreeModelColumnBase */
-inline bool operator!=(const TreeModelColumnBase& lhs, const TreeModelColumnBase& rhs)
+inline auto operator!=(const TreeModelColumnBase& lhs, const TreeModelColumnBase& rhs) -> bool
   { return (lhs.index() != rhs.index()); }
 
 

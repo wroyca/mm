@@ -62,11 +62,11 @@ class GTKMM_API ColorChooserDialog
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ColorChooserDialog(ColorChooserDialog&& src) noexcept;
-  ColorChooserDialog& operator=(ColorChooserDialog&& src) noexcept;
+  auto operator=(ColorChooserDialog&& src) noexcept -> ColorChooserDialog&;
 
   // noncopyable
   ColorChooserDialog(const ColorChooserDialog&) = delete;
-  ColorChooserDialog& operator=(const ColorChooserDialog&) = delete;
+  auto operator=(const ColorChooserDialog&) -> ColorChooserDialog& = delete;
 
   ~ColorChooserDialog() noexcept override;
 
@@ -86,19 +86,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkColorChooserDialog*       gobj()       { return reinterpret_cast<GtkColorChooserDialog*>(gobject_); }
+  auto       gobj() -> GtkColorChooserDialog*       { return reinterpret_cast<GtkColorChooserDialog*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkColorChooserDialog* gobj() const { return reinterpret_cast<GtkColorChooserDialog*>(gobject_); }
+  auto gobj() const -> const GtkColorChooserDialog* { return reinterpret_cast<GtkColorChooserDialog*>(gobject_); }
 
 private:
 
@@ -118,14 +118,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_editor() ;
+  auto property_show_editor() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_editor() const;
+  auto property_show_editor() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -155,7 +155,7 @@ namespace Glib
    * @relates Gtk::ColorChooserDialog
    */
   GTKMM_API
-  Gtk::ColorChooserDialog* wrap(GtkColorChooserDialog* object, bool take_copy = false);
+  auto wrap(GtkColorChooserDialog* object, bool take_copy = false) -> Gtk::ColorChooserDialog*;
 } //namespace Glib
 
 

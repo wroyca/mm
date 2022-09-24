@@ -216,7 +216,7 @@ template <>
 class PANGOMM_API Value<Pango::AttrType> : public Glib::Value_Enum<Pango::AttrType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -300,7 +300,7 @@ template <>
 class PANGOMM_API Value<Pango::Underline> : public Glib::Value_Enum<Pango::Underline>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -343,7 +343,7 @@ template <>
 class PANGOMM_API Value<Pango::Overline> : public Glib::Value_Enum<Pango::Overline>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -392,31 +392,31 @@ enum class ShowFlags
 };
 
 /** @ingroup pangommEnums */
-inline ShowFlags operator|(ShowFlags lhs, ShowFlags rhs)
+inline auto operator|(ShowFlags lhs, ShowFlags rhs) -> ShowFlags
   { return static_cast<ShowFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup pangommEnums */
-inline ShowFlags operator&(ShowFlags lhs, ShowFlags rhs)
+inline auto operator&(ShowFlags lhs, ShowFlags rhs) -> ShowFlags
   { return static_cast<ShowFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup pangommEnums */
-inline ShowFlags operator^(ShowFlags lhs, ShowFlags rhs)
+inline auto operator^(ShowFlags lhs, ShowFlags rhs) -> ShowFlags
   { return static_cast<ShowFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup pangommEnums */
-inline ShowFlags operator~(ShowFlags flags)
+inline auto operator~(ShowFlags flags) -> ShowFlags
   { return static_cast<ShowFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup pangommEnums */
-inline ShowFlags& operator|=(ShowFlags& lhs, ShowFlags rhs)
+inline auto operator|=(ShowFlags& lhs, ShowFlags rhs) -> ShowFlags&
   { return (lhs = static_cast<ShowFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup pangommEnums */
-inline ShowFlags& operator&=(ShowFlags& lhs, ShowFlags rhs)
+inline auto operator&=(ShowFlags& lhs, ShowFlags rhs) -> ShowFlags&
   { return (lhs = static_cast<ShowFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup pangommEnums */
-inline ShowFlags& operator^=(ShowFlags& lhs, ShowFlags rhs)
+inline auto operator^=(ShowFlags& lhs, ShowFlags rhs) -> ShowFlags&
   { return (lhs = static_cast<ShowFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -430,7 +430,7 @@ template <>
 class PANGOMM_API Value<Pango::ShowFlags> : public Glib::Value_Flags<Pango::ShowFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -480,7 +480,7 @@ template <>
 class PANGOMM_API Value<Pango::TextTransform> : public Glib::Value_Enum<Pango::TextTransform>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -546,7 +546,7 @@ template <>
 class PANGOMM_API Value<Pango::BaselineShift> : public Glib::Value_Enum<Pango::BaselineShift>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -596,7 +596,7 @@ template <>
 class PANGOMM_API Value<Pango::FontScale> : public Glib::Value_Enum<Pango::FontScale>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -648,12 +648,12 @@ public:
   explicit Attribute(PangoAttribute* castitem, bool take_copy=true);
   ~Attribute();
 
-  Attribute& operator=(const Attribute& src);
+  auto operator=(const Attribute& src) -> Attribute&;
 
   /** Gets the type ID for this attribute.
    * @return The type ID for this attribute or ATTR_INVALID if the attribute is invalid.
    */
-  AttrType get_type() const;
+  auto get_type() const -> AttrType;
 
   /** Allocate a new attribute type ID.
    *
@@ -662,7 +662,7 @@ public:
    * @param name An identifier for the type.
    * @return The new type ID.
    */
-  static AttrType register_type(const Glib::ustring& name);
+  static auto register_type(const Glib::ustring& name) -> AttrType;
 
   /** Fetches the attribute type name passed in when registering the type using
    * register_type().
@@ -673,19 +673,19 @@ public:
    * @return The type ID name (which may be an empty string), or an empty string
    *         if @a type is a built-in Pango attribute type or invalid.
    */
-  static Glib::ustring get_type_name(AttrType type);
+  static auto get_type_name(AttrType type) -> Glib::ustring;
   // _WRAP_METHOD() can't be used here, because glibmm/tools/defs_gen/h2def.py
   // assumes that pango_attr_type_get_name() is a method of a class named PangoAttrType.
 
   /** Gets the start index of the range.
    * @return The start index of the range.
    */
-  unsigned int get_start_index() const;
+  auto get_start_index() const -> unsigned int;
 
   /** Gets the end index of the range. The character at this index is not included in the range.
    * @return The end index of the range.
    */
-  unsigned int get_end_index() const;
+  auto get_end_index() const -> unsigned int;
 
   /** Sets the start index of the range.
    * @param value The new start index (in bytes).
@@ -707,24 +707,24 @@ public:
    * @param attr2 Another `Pango::Attribute`.
    * @return <tt>true</tt> if the two attributes have the same value.
    */
-  bool equal(const Attribute& attr2) const;
+  auto equal(const Attribute& attr2) const -> bool;
 
   /// Provides access to the underlying C GObject.
-  PangoAttribute*       gobj()       { return gobject_; }
+  auto       gobj() -> PangoAttribute*       { return gobject_; }
   /// Provides access to the underlying C GObject.
-  const PangoAttribute* gobj() const { return gobject_; }
+  auto gobj() const -> const PangoAttribute* { return gobject_; }
 
   /** Create a new font family attribute.
    * @param family The family or comma separated list of families.
    * @return An attribute of type AttrString.
    */
-  static AttrString create_attr_family(const Glib::ustring& family);
+  static auto create_attr_family(const Glib::ustring& family) -> AttrString;
 
   /** Create a new language tag attribute
    * @param language The language tag.
    * @return An attribute of type AttrLanguage.
    */
-  static AttrLanguage create_attr_language(const Language& language);
+  static auto create_attr_language(const Language& language) -> AttrLanguage;
 
   /** Create a new foreground color attribute.
    * @param red The red value (ranging from 0 to 65535).
@@ -732,7 +732,7 @@ public:
    * @param blue The blue value (ranging from 0 to 65535).
    * @return An attribute of type AttrColor.
    */
-  static AttrColor create_attr_foreground(guint16 red, guint16 green, guint16 blue);
+  static auto create_attr_foreground(guint16 red, guint16 green, guint16 blue) -> AttrColor;
 
   /** Create a new background color attribute.
    * @param red The red value (ranging from 0 to 65535).
@@ -740,23 +740,23 @@ public:
    * @param blue The blue value (ranging from 0 to 65535).
    * @return An attribute of type AttrColor.
    */
-  static AttrColor create_attr_background(guint16 red, guint16 green, guint16 blue);
+  static auto create_attr_background(guint16 red, guint16 green, guint16 blue) -> AttrColor;
 
   /** Create a new foreground alpha attribute.
    * @param alpha The alpha value, between 1 and 65536.
    */
-  static AttrInt create_attr_foreground_alpha(guint16 alpha);
+  static auto create_attr_foreground_alpha(guint16 alpha) -> AttrInt;
 
   /** Create a new background alpha attribute.
    * @param alpha The alpha value, between 1 and 65536.
    */
-  static AttrInt create_attr_background_alpha(guint16 alpha);
+  static auto create_attr_background_alpha(guint16 alpha) -> AttrInt;
 
   /** Create a new font-size attribute.
    * @param size The font size, in 1024ths of a point.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_size(int size);
+  static auto create_attr_size(int size) -> AttrInt;
 
   /** Create a new font-size attribute.
    *
@@ -765,44 +765,44 @@ public:
    * @param size The font size, in 1024ths of a device unit.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_size_absolute(int size);
+  static auto create_attr_size_absolute(int size) -> AttrInt;
 
   /** Create a new font slant style attribute.
    * @param style The slant style.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_style(Style style);
+  static auto create_attr_style(Style style) -> AttrInt;
 
   /** Create a new font weight attribute.
    * @param weight The weight.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_weight(Weight weight);
+  static auto create_attr_weight(Weight weight) -> AttrInt;
 
   /** Create a new font variant attribute (normal or small caps).
    * @param variant The variant.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_variant(Variant variant);
+  static auto create_attr_variant(Variant variant) -> AttrInt;
 
   /** Create a new font stretch attribute.
    * @param stretch The stretch.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_stretch(Stretch stretch);
+  static auto create_attr_stretch(Stretch stretch) -> AttrInt;
 
   /** Create a new font description attribute.
    * This attribute allows setting family, style, weight, variant, stretch, and size simultaneously.
    * @param desc The font description.
    * @return An attribute of type AttrFontDesc.
    */
-  static AttrFontDesc create_attr_font_desc(const FontDescription& desc);
+  static auto create_attr_font_desc(const FontDescription& desc) -> AttrFontDesc;
 
   /** Create a new underline-style object.
    * @param underline The underline style.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_underline(Underline underline);
+  static auto create_attr_underline(Underline underline) -> AttrInt;
 
   /** Create a new underline color attribute.
    * This attribute modifies the color of underlines. If not set,
@@ -815,7 +815,7 @@ public:
    * @param blue The blue value (ranging from 0 to 65535).
    * @return An attribute of type AttrColor.
    */
-  static AttrColor create_attr_underline_color(guint16 red, guint16 green, guint16 blue);
+  static auto create_attr_underline_color(guint16 red, guint16 green, guint16 blue) -> AttrColor;
 
   /** Create a new overline-style object.
    *
@@ -824,7 +824,7 @@ public:
    * @param overline The overline style.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_overline(Overline overline);
+  static auto create_attr_overline(Overline overline) -> AttrInt;
 
   /** Create a new overline color attribute.
    *
@@ -838,13 +838,13 @@ public:
    * @param blue The blue value (ranging from 0 to 65535).
    * @return An attribute of type AttrColor.
    */
-  static AttrColor create_attr_overline_color(guint16 red, guint16 green, guint16 blue);
+  static auto create_attr_overline_color(guint16 red, guint16 green, guint16 blue) -> AttrColor;
 
   /** Create a new font strike-through attribute.
    * @param strikethrough True indicates the text should be struck-through.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_strikethrough(bool strikethrough);
+  static auto create_attr_strikethrough(bool strikethrough) -> AttrInt;
 
   /** Create a new strikethrough color attribute.
    * This attribute modifies the color of strikethrough lines. If not set,
@@ -857,13 +857,13 @@ public:
    * @param blue The blue value (ranging from 0 to 65535).
    * @return An attribute of type AttrColor.
    */
-  static AttrColor create_attr_strikethrough_color(guint16 red, guint16 green, guint16 blue);
+  static auto create_attr_strikethrough_color(guint16 red, guint16 green, guint16 blue) -> AttrColor;
 
   /** Create a new baseline displacement attribute.
    * @param rise The amount that the text should be displaced vertically, in 10'000ths of an em. Positive values displace the text upwards.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_rise(int rise);
+  static auto create_attr_rise(int rise) -> AttrInt;
 
   /** Create a new baseline displacement attribute.
    *
@@ -877,7 +877,7 @@ public:
    *   Positive values displace the text upwards.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_baseline_shift(int shift);
+  static auto create_attr_baseline_shift(int shift) -> AttrInt;
 
   /** Create a new font scale attribute.
    *
@@ -890,14 +890,14 @@ public:
    *   to the size of the previous run.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_font_scale(FontScale scale);
+  static auto create_attr_font_scale(FontScale scale) -> AttrInt;
 
   /** Create a new font size scale attribute.
    * The base font for the affected text will have its size multiplied by scale_factor.
    * @param scale_factor Factor to scale the font.
    * @return An attribute of type AttrFloat.
    */
-  static AttrFloat create_attr_scale(double scale_factor);
+  static auto create_attr_scale(double scale_factor) -> AttrFloat;
 
   /** Create a new font fallback attribute.
    * If fallback is disabled, characters will only be used from the
@@ -910,7 +910,7 @@ public:
    *                        for characters the active font is missing.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_fallback(bool enable_fallback);
+  static auto create_attr_fallback(bool enable_fallback) -> AttrInt;
 
   /** Create a new letter-spacing attribute.
    *
@@ -920,7 +920,7 @@ public:
    *                       of the text, in Pango units.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_letter_spacing(int letter_spacing);
+  static auto create_attr_letter_spacing(int letter_spacing) -> AttrInt;
 
   /** Create a new shape attribute.
    * A shape is used to impose a particular ink and logical rect on the result of shaping a particular glyph.
@@ -929,7 +929,7 @@ public:
    * @param logical_rect Logical rectangle assign to each character.
    * @return An attribute of type AttrShape.
    */
-  static AttrShape create_attr_shape(const Rectangle& ink_rect, const Rectangle& logical_rect);
+  static auto create_attr_shape(const Rectangle& ink_rect, const Rectangle& logical_rect) -> AttrShape;
 
   /** Create a new gravity attribute.
    *
@@ -938,7 +938,7 @@ public:
    * @param gravity The gravity value; should not be Pango::Gravity::AUTO.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_gravity(Gravity gravity);
+  static auto create_attr_gravity(Gravity gravity) -> AttrInt;
 
   /** Create a new gravity hint attribute.
    *
@@ -947,7 +947,7 @@ public:
    * @param hint The gravity hint value.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_gravity_hint(GravityHint hint);
+  static auto create_attr_gravity_hint(GravityHint hint) -> AttrInt;
 
   /** Create a new font features tag attribute.
    *
@@ -956,7 +956,7 @@ public:
    * @param features A string with OpenType font features, in CSS syntax.
    * @return An attribute of type AttrString.
    */
-  static AttrString create_attr_font_features(const Glib::ustring& features);
+  static auto create_attr_font_features(const Glib::ustring& features) -> AttrString;
 
   /** Create a new allow-breaks attribute.
    *
@@ -968,7 +968,7 @@ public:
    * @param allow_breaks <tt>true</tt> if line breaks are allowed.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_allow_breaks(bool allow_breaks);
+  static auto create_attr_allow_breaks(bool allow_breaks) -> AttrInt;
 
   /** Marks the range of the attribute as a single word.
    *
@@ -979,7 +979,7 @@ public:
    *
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_word();
+  static auto create_attr_word() -> AttrInt;
 
   /** Marks the range of the attribute as a single sentence.
    *
@@ -990,7 +990,7 @@ public:
    *
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_sentence();
+  static auto create_attr_sentence() -> AttrInt;
 
   /** Create a new insert-hyphens attribute.
    *
@@ -1002,7 +1002,7 @@ public:
    * @param insert_hyphens <tt>true</tt> if hyphens should be inserted.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_insert_hyphens(bool insert_hyphens);
+  static auto create_attr_insert_hyphens(bool insert_hyphens) -> AttrInt;
 
   /** Create a new attribute that influences how invisible characters are rendered.
    *
@@ -1011,7 +1011,7 @@ public:
    * @param flags Pango::ShowFlags to apply.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_show(ShowFlags show);
+  static auto create_attr_show(ShowFlags show) -> AttrInt;
 
   /** Modify the height of logical line extents by a factor.
    *
@@ -1023,7 +1023,7 @@ public:
    * @param factor The scaling factor to apply to the logical height.
    * @return An attribute of type AttrFloat.
    */
-  static AttrFloat create_attr_line_height(double factor);
+  static auto create_attr_line_height(double factor) -> AttrFloat;
 
   /** Override the height of logical line extents to be @a height.
    *
@@ -1035,7 +1035,7 @@ public:
    * @param height The line height, in Pango::SCALE-ths of a point.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_line_height_absolute(int height);
+  static auto create_attr_line_height_absolute(int height) -> AttrInt;
 
   /** Create a new attribute that influences how characters are transformed during shaping.
    *
@@ -1044,7 +1044,7 @@ public:
    * @param transform Pango::TextTransform to apply.
    * @return An attribute of type AttrInt.
    */
-  static AttrInt create_attr_text_transform(TextTransform transform);
+  static auto create_attr_text_transform(TextTransform transform) -> AttrInt;
 
 
 protected:
@@ -1054,13 +1054,13 @@ protected:
 };
 
 /** @relates Pango::Attribute */
-inline bool operator==(const Attribute& lhs, const Attribute& rhs)
+inline auto operator==(const Attribute& lhs, const Attribute& rhs) -> bool
 {
   return lhs.equal(rhs);
 }
 
 /** @relates Pango::Attribute */
-inline bool operator!=(const Attribute& lhs, const Attribute& rhs)
+inline auto operator!=(const Attribute& lhs, const Attribute& rhs) -> bool
 {
   return !lhs.equal(rhs);
 }
@@ -1085,12 +1085,12 @@ public:
   AttrString(const AttrString& src);
   explicit AttrString(PangoAttrString* castitem, bool take_copy=true);
 
-  AttrString& operator=(const AttrString& src);
+  auto operator=(const AttrString& src) -> AttrString&;
 
   /** Gets the string which is the value of the attribute.
    * @return The string value of the attribute.
    */
-  Glib::ustring get_string() const;
+  auto get_string() const -> Glib::ustring;
 
   /** Sets the string which is the value of the attribute.
    * @param string The new string value for the attribute.
@@ -1098,9 +1098,9 @@ public:
   void set_string(const Glib::ustring& string);
 
   /// Provides access to the underlying C GObject.
-  PangoAttrString*       gobj()       { return reinterpret_cast<PangoAttrString*>(gobject_); }
+  auto       gobj() -> PangoAttrString*       { return reinterpret_cast<PangoAttrString*>(gobject_); }
   /// Provides access to the underlying C GObject.
-  const PangoAttrString* gobj() const { return reinterpret_cast<const PangoAttrString*>(gobject_); }
+  auto gobj() const -> const PangoAttrString* { return reinterpret_cast<const PangoAttrString*>(gobject_); }
 
 
 };
@@ -1125,12 +1125,12 @@ public:
   AttrLanguage(const AttrLanguage& src);
   explicit AttrLanguage(PangoAttrLanguage* castitem, bool take_copy=true);
 
-  AttrLanguage& operator=(const AttrLanguage& src);
+  auto operator=(const AttrLanguage& src) -> AttrLanguage&;
 
   /** Gets the language which is the value of the attribute.
    * @return The language tag of the attribute.
    */
-  Language get_language() const;
+  auto get_language() const -> Language;
 
   /** Sets the language which is the value of the attribute.
    * @param value The new language tag for the attribute.
@@ -1138,9 +1138,9 @@ public:
   void set_language(const Language& value);
 
   /// Provides access to the underlying C GObject.
-  PangoAttrLanguage*       gobj()       { return reinterpret_cast<PangoAttrLanguage*>(gobject_); }
+  auto       gobj() -> PangoAttrLanguage*       { return reinterpret_cast<PangoAttrLanguage*>(gobject_); }
   /// Provides access to the underlying C GObject.
-  const PangoAttrLanguage* gobj() const { return reinterpret_cast<const PangoAttrLanguage*>(gobject_); }
+  auto gobj() const -> const PangoAttrLanguage* { return reinterpret_cast<const PangoAttrLanguage*>(gobject_); }
 
 
 };
@@ -1165,12 +1165,12 @@ public:
   AttrColor(const AttrColor& src);
   explicit AttrColor(PangoAttrColor* castitem, bool take_copy=true);
 
-  AttrColor& operator=(const AttrColor& src);
+  auto operator=(const AttrColor& src) -> AttrColor&;
 
   /** Gets the color which is the value of the attribute.
    * @return The color value of the attribute.
    */
-  Color get_color() const;
+  auto get_color() const -> Color;
 
   /** Sets the color which is the value of the attribute.
    * @param value The new color value for the attribute.
@@ -1178,9 +1178,9 @@ public:
   void set_color(const Color& value);
 
   /// Provides access to the underlying C GObject.
-  PangoAttrColor*       gobj()       { return reinterpret_cast<PangoAttrColor*>(gobject_); }
+  auto       gobj() -> PangoAttrColor*       { return reinterpret_cast<PangoAttrColor*>(gobject_); }
   /// Provides access to the underlying C GObject.
-  const PangoAttrColor* gobj() const { return reinterpret_cast<const PangoAttrColor*>(gobject_); }
+  auto gobj() const -> const PangoAttrColor* { return reinterpret_cast<const PangoAttrColor*>(gobject_); }
 
 
 };
@@ -1205,12 +1205,12 @@ public:
   AttrInt(const AttrInt& src);
   explicit AttrInt(PangoAttrInt* castitem, bool take_copy=true);
 
-  AttrInt& operator=(const AttrInt& src);
+  auto operator=(const AttrInt& src) -> AttrInt&;
 
   /** Gets the integer value of the attribute.
    * @return The integer value of the attribute.
    */
-  int get_value() const;
+  auto get_value() const -> int;
 
   /** Sets the integer value of the attribute.
    * @param value The new integer value for the attribute.
@@ -1218,9 +1218,9 @@ public:
   void set_value(const int& value);
 
   /// Provides access to the underlying C GObject.
-  PangoAttrInt*       gobj()       { return reinterpret_cast<PangoAttrInt*>(gobject_); }
+  auto       gobj() -> PangoAttrInt*       { return reinterpret_cast<PangoAttrInt*>(gobject_); }
   /// Provides access to the underlying C GObject.
-  const PangoAttrInt* gobj() const { return reinterpret_cast<const PangoAttrInt*>(gobject_); }
+  auto gobj() const -> const PangoAttrInt* { return reinterpret_cast<const PangoAttrInt*>(gobject_); }
 
 
 };
@@ -1245,12 +1245,12 @@ public:
   AttrFloat(const AttrFloat& src);
   explicit AttrFloat(PangoAttrFloat* castitem, bool take_copy=true);
 
-  AttrFloat& operator=(const AttrFloat& src);
+  auto operator=(const AttrFloat& src) -> AttrFloat&;
 
   /** Gets the floating point value of the attribute.
    * @return The floating point value of the attribute.
    */
-  double get_value() const;
+  auto get_value() const -> double;
 
   /** Sets the floating point value of the attribute.
    * @param value The new floating point value for the attribute.
@@ -1258,9 +1258,9 @@ public:
   void set_value(const double& value);
 
   /// Provides access to the underlying C GObject.
-  PangoAttrFloat*       gobj()       { return reinterpret_cast<PangoAttrFloat*>(gobject_); }
+  auto       gobj() -> PangoAttrFloat*       { return reinterpret_cast<PangoAttrFloat*>(gobject_); }
   /// Provides access to the underlying C GObject.
-  const PangoAttrFloat* gobj() const { return reinterpret_cast<const PangoAttrFloat*>(gobject_); }
+  auto gobj() const -> const PangoAttrFloat* { return reinterpret_cast<const PangoAttrFloat*>(gobject_); }
 
 
 };
@@ -1285,12 +1285,12 @@ public:
   AttrFontDesc(const AttrFontDesc& src);
   explicit AttrFontDesc(PangoAttrFontDesc* castitem, bool take_copy=true);
 
-  AttrFontDesc& operator=(const AttrFontDesc& src);
+  auto operator=(const AttrFontDesc& src) -> AttrFontDesc&;
 
   /** Gets the font description which is the value of the attribute.
    * @return The font description of the attribute.
    */
-  FontDescription get_desc() const;
+  auto get_desc() const -> FontDescription;
 
   /** Sets the font description which is the value of the attribute.
    * @param desc The new font description for the attribute.
@@ -1298,9 +1298,9 @@ public:
   void set_desc(const FontDescription& desc);
 
   /// Provides access to the underlying C GObject.
-  PangoAttrFontDesc*       gobj()       { return reinterpret_cast<PangoAttrFontDesc*>(gobject_); }
+  auto       gobj() -> PangoAttrFontDesc*       { return reinterpret_cast<PangoAttrFontDesc*>(gobject_); }
   /// Provides access to the underlying C GObject.
-  const PangoAttrFontDesc* gobj() const { return reinterpret_cast<const PangoAttrFontDesc*>(gobject_); }
+  auto gobj() const -> const PangoAttrFontDesc* { return reinterpret_cast<const PangoAttrFontDesc*>(gobject_); }
 
 
 };
@@ -1325,17 +1325,17 @@ public:
   AttrShape(const AttrShape& src);
   explicit AttrShape(PangoAttrShape* castitem, bool take_copy=true);
 
-  AttrShape& operator=(const AttrShape& src);
+  auto operator=(const AttrShape& src) -> AttrShape&;
 
   /** Gets the ink rectangle to restrict to.
    * @return The ink rectangle of the attribute.
    */
-  Rectangle get_ink_rect() const;
+  auto get_ink_rect() const -> Rectangle;
 
   /** Gets the logical rectangle to restrict to.
    * @return The logical rectangle of the attribute.
    */
-  Rectangle get_logical_rect() const;
+  auto get_logical_rect() const -> Rectangle;
 
   /** Sets the ink rectangle to restrict to.
    * @param value The new ink rectangle for the attribute.
@@ -1348,9 +1348,9 @@ public:
   void set_logical_rect(const Rectangle& value);
 
   /// Provides access to the underlying C GObject.
-  PangoAttrShape*       gobj()       { return reinterpret_cast<PangoAttrShape*>(gobject_); }
+  auto       gobj() -> PangoAttrShape*       { return reinterpret_cast<PangoAttrShape*>(gobject_); }
   /// Provides access to the underlying C GObject.
-  const PangoAttrShape* gobj() const { return reinterpret_cast<const PangoAttrShape*>(gobject_); }
+  auto gobj() const -> const PangoAttrShape* { return reinterpret_cast<const PangoAttrShape*>(gobject_); }
 
 
 };
@@ -1362,9 +1362,9 @@ struct AttributeTraits
   typedef const PangoAttribute* CType;
   typedef PangoAttribute*       CTypeNonConst;
 
-  static CType   to_c_type      (const CppType& obj) { return obj.gobj(); }
-  static CType   to_c_type      (CType ptr) { return ptr; }
-  static CppType to_cpp_type    (CType ptr) { return CppType(const_cast<CTypeNonConst>(ptr), true); }
+  static auto   to_c_type      (const CppType& obj) -> CType { return obj.gobj(); }
+  static auto   to_c_type      (CType ptr) -> CType { return ptr; }
+  static auto to_cpp_type    (CType ptr) -> CppType { return CppType(const_cast<CTypeNonConst>(ptr), true); }
   static void    release_c_type (CType ptr) { pango_attribute_destroy(const_cast<CTypeNonConst>(ptr)); }
 };
 
@@ -1376,35 +1376,35 @@ namespace Glib
 
 /** @relates Pango::Attribute */
 PANGOMM_API
-Pango::Attribute wrap(PangoAttribute* object, bool take_copy = false);
+auto wrap(PangoAttribute* object, bool take_copy = false) -> Pango::Attribute;
 
 /** @relates Pango::AttrString */
 PANGOMM_API
-Pango::AttrString wrap(PangoAttrString* object, bool take_copy = false);
+auto wrap(PangoAttrString* object, bool take_copy = false) -> Pango::AttrString;
 
 /** @relates Pango::AttrLanguage */
 PANGOMM_API
-Pango::AttrLanguage wrap(PangoAttrLanguage* object, bool take_copy = false);
+auto wrap(PangoAttrLanguage* object, bool take_copy = false) -> Pango::AttrLanguage;
 
 /** @relates Pango::AttrColor */
 PANGOMM_API
-Pango::AttrColor wrap(PangoAttrColor* object, bool take_copy = false);
+auto wrap(PangoAttrColor* object, bool take_copy = false) -> Pango::AttrColor;
 
 /** @relates Pango::AttrInt */
 PANGOMM_API
-Pango::AttrInt wrap(PangoAttrInt* object, bool take_copy = false);
+auto wrap(PangoAttrInt* object, bool take_copy = false) -> Pango::AttrInt;
 
 /** @relates Pango::AttrFloat */
 PANGOMM_API
-Pango::AttrFloat wrap(PangoAttrFloat* object, bool take_copy = false);
+auto wrap(PangoAttrFloat* object, bool take_copy = false) -> Pango::AttrFloat;
 
 /** @relates Pango::AttrFontDesc */
 PANGOMM_API
-Pango::AttrFontDesc wrap(PangoAttrFontDesc* object, bool take_copy = false);
+auto wrap(PangoAttrFontDesc* object, bool take_copy = false) -> Pango::AttrFontDesc;
 
 /** @relates Pango::AttrShape */
 PANGOMM_API
-Pango::AttrShape wrap(PangoAttrShape* object, bool take_copy = false);
+auto wrap(PangoAttrShape* object, bool take_copy = false) -> Pango::AttrShape;
 
 } //namespace Glib
 

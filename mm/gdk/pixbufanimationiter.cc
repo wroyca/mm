@@ -29,7 +29,7 @@ namespace Gdk
 {
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-bool PixbufAnimationIter::advance(gint64 current_time)
+auto PixbufAnimationIter::advance(gint64 current_time) -> bool
 {
   // GTimeVal is deprecated, but gdk-pixbuf has no replacement for
   // gdk_pixbuf_animation_iter_advance() without GTimeVal.
@@ -51,7 +51,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::PixbufAnimationIter> wrap(GdkPixbufAnimationIter* object, bool take_copy)
+auto wrap(GdkPixbufAnimationIter* object, bool take_copy) -> Glib::RefPtr<Gdk::PixbufAnimationIter>
 {
   return Glib::make_refptr_for_instance<Gdk::PixbufAnimationIter>( dynamic_cast<Gdk::PixbufAnimationIter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -66,7 +66,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Class& PixbufAnimationIter_Class::init()
+auto PixbufAnimationIter_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -97,7 +97,7 @@ void PixbufAnimationIter_Class::class_init_function(void* g_class, void* class_d
 }
 
 
-Glib::ObjectBase* PixbufAnimationIter_Class::wrap_new(GObject* object)
+auto PixbufAnimationIter_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new PixbufAnimationIter((GdkPixbufAnimationIter*)object);
 }
@@ -105,7 +105,7 @@ Glib::ObjectBase* PixbufAnimationIter_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GdkPixbufAnimationIter* PixbufAnimationIter::gobj_copy()
+auto PixbufAnimationIter::gobj_copy() -> GdkPixbufAnimationIter*
 {
   reference();
   return gobj();
@@ -128,7 +128,7 @@ PixbufAnimationIter::PixbufAnimationIter(PixbufAnimationIter&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-PixbufAnimationIter& PixbufAnimationIter::operator=(PixbufAnimationIter&& src) noexcept
+auto PixbufAnimationIter::operator=(PixbufAnimationIter&& src) noexcept -> PixbufAnimationIter&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -141,24 +141,24 @@ PixbufAnimationIter::~PixbufAnimationIter() noexcept
 
 PixbufAnimationIter::CppClassType PixbufAnimationIter::pixbufanimationiter_class_; // initialize static member
 
-GType PixbufAnimationIter::get_type()
+auto PixbufAnimationIter::get_type() -> GType
 {
   return pixbufanimationiter_class_.init().get_type();
 }
 
 
-GType PixbufAnimationIter::get_base_type()
+auto PixbufAnimationIter::get_base_type() -> GType
 {
   return gdk_pixbuf_animation_iter_get_type();
 }
 
 
-int PixbufAnimationIter::get_delay_time() const
+auto PixbufAnimationIter::get_delay_time() const -> int
 {
   return gdk_pixbuf_animation_iter_get_delay_time(const_cast<GdkPixbufAnimationIter*>(gobj()));
 }
 
-Glib::RefPtr<Gdk::Pixbuf> PixbufAnimationIter::get_pixbuf()
+auto PixbufAnimationIter::get_pixbuf() -> Glib::RefPtr<Gdk::Pixbuf>
 {
   auto retvalue = Glib::wrap(gdk_pixbuf_animation_iter_get_pixbuf(gobj()));
   if(retvalue)
@@ -166,12 +166,12 @@ Glib::RefPtr<Gdk::Pixbuf> PixbufAnimationIter::get_pixbuf()
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::Pixbuf> PixbufAnimationIter::get_pixbuf() const
+auto PixbufAnimationIter::get_pixbuf() const -> Glib::RefPtr<const Gdk::Pixbuf>
 {
   return const_cast<PixbufAnimationIter*>(this)->get_pixbuf();
 }
 
-bool PixbufAnimationIter::on_currently_loading_frame() const
+auto PixbufAnimationIter::on_currently_loading_frame() const -> bool
 {
   return gdk_pixbuf_animation_iter_on_currently_loading_frame(const_cast<GdkPixbufAnimationIter*>(gobj()));
 }

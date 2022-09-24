@@ -140,7 +140,7 @@ namespace
 {
 
 
-static void SocketClient_signal_event_callback(GSocketClient* self, GSocketClientEvent p0,GSocketConnectable* p1,GIOStream* p2,void* data)
+void SocketClient_signal_event_callback(GSocketClient* self, GSocketClientEvent p0,GSocketConnectable* p1,GIOStream* p2,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(SocketClientEvent, const Glib::RefPtr<SocketConnectable>&, const Glib::RefPtr<IOStream>&)>;
@@ -164,7 +164,7 @@ static void SocketClient_signal_event_callback(GSocketClient* self, GSocketClien
   }
 }
 
-static const Glib::SignalProxyInfo SocketClient_signal_event_info =
+const Glib::SignalProxyInfo SocketClient_signal_event_info =
 {
   "event",
   (GCallback) &SocketClient_signal_event_callback,
@@ -175,7 +175,7 @@ static const Glib::SignalProxyInfo SocketClient_signal_event_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::SocketClientEvent>::value_type()
+auto Glib::Value<Gio::SocketClientEvent>::value_type() -> GType
 {
   return g_socket_client_event_get_type();
 }
@@ -184,7 +184,7 @@ GType Glib::Value<Gio::SocketClientEvent>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gio::SocketClient> wrap(GSocketClient* object, bool take_copy)
+auto wrap(GSocketClient* object, bool take_copy) -> Glib::RefPtr<Gio::SocketClient>
 {
   return Glib::make_refptr_for_instance<Gio::SocketClient>( dynamic_cast<Gio::SocketClient*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -199,7 +199,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& SocketClient_Class::init()
+auto SocketClient_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -272,7 +272,7 @@ void SocketClient_Class::event_callback(GSocketClient* self, GSocketClientEvent 
 }
 
 
-Glib::ObjectBase* SocketClient_Class::wrap_new(GObject* object)
+auto SocketClient_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new SocketClient((GSocketClient*)object);
 }
@@ -280,7 +280,7 @@ Glib::ObjectBase* SocketClient_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GSocketClient* SocketClient::gobj_copy()
+auto SocketClient::gobj_copy() -> GSocketClient*
 {
   reference();
   return gobj();
@@ -303,7 +303,7 @@ SocketClient::SocketClient(SocketClient&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-SocketClient& SocketClient::operator=(SocketClient&& src) noexcept
+auto SocketClient::operator=(SocketClient&& src) noexcept -> SocketClient&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -316,13 +316,13 @@ SocketClient::~SocketClient() noexcept
 
 SocketClient::CppClassType SocketClient::socketclient_class_; // initialize static member
 
-GType SocketClient::get_type()
+auto SocketClient::get_type() -> GType
 {
   return socketclient_class_.init().get_type();
 }
 
 
-GType SocketClient::get_base_type()
+auto SocketClient::get_base_type() -> GType
 {
   return g_socket_client_get_type();
 }
@@ -338,12 +338,12 @@ SocketClient::SocketClient()
 
 }
 
-Glib::RefPtr<SocketClient> SocketClient::create()
+auto SocketClient::create() -> Glib::RefPtr<SocketClient>
 {
   return Glib::make_refptr_for_instance<SocketClient>( new SocketClient() );
 }
 
-SocketFamily SocketClient::get_family() const
+auto SocketClient::get_family() const -> SocketFamily
 {
   return static_cast<SocketFamily>(g_socket_client_get_family(const_cast<GSocketClient*>(gobj())));
 }
@@ -353,7 +353,7 @@ void SocketClient::set_family(SocketFamily family)
   g_socket_client_set_family(gobj(), static_cast<GSocketFamily>(family));
 }
 
-Socket::Type SocketClient::get_socket_type() const
+auto SocketClient::get_socket_type() const -> Socket::Type
 {
   return static_cast<Socket::Type>(g_socket_client_get_socket_type(const_cast<GSocketClient*>(gobj())));
 }
@@ -363,7 +363,7 @@ void SocketClient::set_socket_type(Socket::Type type)
   g_socket_client_set_socket_type(gobj(), static_cast<GSocketType>(type));
 }
 
-Socket::Protocol SocketClient::get_protocol() const
+auto SocketClient::get_protocol() const -> Socket::Protocol
 {
   return static_cast<Socket::Protocol>(g_socket_client_get_protocol(const_cast<GSocketClient*>(gobj())));
 }
@@ -373,12 +373,12 @@ void SocketClient::set_protocol(Socket::Protocol protocol)
   g_socket_client_set_protocol(gobj(), static_cast<GSocketProtocol>(protocol));
 }
 
-Glib::RefPtr<SocketAddress> SocketClient::get_local_address()
+auto SocketClient::get_local_address() -> Glib::RefPtr<SocketAddress>
 {
   return Glib::wrap(g_socket_client_get_local_address(gobj()));
 }
 
-Glib::RefPtr<const SocketAddress> SocketClient::get_local_address() const
+auto SocketClient::get_local_address() const -> Glib::RefPtr<const SocketAddress>
 {
   return const_cast<SocketClient*>(this)->get_local_address();
 }
@@ -388,7 +388,7 @@ void SocketClient::set_local_address(const Glib::RefPtr<SocketAddress>& address)
   g_socket_client_set_local_address(gobj(), const_cast<GSocketAddress*>(Glib::unwrap(address)));
 }
 
-Glib::RefPtr<SocketConnection> SocketClient::connect(const Glib::RefPtr<SocketConnectable>& connectable, const Glib::RefPtr<Cancellable>& cancellable)
+auto SocketClient::connect(const Glib::RefPtr<SocketConnectable>& connectable, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketConnection>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_client_connect(gobj(), const_cast<GSocketConnectable*>(Glib::unwrap(connectable)), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -397,7 +397,7 @@ Glib::RefPtr<SocketConnection> SocketClient::connect(const Glib::RefPtr<SocketCo
   return retvalue;
 }
 
-Glib::RefPtr<SocketConnection> SocketClient::connect(const Glib::RefPtr<SocketConnectable>& connectable)
+auto SocketClient::connect(const Glib::RefPtr<SocketConnectable>& connectable) -> Glib::RefPtr<SocketConnection>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_client_connect(gobj(), const_cast<GSocketConnectable*>(Glib::unwrap(connectable)), nullptr, &(gerror)));
@@ -406,7 +406,7 @@ Glib::RefPtr<SocketConnection> SocketClient::connect(const Glib::RefPtr<SocketCo
   return retvalue;
 }
 
-Glib::RefPtr<SocketConnection> SocketClient::connect_to_host(const Glib::ustring& host_and_port, guint16 default_port, const Glib::RefPtr<Cancellable>& cancellable)
+auto SocketClient::connect_to_host(const Glib::ustring& host_and_port, guint16 default_port, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketConnection>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_client_connect_to_host(gobj(), host_and_port.c_str(), default_port, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -415,7 +415,7 @@ Glib::RefPtr<SocketConnection> SocketClient::connect_to_host(const Glib::ustring
   return retvalue;
 }
 
-Glib::RefPtr<SocketConnection> SocketClient::connect_to_host(const Glib::ustring& host_and_port, guint16 default_port)
+auto SocketClient::connect_to_host(const Glib::ustring& host_and_port, guint16 default_port) -> Glib::RefPtr<SocketConnection>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_client_connect_to_host(gobj(), host_and_port.c_str(), default_port, nullptr, &(gerror)));
@@ -424,7 +424,7 @@ Glib::RefPtr<SocketConnection> SocketClient::connect_to_host(const Glib::ustring
   return retvalue;
 }
 
-Glib::RefPtr<SocketConnection> SocketClient::connect_to_service(const Glib::ustring& domain, const Glib::ustring& service, const Glib::RefPtr<Cancellable>& cancellable)
+auto SocketClient::connect_to_service(const Glib::ustring& domain, const Glib::ustring& service, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketConnection>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_client_connect_to_service(gobj(), domain.c_str(), service.c_str(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -433,7 +433,7 @@ Glib::RefPtr<SocketConnection> SocketClient::connect_to_service(const Glib::ustr
   return retvalue;
 }
 
-Glib::RefPtr<SocketConnection> SocketClient::connect_to_service(const Glib::ustring& domain, const Glib::ustring& service)
+auto SocketClient::connect_to_service(const Glib::ustring& domain, const Glib::ustring& service) -> Glib::RefPtr<SocketConnection>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_client_connect_to_service(gobj(), domain.c_str(), service.c_str(), nullptr, &(gerror)));
@@ -442,7 +442,7 @@ Glib::RefPtr<SocketConnection> SocketClient::connect_to_service(const Glib::ustr
   return retvalue;
 }
 
-Glib::RefPtr<SocketConnection> SocketClient::connect_to_uri(const Glib::ustring& uri, guint16 default_port, const Glib::RefPtr<Cancellable>& cancellable)
+auto SocketClient::connect_to_uri(const Glib::ustring& uri, guint16 default_port, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketConnection>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_client_connect_to_uri(gobj(), uri.c_str(), default_port, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -451,7 +451,7 @@ Glib::RefPtr<SocketConnection> SocketClient::connect_to_uri(const Glib::ustring&
   return retvalue;
 }
 
-Glib::RefPtr<SocketConnection> SocketClient::connect_to_uri(const Glib::ustring& uri, guint16 default_port)
+auto SocketClient::connect_to_uri(const Glib::ustring& uri, guint16 default_port) -> Glib::RefPtr<SocketConnection>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_client_connect_to_uri(gobj(), uri.c_str(), default_port, nullptr, &(gerror)));
@@ -460,7 +460,7 @@ Glib::RefPtr<SocketConnection> SocketClient::connect_to_uri(const Glib::ustring&
   return retvalue;
 }
 
-Glib::RefPtr<SocketConnection> SocketClient::connect_finish(const Glib::RefPtr<AsyncResult>& result)
+auto SocketClient::connect_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<SocketConnection>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_client_connect_finish(gobj(), Glib::unwrap(result), &(gerror)));
@@ -469,7 +469,7 @@ Glib::RefPtr<SocketConnection> SocketClient::connect_finish(const Glib::RefPtr<A
   return retvalue;
 }
 
-Glib::RefPtr<SocketConnection> SocketClient::connect_to_host_finish(const Glib::RefPtr<AsyncResult>& result)
+auto SocketClient::connect_to_host_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<SocketConnection>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_client_connect_to_host_finish(gobj(), Glib::unwrap(result), &(gerror)));
@@ -478,7 +478,7 @@ Glib::RefPtr<SocketConnection> SocketClient::connect_to_host_finish(const Glib::
   return retvalue;
 }
 
-Glib::RefPtr<SocketConnection> SocketClient::connect_to_service_finish(const Glib::RefPtr<AsyncResult>& result)
+auto SocketClient::connect_to_service_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<SocketConnection>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_client_connect_to_service_finish(gobj(), Glib::unwrap(result), &(gerror)));
@@ -487,7 +487,7 @@ Glib::RefPtr<SocketConnection> SocketClient::connect_to_service_finish(const Gli
   return retvalue;
 }
 
-Glib::RefPtr<SocketConnection> SocketClient::connect_to_uri_finish(const Glib::RefPtr<AsyncResult>& result)
+auto SocketClient::connect_to_uri_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<SocketConnection>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_client_connect_to_uri_finish(gobj(), Glib::unwrap(result), &(gerror)));
@@ -496,7 +496,7 @@ Glib::RefPtr<SocketConnection> SocketClient::connect_to_uri_finish(const Glib::R
   return retvalue;
 }
 
-bool SocketClient::get_enable_proxy() const
+auto SocketClient::get_enable_proxy() const -> bool
 {
   return g_socket_client_get_enable_proxy(const_cast<GSocketClient*>(gobj()));
 }
@@ -506,7 +506,7 @@ void SocketClient::set_enable_proxy(bool enable)
   g_socket_client_set_enable_proxy(gobj(), static_cast<int>(enable));
 }
 
-bool SocketClient::get_tls() const
+auto SocketClient::get_tls() const -> bool
 {
   return g_socket_client_get_tls(const_cast<GSocketClient*>(gobj()));
 }
@@ -518,7 +518,7 @@ void SocketClient::set_tls(bool tls)
 
 #ifndef GIOMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-TlsCertificateFlags SocketClient::get_tls_validation_flags() const
+auto SocketClient::get_tls_validation_flags() const -> TlsCertificateFlags
 {
   return static_cast<TlsCertificateFlags>(g_socket_client_get_tls_validation_flags(const_cast<GSocketClient*>(gobj())));
 }
@@ -534,7 +534,7 @@ void SocketClient::set_tls_validation_flags(TlsCertificateFlags flags)
 G_GNUC_END_IGNORE_DEPRECATIONS
 #endif // GIOMM_DISABLE_DEPRECATED
 
-Glib::RefPtr<ProxyResolver> SocketClient::get_proxy_resolver()
+auto SocketClient::get_proxy_resolver() -> Glib::RefPtr<ProxyResolver>
 {
   auto retvalue = Glib::wrap(g_socket_client_get_proxy_resolver(gobj()));
   if(retvalue)
@@ -542,7 +542,7 @@ Glib::RefPtr<ProxyResolver> SocketClient::get_proxy_resolver()
   return retvalue;
 }
 
-Glib::RefPtr<const ProxyResolver> SocketClient::get_proxy_resolver() const
+auto SocketClient::get_proxy_resolver() const -> Glib::RefPtr<const ProxyResolver>
 {
   return const_cast<SocketClient*>(this)->get_proxy_resolver();
 }
@@ -552,7 +552,7 @@ void SocketClient::set_proxy_resolver(const Glib::RefPtr<ProxyResolver>& proxy_r
   g_socket_client_set_proxy_resolver(gobj(), const_cast<GProxyResolver*>(Glib::unwrap(proxy_resolver)));
 }
 
-guint SocketClient::get_timeout() const
+auto SocketClient::get_timeout() const -> guint
 {
   return g_socket_client_get_timeout(const_cast<GSocketClient*>(gobj()));
 }
@@ -568,7 +568,7 @@ void SocketClient::add_application_proxy(const Glib::ustring& protocol)
 }
 
 
-Glib::SignalProxy<void(SocketClientEvent, const Glib::RefPtr<SocketConnectable>&, const Glib::RefPtr<IOStream>&)> SocketClient::signal_event()
+auto SocketClient::signal_event() -> Glib::SignalProxy<void(SocketClientEvent, const Glib::RefPtr<SocketConnectable>&, const Glib::RefPtr<IOStream>&)>
 {
   return Glib::SignalProxy<void(SocketClientEvent, const Glib::RefPtr<SocketConnectable>&, const Glib::RefPtr<IOStream>&) >(this, &SocketClient_signal_event_info);
 }
@@ -578,12 +578,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<SocketFamily>::value
   "Type SocketFamily cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< SocketFamily > SocketClient::property_family()
+auto SocketClient::property_family() -> Glib::PropertyProxy< SocketFamily >
 {
   return Glib::PropertyProxy< SocketFamily >(this, "family");
 }
 
-Glib::PropertyProxy_ReadOnly< SocketFamily > SocketClient::property_family() const
+auto SocketClient::property_family() const -> Glib::PropertyProxy_ReadOnly< SocketFamily >
 {
   return Glib::PropertyProxy_ReadOnly< SocketFamily >(this, "family");
 }
@@ -592,12 +592,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<SocketA
   "Type Glib::RefPtr<SocketAddress> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<SocketAddress> > SocketClient::property_local_address()
+auto SocketClient::property_local_address() -> Glib::PropertyProxy< Glib::RefPtr<SocketAddress> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<SocketAddress> >(this, "local-address");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> > SocketClient::property_local_address() const
+auto SocketClient::property_local_address() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> >(this, "local-address");
 }
@@ -606,12 +606,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Socket::Protocol>::v
   "Type Socket::Protocol cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Socket::Protocol > SocketClient::property_protocol()
+auto SocketClient::property_protocol() -> Glib::PropertyProxy< Socket::Protocol >
 {
   return Glib::PropertyProxy< Socket::Protocol >(this, "protocol");
 }
 
-Glib::PropertyProxy_ReadOnly< Socket::Protocol > SocketClient::property_protocol() const
+auto SocketClient::property_protocol() const -> Glib::PropertyProxy_ReadOnly< Socket::Protocol >
 {
   return Glib::PropertyProxy_ReadOnly< Socket::Protocol >(this, "protocol");
 }
@@ -620,42 +620,42 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Socket::Type>::value
   "Type Socket::Type cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Socket::Type > SocketClient::property_type()
+auto SocketClient::property_type() -> Glib::PropertyProxy< Socket::Type >
 {
   return Glib::PropertyProxy< Socket::Type >(this, "type");
 }
 
-Glib::PropertyProxy_ReadOnly< Socket::Type > SocketClient::property_type() const
+auto SocketClient::property_type() const -> Glib::PropertyProxy_ReadOnly< Socket::Type >
 {
   return Glib::PropertyProxy_ReadOnly< Socket::Type >(this, "type");
 }
 
-Glib::PropertyProxy< guint > SocketClient::property_timeout()
+auto SocketClient::property_timeout() -> Glib::PropertyProxy< guint >
 {
   return Glib::PropertyProxy< guint >(this, "timeout");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > SocketClient::property_timeout() const
+auto SocketClient::property_timeout() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "timeout");
 }
 
-Glib::PropertyProxy< bool > SocketClient::property_enable_proxy()
+auto SocketClient::property_enable_proxy() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "enable-proxy");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > SocketClient::property_enable_proxy() const
+auto SocketClient::property_enable_proxy() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "enable-proxy");
 }
 
-Glib::PropertyProxy< bool > SocketClient::property_tls()
+auto SocketClient::property_tls() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "tls");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > SocketClient::property_tls() const
+auto SocketClient::property_tls() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "tls");
 }
@@ -666,7 +666,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<TlsCertificateFlags>
   "Type TlsCertificateFlags cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< TlsCertificateFlags > SocketClient::property_tls_validation_flags()
+auto SocketClient::property_tls_validation_flags() -> Glib::PropertyProxy< TlsCertificateFlags >
 {
   return Glib::PropertyProxy< TlsCertificateFlags >(this, "tls-validation-flags");
 }
@@ -675,7 +675,7 @@ Glib::PropertyProxy< TlsCertificateFlags > SocketClient::property_tls_validation
 
 #ifndef GIOMM_DISABLE_DEPRECATED
 
-Glib::PropertyProxy_ReadOnly< TlsCertificateFlags > SocketClient::property_tls_validation_flags() const
+auto SocketClient::property_tls_validation_flags() const -> Glib::PropertyProxy_ReadOnly< TlsCertificateFlags >
 {
   return Glib::PropertyProxy_ReadOnly< TlsCertificateFlags >(this, "tls-validation-flags");
 }
@@ -686,12 +686,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<ProxyRe
   "Type Glib::RefPtr<ProxyResolver> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<ProxyResolver> > SocketClient::property_proxy_resolver()
+auto SocketClient::property_proxy_resolver() -> Glib::PropertyProxy< Glib::RefPtr<ProxyResolver> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<ProxyResolver> >(this, "proxy-resolver");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ProxyResolver> > SocketClient::property_proxy_resolver() const
+auto SocketClient::property_proxy_resolver() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ProxyResolver> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ProxyResolver> >(this, "proxy-resolver");
 }

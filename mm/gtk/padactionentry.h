@@ -71,7 +71,7 @@ template <>
 class GTKMM_API Value<Gtk::PadActionType> : public Glib::Value_Enum<Gtk::PadActionType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -113,31 +113,31 @@ public:
     const Glib::ustring& label, const Glib::ustring& action_name);
 
   PadActionEntry(const PadActionEntry& src);
-  PadActionEntry& operator=(const PadActionEntry& src);
+  auto operator=(const PadActionEntry& src) -> PadActionEntry&;
 
   PadActionEntry(PadActionEntry&& other) noexcept;
-  PadActionEntry& operator=(PadActionEntry&& other) noexcept;
+  auto operator=(PadActionEntry&& other) noexcept -> PadActionEntry&;
 
   virtual ~PadActionEntry();
 
-  PadActionType get_type() const;
+  auto get_type() const -> PadActionType;
   void set_type(const PadActionType& value);
 
-  int get_index() const;
+  auto get_index() const -> int;
   void set_index(const int& value);
 
-  int get_mode() const;
+  auto get_mode() const -> int;
   void set_mode(const int& value);
 
 
-  Glib::ustring get_label() const;
+  auto get_label() const -> Glib::ustring;
   void set_label(const Glib::ustring& value);
 
-  Glib::ustring get_action_name() const;
+  auto get_action_name() const -> Glib::ustring;
   void set_action_name(const Glib::ustring& value);
 
-  GtkPadActionEntry*       gobj()       { return gobject_; }
-  const GtkPadActionEntry* gobj() const { return gobject_; }
+  auto       gobj() -> GtkPadActionEntry*       { return gobject_; }
+  auto gobj() const -> const GtkPadActionEntry* { return gobject_; }
 
 protected:
   GtkPadActionEntry* gobject_;

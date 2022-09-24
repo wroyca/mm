@@ -28,7 +28,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gdk::MemoryTexture::Format>::value_type()
+auto Glib::Value<Gdk::MemoryTexture::Format>::value_type() -> GType
 {
   return gdk_memory_format_get_type();
 }
@@ -37,7 +37,7 @@ GType Glib::Value<Gdk::MemoryTexture::Format>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::MemoryTexture> wrap(GdkMemoryTexture* object, bool take_copy)
+auto wrap(GdkMemoryTexture* object, bool take_copy) -> Glib::RefPtr<Gdk::MemoryTexture>
 {
   return Glib::make_refptr_for_instance<Gdk::MemoryTexture>( dynamic_cast<Gdk::MemoryTexture*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -52,7 +52,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Class& MemoryTexture_Class::init()
+auto MemoryTexture_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -83,7 +83,7 @@ void MemoryTexture_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* MemoryTexture_Class::wrap_new(GObject* object)
+auto MemoryTexture_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new MemoryTexture((GdkMemoryTexture*)object);
 }
@@ -91,7 +91,7 @@ Glib::ObjectBase* MemoryTexture_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GdkMemoryTexture* MemoryTexture::gobj_copy()
+auto MemoryTexture::gobj_copy() -> GdkMemoryTexture*
 {
   reference();
   return gobj();
@@ -114,7 +114,7 @@ MemoryTexture::MemoryTexture(MemoryTexture&& src) noexcept
 : Gdk::Texture(std::move(src))
 {}
 
-MemoryTexture& MemoryTexture::operator=(MemoryTexture&& src) noexcept
+auto MemoryTexture::operator=(MemoryTexture&& src) noexcept -> MemoryTexture&
 {
   Gdk::Texture::operator=(std::move(src));
   return *this;
@@ -127,13 +127,13 @@ MemoryTexture::~MemoryTexture() noexcept
 
 MemoryTexture::CppClassType MemoryTexture::memorytexture_class_; // initialize static member
 
-GType MemoryTexture::get_type()
+auto MemoryTexture::get_type() -> GType
 {
   return memorytexture_class_.init().get_type();
 }
 
 
-GType MemoryTexture::get_base_type()
+auto MemoryTexture::get_base_type() -> GType
 {
   return gdk_memory_texture_get_type();
 }
@@ -149,7 +149,7 @@ MemoryTexture::MemoryTexture()
 
 }
 
-Glib::RefPtr<Texture> MemoryTexture::create(int width, int height, Format format, const Glib::RefPtr<const Glib::Bytes>& bytes, gsize stride)
+auto MemoryTexture::create(int width, int height, Format format, const Glib::RefPtr<const Glib::Bytes>& bytes, gsize stride) -> Glib::RefPtr<Texture>
 {
   return Glib::wrap(gdk_memory_texture_new(width, height, static_cast<GdkMemoryFormat>(format), const_cast<GBytes*>(Glib::unwrap<Glib::Bytes>(bytes)), stride));
 }

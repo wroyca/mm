@@ -47,7 +47,7 @@ namespace
 namespace Glib
 {
 
-Gtk::WindowControls* wrap(GtkWindowControls* object, bool take_copy)
+auto wrap(GtkWindowControls* object, bool take_copy) -> Gtk::WindowControls*
 {
   return dynamic_cast<Gtk::WindowControls *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -60,7 +60,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& WindowControls_Class::init()
+auto WindowControls_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -85,7 +85,7 @@ void WindowControls_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* WindowControls_Class::wrap_new(GObject* o)
+auto WindowControls_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new WindowControls((GtkWindowControls*)(o)));
 
@@ -111,7 +111,7 @@ WindowControls::WindowControls(WindowControls&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-WindowControls& WindowControls::operator=(WindowControls&& src) noexcept
+auto WindowControls::operator=(WindowControls&& src) noexcept -> WindowControls&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -124,13 +124,13 @@ WindowControls::~WindowControls() noexcept
 
 WindowControls::CppClassType WindowControls::windowcontrols_class_; // initialize static member
 
-GType WindowControls::get_type()
+auto WindowControls::get_type() -> GType
 {
   return windowcontrols_class_.init().get_type();
 }
 
 
-GType WindowControls::get_base_type()
+auto WindowControls::get_base_type() -> GType
 {
   return gtk_window_controls_get_type();
 }
@@ -151,7 +151,7 @@ void WindowControls::set_side(PackType side)
   gtk_window_controls_set_side(gobj(), static_cast<GtkPackType>(side));
 }
 
-PackType WindowControls::get_side() const
+auto WindowControls::get_side() const -> PackType
 {
   return static_cast<PackType>(gtk_window_controls_get_side(const_cast<GtkWindowControls*>(gobj())));
 }
@@ -161,12 +161,12 @@ void WindowControls::set_decoration_layout(const Glib::ustring& layout)
   gtk_window_controls_set_decoration_layout(gobj(), layout.c_str());
 }
 
-Glib::ustring WindowControls::get_decoration_layout() const
+auto WindowControls::get_decoration_layout() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_window_controls_get_decoration_layout(const_cast<GtkWindowControls*>(gobj())));
 }
 
-bool WindowControls::get_empty() const
+auto WindowControls::get_empty() const -> bool
 {
   return gtk_window_controls_get_empty(const_cast<GtkWindowControls*>(gobj()));
 }
@@ -176,27 +176,27 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<PackType>::value,
   "Type PackType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< PackType > WindowControls::property_side()
+auto WindowControls::property_side() -> Glib::PropertyProxy< PackType >
 {
   return Glib::PropertyProxy< PackType >(this, "side");
 }
 
-Glib::PropertyProxy_ReadOnly< PackType > WindowControls::property_side() const
+auto WindowControls::property_side() const -> Glib::PropertyProxy_ReadOnly< PackType >
 {
   return Glib::PropertyProxy_ReadOnly< PackType >(this, "side");
 }
 
-Glib::PropertyProxy< Glib::ustring > WindowControls::property_decoration_layout()
+auto WindowControls::property_decoration_layout() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "decoration-layout");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > WindowControls::property_decoration_layout() const
+auto WindowControls::property_decoration_layout() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "decoration-layout");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > WindowControls::property_empty() const
+auto WindowControls::property_empty() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "empty");
 }

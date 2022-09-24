@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::TreeListRow> wrap(GtkTreeListRow* object, bool take_copy)
+auto wrap(GtkTreeListRow* object, bool take_copy) -> Glib::RefPtr<Gtk::TreeListRow>
 {
   return Glib::make_refptr_for_instance<Gtk::TreeListRow>( dynamic_cast<Gtk::TreeListRow*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& TreeListRow_Class::init()
+auto TreeListRow_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -73,7 +73,7 @@ void TreeListRow_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* TreeListRow_Class::wrap_new(GObject* object)
+auto TreeListRow_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new TreeListRow((GtkTreeListRow*)object);
 }
@@ -81,7 +81,7 @@ Glib::ObjectBase* TreeListRow_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkTreeListRow* TreeListRow::gobj_copy()
+auto TreeListRow::gobj_copy() -> GtkTreeListRow*
 {
   reference();
   return gobj();
@@ -104,7 +104,7 @@ TreeListRow::TreeListRow(TreeListRow&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-TreeListRow& TreeListRow::operator=(TreeListRow&& src) noexcept
+auto TreeListRow::operator=(TreeListRow&& src) noexcept -> TreeListRow&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -117,24 +117,24 @@ TreeListRow::~TreeListRow() noexcept
 
 TreeListRow::CppClassType TreeListRow::treelistrow_class_; // initialize static member
 
-GType TreeListRow::get_type()
+auto TreeListRow::get_type() -> GType
 {
   return treelistrow_class_.init().get_type();
 }
 
 
-GType TreeListRow::get_base_type()
+auto TreeListRow::get_base_type() -> GType
 {
   return gtk_tree_list_row_get_type();
 }
 
 
-Glib::RefPtr<Glib::ObjectBase> TreeListRow::get_item()
+auto TreeListRow::get_item() -> Glib::RefPtr<Glib::ObjectBase>
 {
   return Glib::make_refptr_for_instance<Glib::ObjectBase>(Glib::wrap_auto(G_OBJECT(gtk_tree_list_row_get_item(gobj()))));
 }
 
-Glib::RefPtr<const Glib::ObjectBase> TreeListRow::get_item() const
+auto TreeListRow::get_item() const -> Glib::RefPtr<const Glib::ObjectBase>
 {
   return const_cast<TreeListRow*>(this)->get_item();
 }
@@ -144,27 +144,27 @@ void TreeListRow::set_expanded(bool expanded)
   gtk_tree_list_row_set_expanded(gobj(), static_cast<int>(expanded));
 }
 
-bool TreeListRow::get_expanded() const
+auto TreeListRow::get_expanded() const -> bool
 {
   return gtk_tree_list_row_get_expanded(const_cast<GtkTreeListRow*>(gobj()));
 }
 
-bool TreeListRow::is_expandable() const
+auto TreeListRow::is_expandable() const -> bool
 {
   return gtk_tree_list_row_is_expandable(const_cast<GtkTreeListRow*>(gobj()));
 }
 
-guint TreeListRow::get_position() const
+auto TreeListRow::get_position() const -> guint
 {
   return gtk_tree_list_row_get_position(const_cast<GtkTreeListRow*>(gobj()));
 }
 
-guint TreeListRow::get_depth() const
+auto TreeListRow::get_depth() const -> guint
 {
   return gtk_tree_list_row_get_depth(const_cast<GtkTreeListRow*>(gobj()));
 }
 
-Glib::RefPtr<Gio::ListModel> TreeListRow::get_children()
+auto TreeListRow::get_children() -> Glib::RefPtr<Gio::ListModel>
 {
   auto retvalue = Glib::wrap(gtk_tree_list_row_get_children(gobj()));
   if(retvalue)
@@ -172,27 +172,27 @@ Glib::RefPtr<Gio::ListModel> TreeListRow::get_children()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::ListModel> TreeListRow::get_children() const
+auto TreeListRow::get_children() const -> Glib::RefPtr<const Gio::ListModel>
 {
   return const_cast<TreeListRow*>(this)->get_children();
 }
 
-Glib::RefPtr<TreeListRow> TreeListRow::get_parent()
+auto TreeListRow::get_parent() -> Glib::RefPtr<TreeListRow>
 {
   return Glib::wrap(gtk_tree_list_row_get_parent(gobj()));
 }
 
-Glib::RefPtr<const TreeListRow> TreeListRow::get_parent() const
+auto TreeListRow::get_parent() const -> Glib::RefPtr<const TreeListRow>
 {
   return const_cast<TreeListRow*>(this)->get_parent();
 }
 
-Glib::RefPtr<TreeListRow> TreeListRow::get_child_row(guint position)
+auto TreeListRow::get_child_row(guint position) -> Glib::RefPtr<TreeListRow>
 {
   return Glib::wrap(gtk_tree_list_row_get_child_row(gobj(), position));
 }
 
-Glib::RefPtr<const TreeListRow> TreeListRow::get_child_row(guint position) const
+auto TreeListRow::get_child_row(guint position) const -> Glib::RefPtr<const TreeListRow>
 {
   return const_cast<TreeListRow*>(this)->get_child_row(position);
 }
@@ -202,27 +202,27 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Li
   "Type Glib::RefPtr<Gio::ListModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > TreeListRow::property_children() const
+auto TreeListRow::property_children() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >(this, "children");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > TreeListRow::property_depth() const
+auto TreeListRow::property_depth() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "depth");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TreeListRow::property_expandable() const
+auto TreeListRow::property_expandable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "expandable");
 }
 
-Glib::PropertyProxy< bool > TreeListRow::property_expanded()
+auto TreeListRow::property_expanded() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "expanded");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TreeListRow::property_expanded() const
+auto TreeListRow::property_expanded() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "expanded");
 }
@@ -231,7 +231,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Glib::O
   "Type Glib::RefPtr<Glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> > TreeListRow::property_item() const
+auto TreeListRow::property_item() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> >(this, "item");
 }

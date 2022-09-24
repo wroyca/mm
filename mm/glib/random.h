@@ -43,20 +43,20 @@ public:
 
   // noncopyable
   Rand(const Rand&) = delete;
-  Rand& operator=(const Rand&) = delete;
+  auto operator=(const Rand&) -> Rand& = delete;
 
   void set_seed(guint32 seed);
 
-  bool get_bool();
+  auto get_bool() -> bool;
 
-  guint32 get_int();
-  gint32 get_int_range(gint32 begin, gint32 end);
+  auto get_int() -> guint32;
+  auto get_int_range(gint32 begin, gint32 end) -> gint32;
 
-  double get_double();
-  double get_double_range(double begin, double end);
+  auto get_double() -> double;
+  auto get_double_range(double begin, double end) -> double;
 
-  GRand* gobj() { return gobject_; }
-  const GRand* gobj() const { return gobject_; }
+  auto gobj() -> GRand* { return gobject_; }
+  auto gobj() const -> const GRand* { return gobject_; }
 
 private:
   GRand* gobject_;

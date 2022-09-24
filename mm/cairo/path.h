@@ -44,7 +44,7 @@ public:
   explicit Path(cairo_path_t* cobject, bool take_ownership = false);
 
   Path(const Path&) = delete;
-  Path& operator=(const Path&) = delete;
+  auto operator=(const Path&) -> Path& = delete;
 
   virtual ~Path();
 
@@ -54,8 +54,8 @@ public:
   //bool operator !=(const Path& src) const;
 
   typedef cairo_path_t cobject;
-  inline cobject* cobj() { return m_cobject; }
-  inline const cobject* cobj() const { return m_cobject; }
+  inline auto cobj() -> cobject* { return m_cobject; }
+  inline auto cobj() const -> const cobject* { return m_cobject; }
 
   #ifndef DOXYGEN_IGNORE_THIS
   ///For use only by the cairomm implementation.

@@ -28,7 +28,7 @@ DragSurfaceImpl::DragSurfaceImpl(DragSurfaceImpl&& src) noexcept
   Surface(std::move(src))
 {}
 
-DragSurfaceImpl& DragSurfaceImpl::operator=(DragSurfaceImpl&& src) noexcept
+auto DragSurfaceImpl::operator=(DragSurfaceImpl&& src) noexcept -> DragSurfaceImpl&
 {
   DragSurface::operator=(std::move(src));
   Surface::operator=(std::move(src));

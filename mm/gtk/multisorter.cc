@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::MultiSorter> wrap(GtkMultiSorter* object, bool take_copy)
+auto wrap(GtkMultiSorter* object, bool take_copy) -> Glib::RefPtr<Gtk::MultiSorter>
 {
   return Glib::make_refptr_for_instance<Gtk::MultiSorter>( dynamic_cast<Gtk::MultiSorter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& MultiSorter_Class::init()
+auto MultiSorter_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -73,7 +73,7 @@ void MultiSorter_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* MultiSorter_Class::wrap_new(GObject* object)
+auto MultiSorter_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new MultiSorter((GtkMultiSorter*)object);
 }
@@ -81,7 +81,7 @@ Glib::ObjectBase* MultiSorter_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkMultiSorter* MultiSorter::gobj_copy()
+auto MultiSorter::gobj_copy() -> GtkMultiSorter*
 {
   reference();
   return gobj();
@@ -106,7 +106,7 @@ MultiSorter::MultiSorter(MultiSorter&& src) noexcept
   , Buildable(std::move(src))
 {}
 
-MultiSorter& MultiSorter::operator=(MultiSorter&& src) noexcept
+auto MultiSorter::operator=(MultiSorter&& src) noexcept -> MultiSorter&
 {
   Gtk::Sorter::operator=(std::move(src));
   Gio::ListModel::operator=(std::move(src));
@@ -121,13 +121,13 @@ MultiSorter::~MultiSorter() noexcept
 
 MultiSorter::CppClassType MultiSorter::multisorter_class_; // initialize static member
 
-GType MultiSorter::get_type()
+auto MultiSorter::get_type() -> GType
 {
   return multisorter_class_.init().get_type();
 }
 
 
-GType MultiSorter::get_base_type()
+auto MultiSorter::get_base_type() -> GType
 {
   return gtk_multi_sorter_get_type();
 }
@@ -143,7 +143,7 @@ MultiSorter::MultiSorter()
 
 }
 
-Glib::RefPtr<MultiSorter> MultiSorter::create()
+auto MultiSorter::create() -> Glib::RefPtr<MultiSorter>
 {
   return Glib::make_refptr_for_instance<MultiSorter>( new MultiSorter() );
 }
@@ -163,12 +163,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
   "Type GType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< GType > MultiSorter::property_item_type() const
+auto MultiSorter::property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >
 {
   return Glib::PropertyProxy_ReadOnly< GType >(this, "item-type");
 }
 
-Glib::PropertyProxy_ReadOnly< unsigned int > MultiSorter::property_n_items() const
+auto MultiSorter::property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
   return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "n-items");
 }

@@ -51,7 +51,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::SettingsSchema> wrap(GSettingsSchema* object, bool take_copy)
+auto wrap(GSettingsSchema* object, bool take_copy) -> Glib::RefPtr<Gio::SettingsSchema>
 {
   if(take_copy && object)
     g_settings_schema_ref(object);
@@ -67,7 +67,7 @@ namespace Gio
 {
 
 // static
-GType SettingsSchema::get_type()
+auto SettingsSchema::get_type() -> GType
 {
   return g_settings_schema_get_type();
 }
@@ -84,19 +84,19 @@ void SettingsSchema::unreference() const
   g_settings_schema_unref(reinterpret_cast<GSettingsSchema*>(const_cast<SettingsSchema*>(this)));
 }
 
-GSettingsSchema* SettingsSchema::gobj()
+auto SettingsSchema::gobj() -> GSettingsSchema*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<GSettingsSchema*>(this);
 }
 
-const GSettingsSchema* SettingsSchema::gobj() const
+auto SettingsSchema::gobj() const -> const GSettingsSchema*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<const GSettingsSchema*>(this);
 }
 
-GSettingsSchema* SettingsSchema::gobj_copy() const
+auto SettingsSchema::gobj_copy() const -> GSettingsSchema*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   const auto gobject = reinterpret_cast<GSettingsSchema*>(const_cast<SettingsSchema*>(this));
@@ -105,37 +105,37 @@ GSettingsSchema* SettingsSchema::gobj_copy() const
 }
 
 
-Glib::ustring SettingsSchema::get_id() const
+auto SettingsSchema::get_id() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_settings_schema_get_id(const_cast<GSettingsSchema*>(gobj())));
 }
 
-Glib::ustring SettingsSchema::get_path() const
+auto SettingsSchema::get_path() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_settings_schema_get_path(const_cast<GSettingsSchema*>(gobj())));
 }
 
-Glib::RefPtr<SettingsSchemaKey> SettingsSchema::get_key(const Glib::ustring& name)
+auto SettingsSchema::get_key(const Glib::ustring& name) -> Glib::RefPtr<SettingsSchemaKey>
 {
   return Glib::wrap(g_settings_schema_get_key(gobj(), name.c_str()));
 }
 
-Glib::RefPtr<const SettingsSchemaKey> SettingsSchema::get_key(const Glib::ustring& name) const
+auto SettingsSchema::get_key(const Glib::ustring& name) const -> Glib::RefPtr<const SettingsSchemaKey>
 {
   return Glib::wrap(g_settings_schema_get_key(const_cast<GSettingsSchema*>(gobj()), name.c_str()));
 }
 
-bool SettingsSchema::has_key(const Glib::ustring& name) const
+auto SettingsSchema::has_key(const Glib::ustring& name) const -> bool
 {
   return g_settings_schema_has_key(const_cast<GSettingsSchema*>(gobj()), name.c_str());
 }
 
-std::vector<Glib::ustring> SettingsSchema::list_keys() const
+auto SettingsSchema::list_keys() const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_settings_schema_list_keys(const_cast<GSettingsSchema*>(gobj())), Glib::OWNERSHIP_DEEP);
 }
 
-std::vector<Glib::ustring> SettingsSchema::list_children() const
+auto SettingsSchema::list_children() const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_settings_schema_list_children(const_cast<GSettingsSchema*>(gobj())), Glib::OWNERSHIP_DEEP);
 }

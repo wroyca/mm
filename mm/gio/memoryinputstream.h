@@ -67,7 +67,7 @@ public:
 
   // noncopyable
   MemoryInputStream(const MemoryInputStream&) = delete;
-  MemoryInputStream& operator=(const MemoryInputStream&) = delete;
+  auto operator=(const MemoryInputStream&) -> MemoryInputStream& = delete;
 
 private:  friend class MemoryInputStream_Class;
   static CppClassType memoryinputstream_class_;
@@ -81,28 +81,28 @@ protected:
 public:
 
   MemoryInputStream(MemoryInputStream&& src) noexcept;
-  MemoryInputStream& operator=(MemoryInputStream&& src) noexcept;
+  auto operator=(MemoryInputStream&& src) noexcept -> MemoryInputStream&;
 
   ~MemoryInputStream() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GMemoryInputStream*       gobj()       { return reinterpret_cast<GMemoryInputStream*>(gobject_); }
+  auto       gobj() -> GMemoryInputStream*       { return reinterpret_cast<GMemoryInputStream*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GMemoryInputStream* gobj() const { return reinterpret_cast<GMemoryInputStream*>(gobject_); }
+  auto gobj() const -> const GMemoryInputStream* { return reinterpret_cast<GMemoryInputStream*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GMemoryInputStream* gobj_copy();
+  auto gobj_copy() -> GMemoryInputStream*;
 
 private:
 
@@ -113,7 +113,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<MemoryInputStream> create();
+  static auto create() -> Glib::RefPtr<MemoryInputStream>;
 
 
   /** Appends @a data to data that can be read from the input stream
@@ -180,7 +180,7 @@ namespace Glib
    * @relates Gio::MemoryInputStream
    */
   GIOMM_API
-  Glib::RefPtr<Gio::MemoryInputStream> wrap(GMemoryInputStream* object, bool take_copy = false);
+  auto wrap(GMemoryInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::MemoryInputStream>;
 }
 
 

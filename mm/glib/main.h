@@ -43,16 +43,16 @@ public:
   PollFD(fd_t fd, IOCondition events);
 
   void set_fd(fd_t fd) { gobject_.fd = fd; }
-  fd_t get_fd() const { return gobject_.fd; }
+  auto get_fd() const -> fd_t { return gobject_.fd; }
 
   void set_events(IOCondition events) { gobject_.events = static_cast<decltype(gobject_.events)>(events); }
-  IOCondition get_events() const { return static_cast<IOCondition>(gobject_.events); }
+  auto get_events() const -> IOCondition { return static_cast<IOCondition>(gobject_.events); }
 
   void set_revents(IOCondition revents) { gobject_.revents = static_cast<decltype(gobject_.revents)>(revents); }
-  IOCondition get_revents() const { return static_cast<IOCondition>(gobject_.revents); }
+  auto get_revents() const -> IOCondition { return static_cast<IOCondition>(gobject_.revents); }
 
-  GPollFD* gobj() { return &gobject_; }
-  const GPollFD* gobj() const { return &gobject_; }
+  auto gobj() -> GPollFD* { return &gobject_; }
+  auto gobj() const -> const GPollFD* { return &gobject_; }
 
 private:
   GPollFD gobject_;
@@ -100,8 +100,8 @@ public:
    * @param priority The priority of the new event source.
    * @return A connection handle, which can be used to disconnect the handler.
    */
-  sigc::connection connect(
-    const sigc::slot<bool()>& slot, unsigned int interval, int priority = PRIORITY_DEFAULT);
+  auto connect(
+    const sigc::slot<bool()>& slot, unsigned int interval, int priority = PRIORITY_DEFAULT) -> sigc::connection;
 
   /** Connects a timeout handler that runs only once.
    * This method takes a function pointer to a function with a void return
@@ -160,8 +160,8 @@ public:
    *
    * @newin{2,14}
    */
-  sigc::connection connect_seconds(
-    const sigc::slot<bool()>& slot, unsigned int interval, int priority = PRIORITY_DEFAULT);
+  auto connect_seconds(
+    const sigc::slot<bool()>& slot, unsigned int interval, int priority = PRIORITY_DEFAULT) -> sigc::connection;
 
   /** Connects a timeout handler that runs only once with whole second
    *  granularity.
@@ -191,7 +191,7 @@ private:
   GMainContext* context_;
 
   // no copy assignment
-  SignalTimeout& operator=(const SignalTimeout&) = delete;
+  auto operator=(const SignalTimeout&) -> SignalTimeout& = delete;
 };
 
 class GLIBMM_API SignalIdle
@@ -223,7 +223,7 @@ public:
    * @param priority The priority of the new event source.
    * @return A connection handle, which can be used to disconnect the handler.
    */
-  sigc::connection connect(const sigc::slot<bool()>& slot, int priority = PRIORITY_DEFAULT_IDLE);
+  auto connect(const sigc::slot<bool()>& slot, int priority = PRIORITY_DEFAULT_IDLE) -> sigc::connection;
 
   /** Connects an idle handler that runs only once.
    * This method takes a function pointer to a function with a void return
@@ -249,7 +249,7 @@ private:
   GMainContext* context_;
 
   // no copy assignment
-  SignalIdle& operator=(const SignalIdle&) = delete;
+  auto operator=(const SignalIdle&) -> SignalIdle& = delete;
 };
 
 class GLIBMM_API SignalIO
@@ -284,8 +284,8 @@ public:
    * @param priority The priority of the new event source.
    * @return A connection handle, which can be used to disconnect the handler.
    */
-  sigc::connection connect(const sigc::slot<bool(IOCondition)>& slot, PollFD::fd_t fd, IOCondition condition,
-    int priority = PRIORITY_DEFAULT);
+  auto connect(const sigc::slot<bool(IOCondition)>& slot, PollFD::fd_t fd, IOCondition condition,
+    int priority = PRIORITY_DEFAULT) -> sigc::connection;
 
   /** Connects an I/O handler that watches an I/O channel.
    * @code
@@ -313,14 +313,14 @@ public:
    * @param priority The priority of the new event source.
    * @return A connection handle, which can be used to disconnect the handler.
    */
-  sigc::connection connect(const sigc::slot<bool(IOCondition)>& slot,
-    const Glib::RefPtr<IOChannel>& channel, IOCondition condition, int priority = PRIORITY_DEFAULT);
+  auto connect(const sigc::slot<bool(IOCondition)>& slot,
+    const Glib::RefPtr<IOChannel>& channel, IOCondition condition, int priority = PRIORITY_DEFAULT) -> sigc::connection;
 
 private:
   GMainContext* context_;
 
   // no copy assignment
-  SignalIO& operator=(const SignalIO&) = delete;
+  auto operator=(const SignalIO&) -> SignalIO& = delete;
 };
 
 class GLIBMM_API SignalChildWatch
@@ -344,39 +344,39 @@ public:
    * @param priority The priority of the new event source.
    * @return A connection handle, which can be used to disconnect the handler.
    */
-  sigc::connection connect(
-    const sigc::slot<void(GPid, int)>& slot, GPid pid, int priority = PRIORITY_DEFAULT);
+  auto connect(
+    const sigc::slot<void(GPid, int)>& slot, GPid pid, int priority = PRIORITY_DEFAULT) -> sigc::connection;
 
 private:
   GMainContext* context_;
 
   // no copy assignment
-  SignalChildWatch& operator=(const SignalChildWatch&) = delete;
+  auto operator=(const SignalChildWatch&) -> SignalChildWatch& = delete;
 };
 
 /** Convenience timeout signal.
  * @return A signal proxy; you want to use SignalTimeout::connect().
  */
 GLIBMM_API
-SignalTimeout signal_timeout();
+auto signal_timeout() -> SignalTimeout;
 
 /** Convenience idle signal.
  * @return A signal proxy; you want to use SignalIdle::connect().
  */
 GLIBMM_API
-SignalIdle signal_idle();
+auto signal_idle() -> SignalIdle;
 
 /** Convenience I/O signal.
  * @return A signal proxy; you want to use SignalIO::connect().
  */
 GLIBMM_API
-SignalIO signal_io();
+auto signal_io() -> SignalIO;
 
 /** Convenience child watch signal.
  * @return A signal proxy; you want to use SignalChildWatch::connect().
  */
 GLIBMM_API
-SignalChildWatch signal_child_watch();
+auto signal_child_watch() -> SignalChildWatch;
 
 /** Main context.
  */
@@ -388,12 +388,12 @@ public:
 
   // noncopyable
   MainContext(const MainContext& other) = delete;
-  MainContext& operator=(const MainContext& other) = delete;
+  auto operator=(const MainContext& other) -> MainContext& = delete;
 
   /** Creates a new %MainContext.
    * @return The new %MainContext.
    */
-  static Glib::RefPtr<MainContext> create();
+  static auto create() -> Glib::RefPtr<MainContext>;
   /** Creates a new %MainContext.
    *
    * @param flags A bitwise-OR combination of MainContextFlags flags that
@@ -402,7 +402,7 @@ public:
    *
    * @newin{2,72}
    */
-  static Glib::RefPtr<MainContext> create(MainContextFlags flags);
+  static auto create(MainContextFlags flags) -> Glib::RefPtr<MainContext>;
 
   /** Returns the global default main context.
    * This is the main context used for main loop functions when a main loop
@@ -411,7 +411,7 @@ public:
    * @return The global default main context.
    * @see get_thread_default()
    */
-  static Glib::RefPtr<MainContext> get_default();
+  static auto get_default() -> Glib::RefPtr<MainContext>;
 
   /** Runs a single iteration for the given main loop.
    * This involves checking to see if any event sources are ready to be processed, then if no events
@@ -425,12 +425,12 @@ public:
    * @param may_block Whether the call may block.
    * @return true if events were dispatched.
    */
-  bool iteration(bool may_block);
+  auto iteration(bool may_block) -> bool;
 
   /** Checks if any sources have pending events for the given context.
    * @return true if events are pending.
    */
-  bool pending();
+  auto pending() -> bool;
 
   /** If context is currently waiting in a poll(), interrupt the poll(), and continue the iteration
    * process.
@@ -446,7 +446,7 @@ public:
    * You must be the owner of a context before you can call prepare(), query(), check(), dispatch().
    * @return true if the operation succeeded, and this thread is now the owner of context.
    */
-  bool acquire();
+  auto acquire() -> bool;
 
   /** Releases ownership of a context previously acquired by this thread with acquire(). If the
    * context was acquired
@@ -460,12 +460,12 @@ public:
    * @param priority Location to store priority of highest priority source already ready.
    * @return true if some source is ready to be dispatched prior to polling.
    */
-  bool prepare(int& priority);
+  auto prepare(int& priority) -> bool;
   /** Prepares to poll sources within a main loop. The resulting information for polling is
    * determined by calling query().
    * @return true if some source is ready to be dispatched prior to polling.
    */
-  bool prepare();
+  auto prepare() -> bool;
 
   /** Determines information necessary to poll this main loop.
    * @param max_priority Maximum priority source to check.
@@ -481,7 +481,7 @@ public:
    * @param fds Vector of Glib::PollFD's that was passed to the last call to query()
    * @return true if some sources are ready to be dispatched.
    */
-  bool check(int max_priority, std::vector<PollFD>& fds);
+  auto check(int max_priority, std::vector<PollFD>& fds) -> bool;
 
   /** Dispatches all pending sources.
    */
@@ -582,7 +582,7 @@ public:
    *
    * @newin{2,64}
    */
-  static Glib::RefPtr<MainContext> get_thread_default();
+  static auto get_thread_default() -> Glib::RefPtr<MainContext>;
 
   /** Invokes a function in such a way that this MainContext is owned during
    * the invocation of @a slot.
@@ -619,29 +619,29 @@ public:
   /** Timeout signal, attached to this MainContext.
    * @return A signal proxy; you want to use SignalTimeout::connect().
    */
-  SignalTimeout signal_timeout();
+  auto signal_timeout() -> SignalTimeout;
 
   /** Idle signal, attached to this MainContext.
    * @return A signal proxy; you want to use SignalIdle::connect().
    */
-  SignalIdle signal_idle();
+  auto signal_idle() -> SignalIdle;
 
   /** I/O signal, attached to this MainContext.
    * @return A signal proxy; you want to use SignalIO::connect().
    */
-  SignalIO signal_io();
+  auto signal_io() -> SignalIO;
 
   /** child watch signal, attached to this MainContext.
    * @return A signal proxy; you want to use SignalChildWatch::connect().
    */
-  SignalChildWatch signal_child_watch();
+  auto signal_child_watch() -> SignalChildWatch;
 
   void reference() const;
   void unreference() const;
 
-  GMainContext* gobj();
-  const GMainContext* gobj() const;
-  GMainContext* gobj_copy() const;
+  auto gobj() -> GMainContext*;
+  auto gobj() const -> const GMainContext*;
+  auto gobj_copy() const -> GMainContext*;
 
 private:
   // Glib::MainContext can neither be constructed nor deleted.
@@ -651,7 +651,7 @@ private:
 
 /** @relates Glib::MainContext */
 GLIBMM_API
-Glib::RefPtr<MainContext> wrap(GMainContext* gobject, bool take_copy = false);
+auto wrap(GMainContext* gobject, bool take_copy = false) -> Glib::RefPtr<MainContext>;
 
 class GLIBMM_API MainLoop
 {
@@ -659,9 +659,9 @@ public:
   using CppObjectType = Glib::MainLoop;
   using BaseObjectType = GMainLoop;
 
-  static Glib::RefPtr<MainLoop> create(bool is_running = false);
-  static Glib::RefPtr<MainLoop> create(
-    const Glib::RefPtr<MainContext>& context, bool is_running = false);
+  static auto create(bool is_running = false) -> Glib::RefPtr<MainLoop>;
+  static auto create(
+    const Glib::RefPtr<MainContext>& context, bool is_running = false) -> Glib::RefPtr<MainLoop>;
 
   /** Runs a main loop until quit() is called on the loop.
    * If this is called for the thread of the loop's MainContext, it will process events from the
@@ -676,15 +676,15 @@ public:
   /** Checks to see if the main loop is currently being run via run().
    * @return true if the mainloop is currently being run.
    */
-  bool is_running();
+  auto is_running() -> bool;
 
   /** Returns the MainContext of loop.
    * @return The MainContext of loop.
    */
-  Glib::RefPtr<MainContext> get_context();
+  auto get_context() -> Glib::RefPtr<MainContext>;
 
   // TODO: C++ize the (big) g_main_depth docs here.
-  static int depth();
+  static auto depth() -> int;
 
   /** Increases the reference count on a MainLoop object by one.
    */
@@ -695,9 +695,9 @@ public:
    */
   void unreference() const;
 
-  GMainLoop* gobj();
-  const GMainLoop* gobj() const;
-  GMainLoop* gobj_copy() const;
+  auto gobj() -> GMainLoop*;
+  auto gobj() const -> const GMainLoop*;
+  auto gobj_copy() const -> GMainLoop*;
 
 private:
   // Glib::MainLoop can neither be constructed nor deleted.
@@ -706,12 +706,12 @@ private:
 
   // noncopyable
   MainLoop(const MainLoop&) = delete;
-  MainLoop& operator=(const MainLoop&) = delete;
+  auto operator=(const MainLoop&) -> MainLoop& = delete;
 };
 
 /** @relates Glib::MainLoop */
 GLIBMM_API
-Glib::RefPtr<MainLoop> wrap(GMainLoop* gobject, bool take_copy = false);
+auto wrap(GMainLoop* gobject, bool take_copy = false) -> Glib::RefPtr<MainLoop>;
 
 class Source
 {
@@ -721,21 +721,21 @@ public:
 
   // noncopyable
   Source(const Source&) = delete;
-  Source& operator=(const Source&) = delete;
+  auto operator=(const Source&) -> Source& = delete;
 
-  GLIBMM_API static Glib::RefPtr<Source> create() /* = 0 */;
+  GLIBMM_API static auto create() -> Glib::RefPtr<Source> /* = 0 */;
 
   /** Adds a Source to a context so that it will be executed within that context.
    * @param context A MainContext.
    * @return The ID for the source within the MainContext.
    */
-  GLIBMM_API unsigned int attach(const Glib::RefPtr<MainContext>& context);
+  GLIBMM_API auto attach(const Glib::RefPtr<MainContext>& context) -> unsigned int;
 
   /** Adds a Source to a context so that it will be executed within that context.
    * The default context will be used.
    * @return The ID for the source within the MainContext.
    */
-  GLIBMM_API unsigned int attach();
+  GLIBMM_API auto attach() -> unsigned int;
 
   // TODO: Does this destroy step make sense in C++? Should it just be something that happens in a
   // destructor?
@@ -755,7 +755,7 @@ public:
   /** Gets the priority of a source.
    * @return The priority of the source.
    */
-  GLIBMM_API int get_priority() const;
+  GLIBMM_API auto get_priority() const -> int;
 
   /** Sets whether a source can be called recursively.
    * If @a can_recurse is true, then while the source is being dispatched then this source will be
@@ -768,14 +768,14 @@ public:
   /** Checks whether a source is allowed to be called recursively. see set_can_recurse().
    * @return Whether recursion is allowed.
    */
-  GLIBMM_API bool get_can_recurse() const;
+  GLIBMM_API auto get_can_recurse() const -> bool;
 
   /** Returns the numeric ID for a particular source.
    * The ID of a source is unique within a particular main loop context. The reverse mapping from ID
    * to source is done by MainContext::find_source_by_id().
    * @return The ID for the source.
    */
-  GLIBMM_API unsigned int get_id() const;
+  GLIBMM_API auto get_id() const -> unsigned int;
 
   // TODO: Add a const version of this method?
   /** Gets the MainContext with which the source is associated.
@@ -783,11 +783,11 @@ public:
    * @return The MainContext with which the source is associated, or a null RefPtr if the context
    * has not yet been added to a source.
    */
-  GLIBMM_API Glib::RefPtr<MainContext> get_context();
+  GLIBMM_API auto get_context() -> Glib::RefPtr<MainContext>;
 
-  GLIBMM_API GSource* gobj() { return gobject_; }
-  GLIBMM_API const GSource* gobj() const { return gobject_; }
-  GLIBMM_API GSource* gobj_copy() const;
+  GLIBMM_API auto gobj() -> GSource* { return gobject_; }
+  GLIBMM_API auto gobj() const -> const GSource* { return gobject_; }
+  GLIBMM_API auto gobj_copy() const -> GSource*;
 
   GLIBMM_API void reference() const;
   GLIBMM_API void unreference() const;
@@ -808,7 +808,7 @@ protected:
 
   GLIBMM_API virtual ~Source() noexcept;
 
-  GLIBMM_API sigc::connection connect_generic(const sigc::slot_base& slot);
+  GLIBMM_API auto connect_generic(const sigc::slot_base& slot) -> sigc::connection;
 
   /** Adds a file descriptor to the set of file descriptors polled for this source.
    * The event source's check function will typically test the revents field in the PollFD  and
@@ -835,11 +835,11 @@ protected:
    *
    * @newin{2,28}
    */
-  GLIBMM_API gint64 get_time() const;
+  GLIBMM_API auto get_time() const -> gint64;
 
-  GLIBMM_API virtual bool prepare(int& timeout) = 0;
-  GLIBMM_API virtual bool check() = 0;
-  GLIBMM_API virtual bool dispatch(sigc::slot_base* slot) = 0;
+  GLIBMM_API virtual auto prepare(int& timeout) -> bool = 0;
+  GLIBMM_API virtual auto check() -> bool = 0;
+  GLIBMM_API virtual auto dispatch(sigc::slot_base* slot) -> bool = 0;
 
 private:
   GSource* gobject_;
@@ -852,24 +852,24 @@ private:
   std::atomic_int keep_wrapper_ {2};
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  GLIBMM_API static inline Source* get_wrapper(GSource* source);
+  GLIBMM_API static inline auto get_wrapper(GSource* source) -> Source*;
 
   static const GSourceFuncs vfunc_table_;
 
-  GLIBMM_API static gboolean prepare_vfunc(GSource* source, int* timeout);
-  GLIBMM_API static gboolean check_vfunc(GSource* source);
-  GLIBMM_API static gboolean dispatch_vfunc(GSource* source, GSourceFunc callback, void* user_data);
+  GLIBMM_API static auto prepare_vfunc(GSource* source, int* timeout) -> gboolean;
+  GLIBMM_API static auto check_vfunc(GSource* source) -> gboolean;
+  GLIBMM_API static auto dispatch_vfunc(GSource* source, GSourceFunc callback, void* user_data) -> gboolean;
 
 public:
   // Really destroys the object during the second call. See keep_wrapper_.
   GLIBMM_API static void destroy_notify_callback2(void* data);
   // Used by SignalXyz, possibly in other files.
-  GLIBMM_API static sigc::connection attach_signal_source(const sigc::slot_base& slot, int priority,
-    GSource* source, GMainContext* context, GSourceFunc callback_func);
+  GLIBMM_API static auto attach_signal_source(const sigc::slot_base& slot, int priority,
+    GSource* source, GMainContext* context, GSourceFunc callback_func) -> sigc::connection;
   // Used by SignalXyz in other files.
-  GLIBMM_API static sigc::slot_base* get_slot_from_connection_node(void* data);
+  GLIBMM_API static auto get_slot_from_connection_node(void* data) -> sigc::slot_base*;
   // Used by derived Source classes in other files.
-  GLIBMM_API static sigc::slot_base* get_slot_from_callback_data(void* data);
+  GLIBMM_API static auto get_slot_from_callback_data(void* data) -> sigc::slot_base*;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 };
 
@@ -878,16 +878,16 @@ class TimeoutSource : public Glib::Source
 public:
   using CppObjectType = Glib::TimeoutSource;
 
-  GLIBMM_API static Glib::RefPtr<TimeoutSource> create(unsigned int interval);
-  GLIBMM_API sigc::connection connect(const sigc::slot<bool()>& slot);
+  GLIBMM_API static auto create(unsigned int interval) -> Glib::RefPtr<TimeoutSource>;
+  GLIBMM_API auto connect(const sigc::slot<bool()>& slot) -> sigc::connection;
 
 protected:
   GLIBMM_API explicit TimeoutSource(unsigned int interval);
   GLIBMM_API ~TimeoutSource() noexcept override;
 
-  GLIBMM_API bool prepare(int& timeout) override;
-  GLIBMM_API bool check() override;
-  GLIBMM_API bool dispatch(sigc::slot_base* slot) override;
+  GLIBMM_API auto prepare(int& timeout) -> bool override;
+  GLIBMM_API auto check() -> bool override;
+  GLIBMM_API auto dispatch(sigc::slot_base* slot) -> bool override;
 
 private:
   gint64 expiration_;     // microseconds
@@ -899,16 +899,16 @@ class IdleSource : public Glib::Source
 public:
   using CppObjectType = Glib::IdleSource;
 
-  GLIBMM_API static Glib::RefPtr<IdleSource> create();
-  GLIBMM_API sigc::connection connect(const sigc::slot<bool()>& slot);
+  GLIBMM_API static auto create() -> Glib::RefPtr<IdleSource>;
+  GLIBMM_API auto connect(const sigc::slot<bool()>& slot) -> sigc::connection;
 
 protected:
   GLIBMM_API IdleSource();
   GLIBMM_API ~IdleSource() noexcept override;
 
-  GLIBMM_API bool prepare(int& timeout) override;
-  GLIBMM_API bool check() override;
-  GLIBMM_API bool dispatch(sigc::slot_base* slot_data) override;
+  GLIBMM_API auto prepare(int& timeout) -> bool override;
+  GLIBMM_API auto check() -> bool override;
+  GLIBMM_API auto dispatch(sigc::slot_base* slot_data) -> bool override;
 };
 
 class IOSource : public Glib::Source
@@ -916,10 +916,10 @@ class IOSource : public Glib::Source
 public:
   using CppObjectType = Glib::IOSource;
 
-  GLIBMM_API static Glib::RefPtr<IOSource> create(PollFD::fd_t fd, IOCondition condition);
-  GLIBMM_API static Glib::RefPtr<IOSource> create(
-    const Glib::RefPtr<IOChannel>& channel, IOCondition condition);
-  GLIBMM_API sigc::connection connect(const sigc::slot<bool(IOCondition)>& slot);
+  GLIBMM_API static auto create(PollFD::fd_t fd, IOCondition condition) -> Glib::RefPtr<IOSource>;
+  GLIBMM_API static auto create(
+    const Glib::RefPtr<IOChannel>& channel, IOCondition condition) -> Glib::RefPtr<IOSource>;
+  GLIBMM_API auto connect(const sigc::slot<bool(IOCondition)>& slot) -> sigc::connection;
 
 protected:
   GLIBMM_API IOSource(PollFD::fd_t fd, IOCondition condition);
@@ -934,15 +934,15 @@ protected:
 
   GLIBMM_API ~IOSource() noexcept override;
 
-  GLIBMM_API bool prepare(int& timeout) override;
-  GLIBMM_API bool check() override;
-  GLIBMM_API bool dispatch(sigc::slot_base* slot) override;
+  GLIBMM_API auto prepare(int& timeout) -> bool override;
+  GLIBMM_API auto check() -> bool override;
+  GLIBMM_API auto dispatch(sigc::slot_base* slot) -> bool override;
 
 private:
   friend GLIBMM_API IOChannel;
 
   // This is just to avoid the need for Gio::Socket to create a RefPtr<> to itself.
-  GLIBMM_API static Glib::RefPtr<IOSource> create(GIOChannel* channel, IOCondition condition);
+  GLIBMM_API static auto create(GIOChannel* channel, IOCondition condition) -> Glib::RefPtr<IOSource>;
 
   // This is just to avoid the need for Gio::Socket to create a RefPtr<> to itself.
   GLIBMM_API IOSource(GIOChannel* channel, IOCondition condition);

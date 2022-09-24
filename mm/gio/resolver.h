@@ -79,7 +79,7 @@ public:
 
   // noncopyable
   Resolver(const Resolver&) = delete;
-  Resolver& operator=(const Resolver&) = delete;
+  auto operator=(const Resolver&) -> Resolver& = delete;
 
 private:  friend class Resolver_Class;
   static CppClassType resolver_class_;
@@ -93,28 +93,28 @@ protected:
 public:
 
   Resolver(Resolver&& src) noexcept;
-  Resolver& operator=(Resolver&& src) noexcept;
+  auto operator=(Resolver&& src) noexcept -> Resolver&;
 
   ~Resolver() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GResolver*       gobj()       { return reinterpret_cast<GResolver*>(gobject_); }
+  auto       gobj() -> GResolver*       { return reinterpret_cast<GResolver*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GResolver* gobj() const { return reinterpret_cast<GResolver*>(gobject_); }
+  auto gobj() const -> const GResolver* { return reinterpret_cast<GResolver*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GResolver* gobj_copy();
+  auto gobj_copy() -> GResolver*;
 
 private:
 
@@ -221,7 +221,7 @@ public:
   };
 
 
-  static Glib::RefPtr<Resolver> get_default();
+  static auto get_default() -> Glib::RefPtr<Resolver>;
 
   static void set_default(const Glib::RefPtr<Resolver>& resolver);
 
@@ -264,10 +264,10 @@ public:
    *
    * @throws Glib::Error
    */
-  std::vector<Glib::RefPtr<InetAddress>> lookup_by_name(const Glib::ustring& hostname, const Glib::RefPtr<Cancellable>& cancellable);
+  auto lookup_by_name(const Glib::ustring& hostname, const Glib::RefPtr<Cancellable>& cancellable) -> std::vector<Glib::RefPtr<InetAddress>>;
 
   /// A lookup_by_name() convenience overload.
-  std::vector<Glib::RefPtr<InetAddress>> lookup_by_name(const Glib::ustring& hostname);
+  auto lookup_by_name(const Glib::ustring& hostname) -> std::vector<Glib::RefPtr<InetAddress>>;
 
   /** Begins asynchronously resolving hostname to determine its associated IP address(es), and eventually calls @a slot, which must call
    * lookup_by_name_finish() to get the result. See lookup_by_name() for more details.
@@ -303,7 +303,7 @@ public:
    *
    * @throws Glib::Error
    */
-  std::vector<Glib::RefPtr<InetAddress>> lookup_by_name_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto lookup_by_name_finish(const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::RefPtr<InetAddress>>;
 
 
   /** This differs from g_resolver_lookup_by_name() in that you can modify
@@ -322,7 +322,7 @@ public:
    *
    * @throws Glib::Error
    */
-  std::vector<Glib::RefPtr<InetAddress>> lookup_by_name_with_flags(const Glib::ustring& hostname, NameLookupFlags flags, const Glib::RefPtr<Cancellable>& cancellable =  {});
+  auto lookup_by_name_with_flags(const Glib::ustring& hostname, NameLookupFlags flags, const Glib::RefPtr<Cancellable>& cancellable =  {}) -> std::vector<Glib::RefPtr<InetAddress>>;
 
 
   /** Begins asynchronously resolving @a hostname to determine its
@@ -356,7 +356,7 @@ public:
    *
    * @throws Glib::Error
    */
-  std::vector<Glib::RefPtr<InetAddress>> lookup_by_name_with_flags_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto lookup_by_name_with_flags_finish(const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::RefPtr<InetAddress>>;
 
 
   /** Synchronously reverse-resolves @a address to determine its
@@ -378,10 +378,10 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::ustring lookup_by_address(const Glib::RefPtr<InetAddress>& address, const Glib::RefPtr<Cancellable>& cancellable);
+  auto lookup_by_address(const Glib::RefPtr<InetAddress>& address, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::ustring;
 
   /// A lookup_by_address() convenience overload.
-  Glib::ustring lookup_by_address(const Glib::RefPtr<InetAddress>& address);
+  auto lookup_by_address(const Glib::RefPtr<InetAddress>& address) -> Glib::ustring;
 
   /** Begins asynchronously reverse-resolving an address to determine its associated hostname, and eventually calls callback, which must call
    * lookup_by_address_finish() to get the final result.
@@ -416,7 +416,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::ustring lookup_by_address_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto lookup_by_address_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::ustring;
 
 
   /** Synchronously performs a DNS SRV lookup for the given @a service and
@@ -454,10 +454,10 @@ public:
    *
    * @throws Glib::Error
    */
-  std::vector<SrvTarget> lookup_service(const Glib::ustring& service, const Glib::ustring& protocol, const Glib::ustring& domain, const Glib::RefPtr<Cancellable>& cancellable);
+  auto lookup_service(const Glib::ustring& service, const Glib::ustring& protocol, const Glib::ustring& domain, const Glib::RefPtr<Cancellable>& cancellable) -> std::vector<SrvTarget>;
 
   /// A lookup_service() convenience overload.
-  std::vector<SrvTarget> lookup_service(const Glib::ustring& service, const Glib::ustring& protocol, const Glib::ustring& domain);
+  auto lookup_service(const Glib::ustring& service, const Glib::ustring& protocol, const Glib::ustring& domain) -> std::vector<SrvTarget>;
 
   /** Begins asynchronously performing a DNS SRV lookup for the given service and protocol in the given domain, and eventually calls callback,
    * which must call lookup_service_finish() to get the final result. See glookup_service() for more details.
@@ -497,7 +497,7 @@ public:
    *
    * @throws Glib::Error
    */
-  std::vector<SrvTarget> lookup_service_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto lookup_service_finish(const Glib::RefPtr<AsyncResult>& result) -> std::vector<SrvTarget>;
 
 
   /** Synchronously performs a DNS record lookup for the given @a rrname and returns
@@ -523,10 +523,10 @@ public:
    *
    * @throws Glib::Error
    */
-  std::vector<Glib::VariantContainerBase> lookup_records(const Glib::ustring& rrname, RecordType record_type, const Glib::RefPtr<Cancellable>& cancellable);
+  auto lookup_records(const Glib::ustring& rrname, RecordType record_type, const Glib::RefPtr<Cancellable>& cancellable) -> std::vector<Glib::VariantContainerBase>;
 
   /// A lookup_records() convenience overload.
-  std::vector<Glib::VariantContainerBase> lookup_records(const Glib::ustring& rrname, RecordType record_type);
+  auto lookup_records(const Glib::ustring& rrname, RecordType record_type) -> std::vector<Glib::VariantContainerBase>;
 
   /** Begins asynchronously performing a DNS lookup for the given @a rrname,
    * and eventually calls @a slot, which must call lookup_records_finish() to
@@ -567,7 +567,7 @@ public:
    *
    * @throws Glib::Error
    */
-  std::vector<Glib::VariantContainerBase> lookup_records_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto lookup_records_finish(const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::VariantContainerBase>;
 
 
   /**
@@ -580,7 +580,7 @@ public:
    * configuration has changed.
    */
 
-  Glib::SignalProxy<void()> signal_reload();
+  auto signal_reload() -> Glib::SignalProxy<void()>;
 
 
 public:
@@ -599,19 +599,19 @@ protected:
 };
 
 GIOMM_API
-std::string hostname_to_ascii (const Glib::ustring& hostname);
+auto hostname_to_ascii (const Glib::ustring& hostname) -> std::string;
 
 GIOMM_API
-Glib::ustring hostname_to_unicode (const Glib::ustring& hostname);
+auto hostname_to_unicode (const Glib::ustring& hostname) -> Glib::ustring;
 
 GIOMM_API
-bool hostname_is_non_ascii (const Glib::ustring& hostname);
+auto hostname_is_non_ascii (const Glib::ustring& hostname) -> bool;
 
 GIOMM_API
-bool hostname_is_ascii_encoded (const Glib::ustring& hostname);
+auto hostname_is_ascii_encoded (const Glib::ustring& hostname) -> bool;
 
 GIOMM_API
-bool hostname_is_ip_address (const Glib::ustring& hostname);
+auto hostname_is_ip_address (const Glib::ustring& hostname) -> bool;
 
 } // namespace Gio
 
@@ -624,7 +624,7 @@ template <>
 class GIOMM_API Value<Gio::Resolver::RecordType> : public Glib::Value_Enum<Gio::Resolver::RecordType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -634,31 +634,31 @@ namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline Resolver::NameLookupFlags operator|(Resolver::NameLookupFlags lhs, Resolver::NameLookupFlags rhs)
+inline auto operator|(Resolver::NameLookupFlags lhs, Resolver::NameLookupFlags rhs) -> Resolver::NameLookupFlags
   { return static_cast<Resolver::NameLookupFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Resolver::NameLookupFlags operator&(Resolver::NameLookupFlags lhs, Resolver::NameLookupFlags rhs)
+inline auto operator&(Resolver::NameLookupFlags lhs, Resolver::NameLookupFlags rhs) -> Resolver::NameLookupFlags
   { return static_cast<Resolver::NameLookupFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Resolver::NameLookupFlags operator^(Resolver::NameLookupFlags lhs, Resolver::NameLookupFlags rhs)
+inline auto operator^(Resolver::NameLookupFlags lhs, Resolver::NameLookupFlags rhs) -> Resolver::NameLookupFlags
   { return static_cast<Resolver::NameLookupFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Resolver::NameLookupFlags operator~(Resolver::NameLookupFlags flags)
+inline auto operator~(Resolver::NameLookupFlags flags) -> Resolver::NameLookupFlags
   { return static_cast<Resolver::NameLookupFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline Resolver::NameLookupFlags& operator|=(Resolver::NameLookupFlags& lhs, Resolver::NameLookupFlags rhs)
+inline auto operator|=(Resolver::NameLookupFlags& lhs, Resolver::NameLookupFlags rhs) -> Resolver::NameLookupFlags&
   { return (lhs = static_cast<Resolver::NameLookupFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Resolver::NameLookupFlags& operator&=(Resolver::NameLookupFlags& lhs, Resolver::NameLookupFlags rhs)
+inline auto operator&=(Resolver::NameLookupFlags& lhs, Resolver::NameLookupFlags rhs) -> Resolver::NameLookupFlags&
   { return (lhs = static_cast<Resolver::NameLookupFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Resolver::NameLookupFlags& operator^=(Resolver::NameLookupFlags& lhs, Resolver::NameLookupFlags rhs)
+inline auto operator^=(Resolver::NameLookupFlags& lhs, Resolver::NameLookupFlags rhs) -> Resolver::NameLookupFlags&
   { return (lhs = static_cast<Resolver::NameLookupFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 
@@ -670,7 +670,7 @@ template <>
 class GIOMM_API Value<Gio::Resolver::NameLookupFlags> : public Glib::Value_Flags<Gio::Resolver::NameLookupFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -688,7 +688,7 @@ namespace Glib
    * @relates Gio::Resolver
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Resolver> wrap(GResolver* object, bool take_copy = false);
+  auto wrap(GResolver* object, bool take_copy = false) -> Glib::RefPtr<Gio::Resolver>;
 }
 
 

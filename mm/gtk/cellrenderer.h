@@ -96,31 +96,31 @@ enum class CellRendererState
 };
 
 /** @ingroup gtkmmEnums */
-inline CellRendererState operator|(CellRendererState lhs, CellRendererState rhs)
+inline auto operator|(CellRendererState lhs, CellRendererState rhs) -> CellRendererState
   { return static_cast<CellRendererState>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline CellRendererState operator&(CellRendererState lhs, CellRendererState rhs)
+inline auto operator&(CellRendererState lhs, CellRendererState rhs) -> CellRendererState
   { return static_cast<CellRendererState>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline CellRendererState operator^(CellRendererState lhs, CellRendererState rhs)
+inline auto operator^(CellRendererState lhs, CellRendererState rhs) -> CellRendererState
   { return static_cast<CellRendererState>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline CellRendererState operator~(CellRendererState flags)
+inline auto operator~(CellRendererState flags) -> CellRendererState
   { return static_cast<CellRendererState>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gtkmmEnums */
-inline CellRendererState& operator|=(CellRendererState& lhs, CellRendererState rhs)
+inline auto operator|=(CellRendererState& lhs, CellRendererState rhs) -> CellRendererState&
   { return (lhs = static_cast<CellRendererState>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline CellRendererState& operator&=(CellRendererState& lhs, CellRendererState rhs)
+inline auto operator&=(CellRendererState& lhs, CellRendererState rhs) -> CellRendererState&
   { return (lhs = static_cast<CellRendererState>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline CellRendererState& operator^=(CellRendererState& lhs, CellRendererState rhs)
+inline auto operator^=(CellRendererState& lhs, CellRendererState rhs) -> CellRendererState&
   { return (lhs = static_cast<CellRendererState>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -134,7 +134,7 @@ template <>
 class GTKMM_API Value<Gtk::CellRendererState> : public Glib::Value_Flags<Gtk::CellRendererState>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -180,7 +180,7 @@ template <>
 class GTKMM_API Value<Gtk::CellRendererMode> : public Glib::Value_Enum<Gtk::CellRendererMode>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -210,11 +210,11 @@ class GTKMM_API CellRenderer :
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   CellRenderer(CellRenderer&& src) noexcept;
-  CellRenderer& operator=(CellRenderer&& src) noexcept;
+  auto operator=(CellRenderer&& src) noexcept -> CellRenderer&;
 
   // noncopyable
   CellRenderer(const CellRenderer&) = delete;
-  CellRenderer& operator=(const CellRenderer&) = delete;
+  auto operator=(const CellRenderer&) -> CellRenderer& = delete;
 
   ~CellRenderer() noexcept override;
 
@@ -234,19 +234,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkCellRenderer*       gobj()       { return reinterpret_cast<GtkCellRenderer*>(gobject_); }
+  auto       gobj() -> GtkCellRenderer*       { return reinterpret_cast<GtkCellRenderer*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkCellRenderer* gobj() const { return reinterpret_cast<GtkCellRenderer*>(gobject_); }
+  auto gobj() const -> const GtkCellRenderer* { return reinterpret_cast<GtkCellRenderer*>(gobject_); }
 
 private:
 
@@ -258,7 +258,7 @@ public:
    *
    * @return The `Gtk::SizeRequestMode` preferred by this renderer.
    */
-  SizeRequestMode get_request_mode() const;
+  auto get_request_mode() const -> SizeRequestMode;
 
   /** Retrieves a renderer’s natural size when rendered to @a widget.
    *
@@ -315,7 +315,7 @@ public:
    * @param cell_area Cell area which would be passed to snapshot().
    * @returns The space inside @a cell_area that would acually be used to render.
    */
-  Gdk::Rectangle get_aligned_area(Widget& widget, CellRendererState flags, const Gdk::Rectangle& cell_area) const;
+  auto get_aligned_area(Widget& widget, CellRendererState flags, const Gdk::Rectangle& cell_area) const -> Gdk::Rectangle;
 
 
   /** Invokes the virtual render function of the `Gtk::CellRenderer`. The three
@@ -349,7 +349,7 @@ public:
    * @param flags Render flags.
    * @return <tt>true</tt> if the event was consumed/handled.
    */
-  bool activate(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags);
+  auto activate(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags) -> bool;
 
 
   /** Starts editing the contents of this @a cell, through a new `Gtk::CellEditable`
@@ -365,7 +365,7 @@ public:
    * @return A new `Gtk::CellEditable` for editing this
    *  @a cell, or <tt>nullptr</tt> if editing is not possible.
    */
-  CellEditable* start_editing(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags =  CellRendererState(0));
+  auto start_editing(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags =  CellRendererState(0)) -> CellEditable*;
 
 
   /** Sets the renderer size to be explicit, independent of the properties set.
@@ -423,7 +423,7 @@ public:
    *
    * @return <tt>true</tt> if the cell renderer is visible.
    */
-  bool get_visible() const;
+  auto get_visible() const -> bool;
 
   /** Sets the cell renderer’s sensitivity.
    *
@@ -435,13 +435,13 @@ public:
    *
    * @return <tt>true</tt> if the cell renderer is sensitive.
    */
-  bool get_sensitive() const;
+  auto get_sensitive() const -> bool;
 
   /** Checks whether the cell renderer can do something when activated.
    *
    * @return <tt>true</tt> if the cell renderer can do anything when activated.
    */
-  bool is_activatable() const;
+  auto is_activatable() const -> bool;
 
   /** Sets whether the given `Gtk::CellRenderer` is an expander.
    *
@@ -453,7 +453,7 @@ public:
    *
    * @return <tt>true</tt> if @a cell is an expander, and <tt>false</tt> otherwise.
    */
-  bool get_is_expander() const;
+  auto get_is_expander() const -> bool;
 
   /** Sets whether the given `Gtk::CellRenderer` is expanded.
    *
@@ -465,7 +465,7 @@ public:
    *
    * @return <tt>true</tt> if the cell renderer is expanded.
    */
-  bool get_is_expanded() const;
+  auto get_is_expanded() const -> bool;
 
 
   /** Informs the cell renderer that the editing is stopped.
@@ -489,16 +489,16 @@ public:
    * @param cell_state Cell renderer state.
    * @return The widget state flags applying to @a cell.
    */
-  StateFlags get_state(Widget& widget, CellRendererState cell_state) const;
+  auto get_state(Widget& widget, CellRendererState cell_state) const -> StateFlags;
 
   /// A get_state() convenience overload.
-  StateFlags get_state(CellRendererState cell_state) const;
+  auto get_state(CellRendererState cell_state) const -> StateFlags;
 
   /** Returns the property that this CellRenderer renders.
    * For instance, property_text for CellRendererText, and property_active for CellRendererToggle
    * Needs to be overridden in derived classes.
    */
-  virtual Glib::PropertyProxy_Base _property_renderable();
+  virtual auto _property_renderable() -> Glib::PropertyProxy_Base;
 
 
   /**
@@ -514,7 +514,7 @@ public:
    * See also: Gtk::CellRenderer::stop_editing().
    */
 
-  Glib::SignalProxy<void()> signal_editing_canceled();
+  auto signal_editing_canceled() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -542,7 +542,7 @@ public:
    * @param path The path identifying the edited cell.
    */
 
-  Glib::SignalProxy<void(CellEditable*, const Glib::ustring&)> signal_editing_started();
+  auto signal_editing_started() -> Glib::SignalProxy<void(CellEditable*, const Glib::ustring&)>;
 
 
   /** Default value: Gtk::CellRendererMode::INERT
@@ -550,161 +550,161 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< CellRendererMode > property_mode() ;
+  auto property_mode() -> Glib::PropertyProxy< CellRendererMode > ;
 
 /** Default value: Gtk::CellRendererMode::INERT
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< CellRendererMode > property_mode() const;
+  auto property_mode() const -> Glib::PropertyProxy_ReadOnly< CellRendererMode >;
 
   /** Default value: <tt>true</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_visible() ;
+  auto property_visible() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>true</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_visible() const;
+  auto property_visible() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>true</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_sensitive() ;
+  auto property_sensitive() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>true</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_sensitive() const;
+  auto property_sensitive() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: 0.5
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< float > property_xalign() ;
+  auto property_xalign() -> Glib::PropertyProxy< float > ;
 
 /** Default value: 0.5
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< float > property_xalign() const;
+  auto property_xalign() const -> Glib::PropertyProxy_ReadOnly< float >;
 
   /** Default value: 0.5
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< float > property_yalign() ;
+  auto property_yalign() -> Glib::PropertyProxy< float > ;
 
 /** Default value: 0.5
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< float > property_yalign() const;
+  auto property_yalign() const -> Glib::PropertyProxy_ReadOnly< float >;
 
   /** Default value: 0
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< unsigned int > property_xpad() ;
+  auto property_xpad() -> Glib::PropertyProxy< unsigned int > ;
 
 /** Default value: 0
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_xpad() const;
+  auto property_xpad() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
   /** Default value: 0
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< unsigned int > property_ypad() ;
+  auto property_ypad() -> Glib::PropertyProxy< unsigned int > ;
 
 /** Default value: 0
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_ypad() const;
+  auto property_ypad() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
   /** Default value: -1
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_width() ;
+  auto property_width() -> Glib::PropertyProxy< int > ;
 
 /** Default value: -1
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_width() const;
+  auto property_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Default value: -1
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_height() ;
+  auto property_height() -> Glib::PropertyProxy< int > ;
 
 /** Default value: -1
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_height() const;
+  auto property_height() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_is_expander() ;
+  auto property_is_expander() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_expander() const;
+  auto property_is_expander() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_is_expanded() ;
+  auto property_is_expanded() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_expanded() const;
+  auto property_is_expanded() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: ""
    *
    * @return A PropertyProxy_WriteOnly that allows you to set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_WriteOnly< Glib::ustring > property_cell_background() ;
+  auto property_cell_background() -> Glib::PropertyProxy_WriteOnly< Glib::ustring > ;
 
 
   /** Cell background as a `GdkRGBA`
@@ -712,41 +712,41 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Gdk::RGBA > property_cell_background_rgba() ;
+  auto property_cell_background_rgba() -> Glib::PropertyProxy< Gdk::RGBA > ;
 
 /** Cell background as a `GdkRGBA`
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Gdk::RGBA > property_cell_background_rgba() const;
+  auto property_cell_background_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_cell_background_set() ;
+  auto property_cell_background_set() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_cell_background_set() const;
+  auto property_cell_background_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_editing() const;
+  auto property_editing() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 protected:
   CellRenderer();
 
-    virtual SizeRequestMode get_request_mode_vfunc() const;
+    virtual auto get_request_mode_vfunc() const -> SizeRequestMode;
 
     virtual void get_preferred_width_vfunc(Widget& widget, int& minimum_width, int& natural_width) const;
 
@@ -760,10 +760,10 @@ protected:
     virtual void snapshot_vfunc(const Glib::RefPtr<Gtk::Snapshot>& snapshot, Widget& widget, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags);
 
 
-    virtual bool activate_vfunc(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags);
+    virtual auto activate_vfunc(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags) -> bool;
 
 
-    virtual CellEditable* start_editing_vfunc(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags);
+    virtual auto start_editing_vfunc(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags) -> CellEditable*;
 
 
 public:
@@ -797,7 +797,7 @@ namespace Glib
    * @relates Gtk::CellRenderer
    */
   GTKMM_API
-  Gtk::CellRenderer* wrap(GtkCellRenderer* object, bool take_copy = false);
+  auto wrap(GtkCellRenderer* object, bool take_copy = false) -> Gtk::CellRenderer*;
 } //namespace Glib
 
 

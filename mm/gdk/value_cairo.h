@@ -29,27 +29,23 @@ class GDKMM_API Region;
 class GDKMM_API Surface;
 }
 
-namespace Gdk
-{
-namespace Cairo
+namespace Gdk::Cairo
 {
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <typename T>
-GType get_base_type()
+auto get_base_type() -> GType
 {
   static_assert(!std::is_same<T,T>::value, "No specialization available for type T.");
   return 0;
 }
 
 template <>
-GDKMM_API GType get_base_type<::Cairo::Region>();
+GDKMM_API auto get_base_type<::Cairo::Region>() -> GType;
 
 template <>
-GDKMM_API GType get_base_type<::Cairo::Surface>();
+GDKMM_API auto get_base_type<::Cairo::Surface>() -> GType;
 #endif // DOXYGEN_SHOULD_SKIP_THIS
-
-} //namespace Cairo
 
 } //namespace Gdk
 
@@ -68,14 +64,14 @@ public:
   using CppType = ::Cairo::RefPtr<T>;
   using CType = typename T::cobject;
 
-  static GType value_type()
+  static auto value_type() -> GType
   {
     return Gdk::Cairo::get_base_type<std::remove_const_t<T>>();
   }
 
   void set(const CppType& data) { set_boxed(data->cobj()); }
 
-  CppType get() const
+  auto get() const -> CppType
   {
     CType* CObj = static_cast<CType*>(get_boxed());
     T* CppObj = new T(CObj, false); // false == take reference

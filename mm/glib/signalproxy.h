@@ -20,7 +20,7 @@
  */
 
 extern "C" {
-typedef void (*GCallback)(void);
+typedef void (*GCallback)();
 typedef struct _GObject GObject;
 }
 
@@ -53,7 +53,7 @@ public:
   SignalProxyBase(Glib::ObjectBase* obj);
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static inline sigc::slot_base* data_to_slot(void* data)
+  static inline auto data_to_slot(void* data) -> sigc::slot_base*
   {
     const auto pConnectionNode = static_cast<SignalProxyConnectionNode*>(data);
 
@@ -66,7 +66,7 @@ protected:
   ObjectBase* obj_;
 
 private:
-  SignalProxyBase& operator=(const SignalProxyBase&) = delete;
+  auto operator=(const SignalProxyBase&) -> SignalProxyBase& = delete;
 };
 
 // Shared portion of a Signal without detail
@@ -112,20 +112,20 @@ protected:
    *
    * @newin{2,58}
    */
-  sigc::slot_base& connect_impl_(bool notify, const sigc::slot_base& slot, bool after);
+  auto connect_impl_(bool notify, const sigc::slot_base& slot, bool after) -> sigc::slot_base&;
 
   /** Connects a signal handler to a signal.
    * @see connect_impl_(bool notify, const sigc::slot_base& slot, bool after).
    *
    * @newin{2,48}
    */
-  sigc::slot_base& connect_impl_(bool notify, sigc::slot_base&& slot, bool after);
+  auto connect_impl_(bool notify, sigc::slot_base&& slot, bool after) -> sigc::slot_base&;
 
 private:
   const SignalProxyInfo* info_;
 
   // no copy assignment
-  SignalProxyNormal& operator=(const SignalProxyNormal&) = delete;
+  auto operator=(const SignalProxyNormal&) -> SignalProxyNormal& = delete;
 };
 
 /**** Glib::SignalProxy ***************************************************/
@@ -171,7 +171,7 @@ public:
    * handler.
    * @return A sigc::connection.
    */
-  sigc::connection connect(const SlotType& slot, bool after)
+  auto connect(const SlotType& slot, bool after) -> sigc::connection
   {
     return sigc::connection(connect_impl_(false, slot, after));
   }
@@ -181,7 +181,7 @@ public:
    *
    * @newin{2,48}
    */
-  sigc::connection connect(SlotType&& slot, bool after)
+  auto connect(SlotType&& slot, bool after) -> sigc::connection
   {
     return sigc::connection(connect_impl_(false, std::move(slot), after));
   }
@@ -205,7 +205,7 @@ public:
    * handler.
    * @return A sigc::connection.
    */
-  sigc::connection connect_notify(const VoidSlotType& slot, bool after = false)
+  auto connect_notify(const VoidSlotType& slot, bool after = false) -> sigc::connection
   {
     return sigc::connection(connect_impl_(true, slot, after));
   }
@@ -215,7 +215,7 @@ public:
    *
    * @newin{2,48}
    */
-  sigc::connection connect_notify(VoidSlotType&& slot, bool after = false)
+  auto connect_notify(VoidSlotType&& slot, bool after = false) -> sigc::connection
   {
     return sigc::connection(connect_impl_(true, std::move(slot), after));
   }
@@ -247,7 +247,7 @@ public:
    * handler.
    * @return A sigc::connection.
    */
-  sigc::connection connect(const SlotType& slot, bool after = true)
+  auto connect(const SlotType& slot, bool after = true) -> sigc::connection
   {
     return sigc::connection(connect_impl_(false, slot, after));
   }
@@ -257,7 +257,7 @@ public:
    *
    * @newin{2,48}
    */
-  sigc::connection connect(SlotType&& slot, bool after = true)
+  auto connect(SlotType&& slot, bool after = true) -> sigc::connection
   {
     return sigc::connection(connect_impl_(false, std::move(slot), after));
   }
@@ -298,21 +298,21 @@ protected:
    * @param after Whether this signal handler should be called before or after the default signal
    * handler.
    */
-  sigc::slot_base& connect_impl_(bool notify, const sigc::slot_base& slot, bool after);
+  auto connect_impl_(bool notify, const sigc::slot_base& slot, bool after) -> sigc::slot_base&;
 
   /** Connects a signal handler to a signal.
    * @see connect_impl_(bool notify, const sigc::slot_base& slot, bool after).
    *
    * @newin{2,48}
    */
-  sigc::slot_base& connect_impl_(bool notify, sigc::slot_base&& slot, bool after);
+  auto connect_impl_(bool notify, sigc::slot_base&& slot, bool after) -> sigc::slot_base&;
 
 private:
   const SignalProxyInfo* info_; // Pointer to statically allocated structure.
   const Glib::ustring detailed_name_; // signal_name[::detail_name]
 
   // no copy assignment
-  SignalProxyDetailedBase& operator=(const SignalProxyDetailedBase&) = delete;
+  auto operator=(const SignalProxyDetailedBase&) -> SignalProxyDetailedBase& = delete;
 };
 
 /**** Glib::SignalProxyDetailed **********************************************/
@@ -362,7 +362,7 @@ public:
    * handler.
    * @return A sigc::connection.
    */
-  sigc::connection connect(const SlotType& slot, bool after)
+  auto connect(const SlotType& slot, bool after) -> sigc::connection
   {
     return sigc::connection(connect_impl_(false, slot, after));
   }
@@ -372,7 +372,7 @@ public:
    *
    * @newin{2,48}
    */
-  sigc::connection connect(SlotType&& slot, bool after)
+  auto connect(SlotType&& slot, bool after) -> sigc::connection
   {
     return sigc::connection(connect_impl_(false, std::move(slot), after));
   }
@@ -396,7 +396,7 @@ public:
    * handler.
    * @return A sigc::connection.
    */
-  sigc::connection connect_notify(const VoidSlotType& slot, bool after = false)
+  auto connect_notify(const VoidSlotType& slot, bool after = false) -> sigc::connection
   {
     return sigc::connection(connect_impl_(true, slot, after));
   }
@@ -406,7 +406,7 @@ public:
    *
    * @newin{2,48}
    */
-  sigc::connection connect_notify(VoidSlotType&& slot, bool after = false)
+  auto connect_notify(VoidSlotType&& slot, bool after = false) -> sigc::connection
   {
     return sigc::connection(connect_impl_(true, std::move(slot), after));
   }
@@ -442,7 +442,7 @@ public:
    * handler.
    * @return A sigc::connection.
    */
-  sigc::connection connect(const SlotType& slot, bool after = true)
+  auto connect(const SlotType& slot, bool after = true) -> sigc::connection
   {
     return sigc::connection(connect_impl_(false, slot, after));
   }
@@ -452,7 +452,7 @@ public:
    *
    * @newin{2,48}
    */
-  sigc::connection connect(SlotType&& slot, bool after = true)
+  auto connect(SlotType&& slot, bool after = true) -> sigc::connection
   {
     return sigc::connection(connect_impl_(false, std::move(slot), after));
   }

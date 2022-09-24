@@ -110,20 +110,20 @@ class GLIBMM_API VariantType
   explicit VariantType(GVariantType* castitem, bool make_a_copy = false);
 
   VariantType(const VariantType& src);
-  VariantType& operator=(const VariantType& src);
+  auto operator=(const VariantType& src) -> VariantType&;
 
   VariantType(VariantType&& other) noexcept;
-  VariantType& operator=(VariantType&& other) noexcept;
+  auto operator=(VariantType&& other) noexcept -> VariantType&;
 
   ~VariantType() noexcept;
 
   void swap(VariantType& other) noexcept;
 
-  GVariantType*       gobj()       { return gobject_; }
-  const GVariantType* gobj() const { return gobject_; }
+  auto       gobj() -> GVariantType*       { return gobject_; }
+  auto gobj() const -> const GVariantType* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  GVariantType* gobj_copy() const;
+  auto gobj_copy() const -> GVariantType*;
 
 protected:
   GVariantType* gobject_;
@@ -144,7 +144,7 @@ public:
   explicit VariantType(const std::string& type_string);
 
 
-  VariantType& operator=(const GVariantType* castitem);
+  auto operator=(const GVariantType* castitem) -> VariantType&;
 
 
 //The C parameters are actually const, but gmmproc doesn't understand that,
@@ -161,7 +161,7 @@ public:
    * @param element A VariantType.
    * @return A new array VariantType.
    */
-  static VariantType create_array(const VariantType& element);
+  static auto create_array(const VariantType& element) -> VariantType;
 
   /** Constructs the type corresponding to a maybe instance containing
    * type @a type or Nothing.
@@ -173,7 +173,7 @@ public:
    * @param element A VariantType.
    * @return A new maybe VariantType.
    */
-  static VariantType create_maybe(const VariantType& element);
+  static auto create_maybe(const VariantType& element) -> VariantType;
 
   /** Constructs a new tuple type, from @a items.
     *
@@ -182,7 +182,7 @@ public:
     *
     * @newin{2,36}
     */
-  static VariantType create_tuple(const std::vector<VariantType>& items);
+  static auto create_tuple(const std::vector<VariantType>& items) -> VariantType;
 
 
   /** Constructs the type corresponding to a dictionary entry with a key
@@ -196,7 +196,7 @@ public:
    * @param value A VariantType.
    * @return A new dictionary entry VariantType.
    */
-  static VariantType create_dict_entry(const VariantType& key, const VariantType& value);
+  static auto create_dict_entry(const VariantType& key, const VariantType& value) -> VariantType;
 
 
   /** Returns the length of the type string corresponding to the given
@@ -207,7 +207,7 @@ public:
    *
    * @return The length of the corresponding type string.
    */
-  gsize get_string_length() const;
+  auto get_string_length() const -> gsize;
 
   /** Returns the type string corresponding to the given @a type.  The
    * result is not nul-terminated; in order to determine its length you
@@ -220,7 +220,7 @@ public:
    * @return The corresponding type string (not nul-terminated).
    */
 
-  std::string get_string() const;
+  auto get_string() const -> std::string;
 
 
   /** Determines if the given @a type is definite (ie: not indefinite).
@@ -238,7 +238,7 @@ public:
    *
    * @return <tt>true</tt> if @a type is definite.
    */
-  bool is_definite() const;
+  auto is_definite() const -> bool;
 
   /** Determines if the given @a type is a container type.
    *
@@ -253,7 +253,7 @@ public:
    *
    * @return <tt>true</tt> if @a type is a container type.
    */
-  bool is_container() const;
+  auto is_container() const -> bool;
 
   /** Determines if the given @a type is a basic type.
    *
@@ -269,7 +269,7 @@ public:
    *
    * @return <tt>true</tt> if @a type is a basic type.
    */
-  bool is_basic() const;
+  auto is_basic() const -> bool;
 
   /** Determines if the given @a type is a maybe type.  This is true if the
    * type string for @a type starts with an 'm'.
@@ -282,7 +282,7 @@ public:
    *
    * @return <tt>true</tt> if @a type is a maybe type.
    */
-  bool is_maybe() const;
+  auto is_maybe() const -> bool;
 
   /** Determines if the given @a type is an array type.  This is true if the
    * type string for @a type starts with an 'a'.
@@ -295,7 +295,7 @@ public:
    *
    * @return <tt>true</tt> if @a type is an array type.
    */
-  bool is_array() const;
+  auto is_array() const -> bool;
 
   /** Determines if the given @a type is a tuple type.  This is true if the
    * type string for @a type starts with a '(' or if @a type is
@@ -309,7 +309,7 @@ public:
    *
    * @return <tt>true</tt> if @a type is a tuple type.
    */
-  bool is_tuple() const;
+  auto is_tuple() const -> bool;
 
   /** Determines if the given @a type is a dictionary entry type.  This is
    * true if the type string for @a type starts with a '{'.
@@ -322,7 +322,7 @@ public:
    *
    * @return <tt>true</tt> if @a type is a dictionary entry type.
    */
-  bool is_dict_entry() const;
+  auto is_dict_entry() const -> bool;
 
   /** Determines if the given @a type is the variant type.
    *
@@ -330,7 +330,7 @@ public:
    *
    * @return <tt>true</tt> if @a type is the variant type.
    */
-  bool is_variant() const;
+  auto is_variant() const -> bool;
 
 
   /** Hashes @a type.
@@ -343,7 +343,7 @@ public:
    *
    * @return The hash value.
    */
-  guint hash() const;
+  auto hash() const -> guint;
 
 
   /** Compares @a *this and @a other for equality.
@@ -358,7 +358,7 @@ public:
    *
    * @newin{2,24}
    */
-  bool equal(const VariantType& other) const;
+  auto equal(const VariantType& other) const -> bool;
 
 
   /** Checks if @a type is a subtype of @a supertype.
@@ -372,7 +372,7 @@ public:
    * @param supertype A VariantType.
    * @return <tt>true</tt> if @a type is a subtype of @a supertype.
    */
-  bool is_subtype_of(const VariantType& supertype) const;
+  auto is_subtype_of(const VariantType& supertype) const -> bool;
 
 // It's necessary to take an extra reference of the 'const GVariantType*'
 // returned by g_variant_type_element(), g_variant_type_key() and
@@ -387,7 +387,7 @@ public:
    *
    * @return The element type of @a type.
    */
-  VariantType element() const;
+  auto element() const -> VariantType;
 
   /** Determines the number of items contained in a tuple or
    * dictionary entry type.
@@ -403,7 +403,7 @@ public:
    *
    * @return The number of items in @a type.
    */
-  gsize n_items() const;
+  auto n_items() const -> gsize;
 
   /** Determines the key type of a dictionary entry type.
    *
@@ -415,7 +415,7 @@ public:
    *
    * @return The key type of the dictionary entry.
    */
-  VariantType key() const;
+  auto key() const -> VariantType;
 
   /** Determines the value type of a dictionary entry type.
    *
@@ -425,7 +425,7 @@ public:
    *
    * @return The value type of the dictionary entry.
    */
-  VariantType value() const;
+  auto value() const -> VariantType;
 
   /** Determines the item types of a tuple or dictionary entry type.
    *
@@ -441,7 +441,7 @@ public:
    *
    * @return The item types of this %VariantType, or an empty vector.
    */
-  std::vector<VariantType> get_item_types() const;
+  auto get_item_types() const -> std::vector<VariantType>;
 
 
   // This function is part of unexposed API in gvarianttypeinfo.{h,c} for an
@@ -512,10 +512,10 @@ public:
   using CppType = Glib::VariantType;
   using CType = GVariantType*;
 
-  static GType value_type();
+  static auto value_type() -> GType;
 
   void set(const CppType& data);
-  CppType get() const;
+  auto get() const -> CppType;
 };
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
@@ -546,7 +546,7 @@ namespace Glib
    * @relates Glib::VariantType
    */
   GLIBMM_API
-  Glib::VariantType wrap(GVariantType* object, bool take_copy = false);
+  auto wrap(GVariantType* object, bool take_copy = false) -> Glib::VariantType;
 
 } // namespace Glib
 

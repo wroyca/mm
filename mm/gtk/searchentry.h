@@ -83,11 +83,11 @@ class GTKMM_API SearchEntry
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   SearchEntry(SearchEntry&& src) noexcept;
-  SearchEntry& operator=(SearchEntry&& src) noexcept;
+  auto operator=(SearchEntry&& src) noexcept -> SearchEntry&;
 
   // noncopyable
   SearchEntry(const SearchEntry&) = delete;
-  SearchEntry& operator=(const SearchEntry&) = delete;
+  auto operator=(const SearchEntry&) -> SearchEntry& = delete;
 
   ~SearchEntry() noexcept override;
 
@@ -107,19 +107,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkSearchEntry*       gobj()       { return reinterpret_cast<GtkSearchEntry*>(gobject_); }
+  auto       gobj() -> GtkSearchEntry*       { return reinterpret_cast<GtkSearchEntry*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkSearchEntry* gobj() const { return reinterpret_cast<GtkSearchEntry*>(gobject_); }
+  auto gobj() const -> const GtkSearchEntry* { return reinterpret_cast<GtkSearchEntry*>(gobject_); }
 
 private:
 
@@ -154,13 +154,13 @@ public:
    *
    * @return The key capture widget.
    */
-  Widget* get_key_capture_widget();
+  auto get_key_capture_widget() -> Widget*;
 
   /** Gets the widget that @a entry is capturing key events from.
    *
    * @return The key capture widget.
    */
-  const Widget* get_key_capture_widget() const;
+  auto get_key_capture_widget() const -> const Widget*;
   void unset_key_capture_widget();
 
 
@@ -180,7 +180,7 @@ public:
    *
    * @return A delay in milliseconds.
    */
-  unsigned int get_search_delay() const;
+  auto get_search_delay() const -> unsigned int;
 
   // no_default_handler because GtkSearchEntryClass is private.
 
@@ -195,7 +195,7 @@ public:
    * property.
    */
 
-  Glib::SignalProxy<void()> signal_search_changed();
+  auto signal_search_changed() -> Glib::SignalProxy<void()>;
 
   // Although next-match, previous-match and stop-search are keybinding signals,
   // applications shall connect to them.
@@ -217,7 +217,7 @@ public:
    * The default bindings for this signal is Ctrl-g.
    */
 
-  Glib::SignalProxy<void()> signal_next_match();
+  auto signal_next_match() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -237,7 +237,7 @@ public:
    * The default bindings for this signal is Ctrl-Shift-g.
    */
 
-  Glib::SignalProxy<void()> signal_previous_match();
+  auto signal_previous_match() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -256,7 +256,7 @@ public:
    * The default bindings for this signal is Escape.
    */
 
-  Glib::SignalProxy<void()> signal_stop_search();
+  auto signal_stop_search() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -268,7 +268,7 @@ public:
    * Emitted when the user initiated a search on the entry.
    */
 
-  Glib::SignalProxy<void()> signal_search_started();
+  auto signal_search_started() -> Glib::SignalProxy<void()>;
 
 
   /** The text that will be displayed in the `Gtk::SearchEntry`
@@ -279,7 +279,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_placeholder_text() ;
+  auto property_placeholder_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The text that will be displayed in the `Gtk::SearchEntry`
    * when it is empty and unfocused.
@@ -289,7 +289,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_placeholder_text() const;
+  auto property_placeholder_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Whether to activate the default widget when Enter is pressed.
    *
@@ -298,7 +298,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_activates_default() ;
+  auto property_activates_default() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to activate the default widget when Enter is pressed.
    *
@@ -307,7 +307,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_activates_default() const;
+  auto property_activates_default() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The delay in milliseconds from last keypress to the search
    * changed signal.
@@ -319,7 +319,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< unsigned int > property_search_delay() ;
+  auto property_search_delay() -> Glib::PropertyProxy< unsigned int > ;
 
 /** The delay in milliseconds from last keypress to the search
    * changed signal.
@@ -331,7 +331,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_search_delay() const;
+  auto property_search_delay() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
 
 public:
@@ -361,7 +361,7 @@ namespace Glib
    * @relates Gtk::SearchEntry
    */
   GTKMM_API
-  Gtk::SearchEntry* wrap(GtkSearchEntry* object, bool take_copy = false);
+  auto wrap(GtkSearchEntry* object, bool take_copy = false) -> Gtk::SearchEntry*;
 } //namespace Glib
 
 

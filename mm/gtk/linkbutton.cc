@@ -31,7 +31,7 @@ namespace
 {
 
 
-static gboolean LinkButton_signal_activate_link_callback(GtkLinkButton* self, void* data)
+auto LinkButton_signal_activate_link_callback(GtkLinkButton* self, void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<bool()>;
@@ -55,7 +55,7 @@ static gboolean LinkButton_signal_activate_link_callback(GtkLinkButton* self, vo
   return RType();
 }
 
-static gboolean LinkButton_signal_activate_link_notify_callback(GtkLinkButton* self,  void* data)
+auto LinkButton_signal_activate_link_notify_callback(GtkLinkButton* self,  void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void()>;
@@ -79,7 +79,7 @@ static gboolean LinkButton_signal_activate_link_notify_callback(GtkLinkButton* s
   return RType();
 }
 
-static const Glib::SignalProxyInfo LinkButton_signal_activate_link_info =
+const Glib::SignalProxyInfo LinkButton_signal_activate_link_info =
 {
   "activate-link",
   (GCallback) &LinkButton_signal_activate_link_callback,
@@ -93,7 +93,7 @@ static const Glib::SignalProxyInfo LinkButton_signal_activate_link_info =
 namespace Glib
 {
 
-Gtk::LinkButton* wrap(GtkLinkButton* object, bool take_copy)
+auto wrap(GtkLinkButton* object, bool take_copy) -> Gtk::LinkButton*
 {
   return dynamic_cast<Gtk::LinkButton *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -106,7 +106,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& LinkButton_Class::init()
+auto LinkButton_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -137,7 +137,7 @@ void LinkButton_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* LinkButton_Class::wrap_new(GObject* o)
+auto LinkButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new LinkButton((GtkLinkButton*)(o)));
 
@@ -163,7 +163,7 @@ LinkButton::LinkButton(LinkButton&& src) noexcept
 : Gtk::Button(std::move(src))
 {}
 
-LinkButton& LinkButton::operator=(LinkButton&& src) noexcept
+auto LinkButton::operator=(LinkButton&& src) noexcept -> LinkButton&
 {
   Gtk::Button::operator=(std::move(src));
   return *this;
@@ -176,13 +176,13 @@ LinkButton::~LinkButton() noexcept
 
 LinkButton::CppClassType LinkButton::linkbutton_class_; // initialize static member
 
-GType LinkButton::get_type()
+auto LinkButton::get_type() -> GType
 {
   return linkbutton_class_.init().get_type();
 }
 
 
-GType LinkButton::get_base_type()
+auto LinkButton::get_base_type() -> GType
 {
   return gtk_link_button_get_type();
 }
@@ -208,7 +208,7 @@ LinkButton::LinkButton(const Glib::ustring& uri, const Glib::ustring& label)
 
 }
 
-Glib::ustring LinkButton::get_uri() const
+auto LinkButton::get_uri() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_link_button_get_uri(const_cast<GtkLinkButton*>(gobj())));
 }
@@ -218,7 +218,7 @@ void LinkButton::set_uri(const Glib::ustring& uri)
   gtk_link_button_set_uri(gobj(), uri.c_str());
 }
 
-bool LinkButton::get_visited() const
+auto LinkButton::get_visited() const -> bool
 {
   return gtk_link_button_get_visited(const_cast<GtkLinkButton*>(gobj()));
 }
@@ -229,28 +229,28 @@ void LinkButton::set_visited(bool visited)
 }
 
 
-Glib::SignalProxy<bool()> LinkButton::signal_activate_link()
+auto LinkButton::signal_activate_link() -> Glib::SignalProxy<bool()>
 {
   return Glib::SignalProxy<bool() >(this, &LinkButton_signal_activate_link_info);
 }
 
 
-Glib::PropertyProxy< Glib::ustring > LinkButton::property_uri()
+auto LinkButton::property_uri() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "uri");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > LinkButton::property_uri() const
+auto LinkButton::property_uri() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "uri");
 }
 
-Glib::PropertyProxy< bool > LinkButton::property_visited()
+auto LinkButton::property_visited() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "visited");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > LinkButton::property_visited() const
+auto LinkButton::property_visited() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "visited");
 }

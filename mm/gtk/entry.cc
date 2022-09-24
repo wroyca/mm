@@ -63,7 +63,7 @@ void Entry::set_icon_tooltip_markup(const Glib::ustring& tooltip, IconPosition i
   gtk_entry_set_icon_tooltip_markup(gobj(), static_cast<GtkEntryIconPosition>(icon_pos), tooltip.c_str());
 }
 
-Gdk::Rectangle Entry::get_icon_area(IconPosition icon_pos) const
+auto Entry::get_icon_area(IconPosition icon_pos) const -> Gdk::Rectangle
 {
   Gdk::Rectangle result;
   gtk_entry_get_icon_area(const_cast<GtkEntry*>(gobj()), (GtkEntryIconPosition)icon_pos, result.gobj());
@@ -76,7 +76,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo Entry_signal_activate_info =
+const Glib::SignalProxyInfo Entry_signal_activate_info =
 {
   "activate",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -84,7 +84,7 @@ static const Glib::SignalProxyInfo Entry_signal_activate_info =
 };
 
 
-static void Entry_signal_icon_release_callback(GtkEntry* self, GtkEntryIconPosition p0,void* data)
+void Entry_signal_icon_release_callback(GtkEntry* self, GtkEntryIconPosition p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(IconPosition)>;
@@ -106,7 +106,7 @@ static void Entry_signal_icon_release_callback(GtkEntry* self, GtkEntryIconPosit
   }
 }
 
-static const Glib::SignalProxyInfo Entry_signal_icon_release_info =
+const Glib::SignalProxyInfo Entry_signal_icon_release_info =
 {
   "icon-release",
   (GCallback) &Entry_signal_icon_release_callback,
@@ -114,7 +114,7 @@ static const Glib::SignalProxyInfo Entry_signal_icon_release_info =
 };
 
 
-static void Entry_signal_icon_press_callback(GtkEntry* self, GtkEntryIconPosition p0,void* data)
+void Entry_signal_icon_press_callback(GtkEntry* self, GtkEntryIconPosition p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(IconPosition)>;
@@ -136,7 +136,7 @@ static void Entry_signal_icon_press_callback(GtkEntry* self, GtkEntryIconPositio
   }
 }
 
-static const Glib::SignalProxyInfo Entry_signal_icon_press_info =
+const Glib::SignalProxyInfo Entry_signal_icon_press_info =
 {
   "icon-press",
   (GCallback) &Entry_signal_icon_press_callback,
@@ -147,7 +147,7 @@ static const Glib::SignalProxyInfo Entry_signal_icon_press_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::Entry::IconPosition>::value_type()
+auto Glib::Value<Gtk::Entry::IconPosition>::value_type() -> GType
 {
   return gtk_entry_icon_position_get_type();
 }
@@ -156,7 +156,7 @@ GType Glib::Value<Gtk::Entry::IconPosition>::value_type()
 namespace Glib
 {
 
-Gtk::Entry* wrap(GtkEntry* object, bool take_copy)
+auto wrap(GtkEntry* object, bool take_copy) -> Gtk::Entry*
 {
   return dynamic_cast<Gtk::Entry *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -169,7 +169,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Entry_Class::init()
+auto Entry_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -202,7 +202,7 @@ void Entry_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Entry_Class::wrap_new(GObject* o)
+auto Entry_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Entry((GtkEntry*)(o)));
 
@@ -230,7 +230,7 @@ Entry::Entry(Entry&& src) noexcept
   , CellEditable(std::move(src))
 {}
 
-Entry& Entry::operator=(Entry&& src) noexcept
+auto Entry::operator=(Entry&& src) noexcept -> Entry&
 {
   Gtk::Widget::operator=(std::move(src));
   Editable::operator=(std::move(src));
@@ -245,13 +245,13 @@ Entry::~Entry() noexcept
 
 Entry::CppClassType Entry::entry_class_; // initialize static member
 
-GType Entry::get_type()
+auto Entry::get_type() -> GType
 {
   return entry_class_.init().get_type();
 }
 
 
-GType Entry::get_base_type()
+auto Entry::get_base_type() -> GType
 {
   return gtk_entry_get_type();
 }
@@ -277,7 +277,7 @@ Entry::Entry(const Glib::RefPtr<EntryBuffer>& buffer)
 
 }
 
-Glib::RefPtr<EntryBuffer> Entry::get_buffer()
+auto Entry::get_buffer() -> Glib::RefPtr<EntryBuffer>
 {
   auto retvalue = Glib::wrap(gtk_entry_get_buffer(gobj()));
   if(retvalue)
@@ -285,7 +285,7 @@ Glib::RefPtr<EntryBuffer> Entry::get_buffer()
   return retvalue;
 }
 
-Glib::RefPtr<const EntryBuffer> Entry::get_buffer() const
+auto Entry::get_buffer() const -> Glib::RefPtr<const EntryBuffer>
 {
   return const_cast<Entry*>(this)->get_buffer();
 }
@@ -300,7 +300,7 @@ void Entry::set_visibility(bool visible)
   gtk_entry_set_visibility(gobj(), static_cast<int>(visible));
 }
 
-bool Entry::get_visibility() const
+auto Entry::get_visibility() const -> bool
 {
   return gtk_entry_get_visibility(const_cast<GtkEntry*>(gobj()));
 }
@@ -315,7 +315,7 @@ void Entry::unset_invisible_char()
   gtk_entry_unset_invisible_char(gobj());
 }
 
-gunichar Entry::get_invisible_char() const
+auto Entry::get_invisible_char() const -> gunichar
 {
   return gtk_entry_get_invisible_char(const_cast<GtkEntry*>(gobj()));
 }
@@ -325,7 +325,7 @@ void Entry::set_has_frame(bool setting)
   gtk_entry_set_has_frame(gobj(), static_cast<int>(setting));
 }
 
-bool Entry::get_has_frame() const
+auto Entry::get_has_frame() const -> bool
 {
   return gtk_entry_get_has_frame(const_cast<GtkEntry*>(gobj()));
 }
@@ -335,7 +335,7 @@ void Entry::set_overwrite_mode(bool overwrite)
   gtk_entry_set_overwrite_mode(gobj(), static_cast<int>(overwrite));
 }
 
-bool Entry::get_overwrite_mode() const
+auto Entry::get_overwrite_mode() const -> bool
 {
   return gtk_entry_get_overwrite_mode(const_cast<GtkEntry*>(gobj()));
 }
@@ -345,12 +345,12 @@ void Entry::set_max_length(int max)
   gtk_entry_set_max_length(gobj(), max);
 }
 
-int Entry::get_max_length() const
+auto Entry::get_max_length() const -> int
 {
   return gtk_entry_get_max_length(const_cast<GtkEntry*>(gobj()));
 }
 
-guint16 Entry::get_text_length() const
+auto Entry::get_text_length() const -> guint16
 {
   return gtk_entry_get_text_length(const_cast<GtkEntry*>(gobj()));
 }
@@ -360,7 +360,7 @@ void Entry::set_activates_default(bool setting)
   gtk_entry_set_activates_default(gobj(), static_cast<int>(setting));
 }
 
-gboolean Entry::get_activates_default() const
+auto Entry::get_activates_default() const -> gboolean
 {
   return gtk_entry_get_activates_default(const_cast<GtkEntry*>(gobj()));
 }
@@ -375,7 +375,7 @@ void Entry::set_alignment(Align xalign)
   gtk_entry_set_alignment(gobj(), _gtkmm_align_float_from_enum(xalign));
 }
 
-float Entry::get_alignment() const
+auto Entry::get_alignment() const -> float
 {
   return gtk_entry_get_alignment(const_cast<GtkEntry*>(gobj()));
 }
@@ -385,7 +385,7 @@ void Entry::set_completion(const Glib::RefPtr<EntryCompletion>& completion)
   gtk_entry_set_completion(gobj(), Glib::unwrap(completion));
 }
 
-Glib::RefPtr<EntryCompletion> Entry::get_completion()
+auto Entry::get_completion() -> Glib::RefPtr<EntryCompletion>
 {
   auto retvalue = Glib::wrap(gtk_entry_get_completion(gobj()));
   if(retvalue)
@@ -393,7 +393,7 @@ Glib::RefPtr<EntryCompletion> Entry::get_completion()
   return retvalue;
 }
 
-Glib::RefPtr<const EntryCompletion> Entry::get_completion() const
+auto Entry::get_completion() const -> Glib::RefPtr<const EntryCompletion>
 {
   return const_cast<Entry*>(this)->get_completion();
 }
@@ -403,7 +403,7 @@ void Entry::set_progress_fraction(double fraction)
   gtk_entry_set_progress_fraction(gobj(), fraction);
 }
 
-double Entry::get_progress_fraction() const
+auto Entry::get_progress_fraction() const -> double
 {
   return gtk_entry_get_progress_fraction(const_cast<GtkEntry*>(gobj()));
 }
@@ -413,7 +413,7 @@ void Entry::set_progress_pulse_step(double fraction)
   gtk_entry_set_progress_pulse_step(gobj(), fraction);
 }
 
-double Entry::get_progress_pulse_step()
+auto Entry::get_progress_pulse_step() -> double
 {
   return gtk_entry_get_progress_pulse_step(gobj());
 }
@@ -423,7 +423,7 @@ void Entry::progress_pulse()
   gtk_entry_progress_pulse(gobj());
 }
 
-Glib::ustring Entry::get_placeholder_text() const
+auto Entry::get_placeholder_text() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_entry_get_placeholder_text(const_cast<GtkEntry*>(gobj())));
 }
@@ -438,12 +438,12 @@ void Entry::set_icon_from_paintable(const Glib::RefPtr<Gdk::Paintable>& paintabl
   gtk_entry_set_icon_from_paintable(gobj(), static_cast<GtkEntryIconPosition>(icon_pos), Glib::unwrap(paintable));
 }
 
-Image::Type Entry::get_icon_storage_type(IconPosition icon_pos) const
+auto Entry::get_icon_storage_type(IconPosition icon_pos) const -> Image::Type
 {
   return static_cast<Image::Type>(gtk_entry_get_icon_storage_type(const_cast<GtkEntry*>(gobj()), static_cast<GtkEntryIconPosition>(icon_pos)));
 }
 
-Glib::RefPtr<Gdk::Paintable> Entry::get_icon_paintable(IconPosition icon_pos)
+auto Entry::get_icon_paintable(IconPosition icon_pos) -> Glib::RefPtr<Gdk::Paintable>
 {
   auto retvalue = Glib::wrap(gtk_entry_get_icon_paintable(gobj(), static_cast<GtkEntryIconPosition>(icon_pos)));
   if(retvalue)
@@ -451,17 +451,17 @@ Glib::RefPtr<Gdk::Paintable> Entry::get_icon_paintable(IconPosition icon_pos)
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::Paintable> Entry::get_icon_paintable(IconPosition icon_pos) const
+auto Entry::get_icon_paintable(IconPosition icon_pos) const -> Glib::RefPtr<const Gdk::Paintable>
 {
   return const_cast<Entry*>(this)->get_icon_paintable(icon_pos);
 }
 
-Glib::ustring Entry::get_icon_name(IconPosition icon_pos) const
+auto Entry::get_icon_name(IconPosition icon_pos) const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_entry_get_icon_name(const_cast<GtkEntry*>(gobj()), static_cast<GtkEntryIconPosition>(icon_pos)));
 }
 
-Glib::RefPtr<Gio::Icon> Entry::get_icon_gicon(IconPosition icon_pos)
+auto Entry::get_icon_gicon(IconPosition icon_pos) -> Glib::RefPtr<Gio::Icon>
 {
   auto retvalue = Glib::wrap(gtk_entry_get_icon_gicon(gobj(), static_cast<GtkEntryIconPosition>(icon_pos)));
   if(retvalue)
@@ -469,12 +469,12 @@ Glib::RefPtr<Gio::Icon> Entry::get_icon_gicon(IconPosition icon_pos)
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::Icon> Entry::get_icon_gicon(IconPosition icon_pos) const
+auto Entry::get_icon_gicon(IconPosition icon_pos) const -> Glib::RefPtr<const Gio::Icon>
 {
   return const_cast<Entry*>(this)->get_icon_gicon(icon_pos);
 }
 
-bool Entry::get_icon_activatable(IconPosition icon_pos) const
+auto Entry::get_icon_activatable(IconPosition icon_pos) const -> bool
 {
   return gtk_entry_get_icon_activatable(const_cast<GtkEntry*>(gobj()), static_cast<GtkEntryIconPosition>(icon_pos));
 }
@@ -484,22 +484,22 @@ void Entry::set_icon_sensitive(IconPosition icon_pos, bool sensitive)
   gtk_entry_set_icon_sensitive(gobj(), static_cast<GtkEntryIconPosition>(icon_pos), static_cast<int>(sensitive));
 }
 
-bool Entry::get_icon_sensitive(IconPosition icon_pos)
+auto Entry::get_icon_sensitive(IconPosition icon_pos) -> bool
 {
   return gtk_entry_get_icon_sensitive(gobj(), static_cast<GtkEntryIconPosition>(icon_pos));
 }
 
-int Entry::get_icon_at_pos(int x, int y) const
+auto Entry::get_icon_at_pos(int x, int y) const -> int
 {
   return gtk_entry_get_icon_at_pos(const_cast<GtkEntry*>(gobj()), x, y);
 }
 
-Glib::ustring Entry::get_icon_tooltip_text(IconPosition icon_pos) const
+auto Entry::get_icon_tooltip_text(IconPosition icon_pos) const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_entry_get_icon_tooltip_text(const_cast<GtkEntry*>(gobj()), static_cast<GtkEntryIconPosition>(icon_pos)));
 }
 
-Glib::ustring Entry::get_icon_tooltip_markup(IconPosition icon_pos) const
+auto Entry::get_icon_tooltip_markup(IconPosition icon_pos) const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_entry_get_icon_tooltip_markup(const_cast<GtkEntry*>(gobj()), static_cast<GtkEntryIconPosition>(icon_pos)));
 }
@@ -509,7 +509,7 @@ void Entry::set_icon_drag_source(const Glib::RefPtr<Gdk::ContentProvider>& provi
   gtk_entry_set_icon_drag_source(gobj(), static_cast<GtkEntryIconPosition>(icon_pos), Glib::unwrap(provider), static_cast<GdkDragAction>(actions));
 }
 
-int Entry::get_current_icon_drag_source()
+auto Entry::get_current_icon_drag_source() -> int
 {
   return gtk_entry_get_current_icon_drag_source(gobj());
 }
@@ -524,7 +524,7 @@ void Entry::set_input_purpose(InputPurpose purpose)
   gtk_entry_set_input_purpose(gobj(), static_cast<GtkInputPurpose>(purpose));
 }
 
-InputPurpose Entry::get_input_purpose() const
+auto Entry::get_input_purpose() const -> InputPurpose
 {
   return static_cast<InputPurpose>(gtk_entry_get_input_purpose(const_cast<GtkEntry*>(gobj())));
 }
@@ -534,7 +534,7 @@ void Entry::set_input_hints(InputHints hints)
   gtk_entry_set_input_hints(gobj(), static_cast<GtkInputHints>(hints));
 }
 
-InputHints Entry::get_input_hints() const
+auto Entry::get_input_hints() const -> InputHints
 {
   return static_cast<InputHints>(gtk_entry_get_input_hints(const_cast<GtkEntry*>(gobj())));
 }
@@ -544,7 +544,7 @@ void Entry::set_attributes(Pango::AttrList& attrs)
   gtk_entry_set_attributes(gobj(), (attrs).gobj());
 }
 
-Pango::AttrList Entry::get_attributes() const
+auto Entry::get_attributes() const -> Pango::AttrList
 {
   return Pango::AttrList((gtk_entry_get_attributes(const_cast<GtkEntry*>(gobj()))));
 }
@@ -554,7 +554,7 @@ void Entry::set_tabs(const Pango::TabArray& tabs)
   gtk_entry_set_tabs(gobj(), const_cast<Pango::TabArray&>(tabs).gobj());
 }
 
-Pango::TabArray Entry::get_tabs() const
+auto Entry::get_tabs() const -> Pango::TabArray
 {
   return Pango::TabArray((gtk_entry_get_tabs(const_cast<GtkEntry*>(gobj()))));
 }
@@ -569,7 +569,7 @@ void Entry::set_extra_menu(const Glib::RefPtr<Gio::MenuModel>& model)
   gtk_entry_set_extra_menu(gobj(), Glib::unwrap(model));
 }
 
-Glib::RefPtr<Gio::MenuModel> Entry::get_extra_menu()
+auto Entry::get_extra_menu() -> Glib::RefPtr<Gio::MenuModel>
 {
   auto retvalue = Glib::wrap(gtk_entry_get_extra_menu(gobj()));
   if(retvalue)
@@ -577,25 +577,25 @@ Glib::RefPtr<Gio::MenuModel> Entry::get_extra_menu()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::MenuModel> Entry::get_extra_menu() const
+auto Entry::get_extra_menu() const -> Glib::RefPtr<const Gio::MenuModel>
 {
   return const_cast<Entry*>(this)->get_extra_menu();
 }
 
 
-Glib::SignalProxy<void()> Entry::signal_activate()
+auto Entry::signal_activate() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Entry_signal_activate_info);
 }
 
 
-Glib::SignalProxy<void(IconPosition)> Entry::signal_icon_release()
+auto Entry::signal_icon_release() -> Glib::SignalProxy<void(IconPosition)>
 {
   return Glib::SignalProxy<void(IconPosition) >(this, &Entry_signal_icon_release_info);
 }
 
 
-Glib::SignalProxy<void(IconPosition)> Entry::signal_icon_press()
+auto Entry::signal_icon_press() -> Glib::SignalProxy<void(IconPosition)>
 {
   return Glib::SignalProxy<void(IconPosition) >(this, &Entry_signal_icon_press_info);
 }
@@ -605,42 +605,42 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<EntryBu
   "Type Glib::RefPtr<EntryBuffer> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<EntryBuffer> > Entry::property_buffer()
+auto Entry::property_buffer() -> Glib::PropertyProxy< Glib::RefPtr<EntryBuffer> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<EntryBuffer> >(this, "buffer");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<EntryBuffer> > Entry::property_buffer() const
+auto Entry::property_buffer() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<EntryBuffer> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<EntryBuffer> >(this, "buffer");
 }
 
-Glib::PropertyProxy< int > Entry::property_max_length()
+auto Entry::property_max_length() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "max-length");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Entry::property_max_length() const
+auto Entry::property_max_length() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "max-length");
 }
 
-Glib::PropertyProxy< bool > Entry::property_visibility()
+auto Entry::property_visibility() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "visibility");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Entry::property_visibility() const
+auto Entry::property_visibility() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "visibility");
 }
 
-Glib::PropertyProxy< bool > Entry::property_has_frame()
+auto Entry::property_has_frame() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "has-frame");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Entry::property_has_frame() const
+auto Entry::property_has_frame() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "has-frame");
 }
@@ -649,82 +649,82 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<gunichar>::value,
   "Type gunichar cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< gunichar > Entry::property_invisible_char()
+auto Entry::property_invisible_char() -> Glib::PropertyProxy< gunichar >
 {
   return Glib::PropertyProxy< gunichar >(this, "invisible-char");
 }
 
-Glib::PropertyProxy_ReadOnly< gunichar > Entry::property_invisible_char() const
+auto Entry::property_invisible_char() const -> Glib::PropertyProxy_ReadOnly< gunichar >
 {
   return Glib::PropertyProxy_ReadOnly< gunichar >(this, "invisible-char");
 }
 
-Glib::PropertyProxy< bool > Entry::property_invisible_char_set()
+auto Entry::property_invisible_char_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "invisible-char-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Entry::property_invisible_char_set() const
+auto Entry::property_invisible_char_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "invisible-char-set");
 }
 
-Glib::PropertyProxy< bool > Entry::property_activates_default()
+auto Entry::property_activates_default() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "activates-default");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Entry::property_activates_default() const
+auto Entry::property_activates_default() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "activates-default");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Entry::property_scroll_offset() const
+auto Entry::property_scroll_offset() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "scroll-offset");
 }
 
-Glib::PropertyProxy< bool > Entry::property_truncate_multiline()
+auto Entry::property_truncate_multiline() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "truncate-multiline");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Entry::property_truncate_multiline() const
+auto Entry::property_truncate_multiline() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "truncate-multiline");
 }
 
-Glib::PropertyProxy< bool > Entry::property_overwrite_mode()
+auto Entry::property_overwrite_mode() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "overwrite-mode");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Entry::property_overwrite_mode() const
+auto Entry::property_overwrite_mode() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "overwrite-mode");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > Entry::property_text_length() const
+auto Entry::property_text_length() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "text-length");
 }
 
-Glib::PropertyProxy< double > Entry::property_progress_fraction()
+auto Entry::property_progress_fraction() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "progress-fraction");
 }
 
-Glib::PropertyProxy_ReadOnly< double > Entry::property_progress_fraction() const
+auto Entry::property_progress_fraction() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "progress-fraction");
 }
 
-Glib::PropertyProxy< double > Entry::property_progress_pulse_step()
+auto Entry::property_progress_pulse_step() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "progress-pulse-step");
 }
 
-Glib::PropertyProxy_ReadOnly< double > Entry::property_progress_pulse_step() const
+auto Entry::property_progress_pulse_step() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "progress-pulse-step");
 }
@@ -733,12 +733,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Pa
   "Type Glib::RefPtr<Gdk::Paintable> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> > Entry::property_primary_icon_paintable()
+auto Entry::property_primary_icon_paintable() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> >(this, "primary-icon-paintable");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> > Entry::property_primary_icon_paintable() const
+auto Entry::property_primary_icon_paintable() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> >(this, "primary-icon-paintable");
 }
@@ -747,32 +747,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Pa
   "Type Glib::RefPtr<Gdk::Paintable> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> > Entry::property_secondary_icon_paintable()
+auto Entry::property_secondary_icon_paintable() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> >(this, "secondary-icon-paintable");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> > Entry::property_secondary_icon_paintable() const
+auto Entry::property_secondary_icon_paintable() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> >(this, "secondary-icon-paintable");
 }
 
-Glib::PropertyProxy< Glib::ustring > Entry::property_primary_icon_name()
+auto Entry::property_primary_icon_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "primary-icon-name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Entry::property_primary_icon_name() const
+auto Entry::property_primary_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "primary-icon-name");
 }
 
-Glib::PropertyProxy< Glib::ustring > Entry::property_secondary_icon_name()
+auto Entry::property_secondary_icon_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "secondary-icon-name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Entry::property_secondary_icon_name() const
+auto Entry::property_secondary_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "secondary-icon-name");
 }
@@ -781,12 +781,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Ic
   "Type Glib::RefPtr<Gio::Icon> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> > Entry::property_primary_icon_gicon()
+auto Entry::property_primary_icon_gicon() -> Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> >(this, "primary-icon-gicon");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> > Entry::property_primary_icon_gicon() const
+auto Entry::property_primary_icon_gicon() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> >(this, "primary-icon-gicon");
 }
@@ -795,12 +795,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Ic
   "Type Glib::RefPtr<Gio::Icon> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> > Entry::property_secondary_icon_gicon()
+auto Entry::property_secondary_icon_gicon() -> Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> >(this, "secondary-icon-gicon");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> > Entry::property_secondary_icon_gicon() const
+auto Entry::property_secondary_icon_gicon() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> >(this, "secondary-icon-gicon");
 }
@@ -809,7 +809,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Image::Type>::value,
   "Type Image::Type cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Image::Type > Entry::property_primary_icon_storage_type() const
+auto Entry::property_primary_icon_storage_type() const -> Glib::PropertyProxy_ReadOnly< Image::Type >
 {
   return Glib::PropertyProxy_ReadOnly< Image::Type >(this, "primary-icon-storage-type");
 }
@@ -818,107 +818,107 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Image::Type>::value,
   "Type Image::Type cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Image::Type > Entry::property_secondary_icon_storage_type() const
+auto Entry::property_secondary_icon_storage_type() const -> Glib::PropertyProxy_ReadOnly< Image::Type >
 {
   return Glib::PropertyProxy_ReadOnly< Image::Type >(this, "secondary-icon-storage-type");
 }
 
-Glib::PropertyProxy< bool > Entry::property_primary_icon_activatable()
+auto Entry::property_primary_icon_activatable() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "primary-icon-activatable");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Entry::property_primary_icon_activatable() const
+auto Entry::property_primary_icon_activatable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "primary-icon-activatable");
 }
 
-Glib::PropertyProxy< bool > Entry::property_secondary_icon_activatable()
+auto Entry::property_secondary_icon_activatable() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "secondary-icon-activatable");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Entry::property_secondary_icon_activatable() const
+auto Entry::property_secondary_icon_activatable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "secondary-icon-activatable");
 }
 
-Glib::PropertyProxy< bool > Entry::property_primary_icon_sensitive()
+auto Entry::property_primary_icon_sensitive() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "primary-icon-sensitive");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Entry::property_primary_icon_sensitive() const
+auto Entry::property_primary_icon_sensitive() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "primary-icon-sensitive");
 }
 
-Glib::PropertyProxy< bool > Entry::property_secondary_icon_sensitive()
+auto Entry::property_secondary_icon_sensitive() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "secondary-icon-sensitive");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Entry::property_secondary_icon_sensitive() const
+auto Entry::property_secondary_icon_sensitive() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "secondary-icon-sensitive");
 }
 
-Glib::PropertyProxy< bool > Entry::property_primary_icon_tooltip_text()
+auto Entry::property_primary_icon_tooltip_text() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "primary-icon-tooltip-text");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Entry::property_primary_icon_tooltip_text() const
+auto Entry::property_primary_icon_tooltip_text() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "primary-icon-tooltip-text");
 }
 
-Glib::PropertyProxy< bool > Entry::property_secondary_icon_tooltip_text()
+auto Entry::property_secondary_icon_tooltip_text() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "secondary-icon-tooltip-text");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Entry::property_secondary_icon_tooltip_text() const
+auto Entry::property_secondary_icon_tooltip_text() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "secondary-icon-tooltip-text");
 }
 
-Glib::PropertyProxy< bool > Entry::property_primary_icon_tooltip_markup()
+auto Entry::property_primary_icon_tooltip_markup() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "primary-icon-tooltip-markup");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Entry::property_primary_icon_tooltip_markup() const
+auto Entry::property_primary_icon_tooltip_markup() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "primary-icon-tooltip-markup");
 }
 
-Glib::PropertyProxy< bool > Entry::property_secondary_icon_tooltip_markup()
+auto Entry::property_secondary_icon_tooltip_markup() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "secondary-icon-tooltip-markup");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Entry::property_secondary_icon_tooltip_markup() const
+auto Entry::property_secondary_icon_tooltip_markup() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "secondary-icon-tooltip-markup");
 }
 
-Glib::PropertyProxy< Glib::ustring > Entry::property_im_module()
+auto Entry::property_im_module() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "im-module");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Entry::property_im_module() const
+auto Entry::property_im_module() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "im-module");
 }
 
-Glib::PropertyProxy< Glib::ustring > Entry::property_placeholder_text()
+auto Entry::property_placeholder_text() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "placeholder-text");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Entry::property_placeholder_text() const
+auto Entry::property_placeholder_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "placeholder-text");
 }
@@ -927,12 +927,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<EntryCo
   "Type Glib::RefPtr<EntryCompletion> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<EntryCompletion> > Entry::property_completion()
+auto Entry::property_completion() -> Glib::PropertyProxy< Glib::RefPtr<EntryCompletion> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<EntryCompletion> >(this, "completion");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<EntryCompletion> > Entry::property_completion() const
+auto Entry::property_completion() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<EntryCompletion> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<EntryCompletion> >(this, "completion");
 }
@@ -941,12 +941,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<InputPurpose>::value
   "Type InputPurpose cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< InputPurpose > Entry::property_input_purpose()
+auto Entry::property_input_purpose() -> Glib::PropertyProxy< InputPurpose >
 {
   return Glib::PropertyProxy< InputPurpose >(this, "input-purpose");
 }
 
-Glib::PropertyProxy_ReadOnly< InputPurpose > Entry::property_input_purpose() const
+auto Entry::property_input_purpose() const -> Glib::PropertyProxy_ReadOnly< InputPurpose >
 {
   return Glib::PropertyProxy_ReadOnly< InputPurpose >(this, "input-purpose");
 }
@@ -955,12 +955,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<InputHints>::value,
   "Type InputHints cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< InputHints > Entry::property_input_hints()
+auto Entry::property_input_hints() -> Glib::PropertyProxy< InputHints >
 {
   return Glib::PropertyProxy< InputHints >(this, "input-hints");
 }
 
-Glib::PropertyProxy_ReadOnly< InputHints > Entry::property_input_hints() const
+auto Entry::property_input_hints() const -> Glib::PropertyProxy_ReadOnly< InputHints >
 {
   return Glib::PropertyProxy_ReadOnly< InputHints >(this, "input-hints");
 }
@@ -969,12 +969,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::AttrList>::va
   "Type Pango::AttrList cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::AttrList > Entry::property_attributes()
+auto Entry::property_attributes() -> Glib::PropertyProxy< Pango::AttrList >
 {
   return Glib::PropertyProxy< Pango::AttrList >(this, "attributes");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::AttrList > Entry::property_attributes() const
+auto Entry::property_attributes() const -> Glib::PropertyProxy_ReadOnly< Pango::AttrList >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::AttrList >(this, "attributes");
 }
@@ -983,12 +983,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::TabArray>::va
   "Type Pango::TabArray cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::TabArray > Entry::property_tabs()
+auto Entry::property_tabs() -> Glib::PropertyProxy< Pango::TabArray >
 {
   return Glib::PropertyProxy< Pango::TabArray >(this, "tabs");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::TabArray > Entry::property_tabs() const
+auto Entry::property_tabs() const -> Glib::PropertyProxy_ReadOnly< Pango::TabArray >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::TabArray >(this, "tabs");
 }
@@ -997,32 +997,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Me
   "Type Glib::RefPtr<Gio::MenuModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > Entry::property_extra_menu()
+auto Entry::property_extra_menu() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >(this, "extra-menu");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> > Entry::property_extra_menu() const
+auto Entry::property_extra_menu() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >(this, "extra-menu");
 }
 
-Glib::PropertyProxy< bool > Entry::property_show_emoji_icon()
+auto Entry::property_show_emoji_icon() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "show-emoji-icon");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Entry::property_show_emoji_icon() const
+auto Entry::property_show_emoji_icon() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "show-emoji-icon");
 }
 
-Glib::PropertyProxy< bool > Entry::property_enable_emoji_completion()
+auto Entry::property_enable_emoji_completion() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "enable-emoji-completion");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Entry::property_enable_emoji_completion() const
+auto Entry::property_enable_emoji_completion() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "enable-emoji-completion");
 }

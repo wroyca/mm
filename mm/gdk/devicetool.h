@@ -57,7 +57,7 @@ public:
 
   // noncopyable
   DeviceTool(const DeviceTool&) = delete;
-  DeviceTool& operator=(const DeviceTool&) = delete;
+  auto operator=(const DeviceTool&) -> DeviceTool& = delete;
 
 private:  friend class DeviceTool_Class;
   static CppClassType devicetool_class_;
@@ -71,28 +71,28 @@ protected:
 public:
 
   DeviceTool(DeviceTool&& src) noexcept;
-  DeviceTool& operator=(DeviceTool&& src) noexcept;
+  auto operator=(DeviceTool&& src) noexcept -> DeviceTool&;
 
   ~DeviceTool() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkDeviceTool*       gobj()       { return reinterpret_cast<GdkDeviceTool*>(gobject_); }
+  auto       gobj() -> GdkDeviceTool*       { return reinterpret_cast<GdkDeviceTool*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkDeviceTool* gobj() const { return reinterpret_cast<GdkDeviceTool*>(gobject_); }
+  auto gobj() const -> const GdkDeviceTool* { return reinterpret_cast<GdkDeviceTool*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkDeviceTool* gobj_copy();
+  auto gobj_copy() -> GdkDeviceTool*;
 
 private:
 
@@ -152,7 +152,7 @@ public:
    *
    * @return The serial ID for this tool.
    */
-  guint64 get_serial() const;
+  auto get_serial() const -> guint64;
 
   /** Gets the hardware ID of this tool, or 0 if it's not known.
    *
@@ -168,7 +168,7 @@ public:
    *
    * @return The hardware identificator of this tool.
    */
-  guint64 get_hardware_id() const;
+  auto get_hardware_id() const -> guint64;
 
   /** Gets the `Gdk::DeviceTool::Type` of the tool.
    *
@@ -176,13 +176,13 @@ public:
    * figure out what sort of pen is being used, such as an airbrush
    * or a pencil.
    */
-  Type get_tool_type() const;
+  auto get_tool_type() const -> Type;
 
   /** Gets the axes of the tool.
    *
    * @return The axes of @a tool.
    */
-  AxisFlags get_axes() const;
+  auto get_axes() const -> AxisFlags;
 
   /** The serial number of the tool.
    *
@@ -191,7 +191,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint64 > property_serial() const;
+  auto property_serial() const -> Glib::PropertyProxy_ReadOnly< guint64 >;
 
 
   /** The type of the tool.
@@ -201,7 +201,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Type > property_tool_type() const;
+  auto property_tool_type() const -> Glib::PropertyProxy_ReadOnly< Type >;
 
 
   /** The axes of the tool.
@@ -211,7 +211,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< AxisFlags > property_axes() const;
+  auto property_axes() const -> Glib::PropertyProxy_ReadOnly< AxisFlags >;
 
 
   /** The hardware ID of the tool.
@@ -221,7 +221,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint64 > property_hardware_id() const;
+  auto property_hardware_id() const -> Glib::PropertyProxy_ReadOnly< guint64 >;
 
 
   // There are no signals or vfuncs.
@@ -251,7 +251,7 @@ template <>
 class GDKMM_API Value<Gdk::DeviceTool::Type> : public Glib::Value_Enum<Gdk::DeviceTool::Type>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -269,7 +269,7 @@ namespace Glib
    * @relates Gdk::DeviceTool
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::DeviceTool> wrap(GdkDeviceTool* object, bool take_copy = false);
+  auto wrap(GdkDeviceTool* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DeviceTool>;
 }
 
 

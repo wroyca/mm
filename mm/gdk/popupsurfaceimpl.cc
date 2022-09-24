@@ -28,7 +28,7 @@ PopupSurfaceImpl::PopupSurfaceImpl(PopupSurfaceImpl&& src) noexcept
   Surface(std::move(src))
 {}
 
-PopupSurfaceImpl& PopupSurfaceImpl::operator=(PopupSurfaceImpl&& src) noexcept
+auto PopupSurfaceImpl::operator=(PopupSurfaceImpl&& src) noexcept -> PopupSurfaceImpl&
 {
   Popup::operator=(std::move(src));
   Surface::operator=(std::move(src));

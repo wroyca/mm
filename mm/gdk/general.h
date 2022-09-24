@@ -27,10 +27,7 @@
 #include <mm/cairo/region.h>
 #include <mm/cairo/surface.h>
 
-namespace Gdk
-{
-
-namespace Cairo
+namespace Gdk::Cairo
 {
 
 /** Sets the specified Gdk::RGBA as the source color of the Cairo context.
@@ -88,7 +85,7 @@ void add_region_to_path(const ::Cairo::RefPtr< ::Cairo::Context >& context, cons
  * @newin{3,24}
  */
 GDKMM_API
-::Cairo::RefPtr< ::Cairo::Region> create_region_from_surface(const ::Cairo::RefPtr< ::Cairo::Surface>& surface);
+auto create_region_from_surface(const ::Cairo::RefPtr< ::Cairo::Surface>& surface) -> ::Cairo::RefPtr< ::Cairo::Region>;
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 /** This is the main way to draw GL content in gtkmm.
@@ -132,8 +129,6 @@ void draw_from_gl(const ::Cairo::RefPtr< ::Cairo::Context >& context,
   const Glib::RefPtr<Gdk::Surface>& surface, int source, int source_type,
   int buffer_scale, int x, int y, int width, int height);
 #endif // GDKMM_DISABLE_DEPRECATED
-
-} //namespace Cairo
 
 } //namespace Gdk
 

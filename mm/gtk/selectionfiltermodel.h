@@ -63,7 +63,7 @@ public:
 
   // noncopyable
   SelectionFilterModel(const SelectionFilterModel&) = delete;
-  SelectionFilterModel& operator=(const SelectionFilterModel&) = delete;
+  auto operator=(const SelectionFilterModel&) -> SelectionFilterModel& = delete;
 
 private:  friend class SelectionFilterModel_Class;
   static CppClassType selectionfiltermodel_class_;
@@ -77,28 +77,28 @@ protected:
 public:
 
   SelectionFilterModel(SelectionFilterModel&& src) noexcept;
-  SelectionFilterModel& operator=(SelectionFilterModel&& src) noexcept;
+  auto operator=(SelectionFilterModel&& src) noexcept -> SelectionFilterModel&;
 
   ~SelectionFilterModel() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkSelectionFilterModel*       gobj()       { return reinterpret_cast<GtkSelectionFilterModel*>(gobject_); }
+  auto       gobj() -> GtkSelectionFilterModel*       { return reinterpret_cast<GtkSelectionFilterModel*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkSelectionFilterModel* gobj() const { return reinterpret_cast<GtkSelectionFilterModel*>(gobject_); }
+  auto gobj() const -> const GtkSelectionFilterModel* { return reinterpret_cast<GtkSelectionFilterModel*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkSelectionFilterModel* gobj_copy();
+  auto gobj_copy() -> GtkSelectionFilterModel*;
 
 private:
 
@@ -109,7 +109,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<SelectionFilterModel> create(const Glib::RefPtr<SelectionModel>& model);
+  static auto create(const Glib::RefPtr<SelectionModel>& model) -> Glib::RefPtr<SelectionFilterModel>;
 
 
   /** Sets the model to be filtered.
@@ -127,13 +127,13 @@ public:
    *
    * @return The model that gets filtered.
    */
-  Glib::RefPtr<SelectionModel> get_model();
+  auto get_model() -> Glib::RefPtr<SelectionModel>;
 
   /** Gets the model currently filtered or <tt>nullptr</tt> if none.
    *
    * @return The model that gets filtered.
    */
-  Glib::RefPtr<const SelectionModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const SelectionModel>;
 
   /** The type of items. See Gio::ListModel::get_item_type().
    *
@@ -142,7 +142,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< GType > property_item_type() const;
+  auto property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >;
 
 
   /** The model being filtered.
@@ -150,14 +150,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<SelectionModel> > property_model() ;
+  auto property_model() -> Glib::PropertyProxy< Glib::RefPtr<SelectionModel> > ;
 
 /** The model being filtered.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> >;
 
   /** The number of items. See Gio::ListModel::get_n_items().
    *
@@ -168,7 +168,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_n_items() const;
+  auto property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
 
 public:
@@ -198,7 +198,7 @@ namespace Glib
    * @relates Gtk::SelectionFilterModel
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::SelectionFilterModel> wrap(GtkSelectionFilterModel* object, bool take_copy = false);
+  auto wrap(GtkSelectionFilterModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SelectionFilterModel>;
 }
 
 

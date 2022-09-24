@@ -161,8 +161,8 @@ OutputStream::close_async(const SlotAsyncReady& slot, int io_priority)
   g_output_stream_close_async(gobj(), io_priority, nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-gssize
-OutputStream::write(const std::string& buffer, const Glib::RefPtr<Cancellable>& cancellable)
+auto
+OutputStream::write(const std::string& buffer, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
   gssize retvalue = g_output_stream_write(
@@ -173,8 +173,8 @@ OutputStream::write(const std::string& buffer, const Glib::RefPtr<Cancellable>& 
   return retvalue;
 }
 
-gssize
-OutputStream::write(const std::string& buffer)
+auto
+OutputStream::write(const std::string& buffer) -> gssize
 {
   GError* gerror = nullptr;
   gssize retvalue = g_output_stream_write(gobj(), buffer.data(), buffer.size(), nullptr, &(gerror));
@@ -184,9 +184,9 @@ OutputStream::write(const std::string& buffer)
   return retvalue;
 }
 
-bool
+auto
 OutputStream::write_all(
-  const std::string& buffer, gsize& bytes_written, const Glib::RefPtr<Cancellable>& cancellable)
+  const std::string& buffer, gsize& bytes_written, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   bool retvalue = g_output_stream_write_all(
@@ -197,8 +197,8 @@ OutputStream::write_all(
   return retvalue;
 }
 
-bool
-OutputStream::write_all(const std::string& buffer, gsize& bytes_written)
+auto
+OutputStream::write_all(const std::string& buffer, gsize& bytes_written) -> bool
 {
   GError* gerror = nullptr;
   bool retvalue = g_output_stream_write_all(
@@ -235,9 +235,9 @@ OutputStream::write_bytes_async(
     nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-gssize
+auto
 OutputStream::splice(const Glib::RefPtr<InputStream>& source,
-  const Glib::RefPtr<Cancellable>& cancellable, SpliceFlags flags)
+  const Glib::RefPtr<Cancellable>& cancellable, SpliceFlags flags) -> gssize
 {
   GError* gerror = nullptr;
   gssize retvalue = g_output_stream_splice(gobj(), Glib::unwrap(source),
@@ -248,8 +248,8 @@ OutputStream::splice(const Glib::RefPtr<InputStream>& source,
   return retvalue;
 }
 
-gssize
-OutputStream::splice(const Glib::RefPtr<InputStream>& source, SpliceFlags flags)
+auto
+OutputStream::splice(const Glib::RefPtr<InputStream>& source, SpliceFlags flags) -> gssize
 {
   GError* gerror = nullptr;
   gssize retvalue = g_output_stream_splice(
@@ -270,7 +270,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::OutputStream> wrap(GOutputStream* object, bool take_copy)
+auto wrap(GOutputStream* object, bool take_copy) -> Glib::RefPtr<Gio::OutputStream>
 {
   return Glib::make_refptr_for_instance<Gio::OutputStream>( dynamic_cast<Gio::OutputStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -285,7 +285,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& OutputStream_Class::init()
+auto OutputStream_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -319,7 +319,7 @@ void OutputStream_Class::class_init_function(void* g_class, void* class_data)
 
 }
 
-gssize OutputStream_Class::write_fn_vfunc_callback(GOutputStream* self, const void* buffer, gsize count, GCancellable* cancellable, GError** error)
+auto OutputStream_Class::write_fn_vfunc_callback(GOutputStream* self, const void* buffer, gsize count, GCancellable* cancellable, GError** error) -> gssize
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -363,7 +363,7 @@ gssize OutputStream_Class::write_fn_vfunc_callback(GOutputStream* self, const vo
   using RType = gssize;
   return RType();
 }
-gssize OutputStream_Class::splice_vfunc_callback(GOutputStream* self, GInputStream* source, GOutputStreamSpliceFlags flags, GCancellable* cancellable, GError** error)
+auto OutputStream_Class::splice_vfunc_callback(GOutputStream* self, GInputStream* source, GOutputStreamSpliceFlags flags, GCancellable* cancellable, GError** error) -> gssize
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -409,7 +409,7 @@ gssize OutputStream_Class::splice_vfunc_callback(GOutputStream* self, GInputStre
   using RType = gssize;
   return RType();
 }
-gboolean OutputStream_Class::flush_vfunc_callback(GOutputStream* self, GCancellable* cancellable, GError** error)
+auto OutputStream_Class::flush_vfunc_callback(GOutputStream* self, GCancellable* cancellable, GError** error) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -454,7 +454,7 @@ gboolean OutputStream_Class::flush_vfunc_callback(GOutputStream* self, GCancella
   using RType = gboolean;
   return RType();
 }
-gboolean OutputStream_Class::close_fn_vfunc_callback(GOutputStream* self, GCancellable* cancellable, GError** error)
+auto OutputStream_Class::close_fn_vfunc_callback(GOutputStream* self, GCancellable* cancellable, GError** error) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -501,7 +501,7 @@ gboolean OutputStream_Class::close_fn_vfunc_callback(GOutputStream* self, GCance
 }
 
 
-Glib::ObjectBase* OutputStream_Class::wrap_new(GObject* object)
+auto OutputStream_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new OutputStream((GOutputStream*)object);
 }
@@ -509,7 +509,7 @@ Glib::ObjectBase* OutputStream_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GOutputStream* OutputStream::gobj_copy()
+auto OutputStream::gobj_copy() -> GOutputStream*
 {
   reference();
   return gobj();
@@ -532,7 +532,7 @@ OutputStream::OutputStream(OutputStream&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-OutputStream& OutputStream::operator=(OutputStream&& src) noexcept
+auto OutputStream::operator=(OutputStream&& src) noexcept -> OutputStream&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -545,13 +545,13 @@ OutputStream::~OutputStream() noexcept
 
 OutputStream::CppClassType OutputStream::outputstream_class_; // initialize static member
 
-GType OutputStream::get_type()
+auto OutputStream::get_type() -> GType
 {
   return outputstream_class_.init().get_type();
 }
 
 
-GType OutputStream::get_base_type()
+auto OutputStream::get_base_type() -> GType
 {
   return g_output_stream_get_type();
 }
@@ -567,7 +567,7 @@ OutputStream::OutputStream()
 
 }
 
-gssize OutputStream::write(const void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable)
+auto OutputStream::write(const void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
   auto retvalue = g_output_stream_write(gobj(), buffer, count, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -576,7 +576,7 @@ gssize OutputStream::write(const void* buffer, gsize count, const Glib::RefPtr<C
   return retvalue;
 }
 
-gssize OutputStream::write(const void* buffer, gsize count)
+auto OutputStream::write(const void* buffer, gsize count) -> gssize
 {
   GError* gerror = nullptr;
   auto retvalue = g_output_stream_write(gobj(), buffer, count, nullptr, &(gerror));
@@ -585,7 +585,7 @@ gssize OutputStream::write(const void* buffer, gsize count)
   return retvalue;
 }
 
-bool OutputStream::write_all(const void* buffer, gsize count, gsize& bytes_written, const Glib::RefPtr<Cancellable>& cancellable)
+auto OutputStream::write_all(const void* buffer, gsize count, gsize& bytes_written, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_output_stream_write_all(gobj(), buffer, count, &(bytes_written), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -594,7 +594,7 @@ bool OutputStream::write_all(const void* buffer, gsize count, gsize& bytes_writt
   return retvalue;
 }
 
-bool OutputStream::write_all(const void* buffer, gsize count, gsize& bytes_written)
+auto OutputStream::write_all(const void* buffer, gsize count, gsize& bytes_written) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_output_stream_write_all(gobj(), buffer, count, &(bytes_written), nullptr, &(gerror));
@@ -603,7 +603,7 @@ bool OutputStream::write_all(const void* buffer, gsize count, gsize& bytes_writt
   return retvalue;
 }
 
-gssize OutputStream::write_bytes(const Glib::RefPtr<const Glib::Bytes>& bytes, const Glib::RefPtr<Cancellable>& cancellable)
+auto OutputStream::write_bytes(const Glib::RefPtr<const Glib::Bytes>& bytes, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
   auto retvalue = g_output_stream_write_bytes(gobj(), const_cast<GBytes*>(Glib::unwrap<Glib::Bytes>(bytes)), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -612,7 +612,7 @@ gssize OutputStream::write_bytes(const Glib::RefPtr<const Glib::Bytes>& bytes, c
   return retvalue;
 }
 
-gssize OutputStream::write_bytes(const Glib::RefPtr<const Glib::Bytes>& bytes)
+auto OutputStream::write_bytes(const Glib::RefPtr<const Glib::Bytes>& bytes) -> gssize
 {
   GError* gerror = nullptr;
   auto retvalue = g_output_stream_write_bytes(gobj(), const_cast<GBytes*>(Glib::unwrap<Glib::Bytes>(bytes)), nullptr, &(gerror));
@@ -621,7 +621,7 @@ gssize OutputStream::write_bytes(const Glib::RefPtr<const Glib::Bytes>& bytes)
   return retvalue;
 }
 
-gssize OutputStream::write_bytes_finish(const Glib::RefPtr<AsyncResult>& result)
+auto OutputStream::write_bytes_finish(const Glib::RefPtr<AsyncResult>& result) -> gssize
 {
   GError* gerror = nullptr;
   auto retvalue = g_output_stream_write_bytes_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -630,7 +630,7 @@ gssize OutputStream::write_bytes_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool OutputStream::flush(const Glib::RefPtr<Cancellable>& cancellable)
+auto OutputStream::flush(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_output_stream_flush(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -639,7 +639,7 @@ bool OutputStream::flush(const Glib::RefPtr<Cancellable>& cancellable)
   return retvalue;
 }
 
-bool OutputStream::flush()
+auto OutputStream::flush() -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_output_stream_flush(gobj(), nullptr, &(gerror));
@@ -648,7 +648,7 @@ bool OutputStream::flush()
   return retvalue;
 }
 
-bool OutputStream::close(const Glib::RefPtr<Cancellable>& cancellable)
+auto OutputStream::close(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_output_stream_close(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -657,7 +657,7 @@ bool OutputStream::close(const Glib::RefPtr<Cancellable>& cancellable)
   return retvalue;
 }
 
-bool OutputStream::close()
+auto OutputStream::close() -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_output_stream_close(gobj(), nullptr, &(gerror));
@@ -666,7 +666,7 @@ bool OutputStream::close()
   return retvalue;
 }
 
-gssize OutputStream::write_finish(const Glib::RefPtr<AsyncResult>& result)
+auto OutputStream::write_finish(const Glib::RefPtr<AsyncResult>& result) -> gssize
 {
   GError* gerror = nullptr;
   auto retvalue = g_output_stream_write_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -675,7 +675,7 @@ gssize OutputStream::write_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool OutputStream::write_all_finish(const Glib::RefPtr<AsyncResult>& result, gsize& bytes_written)
+auto OutputStream::write_all_finish(const Glib::RefPtr<AsyncResult>& result, gsize& bytes_written) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_output_stream_write_all_finish(gobj(), Glib::unwrap(result), &(bytes_written), &(gerror));
@@ -684,7 +684,7 @@ bool OutputStream::write_all_finish(const Glib::RefPtr<AsyncResult>& result, gsi
   return retvalue;
 }
 
-gssize OutputStream::splice_finish(const Glib::RefPtr<AsyncResult>& result)
+auto OutputStream::splice_finish(const Glib::RefPtr<AsyncResult>& result) -> gssize
 {
   GError* gerror = nullptr;
   auto retvalue = g_output_stream_splice_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -693,7 +693,7 @@ gssize OutputStream::splice_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool OutputStream::flush_finish(const Glib::RefPtr<AsyncResult>& result)
+auto OutputStream::flush_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_output_stream_flush_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -702,7 +702,7 @@ bool OutputStream::flush_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool OutputStream::close_finish(const Glib::RefPtr<AsyncResult>& result)
+auto OutputStream::close_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_output_stream_close_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -711,22 +711,22 @@ bool OutputStream::close_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool OutputStream::is_closed() const
+auto OutputStream::is_closed() const -> bool
 {
   return g_output_stream_is_closed(const_cast<GOutputStream*>(gobj()));
 }
 
-bool OutputStream::is_closing() const
+auto OutputStream::is_closing() const -> bool
 {
   return g_output_stream_is_closing(const_cast<GOutputStream*>(gobj()));
 }
 
-bool OutputStream::has_pending() const
+auto OutputStream::has_pending() const -> bool
 {
   return g_output_stream_has_pending(const_cast<GOutputStream*>(gobj()));
 }
 
-bool OutputStream::set_pending()
+auto OutputStream::set_pending() -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_output_stream_set_pending(gobj(), &(gerror));
@@ -741,7 +741,7 @@ void OutputStream::clear_pending()
 }
 
 
-gssize Gio::OutputStream::write_vfunc(const void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable)
+auto Gio::OutputStream::write_vfunc(const void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -759,7 +759,7 @@ gssize Gio::OutputStream::write_vfunc(const void* buffer, gsize count, const Gli
   using RType = gssize;
   return RType();
 }
-gssize Gio::OutputStream::splice_vfunc(const Glib::RefPtr<InputStream>& source, const Glib::RefPtr<Cancellable>& cancellable, SpliceFlags flags)
+auto Gio::OutputStream::splice_vfunc(const Glib::RefPtr<InputStream>& source, const Glib::RefPtr<Cancellable>& cancellable, SpliceFlags flags) -> gssize
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -777,7 +777,7 @@ gssize Gio::OutputStream::splice_vfunc(const Glib::RefPtr<InputStream>& source, 
   using RType = gssize;
   return RType();
 }
-bool Gio::OutputStream::flush_vfunc(const Glib::RefPtr<Cancellable>& cancellable)
+auto Gio::OutputStream::flush_vfunc(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -795,7 +795,7 @@ bool Gio::OutputStream::flush_vfunc(const Glib::RefPtr<Cancellable>& cancellable
   using RType = bool;
   return RType();
 }
-bool Gio::OutputStream::close_vfunc(const Glib::RefPtr<Cancellable>& cancellable)
+auto Gio::OutputStream::close_vfunc(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

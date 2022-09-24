@@ -31,8 +31,8 @@ namespace Gio
 // static
 std::set<SocketControlMessage::DeserializeFunc> SocketControlMessage::m_deserialize_funcs;
 
-GSocketControlMessage* SocketControlMessage_Class::deserialize_vfunc_callback(
-  int level, int type, gsize size, gpointer data)
+auto SocketControlMessage_Class::deserialize_vfunc_callback(
+  int level, int type, gsize size, gpointer data) -> GSocketControlMessage*
 {
   // Loop through all registered deserialize functions.
   // Accept the returned message from the first function that has been able to
@@ -79,7 +79,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::SocketControlMessage> wrap(GSocketControlMessage* object, bool take_copy)
+auto wrap(GSocketControlMessage* object, bool take_copy) -> Glib::RefPtr<Gio::SocketControlMessage>
 {
   return Glib::make_refptr_for_instance<Gio::SocketControlMessage>( dynamic_cast<Gio::SocketControlMessage*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -94,7 +94,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& SocketControlMessage_Class::init()
+auto SocketControlMessage_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -129,7 +129,7 @@ void SocketControlMessage_Class::class_init_function(void* g_class, void* class_
 
 }
 
-gsize SocketControlMessage_Class::get_size_vfunc_callback(GSocketControlMessage* self)
+auto SocketControlMessage_Class::get_size_vfunc_callback(GSocketControlMessage* self) -> gsize
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -167,7 +167,7 @@ gsize SocketControlMessage_Class::get_size_vfunc_callback(GSocketControlMessage*
   using RType = gsize;
   return RType();
 }
-int SocketControlMessage_Class::get_level_vfunc_callback(GSocketControlMessage* self)
+auto SocketControlMessage_Class::get_level_vfunc_callback(GSocketControlMessage* self) -> int
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -205,7 +205,7 @@ int SocketControlMessage_Class::get_level_vfunc_callback(GSocketControlMessage* 
   using RType = int;
   return RType();
 }
-int SocketControlMessage_Class::get_type_vfunc_callback(GSocketControlMessage* self)
+auto SocketControlMessage_Class::get_type_vfunc_callback(GSocketControlMessage* self) -> int
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -281,7 +281,7 @@ void SocketControlMessage_Class::serialize_vfunc_callback(GSocketControlMessage*
 }
 
 
-Glib::ObjectBase* SocketControlMessage_Class::wrap_new(GObject* object)
+auto SocketControlMessage_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new SocketControlMessage((GSocketControlMessage*)object);
 }
@@ -289,7 +289,7 @@ Glib::ObjectBase* SocketControlMessage_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GSocketControlMessage* SocketControlMessage::gobj_copy()
+auto SocketControlMessage::gobj_copy() -> GSocketControlMessage*
 {
   reference();
   return gobj();
@@ -312,7 +312,7 @@ SocketControlMessage::SocketControlMessage(SocketControlMessage&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-SocketControlMessage& SocketControlMessage::operator=(SocketControlMessage&& src) noexcept
+auto SocketControlMessage::operator=(SocketControlMessage&& src) noexcept -> SocketControlMessage&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -325,13 +325,13 @@ SocketControlMessage::~SocketControlMessage() noexcept
 
 SocketControlMessage::CppClassType SocketControlMessage::socketcontrolmessage_class_; // initialize static member
 
-GType SocketControlMessage::get_type()
+auto SocketControlMessage::get_type() -> GType
 {
   return socketcontrolmessage_class_.init().get_type();
 }
 
 
-GType SocketControlMessage::get_base_type()
+auto SocketControlMessage::get_base_type() -> GType
 {
   return g_socket_control_message_get_type();
 }
@@ -347,22 +347,22 @@ SocketControlMessage::SocketControlMessage()
 
 }
 
-Glib::RefPtr<SocketControlMessage> SocketControlMessage::deserialize(int level, int type, gsize size, gpointer data)
+auto SocketControlMessage::deserialize(int level, int type, gsize size, gpointer data) -> Glib::RefPtr<SocketControlMessage>
 {
   return Glib::wrap(g_socket_control_message_deserialize(level, type, size, data));
 }
 
-int SocketControlMessage::get_level() const
+auto SocketControlMessage::get_level() const -> int
 {
   return g_socket_control_message_get_level(const_cast<GSocketControlMessage*>(gobj()));
 }
 
-int SocketControlMessage::get_msg_type() const
+auto SocketControlMessage::get_msg_type() const -> int
 {
   return g_socket_control_message_get_msg_type(const_cast<GSocketControlMessage*>(gobj()));
 }
 
-gsize SocketControlMessage::get_size() const
+auto SocketControlMessage::get_size() const -> gsize
 {
   return g_socket_control_message_get_size(const_cast<GSocketControlMessage*>(gobj()));
 }
@@ -373,7 +373,7 @@ void SocketControlMessage::serialize(gpointer data)
 }
 
 
-gsize Gio::SocketControlMessage::get_size_vfunc() const
+auto Gio::SocketControlMessage::get_size_vfunc() const -> gsize
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -388,7 +388,7 @@ gsize Gio::SocketControlMessage::get_size_vfunc() const
   using RType = gsize;
   return RType();
 }
-int Gio::SocketControlMessage::get_level_vfunc() const
+auto Gio::SocketControlMessage::get_level_vfunc() const -> int
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -403,7 +403,7 @@ int Gio::SocketControlMessage::get_level_vfunc() const
   using RType = int;
   return RType();
 }
-int Gio::SocketControlMessage::get_type_vfunc() const
+auto Gio::SocketControlMessage::get_type_vfunc() const -> int
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

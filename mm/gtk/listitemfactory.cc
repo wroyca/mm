@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::ListItemFactory> wrap(GtkListItemFactory* object, bool take_copy)
+auto wrap(GtkListItemFactory* object, bool take_copy) -> Glib::RefPtr<Gtk::ListItemFactory>
 {
   return Glib::make_refptr_for_instance<Gtk::ListItemFactory>( dynamic_cast<Gtk::ListItemFactory*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ListItemFactory_Class::init()
+auto ListItemFactory_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -79,7 +79,7 @@ void ListItemFactory_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* ListItemFactory_Class::wrap_new(GObject* object)
+auto ListItemFactory_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ListItemFactory((GtkListItemFactory*)object);
 }
@@ -87,7 +87,7 @@ Glib::ObjectBase* ListItemFactory_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkListItemFactory* ListItemFactory::gobj_copy()
+auto ListItemFactory::gobj_copy() -> GtkListItemFactory*
 {
   reference();
   return gobj();
@@ -110,7 +110,7 @@ ListItemFactory::ListItemFactory(ListItemFactory&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-ListItemFactory& ListItemFactory::operator=(ListItemFactory&& src) noexcept
+auto ListItemFactory::operator=(ListItemFactory&& src) noexcept -> ListItemFactory&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -123,13 +123,13 @@ ListItemFactory::~ListItemFactory() noexcept
 
 ListItemFactory::CppClassType ListItemFactory::listitemfactory_class_; // initialize static member
 
-GType ListItemFactory::get_type()
+auto ListItemFactory::get_type() -> GType
 {
   return listitemfactory_class_.init().get_type();
 }
 
 
-GType ListItemFactory::get_base_type()
+auto ListItemFactory::get_base_type() -> GType
 {
   return gtk_list_item_factory_get_type();
 }

@@ -33,7 +33,7 @@ namespace
 {
 
 
-static void Seat_signal_device_added_callback(GdkSeat* self, GdkDevice* p0,void* data)
+void Seat_signal_device_added_callback(GdkSeat* self, GdkDevice* p0,void* data)
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Device>&)>;
@@ -55,7 +55,7 @@ static void Seat_signal_device_added_callback(GdkSeat* self, GdkDevice* p0,void*
   }
 }
 
-static const Glib::SignalProxyInfo Seat_signal_device_added_info =
+const Glib::SignalProxyInfo Seat_signal_device_added_info =
 {
   "device-added",
   (GCallback) &Seat_signal_device_added_callback,
@@ -63,7 +63,7 @@ static const Glib::SignalProxyInfo Seat_signal_device_added_info =
 };
 
 
-static void Seat_signal_device_removed_callback(GdkSeat* self, GdkDevice* p0,void* data)
+void Seat_signal_device_removed_callback(GdkSeat* self, GdkDevice* p0,void* data)
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Device>&)>;
@@ -85,7 +85,7 @@ static void Seat_signal_device_removed_callback(GdkSeat* self, GdkDevice* p0,voi
   }
 }
 
-static const Glib::SignalProxyInfo Seat_signal_device_removed_info =
+const Glib::SignalProxyInfo Seat_signal_device_removed_info =
 {
   "device-removed",
   (GCallback) &Seat_signal_device_removed_callback,
@@ -93,7 +93,7 @@ static const Glib::SignalProxyInfo Seat_signal_device_removed_info =
 };
 
 
-static void Seat_signal_tool_added_callback(GdkSeat* self, GdkDeviceTool* p0,void* data)
+void Seat_signal_tool_added_callback(GdkSeat* self, GdkDeviceTool* p0,void* data)
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<DeviceTool>&)>;
@@ -115,7 +115,7 @@ static void Seat_signal_tool_added_callback(GdkSeat* self, GdkDeviceTool* p0,voi
   }
 }
 
-static const Glib::SignalProxyInfo Seat_signal_tool_added_info =
+const Glib::SignalProxyInfo Seat_signal_tool_added_info =
 {
   "tool-added",
   (GCallback) &Seat_signal_tool_added_callback,
@@ -123,7 +123,7 @@ static const Glib::SignalProxyInfo Seat_signal_tool_added_info =
 };
 
 
-static void Seat_signal_tool_removed_callback(GdkSeat* self, GdkDeviceTool* p0,void* data)
+void Seat_signal_tool_removed_callback(GdkSeat* self, GdkDeviceTool* p0,void* data)
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<DeviceTool>&)>;
@@ -145,7 +145,7 @@ static void Seat_signal_tool_removed_callback(GdkSeat* self, GdkDeviceTool* p0,v
   }
 }
 
-static const Glib::SignalProxyInfo Seat_signal_tool_removed_info =
+const Glib::SignalProxyInfo Seat_signal_tool_removed_info =
 {
   "tool-removed",
   (GCallback) &Seat_signal_tool_removed_callback,
@@ -156,7 +156,7 @@ static const Glib::SignalProxyInfo Seat_signal_tool_removed_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gdk::Seat::Capabilities>::value_type()
+auto Glib::Value<Gdk::Seat::Capabilities>::value_type() -> GType
 {
   return gdk_seat_capabilities_get_type();
 }
@@ -165,7 +165,7 @@ GType Glib::Value<Gdk::Seat::Capabilities>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::Seat> wrap(GdkSeat* object, bool take_copy)
+auto wrap(GdkSeat* object, bool take_copy) -> Glib::RefPtr<Gdk::Seat>
 {
   return Glib::make_refptr_for_instance<Gdk::Seat>( dynamic_cast<Gdk::Seat*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -180,7 +180,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Seat_Class::init()
+auto Seat_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -211,7 +211,7 @@ void Seat_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Seat_Class::wrap_new(GObject* object)
+auto Seat_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Seat((GdkSeat*)object);
 }
@@ -219,7 +219,7 @@ Glib::ObjectBase* Seat_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GdkSeat* Seat::gobj_copy()
+auto Seat::gobj_copy() -> GdkSeat*
 {
   reference();
   return gobj();
@@ -242,7 +242,7 @@ Seat::Seat(Seat&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Seat& Seat::operator=(Seat&& src) noexcept
+auto Seat::operator=(Seat&& src) noexcept -> Seat&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -255,13 +255,13 @@ Seat::~Seat() noexcept
 
 Seat::CppClassType Seat::seat_class_; // initialize static member
 
-GType Seat::get_type()
+auto Seat::get_type() -> GType
 {
   return seat_class_.init().get_type();
 }
 
 
-GType Seat::get_base_type()
+auto Seat::get_base_type() -> GType
 {
   return gdk_seat_get_type();
 }
@@ -277,7 +277,7 @@ Seat::Seat()
 
 }
 
-Glib::RefPtr<Display> Seat::get_display()
+auto Seat::get_display() -> Glib::RefPtr<Display>
 {
   auto retvalue = Glib::wrap(gdk_seat_get_display(gobj()));
   if(retvalue)
@@ -285,37 +285,37 @@ Glib::RefPtr<Display> Seat::get_display()
   return retvalue;
 }
 
-Glib::RefPtr<const Display> Seat::get_display() const
+auto Seat::get_display() const -> Glib::RefPtr<const Display>
 {
   return const_cast<Seat*>(this)->get_display();
 }
 
-Capabilities Seat::get_capabilities() const
+auto Seat::get_capabilities() const -> Capabilities
 {
   return static_cast<Capabilities>(gdk_seat_get_capabilities(const_cast<GdkSeat*>(gobj())));
 }
 
-std::vector<Glib::RefPtr<Device>> Seat::get_devices(Capabilities capabilities)
+auto Seat::get_devices(Capabilities capabilities) -> std::vector<Glib::RefPtr<Device>>
 {
   return Glib::ListHandler<Glib::RefPtr<Device>>::list_to_vector(gdk_seat_get_devices(gobj(), static_cast<GdkSeatCapabilities>(capabilities)), Glib::OWNERSHIP_SHALLOW);
 }
 
-std::vector<Glib::RefPtr<const Device>> Seat::get_devices(Capabilities capabilities) const
+auto Seat::get_devices(Capabilities capabilities) const -> std::vector<Glib::RefPtr<const Device>>
 {
   return Glib::ListHandler<Glib::RefPtr<const Device>>::list_to_vector(gdk_seat_get_devices(const_cast<GdkSeat*>(gobj()), static_cast<GdkSeatCapabilities>(capabilities)), Glib::OWNERSHIP_SHALLOW);
 }
 
-std::vector<Glib::RefPtr<DeviceTool>> Seat::get_tools()
+auto Seat::get_tools() -> std::vector<Glib::RefPtr<DeviceTool>>
 {
   return Glib::ListHandler<Glib::RefPtr<DeviceTool>>::list_to_vector(gdk_seat_get_tools(gobj()), Glib::OWNERSHIP_SHALLOW);
 }
 
-std::vector<Glib::RefPtr<const DeviceTool>> Seat::get_tools() const
+auto Seat::get_tools() const -> std::vector<Glib::RefPtr<const DeviceTool>>
 {
   return Glib::ListHandler<Glib::RefPtr<const DeviceTool>>::list_to_vector(gdk_seat_get_tools(const_cast<GdkSeat*>(gobj())), Glib::OWNERSHIP_SHALLOW);
 }
 
-Glib::RefPtr<Device> Seat::get_pointer()
+auto Seat::get_pointer() -> Glib::RefPtr<Device>
 {
   auto retvalue = Glib::wrap(gdk_seat_get_pointer(gobj()));
   if(retvalue)
@@ -323,12 +323,12 @@ Glib::RefPtr<Device> Seat::get_pointer()
   return retvalue;
 }
 
-Glib::RefPtr<const Device> Seat::get_pointer() const
+auto Seat::get_pointer() const -> Glib::RefPtr<const Device>
 {
   return const_cast<Seat*>(this)->get_pointer();
 }
 
-Glib::RefPtr<Device> Seat::get_keyboard()
+auto Seat::get_keyboard() -> Glib::RefPtr<Device>
 {
   auto retvalue = Glib::wrap(gdk_seat_get_keyboard(gobj()));
   if(retvalue)
@@ -336,31 +336,31 @@ Glib::RefPtr<Device> Seat::get_keyboard()
   return retvalue;
 }
 
-Glib::RefPtr<const Device> Seat::get_keyboard() const
+auto Seat::get_keyboard() const -> Glib::RefPtr<const Device>
 {
   return const_cast<Seat*>(this)->get_keyboard();
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Device>&)> Seat::signal_device_added()
+auto Seat::signal_device_added() -> Glib::SignalProxy<void(const Glib::RefPtr<Device>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Device>&) >(this, &Seat_signal_device_added_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Device>&)> Seat::signal_device_removed()
+auto Seat::signal_device_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<Device>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Device>&) >(this, &Seat_signal_device_removed_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<DeviceTool>&)> Seat::signal_tool_added()
+auto Seat::signal_tool_added() -> Glib::SignalProxy<void(const Glib::RefPtr<DeviceTool>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<DeviceTool>&) >(this, &Seat_signal_tool_added_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<DeviceTool>&)> Seat::signal_tool_removed()
+auto Seat::signal_tool_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<DeviceTool>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<DeviceTool>&) >(this, &Seat_signal_tool_removed_info);
 }
@@ -370,7 +370,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Display
   "Type Glib::RefPtr<Display> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> > Seat::property_display() const
+auto Seat::property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >(this, "display");
 }

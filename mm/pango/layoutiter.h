@@ -49,30 +49,30 @@ class PANGOMM_API LayoutIter
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   LayoutIter();
 
   explicit LayoutIter(PangoLayoutIter* gobject, bool make_a_copy = true);
 
   LayoutIter(const LayoutIter& other);
-  LayoutIter& operator=(const LayoutIter& other);
+  auto operator=(const LayoutIter& other) -> LayoutIter&;
 
   LayoutIter(LayoutIter&& other) noexcept;
-  LayoutIter& operator=(LayoutIter&& other) noexcept;
+  auto operator=(LayoutIter&& other) noexcept -> LayoutIter&;
 
   ~LayoutIter() noexcept;
 
   void swap(LayoutIter& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  PangoLayoutIter*       gobj()       { return gobject_; }
+  auto       gobj() -> PangoLayoutIter*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const PangoLayoutIter* gobj() const { return gobject_; }
+  auto gobj() const -> const PangoLayoutIter* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  PangoLayoutIter* gobj_copy() const;
+  auto gobj_copy() const -> PangoLayoutIter*;
 
 protected:
   PangoLayoutIter* gobject_;
@@ -92,7 +92,7 @@ public:
    *
    * @return Current byte index.
    */
-  int get_index() const;
+  auto get_index() const -> int;
 
 
   /** Gets the current run.
@@ -104,7 +104,7 @@ public:
    *
    * @return The current run.
    */
-  GlyphItem get_run() const;
+  auto get_run() const -> GlyphItem;
 
 
   /** Gets the current line.
@@ -114,14 +114,14 @@ public:
    *
    * @return The current line.
    */
-  Glib::RefPtr<LayoutLine> get_line();
+  auto get_line() -> Glib::RefPtr<LayoutLine>;
 
 
   /** Gets the current line for read-only access.
    *
    * @return The current line, that should not be modified.
    */
-  Glib::RefPtr<const LayoutLine> get_line() const;
+  auto get_line() const -> Glib::RefPtr<const LayoutLine>;
 
 
   /** Gets the current line for read-only access.
@@ -133,14 +133,14 @@ public:
    *
    * @return The current line, that should not be modified.
    */
-  Glib::RefPtr<const LayoutLine> get_const_line() const;
+  auto get_const_line() const -> Glib::RefPtr<const LayoutLine>;
 
 
   /** Determines whether @a iter is on the last line of the layout.
    *
    * @return <tt>true</tt> if @a iter is on the last line.
    */
-  bool at_last_line() const;
+  auto at_last_line() const -> bool;
 
 
   /** Gets the layout associated with a `Pango::LayoutIter`.
@@ -149,7 +149,7 @@ public:
    *
    * @return The layout associated with @a iter.
    */
-  Glib::RefPtr<Layout> get_layout();
+  auto get_layout() -> Glib::RefPtr<Layout>;
 
   /** Gets the layout associated with a `Pango::LayoutIter`.
    *
@@ -157,7 +157,7 @@ public:
    *
    * @return The layout associated with @a iter.
    */
-  Glib::RefPtr<const Layout> get_layout() const;
+  auto get_layout() const -> Glib::RefPtr<const Layout>;
 
 
   /** Moves @a iter forward to the next character in visual order.
@@ -166,7 +166,7 @@ public:
    *
    * @return Whether motion was possible.
    */
-  bool next_char();
+  auto next_char() -> bool;
 
   /** Moves @a iter forward to the next cluster in visual order.
    *
@@ -174,7 +174,7 @@ public:
    *
    * @return Whether motion was possible.
    */
-  bool next_cluster();
+  auto next_cluster() -> bool;
 
   /** Moves @a iter forward to the next run in visual order.
    *
@@ -182,7 +182,7 @@ public:
    *
    * @return Whether motion was possible.
    */
-  bool next_run();
+  auto next_run() -> bool;
 
   /** Moves @a iter forward to the start of the next line.
    *
@@ -190,13 +190,13 @@ public:
    *
    * @return Whether motion was possible.
    */
-  bool next_line();
+  auto next_line() -> bool;
 
   /** Gets the extents of the current character, in layout coordinates (origin is the top left of the entire layout).
    * Only logical extents can sensibly be obtained for characters; ink extents make sense only down to the level of clusters.
    * @return The logical extents of the current character.
    */
-  Rectangle get_char_extents() const;
+  auto get_char_extents() const -> Rectangle;
 
 
   /** Gets the extents of the current cluster, in layout coordinates.
@@ -211,12 +211,12 @@ public:
   /** Gets the ink extents of the current cluster, in layout coordinates (origin is the top left of the entire layout).
    * @return The extents of the current cluster as drawn.
    */
-  Rectangle get_cluster_ink_extents() const;
+  auto get_cluster_ink_extents() const -> Rectangle;
 
   /** Gets the logical extents of the current cluster, in layout coordinates (origin is the top left of the entire layout).
    * @return The logical extents of the current cluster.
    */
-  Rectangle get_cluster_logical_extents() const;
+  auto get_cluster_logical_extents() const -> Rectangle;
 
 
   /** Gets the extents of the current run in layout coordinates.
@@ -231,12 +231,12 @@ public:
   /** Gets the ink extents of the current run in layout coordinates (origin is the top left of the entire layout).
    * @return The extents of the current run as drawn.
    */
-  Rectangle get_run_ink_extents() const;
+  auto get_run_ink_extents() const -> Rectangle;
 
   /** Gets the logical extents of the current run in layout coordinates (origin is the top left of the entire layout).
    * @return The logical extents of the current run.
    */
-  Rectangle get_run_logical_extents() const;
+  auto get_run_logical_extents() const -> Rectangle;
 
 
   /** Obtains the extents of the current line.
@@ -254,12 +254,12 @@ public:
   /** Obtains the ink extents of the current line.
    * @return The extents of the current line as drawn.
    */
-  Rectangle get_line_ink_extents() const;
+  auto get_line_ink_extents() const -> Rectangle;
 
   /** Obtains the logical extents of the current line.
    * @return The logical extents of the current line.
    */
-  Rectangle get_line_logical_extents() const;
+  auto get_line_logical_extents() const -> Rectangle;
 
 
   /** Divides the vertical space in the `Pango::Layout` being iterated over
@@ -290,12 +290,12 @@ public:
   /** Obtains the ink extents of the Pango::Layout being iterated over.
    * @return The extents of the layout as drawn.
    */
-  Rectangle get_layout_ink_extents() const;
+  auto get_layout_ink_extents() const -> Rectangle;
 
   /** Obtains the logical extents of the Pango::Layout being iterated over.
    * @return The logical extents of the layout.
    */
-  Rectangle get_layout_logical_extents() const;
+  auto get_layout_logical_extents() const -> Rectangle;
 
 
   /** Gets the Y position of the current line's baseline, in layout
@@ -305,7 +305,7 @@ public:
    *
    * @return Baseline of current line.
    */
-  int get_baseline() const;
+  auto get_baseline() const -> int;
 
 
 };
@@ -337,7 +337,7 @@ namespace Glib
  * @relates Pango::LayoutIter
  */
 PANGOMM_API
-Pango::LayoutIter wrap(PangoLayoutIter* object, bool take_copy = false);
+auto wrap(PangoLayoutIter* object, bool take_copy = false) -> Pango::LayoutIter;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

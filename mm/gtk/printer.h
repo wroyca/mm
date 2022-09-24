@@ -113,31 +113,31 @@ enum class PrintCapabilities
 };
 
 /** @ingroup gtkmmEnums */
-inline PrintCapabilities operator|(PrintCapabilities lhs, PrintCapabilities rhs)
+inline auto operator|(PrintCapabilities lhs, PrintCapabilities rhs) -> PrintCapabilities
   { return static_cast<PrintCapabilities>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline PrintCapabilities operator&(PrintCapabilities lhs, PrintCapabilities rhs)
+inline auto operator&(PrintCapabilities lhs, PrintCapabilities rhs) -> PrintCapabilities
   { return static_cast<PrintCapabilities>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline PrintCapabilities operator^(PrintCapabilities lhs, PrintCapabilities rhs)
+inline auto operator^(PrintCapabilities lhs, PrintCapabilities rhs) -> PrintCapabilities
   { return static_cast<PrintCapabilities>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline PrintCapabilities operator~(PrintCapabilities flags)
+inline auto operator~(PrintCapabilities flags) -> PrintCapabilities
   { return static_cast<PrintCapabilities>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gtkmmEnums */
-inline PrintCapabilities& operator|=(PrintCapabilities& lhs, PrintCapabilities rhs)
+inline auto operator|=(PrintCapabilities& lhs, PrintCapabilities rhs) -> PrintCapabilities&
   { return (lhs = static_cast<PrintCapabilities>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline PrintCapabilities& operator&=(PrintCapabilities& lhs, PrintCapabilities rhs)
+inline auto operator&=(PrintCapabilities& lhs, PrintCapabilities rhs) -> PrintCapabilities&
   { return (lhs = static_cast<PrintCapabilities>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline PrintCapabilities& operator^=(PrintCapabilities& lhs, PrintCapabilities rhs)
+inline auto operator^=(PrintCapabilities& lhs, PrintCapabilities rhs) -> PrintCapabilities&
   { return (lhs = static_cast<PrintCapabilities>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -151,7 +151,7 @@ template <>
 class GTKMM_API Value<Gtk::PrintCapabilities> : public Glib::Value_Flags<Gtk::PrintCapabilities>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -186,7 +186,7 @@ public:
 
   // noncopyable
   Printer(const Printer&) = delete;
-  Printer& operator=(const Printer&) = delete;
+  auto operator=(const Printer&) -> Printer& = delete;
 
 private:  friend class Printer_Class;
   static CppClassType printer_class_;
@@ -200,28 +200,28 @@ protected:
 public:
 
   Printer(Printer&& src) noexcept;
-  Printer& operator=(Printer&& src) noexcept;
+  auto operator=(Printer&& src) noexcept -> Printer&;
 
   ~Printer() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkPrinter*       gobj()       { return reinterpret_cast<GtkPrinter*>(gobject_); }
+  auto       gobj() -> GtkPrinter*       { return reinterpret_cast<GtkPrinter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkPrinter* gobj() const { return reinterpret_cast<GtkPrinter*>(gobject_); }
+  auto gobj() const -> const GtkPrinter* { return reinterpret_cast<GtkPrinter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkPrinter* gobj_copy();
+  auto gobj_copy() -> GtkPrinter*;
 
 private:
 
@@ -231,7 +231,7 @@ private:
 
 
 public:
-  bool equal(const Glib::RefPtr<Printer>& other) const;
+  auto equal(const Glib::RefPtr<Printer>& other) const -> bool;
 
   //GtkPrintBackend is in a "semi-private" header.
   //_WRAP_METHOD(Glib::RefPtr<PrintBackend> get_backend(), gtk_printer_get_backend, refreturn)
@@ -242,44 +242,44 @@ public:
    *
    * @return The name of @a printer.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
   /** Returns the state message describing the current state
    * of the printer.
    *
    * @return The state message of @a printer.
    */
-  Glib::ustring get_state_message() const;
+  auto get_state_message() const -> Glib::ustring;
 
   /** Gets the description of the printer.
    *
    * @return The description of @a printer.
    */
-  Glib::ustring get_description() const;
+  auto get_description() const -> Glib::ustring;
 
   /** Returns a description of the location of the printer.
    *
    * @return The location of @a printer.
    */
-  Glib::ustring get_location() const;
+  auto get_location() const -> Glib::ustring;
 
   /** Gets the name of the icon to use for the printer.
    *
    * @return The icon name for @a printer.
    */
-  Glib::ustring get_icon_name() const;
+  auto get_icon_name() const -> Glib::ustring;
 
   /** Gets the number of jobs currently queued on the printer.
    *
    * @return The number of jobs on @a printer.
    */
-  int get_job_count() const;
+  auto get_job_count() const -> int;
 
   /** Returns whether the printer is currently active (i.e.\ accepts new jobs).
    *
    * @return <tt>true</tt> if @a printer is active.
    */
-  bool is_active() const;
+  auto is_active() const -> bool;
 
   /** Returns whether the printer is currently paused.
    *
@@ -288,13 +288,13 @@ public:
    *
    * @return <tt>true</tt> if @a printer is paused.
    */
-  bool is_paused() const;
+  auto is_paused() const -> bool;
 
   /** Returns whether the printer is accepting jobs
    *
    * @return <tt>true</tt> if @a printer is accepting jobs.
    */
-  bool is_accepting_jobs() const;
+  auto is_accepting_jobs() const -> bool;
 
   /** Returns whether the printer is virtual (i.e.\ does not
    * represent actual printer hardware, but something like
@@ -302,27 +302,27 @@ public:
    *
    * @return <tt>true</tt> if @a printer is virtual.
    */
-  bool is_virtual() const;
+  auto is_virtual() const -> bool;
 
   /** Returns whether the printer is the default printer.
    *
    * @return <tt>true</tt> if @a printer is the default.
    */
-  bool is_default() const;
+  auto is_default() const -> bool;
 
   /** Returns whether the printer accepts input in
    * PDF format.
    *
    * @return <tt>true</tt> if @a printer accepts PDF.
    */
-  bool accepts_pdf() const;
+  auto accepts_pdf() const -> bool;
 
   /** Returns whether the printer accepts input in
    * PostScript format.
    *
    * @return <tt>true</tt> if @a printer accepts PostScript.
    */
-  bool accepts_ps() const;
+  auto accepts_ps() const -> bool;
 
 
   /** Lists all the paper sizes @a printer supports.
@@ -334,7 +334,7 @@ public:
    * @return A newly
    * allocated list of newly allocated `Gtk::PageSetup`s.
    */
-  std::vector< Glib::RefPtr<PageSetup> > list_papers();
+  auto list_papers() -> std::vector< Glib::RefPtr<PageSetup> >;
 
 
   /** Returns default page size of @a printer.
@@ -342,7 +342,7 @@ public:
    * @return A newly allocated `Gtk::PageSetup` with default page size
    * of the printer.
    */
-  Glib::RefPtr<PageSetup> get_default_page_size() const;
+  auto get_default_page_size() const -> Glib::RefPtr<PageSetup>;
 
 
   /** Lists all the paper sizes @a printer supports.
@@ -354,14 +354,14 @@ public:
    * @return A newly
    * allocated list of newly allocated `Gtk::PageSetup`s.
    */
-  std::vector< Glib::RefPtr<const PageSetup> > list_papers() const;
+  auto list_papers() const -> std::vector< Glib::RefPtr<const PageSetup> >;
 
 
   /** Returns whether the printer details are available.
    *
    * @return <tt>true</tt> if @a printer details are available.
    */
-  bool has_details() const;
+  auto has_details() const -> bool;
 
   /** Requests the printer details. When the details are available,
    * the details_acquired signal will be emitted.
@@ -382,7 +382,7 @@ public:
    *
    * @return The printer’s capabilities.
    */
-  PrintCapabilities get_capabilities() const;
+  auto get_capabilities() const -> PrintCapabilities;
 
   /** Retrieve the hard margins of @a printer.
    *
@@ -399,7 +399,7 @@ public:
    * @param right A location to store the right margin in.
    * @return <tt>true</tt> iff the hard margins were retrieved.
    */
-  bool get_hard_margins(double& top, double& bottom, double& left, double& right) const;
+  auto get_hard_margins(double& top, double& bottom, double& left, double& right) const -> bool;
 
   /** Retrieve the hard margins of @a printer for @a paper_size.
    *
@@ -417,7 +417,7 @@ public:
    * @param right A location to store the right margin in.
    * @return <tt>true</tt> iff the hard margins were retrieved.
    */
-  bool get_hard_margins(const PaperSize& paper_size, double& top, double& bottom, double& left, double& right) const;
+  auto get_hard_margins(const PaperSize& paper_size, double& top, double& bottom, double& left, double& right) const -> bool;
 
   // no_default_handler because GtkPrinterClass is private.
 
@@ -436,7 +436,7 @@ public:
    * @param success <tt>true</tt> if the details were successfully acquired.
    */
 
-  Glib::SignalProxy<void(bool)> signal_details_acquired();
+  auto signal_details_acquired() -> Glib::SignalProxy<void(bool)>;
 
 
   /** The name of the printer.
@@ -446,7 +446,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_name() const;
+  auto property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** <tt>false</tt> if this represents a real hardware device.
@@ -456,7 +456,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_virtual() const;
+  auto property_is_virtual() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** String giving the current status of the printer.
@@ -466,7 +466,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_state_message() const;
+  auto property_state_message() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** Information about the location of the printer.
@@ -476,7 +476,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_location() const;
+  auto property_location() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** Icon name to use for the printer.
@@ -486,7 +486,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_icon_name() const;
+  auto property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** Number of jobs queued in the printer.
@@ -496,7 +496,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_job_count() const;
+  auto property_job_count() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** <tt>true</tt> if this printer can accept PDF.
@@ -506,7 +506,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_accepts_pdf() const;
+  auto property_accepts_pdf() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** <tt>true</tt> if this printer can accept PostScript.
@@ -516,7 +516,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_accepts_ps() const;
+  auto property_accepts_ps() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** <tt>true</tt> if this printer is paused.
@@ -529,7 +529,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_paused() const;
+  auto property_paused() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** <tt>true</tt> if the printer is accepting jobs.
@@ -539,7 +539,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_accepting_jobs() const;
+  auto property_accepting_jobs() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -556,11 +556,11 @@ protected:
 };
 
 /** @relates Gtk::Printer */
-inline bool operator==(const Glib::RefPtr<Printer>& lhs, const Glib::RefPtr<Printer>& rhs)
+inline auto operator==(const Glib::RefPtr<Printer>& lhs, const Glib::RefPtr<Printer>& rhs) -> bool
   { return lhs->equal(rhs); }
 
 /** @relates Gtk::Printer */
-inline bool operator!=(const Glib::RefPtr<Printer>& lhs, const Glib::RefPtr<Printer>& rhs)
+inline auto operator!=(const Glib::RefPtr<Printer>& lhs, const Glib::RefPtr<Printer>& rhs) -> bool
   { return !lhs->equal(rhs); }
 
 /** For example,
@@ -595,7 +595,7 @@ namespace Glib
    * @relates Gtk::Printer
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Printer> wrap(GtkPrinter* object, bool take_copy = false);
+  auto wrap(GtkPrinter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Printer>;
 }
 
 

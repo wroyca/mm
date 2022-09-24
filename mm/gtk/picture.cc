@@ -55,7 +55,7 @@ namespace
 namespace Glib
 {
 
-Gtk::Picture* wrap(GtkPicture* object, bool take_copy)
+auto wrap(GtkPicture* object, bool take_copy) -> Gtk::Picture*
 {
   return dynamic_cast<Gtk::Picture *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -68,7 +68,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Picture_Class::init()
+auto Picture_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -93,7 +93,7 @@ void Picture_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Picture_Class::wrap_new(GObject* o)
+auto Picture_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Picture((GtkPicture*)(o)));
 
@@ -119,7 +119,7 @@ Picture::Picture(Picture&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-Picture& Picture::operator=(Picture&& src) noexcept
+auto Picture::operator=(Picture&& src) noexcept -> Picture&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -132,13 +132,13 @@ Picture::~Picture() noexcept
 
 Picture::CppClassType Picture::picture_class_; // initialize static member
 
-GType Picture::get_type()
+auto Picture::get_type() -> GType
 {
   return picture_class_.init().get_type();
 }
 
 
-GType Picture::get_base_type()
+auto Picture::get_base_type() -> GType
 {
   return gtk_picture_get_type();
 }
@@ -179,7 +179,7 @@ void Picture::set_paintable(const Glib::RefPtr<Gdk::Paintable>& paintable)
   gtk_picture_set_paintable(gobj(), Glib::unwrap(paintable));
 }
 
-Glib::RefPtr<Gdk::Paintable> Picture::get_paintable()
+auto Picture::get_paintable() -> Glib::RefPtr<Gdk::Paintable>
 {
   auto retvalue = Glib::wrap(gtk_picture_get_paintable(gobj()));
   if(retvalue)
@@ -187,7 +187,7 @@ Glib::RefPtr<Gdk::Paintable> Picture::get_paintable()
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::Paintable> Picture::get_paintable() const
+auto Picture::get_paintable() const -> Glib::RefPtr<const Gdk::Paintable>
 {
   return const_cast<Picture*>(this)->get_paintable();
 }
@@ -197,7 +197,7 @@ void Picture::set_file(const Glib::RefPtr<const Gio::File>& file)
   gtk_picture_set_file(gobj(), const_cast<GFile*>(Glib::unwrap<Gio::File>(file)));
 }
 
-Glib::RefPtr<Gio::File> Picture::get_file()
+auto Picture::get_file() -> Glib::RefPtr<Gio::File>
 {
   auto retvalue = Glib::wrap(gtk_picture_get_file(gobj()));
   if(retvalue)
@@ -205,7 +205,7 @@ Glib::RefPtr<Gio::File> Picture::get_file()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::File> Picture::get_file() const
+auto Picture::get_file() const -> Glib::RefPtr<const Gio::File>
 {
   return const_cast<Picture*>(this)->get_file();
 }
@@ -236,7 +236,7 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-bool Picture::get_keep_aspect_ratio() const
+auto Picture::get_keep_aspect_ratio() const -> bool
 {
   return gtk_picture_get_keep_aspect_ratio(const_cast<GtkPicture*>(gobj()));
 }
@@ -248,7 +248,7 @@ void Picture::set_can_shrink(bool can_shrink)
   gtk_picture_set_can_shrink(gobj(), static_cast<int>(can_shrink));
 }
 
-bool Picture::get_can_shrink() const
+auto Picture::get_can_shrink() const -> bool
 {
   return gtk_picture_get_can_shrink(const_cast<GtkPicture*>(gobj()));
 }
@@ -258,7 +258,7 @@ void Picture::set_content_fit(ContentFit content_fit)
   gtk_picture_set_content_fit(gobj(), static_cast<GtkContentFit>(content_fit));
 }
 
-ContentFit Picture::get_content_fit() const
+auto Picture::get_content_fit() const -> ContentFit
 {
   return static_cast<ContentFit>(gtk_picture_get_content_fit(const_cast<GtkPicture*>(gobj())));
 }
@@ -268,7 +268,7 @@ void Picture::set_alternative_text(const Glib::ustring& alternative_text)
   gtk_picture_set_alternative_text(gobj(), alternative_text.empty() ? nullptr : alternative_text.c_str());
 }
 
-Glib::ustring Picture::get_alternative_text() const
+auto Picture::get_alternative_text() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_picture_get_alternative_text(const_cast<GtkPicture*>(gobj())));
 }
@@ -278,12 +278,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Pa
   "Type Glib::RefPtr<Gdk::Paintable> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> > Picture::property_paintable()
+auto Picture::property_paintable() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> >(this, "paintable");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> > Picture::property_paintable() const
+auto Picture::property_paintable() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> >(this, "paintable");
 }
@@ -292,29 +292,29 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Fi
   "Type Glib::RefPtr<Gio::File> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gio::File> > Picture::property_file()
+auto Picture::property_file() -> Glib::PropertyProxy< Glib::RefPtr<Gio::File> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gio::File> >(this, "file");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> > Picture::property_file() const
+auto Picture::property_file() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >(this, "file");
 }
 
-Glib::PropertyProxy< Glib::ustring > Picture::property_alternative_text()
+auto Picture::property_alternative_text() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "alternative-text");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Picture::property_alternative_text() const
+auto Picture::property_alternative_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "alternative-text");
 }
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
-Glib::PropertyProxy< bool > Picture::property_keep_aspect_ratio()
+auto Picture::property_keep_aspect_ratio() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "keep-aspect-ratio");
 }
@@ -323,19 +323,19 @@ Glib::PropertyProxy< bool > Picture::property_keep_aspect_ratio()
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
-Glib::PropertyProxy_ReadOnly< bool > Picture::property_keep_aspect_ratio() const
+auto Picture::property_keep_aspect_ratio() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "keep-aspect-ratio");
 }
 #endif // GTKMM_DISABLE_DEPRECATED
 
 
-Glib::PropertyProxy< bool > Picture::property_can_shrink()
+auto Picture::property_can_shrink() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "can-shrink");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Picture::property_can_shrink() const
+auto Picture::property_can_shrink() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "can-shrink");
 }
@@ -344,12 +344,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<ContentFit>::value,
   "Type ContentFit cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< ContentFit > Picture::property_content_fit()
+auto Picture::property_content_fit() -> Glib::PropertyProxy< ContentFit >
 {
   return Glib::PropertyProxy< ContentFit >(this, "content-fit");
 }
 
-Glib::PropertyProxy_ReadOnly< ContentFit > Picture::property_content_fit() const
+auto Picture::property_content_fit() const -> Glib::PropertyProxy_ReadOnly< ContentFit >
 {
   return Glib::PropertyProxy_ReadOnly< ContentFit >(this, "content-fit");
 }

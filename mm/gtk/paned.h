@@ -89,11 +89,11 @@ class GTKMM_API Paned
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Paned(Paned&& src) noexcept;
-  Paned& operator=(Paned&& src) noexcept;
+  auto operator=(Paned&& src) noexcept -> Paned&;
 
   // noncopyable
   Paned(const Paned&) = delete;
-  Paned& operator=(const Paned&) = delete;
+  auto operator=(const Paned&) -> Paned& = delete;
 
   ~Paned() noexcept override;
 
@@ -113,19 +113,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkPaned*       gobj()       { return reinterpret_cast<GtkPaned*>(gobject_); }
+  auto       gobj() -> GtkPaned*       { return reinterpret_cast<GtkPaned*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkPaned* gobj() const { return reinterpret_cast<GtkPaned*>(gobject_); }
+  auto gobj() const -> const GtkPaned* { return reinterpret_cast<GtkPaned*>(gobject_); }
 
 private:
 
@@ -148,13 +148,13 @@ public:
    *
    * @return The start child widget.
    */
-  Widget* get_start_child();
+  auto get_start_child() -> Widget*;
 
   /** Retrieves the start child of the given `Gtk::Paned`.
    *
    * @return The start child widget.
    */
-  const Widget* get_start_child() const;
+  auto get_start_child() const -> const Widget*;
 
   /** Sets whether the property_start_child() can be resized.
    *
@@ -166,7 +166,7 @@ public:
    *
    * @return True if the start child is resizable.
    */
-  bool get_resize_start_child() const;
+  auto get_resize_start_child() const -> bool;
 
   /** Sets whether the property_start_child() can shrink.
    *
@@ -178,7 +178,7 @@ public:
    *
    * @return True if the start child is shrinkable.
    */
-  bool get_shrink_start_child() const;
+  auto get_shrink_start_child() const -> bool;
 
 
   /** Sets the end child of @a paned to @a child.
@@ -193,13 +193,13 @@ public:
    *
    * @return The end child widget.
    */
-  Widget* get_end_child();
+  auto get_end_child() -> Widget*;
 
   /** Retrieves the end child of the given `Gtk::Paned`.
    *
    * @return The end child widget.
    */
-  const Widget* get_end_child() const;
+  auto get_end_child() const -> const Widget*;
 
   /** Sets whether the property_end_child() can be resized.
    *
@@ -211,7 +211,7 @@ public:
    *
    * @return True if the end child is resizable.
    */
-  bool get_resize_end_child() const;
+  auto get_resize_end_child() const -> bool;
 
   /** Sets whether the property_end_child() can shrink.
    *
@@ -223,14 +223,14 @@ public:
    *
    * @return True if the end child is shrinkable.
    */
-  bool get_shrink_end_child() const;
+  auto get_shrink_end_child() const -> bool;
 
 
   /** Obtains the position of the divider between the two panes.
    *
    * @return The position of the divider, in pixels.
    */
-  int get_position() const;
+  auto get_position() const -> int;
 
   /** Sets the position of the divider between the two panes.
    *
@@ -250,7 +250,7 @@ public:
    *
    * @return <tt>true</tt> if the paned should have a wide handle.
    */
-  bool get_wide_handle() const;
+  auto get_wide_handle() const -> bool;
 
   //Keybinding signals:
 
@@ -262,7 +262,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_position() ;
+  auto property_position() -> Glib::PropertyProxy< int > ;
 
 /** Position of the separator in pixels, from the left/top.
    *
@@ -271,7 +271,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_position() const;
+  auto property_position() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Whether the property_position() property has been set.
    *
@@ -280,7 +280,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_position_set() ;
+  auto property_position_set() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the property_position() property has been set.
    *
@@ -289,7 +289,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_position_set() const;
+  auto property_position_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The smallest possible value for the property_position()
    * property.
@@ -302,7 +302,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_min_position() const;
+  auto property_min_position() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** The largest possible value for the property_position()
@@ -316,7 +316,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_max_position() const;
+  auto property_max_position() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** Whether the `Gtk::Paned` should provide a stronger visual separation.
@@ -329,7 +329,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_wide_handle() ;
+  auto property_wide_handle() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the `Gtk::Paned` should provide a stronger visual separation.
    *
@@ -341,7 +341,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_wide_handle() const;
+  auto property_wide_handle() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Determines whether the first child expands and shrinks
    * along with the paned widget.
@@ -351,7 +351,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_resize_start_child() ;
+  auto property_resize_start_child() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether the first child expands and shrinks
    * along with the paned widget.
@@ -361,7 +361,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_resize_start_child() const;
+  auto property_resize_start_child() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Determines whether the second child expands and shrinks
    * along with the paned widget.
@@ -371,7 +371,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_resize_end_child() ;
+  auto property_resize_end_child() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether the second child expands and shrinks
    * along with the paned widget.
@@ -381,7 +381,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_resize_end_child() const;
+  auto property_resize_end_child() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Determines whether the first child can be made smaller
    * than its requisition.
@@ -391,7 +391,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_shrink_start_child() ;
+  auto property_shrink_start_child() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether the first child can be made smaller
    * than its requisition.
@@ -401,7 +401,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_shrink_start_child() const;
+  auto property_shrink_start_child() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Determines whether the second child can be made smaller
    * than its requisition.
@@ -411,7 +411,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_shrink_end_child() ;
+  auto property_shrink_end_child() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether the second child can be made smaller
    * than its requisition.
@@ -421,35 +421,35 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_shrink_end_child() const;
+  auto property_shrink_end_child() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The first child.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_start_child() ;
+  auto property_start_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The first child.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_start_child() const;
+  auto property_start_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
   /** The second child.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_end_child() ;
+  auto property_end_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The second child.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_end_child() const;
+  auto property_end_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
 public:
@@ -479,7 +479,7 @@ namespace Glib
    * @relates Gtk::Paned
    */
   GTKMM_API
-  Gtk::Paned* wrap(GtkPaned* object, bool take_copy = false);
+  auto wrap(GtkPaned* object, bool take_copy = false) -> Gtk::Paned*;
 } //namespace Glib
 
 

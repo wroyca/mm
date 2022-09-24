@@ -82,7 +82,7 @@ template <>
 class GIOMM_API Value<Gio::ZlibCompressorFormat> : public Glib::Value_Enum<Gio::ZlibCompressorFormat>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -113,7 +113,7 @@ public:
 
   // noncopyable
   ZlibCompressor(const ZlibCompressor&) = delete;
-  ZlibCompressor& operator=(const ZlibCompressor&) = delete;
+  auto operator=(const ZlibCompressor&) -> ZlibCompressor& = delete;
 
 private:  friend class ZlibCompressor_Class;
   static CppClassType zlibcompressor_class_;
@@ -127,28 +127,28 @@ protected:
 public:
 
   ZlibCompressor(ZlibCompressor&& src) noexcept;
-  ZlibCompressor& operator=(ZlibCompressor&& src) noexcept;
+  auto operator=(ZlibCompressor&& src) noexcept -> ZlibCompressor&;
 
   ~ZlibCompressor() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GZlibCompressor*       gobj()       { return reinterpret_cast<GZlibCompressor*>(gobject_); }
+  auto       gobj() -> GZlibCompressor*       { return reinterpret_cast<GZlibCompressor*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GZlibCompressor* gobj() const { return reinterpret_cast<GZlibCompressor*>(gobject_); }
+  auto gobj() const -> const GZlibCompressor* { return reinterpret_cast<GZlibCompressor*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GZlibCompressor* gobj_copy();
+  auto gobj_copy() -> GZlibCompressor*;
 
 private:
 
@@ -169,7 +169,7 @@ public:
    */
 
 
-  static Glib::RefPtr<ZlibCompressor> create(ZlibCompressorFormat format, int level);
+  static auto create(ZlibCompressorFormat format, int level) -> Glib::RefPtr<ZlibCompressor>;
 
 
   /** Returns the ZlibCompressor::property_file_info() property.
@@ -178,7 +178,7 @@ public:
    *
    * @return A FileInfo, or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<FileInfo> get_file_info();
+  auto get_file_info() -> Glib::RefPtr<FileInfo>;
 
   /** Returns the ZlibCompressor::property_file_info() property.
    *
@@ -186,7 +186,7 @@ public:
    *
    * @return A FileInfo, or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<const FileInfo> get_file_info() const;
+  auto get_file_info() const -> Glib::RefPtr<const FileInfo>;
 
 
   /** Sets @a file_info in @a compressor. If non-<tt>nullptr</tt>, and @a compressor's
@@ -213,7 +213,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<FileInfo> > property_file_info() ;
+  auto property_file_info() -> Glib::PropertyProxy< Glib::RefPtr<FileInfo> > ;
 
 /** If set to a non-<tt>nullptr</tt> FileInfo object, and ZlibCompressor::property_format() is
    * Gio::ZlibCompressorFormat::GZIP, the compressor will write the file name
@@ -224,7 +224,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<FileInfo> > property_file_info() const;
+  auto property_file_info() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<FileInfo> >;
 
   /** The format of the compressed data.
    *
@@ -233,7 +233,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< ZlibCompressorFormat > property_format() const;
+  auto property_format() const -> Glib::PropertyProxy_ReadOnly< ZlibCompressorFormat >;
 
 
   /** The level of compression from 0 (no compression) to 9 (most compression), -1 for the default level.
@@ -243,7 +243,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_level() const;
+  auto property_level() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
 public:
@@ -273,7 +273,7 @@ namespace Glib
    * @relates Gio::ZlibCompressor
    */
   GIOMM_API
-  Glib::RefPtr<Gio::ZlibCompressor> wrap(GZlibCompressor* object, bool take_copy = false);
+  auto wrap(GZlibCompressor* object, bool take_copy = false) -> Glib::RefPtr<Gio::ZlibCompressor>;
 }
 
 

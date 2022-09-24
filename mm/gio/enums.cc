@@ -28,31 +28,31 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::DataStreamByteOrder>::value_type()
+auto Glib::Value<Gio::DataStreamByteOrder>::value_type() -> GType
 {
   return g_data_stream_byte_order_get_type();
 }
 
 // static
-GType Glib::Value<Gio::DataStreamNewlineType>::value_type()
+auto Glib::Value<Gio::DataStreamNewlineType>::value_type() -> GType
 {
   return g_data_stream_newline_type_get_type();
 }
 
 // static
-GType Glib::Value<Gio::SocketFamily>::value_type()
+auto Glib::Value<Gio::SocketFamily>::value_type() -> GType
 {
   return g_socket_family_get_type();
 }
 
 // static
-GType Glib::Value<Gio::TlsAuthenticationMode>::value_type()
+auto Glib::Value<Gio::TlsAuthenticationMode>::value_type() -> GType
 {
   return g_tls_authentication_mode_get_type();
 }
 
 // static
-GType Glib::Value<Gio::TlsCertificateFlags>::value_type()
+auto Glib::Value<Gio::TlsCertificateFlags>::value_type() -> GType
 {
   return g_tls_certificate_flags_get_type();
 }

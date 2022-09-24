@@ -68,11 +68,11 @@ class GTKMM_API PasswordEntry : public Widget, public Editable
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   PasswordEntry(PasswordEntry&& src) noexcept;
-  PasswordEntry& operator=(PasswordEntry&& src) noexcept;
+  auto operator=(PasswordEntry&& src) noexcept -> PasswordEntry&;
 
   // noncopyable
   PasswordEntry(const PasswordEntry&) = delete;
-  PasswordEntry& operator=(const PasswordEntry&) = delete;
+  auto operator=(const PasswordEntry&) -> PasswordEntry& = delete;
 
   ~PasswordEntry() noexcept override;
 
@@ -92,19 +92,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkPasswordEntry*       gobj()       { return reinterpret_cast<GtkPasswordEntry*>(gobject_); }
+  auto       gobj() -> GtkPasswordEntry*       { return reinterpret_cast<GtkPasswordEntry*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkPasswordEntry* gobj() const { return reinterpret_cast<GtkPasswordEntry*>(gobject_); }
+  auto gobj() const -> const GtkPasswordEntry* { return reinterpret_cast<GtkPasswordEntry*>(gobject_); }
 
 private:
 
@@ -127,7 +127,7 @@ public:
    *
    * @return <tt>true</tt> if an icon is shown.
    */
-  bool get_show_peek_icon() const;
+  auto get_show_peek_icon() const -> bool;
 
 
   /** Sets a menu model to add when constructing
@@ -141,13 +141,13 @@ public:
    *
    * @return The menu model.
    */
-  Glib::RefPtr<Gio::MenuModel> get_extra_menu();
+  auto get_extra_menu() -> Glib::RefPtr<Gio::MenuModel>;
 
   /** Gets the menu model set with set_extra_menu().
    *
    * @return The menu model.
    */
-  Glib::RefPtr<const Gio::MenuModel> get_extra_menu() const;
+  auto get_extra_menu() const -> Glib::RefPtr<const Gio::MenuModel>;
 
 
   /** The text that will be displayed in the `Gtk::PasswordEntry`
@@ -158,7 +158,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_placeholder_text() ;
+  auto property_placeholder_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The text that will be displayed in the `Gtk::PasswordEntry`
    * when it is empty and unfocused.
@@ -168,7 +168,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_placeholder_text() const;
+  auto property_placeholder_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Whether to activate the default widget when Enter is pressed.
    *
@@ -177,7 +177,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_activates_default() ;
+  auto property_activates_default() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to activate the default widget when Enter is pressed.
    *
@@ -186,7 +186,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_activates_default() const;
+  auto property_activates_default() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether to show an icon for revealing the content.
    *
@@ -195,7 +195,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_peek_icon() ;
+  auto property_show_peek_icon() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to show an icon for revealing the content.
    *
@@ -204,7 +204,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_peek_icon() const;
+  auto property_show_peek_icon() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** A menu model whose contents will be appended to
    * the context menu.
@@ -212,7 +212,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > property_extra_menu() ;
+  auto property_extra_menu() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > ;
 
 /** A menu model whose contents will be appended to
    * the context menu.
@@ -220,7 +220,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> > property_extra_menu() const;
+  auto property_extra_menu() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >;
 
 
 public:
@@ -250,7 +250,7 @@ namespace Glib
    * @relates Gtk::PasswordEntry
    */
   GTKMM_API
-  Gtk::PasswordEntry* wrap(GtkPasswordEntry* object, bool take_copy = false);
+  auto wrap(GtkPasswordEntry* object, bool take_copy = false) -> Gtk::PasswordEntry*;
 } //namespace Glib
 
 

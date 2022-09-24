@@ -47,7 +47,7 @@ namespace
 namespace Glib
 {
 
-Gtk::HeaderBar* wrap(GtkHeaderBar* object, bool take_copy)
+auto wrap(GtkHeaderBar* object, bool take_copy) -> Gtk::HeaderBar*
 {
   return dynamic_cast<Gtk::HeaderBar *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -60,7 +60,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& HeaderBar_Class::init()
+auto HeaderBar_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -91,7 +91,7 @@ void HeaderBar_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* HeaderBar_Class::wrap_new(GObject* o)
+auto HeaderBar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new HeaderBar((GtkHeaderBar*)(o)));
 
@@ -117,7 +117,7 @@ HeaderBar::HeaderBar(HeaderBar&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-HeaderBar& HeaderBar::operator=(HeaderBar&& src) noexcept
+auto HeaderBar::operator=(HeaderBar&& src) noexcept -> HeaderBar&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -130,13 +130,13 @@ HeaderBar::~HeaderBar() noexcept
 
 HeaderBar::CppClassType HeaderBar::headerbar_class_; // initialize static member
 
-GType HeaderBar::get_type()
+auto HeaderBar::get_type() -> GType
 {
   return headerbar_class_.init().get_type();
 }
 
 
-GType HeaderBar::get_base_type()
+auto HeaderBar::get_base_type() -> GType
 {
   return gtk_header_bar_get_type();
 }
@@ -157,12 +157,12 @@ void HeaderBar::set_title_widget(Gtk::Widget& title_widget)
   gtk_header_bar_set_title_widget(gobj(), (title_widget).gobj());
 }
 
-Widget* HeaderBar::get_title_widget()
+auto HeaderBar::get_title_widget() -> Widget*
 {
   return Glib::wrap(gtk_header_bar_get_title_widget(gobj()));
 }
 
-const Widget* HeaderBar::get_title_widget() const
+auto HeaderBar::get_title_widget() const -> const Widget*
 {
   return const_cast<HeaderBar*>(this)->get_title_widget();
 }
@@ -187,7 +187,7 @@ void HeaderBar::set_show_title_buttons(bool setting)
   gtk_header_bar_set_show_title_buttons(gobj(), static_cast<int>(setting));
 }
 
-bool HeaderBar::get_show_title_buttons() const
+auto HeaderBar::get_show_title_buttons() const -> bool
 {
   return gtk_header_bar_get_show_title_buttons(const_cast<GtkHeaderBar*>(gobj()));
 }
@@ -197,38 +197,38 @@ void HeaderBar::set_decoration_layout(const Glib::ustring& layout)
   gtk_header_bar_set_decoration_layout(gobj(), layout.c_str());
 }
 
-Glib::ustring HeaderBar::get_decoration_layout() const
+auto HeaderBar::get_decoration_layout() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_header_bar_get_decoration_layout(const_cast<GtkHeaderBar*>(gobj())));
 }
 
 
-Glib::PropertyProxy< Gtk::Widget* > HeaderBar::property_title_widget()
+auto HeaderBar::property_title_widget() -> Glib::PropertyProxy< Gtk::Widget* >
 {
   return Glib::PropertyProxy< Gtk::Widget* >(this, "title-widget");
 }
 
-Glib::PropertyProxy_ReadOnly< Gtk::Widget* > HeaderBar::property_title_widget() const
+auto HeaderBar::property_title_widget() const -> Glib::PropertyProxy_ReadOnly< Gtk::Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Gtk::Widget* >(this, "title-widget");
 }
 
-Glib::PropertyProxy< bool > HeaderBar::property_show_title_buttons()
+auto HeaderBar::property_show_title_buttons() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "show-title-buttons");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > HeaderBar::property_show_title_buttons() const
+auto HeaderBar::property_show_title_buttons() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "show-title-buttons");
 }
 
-Glib::PropertyProxy< Glib::ustring > HeaderBar::property_decoration_layout()
+auto HeaderBar::property_decoration_layout() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "decoration-layout");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > HeaderBar::property_decoration_layout() const
+auto HeaderBar::property_decoration_layout() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "decoration-layout");
 }

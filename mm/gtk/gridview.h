@@ -71,11 +71,11 @@ class GTKMM_API GridView : public ListBase
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   GridView(GridView&& src) noexcept;
-  GridView& operator=(GridView&& src) noexcept;
+  auto operator=(GridView&& src) noexcept -> GridView&;
 
   // noncopyable
   GridView(const GridView&) = delete;
-  GridView& operator=(const GridView&) = delete;
+  auto operator=(const GridView&) -> GridView& = delete;
 
   ~GridView() noexcept override;
 
@@ -95,19 +95,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkGridView*       gobj()       { return reinterpret_cast<GtkGridView*>(gobject_); }
+  auto       gobj() -> GtkGridView*       { return reinterpret_cast<GtkGridView*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkGridView* gobj() const { return reinterpret_cast<GtkGridView*>(gobject_); }
+  auto gobj() const -> const GtkGridView* { return reinterpret_cast<GtkGridView*>(gobject_); }
 
 private:
 
@@ -120,13 +120,13 @@ public:
    *
    * @return The model in use.
    */
-  Glib::RefPtr<SelectionModel> get_model();
+  auto get_model() -> Glib::RefPtr<SelectionModel>;
 
   /** Gets the model that's currently used to read the items displayed.
    *
    * @return The model in use.
    */
-  Glib::RefPtr<const SelectionModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const SelectionModel>;
 
   /** Sets the imodel to use.
    *
@@ -146,19 +146,19 @@ public:
    *
    * @return The factory in use.
    */
-  Glib::RefPtr<ListItemFactory> get_factory();
+  auto get_factory() -> Glib::RefPtr<ListItemFactory>;
 
   /** Gets the factory that's currently used to populate list items.
    *
    * @return The factory in use.
    */
-  Glib::RefPtr<const ListItemFactory> get_factory() const;
+  auto get_factory() const -> Glib::RefPtr<const ListItemFactory>;
 
   /** Gets the minimum number of columns that the grid will use.
    *
    * @return The minimum number of columns.
    */
-  guint get_min_columns() const;
+  auto get_min_columns() const -> guint;
 
   /** Sets the minimum number of columns to use.
    *
@@ -175,7 +175,7 @@ public:
    *
    * @return The maximum number of columns.
    */
-  guint get_max_columns() const;
+  auto get_max_columns() const -> guint;
 
   /** Sets the maximum number of columns to use.
    *
@@ -198,7 +198,7 @@ public:
    *
    * @return <tt>true</tt> if rubberband selection is enabled.
    */
-  bool get_enable_rubberband() const;
+  auto get_enable_rubberband() const -> bool;
 
   /** Sets whether items should be activated on single click and
    * selected on hover.
@@ -212,21 +212,21 @@ public:
    *
    * @return <tt>true</tt> if items are activated on single click.
    */
-  bool get_single_click_activate() const;
+  auto get_single_click_activate() const -> bool;
 
   /** Factory for populating list items.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<ListItemFactory> > property_factory() ;
+  auto property_factory() -> Glib::PropertyProxy< Glib::RefPtr<ListItemFactory> > ;
 
 /** Factory for populating list items.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListItemFactory> > property_factory() const;
+  auto property_factory() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListItemFactory> >;
 
   /** Maximum number of columns per row.
    *
@@ -238,7 +238,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_max_columns() ;
+  auto property_max_columns() -> Glib::PropertyProxy< guint > ;
 
 /** Maximum number of columns per row.
    *
@@ -250,7 +250,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_max_columns() const;
+  auto property_max_columns() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** Minimum number of columns per row.
    *
@@ -259,7 +259,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_min_columns() ;
+  auto property_min_columns() -> Glib::PropertyProxy< guint > ;
 
 /** Minimum number of columns per row.
    *
@@ -268,21 +268,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_min_columns() const;
+  auto property_min_columns() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** Model for the items displayed.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<SelectionModel> > property_model() ;
+  auto property_model() -> Glib::PropertyProxy< Glib::RefPtr<SelectionModel> > ;
 
 /** Model for the items displayed.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> >;
 
   /** Activate rows on single click and select them on hover.
    *
@@ -291,7 +291,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_single_click_activate() ;
+  auto property_single_click_activate() -> Glib::PropertyProxy< bool > ;
 
 /** Activate rows on single click and select them on hover.
    *
@@ -300,7 +300,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_single_click_activate() const;
+  auto property_single_click_activate() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Allow rubberband selection.
    *
@@ -309,7 +309,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_enable_rubberband() ;
+  auto property_enable_rubberband() -> Glib::PropertyProxy< bool > ;
 
 /** Allow rubberband selection.
    *
@@ -318,7 +318,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_enable_rubberband() const;
+  auto property_enable_rubberband() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   // no_default_handler because GtkGridViewClass is private.
@@ -339,7 +339,7 @@ public:
    * @param position Position of item to activate.
    */
 
-  Glib::SignalProxy<void(guint)> signal_activate();
+  auto signal_activate() -> Glib::SignalProxy<void(guint)>;
 
 
 public:
@@ -369,7 +369,7 @@ namespace Glib
    * @relates Gtk::GridView
    */
   GTKMM_API
-  Gtk::GridView* wrap(GtkGridView* object, bool take_copy = false);
+  auto wrap(GtkGridView* object, bool take_copy = false) -> Gtk::GridView*;
 } //namespace Glib
 
 

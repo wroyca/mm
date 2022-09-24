@@ -37,7 +37,7 @@ namespace
 {
 
 
-static void InfoBar_signal_response_callback(GtkInfoBar* self, gint p0,void* data)
+void InfoBar_signal_response_callback(GtkInfoBar* self, gint p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(int)>;
@@ -59,7 +59,7 @@ static void InfoBar_signal_response_callback(GtkInfoBar* self, gint p0,void* dat
   }
 }
 
-static const Glib::SignalProxyInfo InfoBar_signal_response_info =
+const Glib::SignalProxyInfo InfoBar_signal_response_info =
 {
   "response",
   (GCallback) &InfoBar_signal_response_callback,
@@ -73,7 +73,7 @@ static const Glib::SignalProxyInfo InfoBar_signal_response_info =
 namespace Glib
 {
 
-Gtk::InfoBar* wrap(GtkInfoBar* object, bool take_copy)
+auto wrap(GtkInfoBar* object, bool take_copy) -> Gtk::InfoBar*
 {
   return dynamic_cast<Gtk::InfoBar *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -86,7 +86,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& InfoBar_Class::init()
+auto InfoBar_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -117,7 +117,7 @@ void InfoBar_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* InfoBar_Class::wrap_new(GObject* o)
+auto InfoBar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new InfoBar((GtkInfoBar*)(o)));
 
@@ -143,7 +143,7 @@ InfoBar::InfoBar(InfoBar&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-InfoBar& InfoBar::operator=(InfoBar&& src) noexcept
+auto InfoBar::operator=(InfoBar&& src) noexcept -> InfoBar&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -156,13 +156,13 @@ InfoBar::~InfoBar() noexcept
 
 InfoBar::CppClassType InfoBar::infobar_class_; // initialize static member
 
-GType InfoBar::get_type()
+auto InfoBar::get_type() -> GType
 {
   return infobar_class_.init().get_type();
 }
 
 
-GType InfoBar::get_base_type()
+auto InfoBar::get_base_type() -> GType
 {
   return gtk_info_bar_get_type();
 }
@@ -188,7 +188,7 @@ void InfoBar::remove_action_widget(Widget& widget)
   gtk_info_bar_remove_action_widget(gobj(), (widget).gobj());
 }
 
-Button* InfoBar::add_button(const Glib::ustring& button_text, int response_id)
+auto InfoBar::add_button(const Glib::ustring& button_text, int response_id) -> Button*
 {
   return Glib::wrap((GtkButton*)(gtk_info_bar_add_button(gobj(), button_text.c_str(), response_id)));
 }
@@ -223,7 +223,7 @@ void InfoBar::set_message_type(MessageType message_type)
   gtk_info_bar_set_message_type(gobj(), static_cast<GtkMessageType>(message_type));
 }
 
-MessageType InfoBar::get_message_type() const
+auto InfoBar::get_message_type() const -> MessageType
 {
   return static_cast<MessageType>(gtk_info_bar_get_message_type(const_cast<GtkInfoBar*>(gobj())));
 }
@@ -233,7 +233,7 @@ void InfoBar::set_show_close_button(bool setting)
   gtk_info_bar_set_show_close_button(gobj(), static_cast<int>(setting));
 }
 
-bool InfoBar::get_show_close_button() const
+auto InfoBar::get_show_close_button() const -> bool
 {
   return gtk_info_bar_get_show_close_button(const_cast<GtkInfoBar*>(gobj()));
 }
@@ -243,13 +243,13 @@ void InfoBar::set_revealed(bool revealed)
   gtk_info_bar_set_revealed(gobj(), static_cast<int>(revealed));
 }
 
-bool InfoBar::get_revealed() const
+auto InfoBar::get_revealed() const -> bool
 {
   return gtk_info_bar_get_revealed(const_cast<GtkInfoBar*>(gobj()));
 }
 
 
-Glib::SignalProxy<void(int)> InfoBar::signal_response()
+auto InfoBar::signal_response() -> Glib::SignalProxy<void(int)>
 {
   return Glib::SignalProxy<void(int) >(this, &InfoBar_signal_response_info);
 }
@@ -259,32 +259,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<MessageType>::value,
   "Type MessageType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< MessageType > InfoBar::property_message_type()
+auto InfoBar::property_message_type() -> Glib::PropertyProxy< MessageType >
 {
   return Glib::PropertyProxy< MessageType >(this, "message-type");
 }
 
-Glib::PropertyProxy_ReadOnly< MessageType > InfoBar::property_message_type() const
+auto InfoBar::property_message_type() const -> Glib::PropertyProxy_ReadOnly< MessageType >
 {
   return Glib::PropertyProxy_ReadOnly< MessageType >(this, "message-type");
 }
 
-Glib::PropertyProxy< bool > InfoBar::property_show_close_button()
+auto InfoBar::property_show_close_button() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "show-close-button");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > InfoBar::property_show_close_button() const
+auto InfoBar::property_show_close_button() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "show-close-button");
 }
 
-Glib::PropertyProxy< bool > InfoBar::property_revealed()
+auto InfoBar::property_revealed() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "revealed");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > InfoBar::property_revealed() const
+auto InfoBar::property_revealed() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "revealed");
 }

@@ -71,7 +71,7 @@ public:
 
   // noncopyable
   StyleProvider(const StyleProvider&) = delete;
-  StyleProvider& operator=(const StyleProvider&) = delete;
+  auto operator=(const StyleProvider&) -> StyleProvider& = delete;
 
 private:
   friend class StyleProvider_Class;
@@ -105,7 +105,7 @@ protected:
 public:
 
   StyleProvider(StyleProvider&& src) noexcept;
-  StyleProvider& operator=(StyleProvider&& src) noexcept;
+  auto operator=(StyleProvider&& src) noexcept -> StyleProvider&;
 
   ~StyleProvider() noexcept override;
 
@@ -113,17 +113,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkStyleProvider*       gobj()       { return reinterpret_cast<GtkStyleProvider*>(gobject_); }
+  auto       gobj() -> GtkStyleProvider*       { return reinterpret_cast<GtkStyleProvider*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkStyleProvider* gobj() const { return reinterpret_cast<GtkStyleProvider*>(gobject_); }
+  auto gobj() const -> const GtkStyleProvider* { return reinterpret_cast<GtkStyleProvider*>(gobject_); }
 
 private:
 
@@ -159,7 +159,7 @@ namespace Glib
    * @relates Gtk::StyleProvider
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::StyleProvider> wrap(GtkStyleProvider* object, bool take_copy = false);
+  auto wrap(GtkStyleProvider* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StyleProvider>;
 
 } // namespace Glib
 

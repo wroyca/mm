@@ -76,11 +76,11 @@ class GTKMM_API Popover : public Widget, public ShortcutManager, public Native
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Popover(Popover&& src) noexcept;
-  Popover& operator=(Popover&& src) noexcept;
+  auto operator=(Popover&& src) noexcept -> Popover&;
 
   // noncopyable
   Popover(const Popover&) = delete;
-  Popover& operator=(const Popover&) = delete;
+  auto operator=(const Popover&) -> Popover& = delete;
 
   ~Popover() noexcept override;
 
@@ -100,19 +100,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkPopover*       gobj()       { return reinterpret_cast<GtkPopover*>(gobject_); }
+  auto       gobj() -> GtkPopover*       { return reinterpret_cast<GtkPopover*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkPopover* gobj() const { return reinterpret_cast<GtkPopover*>(gobject_); }
+  auto gobj() const -> const GtkPopover* { return reinterpret_cast<GtkPopover*>(gobject_); }
 
 private:
 
@@ -132,13 +132,13 @@ public:
    *
    * @return The child widget of @a popover.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget of @a popover.
    *
    * @return The child widget of @a popover.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
   //This cannot take NULL to mean unset.
 
@@ -162,7 +162,7 @@ public:
    * @param rect Location to store the rectangle.
    * @return <tt>true</tt> if a rectangle to point to was set.
    */
-  bool get_pointing_to(Gdk::Rectangle& rect) const;
+  auto get_pointing_to(Gdk::Rectangle& rect) const -> bool;
 
 
   /** Sets the preferred position for @a popover to appear.
@@ -182,7 +182,7 @@ public:
    *
    * @return The preferred position.
    */
-  PositionType get_position() const;
+  auto get_position() const -> PositionType;
 
 
   /** Sets whether @a popover is modal.
@@ -206,7 +206,7 @@ public:
    *
    * @return <tt>true</tt> if @a popover is modal.
    */
-  bool get_autohide() const;
+  auto get_autohide() const -> bool;
 
 
   /** Sets whether this popover should draw an arrow
@@ -221,7 +221,7 @@ public:
    *
    * @return Whether the popover has an arrow.
    */
-  bool get_has_arrow() const;
+  auto get_has_arrow() const -> bool;
 
 
   /** Sets whether mnemonics should be visible.
@@ -235,7 +235,7 @@ public:
    * @return <tt>true</tt> if mnemonics are supposed to be visible
    * in this popover.
    */
-  bool get_mnemonics_visible() const;
+  auto get_mnemonics_visible() const -> bool;
 
 
   /** Pops @a popover up.
@@ -282,7 +282,7 @@ public:
    *
    * @return <tt>true</tt> if @a popover will close after a modal child.
    */
-  bool get_cascade_popdown() const;
+  auto get_cascade_popdown() const -> bool;
 
 
   /** Sets the default widget of a `Gtk::Popover`.
@@ -306,14 +306,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Gdk::Rectangle > property_pointing_to() ;
+  auto property_pointing_to() -> Glib::PropertyProxy< Gdk::Rectangle > ;
 
 /** Rectangle in the parent widget that the popover points to.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Gdk::Rectangle > property_pointing_to() const;
+  auto property_pointing_to() const -> Glib::PropertyProxy_ReadOnly< Gdk::Rectangle >;
 
   /** How to place the popover, relative to its parent.
    *
@@ -322,7 +322,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< PositionType > property_position() ;
+  auto property_position() -> Glib::PropertyProxy< PositionType > ;
 
 /** How to place the popover, relative to its parent.
    *
@@ -331,7 +331,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< PositionType > property_position() const;
+  auto property_position() const -> Glib::PropertyProxy_ReadOnly< PositionType >;
 
   /** Whether to dismiss the popover on outside clicks.
    *
@@ -340,7 +340,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_autohide() ;
+  auto property_autohide() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to dismiss the popover on outside clicks.
    *
@@ -349,7 +349,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_autohide() const;
+  auto property_autohide() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether to draw an arrow.
    *
@@ -358,7 +358,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_has_arrow() ;
+  auto property_has_arrow() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to draw an arrow.
    *
@@ -367,21 +367,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_arrow() const;
+  auto property_has_arrow() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The default widget inside the popover.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_default_widget() ;
+  auto property_default_widget() -> Glib::PropertyProxy< Widget* > ;
 
 /** The default widget inside the popover.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_default_widget() const;
+  auto property_default_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
   /** Whether mnemonics are currently visible in this popover.
    *
@@ -390,7 +390,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_mnemonics_visible() ;
+  auto property_mnemonics_visible() -> Glib::PropertyProxy< bool > ;
 
 /** Whether mnemonics are currently visible in this popover.
    *
@@ -399,21 +399,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_mnemonics_visible() const;
+  auto property_mnemonics_visible() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The child widget.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The child widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
   /** Whether the popover pops down after a child popover.
    *
@@ -424,7 +424,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_cascade_popdown() ;
+  auto property_cascade_popdown() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the popover pops down after a child popover.
    *
@@ -435,7 +435,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_cascade_popdown() const;
+  auto property_cascade_popdown() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /**
@@ -447,7 +447,7 @@ public:
    * Emitted when the popover is closed.
    */
 
-  Glib::SignalProxy<void()> signal_closed();
+  auto signal_closed() -> Glib::SignalProxy<void()>;
 
 
 public:
@@ -479,7 +479,7 @@ namespace Glib
    * @relates Gtk::Popover
    */
   GTKMM_API
-  Gtk::Popover* wrap(GtkPopover* object, bool take_copy = false);
+  auto wrap(GtkPopover* object, bool take_copy = false) -> Gtk::Popover*;
 } //namespace Glib
 
 

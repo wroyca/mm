@@ -54,7 +54,7 @@ namespace
 {
 
 
-static gboolean AboutDialog_signal_activate_link_callback(GtkAboutDialog* self, const gchar* p0,void* data)
+auto AboutDialog_signal_activate_link_callback(GtkAboutDialog* self, const gchar* p0,void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<bool(const std::string&)>;
@@ -79,7 +79,7 @@ static gboolean AboutDialog_signal_activate_link_callback(GtkAboutDialog* self, 
   return RType();
 }
 
-static gboolean AboutDialog_signal_activate_link_notify_callback(GtkAboutDialog* self, const gchar* p0, void* data)
+auto AboutDialog_signal_activate_link_notify_callback(GtkAboutDialog* self, const gchar* p0, void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const std::string&)>;
@@ -104,7 +104,7 @@ static gboolean AboutDialog_signal_activate_link_notify_callback(GtkAboutDialog*
   return RType();
 }
 
-static const Glib::SignalProxyInfo AboutDialog_signal_activate_link_info =
+const Glib::SignalProxyInfo AboutDialog_signal_activate_link_info =
 {
   "activate-link",
   (GCallback) &AboutDialog_signal_activate_link_callback,
@@ -115,7 +115,7 @@ static const Glib::SignalProxyInfo AboutDialog_signal_activate_link_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::License>::value_type()
+auto Glib::Value<Gtk::License>::value_type() -> GType
 {
   return gtk_license_get_type();
 }
@@ -124,7 +124,7 @@ GType Glib::Value<Gtk::License>::value_type()
 namespace Glib
 {
 
-Gtk::AboutDialog* wrap(GtkAboutDialog* object, bool take_copy)
+auto wrap(GtkAboutDialog* object, bool take_copy) -> Gtk::AboutDialog*
 {
   return dynamic_cast<Gtk::AboutDialog *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -137,7 +137,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& AboutDialog_Class::init()
+auto AboutDialog_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -168,7 +168,7 @@ void AboutDialog_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* AboutDialog_Class::wrap_new(GObject* o)
+auto AboutDialog_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return new AboutDialog((GtkAboutDialog*)(o)); //top-level windows can not be manage()ed.
 
@@ -194,7 +194,7 @@ AboutDialog::AboutDialog(AboutDialog&& src) noexcept
 : Gtk::Window(std::move(src))
 {}
 
-AboutDialog& AboutDialog::operator=(AboutDialog&& src) noexcept
+auto AboutDialog::operator=(AboutDialog&& src) noexcept -> AboutDialog&
 {
   Gtk::Window::operator=(std::move(src));
   return *this;
@@ -207,13 +207,13 @@ AboutDialog::~AboutDialog() noexcept
 
 AboutDialog::CppClassType AboutDialog::aboutdialog_class_; // initialize static member
 
-GType AboutDialog::get_type()
+auto AboutDialog::get_type() -> GType
 {
   return aboutdialog_class_.init().get_type();
 }
 
 
-GType AboutDialog::get_base_type()
+auto AboutDialog::get_base_type() -> GType
 {
   return gtk_about_dialog_get_type();
 }
@@ -229,7 +229,7 @@ AboutDialog::AboutDialog()
 
 }
 
-Glib::ustring AboutDialog::get_program_name() const
+auto AboutDialog::get_program_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_program_name(const_cast<GtkAboutDialog*>(gobj())));
 }
@@ -239,7 +239,7 @@ void AboutDialog::set_program_name(const Glib::ustring& name)
   gtk_about_dialog_set_program_name(gobj(), name.c_str());
 }
 
-Glib::ustring AboutDialog::get_version() const
+auto AboutDialog::get_version() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_version(const_cast<GtkAboutDialog*>(gobj())));
 }
@@ -249,7 +249,7 @@ void AboutDialog::set_version(const Glib::ustring& version)
   gtk_about_dialog_set_version(gobj(), version.c_str());
 }
 
-Glib::ustring AboutDialog::get_copyright() const
+auto AboutDialog::get_copyright() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_copyright(const_cast<GtkAboutDialog*>(gobj())));
 }
@@ -259,7 +259,7 @@ void AboutDialog::set_copyright(const Glib::ustring& copyright)
   gtk_about_dialog_set_copyright(gobj(), copyright.c_str());
 }
 
-Glib::ustring AboutDialog::get_comments() const
+auto AboutDialog::get_comments() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_comments(const_cast<GtkAboutDialog*>(gobj())));
 }
@@ -269,7 +269,7 @@ void AboutDialog::set_comments(const Glib::ustring& comments)
   gtk_about_dialog_set_comments(gobj(), comments.c_str());
 }
 
-Glib::ustring AboutDialog::get_license() const
+auto AboutDialog::get_license() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_license(const_cast<GtkAboutDialog*>(gobj())));
 }
@@ -279,7 +279,7 @@ void AboutDialog::set_license(const Glib::ustring& license)
   gtk_about_dialog_set_license(gobj(), license.empty() ? nullptr : license.c_str());
 }
 
-License AboutDialog::get_license_type() const
+auto AboutDialog::get_license_type() const -> License
 {
   return static_cast<License>(gtk_about_dialog_get_license_type(const_cast<GtkAboutDialog*>(gobj())));
 }
@@ -289,7 +289,7 @@ void AboutDialog::set_license_type(License license_type)
   gtk_about_dialog_set_license_type(gobj(), static_cast<GtkLicense>(license_type));
 }
 
-Glib::ustring AboutDialog::get_system_information() const
+auto AboutDialog::get_system_information() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_system_information(const_cast<GtkAboutDialog*>(gobj())));
 }
@@ -299,7 +299,7 @@ void AboutDialog::set_system_information(const Glib::ustring& system_information
   gtk_about_dialog_set_system_information(gobj(), system_information.empty() ? nullptr : system_information.c_str());
 }
 
-Glib::ustring AboutDialog::get_website() const
+auto AboutDialog::get_website() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_website(const_cast<GtkAboutDialog*>(gobj())));
 }
@@ -309,7 +309,7 @@ void AboutDialog::set_website(const Glib::ustring& website)
   gtk_about_dialog_set_website(gobj(), website.c_str());
 }
 
-Glib::ustring AboutDialog::get_website_label() const
+auto AboutDialog::get_website_label() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_website_label(const_cast<GtkAboutDialog*>(gobj())));
 }
@@ -319,7 +319,7 @@ void AboutDialog::set_website_label(const Glib::ustring& website_label)
   gtk_about_dialog_set_website_label(gobj(), website_label.c_str());
 }
 
-std::vector<Glib::ustring> AboutDialog::get_authors() const
+auto AboutDialog::get_authors() const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(gtk_about_dialog_get_authors(const_cast<GtkAboutDialog*>(gobj())), Glib::OWNERSHIP_NONE);
 }
@@ -329,7 +329,7 @@ void AboutDialog::set_authors(const std::vector<Glib::ustring>& authors) const
   gtk_about_dialog_set_authors(const_cast<GtkAboutDialog*>(gobj()), Glib::ArrayHandler<Glib::ustring>::vector_to_array(authors).data ());
 }
 
-std::vector<Glib::ustring> AboutDialog::get_documenters() const
+auto AboutDialog::get_documenters() const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(gtk_about_dialog_get_documenters(const_cast<GtkAboutDialog*>(gobj())), Glib::OWNERSHIP_NONE);
 }
@@ -339,7 +339,7 @@ void AboutDialog::set_documenters(const std::vector<Glib::ustring>& documenters)
   gtk_about_dialog_set_documenters(gobj(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(documenters).data ());
 }
 
-std::vector<Glib::ustring> AboutDialog::get_artists() const
+auto AboutDialog::get_artists() const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(gtk_about_dialog_get_artists(const_cast<GtkAboutDialog*>(gobj())), Glib::OWNERSHIP_NONE);
 }
@@ -349,7 +349,7 @@ void AboutDialog::set_artists(const std::vector<Glib::ustring>& artists)
   gtk_about_dialog_set_artists(gobj(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(artists).data ());
 }
 
-Glib::ustring AboutDialog::get_translator_credits() const
+auto AboutDialog::get_translator_credits() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_translator_credits(const_cast<GtkAboutDialog*>(gobj())));
 }
@@ -359,7 +359,7 @@ void AboutDialog::set_translator_credits(const Glib::ustring& translator_credits
   gtk_about_dialog_set_translator_credits(gobj(), translator_credits.c_str());
 }
 
-Glib::RefPtr<Gdk::Paintable> AboutDialog::get_logo()
+auto AboutDialog::get_logo() -> Glib::RefPtr<Gdk::Paintable>
 {
   auto retvalue = Glib::wrap(gtk_about_dialog_get_logo(gobj()));
   if(retvalue)
@@ -367,7 +367,7 @@ Glib::RefPtr<Gdk::Paintable> AboutDialog::get_logo()
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::Paintable> AboutDialog::get_logo() const
+auto AboutDialog::get_logo() const -> Glib::RefPtr<const Gdk::Paintable>
 {
   return const_cast<AboutDialog*>(this)->get_logo();
 }
@@ -377,7 +377,7 @@ void AboutDialog::set_logo(const Glib::RefPtr<const Gdk::Paintable>& logo)
   gtk_about_dialog_set_logo(gobj(), const_cast<GdkPaintable*>(Glib::unwrap(logo)));
 }
 
-Glib::ustring AboutDialog::get_logo_icon_name() const
+auto AboutDialog::get_logo_icon_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_logo_icon_name(const_cast<GtkAboutDialog*>(gobj())));
 }
@@ -387,7 +387,7 @@ void AboutDialog::set_logo_icon_name(const Glib::ustring& icon_name)
   gtk_about_dialog_set_logo_icon_name(gobj(), icon_name.c_str());
 }
 
-bool AboutDialog::get_wrap_license() const
+auto AboutDialog::get_wrap_license() const -> bool
 {
   return gtk_about_dialog_get_wrap_license(const_cast<GtkAboutDialog*>(gobj()));
 }
@@ -403,78 +403,78 @@ void AboutDialog::add_credit_section(const Glib::ustring& section_name, const st
 }
 
 
-Glib::SignalProxy<bool(const std::string&)> AboutDialog::signal_activate_link()
+auto AboutDialog::signal_activate_link() -> Glib::SignalProxy<bool(const std::string&)>
 {
   return Glib::SignalProxy<bool(const std::string&) >(this, &AboutDialog_signal_activate_link_info);
 }
 
 
-Glib::PropertyProxy< Glib::ustring > AboutDialog::property_program_name()
+auto AboutDialog::property_program_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "program-name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > AboutDialog::property_program_name() const
+auto AboutDialog::property_program_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "program-name");
 }
 
-Glib::PropertyProxy< Glib::ustring > AboutDialog::property_version()
+auto AboutDialog::property_version() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "version");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > AboutDialog::property_version() const
+auto AboutDialog::property_version() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "version");
 }
 
-Glib::PropertyProxy< Glib::ustring > AboutDialog::property_copyright()
+auto AboutDialog::property_copyright() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "copyright");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > AboutDialog::property_copyright() const
+auto AboutDialog::property_copyright() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "copyright");
 }
 
-Glib::PropertyProxy< Glib::ustring > AboutDialog::property_comments()
+auto AboutDialog::property_comments() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "comments");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > AboutDialog::property_comments() const
+auto AboutDialog::property_comments() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "comments");
 }
 
-Glib::PropertyProxy< Glib::ustring > AboutDialog::property_website()
+auto AboutDialog::property_website() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "website");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > AboutDialog::property_website() const
+auto AboutDialog::property_website() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "website");
 }
 
-Glib::PropertyProxy< Glib::ustring > AboutDialog::property_website_label()
+auto AboutDialog::property_website_label() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "website-label");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > AboutDialog::property_website_label() const
+auto AboutDialog::property_website_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "website-label");
 }
 
-Glib::PropertyProxy< Glib::ustring > AboutDialog::property_license()
+auto AboutDialog::property_license() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "license");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > AboutDialog::property_license() const
+auto AboutDialog::property_license() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "license");
 }
@@ -483,22 +483,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<License>::value,
   "Type License cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< License > AboutDialog::property_license_type()
+auto AboutDialog::property_license_type() -> Glib::PropertyProxy< License >
 {
   return Glib::PropertyProxy< License >(this, "license-type");
 }
 
-Glib::PropertyProxy_ReadOnly< License > AboutDialog::property_license_type() const
+auto AboutDialog::property_license_type() const -> Glib::PropertyProxy_ReadOnly< License >
 {
   return Glib::PropertyProxy_ReadOnly< License >(this, "license-type");
 }
 
-Glib::PropertyProxy< Glib::ustring > AboutDialog::property_system_information()
+auto AboutDialog::property_system_information() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "system-information");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > AboutDialog::property_system_information() const
+auto AboutDialog::property_system_information() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "system-information");
 }
@@ -507,12 +507,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<std::vector<Glib::us
   "Type std::vector<Glib::ustring> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< std::vector<Glib::ustring> > AboutDialog::property_authors()
+auto AboutDialog::property_authors() -> Glib::PropertyProxy< std::vector<Glib::ustring> >
 {
   return Glib::PropertyProxy< std::vector<Glib::ustring> >(this, "authors");
 }
 
-Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> > AboutDialog::property_authors() const
+auto AboutDialog::property_authors() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >
 {
   return Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >(this, "authors");
 }
@@ -521,12 +521,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<std::vector<Glib::us
   "Type std::vector<Glib::ustring> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< std::vector<Glib::ustring> > AboutDialog::property_documenters()
+auto AboutDialog::property_documenters() -> Glib::PropertyProxy< std::vector<Glib::ustring> >
 {
   return Glib::PropertyProxy< std::vector<Glib::ustring> >(this, "documenters");
 }
 
-Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> > AboutDialog::property_documenters() const
+auto AboutDialog::property_documenters() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >
 {
   return Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >(this, "documenters");
 }
@@ -535,12 +535,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<std::vector<Glib::us
   "Type std::vector<Glib::ustring> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< std::vector<Glib::ustring> > AboutDialog::property_translator_credits()
+auto AboutDialog::property_translator_credits() -> Glib::PropertyProxy< std::vector<Glib::ustring> >
 {
   return Glib::PropertyProxy< std::vector<Glib::ustring> >(this, "translator-credits");
 }
 
-Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> > AboutDialog::property_translator_credits() const
+auto AboutDialog::property_translator_credits() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >
 {
   return Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >(this, "translator-credits");
 }
@@ -549,12 +549,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<std::vector<Glib::us
   "Type std::vector<Glib::ustring> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< std::vector<Glib::ustring> > AboutDialog::property_artists()
+auto AboutDialog::property_artists() -> Glib::PropertyProxy< std::vector<Glib::ustring> >
 {
   return Glib::PropertyProxy< std::vector<Glib::ustring> >(this, "artists");
 }
 
-Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> > AboutDialog::property_artists() const
+auto AboutDialog::property_artists() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >
 {
   return Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >(this, "artists");
 }
@@ -563,32 +563,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Pa
   "Type Glib::RefPtr<Gdk::Paintable> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> > AboutDialog::property_logo()
+auto AboutDialog::property_logo() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> >(this, "logo");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> > AboutDialog::property_logo() const
+auto AboutDialog::property_logo() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> >(this, "logo");
 }
 
-Glib::PropertyProxy< Glib::ustring > AboutDialog::property_logo_icon_name()
+auto AboutDialog::property_logo_icon_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "logo-icon-name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > AboutDialog::property_logo_icon_name() const
+auto AboutDialog::property_logo_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "logo-icon-name");
 }
 
-Glib::PropertyProxy< bool > AboutDialog::property_wrap_license()
+auto AboutDialog::property_wrap_license() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "wrap-license");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > AboutDialog::property_wrap_license() const
+auto AboutDialog::property_wrap_license() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "wrap-license");
 }

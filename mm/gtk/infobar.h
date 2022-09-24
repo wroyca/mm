@@ -75,11 +75,11 @@ class GTKMM_API InfoBar : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   InfoBar(InfoBar&& src) noexcept;
-  InfoBar& operator=(InfoBar&& src) noexcept;
+  auto operator=(InfoBar&& src) noexcept -> InfoBar&;
 
   // noncopyable
   InfoBar(const InfoBar&) = delete;
-  InfoBar& operator=(const InfoBar&) = delete;
+  auto operator=(const InfoBar&) -> InfoBar& = delete;
 
   ~InfoBar() noexcept override;
 
@@ -99,19 +99,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkInfoBar*       gobj()       { return reinterpret_cast<GtkInfoBar*>(gobject_); }
+  auto       gobj() -> GtkInfoBar*       { return reinterpret_cast<GtkInfoBar*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkInfoBar* gobj() const { return reinterpret_cast<GtkInfoBar*>(gobject_); }
+  auto gobj() const -> const GtkInfoBar* { return reinterpret_cast<GtkInfoBar*>(gobject_); }
 
 private:
 
@@ -154,7 +154,7 @@ public:
    * @return The `Gtk::Button` widget
    * that was added.
    */
-  Button* add_button(const Glib::ustring& button_text, int response_id);
+  auto add_button(const Glib::ustring& button_text, int response_id) -> Button*;
 
 
   /** Adds a widget to the content area of the info bar.
@@ -213,7 +213,7 @@ public:
    *
    * @return The message type of the message area.
    */
-  MessageType get_message_type() const;
+  auto get_message_type() const -> MessageType;
 
 
   /** If true, a standard close button is shown.
@@ -228,7 +228,7 @@ public:
    *
    * @return <tt>true</tt> if the widget displays standard close button.
    */
-  bool get_show_close_button() const;
+  auto get_show_close_button() const -> bool;
 
 
   /** Sets whether the `Gtk::InfoBar` is revealed.
@@ -248,7 +248,7 @@ public:
    *
    * @return The current value of the property_revealed() property.
    */
-  bool get_revealed() const;
+  auto get_revealed() const -> bool;
 
 
   // no_default_handler because GtkInfoBarClass is private.
@@ -268,7 +268,7 @@ public:
    * @param response_id The response ID.
    */
 
-  Glib::SignalProxy<void(int)> signal_response();
+  auto signal_response() -> Glib::SignalProxy<void(int)>;
 
 
   /** The type of the message.
@@ -280,7 +280,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< MessageType > property_message_type() ;
+  auto property_message_type() -> Glib::PropertyProxy< MessageType > ;
 
 /** The type of the message.
    *
@@ -291,7 +291,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< MessageType > property_message_type() const;
+  auto property_message_type() const -> Glib::PropertyProxy_ReadOnly< MessageType >;
 
   /** Whether to include a standard close button.
    *
@@ -300,7 +300,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_show_close_button() ;
+  auto property_show_close_button() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to include a standard close button.
    *
@@ -309,7 +309,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_show_close_button() const;
+  auto property_show_close_button() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the info bar shows its contents.
    *
@@ -318,7 +318,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_revealed() ;
+  auto property_revealed() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the info bar shows its contents.
    *
@@ -327,7 +327,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_revealed() const;
+  auto property_revealed() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -357,7 +357,7 @@ namespace Glib
    * @relates Gtk::InfoBar
    */
   GTKMM_API
-  Gtk::InfoBar* wrap(GtkInfoBar* object, bool take_copy = false);
+  auto wrap(GtkInfoBar* object, bool take_copy = false) -> Gtk::InfoBar*;
 } //namespace Glib
 
 

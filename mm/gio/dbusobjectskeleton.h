@@ -35,19 +35,11 @@ using GDBusObjectSkeletonClass = struct _GDBusObjectSkeletonClass;
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
-{
-
-namespace DBus
-{ class GIOMM_API ObjectSkeleton_Class; } // namespace DBus
-
-} // namespace Gio
+namespace Gio::DBus
+{ class GIOMM_API ObjectSkeleton_Class; } // namespace Gio
 #endif //DOXYGEN_SHOULD_SKIP_THIS
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 //The GMMPROC_EXTRA_NAMESPACE() macro is a hint to generate_wrap_init.pl to put it in the DBus sub-namespace
 
@@ -77,7 +69,7 @@ public:
 
   // noncopyable
   ObjectSkeleton(const ObjectSkeleton&) = delete;
-  ObjectSkeleton& operator=(const ObjectSkeleton&) = delete;
+  auto operator=(const ObjectSkeleton&) -> ObjectSkeleton& = delete;
 
 private:  friend class ObjectSkeleton_Class;
   static CppClassType objectskeleton_class_;
@@ -91,28 +83,28 @@ protected:
 public:
 
   ObjectSkeleton(ObjectSkeleton&& src) noexcept;
-  ObjectSkeleton& operator=(ObjectSkeleton&& src) noexcept;
+  auto operator=(ObjectSkeleton&& src) noexcept -> ObjectSkeleton&;
 
   ~ObjectSkeleton() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDBusObjectSkeleton*       gobj()       { return reinterpret_cast<GDBusObjectSkeleton*>(gobject_); }
+  auto       gobj() -> GDBusObjectSkeleton*       { return reinterpret_cast<GDBusObjectSkeleton*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDBusObjectSkeleton* gobj() const { return reinterpret_cast<GDBusObjectSkeleton*>(gobject_); }
+  auto gobj() const -> const GDBusObjectSkeleton* { return reinterpret_cast<GDBusObjectSkeleton*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusObjectSkeleton* gobj_copy();
+  auto gobj_copy() -> GDBusObjectSkeleton*;
 
 private:
 
@@ -128,7 +120,7 @@ public:
    * @return A new %Gio::DBus::ObjectSkeleton.
    */
 
-  static Glib::RefPtr<ObjectSkeleton> create(const Glib::ustring& object_path);
+  static auto create(const Glib::ustring& object_path) -> Glib::RefPtr<ObjectSkeleton>;
 
 
   // The parameter name 'interface' can cause compilation errors with MinGW.
@@ -193,7 +185,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_g_object_path() ;
+  auto property_g_object_path() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The object path where the object is exported.
    *
@@ -204,7 +196,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_g_object_path() const;
+  auto property_g_object_path() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /**
@@ -229,7 +221,7 @@ public:
    * @return <tt>true</tt> if the call is authorized, <tt>false</tt> otherwise.
    */
 
-  Glib::SignalProxy<bool(const Glib::RefPtr<Gio::DBus::InterfaceSkeleton>&, const Glib::RefPtr<Gio::DBus::MethodInvocation>&)> signal_authorize_method();
+  auto signal_authorize_method() -> Glib::SignalProxy<bool(const Glib::RefPtr<Gio::DBus::InterfaceSkeleton>&, const Glib::RefPtr<Gio::DBus::MethodInvocation>&)>;
 
 
 public:
@@ -242,12 +234,10 @@ protected:
 
   //Default Signal Handlers::
   /// This is a default handler for the signal signal_authorize_method().
-  virtual bool on_authorize_method(const Glib::RefPtr<Gio::DBus::InterfaceSkeleton>& iface, const Glib::RefPtr<Gio::DBus::MethodInvocation>& invocation);
+  virtual auto on_authorize_method(const Glib::RefPtr<Gio::DBus::InterfaceSkeleton>& iface, const Glib::RefPtr<Gio::DBus::MethodInvocation>& invocation) -> bool;
 
 
 };
-
-} //namespace
 
 } // namespace Gio
 
@@ -263,7 +253,7 @@ namespace Glib
    * @relates Gio::DBus::ObjectSkeleton
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DBus::ObjectSkeleton> wrap(GDBusObjectSkeleton* object, bool take_copy = false);
+  auto wrap(GDBusObjectSkeleton* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::ObjectSkeleton>;
 }
 
 

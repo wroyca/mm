@@ -39,8 +39,8 @@ PropertyProxyConnectionNode::PropertyProxyConnectionNode(sigc::slot_base&& slot,
 {
 }
 
-static Glib::ustring
-get_detailed_signal_name(const Glib::ustring& signal_name, const Glib::ustring& detail)
+static auto
+get_detailed_signal_name(const Glib::ustring& signal_name, const Glib::ustring& detail) -> Glib::ustring
 {
   if (detail.empty())
     return signal_name;
@@ -48,8 +48,8 @@ get_detailed_signal_name(const Glib::ustring& signal_name, const Glib::ustring& 
   return signal_name + "::" + detail;
 }
 
-sigc::connection
-PropertyProxyConnectionNode::connect_changed(const Glib::ustring& property_name)
+auto
+PropertyProxyConnectionNode::connect_changed(const Glib::ustring& property_name) -> sigc::connection
 {
   // connect it to glib
   // 'this' will be passed as the data argument to the callback.
@@ -81,8 +81,8 @@ SignalProxyProperty::~SignalProxyProperty() noexcept
 {
 }
 
-sigc::connection
-SignalProxyProperty::connect(const SlotType& slot)
+auto
+SignalProxyProperty::connect(const SlotType& slot) -> sigc::connection
 {
   // Create a proxy to hold our connection info
   // This will be deleted by destroy_notify_handler.
@@ -93,8 +93,8 @@ SignalProxyProperty::connect(const SlotType& slot)
   return pConnectionNode->connect_changed(property_name_);
 }
 
-sigc::connection
-SignalProxyProperty::connect(SlotType&& slot)
+auto
+SignalProxyProperty::connect(SlotType&& slot) -> sigc::connection
 {
   // Create a proxy to hold our connection info
   // This will be deleted by destroy_notify_handler.
@@ -117,8 +117,8 @@ PropertyProxy_Base::PropertyProxy_Base(const PropertyProxy_Base& other)
 {
 }
 
-SignalProxyProperty
-PropertyProxy_Base::signal_changed()
+auto
+PropertyProxy_Base::signal_changed() -> SignalProxyProperty
 {
   return SignalProxyProperty(obj_, property_name_);
 }

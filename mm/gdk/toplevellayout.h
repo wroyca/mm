@@ -62,19 +62,19 @@ class GDKMM_API ToplevelLayout final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GdkToplevelLayout*       gobj();
+  auto       gobj() -> GdkToplevelLayout*;
 
   ///Provides access to the underlying C instance.
-  const GdkToplevelLayout* gobj() const;
+  auto gobj() const -> const GdkToplevelLayout*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkToplevelLayout* gobj_copy() const;
+  auto gobj_copy() const -> GdkToplevelLayout*;
 
   ToplevelLayout() = delete;
 
   // noncopyable
   ToplevelLayout(const ToplevelLayout&) = delete;
-  ToplevelLayout& operator=(const ToplevelLayout&) = delete;
+  auto operator=(const ToplevelLayout&) -> ToplevelLayout& = delete;
 
 protected:
   // Do not derive this.  Gdk::ToplevelLayout can neither be constructed nor deleted.
@@ -97,13 +97,13 @@ public:
    *
    * @return Newly created instance of `Gdk::ToplevelLayout`.
    */
-  static Glib::RefPtr<ToplevelLayout> create();
+  static auto create() -> Glib::RefPtr<ToplevelLayout>;
 
   /** Create a new `Gdk::ToplevelLayout` and copy the contents of @a layout into it.
    *
    * @return A copy of @a layout.
    */
-  Glib::RefPtr<ToplevelLayout> copy() const;
+  auto copy() const -> Glib::RefPtr<ToplevelLayout>;
 
   /** Check whether @a layout and @a other has identical layout properties.
    *
@@ -111,7 +111,7 @@ public:
    * @return <tt>true</tt> if @a layout and @a other have identical layout properties,
    * otherwise <tt>false</tt>.
    */
-  bool equal(const Glib::RefPtr<const ToplevelLayout>& other) const;
+  auto equal(const Glib::RefPtr<const ToplevelLayout>& other) const -> bool;
 
   /** Sets whether the layout should cause the surface
    * to be maximized when presented.
@@ -135,7 +135,7 @@ public:
    * @param maximized Set to <tt>true</tt> if the toplevel should be maximized.
    * @return Whether the @a layout specifies the maximized state for the toplevel.
    */
-  bool get_maximized(bool& maximized) const;
+  auto get_maximized(bool& maximized) const -> bool;
 
   /** If the layout specifies whether to the toplevel should go fullscreen,
    * the value pointed to by @a fullscreen is set to <tt>true</tt> if it should go
@@ -144,21 +144,21 @@ public:
    * @param fullscreen Location to store whether the toplevel should be fullscreen.
    * @return Whether the @a layout specifies the fullscreen state for the toplevel.
    */
-  bool get_fullscreen(bool& fullscreen) const;
+  auto get_fullscreen(bool& fullscreen) const -> bool;
 
   /** Returns the monitor that the layout is fullscreening
    * the surface on.
    *
    * @return The monitor on which @a layout fullscreens.
    */
-  Glib::RefPtr<Monitor> get_fullscreen_monitor();
+  auto get_fullscreen_monitor() -> Glib::RefPtr<Monitor>;
 
   /** Returns the monitor that the layout is fullscreening
    * the surface on.
    *
    * @return The monitor on which @a layout fullscreens.
    */
-  Glib::RefPtr<const Monitor> get_fullscreen_monitor() const;
+  auto get_fullscreen_monitor() const -> Glib::RefPtr<const Monitor>;
 
   /** Sets whether the layout should allow the user
    * to resize the surface after it has been presented.
@@ -172,7 +172,7 @@ public:
    *
    * @return <tt>true</tt> if the layout is resizable.
    */
-  bool get_resizable() const;
+  auto get_resizable() const -> bool;
 
 
 };
@@ -192,7 +192,7 @@ namespace Glib
  * @relates Gdk::ToplevelLayout
  */
 GDKMM_API
-Glib::RefPtr<Gdk::ToplevelLayout> wrap(GdkToplevelLayout* object, bool take_copy = false);
+auto wrap(GdkToplevelLayout* object, bool take_copy = false) -> Glib::RefPtr<Gdk::ToplevelLayout>;
 
 } // namespace Glib
 

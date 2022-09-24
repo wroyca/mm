@@ -95,7 +95,7 @@ template <>
 class GTKMM_API Value<Gtk::Align> : public Glib::Value_Enum<Gtk::Align>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -146,7 +146,7 @@ template <>
 class GTKMM_API Value<Gtk::ArrowType> : public Glib::Value_Enum<Gtk::ArrowType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -215,7 +215,7 @@ template <>
 class GTKMM_API Value<Gtk::DeleteType> : public Glib::Value_Enum<Gtk::DeleteType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -270,7 +270,7 @@ template <>
 class GTKMM_API Value<Gtk::DirectionType> : public Glib::Value_Enum<Gtk::DirectionType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -321,7 +321,7 @@ template <>
 class GTKMM_API Value<Gtk::IconSize> : public Glib::Value_Enum<Gtk::IconSize>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -364,7 +364,7 @@ template <>
 class GTKMM_API Value<Gtk::TextDirection> : public Glib::Value_Enum<Gtk::TextDirection>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -411,7 +411,7 @@ template <>
 class GTKMM_API Value<Gtk::Justification> : public Glib::Value_Enum<Gtk::Justification>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -462,7 +462,7 @@ template <>
 class GTKMM_API Value<Gtk::MessageType> : public Glib::Value_Enum<Gtk::MessageType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -534,7 +534,7 @@ template <>
 class GTKMM_API Value<Gtk::MovementStep> : public Glib::Value_Enum<Gtk::MovementStep>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -575,7 +575,7 @@ template <>
 class GTKMM_API Value<Gtk::Orientation> : public Glib::Value_Enum<Gtk::Orientation>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -620,7 +620,7 @@ template <>
 class GTKMM_API Value<Gtk::Overflow> : public Glib::Value_Enum<Gtk::Overflow>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -674,7 +674,7 @@ template <>
 class GTKMM_API Value<Gtk::CornerType> : public Glib::Value_Enum<Gtk::CornerType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -715,7 +715,7 @@ template <>
 class GTKMM_API Value<Gtk::PackType> : public Glib::Value_Enum<Gtk::PackType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -756,31 +756,31 @@ enum class PickFlags
 };
 
 /** @ingroup gtkmmEnums */
-inline PickFlags operator|(PickFlags lhs, PickFlags rhs)
+inline auto operator|(PickFlags lhs, PickFlags rhs) -> PickFlags
   { return static_cast<PickFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline PickFlags operator&(PickFlags lhs, PickFlags rhs)
+inline auto operator&(PickFlags lhs, PickFlags rhs) -> PickFlags
   { return static_cast<PickFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline PickFlags operator^(PickFlags lhs, PickFlags rhs)
+inline auto operator^(PickFlags lhs, PickFlags rhs) -> PickFlags
   { return static_cast<PickFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline PickFlags operator~(PickFlags flags)
+inline auto operator~(PickFlags flags) -> PickFlags
   { return static_cast<PickFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gtkmmEnums */
-inline PickFlags& operator|=(PickFlags& lhs, PickFlags rhs)
+inline auto operator|=(PickFlags& lhs, PickFlags rhs) -> PickFlags&
   { return (lhs = static_cast<PickFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline PickFlags& operator&=(PickFlags& lhs, PickFlags rhs)
+inline auto operator&=(PickFlags& lhs, PickFlags rhs) -> PickFlags&
   { return (lhs = static_cast<PickFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline PickFlags& operator^=(PickFlags& lhs, PickFlags rhs)
+inline auto operator^=(PickFlags& lhs, PickFlags rhs) -> PickFlags&
   { return (lhs = static_cast<PickFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -794,7 +794,7 @@ template <>
 class GTKMM_API Value<Gtk::PickFlags> : public Glib::Value_Flags<Gtk::PickFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -847,7 +847,7 @@ template <>
 class GTKMM_API Value<Gtk::PolicyType> : public Glib::Value_Enum<Gtk::PolicyType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -897,7 +897,7 @@ template <>
 class GTKMM_API Value<Gtk::PositionType> : public Glib::Value_Enum<Gtk::PositionType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -969,7 +969,7 @@ template <>
 class GTKMM_API Value<Gtk::RevealerTransitionType> : public Glib::Value_Enum<Gtk::RevealerTransitionType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1064,7 +1064,7 @@ template <>
 class GTKMM_API Value<Gtk::ScrollType> : public Glib::Value_Enum<Gtk::ScrollType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1119,7 +1119,7 @@ template <>
 class GTKMM_API Value<Gtk::SelectionMode> : public Glib::Value_Enum<Gtk::SelectionMode>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1244,7 +1244,7 @@ template <>
 class GTKMM_API Value<Gtk::StackTransitionType> : public Glib::Value_Enum<Gtk::StackTransitionType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1294,7 +1294,7 @@ template <>
 class GTKMM_API Value<Gtk::WrapMode> : public Glib::Value_Enum<Gtk::WrapMode>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1347,7 +1347,7 @@ template <>
 class GTKMM_API Value<Gtk::NaturalWrapMode> : public Glib::Value_Enum<Gtk::NaturalWrapMode>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1386,7 +1386,7 @@ template <>
 class GTKMM_API Value<Gtk::SortType> : public Glib::Value_Enum<Gtk::SortType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1434,7 +1434,7 @@ template <>
 class GTKMM_API Value<Gtk::Ordering> : public Glib::Value_Enum<Gtk::Ordering>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1481,7 +1481,7 @@ template <>
 class GTKMM_API Value<Gtk::PageOrientation> : public Glib::Value_Enum<Gtk::PageOrientation>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1526,7 +1526,7 @@ template <>
 class GTKMM_API Value<Gtk::SensitivityType> : public Glib::Value_Enum<Gtk::SensitivityType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1570,7 +1570,7 @@ template <>
 class GTKMM_API Value<Gtk::SizeRequestMode> : public Glib::Value_Enum<Gtk::SizeRequestMode>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1667,31 +1667,31 @@ enum class StateFlags
 };
 
 /** @ingroup gtkmmEnums */
-inline StateFlags operator|(StateFlags lhs, StateFlags rhs)
+inline auto operator|(StateFlags lhs, StateFlags rhs) -> StateFlags
   { return static_cast<StateFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline StateFlags operator&(StateFlags lhs, StateFlags rhs)
+inline auto operator&(StateFlags lhs, StateFlags rhs) -> StateFlags
   { return static_cast<StateFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline StateFlags operator^(StateFlags lhs, StateFlags rhs)
+inline auto operator^(StateFlags lhs, StateFlags rhs) -> StateFlags
   { return static_cast<StateFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline StateFlags operator~(StateFlags flags)
+inline auto operator~(StateFlags flags) -> StateFlags
   { return static_cast<StateFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gtkmmEnums */
-inline StateFlags& operator|=(StateFlags& lhs, StateFlags rhs)
+inline auto operator|=(StateFlags& lhs, StateFlags rhs) -> StateFlags&
   { return (lhs = static_cast<StateFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline StateFlags& operator&=(StateFlags& lhs, StateFlags rhs)
+inline auto operator&=(StateFlags& lhs, StateFlags rhs) -> StateFlags&
   { return (lhs = static_cast<StateFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline StateFlags& operator^=(StateFlags& lhs, StateFlags rhs)
+inline auto operator^=(StateFlags& lhs, StateFlags rhs) -> StateFlags&
   { return (lhs = static_cast<StateFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -1705,7 +1705,7 @@ template <>
 class GTKMM_API Value<Gtk::StateFlags> : public Glib::Value_Flags<Gtk::StateFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1798,7 +1798,7 @@ template <>
 class GTKMM_API Value<Gtk::InputPurpose> : public Glib::Value_Enum<Gtk::InputPurpose>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1893,31 +1893,31 @@ enum class InputHints
 };
 
 /** @ingroup gtkmmEnums */
-inline InputHints operator|(InputHints lhs, InputHints rhs)
+inline auto operator|(InputHints lhs, InputHints rhs) -> InputHints
   { return static_cast<InputHints>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline InputHints operator&(InputHints lhs, InputHints rhs)
+inline auto operator&(InputHints lhs, InputHints rhs) -> InputHints
   { return static_cast<InputHints>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline InputHints operator^(InputHints lhs, InputHints rhs)
+inline auto operator^(InputHints lhs, InputHints rhs) -> InputHints
   { return static_cast<InputHints>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline InputHints operator~(InputHints flags)
+inline auto operator~(InputHints flags) -> InputHints
   { return static_cast<InputHints>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gtkmmEnums */
-inline InputHints& operator|=(InputHints& lhs, InputHints rhs)
+inline auto operator|=(InputHints& lhs, InputHints rhs) -> InputHints&
   { return (lhs = static_cast<InputHints>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline InputHints& operator&=(InputHints& lhs, InputHints rhs)
+inline auto operator&=(InputHints& lhs, InputHints rhs) -> InputHints&
   { return (lhs = static_cast<InputHints>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline InputHints& operator^=(InputHints& lhs, InputHints rhs)
+inline auto operator^=(InputHints& lhs, InputHints rhs) -> InputHints&
   { return (lhs = static_cast<InputHints>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -1931,7 +1931,7 @@ template <>
 class GTKMM_API Value<Gtk::InputHints> : public Glib::Value_Flags<Gtk::InputHints>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1981,7 +1981,7 @@ template <>
 class GTKMM_API Value<Gtk::BaselinePosition> : public Glib::Value_Enum<Gtk::BaselinePosition>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -2028,7 +2028,7 @@ template <>
 class GTKMM_API Value<Gtk::ShortcutScope> : public Glib::Value_Enum<Gtk::ShortcutScope>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -2087,7 +2087,7 @@ template <>
 class GTKMM_API Value<Gtk::ContentFit> : public Glib::Value_Enum<Gtk::ContentFit>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -2099,7 +2099,7 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 //We need this because we can't just use floats for enum value.
-float _gtkmm_align_float_from_enum(Align value);
+auto _gtkmm_align_float_from_enum(Align value) -> float;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
 } //namespace Gtk

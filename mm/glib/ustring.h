@@ -83,7 +83,7 @@ class GLIBMM_API StdStringView
 public:
   StdStringView(const std::string& s) : pstring_(s.c_str()) {}
   StdStringView(const char* s) : pstring_(s) {}
-  const char* c_str() const { return pstring_; }
+  auto c_str() const -> const char* { return pstring_; }
 private:
   const char* pstring_;
 };
@@ -119,7 +119,7 @@ class GLIBMM_API UStringView
 public:
   inline UStringView(const Glib::ustring& s);
   UStringView(const char* s) : pstring_(s) {}
-  const char* c_str() const { return pstring_; }
+  auto c_str() const -> const char* { return pstring_; }
 private:
   const char* pstring_;
 };
@@ -200,17 +200,17 @@ public:
 
   inline ustring_Iterator();
   inline ustring_Iterator(const ustring_Iterator<std::string::iterator>& other);
-  ustring_Iterator& operator=(const ustring_Iterator& other) = default;
+  auto operator=(const ustring_Iterator& other) -> ustring_Iterator& = default;
 
-  inline value_type operator*() const;
+  inline auto operator*() const -> value_type;
 
-  inline ustring_Iterator<T>& operator++();
-  inline const ustring_Iterator<T> operator++(int);
-  inline ustring_Iterator<T>& operator--();
-  inline const ustring_Iterator<T> operator--(int);
+  inline auto operator++() -> ustring_Iterator<T>&;
+  inline auto operator++(int) -> const ustring_Iterator<T>;
+  inline auto operator--() -> ustring_Iterator<T>&;
+  inline auto operator--(int) -> const ustring_Iterator<T>;
 
   explicit inline ustring_Iterator(T pos);
-  inline T base() const;
+  inline auto base() const -> T;
 
 private:
   T pos_;
@@ -227,7 +227,7 @@ private:
  * std::string even for UTF-8 encoding.
  */
 GLIBMM_API
-gunichar get_unichar_from_std_iterator(std::string::const_iterator pos) G_GNUC_PURE;
+auto get_unichar_from_std_iterator(std::string::const_iterator pos) -> gunichar G_GNUC_PURE;
 
 /** %Glib::ustring has much the same interface as std::string, but contains
  * %Unicode characters encoded as UTF-8.
@@ -375,12 +375,12 @@ public:
   /*! Assign the value of another string by copying to this string.
    * @param other A source string.
    */
-  GLIBMM_API ustring& operator=(const ustring& other);
+  GLIBMM_API auto operator=(const ustring& other) -> ustring&;
 
   /*! Assign the value of another string by moving to this string.
    * @param other A source string.
    */
-  GLIBMM_API ustring& operator=(ustring&& other);
+  GLIBMM_API auto operator=(ustring&& other) -> ustring&;
 
   /*! Swap contents with another string.
    * @param other String to swap with.
@@ -437,55 +437,55 @@ public:
   //! @name Assign new contents.
   //! @{
 
-  GLIBMM_API ustring& operator=(const std::string& src);
-  GLIBMM_API ustring& operator=(std::string&& src);
-  GLIBMM_API ustring& operator=(const char* src);
-  GLIBMM_API ustring& operator=(gunichar uc);
-  GLIBMM_API ustring& operator=(char c);
+  GLIBMM_API auto operator=(const std::string& src) -> ustring&;
+  GLIBMM_API auto operator=(std::string&& src) -> ustring&;
+  GLIBMM_API auto operator=(const char* src) -> ustring&;
+  GLIBMM_API auto operator=(gunichar uc) -> ustring&;
+  GLIBMM_API auto operator=(char c) -> ustring&;
 
-  GLIBMM_API ustring& assign(const ustring& src);
-  GLIBMM_API ustring& assign(ustring&& src);
-  GLIBMM_API ustring& assign(const ustring& src, size_type i, size_type n);
-  GLIBMM_API ustring& assign(const char* src, size_type n);
-  GLIBMM_API ustring& assign(const char* src);
-  GLIBMM_API ustring& assign(size_type n, gunichar uc);
-  GLIBMM_API ustring& assign(size_type n, char c);
+  GLIBMM_API auto assign(const ustring& src) -> ustring&;
+  GLIBMM_API auto assign(ustring&& src) -> ustring&;
+  GLIBMM_API auto assign(const ustring& src, size_type i, size_type n) -> ustring&;
+  GLIBMM_API auto assign(const char* src, size_type n) -> ustring&;
+  GLIBMM_API auto assign(const char* src) -> ustring&;
+  GLIBMM_API auto assign(size_type n, gunichar uc) -> ustring&;
+  GLIBMM_API auto assign(size_type n, char c) -> ustring&;
   template <class In>
-  ustring& assign(In pbegin, In pend);
+  auto assign(In pbegin, In pend) -> ustring&;
 
   //! @}
   //! @name Append to the string.
   //! @{
 
-  GLIBMM_API ustring& operator+=(const ustring& src);
-  GLIBMM_API ustring& operator+=(const char* src);
-  GLIBMM_API ustring& operator+=(gunichar uc);
-  GLIBMM_API ustring& operator+=(char c);
+  GLIBMM_API auto operator+=(const ustring& src) -> ustring&;
+  GLIBMM_API auto operator+=(const char* src) -> ustring&;
+  GLIBMM_API auto operator+=(gunichar uc) -> ustring&;
+  GLIBMM_API auto operator+=(char c) -> ustring&;
   GLIBMM_API void push_back(gunichar uc);
   GLIBMM_API void push_back(char c);
 
-  GLIBMM_API ustring& append(const ustring& src);
-  GLIBMM_API ustring& append(const ustring& src, size_type i, size_type n);
-  GLIBMM_API ustring& append(const char* src, size_type n);
-  GLIBMM_API ustring& append(const char* src);
-  GLIBMM_API ustring& append(size_type n, gunichar uc);
-  GLIBMM_API ustring& append(size_type n, char c);
+  GLIBMM_API auto append(const ustring& src) -> ustring&;
+  GLIBMM_API auto append(const ustring& src, size_type i, size_type n) -> ustring&;
+  GLIBMM_API auto append(const char* src, size_type n) -> ustring&;
+  GLIBMM_API auto append(const char* src) -> ustring&;
+  GLIBMM_API auto append(size_type n, gunichar uc) -> ustring&;
+  GLIBMM_API auto append(size_type n, char c) -> ustring&;
   template <class In>
-  ustring& append(In pbegin, In pend);
+  auto append(In pbegin, In pend) -> ustring&;
 
   //! @}
   //! @name Insert into the string.
   //! @{
 
-  GLIBMM_API ustring& insert(size_type i, const ustring& src);
-  GLIBMM_API ustring& insert(size_type i, const ustring& src, size_type i2, size_type n);
-  GLIBMM_API ustring& insert(size_type i, const char* src, size_type n);
-  GLIBMM_API ustring& insert(size_type i, const char* src);
-  GLIBMM_API ustring& insert(size_type i, size_type n, gunichar uc);
-  GLIBMM_API ustring& insert(size_type i, size_type n, char c);
+  GLIBMM_API auto insert(size_type i, const ustring& src) -> ustring&;
+  GLIBMM_API auto insert(size_type i, const ustring& src, size_type i2, size_type n) -> ustring&;
+  GLIBMM_API auto insert(size_type i, const char* src, size_type n) -> ustring&;
+  GLIBMM_API auto insert(size_type i, const char* src) -> ustring&;
+  GLIBMM_API auto insert(size_type i, size_type n, gunichar uc) -> ustring&;
+  GLIBMM_API auto insert(size_type i, size_type n, char c) -> ustring&;
 
-  GLIBMM_API iterator insert(iterator p, gunichar uc);
-  GLIBMM_API iterator insert(iterator p, char c);
+  GLIBMM_API auto insert(iterator p, gunichar uc) -> iterator;
+  GLIBMM_API auto insert(iterator p, char c) -> iterator;
   GLIBMM_API void insert(iterator p, size_type n, gunichar uc);
   GLIBMM_API void insert(iterator p, size_type n, char c);
   template <class In>
@@ -495,39 +495,39 @@ public:
   //! @name Replace sub-strings.
   //! @{
 
-  GLIBMM_API ustring& replace(size_type i, size_type n, const ustring& src);
-  GLIBMM_API ustring& replace(size_type i, size_type n, const ustring& src, size_type i2, size_type n2);
-  GLIBMM_API ustring& replace(size_type i, size_type n, const char* src, size_type n2);
-  GLIBMM_API ustring& replace(size_type i, size_type n, const char* src);
-  GLIBMM_API ustring& replace(size_type i, size_type n, size_type n2, gunichar uc);
-  GLIBMM_API ustring& replace(size_type i, size_type n, size_type n2, char c);
+  GLIBMM_API auto replace(size_type i, size_type n, const ustring& src) -> ustring&;
+  GLIBMM_API auto replace(size_type i, size_type n, const ustring& src, size_type i2, size_type n2) -> ustring&;
+  GLIBMM_API auto replace(size_type i, size_type n, const char* src, size_type n2) -> ustring&;
+  GLIBMM_API auto replace(size_type i, size_type n, const char* src) -> ustring&;
+  GLIBMM_API auto replace(size_type i, size_type n, size_type n2, gunichar uc) -> ustring&;
+  GLIBMM_API auto replace(size_type i, size_type n, size_type n2, char c) -> ustring&;
 
-  GLIBMM_API ustring& replace(iterator pbegin, iterator pend, const ustring& src);
-  GLIBMM_API ustring& replace(iterator pbegin, iterator pend, const char* src, size_type n);
-  GLIBMM_API ustring& replace(iterator pbegin, iterator pend, const char* src);
-  GLIBMM_API ustring& replace(iterator pbegin, iterator pend, size_type n, gunichar uc);
-  GLIBMM_API ustring& replace(iterator pbegin, iterator pend, size_type n, char c);
+  GLIBMM_API auto replace(iterator pbegin, iterator pend, const ustring& src) -> ustring&;
+  GLIBMM_API auto replace(iterator pbegin, iterator pend, const char* src, size_type n) -> ustring&;
+  GLIBMM_API auto replace(iterator pbegin, iterator pend, const char* src) -> ustring&;
+  GLIBMM_API auto replace(iterator pbegin, iterator pend, size_type n, gunichar uc) -> ustring&;
+  GLIBMM_API auto replace(iterator pbegin, iterator pend, size_type n, char c) -> ustring&;
   template <class In>
-  ustring& replace(iterator pbegin, iterator pend, In pbegin2, In pend2);
+  auto replace(iterator pbegin, iterator pend, In pbegin2, In pend2) -> ustring&;
 
   //! @}
   //! @name Erase sub-strings.
   //! @{
 
   GLIBMM_API void clear();
-  GLIBMM_API ustring& erase(size_type i, size_type n = npos);
-  GLIBMM_API ustring& erase();
-  GLIBMM_API iterator erase(iterator p);
-  GLIBMM_API iterator erase(iterator pbegin, iterator pend);
+  GLIBMM_API auto erase(size_type i, size_type n = npos) -> ustring&;
+  GLIBMM_API auto erase() -> ustring&;
+  GLIBMM_API auto erase(iterator p) -> iterator;
+  GLIBMM_API auto erase(iterator pbegin, iterator pend) -> iterator;
 
   //! @}
   //! @name Compare and collate.
   //! @{
 
-  GLIBMM_API int compare(UStringView rhs) const;
-  GLIBMM_API int compare(size_type i, size_type n, UStringView rhs) const;
-  GLIBMM_API int compare(size_type i, size_type n, const ustring& rhs, size_type i2, size_type n2) const;
-  GLIBMM_API int compare(size_type i, size_type n, const char* rhs, size_type n2) const;
+  GLIBMM_API auto compare(UStringView rhs) const -> int;
+  GLIBMM_API auto compare(size_type i, size_type n, UStringView rhs) const -> int;
+  GLIBMM_API auto compare(size_type i, size_type n, const ustring& rhs, size_type i2, size_type n2) const -> int;
+  GLIBMM_API auto compare(size_type i, size_type n, const char* rhs, size_type n2) const -> int;
 
   /*! Create a unique sorting key for the UTF-8 string.  If you need to
    * compare UTF-8 strings regularly, e.g. for sorted containers such as
@@ -540,93 +540,93 @@ public:
    * the current locale.  Converting both operands to UCS-4 is just the first
    * of several costly steps involved when comparing ustrings.  So be careful.
    */
-  GLIBMM_API std::string collate_key() const;
+  GLIBMM_API auto collate_key() const -> std::string;
 
   /*! Create a unique key for the UTF-8 string that can be used for caseless
    * sorting.  <tt>ustr.casefold_collate_key()</tt> results in the same string
    * as <tt>ustr.casefold().collate_key()</tt>, but the former is likely more
    * efficient.
    */
-  GLIBMM_API std::string casefold_collate_key() const;
+  GLIBMM_API auto casefold_collate_key() const -> std::string;
 
   //! @}
   //! @name Extract characters and sub-strings.
   //! @{
 
   /*! No reference return; use replace() to write characters. */
-  GLIBMM_API value_type operator[](size_type i) const;
+  GLIBMM_API auto operator[](size_type i) const -> value_type;
 
   /*! No reference return; use replace() to write characters. @throw std::out_of_range */
-  GLIBMM_API value_type at(size_type i) const;
+  GLIBMM_API auto at(size_type i) const -> value_type;
 
-  GLIBMM_API inline ustring substr(size_type i = 0, size_type n = npos) const;
+  GLIBMM_API inline auto substr(size_type i = 0, size_type n = npos) const -> ustring;
 
   //! @}
   //! @name Access a sequence of characters.
   //! @{
 
-  GLIBMM_API iterator begin();
-  GLIBMM_API iterator end();
-  GLIBMM_API const_iterator begin() const;
-  GLIBMM_API const_iterator end() const;
-  GLIBMM_API reverse_iterator rbegin();
-  GLIBMM_API reverse_iterator rend();
-  GLIBMM_API const_reverse_iterator rbegin() const;
-  GLIBMM_API const_reverse_iterator rend() const;
+  GLIBMM_API auto begin() -> iterator;
+  GLIBMM_API auto end() -> iterator;
+  GLIBMM_API auto begin() const -> const_iterator;
+  GLIBMM_API auto end() const -> const_iterator;
+  GLIBMM_API auto rbegin() -> reverse_iterator;
+  GLIBMM_API auto rend() -> reverse_iterator;
+  GLIBMM_API auto rbegin() const -> const_reverse_iterator;
+  GLIBMM_API auto rend() const -> const_reverse_iterator;
 
   /**
    * @newin{2,52}
    */
-  GLIBMM_API const_iterator cbegin() const;
+  GLIBMM_API auto cbegin() const -> const_iterator;
 
   /**
    * @newin{2,52}
    */
-  GLIBMM_API const_iterator cend() const;
+  GLIBMM_API auto cend() const -> const_iterator;
 
   //! @}
   //! @name Find sub-strings.
   //! @{
 
-  GLIBMM_API size_type find(const ustring& str, size_type i = 0) const;
-  GLIBMM_API size_type find(const char* str, size_type i, size_type n) const;
-  GLIBMM_API size_type find(const char* str, size_type i = 0) const;
-  GLIBMM_API size_type find(gunichar uc, size_type i = 0) const;
-  GLIBMM_API size_type find(char c, size_type i = 0) const;
+  GLIBMM_API auto find(const ustring& str, size_type i = 0) const -> size_type;
+  GLIBMM_API auto find(const char* str, size_type i, size_type n) const -> size_type;
+  GLIBMM_API auto find(const char* str, size_type i = 0) const -> size_type;
+  GLIBMM_API auto find(gunichar uc, size_type i = 0) const -> size_type;
+  GLIBMM_API auto find(char c, size_type i = 0) const -> size_type;
 
-  GLIBMM_API size_type rfind(const ustring& str, size_type i = npos) const;
-  GLIBMM_API size_type rfind(const char* str, size_type i, size_type n) const;
-  GLIBMM_API size_type rfind(const char* str, size_type i = npos) const;
-  GLIBMM_API size_type rfind(gunichar uc, size_type i = npos) const;
-  GLIBMM_API size_type rfind(char c, size_type i = npos) const;
+  GLIBMM_API auto rfind(const ustring& str, size_type i = npos) const -> size_type;
+  GLIBMM_API auto rfind(const char* str, size_type i, size_type n) const -> size_type;
+  GLIBMM_API auto rfind(const char* str, size_type i = npos) const -> size_type;
+  GLIBMM_API auto rfind(gunichar uc, size_type i = npos) const -> size_type;
+  GLIBMM_API auto rfind(char c, size_type i = npos) const -> size_type;
 
   //! @}
   //! @name Match against a set of characters.
   //! @{
 
-  GLIBMM_API size_type find_first_of(const ustring& match, size_type i = 0) const;
-  GLIBMM_API size_type find_first_of(const char* match, size_type i, size_type n) const;
-  GLIBMM_API size_type find_first_of(const char* match, size_type i = 0) const;
-  GLIBMM_API size_type find_first_of(gunichar uc, size_type i = 0) const;
-  GLIBMM_API size_type find_first_of(char c, size_type i = 0) const;
+  GLIBMM_API auto find_first_of(const ustring& match, size_type i = 0) const -> size_type;
+  GLIBMM_API auto find_first_of(const char* match, size_type i, size_type n) const -> size_type;
+  GLIBMM_API auto find_first_of(const char* match, size_type i = 0) const -> size_type;
+  GLIBMM_API auto find_first_of(gunichar uc, size_type i = 0) const -> size_type;
+  GLIBMM_API auto find_first_of(char c, size_type i = 0) const -> size_type;
 
-  GLIBMM_API size_type find_last_of(const ustring& match, size_type i = npos) const;
-  GLIBMM_API size_type find_last_of(const char* match, size_type i, size_type n) const;
-  GLIBMM_API size_type find_last_of(const char* match, size_type i = npos) const;
-  GLIBMM_API size_type find_last_of(gunichar uc, size_type i = npos) const;
-  GLIBMM_API size_type find_last_of(char c, size_type i = npos) const;
+  GLIBMM_API auto find_last_of(const ustring& match, size_type i = npos) const -> size_type;
+  GLIBMM_API auto find_last_of(const char* match, size_type i, size_type n) const -> size_type;
+  GLIBMM_API auto find_last_of(const char* match, size_type i = npos) const -> size_type;
+  GLIBMM_API auto find_last_of(gunichar uc, size_type i = npos) const -> size_type;
+  GLIBMM_API auto find_last_of(char c, size_type i = npos) const -> size_type;
 
-  GLIBMM_API size_type find_first_not_of(const ustring& match, size_type i = 0) const;
-  GLIBMM_API size_type find_first_not_of(const char* match, size_type i, size_type n) const;
-  GLIBMM_API size_type find_first_not_of(const char* match, size_type i = 0) const;
-  GLIBMM_API size_type find_first_not_of(gunichar uc, size_type i = 0) const;
-  GLIBMM_API size_type find_first_not_of(char c, size_type i = 0) const;
+  GLIBMM_API auto find_first_not_of(const ustring& match, size_type i = 0) const -> size_type;
+  GLIBMM_API auto find_first_not_of(const char* match, size_type i, size_type n) const -> size_type;
+  GLIBMM_API auto find_first_not_of(const char* match, size_type i = 0) const -> size_type;
+  GLIBMM_API auto find_first_not_of(gunichar uc, size_type i = 0) const -> size_type;
+  GLIBMM_API auto find_first_not_of(char c, size_type i = 0) const -> size_type;
 
-  GLIBMM_API size_type find_last_not_of(const ustring& match, size_type i = npos) const;
-  GLIBMM_API size_type find_last_not_of(const char* match, size_type i, size_type n) const;
-  GLIBMM_API size_type find_last_not_of(const char* match, size_type i = npos) const;
-  GLIBMM_API size_type find_last_not_of(gunichar uc, size_type i = npos) const;
-  GLIBMM_API size_type find_last_not_of(char c, size_type i = npos) const;
+  GLIBMM_API auto find_last_not_of(const ustring& match, size_type i = npos) const -> size_type;
+  GLIBMM_API auto find_last_not_of(const char* match, size_type i, size_type n) const -> size_type;
+  GLIBMM_API auto find_last_not_of(const char* match, size_type i = npos) const -> size_type;
+  GLIBMM_API auto find_last_not_of(gunichar uc, size_type i = npos) const -> size_type;
+  GLIBMM_API auto find_last_not_of(char c, size_type i = npos) const -> size_type;
 
   //! @}
   //! @name Retrieve the string's size.
@@ -635,27 +635,27 @@ public:
   /** Returns true if the string is empty. Equivalent to *this == "".
    * @result Whether the string is empty.
    */
-  GLIBMM_API bool empty() const;
+  GLIBMM_API auto empty() const -> bool;
 
   /** Returns the number of characters in the string, not including any null-termination.
    * @result The number of UTF-8 characters.
    *
    * @see bytes(), empty()
    */
-  GLIBMM_API size_type size() const;
+  GLIBMM_API auto size() const -> size_type;
 
   // We have length() as well as size(), because std::string has both.
 
   /** This is the same as size().
    */
-  GLIBMM_API size_type length() const;
+  GLIBMM_API auto length() const -> size_type;
 
   /** Returns the number of bytes in the string, not including any null-termination.
    * @result The number of bytes.
    *
    * @see size(), empty()
    */
-  GLIBMM_API size_type bytes() const;
+  GLIBMM_API auto bytes() const -> size_type;
 
   //! @}
   //! @name Change the string's size.
@@ -668,8 +668,8 @@ public:
   //! @name Control the allocated memory.
   //! @{
 
-  GLIBMM_API size_type capacity() const;
-  GLIBMM_API size_type max_size() const;
+  GLIBMM_API auto capacity() const -> size_type;
+  GLIBMM_API auto max_size() const -> size_type;
   GLIBMM_API void reserve(size_type n = 0);
 
   //! @}
@@ -677,37 +677,37 @@ public:
   //! @{
 
   GLIBMM_API inline operator std::string() const; // e.g. std::string str = ustring();
-  GLIBMM_API inline const std::string& raw() const;
+  GLIBMM_API inline auto raw() const -> const std::string&;
   /*! Return the stored string, moved from the %ustring.
    * @newin{2,74}
    */
-  GLIBMM_API inline std::string release();
+  GLIBMM_API inline auto release() -> std::string;
 
   // Not necessarily an ASCII char*. Use g_utf8_*() where necessary.
-  GLIBMM_API const char* data() const;
-  GLIBMM_API const char* c_str() const;
+  GLIBMM_API auto data() const -> const char*;
+  GLIBMM_API auto c_str() const -> const char*;
 
   /*! @return Number of copied @em bytes, not characters. */
-  GLIBMM_API size_type copy(char* dest, size_type n, size_type i = 0) const;
+  GLIBMM_API auto copy(char* dest, size_type n, size_type i = 0) const -> size_type;
 
   //! @}
   //! @name UTF-8 utilities.
   //! @{
 
   /*! Check whether the string is valid UTF-8. */
-  GLIBMM_API bool validate() const;
+  GLIBMM_API auto validate() const -> bool;
 
   /*! Check whether the string is valid UTF-8. */
-  GLIBMM_API bool validate(iterator& first_invalid);
+  GLIBMM_API auto validate(iterator& first_invalid) -> bool;
 
   /*! Check whether the string is valid UTF-8. */
-  GLIBMM_API bool validate(const_iterator& first_invalid) const;
+  GLIBMM_API auto validate(const_iterator& first_invalid) const -> bool;
 
   /*! Return a copy that is a valid UTF-8 string replacing invalid bytes in the
    *  original with %Unicode replacement character (U+FFFD).
    *  If the string is valid, return a copy of it.
    */
-  GLIBMM_API ustring make_valid() const;
+  GLIBMM_API auto make_valid() const -> ustring;
 
   /*! Check whether the string is plain 7-bit ASCII. @par
    * Unlike any other ustring method, is_ascii() is safe to use on invalid
@@ -715,10 +715,10 @@ public:
    * ASCII either, therefore is_ascii() will just return @c false then.
    * @return Whether the string contains only ASCII characters.
    */
-  GLIBMM_API bool is_ascii() const;
+  GLIBMM_API auto is_ascii() const -> bool;
 
   /*! "Normalize" the %Unicode character representation of the string. */
-  GLIBMM_API ustring normalize(NormalizeMode mode = NormalizeMode::DEFAULT_COMPOSE) const;
+  GLIBMM_API auto normalize(NormalizeMode mode = NormalizeMode::DEFAULT_COMPOSE) const -> ustring;
 
   //! @}
   //! @name Character case conversion.
@@ -731,21 +731,21 @@ public:
    * <tt>&quot;&szlig;&quot;</tt> will be replaced by two characters
    * <tt>"SS"</tt> because there is no capital <tt>&quot;&szlig;&quot;</tt>.
    */
-  GLIBMM_API ustring uppercase() const;
+  GLIBMM_API auto uppercase() const -> ustring;
 
   /*! Returns a new UTF-8 string with all characters characters converted to
    * their lowercase equivalent, while honoring the current locale.  The
    * resulting string may change in the number of bytes as well as in the
    * number of characters.
    */
-  GLIBMM_API ustring lowercase() const;
+  GLIBMM_API auto lowercase() const -> ustring;
 
   /*! Returns a caseless representation of the UTF-8 string.  The resulting
    * string doesn't correspond to any particular case, therefore the result
    * is only useful to compare strings and should never be displayed to the
    * user.
    */
-  GLIBMM_API ustring casefold() const;
+  GLIBMM_API auto casefold() const -> ustring;
 
   //! @}
   //! @name Message formatting.
@@ -754,7 +754,7 @@ public:
   /* Returns fmt as is, but checks for invalid references in the format string.
    * @newin{2,18}
    */
-  GLIBMM_API static inline ustring compose(const ustring& fmt);
+  GLIBMM_API static inline auto compose(const ustring& fmt) -> ustring;
 
   /*! Substitute placeholders in a format string with the referenced arguments.
    *
@@ -782,7 +782,7 @@ public:
    * @newin{2,58}
    */
   template <class... Ts>
-  static inline ustring compose(const ustring& fmt, const Ts&... args);
+  static inline auto compose(const ustring& fmt, const Ts&... args) -> ustring;
 
   /*! Format the argument(s) to a string representation.
    *
@@ -821,7 +821,7 @@ public:
    * @newin{2,58}
    */
   template <class... Ts>
-  static inline ustring format(const Ts&... args);
+  static inline auto format(const Ts&... args) -> ustring;
 
   /*! Substitute placeholders in a format string with the referenced arguments.
    *
@@ -871,7 +871,7 @@ public:
    * @newin{2,62}
    */
   template <class... Ts>
-  static inline ustring sprintf(const ustring& fmt, const Ts&... args);
+  static inline auto sprintf(const ustring& fmt, const Ts&... args) -> ustring;
 
   /*! Overload of sprintf() taking a string literal.
    *
@@ -889,7 +889,7 @@ public:
    * @newin{2,62}
    */
   template <class... Ts>
-  static inline ustring sprintf(const char* fmt, const Ts&... args);
+  static inline auto sprintf(const char* fmt, const Ts&... args) -> ustring;
 
   /*! Overload of sprintf() for a format string only, which returns it unchanged.
    *
@@ -903,7 +903,7 @@ public:
    *
    * @newin{2,62}
    */
-  GLIBMM_API static inline ustring sprintf(const ustring& fmt);
+  GLIBMM_API static inline auto sprintf(const ustring& fmt) -> ustring;
 
   /*! Overload of sprintf() for a format string only, which returns it unchanged
    * and avoids creating a temporary ustring as the argument.
@@ -913,7 +913,7 @@ public:
    *
    * @newin{2,62}
    */
-  GLIBMM_API static inline ustring sprintf(const char* fmt);
+  GLIBMM_API static inline auto sprintf(const char* fmt) -> ustring;
 
   //! @}
 
@@ -937,13 +937,13 @@ private:
   template <class T>
   class Stringify;
 
-  GLIBMM_API static ustring compose_private(const ustring& fmt, std::initializer_list<const ustring*> ilist);
+  GLIBMM_API static auto compose_private(const ustring& fmt, std::initializer_list<const ustring*> ilist) -> ustring;
 
   class FormatStream;
 
-  template<class T> static inline const T& sprintify(const T& arg);
-  GLIBMM_API static inline const char* sprintify(const ustring& arg);
-  GLIBMM_API static inline const char* sprintify(const std::string& arg);
+  template<class T> static inline auto sprintify(const T& arg) -> const T&;
+  GLIBMM_API static inline auto sprintify(const ustring& arg) -> const char*;
+  GLIBMM_API static inline auto sprintify(const std::string& arg) -> const char*;
 
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
@@ -987,7 +987,7 @@ class ustring::FormatStream
 public:
   // noncopyable
   FormatStream(const ustring::FormatStream&) = delete;
-  FormatStream& operator=(const ustring::FormatStream&) = delete;
+  auto operator=(const ustring::FormatStream&) -> FormatStream& = delete;
 
 private:
 #ifdef GLIBMM_HAVE_WIDE_STREAM
@@ -1009,7 +1009,7 @@ public:
   // This overload exists to avoid the templated stream() being called for non-const char*.
   GLIBMM_API inline void stream(char* value);
 
-  GLIBMM_API ustring to_string() const;
+  GLIBMM_API auto to_string() const -> ustring;
 };
 
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
@@ -1019,14 +1019,14 @@ public:
  * @throw Glib::ConvertError
  */
 GLIBMM_API
-std::istream& operator>>(std::istream& is, Glib::ustring& utf8_string);
+auto operator>>(std::istream& is, Glib::ustring& utf8_string) -> std::istream&;
 
 /** Stream output operator.
  * @relates Glib::ustring
  * @throw Glib::ConvertError
  */
 GLIBMM_API
-std::ostream& operator<<(std::ostream& os, const Glib::ustring& utf8_string);
+auto operator<<(std::ostream& os, const Glib::ustring& utf8_string) -> std::ostream&;
 
 #ifdef GLIBMM_HAVE_WIDE_STREAM
 
@@ -1035,14 +1035,14 @@ std::ostream& operator<<(std::ostream& os, const Glib::ustring& utf8_string);
  * @throw Glib::ConvertError
 GLIBMM_API
  */
-std::wistream& operator>>(std::wistream& is, ustring& utf8_string);
+auto operator>>(std::wistream& is, ustring& utf8_string) -> std::wistream&;
 
 /** Wide stream output operator.
  * @relates Glib::ustring
  * @throw Glib::ConvertError
  */
 GLIBMM_API
-std::wostream& operator<<(std::wostream& os, const ustring& utf8_string);
+auto operator<<(std::wostream& os, const ustring& utf8_string) -> std::wostream&;
 
 #endif /* GLIBMM_HAVE_WIDE_STREAM */
 
@@ -1060,8 +1060,8 @@ inline ustring_Iterator<T>::ustring_Iterator(T pos) : pos_(pos)
 }
 
 template <class T>
-inline T
-ustring_Iterator<T>::base() const
+inline auto
+ustring_Iterator<T>::base() const -> T
 {
   return pos_;
 }
@@ -1078,20 +1078,20 @@ inline ustring_Iterator<T>::ustring_Iterator(const ustring_Iterator<std::string:
 }
 
 template <class T>
-inline typename ustring_Iterator<T>::value_type ustring_Iterator<T>::operator*() const
+inline auto ustring_Iterator<T>::operator*() const -> typename ustring_Iterator<T>::value_type
 {
   return Glib::get_unichar_from_std_iterator(pos_);
 }
 
 template <class T>
-inline ustring_Iterator<T>& ustring_Iterator<T>::operator++()
+inline auto ustring_Iterator<T>::operator++() -> ustring_Iterator<T>&
 {
   pos_ += g_utf8_skip[static_cast<unsigned char>(*pos_)];
   return *this;
 }
 
 template <class T>
-inline const ustring_Iterator<T> ustring_Iterator<T>::operator++(int)
+inline auto ustring_Iterator<T>::operator++(int) -> const ustring_Iterator<T>
 {
   const ustring_Iterator<T> temp(*this);
   this->operator++();
@@ -1099,7 +1099,7 @@ inline const ustring_Iterator<T> ustring_Iterator<T>::operator++(int)
 }
 
 template <class T>
-inline ustring_Iterator<T>& ustring_Iterator<T>::operator--()
+inline auto ustring_Iterator<T>::operator--() -> ustring_Iterator<T>&
 {
   while ((static_cast<unsigned char>(*--pos_) & 0xC0u) == 0x80)
   {
@@ -1110,7 +1110,7 @@ inline ustring_Iterator<T>& ustring_Iterator<T>::operator--()
 }
 
 template <class T>
-inline const ustring_Iterator<T> ustring_Iterator<T>::operator--(int)
+inline auto ustring_Iterator<T>::operator--(int) -> const ustring_Iterator<T>
 {
   const ustring_Iterator<T> temp(*this);
   this->operator--();
@@ -1120,43 +1120,43 @@ inline const ustring_Iterator<T> ustring_Iterator<T>::operator--(int)
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
 /** @relates Glib::ustring_Iterator */
-inline bool
-operator==(const Glib::ustring::const_iterator& lhs, const Glib::ustring::const_iterator& rhs)
+inline auto
+operator==(const Glib::ustring::const_iterator& lhs, const Glib::ustring::const_iterator& rhs) -> bool
 {
   return (lhs.base() == rhs.base());
 }
 
 /** @relates Glib::ustring_Iterator */
-inline bool
-operator!=(const Glib::ustring::const_iterator& lhs, const Glib::ustring::const_iterator& rhs)
+inline auto
+operator!=(const Glib::ustring::const_iterator& lhs, const Glib::ustring::const_iterator& rhs) -> bool
 {
   return (lhs.base() != rhs.base());
 }
 
 /** @relates Glib::ustring_Iterator */
-inline bool
-operator<(const Glib::ustring::const_iterator& lhs, const Glib::ustring::const_iterator& rhs)
+inline auto
+operator<(const Glib::ustring::const_iterator& lhs, const Glib::ustring::const_iterator& rhs) -> bool
 {
   return (lhs.base() < rhs.base());
 }
 
 /** @relates Glib::ustring_Iterator */
-inline bool
-operator>(const Glib::ustring::const_iterator& lhs, const Glib::ustring::const_iterator& rhs)
+inline auto
+operator>(const Glib::ustring::const_iterator& lhs, const Glib::ustring::const_iterator& rhs) -> bool
 {
   return (lhs.base() > rhs.base());
 }
 
 /** @relates Glib::ustring_Iterator */
-inline bool
-operator<=(const Glib::ustring::const_iterator& lhs, const Glib::ustring::const_iterator& rhs)
+inline auto
+operator<=(const Glib::ustring::const_iterator& lhs, const Glib::ustring::const_iterator& rhs) -> bool
 {
   return (lhs.base() <= rhs.base());
 }
 
 /** @relates Glib::ustring_Iterator */
-inline bool
-operator>=(const Glib::ustring::const_iterator& lhs, const Glib::ustring::const_iterator& rhs)
+inline auto
+operator>=(const Glib::ustring::const_iterator& lhs, const Glib::ustring::const_iterator& rhs) -> bool
 {
   return (lhs.base() >= rhs.base());
 }
@@ -1212,8 +1212,8 @@ ustring::ustring(In pbegin, In pend) : string_(Glib::ustring::SequenceToString<I
 }
 
 template <class In>
-ustring&
-ustring::assign(In pbegin, In pend)
+auto
+ustring::assign(In pbegin, In pend) -> ustring&
 {
   Glib::ustring::SequenceToString<In> temp_string(pbegin, pend);
   string_.swap(temp_string); // constant-time operation
@@ -1221,8 +1221,8 @@ ustring::assign(In pbegin, In pend)
 }
 
 template <class In>
-ustring&
-ustring::append(In pbegin, In pend)
+auto
+ustring::append(In pbegin, In pend) -> ustring&
 {
   string_.append(Glib::ustring::SequenceToString<In>(pbegin, pend));
   return *this;
@@ -1237,8 +1237,8 @@ ustring::insert(ustring::iterator p, In pbegin, In pend)
 }
 
 template <class In>
-ustring&
-ustring::replace(ustring::iterator pbegin, ustring::iterator pend, In pbegin2, In pend2)
+auto
+ustring::replace(ustring::iterator pbegin, ustring::iterator pend, In pbegin2, In pend2) -> ustring&
 {
   string_.replace(pbegin.base(), pend.base(), Glib::ustring::SequenceToString<In>(pbegin2, pend2));
   return *this;
@@ -1247,8 +1247,8 @@ ustring::replace(ustring::iterator pbegin, ustring::iterator pend, In pbegin2, I
 // The ustring methods substr() and operator std::string() are inline,
 // so that the compiler has a fair chance to optimize the copy ctor away.
 
-inline ustring
-ustring::substr(ustring::size_type i, ustring::size_type n) const
+inline auto
+ustring::substr(ustring::size_type i, ustring::size_type n) const -> ustring
 {
   return ustring(*this, i, n);
 }
@@ -1258,22 +1258,22 @@ inline ustring::operator std::string() const
   return string_;
 }
 
-inline const std::string&
-ustring::raw() const
+inline auto
+ustring::raw() const -> const std::string&
 {
   return string_;
 }
 
-inline std::string
-ustring::release()
+inline auto
+ustring::release() -> std::string
 {
   return std::move(string_);
 }
 
 template <class... Ts>
 inline // static
-  ustring
-  ustring::format(const Ts&... args)
+  auto
+  ustring::format(const Ts&... args) -> ustring
 {
   ustring::FormatStream buf;
   (buf.stream(args), ...);
@@ -1293,9 +1293,9 @@ public:
 
   // noncopyable
   Stringify(const ustring::Stringify<T>&) = delete;
-  Stringify<T>& operator=(const ustring::Stringify<T>&) = delete;
+  auto operator=(const ustring::Stringify<T>&) -> Stringify<T>& = delete;
 
-  inline const ustring& ref() const { return string_; }
+  inline auto ref() const -> const ustring& { return string_; }
 };
 
 /// A template specialization for Stringify<ustring>:
@@ -1310,9 +1310,9 @@ public:
 
   // noncopyable
   Stringify(const ustring::Stringify<ustring>&) = delete;
-  Stringify<ustring>& operator=(const ustring::Stringify<ustring>&) = delete;
+  auto operator=(const ustring::Stringify<ustring>&) -> Stringify<ustring>& = delete;
 
-  inline const ustring& ref() const { return string_; }
+  inline auto ref() const -> const ustring& { return string_; }
 };
 
 /** A template specialization for Stringify<const char*>,
@@ -1329,9 +1329,9 @@ public:
 
   // noncopyable
   Stringify(const ustring::Stringify<const char*>&) = delete;
-  Stringify<ustring>& operator=(const ustring::Stringify<const char*>&) = delete;
+  auto operator=(const ustring::Stringify<const char*>&) -> Stringify<ustring>& = delete;
 
-  inline const ustring& ref() const { return string_; }
+  inline auto ref() const -> const ustring& { return string_; }
 };
 
 /** A template specialization for Stringify<char[N]> (for string literals),
@@ -1348,9 +1348,9 @@ public:
 
   // noncopyable
   Stringify(const ustring::Stringify<char[N]>&) = delete;
-  Stringify<ustring>& operator=(const ustring::Stringify<char[N]>&) = delete;
+  auto operator=(const ustring::Stringify<char[N]>&) -> Stringify<ustring>& = delete;
 
-  inline const ustring& ref() const { return string_; }
+  inline auto ref() const -> const ustring& { return string_; }
 };
 
 /** A template specialization for Stringify<const char[N]> (for string literals),
@@ -1368,9 +1368,9 @@ public:
 
   // noncopyable
   Stringify(const ustring::Stringify<const char[N]>&) = delete;
-  Stringify<ustring>& operator=(const ustring::Stringify<const char[N]>&) = delete;
+  auto operator=(const ustring::Stringify<const char[N]>&) -> Stringify<ustring>& = delete;
 
-  inline const ustring& ref() const { return string_; }
+  inline auto ref() const -> const ustring& { return string_; }
 };
 
 /* These helper functions used by ustring::sprintf() let users pass C++ strings
@@ -1378,22 +1378,22 @@ public:
  */
 template<typename T>
 inline // static
-  const T&
-  ustring::sprintify(const T& arg)
+  auto
+  ustring::sprintify(const T& arg) -> const T&
 {
   return arg;
 }
 
 inline // static
-  const char*
-  ustring::sprintify(const ustring& arg)
+  auto
+  ustring::sprintify(const ustring& arg) -> const char*
 {
   return arg.c_str();
 }
 
 inline // static
-  const char*
-  ustring::sprintify(const std::string& arg)
+  auto
+  ustring::sprintify(const std::string& arg) -> const char*
 {
   return arg.c_str();
 }
@@ -1401,16 +1401,16 @@ inline // static
 // Public methods
 
 inline // static
-  ustring
-  ustring::compose(const ustring& fmt)
+  auto
+  ustring::compose(const ustring& fmt) -> ustring
 {
   return ustring::compose_private(fmt, {});
 }
 
 template <class... Ts>
 inline // static
-  ustring
-  ustring::compose(const ustring& fmt, const Ts&... args)
+  auto
+  ustring::compose(const ustring& fmt, const Ts&... args) -> ustring
 {
   static_assert(sizeof...(Ts) <= 9,
                 "ustring::compose only supports up to 9 placeholders.");
@@ -1420,16 +1420,16 @@ inline // static
 
 template <class... Ts>
 inline // static
-  ustring
-  ustring::sprintf(const ustring& fmt, const Ts&... args)
+  auto
+  ustring::sprintf(const ustring& fmt, const Ts&... args) -> ustring
 {
   return sprintf(fmt.c_str(), args...);
 }
 
 template <class... Ts>
 inline // static
-  ustring
-  ustring::sprintf(const char* fmt, const Ts&... args)
+  auto
+  ustring::sprintf(const char* fmt, const Ts&... args) -> ustring
 {
   auto c_str = g_strdup_printf(fmt, sprintify(args)...);
   Glib::ustring ustr(c_str);
@@ -1439,15 +1439,15 @@ inline // static
 }
 
 inline // static
-  ustring
-  ustring::sprintf(const ustring& fmt)
+  auto
+  ustring::sprintf(const ustring& fmt) -> ustring
 {
   return fmt;
 }
 
 inline // static
-  ustring
-  ustring::sprintf(const char* fmt)
+  auto
+  ustring::sprintf(const char* fmt) -> ustring
 {
   return ustring(fmt);
 }
@@ -1465,90 +1465,90 @@ swap(ustring& lhs, ustring& rhs)
 
 /** @relates Glib::ustring */
 template <typename T, typename = std::enable_if_t<!std::is_base_of_v<ustring, T>>>
-inline bool
-operator==(const ustring& lhs, const T& rhs)
+inline auto
+operator==(const ustring& lhs, const T& rhs) -> bool
 {
   return (lhs.compare(rhs) == 0);
 }
 
 /** @relates Glib::ustring */
-inline bool
-operator==(UStringView lhs, const ustring& rhs)
+inline auto
+operator==(UStringView lhs, const ustring& rhs) -> bool
 {
   return (rhs.compare(lhs) == 0);
 }
 
 /** @relates Glib::ustring */
 template <typename T, typename = std::enable_if_t<!std::is_base_of_v<ustring, T>>>
-inline bool
-operator!=(const ustring& lhs, const T& rhs)
+inline auto
+operator!=(const ustring& lhs, const T& rhs) -> bool
 {
   return (lhs.compare(rhs) != 0);
 }
 
 /** @relates Glib::ustring */
-inline bool
-operator!=(UStringView lhs, const ustring& rhs)
+inline auto
+operator!=(UStringView lhs, const ustring& rhs) -> bool
 {
   return (rhs.compare(lhs) != 0);
 }
 
 /** @relates Glib::ustring */
 template <typename T, typename = std::enable_if_t<!std::is_base_of_v<ustring, T>>>
-inline bool
-operator<(const ustring& lhs, const T& rhs)
+inline auto
+operator<(const ustring& lhs, const T& rhs) -> bool
 {
   return (lhs.compare(rhs) < 0);
 }
 
 /** @relates Glib::ustring */
-inline bool
-operator<(UStringView lhs, const ustring& rhs)
+inline auto
+operator<(UStringView lhs, const ustring& rhs) -> bool
 {
   return (rhs.compare(lhs) > 0);
 }
 
 /** @relates Glib::ustring */
 template <typename T, typename = std::enable_if_t<!std::is_base_of_v<ustring, T>>>
-inline bool
-operator>(const ustring& lhs, const T& rhs)
+inline auto
+operator>(const ustring& lhs, const T& rhs) -> bool
 {
   return (lhs.compare(rhs) > 0);
 }
 
 /** @relates Glib::ustring */
-inline bool
-operator>(UStringView lhs, const ustring& rhs)
+inline auto
+operator>(UStringView lhs, const ustring& rhs) -> bool
 {
   return (rhs.compare(lhs) < 0);
 }
 
 /** @relates Glib::ustring */
 template <typename T, typename = std::enable_if_t<!std::is_base_of_v<ustring, T>>>
-inline bool
-operator<=(const ustring& lhs, const T& rhs)
+inline auto
+operator<=(const ustring& lhs, const T& rhs) -> bool
 {
   return (lhs.compare(rhs) <= 0);
 }
 
 /** @relates Glib::ustring */
-inline bool
-operator<=(UStringView lhs, const ustring& rhs)
+inline auto
+operator<=(UStringView lhs, const ustring& rhs) -> bool
 {
   return (rhs.compare(lhs) >= 0);
 }
 
 /** @relates Glib::ustring */
 template <typename T, typename = std::enable_if_t<!std::is_base_of_v<ustring, T>>>
-inline bool
-operator>=(const ustring& lhs, const T& rhs)
+inline auto
+operator>=(const ustring& lhs, const T& rhs) -> bool
 {
   return (lhs.compare(rhs) >= 0);
 }
 
 /** @relates Glib::ustring */
-inline bool
-operator>=(UStringView lhs, const ustring& rhs)
+inline auto
+operator>=(UStringView lhs, const ustring& rhs) -> bool
 {
   return (rhs.compare(lhs) <= 0);
 }
@@ -1558,25 +1558,25 @@ operator>=(UStringView lhs, const ustring& rhs)
 // If the int versions of the relational operators are not deleted, attempts to
 // compare with other integer values than 0 can result in really unexpected behaviour.
 // See https://bugzilla.gnome.org/show_bug.cgi?id=572978#c10
-bool operator==(const ustring& lhs, int rhs) = delete;
-bool operator==(int lhs, const ustring& rhs) = delete;
-bool operator!=(const ustring& lhs, int rhs) = delete;
-bool operator!=(int lhs, const ustring& rhs) = delete;
-bool operator<(const ustring& lhs, int rhs) = delete;
-bool operator<(int lhs, const ustring& rhs) = delete;
-bool operator>(const ustring& lhs, int rhs) = delete;
-bool operator>(int lhs, const ustring& rhs) = delete;
-bool operator<=(const ustring& lhs, int rhs) = delete;
-bool operator<=(int lhs, const ustring& rhs) = delete;
-bool operator>=(const ustring& lhs, int rhs) = delete;
-bool operator>=(int lhs, const ustring& rhs) = delete;
+auto operator==(const ustring& lhs, int rhs) -> bool = delete;
+auto operator==(int lhs, const ustring& rhs) -> bool = delete;
+auto operator!=(const ustring& lhs, int rhs) -> bool = delete;
+auto operator!=(int lhs, const ustring& rhs) -> bool = delete;
+auto operator<(const ustring& lhs, int rhs) -> bool = delete;
+auto operator<(int lhs, const ustring& rhs) -> bool = delete;
+auto operator>(const ustring& lhs, int rhs) -> bool = delete;
+auto operator>(int lhs, const ustring& rhs) -> bool = delete;
+auto operator<=(const ustring& lhs, int rhs) -> bool = delete;
+auto operator<=(int lhs, const ustring& rhs) -> bool = delete;
+auto operator>=(const ustring& lhs, int rhs) -> bool = delete;
+auto operator>=(int lhs, const ustring& rhs) -> bool = delete;
 #endif // DOXYGEN_SHOULD_SKIP_THIS
 
 /**** Glib::ustring -- concatenation operators *****************************/
 
 /** @relates Glib::ustring */
-inline ustring
-operator+(const ustring& lhs, const ustring& rhs)
+inline auto
+operator+(const ustring& lhs, const ustring& rhs) -> ustring
 {
   ustring temp(lhs);
   temp += rhs;
@@ -1584,8 +1584,8 @@ operator+(const ustring& lhs, const ustring& rhs)
 }
 
 /** @relates Glib::ustring */
-inline ustring
-operator+(const ustring& lhs, const char* rhs)
+inline auto
+operator+(const ustring& lhs, const char* rhs) -> ustring
 {
   ustring temp(lhs);
   temp += rhs;
@@ -1593,8 +1593,8 @@ operator+(const ustring& lhs, const char* rhs)
 }
 
 /** @relates Glib::ustring */
-inline ustring
-operator+(const char* lhs, const ustring& rhs)
+inline auto
+operator+(const char* lhs, const ustring& rhs) -> ustring
 {
   ustring temp(lhs);
   temp += rhs;
@@ -1602,8 +1602,8 @@ operator+(const char* lhs, const ustring& rhs)
 }
 
 /** @relates Glib::ustring */
-inline ustring
-operator+(const ustring& lhs, gunichar rhs)
+inline auto
+operator+(const ustring& lhs, gunichar rhs) -> ustring
 {
   ustring temp(lhs);
   temp += rhs;
@@ -1611,8 +1611,8 @@ operator+(const ustring& lhs, gunichar rhs)
 }
 
 /** @relates Glib::ustring */
-inline ustring
-operator+(gunichar lhs, const ustring& rhs)
+inline auto
+operator+(gunichar lhs, const ustring& rhs) -> ustring
 {
   ustring temp(1, lhs);
   temp += rhs;
@@ -1620,8 +1620,8 @@ operator+(gunichar lhs, const ustring& rhs)
 }
 
 /** @relates Glib::ustring */
-inline ustring
-operator+(const ustring& lhs, char rhs)
+inline auto
+operator+(const ustring& lhs, char rhs) -> ustring
 {
   ustring temp(lhs);
   temp += rhs;
@@ -1629,8 +1629,8 @@ operator+(const ustring& lhs, char rhs)
 }
 
 /** @relates Glib::ustring */
-inline ustring
-operator+(char lhs, const ustring& rhs)
+inline auto
+operator+(char lhs, const ustring& rhs) -> ustring
 {
   ustring temp(1, lhs);
   temp += rhs;

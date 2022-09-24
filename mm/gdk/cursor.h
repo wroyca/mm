@@ -57,7 +57,7 @@ public:
 
   // noncopyable
   Cursor(const Cursor&) = delete;
-  Cursor& operator=(const Cursor&) = delete;
+  auto operator=(const Cursor&) -> Cursor& = delete;
 
 private:  friend class Cursor_Class;
   static CppClassType cursor_class_;
@@ -71,28 +71,28 @@ protected:
 public:
 
   Cursor(Cursor&& src) noexcept;
-  Cursor& operator=(Cursor&& src) noexcept;
+  auto operator=(Cursor&& src) noexcept -> Cursor&;
 
   ~Cursor() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkCursor*       gobj()       { return reinterpret_cast<GdkCursor*>(gobject_); }
+  auto       gobj() -> GdkCursor*       { return reinterpret_cast<GdkCursor*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkCursor* gobj() const { return reinterpret_cast<GdkCursor*>(gobject_); }
+  auto gobj() const -> const GdkCursor* { return reinterpret_cast<GdkCursor*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkCursor* gobj_copy();
+  auto gobj_copy() -> GdkCursor*;
 
 private:
 
@@ -116,7 +116,7 @@ public:
    * this one cannot be supported.
    * @return A new `Gdk::Cursor`.
    */
-  static Glib::RefPtr<Cursor> create(const Glib::RefPtr<const Texture>& texture, int hotspot_x, int hotspot_y, const Glib::RefPtr<Cursor>& fallback =  {});
+  static auto create(const Glib::RefPtr<const Texture>& texture, int hotspot_x, int hotspot_y, const Glib::RefPtr<Cursor>& fallback =  {}) -> Glib::RefPtr<Cursor>;
 
   /** Creates a new cursor by looking up @a name in the current cursor
    * theme.
@@ -142,7 +142,7 @@ public:
    * @return A new `Gdk::Cursor`, or <tt>nullptr</tt> if there is no
    * cursor with the given name.
    */
-  static Glib::RefPtr<Cursor> create(const Glib::ustring& name, const Glib::RefPtr<Cursor>& fallback =  {});
+  static auto create(const Glib::ustring& name, const Glib::RefPtr<Cursor>& fallback =  {}) -> Glib::RefPtr<Cursor>;
 
 
   /** Returns the fallback for this @a cursor.
@@ -156,7 +156,7 @@ public:
    * @return The fallback of the cursor or <tt>nullptr</tt>
    * to use the default cursor as fallback.
    */
-  Glib::RefPtr<Cursor> get_fallback();
+  auto get_fallback() -> Glib::RefPtr<Cursor>;
 
   /** Returns the fallback for this @a cursor.
    *
@@ -169,7 +169,7 @@ public:
    * @return The fallback of the cursor or <tt>nullptr</tt>
    * to use the default cursor as fallback.
    */
-  Glib::RefPtr<const Cursor> get_fallback() const;
+  auto get_fallback() const -> Glib::RefPtr<const Cursor>;
 
 
   /** Returns the name of the cursor.
@@ -179,7 +179,7 @@ public:
    * @return The name of the cursor or <tt>nullptr</tt>
    * if it is not a named cursor.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
 
   /** Returns the texture for the cursor.
@@ -189,7 +189,7 @@ public:
    * @return The texture for cursor or <tt>nullptr</tt>
    * if it is a named cursor.
    */
-  Glib::RefPtr<Texture> get_texture();
+  auto get_texture() -> Glib::RefPtr<Texture>;
 
   /** Returns the texture for the cursor.
    *
@@ -198,7 +198,7 @@ public:
    * @return The texture for cursor or <tt>nullptr</tt>
    * if it is a named cursor.
    */
-  Glib::RefPtr<const Texture> get_texture() const;
+  auto get_texture() const -> Glib::RefPtr<const Texture>;
 
 
   /** Returns the horizontal offset of the hotspot.
@@ -211,7 +211,7 @@ public:
    *
    * @return The horizontal offset of the hotspot or 0 for named cursors.
    */
-  int get_hotspot_x() const;
+  auto get_hotspot_x() const -> int;
 
   /** Returns the vertical offset of the hotspot.
    *
@@ -223,14 +223,14 @@ public:
    *
    * @return The vertical offset of the hotspot or 0 for named cursors.
    */
-  int get_hotspot_y() const;
+  auto get_hotspot_y() const -> int;
 
   /** Cursor to fall back to if this cursor cannot be displayed.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Cursor> > property_fallback() const;
+  auto property_fallback() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Cursor> >;
 
 
   /** X position of the cursor hotspot in the cursor image.
@@ -240,7 +240,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_hotspot_x() const;
+  auto property_hotspot_x() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** Y position of the cursor hotspot in the cursor image.
@@ -250,7 +250,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_hotspot_y() const;
+  auto property_hotspot_y() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** Name of this this cursor.
@@ -262,7 +262,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_name() const;
+  auto property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The texture displayed by this cursor.
@@ -272,7 +272,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Texture> > property_texture() const;
+  auto property_texture() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Texture> >;
 
 
 public:
@@ -302,7 +302,7 @@ namespace Glib
    * @relates Gdk::Cursor
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::Cursor> wrap(GdkCursor* object, bool take_copy = false);
+  auto wrap(GdkCursor* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Cursor>;
 }
 
 

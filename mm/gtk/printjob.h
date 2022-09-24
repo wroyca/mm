@@ -70,7 +70,7 @@ public:
 
   // noncopyable
   PrintJob(const PrintJob&) = delete;
-  PrintJob& operator=(const PrintJob&) = delete;
+  auto operator=(const PrintJob&) -> PrintJob& = delete;
 
 private:  friend class PrintJob_Class;
   static CppClassType printjob_class_;
@@ -84,28 +84,28 @@ protected:
 public:
 
   PrintJob(PrintJob&& src) noexcept;
-  PrintJob& operator=(PrintJob&& src) noexcept;
+  auto operator=(PrintJob&& src) noexcept -> PrintJob&;
 
   ~PrintJob() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkPrintJob*       gobj()       { return reinterpret_cast<GtkPrintJob*>(gobject_); }
+  auto       gobj() -> GtkPrintJob*       { return reinterpret_cast<GtkPrintJob*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkPrintJob* gobj() const { return reinterpret_cast<GtkPrintJob*>(gobject_); }
+  auto gobj() const -> const GtkPrintJob* { return reinterpret_cast<GtkPrintJob*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkPrintJob* gobj_copy();
+  auto gobj_copy() -> GtkPrintJob*;
 
 private:
 
@@ -120,46 +120,46 @@ protected:
 
 public:
 
-  static Glib::RefPtr<PrintJob> create(const Glib::ustring& title, const Glib::RefPtr<Printer>& printer, const Glib::RefPtr<PrintSettings>& settings, const Glib::RefPtr<PageSetup>& page_setup);
+  static auto create(const Glib::ustring& title, const Glib::RefPtr<Printer>& printer, const Glib::RefPtr<PrintSettings>& settings, const Glib::RefPtr<PageSetup>& page_setup) -> Glib::RefPtr<PrintJob>;
 
 
   /** Gets the `Gtk::PrintSettings` of the print job.
    *
    * @return The settings of @a job.
    */
-  Glib::RefPtr<PrintSettings> get_settings();
+  auto get_settings() -> Glib::RefPtr<PrintSettings>;
 
   /** Gets the `Gtk::PrintSettings` of the print job.
    *
    * @return The settings of @a job.
    */
-  Glib::RefPtr<const PrintSettings> get_settings() const;
+  auto get_settings() const -> Glib::RefPtr<const PrintSettings>;
 
 
   /** Gets the `Gtk::Printer` of the print job.
    *
    * @return The printer of @a job.
    */
-  Glib::RefPtr<Printer> get_printer();
+  auto get_printer() -> Glib::RefPtr<Printer>;
 
   /** Gets the `Gtk::Printer` of the print job.
    *
    * @return The printer of @a job.
    */
-  Glib::RefPtr<const Printer> get_printer() const;
+  auto get_printer() const -> Glib::RefPtr<const Printer>;
 
 
   /** Gets the job title.
    *
    * @return The title of @a job.
    */
-  Glib::ustring get_title() const;
+  auto get_title() const -> Glib::ustring;
 
   /** Gets the status of the print job.
    *
    * @return The status of @a job.
    */
-  PrintStatus get_status() const;
+  auto get_status() const -> PrintStatus;
 
   /** Make the `Gtk::PrintJob` send an existing document to the
    * printing system.
@@ -183,7 +183,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Cairo::RefPtr<Cairo::Surface> get_surface();
+  auto get_surface() -> Cairo::RefPtr<Cairo::Surface>;
 
   /** Gets a cairo surface onto which the pages of
    * the print job should be rendered.
@@ -192,7 +192,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Cairo::RefPtr<const Cairo::Surface> get_surface() const;
+  auto get_surface() const -> Cairo::RefPtr<const Cairo::Surface>;
 
 
   /** If track_status is <tt>true</tt>, the print job will try to continue report
@@ -214,7 +214,7 @@ public:
    *
    * @return <tt>true</tt> if print job status will be reported after printing.
    */
-  bool get_track_print_status() const;
+  auto get_track_print_status() const -> bool;
 
   /** For example,
    * void on_print_job_complete(const Glib::RefPtr<PrintJob>& job);
@@ -233,7 +233,7 @@ public:
    *
    * @return The `Gtk::PrintPages` setting.
    */
-  PrintPages get_pages() const;
+  auto get_pages() const -> PrintPages;
 
   /** Sets the `Gtk::PrintPages` setting for this job.
    *
@@ -241,7 +241,7 @@ public:
    */
   void set_pages(PrintPages pages);
 
-  std::vector<PageRange> get_page_ranges() const;
+  auto get_page_ranges() const -> std::vector<PageRange>;
 
 
   void set_page_ranges(const std::vector<PageRange>& ranges);
@@ -251,7 +251,7 @@ public:
    *
    * @return The `Gtk::PageSet` setting.
    */
-  PageSet get_page_set() const;
+  auto get_page_set() const -> PageSet;
 
   /** Sets the `Gtk::PageSet` setting for this job.
    *
@@ -263,7 +263,7 @@ public:
    *
    * @return The number of copies.
    */
-  int get_num_copies() const;
+  auto get_num_copies() const -> int;
 
   /** Sets the number of copies for this job.
    *
@@ -275,7 +275,7 @@ public:
    *
    * @return The scale.
    */
-  double get_scale() const;
+  auto get_scale() const -> double;
 
   /** Sets the scale for this job.
    *
@@ -289,7 +289,7 @@ public:
    *
    * @return The n-up setting.
    */
-  guint get_n_up() const;
+  auto get_n_up() const -> guint;
 
   /** Sets the n-up setting for this job.
    *
@@ -301,7 +301,7 @@ public:
    *
    * @return The n-up layout.
    */
-  NumberUpLayout get_n_up_layout() const;
+  auto get_n_up_layout() const -> NumberUpLayout;
 
   /** Sets the n-up layout setting for this job.
    *
@@ -313,7 +313,7 @@ public:
    *
    * @return Whether the job is printed rotated.
    */
-  bool get_rotate() const;
+  auto get_rotate() const -> bool;
 
   /** Sets whether this job is printed rotated.
    *
@@ -325,7 +325,7 @@ public:
    *
    * @return Whether the job is printed collated.
    */
-  bool get_collate() const;
+  auto get_collate() const -> bool;
 
   /** Sets whether this job is printed collated.
    *
@@ -337,7 +337,7 @@ public:
    *
    * @return Whether the job is printed reversed.
    */
-  bool get_reverse() const;
+  auto get_reverse() const -> bool;
 
   /** Sets whether this job is printed reversed.
    *
@@ -359,7 +359,7 @@ public:
    * to obtain the new status.
    */
 
-  Glib::SignalProxy<void()> signal_status_changed();
+  auto signal_status_changed() -> Glib::SignalProxy<void()>;
 
 
   /** The title of the print job.
@@ -369,7 +369,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_title() const;
+  auto property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The printer to send the job to.
@@ -377,7 +377,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Printer> > property_printer() const;
+  auto property_printer() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Printer> >;
 
 
   /** Printer settings.
@@ -385,7 +385,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PrintSettings> > property_settings() const;
+  auto property_settings() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PrintSettings> >;
 
 
   /** Page setup.
@@ -393,7 +393,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PageSetup> > property_page_setup() const;
+  auto property_page_setup() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PageSetup> >;
 
 
   /** <tt>true</tt> if the print job will continue to emit status-changed
@@ -404,7 +404,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_track_print_status() ;
+  auto property_track_print_status() -> Glib::PropertyProxy< bool > ;
 
 /** <tt>true</tt> if the print job will continue to emit status-changed
    * signals after the print data has been setn to the printer.
@@ -414,7 +414,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_track_print_status() const;
+  auto property_track_print_status() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -444,7 +444,7 @@ namespace Glib
    * @relates Gtk::PrintJob
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::PrintJob> wrap(GtkPrintJob* object, bool take_copy = false);
+  auto wrap(GtkPrintJob* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PrintJob>;
 }
 
 

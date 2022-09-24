@@ -68,7 +68,7 @@ public:
 
   // noncopyable
   UnixCredentialsMessage(const UnixCredentialsMessage&) = delete;
-  UnixCredentialsMessage& operator=(const UnixCredentialsMessage&) = delete;
+  auto operator=(const UnixCredentialsMessage&) -> UnixCredentialsMessage& = delete;
 
 private:  friend class UnixCredentialsMessage_Class;
   static CppClassType unixcredentialsmessage_class_;
@@ -82,28 +82,28 @@ protected:
 public:
 
   UnixCredentialsMessage(UnixCredentialsMessage&& src) noexcept;
-  UnixCredentialsMessage& operator=(UnixCredentialsMessage&& src) noexcept;
+  auto operator=(UnixCredentialsMessage&& src) noexcept -> UnixCredentialsMessage&;
 
   ~UnixCredentialsMessage() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GUnixCredentialsMessage*       gobj()       { return reinterpret_cast<GUnixCredentialsMessage*>(gobject_); }
+  auto       gobj() -> GUnixCredentialsMessage*       { return reinterpret_cast<GUnixCredentialsMessage*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GUnixCredentialsMessage* gobj() const { return reinterpret_cast<GUnixCredentialsMessage*>(gobject_); }
+  auto gobj() const -> const GUnixCredentialsMessage* { return reinterpret_cast<GUnixCredentialsMessage*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GUnixCredentialsMessage* gobj_copy();
+  auto gobj_copy() -> GUnixCredentialsMessage*;
 
 private:
 
@@ -127,7 +127,7 @@ public:
    */
 
 
-  static Glib::RefPtr<UnixCredentialsMessage> create();
+  static auto create() -> Glib::RefPtr<UnixCredentialsMessage>;
 
 
   /** Creates a new UnixCredentialsMessage holding @a credentials.
@@ -139,7 +139,7 @@ public:
    */
 
 
-  static Glib::RefPtr<UnixCredentialsMessage> create(const Glib::RefPtr<Credentials>& credentials);
+  static auto create(const Glib::RefPtr<Credentials>& credentials) -> Glib::RefPtr<UnixCredentialsMessage>;
 
 
   /** Gets the credentials stored in @a message.
@@ -148,7 +148,7 @@ public:
    *
    * @return A Credentials instance. Do not free, it is owned by @a message.
    */
-  Glib::RefPtr<Credentials> get_credentials();
+  auto get_credentials() -> Glib::RefPtr<Credentials>;
 
   /** Gets the credentials stored in @a message.
    *
@@ -156,7 +156,7 @@ public:
    *
    * @return A Credentials instance. Do not free, it is owned by @a message.
    */
-  Glib::RefPtr<const Credentials> get_credentials() const;
+  auto get_credentials() const -> Glib::RefPtr<const Credentials>;
 
   /** Checks if passing Credentials on a Socket is supported on this platform.
    *
@@ -164,7 +164,7 @@ public:
    *
    * @return <tt>true</tt> if supported, <tt>false</tt> otherwise.
    */
-  static bool is_supported();
+  static auto is_supported() -> bool;
 
   /** The credentials stored in the message.
    *
@@ -173,7 +173,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Credentials> > property_credentials() const;
+  auto property_credentials() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Credentials> >;
 
 
 public:
@@ -203,7 +203,7 @@ namespace Glib
    * @relates Gio::UnixCredentialsMessage
    */
   GIOMM_API
-  Glib::RefPtr<Gio::UnixCredentialsMessage> wrap(GUnixCredentialsMessage* object, bool take_copy = false);
+  auto wrap(GUnixCredentialsMessage* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixCredentialsMessage>;
 }
 
 

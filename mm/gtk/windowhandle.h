@@ -60,11 +60,11 @@ class GTKMM_API WindowHandle : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   WindowHandle(WindowHandle&& src) noexcept;
-  WindowHandle& operator=(WindowHandle&& src) noexcept;
+  auto operator=(WindowHandle&& src) noexcept -> WindowHandle&;
 
   // noncopyable
   WindowHandle(const WindowHandle&) = delete;
-  WindowHandle& operator=(const WindowHandle&) = delete;
+  auto operator=(const WindowHandle&) -> WindowHandle& = delete;
 
   ~WindowHandle() noexcept override;
 
@@ -84,19 +84,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkWindowHandle*       gobj()       { return reinterpret_cast<GtkWindowHandle*>(gobject_); }
+  auto       gobj() -> GtkWindowHandle*       { return reinterpret_cast<GtkWindowHandle*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkWindowHandle* gobj() const { return reinterpret_cast<GtkWindowHandle*>(gobject_); }
+  auto gobj() const -> const GtkWindowHandle* { return reinterpret_cast<GtkWindowHandle*>(gobject_); }
 
 private:
 
@@ -118,27 +118,27 @@ public:
    *
    * @return The child widget of @a self.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget of @a self.
    *
    * @return The child widget of @a self.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
   /** The child widget.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The child widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
   // Gtk::WindowHandle has no signals nor vfuncs.
@@ -171,7 +171,7 @@ namespace Glib
    * @relates Gtk::WindowHandle
    */
   GTKMM_API
-  Gtk::WindowHandle* wrap(GtkWindowHandle* object, bool take_copy = false);
+  auto wrap(GtkWindowHandle* object, bool take_copy = false) -> Gtk::WindowHandle*;
 } //namespace Glib
 
 

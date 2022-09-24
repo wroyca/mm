@@ -34,7 +34,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::BinLayout> wrap(GtkBinLayout* object, bool take_copy)
+auto wrap(GtkBinLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::BinLayout>
 {
   return Glib::make_refptr_for_instance<Gtk::BinLayout>( dynamic_cast<Gtk::BinLayout*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -49,7 +49,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& BinLayout_Class::init()
+auto BinLayout_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -74,7 +74,7 @@ void BinLayout_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* BinLayout_Class::wrap_new(GObject* object)
+auto BinLayout_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new BinLayout((GtkBinLayout*)object);
 }
@@ -82,7 +82,7 @@ Glib::ObjectBase* BinLayout_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkBinLayout* BinLayout::gobj_copy()
+auto BinLayout::gobj_copy() -> GtkBinLayout*
 {
   reference();
   return gobj();
@@ -105,7 +105,7 @@ BinLayout::BinLayout(BinLayout&& src) noexcept
 : LayoutManager(std::move(src))
 {}
 
-BinLayout& BinLayout::operator=(BinLayout&& src) noexcept
+auto BinLayout::operator=(BinLayout&& src) noexcept -> BinLayout&
 {
   LayoutManager::operator=(std::move(src));
   return *this;
@@ -118,13 +118,13 @@ BinLayout::~BinLayout() noexcept
 
 BinLayout::CppClassType BinLayout::binlayout_class_; // initialize static member
 
-GType BinLayout::get_type()
+auto BinLayout::get_type() -> GType
 {
   return binlayout_class_.init().get_type();
 }
 
 
-GType BinLayout::get_base_type()
+auto BinLayout::get_base_type() -> GType
 {
   return gtk_bin_layout_get_type();
 }
@@ -140,7 +140,7 @@ BinLayout::BinLayout()
 
 }
 
-Glib::RefPtr<BinLayout> BinLayout::create()
+auto BinLayout::create() -> Glib::RefPtr<BinLayout>
 {
   return Glib::make_refptr_for_instance<BinLayout>( new BinLayout() );
 }

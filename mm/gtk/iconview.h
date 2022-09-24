@@ -74,11 +74,11 @@ class GTKMM_API IconView
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   IconView(IconView&& src) noexcept;
-  IconView& operator=(IconView&& src) noexcept;
+  auto operator=(IconView&& src) noexcept -> IconView&;
 
   // noncopyable
   IconView(const IconView&) = delete;
-  IconView& operator=(const IconView&) = delete;
+  auto operator=(const IconView&) -> IconView& = delete;
 
   ~IconView() noexcept override;
 
@@ -98,19 +98,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkIconView*       gobj()       { return reinterpret_cast<GtkIconView*>(gobject_); }
+  auto       gobj() -> GtkIconView*       { return reinterpret_cast<GtkIconView*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkIconView* gobj() const { return reinterpret_cast<GtkIconView*>(gobject_); }
+  auto gobj() const -> const GtkIconView* { return reinterpret_cast<GtkIconView*>(gobject_); }
 
 private:
 
@@ -176,14 +176,14 @@ public:
    *
    * @return The currently used `Gtk::TreeModel`.
    */
-  Glib::RefPtr<TreeModel> get_model();
+  auto get_model() -> Glib::RefPtr<TreeModel>;
 
   /** Returns the model the `Gtk::IconView` is based on.  Returns <tt>nullptr</tt> if the
    * model is unset.
    *
    * @return The currently used `Gtk::TreeModel`.
    */
-  Glib::RefPtr<const TreeModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const TreeModel>;
 
   /** Remove the model from the IconView.
    *
@@ -212,7 +212,7 @@ public:
    *
    * @return The text column, or -1 if it’s unset.
    */
-  int get_text_column() const;
+  auto get_text_column() const -> int;
 
   /** Sets the column with markup information for @a icon_view to be
    *  @a column. The markup column must be of type `G_TYPE_STRING`.
@@ -236,7 +236,7 @@ public:
    *
    * @return The markup column, or -1 if it’s unset.
    */
-  int get_markup_column() const;
+  auto get_markup_column() const -> int;
 
   /** Sets the column with pixbufs for @a icon_view to be @a column. The pixbuf
    * column must be of type `GDK_TYPE_PIXBUF`
@@ -256,7 +256,7 @@ public:
    *
    * @return The pixbuf column, or -1 if it’s unset.
    */
-  int get_pixbuf_column() const;
+  auto get_pixbuf_column() const -> int;
 
 
   /** Sets the property_item_orientation() property which determines whether the labels
@@ -271,7 +271,7 @@ public:
    *
    * @return The relative position of texts and icons.
    */
-  Orientation get_item_orientation() const;
+  auto get_item_orientation() const -> Orientation;
 
 
   /** Sets the property_columns() property which determines in how
@@ -287,7 +287,7 @@ public:
    *
    * @return The number of columns, or -1.
    */
-  int get_columns() const;
+  auto get_columns() const -> int;
 
   /** Sets the property_item_width() property which specifies the width
    * to use for each item. If it is set to -1, the icon view will
@@ -301,7 +301,7 @@ public:
    *
    * @return The width of a single item, or -1.
    */
-  int get_icon_width() const;
+  auto get_icon_width() const -> int;
 
   /** Sets the property_spacing() property which specifies the space
    * which is inserted between the cells (i.e.\ the icon and
@@ -315,7 +315,7 @@ public:
    *
    * @return The space between cells.
    */
-  int get_spacing() const;
+  auto get_spacing() const -> int;
 
   /** Sets the property_row_spacing() property which specifies the space
    * which is inserted between the rows of the icon view.
@@ -328,7 +328,7 @@ public:
    *
    * @return The space between rows.
    */
-  int get_row_spacing() const;
+  auto get_row_spacing() const -> int;
 
   /** Sets the property_column_spacing() property which specifies the space
    * which is inserted between the columns of the icon view.
@@ -341,7 +341,7 @@ public:
    *
    * @return The space between columns.
    */
-  int get_column_spacing() const;
+  auto get_column_spacing() const -> int;
 
 
   /** Sets the property_margin() property which specifies the space
@@ -356,7 +356,7 @@ public:
    *
    * @return The space at the borders.
    */
-  int get_margin() const;
+  auto get_margin() const -> int;
 
 
   /** Sets the `Gtk::IconView`:item-padding property which specifies the padding
@@ -370,7 +370,7 @@ public:
    *
    * @return The padding around items.
    */
-  int get_item_padding() const;
+  auto get_item_padding() const -> int;
 
 
   /** Gets the path for the icon at the given position.
@@ -380,7 +380,7 @@ public:
    * @return The `Gtk::TreePath` corresponding
    * to the icon or <tt>nullptr</tt> if no icon exists at that position.
    */
-  TreeModel::Path get_path_at_pos(int x, int y) const;
+  auto get_path_at_pos(int x, int y) const -> TreeModel::Path;
 
 
   /** Finds the path at the point (@a x, @a y), relative to widget coordinates.
@@ -393,7 +393,7 @@ public:
    *
    * @newin{2,6}
    */
-  bool get_item_at_pos(int x, int y, TreeModel::Path& path, CellRenderer*& cell) const;
+  auto get_item_at_pos(int x, int y, TreeModel::Path& path, CellRenderer*& cell) const -> bool;
 
   /** Finds the path at the point (@a x, @a y), relative to widget coordinates.
    *
@@ -404,7 +404,7 @@ public:
    *
    * @newin{2,6}
    */
-  bool get_item_at_pos(int x, int y, TreeModel::Path& path) const;
+  auto get_item_at_pos(int x, int y, TreeModel::Path& path) const -> bool;
 
   /** Finds the path at the point (@a x, @a y), relative to widget coordinates.
    *
@@ -415,7 +415,7 @@ public:
    *
    * @newin{2,6}
    */
-  bool get_item_at_pos(int x, int y, CellRenderer*& cell) const;
+  auto get_item_at_pos(int x, int y, CellRenderer*& cell) const -> bool;
 
 
   /** Sets @a start_path and @a end_path to be the first and last visible path.
@@ -425,7 +425,7 @@ public:
    * @param[out] end_path Return location for end of region.
    * @result <tt>true</tt> if valid paths were placed in @a start_path and @a end_path.
    */
-  bool get_visible_range(TreeModel::Path& start_path, TreeModel::Path& end_path) const;
+  auto get_visible_range(TreeModel::Path& start_path, TreeModel::Path& end_path) const -> bool;
 
 
   /** Causes the `Gtk::IconView`::item-activated signal to be emitted on
@@ -439,7 +439,7 @@ public:
    *
    * @return <tt>true</tt> if item-activated will be emitted on a single click.
    */
-  bool get_activate_on_single_click() const;
+  auto get_activate_on_single_click() const -> bool;
 
   /** For instance,
    * void on_foreach(const Gtk::TreeModel::Path& path);
@@ -466,7 +466,7 @@ public:
    *
    * @return The current selection mode.
    */
-  SelectionMode get_selection_mode() const;
+  auto get_selection_mode() const -> SelectionMode;
 
   /** Selects the row at @a path.
    *
@@ -486,7 +486,7 @@ public:
    * @param path A `Gtk::TreePath` to check selection on.
    * @return <tt>true</tt> if @a path is selected.
    */
-  bool path_is_selected(const TreeModel::Path& path) const;
+  auto path_is_selected(const TreeModel::Path& path) const -> bool;
 
 
   /** Gets the row in which the item @a path is currently
@@ -495,7 +495,7 @@ public:
    * @param path The `Gtk::TreePath` of the item.
    * @return The row in which the item is displayed.
    */
-  int get_item_row(const TreeModel::Path& path) const;
+  auto get_item_row(const TreeModel::Path& path) const -> int;
 
   /** Gets the column in which the item @a path is currently
    * displayed. Column numbers start at 0.
@@ -503,7 +503,7 @@ public:
    * @param path The `Gtk::TreePath` of the item.
    * @return The column in which the item is displayed.
    */
-  int get_item_column(const TreeModel::Path& path) const;
+  auto get_item_column(const TreeModel::Path& path) const -> int;
 
 
   /** Creates a list of paths of all selected items. Additionally, if you are
@@ -517,7 +517,7 @@ public:
    *
    * @return A `GList` containing a `Gtk::TreePath` for each selected row.
    */
-  std::vector<TreePath> get_selected_items() const;
+  auto get_selected_items() const -> std::vector<TreePath>;
 
 
   /** Selects all the icons. @a icon_view must has its selection mode set
@@ -565,7 +565,7 @@ public:
    *
    * @newin{2,8}
    */
-  bool get_cursor(TreeModel::Path& path, CellRenderer*& cell) const;
+  auto get_cursor(TreeModel::Path& path, CellRenderer*& cell) const -> bool;
 
   /** Fills in @a path and @a cell with the current cursor path and cell.
    * If the cursor isn't currently set, then @a path will be empty.
@@ -576,7 +576,7 @@ public:
    *
    * @newin{2,8}
    */
-  bool get_cursor(TreeModel::Path& path) const;
+  auto get_cursor(TreeModel::Path& path) const -> bool;
 
   /** Fills in @a path and @a cell with the current cursor path and cell.
    * If the cursor isn't currently set, then @a path will be empty.
@@ -587,7 +587,7 @@ public:
    *
    * @newin{2,8}
    */
-  bool get_cursor(CellRenderer*& cell) const;
+  auto get_cursor(CellRenderer*& cell) const -> bool;
 
 
   /** Moves the alignments of @a icon_view to the position specified by @a path.
@@ -671,7 +671,7 @@ public:
    *
    * @return <tt>true</tt> if the list can be reordered.
    */
-  bool get_reorderable() const;
+  auto get_reorderable() const -> bool;
 
 /* These are useful to implement your own custom stuff. */
 
@@ -718,7 +718,7 @@ public:
    *
    * @newin{2,10}
    */
-  bool get_dest_item_at_pos(int drag_x, int drag_y, TreeModel::Path& path, DropPosition& pos) const;
+  auto get_dest_item_at_pos(int drag_x, int drag_y, TreeModel::Path& path, DropPosition& pos) const -> bool;
 
   /** Determines the destination item for a given position.
    *
@@ -729,7 +729,7 @@ public:
    *
    * @newin{2,10}
    */
-  bool get_dest_item_at_pos(int drag_x, int drag_y, TreeModel::Path& path) const;
+  auto get_dest_item_at_pos(int drag_x, int drag_y, TreeModel::Path& path) const -> bool;
 
   /** Determines the destination item for a given position.
    *
@@ -740,7 +740,7 @@ public:
    *
    * @newin{2,10}
    */
-  bool get_dest_item_at_pos(int drag_x, int drag_y, DropPosition& pos) const;
+  auto get_dest_item_at_pos(int drag_x, int drag_y, DropPosition& pos) const -> bool;
 
 
   // create_drag_icon() is const because it returns a newly created Gdk::Paintable.
@@ -751,7 +751,7 @@ public:
    * @param path A `Gtk::TreePath` in @a icon_view.
    * @return A newly-allocated `Gdk::Paintable` of the drag icon.
    */
-  Glib::RefPtr<Gdk::Paintable> create_drag_icon(const TreeModel::Path& path) const;
+  auto create_drag_icon(const TreeModel::Path& path) const -> Glib::RefPtr<Gdk::Paintable>;
 
 
   /** Fills the bounding rectangle in widget coordinates for the cell specified by
@@ -764,10 +764,10 @@ public:
    * @param rect Rectangle to fill with cell rect.
    * @return <tt>false</tt> if there is no such item, <tt>true</tt> otherwise.
    */
-  bool get_cell_rect(const TreeModel::Path& path, const CellRenderer& cell, Gdk::Rectangle& rect) const;
+  auto get_cell_rect(const TreeModel::Path& path, const CellRenderer& cell, Gdk::Rectangle& rect) const -> bool;
 
   /// A get_cell_rect() convenience overload.
-  bool get_cell_rect(const TreeModel::Path& path, Gdk::Rectangle& rect) const;
+  auto get_cell_rect(const TreeModel::Path& path, Gdk::Rectangle& rect) const -> bool;
 
 
   /** Sets the tip area of @a tooltip to be the area covered by the item at @a path.
@@ -820,9 +820,9 @@ public:
    *
    * @newin{2,12}
    */
-  bool get_tooltip_context_path(int x, int y,
+  auto get_tooltip_context_path(int x, int y,
                                 bool keyboard_tip,
-                                TreeModel::Path& path);
+                                TreeModel::Path& path) -> bool;
 
   /** This function is supposed to be used in a Gtk::Widget::query-tooltip
    * signal handler for Gtk::IconView. The x, y and keyboard_tip values
@@ -843,9 +843,9 @@ public:
    *
    * @newin{2,12}
    */
-  bool get_tooltip_context_iter(int x, int y,
+  auto get_tooltip_context_iter(int x, int y,
                                 bool keyboard_tip,
-                                Gtk::TreeModel::iterator& iter);
+                                Gtk::TreeModel::iterator& iter) -> bool;
 
 
   /** If you only plan to have simple (text-only) tooltips on full items, you
@@ -869,7 +869,7 @@ public:
    * @return The index of the tooltip column that is currently being
    * used, or -1 if this is disabled.
    */
-  int get_tooltip_column() const;
+  auto get_tooltip_column() const -> int;
 
   // no_default_handler because GtkIconViewClass is private.
 
@@ -890,7 +890,7 @@ public:
    * @param path The `Gtk::TreePath` for the activated item.
    */
 
-  Glib::SignalProxy<void(const TreeModel::Path&)> signal_item_activated();
+  auto signal_item_activated() -> Glib::SignalProxy<void(const TreeModel::Path&)>;
 
 
   /**
@@ -903,7 +903,7 @@ public:
    * (i.e.\ the set of selected items) changes.
    */
 
-  Glib::SignalProxy<void()> signal_selection_changed();
+  auto signal_selection_changed() -> Glib::SignalProxy<void()>;
 
 
   /* Key binding signals */
@@ -919,7 +919,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_pixbuf_column() ;
+  auto property_pixbuf_column() -> Glib::PropertyProxy< int > ;
 
 /** The property_pixbuf_column() property contains the number of the model column
    * containing the pixbufs which are displayed. The pixbuf column must be
@@ -931,7 +931,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_pixbuf_column() const;
+  auto property_pixbuf_column() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The property_text_column() property contains the number of the model column
    * containing the texts which are displayed. The text column must be
@@ -943,7 +943,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_text_column() ;
+  auto property_text_column() -> Glib::PropertyProxy< int > ;
 
 /** The property_text_column() property contains the number of the model column
    * containing the texts which are displayed. The text column must be
@@ -955,7 +955,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_text_column() const;
+  auto property_text_column() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The property_markup_column() property contains the number of the model column
    * containing markup information to be displayed. The markup column must be
@@ -968,7 +968,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_markup_column() ;
+  auto property_markup_column() -> Glib::PropertyProxy< int > ;
 
 /** The property_markup_column() property contains the number of the model column
    * containing markup information to be displayed. The markup column must be
@@ -981,7 +981,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_markup_column() const;
+  auto property_markup_column() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The property_selection_mode() property specifies the selection mode of
    * icon view. If the mode is Gtk::SelectionMode::MULTIPLE, rubberband selection
@@ -992,7 +992,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< SelectionMode > property_selection_mode() ;
+  auto property_selection_mode() -> Glib::PropertyProxy< SelectionMode > ;
 
 /** The property_selection_mode() property specifies the selection mode of
    * icon view. If the mode is Gtk::SelectionMode::MULTIPLE, rubberband selection
@@ -1003,7 +1003,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< SelectionMode > property_selection_mode() const;
+  auto property_selection_mode() const -> Glib::PropertyProxy_ReadOnly< SelectionMode >;
 
   /** The item-orientation property specifies how the cells (i.e.\ the icon and
    * the text) of the item are positioned relative to each other.
@@ -1013,7 +1013,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Orientation > property_item_orientation() ;
+  auto property_item_orientation() -> Glib::PropertyProxy< Orientation > ;
 
 /** The item-orientation property specifies how the cells (i.e.\ the icon and
    * the text) of the item are positioned relative to each other.
@@ -1023,21 +1023,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Orientation > property_item_orientation() const;
+  auto property_item_orientation() const -> Glib::PropertyProxy_ReadOnly< Orientation >;
 
   /**
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<TreeModel> > property_model() ;
+  auto property_model() -> Glib::PropertyProxy< Glib::RefPtr<TreeModel> > ;
 
 /**
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> >;
 
   /** The columns property contains the number of the columns in which the
    * items should be displayed. If it is -1, the number of columns will
@@ -1048,7 +1048,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_columns() ;
+  auto property_columns() -> Glib::PropertyProxy< int > ;
 
 /** The columns property contains the number of the columns in which the
    * items should be displayed. If it is -1, the number of columns will
@@ -1059,7 +1059,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_columns() const;
+  auto property_columns() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The item-width property specifies the width to use for each item.
    * If it is set to -1, the icon view will automatically determine a
@@ -1070,7 +1070,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_item_width() ;
+  auto property_item_width() -> Glib::PropertyProxy< int > ;
 
 /** The item-width property specifies the width to use for each item.
    * If it is set to -1, the icon view will automatically determine a
@@ -1081,7 +1081,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_item_width() const;
+  auto property_item_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The spacing property specifies the space which is inserted between
    * the cells (i.e.\ the icon and the text) of an item.
@@ -1091,7 +1091,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_spacing() ;
+  auto property_spacing() -> Glib::PropertyProxy< int > ;
 
 /** The spacing property specifies the space which is inserted between
    * the cells (i.e.\ the icon and the text) of an item.
@@ -1101,7 +1101,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_spacing() const;
+  auto property_spacing() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The row-spacing property specifies the space which is inserted between
    * the rows of the icon view.
@@ -1111,7 +1111,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_row_spacing() ;
+  auto property_row_spacing() -> Glib::PropertyProxy< int > ;
 
 /** The row-spacing property specifies the space which is inserted between
    * the rows of the icon view.
@@ -1121,7 +1121,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_row_spacing() const;
+  auto property_row_spacing() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The column-spacing property specifies the space which is inserted between
    * the columns of the icon view.
@@ -1131,7 +1131,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_column_spacing() ;
+  auto property_column_spacing() -> Glib::PropertyProxy< int > ;
 
 /** The column-spacing property specifies the space which is inserted between
    * the columns of the icon view.
@@ -1141,7 +1141,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_column_spacing() const;
+  auto property_column_spacing() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The margin property specifies the space which is inserted
    * at the edges of the icon view.
@@ -1151,7 +1151,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_margin() ;
+  auto property_margin() -> Glib::PropertyProxy< int > ;
 
 /** The margin property specifies the space which is inserted
    * at the edges of the icon view.
@@ -1161,7 +1161,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_margin() const;
+  auto property_margin() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The reorderable property specifies if the items can be reordered
    * by DND.
@@ -1171,7 +1171,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_reorderable() ;
+  auto property_reorderable() -> Glib::PropertyProxy< int > ;
 
 /** The reorderable property specifies if the items can be reordered
    * by DND.
@@ -1181,21 +1181,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_reorderable() const;
+  auto property_reorderable() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Default value: -1
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_tooltip_column() ;
+  auto property_tooltip_column() -> Glib::PropertyProxy< int > ;
 
 /** Default value: -1
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_tooltip_column() const;
+  auto property_tooltip_column() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The item-padding property specifies the padding around each
    * of the icon view's item.
@@ -1205,7 +1205,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_item_padding() ;
+  auto property_item_padding() -> Glib::PropertyProxy< int > ;
 
 /** The item-padding property specifies the padding around each
    * of the icon view's item.
@@ -1215,7 +1215,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_item_padding() const;
+  auto property_item_padding() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The `Gtk::CellArea` used to layout cell renderers for this view.
    *
@@ -1225,7 +1225,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> > property_cell_area() const;
+  auto property_cell_area() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> >;
 
 
   /** The activate-on-single-click property specifies whether the "item-activated" signal
@@ -1236,7 +1236,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_activate_on_single_click() ;
+  auto property_activate_on_single_click() -> Glib::PropertyProxy< bool > ;
 
 /** The activate-on-single-click property specifies whether the "item-activated" signal
    * will be emitted after a single click.
@@ -1246,7 +1246,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_activate_on_single_click() const;
+  auto property_activate_on_single_click() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -1273,7 +1273,7 @@ template <>
 class GTKMM_API Value<Gtk::IconView::DropPosition> : public Glib::Value_Enum<Gtk::IconView::DropPosition>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1291,7 +1291,7 @@ namespace Glib
    * @relates Gtk::IconView
    */
   GTKMM_API
-  Gtk::IconView* wrap(GtkIconView* object, bool take_copy = false);
+  auto wrap(GtkIconView* object, bool take_copy = false) -> Gtk::IconView*;
 } //namespace Glib
 
 

@@ -29,7 +29,7 @@ namespace
 {
 
 
-static void GestureZoom_signal_scale_changed_callback(GtkGestureZoom* self, gdouble p0,void* data)
+void GestureZoom_signal_scale_changed_callback(GtkGestureZoom* self, gdouble p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double)>;
@@ -51,7 +51,7 @@ static void GestureZoom_signal_scale_changed_callback(GtkGestureZoom* self, gdou
   }
 }
 
-static const Glib::SignalProxyInfo GestureZoom_signal_scale_changed_info =
+const Glib::SignalProxyInfo GestureZoom_signal_scale_changed_info =
 {
   "scale-changed",
   (GCallback) &GestureZoom_signal_scale_changed_callback,
@@ -65,7 +65,7 @@ static const Glib::SignalProxyInfo GestureZoom_signal_scale_changed_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::GestureZoom> wrap(GtkGestureZoom* object, bool take_copy)
+auto wrap(GtkGestureZoom* object, bool take_copy) -> Glib::RefPtr<Gtk::GestureZoom>
 {
   return Glib::make_refptr_for_instance<Gtk::GestureZoom>( dynamic_cast<Gtk::GestureZoom*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -80,7 +80,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& GestureZoom_Class::init()
+auto GestureZoom_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -111,7 +111,7 @@ void GestureZoom_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* GestureZoom_Class::wrap_new(GObject* object)
+auto GestureZoom_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new GestureZoom((GtkGestureZoom*)object);
 }
@@ -119,7 +119,7 @@ Glib::ObjectBase* GestureZoom_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkGestureZoom* GestureZoom::gobj_copy()
+auto GestureZoom::gobj_copy() -> GtkGestureZoom*
 {
   reference();
   return gobj();
@@ -142,7 +142,7 @@ GestureZoom::GestureZoom(GestureZoom&& src) noexcept
 : Gesture(std::move(src))
 {}
 
-GestureZoom& GestureZoom::operator=(GestureZoom&& src) noexcept
+auto GestureZoom::operator=(GestureZoom&& src) noexcept -> GestureZoom&
 {
   Gesture::operator=(std::move(src));
   return *this;
@@ -155,13 +155,13 @@ GestureZoom::~GestureZoom() noexcept
 
 GestureZoom::CppClassType GestureZoom::gesturezoom_class_; // initialize static member
 
-GType GestureZoom::get_type()
+auto GestureZoom::get_type() -> GType
 {
   return gesturezoom_class_.init().get_type();
 }
 
 
-GType GestureZoom::get_base_type()
+auto GestureZoom::get_base_type() -> GType
 {
   return gtk_gesture_zoom_get_type();
 }
@@ -177,18 +177,18 @@ GestureZoom::GestureZoom()
 
 }
 
-Glib::RefPtr<GestureZoom> GestureZoom::create()
+auto GestureZoom::create() -> Glib::RefPtr<GestureZoom>
 {
   return Glib::make_refptr_for_instance<GestureZoom>( new GestureZoom() );
 }
 
-double GestureZoom::get_scale_delta() const
+auto GestureZoom::get_scale_delta() const -> double
 {
   return gtk_gesture_zoom_get_scale_delta(const_cast<GtkGestureZoom*>(gobj()));
 }
 
 
-Glib::SignalProxy<void(double)> GestureZoom::signal_scale_changed()
+auto GestureZoom::signal_scale_changed() -> Glib::SignalProxy<void(double)>
 {
   return Glib::SignalProxy<void(double) >(this, &GestureZoom_signal_scale_changed_info);
 }

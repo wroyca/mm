@@ -38,7 +38,7 @@ namespace
 namespace Glib
 {
 
-Pango::FontMetrics wrap(PangoFontMetrics* object, bool take_copy)
+auto wrap(PangoFontMetrics* object, bool take_copy) -> Pango::FontMetrics
 {
   return Pango::FontMetrics(object, take_copy);
 }
@@ -51,7 +51,7 @@ namespace Pango
 
 
 // static
-GType FontMetrics::get_type()
+auto FontMetrics::get_type() -> GType
 {
   return pango_font_metrics_get_type();
 }
@@ -73,7 +73,7 @@ FontMetrics::FontMetrics(FontMetrics&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-FontMetrics& FontMetrics::operator=(FontMetrics&& other) noexcept
+auto FontMetrics::operator=(FontMetrics&& other) noexcept -> FontMetrics&
 {
   FontMetrics temp (std::move(other));
   swap(temp);
@@ -88,7 +88,7 @@ FontMetrics::FontMetrics(PangoFontMetrics* gobject, bool make_a_copy)
   gobject_ ((make_a_copy && gobject) ? pango_font_metrics_ref(gobject) : gobject)
 {}
 
-FontMetrics& FontMetrics::operator=(const FontMetrics& other)
+auto FontMetrics::operator=(const FontMetrics& other) -> FontMetrics&
 {
   FontMetrics temp (other);
   swap(temp);
@@ -106,53 +106,53 @@ void FontMetrics::swap(FontMetrics& other) noexcept
   std::swap(gobject_, other.gobject_);
 }
 
-PangoFontMetrics* FontMetrics::gobj_copy() const
+auto FontMetrics::gobj_copy() const -> PangoFontMetrics*
 {
   return pango_font_metrics_ref(gobject_);
 }
 
 
-int FontMetrics::get_ascent() const
+auto FontMetrics::get_ascent() const -> int
 {
   return pango_font_metrics_get_ascent(const_cast<PangoFontMetrics*>(gobj()));
 }
 
-int FontMetrics::get_descent() const
+auto FontMetrics::get_descent() const -> int
 {
   return pango_font_metrics_get_descent(const_cast<PangoFontMetrics*>(gobj()));
 }
 
-int FontMetrics::get_height() const
+auto FontMetrics::get_height() const -> int
 {
   return pango_font_metrics_get_height(const_cast<PangoFontMetrics*>(gobj()));
 }
 
-int FontMetrics::get_approximate_char_width() const
+auto FontMetrics::get_approximate_char_width() const -> int
 {
   return pango_font_metrics_get_approximate_char_width(const_cast<PangoFontMetrics*>(gobj()));
 }
 
-int FontMetrics::get_approximate_digit_width() const
+auto FontMetrics::get_approximate_digit_width() const -> int
 {
   return pango_font_metrics_get_approximate_digit_width(const_cast<PangoFontMetrics*>(gobj()));
 }
 
-int FontMetrics::get_underline_position() const
+auto FontMetrics::get_underline_position() const -> int
 {
   return pango_font_metrics_get_underline_position(const_cast<PangoFontMetrics*>(gobj()));
 }
 
-int FontMetrics::get_underline_thickness() const
+auto FontMetrics::get_underline_thickness() const -> int
 {
   return pango_font_metrics_get_underline_thickness(const_cast<PangoFontMetrics*>(gobj()));
 }
 
-int FontMetrics::get_strikethrough_position() const
+auto FontMetrics::get_strikethrough_position() const -> int
 {
   return pango_font_metrics_get_strikethrough_position(const_cast<PangoFontMetrics*>(gobj()));
 }
 
-int FontMetrics::get_strikethrough_thickness() const
+auto FontMetrics::get_strikethrough_thickness() const -> int
 {
   return pango_font_metrics_get_strikethrough_thickness(const_cast<PangoFontMetrics*>(gobj()));
 }

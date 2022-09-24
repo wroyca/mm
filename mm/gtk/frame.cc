@@ -49,7 +49,7 @@ namespace
 namespace Glib
 {
 
-Gtk::Frame* wrap(GtkFrame* object, bool take_copy)
+auto wrap(GtkFrame* object, bool take_copy) -> Gtk::Frame*
 {
   return dynamic_cast<Gtk::Frame *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -62,7 +62,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Frame_Class::init()
+auto Frame_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -132,7 +132,7 @@ void Frame_Class::compute_child_allocation_vfunc_callback(GtkFrame* self, GtkAll
 }
 
 
-Glib::ObjectBase* Frame_Class::wrap_new(GObject* o)
+auto Frame_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Frame((GtkFrame*)(o)));
 
@@ -158,7 +158,7 @@ Frame::Frame(Frame&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-Frame& Frame::operator=(Frame&& src) noexcept
+auto Frame::operator=(Frame&& src) noexcept -> Frame&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -171,13 +171,13 @@ Frame::~Frame() noexcept
 
 Frame::CppClassType Frame::frame_class_; // initialize static member
 
-GType Frame::get_type()
+auto Frame::get_type() -> GType
 {
   return frame_class_.init().get_type();
 }
 
 
-GType Frame::get_base_type()
+auto Frame::get_base_type() -> GType
 {
   return gtk_frame_get_type();
 }
@@ -208,7 +208,7 @@ void Frame::set_label(const Glib::ustring& label)
   gtk_frame_set_label(gobj(), label.c_str());
 }
 
-Glib::ustring Frame::get_label() const
+auto Frame::get_label() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_frame_get_label(const_cast<GtkFrame*>(gobj())));
 }
@@ -218,12 +218,12 @@ void Frame::set_label_widget(Widget& label_widget)
   gtk_frame_set_label_widget(gobj(), (label_widget).gobj());
 }
 
-Widget* Frame::get_label_widget()
+auto Frame::get_label_widget() -> Widget*
 {
   return Glib::wrap(gtk_frame_get_label_widget(gobj()));
 }
 
-const Widget* Frame::get_label_widget() const
+auto Frame::get_label_widget() const -> const Widget*
 {
   return const_cast<Frame*>(this)->get_label_widget();
 }
@@ -238,7 +238,7 @@ void Frame::set_label_align(Align xalign)
   gtk_frame_set_label_align(gobj(), _gtkmm_align_float_from_enum(xalign));
 }
 
-float Frame::get_label_align() const
+auto Frame::get_label_align() const -> float
 {
   return gtk_frame_get_label_align(const_cast<GtkFrame*>(gobj()));
 }
@@ -248,53 +248,53 @@ void Frame::set_child(Widget& child)
   gtk_frame_set_child(gobj(), (child).gobj());
 }
 
-Widget* Frame::get_child()
+auto Frame::get_child() -> Widget*
 {
   return Glib::wrap(gtk_frame_get_child(gobj()));
 }
 
-const Widget* Frame::get_child() const
+auto Frame::get_child() const -> const Widget*
 {
   return const_cast<Frame*>(this)->get_child();
 }
 
 
-Glib::PropertyProxy< Glib::ustring > Frame::property_label()
+auto Frame::property_label() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "label");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Frame::property_label() const
+auto Frame::property_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "label");
 }
 
-Glib::PropertyProxy< double > Frame::property_label_xalign()
+auto Frame::property_label_xalign() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "label-xalign");
 }
 
-Glib::PropertyProxy_ReadOnly< double > Frame::property_label_xalign() const
+auto Frame::property_label_xalign() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "label-xalign");
 }
 
-Glib::PropertyProxy< Widget* > Frame::property_label_widget()
+auto Frame::property_label_widget() -> Glib::PropertyProxy< Widget* >
 {
   return Glib::PropertyProxy< Widget* >(this, "label-widget");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > Frame::property_label_widget() const
+auto Frame::property_label_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "label-widget");
 }
 
-Glib::PropertyProxy< Widget* > Frame::property_child()
+auto Frame::property_child() -> Glib::PropertyProxy< Widget* >
 {
   return Glib::PropertyProxy< Widget* >(this, "child");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > Frame::property_child() const
+auto Frame::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
 }

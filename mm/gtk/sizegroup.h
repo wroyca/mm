@@ -78,7 +78,7 @@ public:
 
   // noncopyable
   SizeGroup(const SizeGroup&) = delete;
-  SizeGroup& operator=(const SizeGroup&) = delete;
+  auto operator=(const SizeGroup&) -> SizeGroup& = delete;
 
 private:  friend class SizeGroup_Class;
   static CppClassType sizegroup_class_;
@@ -92,28 +92,28 @@ protected:
 public:
 
   SizeGroup(SizeGroup&& src) noexcept;
-  SizeGroup& operator=(SizeGroup&& src) noexcept;
+  auto operator=(SizeGroup&& src) noexcept -> SizeGroup&;
 
   ~SizeGroup() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkSizeGroup*       gobj()       { return reinterpret_cast<GtkSizeGroup*>(gobject_); }
+  auto       gobj() -> GtkSizeGroup*       { return reinterpret_cast<GtkSizeGroup*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkSizeGroup* gobj() const { return reinterpret_cast<GtkSizeGroup*>(gobject_); }
+  auto gobj() const -> const GtkSizeGroup* { return reinterpret_cast<GtkSizeGroup*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkSizeGroup* gobj_copy();
+  auto gobj_copy() -> GtkSizeGroup*;
 
 private:
 
@@ -156,7 +156,7 @@ protected:
 public:
 
 
-  static Glib::RefPtr<SizeGroup> create(Mode mode);
+  static auto create(Mode mode) -> Glib::RefPtr<SizeGroup>;
 
 
   /** Sets the `Gtk::SizeGroup::Mode` of the size group.
@@ -175,7 +175,7 @@ public:
    *
    * @return The current mode of the size group.
    */
-  Mode get_mode() const;
+  auto get_mode() const -> Mode;
 
 
   /** Adds a widget to a `Gtk::SizeGroup`.
@@ -206,7 +206,7 @@ public:
    * @return A `SList` of
    * widgets. The list is owned by GTK and should not be modified.
    */
-  std::vector<Widget*> get_widgets();
+  auto get_widgets() -> std::vector<Widget*>;
 
 
   /** Returns the list of widgets associated with @a size_group.
@@ -214,7 +214,7 @@ public:
    * @return A `SList` of
    * widgets. The list is owned by GTK and should not be modified.
    */
-  std::vector<const Widget*> get_widgets() const;
+  auto get_widgets() const -> std::vector<const Widget*>;
 
   /** The direction in which the size group affects requested sizes.
    *
@@ -223,7 +223,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Mode > property_mode() ;
+  auto property_mode() -> Glib::PropertyProxy< Mode > ;
 
 /** The direction in which the size group affects requested sizes.
    *
@@ -232,7 +232,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Mode > property_mode() const;
+  auto property_mode() const -> Glib::PropertyProxy_ReadOnly< Mode >;
 
 
 public:
@@ -259,7 +259,7 @@ template <>
 class GTKMM_API Value<Gtk::SizeGroup::Mode> : public Glib::Value_Enum<Gtk::SizeGroup::Mode>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -277,7 +277,7 @@ namespace Glib
    * @relates Gtk::SizeGroup
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::SizeGroup> wrap(GtkSizeGroup* object, bool take_copy = false);
+  auto wrap(GtkSizeGroup* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SizeGroup>;
 }
 
 

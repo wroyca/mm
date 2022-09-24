@@ -30,8 +30,8 @@
 namespace Gtk
 {
 
-Gdk::Rectangle CellRenderer::get_aligned_area(Widget& widget, CellRendererState flags,
-  const Gdk::Rectangle& cell_area) const
+auto CellRenderer::get_aligned_area(Widget& widget, CellRendererState flags,
+  const Gdk::Rectangle& cell_area) const -> Gdk::Rectangle
 {
   GdkRectangle gdk_aligned_area;
   gtk_cell_renderer_get_aligned_area(const_cast<GtkCellRenderer*>(gobj()), widget.gobj(),
@@ -40,7 +40,7 @@ Gdk::Rectangle CellRenderer::get_aligned_area(Widget& widget, CellRendererState 
   return Glib::wrap(&gdk_aligned_area);
 }
 
-Glib::PropertyProxy_Base CellRenderer::_property_renderable()
+auto CellRenderer::_property_renderable() -> Glib::PropertyProxy_Base
 {
   g_assert_not_reached();
   return Glib::PropertyProxy<int>(nullptr, nullptr); // shut up warnings
@@ -219,7 +219,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo CellRenderer_signal_editing_canceled_info =
+const Glib::SignalProxyInfo CellRenderer_signal_editing_canceled_info =
 {
   "editing_canceled",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -227,7 +227,7 @@ static const Glib::SignalProxyInfo CellRenderer_signal_editing_canceled_info =
 };
 
 
-static void CellRenderer_signal_editing_started_callback(GtkCellRenderer* self, GtkCellEditable* p0,const gchar* p1,void* data)
+void CellRenderer_signal_editing_started_callback(GtkCellRenderer* self, GtkCellEditable* p0,const gchar* p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(CellEditable*, const Glib::ustring&)>;
@@ -250,7 +250,7 @@ static void CellRenderer_signal_editing_started_callback(GtkCellRenderer* self, 
   }
 }
 
-static const Glib::SignalProxyInfo CellRenderer_signal_editing_started_info =
+const Glib::SignalProxyInfo CellRenderer_signal_editing_started_info =
 {
   "editing_started",
   (GCallback) &CellRenderer_signal_editing_started_callback,
@@ -261,13 +261,13 @@ static const Glib::SignalProxyInfo CellRenderer_signal_editing_started_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::CellRendererState>::value_type()
+auto Glib::Value<Gtk::CellRendererState>::value_type() -> GType
 {
   return gtk_cell_renderer_state_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::CellRendererMode>::value_type()
+auto Glib::Value<Gtk::CellRendererMode>::value_type() -> GType
 {
   return gtk_cell_renderer_mode_get_type();
 }
@@ -276,7 +276,7 @@ GType Glib::Value<Gtk::CellRendererMode>::value_type()
 namespace Glib
 {
 
-Gtk::CellRenderer* wrap(GtkCellRenderer* object, bool take_copy)
+auto wrap(GtkCellRenderer* object, bool take_copy) -> Gtk::CellRenderer*
 {
   return dynamic_cast<Gtk::CellRenderer *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -289,7 +289,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& CellRenderer_Class::init()
+auto CellRenderer_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -329,7 +329,7 @@ void CellRenderer_Class::class_init_function(void* g_class, void* class_data)
   klass->editing_started = &editing_started_callback;
 }
 
-GtkSizeRequestMode CellRenderer_Class::get_request_mode_vfunc_callback(GtkCellRenderer* self)
+auto CellRenderer_Class::get_request_mode_vfunc_callback(GtkCellRenderer* self) -> GtkSizeRequestMode
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -408,7 +408,7 @@ void CellRenderer_Class::snapshot_vfunc_callback(GtkCellRenderer* self, GtkSnaps
   if(base && base->snapshot)
     (*base->snapshot)(self, snapshot, widget, background_area, cell_area, flags);
 }
-gboolean CellRenderer_Class::activate_vfunc_callback(GtkCellRenderer* self, GdkEvent* event, GtkWidget* widget, const gchar* path, const GdkRectangle* background_area, const GdkRectangle* cell_area, GtkCellRendererState flags)
+auto CellRenderer_Class::activate_vfunc_callback(GtkCellRenderer* self, GdkEvent* event, GtkWidget* widget, const gchar* path, const GdkRectangle* background_area, const GdkRectangle* cell_area, GtkCellRendererState flags) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -452,7 +452,7 @@ gboolean CellRenderer_Class::activate_vfunc_callback(GtkCellRenderer* self, GdkE
   using RType = gboolean;
   return RType();
 }
-GtkCellEditable* CellRenderer_Class::start_editing_vfunc_callback(GtkCellRenderer* self, GdkEvent* event, GtkWidget* widget, const gchar* path, const GdkRectangle* background_area, const GdkRectangle* cell_area, GtkCellRendererState flags)
+auto CellRenderer_Class::start_editing_vfunc_callback(GtkCellRenderer* self, GdkEvent* event, GtkWidget* widget, const gchar* path, const GdkRectangle* background_area, const GdkRectangle* cell_area, GtkCellRendererState flags) -> GtkCellEditable*
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -573,7 +573,7 @@ void CellRenderer_Class::editing_started_callback(GtkCellRenderer* self, GtkCell
 }
 
 
-Glib::ObjectBase* CellRenderer_Class::wrap_new(GObject* o)
+auto CellRenderer_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new CellRenderer((GtkCellRenderer*)(o)));
 
@@ -599,7 +599,7 @@ CellRenderer::CellRenderer(CellRenderer&& src) noexcept
 : Gtk::Object(std::move(src))
 {}
 
-CellRenderer& CellRenderer::operator=(CellRenderer&& src) noexcept
+auto CellRenderer::operator=(CellRenderer&& src) noexcept -> CellRenderer&
 {
   Gtk::Object::operator=(std::move(src));
   return *this;
@@ -612,19 +612,19 @@ CellRenderer::~CellRenderer() noexcept
 
 CellRenderer::CppClassType CellRenderer::cellrenderer_class_; // initialize static member
 
-GType CellRenderer::get_type()
+auto CellRenderer::get_type() -> GType
 {
   return cellrenderer_class_.init().get_type();
 }
 
 
-GType CellRenderer::get_base_type()
+auto CellRenderer::get_base_type() -> GType
 {
   return gtk_cell_renderer_get_type();
 }
 
 
-SizeRequestMode CellRenderer::get_request_mode() const
+auto CellRenderer::get_request_mode() const -> SizeRequestMode
 {
   return static_cast<SizeRequestMode>(gtk_cell_renderer_get_request_mode(const_cast<GtkCellRenderer*>(gobj())));
 }
@@ -659,12 +659,12 @@ void CellRenderer::snapshot(const Glib::RefPtr<Gtk::Snapshot>& snapshot, Widget&
   gtk_cell_renderer_snapshot(gobj(), Glib::unwrap(snapshot), (widget).gobj(), (background_area).gobj(), (cell_area).gobj(), static_cast<GtkCellRendererState>(flags));
 }
 
-bool CellRenderer::activate(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags)
+auto CellRenderer::activate(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags) -> bool
 {
   return gtk_cell_renderer_activate(gobj(), const_cast<GdkEvent*>(Glib::unwrap(event)), (widget).gobj(), path.c_str(), (background_area).gobj(), (cell_area).gobj(), static_cast<GtkCellRendererState>(flags));
 }
 
-CellEditable* CellRenderer::start_editing(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags)
+auto CellRenderer::start_editing(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags) -> CellEditable*
 {
   return dynamic_cast<CellEditable*>(Glib::wrap_auto((GObject*)(gtk_cell_renderer_start_editing(gobj(), const_cast<GdkEvent*>(Glib::unwrap(event)), (widget).gobj(), path.c_str(), (background_area).gobj(), (cell_area).gobj(), static_cast<GtkCellRendererState>(flags))), false));
 }
@@ -704,7 +704,7 @@ void CellRenderer::set_visible(bool visible)
   gtk_cell_renderer_set_visible(gobj(), static_cast<int>(visible));
 }
 
-bool CellRenderer::get_visible() const
+auto CellRenderer::get_visible() const -> bool
 {
   return gtk_cell_renderer_get_visible(const_cast<GtkCellRenderer*>(gobj()));
 }
@@ -714,12 +714,12 @@ void CellRenderer::set_sensitive(bool sensitive)
   gtk_cell_renderer_set_sensitive(gobj(), static_cast<int>(sensitive));
 }
 
-bool CellRenderer::get_sensitive() const
+auto CellRenderer::get_sensitive() const -> bool
 {
   return gtk_cell_renderer_get_sensitive(const_cast<GtkCellRenderer*>(gobj()));
 }
 
-bool CellRenderer::is_activatable() const
+auto CellRenderer::is_activatable() const -> bool
 {
   return gtk_cell_renderer_is_activatable(const_cast<GtkCellRenderer*>(gobj()));
 }
@@ -729,7 +729,7 @@ void CellRenderer::set_is_expander(bool is_expander)
   gtk_cell_renderer_set_is_expander(gobj(), static_cast<int>(is_expander));
 }
 
-bool CellRenderer::get_is_expander() const
+auto CellRenderer::get_is_expander() const -> bool
 {
   return gtk_cell_renderer_get_is_expander(const_cast<GtkCellRenderer*>(gobj()));
 }
@@ -739,7 +739,7 @@ void CellRenderer::set_is_expanded(bool is_expanded)
   gtk_cell_renderer_set_is_expanded(gobj(), static_cast<int>(is_expanded));
 }
 
-bool CellRenderer::get_is_expanded() const
+auto CellRenderer::get_is_expanded() const -> bool
 {
   return gtk_cell_renderer_get_is_expanded(const_cast<GtkCellRenderer*>(gobj()));
 }
@@ -749,12 +749,12 @@ void CellRenderer::stop_editing(bool canceled)
   gtk_cell_renderer_stop_editing(gobj(), static_cast<int>(canceled));
 }
 
-StateFlags CellRenderer::get_state(Widget& widget, CellRendererState cell_state) const
+auto CellRenderer::get_state(Widget& widget, CellRendererState cell_state) const -> StateFlags
 {
   return static_cast<StateFlags>(gtk_cell_renderer_get_state(const_cast<GtkCellRenderer*>(gobj()), (widget).gobj(), static_cast<GtkCellRendererState>(cell_state)));
 }
 
-StateFlags CellRenderer::get_state(CellRendererState cell_state) const
+auto CellRenderer::get_state(CellRendererState cell_state) const -> StateFlags
 {
   return static_cast<StateFlags>(gtk_cell_renderer_get_state(const_cast<GtkCellRenderer*>(gobj()), nullptr, static_cast<GtkCellRendererState>(cell_state)));
 }
@@ -770,13 +770,13 @@ CellRenderer::CellRenderer()
 }
 
 
-Glib::SignalProxy<void()> CellRenderer::signal_editing_canceled()
+auto CellRenderer::signal_editing_canceled() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &CellRenderer_signal_editing_canceled_info);
 }
 
 
-Glib::SignalProxy<void(CellEditable*, const Glib::ustring&)> CellRenderer::signal_editing_started()
+auto CellRenderer::signal_editing_started() -> Glib::SignalProxy<void(CellEditable*, const Glib::ustring&)>
 {
   return Glib::SignalProxy<void(CellEditable*, const Glib::ustring&) >(this, &CellRenderer_signal_editing_started_info);
 }
@@ -786,117 +786,117 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<CellRendererMode>::v
   "Type CellRendererMode cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< CellRendererMode > CellRenderer::property_mode()
+auto CellRenderer::property_mode() -> Glib::PropertyProxy< CellRendererMode >
 {
   return Glib::PropertyProxy< CellRendererMode >(this, "mode");
 }
 
-Glib::PropertyProxy_ReadOnly< CellRendererMode > CellRenderer::property_mode() const
+auto CellRenderer::property_mode() const -> Glib::PropertyProxy_ReadOnly< CellRendererMode >
 {
   return Glib::PropertyProxy_ReadOnly< CellRendererMode >(this, "mode");
 }
 
-Glib::PropertyProxy< bool > CellRenderer::property_visible()
+auto CellRenderer::property_visible() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "visible");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRenderer::property_visible() const
+auto CellRenderer::property_visible() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "visible");
 }
 
-Glib::PropertyProxy< bool > CellRenderer::property_sensitive()
+auto CellRenderer::property_sensitive() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "sensitive");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRenderer::property_sensitive() const
+auto CellRenderer::property_sensitive() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "sensitive");
 }
 
-Glib::PropertyProxy< float > CellRenderer::property_xalign()
+auto CellRenderer::property_xalign() -> Glib::PropertyProxy< float >
 {
   return Glib::PropertyProxy< float >(this, "xalign");
 }
 
-Glib::PropertyProxy_ReadOnly< float > CellRenderer::property_xalign() const
+auto CellRenderer::property_xalign() const -> Glib::PropertyProxy_ReadOnly< float >
 {
   return Glib::PropertyProxy_ReadOnly< float >(this, "xalign");
 }
 
-Glib::PropertyProxy< float > CellRenderer::property_yalign()
+auto CellRenderer::property_yalign() -> Glib::PropertyProxy< float >
 {
   return Glib::PropertyProxy< float >(this, "yalign");
 }
 
-Glib::PropertyProxy_ReadOnly< float > CellRenderer::property_yalign() const
+auto CellRenderer::property_yalign() const -> Glib::PropertyProxy_ReadOnly< float >
 {
   return Glib::PropertyProxy_ReadOnly< float >(this, "yalign");
 }
 
-Glib::PropertyProxy< unsigned int > CellRenderer::property_xpad()
+auto CellRenderer::property_xpad() -> Glib::PropertyProxy< unsigned int >
 {
   return Glib::PropertyProxy< unsigned int >(this, "xpad");
 }
 
-Glib::PropertyProxy_ReadOnly< unsigned int > CellRenderer::property_xpad() const
+auto CellRenderer::property_xpad() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
   return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "xpad");
 }
 
-Glib::PropertyProxy< unsigned int > CellRenderer::property_ypad()
+auto CellRenderer::property_ypad() -> Glib::PropertyProxy< unsigned int >
 {
   return Glib::PropertyProxy< unsigned int >(this, "ypad");
 }
 
-Glib::PropertyProxy_ReadOnly< unsigned int > CellRenderer::property_ypad() const
+auto CellRenderer::property_ypad() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
   return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "ypad");
 }
 
-Glib::PropertyProxy< int > CellRenderer::property_width()
+auto CellRenderer::property_width() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "width");
 }
 
-Glib::PropertyProxy_ReadOnly< int > CellRenderer::property_width() const
+auto CellRenderer::property_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "width");
 }
 
-Glib::PropertyProxy< int > CellRenderer::property_height()
+auto CellRenderer::property_height() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "height");
 }
 
-Glib::PropertyProxy_ReadOnly< int > CellRenderer::property_height() const
+auto CellRenderer::property_height() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "height");
 }
 
-Glib::PropertyProxy< bool > CellRenderer::property_is_expander()
+auto CellRenderer::property_is_expander() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "is-expander");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRenderer::property_is_expander() const
+auto CellRenderer::property_is_expander() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-expander");
 }
 
-Glib::PropertyProxy< bool > CellRenderer::property_is_expanded()
+auto CellRenderer::property_is_expanded() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "is-expanded");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRenderer::property_is_expanded() const
+auto CellRenderer::property_is_expanded() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-expanded");
 }
 
-Glib::PropertyProxy_WriteOnly< Glib::ustring > CellRenderer::property_cell_background()
+auto CellRenderer::property_cell_background() -> Glib::PropertyProxy_WriteOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_WriteOnly< Glib::ustring >(this, "cell-background");
 }
@@ -905,27 +905,27 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
   "Type Gdk::RGBA cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Gdk::RGBA > CellRenderer::property_cell_background_rgba()
+auto CellRenderer::property_cell_background_rgba() -> Glib::PropertyProxy< Gdk::RGBA >
 {
   return Glib::PropertyProxy< Gdk::RGBA >(this, "cell-background-rgba");
 }
 
-Glib::PropertyProxy_ReadOnly< Gdk::RGBA > CellRenderer::property_cell_background_rgba() const
+auto CellRenderer::property_cell_background_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >
 {
   return Glib::PropertyProxy_ReadOnly< Gdk::RGBA >(this, "cell-background-rgba");
 }
 
-Glib::PropertyProxy< bool > CellRenderer::property_cell_background_set()
+auto CellRenderer::property_cell_background_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "cell-background-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRenderer::property_cell_background_set() const
+auto CellRenderer::property_cell_background_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "cell-background-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRenderer::property_editing() const
+auto CellRenderer::property_editing() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "editing");
 }
@@ -950,7 +950,7 @@ void Gtk::CellRenderer::on_editing_started(CellEditable* editable, const Glib::u
     (*base->editing_started)(gobj(),Glib::unwrap(editable),path.c_str());
 }
 
-SizeRequestMode Gtk::CellRenderer::get_request_mode_vfunc() const
+auto Gtk::CellRenderer::get_request_mode_vfunc() const -> SizeRequestMode
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1020,7 +1020,7 @@ void Gtk::CellRenderer::snapshot_vfunc(const Glib::RefPtr<Gtk::Snapshot>& snapsh
     (*base->snapshot)(gobj(),Glib::unwrap(snapshot),(widget).gobj(),(background_area).gobj(),(cell_area).gobj(),static_cast<GtkCellRendererState>(flags));
   }
 }
-bool Gtk::CellRenderer::activate_vfunc(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags)
+auto Gtk::CellRenderer::activate_vfunc(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1035,7 +1035,7 @@ bool Gtk::CellRenderer::activate_vfunc(const Glib::RefPtr<const Gdk::Event>& eve
   using RType = bool;
   return RType();
 }
-CellEditable* Gtk::CellRenderer::start_editing_vfunc(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags)
+auto Gtk::CellRenderer::start_editing_vfunc(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags) -> CellEditable*
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

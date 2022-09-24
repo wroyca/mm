@@ -63,8 +63,8 @@ Date::Date(const Date& other)
     g_date_set_julian(&gobject_, other.get_julian());
 }
 
-Date&
-Date::operator=(const Date& other)
+auto
+Date::operator=(const Date& other) -> Date&
 {
   if (&other != this && g_date_valid(&other.gobject_))
     g_date_set_julian(&gobject_, other.get_julian());
@@ -127,8 +127,8 @@ Date::set_julian(guint32 julian_day)
   g_date_set_julian(&gobject_, julian_day);
 }
 
-Date&
-Date::add_days(int n_days)
+auto
+Date::add_days(int n_days) -> Date&
 {
   if (n_days >= 0)
     g_date_add_days(&gobject_, n_days);
@@ -137,8 +137,8 @@ Date::add_days(int n_days)
   return *this;
 }
 
-Date&
-Date::subtract_days(int n_days)
+auto
+Date::subtract_days(int n_days) -> Date&
 {
   if (n_days >= 0)
     g_date_subtract_days(&gobject_, n_days);
@@ -147,8 +147,8 @@ Date::subtract_days(int n_days)
   return *this;
 }
 
-Date&
-Date::add_months(int n_months)
+auto
+Date::add_months(int n_months) -> Date&
 {
   if (n_months >= 0)
     g_date_add_months(&gobject_, n_months);
@@ -157,8 +157,8 @@ Date::add_months(int n_months)
   return *this;
 }
 
-Date&
-Date::subtract_months(int n_months)
+auto
+Date::subtract_months(int n_months) -> Date&
 {
   if (n_months >= 0)
     g_date_subtract_months(&gobject_, n_months);
@@ -167,8 +167,8 @@ Date::subtract_months(int n_months)
   return *this;
 }
 
-Date&
-Date::add_years(int n_years)
+auto
+Date::add_years(int n_years) -> Date&
 {
   if (n_years >= 0)
     g_date_add_years(&gobject_, n_years);
@@ -177,8 +177,8 @@ Date::add_years(int n_years)
   return *this;
 }
 
-Date&
-Date::subtract_years(int n_years)
+auto
+Date::subtract_years(int n_years) -> Date&
 {
   if (n_years >= 0)
     g_date_subtract_years(&gobject_, n_years);
@@ -187,34 +187,34 @@ Date::subtract_years(int n_years)
   return *this;
 }
 
-int
-Date::days_between(const Date& rhs) const
+auto
+Date::days_between(const Date& rhs) const -> int
 {
   return g_date_days_between(&gobject_, &rhs.gobject_);
 }
 
-int
-Date::compare(const Date& rhs) const
+auto
+Date::compare(const Date& rhs) const -> int
 {
   return g_date_compare(&gobject_, &rhs.gobject_);
 }
 
-Date&
-Date::clamp(const Date& min_date, const Date& max_date)
+auto
+Date::clamp(const Date& min_date, const Date& max_date) -> Date&
 {
   g_date_clamp(&gobject_, &min_date.gobject_, &max_date.gobject_);
   return *this;
 }
 
-Date&
-Date::clamp_min(const Date& min_date)
+auto
+Date::clamp_min(const Date& min_date) -> Date&
 {
   g_date_clamp(&gobject_, &min_date.gobject_, nullptr /* see the C docs */);
   return *this;
 }
 
-Date&
-Date::clamp_max(const Date& max_date)
+auto
+Date::clamp_max(const Date& max_date) -> Date&
 {
   g_date_clamp(&gobject_, nullptr /* see the C docs */, &max_date.gobject_);
   return *this;
@@ -226,112 +226,112 @@ Date::order(Date& other)
   g_date_order(&gobject_, &other.gobject_);
 }
 
-Date::Weekday
-Date::get_weekday() const
+auto
+Date::get_weekday() const -> Date::Weekday
 {
   return (Date::Weekday)g_date_get_weekday(&gobject_);
 }
 
-int Date::get_weekday_as_int() const
+auto Date::get_weekday_as_int() const -> int
 {
   return g_date_get_weekday(&gobject_);
 }
 
-Date::Month
-Date::get_month() const
+auto
+Date::get_month() const -> Date::Month
 {
   return (Date::Month)g_date_get_month(&gobject_);
 }
 
-int Date::get_month_as_int() const
+auto Date::get_month_as_int() const -> int
 {
   return g_date_get_month(&gobject_);
 }
 
-Date::Year
-Date::get_year() const
+auto
+Date::get_year() const -> Date::Year
 {
   return g_date_get_year(&gobject_);
 }
 
-Date::Day
-Date::get_day() const
+auto
+Date::get_day() const -> Date::Day
 {
   return g_date_get_day(&gobject_);
 }
 
-guint32
-Date::get_julian() const
+auto
+Date::get_julian() const -> guint32
 {
   return g_date_get_julian(&gobject_);
 }
 
-unsigned int
-Date::get_day_of_year() const
+auto
+Date::get_day_of_year() const -> unsigned int
 {
   return g_date_get_day_of_year(&gobject_);
 }
 
-unsigned int
-Date::get_monday_week_of_year() const
+auto
+Date::get_monday_week_of_year() const -> unsigned int
 {
   return g_date_get_monday_week_of_year(&gobject_);
 }
 
-unsigned int
-Date::get_sunday_week_of_year() const
+auto
+Date::get_sunday_week_of_year() const -> unsigned int
 {
   return g_date_get_sunday_week_of_year(&gobject_);
 }
 
-unsigned int
-Date::get_iso8601_week_of_year() const
+auto
+Date::get_iso8601_week_of_year() const -> unsigned int
 {
   return g_date_get_iso8601_week_of_year(&gobject_);
 }
 
-bool
-Date::is_first_of_month() const
+auto
+Date::is_first_of_month() const -> bool
 {
   return g_date_is_first_of_month(&gobject_);
 }
 
-bool
-Date::is_last_of_month() const
+auto
+Date::is_last_of_month() const -> bool
 {
   return g_date_is_last_of_month(&gobject_);
 }
 
 // static
-guint8
-Date::get_days_in_month(Date::Month month, Date::Year year)
+auto
+Date::get_days_in_month(Date::Month month, Date::Year year) -> guint8
 {
   return g_date_get_days_in_month((GDateMonth)month, year);
 }
 
 // static
-guint8
-Date::get_monday_weeks_in_year(Date::Year year)
+auto
+Date::get_monday_weeks_in_year(Date::Year year) -> guint8
 {
   return g_date_get_monday_weeks_in_year(year);
 }
 
 // static
-guint8
-Date::get_sunday_weeks_in_year(Date::Year year)
+auto
+Date::get_sunday_weeks_in_year(Date::Year year) -> guint8
 {
   return g_date_get_sunday_weeks_in_year(year);
 }
 
 // static
-bool
-Date::is_leap_year(Date::Year year)
+auto
+Date::is_leap_year(Date::Year year) -> bool
 {
   return g_date_is_leap_year(year);
 }
 
-Glib::ustring
-Date::format_string(const Glib::ustring& format) const
+auto
+Date::format_string(const Glib::ustring& format) const -> Glib::ustring
 {
   struct tm tm_data;
   g_date_to_struct_tm(&gobject_, &tm_data);
@@ -368,50 +368,50 @@ Date::to_struct_tm(struct tm& dest) const
   g_date_to_struct_tm(&gobject_, &dest);
 }
 
-bool
-Date::valid() const
+auto
+Date::valid() const -> bool
 {
   return g_date_valid(&gobject_);
 }
 
 // static
-bool
-Date::valid_day(Date::Day day)
+auto
+Date::valid_day(Date::Day day) -> bool
 {
   return g_date_valid_day(day);
 }
 
 // static
-bool
-Date::valid_month(Date::Month month)
+auto
+Date::valid_month(Date::Month month) -> bool
 {
   return g_date_valid_month((GDateMonth)month);
 }
 
 // static
-bool
-Date::valid_year(Date::Year year)
+auto
+Date::valid_year(Date::Year year) -> bool
 {
   return g_date_valid_year(year);
 }
 
 // static
-bool
-Date::valid_weekday(Date::Weekday weekday)
+auto
+Date::valid_weekday(Date::Weekday weekday) -> bool
 {
   return g_date_valid_weekday((GDateWeekday)weekday);
 }
 
 // static
-bool
-Date::valid_julian(guint32 julian_day)
+auto
+Date::valid_julian(guint32 julian_day) -> bool
 {
   return g_date_valid_julian(julian_day);
 }
 
 // static
-bool
-Date::valid_dmy(Date::Day day, Date::Month month, Date::Year year)
+auto
+Date::valid_dmy(Date::Day day, Date::Month month, Date::Year year) -> bool
 {
   return g_date_valid_dmy(day, (GDateMonth)month, year);
 }

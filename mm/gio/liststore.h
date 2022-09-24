@@ -67,7 +67,7 @@ public:
 
   // noncopyable
   ListStoreBase(const ListStoreBase&) = delete;
-  ListStoreBase& operator=(const ListStoreBase&) = delete;
+  auto operator=(const ListStoreBase&) -> ListStoreBase& = delete;
 
 private:  friend class ListStoreBase_Class;
   static CppClassType liststorebase_class_;
@@ -81,28 +81,28 @@ protected:
 public:
 
   ListStoreBase(ListStoreBase&& src) noexcept;
-  ListStoreBase& operator=(ListStoreBase&& src) noexcept;
+  auto operator=(ListStoreBase&& src) noexcept -> ListStoreBase&;
 
   ~ListStoreBase() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GListStore*       gobj()       { return reinterpret_cast<GListStore*>(gobject_); }
+  auto       gobj() -> GListStore*       { return reinterpret_cast<GListStore*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GListStore* gobj() const { return reinterpret_cast<GListStore*>(gobject_); }
+  auto gobj() const -> const GListStore* { return reinterpret_cast<GListStore*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GListStore* gobj_copy();
+  auto gobj_copy() -> GListStore*;
 
 private:
 
@@ -113,7 +113,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<ListStoreBase> create(GType item_type);
+  static auto create(GType item_type) -> Glib::RefPtr<ListStoreBase>;
 
 
   /** Inserts @a item into @a store at @a position. @a item must be of type
@@ -160,7 +160,7 @@ public:
    * @param slot Pairwise comparison function for sorting.
    * @return The position at which @a item was inserted.
    */
-  guint insert_sorted(const Glib::RefPtr<Glib::ObjectBase>& item, const SlotCompare& slot);
+  auto insert_sorted(const Glib::RefPtr<Glib::ObjectBase>& item, const SlotCompare& slot) -> guint;
 
 
   /** Sort the items in @a store according to @a slot.
@@ -237,7 +237,7 @@ public:
    * If it was found, @a position will be set to the position where @a item
    * occurred for the first time, else @a position = std::numeric_limits<unsigned int>::max().
    */
-  std::pair<bool, unsigned int> find(const Glib::RefPtr<const Glib::ObjectBase>& item) const;
+  auto find(const Glib::RefPtr<const Glib::ObjectBase>& item) const -> std::pair<bool, unsigned int>;
 
 
   /** A slot that will be called to compare two items.
@@ -266,7 +266,7 @@ public:
    * If it was found, @a position will be set to the position where @a item
    * occurred for the first time, else @a position = std::numeric_limits<unsigned int>::max().
    */
-  std::pair<bool, unsigned int> find(const Glib::RefPtr<const Glib::ObjectBase>& item, const SlotEqual& slot) const;
+  auto find(const Glib::RefPtr<const Glib::ObjectBase>& item, const SlotEqual& slot) const -> std::pair<bool, unsigned int>;
 
 
   /** The type of items contained in this list store. Items must be
@@ -277,7 +277,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< GType > property_item_type() const;
+  auto property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >;
 
 
   /** The number of items contained in this list store.
@@ -289,7 +289,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_n_items() const;
+  auto property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
 
 public:
@@ -326,7 +326,7 @@ protected:
   ListStore();
 
 public:
-  static Glib::RefPtr<ListStore> create();
+  static auto create() -> Glib::RefPtr<ListStore>;
 
   /** Get the item at @a position.
    * If @a position is greater than or equal to the number of
@@ -340,7 +340,7 @@ public:
    * @param position The position of the item to fetch.
    * @return The object at @a position.
    */
-  Glib::RefPtr<T_item> get_item(guint position);
+  auto get_item(guint position) -> Glib::RefPtr<T_item>;
 
   /** Get the item at @a position.
    * If @a position is greater than or equal to the number of
@@ -354,7 +354,7 @@ public:
    * @param position The position of the item to fetch.
    * @return The object at @a position.
    */
-  Glib::RefPtr<const T_item> get_item(guint position) const;
+  auto get_item(guint position) const -> Glib::RefPtr<const T_item>;
 
   /** Inserts @a item at @a position.
    * @a item must be of type ListStoreBase::property_item_type() or derived from it.
@@ -393,7 +393,7 @@ public:
    * @param slot Pairwise comparison function for sorting.
    * @return The position at which @a item was inserted.
    */
-  guint insert_sorted(const Glib::RefPtr<T_item>& item, const SlotCompare& slot);
+  auto insert_sorted(const Glib::RefPtr<T_item>& item, const SlotCompare& slot) -> guint;
 
   /** Sorts the items according to @a slot.
    *
@@ -447,7 +447,7 @@ public:
    * If it was found, @a position will be set to the position where @a item
    * occurred for the first time, else @a position = std::numeric_limits<unsigned int>::max().
    */
-  std::pair<bool, unsigned int> find(const Glib::RefPtr<const T_item>& item) const;
+  auto find(const Glib::RefPtr<const T_item>& item) const -> std::pair<bool, unsigned int>;
 
   /** A slot that will be called to compare two items.
    * The slot should return <tt>true</tt> if the items are equal,
@@ -475,12 +475,12 @@ public:
    * If it was found, @a position will be set to the position where @a item
    * occurred for the first time, else @a position = std::numeric_limits<unsigned int>::max().
    */
-  std::pair<bool, unsigned int> find(const Glib::RefPtr<const T_item>& item, const SlotEqual& slot) const;
+  auto find(const Glib::RefPtr<const T_item>& item, const SlotEqual& slot) const -> std::pair<bool, unsigned int>;
 
 private:
-  static int compare_data_func(gconstpointer a, gconstpointer b, gpointer user_data);
+  static auto compare_data_func(gconstpointer a, gconstpointer b, gpointer user_data) -> int;
   // gboolean is int
-  static gboolean equal_func_full(gconstpointer a, gconstpointer b, gpointer user_data);
+  static auto equal_func_full(gconstpointer a, gconstpointer b, gpointer user_data) -> gboolean;
 }; // end class ListStore
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -491,19 +491,19 @@ ListStore<T_item>::ListStore()
 { }
 
 template <typename T_item>
-Glib::RefPtr<ListStore<T_item>> ListStore<T_item>::create()
+auto ListStore<T_item>::create() -> Glib::RefPtr<ListStore<T_item>>
 {
   return Glib::make_refptr_for_instance<ListStore<T_item>>(new ListStore<T_item>());
 }
 
 template <typename T_item>
-Glib::RefPtr<T_item> ListStore<T_item>::get_item(guint position)
+auto ListStore<T_item>::get_item(guint position) -> Glib::RefPtr<T_item>
 {
   return std::dynamic_pointer_cast<T_item>(ListModel::get_object(position));
 }
 
 template <typename T_item>
-Glib::RefPtr<const T_item> ListStore<T_item>::get_item(guint position) const
+auto ListStore<T_item>::get_item(guint position) const -> Glib::RefPtr<const T_item>
 {
   return const_cast<ListStore<T_item>*>(this)->get_item(position);
 }
@@ -515,8 +515,8 @@ void ListStore<T_item>::insert(guint position, const Glib::RefPtr<T_item>& item)
 }
 
 template <typename T_item>
-guint ListStore<T_item>::insert_sorted(
-  const Glib::RefPtr<T_item>& item, const SlotCompare& slot)
+auto ListStore<T_item>::insert_sorted(
+  const Glib::RefPtr<T_item>& item, const SlotCompare& slot) -> guint
 {
   // Use the original slot (not a copy).
   auto slot_copy = const_cast<SlotCompare*>(&slot);
@@ -553,15 +553,15 @@ void ListStore<T_item>::splice(guint position, guint n_removals,
 }
 
 template <typename T_item>
-std::pair<bool, unsigned int> ListStore<T_item>::find(
-  const Glib::RefPtr<const T_item>& item) const
+auto ListStore<T_item>::find(
+  const Glib::RefPtr<const T_item>& item) const -> std::pair<bool, unsigned int>
 {
   return ListStoreBase::find(item);
 }
 
 template <typename T_item>
-std::pair<bool, unsigned int> ListStore<T_item>::find(
-  const Glib::RefPtr<const T_item>& item, const SlotEqual& slot) const
+auto ListStore<T_item>::find(
+  const Glib::RefPtr<const T_item>& item, const SlotEqual& slot) const -> std::pair<bool, unsigned int>
 {
   // Use the original slot (not a copy).
   auto slot_ptr = const_cast<SlotEqual*>(&slot);
@@ -574,7 +574,7 @@ std::pair<bool, unsigned int> ListStore<T_item>::find(
 }
 
 template <typename T_item>
-int ListStore<T_item>::compare_data_func(gconstpointer a, gconstpointer b, gpointer user_data)
+auto ListStore<T_item>::compare_data_func(gconstpointer a, gconstpointer b, gpointer user_data) -> int
 {
   auto slot = static_cast<SlotCompare*>(user_data);
 
@@ -589,7 +589,7 @@ int ListStore<T_item>::compare_data_func(gconstpointer a, gconstpointer b, gpoin
 }
 
 template <typename T_item>
-gboolean ListStore<T_item>::equal_func_full(gconstpointer a, gconstpointer b, gpointer user_data)
+auto ListStore<T_item>::equal_func_full(gconstpointer a, gconstpointer b, gpointer user_data) -> gboolean
 {
   auto slot = static_cast<SlotEqual*>(user_data);
 
@@ -619,7 +619,7 @@ namespace Glib
    * @relates Gio::ListStoreBase
    */
   GIOMM_API
-  Glib::RefPtr<Gio::ListStoreBase> wrap(GListStore* object, bool take_copy = false);
+  auto wrap(GListStore* object, bool take_copy = false) -> Glib::RefPtr<Gio::ListStoreBase>;
 }
 
 

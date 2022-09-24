@@ -93,7 +93,7 @@ template <>
 class PANGOMM_API Value<Pango::Alignment> : public Glib::Value_Enum<Pango::Alignment>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -143,7 +143,7 @@ template <>
 class PANGOMM_API Value<Pango::WrapMode> : public Glib::Value_Enum<Pango::WrapMode>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -195,7 +195,7 @@ template <>
 class PANGOMM_API Value<Pango::EllipsizeMode> : public Glib::Value_Enum<Pango::EllipsizeMode>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -225,7 +225,7 @@ public:
 
   // noncopyable
   Layout(const Layout&) = delete;
-  Layout& operator=(const Layout&) = delete;
+  auto operator=(const Layout&) -> Layout& = delete;
 
 private:  friend class Layout_Class;
   static CppClassType layout_class_;
@@ -239,28 +239,28 @@ protected:
 public:
 
   Layout(Layout&& src) noexcept;
-  Layout& operator=(Layout&& src) noexcept;
+  auto operator=(Layout&& src) noexcept -> Layout&;
 
   ~Layout() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  PangoLayout*       gobj()       { return reinterpret_cast<PangoLayout*>(gobject_); }
+  auto       gobj() -> PangoLayout*       { return reinterpret_cast<PangoLayout*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const PangoLayout* gobj() const { return reinterpret_cast<PangoLayout*>(gobject_); }
+  auto gobj() const -> const PangoLayout* { return reinterpret_cast<PangoLayout*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  PangoLayout* gobj_copy();
+  auto gobj_copy() -> PangoLayout*;
 
 private:
 
@@ -270,7 +270,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<Layout> create(const Glib::RefPtr<Context>& context);
+  static auto create(const Glib::RefPtr<Context>& context) -> Glib::RefPtr<Layout>;
 
 
  /** Creates a layout object set up to match the current transformation
@@ -288,7 +288,7 @@ public:
   * @param context A Cairo context.
   * @return The newly created Pango Layout.
   */
-  static Glib::RefPtr<Layout> create(const Cairo::RefPtr<Cairo::Context>& context);
+  static auto create(const Cairo::RefPtr<Cairo::Context>& context) -> Glib::RefPtr<Layout>;
 
   /** Updates the private Pango Context of a Pango Layout created with
    * create(const Cairo::RefPtr<Cairo::Context>&) to match the current transformation
@@ -306,13 +306,13 @@ public:
    *
    * @return The newly allocated `Pango::Layout`.
    */
-  Glib::RefPtr<Layout> copy();
+  auto copy() -> Glib::RefPtr<Layout>;
 
   /** Retrieves the `Pango::Context` used for this layout.
    *
    * @return The `Pango::Context` for the layout.
    */
-  Glib::RefPtr<Context> get_context() const;
+  auto get_context() const -> Glib::RefPtr<Context>;
 
   /** Sets the text attributes for a layout object.
    *
@@ -326,7 +326,7 @@ public:
    *
    * @return A `Pango::AttrList`.
    */
-  AttrList get_attributes() const;
+  auto get_attributes() const -> AttrList;
 
   /** Set the text of the layout.
    * @param text The text for the layout.
@@ -340,7 +340,7 @@ public:
    *
    * @return The text in the @a layout.
    */
-  Glib::ustring get_text() const;
+  auto get_text() const -> Glib::ustring;
 
 
   /** Returns the number of Unicode characters in the
@@ -351,7 +351,7 @@ public:
    * @return The number of Unicode characters
    * in the text of @a layout.
    */
-  int get_character_count() const;
+  auto get_character_count() const -> int;
 
   /** Sets the layout text and attribute list from marked-up text (see markup format).
    * Replaces the current text and attribute list.
@@ -393,7 +393,7 @@ public:
    * layout's font description, or <tt>nullptr</tt> if the font description
    * from the layout's context is inherited.
    */
-  FontDescription get_font_description() const;
+  auto get_font_description() const -> FontDescription;
 
 
   /** Sets the width to which the lines of the `Pango::Layout` should wrap or
@@ -410,7 +410,7 @@ public:
    *
    * @return The width in Pango units, or -1 if no width set.
    */
-  int get_width() const;
+  auto get_width() const -> int;
 
   /** Sets the height to which the `Pango::Layout` should be ellipsized at.
    *
@@ -454,7 +454,7 @@ public:
    * @return The height, in Pango units if positive,
    * or number of lines if negative.
    */
-  int get_height() const;
+  auto get_height() const -> int;
 
   /** Sets the wrap mode.
    *
@@ -475,7 +475,7 @@ public:
    *
    * @return Active wrap mode.
    */
-  WrapMode get_wrap() const;
+  auto get_wrap() const -> WrapMode;
 
   /** Queries whether the layout had to wrap any paragraphs.
    *
@@ -489,7 +489,7 @@ public:
    * @return <tt>true</tt> if any paragraphs had to be wrapped, <tt>false</tt>
    * otherwise.
    */
-  bool is_wrapped() const;
+  auto is_wrapped() const -> bool;
 
   /** Sets the width in Pango units to indent each paragraph.
    *
@@ -512,7 +512,7 @@ public:
    *
    * @return The indent in Pango units.
    */
-  int get_indent() const;
+  auto get_indent() const -> int;
 
   /** Sets the amount of spacing in Pango units between
    * the lines of the layout.
@@ -539,7 +539,7 @@ public:
    *
    * @return The spacing in Pango units.
    */
-  int get_spacing() const;
+  auto get_spacing() const -> int;
 
   /** Sets a factor for line spacing.
    *
@@ -570,7 +570,7 @@ public:
    *
    * @newin{1,44}
    */
-  float get_line_spacing() const;
+  auto get_line_spacing() const -> float;
 
   /** Sets whether each complete line should be stretched to fill the
    * entire width of the layout.
@@ -599,7 +599,7 @@ public:
    *
    * @return The justify value.
    */
-  bool get_justify() const;
+  auto get_justify() const -> bool;
 
 
   /** Gets whether to calculate the base direction for the layout
@@ -612,7 +612,7 @@ public:
    * @return <tt>true</tt> if the bidirectional base direction
    * is computed from the layout's contents, <tt>false</tt> otherwise.
    */
-  bool get_auto_dir() const;
+  auto get_auto_dir() const -> bool;
 
   /** Sets whether to calculate the base direction
    * for the layout according to its contents.
@@ -653,7 +653,7 @@ public:
    *
    * @return The alignment.
    */
-  Alignment get_alignment() const;
+  auto get_alignment() const -> Alignment;
 
 
   /** Sets the tabs to use for @a layout, overriding the default tabs.
@@ -680,7 +680,7 @@ public:
    *
    * @return A copy of the tabs for this layout.
    */
-  TabArray get_tabs() const;
+  auto get_tabs() const -> TabArray;
 
 
   /** Sets the single paragraph mode of @a layout.
@@ -703,7 +703,7 @@ public:
    * @return <tt>true</tt> if the layout does not break paragraphs
    * at paragraph separator characters, <tt>false</tt> otherwise.
    */
-  bool get_single_paragraph_mode() const;
+  auto get_single_paragraph_mode() const -> bool;
 
 
   /** Sets the type of ellipsization being performed for @a layout.
@@ -739,7 +739,7 @@ public:
    *
    * @return The current ellipsization mode for @a layout.
    */
-  EllipsizeMode get_ellipsize() const;
+  auto get_ellipsize() const -> EllipsizeMode;
 
 
   /** Queries whether the layout had to ellipsize any paragraphs.
@@ -754,7 +754,7 @@ public:
    * @return <tt>true</tt> if any paragraphs had to be ellipsized,
    * <tt>false</tt> otherwise.
    */
-  bool is_ellipsized() const;
+  auto is_ellipsized() const -> bool;
 
   /** Counts the number of unknown glyphs in @a layout.
    *
@@ -767,7 +767,7 @@ public:
    *
    * @return The number of unknown glyphs in @a layout.
    */
-  int get_unknown_glyphs_count() const;
+  auto get_unknown_glyphs_count() const -> int;
 
 
   /** Forces recomputation of any state in the `Pango::Layout` that
@@ -796,7 +796,7 @@ public:
    *
    * @return The current serial number of @a layout.
    */
-  guint get_serial() const;
+  auto get_serial() const -> guint;
 
   /** Retrieve a vector of logical attributes for each character in the layout.
    *
@@ -807,7 +807,7 @@ public:
    *
    * @return A vector of logical attributes.
    */
-  std::vector<LogAttr> get_log_attrs() const;
+  auto get_log_attrs() const -> std::vector<LogAttr>;
 
   /** Convert from an index within the layout to the onscreen position corresponding to the grapheme at that index, which is represented as rectangle.
    * Note that @a x in the returned rectangle is always the leading edge of the grapheme
@@ -816,7 +816,7 @@ public:
    * @param index Byte index within layout.
    * @return The position of the grapheme.
    */
-  Rectangle index_to_pos(int index) const;
+  auto index_to_pos(int index) const -> Rectangle;
 
 
   /** Converts from byte @a index within the @a layout to line and X position.
@@ -873,13 +873,13 @@ public:
    * @param index The byte index of the cursor.
    * @return The strong cursor position.
    */
-  Rectangle get_cursor_strong_pos(int index) const;
+  auto get_cursor_strong_pos(int index) const -> Rectangle;
 
   /** Given an index within the layout, determine the positions that of the weak cursors if the insertion point is at that index.
    * @param index The byte index of the cursor.
    * @return The weak cursor position.
    */
-  Rectangle get_cursor_weak_pos(int index) const;
+  auto get_cursor_weak_pos(int index) const -> Rectangle;
 
 
   /** Computes a new cursor position from an old position and a direction.
@@ -940,7 +940,7 @@ public:
    * of the grapheme.
    * @return <tt>true</tt> if the coordinates were inside text, <tt>false</tt> otherwise.
    */
-  bool xy_to_index(int x, int y, int& index, int& trailing) const;
+  auto xy_to_index(int x, int y, int& index, int& trailing) const -> bool;
 
 
   /** Compute the logical and ink extents of @a layout. Logical extents
@@ -956,12 +956,12 @@ public:
   /** Compute the ink extents of layout.
    * @return The extents of the layout as drawn.
    */
-  Rectangle get_ink_extents() const;
+  auto get_ink_extents() const -> Rectangle;
 
   /** Compute the logical extents of layout.
    * @return The logical extents of the layout.
    */
-  Rectangle get_logical_extents() const;
+  auto get_logical_extents() const -> Rectangle;
 
 
   /** Compute the logical and ink extents of @a layout in device units.
@@ -978,12 +978,12 @@ public:
   /** Compute the ink extents of the layout in device units.
    * @return The extents of the layout as drawn.
    */
-  Rectangle get_pixel_ink_extents() const;
+  auto get_pixel_ink_extents() const -> Rectangle;
 
   /** Compute the logical extents of the layout in device units.
    * @return The logical extents of the layout.
    */
-  Rectangle get_pixel_logical_extents() const;
+  auto get_pixel_logical_extents() const -> Rectangle;
 
 
   /** Determines the logical width and height of a `Pango::Layout` in Pango
@@ -1015,14 +1015,14 @@ public:
    *
    * @return Baseline of first line, from top of @a layout.
    */
-  int get_baseline() const;
+  auto get_baseline() const -> int;
 
 
   /** Retrieves the count of lines for the @a layout.
    *
    * @return The line count.
    */
-  int get_line_count() const;
+  auto get_line_count() const -> int;
 
   //Note that the const version uses a different (faster) C function:
 
@@ -1037,7 +1037,7 @@ public:
    * is out of range. This layout line will become invalid if changes are made
    * to the Pango::Layout.
    */
-  Glib::RefPtr<LayoutLine> get_line(int line);
+  auto get_line(int line) -> Glib::RefPtr<LayoutLine>;
 
 
   /** Retrieves a particular line from a Pango::Layout.
@@ -1048,7 +1048,7 @@ public:
    * is out of range. This layout line will become invalid if changes are made
    * to the Pango::Layout. No changes should be made to the line.
    */
-  Glib::RefPtr<const LayoutLine> get_line(int line) const;
+  auto get_line(int line) const -> Glib::RefPtr<const LayoutLine>;
 
 
   /** Retrieves a particular line from a Pango::Layout.
@@ -1064,7 +1064,7 @@ public:
    * is out of range. This layout line will become invalid if changes are made
    * to the Pango::Layout. No changes should be made to the line.
    */
-  Glib::RefPtr<const LayoutLine> get_const_line(int line) const;
+  auto get_const_line(int line) const -> Glib::RefPtr<const LayoutLine>;
 
 
   //Note that the const version uses a different (faster) C function:
@@ -1079,7 +1079,7 @@ public:
    * and must be used with care. It will become invalid on any change to the layout's
    * text or properties.
    */
-  std::vector<Glib::RefPtr<LayoutLine>> get_lines();
+  auto get_lines() -> std::vector<Glib::RefPtr<LayoutLine>>;
 
 
   /** Returns the lines of the layout as a vector.
@@ -1089,7 +1089,7 @@ public:
    * must be used with care. It will become invalid on any change to the layout's
    * text or properties. No changes should be made to the lines.
    */
-  std::vector<Glib::RefPtr<const LayoutLine>> get_lines() const;
+  auto get_lines() const -> std::vector<Glib::RefPtr<const LayoutLine>>;
 
 
   /** Returns the lines of the layout as a vector.
@@ -1104,14 +1104,14 @@ public:
    * must be used with care. It will become invalid on any change to the layout's
    * text or properties. No changes should be made to the lines.
    */
-  std::vector<Glib::RefPtr<const LayoutLine>> get_const_lines() const;
+  auto get_const_lines() const -> std::vector<Glib::RefPtr<const LayoutLine>>;
 
   /** Gets an iterator to iterate over the visual extents of the layout.
    * @return The iterator.
    *
    * @newin{2,28}
    */
-  LayoutIter get_iter();
+  auto get_iter() -> LayoutIter;
 
   /** Adds the text in this LayoutLine to the current path in the
    * specified Cairo @a context. The origin of the glyphs (the left edge
@@ -1159,7 +1159,7 @@ namespace Glib
    * @relates Pango::Layout
    */
   PANGOMM_API
-  Glib::RefPtr<Pango::Layout> wrap(PangoLayout* object, bool take_copy = false);
+  auto wrap(PangoLayout* object, bool take_copy = false) -> Glib::RefPtr<Pango::Layout>;
 }
 
 

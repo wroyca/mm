@@ -21,8 +21,8 @@
 namespace Glib
 {
 
-std::string
-Base64::encode(const std::string& source, bool break_lines)
+auto
+Base64::encode(const std::string& source, bool break_lines) -> std::string
 {
   /* The output buffer must be large enough to fit all the data that will be
      written to it. Due to the way base64 encodes you will need at least:
@@ -40,8 +40,8 @@ Base64::encode(const std::string& source, bool break_lines)
   return std::string(buf.get(), buf.get() + out);
 }
 
-std::string
-Base64::decode(const std::string& source)
+auto
+Base64::decode(const std::string& source) -> std::string
 {
   gsize size;
   const auto buf = make_unique_ptr_gfree((char*)g_base64_decode(source.c_str(), &size));

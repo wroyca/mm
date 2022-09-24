@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::Popup> wrap(GdkPopup* object, bool take_copy)
+auto wrap(GdkPopup* object, bool take_copy) -> Glib::RefPtr<Gdk::Popup>
 {
   return Glib::make_refptr_for_instance<Gdk::Popup>( dynamic_cast<Gdk::Popup*> (Glib::wrap_auto_interface<Gdk::Popup> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& Popup_Class::init()
+auto Popup_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -75,7 +75,7 @@ void Popup_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* Popup_Class::wrap_new(GObject* object)
+auto Popup_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Popup((GdkPopup*)(object));
 }
@@ -102,7 +102,7 @@ Popup::Popup(Popup&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-Popup& Popup::operator=(Popup&& src) noexcept
+auto Popup::operator=(Popup&& src) noexcept -> Popup&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -119,34 +119,34 @@ void Popup::add_interface(GType gtype_implementer)
 
 Popup::CppClassType Popup::popup_class_; // initialize static member
 
-GType Popup::get_type()
+auto Popup::get_type() -> GType
 {
   return popup_class_.init().get_type();
 }
 
 
-GType Popup::get_base_type()
+auto Popup::get_base_type() -> GType
 {
   return gdk_popup_get_type();
 }
 
 
-bool Popup::present(int width, int height, const Glib::RefPtr<PopupLayout>& layout)
+auto Popup::present(int width, int height, const Glib::RefPtr<PopupLayout>& layout) -> bool
 {
   return gdk_popup_present(gobj(), width, height, Glib::unwrap(layout));
 }
 
-Gravity Popup::get_surface_anchor() const
+auto Popup::get_surface_anchor() const -> Gravity
 {
   return static_cast<Gravity>(gdk_popup_get_surface_anchor(const_cast<GdkPopup*>(gobj())));
 }
 
-Gravity Popup::get_rect_anchor() const
+auto Popup::get_rect_anchor() const -> Gravity
 {
   return static_cast<Gravity>(gdk_popup_get_rect_anchor(const_cast<GdkPopup*>(gobj())));
 }
 
-Glib::RefPtr<Surface> Popup::get_parent()
+auto Popup::get_parent() -> Glib::RefPtr<Surface>
 {
   auto retvalue = Glib::wrap(gdk_popup_get_parent(gobj()));
   if(retvalue)
@@ -154,22 +154,22 @@ Glib::RefPtr<Surface> Popup::get_parent()
   return retvalue;
 }
 
-Glib::RefPtr<const Surface> Popup::get_parent() const
+auto Popup::get_parent() const -> Glib::RefPtr<const Surface>
 {
   return const_cast<Popup*>(this)->get_parent();
 }
 
-int Popup::get_position_x() const
+auto Popup::get_position_x() const -> int
 {
   return gdk_popup_get_position_x(const_cast<GdkPopup*>(gobj()));
 }
 
-int Popup::get_position_y() const
+auto Popup::get_position_y() const -> int
 {
   return gdk_popup_get_position_y(const_cast<GdkPopup*>(gobj()));
 }
 
-bool Popup::get_autohide() const
+auto Popup::get_autohide() const -> bool
 {
   return gdk_popup_get_autohide(const_cast<GdkPopup*>(gobj()));
 }
@@ -179,12 +179,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Surface
   "Type Glib::RefPtr<Surface> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> > Popup::property_parent() const
+auto Popup::property_parent() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >(this, "parent");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Popup::property_autohide() const
+auto Popup::property_autohide() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "autohide");
 }

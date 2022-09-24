@@ -61,7 +61,7 @@ public:
 
   // noncopyable
   IconPaintable(const IconPaintable&) = delete;
-  IconPaintable& operator=(const IconPaintable&) = delete;
+  auto operator=(const IconPaintable&) -> IconPaintable& = delete;
 
 private:  friend class IconPaintable_Class;
   static CppClassType iconpaintable_class_;
@@ -75,28 +75,28 @@ protected:
 public:
 
   IconPaintable(IconPaintable&& src) noexcept;
-  IconPaintable& operator=(IconPaintable&& src) noexcept;
+  auto operator=(IconPaintable&& src) noexcept -> IconPaintable&;
 
   ~IconPaintable() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkIconPaintable*       gobj()       { return reinterpret_cast<GtkIconPaintable*>(gobject_); }
+  auto       gobj() -> GtkIconPaintable*       { return reinterpret_cast<GtkIconPaintable*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkIconPaintable* gobj() const { return reinterpret_cast<GtkIconPaintable*>(gobject_); }
+  auto gobj() const -> const GtkIconPaintable* { return reinterpret_cast<GtkIconPaintable*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkIconPaintable* gobj_copy();
+  auto gobj_copy() -> GtkIconPaintable*;
 
 private:
 
@@ -114,7 +114,7 @@ public:
    * @return A `Gtk::IconPaintable` containing
    * for the icon. Unref with Glib::object_unref().
    */
-  static Glib::RefPtr<IconPaintable> create(const Glib::RefPtr<Gio::File>& file, int size, int scale =  1);
+  static auto create(const Glib::RefPtr<Gio::File>& file, int size, int scale =  1) -> Glib::RefPtr<IconPaintable>;
 
   // The const get_file() can return a non-const Gio::File.
   // gtk_icon_paintable_get_file() returns a newly created GFile.
@@ -123,7 +123,7 @@ public:
    *
    * @return The `Gio::File` for the icon.
    */
-  Glib::RefPtr<Gio::File> get_file() const;
+  auto get_file() const -> Glib::RefPtr<Gio::File>;
 
   /** Get the icon name being used for this icon.
    *
@@ -138,7 +138,7 @@ public:
    * @return The themed icon-name for the
    * icon, or <tt>nullptr</tt> if its not a themed icon.
    */
-  Glib::ustring get_icon_name() const;
+  auto get_icon_name() const -> Glib::ustring;
 
   /** Checks if the icon is symbolic or not.
    *
@@ -150,14 +150,14 @@ public:
    *
    * @return <tt>true</tt> if the icon is symbolic, <tt>false</tt> otherwise.
    */
-  bool is_symbolic() const;
+  auto is_symbolic() const -> bool;
 
   /** The file representing the icon, if any.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> > property_file() const;
+  auto property_file() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >;
 
 
   /** The icon name that was chosen during lookup.
@@ -167,7 +167,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_icon_name() const;
+  auto property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** Whether the icon is symbolic or not.
@@ -177,7 +177,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_symbolic() const;
+  auto property_is_symbolic() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -207,7 +207,7 @@ namespace Glib
    * @relates Gtk::IconPaintable
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::IconPaintable> wrap(GtkIconPaintable* object, bool take_copy = false);
+  auto wrap(GtkIconPaintable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::IconPaintable>;
 }
 
 

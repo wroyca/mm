@@ -81,7 +81,7 @@ template <>
 class GTKMM_API Value<Gtk::EventSequenceState> : public Glib::Value_Enum<Gtk::EventSequenceState>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -185,7 +185,7 @@ public:
 
   // noncopyable
   Gesture(const Gesture&) = delete;
-  Gesture& operator=(const Gesture&) = delete;
+  auto operator=(const Gesture&) -> Gesture& = delete;
 
 private:  friend class Gesture_Class;
   static CppClassType gesture_class_;
@@ -199,28 +199,28 @@ protected:
 public:
 
   Gesture(Gesture&& src) noexcept;
-  Gesture& operator=(Gesture&& src) noexcept;
+  auto operator=(Gesture&& src) noexcept -> Gesture&;
 
   ~Gesture() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkGesture*       gobj()       { return reinterpret_cast<GtkGesture*>(gobject_); }
+  auto       gobj() -> GtkGesture*       { return reinterpret_cast<GtkGesture*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkGesture* gobj() const { return reinterpret_cast<GtkGesture*>(gobject_); }
+  auto gobj() const -> const GtkGesture* { return reinterpret_cast<GtkGesture*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkGesture* gobj_copy();
+  auto gobj_copy() -> GtkGesture*;
 
 private:
 
@@ -242,7 +242,7 @@ public:
    *
    * @return A `Gdk::Device`.
    */
-  Glib::RefPtr<Gdk::Device> get_device();
+  auto get_device() -> Glib::RefPtr<Gdk::Device>;
 
   /** Returns the logical `Gdk::Device` that is currently operating
    * on @a gesture.
@@ -251,7 +251,7 @@ public:
    *
    * @return A `Gdk::Device`.
    */
-  Glib::RefPtr<const Gdk::Device> get_device() const;
+  auto get_device() const -> Glib::RefPtr<const Gdk::Device>;
 
   /** Sets the state of all sequences that @a gesture is currently
    * interacting with.
@@ -263,14 +263,14 @@ public:
    * @return <tt>true</tt> if the state of at least one sequence
    * was changed successfully.
    */
-  bool set_state(EventSequenceState state);
+  auto set_state(EventSequenceState state) -> bool;
 
   /** Returns the @a sequence state, as seen by @a gesture.
    *
    * @param sequence A `Gdk::EventSequence`.
    * @return The sequence state in @a gesture.
    */
-  EventSequenceState get_sequence_state(Gdk::EventSequence* sequence) const;
+  auto get_sequence_state(Gdk::EventSequence* sequence) const -> EventSequenceState;
 
   /** Sets the state of @a sequence in @a gesture.
    *
@@ -303,7 +303,7 @@ public:
    * @return <tt>true</tt> if @a sequence is handled by @a gesture,
    * and the state is changed successfully.
    */
-  bool set_sequence_state(Gdk::EventSequence* sequence, EventSequenceState state);
+  auto set_sequence_state(Gdk::EventSequence* sequence, EventSequenceState state) -> bool;
 
   /** Returns the list of Gdk::EventSequence%s currently being interpreted.
    *
@@ -312,20 +312,20 @@ public:
    * @return A std::vector of Gdk::EventSequence pointers.
    *         The Gdk::EventSequence%s are owned by GTK+ and must not be freed or modified.
    */
-  std::vector<const Gdk::EventSequence*> get_sequences() const;
+  auto get_sequences() const -> std::vector<const Gdk::EventSequence*>;
 
 
   /** Returns the `Gdk::EventSequence` that was last updated on @a gesture.
    *
    * @return The last updated sequence.
    */
-  Gdk::EventSequence* get_last_updated_sequence();
+  auto get_last_updated_sequence() -> Gdk::EventSequence*;
 
   /** Returns the `Gdk::EventSequence` that was last updated on @a gesture.
    *
    * @return The last updated sequence.
    */
-  const Gdk::EventSequence* get_last_updated_sequence() const;
+  auto get_last_updated_sequence() const -> const Gdk::EventSequence*;
 
   /** Returns <tt>true</tt> if @a gesture is currently handling events
    * corresponding to @a sequence.
@@ -333,7 +333,7 @@ public:
    * @param sequence A `Gdk::EventSequence`.
    * @return <tt>true</tt> if @a gesture is handling @a sequence, <tt>false</tt> otherwise.
    */
-  bool handles_sequence(Gdk::EventSequence* sequence) const;
+  auto handles_sequence(Gdk::EventSequence* sequence) const -> bool;
 
   /** Returns the last event that was processed for @a sequence.
    *
@@ -344,7 +344,7 @@ public:
    * @param sequence A `Gdk::EventSequence`.
    * @return The last event from @a sequence.
    */
-  Glib::RefPtr<Gdk::Event> get_last_event(Gdk::EventSequence* sequence);
+  auto get_last_event(Gdk::EventSequence* sequence) -> Glib::RefPtr<Gdk::Event>;
 
   /** Returns the last event that was processed for @a sequence.
    *
@@ -355,7 +355,7 @@ public:
    * @param sequence A `Gdk::EventSequence`.
    * @return The last event from @a sequence.
    */
-  Glib::RefPtr<const Gdk::Event> get_last_event(Gdk::EventSequence* sequence) const;
+  auto get_last_event(Gdk::EventSequence* sequence) const -> Glib::RefPtr<const Gdk::Event>;
 
   /** If @a sequence is currently being interpreted by @a gesture,
    * returns <tt>true</tt> and fills in @a x and @a y with the last coordinates
@@ -368,7 +368,7 @@ public:
    * @param y Return location for Y axis of the sequence coordinates.
    * @return <tt>true</tt> if @a sequence is currently interpreted.
    */
-  bool get_point(Gdk::EventSequence* sequence, double& x, double& y) const;
+  auto get_point(Gdk::EventSequence* sequence, double& x, double& y) const -> bool;
 
   /** If there are touch sequences being currently handled by @a gesture,
    * returns <tt>true</tt> and fills in @a rect with the bounding box containing
@@ -385,7 +385,7 @@ public:
    * @param rect Bounding box containing all active touches.
    * @return <tt>true</tt> if there are active touches, <tt>false</tt> otherwise.
    */
-  bool get_bounding_box(Gdk::Rectangle& rect) const;
+  auto get_bounding_box(Gdk::Rectangle& rect) const -> bool;
 
   /** If there are touch sequences being currently handled by @a gesture,
    * returns <tt>true</tt> and fills in @a x and @a y with the center of the bounding
@@ -397,7 +397,7 @@ public:
    * @param y Y coordinate for the bounding box center.
    * @return <tt>false</tt> if no active touches are present, <tt>true</tt> otherwise.
    */
-  bool get_bounding_box_center(double& x, double& y) const;
+  auto get_bounding_box_center(double& x, double& y) const -> bool;
 
   /** Returns <tt>true</tt> if the gesture is currently active.
    *
@@ -406,7 +406,7 @@ public:
    *
    * @return <tt>true</tt> if gesture is active.
    */
-  bool is_active() const;
+  auto is_active() const -> bool;
 
   /** Returns <tt>true</tt> if the gesture is currently recognized.
    *
@@ -415,7 +415,7 @@ public:
    *
    * @return <tt>true</tt> if gesture is recognized.
    */
-  bool is_recognized() const;
+  auto is_recognized() const -> bool;
 
 
   /** Adds @a gesture to the same group than @a group_gesture.
@@ -450,7 +450,7 @@ public:
    * @return The list
    * of `Gtk::Gesture`s.
    */
-  std::vector< Glib::RefPtr<Gesture> > get_group();
+  auto get_group() -> std::vector< Glib::RefPtr<Gesture> >;
 
 
   /** Returns all gestures in the group of @a gesture
@@ -458,7 +458,7 @@ public:
    * @return The list
    * of `Gtk::Gesture`s.
    */
-  std::vector< Glib::RefPtr<const Gesture> > get_group() const;
+  auto get_group() const -> std::vector< Glib::RefPtr<const Gesture> >;
 
 
   /** Returns <tt>true</tt> if both gestures pertain to the same group.
@@ -466,7 +466,7 @@ public:
    * @param other Another `Gtk::Gesture`.
    * @return Whether the gestures are grouped.
    */
-  bool is_grouped_with(const Glib::RefPtr<Gesture>& other) const;
+  auto is_grouped_with(const Glib::RefPtr<Gesture>& other) const -> bool;
 
   // no_default_handler because GtkGestureClass is private.
 
@@ -490,7 +490,7 @@ public:
    * to be recognized.
    */
 
-  Glib::SignalProxy<void(Gdk::EventSequence*)> signal_begin();
+  auto signal_begin() -> Glib::SignalProxy<void(Gdk::EventSequence*)>;
 
 
   /**
@@ -513,7 +513,7 @@ public:
    * recognition to finish.
    */
 
-  Glib::SignalProxy<void(Gdk::EventSequence*)> signal_end();
+  auto signal_end() -> Glib::SignalProxy<void(Gdk::EventSequence*)>;
 
 
   /**
@@ -529,7 +529,7 @@ public:
    * @param sequence The `Gdk::EventSequence` that was updated.
    */
 
-  Glib::SignalProxy<void(Gdk::EventSequence*)> signal_update();
+  auto signal_update() -> Glib::SignalProxy<void(Gdk::EventSequence*)>;
 
 
   /**
@@ -552,7 +552,7 @@ public:
    * @param sequence The `Gdk::EventSequence` that was cancelled.
    */
 
-  Glib::SignalProxy<void(Gdk::EventSequence*)> signal_cancel();
+  auto signal_cancel() -> Glib::SignalProxy<void(Gdk::EventSequence*)>;
 
 
   /**
@@ -570,7 +570,7 @@ public:
    * @param state The new sequence state.
    */
 
-  Glib::SignalProxy<void(Gdk::EventSequence*, EventSequenceState)> signal_sequence_state_changed();
+  auto signal_sequence_state_changed() -> Glib::SignalProxy<void(Gdk::EventSequence*, EventSequenceState)>;
 
 
   /** The number of touch points that trigger
@@ -581,7 +581,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_n_points() const;
+  auto property_n_points() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
 
 public:
@@ -611,7 +611,7 @@ namespace Glib
    * @relates Gtk::Gesture
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Gesture> wrap(GtkGesture* object, bool take_copy = false);
+  auto wrap(GtkGesture* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Gesture>;
 }
 
 

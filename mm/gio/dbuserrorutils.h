@@ -32,13 +32,7 @@ class Error;
 
 }
 
-namespace Gio
-{
-
-namespace DBus
-{
-
-namespace ErrorUtils
+namespace Gio::DBus::ErrorUtils
 {
 
 /** Checks if @a error represents an error received via D-Bus from a remote
@@ -51,7 +45,7 @@ namespace ErrorUtils
  * @ingroup DBus
  */
 GIOMM_API
-bool is_remote_error(const Glib::Error& error);
+auto is_remote_error(const Glib::Error& error) -> bool;
 
 /** Gets the D-Bus error name used for @a error, if any.
  *
@@ -67,7 +61,7 @@ bool is_remote_error(const Glib::Error& error);
  * @ingroup DBus
  */
 GIOMM_API
-Glib::ustring get_remote_error(const Glib::Error& error);
+auto get_remote_error(const Glib::Error& error) -> Glib::ustring;
 
 /** Looks for extra information in the error message used to recover the D-Bus
  * error name and strips it if found. If stripped, the message field in @a
@@ -82,11 +76,7 @@ Glib::ustring get_remote_error(const Glib::Error& error);
  * @ingroup DBus
  */
 GIOMM_API
-bool strip_remote_error(Glib::Error& error);
-
-} // namespace ErrorUtils
-
-} // namespace DBus
+auto strip_remote_error(Glib::Error& error) -> bool;
 
 } // namespace Gio
 

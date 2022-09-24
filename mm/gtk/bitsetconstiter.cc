@@ -55,7 +55,7 @@ BitsetConstIter::BitsetConstIter(const BitsetConstIter& other)
   }
 }
 
-BitsetConstIter& BitsetConstIter::operator=(const BitsetConstIter& other)
+auto BitsetConstIter::operator=(const BitsetConstIter& other) -> BitsetConstIter&
 {
   if (&other == this)
     return *this;
@@ -87,7 +87,7 @@ BitsetConstIter::BitsetConstIter(BitsetConstIter&& other) noexcept
   other.is_end_ = true;
 }
 
-BitsetConstIter& BitsetConstIter::operator=(BitsetConstIter&& other) noexcept
+auto BitsetConstIter::operator=(BitsetConstIter&& other) noexcept -> BitsetConstIter&
 {
   gobject_ = std::move(other.gobject_);
   bitset_ = other.bitset_;
@@ -97,7 +97,7 @@ BitsetConstIter& BitsetConstIter::operator=(BitsetConstIter&& other) noexcept
   return *this;
 }
 
-BitsetConstIter& BitsetConstIter::operator++()
+auto BitsetConstIter::operator++() -> BitsetConstIter&
 {
   if (!(gobject_ && bitset_ && !is_end_))
     return *this;
@@ -108,7 +108,7 @@ BitsetConstIter& BitsetConstIter::operator++()
   return *this;
 }
 
-BitsetConstIter BitsetConstIter::operator++(int)
+auto BitsetConstIter::operator++(int) -> BitsetConstIter
 {
   if (!(gobject_ && bitset_ && !is_end_))
     return *this;
@@ -121,7 +121,7 @@ BitsetConstIter BitsetConstIter::operator++(int)
   return orig;
 }
 
-BitsetConstIter& BitsetConstIter::operator--()
+auto BitsetConstIter::operator--() -> BitsetConstIter&
 {
   if (!(gobject_ && bitset_))
     return *this;
@@ -137,7 +137,7 @@ BitsetConstIter& BitsetConstIter::operator--()
   return *this;
 }
 
-BitsetConstIter BitsetConstIter::operator--(int)
+auto BitsetConstIter::operator--(int) -> BitsetConstIter
 {
   if (!(gobject_ && bitset_))
     return *this;
@@ -155,7 +155,7 @@ BitsetConstIter BitsetConstIter::operator--(int)
   return orig;
 }
 
-BitsetConstIter::reference BitsetConstIter::operator*() const
+auto BitsetConstIter::operator*() const -> BitsetConstIter::reference
 {
   if (!(gobject_ && bitset_ && !is_end_))
     return 0;
@@ -171,7 +171,7 @@ BitsetConstIter::operator bool() const noexcept
   return gtk_bitset_iter_is_valid(gobject_.get());
 }
 
-bool BitsetConstIter::equal(const BitsetConstIter& other) const noexcept
+auto BitsetConstIter::equal(const BitsetConstIter& other) const noexcept -> bool
 {
   // By far the most common test for equality or unequality between
   // iterators is a comparison where one iterator is an end iterator.

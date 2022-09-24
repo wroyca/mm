@@ -76,38 +76,38 @@ public:
   explicit Region(cairo_region_t* cobject, bool has_reference = false);
 
   /** Creates an empty Region object */
-  static RefPtr<Region> create();
+  static auto create() -> RefPtr<Region>;
   /** Creates a Region object containing @a rectangle */
-  static RefPtr<Region> create(const RectangleInt& rectangle);
+  static auto create(const RectangleInt& rectangle) -> RefPtr<Region>;
   /** Creates a Region object containing the union of all given @a rects */
-  static RefPtr<Region> create(const std::vector<RectangleInt>& rects);
+  static auto create(const std::vector<RectangleInt>& rects) -> RefPtr<Region>;
   /** Creates a Region object containing the union of all given @a rects */
-  static RefPtr<Region> create(const RectangleInt *rects, int count);
+  static auto create(const RectangleInt *rects, int count) -> RefPtr<Region>;
 
   /** allocates a new region object copied from the original */
-  RefPtr<Region> copy() const;
+  auto copy() const -> RefPtr<Region>;
 
   virtual ~Region();
 
   /** Gets the bounding rectangle of the region */
-  RectangleInt get_extents() const;
+  auto get_extents() const -> RectangleInt;
 
   /** Gets the number of rectangles contained in the region */
-  int get_num_rectangles() const;
+  auto get_num_rectangles() const -> int;
 
   /** Gets the nth rectangle from the region */
-  RectangleInt get_rectangle(int nth_rectangle) const;
+  auto get_rectangle(int nth_rectangle) const -> RectangleInt;
 
   /** Checks whether the region is empty */
-  bool empty() const;
+  auto empty() const -> bool;
 
   /** Checks whether @a rectangle is inside, outside, or partially contained in
    * the region
    */
-  Overlap contains_rectangle(const RectangleInt& rectangle) const;
+  auto contains_rectangle(const RectangleInt& rectangle) const -> Overlap;
 
   /** Checks whether (x,y) is contained in the region */
-  bool contains_point(int x, int y) const;
+  auto contains_point(int x, int y) const -> bool;
 
   /** Translates the region by (dx,dy) */
   void translate(int dx, int dy);
@@ -146,12 +146,12 @@ public:
 
   typedef cairo_region_t cobject;
 
-  inline cobject* cobj() { return m_cobject; }
-  inline const cobject* cobj() const { return m_cobject; }
+  inline auto cobj() -> cobject* { return m_cobject; }
+  inline auto cobj() const -> const cobject* { return m_cobject; }
 
   #ifndef DOXYGEN_IGNORE_THIS
   ///For use only by the cairomm implementation.
-  inline ErrorStatus get_status() const
+  inline auto get_status() const -> ErrorStatus
   { return cairo_region_status(const_cast<cairo_region_t*>(cobj())); }
   #endif //DOXYGEN_IGNORE_THIS
 

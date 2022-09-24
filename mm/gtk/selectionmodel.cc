@@ -29,7 +29,7 @@ namespace
 {
 
 
-static void SelectionModel_signal_selection_changed_callback(GtkSelectionModel* self, guint p0,guint p1,void* data)
+void SelectionModel_signal_selection_changed_callback(GtkSelectionModel* self, guint p0,guint p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint, guint)>;
@@ -50,7 +50,7 @@ static void SelectionModel_signal_selection_changed_callback(GtkSelectionModel* 
   }
 }
 
-static const Glib::SignalProxyInfo SelectionModel_signal_selection_changed_info =
+const Glib::SignalProxyInfo SelectionModel_signal_selection_changed_info =
 {
   "selection-changed",
   (GCallback) &SelectionModel_signal_selection_changed_callback,
@@ -64,7 +64,7 @@ static const Glib::SignalProxyInfo SelectionModel_signal_selection_changed_info 
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::SelectionModel> wrap(GtkSelectionModel* object, bool take_copy)
+auto wrap(GtkSelectionModel* object, bool take_copy) -> Glib::RefPtr<Gtk::SelectionModel>
 {
   return Glib::make_refptr_for_instance<Gtk::SelectionModel>( dynamic_cast<Gtk::SelectionModel*> (Glib::wrap_auto_interface<Gtk::SelectionModel> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -79,7 +79,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& SelectionModel_Class::init()
+auto SelectionModel_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -114,7 +114,7 @@ void SelectionModel_Class::iface_init_function(void* g_iface, void*)
 
 }
 
-gboolean SelectionModel_Class::is_selected_vfunc_callback(GtkSelectionModel* self, guint position)
+auto SelectionModel_Class::is_selected_vfunc_callback(GtkSelectionModel* self, guint position) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -153,7 +153,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = gboolean;
   return RType();
 }
-GtkBitset* SelectionModel_Class::get_selection_in_range_vfunc_callback(GtkSelectionModel* self, guint position, guint n_items)
+auto SelectionModel_Class::get_selection_in_range_vfunc_callback(GtkSelectionModel* self, guint position, guint n_items) -> GtkBitset*
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -192,7 +192,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = GtkBitset*;
   return RType();
 }
-gboolean SelectionModel_Class::select_item_vfunc_callback(GtkSelectionModel* self, guint position, gboolean unselect_rest)
+auto SelectionModel_Class::select_item_vfunc_callback(GtkSelectionModel* self, guint position, gboolean unselect_rest) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -232,7 +232,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = gboolean;
   return RType();
 }
-gboolean SelectionModel_Class::unselect_item_vfunc_callback(GtkSelectionModel* self, guint position)
+auto SelectionModel_Class::unselect_item_vfunc_callback(GtkSelectionModel* self, guint position) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -271,7 +271,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = gboolean;
   return RType();
 }
-gboolean SelectionModel_Class::select_range_vfunc_callback(GtkSelectionModel* self, guint position, guint n_items, gboolean unselect_rest)
+auto SelectionModel_Class::select_range_vfunc_callback(GtkSelectionModel* self, guint position, guint n_items, gboolean unselect_rest) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -311,7 +311,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = gboolean;
   return RType();
 }
-gboolean SelectionModel_Class::unselect_range_vfunc_callback(GtkSelectionModel* self, guint position, guint n_items)
+auto SelectionModel_Class::unselect_range_vfunc_callback(GtkSelectionModel* self, guint position, guint n_items) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -350,7 +350,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = gboolean;
   return RType();
 }
-gboolean SelectionModel_Class::select_all_vfunc_callback(GtkSelectionModel* self)
+auto SelectionModel_Class::select_all_vfunc_callback(GtkSelectionModel* self) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -389,7 +389,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = gboolean;
   return RType();
 }
-gboolean SelectionModel_Class::unselect_all_vfunc_callback(GtkSelectionModel* self)
+auto SelectionModel_Class::unselect_all_vfunc_callback(GtkSelectionModel* self) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -428,7 +428,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = gboolean;
   return RType();
 }
-gboolean SelectionModel_Class::set_selection_vfunc_callback(GtkSelectionModel* self, GtkBitset* selected, GtkBitset* mask)
+auto SelectionModel_Class::set_selection_vfunc_callback(GtkSelectionModel* self, GtkBitset* selected, GtkBitset* mask) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -471,7 +471,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* SelectionModel_Class::wrap_new(GObject* object)
+auto SelectionModel_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new SelectionModel((GtkSelectionModel*)(object));
 }
@@ -498,7 +498,7 @@ SelectionModel::SelectionModel(SelectionModel&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-SelectionModel& SelectionModel::operator=(SelectionModel&& src) noexcept
+auto SelectionModel::operator=(SelectionModel&& src) noexcept -> SelectionModel&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -515,64 +515,64 @@ void SelectionModel::add_interface(GType gtype_implementer)
 
 SelectionModel::CppClassType SelectionModel::selectionmodel_class_; // initialize static member
 
-GType SelectionModel::get_type()
+auto SelectionModel::get_type() -> GType
 {
   return selectionmodel_class_.init().get_type();
 }
 
 
-GType SelectionModel::get_base_type()
+auto SelectionModel::get_base_type() -> GType
 {
   return gtk_selection_model_get_type();
 }
 
 
-bool SelectionModel::is_selected(guint position) const
+auto SelectionModel::is_selected(guint position) const -> bool
 {
   return gtk_selection_model_is_selected(const_cast<GtkSelectionModel*>(gobj()), position);
 }
 
-Glib::RefPtr<const Bitset> SelectionModel::get_selection() const
+auto SelectionModel::get_selection() const -> Glib::RefPtr<const Bitset>
 {
   return Glib::wrap(gtk_selection_model_get_selection(const_cast<GtkSelectionModel*>(gobj())));
 }
 
-Glib::RefPtr<const Bitset> SelectionModel::get_selection(guint position, guint n_items) const
+auto SelectionModel::get_selection(guint position, guint n_items) const -> Glib::RefPtr<const Bitset>
 {
   return Glib::wrap(gtk_selection_model_get_selection_in_range(const_cast<GtkSelectionModel*>(gobj()), position, n_items));
 }
 
-bool SelectionModel::select_item(guint position, bool unselect_rest)
+auto SelectionModel::select_item(guint position, bool unselect_rest) -> bool
 {
   return gtk_selection_model_select_item(gobj(), position, static_cast<int>(unselect_rest));
 }
 
-bool SelectionModel::unselect_item(guint position)
+auto SelectionModel::unselect_item(guint position) -> bool
 {
   return gtk_selection_model_unselect_item(gobj(), position);
 }
 
-bool SelectionModel::select_range(guint position, guint n_items, bool unselect_rest)
+auto SelectionModel::select_range(guint position, guint n_items, bool unselect_rest) -> bool
 {
   return gtk_selection_model_select_range(gobj(), position, n_items, static_cast<int>(unselect_rest));
 }
 
-bool SelectionModel::unselect_range(guint position, guint n_items)
+auto SelectionModel::unselect_range(guint position, guint n_items) -> bool
 {
   return gtk_selection_model_unselect_range(gobj(), position, n_items);
 }
 
-bool SelectionModel::select_all()
+auto SelectionModel::select_all() -> bool
 {
   return gtk_selection_model_select_all(gobj());
 }
 
-bool SelectionModel::unselect_all()
+auto SelectionModel::unselect_all() -> bool
 {
   return gtk_selection_model_unselect_all(gobj());
 }
 
-bool SelectionModel::set_selection(const Glib::RefPtr<const Bitset>& selected, const Glib::RefPtr<const Bitset>& mask)
+auto SelectionModel::set_selection(const Glib::RefPtr<const Bitset>& selected, const Glib::RefPtr<const Bitset>& mask) -> bool
 {
   return gtk_selection_model_set_selection(gobj(), const_cast<GtkBitset*>(Glib::unwrap(selected)), const_cast<GtkBitset*>(Glib::unwrap(mask)));
 }
@@ -583,13 +583,13 @@ void SelectionModel::selection_changed(guint position, guint n_items)
 }
 
 
-Glib::SignalProxy<void(guint, guint)> SelectionModel::signal_selection_changed()
+auto SelectionModel::signal_selection_changed() -> Glib::SignalProxy<void(guint, guint)>
 {
   return Glib::SignalProxy<void(guint, guint) >(this, &SelectionModel_signal_selection_changed_info);
 }
 
 
-bool Gtk::SelectionModel::is_selected_vfunc(guint position) const
+auto Gtk::SelectionModel::is_selected_vfunc(guint position) const -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -605,7 +605,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = bool;
   return RType();
 }
-Glib::RefPtr<const Bitset> Gtk::SelectionModel::get_selection_vfunc(guint position, guint n_items)
+auto Gtk::SelectionModel::get_selection_vfunc(guint position, guint n_items) -> Glib::RefPtr<const Bitset>
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -621,7 +621,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = Glib::RefPtr<const Bitset>;
   return RType();
 }
-bool Gtk::SelectionModel::select_item_vfunc(guint position, bool unselect_rest)
+auto Gtk::SelectionModel::select_item_vfunc(guint position, bool unselect_rest) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -637,7 +637,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = bool;
   return RType();
 }
-bool Gtk::SelectionModel::unselect_item_vfunc(guint position)
+auto Gtk::SelectionModel::unselect_item_vfunc(guint position) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -653,7 +653,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = bool;
   return RType();
 }
-bool Gtk::SelectionModel::select_range_vfunc(guint position, guint n_items, bool unselect_rest)
+auto Gtk::SelectionModel::select_range_vfunc(guint position, guint n_items, bool unselect_rest) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -669,7 +669,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = bool;
   return RType();
 }
-bool Gtk::SelectionModel::unselect_range_vfunc(guint position, guint n_items)
+auto Gtk::SelectionModel::unselect_range_vfunc(guint position, guint n_items) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -685,7 +685,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = bool;
   return RType();
 }
-bool Gtk::SelectionModel::select_all_vfunc()
+auto Gtk::SelectionModel::select_all_vfunc() -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -701,7 +701,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = bool;
   return RType();
 }
-bool Gtk::SelectionModel::unselect_all_vfunc()
+auto Gtk::SelectionModel::unselect_all_vfunc() -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -717,7 +717,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = bool;
   return RType();
 }
-bool Gtk::SelectionModel::set_selection_vfunc(const Glib::RefPtr<const Bitset>& selected, const Glib::RefPtr<const Bitset>& mask)
+auto Gtk::SelectionModel::set_selection_vfunc(const Glib::RefPtr<const Bitset>& selected, const Glib::RefPtr<const Bitset>& mask) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

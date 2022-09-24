@@ -83,7 +83,7 @@ public:
 
   // noncopyable
   EntryCompletion(const EntryCompletion&) = delete;
-  EntryCompletion& operator=(const EntryCompletion&) = delete;
+  auto operator=(const EntryCompletion&) -> EntryCompletion& = delete;
 
 private:  friend class EntryCompletion_Class;
   static CppClassType entrycompletion_class_;
@@ -97,28 +97,28 @@ protected:
 public:
 
   EntryCompletion(EntryCompletion&& src) noexcept;
-  EntryCompletion& operator=(EntryCompletion&& src) noexcept;
+  auto operator=(EntryCompletion&& src) noexcept -> EntryCompletion&;
 
   ~EntryCompletion() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkEntryCompletion*       gobj()       { return reinterpret_cast<GtkEntryCompletion*>(gobject_); }
+  auto       gobj() -> GtkEntryCompletion*       { return reinterpret_cast<GtkEntryCompletion*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkEntryCompletion* gobj() const { return reinterpret_cast<GtkEntryCompletion*>(gobject_); }
+  auto gobj() const -> const GtkEntryCompletion* { return reinterpret_cast<GtkEntryCompletion*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkEntryCompletion* gobj_copy();
+  auto gobj_copy() -> GtkEntryCompletion*;
 
 private:
 
@@ -128,7 +128,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<EntryCompletion> create();
+  static auto create() -> Glib::RefPtr<EntryCompletion>;
 
 
   //Careful, this actually returns a GtkWidget*, so it might not always be a GtkEntry in future GTK+ versions.
@@ -137,13 +137,13 @@ public:
    *
    * @return The entry @a completion has been attached to.
    */
-  Entry* get_entry();
+  auto get_entry() -> Entry*;
 
   /** Gets the entry @a completion has been attached to.
    *
    * @return The entry @a completion has been attached to.
    */
-  const Entry* get_entry() const;
+  auto get_entry() const -> const Entry*;
 
 
   /** Sets the model for a Gtk::EntryCompletion. If @a completion already has
@@ -160,13 +160,13 @@ public:
    *
    * @return A `Gtk::TreeModel`.
    */
-  Glib::RefPtr<TreeModel> get_model();
+  auto get_model() -> Glib::RefPtr<TreeModel>;
 
   /** Returns the model the `Gtk::EntryCompletion` is using as data source.
    *
    * @return A `Gtk::TreeModel`.
    */
-  Glib::RefPtr<const TreeModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const TreeModel>;
 
   /** Remove the model from the EntryCompletion.
    *
@@ -197,7 +197,7 @@ public:
    *
    * @return The currently used minimum key length.
    */
-  int get_minimum_key_length() const;
+  auto get_minimum_key_length() const -> int;
 
   /** Computes the common prefix that is shared by all rows in @a completion
    * that start with @a key.
@@ -210,7 +210,7 @@ public:
    * @return The common prefix all rows
    * starting with @a key.
    */
-  Glib::ustring compute_prefix(const Glib::ustring& key);
+  auto compute_prefix(const Glib::ustring& key) -> Glib::ustring;
 
   /** Requests a completion operation, or in other words a refiltering of the
    * current list with completions, using the current key.
@@ -237,7 +237,7 @@ public:
    *
    * @return <tt>true</tt> if inline completion is turned on.
    */
-  bool get_inline_completion() const;
+  auto get_inline_completion() const -> bool;
 
   /** Sets whether it is possible to cycle through the possible completions
    * inside the entry.
@@ -250,7 +250,7 @@ public:
    *
    * @return <tt>true</tt> if inline-selection mode is on.
    */
-  bool get_inline_selection() const;
+  auto get_inline_selection() const -> bool;
 
   /** Sets whether the completions should be presented in a popup window.
    *
@@ -262,7 +262,7 @@ public:
    *
    * @return <tt>true</tt> if popup completion is turned on.
    */
-  bool get_popup_completion() const;
+  auto get_popup_completion() const -> bool;
 
 
   /** Sets whether the completion popup window will be resized to be the same
@@ -278,7 +278,7 @@ public:
    * @return <tt>true</tt> if the popup window will be resized to the width of
    * the entry.
    */
-  bool get_popup_set_width() const;
+  auto get_popup_set_width() const -> bool;
 
 
   /** Sets whether the completion popup window will appear even if there is
@@ -298,7 +298,7 @@ public:
    * @return <tt>true</tt> if the popup window will appear regardless of the
    * number of matches.
    */
-  bool get_popup_single_match() const;
+  auto get_popup_single_match() const -> bool;
 
   /** Get the original text entered by the user that triggered
    * the completion or an empty string if there's no completion ongoing.
@@ -307,7 +307,7 @@ public:
    *
    * @return The prefix for the current completion.
    */
-  Glib::ustring get_completion_prefix() const;
+  auto get_completion_prefix() const -> Glib::ustring;
 
 
   /** Convenience function for setting up the most used case of this code: a
@@ -346,7 +346,7 @@ public:
    *
    * @return The column containing the strings.
    */
-  int get_text_column() const;
+  auto get_text_column() const -> int;
 
   //We completely hand-code these signals because we want to change how the parameters are wrapped,
   //because we need both the iter and the model to make the C++ iter.
@@ -373,7 +373,7 @@ public:
    * @par Prototype:
    * <tt>bool %on_match_selected(const TreeModel::iterator& iter)</tt>
    */
-  Glib::SignalProxy<bool(const TreeModel::iterator&)> signal_match_selected();
+  auto signal_match_selected() -> Glib::SignalProxy<bool(const TreeModel::iterator&)>;
 
   /** Emitted when a match from the cursor is on a match
    * of the list. The default behaviour is to replace the contents
@@ -389,7 +389,7 @@ public:
    *
    * @newin{2,12}
    */
-  Glib::SignalProxy<bool(const TreeModel::iterator&)> signal_cursor_on_match();
+  auto signal_cursor_on_match() -> Glib::SignalProxy<bool(const TreeModel::iterator&)>;
 
   // no_default_handler because GtkEntryCompletionClass is private.
 
@@ -414,7 +414,7 @@ public:
    * @return <tt>true</tt> if the signal has been handled.
    */
 
-  Glib::SignalProxy<bool(const Glib::ustring&)> signal_insert_prefix();
+  auto signal_insert_prefix() -> Glib::SignalProxy<bool(const Glib::ustring&)>;
 
 
   /**
@@ -429,7 +429,7 @@ public:
    * In other words when `Gtk::EntryCompletion` is out of suggestions.
    */
 
-  Glib::SignalProxy<void()> signal_no_matches();
+  auto signal_no_matches() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -437,28 +437,28 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gtk::TreeModel> > property_model() ;
+  auto property_model() -> Glib::PropertyProxy< Glib::RefPtr<Gtk::TreeModel> > ;
 
 /**
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gtk::TreeModel> > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gtk::TreeModel> >;
 
   /** Default value: 1
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_minimum_key_length() ;
+  auto property_minimum_key_length() -> Glib::PropertyProxy< int > ;
 
 /** Default value: 1
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_minimum_key_length() const;
+  auto property_minimum_key_length() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The column of the model containing the strings.
    *
@@ -469,7 +469,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_text_column() ;
+  auto property_text_column() -> Glib::PropertyProxy< int > ;
 
 /** The column of the model containing the strings.
    *
@@ -480,7 +480,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_text_column() const;
+  auto property_text_column() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Determines whether the common prefix of the possible completions
    * should be inserted automatically in the entry.
@@ -493,7 +493,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_inline_completion() ;
+  auto property_inline_completion() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether the common prefix of the possible completions
    * should be inserted automatically in the entry.
@@ -506,7 +506,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_inline_completion() const;
+  auto property_inline_completion() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Determines whether the possible completions should be
    * shown in a popup window.
@@ -516,7 +516,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_popup_completion() ;
+  auto property_popup_completion() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether the possible completions should be
    * shown in a popup window.
@@ -526,7 +526,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_popup_completion() const;
+  auto property_popup_completion() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Determines whether the completions popup window will be
    * resized to the width of the entry.
@@ -536,7 +536,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_popup_set_width() ;
+  auto property_popup_set_width() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether the completions popup window will be
    * resized to the width of the entry.
@@ -546,7 +546,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_popup_set_width() const;
+  auto property_popup_set_width() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Determines whether the completions popup window will shown
    * for a single possible completion.
@@ -559,7 +559,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_popup_single_match() ;
+  auto property_popup_single_match() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether the completions popup window will shown
    * for a single possible completion.
@@ -572,7 +572,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_popup_single_match() const;
+  auto property_popup_single_match() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Determines whether the possible completions on the popup
    * will appear in the entry as you navigate through them.
@@ -582,7 +582,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_inline_selection() ;
+  auto property_inline_selection() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether the possible completions on the popup
    * will appear in the entry as you navigate through them.
@@ -592,7 +592,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_inline_selection() const;
+  auto property_inline_selection() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The `Gtk::CellArea` used to layout cell renderers in the treeview column.
    *
@@ -603,7 +603,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> > property_cell_area() const;
+  auto property_cell_area() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> >;
 
 
 public:
@@ -633,7 +633,7 @@ namespace Glib
    * @relates Gtk::EntryCompletion
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::EntryCompletion> wrap(GtkEntryCompletion* object, bool take_copy = false);
+  auto wrap(GtkEntryCompletion* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EntryCompletion>;
 }
 
 

@@ -64,11 +64,11 @@ class GTKMM_API ShortcutsGroup : public Box
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ShortcutsGroup(ShortcutsGroup&& src) noexcept;
-  ShortcutsGroup& operator=(ShortcutsGroup&& src) noexcept;
+  auto operator=(ShortcutsGroup&& src) noexcept -> ShortcutsGroup&;
 
   // noncopyable
   ShortcutsGroup(const ShortcutsGroup&) = delete;
-  ShortcutsGroup& operator=(const ShortcutsGroup&) = delete;
+  auto operator=(const ShortcutsGroup&) -> ShortcutsGroup& = delete;
 
   ~ShortcutsGroup() noexcept override;
 
@@ -88,19 +88,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkShortcutsGroup*       gobj()       { return reinterpret_cast<GtkShortcutsGroup*>(gobject_); }
+  auto       gobj() -> GtkShortcutsGroup*       { return reinterpret_cast<GtkShortcutsGroup*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkShortcutsGroup* gobj() const { return reinterpret_cast<GtkShortcutsGroup*>(gobject_); }
+  auto gobj() const -> const GtkShortcutsGroup* { return reinterpret_cast<GtkShortcutsGroup*>(gobject_); }
 
 private:
 
@@ -123,7 +123,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_title() ;
+  auto property_title() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The title for this group of shortcuts.
    *
@@ -132,7 +132,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_title() const;
+  auto property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** An optional view that the shortcuts in this group are relevant for.
    *
@@ -146,7 +146,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_view() ;
+  auto property_view() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** An optional view that the shortcuts in this group are relevant for.
    *
@@ -160,7 +160,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_view() const;
+  auto property_view() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -190,7 +190,7 @@ namespace Glib
    * @relates Gtk::ShortcutsGroup
    */
   GTKMM_API
-  Gtk::ShortcutsGroup* wrap(GtkShortcutsGroup* object, bool take_copy = false);
+  auto wrap(GtkShortcutsGroup* object, bool take_copy = false) -> Gtk::ShortcutsGroup*;
 } //namespace Glib
 
 

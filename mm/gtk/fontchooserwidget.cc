@@ -39,7 +39,7 @@ namespace
 namespace Glib
 {
 
-Gtk::FontChooserWidget* wrap(GtkFontChooserWidget* object, bool take_copy)
+auto wrap(GtkFontChooserWidget* object, bool take_copy) -> Gtk::FontChooserWidget*
 {
   return dynamic_cast<Gtk::FontChooserWidget *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -52,7 +52,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& FontChooserWidget_Class::init()
+auto FontChooserWidget_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -84,7 +84,7 @@ void FontChooserWidget_Class::class_init_function(void* g_class, void* class_dat
 }
 
 
-Glib::ObjectBase* FontChooserWidget_Class::wrap_new(GObject* o)
+auto FontChooserWidget_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new FontChooserWidget((GtkFontChooserWidget*)(o)));
 
@@ -111,7 +111,7 @@ FontChooserWidget::FontChooserWidget(FontChooserWidget&& src) noexcept
   , FontChooser(std::move(src))
 {}
 
-FontChooserWidget& FontChooserWidget::operator=(FontChooserWidget&& src) noexcept
+auto FontChooserWidget::operator=(FontChooserWidget&& src) noexcept -> FontChooserWidget&
 {
   Gtk::Widget::operator=(std::move(src));
   FontChooser::operator=(std::move(src));
@@ -125,13 +125,13 @@ FontChooserWidget::~FontChooserWidget() noexcept
 
 FontChooserWidget::CppClassType FontChooserWidget::fontchooserwidget_class_; // initialize static member
 
-GType FontChooserWidget::get_type()
+auto FontChooserWidget::get_type() -> GType
 {
   return fontchooserwidget_class_.init().get_type();
 }
 
 
-GType FontChooserWidget::get_base_type()
+auto FontChooserWidget::get_base_type() -> GType
 {
   return gtk_font_chooser_widget_get_type();
 }

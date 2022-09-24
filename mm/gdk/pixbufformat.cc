@@ -44,7 +44,7 @@ namespace
 namespace Glib
 {
 
-Gdk::PixbufFormat wrap(GdkPixbufFormat* object, bool take_copy)
+auto wrap(GdkPixbufFormat* object, bool take_copy) -> Gdk::PixbufFormat
 {
   return Gdk::PixbufFormat(object, take_copy);
 }
@@ -57,7 +57,7 @@ namespace Gdk
 
 
 // static
-GType PixbufFormat::get_type()
+auto PixbufFormat::get_type() -> GType
 {
   return gdk_pixbuf_format_get_type();
 }
@@ -75,7 +75,7 @@ PixbufFormat::PixbufFormat(PixbufFormat&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-PixbufFormat& PixbufFormat::operator=(PixbufFormat&& other) noexcept
+auto PixbufFormat::operator=(PixbufFormat&& other) noexcept -> PixbufFormat&
 {
   PixbufFormat temp (std::move(other));
   swap(temp);
@@ -90,7 +90,7 @@ PixbufFormat::PixbufFormat(GdkPixbufFormat* gobject, bool make_a_copy)
   gobject_ ((make_a_copy && gobject) ? gdk_pixbuf_format_copy(gobject) : gobject)
 {}
 
-PixbufFormat& PixbufFormat::operator=(const PixbufFormat& other)
+auto PixbufFormat::operator=(const PixbufFormat& other) -> PixbufFormat&
 {
   PixbufFormat temp (other);
   swap(temp);
@@ -108,48 +108,48 @@ void PixbufFormat::swap(PixbufFormat& other) noexcept
   std::swap(gobject_, other.gobject_);
 }
 
-GdkPixbufFormat* PixbufFormat::gobj_copy() const
+auto PixbufFormat::gobj_copy() const -> GdkPixbufFormat*
 {
   return gdk_pixbuf_format_copy(gobject_);
 }
 
 
-Glib::ustring PixbufFormat::get_name() const
+auto PixbufFormat::get_name() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gdk_pixbuf_format_get_name(const_cast<GdkPixbufFormat*>(gobj())));
 }
 
-Glib::ustring PixbufFormat::get_description() const
+auto PixbufFormat::get_description() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gdk_pixbuf_format_get_description(const_cast<GdkPixbufFormat*>(gobj())));
 }
 
-std::vector<Glib::ustring> PixbufFormat::get_mime_types() const
+auto PixbufFormat::get_mime_types() const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(gdk_pixbuf_format_get_mime_types(const_cast<GdkPixbufFormat*>(gobj())), Glib::OWNERSHIP_DEEP);
 }
 
-std::vector<Glib::ustring> PixbufFormat::get_extensions() const
+auto PixbufFormat::get_extensions() const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(gdk_pixbuf_format_get_extensions(const_cast<GdkPixbufFormat*>(gobj())), Glib::OWNERSHIP_DEEP);
 }
 
-bool PixbufFormat::is_save_option_supported(const Glib::ustring& option_key) const
+auto PixbufFormat::is_save_option_supported(const Glib::ustring& option_key) const -> bool
 {
   return gdk_pixbuf_format_is_save_option_supported(const_cast<GdkPixbufFormat*>(gobj()), option_key.c_str());
 }
 
-bool PixbufFormat::is_writable() const
+auto PixbufFormat::is_writable() const -> bool
 {
   return gdk_pixbuf_format_is_writable(const_cast<GdkPixbufFormat*>(gobj()));
 }
 
-bool PixbufFormat::is_scalable() const
+auto PixbufFormat::is_scalable() const -> bool
 {
   return gdk_pixbuf_format_is_scalable(const_cast<GdkPixbufFormat*>(gobj()));
 }
 
-bool PixbufFormat::is_disabled() const
+auto PixbufFormat::is_disabled() const -> bool
 {
   return gdk_pixbuf_format_is_disabled(const_cast<GdkPixbufFormat*>(gobj()));
 }
@@ -159,7 +159,7 @@ void PixbufFormat::set_disabled(bool disabled)
   gdk_pixbuf_format_set_disabled(gobj(), static_cast<int>(disabled));
 }
 
-Glib::ustring PixbufFormat::get_license() const
+auto PixbufFormat::get_license() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gdk_pixbuf_format_get_license(const_cast<GdkPixbufFormat*>(gobj())));
 }

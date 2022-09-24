@@ -543,7 +543,7 @@ template <>
 class PANGOMM_API Value<Pango::Script> : public Glib::Value_Enum<Pango::Script>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -565,29 +565,29 @@ class PANGOMM_API Language
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
 
   explicit Language(PangoLanguage* gobject, bool make_a_copy = true);
 
   Language(const Language& other);
-  Language& operator=(const Language& other);
+  auto operator=(const Language& other) -> Language&;
 
   Language(Language&& other) noexcept;
-  Language& operator=(Language&& other) noexcept;
+  auto operator=(Language&& other) noexcept -> Language&;
 
   ~Language() noexcept;
 
   void swap(Language& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  PangoLanguage*       gobj()       { return gobject_; }
+  auto       gobj() -> PangoLanguage*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const PangoLanguage* gobj() const { return gobject_; }
+  auto gobj() const -> const PangoLanguage* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  PangoLanguage* gobj_copy() const;
+  auto gobj_copy() const -> PangoLanguage*;
 
 protected:
   PangoLanguage* gobject_;
@@ -612,7 +612,7 @@ public:
   /** Gets a RFC-3066 format string representing the given language tag.
    * @return A string representing the language tag. An empty string is returned if the language tag is empty.
    */
-  Glib::ustring get_string() const;
+  auto get_string() const -> Glib::ustring;
 
 
   /** Checks if a language tag matches one of the elements in a list of
@@ -628,7 +628,7 @@ public:
    * canonicalized as by from_string().
    * @return <tt>true</tt> if a match was found.
    */
-  bool matches(const Glib::ustring & range_list) const;
+  auto matches(const Glib::ustring & range_list) const -> bool;
 
   /** Determines if @a script is one of the scripts used to
    * write @a language.
@@ -651,7 +651,7 @@ public:
    * to write @a language or if nothing is known about @a language
    * (including the case that @a language is <tt>nullptr</tt>), <tt>false</tt> otherwise.
    */
-  bool includes_script(Script script) const;
+  auto includes_script(Script script) const -> bool;
 
 
  /** Determines the scripts used to to write this language.
@@ -669,7 +669,7 @@ public:
    *
    * @newin{2,14}
    */
-  std::vector<Script> get_scripts() const;
+  auto get_scripts() const -> std::vector<Script>;
 
 
 };
@@ -701,7 +701,7 @@ namespace Glib
  * @relates Pango::Language
  */
 PANGOMM_API
-Pango::Language wrap(PangoLanguage* object, bool take_copy = false);
+auto wrap(PangoLanguage* object, bool take_copy = false) -> Pango::Language;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

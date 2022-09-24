@@ -30,7 +30,7 @@ namespace Gtk
 {
 // Glib::ListHandler is not well suited for this case, where the contents
 // of the GList shall not be converted to a C++ type.
-std::vector<const Gdk::EventSequence*> Gesture::get_sequences() const
+auto Gesture::get_sequences() const -> std::vector<const Gdk::EventSequence*>
 {
   std::vector<const Gdk::EventSequence*> sequences;
   auto list = g_list_first(gtk_gesture_get_sequences(const_cast<GtkGesture*>(gobj())));
@@ -49,7 +49,7 @@ namespace
 {
 
 
-static void Gesture_signal_begin_callback(GtkGesture* self, GdkEventSequence* p0,void* data)
+void Gesture_signal_begin_callback(GtkGesture* self, GdkEventSequence* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Gdk::EventSequence*)>;
@@ -71,7 +71,7 @@ static void Gesture_signal_begin_callback(GtkGesture* self, GdkEventSequence* p0
   }
 }
 
-static const Glib::SignalProxyInfo Gesture_signal_begin_info =
+const Glib::SignalProxyInfo Gesture_signal_begin_info =
 {
   "begin",
   (GCallback) &Gesture_signal_begin_callback,
@@ -79,7 +79,7 @@ static const Glib::SignalProxyInfo Gesture_signal_begin_info =
 };
 
 
-static void Gesture_signal_end_callback(GtkGesture* self, GdkEventSequence* p0,void* data)
+void Gesture_signal_end_callback(GtkGesture* self, GdkEventSequence* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Gdk::EventSequence*)>;
@@ -101,7 +101,7 @@ static void Gesture_signal_end_callback(GtkGesture* self, GdkEventSequence* p0,v
   }
 }
 
-static const Glib::SignalProxyInfo Gesture_signal_end_info =
+const Glib::SignalProxyInfo Gesture_signal_end_info =
 {
   "end",
   (GCallback) &Gesture_signal_end_callback,
@@ -109,7 +109,7 @@ static const Glib::SignalProxyInfo Gesture_signal_end_info =
 };
 
 
-static void Gesture_signal_update_callback(GtkGesture* self, GdkEventSequence* p0,void* data)
+void Gesture_signal_update_callback(GtkGesture* self, GdkEventSequence* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Gdk::EventSequence*)>;
@@ -131,7 +131,7 @@ static void Gesture_signal_update_callback(GtkGesture* self, GdkEventSequence* p
   }
 }
 
-static const Glib::SignalProxyInfo Gesture_signal_update_info =
+const Glib::SignalProxyInfo Gesture_signal_update_info =
 {
   "update",
   (GCallback) &Gesture_signal_update_callback,
@@ -139,7 +139,7 @@ static const Glib::SignalProxyInfo Gesture_signal_update_info =
 };
 
 
-static void Gesture_signal_cancel_callback(GtkGesture* self, GdkEventSequence* p0,void* data)
+void Gesture_signal_cancel_callback(GtkGesture* self, GdkEventSequence* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Gdk::EventSequence*)>;
@@ -161,7 +161,7 @@ static void Gesture_signal_cancel_callback(GtkGesture* self, GdkEventSequence* p
   }
 }
 
-static const Glib::SignalProxyInfo Gesture_signal_cancel_info =
+const Glib::SignalProxyInfo Gesture_signal_cancel_info =
 {
   "cancel",
   (GCallback) &Gesture_signal_cancel_callback,
@@ -169,7 +169,7 @@ static const Glib::SignalProxyInfo Gesture_signal_cancel_info =
 };
 
 
-static void Gesture_signal_sequence_state_changed_callback(GtkGesture* self, GdkEventSequence* p0,GtkEventSequenceState p1,void* data)
+void Gesture_signal_sequence_state_changed_callback(GtkGesture* self, GdkEventSequence* p0,GtkEventSequenceState p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Gdk::EventSequence*, EventSequenceState)>;
@@ -192,7 +192,7 @@ static void Gesture_signal_sequence_state_changed_callback(GtkGesture* self, Gdk
   }
 }
 
-static const Glib::SignalProxyInfo Gesture_signal_sequence_state_changed_info =
+const Glib::SignalProxyInfo Gesture_signal_sequence_state_changed_info =
 {
   "sequence_state_changed",
   (GCallback) &Gesture_signal_sequence_state_changed_callback,
@@ -203,7 +203,7 @@ static const Glib::SignalProxyInfo Gesture_signal_sequence_state_changed_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::EventSequenceState>::value_type()
+auto Glib::Value<Gtk::EventSequenceState>::value_type() -> GType
 {
   return gtk_event_sequence_state_get_type();
 }
@@ -212,7 +212,7 @@ GType Glib::Value<Gtk::EventSequenceState>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::Gesture> wrap(GtkGesture* object, bool take_copy)
+auto wrap(GtkGesture* object, bool take_copy) -> Glib::RefPtr<Gtk::Gesture>
 {
   return Glib::make_refptr_for_instance<Gtk::Gesture>( dynamic_cast<Gtk::Gesture*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -227,7 +227,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Gesture_Class::init()
+auto Gesture_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -258,7 +258,7 @@ void Gesture_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Gesture_Class::wrap_new(GObject* object)
+auto Gesture_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Gesture((GtkGesture*)object);
 }
@@ -266,7 +266,7 @@ Glib::ObjectBase* Gesture_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkGesture* Gesture::gobj_copy()
+auto Gesture::gobj_copy() -> GtkGesture*
 {
   reference();
   return gobj();
@@ -289,7 +289,7 @@ Gesture::Gesture(Gesture&& src) noexcept
 : EventController(std::move(src))
 {}
 
-Gesture& Gesture::operator=(Gesture&& src) noexcept
+auto Gesture::operator=(Gesture&& src) noexcept -> Gesture&
 {
   EventController::operator=(std::move(src));
   return *this;
@@ -302,13 +302,13 @@ Gesture::~Gesture() noexcept
 
 Gesture::CppClassType Gesture::gesture_class_; // initialize static member
 
-GType Gesture::get_type()
+auto Gesture::get_type() -> GType
 {
   return gesture_class_.init().get_type();
 }
 
 
-GType Gesture::get_base_type()
+auto Gesture::get_base_type() -> GType
 {
   return gtk_gesture_get_type();
 }
@@ -324,7 +324,7 @@ Gesture::Gesture()
 
 }
 
-Glib::RefPtr<Gdk::Device> Gesture::get_device()
+auto Gesture::get_device() -> Glib::RefPtr<Gdk::Device>
 {
   auto retvalue = Glib::wrap(gtk_gesture_get_device(gobj()));
   if(retvalue)
@@ -332,42 +332,42 @@ Glib::RefPtr<Gdk::Device> Gesture::get_device()
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::Device> Gesture::get_device() const
+auto Gesture::get_device() const -> Glib::RefPtr<const Gdk::Device>
 {
   return const_cast<Gesture*>(this)->get_device();
 }
 
-bool Gesture::set_state(EventSequenceState state)
+auto Gesture::set_state(EventSequenceState state) -> bool
 {
   return gtk_gesture_set_state(gobj(), static_cast<GtkEventSequenceState>(state));
 }
 
-EventSequenceState Gesture::get_sequence_state(Gdk::EventSequence* sequence) const
+auto Gesture::get_sequence_state(Gdk::EventSequence* sequence) const -> EventSequenceState
 {
   return static_cast<EventSequenceState>(gtk_gesture_get_sequence_state(const_cast<GtkGesture*>(gobj()), reinterpret_cast<GdkEventSequence*>(sequence)));
 }
 
-bool Gesture::set_sequence_state(Gdk::EventSequence* sequence, EventSequenceState state)
+auto Gesture::set_sequence_state(Gdk::EventSequence* sequence, EventSequenceState state) -> bool
 {
   return gtk_gesture_set_sequence_state(gobj(), reinterpret_cast<GdkEventSequence*>(sequence), static_cast<GtkEventSequenceState>(state));
 }
 
-Gdk::EventSequence* Gesture::get_last_updated_sequence()
+auto Gesture::get_last_updated_sequence() -> Gdk::EventSequence*
 {
   return reinterpret_cast<Gdk::EventSequence*>(gtk_gesture_get_last_updated_sequence(gobj()));
 }
 
-const Gdk::EventSequence* Gesture::get_last_updated_sequence() const
+auto Gesture::get_last_updated_sequence() const -> const Gdk::EventSequence*
 {
   return const_cast<Gesture*>(this)->get_last_updated_sequence();
 }
 
-bool Gesture::handles_sequence(Gdk::EventSequence* sequence) const
+auto Gesture::handles_sequence(Gdk::EventSequence* sequence) const -> bool
 {
   return gtk_gesture_handles_sequence(const_cast<GtkGesture*>(gobj()), reinterpret_cast<GdkEventSequence*>(sequence));
 }
 
-Glib::RefPtr<Gdk::Event> Gesture::get_last_event(Gdk::EventSequence* sequence)
+auto Gesture::get_last_event(Gdk::EventSequence* sequence) -> Glib::RefPtr<Gdk::Event>
 {
   auto retvalue = Glib::wrap(gtk_gesture_get_last_event(gobj(), reinterpret_cast<GdkEventSequence*>(sequence)));
   if(retvalue)
@@ -375,32 +375,32 @@ Glib::RefPtr<Gdk::Event> Gesture::get_last_event(Gdk::EventSequence* sequence)
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::Event> Gesture::get_last_event(Gdk::EventSequence* sequence) const
+auto Gesture::get_last_event(Gdk::EventSequence* sequence) const -> Glib::RefPtr<const Gdk::Event>
 {
   return const_cast<Gesture*>(this)->get_last_event(sequence);
 }
 
-bool Gesture::get_point(Gdk::EventSequence* sequence, double& x, double& y) const
+auto Gesture::get_point(Gdk::EventSequence* sequence, double& x, double& y) const -> bool
 {
   return gtk_gesture_get_point(const_cast<GtkGesture*>(gobj()), reinterpret_cast<GdkEventSequence*>(sequence), &(x), &(y));
 }
 
-bool Gesture::get_bounding_box(Gdk::Rectangle& rect) const
+auto Gesture::get_bounding_box(Gdk::Rectangle& rect) const -> bool
 {
   return gtk_gesture_get_bounding_box(const_cast<GtkGesture*>(gobj()), (rect).gobj());
 }
 
-bool Gesture::get_bounding_box_center(double& x, double& y) const
+auto Gesture::get_bounding_box_center(double& x, double& y) const -> bool
 {
   return gtk_gesture_get_bounding_box_center(const_cast<GtkGesture*>(gobj()), &(x), &(y));
 }
 
-bool Gesture::is_active() const
+auto Gesture::is_active() const -> bool
 {
   return gtk_gesture_is_active(const_cast<GtkGesture*>(gobj()));
 }
 
-bool Gesture::is_recognized() const
+auto Gesture::is_recognized() const -> bool
 {
   return gtk_gesture_is_recognized(const_cast<GtkGesture*>(gobj()));
 }
@@ -415,53 +415,53 @@ void Gesture::ungroup()
   gtk_gesture_ungroup(gobj());
 }
 
-std::vector< Glib::RefPtr<Gesture> > Gesture::get_group()
+auto Gesture::get_group() -> std::vector< Glib::RefPtr<Gesture> >
 {
   return Glib::ListHandler< Glib::RefPtr<Gesture> >::list_to_vector(gtk_gesture_get_group(gobj()), Glib::OWNERSHIP_SHALLOW);
 }
 
-std::vector< Glib::RefPtr<const Gesture> > Gesture::get_group() const
+auto Gesture::get_group() const -> std::vector< Glib::RefPtr<const Gesture> >
 {
   return Glib::ListHandler< Glib::RefPtr<const Gesture> >::list_to_vector(gtk_gesture_get_group(const_cast<GtkGesture*>(gobj())), Glib::OWNERSHIP_SHALLOW);
 }
 
-bool Gesture::is_grouped_with(const Glib::RefPtr<Gesture>& other) const
+auto Gesture::is_grouped_with(const Glib::RefPtr<Gesture>& other) const -> bool
 {
   return gtk_gesture_is_grouped_with(const_cast<GtkGesture*>(gobj()), Glib::unwrap(other));
 }
 
 
-Glib::SignalProxy<void(Gdk::EventSequence*)> Gesture::signal_begin()
+auto Gesture::signal_begin() -> Glib::SignalProxy<void(Gdk::EventSequence*)>
 {
   return Glib::SignalProxy<void(Gdk::EventSequence*) >(this, &Gesture_signal_begin_info);
 }
 
 
-Glib::SignalProxy<void(Gdk::EventSequence*)> Gesture::signal_end()
+auto Gesture::signal_end() -> Glib::SignalProxy<void(Gdk::EventSequence*)>
 {
   return Glib::SignalProxy<void(Gdk::EventSequence*) >(this, &Gesture_signal_end_info);
 }
 
 
-Glib::SignalProxy<void(Gdk::EventSequence*)> Gesture::signal_update()
+auto Gesture::signal_update() -> Glib::SignalProxy<void(Gdk::EventSequence*)>
 {
   return Glib::SignalProxy<void(Gdk::EventSequence*) >(this, &Gesture_signal_update_info);
 }
 
 
-Glib::SignalProxy<void(Gdk::EventSequence*)> Gesture::signal_cancel()
+auto Gesture::signal_cancel() -> Glib::SignalProxy<void(Gdk::EventSequence*)>
 {
   return Glib::SignalProxy<void(Gdk::EventSequence*) >(this, &Gesture_signal_cancel_info);
 }
 
 
-Glib::SignalProxy<void(Gdk::EventSequence*, EventSequenceState)> Gesture::signal_sequence_state_changed()
+auto Gesture::signal_sequence_state_changed() -> Glib::SignalProxy<void(Gdk::EventSequence*, EventSequenceState)>
 {
   return Glib::SignalProxy<void(Gdk::EventSequence*, EventSequenceState) >(this, &Gesture_signal_sequence_state_changed_info);
 }
 
 
-Glib::PropertyProxy_ReadOnly< unsigned int > Gesture::property_n_points() const
+auto Gesture::property_n_points() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
   return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "n-points");
 }

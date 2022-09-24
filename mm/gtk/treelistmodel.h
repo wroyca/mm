@@ -65,7 +65,7 @@ public:
 
   // noncopyable
   TreeListModel(const TreeListModel&) = delete;
-  TreeListModel& operator=(const TreeListModel&) = delete;
+  auto operator=(const TreeListModel&) -> TreeListModel& = delete;
 
 private:  friend class TreeListModel_Class;
   static CppClassType treelistmodel_class_;
@@ -79,28 +79,28 @@ protected:
 public:
 
   TreeListModel(TreeListModel&& src) noexcept;
-  TreeListModel& operator=(TreeListModel&& src) noexcept;
+  auto operator=(TreeListModel&& src) noexcept -> TreeListModel&;
 
   ~TreeListModel() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkTreeListModel*       gobj()       { return reinterpret_cast<GtkTreeListModel*>(gobject_); }
+  auto       gobj() -> GtkTreeListModel*       { return reinterpret_cast<GtkTreeListModel*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkTreeListModel* gobj() const { return reinterpret_cast<GtkTreeListModel*>(gobject_); }
+  auto gobj() const -> const GtkTreeListModel* { return reinterpret_cast<GtkTreeListModel*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkTreeListModel* gobj_copy();
+  auto gobj_copy() -> GtkTreeListModel*;
 
 private:
 
@@ -142,20 +142,20 @@ public:
    * expand the @a root model.
    */
 
-  static Glib::RefPtr<TreeListModel> create(const Glib::RefPtr<Gio::ListModel>& root, const SlotCreateModel& slot_create, bool passthrough =  false, bool autoexpand =  false);
+  static auto create(const Glib::RefPtr<Gio::ListModel>& root, const SlotCreateModel& slot_create, bool passthrough =  false, bool autoexpand =  false) -> Glib::RefPtr<TreeListModel>;
 
 
   /** Gets the root model that @a self was created with.
    *
    * @return The root model.
    */
-  Glib::RefPtr<Gio::ListModel> get_model();
+  auto get_model() -> Glib::RefPtr<Gio::ListModel>;
 
   /** Gets the root model that @a self was created with.
    *
    * @return The root model.
    */
-  Glib::RefPtr<const Gio::ListModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const Gio::ListModel>;
 
   /** Gets whether the model is passing through original row items.
    *
@@ -170,7 +170,7 @@ public:
    *
    * @return <tt>true</tt> if the model is passing through original row items.
    */
-  bool get_passthrough() const;
+  auto get_passthrough() const -> bool;
 
   /** Sets whether the model should autoexpand.
    *
@@ -190,7 +190,7 @@ public:
    *
    * @return <tt>true</tt> if the model is set to autoexpand.
    */
-  bool get_autoexpand() const;
+  auto get_autoexpand() const -> bool;
 
 
   /** Gets the row item corresponding to the child at index @a position for
@@ -204,7 +204,7 @@ public:
    * @param position Position of the child to get.
    * @return The child in @a position.
    */
-  Glib::RefPtr<TreeListRow> get_child_row(guint position);
+  auto get_child_row(guint position) -> Glib::RefPtr<TreeListRow>;
 
   /** Gets the row item corresponding to the child at index @a position for
    *  @a self's root model.
@@ -217,7 +217,7 @@ public:
    * @param position Position of the child to get.
    * @return The child in @a position.
    */
-  Glib::RefPtr<const TreeListRow> get_child_row(guint position) const;
+  auto get_child_row(guint position) const -> Glib::RefPtr<const TreeListRow>;
 
   /** Gets the row object for the given row.
    *
@@ -240,7 +240,7 @@ public:
    * @param position The position of the row to fetch.
    * @return The row item.
    */
-  Glib::RefPtr<TreeListRow> get_row(guint position);
+  auto get_row(guint position) -> Glib::RefPtr<TreeListRow>;
 
   /** Gets the row object for the given row.
    *
@@ -263,7 +263,7 @@ public:
    * @param position The position of the row to fetch.
    * @return The row item.
    */
-  Glib::RefPtr<const TreeListRow> get_row(guint position) const;
+  auto get_row(guint position) const -> Glib::RefPtr<const TreeListRow>;
 
   /** If all rows should be expanded by default.
    *
@@ -272,7 +272,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_autoexpand() ;
+  auto property_autoexpand() -> Glib::PropertyProxy< bool > ;
 
 /** If all rows should be expanded by default.
    *
@@ -281,7 +281,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_autoexpand() const;
+  auto property_autoexpand() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The type of items. See Gio::ListModel::get_item_type().
    *
@@ -290,7 +290,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< GType > property_item_type() const;
+  auto property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >;
 
 
   /** The root model displayed.
@@ -298,7 +298,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >;
 
 
   /** The number of items. See Gio::ListModel::get_n_items().
@@ -310,7 +310,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_n_items() const;
+  auto property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
 
   /** Gets whether the model is in passthrough mode.
@@ -324,7 +324,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_passthrough() const;
+  auto property_passthrough() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -354,7 +354,7 @@ namespace Glib
    * @relates Gtk::TreeListModel
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::TreeListModel> wrap(GtkTreeListModel* object, bool take_copy = false);
+  auto wrap(GtkTreeListModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeListModel>;
 }
 
 

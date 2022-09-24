@@ -81,31 +81,31 @@ enum class GLApi
 };
 
 /** @ingroup gdkmmEnums */
-inline GLApi operator|(GLApi lhs, GLApi rhs)
+inline auto operator|(GLApi lhs, GLApi rhs) -> GLApi
   { return static_cast<GLApi>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline GLApi operator&(GLApi lhs, GLApi rhs)
+inline auto operator&(GLApi lhs, GLApi rhs) -> GLApi
   { return static_cast<GLApi>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline GLApi operator^(GLApi lhs, GLApi rhs)
+inline auto operator^(GLApi lhs, GLApi rhs) -> GLApi
   { return static_cast<GLApi>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline GLApi operator~(GLApi flags)
+inline auto operator~(GLApi flags) -> GLApi
   { return static_cast<GLApi>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gdkmmEnums */
-inline GLApi& operator|=(GLApi& lhs, GLApi rhs)
+inline auto operator|=(GLApi& lhs, GLApi rhs) -> GLApi&
   { return (lhs = static_cast<GLApi>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline GLApi& operator&=(GLApi& lhs, GLApi rhs)
+inline auto operator&=(GLApi& lhs, GLApi rhs) -> GLApi&
   { return (lhs = static_cast<GLApi>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline GLApi& operator^=(GLApi& lhs, GLApi rhs)
+inline auto operator^=(GLApi& lhs, GLApi rhs) -> GLApi&
   { return (lhs = static_cast<GLApi>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -119,7 +119,7 @@ template <>
 class GDKMM_API Value<Gdk::GLApi> : public Glib::Value_Flags<Gdk::GLApi>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -176,31 +176,31 @@ enum class GLAPI
 };
 
 /** @ingroup gdkmmEnums */
-inline GLAPI operator|(GLAPI lhs, GLAPI rhs)
+inline auto operator|(GLAPI lhs, GLAPI rhs) -> GLAPI
   { return static_cast<GLAPI>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline GLAPI operator&(GLAPI lhs, GLAPI rhs)
+inline auto operator&(GLAPI lhs, GLAPI rhs) -> GLAPI
   { return static_cast<GLAPI>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline GLAPI operator^(GLAPI lhs, GLAPI rhs)
+inline auto operator^(GLAPI lhs, GLAPI rhs) -> GLAPI
   { return static_cast<GLAPI>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline GLAPI operator~(GLAPI flags)
+inline auto operator~(GLAPI flags) -> GLAPI
   { return static_cast<GLAPI>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gdkmmEnums */
-inline GLAPI& operator|=(GLAPI& lhs, GLAPI rhs)
+inline auto operator|=(GLAPI& lhs, GLAPI rhs) -> GLAPI&
   { return (lhs = static_cast<GLAPI>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline GLAPI& operator&=(GLAPI& lhs, GLAPI rhs)
+inline auto operator&=(GLAPI& lhs, GLAPI rhs) -> GLAPI&
   { return (lhs = static_cast<GLAPI>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline GLAPI& operator^=(GLAPI& lhs, GLAPI rhs)
+inline auto operator^=(GLAPI& lhs, GLAPI rhs) -> GLAPI&
   { return (lhs = static_cast<GLAPI>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 #endif // GDKMM_DISABLE_DEPRECATED
@@ -216,7 +216,7 @@ template <>
 class GDKMM_API Value<Gdk::GLAPI> : public Glib::Value_Flags<Gdk::GLAPI>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 #endif // GDKMM_DISABLE_DEPRECATED
 
@@ -264,7 +264,7 @@ public:
 
   GDKMM_API GLError(Code error_code, const Glib::ustring& error_message);
   GDKMM_API explicit GLError(GError* gobject);
-  GDKMM_API Code code() const;
+  GDKMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -286,7 +286,7 @@ template <>
 class GDKMM_API Value<Gdk::GLError::Code> : public Glib::Value_Enum<Gdk::GLError::Code>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -332,7 +332,7 @@ public:
 
   // noncopyable
   GLContext(const GLContext&) = delete;
-  GLContext& operator=(const GLContext&) = delete;
+  auto operator=(const GLContext&) -> GLContext& = delete;
 
 private:  friend class GLContext_Class;
   static CppClassType glcontext_class_;
@@ -346,28 +346,28 @@ protected:
 public:
 
   GLContext(GLContext&& src) noexcept;
-  GLContext& operator=(GLContext&& src) noexcept;
+  auto operator=(GLContext&& src) noexcept -> GLContext&;
 
   ~GLContext() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkGLContext*       gobj()       { return reinterpret_cast<GdkGLContext*>(gobject_); }
+  auto       gobj() -> GdkGLContext*       { return reinterpret_cast<GdkGLContext*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkGLContext* gobj() const { return reinterpret_cast<GdkGLContext*>(gobject_); }
+  auto gobj() const -> const GdkGLContext* { return reinterpret_cast<GdkGLContext*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkGLContext* gobj_copy();
+  auto gobj_copy() -> GdkGLContext*;
 
 private:
 
@@ -383,7 +383,7 @@ public:
    *
    * @return A `Gdk::Display`.
    */
-  Glib::RefPtr<Display> get_display();
+  auto get_display() -> Glib::RefPtr<Display>;
 
   /** Retrieves the display the @a context is created for
    *
@@ -391,7 +391,7 @@ public:
    *
    * @return A `Gdk::Display`.
    */
-  Glib::RefPtr<const Display> get_display() const;
+  auto get_display() const -> Glib::RefPtr<const Display>;
 
   /** Retrieves the surface used by the @a context.
    *
@@ -399,7 +399,7 @@ public:
    *
    * @return A `Gdk::Surface`.
    */
-  Glib::RefPtr<Surface> get_surface();
+  auto get_surface() -> Glib::RefPtr<Surface>;
 
   /** Retrieves the surface used by the @a context.
    *
@@ -407,7 +407,7 @@ public:
    *
    * @return A `Gdk::Surface`.
    */
-  Glib::RefPtr<const Surface> get_surface() const;
+  auto get_surface() const -> Glib::RefPtr<const Surface>;
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 
@@ -425,7 +425,7 @@ public:
    *
    * @return <tt>nullptr</tt>.
    */
-  Glib::RefPtr<GLContext> get_shared_context();
+  auto get_shared_context() -> Glib::RefPtr<GLContext>;
 #endif // GDKMM_DISABLE_DEPRECATED
 
 
@@ -445,7 +445,7 @@ public:
    *
    * @return <tt>nullptr</tt>.
    */
-  Glib::RefPtr<const GLContext> get_shared_context() const;
+  auto get_shared_context() const -> Glib::RefPtr<const GLContext>;
 #endif // GDKMM_DISABLE_DEPRECATED
 
 
@@ -482,7 +482,7 @@ public:
    *
    * @return <tt>true</tt> if the GL context is in legacy mode.
    */
-  bool is_legacy() const;
+  auto is_legacy() const -> bool;
 
   /** Checks if the two GL contexts can share resources.
    *
@@ -502,7 +502,7 @@ public:
    * @param other The `Gdk::GLContext` that should be compatible with @a self.
    * @return <tt>true</tt> if the two GL contexts are compatible.
    */
-  bool is_shared(const Glib::RefPtr<const GLContext>& other) const;
+  auto is_shared(const Glib::RefPtr<const GLContext>& other) const -> bool;
 
   /** Retrieves required OpenGL version set as a requirement for the @a context
    * realization. It will not change even if a greater OpenGL version is supported
@@ -543,7 +543,7 @@ public:
    *
    * @return <tt>true</tt> if debugging is enabled.
    */
-  bool get_debug_enabled() const;
+  auto get_debug_enabled() const -> bool;
 
   /** Sets whether the `Gdk::GLContext` should perform extra validations and
    * runtime checking.
@@ -567,7 +567,7 @@ public:
    *
    * @return <tt>true</tt> if the context should be forward-compatible.
    */
-  bool get_forward_compatible() const;
+  auto get_forward_compatible() const -> bool;
 
   /** Sets whether the `Gdk::GLContext` should be forward-compatible.
    *
@@ -616,7 +616,7 @@ public:
    *
    * @return The allowed APIs.
    */
-  GLAPI get_allowed_apis() const;
+  auto get_allowed_apis() const -> GLAPI;
 #endif // GDKMM_DISABLE_DEPRECATED
 
 
@@ -632,7 +632,7 @@ public:
    *
    * @return The currently used API.
    */
-  GLAPI get_api() const;
+  auto get_api() const -> GLAPI;
 #endif // GDKMM_DISABLE_DEPRECATED
 
 
@@ -659,7 +659,7 @@ public:
    *
    * @return The allowed APIs.
    */
-  GLApi get_allowed_apis2() const;
+  auto get_allowed_apis2() const -> GLApi;
 
   /** Gets the API currently in use.
    *
@@ -669,7 +669,7 @@ public:
    *
    * @return The currently used API.
    */
-  GLApi get_api2() const;
+  auto get_api2() const -> GLApi;
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 
@@ -716,7 +716,7 @@ public:
    * <tt>false</tt> if other profile is in use of if the @a context has not yet
    * been realized.
    */
-  bool get_use_es() const;
+  auto get_use_es() const -> bool;
 
   /** Realizes the given `Gdk::GLContext`.
    *
@@ -728,7 +728,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool realize();
+  auto realize() -> bool;
 
 
   /** Makes the @a context the current one.
@@ -743,7 +743,7 @@ public:
    *
    * @return The current `Gdk::GLContext`.
    */
-  static Glib::RefPtr<GLContext> get_current();
+  static auto get_current() -> Glib::RefPtr<GLContext>;
 
   /** Clears the current `Gdk::GLContext`.
    *
@@ -772,7 +772,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<GLContext> > property_shared_context() const;
+  auto property_shared_context() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<GLContext> >;
 
 
 #endif // GDKMM_DISABLE_DEPRECATED
@@ -794,7 +794,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< GLAPI > property_allowed_apis() ;
+  auto property_allowed_apis() -> Glib::PropertyProxy< GLAPI > ;
 
 /** The allowed APIs.
    *
@@ -807,7 +807,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< GLAPI > property_allowed_apis() const;
+  auto property_allowed_apis() const -> Glib::PropertyProxy_ReadOnly< GLAPI >;
 
 #endif // GDKMM_DISABLE_DEPRECATED
 
@@ -825,7 +825,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< GLAPI > property_api() const;
+  auto property_api() const -> Glib::PropertyProxy_ReadOnly< GLAPI >;
 
 
 #endif // GDKMM_DISABLE_DEPRECATED
@@ -860,7 +860,7 @@ namespace Glib
    * @relates Gdk::GLContext
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::GLContext> wrap(GdkGLContext* object, bool take_copy = false);
+  auto wrap(GdkGLContext* object, bool take_copy = false) -> Glib::RefPtr<Gdk::GLContext>;
 }
 
 

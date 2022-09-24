@@ -146,7 +146,7 @@ template <>
 class GTKMM_API Value<Gtk::License> : public Glib::Value_Enum<Gtk::License>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -184,11 +184,11 @@ class GTKMM_API AboutDialog : public Window
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   AboutDialog(AboutDialog&& src) noexcept;
-  AboutDialog& operator=(AboutDialog&& src) noexcept;
+  auto operator=(AboutDialog&& src) noexcept -> AboutDialog&;
 
   // noncopyable
   AboutDialog(const AboutDialog&) = delete;
-  AboutDialog& operator=(const AboutDialog&) = delete;
+  auto operator=(const AboutDialog&) -> AboutDialog& = delete;
 
   ~AboutDialog() noexcept override;
 
@@ -208,19 +208,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkAboutDialog*       gobj()       { return reinterpret_cast<GtkAboutDialog*>(gobject_); }
+  auto       gobj() -> GtkAboutDialog*       { return reinterpret_cast<GtkAboutDialog*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkAboutDialog* gobj() const { return reinterpret_cast<GtkAboutDialog*>(gobject_); }
+  auto gobj() const -> const GtkAboutDialog* { return reinterpret_cast<GtkAboutDialog*>(gobject_); }
 
 private:
 
@@ -242,7 +242,7 @@ public:
    *
    * @return The program name.
    */
-  Glib::ustring get_program_name() const;
+  auto get_program_name() const -> Glib::ustring;
 
   /** Sets the name to display in the about dialog.
    *
@@ -258,7 +258,7 @@ public:
    *
    * @return The version string.
    */
-  Glib::ustring get_version() const;
+  auto get_version() const -> Glib::ustring;
 
   /** Sets the version string to display in the about dialog.
    *
@@ -270,7 +270,7 @@ public:
    *
    * @return The copyright string.
    */
-  Glib::ustring get_copyright() const;
+  auto get_copyright() const -> Glib::ustring;
 
   /** Sets the copyright string to display in the about dialog.
    *
@@ -284,7 +284,7 @@ public:
    *
    * @return The comments.
    */
-  Glib::ustring get_comments() const;
+  auto get_comments() const -> Glib::ustring;
 
   /** Sets the comments string to display in the about dialog.
    *
@@ -298,7 +298,7 @@ public:
    *
    * @return The license information.
    */
-  Glib::ustring get_license() const;
+  auto get_license() const -> Glib::ustring;
 
   /** Sets the license information to be displayed in the secondary license dialog.
    * If @a license is an empty string, the license button is hidden.
@@ -313,7 +313,7 @@ public:
    *
    * @return A Gtk::License value.
    */
-  License get_license_type() const;
+  auto get_license_type() const -> License;
 
   /** Sets the license of the application showing the about dialog from a
    * list of known licenses.
@@ -329,7 +329,7 @@ public:
    *
    * @return The system information.
    */
-  Glib::ustring get_system_information() const;
+  auto get_system_information() const -> Glib::ustring;
 
   /** Sets the system information to be displayed in the about dialog.
    * If @a system_information is an empty string, the system information tab is hidden.
@@ -346,7 +346,7 @@ public:
    *
    * @return The website URL.
    */
-  Glib::ustring get_website() const;
+  auto get_website() const -> Glib::ustring;
 
   /** Sets the URL to use for the website link.
    *
@@ -358,7 +358,7 @@ public:
    *
    * @return The label used for the website link.
    */
-  Glib::ustring get_website_label() const;
+  auto get_website_label() const -> Glib::ustring;
 
   /** Sets the label to be used for the website link.
    *
@@ -373,7 +373,7 @@ public:
    * @return A
    * <tt>nullptr</tt>-terminated string array containing the authors.
    */
-  std::vector<Glib::ustring> get_authors() const;
+  auto get_authors() const -> std::vector<Glib::ustring>;
 
 
   /** Sets the names of the authors which are displayed
@@ -390,7 +390,7 @@ public:
    * @return A
    * <tt>nullptr</tt>-terminated string array containing the documenters.
    */
-  std::vector<Glib::ustring> get_documenters() const;
+  auto get_documenters() const -> std::vector<Glib::ustring>;
 
 
   /** Sets the names of the documenters which are displayed
@@ -407,7 +407,7 @@ public:
    * @return A
    * <tt>nullptr</tt>-terminated string array containing the artists.
    */
-  std::vector<Glib::ustring> get_artists() const;
+  auto get_artists() const -> std::vector<Glib::ustring>;
 
   /** Sets the names of the artists to be displayed
    * in the "Credits" page.
@@ -422,7 +422,7 @@ public:
    *
    * @return The translator credits string.
    */
-  Glib::ustring get_translator_credits() const;
+  auto get_translator_credits() const -> Glib::ustring;
 
   /** Sets the translator credits string which is displayed in
    * the credits page.
@@ -451,7 +451,7 @@ public:
    * logo or <tt>nullptr</tt> if the logo is unset or has been set via
    * set_logo_icon_name().
    */
-  Glib::RefPtr<Gdk::Paintable> get_logo();
+  auto get_logo() -> Glib::RefPtr<Gdk::Paintable>;
 
   /** Returns the paintable displayed as logo in the about dialog.
    *
@@ -459,7 +459,7 @@ public:
    * logo or <tt>nullptr</tt> if the logo is unset or has been set via
    * set_logo_icon_name().
    */
-  Glib::RefPtr<const Gdk::Paintable> get_logo() const;
+  auto get_logo() const -> Glib::RefPtr<const Gdk::Paintable>;
 
   /** Sets the logo in the about dialog.
    *
@@ -481,7 +481,7 @@ public:
    * @return The icon name displayed as logo,
    * or <tt>nullptr</tt> if the logo has been set via set_logo().
    */
-  Glib::ustring get_logo_icon_name() const;
+  auto get_logo_icon_name() const -> Glib::ustring;
 
   /** Sets the icon name to be displayed as logo in the about dialog.
    *
@@ -495,7 +495,7 @@ public:
    *
    * @return <tt>true</tt> if the license text is wrapped.
    */
-  bool get_wrap_license() const;
+  auto get_wrap_license() const -> bool;
 
   /** Sets whether the license text in the about dialog should be
    * automatically wrapped.
@@ -522,7 +522,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_program_name() ;
+  auto property_program_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The name of the program.
    *
@@ -534,7 +534,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_program_name() const;
+  auto property_program_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The version of the program.
@@ -544,7 +544,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_version() ;
+  auto property_version() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The version of the program.
    *
@@ -553,7 +553,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_version() const;
+  auto property_version() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Copyright information for the program.
    *
@@ -562,7 +562,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_copyright() ;
+  auto property_copyright() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Copyright information for the program.
    *
@@ -571,7 +571,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_copyright() const;
+  auto property_copyright() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Comments about the program.
    *
@@ -584,7 +584,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_comments() ;
+  auto property_comments() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Comments about the program.
    *
@@ -597,7 +597,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_comments() const;
+  auto property_comments() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The URL for the link to the website of the program.
    *
@@ -608,7 +608,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_website() ;
+  auto property_website() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The URL for the link to the website of the program.
    *
@@ -619,7 +619,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_website() const;
+  auto property_website() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The label for the link to the website of the program.
    *
@@ -628,7 +628,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_website_label() ;
+  auto property_website_label() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The label for the link to the website of the program.
    *
@@ -637,7 +637,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_website_label() const;
+  auto property_website_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The license of the program, as free-form text.
    *
@@ -659,7 +659,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_license() ;
+  auto property_license() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The license of the program, as free-form text.
    *
@@ -681,7 +681,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_license() const;
+  auto property_license() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The license of the program.
    *
@@ -704,7 +704,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< License > property_license_type() ;
+  auto property_license_type() -> Glib::PropertyProxy< License > ;
 
 /** The license of the program.
    *
@@ -727,7 +727,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< License > property_license_type() const;
+  auto property_license_type() const -> Glib::PropertyProxy_ReadOnly< License >;
 
   /** Information about the system on which the program is running.
    *
@@ -746,7 +746,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_system_information() ;
+  auto property_system_information() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Information about the system on which the program is running.
    *
@@ -765,7 +765,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_system_information() const;
+  auto property_system_information() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The authors of the program, as a <tt>nullptr</tt>-terminated array of strings.
    *
@@ -775,7 +775,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< std::vector<Glib::ustring> > property_authors() ;
+  auto property_authors() -> Glib::PropertyProxy< std::vector<Glib::ustring> > ;
 
 /** The authors of the program, as a <tt>nullptr</tt>-terminated array of strings.
    *
@@ -785,7 +785,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> > property_authors() const;
+  auto property_authors() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >;
 
   /** The people documenting the program, as a <tt>nullptr</tt>-terminated array of strings.
    *
@@ -795,7 +795,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< std::vector<Glib::ustring> > property_documenters() ;
+  auto property_documenters() -> Glib::PropertyProxy< std::vector<Glib::ustring> > ;
 
 /** The people documenting the program, as a <tt>nullptr</tt>-terminated array of strings.
    *
@@ -805,7 +805,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> > property_documenters() const;
+  auto property_documenters() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >;
 
   /** Credits to the translators.
    *
@@ -819,7 +819,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< std::vector<Glib::ustring> > property_translator_credits() ;
+  auto property_translator_credits() -> Glib::PropertyProxy< std::vector<Glib::ustring> > ;
 
 /** Credits to the translators.
    *
@@ -833,7 +833,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> > property_translator_credits() const;
+  auto property_translator_credits() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >;
 
   /** The people who contributed artwork to the program, as a <tt>nullptr</tt>-terminated
    * array of strings.
@@ -844,7 +844,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< std::vector<Glib::ustring> > property_artists() ;
+  auto property_artists() -> Glib::PropertyProxy< std::vector<Glib::ustring> > ;
 
 /** The people who contributed artwork to the program, as a <tt>nullptr</tt>-terminated
    * array of strings.
@@ -855,7 +855,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> > property_artists() const;
+  auto property_artists() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >;
 
   /** A logo for the about box.
    *
@@ -865,7 +865,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> > property_logo() ;
+  auto property_logo() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> > ;
 
 /** A logo for the about box.
    *
@@ -875,7 +875,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> > property_logo() const;
+  auto property_logo() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> >;
 
   /** A named icon to use as the logo for the about box.
    *
@@ -886,7 +886,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_logo_icon_name() ;
+  auto property_logo_icon_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** A named icon to use as the logo for the about box.
    *
@@ -897,7 +897,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_logo_icon_name() const;
+  auto property_logo_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Whether to wrap the text in the license dialog.
    *
@@ -906,7 +906,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_wrap_license() ;
+  auto property_wrap_license() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to wrap the text in the license dialog.
    *
@@ -915,7 +915,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_wrap_license() const;
+  auto property_wrap_license() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   // no_default_handler because GtkAboutDialogClass is private.
@@ -935,7 +935,7 @@ public:
    * @return <tt>true</tt> if the link has been activated.
    */
 
-  Glib::SignalProxy<bool(const std::string&)> signal_activate_link();
+  auto signal_activate_link() -> Glib::SignalProxy<bool(const std::string&)>;
 
 
 public:
@@ -965,7 +965,7 @@ namespace Glib
    * @relates Gtk::AboutDialog
    */
   GTKMM_API
-  Gtk::AboutDialog* wrap(GtkAboutDialog* object, bool take_copy = false);
+  auto wrap(GtkAboutDialog* object, bool take_copy = false) -> Gtk::AboutDialog*;
 } //namespace Glib
 
 

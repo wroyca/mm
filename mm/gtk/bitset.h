@@ -78,19 +78,19 @@ class GTKMM_API Bitset final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GtkBitset*       gobj();
+  auto       gobj() -> GtkBitset*;
 
   ///Provides access to the underlying C instance.
-  const GtkBitset* gobj() const;
+  auto gobj() const -> const GtkBitset*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkBitset* gobj_copy() const;
+  auto gobj_copy() const -> GtkBitset*;
 
   Bitset() = delete;
 
   // noncopyable
   Bitset(const Bitset&) = delete;
-  Bitset& operator=(const Bitset&) = delete;
+  auto operator=(const Bitset&) -> Bitset& = delete;
 
 protected:
   // Do not derive this.  Gtk::Bitset can neither be constructed nor deleted.
@@ -103,17 +103,17 @@ private:
 public:
   using const_iterator = BitsetConstIter;
 
-  const_iterator begin() const;
-  const_iterator end() const;
-  const_iterator cbegin() const { return begin(); }
-  const_iterator cend() const { return end(); }
+  auto begin() const -> const_iterator;
+  auto end() const -> const_iterator;
+  auto cbegin() const -> const_iterator { return begin(); }
+  auto cend() const -> const_iterator { return end(); }
 
 
   /** Creates a new empty bitset.
    *
    * @return A new empty bitset.
    */
-  static Glib::RefPtr<Bitset> create();
+  static auto create() -> Glib::RefPtr<Bitset>;
 
 
   /** Checks if the given @a value has been added to @a self
@@ -121,13 +121,13 @@ public:
    * @param value The value to check.
    * @return <tt>true</tt> if @a self contains @a value.
    */
-  bool contains(guint value) const;
+  auto contains(guint value) const -> bool;
 
   /** Check if no value is contained in bitset.
    *
    * @return <tt>true</tt> if @a self is empty.
    */
-  bool is_empty() const;
+  auto is_empty() const -> bool;
 
   /** Gets the number of values that were added to the set.
    *
@@ -140,7 +140,7 @@ public:
    *
    * @return The number of values in the set.
    */
-  guint64 get_size() const;
+  auto get_size() const -> guint64;
 
   /** Gets the number of values that are part of the set from @a first to @a last
    * (inclusive).
@@ -153,7 +153,7 @@ public:
    * @param last The last element to include.
    * @return The number of values in the set from @a first to @a last.
    */
-  guint64 get_size(guint first, guint last) const;
+  auto get_size(guint first, guint last) const -> guint64;
 
   /** Returns the value of the @a nth item in self.
    *
@@ -162,14 +162,14 @@ public:
    * @param nth Index of the item to get.
    * @return The value of the @a nth item in @a self.
    */
-  guint get_nth(guint nth) const;
+  auto get_nth(guint nth) const -> guint;
 
   /** Returns <tt>true</tt> if @a self and @a other contain the same values.
    *
    * @param other Another `Gtk::Bitset`.
    * @return <tt>true</tt> if @a self and @a other contain the same values.
    */
-  bool equals(const Glib::RefPtr<const Bitset>& other) const;
+  auto equals(const Glib::RefPtr<const Bitset>& other) const -> bool;
 
   /** Returns the smallest value in @a self.
    *
@@ -177,7 +177,7 @@ public:
    *
    * @return The smallest value in @a self.
    */
-  guint get_minimum() const;
+  auto get_minimum() const -> guint;
 
   /** Returns the largest value in @a self.
    *
@@ -185,14 +185,14 @@ public:
    *
    * @return The largest value in @a self.
    */
-  guint get_maximum() const;
+  auto get_maximum() const -> guint;
 
   /** Creates a copy of @a self.
    *
    * @return A new bitset that contains the same
    * values as @a self.
    */
-  Glib::RefPtr<Bitset> copy() const;
+  auto copy() const -> Glib::RefPtr<Bitset>;
 
   /** Removes all values from the bitset so that it is empty again.
    */
@@ -204,7 +204,7 @@ public:
    * @return <tt>true</tt> if @a value was not part of @a self and @a self
    * was changed.
    */
-  bool add(guint value);
+  auto add(guint value) -> bool;
 
   /** Removes @a value from @a self if it was part of it before.
    *
@@ -212,7 +212,7 @@ public:
    * @return <tt>true</tt> if @a value was part of @a self and @a self
    * was changed.
    */
-  bool remove(guint value);
+  auto remove(guint value) -> bool;
 
   /** Adds all values from @a start (inclusive) to @a start + @a n_items
    * (exclusive) in @a self.
@@ -364,7 +364,7 @@ namespace Glib
  * @relates Gtk::Bitset
  */
 GTKMM_API
-Glib::RefPtr<Gtk::Bitset> wrap(GtkBitset* object, bool take_copy = false);
+auto wrap(GtkBitset* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Bitset>;
 
 } // namespace Glib
 

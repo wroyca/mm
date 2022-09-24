@@ -49,7 +49,7 @@ public:
   // Hook for translating API
   // static Glib::Object* wrap_new(GObject*);
 
-  inline GType get_type() const;
+  inline auto get_type() const -> GType;
 
   /// The type that holds pointers to the interfaces of custom types.
   using interface_classes_type = std::vector<const Interface_Class*>;
@@ -73,9 +73,9 @@ public:
    * @param instance_init_func Instance init function (can be nullptr).
    * @return The registered type.
    */
-  GType clone_custom_type(
+  auto clone_custom_type(
     const char* custom_type_name, const interface_classes_type* interface_classes,
-    const class_init_funcs_type* class_init_funcs, GInstanceInitFunc instance_init_func) const;
+    const class_init_funcs_type* class_init_funcs, GInstanceInitFunc instance_init_func) const -> GType;
 
 protected:
   GType gtype_;
@@ -104,8 +104,8 @@ public:
 #endif
 };
 
-inline GType
-Class::get_type() const
+inline auto
+Class::get_type() const -> GType
 {
   return gtype_;
 }

@@ -55,30 +55,30 @@ class GLIBMM_API Checksum
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   Checksum();
 
   explicit Checksum(GChecksum* gobject, bool make_a_copy = true);
 
   Checksum(const Checksum& other);
-  Checksum& operator=(const Checksum& other);
+  auto operator=(const Checksum& other) -> Checksum&;
 
   Checksum(Checksum&& other) noexcept;
-  Checksum& operator=(Checksum&& other) noexcept;
+  auto operator=(Checksum&& other) noexcept -> Checksum&;
 
   ~Checksum() noexcept;
 
   void swap(Checksum& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  GChecksum*       gobj()       { return gobject_; }
+  auto       gobj() -> GChecksum*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const GChecksum* gobj() const { return gobject_; }
+  auto gobj() const -> const GChecksum* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  GChecksum* gobj_copy() const;
+  auto gobj_copy() const -> GChecksum*;
 
 protected:
   GChecksum* gobject_;
@@ -194,7 +194,7 @@ public:
    * returned string is owned by the checksum and should not be modified
    * or freed.
    */
-  std::string get_string() const;
+  auto get_string() const -> std::string;
 
 
   /** Computes the checksum for a binary @a data of @a length. This is a
@@ -212,7 +212,7 @@ public:
    * string in hexadecimal, or <tt>nullptr</tt> if g_checksum_new() fails for
    *  @a checksum_type.
    */
-  static std::string compute_checksum(Type checksum_type, const guchar* data, gsize length);
+  static auto compute_checksum(Type checksum_type, const guchar* data, gsize length) -> std::string;
 
   /** Computes the checksum of a string.
    *
@@ -220,7 +220,7 @@ public:
    * @param str The string to compute the checksum of.
    * @result The checksum as a hexadecimal string.
    */
-  static std::string compute_checksum(Type checksum_type, const std::string& str);
+  static auto compute_checksum(Type checksum_type, const std::string& str) -> std::string;
 
 
   //We don't use _WRAP_METHOD because this is not really a GCheckSum function:
@@ -229,7 +229,7 @@ public:
    * @param checksum_type A Type.
    * @result The checksum length, or -1 if @a checksum_type is not supported.
    */
-  static gssize get_length(Type checksum_type);
+  static auto get_length(Type checksum_type) -> gssize;
 
 
 };
@@ -261,7 +261,7 @@ namespace Glib
  * @relates Glib::Checksum
  */
 GLIBMM_API
-Glib::Checksum wrap(GChecksum* object, bool take_copy = false);
+auto wrap(GChecksum* object, bool take_copy = false) -> Glib::Checksum;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

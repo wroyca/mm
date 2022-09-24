@@ -29,7 +29,7 @@
 
 namespace Gdk
 {
-bool Clipboard::unset_content()
+auto Clipboard::unset_content() -> bool
 {
   return gdk_clipboard_set_content(gobj(), nullptr);
 }
@@ -39,7 +39,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo Clipboard_signal_changed_info =
+const Glib::SignalProxyInfo Clipboard_signal_changed_info =
 {
   "changed",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -53,7 +53,7 @@ static const Glib::SignalProxyInfo Clipboard_signal_changed_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::Clipboard> wrap(GdkClipboard* object, bool take_copy)
+auto wrap(GdkClipboard* object, bool take_copy) -> Glib::RefPtr<Gdk::Clipboard>
 {
   return Glib::make_refptr_for_instance<Gdk::Clipboard>( dynamic_cast<Gdk::Clipboard*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -68,7 +68,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Clipboard_Class::init()
+auto Clipboard_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -99,7 +99,7 @@ void Clipboard_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Clipboard_Class::wrap_new(GObject* object)
+auto Clipboard_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Clipboard((GdkClipboard*)object);
 }
@@ -107,7 +107,7 @@ Glib::ObjectBase* Clipboard_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GdkClipboard* Clipboard::gobj_copy()
+auto Clipboard::gobj_copy() -> GdkClipboard*
 {
   reference();
   return gobj();
@@ -130,7 +130,7 @@ Clipboard::Clipboard(Clipboard&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Clipboard& Clipboard::operator=(Clipboard&& src) noexcept
+auto Clipboard::operator=(Clipboard&& src) noexcept -> Clipboard&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -143,19 +143,19 @@ Clipboard::~Clipboard() noexcept
 
 Clipboard::CppClassType Clipboard::clipboard_class_; // initialize static member
 
-GType Clipboard::get_type()
+auto Clipboard::get_type() -> GType
 {
   return clipboard_class_.init().get_type();
 }
 
 
-GType Clipboard::get_base_type()
+auto Clipboard::get_base_type() -> GType
 {
   return gdk_clipboard_get_type();
 }
 
 
-Glib::RefPtr<Display> Clipboard::get_display()
+auto Clipboard::get_display() -> Glib::RefPtr<Display>
 {
   auto retvalue = Glib::wrap(gdk_clipboard_get_display(gobj()));
   if(retvalue)
@@ -163,12 +163,12 @@ Glib::RefPtr<Display> Clipboard::get_display()
   return retvalue;
 }
 
-Glib::RefPtr<const Display> Clipboard::get_display() const
+auto Clipboard::get_display() const -> Glib::RefPtr<const Display>
 {
   return const_cast<Clipboard*>(this)->get_display();
 }
 
-Glib::RefPtr<ContentFormats> Clipboard::get_formats()
+auto Clipboard::get_formats() -> Glib::RefPtr<ContentFormats>
 {
   auto retvalue = Glib::wrap(gdk_clipboard_get_formats(gobj()));
   if(retvalue)
@@ -176,17 +176,17 @@ Glib::RefPtr<ContentFormats> Clipboard::get_formats()
   return retvalue;
 }
 
-Glib::RefPtr<const ContentFormats> Clipboard::get_formats() const
+auto Clipboard::get_formats() const -> Glib::RefPtr<const ContentFormats>
 {
   return const_cast<Clipboard*>(this)->get_formats();
 }
 
-bool Clipboard::is_local() const
+auto Clipboard::is_local() const -> bool
 {
   return gdk_clipboard_is_local(const_cast<GdkClipboard*>(gobj()));
 }
 
-Glib::RefPtr<ContentProvider> Clipboard::get_content()
+auto Clipboard::get_content() -> Glib::RefPtr<ContentProvider>
 {
   auto retvalue = Glib::wrap(gdk_clipboard_get_content(gobj()));
   if(retvalue)
@@ -194,7 +194,7 @@ Glib::RefPtr<ContentProvider> Clipboard::get_content()
   return retvalue;
 }
 
-Glib::RefPtr<const ContentProvider> Clipboard::get_content() const
+auto Clipboard::get_content() const -> Glib::RefPtr<const ContentProvider>
 {
   return const_cast<Clipboard*>(this)->get_content();
 }
@@ -215,7 +215,7 @@ void Clipboard::read_async(const std::vector<Glib::ustring>& mime_types, int io_
   gdk_clipboard_read_async(gobj(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(mime_types).data(), io_priority, nullptr, &Gio::SignalProxy_async_callback, slot_copy);
 }
 
-Glib::RefPtr<Gio::InputStream> Clipboard::read_finish(const Glib::RefPtr<Gio::AsyncResult>& result, Glib::ustring& out_mime_type)
+auto Clipboard::read_finish(const Glib::RefPtr<Gio::AsyncResult>& result, Glib::ustring& out_mime_type) -> Glib::RefPtr<Gio::InputStream>
 {
   GError* gerror = nullptr;
   const char* g_out_mime_type = nullptr;
@@ -242,7 +242,7 @@ void Clipboard::read_texture_async(const Gio::SlotAsyncReady& slot)
   gdk_clipboard_read_texture_async(gobj(), nullptr, &Gio::SignalProxy_async_callback, slot_copy);
 }
 
-Glib::RefPtr<Texture> Clipboard::read_texture_finish(const Glib::RefPtr<Gio::AsyncResult>& result)
+auto Clipboard::read_texture_finish(const Glib::RefPtr<Gio::AsyncResult>& result) -> Glib::RefPtr<Texture>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(gdk_clipboard_read_texture_finish(gobj(), Glib::unwrap(result), &(gerror)));
@@ -267,7 +267,7 @@ void Clipboard::read_text_async(const Gio::SlotAsyncReady& slot)
   gdk_clipboard_read_text_async(gobj(), nullptr, &Gio::SignalProxy_async_callback, slot_copy);
 }
 
-Glib::ustring Clipboard::read_text_finish(const Glib::RefPtr<Gio::AsyncResult>& result)
+auto Clipboard::read_text_finish(const Glib::RefPtr<Gio::AsyncResult>& result) -> Glib::ustring
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::convert_return_gchar_ptr_to_ustring(gdk_clipboard_read_text_finish(gobj(), Glib::unwrap(result), &(gerror)));
@@ -276,7 +276,7 @@ Glib::ustring Clipboard::read_text_finish(const Glib::RefPtr<Gio::AsyncResult>& 
   return retvalue;
 }
 
-bool Clipboard::set_content(const Glib::RefPtr<const ContentProvider>& provider)
+auto Clipboard::set_content(const Glib::RefPtr<const ContentProvider>& provider) -> bool
 {
   return gdk_clipboard_set_content(gobj(), const_cast<GdkContentProvider*>(Glib::unwrap(provider)));
 }
@@ -292,7 +292,7 @@ void Clipboard::set_texture(const Glib::RefPtr<const Texture>& texture)
 }
 
 
-Glib::SignalProxy<void()> Clipboard::signal_changed()
+auto Clipboard::signal_changed() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Clipboard_signal_changed_info);
 }
@@ -302,7 +302,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Display
   "Type Glib::RefPtr<Display> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> > Clipboard::property_display() const
+auto Clipboard::property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >(this, "display");
 }
@@ -311,12 +311,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Content
   "Type Glib::RefPtr<ContentFormats> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> > Clipboard::property_formats() const
+auto Clipboard::property_formats() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> >(this, "formats");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Clipboard::property_local() const
+auto Clipboard::property_local() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "local");
 }
@@ -325,7 +325,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Content
   "Type Glib::RefPtr<ContentProvider> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentProvider> > Clipboard::property_content() const
+auto Clipboard::property_content() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentProvider> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentProvider> >(this, "content");
 }

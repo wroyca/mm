@@ -95,11 +95,11 @@ class GTKMM_API ComboBox
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ComboBox(ComboBox&& src) noexcept;
-  ComboBox& operator=(ComboBox&& src) noexcept;
+  auto operator=(ComboBox&& src) noexcept -> ComboBox&;
 
   // noncopyable
   ComboBox(const ComboBox&) = delete;
-  ComboBox& operator=(const ComboBox&) = delete;
+  auto operator=(const ComboBox&) -> ComboBox& = delete;
 
   ~ComboBox() noexcept override;
 
@@ -119,19 +119,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkComboBox*       gobj()       { return reinterpret_cast<GtkComboBox*>(gobject_); }
+  auto       gobj() -> GtkComboBox*       { return reinterpret_cast<GtkComboBox*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkComboBox* gobj() const { return reinterpret_cast<GtkComboBox*>(gobject_); }
+  auto gobj() const -> const GtkComboBox* { return reinterpret_cast<GtkComboBox*>(gobject_); }
 
 private:
 
@@ -163,17 +163,17 @@ public:
    * @return An integer which is the index of the currently active item,
    * or -1 if there’s no active item.
    */
-  int get_active_row_number() const;
+  auto get_active_row_number() const -> int;
 
   /** Gets an iterator that points to the current active item, if it exists.
    * @result The iterator.
    */
-  TreeModel::iterator get_active();
+  auto get_active() -> TreeModel::iterator;
 
   /** Gets an iterator that points to the current active item, if it exists.
    * @result The iterator.
    */
-  TreeModel::const_iterator get_active() const;
+  auto get_active() const -> TreeModel::const_iterator;
 
 
   /** Sets the active item of @a combo_box to be the item at @a index.
@@ -196,7 +196,7 @@ public:
    *
    * @newin{2,24}
    */
-  Glib::ustring get_entry_text() const;
+  auto get_entry_text() const -> Glib::ustring;
 
   /** Causes no item to be active. See also set_active().
    */
@@ -208,14 +208,14 @@ public:
    * @return A `Gtk::TreeModel` which was passed
    * during construction.
    */
-  Glib::RefPtr<TreeModel> get_model();
+  auto get_model() -> Glib::RefPtr<TreeModel>;
 
   /** Returns the `Gtk::TreeModel` of @a combo_box.
    *
    * @return A `Gtk::TreeModel` which was passed
    * during construction.
    */
-  Glib::RefPtr<const TreeModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const TreeModel>;
 
   /** Sets the model used by @a combo_box to be @a model. Will unset a previously set
    * model (if applicable). Use unset_model() to unset the old model.
@@ -268,14 +268,14 @@ public:
    * if it is only sensitive as long as the model has one item to
    * be selected.
    */
-  SensitivityType get_button_sensitivity() const;
+  auto get_button_sensitivity() const -> SensitivityType;
 
 
   /** Returns whether the combo box has an entry.
    *
    * @return Whether there is an entry in @a combo_box.
    */
-  bool get_has_entry() const;
+  auto get_has_entry() const -> bool;
 
 
   /** Sets the model column which @a combo_box should use to get strings
@@ -318,7 +318,7 @@ public:
    *
    * @return A column in the data source model of @a combo_box.
    */
-  int get_entry_text_column() const;
+  auto get_entry_text_column() const -> int;
 
 
   /** Specifies whether the popup’s width should be a fixed width.
@@ -334,7 +334,7 @@ public:
    *
    * @return <tt>true</tt> if the popup uses a fixed width.
    */
-  bool get_popup_fixed_width() const;
+  auto get_popup_fixed_width() const -> bool;
 
 
   /** Pops up the menu or dropdown list of @a combo_box.
@@ -370,7 +370,7 @@ public:
    *
    * @return A column in the data source model of @a combo_box.
    */
-  int get_id_column() const;
+  auto get_id_column() const -> int;
 
   /** Sets the model column which @a combo_box should use to get string IDs
    * for values from.
@@ -398,7 +398,7 @@ public:
    *
    * @return The ID of the active row.
    */
-  Glib::ustring get_active_id() const;
+  auto get_active_id() const -> Glib::ustring;
 
 
   /** Changes the active row of the combo box to the one that has an ID equal to
@@ -412,7 +412,7 @@ public:
    *
    * @newin{3,6}
    */
-  bool set_active_id(const Glib::ustring& active_id);
+  auto set_active_id(const Glib::ustring& active_id) -> bool;
 
 
   /** Sets the child widget of @a combo_box.
@@ -426,37 +426,37 @@ public:
    *
    * @return The child widget of @a combo_box.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget of @a combo_box.
    *
    * @return The child widget of @a combo_box.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
   /** @see get_child().
    * @newin{2,24}
    */
-  Entry* get_entry();
+  auto get_entry() -> Entry*;
 
   /** @see get_child().
    * @newin{2,24}
    */
-  const Entry* get_entry() const;
+  auto get_entry() const -> const Entry*;
 
   /** The model from which the combo box takes its values.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<TreeModel> > property_model() ;
+  auto property_model() -> Glib::PropertyProxy< Glib::RefPtr<TreeModel> > ;
 
 /** The model from which the combo box takes its values.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> >;
 
   /** The item which is currently active.
    *
@@ -470,7 +470,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_active() ;
+  auto property_active() -> Glib::PropertyProxy< int > ;
 
 /** The item which is currently active.
    *
@@ -484,7 +484,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_active() const;
+  auto property_active() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The `has-frame` property controls whether a frame is drawn around the entry.
    *
@@ -493,7 +493,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_has_frame() ;
+  auto property_has_frame() -> Glib::PropertyProxy< bool > ;
 
 /** The `has-frame` property controls whether a frame is drawn around the entry.
    *
@@ -502,7 +502,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_frame() const;
+  auto property_has_frame() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the combo boxes dropdown is popped up.
    *
@@ -514,7 +514,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_popup_shown() const;
+  auto property_popup_shown() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether the dropdown button is sensitive when
@@ -525,7 +525,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< SensitivityType > property_button_sensitivity() ;
+  auto property_button_sensitivity() -> Glib::PropertyProxy< SensitivityType > ;
 
 /** Whether the dropdown button is sensitive when
    * the model is empty.
@@ -535,7 +535,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< SensitivityType > property_button_sensitivity() const;
+  auto property_button_sensitivity() const -> Glib::PropertyProxy_ReadOnly< SensitivityType >;
 
   /** Whether the popup's width should be a fixed width matching the
    * allocated width of the combo box.
@@ -545,7 +545,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_popup_fixed_width() ;
+  auto property_popup_fixed_width() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the popup's width should be a fixed width matching the
    * allocated width of the combo box.
@@ -555,7 +555,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_popup_fixed_width() const;
+  auto property_popup_fixed_width() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the combo box has an entry.
    *
@@ -564,7 +564,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_entry() const;
+  auto property_has_entry() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** The model column to associate with strings from the entry.
@@ -577,7 +577,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_entry_text_column() ;
+  auto property_entry_text_column() -> Glib::PropertyProxy< int > ;
 
 /** The model column to associate with strings from the entry.
    *
@@ -589,7 +589,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_entry_text_column() const;
+  auto property_entry_text_column() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The model column that provides string IDs for the values
    * in the model, if != -1.
@@ -599,7 +599,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_id_column() ;
+  auto property_id_column() -> Glib::PropertyProxy< int > ;
 
 /** The model column that provides string IDs for the values
    * in the model, if != -1.
@@ -609,7 +609,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_id_column() const;
+  auto property_id_column() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The value of the ID column of the active row.
    *
@@ -618,7 +618,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_active_id() ;
+  auto property_active_id() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The value of the ID column of the active row.
    *
@@ -627,21 +627,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_active_id() const;
+  auto property_active_id() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The child widget.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The child widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
   /**
@@ -657,7 +657,7 @@ public:
    * also be emitted while typing into the entry of a combo box with an entry.
    */
 
-  Glib::SignalProxy<void()> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -686,7 +686,7 @@ public:
    * for the current `Gtk::ComboBox` model.
    */
 
-  Glib::SignalProxy<Glib::ustring(const TreeModel::Path&)> signal_format_entry_text();
+  auto signal_format_entry_text() -> Glib::SignalProxy<Glib::ustring(const TreeModel::Path&)>;
 
 
   //Action signal:
@@ -706,7 +706,7 @@ protected:
   /// This is a default handler for the signal signal_changed().
   virtual void on_changed();
   /// This is a default handler for the signal signal_format_entry_text().
-  virtual Glib::ustring on_format_entry_text(const TreeModel::Path& path);
+  virtual auto on_format_entry_text(const TreeModel::Path& path) -> Glib::ustring;
 
 
 };
@@ -725,7 +725,7 @@ namespace Glib
    * @relates Gtk::ComboBox
    */
   GTKMM_API
-  Gtk::ComboBox* wrap(GtkComboBox* object, bool take_copy = false);
+  auto wrap(GtkComboBox* object, bool take_copy = false) -> Gtk::ComboBox*;
 } //namespace Glib
 
 

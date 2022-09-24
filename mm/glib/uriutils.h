@@ -48,7 +48,7 @@ namespace Glib
  * @newin{2,16}
  */
 GLIBMM_API
-std::string uri_unescape_string(const std::string& escaped_string, const std::string& illegal_characters = {});
+auto uri_unescape_string(const std::string& escaped_string, const std::string& illegal_characters = {}) -> std::string;
 
 //TODO: Use iterator?
 //char *   g_uri_unescape_segment      (const char *escaped_string,
@@ -68,7 +68,7 @@ std::string uri_unescape_string(const std::string& escaped_string, const std::st
  * @newin{2,16}
  */
 GLIBMM_API
-std::string uri_parse_scheme(const std::string& uri);
+auto uri_parse_scheme(const std::string& uri) -> std::string;
 
 /** Escapes a string for use in a URI.
  *
@@ -88,7 +88,7 @@ std::string uri_parse_scheme(const std::string& uri);
  * @newin{2,16}
  */
 GLIBMM_API
-std::string uri_escape_string(const std::string& unescaped, const std::string& reserved_chars_allowed = {}, bool allow_utf8 = true);
+auto uri_escape_string(const std::string& unescaped, const std::string& reserved_chars_allowed = {}, bool allow_utf8 = true) -> std::string;
 
 } // namespace Glib
 

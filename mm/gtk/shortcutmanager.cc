@@ -34,7 +34,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::ShortcutManager> wrap(GtkShortcutManager* object, bool take_copy)
+auto wrap(GtkShortcutManager* object, bool take_copy) -> Glib::RefPtr<Gtk::ShortcutManager>
 {
   return Glib::make_refptr_for_instance<Gtk::ShortcutManager>( dynamic_cast<Gtk::ShortcutManager*> (Glib::wrap_auto_interface<Gtk::ShortcutManager> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -49,7 +49,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& ShortcutManager_Class::init()
+auto ShortcutManager_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -155,7 +155,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* ShortcutManager_Class::wrap_new(GObject* object)
+auto ShortcutManager_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ShortcutManager((GtkShortcutManager*)(object));
 }
@@ -182,7 +182,7 @@ ShortcutManager::ShortcutManager(ShortcutManager&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-ShortcutManager& ShortcutManager::operator=(ShortcutManager&& src) noexcept
+auto ShortcutManager::operator=(ShortcutManager&& src) noexcept -> ShortcutManager&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -199,13 +199,13 @@ void ShortcutManager::add_interface(GType gtype_implementer)
 
 ShortcutManager::CppClassType ShortcutManager::shortcutmanager_class_; // initialize static member
 
-GType ShortcutManager::get_type()
+auto ShortcutManager::get_type() -> GType
 {
   return shortcutmanager_class_.init().get_type();
 }
 
 
-GType ShortcutManager::get_base_type()
+auto ShortcutManager::get_base_type() -> GType
 {
   return gtk_shortcut_manager_get_type();
 }

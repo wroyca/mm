@@ -59,7 +59,7 @@ public:
   explicit FontFace(cairo_font_face_t* cobject, bool has_reference = false);
 
   FontFace(const FontFace&) = delete;
-  FontFace& operator=(const FontFace&) = delete;
+  auto operator=(const FontFace&) -> FontFace& = delete;
 
   virtual ~FontFace();
 
@@ -72,15 +72,15 @@ public:
   /**
    * Returns the type of the backend used to create a font face
    */
-  FontType get_type() const;
+  auto get_type() const -> FontType;
 
   typedef cairo_font_face_t cobject;
-  inline cobject* cobj() { return m_cobject; }
-  inline const cobject* cobj() const { return m_cobject; }
+  inline auto cobj() -> cobject* { return m_cobject; }
+  inline auto cobj() const -> const cobject* { return m_cobject; }
 
   #ifndef DOXYGEN_IGNORE_THIS
   ///For use only by the cairomm implementation.
-  inline ErrorStatus get_status() const
+  inline auto get_status() const -> ErrorStatus
   { return cairo_font_face_status(const_cast<cairo_font_face_t*>(cobj())); }
   #endif //DOXYGEN_IGNORE_THIS
 
@@ -157,22 +157,22 @@ public:
    * @param slant the slant for the font.
    * @param weight the weight for the font.
    */
-  static RefPtr<ToyFontFace> create(const std::string& family, Slant slant, Weight weight);
+  static auto create(const std::string& family, Slant slant, Weight weight) -> RefPtr<ToyFontFace>;
 
   /**
    * Gets the familly name of a toy font.
    */
-  std::string get_family() const;
+  auto get_family() const -> std::string;
 
   /**
    * Gets the slant a toy font.
    */
-  Slant get_slant() const;
+  auto get_slant() const -> Slant;
 
   /**
    * Gets the weight a toy font.
    */
-  Weight get_weight() const;
+  auto get_weight() const -> Weight;
 
 protected:
   ToyFontFace(const std::string& family, Slant slant, Weight weight);
@@ -282,9 +282,9 @@ protected:
    *
    * @since 1.8
    */
-  virtual ErrorStatus init(const RefPtr<ScaledFont>& scaled_font,
+  virtual auto init(const RefPtr<ScaledFont>& scaled_font,
                            const RefPtr<Context>& cr,
-                           FontExtents& extents);
+                           FontExtents& extents) -> ErrorStatus;
 
   /** This function is called to convert an input Unicode character to a single
    * glyph.  This is used by the Context::show_text() operation.
@@ -314,9 +314,9 @@ protected:
    * @return CAIRO_STATUS_SUCCESS upon success, or CAIRO_STATUS_USER_FONT_ERROR or any other error status on error.
    * @since 1.8
    */
-  virtual ErrorStatus unicode_to_glyph(const RefPtr<ScaledFont>& scaled_font,
+  virtual auto unicode_to_glyph(const RefPtr<ScaledFont>& scaled_font,
                                        unsigned long unicode,
-                                       unsigned long& glyph);
+                                       unsigned long& glyph) -> ErrorStatus;
 
 
   /** This function is called when a user scaled-font needs to render a
@@ -356,10 +356,10 @@ protected:
    *
    * @since 1.8
    */
-  virtual ErrorStatus render_glyph(const RefPtr<ScaledFont>& scaled_font,
+  virtual auto render_glyph(const RefPtr<ScaledFont>& scaled_font,
                                    unsigned long glyph,
                                    const RefPtr<Context>& cr,
-                                   TextExtents& metrics) = 0;
+                                   TextExtents& metrics) -> ErrorStatus = 0;
 
 
   /** This function is called to convert input text to an array of glyphs. This
@@ -392,34 +392,34 @@ protected:
    * @return CAIRO_STATUS_SUCCESS upon success, or CAIRO_STATUS_USER_FONT_ERROR or any other error status on error.
    * @since 1.8
    */
-  virtual ErrorStatus text_to_glyphs(const RefPtr<ScaledFont>& scaled_font,
+  virtual auto text_to_glyphs(const RefPtr<ScaledFont>& scaled_font,
                                      const std::string& utf8,
                                      std::vector<Glyph>& glyphs,
                                      std::vector<TextCluster>& clusters,
-                                     TextClusterFlags& cluster_flags);
+                                     TextClusterFlags& cluster_flags) -> ErrorStatus;
 
 
 
   UserFontFace();
 
 private:
-  static cairo_status_t
+  static auto
   init_cb(cairo_scaled_font_t* scaled_font,
           cairo_t *cr,
-          cairo_font_extents_t* metrics);
+          cairo_font_extents_t* metrics) -> cairo_status_t;
 
-  static cairo_status_t
+  static auto
   unicode_to_glyph_cb(cairo_scaled_font_t *scaled_font,
                       unsigned long        unicode,
-                      unsigned long       *glyph);
+                      unsigned long       *glyph) -> cairo_status_t;
 
-  static cairo_status_t
+  static auto
   render_glyph_cb(cairo_scaled_font_t  *scaled_font,
                   unsigned long         glyph,
                   cairo_t              *cr,
-                  cairo_text_extents_t *metrics);
+                  cairo_text_extents_t *metrics) -> cairo_status_t;
 
-  static cairo_status_t
+  static auto
   text_to_glyphs_cb (cairo_scaled_font_t *scaled_font,
                      const char *utf8,
                      int utf8_len,
@@ -427,7 +427,7 @@ private:
                      int *num_glyphs,
                      cairo_text_cluster_t **clusters,
                      int *num_clusters,
-                     cairo_text_cluster_flags_t *cluster_flags);
+                     cairo_text_cluster_flags_t *cluster_flags) -> cairo_status_t;
 };
 
 
@@ -470,7 +470,7 @@ public:
    *
    * @since 1.8
    */
-  static RefPtr<FtFontFace> create(FT_Face face, int load_flags);
+  static auto create(FT_Face face, int load_flags) -> RefPtr<FtFontFace>;
   //TODO: Add a suitable default value for load_flags?
 
 #ifdef CAIRO_HAS_FC_FONT
@@ -502,7 +502,7 @@ public:
    *
    * @since 1.8
    */
-  static RefPtr<FtFontFace> create(FcPattern* pattern);
+  static auto create(FcPattern* pattern) -> RefPtr<FtFontFace>;
 #endif // CAIRO_HAS_FC_FONT
 
   /** Sets synthesis options to control how FreeType renders the glyphs for a
@@ -525,7 +525,7 @@ public:
    *
    * @since 1.12
    */
-  FtSynthesize get_synthesize() const;
+  auto get_synthesize() const -> FtSynthesize;
 
 protected:
   FtFontFace(FT_Face face, int load_flags);

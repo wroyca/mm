@@ -29,7 +29,7 @@
 namespace Gtk
 {
 
-Glib::PropertyProxy_Base CellRendererPixbuf::_property_renderable()
+auto CellRendererPixbuf::_property_renderable() -> Glib::PropertyProxy_Base
 {
   return property_pixbuf();
 }
@@ -44,7 +44,7 @@ namespace
 namespace Glib
 {
 
-Gtk::CellRendererPixbuf* wrap(GtkCellRendererPixbuf* object, bool take_copy)
+auto wrap(GtkCellRendererPixbuf* object, bool take_copy) -> Gtk::CellRendererPixbuf*
 {
   return dynamic_cast<Gtk::CellRendererPixbuf *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -57,7 +57,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& CellRendererPixbuf_Class::init()
+auto CellRendererPixbuf_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -88,7 +88,7 @@ void CellRendererPixbuf_Class::class_init_function(void* g_class, void* class_da
 }
 
 
-Glib::ObjectBase* CellRendererPixbuf_Class::wrap_new(GObject* o)
+auto CellRendererPixbuf_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new CellRendererPixbuf((GtkCellRendererPixbuf*)(o)));
 
@@ -114,7 +114,7 @@ CellRendererPixbuf::CellRendererPixbuf(CellRendererPixbuf&& src) noexcept
 : Gtk::CellRenderer(std::move(src))
 {}
 
-CellRendererPixbuf& CellRendererPixbuf::operator=(CellRendererPixbuf&& src) noexcept
+auto CellRendererPixbuf::operator=(CellRendererPixbuf&& src) noexcept -> CellRendererPixbuf&
 {
   Gtk::CellRenderer::operator=(std::move(src));
   return *this;
@@ -127,13 +127,13 @@ CellRendererPixbuf::~CellRendererPixbuf() noexcept
 
 CellRendererPixbuf::CppClassType CellRendererPixbuf::cellrendererpixbuf_class_; // initialize static member
 
-GType CellRendererPixbuf::get_type()
+auto CellRendererPixbuf::get_type() -> GType
 {
   return cellrendererpixbuf_class_.init().get_type();
 }
 
 
-GType CellRendererPixbuf::get_base_type()
+auto CellRendererPixbuf::get_base_type() -> GType
 {
   return gtk_cell_renderer_pixbuf_get_type();
 }
@@ -154,7 +154,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Pi
   "Type Glib::RefPtr<Gdk::Pixbuf> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_WriteOnly< Glib::RefPtr<Gdk::Pixbuf> > CellRendererPixbuf::property_pixbuf()
+auto CellRendererPixbuf::property_pixbuf() -> Glib::PropertyProxy_WriteOnly< Glib::RefPtr<Gdk::Pixbuf> >
 {
   return Glib::PropertyProxy_WriteOnly< Glib::RefPtr<Gdk::Pixbuf> >(this, "pixbuf");
 }
@@ -163,12 +163,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Pi
   "Type Glib::RefPtr<Gdk::Pixbuf> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gdk::Pixbuf> > CellRendererPixbuf::property_pixbuf_expander_open()
+auto CellRendererPixbuf::property_pixbuf_expander_open() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Pixbuf> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gdk::Pixbuf> >(this, "pixbuf-expander-open");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Pixbuf> > CellRendererPixbuf::property_pixbuf_expander_open() const
+auto CellRendererPixbuf::property_pixbuf_expander_open() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Pixbuf> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Pixbuf> >(this, "pixbuf-expander-open");
 }
@@ -177,12 +177,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Pi
   "Type Glib::RefPtr<Gdk::Pixbuf> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gdk::Pixbuf> > CellRendererPixbuf::property_pixbuf_expander_closed()
+auto CellRendererPixbuf::property_pixbuf_expander_closed() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Pixbuf> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gdk::Pixbuf> >(this, "pixbuf-expander-closed");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Pixbuf> > CellRendererPixbuf::property_pixbuf_expander_closed() const
+auto CellRendererPixbuf::property_pixbuf_expander_closed() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Pixbuf> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Pixbuf> >(this, "pixbuf-expander-closed");
 }
@@ -191,22 +191,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gtk::IconSize>::valu
   "Type Gtk::IconSize cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Gtk::IconSize > CellRendererPixbuf::property_icon_size()
+auto CellRendererPixbuf::property_icon_size() -> Glib::PropertyProxy< Gtk::IconSize >
 {
   return Glib::PropertyProxy< Gtk::IconSize >(this, "icon-size");
 }
 
-Glib::PropertyProxy_ReadOnly< Gtk::IconSize > CellRendererPixbuf::property_icon_size() const
+auto CellRendererPixbuf::property_icon_size() const -> Glib::PropertyProxy_ReadOnly< Gtk::IconSize >
 {
   return Glib::PropertyProxy_ReadOnly< Gtk::IconSize >(this, "icon-size");
 }
 
-Glib::PropertyProxy< Glib::ustring > CellRendererPixbuf::property_icon_name()
+auto CellRendererPixbuf::property_icon_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "icon-name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > CellRendererPixbuf::property_icon_name() const
+auto CellRendererPixbuf::property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "icon-name");
 }
@@ -215,12 +215,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Ic
   "Type Glib::RefPtr<Gio::Icon> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> > CellRendererPixbuf::property_gicon()
+auto CellRendererPixbuf::property_gicon() -> Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> >(this, "gicon");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> > CellRendererPixbuf::property_gicon() const
+auto CellRendererPixbuf::property_gicon() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> >(this, "gicon");
 }
@@ -229,12 +229,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Te
   "Type Glib::RefPtr<Gdk::Texture> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gdk::Texture> > CellRendererPixbuf::property_texture()
+auto CellRendererPixbuf::property_texture() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Texture> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gdk::Texture> >(this, "texture");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Texture> > CellRendererPixbuf::property_texture() const
+auto CellRendererPixbuf::property_texture() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Texture> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Texture> >(this, "texture");
 }

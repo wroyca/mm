@@ -34,7 +34,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::BoxLayout> wrap(GtkBoxLayout* object, bool take_copy)
+auto wrap(GtkBoxLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::BoxLayout>
 {
   return Glib::make_refptr_for_instance<Gtk::BoxLayout>( dynamic_cast<Gtk::BoxLayout*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -49,7 +49,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& BoxLayout_Class::init()
+auto BoxLayout_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -74,7 +74,7 @@ void BoxLayout_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* BoxLayout_Class::wrap_new(GObject* object)
+auto BoxLayout_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new BoxLayout((GtkBoxLayout*)object);
 }
@@ -82,7 +82,7 @@ Glib::ObjectBase* BoxLayout_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkBoxLayout* BoxLayout::gobj_copy()
+auto BoxLayout::gobj_copy() -> GtkBoxLayout*
 {
   reference();
   return gobj();
@@ -106,7 +106,7 @@ BoxLayout::BoxLayout(BoxLayout&& src) noexcept
   , Orientable(std::move(src))
 {}
 
-BoxLayout& BoxLayout::operator=(BoxLayout&& src) noexcept
+auto BoxLayout::operator=(BoxLayout&& src) noexcept -> BoxLayout&
 {
   LayoutManager::operator=(std::move(src));
   Orientable::operator=(std::move(src));
@@ -120,13 +120,13 @@ BoxLayout::~BoxLayout() noexcept
 
 BoxLayout::CppClassType BoxLayout::boxlayout_class_; // initialize static member
 
-GType BoxLayout::get_type()
+auto BoxLayout::get_type() -> GType
 {
   return boxlayout_class_.init().get_type();
 }
 
 
-GType BoxLayout::get_base_type()
+auto BoxLayout::get_base_type() -> GType
 {
   return gtk_box_layout_get_type();
 }
@@ -142,7 +142,7 @@ BoxLayout::BoxLayout(Orientation orientation)
 
 }
 
-Glib::RefPtr<BoxLayout> BoxLayout::create(Orientation orientation)
+auto BoxLayout::create(Orientation orientation) -> Glib::RefPtr<BoxLayout>
 {
   return Glib::make_refptr_for_instance<BoxLayout>( new BoxLayout(orientation) );
 }
@@ -152,7 +152,7 @@ void BoxLayout::set_homogeneous(bool homogeneous)
   gtk_box_layout_set_homogeneous(gobj(), static_cast<int>(homogeneous));
 }
 
-bool BoxLayout::get_homogeneous() const
+auto BoxLayout::get_homogeneous() const -> bool
 {
   return gtk_box_layout_get_homogeneous(const_cast<GtkBoxLayout*>(gobj()));
 }
@@ -162,7 +162,7 @@ void BoxLayout::set_spacing(guint spacing)
   gtk_box_layout_set_spacing(gobj(), spacing);
 }
 
-guint BoxLayout::get_spacing() const
+auto BoxLayout::get_spacing() const -> guint
 {
   return gtk_box_layout_get_spacing(const_cast<GtkBoxLayout*>(gobj()));
 }
@@ -172,28 +172,28 @@ void BoxLayout::set_baseline_position(BaselinePosition position)
   gtk_box_layout_set_baseline_position(gobj(), static_cast<GtkBaselinePosition>(position));
 }
 
-BaselinePosition BoxLayout::get_baseline_position() const
+auto BoxLayout::get_baseline_position() const -> BaselinePosition
 {
   return static_cast<BaselinePosition>(gtk_box_layout_get_baseline_position(const_cast<GtkBoxLayout*>(gobj())));
 }
 
 
-Glib::PropertyProxy< bool > BoxLayout::property_homogeneous()
+auto BoxLayout::property_homogeneous() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "homogeneous");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > BoxLayout::property_homogeneous() const
+auto BoxLayout::property_homogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "homogeneous");
 }
 
-Glib::PropertyProxy< int > BoxLayout::property_spacing()
+auto BoxLayout::property_spacing() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "spacing");
 }
 
-Glib::PropertyProxy_ReadOnly< int > BoxLayout::property_spacing() const
+auto BoxLayout::property_spacing() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "spacing");
 }
@@ -202,12 +202,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<BaselinePosition>::v
   "Type BaselinePosition cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< BaselinePosition > BoxLayout::property_baseline_position()
+auto BoxLayout::property_baseline_position() -> Glib::PropertyProxy< BaselinePosition >
 {
   return Glib::PropertyProxy< BaselinePosition >(this, "baseline-position");
 }
 
-Glib::PropertyProxy_ReadOnly< BaselinePosition > BoxLayout::property_baseline_position() const
+auto BoxLayout::property_baseline_position() const -> Glib::PropertyProxy_ReadOnly< BaselinePosition >
 {
   return Glib::PropertyProxy_ReadOnly< BaselinePosition >(this, "baseline-position");
 }

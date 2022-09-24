@@ -40,7 +40,7 @@ namespace
 namespace Glib
 {
 
-Gtk::Grid* wrap(GtkGrid* object, bool take_copy)
+auto wrap(GtkGrid* object, bool take_copy) -> Gtk::Grid*
 {
   return dynamic_cast<Gtk::Grid *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -53,7 +53,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Grid_Class::init()
+auto Grid_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -85,7 +85,7 @@ void Grid_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Grid_Class::wrap_new(GObject* o)
+auto Grid_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Grid((GtkGrid*)(o)));
 
@@ -112,7 +112,7 @@ Grid::Grid(Grid&& src) noexcept
   , Orientable(std::move(src))
 {}
 
-Grid& Grid::operator=(Grid&& src) noexcept
+auto Grid::operator=(Grid&& src) noexcept -> Grid&
 {
   Gtk::Widget::operator=(std::move(src));
   Orientable::operator=(std::move(src));
@@ -126,13 +126,13 @@ Grid::~Grid() noexcept
 
 Grid::CppClassType Grid::grid_class_; // initialize static member
 
-GType Grid::get_type()
+auto Grid::get_type() -> GType
 {
   return grid_class_.init().get_type();
 }
 
 
-GType Grid::get_base_type()
+auto Grid::get_base_type() -> GType
 {
   return gtk_grid_get_type();
 }
@@ -163,12 +163,12 @@ void Grid::attach_next_to(Widget& child, PositionType side, int width, int heigh
   gtk_grid_attach_next_to(gobj(), (child).gobj(), nullptr, static_cast<GtkPositionType>(side), width, height);
 }
 
-Widget* Grid::get_child_at(int column, int row)
+auto Grid::get_child_at(int column, int row) -> Widget*
 {
   return Glib::wrap(gtk_grid_get_child_at(gobj(), column, row));
 }
 
-const Widget* Grid::get_child_at(int column, int row) const
+auto Grid::get_child_at(int column, int row) const -> const Widget*
 {
   return Glib::wrap(gtk_grid_get_child_at(const_cast<GtkGrid*>(gobj()), column, row));
 }
@@ -208,7 +208,7 @@ void Grid::set_row_homogeneous(bool homogeneous)
   gtk_grid_set_row_homogeneous(gobj(), static_cast<int>(homogeneous));
 }
 
-bool Grid::get_row_homogeneous() const
+auto Grid::get_row_homogeneous() const -> bool
 {
   return gtk_grid_get_row_homogeneous(const_cast<GtkGrid*>(gobj()));
 }
@@ -218,7 +218,7 @@ void Grid::set_row_spacing(guint spacing)
   gtk_grid_set_row_spacing(gobj(), spacing);
 }
 
-guint Grid::get_row_spacing() const
+auto Grid::get_row_spacing() const -> guint
 {
   return gtk_grid_get_row_spacing(const_cast<GtkGrid*>(gobj()));
 }
@@ -228,7 +228,7 @@ void Grid::set_column_homogeneous(bool homogeneous)
   gtk_grid_set_column_homogeneous(gobj(), static_cast<int>(homogeneous));
 }
 
-bool Grid::get_column_homogeneous() const
+auto Grid::get_column_homogeneous() const -> bool
 {
   return gtk_grid_get_column_homogeneous(const_cast<GtkGrid*>(gobj()));
 }
@@ -238,7 +238,7 @@ void Grid::set_column_spacing(guint spacing)
   gtk_grid_set_column_spacing(gobj(), spacing);
 }
 
-guint Grid::get_column_spacing() const
+auto Grid::get_column_spacing() const -> guint
 {
   return gtk_grid_get_column_spacing(const_cast<GtkGrid*>(gobj()));
 }
@@ -248,7 +248,7 @@ void Grid::set_row_baseline_position(int row, BaselinePosition pos)
   gtk_grid_set_row_baseline_position(gobj(), row, static_cast<GtkBaselinePosition>(pos));
 }
 
-BaselinePosition Grid::get_row_baseline_position(int row) const
+auto Grid::get_row_baseline_position(int row) const -> BaselinePosition
 {
   return static_cast<BaselinePosition>(gtk_grid_get_row_baseline_position(const_cast<GtkGrid*>(gobj()), row));
 }
@@ -258,7 +258,7 @@ void Grid::set_baseline_row(int row)
   gtk_grid_set_baseline_row(gobj(), row);
 }
 
-int Grid::get_baseline_row() const
+auto Grid::get_baseline_row() const -> int
 {
   return gtk_grid_get_baseline_row(const_cast<GtkGrid*>(gobj()));
 }
@@ -269,52 +269,52 @@ void Grid::query_child(const Widget& child, int& column, int& row, int& width, i
 }
 
 
-Glib::PropertyProxy< guint > Grid::property_row_spacing()
+auto Grid::property_row_spacing() -> Glib::PropertyProxy< guint >
 {
   return Glib::PropertyProxy< guint >(this, "row-spacing");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > Grid::property_row_spacing() const
+auto Grid::property_row_spacing() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "row-spacing");
 }
 
-Glib::PropertyProxy< guint > Grid::property_column_spacing()
+auto Grid::property_column_spacing() -> Glib::PropertyProxy< guint >
 {
   return Glib::PropertyProxy< guint >(this, "column-spacing");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > Grid::property_column_spacing() const
+auto Grid::property_column_spacing() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "column-spacing");
 }
 
-Glib::PropertyProxy< bool > Grid::property_row_homogeneous()
+auto Grid::property_row_homogeneous() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "row-homogeneous");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Grid::property_row_homogeneous() const
+auto Grid::property_row_homogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "row-homogeneous");
 }
 
-Glib::PropertyProxy< bool > Grid::property_column_homogeneous()
+auto Grid::property_column_homogeneous() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "column-homogeneous");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Grid::property_column_homogeneous() const
+auto Grid::property_column_homogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "column-homogeneous");
 }
 
-Glib::PropertyProxy< int > Grid::property_baseline_row()
+auto Grid::property_baseline_row() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "baseline-row");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Grid::property_baseline_row() const
+auto Grid::property_baseline_row() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "baseline-row");
 }

@@ -64,29 +64,29 @@ class GTKMM_API TreePath
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   TreePath();
 
 
   TreePath(const TreePath& other);
-  TreePath& operator=(const TreePath& other);
+  auto operator=(const TreePath& other) -> TreePath&;
 
   TreePath(TreePath&& other) noexcept;
-  TreePath& operator=(TreePath&& other) noexcept;
+  auto operator=(TreePath&& other) noexcept -> TreePath&;
 
   ~TreePath() noexcept;
 
   void swap(TreePath& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  GtkTreePath*       gobj()       { return gobject_; }
+  auto       gobj() -> GtkTreePath*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const GtkTreePath* gobj() const { return gobject_; }
+  auto gobj() const -> const GtkTreePath* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  GtkTreePath* gobj_copy() const;
+  auto gobj_copy() const -> GtkTreePath*;
 
 protected:
   GtkTreePath* gobject_;
@@ -132,7 +132,7 @@ public:
   void clear();
 
   // I think it's OK for this assignment to be implicit.  It's very useful.
-  TreePath& operator=(const TreeModel::iterator& iter);
+  auto operator=(const TreeModel::iterator& iter) -> TreePath&;
 
   /** Checks that the path is not empty, by calling empty().
    * For instance,
@@ -165,29 +165,29 @@ public:
    */
   void push_front(int index);
 
-  size_type size() const;
-  bool empty() const;
+  auto size() const -> size_type;
+  auto empty() const -> bool;
 
-  reference       operator[](size_type i);
-  const_reference operator[](size_type i) const;
+  auto       operator[](size_type i) -> reference;
+  auto operator[](size_type i) const -> const_reference;
 
 
-  iterator begin();
-  iterator end();
-  const_iterator begin() const;
-  const_iterator end()   const;
+  auto begin() -> iterator;
+  auto end() -> iterator;
+  auto begin() const -> const_iterator;
+  auto end()   const -> const_iterator;
 
   // Note: there is no advantage in not inlining these methods.
   // We can't change them without breaking ABI anyway.
-  reverse_iterator       rbegin()       { return reverse_iterator(end());         }
-  reverse_iterator       rend()         { return reverse_iterator(begin());       }
-  const_reverse_iterator rbegin() const { return const_reverse_iterator(end());   }
-  const_reverse_iterator rend()   const { return const_reverse_iterator(begin()); }
+  auto       rbegin() -> reverse_iterator       { return reverse_iterator(end());         }
+  auto       rend() -> reverse_iterator         { return reverse_iterator(begin());       }
+  auto rbegin() const -> const_reverse_iterator { return const_reverse_iterator(end());   }
+  auto rend()   const -> const_reverse_iterator { return const_reverse_iterator(begin()); }
 
-  reference       front()       { return *begin();  }
-  const_reference front() const { return *begin();  }
-  reference       back()        { return *rbegin(); }
-  const_reference back()  const { return *rbegin(); }
+  auto       front() -> reference       { return *begin();  }
+  auto front() const -> const_reference { return *begin();  }
+  auto       back() -> reference        { return *rbegin(); }
+  auto back()  const -> const_reference { return *rbegin(); }
 
 
   /** Moves the @a path to point to the next node at the current depth.
@@ -200,13 +200,13 @@ public:
    * @return <tt>true</tt> if @a path has a previous node, and
    * the move was made.
    */
-  bool prev();
+  auto prev() -> bool;
 
   /** Moves the @a path to point to its parent node, if it has a parent.
    *
    * @return <tt>true</tt> if @a path has a parent, and the move was made.
    */
-  bool up();
+  auto up() -> bool;
 
   /** Moves @a path to point to the first child of the current path.
    */
@@ -218,14 +218,14 @@ public:
    * @param descendant Another `Gtk::TreePath`.
    * @return <tt>true</tt> if @a descendant is contained inside @a path.
    */
-  bool is_ancestor(const TreePath& descendant) const;
+  auto is_ancestor(const TreePath& descendant) const -> bool;
 
   /** Returns <tt>true</tt> if @a path is a descendant of @a ancestor.
    *
    * @param ancestor Another `Gtk::TreePath`.
    * @return <tt>true</tt> if @a ancestor contains @a path somewhere below it.
    */
-  bool is_descendant(const TreePath& ancestor) const;
+  auto is_descendant(const TreePath& ancestor) const -> bool;
 
 
   /** Generates a string representation of the path.
@@ -237,7 +237,7 @@ public:
    *
    * @return The string.
    */
-  Glib::ustring to_string() const;
+  auto to_string() const -> Glib::ustring;
 
 
    //replaced by push_back()
@@ -254,17 +254,17 @@ public:
    * @return <tt>true</tt> if the @a value had target type GTK_TYPE_TREE_ROW_DATA
    *         and is otherwise valid.
    */
-  static bool get_row_drag_data(const Glib::ValueBase& value, Glib::RefPtr<const TreeModel>& model, TreePath& path);
+  static auto get_row_drag_data(const Glib::ValueBase& value, Glib::RefPtr<const TreeModel>& model, TreePath& path) -> bool;
 
   /// See description in the other overload.
-  static bool get_row_drag_data(const Glib::ValueBase& value, TreePath& path);
+  static auto get_row_drag_data(const Glib::ValueBase& value, TreePath& path) -> bool;
 
   /** Creates a content provider for dragging the path from @a model.
    *
    * @param model A Gtk::TreeModel.
    * @return A Gdk::ContentProvider.
    */
-  Glib::RefPtr<Gdk::ContentProvider> create_row_drag_content(const Glib::RefPtr<const TreeModel>& model) const;
+  auto create_row_drag_content(const Glib::RefPtr<const TreeModel>& model) const -> Glib::RefPtr<Gdk::ContentProvider>;
 
 
 };
@@ -298,13 +298,13 @@ struct TreePathTraits
   typedef const GtkTreePath*  CType;
   typedef GtkTreePath*        CTypeNonConst;
 
-  static CType to_c_type(const CppType& item)
+  static auto to_c_type(const CppType& item) -> CType
     { return item.gobj(); }
 
-  static CType to_c_type(CType item)
+  static auto to_c_type(CType item) -> CType
     { return item; }
 
-  static CppType to_cpp_type(CType item)
+  static auto to_cpp_type(CType item) -> CppType
     { return CppType(const_cast<CTypeNonConst>(item)); }
 
   static void release_c_type(CType item)
@@ -325,7 +325,7 @@ namespace Gtk
  * @result The result
  */
 GTKMM_API
-bool operator==(const TreePath& lhs, const TreePath& rhs);
+auto operator==(const TreePath& lhs, const TreePath& rhs) -> bool;
 
 /** @relates Gtk::TreePath
  * @param lhs The left-hand side
@@ -333,7 +333,7 @@ bool operator==(const TreePath& lhs, const TreePath& rhs);
  * @result The result
  */
 GTKMM_API
-bool operator!=(const TreePath& lhs, const TreePath& rhs);
+auto operator!=(const TreePath& lhs, const TreePath& rhs) -> bool;
 
 /** @relates Gtk::TreePath
  * @param lhs The left-hand side
@@ -341,7 +341,7 @@ bool operator!=(const TreePath& lhs, const TreePath& rhs);
  * @result The result
  */
 GTKMM_API
-bool operator<(const TreePath& lhs, const TreePath& rhs);
+auto operator<(const TreePath& lhs, const TreePath& rhs) -> bool;
 
 /** @relates Gtk::TreePath
  * @param lhs The left-hand side
@@ -349,7 +349,7 @@ bool operator<(const TreePath& lhs, const TreePath& rhs);
  * @result The result
  */
 GTKMM_API
-bool operator>(const TreePath& lhs, const TreePath& rhs);
+auto operator>(const TreePath& lhs, const TreePath& rhs) -> bool;
 
 /** @relates Gtk::TreePath
  * @param lhs The left-hand side
@@ -357,7 +357,7 @@ bool operator>(const TreePath& lhs, const TreePath& rhs);
  * @result The result
  */
 GTKMM_API
-bool operator<=(const TreePath& lhs, const TreePath& rhs);
+auto operator<=(const TreePath& lhs, const TreePath& rhs) -> bool;
 
 /** @relates Gtk::TreePath
  * @param lhs The left-hand side
@@ -365,7 +365,7 @@ bool operator<=(const TreePath& lhs, const TreePath& rhs);
  * @result The result
  */
 GTKMM_API
-bool operator>=(const TreePath& lhs, const TreePath& rhs);
+auto operator>=(const TreePath& lhs, const TreePath& rhs) -> bool;
 
 
 } // namespace Gtk
@@ -395,7 +395,7 @@ namespace Glib
  * @relates Gtk::TreePath
  */
 GTKMM_API
-Gtk::TreePath wrap(GtkTreePath* object, bool take_copy = false);
+auto wrap(GtkTreePath* object, bool take_copy = false) -> Gtk::TreePath;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

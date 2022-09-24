@@ -66,7 +66,7 @@ public:
 
   // noncopyable
   UnixConnection(const UnixConnection&) = delete;
-  UnixConnection& operator=(const UnixConnection&) = delete;
+  auto operator=(const UnixConnection&) -> UnixConnection& = delete;
 
 private:  friend class UnixConnection_Class;
   static CppClassType unixconnection_class_;
@@ -80,28 +80,28 @@ protected:
 public:
 
   UnixConnection(UnixConnection&& src) noexcept;
-  UnixConnection& operator=(UnixConnection&& src) noexcept;
+  auto operator=(UnixConnection&& src) noexcept -> UnixConnection&;
 
   ~UnixConnection() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GUnixConnection*       gobj()       { return reinterpret_cast<GUnixConnection*>(gobject_); }
+  auto       gobj() -> GUnixConnection*       { return reinterpret_cast<GUnixConnection*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GUnixConnection* gobj() const { return reinterpret_cast<GUnixConnection*>(gobject_); }
+  auto gobj() const -> const GUnixConnection* { return reinterpret_cast<GUnixConnection*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GUnixConnection* gobj_copy();
+  auto gobj_copy() -> GUnixConnection*;
 
 private:
 
@@ -128,10 +128,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool send_fd(int fd, const Glib::RefPtr<Cancellable>& cancellable);
+  auto send_fd(int fd, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A send_fd() convenience overload.
-  bool send_fd(int fd);
+  auto send_fd(int fd) -> bool;
 
   /** Receives a file descriptor from the sending end of the connection.
    * The sending end has to call g_unix_connection_send_fd() for this
@@ -148,10 +148,10 @@ public:
    *
    * @throws Glib::Error
    */
-  int receive_fd(const Glib::RefPtr<Cancellable>& cancellable);
+  auto receive_fd(const Glib::RefPtr<Cancellable>& cancellable) -> int;
 
   /// A receive_fd() convenience overload.
-  int receive_fd();
+  auto receive_fd() -> int;
 
 
   /** Receives credentials from the sending end of the connection.  The
@@ -181,10 +181,10 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<Credentials> receive_credentials(const Glib::RefPtr<Cancellable>& cancellable);
+  auto receive_credentials(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Credentials>;
 
   /// A receive_credentials() convenience overload.
-  Glib::RefPtr<Credentials> receive_credentials();
+  auto receive_credentials() -> Glib::RefPtr<Credentials>;
 
   /** Receives credentials from the sending end of the connection.  The
    * sending end has to call g_unix_connection_send_credentials() (or
@@ -213,10 +213,10 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<const Credentials> receive_credentials(const Glib::RefPtr<Cancellable>& cancellable) const;
+  auto receive_credentials(const Glib::RefPtr<Cancellable>& cancellable) const -> Glib::RefPtr<const Credentials>;
 
   /// A receive_credentials() convenience overload.
-  Glib::RefPtr<const Credentials> receive_credentials() const;
+  auto receive_credentials() const -> Glib::RefPtr<const Credentials>;
 
   /**  Asynchronously receive credentials.
    * For more details, see receive_credentials() which is the synchronous
@@ -248,7 +248,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<Credentials> receive_credentials_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto receive_credentials_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<Credentials>;
 
 
   /** Passes the credentials of the current user the receiving side
@@ -278,10 +278,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool send_credentials(const Glib::RefPtr<Cancellable>& cancellable);
+  auto send_credentials(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A send_credentials() convenience overload.
-  bool send_credentials();
+  auto send_credentials() -> bool;
 
   /**  Asynchronously send credentials.
    * For more details, see send_credentials() which is the synchronous version
@@ -312,7 +312,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool send_credentials_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto send_credentials_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
 public:
@@ -342,7 +342,7 @@ namespace Glib
    * @relates Gio::UnixConnection
    */
   GIOMM_API
-  Glib::RefPtr<Gio::UnixConnection> wrap(GUnixConnection* object, bool take_copy = false);
+  auto wrap(GUnixConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixConnection>;
 }
 
 

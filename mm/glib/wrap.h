@@ -47,7 +47,7 @@ void wrap_register(GType type, WrapNewFunction func);
 // Return the current C++ wrapper instance of the GObject,
 // or automatically generate a new wrapper if there's none.
 GLIBMM_API
-Glib::ObjectBase* wrap_auto(GObject* object, bool take_copy = false);
+auto wrap_auto(GObject* object, bool take_copy = false) -> Glib::ObjectBase*;
 
 /** Create a C++ instance of a known C++ type that is mostly closely associated with the GType of
  * the C object.
@@ -56,13 +56,13 @@ Glib::ObjectBase* wrap_auto(GObject* object, bool take_copy = false);
  * NULL.
  */
 GLIBMM_API
-Glib::ObjectBase* wrap_create_new_wrapper_for_interface(GObject* object, GType interface_gtype);
+auto wrap_create_new_wrapper_for_interface(GObject* object, GType interface_gtype) -> Glib::ObjectBase*;
 
 // Return the current C++ wrapper instance of the GObject,
 // or automatically generate a new wrapper if there's none.
 template <class TInterface>
-TInterface*
-wrap_auto_interface(GObject* object, bool take_copy = false)
+auto
+wrap_auto_interface(GObject* object, bool take_copy = false) -> TInterface*
 {
   if (!object)
     return nullptr;
@@ -114,14 +114,14 @@ wrap_auto_interface(GObject* object, bool take_copy = false)
 // TODO: move to object.h ?
 /** @relates Glib::Object */
 GLIBMM_API
-Glib::RefPtr<Glib::Object> wrap(GObject* object, bool take_copy = false);
+auto wrap(GObject* object, bool take_copy = false) -> Glib::RefPtr<Glib::Object>;
 
 /** Get the underlying C instance from the C++ instance.  This is just
  * like calling gobj(), but it does its own check for a NULL pointer.
  */
 template <class T>
-inline typename T::BaseObjectType*
-unwrap(T* ptr)
+inline auto
+unwrap(T* ptr) -> typename T::BaseObjectType*
 {
   return (ptr) ? ptr->gobj() : nullptr;
 }
@@ -130,8 +130,8 @@ unwrap(T* ptr)
  * like calling gobj(), but it does its own check for a NULL pointer.
  */
 template <class T>
-inline const typename T::BaseObjectType*
-unwrap(const T* ptr)
+inline auto
+unwrap(const T* ptr) -> const typename T::BaseObjectType*
 {
   return (ptr) ? ptr->gobj() : nullptr;
 }
@@ -140,8 +140,8 @@ unwrap(const T* ptr)
  * like calling gobj(), but it does its own check for a NULL pointer.
  */
 template <class T>
-inline typename T::BaseObjectType*
-unwrap(const Glib::RefPtr<T>& ptr)
+inline auto
+unwrap(const Glib::RefPtr<T>& ptr) -> typename T::BaseObjectType*
 {
   return (ptr) ? ptr->gobj() : nullptr;
 }
@@ -150,8 +150,8 @@ unwrap(const Glib::RefPtr<T>& ptr)
  * like calling gobj(), but it does its own check for a NULL pointer.
  */
 template <class T>
-inline const typename T::BaseObjectType*
-unwrap(const Glib::RefPtr<const T>& ptr)
+inline auto
+unwrap(const Glib::RefPtr<const T>& ptr) -> const typename T::BaseObjectType*
 {
   return (ptr) ? ptr->gobj() : nullptr;
 }
@@ -165,8 +165,8 @@ unwrap(const Glib::RefPtr<const T>& ptr)
  * check for a NULL pointer to the underlying C instance.
  */
 template <class T>
-inline typename T::BaseObjectType*
-unwrap_copy(const T& obj)
+inline auto
+unwrap_copy(const T& obj) -> typename T::BaseObjectType*
 {
   return obj.gobj() ? obj.gobj_copy() : nullptr;
 }
@@ -176,8 +176,8 @@ unwrap_copy(const T& obj)
  * check for a NULL pointer.
  */
 template <class T>
-inline typename T::BaseObjectType*
-unwrap_copy(const Glib::RefPtr<T>& ptr)
+inline auto
+unwrap_copy(const Glib::RefPtr<T>& ptr) -> typename T::BaseObjectType*
 {
   return (ptr) ? ptr->gobj_copy() : nullptr;
 }
@@ -187,8 +187,8 @@ unwrap_copy(const Glib::RefPtr<T>& ptr)
  * check for a NULL pointer.
  */
 template <class T>
-inline const typename T::BaseObjectType*
-unwrap_copy(const Glib::RefPtr<const T>& ptr)
+inline auto
+unwrap_copy(const Glib::RefPtr<const T>& ptr) -> const typename T::BaseObjectType*
 {
   return (ptr) ? ptr->gobj_copy() : nullptr;
 }

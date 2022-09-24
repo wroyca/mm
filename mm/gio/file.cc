@@ -37,7 +37,7 @@ using CopySlots = std::pair<Gio::File::SlotFileProgress*, Gio::SlotAsyncReady*>;
 using MeasureSlots = std::pair<Gio::File::SlotFileMeasureProgress*, Gio::SlotAsyncReady*>;
 using LoadPartialSlots = std::pair<Gio::File::SlotReadMore*, Gio::SlotAsyncReady*>;
 
-static void
+void
 SignalProxy_file_progress_callback(
   goffset current_num_bytes, goffset total_num_bytes, gpointer data)
 {
@@ -57,7 +57,7 @@ SignalProxy_file_progress_callback(
 // Same as SignalProxy_async_callback, except that this one knows that
 // the slot is packed in a pair. The operation is assumed to be finished
 // after the callback is triggered, so we delete that pair here.
-static void
+void
 SignalProxy_file_copy_async_callback(GObject*, GAsyncResult* res, void* data)
 {
   auto slot_pair = static_cast<CopySlots*>(data);
@@ -84,7 +84,7 @@ SignalProxy_file_copy_async_callback(GObject*, GAsyncResult* res, void* data)
 // Same as SignalProxy_async_callback, except that this one knows that
 // the slot is packed in a pair. The operation is assumed to be finished
 // after the callback is triggered, so we delete that pair here.
-static void
+void
 SignalProxy_file_measure_async_callback(GObject*, GAsyncResult* res, void* data)
 {
   auto slot_pair = static_cast<MeasureSlots*>(data);
@@ -108,9 +108,9 @@ SignalProxy_file_measure_async_callback(GObject*, GAsyncResult* res, void* data)
   delete slot_pair;
 }
 
-static gboolean
+auto
 SignalProxy_load_partial_contents_read_more_callback(
-  const char* file_contents, goffset file_size, gpointer data)
+  const char* file_contents, goffset file_size, gpointer data) -> gboolean
 {
   auto slot_pair = static_cast<LoadPartialSlots*>(data);
   auto the_slot = slot_pair->first;
@@ -133,7 +133,7 @@ SignalProxy_load_partial_contents_read_more_callback(
 // Same as SignalProxy_async_callback, except that this one knows that
 // the slot is packed in a pair. The operation is assumed to be finished
 // after the callback is triggered, so we delete that pair here.
-static void
+void
 SignalProxy_load_partial_contents_ready_callback(GObject*, GAsyncResult* res, void* data)
 {
   LoadPartialSlots* slot_pair = static_cast<LoadPartialSlots*>(data);
@@ -154,7 +154,7 @@ SignalProxy_load_partial_contents_ready_callback(GObject*, GAsyncResult* res, vo
   delete slot_pair;
 }
 
-static void
+void
 SignalProxy_file_measure_progress_callback(
   gboolean reporting, guint64 current_size, guint64 num_dirs, guint64 num_files, gpointer data)
 {
@@ -177,29 +177,29 @@ SignalProxy_file_measure_progress_callback(
 namespace Gio
 {
 
-Glib::RefPtr<File>
-File::create_for_path(const std::string& path)
+auto
+File::create_for_path(const std::string& path) -> Glib::RefPtr<File>
 {
   GFile* cfile = g_file_new_for_path(path.c_str());
   return Glib::wrap(G_FILE(cfile));
 }
 
-Glib::RefPtr<File>
-File::create_for_uri(const std::string& uri)
+auto
+File::create_for_uri(const std::string& uri) -> Glib::RefPtr<File>
 {
   GFile* cfile = g_file_new_for_uri(uri.c_str());
   return Glib::wrap(G_FILE(cfile));
 }
 
-Glib::RefPtr<File>
-File::create_for_commandline_arg(const std::string& arg)
+auto
+File::create_for_commandline_arg(const std::string& arg) -> Glib::RefPtr<File>
 {
   GFile* cfile = g_file_new_for_commandline_arg(arg.c_str());
   return Glib::wrap(G_FILE(cfile));
 }
 
-std::pair<Glib::RefPtr<File>, Glib::RefPtr<FileIOStream>>
-File::create_tmp(const std::string& tmpl)
+auto
+File::create_tmp(const std::string& tmpl) -> std::pair<Glib::RefPtr<File>, Glib::RefPtr<FileIOStream>>
 {
   GError* gerror = nullptr;
   GFileIOStream* ciostream = nullptr;
@@ -210,8 +210,8 @@ File::create_tmp(const std::string& tmpl)
   return {Glib::wrap(cfile), Glib::wrap(ciostream)};
 }
 
-Glib::RefPtr<File>
-File::create_for_parse_name(const Glib::ustring& parse_name)
+auto
+File::create_for_parse_name(const Glib::ustring& parse_name) -> Glib::RefPtr<File>
 {
   GFile* cfile = g_file_parse_name(parse_name.c_str());
   return Glib::wrap(G_FILE(cfile));
@@ -403,16 +403,16 @@ File::replace_readwrite_async(const SlotAsyncReady& slot, const std::string& eta
     &SignalProxy_async_callback, slot_copy);
 }
 
-FileType
-File::query_file_type(FileQueryInfoFlags flags) const
+auto
+File::query_file_type(FileQueryInfoFlags flags) const -> FileType
 {
   return (FileType)g_file_query_file_type(
     const_cast<GFile*>(gobj()), (GFileQueryInfoFlags)flags, nullptr);
 }
 
-Glib::RefPtr<FileInfo>
+auto
 File::query_info(const Glib::RefPtr<Cancellable>& cancellable, const std::string& attributes,
-  FileQueryInfoFlags flags) const
+  FileQueryInfoFlags flags) const -> Glib::RefPtr<FileInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_query_info(const_cast<GFile*>(gobj()), attributes.c_str(),
@@ -424,8 +424,8 @@ File::query_info(const Glib::RefPtr<Cancellable>& cancellable, const std::string
   return retvalue;
 }
 
-Glib::RefPtr<FileInfo>
-File::query_info(const std::string& attributes, FileQueryInfoFlags flags) const
+auto
+File::query_info(const std::string& attributes, FileQueryInfoFlags flags) const -> Glib::RefPtr<FileInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_query_info(const_cast<GFile*>(gobj()), attributes.c_str(),
@@ -465,9 +465,9 @@ File::query_info_async(const SlotAsyncReady& slot, const std::string& attributes
     &SignalProxy_async_callback, slot_copy);
 }
 
-Glib::RefPtr<FileInfo>
+auto
 File::query_filesystem_info(
-  const Glib::RefPtr<Cancellable>& cancellable, const std::string& attributes)
+  const Glib::RefPtr<Cancellable>& cancellable, const std::string& attributes) -> Glib::RefPtr<FileInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_query_filesystem_info(
@@ -478,8 +478,8 @@ File::query_filesystem_info(
   return retvalue;
 }
 
-Glib::RefPtr<FileInfo>
-File::query_filesystem_info(const std::string& attributes)
+auto
+File::query_filesystem_info(const std::string& attributes) -> Glib::RefPtr<FileInfo>
 {
   GError* gerror = nullptr;
   auto retvalue =
@@ -518,9 +518,9 @@ File::query_filesystem_info_async(
     &SignalProxy_async_callback, slot_copy);
 }
 
-Glib::RefPtr<FileEnumerator>
+auto
 File::enumerate_children(const Glib::RefPtr<Cancellable>& cancellable,
-  const std::string& attributes, FileQueryInfoFlags flags)
+  const std::string& attributes, FileQueryInfoFlags flags) -> Glib::RefPtr<FileEnumerator>
 {
   GError* gerror = nullptr;
   auto retvalue =
@@ -532,8 +532,8 @@ File::enumerate_children(const Glib::RefPtr<Cancellable>& cancellable,
   return retvalue;
 }
 
-Glib::RefPtr<FileEnumerator>
-File::enumerate_children(const std::string& attributes, FileQueryInfoFlags flags)
+auto
+File::enumerate_children(const std::string& attributes, FileQueryInfoFlags flags) -> Glib::RefPtr<FileEnumerator>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_enumerate_children(
@@ -599,9 +599,9 @@ File::set_display_name_async(
     gobj(), display_name.c_str(), io_priority, nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-bool
+auto
 File::copy(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot,
-  const Glib::RefPtr<Cancellable>& cancellable, CopyFlags flags)
+  const Glib::RefPtr<Cancellable>& cancellable, CopyFlags flags) -> bool
 {
   GError* gerror = nullptr;
   bool res;
@@ -621,8 +621,8 @@ File::copy(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot,
   return res;
 }
 
-bool
-File::copy(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot, CopyFlags flags)
+auto
+File::copy(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot, CopyFlags flags) -> bool
 {
   GError* gerror = nullptr;
   bool res;
@@ -642,8 +642,8 @@ File::copy(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot, 
   return res;
 }
 
-bool
-File::copy(const Glib::RefPtr<File>& destination, CopyFlags flags)
+auto
+File::copy(const Glib::RefPtr<File>& destination, CopyFlags flags) -> bool
 {
   GError* gerror = nullptr;
   bool res = g_file_copy(gobj(), Glib::unwrap(destination), static_cast<GFileCopyFlags>(flags),
@@ -719,9 +719,9 @@ File::copy_async(const Glib::RefPtr<File>& destination, const SlotAsyncReady& sl
     io_priority, nullptr, nullptr, nullptr, &SignalProxy_async_callback, slot_ready_copy);
 }
 
-bool
+auto
 File::move(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot,
-  const Glib::RefPtr<Cancellable>& cancellable, CopyFlags flags)
+  const Glib::RefPtr<Cancellable>& cancellable, CopyFlags flags) -> bool
 {
   GError* gerror = nullptr;
   bool res;
@@ -741,8 +741,8 @@ File::move(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot,
   return res;
 }
 
-bool
-File::move(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot, CopyFlags flags)
+auto
+File::move(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot, CopyFlags flags) -> bool
 {
   GError* gerror = nullptr;
   bool res;
@@ -762,8 +762,8 @@ File::move(const Glib::RefPtr<File>& destination, const SlotFileProgress& slot, 
   return res;
 }
 
-bool
-File::move(const Glib::RefPtr<File>& destination, CopyFlags flags)
+auto
+File::move(const Glib::RefPtr<File>& destination, CopyFlags flags) -> bool
 {
   GError* gerror = nullptr;
   bool res;
@@ -866,9 +866,9 @@ File::set_attributes_async(const Glib::RefPtr<FileInfo>& info, const SlotAsyncRe
     io_priority, nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-bool
+auto
 File::set_attributes_finish(
-  const Glib::RefPtr<AsyncResult>& result, const Glib::RefPtr<FileInfo>& info)
+  const Glib::RefPtr<AsyncResult>& result, const Glib::RefPtr<FileInfo>& info) -> bool
 {
   GError* gerror = nullptr;
   GFileInfo* cinfo = Glib::unwrap(info);
@@ -1348,9 +1348,9 @@ File::replace_contents_bytes_async(const SlotAsyncReady& slot,
     &SignalProxy_async_callback, slot_copy);
 }
 
-Glib::RefPtr<FileOutputStream>
+auto
 File::replace(const Glib::RefPtr<Cancellable>& cancellable, const std::string& etag,
-  bool make_backup, CreateFlags flags)
+  bool make_backup, CreateFlags flags) -> Glib::RefPtr<FileOutputStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_replace(gobj(), Glib::c_str_or_nullptr(etag),
@@ -1362,8 +1362,8 @@ File::replace(const Glib::RefPtr<Cancellable>& cancellable, const std::string& e
   return retvalue;
 }
 
-Glib::RefPtr<FileOutputStream>
-File::replace(const std::string& etag, bool make_backup, CreateFlags flags)
+auto
+File::replace(const std::string& etag, bool make_backup, CreateFlags flags) -> Glib::RefPtr<FileOutputStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_replace(gobj(), Glib::c_str_or_nullptr(etag),
@@ -1374,9 +1374,9 @@ File::replace(const std::string& etag, bool make_backup, CreateFlags flags)
   return retvalue;
 }
 
-Glib::RefPtr<FileIOStream>
+auto
 File::replace_readwrite(const Glib::RefPtr<Cancellable>& cancellable, const std::string& etag,
-  bool make_backup, CreateFlags flags)
+  bool make_backup, CreateFlags flags) -> Glib::RefPtr<FileIOStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_replace_readwrite(gobj(), Glib::c_str_or_nullptr(etag),
@@ -1388,8 +1388,8 @@ File::replace_readwrite(const Glib::RefPtr<Cancellable>& cancellable, const std:
   return retvalue;
 }
 
-Glib::RefPtr<FileIOStream>
-File::replace_readwrite(const std::string& etag, bool make_backup, CreateFlags flags)
+auto
+File::replace_readwrite(const std::string& etag, bool make_backup, CreateFlags flags) -> Glib::RefPtr<FileIOStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_replace_readwrite(gobj(), Glib::c_str_or_nullptr(etag),
@@ -1400,8 +1400,8 @@ File::replace_readwrite(const std::string& etag, bool make_backup, CreateFlags f
   return retvalue;
 }
 
-Glib::RefPtr<FileMonitor>
-File::monitor_directory(const Glib::RefPtr<Cancellable>& cancellable, FileMonitorFlags flags)
+auto
+File::monitor_directory(const Glib::RefPtr<Cancellable>& cancellable, FileMonitorFlags flags) -> Glib::RefPtr<FileMonitor>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_monitor_directory(gobj(), ((GFileMonitorFlags)(flags)),
@@ -1412,8 +1412,8 @@ File::monitor_directory(const Glib::RefPtr<Cancellable>& cancellable, FileMonito
   return retvalue;
 }
 
-Glib::RefPtr<FileMonitor>
-File::monitor_directory(FileMonitorFlags flags)
+auto
+File::monitor_directory(FileMonitorFlags flags) -> Glib::RefPtr<FileMonitor>
 {
   GError* gerror = nullptr;
   auto retvalue =
@@ -1424,8 +1424,8 @@ File::monitor_directory(FileMonitorFlags flags)
   return retvalue;
 }
 
-Glib::RefPtr<FileMonitor>
-File::monitor_file(const Glib::RefPtr<Cancellable>& cancellable, FileMonitorFlags flags)
+auto
+File::monitor_file(const Glib::RefPtr<Cancellable>& cancellable, FileMonitorFlags flags) -> Glib::RefPtr<FileMonitor>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_monitor_file(gobj(), ((GFileMonitorFlags)(flags)),
@@ -1436,8 +1436,8 @@ File::monitor_file(const Glib::RefPtr<Cancellable>& cancellable, FileMonitorFlag
   return retvalue;
 }
 
-Glib::RefPtr<FileMonitor>
-File::monitor_file(FileMonitorFlags flags)
+auto
+File::monitor_file(FileMonitorFlags flags) -> Glib::RefPtr<FileMonitor>
 {
   GError* gerror = nullptr;
   auto retvalue =
@@ -1448,8 +1448,8 @@ File::monitor_file(FileMonitorFlags flags)
   return retvalue;
 }
 
-Glib::RefPtr<FileMonitor>
-File::monitor(const Glib::RefPtr<Cancellable>& cancellable, FileMonitorFlags flags)
+auto
+File::monitor(const Glib::RefPtr<Cancellable>& cancellable, FileMonitorFlags flags) -> Glib::RefPtr<FileMonitor>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_monitor(gobj(), ((GFileMonitorFlags)(flags)),
@@ -1460,8 +1460,8 @@ File::monitor(const Glib::RefPtr<Cancellable>& cancellable, FileMonitorFlags fla
   return retvalue;
 }
 
-Glib::RefPtr<FileMonitor>
-File::monitor(FileMonitorFlags flags)
+auto
+File::monitor(FileMonitorFlags flags) -> Glib::RefPtr<FileMonitor>
 {
   GError* gerror = nullptr;
   auto retvalue =
@@ -1607,9 +1607,9 @@ File::find_enclosing_mount_async(const SlotAsyncReady& slot, int io_priority)
     gobj(), io_priority, nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-bool
+auto
 File::set_attributes_from_info(const Glib::RefPtr<FileInfo>& info,
-  const Glib::RefPtr<Cancellable>& cancellable, FileQueryInfoFlags flags)
+  const Glib::RefPtr<Cancellable>& cancellable, FileQueryInfoFlags flags) -> bool
 {
   GError* gerror = nullptr;
   bool retvalue =
@@ -1621,8 +1621,8 @@ File::set_attributes_from_info(const Glib::RefPtr<FileInfo>& info,
   return retvalue;
 }
 
-bool
-File::set_attributes_from_info(const Glib::RefPtr<FileInfo>& info, FileQueryInfoFlags flags)
+auto
+File::set_attributes_from_info(const Glib::RefPtr<FileInfo>& info, FileQueryInfoFlags flags) -> bool
 {
   GError* gerror = nullptr;
   bool retvalue = g_file_set_attributes_from_info(
@@ -1633,9 +1633,9 @@ File::set_attributes_from_info(const Glib::RefPtr<FileInfo>& info, FileQueryInfo
   return retvalue;
 }
 
-bool
+auto
 File::copy_attributes(const Glib::RefPtr<File>& destination,
-  const Glib::RefPtr<Cancellable>& cancellable, CopyFlags flags)
+  const Glib::RefPtr<Cancellable>& cancellable, CopyFlags flags) -> bool
 {
   GError* gerror = nullptr;
   bool res;
@@ -1649,8 +1649,8 @@ File::copy_attributes(const Glib::RefPtr<File>& destination,
   return res;
 }
 
-bool
-File::copy_attributes(const Glib::RefPtr<File>& destination, CopyFlags flags)
+auto
+File::copy_attributes(const Glib::RefPtr<File>& destination, CopyFlags flags) -> bool
 {
   GError* gerror = nullptr;
   bool res;
@@ -1664,8 +1664,8 @@ File::copy_attributes(const Glib::RefPtr<File>& destination, CopyFlags flags)
   return res;
 }
 
-Glib::RefPtr<FileOutputStream>
-File::create_file(const Glib::RefPtr<Cancellable>& cancellable, CreateFlags flags)
+auto
+File::create_file(const Glib::RefPtr<Cancellable>& cancellable, CreateFlags flags) -> Glib::RefPtr<FileOutputStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_create(gobj(), ((GFileCreateFlags)(flags)),
@@ -1676,8 +1676,8 @@ File::create_file(const Glib::RefPtr<Cancellable>& cancellable, CreateFlags flag
   return retvalue;
 }
 
-Glib::RefPtr<FileOutputStream>
-File::create_file(CreateFlags flags)
+auto
+File::create_file(CreateFlags flags) -> Glib::RefPtr<FileOutputStream>
 {
   GError* gerror = nullptr;
   auto retvalue =
@@ -1688,8 +1688,8 @@ File::create_file(CreateFlags flags)
   return retvalue;
 }
 
-Glib::RefPtr<FileIOStream>
-File::create_file_readwrite(const Glib::RefPtr<Cancellable>& cancellable, CreateFlags flags)
+auto
+File::create_file_readwrite(const Glib::RefPtr<Cancellable>& cancellable, CreateFlags flags) -> Glib::RefPtr<FileIOStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_create_readwrite(gobj(), ((GFileCreateFlags)(flags)),
@@ -1700,8 +1700,8 @@ File::create_file_readwrite(const Glib::RefPtr<Cancellable>& cancellable, Create
   return retvalue;
 }
 
-Glib::RefPtr<FileIOStream>
-File::create_file_readwrite(CreateFlags flags)
+auto
+File::create_file_readwrite(CreateFlags flags) -> Glib::RefPtr<FileIOStream>
 {
   GError* gerror = nullptr;
   auto retvalue =
@@ -1712,8 +1712,8 @@ File::create_file_readwrite(CreateFlags flags)
   return retvalue;
 }
 
-Glib::RefPtr<FileOutputStream>
-File::append_to(const Glib::RefPtr<Cancellable>& cancellable, CreateFlags flags)
+auto
+File::append_to(const Glib::RefPtr<Cancellable>& cancellable, CreateFlags flags) -> Glib::RefPtr<FileOutputStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_append_to(gobj(), ((GFileCreateFlags)(flags)),
@@ -1724,8 +1724,8 @@ File::append_to(const Glib::RefPtr<Cancellable>& cancellable, CreateFlags flags)
   return retvalue;
 }
 
-Glib::RefPtr<FileOutputStream>
-File::append_to(CreateFlags flags)
+auto
+File::append_to(CreateFlags flags) -> Glib::RefPtr<FileOutputStream>
 {
   GError* gerror = nullptr;
   auto retvalue =
@@ -1736,9 +1736,9 @@ File::append_to(CreateFlags flags)
   return retvalue;
 }
 
-bool
+auto
 File::load_contents(const Glib::RefPtr<Cancellable>& cancellable, char*& contents, gsize& length,
-  std::string& etag_out)
+  std::string& etag_out) -> bool
 {
   GError* gerror = nullptr;
   gchar* cetag_out = nullptr;
@@ -1752,8 +1752,8 @@ File::load_contents(const Glib::RefPtr<Cancellable>& cancellable, char*& content
   return retvalue;
 }
 
-bool
-File::load_contents(const Glib::RefPtr<Cancellable>& cancellable, char*& contents, gsize& length)
+auto
+File::load_contents(const Glib::RefPtr<Cancellable>& cancellable, char*& contents, gsize& length) -> bool
 {
   GError* gerror = nullptr;
   bool retvalue = g_file_load_contents(
@@ -1764,8 +1764,8 @@ File::load_contents(const Glib::RefPtr<Cancellable>& cancellable, char*& content
   return retvalue;
 }
 
-bool
-File::load_contents(char*& contents, gsize& length, std::string& etag_out)
+auto
+File::load_contents(char*& contents, gsize& length, std::string& etag_out) -> bool
 {
   GError* gerror = nullptr;
   gchar* cetag_out = nullptr;
@@ -1779,8 +1779,8 @@ File::load_contents(char*& contents, gsize& length, std::string& etag_out)
   return retvalue;
 }
 
-bool
-File::load_contents(char*& contents, gsize& length)
+auto
+File::load_contents(char*& contents, gsize& length) -> bool
 {
   GError* gerror = nullptr;
   bool retvalue = g_file_load_contents(gobj(), nullptr, &contents, &(length), nullptr, &(gerror));
@@ -1790,9 +1790,9 @@ File::load_contents(char*& contents, gsize& length)
   return retvalue;
 }
 
-bool
+auto
 File::load_contents_finish(
-  const Glib::RefPtr<AsyncResult>& result, char*& contents, gsize& length, std::string& etag_out)
+  const Glib::RefPtr<AsyncResult>& result, char*& contents, gsize& length, std::string& etag_out) -> bool
 {
   GError* gerror = nullptr;
   gchar* cetag_out = nullptr;
@@ -1806,8 +1806,8 @@ File::load_contents_finish(
   return retvalue;
 }
 
-bool
-File::load_contents_finish(const Glib::RefPtr<AsyncResult>& result, char*& contents, gsize& length)
+auto
+File::load_contents_finish(const Glib::RefPtr<AsyncResult>& result, char*& contents, gsize& length) -> bool
 {
   GError* gerror = nullptr;
   bool retvalue = g_file_load_contents_finish(
@@ -1818,9 +1818,9 @@ File::load_contents_finish(const Glib::RefPtr<AsyncResult>& result, char*& conte
   return retvalue;
 }
 
-bool
+auto
 File::load_partial_contents_finish(
-  const Glib::RefPtr<AsyncResult>& result, char*& contents, gsize& length, std::string& etag_out)
+  const Glib::RefPtr<AsyncResult>& result, char*& contents, gsize& length, std::string& etag_out) -> bool
 {
   GError* gerror = nullptr;
   gchar* cetag_out = nullptr;
@@ -1834,9 +1834,9 @@ File::load_partial_contents_finish(
   return retvalue;
 }
 
-bool
+auto
 File::load_partial_contents_finish(
-  const Glib::RefPtr<AsyncResult>& result, char*& contents, gsize& length)
+  const Glib::RefPtr<AsyncResult>& result, char*& contents, gsize& length) -> bool
 {
   GError* gerror = nullptr;
   bool retvalue = g_file_load_partial_contents_finish(
@@ -1847,8 +1847,8 @@ File::load_partial_contents_finish(
   return retvalue;
 }
 
-bool
-File::has_parent() const
+auto
+File::has_parent() const -> bool
 {
   return g_file_has_parent(const_cast<GFile*>(gobj()), nullptr);
 }
@@ -1936,7 +1936,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::File> wrap(GFile* object, bool take_copy)
+auto wrap(GFile* object, bool take_copy) -> Glib::RefPtr<Gio::File>
 {
   return Glib::make_refptr_for_instance<Gio::File>( dynamic_cast<Gio::File*> (Glib::wrap_auto_interface<Gio::File> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -1951,7 +1951,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& File_Class::init()
+auto File_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -1978,7 +1978,7 @@ void File_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* File_Class::wrap_new(GObject* object)
+auto File_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new File((GFile*)(object));
 }
@@ -2005,7 +2005,7 @@ File::File(File&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-File& File::operator=(File&& src) noexcept
+auto File::operator=(File&& src) noexcept -> File&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -2022,69 +2022,69 @@ void File::add_interface(GType gtype_implementer)
 
 File::CppClassType File::file_class_; // initialize static member
 
-GType File::get_type()
+auto File::get_type() -> GType
 {
   return file_class_.init().get_type();
 }
 
 
-GType File::get_base_type()
+auto File::get_base_type() -> GType
 {
   return g_file_get_type();
 }
 
 
-Glib::RefPtr<File> File::dup() const
+auto File::dup() const -> Glib::RefPtr<File>
 {
   return Glib::wrap(g_file_dup(const_cast<GFile*>(gobj())));
 }
 
-guint File::hash() const
+auto File::hash() const -> guint
 {
   return g_file_hash(const_cast<GFile*>(gobj()));
 }
 
-bool File::equal(const Glib::RefPtr<const File>& other) const
+auto File::equal(const Glib::RefPtr<const File>& other) const -> bool
 {
   return g_file_equal(const_cast<GFile*>(gobj()), const_cast<GFile*>(Glib::unwrap<Gio::File>(other)));
 }
 
-std::string File::get_basename() const
+auto File::get_basename() const -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(g_file_get_basename(const_cast<GFile*>(gobj())));
 }
 
-std::string File::get_path() const
+auto File::get_path() const -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(g_file_get_path(const_cast<GFile*>(gobj())));
 }
 
-std::string File::get_uri() const
+auto File::get_uri() const -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(g_file_get_uri(const_cast<GFile*>(gobj())));
 }
 
-Glib::ustring File::get_parse_name() const
+auto File::get_parse_name() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(g_file_get_parse_name(const_cast<GFile*>(gobj())));
 }
 
-Glib::RefPtr<File> File::get_parent() const
+auto File::get_parent() const -> Glib::RefPtr<File>
 {
   return Glib::wrap(g_file_get_parent(const_cast<GFile*>(gobj())));
 }
 
-bool File::has_parent(const Glib::RefPtr<File>& parent) const
+auto File::has_parent(const Glib::RefPtr<File>& parent) const -> bool
 {
   return g_file_has_parent(const_cast<GFile*>(gobj()), Glib::unwrap(parent));
 }
 
-Glib::RefPtr<File> File::get_child(const std::string& name) const
+auto File::get_child(const std::string& name) const -> Glib::RefPtr<File>
 {
   return Glib::wrap(g_file_get_child(const_cast<GFile*>(gobj()), name.c_str()));
 }
 
-Glib::RefPtr<File> File::get_child_for_display_name(const Glib::ustring& display_name) const
+auto File::get_child_for_display_name(const Glib::ustring& display_name) const -> Glib::RefPtr<File>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_get_child_for_display_name(const_cast<GFile*>(gobj()), display_name.c_str(), &(gerror)));
@@ -2093,37 +2093,37 @@ Glib::RefPtr<File> File::get_child_for_display_name(const Glib::ustring& display
   return retvalue;
 }
 
-bool File::has_prefix(const Glib::RefPtr<const File>& prefix) const
+auto File::has_prefix(const Glib::RefPtr<const File>& prefix) const -> bool
 {
   return g_file_has_prefix(const_cast<GFile*>(gobj()), const_cast<GFile*>(Glib::unwrap<Gio::File>(prefix)));
 }
 
-std::string File::get_relative_path(const Glib::RefPtr<const File>& descendant) const
+auto File::get_relative_path(const Glib::RefPtr<const File>& descendant) const -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(g_file_get_relative_path(const_cast<GFile*>(gobj()), const_cast<GFile*>(Glib::unwrap<Gio::File>(descendant))));
 }
 
-Glib::RefPtr<File> File::resolve_relative_path(const std::string& relative_path) const
+auto File::resolve_relative_path(const std::string& relative_path) const -> Glib::RefPtr<File>
 {
   return Glib::wrap(g_file_resolve_relative_path(const_cast<GFile*>(gobj()), relative_path.c_str()));
 }
 
-bool File::is_native() const
+auto File::is_native() const -> bool
 {
   return g_file_is_native(const_cast<GFile*>(gobj()));
 }
 
-bool File::has_uri_scheme(const std::string& uri_scheme) const
+auto File::has_uri_scheme(const std::string& uri_scheme) const -> bool
 {
   return g_file_has_uri_scheme(const_cast<GFile*>(gobj()), uri_scheme.c_str());
 }
 
-std::string File::get_uri_scheme() const
+auto File::get_uri_scheme() const -> std::string
 {
   return Glib::convert_return_gchar_ptr_to_stdstring(g_file_get_uri_scheme(const_cast<GFile*>(gobj())));
 }
 
-Glib::RefPtr<FileInputStream> File::read(const Glib::RefPtr<Cancellable>& cancellable)
+auto File::read(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<FileInputStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_read(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -2132,7 +2132,7 @@ Glib::RefPtr<FileInputStream> File::read(const Glib::RefPtr<Cancellable>& cancel
   return retvalue;
 }
 
-Glib::RefPtr<FileInputStream> File::read()
+auto File::read() -> Glib::RefPtr<FileInputStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_read(gobj(), nullptr, &(gerror)));
@@ -2141,7 +2141,7 @@ Glib::RefPtr<FileInputStream> File::read()
   return retvalue;
 }
 
-Glib::RefPtr<FileInputStream> File::read_finish(const Glib::RefPtr<AsyncResult>& res)
+auto File::read_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileInputStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_read_finish(gobj(), Glib::unwrap(res), &(gerror)));
@@ -2150,7 +2150,7 @@ Glib::RefPtr<FileInputStream> File::read_finish(const Glib::RefPtr<AsyncResult>&
   return retvalue;
 }
 
-Glib::RefPtr<FileOutputStream> File::append_to_finish(const Glib::RefPtr<AsyncResult>& res)
+auto File::append_to_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileOutputStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_append_to_finish(gobj(), Glib::unwrap(res), &(gerror)));
@@ -2159,7 +2159,7 @@ Glib::RefPtr<FileOutputStream> File::append_to_finish(const Glib::RefPtr<AsyncRe
   return retvalue;
 }
 
-Glib::RefPtr<FileOutputStream> File::create_file_finish(const Glib::RefPtr<AsyncResult>& res)
+auto File::create_file_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileOutputStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_create_finish(gobj(), Glib::unwrap(res), &(gerror)));
@@ -2168,7 +2168,7 @@ Glib::RefPtr<FileOutputStream> File::create_file_finish(const Glib::RefPtr<Async
   return retvalue;
 }
 
-Glib::RefPtr<FileIOStream> File::create_file_readwrite_finish(const Glib::RefPtr<AsyncResult>& res)
+auto File::create_file_readwrite_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileIOStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_create_readwrite_finish(gobj(), Glib::unwrap(res), &(gerror)));
@@ -2177,7 +2177,7 @@ Glib::RefPtr<FileIOStream> File::create_file_readwrite_finish(const Glib::RefPtr
   return retvalue;
 }
 
-Glib::RefPtr<FileOutputStream> File::replace_finish(const Glib::RefPtr<AsyncResult>& res)
+auto File::replace_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileOutputStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_replace_finish(gobj(), Glib::unwrap(res), &(gerror)));
@@ -2186,7 +2186,7 @@ Glib::RefPtr<FileOutputStream> File::replace_finish(const Glib::RefPtr<AsyncResu
   return retvalue;
 }
 
-Glib::RefPtr<FileIOStream> File::open_readwrite(const Glib::RefPtr<Cancellable>& cancellable)
+auto File::open_readwrite(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<FileIOStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_open_readwrite(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -2195,7 +2195,7 @@ Glib::RefPtr<FileIOStream> File::open_readwrite(const Glib::RefPtr<Cancellable>&
   return retvalue;
 }
 
-Glib::RefPtr<FileIOStream> File::open_readwrite()
+auto File::open_readwrite() -> Glib::RefPtr<FileIOStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_open_readwrite(gobj(), nullptr, &(gerror)));
@@ -2204,7 +2204,7 @@ Glib::RefPtr<FileIOStream> File::open_readwrite()
   return retvalue;
 }
 
-Glib::RefPtr<FileIOStream> File::open_readwrite_finish(const Glib::RefPtr<AsyncResult>& res)
+auto File::open_readwrite_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileIOStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_open_readwrite_finish(gobj(), Glib::unwrap(res), &(gerror)));
@@ -2213,7 +2213,7 @@ Glib::RefPtr<FileIOStream> File::open_readwrite_finish(const Glib::RefPtr<AsyncR
   return retvalue;
 }
 
-Glib::RefPtr<FileIOStream> File::replace_readwrite_finish(const Glib::RefPtr<AsyncResult>& res)
+auto File::replace_readwrite_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileIOStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_replace_readwrite_finish(gobj(), Glib::unwrap(res), &(gerror)));
@@ -2222,22 +2222,22 @@ Glib::RefPtr<FileIOStream> File::replace_readwrite_finish(const Glib::RefPtr<Asy
   return retvalue;
 }
 
-bool File::query_exists(const Glib::RefPtr<Cancellable>& cancellable) const
+auto File::query_exists(const Glib::RefPtr<Cancellable>& cancellable) const -> bool
 {
   return g_file_query_exists(const_cast<GFile*>(gobj()), const_cast<GCancellable*>(Glib::unwrap(cancellable)));
 }
 
-bool File::query_exists() const
+auto File::query_exists() const -> bool
 {
   return g_file_query_exists(const_cast<GFile*>(gobj()), nullptr);
 }
 
-FileType File::query_file_type(FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable) const
+auto File::query_file_type(FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable) const -> FileType
 {
   return static_cast<FileType>(g_file_query_file_type(const_cast<GFile*>(gobj()), static_cast<GFileQueryInfoFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable))));
 }
 
-Glib::RefPtr<FileInfo> File::query_info_finish(const Glib::RefPtr<AsyncResult>& res)
+auto File::query_info_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_query_info_finish(gobj(), Glib::unwrap(res), &(gerror)));
@@ -2246,7 +2246,7 @@ Glib::RefPtr<FileInfo> File::query_info_finish(const Glib::RefPtr<AsyncResult>& 
   return retvalue;
 }
 
-Glib::RefPtr<Mount> File::find_enclosing_mount(const Glib::RefPtr<Cancellable>& cancellable)
+auto File::find_enclosing_mount(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Mount>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_find_enclosing_mount(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -2255,7 +2255,7 @@ Glib::RefPtr<Mount> File::find_enclosing_mount(const Glib::RefPtr<Cancellable>& 
   return retvalue;
 }
 
-Glib::RefPtr<Mount> File::find_enclosing_mount()
+auto File::find_enclosing_mount() -> Glib::RefPtr<Mount>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_find_enclosing_mount(gobj(), nullptr, &(gerror)));
@@ -2264,7 +2264,7 @@ Glib::RefPtr<Mount> File::find_enclosing_mount()
   return retvalue;
 }
 
-Glib::RefPtr<FileInfo> File::query_filesystem_info_finish(const Glib::RefPtr<AsyncResult>& res)
+auto File::query_filesystem_info_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_query_filesystem_info_finish(gobj(), Glib::unwrap(res), &(gerror)));
@@ -2273,7 +2273,7 @@ Glib::RefPtr<FileInfo> File::query_filesystem_info_finish(const Glib::RefPtr<Asy
   return retvalue;
 }
 
-Glib::RefPtr<Mount> File::find_enclosing_mount_finish(const Glib::RefPtr<AsyncResult>& res)
+auto File::find_enclosing_mount_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Mount>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_find_enclosing_mount_finish(gobj(), Glib::unwrap(res), &(gerror)));
@@ -2282,7 +2282,7 @@ Glib::RefPtr<Mount> File::find_enclosing_mount_finish(const Glib::RefPtr<AsyncRe
   return retvalue;
 }
 
-Glib::RefPtr<FileEnumerator> File::enumerate_children_finish(const Glib::RefPtr<AsyncResult>& res)
+auto File::enumerate_children_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileEnumerator>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_enumerate_children_finish(gobj(), Glib::unwrap(res), &(gerror)));
@@ -2291,7 +2291,7 @@ Glib::RefPtr<FileEnumerator> File::enumerate_children_finish(const Glib::RefPtr<
   return retvalue;
 }
 
-Glib::RefPtr<File> File::set_display_name(const Glib::ustring& display_name, const Glib::RefPtr<Cancellable>& cancellable)
+auto File::set_display_name(const Glib::ustring& display_name, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<File>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_set_display_name(gobj(), display_name.c_str(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -2300,7 +2300,7 @@ Glib::RefPtr<File> File::set_display_name(const Glib::ustring& display_name, con
   return retvalue;
 }
 
-Glib::RefPtr<File> File::set_display_name(const Glib::ustring& display_name)
+auto File::set_display_name(const Glib::ustring& display_name) -> Glib::RefPtr<File>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_set_display_name(gobj(), display_name.c_str(), nullptr, &(gerror)));
@@ -2309,7 +2309,7 @@ Glib::RefPtr<File> File::set_display_name(const Glib::ustring& display_name)
   return retvalue;
 }
 
-Glib::RefPtr<File> File::set_display_name_finish(const Glib::RefPtr<AsyncResult>& res)
+auto File::set_display_name_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<File>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_set_display_name_finish(gobj(), Glib::unwrap(res), &(gerror)));
@@ -2318,7 +2318,7 @@ Glib::RefPtr<File> File::set_display_name_finish(const Glib::RefPtr<AsyncResult>
   return retvalue;
 }
 
-bool File::remove(const Glib::RefPtr<Cancellable>& cancellable)
+auto File::remove(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_delete(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -2327,7 +2327,7 @@ bool File::remove(const Glib::RefPtr<Cancellable>& cancellable)
   return retvalue;
 }
 
-bool File::remove()
+auto File::remove() -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_delete(gobj(), nullptr, &(gerror));
@@ -2336,7 +2336,7 @@ bool File::remove()
   return retvalue;
 }
 
-bool File::remove_finish(const Glib::RefPtr<AsyncResult>& result)
+auto File::remove_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_delete_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -2345,7 +2345,7 @@ bool File::remove_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool File::trash(const Glib::RefPtr<Cancellable>& cancellable)
+auto File::trash(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_trash(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -2354,7 +2354,7 @@ bool File::trash(const Glib::RefPtr<Cancellable>& cancellable)
   return retvalue;
 }
 
-bool File::trash()
+auto File::trash() -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_trash(gobj(), nullptr, &(gerror));
@@ -2363,7 +2363,7 @@ bool File::trash()
   return retvalue;
 }
 
-bool File::trash_finish(const Glib::RefPtr<AsyncResult>& result)
+auto File::trash_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_trash_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -2372,7 +2372,7 @@ bool File::trash_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool File::copy_finish(const Glib::RefPtr<AsyncResult>& res)
+auto File::copy_finish(const Glib::RefPtr<AsyncResult>& res) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_copy_finish(gobj(), Glib::unwrap(res), &(gerror));
@@ -2381,7 +2381,7 @@ bool File::copy_finish(const Glib::RefPtr<AsyncResult>& res)
   return retvalue;
 }
 
-bool File::move_finish(const Glib::RefPtr<AsyncResult>& res)
+auto File::move_finish(const Glib::RefPtr<AsyncResult>& res) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_move_finish(gobj(), Glib::unwrap(res), &(gerror));
@@ -2390,7 +2390,7 @@ bool File::move_finish(const Glib::RefPtr<AsyncResult>& res)
   return retvalue;
 }
 
-bool File::make_directory(const Glib::RefPtr<Cancellable>& cancellable)
+auto File::make_directory(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_make_directory(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -2399,7 +2399,7 @@ bool File::make_directory(const Glib::RefPtr<Cancellable>& cancellable)
   return retvalue;
 }
 
-bool File::make_directory()
+auto File::make_directory() -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_make_directory(gobj(), nullptr, &(gerror));
@@ -2408,7 +2408,7 @@ bool File::make_directory()
   return retvalue;
 }
 
-bool File::make_directory_finish(const Glib::RefPtr<AsyncResult>& result)
+auto File::make_directory_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_make_directory_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -2417,7 +2417,7 @@ bool File::make_directory_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool File::make_directory_with_parents(const Glib::RefPtr<Cancellable>& cancellable)
+auto File::make_directory_with_parents(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_make_directory_with_parents(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -2426,7 +2426,7 @@ bool File::make_directory_with_parents(const Glib::RefPtr<Cancellable>& cancella
   return retvalue;
 }
 
-bool File::make_directory_with_parents()
+auto File::make_directory_with_parents() -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_make_directory_with_parents(gobj(), nullptr, &(gerror));
@@ -2435,7 +2435,7 @@ bool File::make_directory_with_parents()
   return retvalue;
 }
 
-bool File::make_symbolic_link(const std::string& symlink_value, const Glib::RefPtr<Cancellable>& cancellable)
+auto File::make_symbolic_link(const std::string& symlink_value, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_make_symbolic_link(gobj(), symlink_value.c_str(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -2444,7 +2444,7 @@ bool File::make_symbolic_link(const std::string& symlink_value, const Glib::RefP
   return retvalue;
 }
 
-bool File::make_symbolic_link(const std::string& symlink_value)
+auto File::make_symbolic_link(const std::string& symlink_value) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_make_symbolic_link(gobj(), symlink_value.c_str(), nullptr, &(gerror));
@@ -2461,7 +2461,7 @@ void File::make_symbolic_link_async(const std::string& symlink_value, const Slot
   g_file_make_symbolic_link_async(gobj(), symlink_value.c_str(), io_priority, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-bool File::make_symbolic_link_finish(const Glib::RefPtr<AsyncResult>& result)
+auto File::make_symbolic_link_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_make_symbolic_link_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -2470,7 +2470,7 @@ bool File::make_symbolic_link_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-Glib::RefPtr<FileAttributeInfoList> File::query_settable_attributes(const Glib::RefPtr<Cancellable>& cancellable)
+auto File::query_settable_attributes(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<FileAttributeInfoList>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_query_settable_attributes(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -2479,7 +2479,7 @@ Glib::RefPtr<FileAttributeInfoList> File::query_settable_attributes(const Glib::
   return retvalue;
 }
 
-Glib::RefPtr<FileAttributeInfoList> File::query_settable_attributes()
+auto File::query_settable_attributes() -> Glib::RefPtr<FileAttributeInfoList>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_query_settable_attributes(gobj(), nullptr, &(gerror)));
@@ -2488,7 +2488,7 @@ Glib::RefPtr<FileAttributeInfoList> File::query_settable_attributes()
   return retvalue;
 }
 
-Glib::RefPtr<FileAttributeInfoList> File::query_writable_namespaces(const Glib::RefPtr<Cancellable>& cancellable)
+auto File::query_writable_namespaces(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<FileAttributeInfoList>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_query_writable_namespaces(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -2497,7 +2497,7 @@ Glib::RefPtr<FileAttributeInfoList> File::query_writable_namespaces(const Glib::
   return retvalue;
 }
 
-Glib::RefPtr<FileAttributeInfoList> File::query_writable_namespaces()
+auto File::query_writable_namespaces() -> Glib::RefPtr<FileAttributeInfoList>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_query_writable_namespaces(gobj(), nullptr, &(gerror)));
@@ -2506,7 +2506,7 @@ Glib::RefPtr<FileAttributeInfoList> File::query_writable_namespaces()
   return retvalue;
 }
 
-bool File::set_attribute_string(const std::string& attribute, const Glib::ustring& value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable)
+auto File::set_attribute_string(const std::string& attribute, const Glib::ustring& value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_set_attribute_string(gobj(), attribute.c_str(), value.c_str(), static_cast<GFileQueryInfoFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -2515,7 +2515,7 @@ bool File::set_attribute_string(const std::string& attribute, const Glib::ustrin
   return retvalue;
 }
 
-bool File::set_attribute_string(const std::string& attribute, const Glib::ustring& value, FileQueryInfoFlags flags)
+auto File::set_attribute_string(const std::string& attribute, const Glib::ustring& value, FileQueryInfoFlags flags) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_set_attribute_string(gobj(), attribute.c_str(), value.c_str(), static_cast<GFileQueryInfoFlags>(flags), nullptr, &(gerror));
@@ -2524,7 +2524,7 @@ bool File::set_attribute_string(const std::string& attribute, const Glib::ustrin
   return retvalue;
 }
 
-bool File::set_attribute_byte_string(const std::string& attribute, const std::string& value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable)
+auto File::set_attribute_byte_string(const std::string& attribute, const std::string& value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_set_attribute_byte_string(gobj(), attribute.c_str(), value.c_str(), static_cast<GFileQueryInfoFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -2533,7 +2533,7 @@ bool File::set_attribute_byte_string(const std::string& attribute, const std::st
   return retvalue;
 }
 
-bool File::set_attribute_byte_string(const std::string& attribute, const std::string& value, FileQueryInfoFlags flags)
+auto File::set_attribute_byte_string(const std::string& attribute, const std::string& value, FileQueryInfoFlags flags) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_set_attribute_byte_string(gobj(), attribute.c_str(), value.c_str(), static_cast<GFileQueryInfoFlags>(flags), nullptr, &(gerror));
@@ -2542,7 +2542,7 @@ bool File::set_attribute_byte_string(const std::string& attribute, const std::st
   return retvalue;
 }
 
-bool File::set_attribute_uint32(const std::string& attribute, guint32 value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable)
+auto File::set_attribute_uint32(const std::string& attribute, guint32 value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_set_attribute_uint32(gobj(), attribute.c_str(), value, static_cast<GFileQueryInfoFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -2551,7 +2551,7 @@ bool File::set_attribute_uint32(const std::string& attribute, guint32 value, Fil
   return retvalue;
 }
 
-bool File::set_attribute_uint32(const std::string& attribute, guint32 value, FileQueryInfoFlags flags)
+auto File::set_attribute_uint32(const std::string& attribute, guint32 value, FileQueryInfoFlags flags) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_set_attribute_uint32(gobj(), attribute.c_str(), value, static_cast<GFileQueryInfoFlags>(flags), nullptr, &(gerror));
@@ -2560,7 +2560,7 @@ bool File::set_attribute_uint32(const std::string& attribute, guint32 value, Fil
   return retvalue;
 }
 
-bool File::set_attribute_int32(const std::string& attribute, gint32 value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable)
+auto File::set_attribute_int32(const std::string& attribute, gint32 value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_set_attribute_int32(gobj(), attribute.c_str(), value, static_cast<GFileQueryInfoFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -2569,7 +2569,7 @@ bool File::set_attribute_int32(const std::string& attribute, gint32 value, FileQ
   return retvalue;
 }
 
-bool File::set_attribute_int32(const std::string& attribute, gint32 value, FileQueryInfoFlags flags)
+auto File::set_attribute_int32(const std::string& attribute, gint32 value, FileQueryInfoFlags flags) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_set_attribute_int32(gobj(), attribute.c_str(), value, static_cast<GFileQueryInfoFlags>(flags), nullptr, &(gerror));
@@ -2578,7 +2578,7 @@ bool File::set_attribute_int32(const std::string& attribute, gint32 value, FileQ
   return retvalue;
 }
 
-bool File::set_attribute_uint64(const std::string& attribute, guint64 value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable)
+auto File::set_attribute_uint64(const std::string& attribute, guint64 value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_set_attribute_uint64(gobj(), attribute.c_str(), value, static_cast<GFileQueryInfoFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -2587,7 +2587,7 @@ bool File::set_attribute_uint64(const std::string& attribute, guint64 value, Fil
   return retvalue;
 }
 
-bool File::set_attribute_uint64(const std::string& attribute, guint64 value, FileQueryInfoFlags flags)
+auto File::set_attribute_uint64(const std::string& attribute, guint64 value, FileQueryInfoFlags flags) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_set_attribute_uint64(gobj(), attribute.c_str(), value, static_cast<GFileQueryInfoFlags>(flags), nullptr, &(gerror));
@@ -2596,7 +2596,7 @@ bool File::set_attribute_uint64(const std::string& attribute, guint64 value, Fil
   return retvalue;
 }
 
-bool File::set_attribute_int64(const std::string& attribute, gint64 value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable)
+auto File::set_attribute_int64(const std::string& attribute, gint64 value, FileQueryInfoFlags flags, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_set_attribute_int64(gobj(), attribute.c_str(), value, static_cast<GFileQueryInfoFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -2605,7 +2605,7 @@ bool File::set_attribute_int64(const std::string& attribute, gint64 value, FileQ
   return retvalue;
 }
 
-bool File::set_attribute_int64(const std::string& attribute, gint64 value, FileQueryInfoFlags flags)
+auto File::set_attribute_int64(const std::string& attribute, gint64 value, FileQueryInfoFlags flags) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_set_attribute_int64(gobj(), attribute.c_str(), value, static_cast<GFileQueryInfoFlags>(flags), nullptr, &(gerror));
@@ -2614,7 +2614,7 @@ bool File::set_attribute_int64(const std::string& attribute, gint64 value, FileQ
   return retvalue;
 }
 
-bool File::mount_enclosing_volume_finish(const Glib::RefPtr<AsyncResult>& result)
+auto File::mount_enclosing_volume_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_mount_enclosing_volume_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -2623,7 +2623,7 @@ bool File::mount_enclosing_volume_finish(const Glib::RefPtr<AsyncResult>& result
   return retvalue;
 }
 
-Glib::RefPtr<File> File::mount_mountable_finish(const Glib::RefPtr<AsyncResult>& result)
+auto File::mount_mountable_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<File>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_mount_mountable_finish(gobj(), Glib::unwrap(result), &(gerror)));
@@ -2632,7 +2632,7 @@ Glib::RefPtr<File> File::mount_mountable_finish(const Glib::RefPtr<AsyncResult>&
   return retvalue;
 }
 
-bool File::unmount_mountable_finish(const Glib::RefPtr<AsyncResult>& result)
+auto File::unmount_mountable_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_unmount_mountable_with_operation_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -2641,7 +2641,7 @@ bool File::unmount_mountable_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool File::eject_mountable_finish(const Glib::RefPtr<AsyncResult>& result)
+auto File::eject_mountable_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_eject_mountable_with_operation_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -2650,7 +2650,7 @@ bool File::eject_mountable_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool File::measure_disk_usage_finish(const Glib::RefPtr<AsyncResult>& result, guint64& disk_usage, guint64& num_dirs, guint64& num_files)
+auto File::measure_disk_usage_finish(const Glib::RefPtr<AsyncResult>& result, guint64& disk_usage, guint64& num_dirs, guint64& num_files) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_measure_disk_usage_finish(gobj(), Glib::unwrap(result), &(disk_usage), &(num_dirs), &(num_files), &(gerror));
@@ -2659,7 +2659,7 @@ bool File::measure_disk_usage_finish(const Glib::RefPtr<AsyncResult>& result, gu
   return retvalue;
 }
 
-bool File::start_mountable_finish(const Glib::RefPtr<AsyncResult>& result)
+auto File::start_mountable_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_start_mountable_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -2668,7 +2668,7 @@ bool File::start_mountable_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool File::stop_mountable_finish(const Glib::RefPtr<AsyncResult>& result)
+auto File::stop_mountable_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_stop_mountable_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -2677,7 +2677,7 @@ bool File::stop_mountable_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-bool File::poll_mountable_finish(const Glib::RefPtr<AsyncResult>& result)
+auto File::poll_mountable_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_file_poll_mountable_finish(gobj(), Glib::unwrap(result), &(gerror));
@@ -2686,7 +2686,7 @@ bool File::poll_mountable_finish(const Glib::RefPtr<AsyncResult>& result)
   return retvalue;
 }
 
-Glib::RefPtr<AppInfo> File::query_default_handler(const Glib::RefPtr<Cancellable>& cancellable)
+auto File::query_default_handler(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<AppInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_query_default_handler(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -2695,7 +2695,7 @@ Glib::RefPtr<AppInfo> File::query_default_handler(const Glib::RefPtr<Cancellable
   return retvalue;
 }
 
-Glib::RefPtr<AppInfo> File::query_default_handler()
+auto File::query_default_handler() -> Glib::RefPtr<AppInfo>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_file_query_default_handler(gobj(), nullptr, &(gerror)));
@@ -2704,7 +2704,7 @@ Glib::RefPtr<AppInfo> File::query_default_handler()
   return retvalue;
 }
 
-bool File::supports_thread_contexts() const
+auto File::supports_thread_contexts() const -> bool
 {
   return g_file_supports_thread_contexts(const_cast<GFile*>(gobj()));
 }

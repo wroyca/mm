@@ -78,7 +78,7 @@ public:
 
   // noncopyable
   UnixSocketAddress(const UnixSocketAddress&) = delete;
-  UnixSocketAddress& operator=(const UnixSocketAddress&) = delete;
+  auto operator=(const UnixSocketAddress&) -> UnixSocketAddress& = delete;
 
 private:  friend class UnixSocketAddress_Class;
   static CppClassType unixsocketaddress_class_;
@@ -92,28 +92,28 @@ protected:
 public:
 
   UnixSocketAddress(UnixSocketAddress&& src) noexcept;
-  UnixSocketAddress& operator=(UnixSocketAddress&& src) noexcept;
+  auto operator=(UnixSocketAddress&& src) noexcept -> UnixSocketAddress&;
 
   ~UnixSocketAddress() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GUnixSocketAddress*       gobj()       { return reinterpret_cast<GUnixSocketAddress*>(gobject_); }
+  auto       gobj() -> GUnixSocketAddress*       { return reinterpret_cast<GUnixSocketAddress*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GUnixSocketAddress* gobj() const { return reinterpret_cast<GUnixSocketAddress*>(gobject_); }
+  auto gobj() const -> const GUnixSocketAddress* { return reinterpret_cast<GUnixSocketAddress*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GUnixSocketAddress* gobj_copy();
+  auto gobj_copy() -> GUnixSocketAddress*;
 
 private:
 
@@ -194,7 +194,7 @@ public:
    */
 
 
-  static Glib::RefPtr<UnixSocketAddress> create(const std::string& path);
+  static auto create(const std::string& path) -> Glib::RefPtr<UnixSocketAddress>;
 
 
  //TODO: Add when the above constructor is included, removing the handwritten
@@ -243,8 +243,8 @@ public:
    * @return A new UnixSocketAddress.
    */
 
- static Glib::RefPtr<UnixSocketAddress> create(const std::string& path,
-   Type type, int path_len = -1);
+ static auto create(const std::string& path,
+   Type type, int path_len = -1) -> Glib::RefPtr<UnixSocketAddress>;
 
  // Deprecated.
 
@@ -255,7 +255,7 @@ public:
    *
    * @return A Gio::UnixSocketAddress::Type.
    */
-  Type get_address_type() const;
+  auto get_address_type() const -> Type;
 
   /** Gets @a address's path, or for abstract sockets the "name".
    *
@@ -268,7 +268,7 @@ public:
    *
    * @return The path for @a address.
    */
-  std::string get_path() const;
+  auto get_path() const -> std::string;
 
 
   /** Checks if abstract UNIX domain socket names are supported.
@@ -277,7 +277,7 @@ public:
    *
    * @return <tt>true</tt> if supported, <tt>false</tt> otherwise.
    */
-  static bool abstract_names_supported();
+  static auto abstract_names_supported() -> bool;
 
 
   /** The type of UNIX socket address.
@@ -287,7 +287,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Type > property_address_type() const;
+  auto property_address_type() const -> Glib::PropertyProxy_ReadOnly< Type >;
 
 
   /** UNIX socket path.
@@ -297,7 +297,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::string > property_path() const;
+  auto property_path() const -> Glib::PropertyProxy_ReadOnly< std::string >;
 
 
   /** UNIX socket path, as byte array.
@@ -305,7 +305,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ByteArray> > property_path_as_array() const;
+  auto property_path_as_array() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ByteArray> >;
 
 
 public:
@@ -332,7 +332,7 @@ template <>
 class GIOMM_API Value<Gio::UnixSocketAddress::Type> : public Glib::Value_Enum<Gio::UnixSocketAddress::Type>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -350,7 +350,7 @@ namespace Glib
    * @relates Gio::UnixSocketAddress
    */
   GIOMM_API
-  Glib::RefPtr<Gio::UnixSocketAddress> wrap(GUnixSocketAddress* object, bool take_copy = false);
+  auto wrap(GUnixSocketAddress* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixSocketAddress>;
 }
 
 

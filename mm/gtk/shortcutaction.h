@@ -149,7 +149,7 @@ public:
 
   // noncopyable
   ShortcutAction(const ShortcutAction&) = delete;
-  ShortcutAction& operator=(const ShortcutAction&) = delete;
+  auto operator=(const ShortcutAction&) -> ShortcutAction& = delete;
 
 private:  friend class ShortcutAction_Class;
   static CppClassType shortcutaction_class_;
@@ -163,28 +163,28 @@ protected:
 public:
 
   ShortcutAction(ShortcutAction&& src) noexcept;
-  ShortcutAction& operator=(ShortcutAction&& src) noexcept;
+  auto operator=(ShortcutAction&& src) noexcept -> ShortcutAction&;
 
   ~ShortcutAction() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkShortcutAction*       gobj()       { return reinterpret_cast<GtkShortcutAction*>(gobject_); }
+  auto       gobj() -> GtkShortcutAction*       { return reinterpret_cast<GtkShortcutAction*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkShortcutAction* gobj() const { return reinterpret_cast<GtkShortcutAction*>(gobject_); }
+  auto gobj() const -> const GtkShortcutAction* { return reinterpret_cast<GtkShortcutAction*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkShortcutAction* gobj_copy();
+  auto gobj_copy() -> GtkShortcutAction*;
 
 private:
 
@@ -238,7 +238,7 @@ public:
    * @param string The string to parse.
    * @return A new `Gtk::ShortcutAction`.
    */
-  static Glib::RefPtr<ShortcutAction> parse_string(const Glib::ustring& string);
+  static auto parse_string(const Glib::ustring& string) -> Glib::RefPtr<ShortcutAction>;
 
 
   /** Prints the given action into a human-readable string.
@@ -249,7 +249,7 @@ public:
    *
    * @return A new string.
    */
-  Glib::ustring to_string() const;
+  auto to_string() const -> Glib::ustring;
 
 
   /** Activates the action on the @a widget with the given @a args.
@@ -265,7 +265,7 @@ public:
    * @param args Arguments to pass.
    * @return <tt>true</tt> if this action was activated successfully.
    */
-  bool activate(Widget& widget, Flags flags =  static_cast<Flags>(0), const Glib::VariantBase& args =  {});
+  auto activate(Widget& widget, Flags flags =  static_cast<Flags>(0), const Glib::VariantBase& args =  {}) -> bool;
 
 
 public:
@@ -298,7 +298,7 @@ public:
 
   // noncopyable
   NothingAction(const NothingAction&) = delete;
-  NothingAction& operator=(const NothingAction&) = delete;
+  auto operator=(const NothingAction&) -> NothingAction& = delete;
 
 private:  friend class NothingAction_Class;
   static CppClassType nothingaction_class_;
@@ -312,28 +312,28 @@ protected:
 public:
 
   NothingAction(NothingAction&& src) noexcept;
-  NothingAction& operator=(NothingAction&& src) noexcept;
+  auto operator=(NothingAction&& src) noexcept -> NothingAction&;
 
   ~NothingAction() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkNothingAction*       gobj()       { return reinterpret_cast<GtkNothingAction*>(gobject_); }
+  auto       gobj() -> GtkNothingAction*       { return reinterpret_cast<GtkNothingAction*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkNothingAction* gobj() const { return reinterpret_cast<GtkNothingAction*>(gobject_); }
+  auto gobj() const -> const GtkNothingAction* { return reinterpret_cast<GtkNothingAction*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkNothingAction* gobj_copy();
+  auto gobj_copy() -> GtkNothingAction*;
 
 private:
 
@@ -349,7 +349,7 @@ public:
    *
    * @return The nothing action.
    */
-  static Glib::RefPtr<NothingAction> get();
+  static auto get() -> Glib::RefPtr<NothingAction>;
 
 
 public:
@@ -381,7 +381,7 @@ public:
 
   // noncopyable
   CallbackAction(const CallbackAction&) = delete;
-  CallbackAction& operator=(const CallbackAction&) = delete;
+  auto operator=(const CallbackAction&) -> CallbackAction& = delete;
 
 private:  friend class CallbackAction_Class;
   static CppClassType callbackaction_class_;
@@ -395,28 +395,28 @@ protected:
 public:
 
   CallbackAction(CallbackAction&& src) noexcept;
-  CallbackAction& operator=(CallbackAction&& src) noexcept;
+  auto operator=(CallbackAction&& src) noexcept -> CallbackAction&;
 
   ~CallbackAction() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkCallbackAction*       gobj()       { return reinterpret_cast<GtkCallbackAction*>(gobject_); }
+  auto       gobj() -> GtkCallbackAction*       { return reinterpret_cast<GtkCallbackAction*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkCallbackAction* gobj() const { return reinterpret_cast<GtkCallbackAction*>(gobject_); }
+  auto gobj() const -> const GtkCallbackAction* { return reinterpret_cast<GtkCallbackAction*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkCallbackAction* gobj_copy();
+  auto gobj_copy() -> GtkCallbackAction*;
 
 private:
 
@@ -435,7 +435,7 @@ private:
   using SlotShortcut = sigc::slot<bool(Widget&, const Glib::VariantBase&)>;
 
 
-  static Glib::RefPtr<CallbackAction> create(const SlotShortcut& slot);
+  static auto create(const SlotShortcut& slot) -> Glib::RefPtr<CallbackAction>;
 
 
 protected:
@@ -471,7 +471,7 @@ public:
 
   // noncopyable
   MnemonicAction(const MnemonicAction&) = delete;
-  MnemonicAction& operator=(const MnemonicAction&) = delete;
+  auto operator=(const MnemonicAction&) -> MnemonicAction& = delete;
 
 private:  friend class MnemonicAction_Class;
   static CppClassType mnemonicaction_class_;
@@ -485,28 +485,28 @@ protected:
 public:
 
   MnemonicAction(MnemonicAction&& src) noexcept;
-  MnemonicAction& operator=(MnemonicAction&& src) noexcept;
+  auto operator=(MnemonicAction&& src) noexcept -> MnemonicAction&;
 
   ~MnemonicAction() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkMnemonicAction*       gobj()       { return reinterpret_cast<GtkMnemonicAction*>(gobject_); }
+  auto       gobj() -> GtkMnemonicAction*       { return reinterpret_cast<GtkMnemonicAction*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkMnemonicAction* gobj() const { return reinterpret_cast<GtkMnemonicAction*>(gobject_); }
+  auto gobj() const -> const GtkMnemonicAction* { return reinterpret_cast<GtkMnemonicAction*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkMnemonicAction* gobj_copy();
+  auto gobj_copy() -> GtkMnemonicAction*;
 
 private:
 
@@ -522,7 +522,7 @@ public:
    *
    * @return The mnemonic action.
    */
-  static Glib::RefPtr<MnemonicAction> get();
+  static auto get() -> Glib::RefPtr<MnemonicAction>;
 
 
 public:
@@ -554,7 +554,7 @@ public:
 
   // noncopyable
   ActivateAction(const ActivateAction&) = delete;
-  ActivateAction& operator=(const ActivateAction&) = delete;
+  auto operator=(const ActivateAction&) -> ActivateAction& = delete;
 
 private:  friend class ActivateAction_Class;
   static CppClassType activateaction_class_;
@@ -568,28 +568,28 @@ protected:
 public:
 
   ActivateAction(ActivateAction&& src) noexcept;
-  ActivateAction& operator=(ActivateAction&& src) noexcept;
+  auto operator=(ActivateAction&& src) noexcept -> ActivateAction&;
 
   ~ActivateAction() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkActivateAction*       gobj()       { return reinterpret_cast<GtkActivateAction*>(gobject_); }
+  auto       gobj() -> GtkActivateAction*       { return reinterpret_cast<GtkActivateAction*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkActivateAction* gobj() const { return reinterpret_cast<GtkActivateAction*>(gobject_); }
+  auto gobj() const -> const GtkActivateAction* { return reinterpret_cast<GtkActivateAction*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkActivateAction* gobj_copy();
+  auto gobj_copy() -> GtkActivateAction*;
 
 private:
 
@@ -605,7 +605,7 @@ public:
    *
    * @return The activate action.
    */
-  static Glib::RefPtr<ActivateAction> get();
+  static auto get() -> Glib::RefPtr<ActivateAction>;
 
 
 public:
@@ -637,7 +637,7 @@ public:
 
   // noncopyable
   SignalAction(const SignalAction&) = delete;
-  SignalAction& operator=(const SignalAction&) = delete;
+  auto operator=(const SignalAction&) -> SignalAction& = delete;
 
 private:  friend class SignalAction_Class;
   static CppClassType signalaction_class_;
@@ -651,28 +651,28 @@ protected:
 public:
 
   SignalAction(SignalAction&& src) noexcept;
-  SignalAction& operator=(SignalAction&& src) noexcept;
+  auto operator=(SignalAction&& src) noexcept -> SignalAction&;
 
   ~SignalAction() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkSignalAction*       gobj()       { return reinterpret_cast<GtkSignalAction*>(gobject_); }
+  auto       gobj() -> GtkSignalAction*       { return reinterpret_cast<GtkSignalAction*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkSignalAction* gobj() const { return reinterpret_cast<GtkSignalAction*>(gobject_); }
+  auto gobj() const -> const GtkSignalAction* { return reinterpret_cast<GtkSignalAction*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkSignalAction* gobj_copy();
+  auto gobj_copy() -> GtkSignalAction*;
 
 private:
 
@@ -682,14 +682,14 @@ private:
 
 public:
 
-  static Glib::RefPtr<SignalAction> create(const Glib::ustring& signal_name);
+  static auto create(const Glib::ustring& signal_name) -> Glib::RefPtr<SignalAction>;
 
 
   /** Returns the name of the signal that will be emitted.
    *
    * @return The name of the signal to emit.
    */
-  Glib::ustring get_signal_name() const;
+  auto get_signal_name() const -> Glib::ustring;
 
   /** The name of the signal to emit.
    *
@@ -698,7 +698,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_signal_name() const;
+  auto property_signal_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -730,7 +730,7 @@ public:
 
   // noncopyable
   NamedAction(const NamedAction&) = delete;
-  NamedAction& operator=(const NamedAction&) = delete;
+  auto operator=(const NamedAction&) -> NamedAction& = delete;
 
 private:  friend class NamedAction_Class;
   static CppClassType namedaction_class_;
@@ -744,28 +744,28 @@ protected:
 public:
 
   NamedAction(NamedAction&& src) noexcept;
-  NamedAction& operator=(NamedAction&& src) noexcept;
+  auto operator=(NamedAction&& src) noexcept -> NamedAction&;
 
   ~NamedAction() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkNamedAction*       gobj()       { return reinterpret_cast<GtkNamedAction*>(gobject_); }
+  auto       gobj() -> GtkNamedAction*       { return reinterpret_cast<GtkNamedAction*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkNamedAction* gobj() const { return reinterpret_cast<GtkNamedAction*>(gobject_); }
+  auto gobj() const -> const GtkNamedAction* { return reinterpret_cast<GtkNamedAction*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkNamedAction* gobj_copy();
+  auto gobj_copy() -> GtkNamedAction*;
 
 private:
 
@@ -775,14 +775,14 @@ private:
 
 public:
 
-  static Glib::RefPtr<NamedAction> create(const Glib::ustring& action_name);
+  static auto create(const Glib::ustring& action_name) -> Glib::RefPtr<NamedAction>;
 
 
   /** Returns the name of the action that will be activated.
    *
    * @return The name of the action to activate.
    */
-  Glib::ustring get_action_name() const;
+  auto get_action_name() const -> Glib::ustring;
 
   /** The name of the action to activate.
    *
@@ -791,7 +791,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_action_name() const;
+  auto property_action_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -813,31 +813,31 @@ namespace Gtk
 {
 
 /** @ingroup gtkmmEnums */
-inline ShortcutAction::Flags operator|(ShortcutAction::Flags lhs, ShortcutAction::Flags rhs)
+inline auto operator|(ShortcutAction::Flags lhs, ShortcutAction::Flags rhs) -> ShortcutAction::Flags
   { return static_cast<ShortcutAction::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline ShortcutAction::Flags operator&(ShortcutAction::Flags lhs, ShortcutAction::Flags rhs)
+inline auto operator&(ShortcutAction::Flags lhs, ShortcutAction::Flags rhs) -> ShortcutAction::Flags
   { return static_cast<ShortcutAction::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline ShortcutAction::Flags operator^(ShortcutAction::Flags lhs, ShortcutAction::Flags rhs)
+inline auto operator^(ShortcutAction::Flags lhs, ShortcutAction::Flags rhs) -> ShortcutAction::Flags
   { return static_cast<ShortcutAction::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline ShortcutAction::Flags operator~(ShortcutAction::Flags flags)
+inline auto operator~(ShortcutAction::Flags flags) -> ShortcutAction::Flags
   { return static_cast<ShortcutAction::Flags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gtkmmEnums */
-inline ShortcutAction::Flags& operator|=(ShortcutAction::Flags& lhs, ShortcutAction::Flags rhs)
+inline auto operator|=(ShortcutAction::Flags& lhs, ShortcutAction::Flags rhs) -> ShortcutAction::Flags&
   { return (lhs = static_cast<ShortcutAction::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline ShortcutAction::Flags& operator&=(ShortcutAction::Flags& lhs, ShortcutAction::Flags rhs)
+inline auto operator&=(ShortcutAction::Flags& lhs, ShortcutAction::Flags rhs) -> ShortcutAction::Flags&
   { return (lhs = static_cast<ShortcutAction::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline ShortcutAction::Flags& operator^=(ShortcutAction::Flags& lhs, ShortcutAction::Flags rhs)
+inline auto operator^=(ShortcutAction::Flags& lhs, ShortcutAction::Flags rhs) -> ShortcutAction::Flags&
   { return (lhs = static_cast<ShortcutAction::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gtk
 
@@ -849,7 +849,7 @@ template <>
 class GTKMM_API Value<Gtk::ShortcutAction::Flags> : public Glib::Value_Flags<Gtk::ShortcutAction::Flags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -867,7 +867,7 @@ namespace Glib
    * @relates Gtk::ShortcutAction
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::ShortcutAction> wrap(GtkShortcutAction* object, bool take_copy = false);
+  auto wrap(GtkShortcutAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ShortcutAction>;
 }
 
 
@@ -882,7 +882,7 @@ namespace Glib
    * @relates Gtk::NothingAction
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::NothingAction> wrap(GtkNothingAction* object, bool take_copy = false);
+  auto wrap(GtkNothingAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NothingAction>;
 }
 
 
@@ -897,7 +897,7 @@ namespace Glib
    * @relates Gtk::CallbackAction
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::CallbackAction> wrap(GtkCallbackAction* object, bool take_copy = false);
+  auto wrap(GtkCallbackAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CallbackAction>;
 }
 
 
@@ -912,7 +912,7 @@ namespace Glib
    * @relates Gtk::MnemonicAction
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::MnemonicAction> wrap(GtkMnemonicAction* object, bool take_copy = false);
+  auto wrap(GtkMnemonicAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MnemonicAction>;
 }
 
 
@@ -927,7 +927,7 @@ namespace Glib
    * @relates Gtk::ActivateAction
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::ActivateAction> wrap(GtkActivateAction* object, bool take_copy = false);
+  auto wrap(GtkActivateAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ActivateAction>;
 }
 
 
@@ -942,7 +942,7 @@ namespace Glib
    * @relates Gtk::SignalAction
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::SignalAction> wrap(GtkSignalAction* object, bool take_copy = false);
+  auto wrap(GtkSignalAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SignalAction>;
 }
 
 
@@ -957,7 +957,7 @@ namespace Glib
    * @relates Gtk::NamedAction
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::NamedAction> wrap(GtkNamedAction* object, bool take_copy = false);
+  auto wrap(GtkNamedAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NamedAction>;
 }
 
 

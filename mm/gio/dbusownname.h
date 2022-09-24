@@ -25,10 +25,7 @@
 #include <mm/gio/dbusconnection.h>
 
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 /** @addtogroup giommEnums giomm Enums and Flags */
@@ -73,35 +70,33 @@ enum class BusNameOwnerFlags
 };
 
 /** @ingroup giommEnums */
-inline BusNameOwnerFlags operator|(BusNameOwnerFlags lhs, BusNameOwnerFlags rhs)
+inline auto operator|(BusNameOwnerFlags lhs, BusNameOwnerFlags rhs) -> BusNameOwnerFlags
   { return static_cast<BusNameOwnerFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline BusNameOwnerFlags operator&(BusNameOwnerFlags lhs, BusNameOwnerFlags rhs)
+inline auto operator&(BusNameOwnerFlags lhs, BusNameOwnerFlags rhs) -> BusNameOwnerFlags
   { return static_cast<BusNameOwnerFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline BusNameOwnerFlags operator^(BusNameOwnerFlags lhs, BusNameOwnerFlags rhs)
+inline auto operator^(BusNameOwnerFlags lhs, BusNameOwnerFlags rhs) -> BusNameOwnerFlags
   { return static_cast<BusNameOwnerFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline BusNameOwnerFlags operator~(BusNameOwnerFlags flags)
+inline auto operator~(BusNameOwnerFlags flags) -> BusNameOwnerFlags
   { return static_cast<BusNameOwnerFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline BusNameOwnerFlags& operator|=(BusNameOwnerFlags& lhs, BusNameOwnerFlags rhs)
+inline auto operator|=(BusNameOwnerFlags& lhs, BusNameOwnerFlags rhs) -> BusNameOwnerFlags&
   { return (lhs = static_cast<BusNameOwnerFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline BusNameOwnerFlags& operator&=(BusNameOwnerFlags& lhs, BusNameOwnerFlags rhs)
+inline auto operator&=(BusNameOwnerFlags& lhs, BusNameOwnerFlags rhs) -> BusNameOwnerFlags&
   { return (lhs = static_cast<BusNameOwnerFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline BusNameOwnerFlags& operator^=(BusNameOwnerFlags& lhs, BusNameOwnerFlags rhs)
+inline auto operator^=(BusNameOwnerFlags& lhs, BusNameOwnerFlags rhs) -> BusNameOwnerFlags&
   { return (lhs = static_cast<BusNameOwnerFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
-
-} // namespace DBus
 
 } // namespace Gio
 
@@ -113,16 +108,13 @@ template <>
 class GIOMM_API Value<Gio::DBus::BusNameOwnerFlags> : public Glib::Value_Flags<Gio::DBus::BusNameOwnerFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 
@@ -208,14 +200,14 @@ using SlotNameLost = sigc::slot<void(const Glib::RefPtr<Gio::DBus::Connection>&,
  * @ingroup DBus
  */
 GIOMM_API
-guint own_name(
+auto own_name(
   BusType bus_type,
   const Glib::ustring& name,
   const SlotBusAcquired& bus_acquired_slot = {},
   const SlotNameAcquired& name_acquired_slot = {},
   const SlotNameLost& name_lost_slot = {},
   BusNameOwnerFlags flags = Gio::DBus::BusNameOwnerFlags::NONE
-);
+) -> guint;
 
 
 /** Stops owning a name.
@@ -224,8 +216,6 @@ guint own_name(
 GIOMM_API
 void unown_name(guint owner_id);
 
-
-} // namespace DBus
 
 } // namespace Gio
 

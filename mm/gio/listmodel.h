@@ -106,7 +106,7 @@ public:
 
   // noncopyable
   ListModel(const ListModel&) = delete;
-  ListModel& operator=(const ListModel&) = delete;
+  auto operator=(const ListModel&) -> ListModel& = delete;
 
 private:
   friend class ListModel_Class;
@@ -140,7 +140,7 @@ protected:
 public:
 
   ListModel(ListModel&& src) noexcept;
-  ListModel& operator=(ListModel&& src) noexcept;
+  auto operator=(ListModel&& src) noexcept -> ListModel&;
 
   ~ListModel() noexcept override;
 
@@ -148,17 +148,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GListModel*       gobj()       { return reinterpret_cast<GListModel*>(gobject_); }
+  auto       gobj() -> GListModel*       { return reinterpret_cast<GListModel*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GListModel* gobj() const { return reinterpret_cast<GListModel*>(gobject_); }
+  auto gobj() const -> const GListModel* { return reinterpret_cast<GListModel*>(gobject_); }
 
 private:
 
@@ -209,7 +209,7 @@ public:
    *
    * @return The Type of the items contained in @a list.
    */
-  GType get_item_type() const;
+  auto get_item_type() const -> GType;
 
   /** Gets the number of items in @a list.
    *
@@ -221,7 +221,7 @@ public:
    *
    * @return The number of items in @a list.
    */
-  guint get_n_items() const;
+  auto get_n_items() const -> guint;
 
   //g_list_model_get_item is useless as long as we have g_list_model_get_object().
   //It doesn't do anything differently.
@@ -250,7 +250,7 @@ public:
    * @param position The position of the item to fetch.
    * @return The object at @a position.
    */
-  Glib::RefPtr<Glib::ObjectBase> get_object(guint position);
+  auto get_object(guint position) -> Glib::RefPtr<Glib::ObjectBase>;
 
   /** Get the item at @a position.
    *
@@ -270,7 +270,7 @@ public:
    * @param position The position of the item to fetch.
    * @return The object at @a position.
    */
-  Glib::RefPtr<const Glib::ObjectBase> get_object(guint position) const;
+  auto get_object(guint position) const -> Glib::RefPtr<const Glib::ObjectBase>;
 
 
   /**
@@ -293,15 +293,15 @@ public:
    * @param added The number of items added.
    */
 
-  Glib::SignalProxy<void(guint, guint, guint)> signal_items_changed();
+  auto signal_items_changed() -> Glib::SignalProxy<void(guint, guint, guint)>;
 
 
 protected:
-    virtual GType get_item_type_vfunc();
+    virtual auto get_item_type_vfunc() -> GType;
 
-    virtual guint get_n_items_vfunc();
+    virtual auto get_n_items_vfunc() -> guint;
 
-    virtual gpointer get_item_vfunc(guint position);
+    virtual auto get_item_vfunc(guint position) -> gpointer;
 
 
 public:
@@ -331,7 +331,7 @@ namespace Glib
    * @relates Gio::ListModel
    */
   GIOMM_API
-  Glib::RefPtr<Gio::ListModel> wrap(GListModel* object, bool take_copy = false);
+  auto wrap(GListModel* object, bool take_copy = false) -> Glib::RefPtr<Gio::ListModel>;
 
 } // namespace Glib
 

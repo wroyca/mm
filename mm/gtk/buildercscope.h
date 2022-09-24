@@ -65,7 +65,7 @@ public:
 
   // noncopyable
   BuilderCScope(const BuilderCScope&) = delete;
-  BuilderCScope& operator=(const BuilderCScope&) = delete;
+  auto operator=(const BuilderCScope&) -> BuilderCScope& = delete;
 
 private:  friend class BuilderCScope_Class;
   static CppClassType buildercscope_class_;
@@ -79,28 +79,28 @@ protected:
 public:
 
   BuilderCScope(BuilderCScope&& src) noexcept;
-  BuilderCScope& operator=(BuilderCScope&& src) noexcept;
+  auto operator=(BuilderCScope&& src) noexcept -> BuilderCScope&;
 
   ~BuilderCScope() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkBuilderCScope*       gobj()       { return reinterpret_cast<GtkBuilderCScope*>(gobject_); }
+  auto       gobj() -> GtkBuilderCScope*       { return reinterpret_cast<GtkBuilderCScope*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkBuilderCScope* gobj() const { return reinterpret_cast<GtkBuilderCScope*>(gobject_); }
+  auto gobj() const -> const GtkBuilderCScope* { return reinterpret_cast<GtkBuilderCScope*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkBuilderCScope* gobj_copy();
+  auto gobj_copy() -> GtkBuilderCScope*;
 
 private:
 
@@ -110,7 +110,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<BuilderCScope> create();
+  static auto create() -> Glib::RefPtr<BuilderCScope>;
 
 
 public:
@@ -141,7 +141,7 @@ namespace Glib
    * @relates Gtk::BuilderCScope
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::BuilderCScope> wrap(GtkBuilderCScope* object, bool take_copy = false);
+  auto wrap(GtkBuilderCScope* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BuilderCScope>;
 }
 
 

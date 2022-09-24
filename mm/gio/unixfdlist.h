@@ -67,7 +67,7 @@ public:
 
   // noncopyable
   UnixFDList(const UnixFDList&) = delete;
-  UnixFDList& operator=(const UnixFDList&) = delete;
+  auto operator=(const UnixFDList&) -> UnixFDList& = delete;
 
 private:  friend class UnixFDList_Class;
   static CppClassType unixfdlist_class_;
@@ -81,28 +81,28 @@ protected:
 public:
 
   UnixFDList(UnixFDList&& src) noexcept;
-  UnixFDList& operator=(UnixFDList&& src) noexcept;
+  auto operator=(UnixFDList&& src) noexcept -> UnixFDList&;
 
   ~UnixFDList() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GUnixFDList*       gobj()       { return reinterpret_cast<GUnixFDList*>(gobject_); }
+  auto       gobj() -> GUnixFDList*       { return reinterpret_cast<GUnixFDList*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GUnixFDList* gobj() const { return reinterpret_cast<GUnixFDList*>(gobject_); }
+  auto gobj() const -> const GUnixFDList* { return reinterpret_cast<GUnixFDList*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GUnixFDList* gobj_copy();
+  auto gobj_copy() -> GUnixFDList*;
 
 private:
 
@@ -130,7 +130,7 @@ public:
    */
 
 
-  static Glib::RefPtr<UnixFDList> create();
+  static auto create() -> Glib::RefPtr<UnixFDList>;
 
 
   /** Creates a new UnixFDList containing the file descriptors given in @a
@@ -142,7 +142,7 @@ public:
    * @return A new UnixFDList.
    */
 
-  static Glib::RefPtr<UnixFDList> create(const std::vector<int>& fds);
+  static auto create(const std::vector<int>& fds) -> Glib::RefPtr<UnixFDList>;
 
 
   /** Creates a new UnixFDList containing the file descriptors given in
@@ -162,7 +162,7 @@ public:
    */
 
 
-  static Glib::RefPtr<UnixFDList> create(const std::vector<int>& fds, int n_fds);
+  static auto create(const std::vector<int>& fds, int n_fds) -> Glib::RefPtr<UnixFDList>;
 
 
   /** Gets the length of @a list (ie: the number of file descriptors
@@ -172,7 +172,7 @@ public:
    *
    * @return The length of @a list.
    */
-  int get_length() const;
+  auto get_length() const -> int;
 
   /** Gets a file descriptor out of @a list.
    *
@@ -194,7 +194,7 @@ public:
    *
    * @throws Gio::Error
    */
-  int get(int index) const;
+  auto get(int index) const -> int;
 
   /** Returns the array of file descriptors that is contained in this object.
    *
@@ -205,7 +205,7 @@ public:
    *
    * @newin{2,28}
    */
-  const std::vector<int> peek_fds() const;
+  auto peek_fds() const -> const std::vector<int>;
 
 
   /** Returns the array of file descriptors that is contained in this object.
@@ -220,7 +220,7 @@ public:
    *
    * @newin{2,28}
    */
-  std::vector<int> steal_fds();
+  auto steal_fds() -> std::vector<int>;
 
 
   /** Adds a file descriptor to @a list.
@@ -246,7 +246,7 @@ public:
 
   /**@throw Glib::Error.
    */
-  int append(int fd);
+  auto append(int fd) -> int;
 
 
 public:
@@ -276,7 +276,7 @@ namespace Glib
    * @relates Gio::UnixFDList
    */
   GIOMM_API
-  Glib::RefPtr<Gio::UnixFDList> wrap(GUnixFDList* object, bool take_copy = false);
+  auto wrap(GUnixFDList* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixFDList>;
 }
 
 

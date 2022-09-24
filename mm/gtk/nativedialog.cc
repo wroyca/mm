@@ -41,7 +41,7 @@ namespace
 {
 
 
-static void NativeDialog_signal_response_callback(GtkNativeDialog* self, gint p0,void* data)
+void NativeDialog_signal_response_callback(GtkNativeDialog* self, gint p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(int)>;
@@ -63,7 +63,7 @@ static void NativeDialog_signal_response_callback(GtkNativeDialog* self, gint p0
   }
 }
 
-static const Glib::SignalProxyInfo NativeDialog_signal_response_info =
+const Glib::SignalProxyInfo NativeDialog_signal_response_info =
 {
   "response",
   (GCallback) &NativeDialog_signal_response_callback,
@@ -77,7 +77,7 @@ static const Glib::SignalProxyInfo NativeDialog_signal_response_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::NativeDialog> wrap(GtkNativeDialog* object, bool take_copy)
+auto wrap(GtkNativeDialog* object, bool take_copy) -> Glib::RefPtr<Gtk::NativeDialog>
 {
   return Glib::make_refptr_for_instance<Gtk::NativeDialog>( dynamic_cast<Gtk::NativeDialog*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -92,7 +92,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& NativeDialog_Class::init()
+auto NativeDialog_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -163,7 +163,7 @@ void NativeDialog_Class::response_callback(GtkNativeDialog* self, gint p0)
 }
 
 
-Glib::ObjectBase* NativeDialog_Class::wrap_new(GObject* object)
+auto NativeDialog_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new NativeDialog((GtkNativeDialog*)object);
 }
@@ -171,7 +171,7 @@ Glib::ObjectBase* NativeDialog_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkNativeDialog* NativeDialog::gobj_copy()
+auto NativeDialog::gobj_copy() -> GtkNativeDialog*
 {
   reference();
   return gobj();
@@ -194,7 +194,7 @@ NativeDialog::NativeDialog(NativeDialog&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-NativeDialog& NativeDialog::operator=(NativeDialog&& src) noexcept
+auto NativeDialog::operator=(NativeDialog&& src) noexcept -> NativeDialog&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -207,13 +207,13 @@ NativeDialog::~NativeDialog() noexcept
 
 NativeDialog::CppClassType NativeDialog::nativedialog_class_; // initialize static member
 
-GType NativeDialog::get_type()
+auto NativeDialog::get_type() -> GType
 {
   return nativedialog_class_.init().get_type();
 }
 
 
-GType NativeDialog::get_base_type()
+auto NativeDialog::get_base_type() -> GType
 {
   return gtk_native_dialog_get_type();
 }
@@ -239,7 +239,7 @@ void NativeDialog::hide()
   gtk_native_dialog_hide(gobj());
 }
 
-bool NativeDialog::get_visible() const
+auto NativeDialog::get_visible() const -> bool
 {
   return gtk_native_dialog_get_visible(const_cast<GtkNativeDialog*>(gobj()));
 }
@@ -249,7 +249,7 @@ void NativeDialog::set_modal(bool modal)
   gtk_native_dialog_set_modal(gobj(), static_cast<int>(modal));
 }
 
-bool NativeDialog::get_modal() const
+auto NativeDialog::get_modal() const -> bool
 {
   return gtk_native_dialog_get_modal(const_cast<GtkNativeDialog*>(gobj()));
 }
@@ -259,7 +259,7 @@ void NativeDialog::set_title(const Glib::ustring& title)
   gtk_native_dialog_set_title(gobj(), title.c_str());
 }
 
-Glib::ustring NativeDialog::get_title() const
+auto NativeDialog::get_title() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_native_dialog_get_title(const_cast<GtkNativeDialog*>(gobj())));
 }
@@ -269,49 +269,49 @@ void NativeDialog::set_transient_for(Window& parent)
   gtk_native_dialog_set_transient_for(gobj(), (parent).gobj());
 }
 
-Window* NativeDialog::get_transient_for()
+auto NativeDialog::get_transient_for() -> Window*
 {
   return Glib::wrap(gtk_native_dialog_get_transient_for(gobj()));
 }
 
-const Window* NativeDialog::get_transient_for() const
+auto NativeDialog::get_transient_for() const -> const Window*
 {
   return const_cast<NativeDialog*>(this)->get_transient_for();
 }
 
 
-Glib::SignalProxy<void(int)> NativeDialog::signal_response()
+auto NativeDialog::signal_response() -> Glib::SignalProxy<void(int)>
 {
   return Glib::SignalProxy<void(int) >(this, &NativeDialog_signal_response_info);
 }
 
 
-Glib::PropertyProxy< Glib::ustring > NativeDialog::property_title()
+auto NativeDialog::property_title() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "title");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > NativeDialog::property_title() const
+auto NativeDialog::property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "title");
 }
 
-Glib::PropertyProxy< bool > NativeDialog::property_modal()
+auto NativeDialog::property_modal() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "modal");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > NativeDialog::property_modal() const
+auto NativeDialog::property_modal() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "modal");
 }
 
-Glib::PropertyProxy< bool > NativeDialog::property_visible()
+auto NativeDialog::property_visible() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "visible");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > NativeDialog::property_visible() const
+auto NativeDialog::property_visible() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "visible");
 }
@@ -320,12 +320,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Window*>::value,
   "Type Window* cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Window* > NativeDialog::property_transient_for()
+auto NativeDialog::property_transient_for() -> Glib::PropertyProxy< Window* >
 {
   return Glib::PropertyProxy< Window* >(this, "transient-for");
 }
 
-Glib::PropertyProxy_ReadOnly< Window* > NativeDialog::property_transient_for() const
+auto NativeDialog::property_transient_for() const -> Glib::PropertyProxy_ReadOnly< Window* >
 {
   return Glib::PropertyProxy_ReadOnly< Window* >(this, "transient-for");
 }

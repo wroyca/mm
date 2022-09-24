@@ -30,8 +30,8 @@ using Type = Gio::UnixSocketAddress::Type;
 namespace Gio
 {
 
-Glib::RefPtr<UnixSocketAddress>
-UnixSocketAddress::create(const std::string& path, Type type, int path_len)
+auto
+UnixSocketAddress::create(const std::string& path, Type type, int path_len) -> Glib::RefPtr<UnixSocketAddress>
 {
   return Glib::wrap(reinterpret_cast<GUnixSocketAddress*>(g_unix_socket_address_new_with_type(
     path.c_str(), path_len, static_cast<GUnixSocketAddressType>(type))));
@@ -44,7 +44,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::UnixSocketAddress::Type>::value_type()
+auto Glib::Value<Gio::UnixSocketAddress::Type>::value_type() -> GType
 {
   return g_unix_socket_address_type_get_type();
 }
@@ -53,7 +53,7 @@ GType Glib::Value<Gio::UnixSocketAddress::Type>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gio::UnixSocketAddress> wrap(GUnixSocketAddress* object, bool take_copy)
+auto wrap(GUnixSocketAddress* object, bool take_copy) -> Glib::RefPtr<Gio::UnixSocketAddress>
 {
   return Glib::make_refptr_for_instance<Gio::UnixSocketAddress>( dynamic_cast<Gio::UnixSocketAddress*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -68,7 +68,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& UnixSocketAddress_Class::init()
+auto UnixSocketAddress_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -99,7 +99,7 @@ void UnixSocketAddress_Class::class_init_function(void* g_class, void* class_dat
 }
 
 
-Glib::ObjectBase* UnixSocketAddress_Class::wrap_new(GObject* object)
+auto UnixSocketAddress_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new UnixSocketAddress((GUnixSocketAddress*)object);
 }
@@ -107,7 +107,7 @@ Glib::ObjectBase* UnixSocketAddress_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GUnixSocketAddress* UnixSocketAddress::gobj_copy()
+auto UnixSocketAddress::gobj_copy() -> GUnixSocketAddress*
 {
   reference();
   return gobj();
@@ -130,7 +130,7 @@ UnixSocketAddress::UnixSocketAddress(UnixSocketAddress&& src) noexcept
 : SocketAddress(std::move(src))
 {}
 
-UnixSocketAddress& UnixSocketAddress::operator=(UnixSocketAddress&& src) noexcept
+auto UnixSocketAddress::operator=(UnixSocketAddress&& src) noexcept -> UnixSocketAddress&
 {
   SocketAddress::operator=(std::move(src));
   return *this;
@@ -143,13 +143,13 @@ UnixSocketAddress::~UnixSocketAddress() noexcept
 
 UnixSocketAddress::CppClassType UnixSocketAddress::unixsocketaddress_class_; // initialize static member
 
-GType UnixSocketAddress::get_type()
+auto UnixSocketAddress::get_type() -> GType
 {
   return unixsocketaddress_class_.init().get_type();
 }
 
 
-GType UnixSocketAddress::get_base_type()
+auto UnixSocketAddress::get_base_type() -> GType
 {
   return g_unix_socket_address_get_type();
 }
@@ -165,22 +165,22 @@ UnixSocketAddress::UnixSocketAddress(const std::string& path)
 
 }
 
-Glib::RefPtr<UnixSocketAddress> UnixSocketAddress::create(const std::string& path)
+auto UnixSocketAddress::create(const std::string& path) -> Glib::RefPtr<UnixSocketAddress>
 {
   return Glib::make_refptr_for_instance<UnixSocketAddress>( new UnixSocketAddress(path) );
 }
 
-Type UnixSocketAddress::get_address_type() const
+auto UnixSocketAddress::get_address_type() const -> Type
 {
   return static_cast<Type>(g_unix_socket_address_get_address_type(const_cast<GUnixSocketAddress*>(gobj())));
 }
 
-std::string UnixSocketAddress::get_path() const
+auto UnixSocketAddress::get_path() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_unix_socket_address_get_path(const_cast<GUnixSocketAddress*>(gobj())));
 }
 
-bool UnixSocketAddress::abstract_names_supported()
+auto UnixSocketAddress::abstract_names_supported() -> bool
 {
   return g_unix_socket_address_abstract_names_supported();
 }
@@ -190,12 +190,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Type>::value,
   "Type Type cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Type > UnixSocketAddress::property_address_type() const
+auto UnixSocketAddress::property_address_type() const -> Glib::PropertyProxy_ReadOnly< Type >
 {
   return Glib::PropertyProxy_ReadOnly< Type >(this, "address-type");
 }
 
-Glib::PropertyProxy_ReadOnly< std::string > UnixSocketAddress::property_path() const
+auto UnixSocketAddress::property_path() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
   return Glib::PropertyProxy_ReadOnly< std::string >(this, "path");
 }
@@ -204,7 +204,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Glib::B
   "Type Glib::RefPtr<Glib::ByteArray> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ByteArray> > UnixSocketAddress::property_path_as_array() const
+auto UnixSocketAddress::property_path_as_array() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ByteArray> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ByteArray> >(this, "path-as-array");
 }

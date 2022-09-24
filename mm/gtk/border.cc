@@ -35,7 +35,7 @@ namespace
 namespace Glib
 {
 
-Gtk::Border wrap(GtkBorder* object, bool take_copy)
+auto wrap(GtkBorder* object, bool take_copy) -> Gtk::Border
 {
   return Gtk::Border(object, take_copy);
 }
@@ -48,7 +48,7 @@ namespace Gtk
 
 
 // static
-GType Border::get_type()
+auto Border::get_type() -> GType
 {
   return gtk_border_get_type();
 }
@@ -70,7 +70,7 @@ Border::Border(Border&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-Border& Border::operator=(Border&& other) noexcept
+auto Border::operator=(Border&& other) noexcept -> Border&
 {
   Border temp (std::move(other));
   swap(temp);
@@ -85,7 +85,7 @@ Border::Border(GtkBorder* gobject, bool make_a_copy)
   gobject_ ((make_a_copy && gobject) ? gtk_border_copy(gobject) : gobject)
 {}
 
-Border& Border::operator=(const Border& other)
+auto Border::operator=(const Border& other) -> Border&
 {
   Border temp (other);
   swap(temp);
@@ -103,13 +103,13 @@ void Border::swap(Border& other) noexcept
   std::swap(gobject_, other.gobject_);
 }
 
-GtkBorder* Border::gobj_copy() const
+auto Border::gobj_copy() const -> GtkBorder*
 {
   return gtk_border_copy(gobject_);
 }
 
 
-int Border::get_left() const
+auto Border::get_left() const -> int
 {
   return gobj()->left;
 }
@@ -119,7 +119,7 @@ void Border::set_left(const int& value)
   gobj()->left = value;
 }
 
-int Border::get_right() const
+auto Border::get_right() const -> int
 {
   return gobj()->right;
 }
@@ -129,7 +129,7 @@ void Border::set_right(const int& value)
   gobj()->right = value;
 }
 
-int Border::get_top() const
+auto Border::get_top() const -> int
 {
   return gobj()->top;
 }
@@ -139,7 +139,7 @@ void Border::set_top(const int& value)
   gobj()->top = value;
 }
 
-int Border::get_bottom() const
+auto Border::get_bottom() const -> int
 {
   return gobj()->bottom;
 }

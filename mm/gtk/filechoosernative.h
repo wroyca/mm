@@ -131,7 +131,7 @@ public:
 
   // noncopyable
   FileChooserNative(const FileChooserNative&) = delete;
-  FileChooserNative& operator=(const FileChooserNative&) = delete;
+  auto operator=(const FileChooserNative&) -> FileChooserNative& = delete;
 
 private:  friend class FileChooserNative_Class;
   static CppClassType filechoosernative_class_;
@@ -145,28 +145,28 @@ protected:
 public:
 
   FileChooserNative(FileChooserNative&& src) noexcept;
-  FileChooserNative& operator=(FileChooserNative&& src) noexcept;
+  auto operator=(FileChooserNative&& src) noexcept -> FileChooserNative&;
 
   ~FileChooserNative() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkFileChooserNative*       gobj()       { return reinterpret_cast<GtkFileChooserNative*>(gobject_); }
+  auto       gobj() -> GtkFileChooserNative*       { return reinterpret_cast<GtkFileChooserNative*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkFileChooserNative* gobj() const { return reinterpret_cast<GtkFileChooserNative*>(gobject_); }
+  auto gobj() const -> const GtkFileChooserNative* { return reinterpret_cast<GtkFileChooserNative*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkFileChooserNative* gobj_copy();
+  auto gobj_copy() -> GtkFileChooserNative*;
 
 private:
 
@@ -201,10 +201,10 @@ public:
    * @return A Glib::RefPtr to a new %FileChooserNative.
    */
 
-  static Glib::RefPtr<FileChooserNative> create(const Glib::ustring& title, Window& parent, FileChooser::Action action, const Glib::ustring& accept_label =  {}, const Glib::ustring& cancel_label =  {});
+  static auto create(const Glib::ustring& title, Window& parent, FileChooser::Action action, const Glib::ustring& accept_label =  {}, const Glib::ustring& cancel_label =  {}) -> Glib::RefPtr<FileChooserNative>;
 
   /// A create() convenience overload.
-  static Glib::RefPtr<FileChooserNative> create(const Glib::ustring& title, FileChooser::Action action, const Glib::ustring& accept_label =  {}, const Glib::ustring& cancel_label =  {});
+  static auto create(const Glib::ustring& title, FileChooser::Action action, const Glib::ustring& accept_label =  {}, const Glib::ustring& cancel_label =  {}) -> Glib::RefPtr<FileChooserNative>;
 
 
   /** Retrieves the custom label text for the accept button.
@@ -213,7 +213,7 @@ public:
    *
    * @return The custom label.
    */
-  Glib::ustring get_accept_label() const;
+  auto get_accept_label() const -> Glib::ustring;
 
   /** Sets the custom label text for the accept button.
    *
@@ -236,7 +236,7 @@ public:
    *
    * @return The custom label.
    */
-  Glib::ustring get_cancel_label() const;
+  auto get_cancel_label() const -> Glib::ustring;
 
   /** Sets the custom label text for the cancel button.
    *
@@ -263,7 +263,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_accept_label() ;
+  auto property_accept_label() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The text used for the label on the accept button in the dialog, or
    * <tt>nullptr</tt> to use the default text.
@@ -275,7 +275,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_accept_label() const;
+  auto property_accept_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The text used for the label on the cancel button in the dialog, or
    * <tt>nullptr</tt> to use the default text.
@@ -287,7 +287,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_cancel_label() ;
+  auto property_cancel_label() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The text used for the label on the cancel button in the dialog, or
    * <tt>nullptr</tt> to use the default text.
@@ -299,7 +299,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_cancel_label() const;
+  auto property_cancel_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   // FileChooserNative has no signals
@@ -332,7 +332,7 @@ namespace Glib
    * @relates Gtk::FileChooserNative
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::FileChooserNative> wrap(GtkFileChooserNative* object, bool take_copy = false);
+  auto wrap(GtkFileChooserNative* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FileChooserNative>;
 }
 
 

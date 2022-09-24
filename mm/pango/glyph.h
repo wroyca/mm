@@ -72,17 +72,17 @@ public:
   /** Gets the glyph itself.
    * @return The glyph.
    */
-  Glyph get_glyph() const;
+  auto get_glyph() const -> Glyph;
 
   /** Gets the positional information about the glyph.
    * @return A GylphGeometry object.
    */
-  GlyphGeometry get_geometry() const;
+  auto get_geometry() const -> GlyphGeometry;
 
   /** Gets the visual attributes of the glyph.
    * @return A GlyphVisAttr structure.
    */
-  GlyphVisAttr get_attr() const;
+  auto get_attr() const -> GlyphVisAttr;
 
 //I don't think that we need these set_* functions!
 //TODO: Who wrote this comment? Investigate. murrayc.
@@ -102,9 +102,9 @@ public:
 //  _MEMBER_SET(attr, attr, GlyphVisAttr, PangoGlyphVisAttr)
 
   /// Provides access to the underlying C GObject.
-  PangoGlyphInfo*       gobj()       { return &gobject_; }
+  auto       gobj() -> PangoGlyphInfo*       { return &gobject_; }
   /// Provides access to the underlying C GObject.
-  const PangoGlyphInfo* gobj() const { return &gobject_; }
+  auto gobj() const -> const PangoGlyphInfo* { return &gobject_; }
 
 protected:
   PangoGlyphInfo gobject_;
@@ -133,17 +133,17 @@ public:
   /** Gets the logical width to use for the character.
    * @return The logical width.
    */
-  GlyphUnit get_width() const;
+  auto get_width() const -> GlyphUnit;
 
   /** Gets the horizontal offset from nominal character position.
    * @return The horizontal offset.
    */
-  GlyphUnit get_x_offset() const;
+  auto get_x_offset() const -> GlyphUnit;
 
   /** Gets the vertical offset from nominal character position.
    * @return The vertical offset.
    */
-  GlyphUnit get_y_offset() const;
+  auto get_y_offset() const -> GlyphUnit;
 
 //I don't think that we need these set_* functions!
   /* Sets the logical width to use for the character.
@@ -161,8 +161,8 @@ public:
    */
 //  _MEMBER_SET(y_offset, y_offset, GlyphUnit, PangoGlyphUnit)
 
-  PangoGlyphGeometry*       gobj()       { return &gobject_; }
-  const PangoGlyphGeometry* gobj() const { return &gobject_; }
+  auto       gobj() -> PangoGlyphGeometry*       { return &gobject_; }
+  auto gobj() const -> const PangoGlyphGeometry* { return &gobject_; }
 
 protected:
   PangoGlyphGeometry gobject_;
@@ -204,19 +204,19 @@ namespace Glib
 
 /** @relates Pango::GlyphInfo */
 PANGOMM_API
-Pango::GlyphInfo& wrap(PangoGlyphInfo* object);
+auto wrap(PangoGlyphInfo* object) -> Pango::GlyphInfo&;
 
 /** @relates Pango::GlyphInfo */
 PANGOMM_API
-const Pango::GlyphInfo& wrap(const PangoGlyphInfo* object);
+auto wrap(const PangoGlyphInfo* object) -> const Pango::GlyphInfo&;
 
 /** @relates Pango::GlyphGeometry */
 PANGOMM_API
-Pango::GlyphGeometry& wrap(PangoGlyphGeometry* object);
+auto wrap(PangoGlyphGeometry* object) -> Pango::GlyphGeometry&;
 
 /** @relates Pango::GlyphGeometry */
 PANGOMM_API
-const Pango::GlyphGeometry& wrap(const PangoGlyphGeometry* object);
+auto wrap(const PangoGlyphGeometry* object) -> const Pango::GlyphGeometry&;
 
 /* @relates Pango::GlyphVisAttr */
 //PANGOMM_API

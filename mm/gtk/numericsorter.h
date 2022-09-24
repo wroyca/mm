@@ -58,7 +58,7 @@ public:
 
   // noncopyable
   NumericSorterBase(const NumericSorterBase&) = delete;
-  NumericSorterBase& operator=(const NumericSorterBase&) = delete;
+  auto operator=(const NumericSorterBase&) -> NumericSorterBase& = delete;
 
 private:  friend class NumericSorterBase_Class;
   static CppClassType numericsorterbase_class_;
@@ -72,28 +72,28 @@ protected:
 public:
 
   NumericSorterBase(NumericSorterBase&& src) noexcept;
-  NumericSorterBase& operator=(NumericSorterBase&& src) noexcept;
+  auto operator=(NumericSorterBase&& src) noexcept -> NumericSorterBase&;
 
   ~NumericSorterBase() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkNumericSorter*       gobj()       { return reinterpret_cast<GtkNumericSorter*>(gobject_); }
+  auto       gobj() -> GtkNumericSorter*       { return reinterpret_cast<GtkNumericSorter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkNumericSorter* gobj() const { return reinterpret_cast<GtkNumericSorter*>(gobject_); }
+  auto gobj() const -> const GtkNumericSorter* { return reinterpret_cast<GtkNumericSorter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkNumericSorter* gobj_copy();
+  auto gobj_copy() -> GtkNumericSorter*;
 
 private:
 
@@ -111,7 +111,7 @@ public:
    *
    * @return The order of the numbers.
    */
-  SortType get_sort_order() const;
+  auto get_sort_order() const -> SortType;
 
   /** Sets whether to sort smaller numbers before larger ones.
    *
@@ -127,7 +127,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< SortType > property_sort_order() ;
+  auto property_sort_order() -> Glib::PropertyProxy< SortType > ;
 
 /** Whether the sorter will sort smaller numbers first.
    *
@@ -136,7 +136,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< SortType > property_sort_order() const;
+  auto property_sort_order() const -> Glib::PropertyProxy_ReadOnly< SortType >;
 
 
 public:
@@ -170,16 +170,16 @@ protected:
   NumericSorter(const Glib::RefPtr<Expression<T>>& expression);
 
 public:
-  static Glib::RefPtr<NumericSorter> create(const Glib::RefPtr<Expression<T>>& expression);
+  static auto create(const Glib::RefPtr<Expression<T>>& expression) -> Glib::RefPtr<NumericSorter>;
 
   /** Gets the expression that is evaluated to obtain numbers from items.
    *
    * @return A Gtk::Expression, or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<Expression<T>> get_expression();
+  auto get_expression() -> Glib::RefPtr<Expression<T>>;
   /** @copydoc get_expression()
    */
-  Glib::RefPtr<const Expression<T>> get_expression() const;
+  auto get_expression() const -> Glib::RefPtr<const Expression<T>>;
 
   /** Sets the expression that is evaluated to obtain numbers from items.
    *
@@ -198,14 +198,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy<Glib::RefPtr<Expression<T>>> property_expression();
+  auto property_expression() -> Glib::PropertyProxy<Glib::RefPtr<Expression<T>>>;
 
   /** The expression to evalute on items to get a number to compare with
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Expression<T>>> property_expression() const;
+  auto property_expression() const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Expression<T>>>;
 };
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -218,8 +218,8 @@ NumericSorter<T>::NumericSorter(const Glib::RefPtr<Expression<T>>& expression)
 }
 
 template<class T>
-Glib::RefPtr<NumericSorter<T>> NumericSorter<T>::create(
-  const Glib::RefPtr<Expression<T>>& expression)
+auto NumericSorter<T>::create(
+  const Glib::RefPtr<Expression<T>>& expression) -> Glib::RefPtr<NumericSorter<T>>
 {
   return Glib::make_refptr_for_instance<NumericSorter>(new NumericSorter(expression));
 }
@@ -231,27 +231,27 @@ void NumericSorter<T>::set_expression(const Glib::RefPtr<Expression<T>>& express
 }
 
 template<class T>
-Glib::RefPtr<Expression<T>> NumericSorter<T>::get_expression()
+auto NumericSorter<T>::get_expression() -> Glib::RefPtr<Expression<T>>
 {
   return Glib::wrap<T>(gtk_numeric_sorter_get_expression(gobj()), true);
 }
 
 template<class T>
-Glib::RefPtr<const Expression<T>> NumericSorter<T>::get_expression() const
+auto NumericSorter<T>::get_expression() const -> Glib::RefPtr<const Expression<T>>
 {
   return Glib::wrap<T>(gtk_numeric_sorter_get_expression(const_cast<GtkNumericSorter*>(gobj())),
     true);
 }
 
 template<class T>
-Glib::PropertyProxy<Glib::RefPtr<Expression<T>>> NumericSorter<T>::property_expression()
+auto NumericSorter<T>::property_expression() -> Glib::PropertyProxy<Glib::RefPtr<Expression<T>>>
 {
   return Glib::PropertyProxy<Glib::RefPtr<Expression<T>>>(this, "expression");
 }
 
 template<class T>
-Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Expression<T>>>
-NumericSorter<T>::property_expression() const
+auto
+NumericSorter<T>::property_expression() const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Expression<T>>>
 {
   return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Expression<T>>>(this, "expression");
 }
@@ -272,7 +272,7 @@ namespace Glib
    * @relates Gtk::NumericSorterBase
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::NumericSorterBase> wrap(GtkNumericSorter* object, bool take_copy = false);
+  auto wrap(GtkNumericSorter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NumericSorterBase>;
 }
 
 

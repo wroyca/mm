@@ -65,7 +65,7 @@ public:
 
   // noncopyable
   UnixInputStream(const UnixInputStream&) = delete;
-  UnixInputStream& operator=(const UnixInputStream&) = delete;
+  auto operator=(const UnixInputStream&) -> UnixInputStream& = delete;
 
 private:  friend class UnixInputStream_Class;
   static CppClassType unixinputstream_class_;
@@ -79,28 +79,28 @@ protected:
 public:
 
   UnixInputStream(UnixInputStream&& src) noexcept;
-  UnixInputStream& operator=(UnixInputStream&& src) noexcept;
+  auto operator=(UnixInputStream&& src) noexcept -> UnixInputStream&;
 
   ~UnixInputStream() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GUnixInputStream*       gobj()       { return reinterpret_cast<GUnixInputStream*>(gobject_); }
+  auto       gobj() -> GUnixInputStream*       { return reinterpret_cast<GUnixInputStream*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GUnixInputStream* gobj() const { return reinterpret_cast<GUnixInputStream*>(gobject_); }
+  auto gobj() const -> const GUnixInputStream* { return reinterpret_cast<GUnixInputStream*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GUnixInputStream* gobj_copy();
+  auto gobj_copy() -> GUnixInputStream*;
 
 private:
 
@@ -116,7 +116,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<UnixInputStream> create(int fd, bool close_fd);
+  static auto create(int fd, bool close_fd) -> Glib::RefPtr<UnixInputStream>;
 
 
   /** Sets whether the file descriptor of @a stream shall be closed
@@ -135,7 +135,7 @@ public:
    *
    * @return <tt>true</tt> if the file descriptor is closed when done.
    */
-  bool get_close_fd() const;
+  auto get_close_fd() const -> bool;
 
   /** Return the UNIX file descriptor that the stream reads from.
    *
@@ -143,7 +143,7 @@ public:
    *
    * @return The file descriptor of @a stream.
    */
-  int get_fd() const;
+  auto get_fd() const -> int;
 
   /** The file descriptor that the stream reads from.
    *
@@ -154,7 +154,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_fd() const;
+  auto property_fd() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** Whether to close the file descriptor when the stream is closed.
@@ -166,7 +166,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_close_fd() ;
+  auto property_close_fd() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to close the file descriptor when the stream is closed.
    *
@@ -177,7 +177,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_close_fd() const;
+  auto property_close_fd() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -207,7 +207,7 @@ namespace Glib
    * @relates Gio::UnixInputStream
    */
   GIOMM_API
-  Glib::RefPtr<Gio::UnixInputStream> wrap(GUnixInputStream* object, bool take_copy = false);
+  auto wrap(GUnixInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixInputStream>;
 }
 
 

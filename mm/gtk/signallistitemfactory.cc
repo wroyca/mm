@@ -29,7 +29,7 @@ namespace
 {
 
 
-static void SignalListItemFactory_signal_setup_callback(GtkSignalListItemFactory* self, GtkListItem* p0,void* data)
+void SignalListItemFactory_signal_setup_callback(GtkSignalListItemFactory* self, GtkListItem* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<ListItem>&)>;
@@ -51,7 +51,7 @@ static void SignalListItemFactory_signal_setup_callback(GtkSignalListItemFactory
   }
 }
 
-static const Glib::SignalProxyInfo SignalListItemFactory_signal_setup_info =
+const Glib::SignalProxyInfo SignalListItemFactory_signal_setup_info =
 {
   "setup",
   (GCallback) &SignalListItemFactory_signal_setup_callback,
@@ -59,7 +59,7 @@ static const Glib::SignalProxyInfo SignalListItemFactory_signal_setup_info =
 };
 
 
-static void SignalListItemFactory_signal_bind_callback(GtkSignalListItemFactory* self, GtkListItem* p0,void* data)
+void SignalListItemFactory_signal_bind_callback(GtkSignalListItemFactory* self, GtkListItem* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<ListItem>&)>;
@@ -81,7 +81,7 @@ static void SignalListItemFactory_signal_bind_callback(GtkSignalListItemFactory*
   }
 }
 
-static const Glib::SignalProxyInfo SignalListItemFactory_signal_bind_info =
+const Glib::SignalProxyInfo SignalListItemFactory_signal_bind_info =
 {
   "bind",
   (GCallback) &SignalListItemFactory_signal_bind_callback,
@@ -89,7 +89,7 @@ static const Glib::SignalProxyInfo SignalListItemFactory_signal_bind_info =
 };
 
 
-static void SignalListItemFactory_signal_unbind_callback(GtkSignalListItemFactory* self, GtkListItem* p0,void* data)
+void SignalListItemFactory_signal_unbind_callback(GtkSignalListItemFactory* self, GtkListItem* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<ListItem>&)>;
@@ -111,7 +111,7 @@ static void SignalListItemFactory_signal_unbind_callback(GtkSignalListItemFactor
   }
 }
 
-static const Glib::SignalProxyInfo SignalListItemFactory_signal_unbind_info =
+const Glib::SignalProxyInfo SignalListItemFactory_signal_unbind_info =
 {
   "unbind",
   (GCallback) &SignalListItemFactory_signal_unbind_callback,
@@ -119,7 +119,7 @@ static const Glib::SignalProxyInfo SignalListItemFactory_signal_unbind_info =
 };
 
 
-static void SignalListItemFactory_signal_teardown_callback(GtkSignalListItemFactory* self, GtkListItem* p0,void* data)
+void SignalListItemFactory_signal_teardown_callback(GtkSignalListItemFactory* self, GtkListItem* p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<ListItem>&)>;
@@ -141,7 +141,7 @@ static void SignalListItemFactory_signal_teardown_callback(GtkSignalListItemFact
   }
 }
 
-static const Glib::SignalProxyInfo SignalListItemFactory_signal_teardown_info =
+const Glib::SignalProxyInfo SignalListItemFactory_signal_teardown_info =
 {
   "teardown",
   (GCallback) &SignalListItemFactory_signal_teardown_callback,
@@ -155,7 +155,7 @@ static const Glib::SignalProxyInfo SignalListItemFactory_signal_teardown_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::SignalListItemFactory> wrap(GtkSignalListItemFactory* object, bool take_copy)
+auto wrap(GtkSignalListItemFactory* object, bool take_copy) -> Glib::RefPtr<Gtk::SignalListItemFactory>
 {
   return Glib::make_refptr_for_instance<Gtk::SignalListItemFactory>( dynamic_cast<Gtk::SignalListItemFactory*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -170,7 +170,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& SignalListItemFactory_Class::init()
+auto SignalListItemFactory_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -201,7 +201,7 @@ void SignalListItemFactory_Class::class_init_function(void* g_class, void* class
 }
 
 
-Glib::ObjectBase* SignalListItemFactory_Class::wrap_new(GObject* object)
+auto SignalListItemFactory_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new SignalListItemFactory((GtkSignalListItemFactory*)object);
 }
@@ -209,7 +209,7 @@ Glib::ObjectBase* SignalListItemFactory_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkSignalListItemFactory* SignalListItemFactory::gobj_copy()
+auto SignalListItemFactory::gobj_copy() -> GtkSignalListItemFactory*
 {
   reference();
   return gobj();
@@ -232,7 +232,7 @@ SignalListItemFactory::SignalListItemFactory(SignalListItemFactory&& src) noexce
 : Gtk::ListItemFactory(std::move(src))
 {}
 
-SignalListItemFactory& SignalListItemFactory::operator=(SignalListItemFactory&& src) noexcept
+auto SignalListItemFactory::operator=(SignalListItemFactory&& src) noexcept -> SignalListItemFactory&
 {
   Gtk::ListItemFactory::operator=(std::move(src));
   return *this;
@@ -245,13 +245,13 @@ SignalListItemFactory::~SignalListItemFactory() noexcept
 
 SignalListItemFactory::CppClassType SignalListItemFactory::signallistitemfactory_class_; // initialize static member
 
-GType SignalListItemFactory::get_type()
+auto SignalListItemFactory::get_type() -> GType
 {
   return signallistitemfactory_class_.init().get_type();
 }
 
 
-GType SignalListItemFactory::get_base_type()
+auto SignalListItemFactory::get_base_type() -> GType
 {
   return gtk_signal_list_item_factory_get_type();
 }
@@ -267,31 +267,31 @@ SignalListItemFactory::SignalListItemFactory()
 
 }
 
-Glib::RefPtr<SignalListItemFactory> SignalListItemFactory::create()
+auto SignalListItemFactory::create() -> Glib::RefPtr<SignalListItemFactory>
 {
   return Glib::make_refptr_for_instance<SignalListItemFactory>( new SignalListItemFactory() );
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)> SignalListItemFactory::signal_setup()
+auto SignalListItemFactory::signal_setup() -> Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&) >(this, &SignalListItemFactory_signal_setup_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)> SignalListItemFactory::signal_bind()
+auto SignalListItemFactory::signal_bind() -> Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&) >(this, &SignalListItemFactory_signal_bind_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)> SignalListItemFactory::signal_unbind()
+auto SignalListItemFactory::signal_unbind() -> Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&) >(this, &SignalListItemFactory_signal_unbind_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)> SignalListItemFactory::signal_teardown()
+auto SignalListItemFactory::signal_teardown() -> Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&) >(this, &SignalListItemFactory_signal_teardown_info);
 }

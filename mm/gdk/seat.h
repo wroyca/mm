@@ -65,7 +65,7 @@ public:
 
   // noncopyable
   Seat(const Seat&) = delete;
-  Seat& operator=(const Seat&) = delete;
+  auto operator=(const Seat&) -> Seat& = delete;
 
 private:  friend class Seat_Class;
   static CppClassType seat_class_;
@@ -79,28 +79,28 @@ protected:
 public:
 
   Seat(Seat&& src) noexcept;
-  Seat& operator=(Seat&& src) noexcept;
+  auto operator=(Seat&& src) noexcept -> Seat&;
 
   ~Seat() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkSeat*       gobj()       { return reinterpret_cast<GdkSeat*>(gobject_); }
+  auto       gobj() -> GdkSeat*       { return reinterpret_cast<GdkSeat*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkSeat* gobj() const { return reinterpret_cast<GdkSeat*>(gobject_); }
+  auto gobj() const -> const GdkSeat* { return reinterpret_cast<GdkSeat*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkSeat* gobj_copy();
+  auto gobj_copy() -> GdkSeat*;
 
 private:
 
@@ -168,20 +168,20 @@ public:
    * @return A `Gdk::Display`. This object
    * is owned by GTK and must not be freed.
    */
-  Glib::RefPtr<Display> get_display();
+  auto get_display() -> Glib::RefPtr<Display>;
 
   /** Returns the `Gdk::Display` this seat belongs to.
    *
    * @return A `Gdk::Display`. This object
    * is owned by GTK and must not be freed.
    */
-  Glib::RefPtr<const Display> get_display() const;
+  auto get_display() const -> Glib::RefPtr<const Display>;
 
   /** Returns the capabilities this `Gdk::Seat` currently has.
    *
    * @return The seat capabilities.
    */
-  Capabilities get_capabilities() const;
+  auto get_capabilities() const -> Capabilities;
 
 
   /** Returns the devices that match the given capabilities.
@@ -190,7 +190,7 @@ public:
    * @return A list
    * of `Gdk::Devices`.
    */
-  std::vector<Glib::RefPtr<Device>> get_devices(Capabilities capabilities);
+  auto get_devices(Capabilities capabilities) -> std::vector<Glib::RefPtr<Device>>;
 
 
   /** Returns the devices that match the given capabilities.
@@ -199,21 +199,21 @@ public:
    * @return A list
    * of `Gdk::Devices`.
    */
-  std::vector<Glib::RefPtr<const Device>> get_devices(Capabilities capabilities) const;
+  auto get_devices(Capabilities capabilities) const -> std::vector<Glib::RefPtr<const Device>>;
 
 
   /** Returns all `Gdk::DeviceTools` that are known to the application.
    *
    * @return A list of tools.
    */
-  std::vector<Glib::RefPtr<DeviceTool>> get_tools();
+  auto get_tools() -> std::vector<Glib::RefPtr<DeviceTool>>;
 
 
   /** Returns all `Gdk::DeviceTools` that are known to the application.
    *
    * @return A list of tools.
    */
-  std::vector<Glib::RefPtr<const DeviceTool>> get_tools() const;
+  auto get_tools() const -> std::vector<Glib::RefPtr<const DeviceTool>>;
 
 
   /** Returns the device that routes pointer events.
@@ -221,28 +221,28 @@ public:
    * @return A `Gdk::Device` with pointer
    * capabilities. This object is owned by GTK and must not be freed.
    */
-  Glib::RefPtr<Device> get_pointer();
+  auto get_pointer() -> Glib::RefPtr<Device>;
 
   /** Returns the device that routes pointer events.
    *
    * @return A `Gdk::Device` with pointer
    * capabilities. This object is owned by GTK and must not be freed.
    */
-  Glib::RefPtr<const Device> get_pointer() const;
+  auto get_pointer() const -> Glib::RefPtr<const Device>;
 
   /** Returns the device that routes keyboard events.
    *
    * @return A `Gdk::Device` with keyboard
    * capabilities. This object is owned by GTK and must not be freed.
    */
-  Glib::RefPtr<Device> get_keyboard();
+  auto get_keyboard() -> Glib::RefPtr<Device>;
 
   /** Returns the device that routes keyboard events.
    *
    * @return A `Gdk::Device` with keyboard
    * capabilities. This object is owned by GTK and must not be freed.
    */
-  Glib::RefPtr<const Device> get_keyboard() const;
+  auto get_keyboard() const -> Glib::RefPtr<const Device>;
 
   // We use no_default_handler because GdkSeatClass is private.
 
@@ -258,7 +258,7 @@ public:
    * @param device The newly added `Gdk::Device`.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Device>&)> signal_device_added();
+  auto signal_device_added() -> Glib::SignalProxy<void(const Glib::RefPtr<Device>&)>;
 
 
   /**
@@ -272,7 +272,7 @@ public:
    * @param device The just removed `Gdk::Device`.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Device>&)> signal_device_removed();
+  auto signal_device_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<Device>&)>;
 
 
   /**
@@ -294,7 +294,7 @@ public:
    * @param device The new `Gdk::DeviceTool` known to the seat.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<DeviceTool>&)> signal_tool_added();
+  auto signal_tool_added() -> Glib::SignalProxy<void(const Glib::RefPtr<DeviceTool>&)>;
 
 
   /**
@@ -310,7 +310,7 @@ public:
    * @param device The just removed `Gdk::DeviceTool`.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<DeviceTool>&)> signal_tool_removed();
+  auto signal_tool_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<DeviceTool>&)>;
 
 
   /** `Gdk::Display` of this seat.
@@ -318,7 +318,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> > property_display() const;
+  auto property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >;
 
 
 public:
@@ -340,31 +340,31 @@ namespace Gdk
 {
 
 /** @ingroup gdkmmEnums */
-inline Seat::Capabilities operator|(Seat::Capabilities lhs, Seat::Capabilities rhs)
+inline auto operator|(Seat::Capabilities lhs, Seat::Capabilities rhs) -> Seat::Capabilities
   { return static_cast<Seat::Capabilities>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline Seat::Capabilities operator&(Seat::Capabilities lhs, Seat::Capabilities rhs)
+inline auto operator&(Seat::Capabilities lhs, Seat::Capabilities rhs) -> Seat::Capabilities
   { return static_cast<Seat::Capabilities>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline Seat::Capabilities operator^(Seat::Capabilities lhs, Seat::Capabilities rhs)
+inline auto operator^(Seat::Capabilities lhs, Seat::Capabilities rhs) -> Seat::Capabilities
   { return static_cast<Seat::Capabilities>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline Seat::Capabilities operator~(Seat::Capabilities flags)
+inline auto operator~(Seat::Capabilities flags) -> Seat::Capabilities
   { return static_cast<Seat::Capabilities>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gdkmmEnums */
-inline Seat::Capabilities& operator|=(Seat::Capabilities& lhs, Seat::Capabilities rhs)
+inline auto operator|=(Seat::Capabilities& lhs, Seat::Capabilities rhs) -> Seat::Capabilities&
   { return (lhs = static_cast<Seat::Capabilities>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline Seat::Capabilities& operator&=(Seat::Capabilities& lhs, Seat::Capabilities rhs)
+inline auto operator&=(Seat::Capabilities& lhs, Seat::Capabilities rhs) -> Seat::Capabilities&
   { return (lhs = static_cast<Seat::Capabilities>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline Seat::Capabilities& operator^=(Seat::Capabilities& lhs, Seat::Capabilities rhs)
+inline auto operator^=(Seat::Capabilities& lhs, Seat::Capabilities rhs) -> Seat::Capabilities&
   { return (lhs = static_cast<Seat::Capabilities>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gdk
 
@@ -376,7 +376,7 @@ template <>
 class GDKMM_API Value<Gdk::Seat::Capabilities> : public Glib::Value_Flags<Gdk::Seat::Capabilities>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -394,7 +394,7 @@ namespace Glib
    * @relates Gdk::Seat
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::Seat> wrap(GdkSeat* object, bool take_copy = false);
+  auto wrap(GdkSeat* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Seat>;
 }
 
 

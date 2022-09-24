@@ -45,7 +45,7 @@ Gio::DBus::Error::Error(GError* gobject)
   Glib::Error (gobject)
 {}
 
-Gio::DBus::Error::Code Gio::DBus::Error::code() const
+auto Gio::DBus::Error::code() const -> Gio::DBus::Error::Code
 {
   return static_cast<Code>(Glib::Error::code());
 }

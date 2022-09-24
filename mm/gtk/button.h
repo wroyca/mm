@@ -66,11 +66,11 @@ class GTKMM_API Button
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Button(Button&& src) noexcept;
-  Button& operator=(Button&& src) noexcept;
+  auto operator=(Button&& src) noexcept -> Button&;
 
   // noncopyable
   Button(const Button&) = delete;
-  Button& operator=(const Button&) = delete;
+  auto operator=(const Button&) -> Button& = delete;
 
   ~Button() noexcept override;
 
@@ -90,19 +90,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkButton*       gobj()       { return reinterpret_cast<GtkButton*>(gobject_); }
+  auto       gobj() -> GtkButton*       { return reinterpret_cast<GtkButton*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkButton* gobj() const { return reinterpret_cast<GtkButton*>(gobject_); }
+  auto gobj() const -> const GtkButton* { return reinterpret_cast<GtkButton*>(gobject_); }
 
 private:
 
@@ -142,7 +142,7 @@ public:
    *
    * @return <tt>true</tt> if the button has a frame.
    */
-  bool get_has_frame() const;
+  auto get_has_frame() const -> bool;
 
 
   /** Sets the text of the label of the button to @a label.
@@ -162,7 +162,7 @@ public:
    * @return The text of the label widget. This string is owned
    * by the widget and must not be modified or freed.
    */
-  Glib::ustring get_label() const;
+  auto get_label() const -> Glib::ustring;
 
   /** Sets whether to use underlines as mnemonics.
    *
@@ -180,7 +180,7 @@ public:
    * @return <tt>true</tt> if an embedded underline in the button label
    * indicates the mnemonic accelerator keys.
    */
-  bool get_use_underline() const;
+  auto get_use_underline() const -> bool;
 
 
   /** Adds a `Gtk::Image` with the given icon name as a child.
@@ -200,7 +200,7 @@ public:
    *
    * @return The icon name set via set_icon_name().
    */
-  Glib::ustring get_icon_name() const;
+  auto get_icon_name() const -> Glib::ustring;
 
   /** Sets the image to an icon from the current icon theme.
    * If the icon name isn't known, a "broken image" icon will be
@@ -239,13 +239,13 @@ public:
    *
    * @return The child widget of @a button.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget of @a button.
    *
    * @return The child widget of @a button.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
 
   /**
@@ -257,7 +257,7 @@ public:
    * Emitted when the button has been activated (pressed and released).
    */
 
-  Glib::SignalProxy<void()> signal_clicked();
+  auto signal_clicked() -> Glib::SignalProxy<void()>;
 
    // Action signal
 
@@ -268,7 +268,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_label() ;
+  auto property_label() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Text of the label inside the button, if the button contains a label widget.
    *
@@ -277,7 +277,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_label() const;
+  auto property_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Whether the button has a frame.
    *
@@ -286,7 +286,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_has_frame() ;
+  auto property_has_frame() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the button has a frame.
    *
@@ -295,7 +295,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_frame() const;
+  auto property_has_frame() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** If set, an underline in the text indicates that the following character is
    * to be used as mnemonic.
@@ -305,7 +305,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_use_underline() ;
+  auto property_use_underline() -> Glib::PropertyProxy< bool > ;
 
 /** If set, an underline in the text indicates that the following character is
    * to be used as mnemonic.
@@ -315,7 +315,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_underline() const;
+  auto property_use_underline() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The name of the icon used to automatically populate the button.
    *
@@ -324,7 +324,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_icon_name() ;
+  auto property_icon_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The name of the icon used to automatically populate the button.
    *
@@ -333,21 +333,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_icon_name() const;
+  auto property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The child widget.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The child widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
 public:
@@ -385,7 +385,7 @@ namespace Glib
    * @relates Gtk::Button
    */
   GTKMM_API
-  Gtk::Button* wrap(GtkButton* object, bool take_copy = false);
+  auto wrap(GtkButton* object, bool take_copy = false) -> Gtk::Button*;
 } //namespace Glib
 
 

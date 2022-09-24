@@ -70,7 +70,7 @@ public:
 
   // noncopyable
   ConstraintTarget(const ConstraintTarget&) = delete;
-  ConstraintTarget& operator=(const ConstraintTarget&) = delete;
+  auto operator=(const ConstraintTarget&) -> ConstraintTarget& = delete;
 
 private:
   friend class ConstraintTarget_Class;
@@ -104,7 +104,7 @@ protected:
 public:
 
   ConstraintTarget(ConstraintTarget&& src) noexcept;
-  ConstraintTarget& operator=(ConstraintTarget&& src) noexcept;
+  auto operator=(ConstraintTarget&& src) noexcept -> ConstraintTarget&;
 
   ~ConstraintTarget() noexcept override;
 
@@ -112,17 +112,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkConstraintTarget*       gobj()       { return reinterpret_cast<GtkConstraintTarget*>(gobject_); }
+  auto       gobj() -> GtkConstraintTarget*       { return reinterpret_cast<GtkConstraintTarget*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkConstraintTarget* gobj() const { return reinterpret_cast<GtkConstraintTarget*>(gobject_); }
+  auto gobj() const -> const GtkConstraintTarget* { return reinterpret_cast<GtkConstraintTarget*>(gobject_); }
 
 private:
 
@@ -158,7 +158,7 @@ namespace Glib
    * @relates Gtk::ConstraintTarget
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::ConstraintTarget> wrap(GtkConstraintTarget* object, bool take_copy = false);
+  auto wrap(GtkConstraintTarget* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ConstraintTarget>;
 
 } // namespace Glib
 

@@ -70,7 +70,7 @@ public:
 
   // noncopyable
   ActionMap(const ActionMap&) = delete;
-  ActionMap& operator=(const ActionMap&) = delete;
+  auto operator=(const ActionMap&) -> ActionMap& = delete;
 
 private:
   friend class ActionMap_Class;
@@ -104,7 +104,7 @@ protected:
 public:
 
   ActionMap(ActionMap&& src) noexcept;
-  ActionMap& operator=(ActionMap&& src) noexcept;
+  auto operator=(ActionMap&& src) noexcept -> ActionMap&;
 
   ~ActionMap() noexcept override;
 
@@ -112,17 +112,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GActionMap*       gobj()       { return reinterpret_cast<GActionMap*>(gobject_); }
+  auto       gobj() -> GActionMap*       { return reinterpret_cast<GActionMap*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GActionMap* gobj() const { return reinterpret_cast<GActionMap*>(gobject_); }
+  auto gobj() const -> const GActionMap* { return reinterpret_cast<GActionMap*>(gobject_); }
 
 private:
 
@@ -165,7 +165,7 @@ public:
    * @param action_name The name of an action.
    * @return A Action, or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<Action> lookup_action(const Glib::ustring& action_name);
+  auto lookup_action(const Glib::ustring& action_name) -> Glib::RefPtr<Action>;
 
   /** Looks up the action with the name @a action_name in @a action_map.
    *
@@ -176,7 +176,7 @@ public:
    * @param action_name The name of an action.
    * @return A Action, or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<const Action> lookup_action(const Glib::ustring& action_name) const;
+  auto lookup_action(const Glib::ustring& action_name) const -> Glib::RefPtr<const Action>;
 
 
   /** A convenience method for creating a SimpleAction instance
@@ -185,7 +185,7 @@ public:
    * @param name The name of the Action.
    * @return The Action.
    */
-  Glib::RefPtr<SimpleAction> add_action(const Glib::ustring& name);
+  auto add_action(const Glib::ustring& name) -> Glib::RefPtr<SimpleAction>;
 
   /** A Slot to be called when an action has been activated,
    * without passing a parameter to the slot.
@@ -203,7 +203,7 @@ public:
    * @param slot The callback method to be called when the action is activated.
    * @return The Action.
    */
-  Glib::RefPtr<SimpleAction> add_action(const Glib::ustring& name, const ActivateSlot& slot);
+  auto add_action(const Glib::ustring& name, const ActivateSlot& slot) -> Glib::RefPtr<SimpleAction>;
 
 
   /** A Slot to be called when an action has been activated,
@@ -224,7 +224,7 @@ public:
    * @param slot The callback method to be called when the action is activated.
    * @return The Action.
    */
-  Glib::RefPtr<SimpleAction> add_action_with_parameter(const Glib::ustring& name, const Glib::VariantType& parameter_type, const ActivateWithParameterSlot& slot);
+  auto add_action_with_parameter(const Glib::ustring& name, const Glib::VariantType& parameter_type, const ActivateWithParameterSlot& slot) -> Glib::RefPtr<SimpleAction>;
 
 
   /** A convenience method for creating a boolean-stateful SimpleAction instance
@@ -234,7 +234,7 @@ public:
    * @param state The initial state.
    * @return The Action.
    */
-  Glib::RefPtr<SimpleAction> add_action_bool(const Glib::ustring& name, bool state = false);
+  auto add_action_bool(const Glib::ustring& name, bool state = false) -> Glib::RefPtr<SimpleAction>;
 
   /** A convenience method for creating a boolean-stateful (toggle) SimpleAction instance
    * and adding it to the ActionMap.
@@ -244,7 +244,7 @@ public:
    * @param state The initial state.
    * @return The Action.
    */
-  Glib::RefPtr<SimpleAction> add_action_bool(const Glib::ustring& name, const ActivateSlot& slot, bool state = false);
+  auto add_action_bool(const Glib::ustring& name, const ActivateSlot& slot, bool state = false) -> Glib::RefPtr<SimpleAction>;
 
 
 //TODO: Docs: Add hints about how to specify the various possible states in the GtkBuilder XML.
@@ -255,7 +255,7 @@ public:
    * @param state The initial state.
    * @return The Action.
    */
-  Glib::RefPtr<SimpleAction> add_action_radio_string(const Glib::ustring& name, const Glib::ustring& state);
+  auto add_action_radio_string(const Glib::ustring& name, const Glib::ustring& state) -> Glib::RefPtr<SimpleAction>;
 
   /** A Slot to be called when an action has been activated.
    * See add_action_radio_string().
@@ -274,7 +274,7 @@ public:
    * @param state The initial state.
    * @return The Action.
    */
-  Glib::RefPtr<SimpleAction> add_action_radio_string(const Glib::ustring& name, const ActivateWithStringParameterSlot& slot, const Glib::ustring& state);
+  auto add_action_radio_string(const Glib::ustring& name, const ActivateWithStringParameterSlot& slot, const Glib::ustring& state) -> Glib::RefPtr<SimpleAction>;
 
 
 //TODO: Docs: Add hints about how to specify the various possible states in the GtkBuilder XML.
@@ -285,7 +285,7 @@ public:
    * @param state The initial state.
    * @return The Action.
    */
-  Glib::RefPtr<SimpleAction> add_action_radio_integer(const Glib::ustring& name, gint32 state);
+  auto add_action_radio_integer(const Glib::ustring& name, gint32 state) -> Glib::RefPtr<SimpleAction>;
 
   /** A Slot to be called when an action has been activated.
    * See add_action_radio_integer().
@@ -304,12 +304,12 @@ public:
    * @param state The initial state.
    * @return The Action.
    */
-  Glib::RefPtr<SimpleAction> add_action_radio_integer(const Glib::ustring& name, const ActivateWithIntParameterSlot& slot, gint32 state);
+  auto add_action_radio_integer(const Glib::ustring& name, const ActivateWithIntParameterSlot& slot, gint32 state) -> Glib::RefPtr<SimpleAction>;
 
 protected:
 
 
-    virtual Glib::RefPtr<Action> lookup_action_vfunc(const Glib::ustring& name) const;
+    virtual auto lookup_action_vfunc(const Glib::ustring& name) const -> Glib::RefPtr<Action>;
 
 
     virtual void add_action_vfunc(const Glib::RefPtr<Action>& action) const;
@@ -345,7 +345,7 @@ namespace Glib
    * @relates Gio::ActionMap
    */
   GIOMM_API
-  Glib::RefPtr<Gio::ActionMap> wrap(GActionMap* object, bool take_copy = false);
+  auto wrap(GActionMap* object, bool take_copy = false) -> Glib::RefPtr<Gio::ActionMap>;
 
 } // namespace Glib
 

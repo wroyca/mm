@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::FileIcon> wrap(GFileIcon* object, bool take_copy)
+auto wrap(GFileIcon* object, bool take_copy) -> Glib::RefPtr<Gio::FileIcon>
 {
   return Glib::make_refptr_for_instance<Gio::FileIcon>( dynamic_cast<Gio::FileIcon*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& FileIcon_Class::init()
+auto FileIcon_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -81,7 +81,7 @@ void FileIcon_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* FileIcon_Class::wrap_new(GObject* object)
+auto FileIcon_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new FileIcon((GFileIcon*)object);
 }
@@ -89,7 +89,7 @@ Glib::ObjectBase* FileIcon_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GFileIcon* FileIcon::gobj_copy()
+auto FileIcon::gobj_copy() -> GFileIcon*
 {
   reference();
   return gobj();
@@ -114,7 +114,7 @@ FileIcon::FileIcon(FileIcon&& src) noexcept
   , LoadableIcon(std::move(src))
 {}
 
-FileIcon& FileIcon::operator=(FileIcon&& src) noexcept
+auto FileIcon::operator=(FileIcon&& src) noexcept -> FileIcon&
 {
   Glib::Object::operator=(std::move(src));
   Icon::operator=(std::move(src));
@@ -129,13 +129,13 @@ FileIcon::~FileIcon() noexcept
 
 FileIcon::CppClassType FileIcon::fileicon_class_; // initialize static member
 
-GType FileIcon::get_type()
+auto FileIcon::get_type() -> GType
 {
   return fileicon_class_.init().get_type();
 }
 
 
-GType FileIcon::get_base_type()
+auto FileIcon::get_base_type() -> GType
 {
   return g_file_icon_get_type();
 }
@@ -151,12 +151,12 @@ FileIcon::FileIcon()
 
 }
 
-Glib::RefPtr<FileIcon> FileIcon::create()
+auto FileIcon::create() -> Glib::RefPtr<FileIcon>
 {
   return Glib::make_refptr_for_instance<FileIcon>( new FileIcon() );
 }
 
-Glib::RefPtr<File> FileIcon::get_file()
+auto FileIcon::get_file() -> Glib::RefPtr<File>
 {
   auto retvalue = Glib::wrap(g_file_icon_get_file(gobj()));
   if(retvalue)
@@ -164,7 +164,7 @@ Glib::RefPtr<File> FileIcon::get_file()
   return retvalue;
 }
 
-Glib::RefPtr<const File> FileIcon::get_file() const
+auto FileIcon::get_file() const -> Glib::RefPtr<const File>
 {
   return const_cast<FileIcon*>(this)->get_file();
 }
@@ -174,7 +174,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<File>>:
   "Type Glib::RefPtr<File> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<File> > FileIcon::property_file() const
+auto FileIcon::property_file() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<File> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<File> >(this, "file");
 }

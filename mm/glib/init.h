@@ -70,7 +70,7 @@ void set_init_to_users_preferred_locale(bool state = true);
  * @newin{2,58}
  */
 GLIBMM_API
-bool get_init_to_users_preferred_locale();
+auto get_init_to_users_preferred_locale() -> bool;
 
 } // namespace Glib
 

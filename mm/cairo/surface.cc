@@ -33,8 +33,8 @@ free_slot(void* data)
   delete slot;
 }
 
-static Surface::SlotWriteFunc*
-get_slot(cairo_surface_t* surface) {
+static auto
+get_slot(cairo_surface_t* surface) -> Surface::SlotWriteFunc* {
   return static_cast<Surface::SlotWriteFunc*>(cairo_surface_get_user_data(surface,
                                                                  &USER_DATA_KEY_WRITE_FUNC));
 }
@@ -53,7 +53,7 @@ set_write_slot(cairo_surface_t* surface, Surface::SlotWriteFunc* slot) {
   cairo_surface_set_user_data(surface, &USER_DATA_KEY_WRITE_FUNC, slot, &free_slot);
 }
 
-cairo_status_t read_func_wrapper(void* closure, unsigned char* data, unsigned int length)
+auto read_func_wrapper(void* closure, unsigned char* data, unsigned int length) -> cairo_status_t
 {
   if (!closure)
     return CAIRO_STATUS_READ_ERROR;
@@ -61,7 +61,7 @@ cairo_status_t read_func_wrapper(void* closure, unsigned char* data, unsigned in
   return static_cast<cairo_status_t>((*read_func)(data, length));
 }
 
-cairo_status_t write_func_wrapper(void* closure, const unsigned char* data, unsigned int length)
+auto write_func_wrapper(void* closure, const unsigned char* data, unsigned int length) -> cairo_status_t
 {
   if (!closure)
     return CAIRO_STATUS_WRITE_ERROR;
@@ -90,7 +90,7 @@ void Surface::finish()
   check_object_status_and_throw_exception(*this);
 }
 
-const unsigned char* Surface::get_mime_data(const std::string& mime_type, unsigned long& length)
+auto Surface::get_mime_data(const std::string& mime_type, unsigned long& length) -> const unsigned char*
 {
   const unsigned char* data = nullptr;
   cairo_surface_get_mime_data(const_cast<cobject*>(cobj()), mime_type.c_str(), &data, &length);
@@ -173,7 +173,7 @@ void Surface::get_device_scale(double& x_scale, double& y_scale) const
   cairo_surface_get_device_scale(const_cast<cobject*>(cobj()), &x_scale, &y_scale);
 }
 
-double Surface::get_device_scale() const
+auto Surface::get_device_scale() const -> double
 {
   double x_scale = 1, y_scale = 1;
   get_device_scale(x_scale, y_scale);
@@ -195,7 +195,7 @@ void Surface::get_fallback_resolution(double& x_pixels_per_inch,
   check_object_status_and_throw_exception(*this);
 }
 
-Surface::Type Surface::get_type() const
+auto Surface::get_type() const -> Surface::Type
 {
   auto surface_type =
     cairo_surface_get_type(const_cast<cobject*>(cobj()));
@@ -203,7 +203,7 @@ Surface::Type Surface::get_type() const
   return static_cast<Type>(surface_type);
 }
 
-Content Surface::get_content() const
+auto Surface::get_content() const -> Content
 {
   auto content = cairo_surface_get_content(const_cast<cairo_surface_t*>(cobj()));
   check_object_status_and_throw_exception(*this);
@@ -222,7 +222,7 @@ void Surface::show_page()
   check_object_status_and_throw_exception(*this);
 }
 
-bool Surface::has_show_text_glyphs() const
+auto Surface::has_show_text_glyphs() const -> bool
 {
   bool result = cairo_surface_has_show_text_glyphs(const_cast<cairo_surface_t*>(cobj()));
   check_object_status_and_throw_exception(*this);
@@ -252,7 +252,7 @@ void Surface::write_to_png_stream(const SlotWriteFunc& write_func)
 }
 #endif
 
-RefPtr<Device> Surface::get_device()
+auto Surface::get_device() -> RefPtr<Device>
 {
   auto *d = cairo_surface_get_device (m_cobject);
 
@@ -282,14 +282,14 @@ void Surface::unreference() const
   cairo_surface_destroy(const_cast<cobject*>(cobj()));
 }
 
-RefPtr<Surface> Surface::create(const RefPtr<Surface> other, Content content, int width, int height)
+auto Surface::create(const RefPtr<Surface> other, Content content, int width, int height) -> RefPtr<Surface>
 {
   auto cobject = cairo_surface_create_similar(other->cobj(), (cairo_content_t)content, width, height);
   check_status_and_throw_exception(cairo_surface_status(cobject));
   return make_refptr_for_instance<Surface>(new Surface(cobject, true /* has reference */));
 }
 
-RefPtr<Surface> Surface::create(const RefPtr<Surface>& target, double x, double y, double width, double height)
+auto Surface::create(const RefPtr<Surface>& target, double x, double y, double width, double height) -> RefPtr<Surface>
 {
   auto cobject = cairo_surface_create_for_rectangle(target->cobj(), x, y, width, height);
   check_status_and_throw_exception(cairo_surface_status(cobject));
@@ -306,14 +306,14 @@ ImageSurface::~ImageSurface()
   // surface is destroyed in base class
 }
 
-RefPtr<ImageSurface> ImageSurface::create(Format format, int width, int height)
+auto ImageSurface::create(Format format, int width, int height) -> RefPtr<ImageSurface>
 {
   auto cobject = cairo_image_surface_create((cairo_format_t)format, width, height);
   check_status_and_throw_exception(cairo_surface_status(cobject));
   return make_refptr_for_instance<ImageSurface>(new ImageSurface(cobject, true /* has reference */));
 }
 
-RefPtr<ImageSurface> ImageSurface::create(unsigned char* data, Format format, int width, int height, int stride)
+auto ImageSurface::create(unsigned char* data, Format format, int width, int height, int stride) -> RefPtr<ImageSurface>
 {
   auto cobject = cairo_image_surface_create_for_data(data, (cairo_format_t)format, width, height, stride);
   check_status_and_throw_exception(cairo_surface_status(cobject));
@@ -322,14 +322,14 @@ RefPtr<ImageSurface> ImageSurface::create(unsigned char* data, Format format, in
 
 #ifdef CAIRO_HAS_PNG_FUNCTIONS
 
-RefPtr<ImageSurface> ImageSurface::create_from_png(std::string filename)
+auto ImageSurface::create_from_png(std::string filename) -> RefPtr<ImageSurface>
 {
   auto cobject = cairo_image_surface_create_from_png(filename.c_str());
   check_status_and_throw_exception(cairo_surface_status(cobject));
   return make_refptr_for_instance<ImageSurface>(new ImageSurface(cobject, true /* has reference */));
 }
 
-RefPtr<ImageSurface> ImageSurface::create_from_png_stream(const SlotReadFunc& read_func)
+auto ImageSurface::create_from_png_stream(const SlotReadFunc& read_func) -> RefPtr<ImageSurface>
 {
   auto slot_copy = new SlotReadFunc(read_func);
   auto cobject =
@@ -341,7 +341,7 @@ RefPtr<ImageSurface> ImageSurface::create_from_png_stream(const SlotReadFunc& re
 
 #endif // CAIRO_HAS_PNG_FUNCTIONS
 
-int ImageSurface::get_width() const
+auto ImageSurface::get_width() const -> int
 {
   const auto result =
     cairo_image_surface_get_width(const_cast<cobject*>(cobj()));
@@ -349,7 +349,7 @@ int ImageSurface::get_width() const
   return result;
 }
 
-int ImageSurface::get_height() const
+auto ImageSurface::get_height() const -> int
 {
   const auto result =
     cairo_image_surface_get_height(const_cast<cobject*>(cobj()));
@@ -357,27 +357,27 @@ int ImageSurface::get_height() const
   return result;
 }
 
-unsigned char* ImageSurface::get_data()
+auto ImageSurface::get_data() -> unsigned char*
 {
   return cairo_image_surface_get_data(cobj());
 }
 
-const unsigned char* ImageSurface::get_data() const
+auto ImageSurface::get_data() const -> const unsigned char*
 {
   return cairo_image_surface_get_data(const_cast<cobject*>(cobj()));
 }
 
-Surface::Format ImageSurface::get_format() const
+auto ImageSurface::get_format() const -> Surface::Format
 {
   return static_cast<Format>(cairo_image_surface_get_format(const_cast<cobject*>(cobj())));
 }
 
-int ImageSurface::get_stride() const
+auto ImageSurface::get_stride() const -> int
 {
   return cairo_image_surface_get_stride(const_cast<cobject*>(cobj()));
 }
 
-int ImageSurface::format_stride_for_width (Format format, int width)
+auto ImageSurface::format_stride_for_width (Format format, int width) -> int
 {
   return cairo_format_stride_for_width(static_cast<cairo_format_t>(format), width);
 }
@@ -392,21 +392,21 @@ RecordingSurface::~RecordingSurface()
   // surface is destroyed in base class
 }
 
-RefPtr<RecordingSurface> RecordingSurface::create(Content content)
+auto RecordingSurface::create(Content content) -> RefPtr<RecordingSurface>
 {
   auto cobject = cairo_recording_surface_create((cairo_content_t)content, nullptr);
   check_status_and_throw_exception(cairo_surface_status(cobject));
   return make_refptr_for_instance<RecordingSurface>(new RecordingSurface(cobject, true /* has reference */));
 }
 
-RefPtr<RecordingSurface> RecordingSurface::create(const Rectangle& extents, Content content)
+auto RecordingSurface::create(const Rectangle& extents, Content content) -> RefPtr<RecordingSurface>
 {
   auto cobject = cairo_recording_surface_create((cairo_content_t)content, &extents);
   check_status_and_throw_exception(cairo_surface_status(cobject));
   return make_refptr_for_instance<RecordingSurface>(new RecordingSurface(cobject, true /* has reference */));
 }
 
-Rectangle RecordingSurface::ink_extents() const
+auto RecordingSurface::ink_extents() const -> Rectangle
 {
   Rectangle inked;
   cairo_recording_surface_ink_extents(const_cast<cobject*>(cobj()),
@@ -415,7 +415,7 @@ Rectangle RecordingSurface::ink_extents() const
   return inked;
 }
 
-bool RecordingSurface::get_extents(Rectangle& extents) const
+auto RecordingSurface::get_extents(Rectangle& extents) const -> bool
 {
   bool has_extents = cairo_recording_surface_get_extents(const_cast<cobject*>(cobj()),
       &extents);
@@ -439,15 +439,15 @@ PdfSurface::~PdfSurface()
   // surface is destroyed in base class
 }
 
-RefPtr<PdfSurface> PdfSurface::create(std::string filename, double width_in_points, double height_in_points)
+auto PdfSurface::create(std::string filename, double width_in_points, double height_in_points) -> RefPtr<PdfSurface>
 {
   auto cobject = cairo_pdf_surface_create(filename.c_str(), width_in_points, height_in_points);
   check_status_and_throw_exception(cairo_surface_status(cobject));
   return make_refptr_for_instance<PdfSurface>(new PdfSurface(cobject, true /* has reference */));
 }
 
-RefPtr<PdfSurface> PdfSurface::create_for_stream(const SlotWriteFunc& write_func, double
-                                                 width_in_points, double height_in_points)
+auto PdfSurface::create_for_stream(const SlotWriteFunc& write_func, double
+                                                 width_in_points, double height_in_points) -> RefPtr<PdfSurface>
 {
   auto slot_copy = new SlotWriteFunc(write_func);
   auto cobject =
@@ -470,7 +470,7 @@ void PdfSurface::restrict_to_version(PdfVersion version)
   check_object_status_and_throw_exception(*this);
 }
 
-const std::vector<PdfVersion> PdfSurface::get_versions()
+auto PdfSurface::get_versions() -> const std::vector<PdfVersion>
 {
   cairo_pdf_version_t const *versions;
   int num_versions;
@@ -485,7 +485,7 @@ const std::vector<PdfVersion> PdfSurface::get_versions()
   return vec;
 }
 
-std::string PdfSurface::version_to_string(PdfVersion version)
+auto PdfSurface::version_to_string(PdfVersion version) -> std::string
 {
   const char *cstring = cairo_pdf_version_to_string(static_cast<cairo_pdf_version_t>(version));
   return cstring ? std::string(cstring) : std::string();
@@ -507,15 +507,15 @@ PsSurface::~PsSurface()
   // surface is destroyed in base class
 }
 
-RefPtr<PsSurface> PsSurface::create(std::string filename, double width_in_points, double height_in_points)
+auto PsSurface::create(std::string filename, double width_in_points, double height_in_points) -> RefPtr<PsSurface>
 {
   auto cobject = cairo_ps_surface_create(filename.c_str(), width_in_points, height_in_points);
   check_status_and_throw_exception(cairo_surface_status(cobject));
   return make_refptr_for_instance<PsSurface>(new PsSurface(cobject, true /* has reference */));
 }
 
-RefPtr<PsSurface> PsSurface::create_for_stream(const SlotWriteFunc& write_func, double
-                                               width_in_points, double height_in_points)
+auto PsSurface::create_for_stream(const SlotWriteFunc& write_func, double
+                                               width_in_points, double height_in_points) -> RefPtr<PsSurface>
 {
   auto slot_copy = new SlotWriteFunc(write_func);
   auto cobject =
@@ -551,7 +551,7 @@ void PsSurface::dsc_begin_page_setup()
   check_object_status_and_throw_exception(*this);
 }
 
-bool PsSurface::get_eps() const
+auto PsSurface::get_eps() const -> bool
 {
   auto result = cairo_ps_surface_get_eps(const_cast<cairo_surface_t*>(cobj()));
   check_object_status_and_throw_exception(*this);
@@ -570,7 +570,7 @@ void PsSurface::restrict_to_level(PsLevel level)
   check_object_status_and_throw_exception(*this);
 }
 
-const std::vector<PsLevel> PsSurface::get_levels()
+auto PsSurface::get_levels() -> const std::vector<PsLevel>
 {
   cairo_ps_level_t const *levels;
   int num_levels;
@@ -587,7 +587,7 @@ const std::vector<PsLevel> PsSurface::get_levels()
   return vec;
 }
 
-std::string PsSurface::level_to_string(PsLevel level)
+auto PsSurface::level_to_string(PsLevel level) -> std::string
 {
   return std::string(cairo_ps_level_to_string(static_cast<cairo_ps_level_t>(level)));
 }
@@ -608,16 +608,16 @@ SvgSurface::~SvgSurface()
   // surface is destroyed in base class
 }
 
-RefPtr<SvgSurface> SvgSurface::create(std::string filename, double width_in_points, double height_in_points)
+auto SvgSurface::create(std::string filename, double width_in_points, double height_in_points) -> RefPtr<SvgSurface>
 {
   auto cobject = cairo_svg_surface_create(filename.c_str(), width_in_points, height_in_points);
   check_status_and_throw_exception(cairo_surface_status(cobject));
   return make_refptr_for_instance<SvgSurface>(new SvgSurface(cobject, true /* has reference */));
 }
 
-RefPtr<SvgSurface> SvgSurface::create_for_stream(const SlotWriteFunc& write_func,
+auto SvgSurface::create_for_stream(const SlotWriteFunc& write_func,
                                                  double width_in_points,
-                                                 double height_in_points)
+                                                 double height_in_points) -> RefPtr<SvgSurface>
 {
   auto slot_copy = new SlotWriteFunc(write_func);
   auto cobject =
@@ -634,7 +634,7 @@ void SvgSurface::restrict_to_version(SvgVersion version)
   check_object_status_and_throw_exception(*this);
 }
 
-const std::vector<SvgVersion> SvgSurface::get_versions()
+auto SvgSurface::get_versions() -> const std::vector<SvgVersion>
 {
   cairo_svg_version_t const *versions;
   int num_versions;
@@ -651,7 +651,7 @@ const std::vector<SvgVersion> SvgSurface::get_versions()
   return vec;
 }
 
-std::string SvgSurface::version_to_string(SvgVersion version)
+auto SvgSurface::version_to_string(SvgVersion version) -> std::string
 {
   return std::string(cairo_svg_version_to_string(static_cast<cairo_svg_version_t>(version)));
 }

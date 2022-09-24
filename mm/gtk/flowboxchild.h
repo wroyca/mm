@@ -59,11 +59,11 @@ class GTKMM_API FlowBoxChild
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   FlowBoxChild(FlowBoxChild&& src) noexcept;
-  FlowBoxChild& operator=(FlowBoxChild&& src) noexcept;
+  auto operator=(FlowBoxChild&& src) noexcept -> FlowBoxChild&;
 
   // noncopyable
   FlowBoxChild(const FlowBoxChild&) = delete;
-  FlowBoxChild& operator=(const FlowBoxChild&) = delete;
+  auto operator=(const FlowBoxChild&) -> FlowBoxChild& = delete;
 
   ~FlowBoxChild() noexcept override;
 
@@ -83,19 +83,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkFlowBoxChild*       gobj()       { return reinterpret_cast<GtkFlowBoxChild*>(gobject_); }
+  auto       gobj() -> GtkFlowBoxChild*       { return reinterpret_cast<GtkFlowBoxChild*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkFlowBoxChild* gobj() const { return reinterpret_cast<GtkFlowBoxChild*>(gobject_); }
+  auto gobj() const -> const GtkFlowBoxChild* { return reinterpret_cast<GtkFlowBoxChild*>(gobject_); }
 
 private:
 
@@ -117,27 +117,27 @@ public:
    *
    * @return The child widget of @a self.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget of @a self.
    *
    * @return The child widget of @a self.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
   /** Gets the current index of the @a child in its `Gtk::FlowBox` container.
    *
    * @return The index of the @a child, or -1 if the @a child is not
    * in a flow box.
    */
-  int get_index() const;
+  auto get_index() const -> int;
 
   /** Returns whether the @a child is currently selected in its
    * `Gtk::FlowBox` container.
    *
    * @return <tt>true</tt> if @a child is selected.
    */
-  bool is_selected() const;
+  auto is_selected() const -> bool;
 
   /** Marks @a child as changed, causing any state that depends on this
    * to be updated.
@@ -179,7 +179,7 @@ public:
    * The default bindings are <kbd>Space</kbd> and <kbd>Enter</kbd>.
    */
 
-  Glib::SignalProxy<void()> signal_activate();
+  auto signal_activate() -> Glib::SignalProxy<void()>;
 
 
   /** The child widget.
@@ -187,14 +187,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The child widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
 public:
@@ -226,7 +226,7 @@ namespace Glib
    * @relates Gtk::FlowBoxChild
    */
   GTKMM_API
-  Gtk::FlowBoxChild* wrap(GtkFlowBoxChild* object, bool take_copy = false);
+  auto wrap(GtkFlowBoxChild* object, bool take_copy = false) -> Gtk::FlowBoxChild*;
 } //namespace Glib
 
 

@@ -109,7 +109,7 @@ public:
 
   // noncopyable
   TreeModel(const TreeModel&) = delete;
-  TreeModel& operator=(const TreeModel&) = delete;
+  auto operator=(const TreeModel&) -> TreeModel& = delete;
 
 private:
   friend class TreeModel_Class;
@@ -143,7 +143,7 @@ protected:
 public:
 
   TreeModel(TreeModel&& src) noexcept;
-  TreeModel& operator=(TreeModel&& src) noexcept;
+  auto operator=(TreeModel&& src) noexcept -> TreeModel&;
 
   ~TreeModel() noexcept override;
 
@@ -151,17 +151,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkTreeModel*       gobj()       { return reinterpret_cast<GtkTreeModel*>(gobject_); }
+  auto       gobj() -> GtkTreeModel*       { return reinterpret_cast<GtkTreeModel*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkTreeModel* gobj() const { return reinterpret_cast<GtkTreeModel*>(gobject_); }
+  auto gobj() const -> const GtkTreeModel* { return reinterpret_cast<GtkTreeModel*>(gobject_); }
 
 private:
 
@@ -224,34 +224,34 @@ public:
    * @param path The @link Gtk::TreePath Gtk::TreeModel::Path@endlink.
    * @result A valid iterator pointing to the path, or an invalid iterator if that is not possible.
    */
-  iterator get_iter(const Path& path);
+  auto get_iter(const Path& path) -> iterator;
 
   /** Returns a valid iterator pointing to @a path.
    *
    * @param path The @link Gtk::TreePath Gtk::TreeModel::Path@endlink.
    * @result A valid iterator pointing to the path, or an invalid iterator if that is not possible.
    */
-  const_iterator get_iter(const Path& path) const;
+  auto get_iter(const Path& path) const -> const_iterator;
 
   /** Returns a valid iterator pointing to @a path_string.
    *
    * @param path_string The path, as a string representation.
    * @result A valid iterator pointing to the path, or an invalid iterator if that is not possible.
    */
-  iterator get_iter(const Glib::ustring& path_string);
+  auto get_iter(const Glib::ustring& path_string) -> iterator;
 
   /** Returns a valid iterator pointing to @a path_string.
    *
    * @param path_string The path, as a string representation.
    * @result A valid iterator pointing to the path, or an invalid iterator if that is not possible.
    */
-  const_iterator get_iter(const Glib::ustring& path_string) const;
+  auto get_iter(const Glib::ustring& path_string) const -> const_iterator;
 
   ///This returns an STL-like container API, for iterating over the rows.
-  Children children();
+  auto children() -> Children;
 
   ///This returns an STL-like container API, for iterating over the rows.
-  const ConstChildren children() const;
+  auto children() const -> const ConstChildren;
 
 
   /** The type of callback slot used by foreach_iter().
@@ -317,20 +317,20 @@ public:
    *
    * @return The flags supported by this interface.
    */
-  Flags get_flags() const;
+  auto get_flags() const -> Flags;
 
   /** Returns the number of columns supported by @a tree_model.
    *
    * @return The number of columns.
    */
-  int get_n_columns() const;
+  auto get_n_columns() const -> int;
 
   /** Returns the type of the column.
    *
    * @param index The column index.
    * @return The type of the column.
    */
-  GType get_column_type(int index) const;
+  auto get_column_type(int index) const -> GType;
   //TODO: A C++-type version of get_column_type()?
 
 
@@ -339,7 +339,7 @@ public:
    * @param iter The Gtk::TreeIter.
    * @return A Gtk::TreePath.
    */
-  TreeModel::Path get_path(const const_iterator& iter) const;
+  auto get_path(const const_iterator& iter) const -> TreeModel::Path;
 
 
   /** Emits the signal_row_changed() signal on @a tree_model.
@@ -436,7 +436,7 @@ public:
    * @param iter An Gtk::TreeIter.
    * @return The string.
    */
-  Glib::ustring get_string(const const_iterator& iter) const;
+  auto get_string(const const_iterator& iter) const -> Glib::ustring;
 
 
   /**
@@ -451,7 +451,7 @@ public:
    * @param iter A valid `Gtk::TreeIter` pointing to the changed row.
    */
 
-  Glib::SignalProxy<void(const TreeModel::Path&, const TreeModel::iterator&)> signal_row_changed();
+  auto signal_row_changed() -> Glib::SignalProxy<void(const TreeModel::Path&, const TreeModel::iterator&)>;
 
 
   /**
@@ -471,7 +471,7 @@ public:
    * @param iter A valid `Gtk::TreeIter` pointing to the new row.
    */
 
-  Glib::SignalProxy<void(const TreeModel::Path&, const TreeModel::iterator&)> signal_row_inserted();
+  auto signal_row_inserted() -> Glib::SignalProxy<void(const TreeModel::Path&, const TreeModel::iterator&)>;
 
 
   /**
@@ -487,7 +487,7 @@ public:
    * @param iter A valid `Gtk::TreeIter` pointing to the row.
    */
 
-  Glib::SignalProxy<void(const TreeModel::Path&, const TreeModel::iterator&)> signal_row_has_child_toggled();
+  auto signal_row_has_child_toggled() -> Glib::SignalProxy<void(const TreeModel::Path&, const TreeModel::iterator&)>;
 
 
   /**
@@ -508,7 +508,7 @@ public:
    * @param path A `Gtk::TreePath` identifying the row.
    */
 
-  Glib::SignalProxy<void(const TreeModel::Path&)> signal_row_deleted();
+  auto signal_row_deleted() -> Glib::SignalProxy<void(const TreeModel::Path&)>;
 
 
   /**
@@ -533,15 +533,15 @@ public:
    * i.e. @a new_order`[newpos] = oldpos`.
    */
 
-  Glib::SignalProxy<void(const TreeModel::Path&, const TreeModel::iterator&, int*)> signal_rows_reordered();
+  auto signal_rows_reordered() -> Glib::SignalProxy<void(const TreeModel::Path&, const TreeModel::iterator&, int*)>;
 
 
 protected:
-    virtual Flags get_flags_vfunc() const;
+    virtual auto get_flags_vfunc() const -> Flags;
 
-    virtual int get_n_columns_vfunc() const;
+    virtual auto get_n_columns_vfunc() const -> int;
 
-    virtual GType get_column_type_vfunc(int index) const;
+    virtual auto get_column_type_vfunc(int index) const -> GType;
 
 
   //These are only for deriving new TreeModels, which isn't very common or easy:
@@ -554,7 +554,7 @@ protected:
    * @param iter_next An iterator that will be set to refer to the next node, or will be set as invalid.
    * @result true if the operation was possible.
    */
-  virtual bool iter_next_vfunc(const iterator& iter, iterator& iter_next) const;
+  virtual auto iter_next_vfunc(const iterator& iter, iterator& iter_next) const -> bool;
 
   /** Override and implement this in a derived TreeModel class.
    * Sets @a iter to a valid iterator pointing to @a path
@@ -563,7 +563,7 @@ protected:
    * @param iter An iterator that will be set to refer to a node to the path, or will be set as invalid.
    * @result true if the operation was possible.
    */
-  virtual bool get_iter_vfunc(const Path& path, iterator& iter) const;
+  virtual auto get_iter_vfunc(const Path& path, iterator& iter) const -> bool;
 
   /** Override and implement this in a derived TreeModel class.
    * Sets @a iter to refer to the first child of @a parent. If @a parent has no children,
@@ -573,7 +573,7 @@ protected:
    * @param iter An iterator that will be set to refer to the firt child node, or will be set as invalid.
    * @result true if the operation was possible.
    */
-  virtual bool iter_children_vfunc(const iterator& parent, iterator& iter) const;
+  virtual auto iter_children_vfunc(const iterator& parent, iterator& iter) const -> bool;
 
   /** Override and implement this in a derived TreeModel class.
    * Sets @a iter to be the parent of @a child. If @a child is at the toplevel, and
@@ -584,7 +584,7 @@ protected:
    * @param iter An iterator that will be set to refer to the parent node, or will be set as invalid.
    * @result true if the operation was possible.
    */
-  virtual bool iter_parent_vfunc(const iterator& child, iterator& iter) const;
+  virtual auto iter_parent_vfunc(const iterator& child, iterator& iter) const -> bool;
 
   /** Override and implement this in a derived TreeModel class.
    * Sets @a iter to be the child of @a parent using the given index.  The first
@@ -597,7 +597,7 @@ protected:
    * @param iter An iterator that will be set to refer to the nth node, or will be set as invalid.
    * @result true if the operation was possible.
    */
-  virtual bool iter_nth_child_vfunc(const iterator& parent, int n, iterator& iter) const;
+  virtual auto iter_nth_child_vfunc(const iterator& parent, int n, iterator& iter) const -> bool;
 
    /** Override and implement this in a derived TreeModel class.
    * Sets @a iter to be the child of at the root level using the given index.  The first
@@ -609,7 +609,7 @@ protected:
    * @param iter An iterator that will be set to refer to the nth node, or will be set as invalid.
    * @result true if the operation was possible.
    */
-  virtual bool iter_nth_root_child_vfunc(int n, iterator& iter) const;
+  virtual auto iter_nth_root_child_vfunc(int n, iterator& iter) const -> bool;
 
 
   /** Override and implement this in a derived TreeModel class.
@@ -618,7 +618,7 @@ protected:
    * @param iter The iterator to test for children.
    * @result true if @a iter has children.
    */
-    virtual bool iter_has_child_vfunc(const const_iterator& iter) const;
+    virtual auto iter_has_child_vfunc(const const_iterator& iter) const -> bool;
 
 
   /** Override and implement this in a derived TreeModel class.
@@ -628,7 +628,7 @@ protected:
    * @param iter The iterator to test for children.
    * @result The number of children of @a iter.
    */
-  virtual int iter_n_children_vfunc(const const_iterator& iter) const;
+  virtual auto iter_n_children_vfunc(const const_iterator& iter) const -> int;
 
   /** Override and implement this in a derived TreeModel class.
    * Returns the number of toplevel nodes.
@@ -636,7 +636,7 @@ protected:
    *
    * @result The number of children at the root level.
    */
-  virtual int iter_n_root_children_vfunc() const;
+  virtual auto iter_n_root_children_vfunc() const -> int;
 
   /** Override and implement this in a derived TreeModel class.
    * Lets the tree ref the node.  This is an optional method for models to
@@ -678,7 +678,7 @@ protected:
    */
 
 
-    virtual TreeModel::Path get_path_vfunc(const const_iterator& iter) const;
+    virtual auto get_path_vfunc(const const_iterator& iter) const -> TreeModel::Path;
 
 
   /** Override and implement this in a derived TreeModel class.
@@ -738,31 +738,31 @@ namespace Gtk
 {
 
 /** @ingroup gtkmmEnums */
-inline TreeModel::Flags operator|(TreeModel::Flags lhs, TreeModel::Flags rhs)
+inline auto operator|(TreeModel::Flags lhs, TreeModel::Flags rhs) -> TreeModel::Flags
   { return static_cast<TreeModel::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline TreeModel::Flags operator&(TreeModel::Flags lhs, TreeModel::Flags rhs)
+inline auto operator&(TreeModel::Flags lhs, TreeModel::Flags rhs) -> TreeModel::Flags
   { return static_cast<TreeModel::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline TreeModel::Flags operator^(TreeModel::Flags lhs, TreeModel::Flags rhs)
+inline auto operator^(TreeModel::Flags lhs, TreeModel::Flags rhs) -> TreeModel::Flags
   { return static_cast<TreeModel::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline TreeModel::Flags operator~(TreeModel::Flags flags)
+inline auto operator~(TreeModel::Flags flags) -> TreeModel::Flags
   { return static_cast<TreeModel::Flags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gtkmmEnums */
-inline TreeModel::Flags& operator|=(TreeModel::Flags& lhs, TreeModel::Flags rhs)
+inline auto operator|=(TreeModel::Flags& lhs, TreeModel::Flags rhs) -> TreeModel::Flags&
   { return (lhs = static_cast<TreeModel::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline TreeModel::Flags& operator&=(TreeModel::Flags& lhs, TreeModel::Flags rhs)
+inline auto operator&=(TreeModel::Flags& lhs, TreeModel::Flags rhs) -> TreeModel::Flags&
   { return (lhs = static_cast<TreeModel::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline TreeModel::Flags& operator^=(TreeModel::Flags& lhs, TreeModel::Flags rhs)
+inline auto operator^=(TreeModel::Flags& lhs, TreeModel::Flags rhs) -> TreeModel::Flags&
   { return (lhs = static_cast<TreeModel::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gtk
 
@@ -774,7 +774,7 @@ template <>
 class GTKMM_API Value<Gtk::TreeModel::Flags> : public Glib::Value_Flags<Gtk::TreeModel::Flags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -792,7 +792,7 @@ namespace Glib
    * @relates Gtk::TreeModel
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::TreeModel> wrap(GtkTreeModel* object, bool take_copy = false);
+  auto wrap(GtkTreeModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeModel>;
 
 } // namespace Glib
 

@@ -31,7 +31,7 @@
 
 // This Signal Proxy allows the C++ coder to specify a sigc::slot instead of a static function.
 
-static gboolean SignalProxy_Custom_gtk_callback(GtkPrinter* gtk_printer, gpointer data)
+static auto SignalProxy_Custom_gtk_callback(GtkPrinter* gtk_printer, gpointer data) -> gboolean
 {
   const auto the_slot = static_cast<Gtk::SlotPrinterEnumerator*>(data);
 
@@ -57,7 +57,7 @@ static void SignalProxy_Custom_gtk_callback_destroy(void* data)
 namespace Gtk
 {
 
-bool Printer::equal(const Glib::RefPtr<Printer>& other) const
+auto Printer::equal(const Glib::RefPtr<Printer>& other) const -> bool
 {
   return (static_cast<bool>(gtk_printer_compare(const_cast<GtkPrinter*>(this->gobj()),
                                                 const_cast<GtkPrinter*>(other->gobj()))));
@@ -81,7 +81,7 @@ namespace
 {
 
 
-static void Printer_signal_details_acquired_callback(GtkPrinter* self, gboolean p0,void* data)
+void Printer_signal_details_acquired_callback(GtkPrinter* self, gboolean p0,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(bool)>;
@@ -103,7 +103,7 @@ static void Printer_signal_details_acquired_callback(GtkPrinter* self, gboolean 
   }
 }
 
-static const Glib::SignalProxyInfo Printer_signal_details_acquired_info =
+const Glib::SignalProxyInfo Printer_signal_details_acquired_info =
 {
   "details_acquired",
   (GCallback) &Printer_signal_details_acquired_callback,
@@ -114,7 +114,7 @@ static const Glib::SignalProxyInfo Printer_signal_details_acquired_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::PrintCapabilities>::value_type()
+auto Glib::Value<Gtk::PrintCapabilities>::value_type() -> GType
 {
   return gtk_print_capabilities_get_type();
 }
@@ -123,7 +123,7 @@ GType Glib::Value<Gtk::PrintCapabilities>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::Printer> wrap(GtkPrinter* object, bool take_copy)
+auto wrap(GtkPrinter* object, bool take_copy) -> Glib::RefPtr<Gtk::Printer>
 {
   return Glib::make_refptr_for_instance<Gtk::Printer>( dynamic_cast<Gtk::Printer*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -138,7 +138,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Printer_Class::init()
+auto Printer_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -169,7 +169,7 @@ void Printer_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Printer_Class::wrap_new(GObject* object)
+auto Printer_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Printer((GtkPrinter*)object);
 }
@@ -177,7 +177,7 @@ Glib::ObjectBase* Printer_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkPrinter* Printer::gobj_copy()
+auto Printer::gobj_copy() -> GtkPrinter*
 {
   reference();
   return gobj();
@@ -200,7 +200,7 @@ Printer::Printer(Printer&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Printer& Printer::operator=(Printer&& src) noexcept
+auto Printer::operator=(Printer&& src) noexcept -> Printer&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -213,89 +213,89 @@ Printer::~Printer() noexcept
 
 Printer::CppClassType Printer::printer_class_; // initialize static member
 
-GType Printer::get_type()
+auto Printer::get_type() -> GType
 {
   return printer_class_.init().get_type();
 }
 
 
-GType Printer::get_base_type()
+auto Printer::get_base_type() -> GType
 {
   return gtk_printer_get_type();
 }
 
 
-Glib::ustring Printer::get_name() const
+auto Printer::get_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_printer_get_name(const_cast<GtkPrinter*>(gobj())));
 }
 
-Glib::ustring Printer::get_state_message() const
+auto Printer::get_state_message() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_printer_get_state_message(const_cast<GtkPrinter*>(gobj())));
 }
 
-Glib::ustring Printer::get_description() const
+auto Printer::get_description() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_printer_get_description(const_cast<GtkPrinter*>(gobj())));
 }
 
-Glib::ustring Printer::get_location() const
+auto Printer::get_location() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_printer_get_location(const_cast<GtkPrinter*>(gobj())));
 }
 
-Glib::ustring Printer::get_icon_name() const
+auto Printer::get_icon_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_printer_get_icon_name(const_cast<GtkPrinter*>(gobj())));
 }
 
-int Printer::get_job_count() const
+auto Printer::get_job_count() const -> int
 {
   return gtk_printer_get_job_count(const_cast<GtkPrinter*>(gobj()));
 }
 
-bool Printer::is_active() const
+auto Printer::is_active() const -> bool
 {
   return gtk_printer_is_active(const_cast<GtkPrinter*>(gobj()));
 }
 
-bool Printer::is_paused() const
+auto Printer::is_paused() const -> bool
 {
   return gtk_printer_is_paused(const_cast<GtkPrinter*>(gobj()));
 }
 
-bool Printer::is_accepting_jobs() const
+auto Printer::is_accepting_jobs() const -> bool
 {
   return gtk_printer_is_accepting_jobs(const_cast<GtkPrinter*>(gobj()));
 }
 
-bool Printer::is_virtual() const
+auto Printer::is_virtual() const -> bool
 {
   return gtk_printer_is_virtual(const_cast<GtkPrinter*>(gobj()));
 }
 
-bool Printer::is_default() const
+auto Printer::is_default() const -> bool
 {
   return gtk_printer_is_default(const_cast<GtkPrinter*>(gobj()));
 }
 
-bool Printer::accepts_pdf() const
+auto Printer::accepts_pdf() const -> bool
 {
   return gtk_printer_accepts_pdf(const_cast<GtkPrinter*>(gobj()));
 }
 
-bool Printer::accepts_ps() const
+auto Printer::accepts_ps() const -> bool
 {
   return gtk_printer_accepts_ps(const_cast<GtkPrinter*>(gobj()));
 }
 
-std::vector< Glib::RefPtr<PageSetup> > Printer::list_papers()
+auto Printer::list_papers() -> std::vector< Glib::RefPtr<PageSetup> >
 {
   return Glib::ListHandler< Glib::RefPtr<PageSetup> >::list_to_vector(gtk_printer_list_papers(gobj()), Glib::OWNERSHIP_DEEP);
 }
 
-Glib::RefPtr<PageSetup> Printer::get_default_page_size() const
+auto Printer::get_default_page_size() const -> Glib::RefPtr<PageSetup>
 {
   auto retvalue = Glib::wrap(gtk_printer_get_default_page_size(const_cast<GtkPrinter*>(gobj())));
   if(retvalue)
@@ -303,12 +303,12 @@ Glib::RefPtr<PageSetup> Printer::get_default_page_size() const
   return retvalue;
 }
 
-std::vector< Glib::RefPtr<const PageSetup> > Printer::list_papers() const
+auto Printer::list_papers() const -> std::vector< Glib::RefPtr<const PageSetup> >
 {
   return Glib::ListHandler< Glib::RefPtr<const PageSetup> >::list_to_vector(gtk_printer_list_papers(const_cast<GtkPrinter*>(gobj())), Glib::OWNERSHIP_DEEP);
 }
 
-bool Printer::has_details() const
+auto Printer::has_details() const -> bool
 {
   return gtk_printer_has_details(const_cast<GtkPrinter*>(gobj()));
 }
@@ -318,74 +318,74 @@ void Printer::request_details()
   gtk_printer_request_details(gobj());
 }
 
-PrintCapabilities Printer::get_capabilities() const
+auto Printer::get_capabilities() const -> PrintCapabilities
 {
   return static_cast<PrintCapabilities>(gtk_printer_get_capabilities(const_cast<GtkPrinter*>(gobj())));
 }
 
-bool Printer::get_hard_margins(double& top, double& bottom, double& left, double& right) const
+auto Printer::get_hard_margins(double& top, double& bottom, double& left, double& right) const -> bool
 {
   return gtk_printer_get_hard_margins(const_cast<GtkPrinter*>(gobj()), &(top), &(bottom), &(left), &(right));
 }
 
-bool Printer::get_hard_margins(const PaperSize& paper_size, double& top, double& bottom, double& left, double& right) const
+auto Printer::get_hard_margins(const PaperSize& paper_size, double& top, double& bottom, double& left, double& right) const -> bool
 {
   return gtk_printer_get_hard_margins_for_paper_size(const_cast<GtkPrinter*>(gobj()), const_cast<GtkPaperSize*>((paper_size).gobj()), &(top), &(bottom), &(left), &(right));
 }
 
 
-Glib::SignalProxy<void(bool)> Printer::signal_details_acquired()
+auto Printer::signal_details_acquired() -> Glib::SignalProxy<void(bool)>
 {
   return Glib::SignalProxy<void(bool) >(this, &Printer_signal_details_acquired_info);
 }
 
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Printer::property_name() const
+auto Printer::property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Printer::property_is_virtual() const
+auto Printer::property_is_virtual() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "is-virtual");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Printer::property_state_message() const
+auto Printer::property_state_message() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "state-message");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Printer::property_location() const
+auto Printer::property_location() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "location");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Printer::property_icon_name() const
+auto Printer::property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "icon-name");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Printer::property_job_count() const
+auto Printer::property_job_count() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "job-count");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Printer::property_accepts_pdf() const
+auto Printer::property_accepts_pdf() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "accepts-pdf");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Printer::property_accepts_ps() const
+auto Printer::property_accepts_ps() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "accepts-ps");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Printer::property_paused() const
+auto Printer::property_paused() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "paused");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Printer::property_accepting_jobs() const
+auto Printer::property_accepting_jobs() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "accepting-jobs");
 }

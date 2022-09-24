@@ -103,31 +103,31 @@ enum class AnchorHints
 };
 
 /** @ingroup gdkmmEnums */
-inline AnchorHints operator|(AnchorHints lhs, AnchorHints rhs)
+inline auto operator|(AnchorHints lhs, AnchorHints rhs) -> AnchorHints
   { return static_cast<AnchorHints>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline AnchorHints operator&(AnchorHints lhs, AnchorHints rhs)
+inline auto operator&(AnchorHints lhs, AnchorHints rhs) -> AnchorHints
   { return static_cast<AnchorHints>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline AnchorHints operator^(AnchorHints lhs, AnchorHints rhs)
+inline auto operator^(AnchorHints lhs, AnchorHints rhs) -> AnchorHints
   { return static_cast<AnchorHints>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline AnchorHints operator~(AnchorHints flags)
+inline auto operator~(AnchorHints flags) -> AnchorHints
   { return static_cast<AnchorHints>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gdkmmEnums */
-inline AnchorHints& operator|=(AnchorHints& lhs, AnchorHints rhs)
+inline auto operator|=(AnchorHints& lhs, AnchorHints rhs) -> AnchorHints&
   { return (lhs = static_cast<AnchorHints>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline AnchorHints& operator&=(AnchorHints& lhs, AnchorHints rhs)
+inline auto operator&=(AnchorHints& lhs, AnchorHints rhs) -> AnchorHints&
   { return (lhs = static_cast<AnchorHints>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline AnchorHints& operator^=(AnchorHints& lhs, AnchorHints rhs)
+inline auto operator^=(AnchorHints& lhs, AnchorHints rhs) -> AnchorHints&
   { return (lhs = static_cast<AnchorHints>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -141,7 +141,7 @@ template <>
 class GDKMM_API Value<Gdk::AnchorHints> : public Glib::Value_Flags<Gdk::AnchorHints>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -181,19 +181,19 @@ class GDKMM_API PopupLayout final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GdkPopupLayout*       gobj();
+  auto       gobj() -> GdkPopupLayout*;
 
   ///Provides access to the underlying C instance.
-  const GdkPopupLayout* gobj() const;
+  auto gobj() const -> const GdkPopupLayout*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkPopupLayout* gobj_copy() const;
+  auto gobj_copy() const -> GdkPopupLayout*;
 
   PopupLayout() = delete;
 
   // noncopyable
   PopupLayout(const PopupLayout&) = delete;
-  PopupLayout& operator=(const PopupLayout&) = delete;
+  auto operator=(const PopupLayout&) -> PopupLayout& = delete;
 
 protected:
   // Do not derive this.  Gdk::PopupLayout can neither be constructed nor deleted.
@@ -224,13 +224,13 @@ public:
    * @param surface_anchor The point on @a surface to align with @a rect's anchor point.
    * @return Newly created instance of `Gdk::PopupLayout`.
    */
-  static Glib::RefPtr<PopupLayout> create(const Rectangle& anchor_rect, Gravity rect_anchor, Gravity surface_anchor);
+  static auto create(const Rectangle& anchor_rect, Gravity rect_anchor, Gravity surface_anchor) -> Glib::RefPtr<PopupLayout>;
 
   /** Makes a copy of @a layout.
    *
    * @return A copy of @a layout.
    */
-  Glib::RefPtr<PopupLayout> copy() const;
+  auto copy() const -> Glib::RefPtr<PopupLayout>;
 
   /** Check whether @a layout and @a other has identical layout properties.
    *
@@ -238,7 +238,7 @@ public:
    * @return <tt>true</tt> if @a layout and @a other have identical layout properties,
    * otherwise <tt>false</tt>.
    */
-  bool equal(const Glib::RefPtr<const PopupLayout>& other) const;
+  auto equal(const Glib::RefPtr<const PopupLayout>& other) const -> bool;
 
 
   /** Set the anchor rectangle.
@@ -251,7 +251,7 @@ public:
    *
    * @return The anchor rectangle.
    */
-  Rectangle get_anchor_rect() const;
+  auto get_anchor_rect() const -> Rectangle;
 
   /** Set the anchor on the anchor rectangle.
    *
@@ -263,7 +263,7 @@ public:
    *
    * @return The anchor on the anchor rectangle.
    */
-  Gravity get_rect_anchor() const;
+  auto get_rect_anchor() const -> Gravity;
 
   /** Set the anchor on the popup surface.
    *
@@ -275,7 +275,7 @@ public:
    *
    * @return The anchor on the popup surface.
    */
-  Gravity get_surface_anchor() const;
+  auto get_surface_anchor() const -> Gravity;
 
   /** Set new anchor hints.
    *
@@ -293,7 +293,7 @@ public:
    *
    * @return The `Gdk::AnchorHints`.
    */
-  AnchorHints get_anchor_hints() const;
+  auto get_anchor_hints() const -> AnchorHints;
 
   /** Offset the position of the anchor rectangle with the given delta.
    *
@@ -365,7 +365,7 @@ namespace Glib
  * @relates Gdk::PopupLayout
  */
 GDKMM_API
-Glib::RefPtr<Gdk::PopupLayout> wrap(GdkPopupLayout* object, bool take_copy = false);
+auto wrap(GdkPopupLayout* object, bool take_copy = false) -> Glib::RefPtr<Gdk::PopupLayout>;
 
 } // namespace Glib
 

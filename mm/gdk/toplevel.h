@@ -107,7 +107,7 @@ template <>
 class GDKMM_API Value<Gdk::SurfaceEdge> : public Glib::Value_Enum<Gdk::SurfaceEdge>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -146,7 +146,7 @@ template <>
 class GDKMM_API Value<Gdk::FullscreenMode> : public Glib::Value_Enum<Gdk::FullscreenMode>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -182,7 +182,7 @@ public:
 
   // noncopyable
   Toplevel(const Toplevel&) = delete;
-  Toplevel& operator=(const Toplevel&) = delete;
+  auto operator=(const Toplevel&) -> Toplevel& = delete;
 
 private:
   friend class Toplevel_Class;
@@ -216,7 +216,7 @@ protected:
 public:
 
   Toplevel(Toplevel&& src) noexcept;
-  Toplevel& operator=(Toplevel&& src) noexcept;
+  auto operator=(Toplevel&& src) noexcept -> Toplevel&;
 
   ~Toplevel() noexcept override;
 
@@ -224,17 +224,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkToplevel*       gobj()       { return reinterpret_cast<GdkToplevel*>(gobject_); }
+  auto       gobj() -> GdkToplevel*       { return reinterpret_cast<GdkToplevel*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkToplevel* gobj() const { return reinterpret_cast<GdkToplevel*>(gobject_); }
+  auto gobj() const -> const GdkToplevel* { return reinterpret_cast<GdkToplevel*>(gobject_); }
 
 private:
 
@@ -352,7 +352,7 @@ public:
    *
    * @return <tt>true</tt> if the surface was minimized.
    */
-  bool minimize();
+  auto minimize() -> bool;
 
   /** Asks to lower the @a toplevel below other windows.
    *
@@ -360,7 +360,7 @@ public:
    *
    * @return <tt>true</tt> if the surface was lowered.
    */
-  bool lower();
+  auto lower() -> bool;
 
   /** Sets keyboard focus to @a surface.
    *
@@ -376,7 +376,7 @@ public:
    *
    * @return Surface state bitfield.
    */
-  State get_state() const;
+  auto get_state() const -> State;
 
   /** Sets the title of a toplevel surface.
    *
@@ -451,7 +451,7 @@ public:
    * @param event A `Gdk::Event` to show the menu for.
    * @return <tt>true</tt> if the window menu was shown and <tt>false</tt> otherwise.
    */
-  bool show_window_menu(const Glib::RefPtr<Event>& event);
+  auto show_window_menu(const Glib::RefPtr<Event>& event) -> bool;
 
   /** Sets the toplevel to be decorated.
    *
@@ -477,7 +477,7 @@ public:
    *
    * @return <tt>true</tt> if the desktop environment supports tiled window states.
    */
-  bool supports_edge_constraints() const;
+  auto supports_edge_constraints() const -> bool;
 
 
   /** Requests that the @a toplevel inhibit the system shortcuts.
@@ -565,7 +565,7 @@ public:
    * @param size A `Gdk::ToplevelSize`.
    */
 
-  Glib::SignalProxy<void(ToplevelSize&)> signal_compute_size();
+  auto signal_compute_size() -> Glib::SignalProxy<void(ToplevelSize&)>;
 
 
   /** The state of the toplevel.
@@ -575,7 +575,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< State > property_state() const;
+  auto property_state() const -> Glib::PropertyProxy_ReadOnly< State >;
 
 
   /** The title of the surface.
@@ -585,7 +585,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_title() ;
+  auto property_title() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The title of the surface.
    *
@@ -594,7 +594,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_title() const;
+  auto property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The startup ID of the surface.
    *
@@ -606,7 +606,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_startup_id() ;
+  auto property_startup_id() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The startup ID of the surface.
    *
@@ -618,21 +618,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_startup_id() const;
+  auto property_startup_id() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The transient parent of the surface.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Surface> > property_transient_for() ;
+  auto property_transient_for() -> Glib::PropertyProxy< Glib::RefPtr<Surface> > ;
 
 /** The transient parent of the surface.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> > property_transient_for() const;
+  auto property_transient_for() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >;
 
   /** Whether the surface is modal.
    *
@@ -641,7 +641,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_modal() ;
+  auto property_modal() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the surface is modal.
    *
@@ -650,7 +650,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_modal() const;
+  auto property_modal() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   //TODO: _WRAP_PROPERTY("icon-list", std::vector<Glib::RefPtr<Texture>>)
   /** Whether the window manager should add decorations.
@@ -660,7 +660,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_decorated() ;
+  auto property_decorated() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the window manager should add decorations.
    *
@@ -669,7 +669,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_decorated() const;
+  auto property_decorated() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the window manager should allow to close the surface.
    *
@@ -678,7 +678,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_deletable() ;
+  auto property_deletable() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the window manager should allow to close the surface.
    *
@@ -687,7 +687,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_deletable() const;
+  auto property_deletable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The fullscreen mode of the surface.
    *
@@ -696,7 +696,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< FullscreenMode > property_fullscreen_mode() ;
+  auto property_fullscreen_mode() -> Glib::PropertyProxy< FullscreenMode > ;
 
 /** The fullscreen mode of the surface.
    *
@@ -705,7 +705,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< FullscreenMode > property_fullscreen_mode() const;
+  auto property_fullscreen_mode() const -> Glib::PropertyProxy_ReadOnly< FullscreenMode >;
 
   /** Whether the surface should inhibit keyboard shortcuts.
    *
@@ -714,7 +714,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_shortcuts_inhibited() const;
+  auto property_shortcuts_inhibited() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -736,31 +736,31 @@ namespace Gdk
 {
 
 /** @ingroup gdkmmEnums */
-inline Toplevel::State operator|(Toplevel::State lhs, Toplevel::State rhs)
+inline auto operator|(Toplevel::State lhs, Toplevel::State rhs) -> Toplevel::State
   { return static_cast<Toplevel::State>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline Toplevel::State operator&(Toplevel::State lhs, Toplevel::State rhs)
+inline auto operator&(Toplevel::State lhs, Toplevel::State rhs) -> Toplevel::State
   { return static_cast<Toplevel::State>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline Toplevel::State operator^(Toplevel::State lhs, Toplevel::State rhs)
+inline auto operator^(Toplevel::State lhs, Toplevel::State rhs) -> Toplevel::State
   { return static_cast<Toplevel::State>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline Toplevel::State operator~(Toplevel::State flags)
+inline auto operator~(Toplevel::State flags) -> Toplevel::State
   { return static_cast<Toplevel::State>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gdkmmEnums */
-inline Toplevel::State& operator|=(Toplevel::State& lhs, Toplevel::State rhs)
+inline auto operator|=(Toplevel::State& lhs, Toplevel::State rhs) -> Toplevel::State&
   { return (lhs = static_cast<Toplevel::State>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline Toplevel::State& operator&=(Toplevel::State& lhs, Toplevel::State rhs)
+inline auto operator&=(Toplevel::State& lhs, Toplevel::State rhs) -> Toplevel::State&
   { return (lhs = static_cast<Toplevel::State>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline Toplevel::State& operator^=(Toplevel::State& lhs, Toplevel::State rhs)
+inline auto operator^=(Toplevel::State& lhs, Toplevel::State rhs) -> Toplevel::State&
   { return (lhs = static_cast<Toplevel::State>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gdk
 
@@ -772,7 +772,7 @@ template <>
 class GDKMM_API Value<Gdk::Toplevel::State> : public Glib::Value_Flags<Gdk::Toplevel::State>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -790,7 +790,7 @@ namespace Glib
    * @relates Gdk::Toplevel
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::Toplevel> wrap(GdkToplevel* object, bool take_copy = false);
+  auto wrap(GdkToplevel* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Toplevel>;
 
 } // namespace Glib
 

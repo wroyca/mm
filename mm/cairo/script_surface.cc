@@ -32,9 +32,9 @@ ScriptSurface::~ScriptSurface()
   // surface is destroyed in base class
 }
 
-RefPtr<ScriptSurface> ScriptSurface::create(const RefPtr<Script>& script,
+auto ScriptSurface::create(const RefPtr<Script>& script,
                                             Content content,
-                                            double width, double height)
+                                            double width, double height) -> RefPtr<ScriptSurface>
 {
   auto cobject =
         cairo_script_surface_create(script->cobj(), static_cast<cairo_content_t>(content),
@@ -43,9 +43,9 @@ RefPtr<ScriptSurface> ScriptSurface::create(const RefPtr<Script>& script,
   return make_refptr_for_instance<ScriptSurface>(new ScriptSurface(cobject, true /* has reference */));
 }
 
-RefPtr<ScriptSurface>
+auto
   ScriptSurface::create_for_target(const RefPtr<Script>& script,
-                                   const RefPtr<Surface>& target)
+                                   const RefPtr<Surface>& target) -> RefPtr<ScriptSurface>
 {
   auto cobject =
         cairo_script_surface_create_for_target(script->cobj(), target->cobj());

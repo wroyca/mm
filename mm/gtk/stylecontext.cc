@@ -32,28 +32,28 @@
 namespace Gtk
 {
 
-Gdk::RGBA StyleContext::get_color() const
+auto StyleContext::get_color() const -> Gdk::RGBA
 {
   GdkRGBA crgba;
   gtk_style_context_get_color(const_cast<GtkStyleContext*>(gobj()), &crgba);
   return Gdk::RGBA(&crgba, true);
 }
 
-Border StyleContext::get_border() const
+auto StyleContext::get_border() const -> Border
 {
   GtkBorder cborder;
   gtk_style_context_get_border(const_cast<GtkStyleContext*>(gobj()), &cborder);
   return Border(&cborder, true);
 }
 
-Border StyleContext::get_padding() const
+auto StyleContext::get_padding() const -> Border
 {
   GtkBorder cborder;
   gtk_style_context_get_padding(const_cast<GtkStyleContext*>(gobj()), &cborder);
   return Border(&cborder, true);
 }
 
-Border StyleContext::get_margin() const
+auto StyleContext::get_margin() const -> Border
 {
   GtkBorder cborder;
   gtk_style_context_get_margin(const_cast<GtkStyleContext*>(gobj()), &cborder);
@@ -67,7 +67,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::StyleContext::PrintFlags>::value_type()
+auto Glib::Value<Gtk::StyleContext::PrintFlags>::value_type() -> GType
 {
   return gtk_style_context_print_flags_get_type();
 }
@@ -76,7 +76,7 @@ GType Glib::Value<Gtk::StyleContext::PrintFlags>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::StyleContext> wrap(GtkStyleContext* object, bool take_copy)
+auto wrap(GtkStyleContext* object, bool take_copy) -> Glib::RefPtr<Gtk::StyleContext>
 {
   return Glib::make_refptr_for_instance<Gtk::StyleContext>( dynamic_cast<Gtk::StyleContext*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -91,7 +91,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& StyleContext_Class::init()
+auto StyleContext_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -122,7 +122,7 @@ void StyleContext_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* StyleContext_Class::wrap_new(GObject* object)
+auto StyleContext_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new StyleContext((GtkStyleContext*)object);
 }
@@ -130,7 +130,7 @@ Glib::ObjectBase* StyleContext_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkStyleContext* StyleContext::gobj_copy()
+auto StyleContext::gobj_copy() -> GtkStyleContext*
 {
   reference();
   return gobj();
@@ -153,7 +153,7 @@ StyleContext::StyleContext(StyleContext&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-StyleContext& StyleContext::operator=(StyleContext&& src) noexcept
+auto StyleContext::operator=(StyleContext&& src) noexcept -> StyleContext&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -166,13 +166,13 @@ StyleContext::~StyleContext() noexcept
 
 StyleContext::CppClassType StyleContext::stylecontext_class_; // initialize static member
 
-GType StyleContext::get_type()
+auto StyleContext::get_type() -> GType
 {
   return stylecontext_class_.init().get_type();
 }
 
 
-GType StyleContext::get_base_type()
+auto StyleContext::get_base_type() -> GType
 {
   return gtk_style_context_get_type();
 }
@@ -223,7 +223,7 @@ void StyleContext::set_state(StateFlags flags)
   gtk_style_context_set_state(gobj(), static_cast<GtkStateFlags>(flags));
 }
 
-StateFlags StyleContext::get_state() const
+auto StyleContext::get_state() const -> StateFlags
 {
   return static_cast<StateFlags>(gtk_style_context_get_state(const_cast<GtkStyleContext*>(gobj())));
 }
@@ -233,7 +233,7 @@ void StyleContext::set_scale(int scale)
   gtk_style_context_set_scale(gobj(), scale);
 }
 
-int StyleContext::get_scale() const
+auto StyleContext::get_scale() const -> int
 {
   return gtk_style_context_get_scale(const_cast<GtkStyleContext*>(gobj()));
 }
@@ -248,7 +248,7 @@ void StyleContext::remove_class(const Glib::ustring& class_name)
   gtk_style_context_remove_class(gobj(), class_name.c_str());
 }
 
-bool StyleContext::has_class(const Glib::ustring& class_name)
+auto StyleContext::has_class(const Glib::ustring& class_name) -> bool
 {
   return gtk_style_context_has_class(gobj(), class_name.c_str());
 }
@@ -258,7 +258,7 @@ void StyleContext::set_display(const Glib::RefPtr<Gdk::Display>& display)
   gtk_style_context_set_display(gobj(), Glib::unwrap(display));
 }
 
-Glib::RefPtr<Gdk::Display> StyleContext::get_display()
+auto StyleContext::get_display() -> Glib::RefPtr<Gdk::Display>
 {
   auto retvalue = Glib::wrap(gtk_style_context_get_display(gobj()));
   if(retvalue)
@@ -266,12 +266,12 @@ Glib::RefPtr<Gdk::Display> StyleContext::get_display()
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::Display> StyleContext::get_display() const
+auto StyleContext::get_display() const -> Glib::RefPtr<const Gdk::Display>
 {
   return const_cast<StyleContext*>(this)->get_display();
 }
 
-bool StyleContext::lookup_color(const Glib::ustring& color_name, Gdk::RGBA& color)
+auto StyleContext::lookup_color(const Glib::ustring& color_name, Gdk::RGBA& color) -> bool
 {
   return gtk_style_context_lookup_color(gobj(), color_name.c_str(), (color).gobj());
 }
@@ -336,7 +336,7 @@ void StyleContext::render_icon(const Cairo::RefPtr<Cairo::Context>& cr, const Gl
   gtk_render_icon(gobj(), ((cr) ? (cr)->cobj() : nullptr), Glib::unwrap(texture), x, y);
 }
 
-Glib::ustring StyleContext::to_string(PrintFlags flags) const
+auto StyleContext::to_string(PrintFlags flags) const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_style_context_to_string(const_cast<GtkStyleContext*>(gobj()), static_cast<GtkStyleContextPrintFlags>(flags)));
 }
@@ -346,12 +346,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Di
   "Type Glib::RefPtr<Gdk::Display> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gdk::Display> > StyleContext::property_display()
+auto StyleContext::property_display() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Display> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gdk::Display> >(this, "display");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Display> > StyleContext::property_display() const
+auto StyleContext::property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Display> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Display> >(this, "display");
 }

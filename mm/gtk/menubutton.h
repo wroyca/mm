@@ -68,11 +68,11 @@ class GTKMM_API MenuButton : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   MenuButton(MenuButton&& src) noexcept;
-  MenuButton& operator=(MenuButton&& src) noexcept;
+  auto operator=(MenuButton&& src) noexcept -> MenuButton&;
 
   // noncopyable
   MenuButton(const MenuButton&) = delete;
-  MenuButton& operator=(const MenuButton&) = delete;
+  auto operator=(const MenuButton&) -> MenuButton& = delete;
 
   ~MenuButton() noexcept override;
 
@@ -92,19 +92,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkMenuButton*       gobj()       { return reinterpret_cast<GtkMenuButton*>(gobject_); }
+  auto       gobj() -> GtkMenuButton*       { return reinterpret_cast<GtkMenuButton*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkMenuButton* gobj() const { return reinterpret_cast<GtkMenuButton*>(gobject_); }
+  auto gobj() const -> const GtkMenuButton* { return reinterpret_cast<GtkMenuButton*>(gobject_); }
 
 private:
 
@@ -136,7 +136,7 @@ public:
    *
    * @return A `Gtk::Popover` or <tt>nullptr</tt>.
    */
-  Popover* get_popover();
+  auto get_popover() -> Popover*;
 
   /** Returns the `Gtk::Popover` that pops out of the button.
    *
@@ -145,7 +145,7 @@ public:
    *
    * @return A `Gtk::Popover` or <tt>nullptr</tt>.
    */
-  const Popover* get_popover() const;
+  auto get_popover() const -> const Popover*;
 
 
   /** Sets the direction in which the popup will be popped up.
@@ -167,7 +167,7 @@ public:
    *
    * @return A `Gtk::ArrowType` value.
    */
-  ArrowType get_direction() const;
+  auto get_direction() const -> ArrowType;
 
 
   /** Sets the `Gio::MenuModel` from which the popup will be constructed.
@@ -195,13 +195,13 @@ public:
    *
    * @return A `Gio::MenuModel`.
    */
-  Glib::RefPtr<Gio::MenuModel> get_menu_model();
+  auto get_menu_model() -> Glib::RefPtr<Gio::MenuModel>;
 
   /** Returns the `Gio::MenuModel` used to generate the popup.
    *
    * @return A `Gio::MenuModel`.
    */
-  Glib::RefPtr<const Gio::MenuModel> get_menu_model() const;
+  auto get_menu_model() const -> Glib::RefPtr<const Gio::MenuModel>;
 
 
   /** Sets the name of an icon to show inside the menu button.
@@ -221,7 +221,7 @@ public:
    *
    * @return The name of the icon shown in the button.
    */
-  Glib::ustring get_icon_name() const;
+  auto get_icon_name() const -> Glib::ustring;
 
 
   /** Sets whether to show a dropdown arrow even when using an icon or a custom
@@ -239,7 +239,7 @@ public:
    *
    * @return Whether to show a dropdown arrow even when using an icon.
    */
-  bool get_always_show_arrow() const;
+  auto get_always_show_arrow() const -> bool;
 
 
   /** Sets the label to show inside the menu button.
@@ -258,7 +258,7 @@ public:
    *
    * @return The label shown in the button.
    */
-  Glib::ustring get_label() const;
+  auto get_label() const -> Glib::ustring;
 
 
   /** If true, an underline in the text indicates a mnemonic.
@@ -273,7 +273,7 @@ public:
    * @return <tt>true</tt> whether an embedded underline in the text indicates
    * the mnemonic accelerator keys.
    */
-  bool get_use_underline() const;
+  auto get_use_underline() const -> bool;
 
 
   /** Sets the style of the button.
@@ -286,7 +286,7 @@ public:
    *
    * @return <tt>true</tt> if the button has a frame.
    */
-  bool get_has_frame() const;
+  auto get_has_frame() const -> bool;
 
 
   /** Pop up the menu.
@@ -346,7 +346,7 @@ public:
    *
    * @return <tt>true</tt> if the button is a primary menu.
    */
-  bool get_primary() const;
+  auto get_primary() const -> bool;
 
 
   /** Sets the child widget of @a menu_button.
@@ -376,7 +376,7 @@ public:
    *
    * @return The child widget of @a menu_button.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget of @a menu_button.
    *
@@ -384,7 +384,7 @@ public:
    *
    * @return The child widget of @a menu_button.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
 
   /** The `Gio::MenuModel` from which the popup will be created.
@@ -395,7 +395,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > property_menu_model() ;
+  auto property_menu_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > ;
 
 /** The `Gio::MenuModel` from which the popup will be created.
    *
@@ -405,7 +405,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> > property_menu_model() const;
+  auto property_menu_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >;
 
   /** The `Gtk::ArrowType` representing the direction in which the
    * menu or popover will be popped out.
@@ -415,7 +415,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< ArrowType > property_direction() ;
+  auto property_direction() -> Glib::PropertyProxy< ArrowType > ;
 
 /** The `Gtk::ArrowType` representing the direction in which the
    * menu or popover will be popped out.
@@ -425,21 +425,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< ArrowType > property_direction() const;
+  auto property_direction() const -> Glib::PropertyProxy_ReadOnly< ArrowType >;
 
   /** The `Gtk::Popover` that will be popped up when the button is clicked.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Popover* > property_popover() ;
+  auto property_popover() -> Glib::PropertyProxy< Popover* > ;
 
 /** The `Gtk::Popover` that will be popped up when the button is clicked.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Popover* > property_popover() const;
+  auto property_popover() const -> Glib::PropertyProxy_ReadOnly< Popover* >;
 
   /** The name of the icon used to automatically populate the button.
    *
@@ -448,7 +448,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_icon_name() ;
+  auto property_icon_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The name of the icon used to automatically populate the button.
    *
@@ -457,7 +457,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_icon_name() const;
+  auto property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Whether to show a dropdown arrow even when using an icon or a custom child.
    *
@@ -468,7 +468,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_always_show_arrow() ;
+  auto property_always_show_arrow() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to show a dropdown arrow even when using an icon or a custom child.
    *
@@ -479,7 +479,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_always_show_arrow() const;
+  auto property_always_show_arrow() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The label for the button.
    *
@@ -488,7 +488,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_label() ;
+  auto property_label() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The label for the button.
    *
@@ -497,7 +497,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_label() const;
+  auto property_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** If set an underscore in the text indicates a mnemonic.
    *
@@ -506,7 +506,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_use_underline() ;
+  auto property_use_underline() -> Glib::PropertyProxy< bool > ;
 
 /** If set an underscore in the text indicates a mnemonic.
    *
@@ -515,7 +515,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_underline() const;
+  auto property_use_underline() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the button has a frame.
    *
@@ -524,7 +524,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_has_frame() ;
+  auto property_has_frame() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the button has a frame.
    *
@@ -533,7 +533,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_frame() const;
+  auto property_has_frame() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the menu button acts as a primary menu.
    *
@@ -546,7 +546,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_primary() ;
+  auto property_primary() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the menu button acts as a primary menu.
    *
@@ -559,7 +559,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_primary() const;
+  auto property_primary() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The child widget.
    *
@@ -568,7 +568,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The child widget.
    *
@@ -577,7 +577,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
 public:
@@ -607,7 +607,7 @@ namespace Glib
    * @relates Gtk::MenuButton
    */
   GTKMM_API
-  Gtk::MenuButton* wrap(GtkMenuButton* object, bool take_copy = false);
+  auto wrap(GtkMenuButton* object, bool take_copy = false) -> Gtk::MenuButton*;
 } //namespace Glib
 
 

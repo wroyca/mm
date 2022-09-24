@@ -141,7 +141,7 @@ template <>
 class GTKMM_API Value<Gtk::ResponseType> : public Glib::Value_Enum<Gtk::ResponseType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -191,11 +191,11 @@ class GTKMM_API Dialog : public Window
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Dialog(Dialog&& src) noexcept;
-  Dialog& operator=(Dialog&& src) noexcept;
+  auto operator=(Dialog&& src) noexcept -> Dialog&;
 
   // noncopyable
   Dialog(const Dialog&) = delete;
-  Dialog& operator=(const Dialog&) = delete;
+  auto operator=(const Dialog&) -> Dialog& = delete;
 
   ~Dialog() noexcept override;
 
@@ -215,19 +215,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkDialog*       gobj()       { return reinterpret_cast<GtkDialog*>(gobject_); }
+  auto       gobj() -> GtkDialog*       { return reinterpret_cast<GtkDialog*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkDialog* gobj() const { return reinterpret_cast<GtkDialog*>(gobject_); }
+  auto gobj() const -> const GtkDialog* { return reinterpret_cast<GtkDialog*>(gobject_); }
 
 private:
 
@@ -264,7 +264,7 @@ public:
    * @param response_id Response ID for the button.
    * @return The `Gtk::Button` widget that was added.
    */
-  Button* add_button(const Glib::ustring& button_text, int response_id);
+  auto add_button(const Glib::ustring& button_text, int response_id) -> Button*;
 
   /** A convenient way to sensitize/desensitize dialog buttons.
    *
@@ -291,7 +291,7 @@ public:
    * @return The @a widget button that uses the given
    *  @a response_id.
    */
-  Widget* get_widget_for_response(int response_id);
+  auto get_widget_for_response(int response_id) -> Widget*;
 
   /** Gets the widget button that uses the given response ID in the action area
    * of a dialog.
@@ -300,7 +300,7 @@ public:
    * @return The @a widget button that uses the given
    *  @a response_id.
    */
-  const Widget* get_widget_for_response(int response_id) const;
+  auto get_widget_for_response(int response_id) const -> const Widget*;
 
   /** Gets the response id of a widget in the action area
    * of a dialog.
@@ -309,7 +309,7 @@ public:
    * @return The response id of @a widget, or Gtk::ResponseType::NONE
    * if @a widget doesn’t have a response id set.
    */
-  int get_response_for_widget(const Gtk::Widget& widget) const;
+  auto get_response_for_widget(const Gtk::Widget& widget) const -> int;
 
 
   /** Emits the signal_response() signal with the given response ID.
@@ -325,13 +325,13 @@ public:
    *
    * @return The content area `Gtk::Box`.
    */
-  Box* get_content_area();
+  auto get_content_area() -> Box*;
 
   /** Returns the content area of @a dialog.
    *
    * @return The content area `Gtk::Box`.
    */
-  const Box* get_content_area() const;
+  auto get_content_area() const -> const Box*;
 
 
   /** Returns the header bar of @a dialog.
@@ -341,7 +341,7 @@ public:
    *
    * @return The header bar.
    */
-  HeaderBar* get_header_bar(); // transfer none
+  auto get_header_bar() -> HeaderBar*; // transfer none
 
   /** Returns the header bar of @a dialog.
    *
@@ -350,7 +350,7 @@ public:
    *
    * @return The header bar.
    */
-  const HeaderBar* get_header_bar() const; // transfer none
+  auto get_header_bar() const -> const HeaderBar*; // transfer none
 
 
   /**
@@ -369,7 +369,7 @@ public:
    * @param response_id The response ID.
    */
 
-  Glib::SignalProxy<void(int)> signal_response();
+  auto signal_response() -> Glib::SignalProxy<void(int)>;
 
 
   /** <tt>true</tt> if the dialog uses a headerbar for action buttons
@@ -394,7 +394,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_header_bar() const;
+  auto property_use_header_bar() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
    // Keybinding signal
@@ -429,7 +429,7 @@ namespace Glib
    * @relates Gtk::Dialog
    */
   GTKMM_API
-  Gtk::Dialog* wrap(GtkDialog* object, bool take_copy = false);
+  auto wrap(GtkDialog* object, bool take_copy = false) -> Gtk::Dialog*;
 } //namespace Glib
 
 

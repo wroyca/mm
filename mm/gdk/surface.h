@@ -84,7 +84,7 @@ public:
 
   // noncopyable
   Surface(const Surface&) = delete;
-  Surface& operator=(const Surface&) = delete;
+  auto operator=(const Surface&) -> Surface& = delete;
 
 private:  friend class Surface_Class;
   static CppClassType surface_class_;
@@ -98,28 +98,28 @@ protected:
 public:
 
   Surface(Surface&& src) noexcept;
-  Surface& operator=(Surface&& src) noexcept;
+  auto operator=(Surface&& src) noexcept -> Surface&;
 
   ~Surface() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkSurface*       gobj()       { return reinterpret_cast<GdkSurface*>(gobject_); }
+  auto       gobj() -> GdkSurface*       { return reinterpret_cast<GdkSurface*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkSurface* gobj() const { return reinterpret_cast<GdkSurface*>(gobject_); }
+  auto gobj() const -> const GdkSurface* { return reinterpret_cast<GdkSurface*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkSurface* gobj_copy();
+  auto gobj_copy() -> GdkSurface*;
 
 private:
 
@@ -143,7 +143,7 @@ public:
    * @param display The display to create the surface on.
    * @return The new %Gdk::Surface.
    */
-  static Glib::RefPtr<Surface> create_toplevel(const Glib::RefPtr<Display>& display);
+  static auto create_toplevel(const Glib::RefPtr<Display>& display) -> Glib::RefPtr<Surface>;
 
 
   /** Create a new popup surface.
@@ -164,20 +164,20 @@ public:
    * @param autohide Whether to hide the surface on outside clicks.
    * @return A new %Gdk::Surface.
    */
-  static Glib::RefPtr<Surface> create_popup(const Glib::RefPtr<Surface>& parent, bool autohide);
+  static auto create_popup(const Glib::RefPtr<Surface>& parent, bool autohide) -> Glib::RefPtr<Surface>;
 
 
   /** Gets the `Gdk::Display` associated with a `Gdk::Surface`.
    *
    * @return The `Gdk::Display` associated with @a surface.
    */
-  Glib::RefPtr<Display> get_display();
+  auto get_display() -> Glib::RefPtr<Display>;
 
   /** Gets the `Gdk::Display` associated with a `Gdk::Surface`.
    *
    * @return The `Gdk::Display` associated with @a surface.
    */
-  Glib::RefPtr<const Display> get_display() const;
+  auto get_display() const -> Glib::RefPtr<const Display>;
 
 
   /** Hide the surface.
@@ -217,7 +217,7 @@ public:
    *
    * @return <tt>true</tt> if the surface is mapped.
    */
-  bool get_mapped() const;
+  auto get_mapped() const -> bool;
 
 
   /** Sets the default mouse pointer for a `Gdk::Surface`.
@@ -264,7 +264,7 @@ public:
    * @param device A pointer `Gdk::Device`.
    * @return A `Gdk::Cursor`.
    */
-  Glib::RefPtr<Cursor> get_device_cursor(const Glib::RefPtr<Device>& device);
+  auto get_device_cursor(const Glib::RefPtr<Device>& device) -> Glib::RefPtr<Cursor>;
 
   /** Retrieves a `Gdk::Cursor` pointer for the @a device currently set on the
    * specified `Gdk::Surface`.
@@ -277,7 +277,7 @@ public:
    * @param device A pointer `Gdk::Device`.
    * @return A `Gdk::Cursor`.
    */
-  Glib::RefPtr<const Cursor> get_device_cursor(const Glib::RefPtr<const Device>& device) const;
+  auto get_device_cursor(const Glib::RefPtr<const Device>& device) const -> Glib::RefPtr<const Cursor>;
 
 
   /** Retrieves a `Gdk::Cursor` pointer for the cursor currently set on the
@@ -290,7 +290,7 @@ public:
    *
    * @return A `Gdk::Cursor`.
    */
-  Glib::RefPtr<Cursor> get_cursor();
+  auto get_cursor() -> Glib::RefPtr<Cursor>;
 
   /** Retrieves a `Gdk::Cursor` pointer for the cursor currently set on the
    * `Gdk::Surface`.
@@ -302,7 +302,7 @@ public:
    *
    * @return A `Gdk::Cursor`.
    */
-  Glib::RefPtr<const Cursor> get_cursor() const;
+  auto get_cursor() const -> Glib::RefPtr<const Cursor>;
 
 
   /** Returns the width of the given @a surface.
@@ -312,7 +312,7 @@ public:
    *
    * @return The width of @a surface.
    */
-  int get_width() const;
+  auto get_width() const -> int;
 
   /** Returns the height of the given @a surface.
    *
@@ -321,7 +321,7 @@ public:
    *
    * @return The height of @a surface.
    */
-  int get_height() const;
+  auto get_height() const -> int;
 
 
   /** Returns the internal scale factor that maps from surface coordinates
@@ -338,7 +338,7 @@ public:
    *
    * @return The scale factor.
    */
-  int get_scale_factor() const;
+  auto get_scale_factor() const -> int;
 
 
   /** Obtains the current device position and modifier state.
@@ -353,7 +353,7 @@ public:
    * @param y Return location for the Y coordinate of @a device.
    * @param mask Return location for the modifier mask.
    */
-  bool get_device_position(const Glib::RefPtr<const Device>& device, double& x, double& y, ModifierType& mask) const;
+  auto get_device_position(const Glib::RefPtr<const Device>& device, double& x, double& y, ModifierType& mask) const -> bool;
 
 
   /** Create a new Cairo surface that is as compatible as possible with the
@@ -379,7 +379,7 @@ public:
    * owns the surface and should call cairo_surface_destroy() when done
    * with it.
    */
-  ::Cairo::RefPtr< ::Cairo::Surface> create_similar_surface(::Cairo::Content content, int width, int height);
+  auto create_similar_surface(::Cairo::Content content, int width, int height) -> ::Cairo::RefPtr< ::Cairo::Surface>;
 
 
   /** Emits a short beep associated to @a surface.
@@ -412,7 +412,7 @@ public:
    * @param dy The y offset to @a device's position where the drag nominally started.
    * @return A newly created `Gdk::Drag`.
    */
-  Glib::RefPtr<Drag> drag_begin_from_point(const Glib::RefPtr<Device>& device, const Glib::RefPtr<ContentProvider>& content, DragAction actions, double dx, double dy);
+  auto drag_begin_from_point(const Glib::RefPtr<Device>& device, const Glib::RefPtr<ContentProvider>& content, DragAction actions, double dx, double dy) -> Glib::RefPtr<Drag>;
 
 
   /** Forces a signal_render() signal emission for @a surface
@@ -439,7 +439,7 @@ public:
    *
    * @return The frame clock.
    */
-  Glib::RefPtr<FrameClock> get_frame_clock();
+  auto get_frame_clock() -> Glib::RefPtr<FrameClock>;
 
   /** Gets the frame clock for the surface.
    *
@@ -450,7 +450,7 @@ public:
    *
    * @return The frame clock.
    */
-  Glib::RefPtr<const FrameClock> get_frame_clock() const;
+  auto get_frame_clock() const -> Glib::RefPtr<const FrameClock>;
 
 
   /** Marks a region of the `Gdk::Surface` as opaque.
@@ -489,14 +489,14 @@ public:
    *
    * @throws GLError On missing GL implementation or extension required for context creation.
    */
-  Glib::RefPtr<Gdk::GLContext> create_gl_context();
+  auto create_gl_context() -> Glib::RefPtr<Gdk::GLContext>;
 
 
   /** Creates a new `Gdk::CairoContext` for rendering on @a surface.
    *
    * @return The newly created `Gdk::CairoContext`.
    */
-  Glib::RefPtr<Gdk::CairoContext> create_cairo_context();
+  auto create_cairo_context() -> Glib::RefPtr<Gdk::CairoContext>;
 
   // no_default_handler because the wrapped C signals have no default handlers.
 
@@ -516,7 +516,7 @@ public:
    * @param height The current height.
    */
 
-  Glib::SignalProxy<void(int, int)> signal_layout();
+  auto signal_layout() -> Glib::SignalProxy<void(int, int)>;
 
 
   /**
@@ -531,7 +531,7 @@ public:
    * @return <tt>true</tt> to indicate that the signal has been handled.
    */
 
-  Glib::SignalProxy<bool(const ::Cairo::RefPtr<const ::Cairo::Region>&)> signal_render();
+  auto signal_render() -> Glib::SignalProxy<bool(const ::Cairo::RefPtr<const ::Cairo::Region>&)>;
 
 
   /**
@@ -546,7 +546,7 @@ public:
    * @return <tt>true</tt> to indicate that the event has been handled.
    */
 
-  Glib::SignalProxy<bool(const Glib::RefPtr<const Event>&)> signal_event();
+  auto signal_event() -> Glib::SignalProxy<bool(const Glib::RefPtr<const Event>&)>;
 
 
   /**
@@ -560,7 +560,7 @@ public:
    * @param monitor The monitor.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Monitor>&)> signal_enter_monitor();
+  auto signal_enter_monitor() -> Glib::SignalProxy<void(const Glib::RefPtr<Monitor>&)>;
 
 
   /**
@@ -574,7 +574,7 @@ public:
    * @param monitor The monitor.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Monitor>&)> signal_leave_monitor();
+  auto signal_leave_monitor() -> Glib::SignalProxy<void(const Glib::RefPtr<Monitor>&)>;
 
 
   /** The mouse pointer for the `Gdk::Surface`.
@@ -582,21 +582,21 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Cursor> > property_cursor() ;
+  auto property_cursor() -> Glib::PropertyProxy< Glib::RefPtr<Cursor> > ;
 
 /** The mouse pointer for the `Gdk::Surface`.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Cursor> > property_cursor() const;
+  auto property_cursor() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Cursor> >;
 
   /** The `Gdk::Display` connection of the surface.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> > property_display() const;
+  auto property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >;
 
 
   /** The `Gdk::FrameClock` of the surface.
@@ -604,7 +604,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<FrameClock> > property_frame_clock() const;
+  auto property_frame_clock() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<FrameClock> >;
 
 
   /** Whether the surface is mapped.
@@ -614,7 +614,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_mapped() const;
+  auto property_mapped() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** The width of the surface in pixels.
@@ -624,7 +624,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_width() const;
+  auto property_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** The height of the surface, in pixels.
@@ -634,7 +634,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_height() const;
+  auto property_height() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** The scale factor of the surface.
@@ -644,7 +644,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_scale_factor() const;
+  auto property_scale_factor() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
 public:
@@ -674,7 +674,7 @@ namespace Glib
    * @relates Gdk::Surface
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::Surface> wrap(GdkSurface* object, bool take_copy = false);
+  auto wrap(GdkSurface* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Surface>;
 }
 
 

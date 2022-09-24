@@ -40,8 +40,8 @@ FileAttributeInfo::FileAttributeInfo(const FileAttributeInfo& other)
   *this = other;
 }
 
-FileAttributeInfo&
-FileAttributeInfo::operator=(const FileAttributeInfo& other)
+auto
+FileAttributeInfo::operator=(const FileAttributeInfo& other) -> FileAttributeInfo&
 {
   m_name = other.m_name;
   m_type = other.m_type;
@@ -56,8 +56,8 @@ FileAttributeInfo::FileAttributeInfo(FileAttributeInfo&& other) noexcept
 {
 }
 
-FileAttributeInfo&
-FileAttributeInfo::operator=(FileAttributeInfo&& other) noexcept
+auto
+FileAttributeInfo::operator=(FileAttributeInfo&& other) noexcept -> FileAttributeInfo&
 {
   m_name = std::move(other.m_name);
   m_type = std::move(other.m_type);
@@ -70,20 +70,20 @@ FileAttributeInfo::~FileAttributeInfo()
 {
 }
 
-std::string
-FileAttributeInfo::get_name() const
+auto
+FileAttributeInfo::get_name() const -> std::string
 {
   return m_name;
 }
 
-FileAttributeType
-FileAttributeInfo::get_type() const
+auto
+FileAttributeInfo::get_type() const -> FileAttributeType
 {
   return m_type;
 }
 
-FileAttributeInfo::Flags
-FileAttributeInfo::get_flags() const
+auto
+FileAttributeInfo::get_flags() const -> FileAttributeInfo::Flags
 {
   return m_flags;
 }
@@ -95,19 +95,19 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::FileAttributeType>::value_type()
+auto Glib::Value<Gio::FileAttributeType>::value_type() -> GType
 {
   return g_file_attribute_type_get_type();
 }
 
 // static
-GType Glib::Value<Gio::FileAttributeStatus>::value_type()
+auto Glib::Value<Gio::FileAttributeStatus>::value_type() -> GType
 {
   return g_file_attribute_status_get_type();
 }
 
 // static
-GType Glib::Value<Gio::FileAttributeInfo::Flags>::value_type()
+auto Glib::Value<Gio::FileAttributeInfo::Flags>::value_type() -> GType
 {
   return g_file_attribute_info_flags_get_type();
 }

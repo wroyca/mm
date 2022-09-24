@@ -64,7 +64,7 @@ public:
 
   // noncopyable
   NetworkAddress(const NetworkAddress&) = delete;
-  NetworkAddress& operator=(const NetworkAddress&) = delete;
+  auto operator=(const NetworkAddress&) -> NetworkAddress& = delete;
 
 private:  friend class NetworkAddress_Class;
   static CppClassType networkaddress_class_;
@@ -78,28 +78,28 @@ protected:
 public:
 
   NetworkAddress(NetworkAddress&& src) noexcept;
-  NetworkAddress& operator=(NetworkAddress&& src) noexcept;
+  auto operator=(NetworkAddress&& src) noexcept -> NetworkAddress&;
 
   ~NetworkAddress() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GNetworkAddress*       gobj()       { return reinterpret_cast<GNetworkAddress*>(gobject_); }
+  auto       gobj() -> GNetworkAddress*       { return reinterpret_cast<GNetworkAddress*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GNetworkAddress* gobj() const { return reinterpret_cast<GNetworkAddress*>(gobject_); }
+  auto gobj() const -> const GNetworkAddress* { return reinterpret_cast<GNetworkAddress*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GNetworkAddress* gobj_copy();
+  auto gobj_copy() -> GNetworkAddress*;
 
 private:
 
@@ -109,7 +109,7 @@ private:
 
 public:
 
-  static Glib::RefPtr<NetworkAddress> create(const std::string& hostname, guint16 port);
+  static auto create(const std::string& hostname, guint16 port) -> Glib::RefPtr<NetworkAddress>;
 
 
   /** Gets @a addr's hostname. This might be either UTF-8 or ASCII-encoded,
@@ -119,7 +119,7 @@ public:
    *
    * @return  @a addr's hostname.
    */
-  std::string get_hostname() const;
+  auto get_hostname() const -> std::string;
 
   /** Gets @a addr's port number
    *
@@ -127,7 +127,7 @@ public:
    *
    * @return  @a addr's port (which may be 0).
    */
-  guint16 get_port() const;
+  auto get_port() const -> guint16;
 
   /** Gets @a addr's scheme
    *
@@ -135,9 +135,9 @@ public:
    *
    * @return  @a addr's scheme (<tt>nullptr</tt> if not built from URI).
    */
-  std::string get_scheme() const;
+  auto get_scheme() const -> std::string;
 
-  static Glib::RefPtr<NetworkAddress> parse(const std::string& host_and_port, guint16 default_port);
+  static auto parse(const std::string& host_and_port, guint16 default_port) -> Glib::RefPtr<NetworkAddress>;
 
   /** Hostname to resolve.
    *
@@ -146,7 +146,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::string > property_hostname() const;
+  auto property_hostname() const -> Glib::PropertyProxy_ReadOnly< std::string >;
 
 
   /** Network port.
@@ -156,7 +156,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_port() const;
+  auto property_port() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
   /** URI Scheme.
@@ -166,7 +166,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::string > property_scheme() const;
+  auto property_scheme() const -> Glib::PropertyProxy_ReadOnly< std::string >;
 
 
 public:
@@ -196,7 +196,7 @@ namespace Glib
    * @relates Gio::NetworkAddress
    */
   GIOMM_API
-  Glib::RefPtr<Gio::NetworkAddress> wrap(GNetworkAddress* object, bool take_copy = false);
+  auto wrap(GNetworkAddress* object, bool take_copy = false) -> Glib::RefPtr<Gio::NetworkAddress>;
 }
 
 

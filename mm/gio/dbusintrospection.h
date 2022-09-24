@@ -31,10 +31,7 @@
 #include <vector>
 
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 /** @addtogroup giommEnums giomm Enums and Flags */
@@ -73,31 +70,31 @@ enum class PropertyInfoFlags
 };
 
 /** @ingroup giommEnums */
-inline PropertyInfoFlags operator|(PropertyInfoFlags lhs, PropertyInfoFlags rhs)
+inline auto operator|(PropertyInfoFlags lhs, PropertyInfoFlags rhs) -> PropertyInfoFlags
   { return static_cast<PropertyInfoFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline PropertyInfoFlags operator&(PropertyInfoFlags lhs, PropertyInfoFlags rhs)
+inline auto operator&(PropertyInfoFlags lhs, PropertyInfoFlags rhs) -> PropertyInfoFlags
   { return static_cast<PropertyInfoFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline PropertyInfoFlags operator^(PropertyInfoFlags lhs, PropertyInfoFlags rhs)
+inline auto operator^(PropertyInfoFlags lhs, PropertyInfoFlags rhs) -> PropertyInfoFlags
   { return static_cast<PropertyInfoFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline PropertyInfoFlags operator~(PropertyInfoFlags flags)
+inline auto operator~(PropertyInfoFlags flags) -> PropertyInfoFlags
   { return static_cast<PropertyInfoFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline PropertyInfoFlags& operator|=(PropertyInfoFlags& lhs, PropertyInfoFlags rhs)
+inline auto operator|=(PropertyInfoFlags& lhs, PropertyInfoFlags rhs) -> PropertyInfoFlags&
   { return (lhs = static_cast<PropertyInfoFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline PropertyInfoFlags& operator&=(PropertyInfoFlags& lhs, PropertyInfoFlags rhs)
+inline auto operator&=(PropertyInfoFlags& lhs, PropertyInfoFlags rhs) -> PropertyInfoFlags&
   { return (lhs = static_cast<PropertyInfoFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline PropertyInfoFlags& operator^=(PropertyInfoFlags& lhs, PropertyInfoFlags rhs)
+inline auto operator^=(PropertyInfoFlags& lhs, PropertyInfoFlags rhs) -> PropertyInfoFlags&
   { return (lhs = static_cast<PropertyInfoFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -126,19 +123,19 @@ class GIOMM_API AnnotationInfo final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GDBusAnnotationInfo*       gobj();
+  auto       gobj() -> GDBusAnnotationInfo*;
 
   ///Provides access to the underlying C instance.
-  const GDBusAnnotationInfo* gobj() const;
+  auto gobj() const -> const GDBusAnnotationInfo*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusAnnotationInfo* gobj_copy() const;
+  auto gobj_copy() const -> GDBusAnnotationInfo*;
 
   AnnotationInfo() = delete;
 
   // noncopyable
   AnnotationInfo(const AnnotationInfo&) = delete;
-  AnnotationInfo& operator=(const AnnotationInfo&) = delete;
+  auto operator=(const AnnotationInfo&) -> AnnotationInfo& = delete;
 
 protected:
   // Do not derive this.  Gio::DBus::AnnotationInfo can neither be constructed nor deleted.
@@ -161,7 +158,7 @@ public:
    * @param name The name of the annotation to look up.
    * @return The value or <tt>nullptr</tt> if not found. Do not free, it is owned by @a annotations.
    */
-  static Glib::ustring info_lookup(const std::vector<Glib::RefPtr<AnnotationInfo>>& annotations, const Glib::ustring& name);
+  static auto info_lookup(const std::vector<Glib::RefPtr<AnnotationInfo>>& annotations, const Glib::ustring& name) -> Glib::ustring;
 
 
 };
@@ -192,19 +189,19 @@ class GIOMM_API ArgInfo final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GDBusArgInfo*       gobj();
+  auto       gobj() -> GDBusArgInfo*;
 
   ///Provides access to the underlying C instance.
-  const GDBusArgInfo* gobj() const;
+  auto gobj() const -> const GDBusArgInfo*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusArgInfo* gobj_copy() const;
+  auto gobj_copy() const -> GDBusArgInfo*;
 
   ArgInfo() = delete;
 
   // noncopyable
   ArgInfo(const ArgInfo&) = delete;
-  ArgInfo& operator=(const ArgInfo&) = delete;
+  auto operator=(const ArgInfo&) -> ArgInfo& = delete;
 
 protected:
   // Do not derive this.  Gio::DBus::ArgInfo can neither be constructed nor deleted.
@@ -244,19 +241,19 @@ class GIOMM_API MethodInfo final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GDBusMethodInfo*       gobj();
+  auto       gobj() -> GDBusMethodInfo*;
 
   ///Provides access to the underlying C instance.
-  const GDBusMethodInfo* gobj() const;
+  auto gobj() const -> const GDBusMethodInfo*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusMethodInfo* gobj_copy() const;
+  auto gobj_copy() const -> GDBusMethodInfo*;
 
   MethodInfo() = delete;
 
   // noncopyable
   MethodInfo(const MethodInfo&) = delete;
-  MethodInfo& operator=(const MethodInfo&) = delete;
+  auto operator=(const MethodInfo&) -> MethodInfo& = delete;
 
 protected:
   // Do not derive this.  Gio::DBus::MethodInfo can neither be constructed nor deleted.
@@ -296,19 +293,19 @@ class GIOMM_API SignalInfo final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GDBusSignalInfo*       gobj();
+  auto       gobj() -> GDBusSignalInfo*;
 
   ///Provides access to the underlying C instance.
-  const GDBusSignalInfo* gobj() const;
+  auto gobj() const -> const GDBusSignalInfo*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusSignalInfo* gobj_copy() const;
+  auto gobj_copy() const -> GDBusSignalInfo*;
 
   SignalInfo() = delete;
 
   // noncopyable
   SignalInfo(const SignalInfo&) = delete;
-  SignalInfo& operator=(const SignalInfo&) = delete;
+  auto operator=(const SignalInfo&) -> SignalInfo& = delete;
 
 protected:
   // Do not derive this.  Gio::DBus::SignalInfo can neither be constructed nor deleted.
@@ -348,19 +345,19 @@ class GIOMM_API PropertyInfo final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GDBusPropertyInfo*       gobj();
+  auto       gobj() -> GDBusPropertyInfo*;
 
   ///Provides access to the underlying C instance.
-  const GDBusPropertyInfo* gobj() const;
+  auto gobj() const -> const GDBusPropertyInfo*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusPropertyInfo* gobj_copy() const;
+  auto gobj_copy() const -> GDBusPropertyInfo*;
 
   PropertyInfo() = delete;
 
   // noncopyable
   PropertyInfo(const PropertyInfo&) = delete;
-  PropertyInfo& operator=(const PropertyInfo&) = delete;
+  auto operator=(const PropertyInfo&) -> PropertyInfo& = delete;
 
 protected:
   // Do not derive this.  Gio::DBus::PropertyInfo can neither be constructed nor deleted.
@@ -390,7 +387,7 @@ class GIOMM_API InterfaceInfo final
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
 
   /** Increment the reference count for this object.
@@ -404,19 +401,19 @@ class GIOMM_API InterfaceInfo final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GDBusInterfaceInfo*       gobj();
+  auto       gobj() -> GDBusInterfaceInfo*;
 
   ///Provides access to the underlying C instance.
-  const GDBusInterfaceInfo* gobj() const;
+  auto gobj() const -> const GDBusInterfaceInfo*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusInterfaceInfo* gobj_copy() const;
+  auto gobj_copy() const -> GDBusInterfaceInfo*;
 
   InterfaceInfo() = delete;
 
   // noncopyable
   InterfaceInfo(const InterfaceInfo&) = delete;
-  InterfaceInfo& operator=(const InterfaceInfo&) = delete;
+  auto operator=(const InterfaceInfo&) -> InterfaceInfo& = delete;
 
 protected:
   // Do not derive this.  Gio::DBus::InterfaceInfo can neither be constructed nor deleted.
@@ -438,7 +435,7 @@ public:
    * @param name A D-Bus method name (typically in CamelCase).
    * @return A DBusMethodInfo or <tt>nullptr</tt> if not found. Do not free, it is owned by @a info.
    */
-  Glib::RefPtr<MethodInfo> lookup_method(const Glib::ustring& name);
+  auto lookup_method(const Glib::ustring& name) -> Glib::RefPtr<MethodInfo>;
 
   /** Looks up information about a method.
    *
@@ -450,7 +447,7 @@ public:
    * @param name A D-Bus method name (typically in CamelCase).
    * @return A DBusMethodInfo or <tt>nullptr</tt> if not found. Do not free, it is owned by @a info.
    */
-  Glib::RefPtr<const MethodInfo> lookup_method(const Glib::ustring& name) const;
+  auto lookup_method(const Glib::ustring& name) const -> Glib::RefPtr<const MethodInfo>;
 
 
   /** Looks up information about a signal.
@@ -463,7 +460,7 @@ public:
    * @param name A D-Bus signal name (typically in CamelCase).
    * @return A DBusSignalInfo or <tt>nullptr</tt> if not found. Do not free, it is owned by @a info.
    */
-  Glib::RefPtr<SignalInfo> lookup_signal(const Glib::ustring& name);
+  auto lookup_signal(const Glib::ustring& name) -> Glib::RefPtr<SignalInfo>;
 
   /** Looks up information about a signal.
    *
@@ -475,7 +472,7 @@ public:
    * @param name A D-Bus signal name (typically in CamelCase).
    * @return A DBusSignalInfo or <tt>nullptr</tt> if not found. Do not free, it is owned by @a info.
    */
-  Glib::RefPtr<const SignalInfo> lookup_signal(const Glib::ustring& name) const;
+  auto lookup_signal(const Glib::ustring& name) const -> Glib::RefPtr<const SignalInfo>;
 
 
   /** Looks up information about a property.
@@ -488,7 +485,7 @@ public:
    * @param name A D-Bus property name (typically in CamelCase).
    * @return A DBusPropertyInfo or <tt>nullptr</tt> if not found. Do not free, it is owned by @a info.
    */
-  Glib::RefPtr<PropertyInfo> lookup_property(const Glib::ustring& name);
+  auto lookup_property(const Glib::ustring& name) -> Glib::RefPtr<PropertyInfo>;
 
   /** Looks up information about a property.
    *
@@ -500,7 +497,7 @@ public:
    * @param name A D-Bus property name (typically in CamelCase).
    * @return A DBusPropertyInfo or <tt>nullptr</tt> if not found. Do not free, it is owned by @a info.
    */
-  Glib::RefPtr<const PropertyInfo> lookup_property(const Glib::ustring& name) const;
+  auto lookup_property(const Glib::ustring& name) const -> Glib::RefPtr<const PropertyInfo>;
 
 
   /** Builds a lookup-cache to speed up
@@ -557,19 +554,19 @@ class GIOMM_API NodeInfo final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GDBusNodeInfo*       gobj();
+  auto       gobj() -> GDBusNodeInfo*;
 
   ///Provides access to the underlying C instance.
-  const GDBusNodeInfo* gobj() const;
+  auto gobj() const -> const GDBusNodeInfo*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusNodeInfo* gobj_copy() const;
+  auto gobj_copy() const -> GDBusNodeInfo*;
 
   NodeInfo() = delete;
 
   // noncopyable
   NodeInfo(const NodeInfo&) = delete;
-  NodeInfo& operator=(const NodeInfo&) = delete;
+  auto operator=(const NodeInfo&) -> NodeInfo& = delete;
 
 protected:
   // Do not derive this.  Gio::DBus::NodeInfo can neither be constructed nor deleted.
@@ -598,7 +595,7 @@ public:
    *
    * @throws Glib::MarkupError
    */
-  static Glib::RefPtr<NodeInfo> create_for_xml(const Glib::ustring& xml_data);
+  static auto create_for_xml(const Glib::ustring& xml_data) -> Glib::RefPtr<NodeInfo>;
 
 
   /** Looks up information about an interface.
@@ -610,7 +607,7 @@ public:
    * @param name A D-Bus interface name.
    * @return A Gio::DBus::InterfaceInfo or <tt>nullptr</tt> if not found. Do not free, it is owned by @a info.
    */
-  Glib::RefPtr<InterfaceInfo> lookup_interface(const Glib::ustring& name);
+  auto lookup_interface(const Glib::ustring& name) -> Glib::RefPtr<InterfaceInfo>;
 
   /** Looks up information about an interface.
    *
@@ -621,22 +618,20 @@ public:
    * @param name A D-Bus interface name.
    * @return A Gio::DBus::InterfaceInfo or <tt>nullptr</tt> if not found. Do not free, it is owned by @a info.
    */
-  Glib::RefPtr<const InterfaceInfo> lookup_interface(const Glib::ustring& name) const;
+  auto lookup_interface(const Glib::ustring& name) const -> Glib::RefPtr<const InterfaceInfo>;
 
   /** Looks up information about the first interface.
    */
-  Glib::RefPtr<InterfaceInfo> lookup_interface();
+  auto lookup_interface() -> Glib::RefPtr<InterfaceInfo>;
 
   /** Looks up information about the first interface.
    */
-  Glib::RefPtr<const InterfaceInfo> lookup_interface() const;
+  auto lookup_interface() const -> Glib::RefPtr<const InterfaceInfo>;
 
   //TODO: _WRAP_METHOD(void generate_xml(guint indent, GString* string_builder), g_dbus_node_info_generate_xml)
 
 
 };
-
-} //namespace DBus
 
 } // namespace Gio
 
@@ -653,7 +648,7 @@ namespace Glib
  * @relates Gio::DBus::AnnotationInfo
  */
 GIOMM_API
-Glib::RefPtr<Gio::DBus::AnnotationInfo> wrap(GDBusAnnotationInfo* object, bool take_copy = false);
+auto wrap(GDBusAnnotationInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::AnnotationInfo>;
 
 } // namespace Glib
 
@@ -670,7 +665,7 @@ namespace Glib
  * @relates Gio::DBus::ArgInfo
  */
 GIOMM_API
-Glib::RefPtr<Gio::DBus::ArgInfo> wrap(GDBusArgInfo* object, bool take_copy = false);
+auto wrap(GDBusArgInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::ArgInfo>;
 
 } // namespace Glib
 
@@ -687,7 +682,7 @@ namespace Glib
  * @relates Gio::DBus::MethodInfo
  */
 GIOMM_API
-Glib::RefPtr<Gio::DBus::MethodInfo> wrap(GDBusMethodInfo* object, bool take_copy = false);
+auto wrap(GDBusMethodInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::MethodInfo>;
 
 } // namespace Glib
 
@@ -704,7 +699,7 @@ namespace Glib
  * @relates Gio::DBus::SignalInfo
  */
 GIOMM_API
-Glib::RefPtr<Gio::DBus::SignalInfo> wrap(GDBusSignalInfo* object, bool take_copy = false);
+auto wrap(GDBusSignalInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::SignalInfo>;
 
 } // namespace Glib
 
@@ -721,7 +716,7 @@ namespace Glib
  * @relates Gio::DBus::PropertyInfo
  */
 GIOMM_API
-Glib::RefPtr<Gio::DBus::PropertyInfo> wrap(GDBusPropertyInfo* object, bool take_copy = false);
+auto wrap(GDBusPropertyInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::PropertyInfo>;
 
 } // namespace Glib
 
@@ -738,14 +733,14 @@ namespace Glib
  * @relates Gio::DBus::InterfaceInfo
  */
 GIOMM_API
-Glib::RefPtr<Gio::DBus::InterfaceInfo> wrap(GDBusInterfaceInfo* object, bool take_copy = false);
+auto wrap(GDBusInterfaceInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::InterfaceInfo>;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>
 class GIOMM_API Value<Glib::RefPtr<Gio::DBus::InterfaceInfo>> : public Glib::Value_RefPtrBoxed<Gio::DBus::InterfaceInfo>
 {
 public:
-  CppType get() const { return Glib::wrap(static_cast<GDBusInterfaceInfo*>(get_boxed()), true); }
+  auto get() const -> CppType { return Glib::wrap(static_cast<GDBusInterfaceInfo*>(get_boxed()), true); }
 };
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
@@ -764,7 +759,7 @@ namespace Glib
  * @relates Gio::DBus::NodeInfo
  */
 GIOMM_API
-Glib::RefPtr<Gio::DBus::NodeInfo> wrap(GDBusNodeInfo* object, bool take_copy = false);
+auto wrap(GDBusNodeInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::NodeInfo>;
 
 } // namespace Glib
 

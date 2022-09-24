@@ -44,7 +44,7 @@ class GTKMM_API Object;
  * @result The Gtk::Object passed as the @a obj parameter.
  */
 template<class T>
-T* manage(T* obj)
+auto manage(T* obj) -> T*
 {
   obj->set_manage();
   return obj;
@@ -93,7 +93,7 @@ class GTKMM_API Object : public Glib::Object
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Object(Object&& src) noexcept;
-  Object& operator=(Object&& src) noexcept;
+  auto operator=(Object&& src) noexcept -> Object&;
 
   ~Object() noexcept override;
 
@@ -105,7 +105,7 @@ private:
 
   // noncopyable
   Object(const Object&);
-  Object& operator=(const Object&);
+  auto operator=(const Object&) -> Object&;
 
 protected:
   explicit Object(const Glib::ConstructParams& construct_params);
@@ -115,8 +115,8 @@ protected:
 
 public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_type()      G_GNUC_CONST;
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
 public:
@@ -129,7 +129,7 @@ public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
   /** Private API.
    */
-  bool is_managed_() const;
+  auto is_managed_() const -> bool;
   #endif //DOXYGEN_SHOULD_SKIP_THIS
 
 protected:

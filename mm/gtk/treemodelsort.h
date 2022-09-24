@@ -84,7 +84,7 @@ public:
 
   // noncopyable
   TreeModelSort(const TreeModelSort&) = delete;
-  TreeModelSort& operator=(const TreeModelSort&) = delete;
+  auto operator=(const TreeModelSort&) -> TreeModelSort& = delete;
 
 private:  friend class TreeModelSort_Class;
   static CppClassType treemodelsort_class_;
@@ -98,28 +98,28 @@ protected:
 public:
 
   TreeModelSort(TreeModelSort&& src) noexcept;
-  TreeModelSort& operator=(TreeModelSort&& src) noexcept;
+  auto operator=(TreeModelSort&& src) noexcept -> TreeModelSort&;
 
   ~TreeModelSort() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkTreeModelSort*       gobj()       { return reinterpret_cast<GtkTreeModelSort*>(gobject_); }
+  auto       gobj() -> GtkTreeModelSort*       { return reinterpret_cast<GtkTreeModelSort*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkTreeModelSort* gobj() const { return reinterpret_cast<GtkTreeModelSort*>(gobject_); }
+  auto gobj() const -> const GtkTreeModelSort* { return reinterpret_cast<GtkTreeModelSort*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkTreeModelSort* gobj_copy();
+  auto gobj_copy() -> GtkTreeModelSort*;
 
 private:
 
@@ -130,20 +130,20 @@ protected:
 
 public:
 
-  static Glib::RefPtr<TreeModelSort> create(const Glib::RefPtr<TreeModel>& model);
+  static auto create(const Glib::RefPtr<TreeModel>& model) -> Glib::RefPtr<TreeModelSort>;
 
 
   /** Returns the model the `Gtk::TreeModelSort` is sorting.
    *
    * @return The "child model" being sorted.
    */
-  Glib::RefPtr<TreeModel> get_model();
+  auto get_model() -> Glib::RefPtr<TreeModel>;
 
   /** Returns the model the `Gtk::TreeModelSort` is sorting.
    *
    * @return The "child model" being sorted.
    */
-  Glib::RefPtr<const TreeModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const TreeModel>;
 
 
   /** Converts @a child_path to a path relative to @a tree_model_sort.  That is,
@@ -154,21 +154,21 @@ public:
    * @param child_path A `Gtk::TreePath` to convert.
    * @return A newly allocated `Gtk::TreePath`.
    */
-  Path convert_child_path_to_path(const Path& child_path) const;
+  auto convert_child_path_to_path(const Path& child_path) const -> Path;
 
   /** Gets an iterator that points to the sorted row that corresponds to the child row pointed at by child_iter.
    *
    * @param child_iter A valid iterator pointing to a row on the child model.
    * @result A valid iterator that points to the row in this sorted model.
    */
-  iterator convert_child_iter_to_iter(const iterator& child_iter);
+  auto convert_child_iter_to_iter(const iterator& child_iter) -> iterator;
 
   /** Gets an iterator that points to the sorted row that corresponds to the child row pointed at by child_iter.
    *
    * @param child_iter A valid iterator pointing to a row on the child model.
    * @result A valid iterator that points to the row in this sorted model.
    */
-  const_iterator convert_child_iter_to_iter(const const_iterator& child_iter) const;
+  auto convert_child_iter_to_iter(const const_iterator& child_iter) const -> const_iterator;
 
 
   /** Converts @a sorted_path to a path on the child model of @a tree_model_sort.
@@ -180,21 +180,21 @@ public:
    * @param sorted_path A `Gtk::TreePath` to convert.
    * @return A newly allocated `Gtk::TreePath`.
    */
-  Path convert_path_to_child_path(const Path& sorted_path) const;
+  auto convert_path_to_child_path(const Path& sorted_path) const -> Path;
 
   /** Gets an iterator that points to the child row that corresponds to the sorted row pointed at by sorted_iter.
    *
    * @param sorted_iter A valid iterator pointing to a row on the sorted model.
    * @result A valid iterator that points to the row in the child model.
    */
-  iterator convert_iter_to_child_iter(const iterator& sorted_iter);
+  auto convert_iter_to_child_iter(const iterator& sorted_iter) -> iterator;
 
   /** Gets an iterator that points to the child row that corresponds to the sorted row pointed at by sorted_iter.
    *
    * @param sorted_iter A valid iterator pointing to a row on the sorted model.
    * @result A valid iterator that points to the row in the child model.
    */
-  const_iterator convert_iter_to_child_iter(const const_iterator& sorted_iter) const;
+  auto convert_iter_to_child_iter(const const_iterator& sorted_iter) const -> const_iterator;
 
 
   /** This resets the default sort function to be in the “unsorted” state.  That
@@ -222,14 +222,14 @@ public:
    * @param iter A `Gtk::TreeIter`.
    * @return <tt>true</tt> if the iter is valid, <tt>false</tt> if the iter is invalid.
    */
-  bool iter_is_valid(const const_iterator& iter) const;
+  auto iter_is_valid(const const_iterator& iter) const -> bool;
 
   /**
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> >;
 
 
 protected:
@@ -263,7 +263,7 @@ namespace Glib
    * @relates Gtk::TreeModelSort
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::TreeModelSort> wrap(GtkTreeModelSort* object, bool take_copy = false);
+  auto wrap(GtkTreeModelSort* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeModelSort>;
 }
 
 

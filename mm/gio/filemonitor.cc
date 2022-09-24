@@ -38,7 +38,7 @@ namespace
 {
 
 
-static void FileMonitor_signal_changed_callback(GFileMonitor* self, GFile* p0,GFile* p1,GFileMonitorEvent p2,void* data)
+void FileMonitor_signal_changed_callback(GFileMonitor* self, GFile* p0,GFile* p1,GFileMonitorEvent p2,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<File>&, const Glib::RefPtr<File>&, Event)>;
@@ -62,7 +62,7 @@ static void FileMonitor_signal_changed_callback(GFileMonitor* self, GFile* p0,GF
   }
 }
 
-static const Glib::SignalProxyInfo FileMonitor_signal_changed_info =
+const Glib::SignalProxyInfo FileMonitor_signal_changed_info =
 {
   "changed",
   (GCallback) &FileMonitor_signal_changed_callback,
@@ -76,7 +76,7 @@ static const Glib::SignalProxyInfo FileMonitor_signal_changed_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gio::FileMonitor> wrap(GFileMonitor* object, bool take_copy)
+auto wrap(GFileMonitor* object, bool take_copy) -> Glib::RefPtr<Gio::FileMonitor>
 {
   return Glib::make_refptr_for_instance<Gio::FileMonitor>( dynamic_cast<Gio::FileMonitor*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -91,7 +91,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& FileMonitor_Class::init()
+auto FileMonitor_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -164,7 +164,7 @@ void FileMonitor_Class::changed_callback(GFileMonitor* self, GFile* p0, GFile* p
 }
 
 
-Glib::ObjectBase* FileMonitor_Class::wrap_new(GObject* object)
+auto FileMonitor_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new FileMonitor((GFileMonitor*)object);
 }
@@ -172,7 +172,7 @@ Glib::ObjectBase* FileMonitor_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GFileMonitor* FileMonitor::gobj_copy()
+auto FileMonitor::gobj_copy() -> GFileMonitor*
 {
   reference();
   return gobj();
@@ -195,7 +195,7 @@ FileMonitor::FileMonitor(FileMonitor&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-FileMonitor& FileMonitor::operator=(FileMonitor&& src) noexcept
+auto FileMonitor::operator=(FileMonitor&& src) noexcept -> FileMonitor&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -208,24 +208,24 @@ FileMonitor::~FileMonitor() noexcept
 
 FileMonitor::CppClassType FileMonitor::filemonitor_class_; // initialize static member
 
-GType FileMonitor::get_type()
+auto FileMonitor::get_type() -> GType
 {
   return filemonitor_class_.init().get_type();
 }
 
 
-GType FileMonitor::get_base_type()
+auto FileMonitor::get_base_type() -> GType
 {
   return g_file_monitor_get_type();
 }
 
 
-bool FileMonitor::cancel()
+auto FileMonitor::cancel() -> bool
 {
   return g_file_monitor_cancel(gobj());
 }
 
-bool FileMonitor::is_cancelled() const
+auto FileMonitor::is_cancelled() const -> bool
 {
   return g_file_monitor_is_cancelled(const_cast<GFileMonitor*>(gobj()));
 }
@@ -236,23 +236,23 @@ void FileMonitor::set_rate_limit(int limit_msecs)
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<File>&, const Glib::RefPtr<File>&, Event)> FileMonitor::signal_changed()
+auto FileMonitor::signal_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<File>&, const Glib::RefPtr<File>&, Event)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<File>&, const Glib::RefPtr<File>&, Event) >(this, &FileMonitor_signal_changed_info);
 }
 
 
-Glib::PropertyProxy< int > FileMonitor::property_rate_limit()
+auto FileMonitor::property_rate_limit() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "rate-limit");
 }
 
-Glib::PropertyProxy_ReadOnly< int > FileMonitor::property_rate_limit() const
+auto FileMonitor::property_rate_limit() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "rate-limit");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > FileMonitor::property_cancelled() const
+auto FileMonitor::property_cancelled() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "cancelled");
 }

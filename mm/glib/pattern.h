@@ -42,16 +42,16 @@ public:
 
   // noncopyable
   PatternSpec(const PatternSpec&) = delete;
-  PatternSpec& operator=(const PatternSpec&) = delete;
+  auto operator=(const PatternSpec&) -> PatternSpec& = delete;
 
-  bool match(const Glib::ustring& str) const;
-  bool match(const Glib::ustring& str, const Glib::ustring& str_reversed) const;
+  auto match(const Glib::ustring& str) const -> bool;
+  auto match(const Glib::ustring& str, const Glib::ustring& str_reversed) const -> bool;
 
-  bool operator==(const PatternSpec& rhs) const;
-  bool operator!=(const PatternSpec& rhs) const;
+  auto operator==(const PatternSpec& rhs) const -> bool;
+  auto operator!=(const PatternSpec& rhs) const -> bool;
 
-  GPatternSpec* gobj() { return gobject_; }
-  const GPatternSpec* gobj() const { return gobject_; }
+  auto gobj() -> GPatternSpec* { return gobject_; }
+  auto gobj() const -> const GPatternSpec* { return gobject_; }
 
 private:
   GPatternSpec* gobject_;

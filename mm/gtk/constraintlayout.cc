@@ -44,8 +44,8 @@ void ConstraintLayout::add_guide(const Glib::RefPtr<ConstraintGuide>& guide)
   gtk_constraint_layout_add_guide(gobj(), Glib::unwrap(guide));
 }
 
-std::vector<Glib::RefPtr<Constraint>> ConstraintLayout::add_constraints_from_description(
-  const std::vector<Glib::ustring>& lines, int hspacing, int vspacing, const VFLmap& views)
+auto ConstraintLayout::add_constraints_from_description(
+  const std::vector<Glib::ustring>& lines, int hspacing, int vspacing, const VFLmap& views) -> std::vector<Glib::RefPtr<Constraint>>
 {
   GHashTable* hash_table_views = g_hash_table_new(g_str_hash, g_str_equal);
   for (const auto& it : views)
@@ -85,7 +85,7 @@ Gtk::ConstraintVflParserError::ConstraintVflParserError(GError* gobject)
   Glib::Error (gobject)
 {}
 
-Gtk::ConstraintVflParserError::Code Gtk::ConstraintVflParserError::code() const
+auto Gtk::ConstraintVflParserError::code() const -> Gtk::ConstraintVflParserError::Code
 {
   return static_cast<Code>(Glib::Error::code());
 }
@@ -96,7 +96,7 @@ void Gtk::ConstraintVflParserError::throw_func(GError* gobject)
 }
 
 // static
-GType Glib::Value<Gtk::ConstraintVflParserError::Code>::value_type()
+auto Glib::Value<Gtk::ConstraintVflParserError::Code>::value_type() -> GType
 {
   return gtk_constraint_vfl_parser_error_get_type();
 }
@@ -105,7 +105,7 @@ GType Glib::Value<Gtk::ConstraintVflParserError::Code>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::ConstraintLayout> wrap(GtkConstraintLayout* object, bool take_copy)
+auto wrap(GtkConstraintLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::ConstraintLayout>
 {
   return Glib::make_refptr_for_instance<Gtk::ConstraintLayout>( dynamic_cast<Gtk::ConstraintLayout*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -120,7 +120,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ConstraintLayout_Class::init()
+auto ConstraintLayout_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -145,7 +145,7 @@ void ConstraintLayout_Class::class_init_function(void* g_class, void* class_data
 }
 
 
-Glib::ObjectBase* ConstraintLayout_Class::wrap_new(GObject* object)
+auto ConstraintLayout_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ConstraintLayout((GtkConstraintLayout*)object);
 }
@@ -153,7 +153,7 @@ Glib::ObjectBase* ConstraintLayout_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkConstraintLayout* ConstraintLayout::gobj_copy()
+auto ConstraintLayout::gobj_copy() -> GtkConstraintLayout*
 {
   reference();
   return gobj();
@@ -177,7 +177,7 @@ ConstraintLayout::ConstraintLayout(ConstraintLayout&& src) noexcept
   , Buildable(std::move(src))
 {}
 
-ConstraintLayout& ConstraintLayout::operator=(ConstraintLayout&& src) noexcept
+auto ConstraintLayout::operator=(ConstraintLayout&& src) noexcept -> ConstraintLayout&
 {
   LayoutManager::operator=(std::move(src));
   Buildable::operator=(std::move(src));
@@ -191,13 +191,13 @@ ConstraintLayout::~ConstraintLayout() noexcept
 
 ConstraintLayout::CppClassType ConstraintLayout::constraintlayout_class_; // initialize static member
 
-GType ConstraintLayout::get_type()
+auto ConstraintLayout::get_type() -> GType
 {
   return constraintlayout_class_.init().get_type();
 }
 
 
-GType ConstraintLayout::get_base_type()
+auto ConstraintLayout::get_base_type() -> GType
 {
   return gtk_constraint_layout_get_type();
 }
@@ -213,7 +213,7 @@ ConstraintLayout::ConstraintLayout()
 
 }
 
-Glib::RefPtr<ConstraintLayout> ConstraintLayout::create()
+auto ConstraintLayout::create() -> Glib::RefPtr<ConstraintLayout>
 {
   return Glib::make_refptr_for_instance<ConstraintLayout>( new ConstraintLayout() );
 }
@@ -233,22 +233,22 @@ void ConstraintLayout::remove_guide(const Glib::RefPtr<ConstraintGuide>& guide)
   gtk_constraint_layout_remove_guide(gobj(), Glib::unwrap(guide));
 }
 
-Glib::RefPtr<Gio::ListModel> ConstraintLayout::observe_constraints()
+auto ConstraintLayout::observe_constraints() -> Glib::RefPtr<Gio::ListModel>
 {
   return Glib::wrap(gtk_constraint_layout_observe_constraints(gobj()));
 }
 
-Glib::RefPtr<const Gio::ListModel> ConstraintLayout::observe_constraints() const
+auto ConstraintLayout::observe_constraints() const -> Glib::RefPtr<const Gio::ListModel>
 {
   return const_cast<ConstraintLayout*>(this)->observe_constraints();
 }
 
-Glib::RefPtr<Gio::ListModel> ConstraintLayout::observe_guides()
+auto ConstraintLayout::observe_guides() -> Glib::RefPtr<Gio::ListModel>
 {
   return Glib::wrap(gtk_constraint_layout_observe_guides(gobj()));
 }
 
-Glib::RefPtr<const Gio::ListModel> ConstraintLayout::observe_guides() const
+auto ConstraintLayout::observe_guides() const -> Glib::RefPtr<const Gio::ListModel>
 {
   return const_cast<ConstraintLayout*>(this)->observe_guides();
 }

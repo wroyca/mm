@@ -30,8 +30,8 @@
 namespace Gio
 {
 
-bool
-DataInputStream::read_line(std::string& line, const Glib::RefPtr<Cancellable>& cancellable)
+auto
+DataInputStream::read_line(std::string& line, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   char* c_line = g_data_input_stream_read_line(gobj(),
@@ -49,8 +49,8 @@ DataInputStream::read_line(std::string& line, const Glib::RefPtr<Cancellable>& c
   return false;
 }
 
-bool
-DataInputStream::read_line(std::string& line)
+auto
+DataInputStream::read_line(std::string& line) -> bool
 {
   GError* gerror = nullptr;
   char* c_line = g_data_input_stream_read_line(gobj(),
@@ -81,8 +81,8 @@ DataInputStream::read_line_async(
     gobj(), io_priority, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-bool
-DataInputStream::read_line_finish(const Glib::RefPtr<AsyncResult>& result, std::string& data)
+auto
+DataInputStream::read_line_finish(const Glib::RefPtr<AsyncResult>& result, std::string& data) -> bool
 {
   GError* gerror = nullptr;
   gsize size = 0;
@@ -102,9 +102,9 @@ DataInputStream::read_line_finish(const Glib::RefPtr<AsyncResult>& result, std::
   return retval;
 }
 
-bool
+auto
 DataInputStream::read_upto(
-  std::string& data, const std::string& stop_chars, const Glib::RefPtr<Cancellable>& cancellable)
+  std::string& data, const std::string& stop_chars, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
   char* c_str = g_data_input_stream_read_upto(gobj(), stop_chars.c_str(), -1, /* null-terminated */
@@ -124,8 +124,8 @@ DataInputStream::read_upto(
 
 /** non-cancellable version of read_upto()
  */
-bool
-DataInputStream::read_upto(std::string& data, const std::string& stop_chars)
+auto
+DataInputStream::read_upto(std::string& data, const std::string& stop_chars) -> bool
 {
   GError* gerror = nullptr;
   char* c_str = g_data_input_stream_read_upto(gobj(), stop_chars.c_str(), -1, /* null-terminated */
@@ -159,8 +159,8 @@ DataInputStream::read_upto_async(const std::string& stop_chars, const SlotAsyncR
     io_priority, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-bool
-DataInputStream::read_upto_finish(const Glib::RefPtr<AsyncResult>& result, std::string& data)
+auto
+DataInputStream::read_upto_finish(const Glib::RefPtr<AsyncResult>& result, std::string& data) -> bool
 {
   GError* gerror = nullptr;
   gsize size = 0;
@@ -190,7 +190,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::DataInputStream> wrap(GDataInputStream* object, bool take_copy)
+auto wrap(GDataInputStream* object, bool take_copy) -> Glib::RefPtr<Gio::DataInputStream>
 {
   return Glib::make_refptr_for_instance<Gio::DataInputStream>( dynamic_cast<Gio::DataInputStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -205,7 +205,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& DataInputStream_Class::init()
+auto DataInputStream_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -236,7 +236,7 @@ void DataInputStream_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* DataInputStream_Class::wrap_new(GObject* object)
+auto DataInputStream_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new DataInputStream((GDataInputStream*)object);
 }
@@ -244,7 +244,7 @@ Glib::ObjectBase* DataInputStream_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GDataInputStream* DataInputStream::gobj_copy()
+auto DataInputStream::gobj_copy() -> GDataInputStream*
 {
   reference();
   return gobj();
@@ -267,7 +267,7 @@ DataInputStream::DataInputStream(DataInputStream&& src) noexcept
 : Gio::BufferedInputStream(std::move(src))
 {}
 
-DataInputStream& DataInputStream::operator=(DataInputStream&& src) noexcept
+auto DataInputStream::operator=(DataInputStream&& src) noexcept -> DataInputStream&
 {
   Gio::BufferedInputStream::operator=(std::move(src));
   return *this;
@@ -280,13 +280,13 @@ DataInputStream::~DataInputStream() noexcept
 
 DataInputStream::CppClassType DataInputStream::datainputstream_class_; // initialize static member
 
-GType DataInputStream::get_type()
+auto DataInputStream::get_type() -> GType
 {
   return datainputstream_class_.init().get_type();
 }
 
 
-GType DataInputStream::get_base_type()
+auto DataInputStream::get_base_type() -> GType
 {
   return g_data_input_stream_get_type();
 }
@@ -302,7 +302,7 @@ DataInputStream::DataInputStream(const Glib::RefPtr<InputStream>& base_stream)
 
 }
 
-Glib::RefPtr<DataInputStream> DataInputStream::create(const Glib::RefPtr<InputStream>& base_stream)
+auto DataInputStream::create(const Glib::RefPtr<InputStream>& base_stream) -> Glib::RefPtr<DataInputStream>
 {
   return Glib::make_refptr_for_instance<DataInputStream>( new DataInputStream(base_stream) );
 }
@@ -312,7 +312,7 @@ void DataInputStream::set_byte_order(DataStreamByteOrder order)
   g_data_input_stream_set_byte_order(gobj(), static_cast<GDataStreamByteOrder>(order));
 }
 
-DataStreamByteOrder DataInputStream::get_byte_order() const
+auto DataInputStream::get_byte_order() const -> DataStreamByteOrder
 {
   return static_cast<DataStreamByteOrder>(g_data_input_stream_get_byte_order(const_cast<GDataInputStream*>(gobj())));
 }
@@ -322,12 +322,12 @@ void DataInputStream::set_newline_type(DataStreamNewlineType type)
   g_data_input_stream_set_newline_type(gobj(), static_cast<GDataStreamNewlineType>(type));
 }
 
-DataStreamNewlineType DataInputStream::get_newline_type() const
+auto DataInputStream::get_newline_type() const -> DataStreamNewlineType
 {
   return static_cast<DataStreamNewlineType>(g_data_input_stream_get_newline_type(const_cast<GDataInputStream*>(gobj())));
 }
 
-guchar DataInputStream::read_byte(const Glib::RefPtr<Cancellable>& cancellable)
+auto DataInputStream::read_byte(const Glib::RefPtr<Cancellable>& cancellable) -> guchar
 {
   GError* gerror = nullptr;
   auto retvalue = g_data_input_stream_read_byte(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -336,7 +336,7 @@ guchar DataInputStream::read_byte(const Glib::RefPtr<Cancellable>& cancellable)
   return retvalue;
 }
 
-guchar DataInputStream::read_byte()
+auto DataInputStream::read_byte() -> guchar
 {
   GError* gerror = nullptr;
   auto retvalue = g_data_input_stream_read_byte(gobj(), nullptr, &(gerror));
@@ -345,7 +345,7 @@ guchar DataInputStream::read_byte()
   return retvalue;
 }
 
-gint16 DataInputStream::read_int16(const Glib::RefPtr<Cancellable>& cancellable)
+auto DataInputStream::read_int16(const Glib::RefPtr<Cancellable>& cancellable) -> gint16
 {
   GError* gerror = nullptr;
   auto retvalue = g_data_input_stream_read_int16(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -354,7 +354,7 @@ gint16 DataInputStream::read_int16(const Glib::RefPtr<Cancellable>& cancellable)
   return retvalue;
 }
 
-gint16 DataInputStream::read_int16()
+auto DataInputStream::read_int16() -> gint16
 {
   GError* gerror = nullptr;
   auto retvalue = g_data_input_stream_read_int16(gobj(), nullptr, &(gerror));
@@ -363,7 +363,7 @@ gint16 DataInputStream::read_int16()
   return retvalue;
 }
 
-guint16 DataInputStream::read_uint16(const Glib::RefPtr<Cancellable>& cancellable)
+auto DataInputStream::read_uint16(const Glib::RefPtr<Cancellable>& cancellable) -> guint16
 {
   GError* gerror = nullptr;
   auto retvalue = g_data_input_stream_read_uint16(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -372,7 +372,7 @@ guint16 DataInputStream::read_uint16(const Glib::RefPtr<Cancellable>& cancellabl
   return retvalue;
 }
 
-guint16 DataInputStream::read_uint16()
+auto DataInputStream::read_uint16() -> guint16
 {
   GError* gerror = nullptr;
   auto retvalue = g_data_input_stream_read_uint16(gobj(), nullptr, &(gerror));
@@ -381,7 +381,7 @@ guint16 DataInputStream::read_uint16()
   return retvalue;
 }
 
-gint32 DataInputStream::read_int32(const Glib::RefPtr<Cancellable>& cancellable)
+auto DataInputStream::read_int32(const Glib::RefPtr<Cancellable>& cancellable) -> gint32
 {
   GError* gerror = nullptr;
   auto retvalue = g_data_input_stream_read_int32(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -390,7 +390,7 @@ gint32 DataInputStream::read_int32(const Glib::RefPtr<Cancellable>& cancellable)
   return retvalue;
 }
 
-gint32 DataInputStream::read_int32()
+auto DataInputStream::read_int32() -> gint32
 {
   GError* gerror = nullptr;
   auto retvalue = g_data_input_stream_read_int32(gobj(), nullptr, &(gerror));
@@ -399,7 +399,7 @@ gint32 DataInputStream::read_int32()
   return retvalue;
 }
 
-guint32 DataInputStream::read_uint32(const Glib::RefPtr<Cancellable>& cancellable)
+auto DataInputStream::read_uint32(const Glib::RefPtr<Cancellable>& cancellable) -> guint32
 {
   GError* gerror = nullptr;
   auto retvalue = g_data_input_stream_read_uint32(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -408,7 +408,7 @@ guint32 DataInputStream::read_uint32(const Glib::RefPtr<Cancellable>& cancellabl
   return retvalue;
 }
 
-guint32 DataInputStream::read_uint32()
+auto DataInputStream::read_uint32() -> guint32
 {
   GError* gerror = nullptr;
   auto retvalue = g_data_input_stream_read_uint32(gobj(), nullptr, &(gerror));
@@ -417,7 +417,7 @@ guint32 DataInputStream::read_uint32()
   return retvalue;
 }
 
-gint64 DataInputStream::read_int64(const Glib::RefPtr<Cancellable>& cancellable)
+auto DataInputStream::read_int64(const Glib::RefPtr<Cancellable>& cancellable) -> gint64
 {
   GError* gerror = nullptr;
   auto retvalue = g_data_input_stream_read_int64(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -426,7 +426,7 @@ gint64 DataInputStream::read_int64(const Glib::RefPtr<Cancellable>& cancellable)
   return retvalue;
 }
 
-gint64 DataInputStream::read_int64()
+auto DataInputStream::read_int64() -> gint64
 {
   GError* gerror = nullptr;
   auto retvalue = g_data_input_stream_read_int64(gobj(), nullptr, &(gerror));
@@ -435,7 +435,7 @@ gint64 DataInputStream::read_int64()
   return retvalue;
 }
 
-guint64 DataInputStream::read_uint64(const Glib::RefPtr<Cancellable>& cancellable)
+auto DataInputStream::read_uint64(const Glib::RefPtr<Cancellable>& cancellable) -> guint64
 {
   GError* gerror = nullptr;
   auto retvalue = g_data_input_stream_read_uint64(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -444,7 +444,7 @@ guint64 DataInputStream::read_uint64(const Glib::RefPtr<Cancellable>& cancellabl
   return retvalue;
 }
 
-guint64 DataInputStream::read_uint64()
+auto DataInputStream::read_uint64() -> guint64
 {
   GError* gerror = nullptr;
   auto retvalue = g_data_input_stream_read_uint64(gobj(), nullptr, &(gerror));
@@ -506,12 +506,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<DataStreamByteOrder>
   "Type DataStreamByteOrder cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< DataStreamByteOrder > DataInputStream::property_byte_order()
+auto DataInputStream::property_byte_order() -> Glib::PropertyProxy< DataStreamByteOrder >
 {
   return Glib::PropertyProxy< DataStreamByteOrder >(this, "byte-order");
 }
 
-Glib::PropertyProxy_ReadOnly< DataStreamByteOrder > DataInputStream::property_byte_order() const
+auto DataInputStream::property_byte_order() const -> Glib::PropertyProxy_ReadOnly< DataStreamByteOrder >
 {
   return Glib::PropertyProxy_ReadOnly< DataStreamByteOrder >(this, "byte-order");
 }
@@ -520,12 +520,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<DataStreamNewlineTyp
   "Type DataStreamNewlineType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< DataStreamNewlineType > DataInputStream::property_newline_type()
+auto DataInputStream::property_newline_type() -> Glib::PropertyProxy< DataStreamNewlineType >
 {
   return Glib::PropertyProxy< DataStreamNewlineType >(this, "newline-type");
 }
 
-Glib::PropertyProxy_ReadOnly< DataStreamNewlineType > DataInputStream::property_newline_type() const
+auto DataInputStream::property_newline_type() const -> Glib::PropertyProxy_ReadOnly< DataStreamNewlineType >
 {
   return Glib::PropertyProxy_ReadOnly< DataStreamNewlineType >(this, "newline-type");
 }

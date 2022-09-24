@@ -39,7 +39,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gdk::AnchorHints>::value_type()
+auto Glib::Value<Gdk::AnchorHints>::value_type() -> GType
 {
   return gdk_anchor_hints_get_type();
 }
@@ -61,7 +61,7 @@ GType Glib::Value<Gdk::AnchorHints>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::PopupLayout> wrap(GdkPopupLayout* object, bool take_copy)
+auto wrap(GdkPopupLayout* object, bool take_copy) -> Glib::RefPtr<Gdk::PopupLayout>
 {
   if(take_copy && object)
     gdk_popup_layout_ref(object);
@@ -88,19 +88,19 @@ void PopupLayout::unreference() const
   gdk_popup_layout_unref(reinterpret_cast<GdkPopupLayout*>(const_cast<PopupLayout*>(this)));
 }
 
-GdkPopupLayout* PopupLayout::gobj()
+auto PopupLayout::gobj() -> GdkPopupLayout*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<GdkPopupLayout*>(this);
 }
 
-const GdkPopupLayout* PopupLayout::gobj() const
+auto PopupLayout::gobj() const -> const GdkPopupLayout*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<const GdkPopupLayout*>(this);
 }
 
-GdkPopupLayout* PopupLayout::gobj_copy() const
+auto PopupLayout::gobj_copy() const -> GdkPopupLayout*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   const auto gobject = reinterpret_cast<GdkPopupLayout*>(const_cast<PopupLayout*>(this));
@@ -109,17 +109,17 @@ GdkPopupLayout* PopupLayout::gobj_copy() const
 }
 
 
-Glib::RefPtr<PopupLayout> PopupLayout::create(const Rectangle& anchor_rect, Gravity rect_anchor, Gravity surface_anchor)
+auto PopupLayout::create(const Rectangle& anchor_rect, Gravity rect_anchor, Gravity surface_anchor) -> Glib::RefPtr<PopupLayout>
 {
   return Glib::wrap(gdk_popup_layout_new((anchor_rect).gobj(), static_cast<GdkGravity>(rect_anchor), static_cast<GdkGravity>(surface_anchor)));
 }
 
-Glib::RefPtr<PopupLayout> PopupLayout::copy() const
+auto PopupLayout::copy() const -> Glib::RefPtr<PopupLayout>
 {
   return Glib::wrap(gdk_popup_layout_copy(const_cast<GdkPopupLayout*>(gobj())));
 }
 
-bool PopupLayout::equal(const Glib::RefPtr<const PopupLayout>& other) const
+auto PopupLayout::equal(const Glib::RefPtr<const PopupLayout>& other) const -> bool
 {
   return gdk_popup_layout_equal(const_cast<GdkPopupLayout*>(gobj()), const_cast<GdkPopupLayout*>(Glib::unwrap(other)));
 }
@@ -129,7 +129,7 @@ void PopupLayout::set_anchor_rect(const Rectangle& anchor_rect)
   gdk_popup_layout_set_anchor_rect(gobj(), (anchor_rect).gobj());
 }
 
-Rectangle PopupLayout::get_anchor_rect() const
+auto PopupLayout::get_anchor_rect() const -> Rectangle
 {
   return Rectangle(gdk_popup_layout_get_anchor_rect(const_cast<GdkPopupLayout*>(gobj())));
 }
@@ -139,7 +139,7 @@ void PopupLayout::set_rect_anchor(Gravity anchor)
   gdk_popup_layout_set_rect_anchor(gobj(), static_cast<GdkGravity>(anchor));
 }
 
-Gravity PopupLayout::get_rect_anchor() const
+auto PopupLayout::get_rect_anchor() const -> Gravity
 {
   return static_cast<Gravity>(gdk_popup_layout_get_rect_anchor(const_cast<GdkPopupLayout*>(gobj())));
 }
@@ -149,7 +149,7 @@ void PopupLayout::set_surface_anchor(Gravity anchor)
   gdk_popup_layout_set_surface_anchor(gobj(), static_cast<GdkGravity>(anchor));
 }
 
-Gravity PopupLayout::get_surface_anchor() const
+auto PopupLayout::get_surface_anchor() const -> Gravity
 {
   return static_cast<Gravity>(gdk_popup_layout_get_surface_anchor(const_cast<GdkPopupLayout*>(gobj())));
 }
@@ -159,7 +159,7 @@ void PopupLayout::set_anchor_hints(AnchorHints anchor_hints)
   gdk_popup_layout_set_anchor_hints(gobj(), static_cast<GdkAnchorHints>(anchor_hints));
 }
 
-AnchorHints PopupLayout::get_anchor_hints() const
+auto PopupLayout::get_anchor_hints() const -> AnchorHints
 {
   return static_cast<AnchorHints>(gdk_popup_layout_get_anchor_hints(const_cast<GdkPopupLayout*>(gobj())));
 }

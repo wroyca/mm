@@ -74,7 +74,7 @@ namespace
 namespace Glib
 {
 
-Gtk::AppChooserDialog* wrap(GtkAppChooserDialog* object, bool take_copy)
+auto wrap(GtkAppChooserDialog* object, bool take_copy) -> Gtk::AppChooserDialog*
 {
   return dynamic_cast<Gtk::AppChooserDialog *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -87,7 +87,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& AppChooserDialog_Class::init()
+auto AppChooserDialog_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -119,7 +119,7 @@ void AppChooserDialog_Class::class_init_function(void* g_class, void* class_data
 }
 
 
-Glib::ObjectBase* AppChooserDialog_Class::wrap_new(GObject* o)
+auto AppChooserDialog_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return new AppChooserDialog((GtkAppChooserDialog*)(o)); //top-level windows can not be manage()ed.
 
@@ -146,7 +146,7 @@ AppChooserDialog::AppChooserDialog(AppChooserDialog&& src) noexcept
   , AppChooser(std::move(src))
 {}
 
-AppChooserDialog& AppChooserDialog::operator=(AppChooserDialog&& src) noexcept
+auto AppChooserDialog::operator=(AppChooserDialog&& src) noexcept -> AppChooserDialog&
 {
   Dialog::operator=(std::move(src));
   AppChooser::operator=(std::move(src));
@@ -160,24 +160,24 @@ AppChooserDialog::~AppChooserDialog() noexcept
 
 AppChooserDialog::CppClassType AppChooserDialog::appchooserdialog_class_; // initialize static member
 
-GType AppChooserDialog::get_type()
+auto AppChooserDialog::get_type() -> GType
 {
   return appchooserdialog_class_.init().get_type();
 }
 
 
-GType AppChooserDialog::get_base_type()
+auto AppChooserDialog::get_base_type() -> GType
 {
   return gtk_app_chooser_dialog_get_type();
 }
 
 
-Widget* AppChooserDialog::get_widget()
+auto AppChooserDialog::get_widget() -> Widget*
 {
   return Glib::wrap(gtk_app_chooser_dialog_get_widget(gobj()));
 }
 
-const Widget* AppChooserDialog::get_widget() const
+auto AppChooserDialog::get_widget() const -> const Widget*
 {
   return const_cast<AppChooserDialog*>(this)->get_widget();
 }
@@ -187,7 +187,7 @@ void AppChooserDialog::set_heading(const Glib::ustring& heading)
   gtk_app_chooser_dialog_set_heading(gobj(), heading.c_str());
 }
 
-Glib::ustring AppChooserDialog::get_heading() const
+auto AppChooserDialog::get_heading() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_app_chooser_dialog_get_heading(const_cast<GtkAppChooserDialog*>(gobj())));
 }
@@ -197,17 +197,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Fi
   "Type Glib::RefPtr<Gio::File> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> > AppChooserDialog::property_gfile() const
+auto AppChooserDialog::property_gfile() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >(this, "gfile");
 }
 
-Glib::PropertyProxy< Glib::ustring > AppChooserDialog::property_heading()
+auto AppChooserDialog::property_heading() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "heading");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > AppChooserDialog::property_heading() const
+auto AppChooserDialog::property_heading() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "heading");
 }

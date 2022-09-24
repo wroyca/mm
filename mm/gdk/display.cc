@@ -45,7 +45,7 @@ namespace
 {
 
 
-static void Display_signal_closed_callback(GdkDisplay* self, gboolean p0,void* data)
+void Display_signal_closed_callback(GdkDisplay* self, gboolean p0,void* data)
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(bool)>;
@@ -67,7 +67,7 @@ static void Display_signal_closed_callback(GdkDisplay* self, gboolean p0,void* d
   }
 }
 
-static const Glib::SignalProxyInfo Display_signal_closed_info =
+const Glib::SignalProxyInfo Display_signal_closed_info =
 {
   "closed",
   (GCallback) &Display_signal_closed_callback,
@@ -75,7 +75,7 @@ static const Glib::SignalProxyInfo Display_signal_closed_info =
 };
 
 
-static const Glib::SignalProxyInfo Display_signal_opened_info =
+const Glib::SignalProxyInfo Display_signal_opened_info =
 {
   "opened",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -83,7 +83,7 @@ static const Glib::SignalProxyInfo Display_signal_opened_info =
 };
 
 
-static void Display_signal_seat_added_callback(GdkDisplay* self, GdkSeat* p0,void* data)
+void Display_signal_seat_added_callback(GdkDisplay* self, GdkSeat* p0,void* data)
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Seat>&)>;
@@ -105,7 +105,7 @@ static void Display_signal_seat_added_callback(GdkDisplay* self, GdkSeat* p0,voi
   }
 }
 
-static const Glib::SignalProxyInfo Display_signal_seat_added_info =
+const Glib::SignalProxyInfo Display_signal_seat_added_info =
 {
   "seat-added",
   (GCallback) &Display_signal_seat_added_callback,
@@ -113,7 +113,7 @@ static const Glib::SignalProxyInfo Display_signal_seat_added_info =
 };
 
 
-static void Display_signal_seat_removed_callback(GdkDisplay* self, GdkSeat* p0,void* data)
+void Display_signal_seat_removed_callback(GdkDisplay* self, GdkSeat* p0,void* data)
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Seat>&)>;
@@ -135,7 +135,7 @@ static void Display_signal_seat_removed_callback(GdkDisplay* self, GdkSeat* p0,v
   }
 }
 
-static const Glib::SignalProxyInfo Display_signal_seat_removed_info =
+const Glib::SignalProxyInfo Display_signal_seat_removed_info =
 {
   "seat-removed",
   (GCallback) &Display_signal_seat_removed_callback,
@@ -143,7 +143,7 @@ static const Glib::SignalProxyInfo Display_signal_seat_removed_info =
 };
 
 
-static void Display_signal_setting_changed_callback(GdkDisplay* self, const gchar* p0,void* data)
+void Display_signal_setting_changed_callback(GdkDisplay* self, const gchar* p0,void* data)
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -165,7 +165,7 @@ static void Display_signal_setting_changed_callback(GdkDisplay* self, const gcha
   }
 }
 
-static const Glib::SignalProxyInfo Display_signal_setting_changed_info =
+const Glib::SignalProxyInfo Display_signal_setting_changed_info =
 {
   "setting-changed",
   (GCallback) &Display_signal_setting_changed_callback,
@@ -179,7 +179,7 @@ static const Glib::SignalProxyInfo Display_signal_setting_changed_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::Display> wrap(GdkDisplay* object, bool take_copy)
+auto wrap(GdkDisplay* object, bool take_copy) -> Glib::RefPtr<Gdk::Display>
 {
   return Glib::make_refptr_for_instance<Gdk::Display>( dynamic_cast<Gdk::Display*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -194,7 +194,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Display_Class::init()
+auto Display_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -225,7 +225,7 @@ void Display_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Display_Class::wrap_new(GObject* object)
+auto Display_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Display((GdkDisplay*)object);
 }
@@ -233,7 +233,7 @@ Glib::ObjectBase* Display_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GdkDisplay* Display::gobj_copy()
+auto Display::gobj_copy() -> GdkDisplay*
 {
   reference();
   return gobj();
@@ -256,7 +256,7 @@ Display::Display(Display&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Display& Display::operator=(Display&& src) noexcept
+auto Display::operator=(Display&& src) noexcept -> Display&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -269,13 +269,13 @@ Display::~Display() noexcept
 
 Display::CppClassType Display::display_class_; // initialize static member
 
-GType Display::get_type()
+auto Display::get_type() -> GType
 {
   return display_class_.init().get_type();
 }
 
 
-GType Display::get_base_type()
+auto Display::get_base_type() -> GType
 {
   return gdk_display_get_type();
 }
@@ -291,7 +291,7 @@ Display::Display()
 
 }
 
-Glib::RefPtr<Display> Display::open(const Glib::ustring& display_name)
+auto Display::open(const Glib::ustring& display_name) -> Glib::RefPtr<Display>
 {
 
   auto retvalue = Glib::wrap(gdk_display_open(display_name.c_str()));
@@ -300,12 +300,12 @@ Glib::RefPtr<Display> Display::open(const Glib::ustring& display_name)
   return retvalue;
 }
 
-Glib::ustring Display::get_name() const
+auto Display::get_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gdk_display_get_name(const_cast<GdkDisplay*>(gobj())));
 }
 
-bool Display::device_is_grabbed(const Glib::RefPtr<const Gdk::Device>& device) const
+auto Display::device_is_grabbed(const Glib::RefPtr<const Gdk::Device>& device) const -> bool
 {
   return gdk_display_device_is_grabbed(const_cast<GdkDisplay*>(gobj()), const_cast<GdkDevice*>(Glib::unwrap<Gdk::Device>(device)));
 }
@@ -325,17 +325,17 @@ void Display::close()
   gdk_display_close(gobj());
 }
 
-bool Display::is_closed() const
+auto Display::is_closed() const -> bool
 {
   return gdk_display_is_closed(const_cast<GdkDisplay*>(gobj()));
 }
 
-bool Display::is_composited() const
+auto Display::is_composited() const -> bool
 {
   return gdk_display_is_composited(const_cast<GdkDisplay*>(gobj()));
 }
 
-bool Display::is_rgba() const
+auto Display::is_rgba() const -> bool
 {
   return gdk_display_is_rgba(const_cast<GdkDisplay*>(gobj()));
 }
@@ -345,7 +345,7 @@ void Display::put_event(const Glib::RefPtr<const Event>& event)
   gdk_display_put_event(gobj(), const_cast<GdkEvent*>(Glib::unwrap(event)));
 }
 
-Glib::RefPtr<Display> Display::get_default()
+auto Display::get_default() -> Glib::RefPtr<Display>
 {
 
   auto retvalue = Glib::wrap(gdk_display_get_default());
@@ -359,7 +359,7 @@ void Display::flush()
   gdk_display_flush(gobj());
 }
 
-Glib::RefPtr<Clipboard> Display::get_clipboard()
+auto Display::get_clipboard() -> Glib::RefPtr<Clipboard>
 {
   auto retvalue = Glib::wrap(gdk_display_get_clipboard(gobj()));
   if(retvalue)
@@ -367,12 +367,12 @@ Glib::RefPtr<Clipboard> Display::get_clipboard()
   return retvalue;
 }
 
-Glib::RefPtr<const Clipboard> Display::get_clipboard() const
+auto Display::get_clipboard() const -> Glib::RefPtr<const Clipboard>
 {
   return const_cast<Display*>(this)->get_clipboard();
 }
 
-Glib::RefPtr<Clipboard> Display::get_primary_clipboard()
+auto Display::get_primary_clipboard() -> Glib::RefPtr<Clipboard>
 {
   auto retvalue = Glib::wrap(gdk_display_get_primary_clipboard(gobj()));
   if(retvalue)
@@ -380,12 +380,12 @@ Glib::RefPtr<Clipboard> Display::get_primary_clipboard()
   return retvalue;
 }
 
-Glib::RefPtr<const Clipboard> Display::get_primary_clipboard() const
+auto Display::get_primary_clipboard() const -> Glib::RefPtr<const Clipboard>
 {
   return const_cast<Display*>(this)->get_primary_clipboard();
 }
 
-bool Display::supports_input_shapes() const
+auto Display::supports_input_shapes() const -> bool
 {
   return gdk_display_supports_input_shapes(const_cast<GdkDisplay*>(gobj()));
 }
@@ -398,7 +398,7 @@ void Display::prepare_gl()
     ::Glib::Error::throw_exception(gerror);
 }
 
-Glib::RefPtr<GLContext> Display::create_gl_context()
+auto Display::create_gl_context() -> Glib::RefPtr<GLContext>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(gdk_display_create_gl_context(gobj(), &(gerror)));
@@ -412,12 +412,12 @@ void Display::notify_startup_complete(const Glib::ustring& startup_id)
   gdk_display_notify_startup_complete(gobj(), startup_id.c_str());
 }
 
-Glib::ustring Display::get_startup_notification_id() const
+auto Display::get_startup_notification_id() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gdk_display_get_startup_notification_id(const_cast<GdkDisplay*>(gobj())));
 }
 
-Glib::RefPtr<AppLaunchContext> Display::get_app_launch_context()
+auto Display::get_app_launch_context() -> Glib::RefPtr<AppLaunchContext>
 {
   auto retvalue = Glib::wrap(gdk_display_get_app_launch_context(gobj()));
   if(retvalue)
@@ -425,12 +425,12 @@ Glib::RefPtr<AppLaunchContext> Display::get_app_launch_context()
   return retvalue;
 }
 
-Glib::RefPtr<const AppLaunchContext> Display::get_app_launch_context() const
+auto Display::get_app_launch_context() const -> Glib::RefPtr<const AppLaunchContext>
 {
   return const_cast<Display*>(this)->get_app_launch_context();
 }
 
-Glib::RefPtr<Seat> Display::get_default_seat()
+auto Display::get_default_seat() -> Glib::RefPtr<Seat>
 {
   auto retvalue = Glib::wrap(gdk_display_get_default_seat(gobj()));
   if(retvalue)
@@ -438,22 +438,22 @@ Glib::RefPtr<Seat> Display::get_default_seat()
   return retvalue;
 }
 
-Glib::RefPtr<const Seat> Display::get_default_seat() const
+auto Display::get_default_seat() const -> Glib::RefPtr<const Seat>
 {
   return const_cast<Display*>(this)->get_default_seat();
 }
 
-std::vector<Glib::RefPtr<Seat>> Display::list_seats()
+auto Display::list_seats() -> std::vector<Glib::RefPtr<Seat>>
 {
   return Glib::ListHandler<Glib::RefPtr<Seat>>::list_to_vector(gdk_display_list_seats(gobj()), Glib::OWNERSHIP_SHALLOW);
 }
 
-std::vector<Glib::RefPtr<const Seat>> Display::list_seats() const
+auto Display::list_seats() const -> std::vector<Glib::RefPtr<const Seat>>
 {
   return Glib::ListHandler<Glib::RefPtr<const Seat>>::list_to_vector(gdk_display_list_seats(const_cast<GdkDisplay*>(gobj())), Glib::OWNERSHIP_SHALLOW);
 }
 
-Glib::RefPtr<Gio::ListModel> Display::get_monitors()
+auto Display::get_monitors() -> Glib::RefPtr<Gio::ListModel>
 {
   auto retvalue = Glib::wrap(gdk_display_get_monitors(gobj()));
   if(retvalue)
@@ -461,12 +461,12 @@ Glib::RefPtr<Gio::ListModel> Display::get_monitors()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::ListModel> Display::get_monitors() const
+auto Display::get_monitors() const -> Glib::RefPtr<const Gio::ListModel>
 {
   return const_cast<Display*>(this)->get_monitors();
 }
 
-Glib::RefPtr<Monitor> Display::get_monitor_at_surface(const Glib::RefPtr<Surface>& surface)
+auto Display::get_monitor_at_surface(const Glib::RefPtr<Surface>& surface) -> Glib::RefPtr<Monitor>
 {
   auto retvalue = Glib::wrap(gdk_display_get_monitor_at_surface(gobj(), Glib::unwrap(surface)));
   if(retvalue)
@@ -474,53 +474,53 @@ Glib::RefPtr<Monitor> Display::get_monitor_at_surface(const Glib::RefPtr<Surface
   return retvalue;
 }
 
-Glib::RefPtr<const Monitor> Display::get_monitor_at_surface(const Glib::RefPtr<Surface>& surface) const
+auto Display::get_monitor_at_surface(const Glib::RefPtr<Surface>& surface) const -> Glib::RefPtr<const Monitor>
 {
   return const_cast<Display*>(this)->get_monitor_at_surface(surface);
 }
 
 
-Glib::SignalProxy<void(bool)> Display::signal_closed()
+auto Display::signal_closed() -> Glib::SignalProxy<void(bool)>
 {
   return Glib::SignalProxy<void(bool) >(this, &Display_signal_closed_info);
 }
 
 
-Glib::SignalProxy<void()> Display::signal_opened()
+auto Display::signal_opened() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &Display_signal_opened_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Seat>&)> Display::signal_seat_added()
+auto Display::signal_seat_added() -> Glib::SignalProxy<void(const Glib::RefPtr<Seat>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Seat>&) >(this, &Display_signal_seat_added_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::RefPtr<Seat>&)> Display::signal_seat_removed()
+auto Display::signal_seat_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<Seat>&)>
 {
   return Glib::SignalProxy<void(const Glib::RefPtr<Seat>&) >(this, &Display_signal_seat_removed_info);
 }
 
 
-Glib::SignalProxy<void(const Glib::ustring&)> Display::signal_setting_changed()
+auto Display::signal_setting_changed() -> Glib::SignalProxy<void(const Glib::ustring&)>
 {
   return Glib::SignalProxy<void(const Glib::ustring&) >(this, &Display_signal_setting_changed_info);
 }
 
 
-Glib::PropertyProxy_ReadOnly< bool > Display::property_composited() const
+auto Display::property_composited() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "composited");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Display::property_rgba() const
+auto Display::property_rgba() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "rgba");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Display::property_input_shapes() const
+auto Display::property_input_shapes() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "input-shapes");
 }

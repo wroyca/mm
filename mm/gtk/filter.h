@@ -79,7 +79,7 @@ public:
 
   // noncopyable
   Filter(const Filter&) = delete;
-  Filter& operator=(const Filter&) = delete;
+  auto operator=(const Filter&) -> Filter& = delete;
 
 private:  friend class Filter_Class;
   static CppClassType filter_class_;
@@ -93,28 +93,28 @@ protected:
 public:
 
   Filter(Filter&& src) noexcept;
-  Filter& operator=(Filter&& src) noexcept;
+  auto operator=(Filter&& src) noexcept -> Filter&;
 
   ~Filter() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkFilter*       gobj()       { return reinterpret_cast<GtkFilter*>(gobject_); }
+  auto       gobj() -> GtkFilter*       { return reinterpret_cast<GtkFilter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkFilter* gobj() const { return reinterpret_cast<GtkFilter*>(gobject_); }
+  auto gobj() const -> const GtkFilter* { return reinterpret_cast<GtkFilter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkFilter* gobj_copy();
+  auto gobj_copy() -> GtkFilter*;
 
 private:
 
@@ -196,7 +196,7 @@ public:
    * @return <tt>true</tt> if the filter matches the item and a filter model should
    * keep it, <tt>false</tt> if not.
    */
-  bool match(const Glib::RefPtr<Glib::ObjectBase>& item);
+  auto match(const Glib::RefPtr<Glib::ObjectBase>& item) -> bool;
 
   /** Gets the known strictness of @a filters.
    *
@@ -210,7 +210,7 @@ public:
    *
    * @return The strictness of @a self.
    */
-  Match get_strictness();
+  auto get_strictness() -> Match;
 
 
   /**
@@ -233,7 +233,7 @@ public:
    * @param change How the filter changed.
    */
 
-  Glib::SignalProxy<void(Change)> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void(Change)>;
 
 
 protected:
@@ -257,9 +257,9 @@ protected:
   void changed(Change change =  Change::DIFFERENT);
 
 
-    virtual bool match_vfunc(const Glib::RefPtr<Glib::ObjectBase>& item);
+    virtual auto match_vfunc(const Glib::RefPtr<Glib::ObjectBase>& item) -> bool;
 
-    virtual Match get_strictness_vfunc();
+    virtual auto get_strictness_vfunc() -> Match;
 
 
 public:
@@ -286,7 +286,7 @@ template <>
 class GTKMM_API Value<Gtk::Filter::Match> : public Glib::Value_Enum<Gtk::Filter::Match>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -301,7 +301,7 @@ template <>
 class GTKMM_API Value<Gtk::Filter::Change> : public Glib::Value_Enum<Gtk::Filter::Change>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -319,7 +319,7 @@ namespace Glib
    * @relates Gtk::Filter
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Filter> wrap(GtkFilter* object, bool take_copy = false);
+  auto wrap(GtkFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Filter>;
 }
 
 

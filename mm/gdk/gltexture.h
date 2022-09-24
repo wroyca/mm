@@ -58,7 +58,7 @@ public:
 
   // noncopyable
   GLTexture(const GLTexture&) = delete;
-  GLTexture& operator=(const GLTexture&) = delete;
+  auto operator=(const GLTexture&) -> GLTexture& = delete;
 
 private:  friend class GLTexture_Class;
   static CppClassType gltexture_class_;
@@ -72,28 +72,28 @@ protected:
 public:
 
   GLTexture(GLTexture&& src) noexcept;
-  GLTexture& operator=(GLTexture&& src) noexcept;
+  auto operator=(GLTexture&& src) noexcept -> GLTexture&;
 
   ~GLTexture() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkGLTexture*       gobj()       { return reinterpret_cast<GdkGLTexture*>(gobject_); }
+  auto       gobj() -> GdkGLTexture*       { return reinterpret_cast<GdkGLTexture*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkGLTexture* gobj() const { return reinterpret_cast<GdkGLTexture*>(gobject_); }
+  auto gobj() const -> const GdkGLTexture* { return reinterpret_cast<GdkGLTexture*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkGLTexture* gobj_copy();
+  auto gobj_copy() -> GdkGLTexture*;
 
 private:
 
@@ -124,7 +124,7 @@ public:
    * @return A newly-created
    * `Gdk::Texture`.
    */
-  static Glib::RefPtr<Texture> create(const Glib::RefPtr<GLContext>& context, guint id, int width, int height, const SlotGLReleased& slot =  {});
+  static auto create(const Glib::RefPtr<GLContext>& context, guint id, int width, int height, const SlotGLReleased& slot =  {}) -> Glib::RefPtr<Texture>;
 
 
   /** Releases the GL resources held by a `Gdk::GLTexture`.
@@ -165,7 +165,7 @@ namespace Glib
    * @relates Gdk::GLTexture
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::GLTexture> wrap(GdkGLTexture* object, bool take_copy = false);
+  auto wrap(GdkGLTexture* object, bool take_copy = false) -> Glib::RefPtr<Gdk::GLTexture>;
 }
 
 

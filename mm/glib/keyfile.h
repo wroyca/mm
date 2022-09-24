@@ -75,7 +75,7 @@ public:
 
   GLIBMM_API KeyFileError(Code error_code, const Glib::ustring& error_message);
   GLIBMM_API explicit KeyFileError(GError* gobject);
-  GLIBMM_API Code code() const;
+  GLIBMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -151,7 +151,7 @@ class GLIBMM_API KeyFile final
   using BaseObjectType = GKeyFile;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  static Glib::RefPtr<KeyFile> create();
+  static auto create() -> Glib::RefPtr<KeyFile>;
 
   /** Increment the reference count for this object.
    * You should never need to do this manually - use the object via a RefPtr instead.
@@ -164,19 +164,19 @@ class GLIBMM_API KeyFile final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GKeyFile*       gobj();
+  auto       gobj() -> GKeyFile*;
 
   ///Provides access to the underlying C instance.
-  const GKeyFile* gobj() const;
+  auto gobj() const -> const GKeyFile*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GKeyFile* gobj_copy() const;
+  auto gobj_copy() const -> GKeyFile*;
 
   KeyFile() = delete;
 
   // noncopyable
   KeyFile(const KeyFile&) = delete;
-  KeyFile& operator=(const KeyFile&) = delete;
+  auto operator=(const KeyFile&) -> KeyFile& = delete;
 
 protected:
   // Do not derive this.  Glib::KeyFile can neither be constructed nor deleted.
@@ -244,7 +244,7 @@ public:
    * @param flags Flags from Glib::KeyFile::Flags.
    * @return <tt>true</tt> if a key file could be loaded, <tt>false</tt> otherwise.
    */
-  bool load_from_file(const std::string& file, Flags flags =  Flags::NONE);
+  auto load_from_file(const std::string& file, Flags flags =  Flags::NONE) -> bool;
 
   /** Loads a KeyFile from memory
    * @param data The data to use as a KeyFile
@@ -252,7 +252,7 @@ public:
    * @return true if the KeyFile was successfully loaded, false otherwise
    * @throw Glib::KeyFileError
    */
-  bool load_from_data(const Glib::ustring& data, Flags flags = Flags::NONE);
+  auto load_from_data(const Glib::ustring& data, Flags flags = Flags::NONE) -> bool;
 
 
   /** This function looks for a key file named @a file in the paths
@@ -278,7 +278,7 @@ public:
    * @throws Glib::FileError
    */
 
-  bool load_from_dirs(const std::string& file, const std::vector<std::string>&  search_dirs, std::string& full_path, Flags flags = Flags::NONE);
+  auto load_from_dirs(const std::string& file, const std::vector<std::string>&  search_dirs, std::string& full_path, Flags flags = Flags::NONE) -> bool;
 
   /** Looks for a KeyFile named @a file in the paths returned from
    * g_get_user_data_dir() and g_get_system_data_dirs() and loads them
@@ -291,14 +291,14 @@ public:
    * @throw Glib::KeyFileError
    * @throw Glib::FileError
    */
-  bool load_from_data_dirs(const std::string& file, std::string& full_path, Flags flags = Flags::NONE);
+  auto load_from_data_dirs(const std::string& file, std::string& full_path, Flags flags = Flags::NONE) -> bool;
 
 
   /** Outputs the KeyFile as a string
    * @return A string object holding the contents of KeyFile
    * @throw Glib::KeyFileError
    */
-  Glib::ustring to_data();
+  auto to_data() -> Glib::ustring;
 
 
   /** Writes the contents of @a key_file to @a filename using
@@ -316,7 +316,7 @@ public:
    *
    * @throws Glib::FileError
    */
-  bool save_to_file(const std::string& filename);
+  auto save_to_file(const std::string& filename) -> bool;
 
 
   /** Returns the name of the start group of the file.
@@ -325,12 +325,12 @@ public:
    *
    * @return The start group of the key file.
    */
-  Glib::ustring get_start_group() const;
+  auto get_start_group() const -> Glib::ustring;
 
   /** Gets a list of all groups in the KeyFile
    * @returns A list containing the names of the groups
    */
-  std::vector<Glib::ustring> get_groups() const;
+  auto get_groups() const -> std::vector<Glib::ustring>;
 
 
   /** Gets a list of all keys from the group @a group_name.
@@ -338,7 +338,7 @@ public:
    * @returns A list containing the names of the keys in @a group_name
    * @throw Glib::KeyFileError
    */
-  std::vector<Glib::ustring> get_keys(const Glib::ustring& group_name) const;
+  auto get_keys(const Glib::ustring& group_name) const -> std::vector<Glib::ustring>;
 
 
   /** Looks whether the key file has the group @a group_name.
@@ -349,7 +349,7 @@ public:
    * @return <tt>true</tt> if @a group_name is a part of @a key_file, <tt>false</tt>
    * otherwise.
    */
-  bool has_group(const Glib::ustring& group_name) const;
+  auto has_group(const Glib::ustring& group_name) const -> bool;
 
   /** Looks whether the key file has the key @a key in the group
    *  @a group_name.
@@ -362,7 +362,7 @@ public:
    * @param key A key name.
    * @return <tt>true</tt> if @a key is a part of @a group_name, <tt>false</tt> otherwise.
    */
-  bool has_key(const Glib::ustring& group_name, const Glib::ustring& key) const;
+  auto has_key(const Glib::ustring& group_name, const Glib::ustring& key) const -> bool;
 
 
   /** Returns the value associated with @a key under @a group_name.
@@ -376,7 +376,7 @@ public:
    * @param key A key.
    * @return The value as a string.
    */
-  Glib::ustring get_value(const Glib::ustring& group_name, const Glib::ustring& key) const;
+  auto get_value(const Glib::ustring& group_name, const Glib::ustring& key) const -> Glib::ustring;
 
   /** Return value: a newly allocated string or <tt>nullptr</tt>.
    *
@@ -389,7 +389,7 @@ public:
    * @return A newly allocated string or <tt>nullptr</tt> if the specified
    * key cannot be found.
    */
-  Glib::ustring get_string(const Glib::ustring& group_name, const Glib::ustring& key) const;
+  auto get_string(const Glib::ustring& group_name, const Glib::ustring& key) const -> Glib::ustring;
 
 
   /** Returns the actual locale which the result of
@@ -410,14 +410,14 @@ public:
    * @return The locale from the file, or <tt>nullptr</tt> if the key was not
    * found or the entry in the file was was untranslated.
    */
-  Glib::ustring get_locale_for_key(const Glib::ustring& group_name, const Glib::ustring& key, const Glib::ustring& locale =  {}) const;
+  auto get_locale_for_key(const Glib::ustring& group_name, const Glib::ustring& key, const Glib::ustring& locale =  {}) const -> Glib::ustring;
 
   /** Gets the value associated with @a key under @a group_name translated
    * into the current locale.
    * @return the value as a Glib::ustring
    * @throw Glib::KeyFileError
   */
-  Glib::ustring get_locale_string(const Glib::ustring& group_name, const Glib::ustring& key) const;
+  auto get_locale_string(const Glib::ustring& group_name, const Glib::ustring& key) const -> Glib::ustring;
 
 
   /** Return value: a newly allocated string or <tt>nullptr</tt>.
@@ -432,7 +432,7 @@ public:
    * @return A newly allocated string or <tt>nullptr</tt> if the specified
    * key cannot be found.
    */
-  Glib::ustring get_locale_string(const Glib::ustring& group_name, const Glib::ustring& key, const Glib::ustring& locale) const;
+  auto get_locale_string(const Glib::ustring& group_name, const Glib::ustring& key, const Glib::ustring& locale) const -> Glib::ustring;
 
   /** Gets the value in the first group, under @a key, interpreting it as
    * a boolean.
@@ -441,7 +441,7 @@ public:
    * @throw Glib::KeyFileError.
    * @newin{2,6}
    */
-  bool get_boolean(const Glib::ustring& key) const;
+  auto get_boolean(const Glib::ustring& key) const -> bool;
 
 
   /** Return value: the value associated with the key as a boolean.
@@ -455,7 +455,7 @@ public:
    * @return The value associated with the key as a boolean,
    * or <tt>false</tt> if the key was not found or could not be parsed.
    */
-  bool get_boolean(const Glib::ustring& group_name, const Glib::ustring& key) const;
+  auto get_boolean(const Glib::ustring& group_name, const Glib::ustring& key) const -> bool;
 
   /** Gets the value in the first group, under @a key, interpreting it as
    * an integer.
@@ -464,7 +464,7 @@ public:
    * @throw Glib::KeyFileError
    * @newin{2,6}
    */
-  int get_integer(const Glib::ustring& key) const;
+  auto get_integer(const Glib::ustring& key) const -> int;
 
 
   /** Return value: the value associated with the key as an integer.
@@ -478,7 +478,7 @@ public:
    * @return The value associated with the key as an integer, or
    * 0 if the key was not found or could not be parsed.
    */
-  int get_integer(const Glib::ustring& group_name, const Glib::ustring& key) const;
+  auto get_integer(const Glib::ustring& group_name, const Glib::ustring& key) const -> int;
 
   /** Gets the value in the first group, under @a key, interpreting it as
    * a signed 64-bit integer. This is similar to get_integer() but can return
@@ -489,7 +489,7 @@ public:
    * @throw Glib::KeyFileError.
    * @newin{2,28}
    */
-  gint64 get_int64(const Glib::ustring& key) const;
+  auto get_int64(const Glib::ustring& key) const -> gint64;
 
 
   /** Returns the value associated with @a key under @a group_name as a signed
@@ -505,7 +505,7 @@ public:
    *
    * @throws Glib::KeyFileError
    */
-  gint64 get_int64(const Glib::ustring& group_name, const Glib::ustring& key) const;
+  auto get_int64(const Glib::ustring& group_name, const Glib::ustring& key) const -> gint64;
 
   /** Gets the value in the first group, under @a key, interpreting it as
    * an unsigned 64-bit integer. This is similar to get_integer() but can
@@ -516,7 +516,7 @@ public:
    * @throw Glib::KeyFileError.
    * @newin{2,28}
    */
-  guint64 get_uint64(const Glib::ustring& key) const;
+  auto get_uint64(const Glib::ustring& key) const -> guint64;
 
 
   /** Returns the value associated with @a key under @a group_name as an unsigned
@@ -532,7 +532,7 @@ public:
    *
    * @throws Glib::KeyFileError
    */
-  guint64 get_uint64(const Glib::ustring& group_name, const Glib::ustring& key) const;
+  auto get_uint64(const Glib::ustring& group_name, const Glib::ustring& key) const -> guint64;
 
   /** Gets the value in the first group, under @a key, interpreting it as
    * a double.
@@ -542,7 +542,7 @@ public:
    *
    * @newin{2,14}
    */
-  double get_double(const Glib::ustring& key) const;
+  auto get_double(const Glib::ustring& key) const -> double;
 
 
   /** Return value: the value associated with the key as a double.
@@ -556,7 +556,7 @@ public:
    * @return The value associated with the key as a double, or
    * 0.0 if the key was not found or could not be parsed.
    */
-  double get_double(const Glib::ustring& group_name, const Glib::ustring& key) const;
+  auto get_double(const Glib::ustring& group_name, const Glib::ustring& key) const -> double;
 
 
   /** Associates a new double value with @a key under @a group_name.
@@ -586,7 +586,7 @@ public:
    * @return A list containing the values requested
    * @throw Glib::KeyFileError
    */
-  std::vector<Glib::ustring> get_string_list(const Glib::ustring& group_name, const Glib::ustring& key) const;
+  auto get_string_list(const Glib::ustring& group_name, const Glib::ustring& key) const -> std::vector<Glib::ustring>;
 
 
   /** Returns the values associated with @a key under @a group_name
@@ -596,7 +596,7 @@ public:
    * @return A list containing the values requested
    * @throw Glib::KeyFileError
    */
-  std::vector<Glib::ustring> get_locale_string_list(const Glib::ustring& group_name, const Glib::ustring& key) const;
+  auto get_locale_string_list(const Glib::ustring& group_name, const Glib::ustring& key) const -> std::vector<Glib::ustring>;
 
   /** Returns the values associated with @a key under @a group_name
    * translated into @a locale, if available.
@@ -606,7 +606,7 @@ public:
    * @return A list containing the values requested
    * @throw Glib::KeyFileError
    */
-  std::vector<Glib::ustring> get_locale_string_list(const Glib::ustring& group_name, const Glib::ustring& key, const Glib::ustring& locale) const;
+  auto get_locale_string_list(const Glib::ustring& group_name, const Glib::ustring& key, const Glib::ustring& locale) const -> std::vector<Glib::ustring>;
 
 
   /** Returns the values associated with @a key under @a group_name
@@ -615,7 +615,7 @@ public:
    * @return A list of booleans
    * @throw Glib::KeyFileError
    */
-  std::vector<bool> get_boolean_list(const Glib::ustring& group_name, const Glib::ustring& key) const;
+  auto get_boolean_list(const Glib::ustring& group_name, const Glib::ustring& key) const -> std::vector<bool>;
 
 
   /** Returns the values associated with @a key under @a group_name
@@ -624,7 +624,7 @@ public:
    * @return A list of integers
    * @throw Glib::KeyFileError
    */
-  std::vector<int> get_integer_list(const Glib::ustring& group_name, const Glib::ustring& key) const;
+  auto get_integer_list(const Glib::ustring& group_name, const Glib::ustring& key) const -> std::vector<int>;
 
 
   /** Returns the values associated with @a key under @a group_name
@@ -633,21 +633,21 @@ public:
    * @return A list of doubles
    * @throw Glib::KeyFileError
    */
-  std::vector<double> get_double_list(const Glib::ustring& group_name, const Glib::ustring& key) const;
+  auto get_double_list(const Glib::ustring& group_name, const Glib::ustring& key) const -> std::vector<double>;
 
 
   /** Get comment from top of file
    * @return The comment
    * @throw Glib::KeyFileError
    */
-  Glib::ustring get_comment() const;
+  auto get_comment() const -> Glib::ustring;
 
   /** Get comment from above a group
    * @param group_name The group
    * @return The comment
    * @throw Glib::KeyFileError
    */
-  Glib::ustring get_comment(const Glib::ustring& group_name) const;
+  auto get_comment(const Glib::ustring& group_name) const -> Glib::ustring;
 
 
   /** Retrieves a comment above @a key from @a group_name.
@@ -664,7 +664,7 @@ public:
    * @param key A key.
    * @return The comment.
    */
-  Glib::ustring get_comment(const Glib::ustring& group_name, const Glib::ustring& key) const;
+  auto get_comment(const Glib::ustring& group_name, const Glib::ustring& key) const -> Glib::ustring;
 
 
   /** Sets the character which is used to separate
@@ -879,31 +879,31 @@ namespace Glib
 {
 
 /** @ingroup glibmmEnums */
-inline KeyFile::Flags operator|(KeyFile::Flags lhs, KeyFile::Flags rhs)
+inline auto operator|(KeyFile::Flags lhs, KeyFile::Flags rhs) -> KeyFile::Flags
   { return static_cast<KeyFile::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline KeyFile::Flags operator&(KeyFile::Flags lhs, KeyFile::Flags rhs)
+inline auto operator&(KeyFile::Flags lhs, KeyFile::Flags rhs) -> KeyFile::Flags
   { return static_cast<KeyFile::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline KeyFile::Flags operator^(KeyFile::Flags lhs, KeyFile::Flags rhs)
+inline auto operator^(KeyFile::Flags lhs, KeyFile::Flags rhs) -> KeyFile::Flags
   { return static_cast<KeyFile::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline KeyFile::Flags operator~(KeyFile::Flags flags)
+inline auto operator~(KeyFile::Flags flags) -> KeyFile::Flags
   { return static_cast<KeyFile::Flags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup glibmmEnums */
-inline KeyFile::Flags& operator|=(KeyFile::Flags& lhs, KeyFile::Flags rhs)
+inline auto operator|=(KeyFile::Flags& lhs, KeyFile::Flags rhs) -> KeyFile::Flags&
   { return (lhs = static_cast<KeyFile::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline KeyFile::Flags& operator&=(KeyFile::Flags& lhs, KeyFile::Flags rhs)
+inline auto operator&=(KeyFile::Flags& lhs, KeyFile::Flags rhs) -> KeyFile::Flags&
   { return (lhs = static_cast<KeyFile::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline KeyFile::Flags& operator^=(KeyFile::Flags& lhs, KeyFile::Flags rhs)
+inline auto operator^=(KeyFile::Flags& lhs, KeyFile::Flags rhs) -> KeyFile::Flags&
   { return (lhs = static_cast<KeyFile::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Glib
 
@@ -919,7 +919,7 @@ namespace Glib
  * @relates Glib::KeyFile
  */
 GLIBMM_API
-Glib::RefPtr<Glib::KeyFile> wrap(GKeyFile* object, bool take_copy = false);
+auto wrap(GKeyFile* object, bool take_copy = false) -> Glib::RefPtr<Glib::KeyFile>;
 
 } // namespace Glib
 

@@ -9,19 +9,19 @@ namespace Glib
 /**** Glib::Variant<bool> ****************************************************/
 
 // static
-const VariantType& Variant<bool>::variant_type()
+auto Variant<bool>::variant_type() -> const VariantType&
 {
   static VariantType type(G_VARIANT_TYPE_BOOLEAN);
   return type;
 }
 
-Variant<bool> Variant<bool>::create(bool data)
+auto Variant<bool>::create(bool data) -> Variant<bool>
 {
   auto result = Variant<bool>(g_variant_new_boolean(data));
   return result;
 }
 
-bool Variant<bool>::get() const
+auto Variant<bool>::get() const -> bool
 {
   return g_variant_get_boolean(gobject_);
 }
@@ -30,19 +30,19 @@ bool Variant<bool>::get() const
 /**** Glib::Variant<unsigned char> *******************************************/
 
 // static
-const VariantType& Variant<unsigned char>::variant_type()
+auto Variant<unsigned char>::variant_type() -> const VariantType&
 {
   static VariantType type(G_VARIANT_TYPE_BYTE);
   return type;
 }
 
-Variant<unsigned char> Variant<unsigned char>::create(unsigned char data)
+auto Variant<unsigned char>::create(unsigned char data) -> Variant<unsigned char>
 {
   auto result = Variant<unsigned char>(g_variant_new_byte(data));
   return result;
 }
 
-unsigned char Variant<unsigned char>::get() const
+auto Variant<unsigned char>::get() const -> unsigned char
 {
   return g_variant_get_byte(gobject_);
 }
@@ -51,19 +51,19 @@ unsigned char Variant<unsigned char>::get() const
 /**** Glib::Variant<gint16> **************************************************/
 
 // static
-const VariantType& Variant<gint16>::variant_type()
+auto Variant<gint16>::variant_type() -> const VariantType&
 {
   static VariantType type(G_VARIANT_TYPE_INT16);
   return type;
 }
 
-Variant<gint16> Variant<gint16>::create(gint16 data)
+auto Variant<gint16>::create(gint16 data) -> Variant<gint16>
 {
   auto result = Variant<gint16>(g_variant_new_int16(data));
   return result;
 }
 
-gint16 Variant<gint16>::get() const
+auto Variant<gint16>::get() const -> gint16
 {
   return g_variant_get_int16(gobject_);
 }
@@ -72,19 +72,19 @@ gint16 Variant<gint16>::get() const
 /**** Glib::Variant<guint16> *************************************************/
 
 // static
-const VariantType& Variant<guint16>::variant_type()
+auto Variant<guint16>::variant_type() -> const VariantType&
 {
   static VariantType type(G_VARIANT_TYPE_UINT16);
   return type;
 }
 
-Variant<guint16> Variant<guint16>::create(guint16 data)
+auto Variant<guint16>::create(guint16 data) -> Variant<guint16>
 {
   auto result = Variant<guint16>(g_variant_new_uint16(data));
   return result;
 }
 
-guint16 Variant<guint16>::get() const
+auto Variant<guint16>::get() const -> guint16
 {
   return g_variant_get_uint16(gobject_);
 }
@@ -93,25 +93,25 @@ guint16 Variant<guint16>::get() const
 /**** Glib::Variant<gint32> **************************************************/
 
 // static
-const VariantType& Variant<gint32>::variant_type()
+auto Variant<gint32>::variant_type() -> const VariantType&
 {
   static VariantType type(G_VARIANT_TYPE_INT32);
   return type;
 }
 
-Variant<gint32> Variant<gint32>::create(gint32 data)
+auto Variant<gint32>::create(gint32 data) -> Variant<gint32>
 {
   auto result = Variant<gint32>(g_variant_new_int32(data));
   return result;
 }
 
-Variant<gint32> Variant<gint32>::create_handle(gint32 data)
+auto Variant<gint32>::create_handle(gint32 data) -> Variant<gint32>
 {
   auto result = Variant<gint32>(g_variant_new_handle(data));
   return result;
 }
 
-gint32 Variant<gint32>::get() const
+auto Variant<gint32>::get() const -> gint32
 {
   if (get_type().equal(VARIANT_TYPE_INT32))
     return g_variant_get_int32(gobject_);
@@ -123,19 +123,19 @@ gint32 Variant<gint32>::get() const
 /**** Glib::Variant<guint32> *************************************************/
 
 // static
-const VariantType& Variant<guint32>::variant_type()
+auto Variant<guint32>::variant_type() -> const VariantType&
 {
   static VariantType type(G_VARIANT_TYPE_UINT32);
   return type;
 }
 
-Variant<guint32> Variant<guint32>::create(guint32 data)
+auto Variant<guint32>::create(guint32 data) -> Variant<guint32>
 {
   auto result = Variant<guint32>(g_variant_new_uint32(data));
   return result;
 }
 
-guint32 Variant<guint32>::get() const
+auto Variant<guint32>::get() const -> guint32
 {
   return g_variant_get_uint32(gobject_);
 }
@@ -144,19 +144,19 @@ guint32 Variant<guint32>::get() const
 /**** Glib::Variant<gint64> **************************************************/
 
 // static
-const VariantType& Variant<gint64>::variant_type()
+auto Variant<gint64>::variant_type() -> const VariantType&
 {
   static VariantType type(G_VARIANT_TYPE_INT64);
   return type;
 }
 
-Variant<gint64> Variant<gint64>::create(gint64 data)
+auto Variant<gint64>::create(gint64 data) -> Variant<gint64>
 {
   auto result = Variant<gint64>(g_variant_new_int64(data));
   return result;
 }
 
-gint64 Variant<gint64>::get() const
+auto Variant<gint64>::get() const -> gint64
 {
   return g_variant_get_int64(gobject_);
 }
@@ -165,19 +165,19 @@ gint64 Variant<gint64>::get() const
 /**** Glib::Variant<guint64> *************************************************/
 
 // static
-const VariantType& Variant<guint64>::variant_type()
+auto Variant<guint64>::variant_type() -> const VariantType&
 {
   static VariantType type(G_VARIANT_TYPE_UINT64);
   return type;
 }
 
-Variant<guint64> Variant<guint64>::create(guint64 data)
+auto Variant<guint64>::create(guint64 data) -> Variant<guint64>
 {
   auto result = Variant<guint64>(g_variant_new_uint64(data));
   return result;
 }
 
-guint64 Variant<guint64>::get() const
+auto Variant<guint64>::get() const -> guint64
 {
   return g_variant_get_uint64(gobject_);
 }
@@ -186,19 +186,19 @@ guint64 Variant<guint64>::get() const
 /**** Glib::Variant<double> **************************************************/
 
 // static
-const VariantType& Variant<double>::variant_type()
+auto Variant<double>::variant_type() -> const VariantType&
 {
   static VariantType type(G_VARIANT_TYPE_DOUBLE);
   return type;
 }
 
-Variant<double> Variant<double>::create(double data)
+auto Variant<double>::create(double data) -> Variant<double>
 {
   auto result = Variant<double>(g_variant_new_double(data));
   return result;
 }
 
-double Variant<double>::get() const
+auto Variant<double>::get() const -> double
 {
   return g_variant_get_double(gobject_);
 }

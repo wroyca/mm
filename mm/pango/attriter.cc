@@ -61,7 +61,7 @@ AttrIter::~AttrIter()
      pango_attr_iterator_destroy(gobject_);
 }
 
-AttrIter& AttrIter::operator=(const AttrIter& src)
+auto AttrIter::operator=(const AttrIter& src) -> AttrIter&
 {
   auto* const new_gobject = (src.gobject_ ? pango_attr_iterator_copy(src.gobject_) : nullptr);
 
@@ -72,13 +72,13 @@ AttrIter& AttrIter::operator=(const AttrIter& src)
   return *this;
 }
 
-AttrIter& AttrIter::operator++()
+auto AttrIter::operator++() -> AttrIter&
 {
   next();
   return *this;
 }
 
-const AttrIter AttrIter::operator++(int)
+auto AttrIter::operator++(int) -> const AttrIter
 {
   AttrIter previous(*this);
   next();
@@ -95,7 +95,7 @@ AttrIter::operator bool() const
   return (gobject_ != nullptr);
 }
 
-bool AttrIter::next()
+auto AttrIter::next() -> bool
 {
   if(!pango_attr_iterator_next(gobj()))
   {
@@ -107,7 +107,7 @@ bool AttrIter::next()
     return true;
 }
 
-FontDescription AttrIter::get_font_desc() const
+auto AttrIter::get_font_desc() const -> FontDescription
 {
   FontDescription desc;
   pango_attr_iterator_get_font(const_cast<PangoAttrIterator*>(gobj()), desc.gobj(), 0, 0);
@@ -118,7 +118,7 @@ FontDescription AttrIter::get_font_desc() const
   return desc;
 }
 
-Language AttrIter::get_language() const
+auto AttrIter::get_language() const -> Language
 {
   FontDescription desc;
   PangoLanguage* language = nullptr;
@@ -130,7 +130,7 @@ Language AttrIter::get_language() const
 
 using SListHandler_Attribute = Glib::SListHandler<Attribute, AttributeTraits>;
 
-std::vector<Attribute> AttrIter::get_extra_attrs() const
+auto AttrIter::get_extra_attrs() const -> std::vector<Attribute>
 {
   FontDescription desc;
   GSList* extra_attrs = nullptr;
@@ -140,7 +140,7 @@ std::vector<Attribute> AttrIter::get_extra_attrs() const
   return SListHandler_Attribute::slist_to_vector(extra_attrs, Glib::OWNERSHIP_DEEP);
 }
 
-std::vector<Attribute> AttrIter::get_attrs() const
+auto AttrIter::get_attrs() const -> std::vector<Attribute>
 {
   auto attrs = pango_attr_iterator_get_attrs( const_cast<PangoAttrIterator*>(gobj()) );
   return SListHandler_Attribute::slist_to_vector(attrs, Glib::OWNERSHIP_DEEP);
@@ -153,7 +153,7 @@ std::vector<Attribute> AttrIter::get_attrs() const
 namespace Glib
 {
 
-Pango::AttrIter wrap(PangoAttrIterator* object, bool take_copy)
+auto wrap(PangoAttrIterator* object, bool take_copy) -> Pango::AttrIter
 {
   return Pango::AttrIter(object, take_copy);
 }
@@ -175,7 +175,7 @@ void AttrIter::get_range(int& start, int& end) const
   pango_attr_iterator_range(const_cast<PangoAttrIterator*>(gobj()), &(start), &(end));
 }
 
-Attribute AttrIter::get_attribute(AttrType type) const
+auto AttrIter::get_attribute(AttrType type) const -> Attribute
 {
   return Attribute((pango_attr_iterator_get(const_cast<PangoAttrIterator*>(gobj()), static_cast<PangoAttrType>(type))));
 }

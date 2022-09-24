@@ -61,7 +61,7 @@ public:
 
   // noncopyable
   WindowGroup(const WindowGroup&) = delete;
-  WindowGroup& operator=(const WindowGroup&) = delete;
+  auto operator=(const WindowGroup&) -> WindowGroup& = delete;
 
 private:  friend class WindowGroup_Class;
   static CppClassType windowgroup_class_;
@@ -75,28 +75,28 @@ protected:
 public:
 
   WindowGroup(WindowGroup&& src) noexcept;
-  WindowGroup& operator=(WindowGroup&& src) noexcept;
+  auto operator=(WindowGroup&& src) noexcept -> WindowGroup&;
 
   ~WindowGroup() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkWindowGroup*       gobj()       { return reinterpret_cast<GtkWindowGroup*>(gobject_); }
+  auto       gobj() -> GtkWindowGroup*       { return reinterpret_cast<GtkWindowGroup*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkWindowGroup* gobj() const { return reinterpret_cast<GtkWindowGroup*>(gobject_); }
+  auto gobj() const -> const GtkWindowGroup* { return reinterpret_cast<GtkWindowGroup*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkWindowGroup* gobj_copy();
+  auto gobj_copy() -> GtkWindowGroup*;
 
 private:
 
@@ -106,7 +106,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<WindowGroup> create();
+  static auto create() -> Glib::RefPtr<WindowGroup>;
 
 
   /** Adds a window to a `Gtk::WindowGroup`.
@@ -127,7 +127,7 @@ public:
    * @return A
    * newly-allocated list of windows inside the group.
    */
-  std::vector<Window*> list_windows();
+  auto list_windows() -> std::vector<Window*>;
 
 
   /** Returns a list of the `Gtk::Windows` that belong to @a window_group.
@@ -135,7 +135,7 @@ public:
    * @return A
    * newly-allocated list of windows inside the group.
    */
-  std::vector<const Window*> list_windows() const;
+  auto list_windows() const -> std::vector<const Window*>;
 
 
 public:
@@ -165,7 +165,7 @@ namespace Glib
    * @relates Gtk::WindowGroup
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::WindowGroup> wrap(GtkWindowGroup* object, bool take_copy = false);
+  auto wrap(GtkWindowGroup* object, bool take_copy = false) -> Glib::RefPtr<Gtk::WindowGroup>;
 }
 
 

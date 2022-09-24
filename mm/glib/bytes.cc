@@ -26,8 +26,8 @@
 namespace Glib
 {
 
-Glib::RefPtr<Glib::Bytes>
-Bytes::create(gconstpointer data, gsize size)
+auto
+Bytes::create(gconstpointer data, gsize size) -> Glib::RefPtr<Glib::Bytes>
 {
   GBytes* bytes = g_bytes_new(data, size);
   return Glib::wrap(bytes);
@@ -56,7 +56,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Glib::Bytes> wrap(GBytes* object, bool take_copy)
+auto wrap(GBytes* object, bool take_copy) -> Glib::RefPtr<Glib::Bytes>
 {
   if(take_copy && object)
     g_bytes_ref(object);
@@ -83,19 +83,19 @@ void Bytes::unreference() const
   g_bytes_unref(reinterpret_cast<GBytes*>(const_cast<Bytes*>(this)));
 }
 
-GBytes* Bytes::gobj()
+auto Bytes::gobj() -> GBytes*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<GBytes*>(this);
 }
 
-const GBytes* Bytes::gobj() const
+auto Bytes::gobj() const -> const GBytes*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<const GBytes*>(this);
 }
 
-GBytes* Bytes::gobj_copy() const
+auto Bytes::gobj_copy() const -> GBytes*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   const auto gobject = reinterpret_cast<GBytes*>(const_cast<Bytes*>(this));
@@ -104,27 +104,27 @@ GBytes* Bytes::gobj_copy() const
 }
 
 
-gconstpointer Bytes::get_data(gsize& size) const
+auto Bytes::get_data(gsize& size) const -> gconstpointer
 {
   return g_bytes_get_data(const_cast<GBytes*>(gobj()), &(size));
 }
 
-gsize Bytes::get_size() const
+auto Bytes::get_size() const -> gsize
 {
   return g_bytes_get_size(const_cast<GBytes*>(gobj()));
 }
 
-guint Bytes::hash(gconstpointer bytes)
+auto Bytes::hash(gconstpointer bytes) -> guint
 {
   return g_bytes_hash(bytes);
 }
 
-bool Bytes::equal(gconstpointer bytes1, gconstpointer bytes2)
+auto Bytes::equal(gconstpointer bytes1, gconstpointer bytes2) -> bool
 {
   return g_bytes_equal(bytes1, bytes2);
 }
 
-gint Bytes::compare(gconstpointer bytes1, gconstpointer bytes2)
+auto Bytes::compare(gconstpointer bytes1, gconstpointer bytes2) -> gint
 {
   return g_bytes_compare(bytes1, bytes2);
 }

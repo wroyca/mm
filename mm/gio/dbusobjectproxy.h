@@ -34,19 +34,11 @@ using GDBusObjectProxyClass = struct _GDBusObjectProxyClass;
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
-{
-
-namespace DBus
-{ class GIOMM_API ObjectProxy_Class; } // namespace DBus
-
-} // namespace Gio
+namespace Gio::DBus
+{ class GIOMM_API ObjectProxy_Class; } // namespace Gio
 #endif //DOXYGEN_SHOULD_SKIP_THIS
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 //The GMMPROC_EXTRA_NAMESPACE() macro is a hint to generate_wrap_init.pl to put it in the DBus sub-namespace
 
@@ -75,7 +67,7 @@ public:
 
   // noncopyable
   ObjectProxy(const ObjectProxy&) = delete;
-  ObjectProxy& operator=(const ObjectProxy&) = delete;
+  auto operator=(const ObjectProxy&) -> ObjectProxy& = delete;
 
 private:  friend class ObjectProxy_Class;
   static CppClassType objectproxy_class_;
@@ -89,28 +81,28 @@ protected:
 public:
 
   ObjectProxy(ObjectProxy&& src) noexcept;
-  ObjectProxy& operator=(ObjectProxy&& src) noexcept;
+  auto operator=(ObjectProxy&& src) noexcept -> ObjectProxy&;
 
   ~ObjectProxy() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDBusObjectProxy*       gobj()       { return reinterpret_cast<GDBusObjectProxy*>(gobject_); }
+  auto       gobj() -> GDBusObjectProxy*       { return reinterpret_cast<GDBusObjectProxy*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDBusObjectProxy* gobj() const { return reinterpret_cast<GDBusObjectProxy*>(gobject_); }
+  auto gobj() const -> const GDBusObjectProxy* { return reinterpret_cast<GDBusObjectProxy*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusObjectProxy* gobj_copy();
+  auto gobj_copy() -> GDBusObjectProxy*;
 
 private:
 
@@ -128,7 +120,7 @@ public:
    * @return A new %Gio::DBus::ObjectProxy.
    */
 
-  static Glib::RefPtr<ObjectProxy> create(const Glib::RefPtr<Connection>& connection, const Glib::ustring& object_path);
+  static auto create(const Glib::RefPtr<Connection>& connection, const Glib::ustring& object_path) -> Glib::RefPtr<ObjectProxy>;
 
 
   /** Gets the connection that @a proxy is for.
@@ -138,7 +130,7 @@ public:
    * @return A Gio::DBus::Connection. Do not free, the
    * object is owned by @a proxy.
    */
-  Glib::RefPtr<Connection> get_connection();
+  auto get_connection() -> Glib::RefPtr<Connection>;
 
   /** Gets the connection that @a proxy is for.
    *
@@ -147,7 +139,7 @@ public:
    * @return A Gio::DBus::Connection. Do not free, the
    * object is owned by @a proxy.
    */
-  Glib::RefPtr<const Connection> get_connection() const;
+  auto get_connection() const -> Glib::RefPtr<const Connection>;
 
  /** The connection of the proxy.
    *
@@ -156,7 +148,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Connection> > property_g_connection() const;
+  auto property_g_connection() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Connection> >;
 
 
  /** The object path of the proxy.
@@ -168,7 +160,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_g_object_path() const;
+  auto property_g_object_path() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -184,8 +176,6 @@ protected:
 
 };
 
-} //namespace
-
 } // namespace Gio
 
 
@@ -200,7 +190,7 @@ namespace Glib
    * @relates Gio::DBus::ObjectProxy
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DBus::ObjectProxy> wrap(GDBusObjectProxy* object, bool take_copy = false);
+  auto wrap(GDBusObjectProxy* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::ObjectProxy>;
 }
 
 

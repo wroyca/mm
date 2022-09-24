@@ -69,7 +69,7 @@ struct DispatchNotifyData
   {}
 };
 
-static void
+void
 warn_failed_pipe_io(const char* what)
 {
 #ifdef G_OS_WIN32
@@ -98,7 +98,7 @@ fd_close_and_invalidate(HANDLE& fd)
  * Set the close-on-exec flag on the file descriptor,
  * so that it won't be leaked if a new process is spawned.
  */
-static void
+void
 fd_set_close_on_exec(int fd)
 {
   const int flags = fcntl(fd, F_GETFD, 0);
@@ -107,7 +107,7 @@ fd_set_close_on_exec(int fd)
     warn_failed_pipe_io("fcntl");
 }
 
-static void
+void
 fd_close_and_invalidate(int& fd)
 {
   if (fd >= 0)
@@ -150,7 +150,7 @@ public:
 
   // noncopyable
   Impl(const Impl&) = delete;
-  Impl& operator=(const Impl&) = delete;
+  auto operator=(const Impl&) -> Impl& = delete;
 };
 
 class DispatchNotifier : public sigc::trackable
@@ -160,9 +160,9 @@ public:
 
   // noncopyable
   DispatchNotifier(const DispatchNotifier&) = delete;
-  DispatchNotifier& operator=(const DispatchNotifier&) = delete;
+  auto operator=(const DispatchNotifier&) -> DispatchNotifier& = delete;
 
-  static DispatchNotifier* reference_instance(const Glib::RefPtr<MainContext>& context);
+  static auto reference_instance(const Glib::RefPtr<MainContext>& context) -> DispatchNotifier*;
   static void unreference_instance(DispatchNotifier* notifier, Dispatcher::Impl* dispatcher_impl);
 
   void send_notification(Dispatcher::Impl* dispatcher_impl);
@@ -189,8 +189,8 @@ private:
 #endif
 
   void create_pipe();
-  bool pipe_io_handler(Glib::IOCondition condition);
-  bool pipe_is_empty();
+  auto pipe_io_handler(Glib::IOCondition condition) -> bool;
+  auto pipe_is_empty() -> bool;
 };
 
 /**** Glib::DispatchNotifier ***********************************************/
@@ -294,8 +294,8 @@ DispatchNotifier::create_pipe()
 }
 
 // static
-DispatchNotifier* DispatchNotifier::reference_instance(
-  const Glib::RefPtr<MainContext>& context)
+auto DispatchNotifier::reference_instance(
+  const Glib::RefPtr<MainContext>& context) -> DispatchNotifier*
 {
   DispatchNotifier* instance = thread_specific_instance_;
 
@@ -397,8 +397,8 @@ void DispatchNotifier::send_notification(Dispatcher::Impl* dispatcher_impl)
 #endif /* !G_OS_WIN32 */
 }
 
-bool
-DispatchNotifier::pipe_is_empty()
+auto
+DispatchNotifier::pipe_is_empty() -> bool
 {
 #ifdef G_OS_WIN32
   return notify_queue_.empty();
@@ -410,7 +410,7 @@ DispatchNotifier::pipe_is_empty()
 #endif
 }
 
-bool DispatchNotifier::pipe_io_handler(Glib::IOCondition)
+auto DispatchNotifier::pipe_io_handler(Glib::IOCondition) -> bool
 {
   DispatchNotifyData data;
 
@@ -517,14 +517,14 @@ Dispatcher::operator()()
   impl_->notifier_->send_notification(impl_);
 }
 
-sigc::connection
-Dispatcher::connect(const sigc::slot<void()>& slot)
+auto
+Dispatcher::connect(const sigc::slot<void()>& slot) -> sigc::connection
 {
   return impl_->signal_.connect(slot);
 }
 
-sigc::connection
-Dispatcher::connect(sigc::slot<void()>&& slot)
+auto
+Dispatcher::connect(sigc::slot<void()>&& slot) -> sigc::connection
 {
   return impl_->signal_.connect(std::move(slot));
 }

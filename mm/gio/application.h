@@ -114,7 +114,7 @@ public:
 
   // noncopyable
   Application(const Application&) = delete;
-  Application& operator=(const Application&) = delete;
+  auto operator=(const Application&) -> Application& = delete;
 
 private:  friend class Application_Class;
   static CppClassType application_class_;
@@ -128,28 +128,28 @@ protected:
 public:
 
   Application(Application&& src) noexcept;
-  Application& operator=(Application&& src) noexcept;
+  auto operator=(Application&& src) noexcept -> Application&;
 
   ~Application() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GApplication*       gobj()       { return reinterpret_cast<GApplication*>(gobject_); }
+  auto       gobj() -> GApplication*       { return reinterpret_cast<GApplication*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GApplication* gobj() const { return reinterpret_cast<GApplication*>(gobject_); }
+  auto gobj() const -> const GApplication* { return reinterpret_cast<GApplication*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GApplication* gobj_copy();
+  auto gobj_copy() -> GApplication*;
 
 private:
 
@@ -300,7 +300,7 @@ public:
    * @param flags The application flags.
    */
 
-  static Glib::RefPtr<Application> create(const Glib::ustring& application_id =  {}, Flags flags =  Flags::NONE);
+  static auto create(const Glib::ustring& application_id =  {}, Flags flags =  Flags::NONE) -> Glib::RefPtr<Application>;
 
 
   /** Checks if @a application_id is a valid application identifier.
@@ -352,7 +352,7 @@ public:
    * @param application_id A potential application identifier.
    * @return <tt>true</tt> if @a application_id is valid.
    */
-  static bool id_is_valid(const Glib::ustring& application_id);
+  static auto id_is_valid(const Glib::ustring& application_id) -> bool;
 
 
   /** Gets the unique identifier for @a application.
@@ -361,7 +361,7 @@ public:
    *
    * @return The identifier for @a application, owned by @a application.
    */
-  Glib::ustring get_id() const;
+  auto get_id() const -> Glib::ustring;
 
   /** Sets the unique identifier for @a application.
    *
@@ -396,7 +396,7 @@ public:
    *
    * @return A Gio::DBus::Connection, or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<DBus::Connection> get_dbus_connection();
+  auto get_dbus_connection() -> Glib::RefPtr<DBus::Connection>;
 
   /** Gets the Gio::DBus::Connection being used by the application, or <tt>nullptr</tt>.
    *
@@ -416,7 +416,7 @@ public:
    *
    * @return A Gio::DBus::Connection, or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<const DBus::Connection> get_dbus_connection() const;
+  auto get_dbus_connection() const -> Glib::RefPtr<const DBus::Connection>;
 
 
   /** Gets the D-Bus object path being used by the application, or <tt>nullptr</tt>.
@@ -438,7 +438,7 @@ public:
    *
    * @return The object path, or <tt>nullptr</tt>.
    */
-  Glib::ustring get_dbus_object_path() const;
+  auto get_dbus_object_path() const -> Glib::ustring;
 
 
   /** Gets the current inactivity timeout for the application.
@@ -450,7 +450,7 @@ public:
    *
    * @return The timeout, in milliseconds.
    */
-  guint get_inactivity_timeout() const;
+  auto get_inactivity_timeout() const -> guint;
 
   /** Sets the current inactivity timeout for the application.
    *
@@ -476,7 +476,7 @@ public:
    *
    * @return The flags for @a application.
    */
-  Flags get_flags() const;
+  auto get_flags() const -> Flags;
 
   /** Sets the flags for @a application.
    *
@@ -500,7 +500,7 @@ public:
    *
    * @return The base resource path, if one is set.
    */
-  std::string get_resource_base_path() const;
+  auto get_resource_base_path() const -> std::string;
 
   /** Sets (or unsets) the base resource path of @a application.
    *
@@ -742,7 +742,7 @@ public:
    *
    * @return <tt>true</tt> if @a application is registered.
    */
-  bool is_registered() const;
+  auto is_registered() const -> bool;
 
   /** Checks if @a application is remote.
    *
@@ -759,7 +759,7 @@ public:
    *
    * @return <tt>true</tt> if @a application is remote.
    */
-  bool is_remote() const;
+  auto is_remote() const -> bool;
 
   //Renamed from register() because that is a C++ keyword.
 
@@ -801,10 +801,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool register_application(const Glib::RefPtr<Gio::Cancellable>& cancellable);
+  auto register_application(const Glib::RefPtr<Gio::Cancellable>& cancellable) -> bool;
 
   /// A register_application() convenience overload.
-  bool register_application();
+  auto register_application() -> bool;
 
 
   /** Increases the use count of @a application.
@@ -961,7 +961,7 @@ public:
    * @param argv The argv from main(), or <tt>nullptr</tt>.
    * @return The exit status.
    */
-  int run(int argc, char** argv);
+  auto run(int argc, char** argv) -> int;
 
 
   /** Immediately quits the application.
@@ -1012,7 +1012,7 @@ public:
    *
    * @return The default application for this process, or <tt>nullptr</tt>.
    */
-  static Glib::RefPtr<Application> get_default();
+  static auto get_default() -> Glib::RefPtr<Application>;
 
 
   /** Increases the busy count of @a application.
@@ -1051,7 +1051,7 @@ public:
    *
    * @return <tt>true</tt> if @a application is currently marked as busy.
    */
-  bool get_is_busy() const;
+  auto get_is_busy() const -> bool;
 
 
   /** Sends a notification on behalf of @a application to the desktop shell.
@@ -1124,7 +1124,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_application_id() ;
+  auto property_application_id() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The unique identifier for the application.
    *
@@ -1133,7 +1133,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_application_id() const;
+  auto property_application_id() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Flags specifying the behaviour of the application.
    *
@@ -1142,7 +1142,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Flags > property_flags() ;
+  auto property_flags() -> Glib::PropertyProxy< Flags > ;
 
 /** Flags specifying the behaviour of the application.
    *
@@ -1151,7 +1151,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Flags > property_flags() const;
+  auto property_flags() const -> Glib::PropertyProxy_ReadOnly< Flags >;
 
   /** Time (ms) to stay alive after becoming idle.
    *
@@ -1160,7 +1160,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_inactivity_timeout() ;
+  auto property_inactivity_timeout() -> Glib::PropertyProxy< guint > ;
 
 /** Time (ms) to stay alive after becoming idle.
    *
@@ -1169,7 +1169,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_inactivity_timeout() const;
+  auto property_inactivity_timeout() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** If g_application_register() has been called.
    *
@@ -1178,7 +1178,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_registered() const;
+  auto property_is_registered() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** If this application instance is remote.
@@ -1188,7 +1188,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_remote() const;
+  auto property_is_remote() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** The base resource path for the application.
@@ -1200,7 +1200,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< std::string > property_resource_base_path() ;
+  auto property_resource_base_path() -> Glib::PropertyProxy< std::string > ;
 
 /** The base resource path for the application.
    *
@@ -1211,7 +1211,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::string > property_resource_base_path() const;
+  auto property_resource_base_path() const -> Glib::PropertyProxy_ReadOnly< std::string >;
 
   /** Whether the application is currently marked as busy through
    * g_application_mark_busy() or g_application_bind_busy_property().
@@ -1223,7 +1223,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_busy() const;
+  auto property_is_busy() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /**
@@ -1236,7 +1236,7 @@ public:
    * after registration. See g_application_register().
    */
 
-  Glib::SignalProxy<void()> signal_startup();
+  auto signal_startup() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -1251,7 +1251,7 @@ public:
    * @newin{2,46}
    */
 
-  Glib::SignalProxy<void()> signal_shutdown();
+  auto signal_shutdown() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -1264,12 +1264,12 @@ public:
    * activation occurs. See g_application_activate().
    */
 
-  Glib::SignalProxy<void()> signal_activate();
+  auto signal_activate() -> Glib::SignalProxy<void()>;
 
 
   //We wrap the open signal without _WRAP_SIGNAL(), because we need to change its parameters.
   //See bug https://bugzilla.gnome.org/show_bug.cgi?id=637457
-  Glib::SignalProxy<void(const type_vec_files&, const Glib::ustring&)> signal_open();
+  auto signal_open() -> Glib::SignalProxy<void(const type_vec_files&, const Glib::ustring&)>;
 
 
   /**
@@ -1288,7 +1288,7 @@ public:
    * process. See g_application_command_line_set_exit_status().
    */
 
-  Glib::SignalProxy<int(const Glib::RefPtr<ApplicationCommandLine>&)> signal_command_line();
+  auto signal_command_line() -> Glib::SignalProxy<int(const Glib::RefPtr<ApplicationCommandLine>&)>;
 
 
   //TODO: Avoid the use of the Variants in the VariantDict?
@@ -1353,7 +1353,7 @@ public:
    * the default option processing continue.
    */
 
-  Glib::SignalProxy<int(const Glib::RefPtr<Glib::VariantDict>&)> signal_handle_local_options();
+  auto signal_handle_local_options() -> Glib::SignalProxy<int(const Glib::RefPtr<Glib::VariantDict>&)>;
 
 
   /**
@@ -1373,14 +1373,14 @@ public:
    * @return <tt>true</tt> if the signal has been handled.
    */
 
-  Glib::SignalProxy<bool()> signal_name_lost();
+  auto signal_name_lost() -> Glib::SignalProxy<bool()>;
 
 
 protected:
   virtual void on_open(const type_vec_files& files, const Glib::ustring& hint);
 
 
-    virtual bool local_command_line_vfunc(char**& arguments, int& exit_status);
+    virtual auto local_command_line_vfunc(char**& arguments, int& exit_status) -> bool;
 
 
     virtual void before_emit_vfunc(const Glib::VariantBase& platform_data);
@@ -1397,7 +1397,7 @@ protected:
 
 
   /// @throws Glib::Error.
-  virtual bool dbus_register_vfunc(const Glib::RefPtr<DBus::Connection>& connection, const Glib::ustring& object_path);
+  virtual auto dbus_register_vfunc(const Glib::RefPtr<DBus::Connection>& connection, const Glib::ustring& object_path) -> bool;
 
     virtual void dbus_unregister_vfunc(const Glib::RefPtr<DBus::Connection>& connection, const Glib::ustring& object_path);
 
@@ -1406,7 +1406,7 @@ private:
   /** This is just a way to call Glib::init() before calling a Glib::Object ctor,
    * so that glibmm's GQuarks are created before they are used.
    */
-  const Glib::Class& custom_class_init();
+  auto custom_class_init() -> const Glib::Class&;
 
   // Code, common to the public add_main_option_entry*() methods with a callback slot.
   void add_main_option_entry_private(const gchar* long_name, gchar short_name,
@@ -1430,11 +1430,11 @@ protected:
   /// This is a default handler for the signal signal_activate().
   virtual void on_activate();
   /// This is a default handler for the signal signal_command_line().
-  virtual int on_command_line(const Glib::RefPtr<ApplicationCommandLine>& command_line);
+  virtual auto on_command_line(const Glib::RefPtr<ApplicationCommandLine>& command_line) -> int;
   /// This is a default handler for the signal signal_handle_local_options().
-  virtual int on_handle_local_options(const Glib::RefPtr<Glib::VariantDict>& options);
+  virtual auto on_handle_local_options(const Glib::RefPtr<Glib::VariantDict>& options) -> int;
   /// This is a default handler for the signal signal_name_lost().
-  virtual bool on_name_lost();
+  virtual auto on_name_lost() -> bool;
 
 
 };
@@ -1445,31 +1445,31 @@ namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline Application::Flags operator|(Application::Flags lhs, Application::Flags rhs)
+inline auto operator|(Application::Flags lhs, Application::Flags rhs) -> Application::Flags
   { return static_cast<Application::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Application::Flags operator&(Application::Flags lhs, Application::Flags rhs)
+inline auto operator&(Application::Flags lhs, Application::Flags rhs) -> Application::Flags
   { return static_cast<Application::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Application::Flags operator^(Application::Flags lhs, Application::Flags rhs)
+inline auto operator^(Application::Flags lhs, Application::Flags rhs) -> Application::Flags
   { return static_cast<Application::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Application::Flags operator~(Application::Flags flags)
+inline auto operator~(Application::Flags flags) -> Application::Flags
   { return static_cast<Application::Flags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline Application::Flags& operator|=(Application::Flags& lhs, Application::Flags rhs)
+inline auto operator|=(Application::Flags& lhs, Application::Flags rhs) -> Application::Flags&
   { return (lhs = static_cast<Application::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Application::Flags& operator&=(Application::Flags& lhs, Application::Flags rhs)
+inline auto operator&=(Application::Flags& lhs, Application::Flags rhs) -> Application::Flags&
   { return (lhs = static_cast<Application::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Application::Flags& operator^=(Application::Flags& lhs, Application::Flags rhs)
+inline auto operator^=(Application::Flags& lhs, Application::Flags rhs) -> Application::Flags&
   { return (lhs = static_cast<Application::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 
@@ -1481,7 +1481,7 @@ template <>
 class GIOMM_API Value<Gio::Application::Flags> : public Glib::Value_Flags<Gio::Application::Flags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1499,7 +1499,7 @@ namespace Glib
    * @relates Gio::Application
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Application> wrap(GApplication* object, bool take_copy = false);
+  auto wrap(GApplication* object, bool take_copy = false) -> Glib::RefPtr<Gio::Application>;
 }
 
 

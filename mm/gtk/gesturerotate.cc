@@ -29,7 +29,7 @@ namespace
 {
 
 
-static void GestureRotate_signal_angle_changed_callback(GtkGestureRotate* self, gdouble p0,gdouble p1,void* data)
+void GestureRotate_signal_angle_changed_callback(GtkGestureRotate* self, gdouble p0,gdouble p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
@@ -52,7 +52,7 @@ static void GestureRotate_signal_angle_changed_callback(GtkGestureRotate* self, 
   }
 }
 
-static const Glib::SignalProxyInfo GestureRotate_signal_angle_changed_info =
+const Glib::SignalProxyInfo GestureRotate_signal_angle_changed_info =
 {
   "angle-changed",
   (GCallback) &GestureRotate_signal_angle_changed_callback,
@@ -66,7 +66,7 @@ static const Glib::SignalProxyInfo GestureRotate_signal_angle_changed_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::GestureRotate> wrap(GtkGestureRotate* object, bool take_copy)
+auto wrap(GtkGestureRotate* object, bool take_copy) -> Glib::RefPtr<Gtk::GestureRotate>
 {
   return Glib::make_refptr_for_instance<Gtk::GestureRotate>( dynamic_cast<Gtk::GestureRotate*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -81,7 +81,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& GestureRotate_Class::init()
+auto GestureRotate_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -112,7 +112,7 @@ void GestureRotate_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* GestureRotate_Class::wrap_new(GObject* object)
+auto GestureRotate_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new GestureRotate((GtkGestureRotate*)object);
 }
@@ -120,7 +120,7 @@ Glib::ObjectBase* GestureRotate_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkGestureRotate* GestureRotate::gobj_copy()
+auto GestureRotate::gobj_copy() -> GtkGestureRotate*
 {
   reference();
   return gobj();
@@ -143,7 +143,7 @@ GestureRotate::GestureRotate(GestureRotate&& src) noexcept
 : Gesture(std::move(src))
 {}
 
-GestureRotate& GestureRotate::operator=(GestureRotate&& src) noexcept
+auto GestureRotate::operator=(GestureRotate&& src) noexcept -> GestureRotate&
 {
   Gesture::operator=(std::move(src));
   return *this;
@@ -156,13 +156,13 @@ GestureRotate::~GestureRotate() noexcept
 
 GestureRotate::CppClassType GestureRotate::gesturerotate_class_; // initialize static member
 
-GType GestureRotate::get_type()
+auto GestureRotate::get_type() -> GType
 {
   return gesturerotate_class_.init().get_type();
 }
 
 
-GType GestureRotate::get_base_type()
+auto GestureRotate::get_base_type() -> GType
 {
   return gtk_gesture_rotate_get_type();
 }
@@ -178,18 +178,18 @@ GestureRotate::GestureRotate()
 
 }
 
-Glib::RefPtr<GestureRotate> GestureRotate::create()
+auto GestureRotate::create() -> Glib::RefPtr<GestureRotate>
 {
   return Glib::make_refptr_for_instance<GestureRotate>( new GestureRotate() );
 }
 
-double GestureRotate::get_angle_delta() const
+auto GestureRotate::get_angle_delta() const -> double
 {
   return gtk_gesture_rotate_get_angle_delta(const_cast<GtkGestureRotate*>(gobj()));
 }
 
 
-Glib::SignalProxy<void(double, double)> GestureRotate::signal_angle_changed()
+auto GestureRotate::signal_angle_changed() -> Glib::SignalProxy<void(double, double)>
 {
   return Glib::SignalProxy<void(double, double) >(this, &GestureRotate_signal_angle_changed_info);
 }

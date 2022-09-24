@@ -83,7 +83,7 @@ public:
 
   // noncopyable
   Drop(const Drop&) = delete;
-  Drop& operator=(const Drop&) = delete;
+  auto operator=(const Drop&) -> Drop& = delete;
 
 private:  friend class Drop_Class;
   static CppClassType drop_class_;
@@ -97,28 +97,28 @@ protected:
 public:
 
   Drop(Drop&& src) noexcept;
-  Drop& operator=(Drop&& src) noexcept;
+  auto operator=(Drop&& src) noexcept -> Drop&;
 
   ~Drop() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkDrop*       gobj()       { return reinterpret_cast<GdkDrop*>(gobject_); }
+  auto       gobj() -> GdkDrop*       { return reinterpret_cast<GdkDrop*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkDrop* gobj() const { return reinterpret_cast<GdkDrop*>(gobject_); }
+  auto gobj() const -> const GdkDrop* { return reinterpret_cast<GdkDrop*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkDrop* gobj_copy();
+  auto gobj_copy() -> GdkDrop*;
 
 private:
 
@@ -129,39 +129,39 @@ public:
    *
    * @return A `Gdk::Display`.
    */
-  Glib::RefPtr<Display> get_display();
+  auto get_display() -> Glib::RefPtr<Display>;
 
   /** Gets the `Gdk::Display` that @a self was created for.
    *
    * @return A `Gdk::Display`.
    */
-  Glib::RefPtr<const Display> get_display() const;
+  auto get_display() const -> Glib::RefPtr<const Display>;
 
 
   /** Returns the `Gdk::Device` performing the drop.
    *
    * @return The `Gdk::Device` performing the drop.
    */
-  Glib::RefPtr<Device> get_device();
+  auto get_device() -> Glib::RefPtr<Device>;
 
   /** Returns the `Gdk::Device` performing the drop.
    *
    * @return The `Gdk::Device` performing the drop.
    */
-  Glib::RefPtr<const Device> get_device() const;
+  auto get_device() const -> Glib::RefPtr<const Device>;
 
 
   /** Returns the `Gdk::Surface` performing the drop.
    *
    * @return The `Gdk::Surface` performing the drop.
    */
-  Glib::RefPtr<Surface> get_surface();
+  auto get_surface() -> Glib::RefPtr<Surface>;
 
   /** Returns the `Gdk::Surface` performing the drop.
    *
    * @return The `Gdk::Surface` performing the drop.
    */
-  Glib::RefPtr<const Surface> get_surface() const;
+  auto get_surface() const -> Glib::RefPtr<const Surface>;
 
 
   /** Returns the `Gdk::ContentFormats` that the drop offers the data
@@ -169,14 +169,14 @@ public:
    *
    * @return The possible `Gdk::ContentFormats`.
    */
-  Glib::RefPtr<ContentFormats> get_formats();
+  auto get_formats() -> Glib::RefPtr<ContentFormats>;
 
   /** Returns the `Gdk::ContentFormats` that the drop offers the data
    * to be read in.
    *
    * @return The possible `Gdk::ContentFormats`.
    */
-  Glib::RefPtr<const ContentFormats> get_formats() const;
+  auto get_formats() const -> Glib::RefPtr<const ContentFormats>;
 
 
   /** Returns the possible actions for this `Gdk::Drop`.
@@ -196,7 +196,7 @@ public:
    *
    * @return The possible `Gdk::DragActions`.
    */
-  DragAction get_actions() const;
+  auto get_actions() const -> DragAction;
 
 
   /** If this is an in-app drag-and-drop operation, returns the `Gdk::Drag`
@@ -206,7 +206,7 @@ public:
    *
    * @return The corresponding `Gdk::Drag`.
    */
-  Glib::RefPtr<Drag> get_drag();
+  auto get_drag() -> Glib::RefPtr<Drag>;
 
   /** If this is an in-app drag-and-drop operation, returns the `Gdk::Drag`
    * that corresponds to this drop.
@@ -215,7 +215,7 @@ public:
    *
    * @return The corresponding `Gdk::Drag`.
    */
-  Glib::RefPtr<const Drag> get_drag() const;
+  auto get_drag() const -> Glib::RefPtr<const Drag>;
 
 
   /** Selects all actions that are potentially supported by the destination.
@@ -290,7 +290,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<Gio::InputStream> read_finish(const Glib::RefPtr<Gio::AsyncResult>& result, Glib::ustring& out_mime_type);
+  auto read_finish(const Glib::RefPtr<Gio::AsyncResult>& result, Glib::ustring& out_mime_type) -> Glib::RefPtr<Gio::InputStream>;
 
 
   /** Asynchronously request the drag operation's contents converted
@@ -322,7 +322,7 @@ public:
    * @return A `Glib::Value` containing the result.
    */
 
-  Glib::ValueBase read_value_finish(const Glib::RefPtr<Gio::AsyncResult>& result);
+  auto read_value_finish(const Glib::RefPtr<Gio::AsyncResult>& result) -> Glib::ValueBase;
 
   /** The possible actions for this drop
    *
@@ -331,7 +331,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< DragAction > property_actions() const;
+  auto property_actions() const -> Glib::PropertyProxy_ReadOnly< DragAction >;
 
 
   /** The `Gdk::Device` performing the drop
@@ -339,7 +339,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Device> > property_device() const;
+  auto property_device() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Device> >;
 
 
   /** The `Gdk::Display` that the drop belongs to.
@@ -347,7 +347,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> > property_display() const;
+  auto property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >;
 
 
   /** The `Gdk::Drag` that initiated this drop
@@ -355,7 +355,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Drag> > property_drag() const;
+  auto property_drag() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Drag> >;
 
 
   /** The possible formats that the drop can provide its data in.
@@ -363,7 +363,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> > property_formats() const;
+  auto property_formats() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> >;
 
 
   /** The `Gdk::Surface` the drop happens on
@@ -371,7 +371,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> > property_surface() const;
+  auto property_surface() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >;
 
 
   // There are no signals or public vfuncs.
@@ -404,7 +404,7 @@ namespace Glib
    * @relates Gdk::Drop
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::Drop> wrap(GdkDrop* object, bool take_copy = false);
+  auto wrap(GdkDrop* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Drop>;
 }
 
 

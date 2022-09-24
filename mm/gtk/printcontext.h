@@ -75,7 +75,7 @@ public:
 
   // noncopyable
   PrintContext(const PrintContext&) = delete;
-  PrintContext& operator=(const PrintContext&) = delete;
+  auto operator=(const PrintContext&) -> PrintContext& = delete;
 
 private:  friend class PrintContext_Class;
   static CppClassType printcontext_class_;
@@ -89,28 +89,28 @@ protected:
 public:
 
   PrintContext(PrintContext&& src) noexcept;
-  PrintContext& operator=(PrintContext&& src) noexcept;
+  auto operator=(PrintContext&& src) noexcept -> PrintContext&;
 
   ~PrintContext() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkPrintContext*       gobj()       { return reinterpret_cast<GtkPrintContext*>(gobject_); }
+  auto       gobj() -> GtkPrintContext*       { return reinterpret_cast<GtkPrintContext*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkPrintContext* gobj() const { return reinterpret_cast<GtkPrintContext*>(gobject_); }
+  auto gobj() const -> const GtkPrintContext* { return reinterpret_cast<GtkPrintContext*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkPrintContext* gobj_copy();
+  auto gobj_copy() -> GtkPrintContext*;
 
 private:
 
@@ -123,14 +123,14 @@ public:
    *
    * @return The cairo context of @a context.
    */
-  Cairo::RefPtr<Cairo::Context> get_cairo_context();
+  auto get_cairo_context() -> Cairo::RefPtr<Cairo::Context>;
 
   /** Obtains the cairo context that is associated with the
    * `Gtk::PrintContext`.
    *
    * @return The cairo context of @a context.
    */
-  Cairo::RefPtr<const Cairo::Context> get_cairo_context() const;
+  auto get_cairo_context() const -> Cairo::RefPtr<const Cairo::Context>;
 
 
   /** Obtains the `Gtk::PageSetup` that determines the page
@@ -138,27 +138,27 @@ public:
    *
    * @return The page setup of @a context.
    */
-  Glib::RefPtr<PageSetup> get_page_setup();
+  auto get_page_setup() -> Glib::RefPtr<PageSetup>;
 
   /** Obtains the `Gtk::PageSetup` that determines the page
    * dimensions of the `Gtk::PrintContext`.
    *
    * @return The page setup of @a context.
    */
-  Glib::RefPtr<const PageSetup> get_page_setup() const;
+  auto get_page_setup() const -> Glib::RefPtr<const PageSetup>;
 
 
   /** Obtains the width of the `Gtk::PrintContext`, in pixels.
    *
    * @return The width of @a context.
    */
-  double get_width() const;
+  auto get_width() const -> double;
 
   /** Obtains the height of the `Gtk::PrintContext`, in pixels.
    *
    * @return The height of @a context.
    */
-  double get_height() const;
+  auto get_height() const -> double;
 
 
   /** Obtains the horizontal resolution of the `Gtk::PrintContext`,
@@ -166,14 +166,14 @@ public:
    *
    * @return The horizontal resolution of @a context.
    */
-  double get_dpi_x() const;
+  auto get_dpi_x() const -> double;
 
   /** Obtains the vertical resolution of the `Gtk::PrintContext`,
    * in dots per inch.
    *
    * @return The vertical resolution of @a context.
    */
-  double get_dpi_y() const;
+  auto get_dpi_y() const -> double;
 
 
   /** Obtains the hardware printer margins of the `Gtk::PrintContext`,
@@ -185,7 +185,7 @@ public:
    * @param right Right hardware printer margin.
    * @return <tt>true</tt> if the hard margins were retrieved.
    */
-  bool get_hard_margins(double& top, double& bottom, double& left, double& right) const;
+  auto get_hard_margins(double& top, double& bottom, double& left, double& right) const -> bool;
 
 
   /** Returns a `Pango::FontMap` that is suitable for use
@@ -193,14 +193,14 @@ public:
    *
    * @return The font map of @a context.
    */
-  Glib::RefPtr<Pango::FontMap> get_pango_fontmap();
+  auto get_pango_fontmap() -> Glib::RefPtr<Pango::FontMap>;
 
   /** Returns a `Pango::FontMap` that is suitable for use
    * with the `Gtk::PrintContext`.
    *
    * @return The font map of @a context.
    */
-  Glib::RefPtr<const Pango::FontMap> get_pango_fontmap() const;
+  auto get_pango_fontmap() const -> Glib::RefPtr<const Pango::FontMap>;
 
 
   /** Creates a new `Pango::Context` that can be used with the
@@ -208,14 +208,14 @@ public:
    *
    * @return A new Pango context for @a context.
    */
-  Glib::RefPtr<Pango::Context> create_pango_context();
+  auto create_pango_context() -> Glib::RefPtr<Pango::Context>;
 
   /** Creates a new `Pango::Layout` that is suitable for use
    * with the `Gtk::PrintContext`.
    *
    * @return A new Pango layout for @a context.
    */
-  Glib::RefPtr<Pango::Layout> create_pango_layout();
+  auto create_pango_layout() -> Glib::RefPtr<Pango::Layout>;
 
 
   /** Sets a new cairo context on a print context.
@@ -259,7 +259,7 @@ namespace Glib
    * @relates Gtk::PrintContext
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::PrintContext> wrap(GtkPrintContext* object, bool take_copy = false);
+  auto wrap(GtkPrintContext* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PrintContext>;
 }
 
 

@@ -69,7 +69,7 @@ namespace
 {
 
 
-static void DrawingArea_signal_resize_callback(GtkDrawingArea* self, gint p0,gint p1,void* data)
+void DrawingArea_signal_resize_callback(GtkDrawingArea* self, gint p0,gint p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(int, int)>;
@@ -92,7 +92,7 @@ static void DrawingArea_signal_resize_callback(GtkDrawingArea* self, gint p0,gin
   }
 }
 
-static const Glib::SignalProxyInfo DrawingArea_signal_resize_info =
+const Glib::SignalProxyInfo DrawingArea_signal_resize_info =
 {
   "resize",
   (GCallback) &DrawingArea_signal_resize_callback,
@@ -106,7 +106,7 @@ static const Glib::SignalProxyInfo DrawingArea_signal_resize_info =
 namespace Glib
 {
 
-Gtk::DrawingArea* wrap(GtkDrawingArea* object, bool take_copy)
+auto wrap(GtkDrawingArea* object, bool take_copy) -> Gtk::DrawingArea*
 {
   return dynamic_cast<Gtk::DrawingArea *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -119,7 +119,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& DrawingArea_Class::init()
+auto DrawingArea_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -191,7 +191,7 @@ void DrawingArea_Class::resize_callback(GtkDrawingArea* self, gint p0, gint p1)
 }
 
 
-Glib::ObjectBase* DrawingArea_Class::wrap_new(GObject* o)
+auto DrawingArea_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new DrawingArea((GtkDrawingArea*)(o)));
 
@@ -217,7 +217,7 @@ DrawingArea::DrawingArea(DrawingArea&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-DrawingArea& DrawingArea::operator=(DrawingArea&& src) noexcept
+auto DrawingArea::operator=(DrawingArea&& src) noexcept -> DrawingArea&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -230,13 +230,13 @@ DrawingArea::~DrawingArea() noexcept
 
 DrawingArea::CppClassType DrawingArea::drawingarea_class_; // initialize static member
 
-GType DrawingArea::get_type()
+auto DrawingArea::get_type() -> GType
 {
   return drawingarea_class_.init().get_type();
 }
 
 
-GType DrawingArea::get_base_type()
+auto DrawingArea::get_base_type() -> GType
 {
   return gtk_drawing_area_get_type();
 }
@@ -257,7 +257,7 @@ void DrawingArea::set_content_width(int width)
   gtk_drawing_area_set_content_width(gobj(), width);
 }
 
-int DrawingArea::get_content_width() const
+auto DrawingArea::get_content_width() const -> int
 {
   return gtk_drawing_area_get_content_width(const_cast<GtkDrawingArea*>(gobj()));
 }
@@ -267,34 +267,34 @@ void DrawingArea::set_content_height(int width)
   gtk_drawing_area_set_content_height(gobj(), width);
 }
 
-int DrawingArea::get_content_height() const
+auto DrawingArea::get_content_height() const -> int
 {
   return gtk_drawing_area_get_content_height(const_cast<GtkDrawingArea*>(gobj()));
 }
 
 
-Glib::SignalProxy<void(int, int)> DrawingArea::signal_resize()
+auto DrawingArea::signal_resize() -> Glib::SignalProxy<void(int, int)>
 {
   return Glib::SignalProxy<void(int, int) >(this, &DrawingArea_signal_resize_info);
 }
 
 
-Glib::PropertyProxy< int > DrawingArea::property_content_width()
+auto DrawingArea::property_content_width() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "content-width");
 }
 
-Glib::PropertyProxy_ReadOnly< int > DrawingArea::property_content_width() const
+auto DrawingArea::property_content_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "content-width");
 }
 
-Glib::PropertyProxy< int > DrawingArea::property_content_height()
+auto DrawingArea::property_content_height() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "content-height");
 }
 
-Glib::PropertyProxy_ReadOnly< int > DrawingArea::property_content_height() const
+auto DrawingArea::property_content_height() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "content-height");
 }

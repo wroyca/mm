@@ -35,7 +35,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo ColorButton_signal_color_set_info =
+const Glib::SignalProxyInfo ColorButton_signal_color_set_info =
 {
   "color-set",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -49,7 +49,7 @@ static const Glib::SignalProxyInfo ColorButton_signal_color_set_info =
 namespace Glib
 {
 
-Gtk::ColorButton* wrap(GtkColorButton* object, bool take_copy)
+auto wrap(GtkColorButton* object, bool take_copy) -> Gtk::ColorButton*
 {
   return dynamic_cast<Gtk::ColorButton *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -62,7 +62,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ColorButton_Class::init()
+auto ColorButton_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -94,7 +94,7 @@ void ColorButton_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* ColorButton_Class::wrap_new(GObject* o)
+auto ColorButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new ColorButton((GtkColorButton*)(o)));
 
@@ -121,7 +121,7 @@ ColorButton::ColorButton(ColorButton&& src) noexcept
   , ColorChooser(std::move(src))
 {}
 
-ColorButton& ColorButton::operator=(ColorButton&& src) noexcept
+auto ColorButton::operator=(ColorButton&& src) noexcept -> ColorButton&
 {
   Gtk::Widget::operator=(std::move(src));
   ColorChooser::operator=(std::move(src));
@@ -135,13 +135,13 @@ ColorButton::~ColorButton() noexcept
 
 ColorButton::CppClassType ColorButton::colorbutton_class_; // initialize static member
 
-GType ColorButton::get_type()
+auto ColorButton::get_type() -> GType
 {
   return colorbutton_class_.init().get_type();
 }
 
 
-GType ColorButton::get_base_type()
+auto ColorButton::get_base_type() -> GType
 {
   return gtk_color_button_get_type();
 }
@@ -172,7 +172,7 @@ void ColorButton::set_title(const Glib::ustring& title)
   gtk_color_button_set_title(gobj(), title.c_str());
 }
 
-Glib::ustring ColorButton::get_title() const
+auto ColorButton::get_title() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_color_button_get_title(const_cast<GtkColorButton*>(gobj())));
 }
@@ -182,44 +182,44 @@ void ColorButton::set_modal(bool modal)
   gtk_color_button_set_modal(gobj(), static_cast<int>(modal));
 }
 
-bool ColorButton::get_modal() const
+auto ColorButton::get_modal() const -> bool
 {
   return gtk_color_button_get_modal(const_cast<GtkColorButton*>(gobj()));
 }
 
 
-Glib::SignalProxy<void()> ColorButton::signal_color_set()
+auto ColorButton::signal_color_set() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &ColorButton_signal_color_set_info);
 }
 
 
-Glib::PropertyProxy< Glib::ustring > ColorButton::property_title()
+auto ColorButton::property_title() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "title");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > ColorButton::property_title() const
+auto ColorButton::property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "title");
 }
 
-Glib::PropertyProxy< bool > ColorButton::property_show_editor()
+auto ColorButton::property_show_editor() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "show-editor");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > ColorButton::property_show_editor() const
+auto ColorButton::property_show_editor() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "show-editor");
 }
 
-Glib::PropertyProxy< bool > ColorButton::property_modal()
+auto ColorButton::property_modal() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "modal");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > ColorButton::property_modal() const
+auto ColorButton::property_modal() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "modal");
 }

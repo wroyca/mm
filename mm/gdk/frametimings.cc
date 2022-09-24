@@ -46,7 +46,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::FrameTimings> wrap(GdkFrameTimings* object, bool take_copy)
+auto wrap(GdkFrameTimings* object, bool take_copy) -> Glib::RefPtr<Gdk::FrameTimings>
 {
   if(take_copy && object)
     gdk_frame_timings_ref(object);
@@ -73,19 +73,19 @@ void FrameTimings::unreference() const
   gdk_frame_timings_unref(reinterpret_cast<GdkFrameTimings*>(const_cast<FrameTimings*>(this)));
 }
 
-GdkFrameTimings* FrameTimings::gobj()
+auto FrameTimings::gobj() -> GdkFrameTimings*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<GdkFrameTimings*>(this);
 }
 
-const GdkFrameTimings* FrameTimings::gobj() const
+auto FrameTimings::gobj() const -> const GdkFrameTimings*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<const GdkFrameTimings*>(this);
 }
 
-GdkFrameTimings* FrameTimings::gobj_copy() const
+auto FrameTimings::gobj_copy() const -> GdkFrameTimings*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   const auto gobject = reinterpret_cast<GdkFrameTimings*>(const_cast<FrameTimings*>(this));
@@ -94,32 +94,32 @@ GdkFrameTimings* FrameTimings::gobj_copy() const
 }
 
 
-gint64 FrameTimings::get_frame_counter() const
+auto FrameTimings::get_frame_counter() const -> gint64
 {
   return gdk_frame_timings_get_frame_counter(const_cast<GdkFrameTimings*>(gobj()));
 }
 
-bool FrameTimings::get_complete() const
+auto FrameTimings::get_complete() const -> bool
 {
   return gdk_frame_timings_get_complete(const_cast<GdkFrameTimings*>(gobj()));
 }
 
-gint64 FrameTimings::get_frame_time() const
+auto FrameTimings::get_frame_time() const -> gint64
 {
   return gdk_frame_timings_get_frame_time(const_cast<GdkFrameTimings*>(gobj()));
 }
 
-gint64 FrameTimings::get_presentation_time() const
+auto FrameTimings::get_presentation_time() const -> gint64
 {
   return gdk_frame_timings_get_presentation_time(const_cast<GdkFrameTimings*>(gobj()));
 }
 
-gint64 FrameTimings::get_refresh_interval() const
+auto FrameTimings::get_refresh_interval() const -> gint64
 {
   return gdk_frame_timings_get_refresh_interval(const_cast<GdkFrameTimings*>(gobj()));
 }
 
-gint64 FrameTimings::get_predicted_presentation_time() const
+auto FrameTimings::get_predicted_presentation_time() const -> gint64
 {
   return gdk_frame_timings_get_predicted_presentation_time(const_cast<GdkFrameTimings*>(gobj()));
 }

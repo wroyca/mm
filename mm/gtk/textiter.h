@@ -79,31 +79,31 @@ enum class TextSearchFlags
 };
 
 /** @ingroup gtkmmEnums */
-inline TextSearchFlags operator|(TextSearchFlags lhs, TextSearchFlags rhs)
+inline auto operator|(TextSearchFlags lhs, TextSearchFlags rhs) -> TextSearchFlags
   { return static_cast<TextSearchFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline TextSearchFlags operator&(TextSearchFlags lhs, TextSearchFlags rhs)
+inline auto operator&(TextSearchFlags lhs, TextSearchFlags rhs) -> TextSearchFlags
   { return static_cast<TextSearchFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline TextSearchFlags operator^(TextSearchFlags lhs, TextSearchFlags rhs)
+inline auto operator^(TextSearchFlags lhs, TextSearchFlags rhs) -> TextSearchFlags
   { return static_cast<TextSearchFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline TextSearchFlags operator~(TextSearchFlags flags)
+inline auto operator~(TextSearchFlags flags) -> TextSearchFlags
   { return static_cast<TextSearchFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gtkmmEnums */
-inline TextSearchFlags& operator|=(TextSearchFlags& lhs, TextSearchFlags rhs)
+inline auto operator|=(TextSearchFlags& lhs, TextSearchFlags rhs) -> TextSearchFlags&
   { return (lhs = static_cast<TextSearchFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline TextSearchFlags& operator&=(TextSearchFlags& lhs, TextSearchFlags rhs)
+inline auto operator&=(TextSearchFlags& lhs, TextSearchFlags rhs) -> TextSearchFlags&
   { return (lhs = static_cast<TextSearchFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline TextSearchFlags& operator^=(TextSearchFlags& lhs, TextSearchFlags rhs)
+inline auto operator^=(TextSearchFlags& lhs, TextSearchFlags rhs) -> TextSearchFlags&
   { return (lhs = static_cast<TextSearchFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -117,7 +117,7 @@ template <>
 class GTKMM_API Value<Gtk::TextSearchFlags> : public Glib::Value_Flags<Gtk::TextSearchFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -149,24 +149,24 @@ class GTKMM_API TextIterBase
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   TextIterBase(const TextIterBase& other) noexcept;
-  TextIterBase& operator=(const TextIterBase& other) noexcept;
+  auto operator=(const TextIterBase& other) noexcept -> TextIterBase&;
 
   TextIterBase(TextIterBase&& other) noexcept;
-  TextIterBase& operator=(TextIterBase&& other) noexcept;
+  auto operator=(TextIterBase&& other) noexcept -> TextIterBase&;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   TextIterBase();
 
   explicit TextIterBase(const GtkTextIter* gobject); // always takes a copy
 
   ///Provides access to the underlying C instance.
-  GtkTextIter*       gobj()       { return &gobject_; }
+  auto       gobj() -> GtkTextIter*       { return &gobject_; }
 
   ///Provides access to the underlying C instance.
-  const GtkTextIter* gobj() const { return &gobject_; }
+  auto gobj() const -> const GtkTextIter* { return &gobject_; }
 
 protected:
   GtkTextIter gobject_;
@@ -182,7 +182,7 @@ public:
   using pointer           = void;
 
   /** Alias for get_char(). */
-  inline value_type operator*() const;
+  inline auto operator*() const -> value_type;
 
    /** Alias for !is_end().
    * For instance,
@@ -205,7 +205,7 @@ public:
    *
    * @return A character offset.
    */
-  int get_offset() const;
+  auto get_offset() const -> int;
 
   /** Returns the line number containing the iterator.
    *
@@ -214,7 +214,7 @@ public:
    *
    * @return A line number.
    */
-  int get_line() const;
+  auto get_line() const -> int;
 
   /** Returns the character offset of the iterator,
    * counting from the start of a newline-terminated line.
@@ -223,7 +223,7 @@ public:
    *
    * @return Offset from start of line.
    */
-  int get_line_offset() const;
+  auto get_line_offset() const -> int;
 
   /** Returns the byte index of the iterator, counting
    * from the start of a newline-terminated line.
@@ -234,7 +234,7 @@ public:
    *
    * @return Distance from start of line, in bytes.
    */
-  int get_line_index() const;
+  auto get_line_index() const -> int;
 
 
   /** Returns the offset in characters from the start of the
@@ -244,7 +244,7 @@ public:
    *
    * @return Offset in visible characters from the start of the line.
    */
-  int get_visible_line_offset() const;
+  auto get_visible_line_offset() const -> int;
 
   /** Returns the number of bytes from the start of the
    * line to the given @a iter, not counting bytes that
@@ -253,7 +253,7 @@ public:
    *
    * @return Byte index of @a iter with respect to the start of the line.
    */
-  int get_visible_line_index() const;
+  auto get_visible_line_index() const -> int;
 
 
   /** The Unicode character at this iterator is returned.
@@ -268,7 +268,7 @@ public:
    *
    * @return A Unicode character, or 0 if @a iter is not dereferenceable.
    */
-  gunichar get_char() const;
+  auto get_char() const -> gunichar;
 
 
   /** Returns the text in the given range.
@@ -285,7 +285,7 @@ public:
    * @param end Iterator at end of a range.
    * @return Slice of text from the buffer.
    */
-  Glib::ustring get_slice(const TextIterBase& end) const;
+  auto get_slice(const TextIterBase& end) const -> Glib::ustring;
 
   /** Returns text in the given range.
    *
@@ -298,7 +298,7 @@ public:
    * @param end Iterator at end of a range.
    * @return Array of characters from the buffer.
    */
-  Glib::ustring get_text(const TextIterBase& end) const;
+  auto get_text(const TextIterBase& end) const -> Glib::ustring;
 
   /** Returns visible text in the given range.
    *
@@ -310,7 +310,7 @@ public:
    * @param end Iterator at end of range.
    * @return Slice of text from the buffer.
    */
-  Glib::ustring get_visible_slice(const TextIterBase& end) const;
+  auto get_visible_slice(const TextIterBase& end) const -> Glib::ustring;
 
   /** Returns visible text in the given range.
    *
@@ -323,7 +323,7 @@ public:
    * @return String containing visible text in the
    * range.
    */
-  Glib::ustring get_visible_text(const TextIterBase& end) const;
+  auto get_visible_text(const TextIterBase& end) const -> Glib::ustring;
 
 
   /** Returns <tt>true</tt> if @a tag is toggled on at exactly this point.
@@ -340,7 +340,7 @@ public:
    * @param tag A `Gtk::TextTag`.
    * @return Whether @a iter is the start of a range tagged with @a tag.
    */
-  bool starts_tag(const Glib::RefPtr<const TextTag>& tag =  {}) const;
+  auto starts_tag(const Glib::RefPtr<const TextTag>& tag =  {}) const -> bool;
 
   /** Returns <tt>true</tt> if @a tag is toggled off at exactly this point.
    *
@@ -356,7 +356,7 @@ public:
    * @param tag A `Gtk::TextTag`.
    * @return Whether @a iter is the end of a range tagged with @a tag.
    */
-  bool ends_tag(const Glib::RefPtr<const TextTag>& tag =  {}) const;
+  auto ends_tag(const Glib::RefPtr<const TextTag>& tag =  {}) const -> bool;
 
   /** Gets whether a range with @a tag applied to it begins
    * or ends at @a iter.
@@ -367,7 +367,7 @@ public:
    * @param tag A `Gtk::TextTag`.
    * @return Whether @a tag is toggled on or off at @a iter.
    */
-  bool toggles_tag(const Glib::RefPtr<const TextTag>& tag =  {}) const;
+  auto toggles_tag(const Glib::RefPtr<const TextTag>& tag =  {}) const -> bool;
 
   /** Returns <tt>true</tt> if @a iter points to a character that is part
    * of a range tagged with @a tag.
@@ -378,7 +378,7 @@ public:
    * @param tag A `Gtk::TextTag`.
    * @return Whether @a iter is tagged with @a tag.
    */
-  bool has_tag(const Glib::RefPtr<const TextTag>& tag) const;
+  auto has_tag(const Glib::RefPtr<const TextTag>& tag) const -> bool;
 
 
   /** Returns whether the character at @a iter is within an editable region
@@ -398,7 +398,7 @@ public:
    * @param default_setting <tt>true</tt> if text is editable by default.
    * @return Whether @a iter is inside an editable range.
    */
-  bool editable(bool default_setting =  true) const;
+  auto editable(bool default_setting =  true) const -> bool;
 
   /** Considering the default editability of the buffer, and tags that
    * affect editability, determines whether text inserted at @a iter would
@@ -412,7 +412,7 @@ public:
    * @param default_editability <tt>true</tt> if text is editable by default.
    * @return Whether text inserted at @a iter would be editable.
    */
-  bool can_insert(bool default_editability =  true) const;
+  auto can_insert(bool default_editability =  true) const -> bool;
 
 
   /** Determines whether @a iter begins a natural-language word.
@@ -422,7 +422,7 @@ public:
    *
    * @return <tt>true</tt> if @a iter is at the start of a word.
    */
-  bool starts_word() const;
+  auto starts_word() const -> bool;
 
   /** Determines whether @a iter ends a natural-language word.
    *
@@ -431,7 +431,7 @@ public:
    *
    * @return <tt>true</tt> if @a iter is at the end of a word.
    */
-  bool ends_word() const;
+  auto ends_word() const -> bool;
 
   /** Determines whether the character pointed by @a iter is part of a
    * natural-language word (as opposed to say inside some whitespace).
@@ -445,7 +445,7 @@ public:
    *
    * @return <tt>true</tt> if @a iter is inside a word.
    */
-  bool inside_word() const;
+  auto inside_word() const -> bool;
 
   /** Determines whether @a iter begins a sentence.
    *
@@ -454,7 +454,7 @@ public:
    *
    * @return <tt>true</tt> if @a iter is at the start of a sentence.
    */
-  bool starts_sentence() const;
+  auto starts_sentence() const -> bool;
 
   /** Determines whether @a iter ends a sentence.
    *
@@ -463,7 +463,7 @@ public:
    *
    * @return <tt>true</tt> if @a iter is at the end of a sentence.
    */
-  bool ends_sentence() const;
+  auto ends_sentence() const -> bool;
 
   /** Determines whether @a iter is inside a sentence (as opposed to in
    * between two sentences, e.g.\ after a period and before the first
@@ -474,7 +474,7 @@ public:
    *
    * @return <tt>true</tt> if @a iter is inside a sentence.
    */
-  bool inside_sentence() const;
+  auto inside_sentence() const -> bool;
 
   /** Returns <tt>true</tt> if @a iter begins a paragraph.
    *
@@ -486,7 +486,7 @@ public:
    *
    * @return Whether @a iter begins a line.
    */
-  bool starts_line() const;
+  auto starts_line() const -> bool;
 
   /** Returns <tt>true</tt> if @a iter points to the start of the paragraph
    * delimiter characters for a line.
@@ -502,7 +502,7 @@ public:
    *
    * @return Whether @a iter is at the end of a line.
    */
-  bool ends_line() const;
+  auto ends_line() const -> bool;
 
   /** Determine if @a iter is at a cursor position.
    *
@@ -512,7 +512,7 @@ public:
    *
    * @return <tt>true</tt> if the cursor can be placed at @a iter.
    */
-  bool is_cursor_position() const;
+  auto is_cursor_position() const -> bool;
 
 
   /** Returns the number of characters in the line containing @a iter,
@@ -520,14 +520,14 @@ public:
    *
    * @return Number of characters in the line.
    */
-  int get_chars_in_line() const;
+  auto get_chars_in_line() const -> int;
 
   /** Returns the number of bytes in the line containing @a iter,
    * including the paragraph delimiters.
    *
    * @return Number of bytes in the line.
    */
-  int get_bytes_in_line() const;
+  auto get_bytes_in_line() const -> int;
 
 
   /** Returns the language in effect at @a iter.
@@ -537,7 +537,7 @@ public:
    *
    * @return Language in effect at @a iter.
    */
-  Pango::Language get_language() const;
+  auto get_language() const -> Pango::Language;
 
   /** Returns <tt>true</tt> if @a iter is the end iterator.
    *
@@ -547,13 +547,13 @@ public:
    *
    * @return Whether @a iter is the end iterator.
    */
-  bool is_end() const;
+  auto is_end() const -> bool;
 
   /** Returns <tt>true</tt> if @a iter is the first iterator in the buffer.
    *
    * @return Whether @a iter is the first in the buffer.
    */
-  bool is_start() const;
+  auto is_start() const -> bool;
 
 
   /** Moves @a iter forward by one character offset.
@@ -566,13 +566,13 @@ public:
    *
    * @return Whether @a iter moved and is dereferenceable.
    */
-  bool forward_char();
+  auto forward_char() -> bool;
 
   /** Moves backward by one character offset.
    *
    * @return Whether movement was possible.
    */
-  bool backward_char();
+  auto backward_char() -> bool;
 
   /** Moves @a count characters if possible.
    *
@@ -587,7 +587,7 @@ public:
    * @param count Number of characters to move, may be negative.
    * @return Whether @a iter moved and is dereferenceable.
    */
-  bool forward_chars(int count);
+  auto forward_chars(int count) -> bool;
 
   /** Moves @a count characters backward, if possible.
    *
@@ -602,7 +602,7 @@ public:
    * @param count Number of characters to move.
    * @return Whether @a iter moved and is dereferenceable.
    */
-  bool backward_chars(int count);
+  auto backward_chars(int count) -> bool;
 
   /** Moves @a iter to the start of the next line.
    *
@@ -613,13 +613,13 @@ public:
    *
    * @return Whether @a iter can be dereferenced.
    */
-  bool forward_line();
+  auto forward_line() -> bool;
 
   /** Moves @a iter to the start of the previous line.
    *
    * @return Whether @a iter moved.
    */
-  bool backward_line();
+  auto backward_line() -> bool;
 
   /** Moves @a count lines forward, if possible.
    *
@@ -635,7 +635,7 @@ public:
    * @param count Number of lines to move forward.
    * @return Whether @a iter moved and is dereferenceable.
    */
-  bool forward_lines(int count);
+  auto forward_lines(int count) -> bool;
 
   /** Moves @a count lines backward, if possible.
    *
@@ -651,7 +651,7 @@ public:
    * @param count Number of lines to move backward.
    * @return Whether @a iter moved and is dereferenceable.
    */
-  bool backward_lines(int count);
+  auto backward_lines(int count) -> bool;
 
   /** Moves forward to the next word end.
    *
@@ -663,7 +663,7 @@ public:
    *
    * @return <tt>true</tt> if @a iter moved and is not the end iterator.
    */
-  bool forward_word_end();
+  auto forward_word_end() -> bool;
 
   /** Moves backward to the previous word start.
    *
@@ -675,34 +675,34 @@ public:
    *
    * @return <tt>true</tt> if @a iter moved and is not the end iterator.
    */
-  bool backward_word_start();
+  auto backward_word_start() -> bool;
 
   /** Calls forward_word_end() up to @a count times.
    *
    * @param count Number of times to move.
    * @return <tt>true</tt> if @a iter moved and is not the end iterator.
    */
-  bool forward_word_ends(int count);
+  auto forward_word_ends(int count) -> bool;
 
   /** Calls backward_word_start() up to @a count times.
    *
    * @param count Number of times to move.
    * @return <tt>true</tt> if @a iter moved and is not the end iterator.
    */
-  bool backward_word_starts(int count);
+  auto backward_word_starts(int count) -> bool;
 
 
   /** Moves @a iter to the start of the next visible line.
    *
    * @return Whether @a iter can be dereferenced.
    */
-  bool forward_visible_line();
+  auto forward_visible_line() -> bool;
 
   /** Moves @a iter to the start of the previous visible line.
    *
    * @return Whether @a iter moved.
    */
-  bool backward_visible_line();
+  auto backward_visible_line() -> bool;
 
   /** Moves @a count visible lines forward, if possible.
    *
@@ -718,7 +718,7 @@ public:
    * @param count Number of lines to move forward.
    * @return Whether @a iter moved and is dereferenceable.
    */
-  bool forward_visible_lines(int count);
+  auto forward_visible_lines(int count) -> bool;
 
   /** Moves @a count visible lines backward, if possible.
    *
@@ -734,7 +734,7 @@ public:
    * @param count Number of lines to move backward.
    * @return Whether @a iter moved and is dereferenceable.
    */
-  bool backward_visible_lines(int count);
+  auto backward_visible_lines(int count) -> bool;
 
   //TODO: Now that there are so many *_visible_ versions of the methods, maybe we should
   //just add a visible=false parameter and therefore halve the number of methods. murrayc
@@ -750,7 +750,7 @@ public:
    *
    * @return <tt>true</tt> if @a iter moved and is not the end iterator.
    */
-  bool forward_visible_word_end();
+  auto forward_visible_word_end() -> bool;
 
   /** Moves backward to the previous visible word start.
    *
@@ -762,21 +762,21 @@ public:
    *
    * @return <tt>true</tt> if @a iter moved and is not the end iterator.
    */
-  bool backward_visible_word_start();
+  auto backward_visible_word_start() -> bool;
 
   /** Calls forward_visible_word_end() up to @a count times.
    *
    * @param count Number of times to move.
    * @return <tt>true</tt> if @a iter moved and is not the end iterator.
    */
-  bool forward_visible_word_ends(int count);
+  auto forward_visible_word_ends(int count) -> bool;
 
   /** Calls backward_visible_word_start() up to @a count times.
    *
    * @param count Number of times to move.
    * @return <tt>true</tt> if @a iter moved and is not the end iterator.
    */
-  bool backward_visible_word_starts(int count);
+  auto backward_visible_word_starts(int count) -> bool;
 
 
   /** Moves forward to the next sentence end.
@@ -789,7 +789,7 @@ public:
    *
    * @return <tt>true</tt> if @a iter moved and is not the end iterator.
    */
-  bool forward_sentence_end();
+  auto forward_sentence_end() -> bool;
 
   /** Moves backward to the previous sentence start.
    *
@@ -801,7 +801,7 @@ public:
    *
    * @return <tt>true</tt> if @a iter moved and is not the end iterator.
    */
-  bool backward_sentence_start();
+  auto backward_sentence_start() -> bool;
 
   /** Calls forward_sentence_end() @a count times.
    *
@@ -810,7 +810,7 @@ public:
    * @param count Number of sentences to move.
    * @return <tt>true</tt> if @a iter moved and is not the end iterator.
    */
-  bool forward_sentence_ends(int count);
+  auto forward_sentence_ends(int count) -> bool;
 
   /** Calls backward_sentence_start() up to @a count times.
    *
@@ -819,7 +819,7 @@ public:
    * @param count Number of sentences to move.
    * @return <tt>true</tt> if @a iter moved and is not the end iterator.
    */
-  bool backward_sentence_starts(int count);
+  auto backward_sentence_starts(int count) -> bool;
 
 
   /** Moves @a iter forward by a single cursor position.
@@ -840,13 +840,13 @@ public:
    *
    * @return <tt>true</tt> if we moved and the new position is dereferenceable.
    */
-  bool forward_cursor_position();
+  auto forward_cursor_position() -> bool;
 
   /** Like forward_cursor_position(), but moves backward.
    *
    * @return <tt>true</tt> if we moved.
    */
-  bool backward_cursor_position();
+  auto backward_cursor_position() -> bool;
 
   /** Moves up to @a count cursor positions.
    *
@@ -855,7 +855,7 @@ public:
    * @param count Number of positions to move.
    * @return <tt>true</tt> if we moved and the new position is dereferenceable.
    */
-  bool forward_cursor_positions(int count);
+  auto forward_cursor_positions(int count) -> bool;
 
   /** Moves up to @a count cursor positions.
    *
@@ -864,7 +864,7 @@ public:
    * @param count Number of positions to move.
    * @return <tt>true</tt> if we moved and the new position is dereferenceable.
    */
-  bool backward_cursor_positions(int count);
+  auto backward_cursor_positions(int count) -> bool;
 
 
   /** Moves @a iter forward to the next visible cursor position.
@@ -873,7 +873,7 @@ public:
    *
    * @return <tt>true</tt> if we moved and the new position is dereferenceable.
    */
-  bool forward_visible_cursor_position();
+  auto forward_visible_cursor_position() -> bool;
 
   /** Moves @a iter forward to the previous visible cursor position.
    *
@@ -881,7 +881,7 @@ public:
    *
    * @return <tt>true</tt> if we moved and the new position is dereferenceable.
    */
-  bool backward_visible_cursor_position();
+  auto backward_visible_cursor_position() -> bool;
 
   /** Moves up to @a count visible cursor positions.
    *
@@ -890,7 +890,7 @@ public:
    * @param count Number of positions to move.
    * @return <tt>true</tt> if we moved and the new position is dereferenceable.
    */
-  bool forward_visible_cursor_positions(int count);
+  auto forward_visible_cursor_positions(int count) -> bool;
 
   /** Moves up to @a count visible cursor positions.
    *
@@ -899,7 +899,7 @@ public:
    * @param count Number of positions to move.
    * @return <tt>true</tt> if we moved and the new position is dereferenceable.
    */
-  bool backward_visible_cursor_positions(int count);
+  auto backward_visible_cursor_positions(int count) -> bool;
 
 
   /** Sets @a iter to point to @a char_offset.
@@ -962,7 +962,7 @@ public:
    *
    * @return <tt>true</tt> if we moved and the new location is not the end iterator.
    */
-  bool forward_to_line_end();
+  auto forward_to_line_end() -> bool;
 
 
   /** Like set_line_offset(), but the offset is in visible
@@ -995,7 +995,7 @@ public:
    * @param tag A `Gtk::TextTag`.
    * @return Whether we found a tag toggle after @a iter.
    */
-  bool forward_to_tag_toggle(const Glib::RefPtr<const TextTag>& tag =  {});
+  auto forward_to_tag_toggle(const Glib::RefPtr<const TextTag>& tag =  {}) -> bool;
 
   /** Moves backward to the next toggle (on or off) of the
    *  @a tag, or to the next toggle of any tag if
@@ -1010,7 +1010,7 @@ public:
    * @param tag A `Gtk::TextTag`.
    * @return Whether we found a tag toggle before @a iter.
    */
-  bool backward_to_tag_toggle(const Glib::RefPtr<const TextTag>& tag =  {});
+  auto backward_to_tag_toggle(const Glib::RefPtr<const TextTag>& tag =  {}) -> bool;
 
   /** A slot that will be called on each consecutive character.
    * forward_find_char() and backward_find_char() advance the iterator one
@@ -1043,7 +1043,7 @@ public:
    * @param limit Search limit.
    * @return Whether a match was found.
    */
-  bool forward_find_char(const SlotFindChar& slot, const TextIterBase& limit);
+  auto forward_find_char(const SlotFindChar& slot, const TextIterBase& limit) -> bool;
 
   /** Advances this iterator, calling @a slot on each character.
    *
@@ -1054,7 +1054,7 @@ public:
    * @param slot A function to be called on each character.
    * @return Whether a match was found.
    */
-  bool forward_find_char(const SlotFindChar& slot);
+  auto forward_find_char(const SlotFindChar& slot) -> bool;
 
   /** Same as forward_find_char(const SlotFindChar& slot, const TextIterBase& limit),
    * but goes backward.
@@ -1063,14 +1063,14 @@ public:
    * @param limit Search limit.
    * @return Whether a match was found.
    */
-  bool backward_find_char(const SlotFindChar& slot, const TextIterBase& limit);
+  auto backward_find_char(const SlotFindChar& slot, const TextIterBase& limit) -> bool;
 
   /** Same as forward_find_char(const SlotFindChar& slot), but goes backward.
    *
    * @param slot Function to be called on each character.
    * @return Whether a match was found.
    */
-  bool backward_find_char(const SlotFindChar& slot);
+  auto backward_find_char(const SlotFindChar& slot) -> bool;
 
 
   /** A qsort()-style function that returns negative if @a lhs is less than
@@ -1082,7 +1082,7 @@ public:
    * @param rhs Another `Gtk::TextIter`.
    * @return -1 if @a lhs is less than @a rhs, 1 if @a lhs is greater, 0 if they are equal.
    */
-  int compare(const TextIterBase& rhs) const;
+  auto compare(const TextIterBase& rhs) const -> int;
 
   /** Checks whether @a iter falls in the range [ @a start, @a end).
    *
@@ -1092,7 +1092,7 @@ public:
    * @param end End of range.
    * @return <tt>true</tt> if @a iter is in the range.
    */
-  bool in_range(const TextIterBase& start, const TextIterBase& end) const;
+  auto in_range(const TextIterBase& start, const TextIterBase& end) const -> bool;
 
 
 }; // end TextIterBase
@@ -1127,19 +1127,19 @@ private:
 
 public:
   /** Alias for forward_char(). */
-  inline TextIter& operator++();
-  inline TextIter  operator++(int);
+  inline auto operator++() -> TextIter&;
+  inline auto  operator++(int) -> TextIter;
 
   /** Alias for backward_char(). */
-  inline TextIter& operator--();
-  inline TextIter  operator--(int);
+  inline auto operator--() -> TextIter&;
+  inline auto  operator--(int) -> TextIter;
 
 
   /** Returns the `Gtk::TextBuffer` this iterator is associated with.
    *
    * @return The buffer.
    */
-  Glib::RefPtr<TextBuffer> get_buffer() const;
+  auto get_buffer() const -> Glib::RefPtr<TextBuffer>;
 
 
   /** If the element at @a iter is a paintable, the paintable is returned.
@@ -1148,7 +1148,7 @@ public:
    *
    * @return The paintable at @a iter.
    */
-  Glib::RefPtr<Gdk::Paintable> get_paintable() const;
+  auto get_paintable() const -> Glib::RefPtr<Gdk::Paintable>;
 
 
   /** Returns a list of all `Gtk::TextMark` at this location.
@@ -1161,7 +1161,7 @@ public:
    *
    * @return List of `Gtk::TextMark`.
    */
-  std::vector<Glib::RefPtr<TextMark>> get_marks() const;
+  auto get_marks() const -> std::vector<Glib::RefPtr<TextMark>>;
 
 
   /** If the location at @a iter contains a child anchor, the
@@ -1171,7 +1171,7 @@ public:
    *
    * @return The anchor at @a iter.
    */
-  Glib::RefPtr<TextChildAnchor> get_child_anchor() const;
+  auto get_child_anchor() const -> Glib::RefPtr<TextChildAnchor>;
 
 
   /** Returns a list of `Gtk::TextTag` that are toggled on or off at this
@@ -1187,7 +1187,7 @@ public:
    * @return Tags
    * toggled at this point.
    */
-  std::vector<Glib::RefPtr<TextTag>> get_toggled_tags(bool toggled_on =  true) const;
+  auto get_toggled_tags(bool toggled_on =  true) const -> std::vector<Glib::RefPtr<TextTag>>;
 
 
   /** Returns a list of tags that apply to @a iter, in ascending order of
@@ -1196,7 +1196,7 @@ public:
    * @return List of
    * `Gtk::TextTag`.
    */
-  std::vector<Glib::RefPtr<TextTag>> get_tags() const;
+  auto get_tags() const -> std::vector<Glib::RefPtr<TextTag>>;
 
 
   /** Searches forward for @a str. Any match is returned by setting
@@ -1221,10 +1221,10 @@ public:
    * @param limit Bound for the search.
    * @return Whether a match was found.
    */
-  bool forward_search(const Glib::ustring& str, TextSearchFlags flags, TextIter& match_start, TextIter& match_end, const TextIterBase& limit) const;
+  auto forward_search(const Glib::ustring& str, TextSearchFlags flags, TextIter& match_start, TextIter& match_end, const TextIterBase& limit) const -> bool;
 
   /// A forward_search() convenience overload.
-  bool forward_search(const Glib::ustring& str, TextSearchFlags flags, TextIter& match_start, TextIter& match_end) const;
+  auto forward_search(const Glib::ustring& str, TextSearchFlags flags, TextIter& match_start, TextIter& match_end) const -> bool;
 
 
   /** Same as forward_search(), but moves backward.
@@ -1236,10 +1236,10 @@ public:
    * @param limit Location of last possible @a match_start.
    * @return Whether a match was found.
    */
-  bool backward_search(const Glib::ustring& str, TextSearchFlags flags, TextIter& match_start, TextIter& match_end, const TextIterBase& limit) const;
+  auto backward_search(const Glib::ustring& str, TextSearchFlags flags, TextIter& match_start, TextIter& match_end, const TextIterBase& limit) const -> bool;
 
   /// A backward_search() convenience overload.
-  bool backward_search(const Glib::ustring& str, TextSearchFlags flags, TextIter& match_start, TextIter& match_end) const;
+  auto backward_search(const Glib::ustring& str, TextSearchFlags flags, TextIter& match_start, TextIter& match_end) const -> bool;
 
 
   /** Swaps the value of @a first and @a second if @a second comes before
@@ -1284,22 +1284,22 @@ public:
 
   /** A TextIter can be assigned to a TextConstIter.
    */
-  inline TextConstIter& operator=(const TextIter& other) noexcept;
+  inline auto operator=(const TextIter& other) noexcept -> TextConstIter&;
 
   /** Alias for forward_char(). */
-  inline TextConstIter& operator++();
-  inline TextConstIter  operator++(int);
+  inline auto operator++() -> TextConstIter&;
+  inline auto  operator++(int) -> TextConstIter;
 
   /** Alias for backward_char(). */
-  inline TextConstIter& operator--();
-  inline TextConstIter  operator--(int);
+  inline auto operator--() -> TextConstIter&;
+  inline auto  operator--(int) -> TextConstIter;
 
 
   /** Returns the `Gtk::TextBuffer` this iterator is associated with.
    *
    * @return The buffer.
    */
-  Glib::RefPtr<const TextBuffer> get_buffer() const;
+  auto get_buffer() const -> Glib::RefPtr<const TextBuffer>;
 
 
   /** If the element at @a iter is a paintable, the paintable is returned.
@@ -1308,7 +1308,7 @@ public:
    *
    * @return The paintable at @a iter.
    */
-  Glib::RefPtr<const Gdk::Paintable> get_paintable() const;
+  auto get_paintable() const -> Glib::RefPtr<const Gdk::Paintable>;
 
 
   /** Returns a list of all `Gtk::TextMark` at this location.
@@ -1321,7 +1321,7 @@ public:
    *
    * @return List of `Gtk::TextMark`.
    */
-  std::vector<Glib::RefPtr<const TextMark>> get_marks() const;
+  auto get_marks() const -> std::vector<Glib::RefPtr<const TextMark>>;
 
 
   /** If the location at @a iter contains a child anchor, the
@@ -1331,7 +1331,7 @@ public:
    *
    * @return The anchor at @a iter.
    */
-  Glib::RefPtr<const TextChildAnchor> get_child_anchor() const;
+  auto get_child_anchor() const -> Glib::RefPtr<const TextChildAnchor>;
 
 
   /** Returns a list of `Gtk::TextTag` that are toggled on or off at this
@@ -1347,7 +1347,7 @@ public:
    * @return Tags
    * toggled at this point.
    */
-  std::vector<Glib::RefPtr<const TextTag>> get_toggled_tags(bool toggled_on =  true) const;
+  auto get_toggled_tags(bool toggled_on =  true) const -> std::vector<Glib::RefPtr<const TextTag>>;
 
 
   /** Returns a list of tags that apply to @a iter, in ascending order of
@@ -1356,7 +1356,7 @@ public:
    * @return List of
    * `Gtk::TextTag`.
    */
-  std::vector<Glib::RefPtr<const TextTag>> get_tags() const;
+  auto get_tags() const -> std::vector<Glib::RefPtr<const TextTag>>;
 
 
   /** Searches forward for @a str. Any match is returned by setting
@@ -1381,10 +1381,10 @@ public:
    * @param limit Bound for the search.
    * @return Whether a match was found.
    */
-  bool forward_search(const Glib::ustring& str, TextSearchFlags flags, TextConstIter& match_start, TextConstIter& match_end, const TextIterBase& limit) const;
+  auto forward_search(const Glib::ustring& str, TextSearchFlags flags, TextConstIter& match_start, TextConstIter& match_end, const TextIterBase& limit) const -> bool;
 
   /// A forward_search() convenience overload.
-  bool forward_search(const Glib::ustring& str, TextSearchFlags flags, TextConstIter& match_start, TextConstIter& match_end) const;
+  auto forward_search(const Glib::ustring& str, TextSearchFlags flags, TextConstIter& match_start, TextConstIter& match_end) const -> bool;
 
 
   /** Same as forward_search(), but moves backward.
@@ -1396,10 +1396,10 @@ public:
    * @param limit Location of last possible @a match_start.
    * @return Whether a match was found.
    */
-  bool backward_search(const Glib::ustring& str, TextSearchFlags flags, TextConstIter& match_start, TextConstIter& match_end, const TextIterBase& limit) const;
+  auto backward_search(const Glib::ustring& str, TextSearchFlags flags, TextConstIter& match_start, TextConstIter& match_end, const TextIterBase& limit) const -> bool;
 
   /// A backward_search() convenience overload.
-  bool backward_search(const Glib::ustring& str, TextSearchFlags flags, TextConstIter& match_start, TextConstIter& match_end) const;
+  auto backward_search(const Glib::ustring& str, TextSearchFlags flags, TextConstIter& match_start, TextConstIter& match_end) const -> bool;
 
 
   /** Swaps the value of @a first and @a second if @a second comes before
@@ -1424,7 +1424,7 @@ public:
 /**** Gtk::TextIterBase *******************************************************/
 
 inline
-TextIterBase::value_type TextIterBase::operator*() const
+auto TextIterBase::operator*() const -> TextIterBase::value_type
 {
   return get_char();
 }
@@ -1438,14 +1438,14 @@ TextIterBase::operator bool() const
 /**** Gtk::TextIter ***********************************************************/
 
 inline
-TextIter& TextIter::operator++()
+auto TextIter::operator++() -> TextIter&
 {
   forward_char();
   return *this;
 }
 
 inline
-TextIter TextIter::operator++(int)
+auto TextIter::operator++(int) -> TextIter
 {
   const TextIter temp(*this);
   forward_char();
@@ -1453,14 +1453,14 @@ TextIter TextIter::operator++(int)
 }
 
 inline
-TextIter& TextIter::operator--()
+auto TextIter::operator--() -> TextIter&
 {
   backward_char();
   return *this;
 }
 
 inline
-TextIter TextIter::operator--(int)
+auto TextIter::operator--(int) -> TextIter
 {
   const TextIter temp(*this);
   backward_char();
@@ -1478,21 +1478,21 @@ TextConstIter::TextConstIter(const TextIter& other) noexcept
 {
 }
 
-TextConstIter& TextConstIter::operator=(const TextIter& other) noexcept
+auto TextConstIter::operator=(const TextIter& other) noexcept -> TextConstIter&
 {
   gobject_ = *other.gobj();
   return *this;
 }
 
 inline
-TextConstIter& TextConstIter::operator++()
+auto TextConstIter::operator++() -> TextConstIter&
 {
   forward_char();
   return *this;
 }
 
 inline
-TextConstIter TextConstIter::operator++(int)
+auto TextConstIter::operator++(int) -> TextConstIter
 {
   const TextConstIter temp(*this);
   forward_char();
@@ -1500,14 +1500,14 @@ TextConstIter TextConstIter::operator++(int)
 }
 
 inline
-TextConstIter& TextConstIter::operator--()
+auto TextConstIter::operator--() -> TextConstIter&
 {
   backward_char();
   return *this;
 }
 
 inline
-TextConstIter TextConstIter::operator--(int)
+auto TextConstIter::operator--(int) -> TextConstIter
 {
   const TextConstIter temp(*this);
   backward_char();
@@ -1528,28 +1528,28 @@ namespace Glib
  * @result A C++ instance that wraps this C instance.
  */
 GTKMM_API
-Gtk::TextIter& wrap_iter(GtkTextIter* object);
+auto wrap_iter(GtkTextIter* object) -> Gtk::TextIter&;
 
 /** @relates Gtk::TextIter
  * @param object The C instance
  * @result A C++ instance that wraps this C instance.
  */
 GTKMM_API
-const Gtk::TextIter& wrap_iter(const GtkTextIter* object);
+auto wrap_iter(const GtkTextIter* object) -> const Gtk::TextIter&;
 
 /** @relates Gtk::TextConstIter
  * @param object The C instance
  * @result A C++ instance that wraps this C instance.
  */
 GTKMM_API
-Gtk::TextConstIter& wrap_const_iter(GtkTextIter* object);
+auto wrap_const_iter(GtkTextIter* object) -> Gtk::TextConstIter&;
 
 /** @relates Gtk::TextConstIter
  * @param object The C instance
  * @result A C++ instance that wraps this C instance.
  */
 GTKMM_API
-const Gtk::TextConstIter& wrap_const_iter(const GtkTextIter* object);
+auto wrap_const_iter(const GtkTextIter* object) -> const Gtk::TextConstIter&;
 
 } // namespace Glib
 
@@ -1563,7 +1563,7 @@ namespace Gtk
  * @result The result
  */
 GTKMM_API
-bool operator==(const TextIterBase& lhs, const TextIterBase& rhs);
+auto operator==(const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
 /** @relates Gtk::TextIterBase
  * @param lhs The left-hand side
@@ -1571,7 +1571,7 @@ bool operator==(const TextIterBase& lhs, const TextIterBase& rhs);
  * @result The result
  */
 GTKMM_API
-bool operator!=(const TextIterBase& lhs, const TextIterBase& rhs);
+auto operator!=(const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
 /** @relates Gtk::TextIterBase
  * @param lhs The left-hand side
@@ -1579,7 +1579,7 @@ bool operator!=(const TextIterBase& lhs, const TextIterBase& rhs);
  * @result The result
  */
 GTKMM_API
-bool operator<(const TextIterBase& lhs, const TextIterBase& rhs);
+auto operator<(const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
 /** @relates Gtk::TextIterBase
  * @param lhs The left-hand side
@@ -1587,7 +1587,7 @@ bool operator<(const TextIterBase& lhs, const TextIterBase& rhs);
  * @result The result
  */
 GTKMM_API
-bool operator>(const TextIterBase& lhs, const TextIterBase& rhs);
+auto operator>(const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
 /** @relates Gtk::TextIterBase
  * @param lhs The left-hand side
@@ -1595,7 +1595,7 @@ bool operator>(const TextIterBase& lhs, const TextIterBase& rhs);
  * @result The result
  */
 GTKMM_API
-bool operator<=(const TextIterBase& lhs, const TextIterBase& rhs);
+auto operator<=(const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
 /** @relates Gtk::TextIterBase
  * @param lhs The left-hand side
@@ -1603,7 +1603,7 @@ bool operator<=(const TextIterBase& lhs, const TextIterBase& rhs);
  * @result The result
  */
 GTKMM_API
-bool operator>=(const TextIterBase& lhs, const TextIterBase& rhs);
+auto operator>=(const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
 
 } // namespace Gtk
@@ -1617,14 +1617,14 @@ namespace Glib
  * @result A C++ instance that wraps this C instance.
  */
 GTKMM_API
-Gtk::TextIterBase& wrap(GtkTextIter* object);
+auto wrap(GtkTextIter* object) -> Gtk::TextIterBase&;
 
 /** @relates Gtk::TextIterBase
  * @param object The C instance
  * @result A C++ instance that wraps this C instance.
  */
 GTKMM_API
-const Gtk::TextIterBase& wrap(const GtkTextIter* object);
+auto wrap(const GtkTextIter* object) -> const Gtk::TextIterBase&;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

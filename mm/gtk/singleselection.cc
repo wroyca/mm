@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::SingleSelection> wrap(GtkSingleSelection* object, bool take_copy)
+auto wrap(GtkSingleSelection* object, bool take_copy) -> Glib::RefPtr<Gtk::SingleSelection>
 {
   return Glib::make_refptr_for_instance<Gtk::SingleSelection>( dynamic_cast<Gtk::SingleSelection*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& SingleSelection_Class::init()
+auto SingleSelection_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -73,7 +73,7 @@ void SingleSelection_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* SingleSelection_Class::wrap_new(GObject* object)
+auto SingleSelection_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new SingleSelection((GtkSingleSelection*)object);
 }
@@ -81,7 +81,7 @@ Glib::ObjectBase* SingleSelection_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkSingleSelection* SingleSelection::gobj_copy()
+auto SingleSelection::gobj_copy() -> GtkSingleSelection*
 {
   reference();
   return gobj();
@@ -106,7 +106,7 @@ SingleSelection::SingleSelection(SingleSelection&& src) noexcept
   , SelectionModel(std::move(src))
 {}
 
-SingleSelection& SingleSelection::operator=(SingleSelection&& src) noexcept
+auto SingleSelection::operator=(SingleSelection&& src) noexcept -> SingleSelection&
 {
   Glib::Object::operator=(std::move(src));
   Gio::ListModel::operator=(std::move(src));
@@ -121,13 +121,13 @@ SingleSelection::~SingleSelection() noexcept
 
 SingleSelection::CppClassType SingleSelection::singleselection_class_; // initialize static member
 
-GType SingleSelection::get_type()
+auto SingleSelection::get_type() -> GType
 {
   return singleselection_class_.init().get_type();
 }
 
 
-GType SingleSelection::get_base_type()
+auto SingleSelection::get_base_type() -> GType
 {
   return gtk_single_selection_get_type();
 }
@@ -153,17 +153,17 @@ SingleSelection::SingleSelection(const Glib::RefPtr<Gio::ListModel>& model)
 
 }
 
-Glib::RefPtr<SingleSelection> SingleSelection::create()
+auto SingleSelection::create() -> Glib::RefPtr<SingleSelection>
 {
   return Glib::make_refptr_for_instance<SingleSelection>( new SingleSelection() );
 }
 
-Glib::RefPtr<SingleSelection> SingleSelection::create(const Glib::RefPtr<Gio::ListModel>& model)
+auto SingleSelection::create(const Glib::RefPtr<Gio::ListModel>& model) -> Glib::RefPtr<SingleSelection>
 {
   return Glib::make_refptr_for_instance<SingleSelection>( new SingleSelection(model) );
 }
 
-Glib::RefPtr<Gio::ListModel> SingleSelection::get_model()
+auto SingleSelection::get_model() -> Glib::RefPtr<Gio::ListModel>
 {
   auto retvalue = Glib::wrap(gtk_single_selection_get_model(gobj()));
   if(retvalue)
@@ -171,7 +171,7 @@ Glib::RefPtr<Gio::ListModel> SingleSelection::get_model()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::ListModel> SingleSelection::get_model() const
+auto SingleSelection::get_model() const -> Glib::RefPtr<const Gio::ListModel>
 {
   return const_cast<SingleSelection*>(this)->get_model();
 }
@@ -181,7 +181,7 @@ void SingleSelection::set_model(const Glib::RefPtr<Gio::ListModel>& model)
   gtk_single_selection_set_model(gobj(), Glib::unwrap(model));
 }
 
-guint SingleSelection::get_selected() const
+auto SingleSelection::get_selected() const -> guint
 {
   return gtk_single_selection_get_selected(const_cast<GtkSingleSelection*>(gobj()));
 }
@@ -191,7 +191,7 @@ void SingleSelection::set_selected(guint position)
   gtk_single_selection_set_selected(gobj(), position);
 }
 
-Glib::RefPtr<Glib::ObjectBase> SingleSelection::get_selected_item()
+auto SingleSelection::get_selected_item() -> Glib::RefPtr<Glib::ObjectBase>
 {
   auto retvalue = Glib::make_refptr_for_instance<Glib::ObjectBase>(Glib::wrap_auto(G_OBJECT(gtk_single_selection_get_selected_item(gobj()))));
   if(retvalue)
@@ -199,12 +199,12 @@ Glib::RefPtr<Glib::ObjectBase> SingleSelection::get_selected_item()
   return retvalue;
 }
 
-Glib::RefPtr<const Glib::ObjectBase> SingleSelection::get_selected_item() const
+auto SingleSelection::get_selected_item() const -> Glib::RefPtr<const Glib::ObjectBase>
 {
   return const_cast<SingleSelection*>(this)->get_selected_item();
 }
 
-bool SingleSelection::get_autoselect() const
+auto SingleSelection::get_autoselect() const -> bool
 {
   return gtk_single_selection_get_autoselect(const_cast<GtkSingleSelection*>(gobj()));
 }
@@ -214,7 +214,7 @@ void SingleSelection::set_autoselect(bool autoselect)
   gtk_single_selection_set_autoselect(gobj(), static_cast<int>(autoselect));
 }
 
-bool SingleSelection::get_can_unselect() const
+auto SingleSelection::get_can_unselect() const -> bool
 {
   return gtk_single_selection_get_can_unselect(const_cast<GtkSingleSelection*>(gobj()));
 }
@@ -225,32 +225,32 @@ void SingleSelection::set_can_unselect(bool can_unselect)
 }
 
 
-Glib::PropertyProxy< bool > SingleSelection::property_autoselect()
+auto SingleSelection::property_autoselect() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "autoselect");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > SingleSelection::property_autoselect() const
+auto SingleSelection::property_autoselect() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "autoselect");
 }
 
-Glib::PropertyProxy< bool > SingleSelection::property_can_unselect()
+auto SingleSelection::property_can_unselect() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "can-unselect");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > SingleSelection::property_can_unselect() const
+auto SingleSelection::property_can_unselect() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "can-unselect");
 }
 
-Glib::PropertyProxy< guint > SingleSelection::property_selected()
+auto SingleSelection::property_selected() -> Glib::PropertyProxy< guint >
 {
   return Glib::PropertyProxy< guint >(this, "selected");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > SingleSelection::property_selected() const
+auto SingleSelection::property_selected() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "selected");
 }
@@ -259,7 +259,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Glib::O
   "Type Glib::RefPtr<Glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> > SingleSelection::property_selected_item() const
+auto SingleSelection::property_selected_item() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> >(this, "selected-item");
 }
@@ -268,7 +268,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
   "Type GType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< GType > SingleSelection::property_item_type() const
+auto SingleSelection::property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >
 {
   return Glib::PropertyProxy_ReadOnly< GType >(this, "item-type");
 }
@@ -277,17 +277,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Li
   "Type Glib::RefPtr<Gio::ListModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > SingleSelection::property_model()
+auto SingleSelection::property_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> >(this, "model");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > SingleSelection::property_model() const
+auto SingleSelection::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >(this, "model");
 }
 
-Glib::PropertyProxy_ReadOnly< unsigned int > SingleSelection::property_n_items() const
+auto SingleSelection::property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
   return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "n-items");
 }

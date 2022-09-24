@@ -70,9 +70,9 @@ DBusConnection_Signal_giomm_callback_destroy(void* data)
   delete static_cast<Gio::DBus::Connection::SlotSignal*>(data);
 }
 
-static GDBusMessage*
+static auto
 DBusConnection_Message_Filter_giomm_callback(
-  GDBusConnection* connection, GDBusMessage* message, gboolean incoming, void* user_data)
+  GDBusConnection* connection, GDBusMessage* message, gboolean incoming, void* user_data) -> GDBusMessage*
 {
   Gio::DBus::Connection::SlotMessageFilter* the_slot =
     static_cast<Gio::DBus::Connection::SlotMessageFilter*>(user_data);
@@ -109,10 +109,7 @@ std::mutex wrap_mutex;
 
 } // anonymous namespace
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 Connection::Connection(const Glib::RefPtr<IOStream>& stream, const std::string& guid,
@@ -304,34 +301,34 @@ Connection::create(const Glib::RefPtr<IOStream>& stream, const std::string& guid
 }
 
 // static
-Glib::RefPtr<Connection>
+auto
 Connection::create_sync(const Glib::RefPtr<IOStream>& stream, const std::string& guid,
   const Glib::RefPtr<AuthObserver>& observer, const Glib::RefPtr<Cancellable>& cancellable,
-  ConnectionFlags flags)
+  ConnectionFlags flags) -> Glib::RefPtr<Connection>
 {
   return Glib::make_refptr_for_instance<Connection>(new Connection(stream, guid, observer, cancellable, flags));
 }
 
 // static
-Glib::RefPtr<Connection>
+auto
 Connection::create_sync(const Glib::RefPtr<IOStream>& stream, const std::string& guid,
-  const Glib::RefPtr<Cancellable>& cancellable, ConnectionFlags flags)
+  const Glib::RefPtr<Cancellable>& cancellable, ConnectionFlags flags) -> Glib::RefPtr<Connection>
 {
   return Glib::make_refptr_for_instance<Connection>(new Connection(stream, guid, cancellable, flags));
 }
 
 // static
-Glib::RefPtr<Connection>
+auto
 Connection::create_sync(const Glib::RefPtr<IOStream>& stream, const std::string& guid,
-  const Glib::RefPtr<AuthObserver>& observer, ConnectionFlags flags)
+  const Glib::RefPtr<AuthObserver>& observer, ConnectionFlags flags) -> Glib::RefPtr<Connection>
 {
   return Glib::make_refptr_for_instance<Connection>(new Connection(stream, guid, observer, flags));
 }
 
 // static
-Glib::RefPtr<Connection>
+auto
 Connection::create_sync(
-  const Glib::RefPtr<IOStream>& stream, const std::string& guid, ConnectionFlags flags)
+  const Glib::RefPtr<IOStream>& stream, const std::string& guid, ConnectionFlags flags) -> Glib::RefPtr<Connection>
 {
   return Glib::make_refptr_for_instance<Connection>(new Connection(stream, guid, flags));
 }
@@ -378,33 +375,33 @@ Connection::create_for_address(
 }
 
 // static
-Glib::RefPtr<Connection>
+auto
 Connection::create_for_address_sync(const std::string& address,
   const Glib::RefPtr<AuthObserver>& observer, const Glib::RefPtr<Cancellable>& cancellable,
-  ConnectionFlags flags)
+  ConnectionFlags flags) -> Glib::RefPtr<Connection>
 {
   return Glib::make_refptr_for_instance<Connection>(new Connection(address, observer, cancellable, flags));
 }
 
 // static
-Glib::RefPtr<Connection>
+auto
 Connection::create_for_address_sync(
-  const std::string& address, const Glib::RefPtr<Cancellable>& cancellable, ConnectionFlags flags)
+  const std::string& address, const Glib::RefPtr<Cancellable>& cancellable, ConnectionFlags flags) -> Glib::RefPtr<Connection>
 {
   return Glib::make_refptr_for_instance<Connection>(new Connection(address, cancellable, flags));
 }
 
 // static
-Glib::RefPtr<Connection>
+auto
 Connection::create_for_address_sync(
-  const std::string& address, const Glib::RefPtr<AuthObserver>& observer, ConnectionFlags flags)
+  const std::string& address, const Glib::RefPtr<AuthObserver>& observer, ConnectionFlags flags) -> Glib::RefPtr<Connection>
 {
   return Glib::make_refptr_for_instance<Connection>(new Connection(address, observer, flags));
 }
 
 // static
-Glib::RefPtr<Connection>
-Connection::create_for_address_sync(const std::string& address, ConnectionFlags flags)
+auto
+Connection::create_for_address_sync(const std::string& address, ConnectionFlags flags) -> Glib::RefPtr<Connection>
 {
   return Glib::make_refptr_for_instance<Connection>(new Connection(address, flags));
 }
@@ -475,8 +472,8 @@ Connection::flush(const SlotAsyncReady& slot)
   g_dbus_connection_flush(gobj(), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-bool
-Connection::send_message(const Glib::RefPtr<Message>& message, SendMessageFlags flags)
+auto
+Connection::send_message(const Glib::RefPtr<Message>& message, SendMessageFlags flags) -> bool
 {
   GError* gerror = nullptr;
 
@@ -513,9 +510,9 @@ Connection::send_message_with_reply(
   message->set_serial(out_serial);
 }
 
-Glib::RefPtr<Message>
+auto
 Connection::send_message_with_reply_sync(const Glib::RefPtr<Message>& message,
-  const Glib::RefPtr<Cancellable>& cancellable, gint timeout_msec)
+  const Glib::RefPtr<Cancellable>& cancellable, gint timeout_msec) -> Glib::RefPtr<Message>
 {
   volatile guint32 out_serial = 0;
   GError* gerror = nullptr;
@@ -530,8 +527,8 @@ Connection::send_message_with_reply_sync(const Glib::RefPtr<Message>& message,
   return Glib::wrap(result);
 }
 
-Glib::RefPtr<Message>
-Connection::send_message_with_reply_sync(const Glib::RefPtr<Message>& message, gint timeout_msec)
+auto
+Connection::send_message_with_reply_sync(const Glib::RefPtr<Message>& message, gint timeout_msec) -> Glib::RefPtr<Message>
 {
   volatile guint32 out_serial = 0;
   GError* gerror = nullptr;
@@ -582,11 +579,11 @@ Connection::call(const Glib::ustring& object_path, const Glib::ustring& interfac
     &SignalProxy_async_callback, slot_copy);
 }
 
-Glib::VariantContainerBase
+auto
 Connection::call_sync(const Glib::ustring& object_path, const Glib::ustring& interface_name,
   const Glib::ustring& method_name, const Glib::VariantContainerBase& parameters,
   const Glib::RefPtr<Cancellable>& cancellable, const Glib::ustring& bus_name, int timeout_msec,
-  CallFlags flags, const Glib::VariantType& reply_type)
+  CallFlags flags, const Glib::VariantType& reply_type) -> Glib::VariantContainerBase
 {
   GError* gerror = nullptr;
 
@@ -602,11 +599,11 @@ Connection::call_sync(const Glib::ustring& object_path, const Glib::ustring& int
 }
 
 // Non-cancellable version.
-Glib::VariantContainerBase
+auto
 Connection::call_sync(const Glib::ustring& object_path, const Glib::ustring& interface_name,
   const Glib::ustring& method_name, const Glib::VariantContainerBase& parameters,
   const Glib::ustring& bus_name, int timeout_msec, CallFlags flags,
-  const Glib::VariantType& reply_type)
+  const Glib::VariantType& reply_type) -> Glib::VariantContainerBase
 {
   GError* gerror = nullptr;
 
@@ -680,10 +677,10 @@ Connection::emit_signal(const Glib::ustring& object_path, const Glib::ustring& i
     ::Glib::Error::throw_exception(gerror);
 }
 
-guint
+auto
 Connection::signal_subscribe(const SlotSignal& slot, const Glib::ustring& sender,
   const Glib::ustring& interface_name, const Glib::ustring& member,
-  const Glib::ustring& object_path, const Glib::ustring& arg0, SignalFlags flags)
+  const Glib::ustring& object_path, const Glib::ustring& arg0, SignalFlags flags) -> guint
 {
   auto slot_copy = new SlotSignal(slot);
 
@@ -694,8 +691,8 @@ Connection::signal_subscribe(const SlotSignal& slot, const Glib::ustring& sender
     &DBusConnection_Signal_giomm_callback_destroy);
 }
 
-guint
-Connection::add_filter(const SlotMessageFilter& slot)
+auto
+Connection::add_filter(const SlotMessageFilter& slot) -> guint
 {
   auto slot_copy = new SlotMessageFilter(slot);
 
@@ -703,9 +700,9 @@ Connection::add_filter(const SlotMessageFilter& slot)
     slot_copy, DBusConnection_Message_Filter_giomm_callback_destroy);
 }
 
-guint
+auto
 Connection::register_object(const Glib::ustring& object_path,
-  const Glib::RefPtr<InterfaceInfo>& interface_info, const InterfaceVTable& vtable)
+  const Glib::RefPtr<InterfaceInfo>& interface_info, const InterfaceVTable& vtable) -> guint
 {
   GError* gerror = nullptr;
 
@@ -719,9 +716,9 @@ Connection::register_object(const Glib::ustring& object_path,
   return result;
 }
 
-guint
+auto
 Connection::register_object(
-  const Glib::ustring& object_path, const Glib::RefPtr<InterfaceInfo>& interface_info)
+  const Glib::ustring& object_path, const Glib::RefPtr<InterfaceInfo>& interface_info) -> guint
 {
   GError* gerror = nullptr;
 
@@ -734,9 +731,9 @@ Connection::register_object(
   return result;
 }
 
-guint
+auto
 Connection::register_subtree(
-  const Glib::ustring& object_path, const SubtreeVTable& vtable, SubtreeFlags flags)
+  const Glib::ustring& object_path, const SubtreeVTable& vtable, SubtreeFlags flags) -> guint
 {
   GError* gerror = nullptr;
 
@@ -750,14 +747,12 @@ Connection::register_subtree(
   return result;
 }
 
-} // namespace DBus
-
 } // namespace Gio
 
 namespace Glib
 {
 
-Glib::RefPtr<Gio::DBus::Connection> wrap(GDBusConnection* object, bool take_copy)
+auto wrap(GDBusConnection* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::Connection>
 {
   Glib::ObjectBase* pCppObject = nullptr;
   if (!ObjectBase::_get_current_wrapper((GObject*)object))
@@ -780,7 +775,7 @@ namespace
 {
 
 
-static void Connection_signal_closed_callback(GDBusConnection* self, gboolean p0,GError* p1,void* data)
+void Connection_signal_closed_callback(GDBusConnection* self, gboolean p0,GError* p1,void* data)
 {
   using namespace Gio::DBus;
   using SlotType = sigc::slot<void(bool, const Glib::Error&)>;
@@ -803,7 +798,7 @@ static void Connection_signal_closed_callback(GDBusConnection* self, gboolean p0
   }
 }
 
-static const Glib::SignalProxyInfo Connection_signal_closed_info =
+const Glib::SignalProxyInfo Connection_signal_closed_info =
 {
   "closed",
   (GCallback) &Connection_signal_closed_callback,
@@ -814,28 +809,25 @@ static const Glib::SignalProxyInfo Connection_signal_closed_info =
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::DBus::BusType>::value_type()
+auto Glib::Value<Gio::DBus::BusType>::value_type() -> GType
 {
   return g_bus_type_get_type();
 }
 
 // static
-GType Glib::Value<Gio::DBus::ConnectionFlags>::value_type()
+auto Glib::Value<Gio::DBus::ConnectionFlags>::value_type() -> GType
 {
   return g_dbus_connection_flags_get_type();
 }
 
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 
 /* The *_Class implementation: */
 
-const Glib::Class& Connection_Class::init()
+auto Connection_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -868,7 +860,7 @@ void Connection_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Connection_Class::wrap_new(GObject* object)
+auto Connection_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Connection((GDBusConnection*)object);
 }
@@ -876,7 +868,7 @@ Glib::ObjectBase* Connection_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GDBusConnection* Connection::gobj_copy()
+auto Connection::gobj_copy() -> GDBusConnection*
 {
   reference();
   return gobj();
@@ -901,7 +893,7 @@ Connection::Connection(Connection&& src) noexcept
   , AsyncInitable(std::move(src))
 {}
 
-Connection& Connection::operator=(Connection&& src) noexcept
+auto Connection::operator=(Connection&& src) noexcept -> Connection&
 {
   Glib::Object::operator=(std::move(src));
   Initable::operator=(std::move(src));
@@ -916,19 +908,19 @@ Connection::~Connection() noexcept
 
 Connection::CppClassType Connection::connection_class_; // initialize static member
 
-GType Connection::get_type()
+auto Connection::get_type() -> GType
 {
   return connection_class_.init().get_type();
 }
 
 
-GType Connection::get_base_type()
+auto Connection::get_base_type() -> GType
 {
   return g_dbus_connection_get_type();
 }
 
 
-Glib::RefPtr<Connection> Connection::get_finish(const Glib::RefPtr<AsyncResult>& res)
+auto Connection::get_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Connection>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_bus_get_finish(Glib::unwrap(res), &(gerror)));
@@ -937,7 +929,7 @@ Glib::RefPtr<Connection> Connection::get_finish(const Glib::RefPtr<AsyncResult>&
   return retvalue;
 }
 
-Glib::RefPtr<Connection> Connection::get_sync(BusType bus_type, const Glib::RefPtr<Cancellable>& cancellable)
+auto Connection::get_sync(BusType bus_type, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Connection>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_bus_get_sync(static_cast<GBusType>(bus_type), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -946,7 +938,7 @@ Glib::RefPtr<Connection> Connection::get_sync(BusType bus_type, const Glib::RefP
   return retvalue;
 }
 
-Glib::RefPtr<Connection> Connection::get_sync(BusType bus_type)
+auto Connection::get_sync(BusType bus_type) -> Glib::RefPtr<Connection>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_bus_get_sync(static_cast<GBusType>(bus_type), nullptr, &(gerror)));
@@ -955,7 +947,7 @@ Glib::RefPtr<Connection> Connection::get_sync(BusType bus_type)
   return retvalue;
 }
 
-Glib::RefPtr<Connection> Connection::create_finish(const Glib::RefPtr<AsyncResult>& res)
+auto Connection::create_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Connection>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_dbus_connection_new_finish(Glib::unwrap(res), &(gerror)));
@@ -964,7 +956,7 @@ Glib::RefPtr<Connection> Connection::create_finish(const Glib::RefPtr<AsyncResul
   return retvalue;
 }
 
-Glib::RefPtr<Connection> Connection::create_for_address_finish(const Glib::RefPtr<AsyncResult>& res)
+auto Connection::create_for_address_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Connection>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_dbus_connection_new_for_address_finish(Glib::unwrap(res), &(gerror)));
@@ -973,7 +965,7 @@ Glib::RefPtr<Connection> Connection::create_for_address_finish(const Glib::RefPt
   return retvalue;
 }
 
-bool Connection::close_finish(const Glib::RefPtr<AsyncResult>& res)
+auto Connection::close_finish(const Glib::RefPtr<AsyncResult>& res) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_dbus_connection_close_finish(gobj(), Glib::unwrap(res), &(gerror));
@@ -998,7 +990,7 @@ void Connection::close_sync()
     ::Glib::Error::throw_exception(gerror);
 }
 
-bool Connection::flush_finish(const Glib::RefPtr<AsyncResult>& res)
+auto Connection::flush_finish(const Glib::RefPtr<AsyncResult>& res) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_dbus_connection_flush_finish(gobj(), Glib::unwrap(res), &(gerror));
@@ -1023,7 +1015,7 @@ void Connection::flush_sync()
     ::Glib::Error::throw_exception(gerror);
 }
 
-bool Connection::get_exit_on_close() const
+auto Connection::get_exit_on_close() const -> bool
 {
   return g_dbus_connection_get_exit_on_close(const_cast<GDBusConnection*>(gobj()));
 }
@@ -1033,7 +1025,7 @@ void Connection::set_exit_on_close(bool exit_on_close)
   g_dbus_connection_set_exit_on_close(gobj(), static_cast<int>(exit_on_close));
 }
 
-bool Connection::send_message(const Glib::RefPtr<Message>& message, SendMessageFlags flags, guint32& out_serial)
+auto Connection::send_message(const Glib::RefPtr<Message>& message, SendMessageFlags flags, guint32& out_serial) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_dbus_connection_send_message(gobj(), Glib::unwrap(message), static_cast<GDBusSendMessageFlags>(flags), &(out_serial), &(gerror));
@@ -1042,7 +1034,7 @@ bool Connection::send_message(const Glib::RefPtr<Message>& message, SendMessageF
   return retvalue;
 }
 
-Glib::RefPtr<Message> Connection::send_message_with_reply_finish(const Glib::RefPtr<AsyncResult>& res)
+auto Connection::send_message_with_reply_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Message>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_dbus_connection_send_message_with_reply_finish(gobj(), Glib::unwrap(res), &(gerror)));
@@ -1056,12 +1048,12 @@ void Connection::start_message_processing()
   g_dbus_connection_start_message_processing(gobj());
 }
 
-bool Connection::is_closed() const
+auto Connection::is_closed() const -> bool
 {
   return g_dbus_connection_is_closed(const_cast<GDBusConnection*>(gobj()));
 }
 
-Glib::RefPtr<IOStream> Connection::get_stream()
+auto Connection::get_stream() -> Glib::RefPtr<IOStream>
 {
   auto retvalue = Glib::wrap(g_dbus_connection_get_stream(gobj()));
   if(retvalue)
@@ -1069,32 +1061,32 @@ Glib::RefPtr<IOStream> Connection::get_stream()
   return retvalue;
 }
 
-Glib::RefPtr<const IOStream> Connection::get_stream() const
+auto Connection::get_stream() const -> Glib::RefPtr<const IOStream>
 {
   return const_cast<Connection*>(this)->get_stream();
 }
 
-std::string Connection::get_guid() const
+auto Connection::get_guid() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_dbus_connection_get_guid(const_cast<GDBusConnection*>(gobj())));
 }
 
-Glib::ustring Connection::get_unique_name() const
+auto Connection::get_unique_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_dbus_connection_get_unique_name(const_cast<GDBusConnection*>(gobj())));
 }
 
-CapabilityFlags Connection::get_capabilities() const
+auto Connection::get_capabilities() const -> CapabilityFlags
 {
   return static_cast<CapabilityFlags>(g_dbus_connection_get_capabilities(const_cast<GDBusConnection*>(gobj())));
 }
 
-ConnectionFlags Connection::get_flags() const
+auto Connection::get_flags() const -> ConnectionFlags
 {
   return static_cast<ConnectionFlags>(g_dbus_connection_get_flags(const_cast<GDBusConnection*>(gobj())));
 }
 
-Glib::RefPtr<Credentials> Connection::get_peer_credentials()
+auto Connection::get_peer_credentials() -> Glib::RefPtr<Credentials>
 {
   auto retvalue = Glib::wrap(g_dbus_connection_get_peer_credentials(gobj()));
   if(retvalue)
@@ -1102,17 +1094,17 @@ Glib::RefPtr<Credentials> Connection::get_peer_credentials()
   return retvalue;
 }
 
-Glib::RefPtr<const Credentials> Connection::get_peer_credentials() const
+auto Connection::get_peer_credentials() const -> Glib::RefPtr<const Credentials>
 {
   return const_cast<Connection*>(this)->get_peer_credentials();
 }
 
-guint32 Connection::get_last_serial() const
+auto Connection::get_last_serial() const -> guint32
 {
   return g_dbus_connection_get_last_serial(const_cast<GDBusConnection*>(gobj()));
 }
 
-Glib::VariantContainerBase Connection::call_finish(const Glib::RefPtr<AsyncResult>& res)
+auto Connection::call_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::VariantContainerBase
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::VariantContainerBase(g_dbus_connection_call_finish(gobj(), Glib::unwrap(res), &(gerror)), false);
@@ -1122,7 +1114,7 @@ Glib::VariantContainerBase Connection::call_finish(const Glib::RefPtr<AsyncResul
 }
 
 #ifdef G_OS_UNIX
-Glib::VariantContainerBase Connection::call_finish(const Glib::RefPtr<AsyncResult>& res, Glib::RefPtr<UnixFDList>& out_fd_list)
+auto Connection::call_finish(const Glib::RefPtr<AsyncResult>& res, Glib::RefPtr<UnixFDList>& out_fd_list) -> Glib::VariantContainerBase
 {
   GError* gerror = nullptr;
   GUnixFDList* g_out_fd_list = nullptr;
@@ -1135,7 +1127,7 @@ out_fd_list = Glib::wrap(g_out_fd_list);
 #endif // G_OS_UNIX
 
 #ifdef G_OS_UNIX
-Glib::VariantContainerBase Connection::call_sync(const Glib::ustring& object_path, const Glib::ustring& interface_name, const Glib::ustring& method_name, const Glib::VariantContainerBase& parameters, const Glib::RefPtr<Cancellable>& cancellable, const Glib::RefPtr<UnixFDList>& fd_list, Glib::RefPtr<UnixFDList>& out_fd_list, const Glib::ustring& bus_name, int timeout_msec, CallFlags flags, const Glib::VariantType& reply_type)
+auto Connection::call_sync(const Glib::ustring& object_path, const Glib::ustring& interface_name, const Glib::ustring& method_name, const Glib::VariantContainerBase& parameters, const Glib::RefPtr<Cancellable>& cancellable, const Glib::RefPtr<UnixFDList>& fd_list, Glib::RefPtr<UnixFDList>& out_fd_list, const Glib::ustring& bus_name, int timeout_msec, CallFlags flags, const Glib::VariantType& reply_type) -> Glib::VariantContainerBase
 {
   GError* gerror = nullptr;
   GUnixFDList* g_out_fd_list = nullptr;
@@ -1148,7 +1140,7 @@ out_fd_list = Glib::wrap(g_out_fd_list);
 #endif // G_OS_UNIX
 
 #ifdef G_OS_UNIX
-Glib::VariantContainerBase Connection::call_sync(const Glib::ustring& object_path, const Glib::ustring& interface_name, const Glib::ustring& method_name, const Glib::VariantContainerBase& parameters, const Glib::RefPtr<UnixFDList>& fd_list, Glib::RefPtr<UnixFDList>& out_fd_list, const Glib::ustring& bus_name, int timeout_msec, CallFlags flags, const Glib::VariantType& reply_type)
+auto Connection::call_sync(const Glib::ustring& object_path, const Glib::ustring& interface_name, const Glib::ustring& method_name, const Glib::VariantContainerBase& parameters, const Glib::RefPtr<UnixFDList>& fd_list, Glib::RefPtr<UnixFDList>& out_fd_list, const Glib::ustring& bus_name, int timeout_msec, CallFlags flags, const Glib::VariantType& reply_type) -> Glib::VariantContainerBase
 {
   GError* gerror = nullptr;
   GUnixFDList* g_out_fd_list = nullptr;
@@ -1170,17 +1162,17 @@ void Connection::remove_filter(guint filter_id)
   g_dbus_connection_remove_filter(gobj(), filter_id);
 }
 
-bool Connection::unregister_object(guint registration_id)
+auto Connection::unregister_object(guint registration_id) -> bool
 {
   return g_dbus_connection_unregister_object(gobj(), registration_id);
 }
 
-bool Connection::unregister_subtree(guint registration_id)
+auto Connection::unregister_subtree(guint registration_id) -> bool
 {
   return g_dbus_connection_unregister_subtree(gobj(), registration_id);
 }
 
-guint Connection::export_action_group(const Glib::ustring& object_path, const Glib::RefPtr<ActionGroup>& action_group)
+auto Connection::export_action_group(const Glib::ustring& object_path, const Glib::RefPtr<ActionGroup>& action_group) -> guint
 {
   GError* gerror = nullptr;
   auto retvalue = g_dbus_connection_export_action_group(gobj(), object_path.c_str(), Glib::unwrap(action_group), &(gerror));
@@ -1194,7 +1186,7 @@ void Connection::unexport_action_group(guint export_id)
   g_dbus_connection_unexport_action_group(gobj(), export_id);
 }
 
-guint Connection::export_menu_model(const Glib::ustring& object_path, const Glib::RefPtr<MenuModel>& menu)
+auto Connection::export_menu_model(const Glib::ustring& object_path, const Glib::RefPtr<MenuModel>& menu) -> guint
 {
   GError* gerror = nullptr;
   auto retvalue = g_dbus_connection_export_menu_model(gobj(), object_path.c_str(), const_cast<GMenuModel*>(Glib::unwrap(menu)), &(gerror));
@@ -1209,7 +1201,7 @@ void Connection::unexport_menu_model(guint export_id)
 }
 
 
-Glib::SignalProxy<void(bool, const Glib::Error&)> Connection::signal_closed()
+auto Connection::signal_closed() -> Glib::SignalProxy<void(bool, const Glib::Error&)>
 {
   return Glib::SignalProxy<void(bool, const Glib::Error&) >(this, &Connection_signal_closed_info);
 }
@@ -1219,22 +1211,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<CapabilityFlags>::va
   "Type CapabilityFlags cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< CapabilityFlags > Connection::property_capabilities() const
+auto Connection::property_capabilities() const -> Glib::PropertyProxy_ReadOnly< CapabilityFlags >
 {
   return Glib::PropertyProxy_ReadOnly< CapabilityFlags >(this, "capabilities");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Connection::property_closed() const
+auto Connection::property_closed() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "closed");
 }
 
-Glib::PropertyProxy< bool > Connection::property_exit_on_close()
+auto Connection::property_exit_on_close() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "exit-on-close");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Connection::property_exit_on_close() const
+auto Connection::property_exit_on_close() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "exit-on-close");
 }
@@ -1243,12 +1235,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<ConnectionFlags>::va
   "Type ConnectionFlags cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< ConnectionFlags > Connection::property_flags() const
+auto Connection::property_flags() const -> Glib::PropertyProxy_ReadOnly< ConnectionFlags >
 {
   return Glib::PropertyProxy_ReadOnly< ConnectionFlags >(this, "flags");
 }
 
-Glib::PropertyProxy_ReadOnly< std::string > Connection::property_guid() const
+auto Connection::property_guid() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
   return Glib::PropertyProxy_ReadOnly< std::string >(this, "guid");
 }
@@ -1257,18 +1249,16 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<IOStrea
   "Type Glib::RefPtr<IOStream> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<IOStream> > Connection::property_stream() const
+auto Connection::property_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<IOStream> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<IOStream> >(this, "stream");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Connection::property_unique_name() const
+auto Connection::property_unique_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "unique-name");
 }
 
-
-} // namespace DBus
 
 } // namespace Gio
 

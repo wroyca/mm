@@ -63,11 +63,11 @@ class GTKMM_API EmojiChooser : public Popover
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   EmojiChooser(EmojiChooser&& src) noexcept;
-  EmojiChooser& operator=(EmojiChooser&& src) noexcept;
+  auto operator=(EmojiChooser&& src) noexcept -> EmojiChooser&;
 
   // noncopyable
   EmojiChooser(const EmojiChooser&) = delete;
-  EmojiChooser& operator=(const EmojiChooser&) = delete;
+  auto operator=(const EmojiChooser&) -> EmojiChooser& = delete;
 
   ~EmojiChooser() noexcept override;
 
@@ -87,19 +87,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkEmojiChooser*       gobj()       { return reinterpret_cast<GtkEmojiChooser*>(gobject_); }
+  auto       gobj() -> GtkEmojiChooser*       { return reinterpret_cast<GtkEmojiChooser*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkEmojiChooser* gobj() const { return reinterpret_cast<GtkEmojiChooser*>(gobject_); }
+  auto gobj() const -> const GtkEmojiChooser* { return reinterpret_cast<GtkEmojiChooser*>(gobject_); }
 
 private:
 
@@ -121,7 +121,7 @@ public:
    * @param text The Unicode sequence for the picked Emoji, in UTF-8.
    */
 
-  Glib::SignalProxy<void(const Glib::ustring&)> signal_emoji_picked();
+  auto signal_emoji_picked() -> Glib::SignalProxy<void(const Glib::ustring&)>;
 
 
   // PopoverMenu has no properties nor vfuncs.
@@ -154,7 +154,7 @@ namespace Glib
    * @relates Gtk::EmojiChooser
    */
   GTKMM_API
-  Gtk::EmojiChooser* wrap(GtkEmojiChooser* object, bool take_copy = false);
+  auto wrap(GtkEmojiChooser* object, bool take_copy = false) -> Gtk::EmojiChooser*;
 } //namespace Glib
 
 

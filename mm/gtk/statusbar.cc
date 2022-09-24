@@ -30,7 +30,7 @@
 namespace Gtk
 {
 
-guint Statusbar::push(const Glib::ustring& text, guint context_id /* = 0 */)
+auto Statusbar::push(const Glib::ustring& text, guint context_id /* = 0 */) -> guint
 {
   return gtk_statusbar_push(gobj(), context_id, text.c_str());
 }
@@ -47,7 +47,7 @@ namespace
 {
 
 
-static void Statusbar_signal_text_pushed_callback(GtkStatusbar* self, guint p0,const gchar* p1,void* data)
+void Statusbar_signal_text_pushed_callback(GtkStatusbar* self, guint p0,const gchar* p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint, const Glib::ustring&)>;
@@ -69,7 +69,7 @@ static void Statusbar_signal_text_pushed_callback(GtkStatusbar* self, guint p0,c
   }
 }
 
-static const Glib::SignalProxyInfo Statusbar_signal_text_pushed_info =
+const Glib::SignalProxyInfo Statusbar_signal_text_pushed_info =
 {
   "text_pushed",
   (GCallback) &Statusbar_signal_text_pushed_callback,
@@ -77,7 +77,7 @@ static const Glib::SignalProxyInfo Statusbar_signal_text_pushed_info =
 };
 
 
-static void Statusbar_signal_text_popped_callback(GtkStatusbar* self, guint p0,const gchar* p1,void* data)
+void Statusbar_signal_text_popped_callback(GtkStatusbar* self, guint p0,const gchar* p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint, const Glib::ustring&)>;
@@ -99,7 +99,7 @@ static void Statusbar_signal_text_popped_callback(GtkStatusbar* self, guint p0,c
   }
 }
 
-static const Glib::SignalProxyInfo Statusbar_signal_text_popped_info =
+const Glib::SignalProxyInfo Statusbar_signal_text_popped_info =
 {
   "text_popped",
   (GCallback) &Statusbar_signal_text_popped_callback,
@@ -113,7 +113,7 @@ static const Glib::SignalProxyInfo Statusbar_signal_text_popped_info =
 namespace Glib
 {
 
-Gtk::Statusbar* wrap(GtkStatusbar* object, bool take_copy)
+auto wrap(GtkStatusbar* object, bool take_copy) -> Gtk::Statusbar*
 {
   return dynamic_cast<Gtk::Statusbar *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -126,7 +126,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Statusbar_Class::init()
+auto Statusbar_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -157,7 +157,7 @@ void Statusbar_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Statusbar_Class::wrap_new(GObject* o)
+auto Statusbar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Statusbar((GtkStatusbar*)(o)));
 
@@ -183,7 +183,7 @@ Statusbar::Statusbar(Statusbar&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-Statusbar& Statusbar::operator=(Statusbar&& src) noexcept
+auto Statusbar::operator=(Statusbar&& src) noexcept -> Statusbar&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -196,13 +196,13 @@ Statusbar::~Statusbar() noexcept
 
 Statusbar::CppClassType Statusbar::statusbar_class_; // initialize static member
 
-GType Statusbar::get_type()
+auto Statusbar::get_type() -> GType
 {
   return statusbar_class_.init().get_type();
 }
 
 
-GType Statusbar::get_base_type()
+auto Statusbar::get_base_type() -> GType
 {
   return gtk_statusbar_get_type();
 }
@@ -218,7 +218,7 @@ Statusbar::Statusbar()
 
 }
 
-guint Statusbar::get_context_id(const Glib::ustring& context_description)
+auto Statusbar::get_context_id(const Glib::ustring& context_description) -> guint
 {
   return gtk_statusbar_get_context_id(gobj(), context_description.c_str());
 }
@@ -234,13 +234,13 @@ void Statusbar::remove_all_messages(guint context_id)
 }
 
 
-Glib::SignalProxy<void(guint, const Glib::ustring&)> Statusbar::signal_text_pushed()
+auto Statusbar::signal_text_pushed() -> Glib::SignalProxy<void(guint, const Glib::ustring&)>
 {
   return Glib::SignalProxy<void(guint, const Glib::ustring&) >(this, &Statusbar_signal_text_pushed_info);
 }
 
 
-Glib::SignalProxy<void(guint, const Glib::ustring&)> Statusbar::signal_text_popped()
+auto Statusbar::signal_text_popped() -> Glib::SignalProxy<void(guint, const Glib::ustring&)>
 {
   return Glib::SignalProxy<void(guint, const Glib::ustring&) >(this, &Statusbar_signal_text_popped_info);
 }

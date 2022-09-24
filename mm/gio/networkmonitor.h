@@ -95,7 +95,7 @@ template <>
 class GIOMM_API Value<Gio::NetworkConnectivity> : public Glib::Value_Enum<Gio::NetworkConnectivity>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -130,7 +130,7 @@ public:
 
   // noncopyable
   NetworkMonitor(const NetworkMonitor&) = delete;
-  NetworkMonitor& operator=(const NetworkMonitor&) = delete;
+  auto operator=(const NetworkMonitor&) -> NetworkMonitor& = delete;
 
 private:
   friend class NetworkMonitor_Class;
@@ -164,7 +164,7 @@ protected:
 public:
 
   NetworkMonitor(NetworkMonitor&& src) noexcept;
-  NetworkMonitor& operator=(NetworkMonitor&& src) noexcept;
+  auto operator=(NetworkMonitor&& src) noexcept -> NetworkMonitor&;
 
   ~NetworkMonitor() noexcept override;
 
@@ -172,17 +172,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GNetworkMonitor*       gobj()       { return reinterpret_cast<GNetworkMonitor*>(gobject_); }
+  auto       gobj() -> GNetworkMonitor*       { return reinterpret_cast<GNetworkMonitor*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GNetworkMonitor* gobj() const { return reinterpret_cast<GNetworkMonitor*>(gobject_); }
+  auto gobj() const -> const GNetworkMonitor* { return reinterpret_cast<GNetworkMonitor*>(gobject_); }
 
 private:
 
@@ -196,7 +196,7 @@ public:
    * @return A NetworkMonitor, which will be
    * a dummy object if no network monitor is available.
    */
-  static Glib::RefPtr<NetworkMonitor> get_default();
+  static auto get_default() -> Glib::RefPtr<NetworkMonitor>;
 
 
   /** Checks if the network is available. "Available" here means that the
@@ -208,7 +208,7 @@ public:
    *
    * @return Whether the network is available.
    */
-  bool get_network_available() const;
+  auto get_network_available() const -> bool;
 
 
   /** Checks if the network is metered.
@@ -218,7 +218,7 @@ public:
    *
    * @return Whether the connection is metered.
    */
-  bool get_network_metered() const;
+  auto get_network_metered() const -> bool;
 
 
   /** Gets a more detailed networking state than
@@ -245,7 +245,7 @@ public:
    *
    * @return The network connectivity state.
    */
-  NetworkConnectivity get_connectivity() const;
+  auto get_connectivity() const -> NetworkConnectivity;
 
 
   /** Attempts to determine whether or not the host pointed to by
@@ -274,10 +274,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool can_reach(const Glib::RefPtr<SocketConnectable>& connectable, const Glib::RefPtr<Cancellable>& cancellable);
+  auto can_reach(const Glib::RefPtr<SocketConnectable>& connectable, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A can_reach() convenience overload.
-  bool can_reach(const Glib::RefPtr<SocketConnectable>& connectable);
+  auto can_reach(const Glib::RefPtr<SocketConnectable>& connectable) -> bool;
 
   //TODO:
   void can_reach_async(const Glib::RefPtr<SocketConnectable>& connectable, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable);
@@ -293,7 +293,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool can_reach_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto can_reach_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /**
@@ -309,7 +309,7 @@ public:
    * @param available The current value of NetworkMonitor::property_network_available().
    */
 
-  Glib::SignalProxy<void(bool)> signal_network_changed();
+  auto signal_network_changed() -> Glib::SignalProxy<void(bool)>;
 
 
   //TODO: Wrap vfuncs?
@@ -339,7 +339,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_network_available() const;
+  auto property_network_available() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** More detailed information about the host's network connectivity.
@@ -353,7 +353,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< NetworkConnectivity > property_connectivity() const;
+  auto property_connectivity() const -> Glib::PropertyProxy_ReadOnly< NetworkConnectivity >;
 
 
   /** Whether the network is considered metered. That is, whether the
@@ -381,7 +381,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_network_metered() const;
+  auto property_network_metered() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -413,7 +413,7 @@ namespace Glib
    * @relates Gio::NetworkMonitor
    */
   GIOMM_API
-  Glib::RefPtr<Gio::NetworkMonitor> wrap(GNetworkMonitor* object, bool take_copy = false);
+  auto wrap(GNetworkMonitor* object, bool take_copy = false) -> Glib::RefPtr<Gio::NetworkMonitor>;
 
 } // namespace Glib
 

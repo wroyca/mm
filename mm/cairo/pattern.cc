@@ -65,7 +65,7 @@ void Pattern::get_matrix(Matrix& matrix) const
   check_object_status_and_throw_exception(*this);
 }
 
-Matrix Pattern::get_matrix() const
+auto Pattern::get_matrix() const -> Matrix
 {
   Cairo::Matrix m;
   cairo_pattern_get_matrix(m_cobject, (cairo_matrix_t*)&m);
@@ -73,7 +73,7 @@ Matrix Pattern::get_matrix() const
   return m;
 }
 
-Pattern::Type Pattern::get_type() const
+auto Pattern::get_type() const -> Pattern::Type
 {
   auto pattern_type = cairo_pattern_get_type(m_cobject);
   check_object_status_and_throw_exception(*this);
@@ -86,7 +86,7 @@ void Pattern::set_extend(Extend extend)
   check_object_status_and_throw_exception(*this);
 }
 
-Pattern::Extend Pattern::get_extend() const
+auto Pattern::get_extend() const -> Pattern::Extend
 {
   const auto result = static_cast<Extend>(cairo_pattern_get_extend(m_cobject));
   check_object_status_and_throw_exception(*this);
@@ -110,14 +110,14 @@ SolidPattern::~SolidPattern()
 {
 }
 
-RefPtr<SolidPattern> SolidPattern::create_rgb(double red, double green, double blue)
+auto SolidPattern::create_rgb(double red, double green, double blue) -> RefPtr<SolidPattern>
 {
   auto cobject = cairo_pattern_create_rgb(red, green, blue);
   check_status_and_throw_exception(cairo_pattern_status(cobject));
   return make_refptr_for_instance<SolidPattern>(new SolidPattern(cobject, true /* has reference */));
 }
 
-RefPtr<SolidPattern> SolidPattern::create_rgba(double red, double green, double blue, double alpha)
+auto SolidPattern::create_rgba(double red, double green, double blue, double alpha) -> RefPtr<SolidPattern>
 {
   cairo_pattern_t* cobject  = cairo_pattern_create_rgba(red, green, blue, alpha);
   check_status_and_throw_exception(cairo_pattern_status(cobject));
@@ -131,8 +131,8 @@ SurfacePattern::SurfacePattern(const RefPtr<Surface>& surface)
   check_object_status_and_throw_exception(*this);
 }
 
-RefPtr<Surface>
-SurfacePattern::get_surface()
+auto
+SurfacePattern::get_surface() -> RefPtr<Surface>
 {
   cairo_surface_t* surface = nullptr;
   // we can ignore the return value since we know this is a surface pattern
@@ -141,13 +141,13 @@ SurfacePattern::get_surface()
   return make_refptr_for_instance<Surface>(new Surface(surface, false /* does not have reference */));
 }
 
-RefPtr<const Surface>
-SurfacePattern::get_surface() const
+auto
+SurfacePattern::get_surface() const -> RefPtr<const Surface>
 {
   return const_cast<SurfacePattern*>(this)->get_surface();
 }
 
-RefPtr<SurfacePattern> SurfacePattern::create(const RefPtr<Surface>& surface)
+auto SurfacePattern::create(const RefPtr<Surface>& surface) -> RefPtr<SurfacePattern>
 {
   return make_refptr_for_instance<SurfacePattern>(new SurfacePattern(surface));
 }
@@ -167,7 +167,7 @@ void SurfacePattern::set_filter(Filter filter)
   check_object_status_and_throw_exception(*this);
 }
 
-SurfacePattern::Filter SurfacePattern::get_filter() const
+auto SurfacePattern::get_filter() const -> SurfacePattern::Filter
 {
   auto result = static_cast<Filter>(cairo_pattern_get_filter(m_cobject));
   check_object_status_and_throw_exception(*this);
@@ -201,8 +201,8 @@ void Gradient::add_color_stop_rgba(double offset, double red, double green, doub
   check_object_status_and_throw_exception(*this);
 }
 
-std::vector<ColorStop>
-Gradient::get_color_stops() const
+auto
+Gradient::get_color_stops() const -> std::vector<ColorStop>
 {
   std::vector<ColorStop> stops;
 
@@ -240,7 +240,7 @@ LinearGradient::get_linear_points(double &x0, double &y0,
 }
 
 
-RefPtr<LinearGradient> LinearGradient::create(double x0, double y0, double x1, double y1)
+auto LinearGradient::create(double x0, double y0, double x1, double y1) -> RefPtr<LinearGradient>
 {
   return make_refptr_for_instance<LinearGradient>(new LinearGradient(x0, y0, x1, y1));
 }
@@ -273,7 +273,7 @@ RadialGradient::get_radial_circles(double& x0, double& y0, double& r0,
 }
 
 
-RefPtr<RadialGradient> RadialGradient::create(double cx0, double cy0, double radius0, double cx1, double cy1, double radius1)
+auto RadialGradient::create(double cx0, double cy0, double radius0, double cx1, double cy1, double radius1) -> RefPtr<RadialGradient>
 {
   return make_refptr_for_instance<RadialGradient>(new RadialGradient(cx0, cy0, radius0, cx1, cy1, radius1));
 }

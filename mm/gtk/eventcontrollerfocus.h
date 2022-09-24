@@ -64,7 +64,7 @@ public:
 
   // noncopyable
   EventControllerFocus(const EventControllerFocus&) = delete;
-  EventControllerFocus& operator=(const EventControllerFocus&) = delete;
+  auto operator=(const EventControllerFocus&) -> EventControllerFocus& = delete;
 
 private:  friend class EventControllerFocus_Class;
   static CppClassType eventcontrollerfocus_class_;
@@ -78,28 +78,28 @@ protected:
 public:
 
   EventControllerFocus(EventControllerFocus&& src) noexcept;
-  EventControllerFocus& operator=(EventControllerFocus&& src) noexcept;
+  auto operator=(EventControllerFocus&& src) noexcept -> EventControllerFocus&;
 
   ~EventControllerFocus() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkEventControllerFocus*       gobj()       { return reinterpret_cast<GtkEventControllerFocus*>(gobject_); }
+  auto       gobj() -> GtkEventControllerFocus*       { return reinterpret_cast<GtkEventControllerFocus*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkEventControllerFocus* gobj() const { return reinterpret_cast<GtkEventControllerFocus*>(gobject_); }
+  auto gobj() const -> const GtkEventControllerFocus* { return reinterpret_cast<GtkEventControllerFocus*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkEventControllerFocus* gobj_copy();
+  auto gobj_copy() -> GtkEventControllerFocus*;
 
 private:
 
@@ -109,20 +109,20 @@ protected:
 
 public:
 
-  static Glib::RefPtr<EventControllerFocus> create();
+  static auto create() -> Glib::RefPtr<EventControllerFocus>;
 
 
   /** Returns <tt>true</tt> if focus is within @a self or one of its children.
    *
    * @return <tt>true</tt> if focus is within @a self or one of its children.
    */
-  bool contains_focus() const;
+  auto contains_focus() const -> bool;
 
   /** Returns <tt>true</tt> if focus is within @a self, but not one of its children.
    *
    * @return <tt>true</tt> if focus is within @a self, but not one of its children.
    */
-  bool is_focus() const;
+  auto is_focus() const -> bool;
 
   // no_default_handler because GtkEventControllerFocusClass is private.
 
@@ -144,7 +144,7 @@ public:
    * property for changes.
    */
 
-  Glib::SignalProxy<void()> signal_enter();
+  auto signal_enter() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -164,7 +164,7 @@ public:
    * property for changes.
    */
 
-  Glib::SignalProxy<void()> signal_leave();
+  auto signal_leave() -> Glib::SignalProxy<void()>;
 
 
   /** <tt>true</tt> if focus is in the controllers widget itself,
@@ -181,7 +181,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_is_focus() const;
+  auto property_is_focus() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** <tt>true</tt> if focus is contained in the controllers widget.
@@ -198,7 +198,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_contains_focus() const;
+  auto property_contains_focus() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -228,7 +228,7 @@ namespace Glib
    * @relates Gtk::EventControllerFocus
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::EventControllerFocus> wrap(GtkEventControllerFocus* object, bool take_copy = false);
+  auto wrap(GtkEventControllerFocus* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerFocus>;
 }
 
 

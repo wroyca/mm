@@ -42,7 +42,7 @@ namespace
 namespace Glib
 {
 
-Gtk::VolumeButton* wrap(GtkVolumeButton* object, bool take_copy)
+auto wrap(GtkVolumeButton* object, bool take_copy) -> Gtk::VolumeButton*
 {
   return dynamic_cast<Gtk::VolumeButton *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -55,7 +55,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& VolumeButton_Class::init()
+auto VolumeButton_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -86,7 +86,7 @@ void VolumeButton_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* VolumeButton_Class::wrap_new(GObject* o)
+auto VolumeButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new VolumeButton((GtkVolumeButton*)(o)));
 
@@ -112,7 +112,7 @@ VolumeButton::VolumeButton(VolumeButton&& src) noexcept
 : Gtk::ScaleButton(std::move(src))
 {}
 
-VolumeButton& VolumeButton::operator=(VolumeButton&& src) noexcept
+auto VolumeButton::operator=(VolumeButton&& src) noexcept -> VolumeButton&
 {
   Gtk::ScaleButton::operator=(std::move(src));
   return *this;
@@ -125,13 +125,13 @@ VolumeButton::~VolumeButton() noexcept
 
 VolumeButton::CppClassType VolumeButton::volumebutton_class_; // initialize static member
 
-GType VolumeButton::get_type()
+auto VolumeButton::get_type() -> GType
 {
   return volumebutton_class_.init().get_type();
 }
 
 
-GType VolumeButton::get_base_type()
+auto VolumeButton::get_base_type() -> GType
 {
   return gtk_volume_button_get_type();
 }
@@ -148,12 +148,12 @@ VolumeButton::VolumeButton()
 }
 
 
-Glib::PropertyProxy< bool > VolumeButton::property_use_symbolic()
+auto VolumeButton::property_use_symbolic() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "use-symbolic");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > VolumeButton::property_use_symbolic() const
+auto VolumeButton::property_use_symbolic() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "use-symbolic");
 }

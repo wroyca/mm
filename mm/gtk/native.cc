@@ -35,7 +35,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::Native> wrap(GtkNative* object, bool take_copy)
+auto wrap(GtkNative* object, bool take_copy) -> Glib::RefPtr<Gtk::Native>
 {
   return Glib::make_refptr_for_instance<Gtk::Native>( dynamic_cast<Gtk::Native*> (Glib::wrap_auto_interface<Gtk::Native> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -50,7 +50,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& Native_Class::init()
+auto Native_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -77,7 +77,7 @@ void Native_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* Native_Class::wrap_new(GObject* object)
+auto Native_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Native((GtkNative*)(object));
 }
@@ -104,7 +104,7 @@ Native::Native(Native&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-Native& Native::operator=(Native&& src) noexcept
+auto Native::operator=(Native&& src) noexcept -> Native&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -121,13 +121,13 @@ void Native::add_interface(GType gtype_implementer)
 
 Native::CppClassType Native::native_class_; // initialize static member
 
-GType Native::get_type()
+auto Native::get_type() -> GType
 {
   return native_class_.init().get_type();
 }
 
 
-GType Native::get_base_type()
+auto Native::get_base_type() -> GType
 {
   return gtk_native_get_type();
 }
@@ -143,12 +143,12 @@ void Native::unrealize()
   gtk_native_unrealize(gobj());
 }
 
-Native* Native::get_for_surface(const Glib::RefPtr<const Gdk::Surface>& surface)
+auto Native::get_for_surface(const Glib::RefPtr<const Gdk::Surface>& surface) -> Native*
 {
   return dynamic_cast<Native*>(Glib::wrap_auto((GObject*)(gtk_native_get_for_surface(const_cast<GdkSurface*>(Glib::unwrap<Gdk::Surface>(surface)))), false));
 }
 
-Glib::RefPtr<Gdk::Surface> Native::get_surface()
+auto Native::get_surface() -> Glib::RefPtr<Gdk::Surface>
 {
   auto retvalue = Glib::wrap(gtk_native_get_surface(gobj()));
   if(retvalue)
@@ -156,7 +156,7 @@ Glib::RefPtr<Gdk::Surface> Native::get_surface()
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::Surface> Native::get_surface() const
+auto Native::get_surface() const -> Glib::RefPtr<const Gdk::Surface>
 {
   return const_cast<Native*>(this)->get_surface();
 }

@@ -31,7 +31,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo CellEditable_signal_editing_done_info =
+const Glib::SignalProxyInfo CellEditable_signal_editing_done_info =
 {
   "editing_done",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -39,7 +39,7 @@ static const Glib::SignalProxyInfo CellEditable_signal_editing_done_info =
 };
 
 
-static const Glib::SignalProxyInfo CellEditable_signal_remove_widget_info =
+const Glib::SignalProxyInfo CellEditable_signal_remove_widget_info =
 {
   "remove_widget",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -53,7 +53,7 @@ static const Glib::SignalProxyInfo CellEditable_signal_remove_widget_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::CellEditable> wrap(GtkCellEditable* object, bool take_copy)
+auto wrap(GtkCellEditable* object, bool take_copy) -> Glib::RefPtr<Gtk::CellEditable>
 {
   return Glib::make_refptr_for_instance<Gtk::CellEditable>( dynamic_cast<Gtk::CellEditable*> (Glib::wrap_auto_interface<Gtk::CellEditable> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -68,7 +68,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& CellEditable_Class::init()
+auto CellEditable_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -212,7 +212,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* CellEditable_Class::wrap_new(GObject* object)
+auto CellEditable_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new CellEditable((GtkCellEditable*)(object));
 }
@@ -239,7 +239,7 @@ CellEditable::CellEditable(CellEditable&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-CellEditable& CellEditable::operator=(CellEditable&& src) noexcept
+auto CellEditable::operator=(CellEditable&& src) noexcept -> CellEditable&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -256,13 +256,13 @@ void CellEditable::add_interface(GType gtype_implementer)
 
 CellEditable::CppClassType CellEditable::celleditable_class_; // initialize static member
 
-GType CellEditable::get_type()
+auto CellEditable::get_type() -> GType
 {
   return celleditable_class_.init().get_type();
 }
 
 
-GType CellEditable::get_base_type()
+auto CellEditable::get_base_type() -> GType
 {
   return gtk_cell_editable_get_type();
 }
@@ -284,24 +284,24 @@ void CellEditable::remove_widget()
 }
 
 
-Glib::SignalProxy<void()> CellEditable::signal_editing_done()
+auto CellEditable::signal_editing_done() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &CellEditable_signal_editing_done_info);
 }
 
 
-Glib::SignalProxy<void()> CellEditable::signal_remove_widget()
+auto CellEditable::signal_remove_widget() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &CellEditable_signal_remove_widget_info);
 }
 
 
-Glib::PropertyProxy< bool > CellEditable::property_editing_canceled()
+auto CellEditable::property_editing_canceled() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "editing-canceled");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellEditable::property_editing_canceled() const
+auto CellEditable::property_editing_canceled() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "editing-canceled");
 }

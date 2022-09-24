@@ -80,7 +80,7 @@ public:
 
   // noncopyable
   AppInfo(const AppInfo&) = delete;
-  AppInfo& operator=(const AppInfo&) = delete;
+  auto operator=(const AppInfo&) -> AppInfo& = delete;
 
 private:
   friend class AppInfo_Class;
@@ -114,7 +114,7 @@ protected:
 public:
 
   AppInfo(AppInfo&& src) noexcept;
-  AppInfo& operator=(AppInfo&& src) noexcept;
+  auto operator=(AppInfo&& src) noexcept -> AppInfo&;
 
   ~AppInfo() noexcept override;
 
@@ -122,17 +122,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GAppInfo*       gobj()       { return reinterpret_cast<GAppInfo*>(gobject_); }
+  auto       gobj() -> GAppInfo*       { return reinterpret_cast<GAppInfo*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GAppInfo* gobj() const { return reinterpret_cast<GAppInfo*>(gobject_); }
+  auto gobj() const -> const GAppInfo* { return reinterpret_cast<GAppInfo*>(gobject_); }
 
 private:
 
@@ -176,15 +176,15 @@ public:
   };
 
 
-  static Glib::RefPtr<AppInfo> create_from_commandline(const std::string& commandline,
+  static auto create_from_commandline(const std::string& commandline,
                                                        const std::string& application_name,
-                                                       CreateFlags flags);
+                                                       CreateFlags flags) -> Glib::RefPtr<AppInfo>;
 
   /**  Creates a duplicate of this AppInfo.
    * @return A duplicate of this AppInfo.
    * @newin{2,36}
    */
-  Glib::RefPtr<AppInfo> create_duplicate() const;
+  auto create_duplicate() const -> Glib::RefPtr<AppInfo>;
 
 
   // Note that the implementation of equal() is virtual via equal_vfunc().
@@ -193,7 +193,7 @@ public:
    * @param other The other AppInfo.
    * @return <tt>true</tt> if @a *this is equal to @a other, <tt>false</tt> otherwise.
    */
-  bool equal(const Glib::RefPtr<AppInfo>& other) const;
+  auto equal(const Glib::RefPtr<AppInfo>& other) const -> bool;
 
 
   /** Gets the ID of an application. An id is a string that
@@ -206,13 +206,13 @@ public:
    *
    * @return A string containing the application's ID.
    */
-  std::string get_id() const;
+  auto get_id() const -> std::string;
 
   /** Gets the installed name of the application.
    *
    * @return The name of the application for @a appinfo.
    */
-  std::string get_name() const;
+  auto get_name() const -> std::string;
 
   /** Gets the display name of the application. The display name is often more
    * descriptive to the user than the name itself.
@@ -222,21 +222,21 @@ public:
    * @return The display name of the application for @a appinfo, or the name if
    * no display name is available.
    */
-  std::string get_display_name() const;
+  auto get_display_name() const -> std::string;
 
   /** Gets a human-readable description of an installed application.
    *
    * @return A string containing a description of the
    * application @a appinfo, or <tt>nullptr</tt> if none.
    */
-  std::string get_description() const;
+  auto get_description() const -> std::string;
 
   /** Gets the executable's name for the installed application.
    *
    * @return A string containing the @a appinfo's application
    * binaries name.
    */
-  std::string get_executable() const;
+  auto get_executable() const -> std::string;
 
   /** Gets the commandline with which the application will be
    * started.
@@ -246,7 +246,7 @@ public:
    * @return A string containing the @a appinfo's commandline,
    * or <tt>nullptr</tt> if this information is not available.
    */
-  std::string get_commandline() const;
+  auto get_commandline() const -> std::string;
 
 
   /** Gets the icon for the application.
@@ -254,14 +254,14 @@ public:
    * @return The default Icon for @a appinfo or <tt>nullptr</tt>
    * if there is no default icon.
    */
-  Glib::RefPtr<Icon> get_icon();
+  auto get_icon() -> Glib::RefPtr<Icon>;
 
   /** Gets the icon for the application.
    *
    * @return The default Icon for @a appinfo or <tt>nullptr</tt>
    * if there is no default icon.
    */
-  const Glib::RefPtr<const Icon> get_icon() const;
+  auto get_icon() const -> const Glib::RefPtr<const Icon>;
 
 
   /** Launches the application. This passes the @a file to the launched application
@@ -292,7 +292,7 @@ public:
    *
    * @newin{2,30}
    */
-  bool launch(const Glib::RefPtr<Gio::File>& file, const Glib::RefPtr<AppLaunchContext>& context);
+  auto launch(const Glib::RefPtr<Gio::File>& file, const Glib::RefPtr<AppLaunchContext>& context) -> bool;
 
   /** Launches the application. This passes the @a file to the launched application
    * as an argument.
@@ -320,7 +320,7 @@ public:
    *
    * @newin{2,30}
    */
-  bool launch(const Glib::RefPtr<Gio::File>& file);
+  auto launch(const Glib::RefPtr<Gio::File>& file) -> bool;
 
 
   /** Launches the application. Passes @a files to the launched application
@@ -357,23 +357,23 @@ public:
    *
    * @throws Glib::Error
    */
-  bool launch(const std::vector< Glib::RefPtr<Gio::File> >& files, const Glib::RefPtr<AppLaunchContext>& context);
+  auto launch(const std::vector< Glib::RefPtr<Gio::File> >& files, const Glib::RefPtr<AppLaunchContext>& context) -> bool;
 
   /// A launch() convenience overload.
-  bool launch(const std::vector< Glib::RefPtr<Gio::File> >& files);
+  auto launch(const std::vector< Glib::RefPtr<Gio::File> >& files) -> bool;
 
 
   /** Checks if the application supports reading files and directories from URIs.
    *
    * @return <tt>true</tt> if the @a appinfo supports URIs.
    */
-  bool supports_uris() const;
+  auto supports_uris() const -> bool;
 
   /** Checks if the application accepts files as arguments.
    *
    * @return <tt>true</tt> if the @a appinfo supports files.
    */
-  bool supports_files() const;
+  auto supports_files() const -> bool;
 
 
   //TODO: I think we use Glib::ustring elsewhere for URIs:
@@ -401,10 +401,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool launch_uris(const std::vector<std::string>& uris, const Glib::RefPtr<AppLaunchContext>& context);
+  auto launch_uris(const std::vector<std::string>& uris, const Glib::RefPtr<AppLaunchContext>& context) -> bool;
 
   /// A launch_uris() convenience overload.
-  bool launch_uris(const std::vector<std::string>& uris);
+  auto launch_uris(const std::vector<std::string>& uris) -> bool;
 
   /** Launches the application. This passes the @a uri to the launched application
    * as an arguments, using the optional @a context to get information
@@ -420,13 +420,13 @@ public:
    *
    * @newin{2,30}
    */
-  bool launch_uri(const std::string& uri, const Glib::RefPtr<AppLaunchContext>& context);
+  auto launch_uri(const std::string& uri, const Glib::RefPtr<AppLaunchContext>& context) -> bool;
 
   /** A launch_uri() convenience overload.
    *
    * @newin{2,30}
    */
-  bool launch_uri(const std::string& uris);
+  auto launch_uri(const std::string& uris) -> bool;
 
 
   /** Async version of g_app_info_launch_uris().
@@ -457,7 +457,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool launch_uris_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto launch_uris_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Checks if the application info should be shown in menus that
@@ -465,7 +465,7 @@ public:
    *
    * @return <tt>true</tt> if the @a appinfo should be shown, <tt>false</tt> otherwise.
    */
-  bool should_show() const;
+  auto should_show() const -> bool;
   // FIXME: use better terminology than delete/do_delete
 
   /** Obtains the information whether the AppInfo can be deleted.
@@ -475,7 +475,7 @@ public:
    *
    * @return <tt>true</tt> if @a appinfo can be deleted.
    */
-  bool can_delete() const;
+  auto can_delete() const -> bool;
 
   /** Tries to delete a AppInfo.
    *
@@ -488,7 +488,7 @@ public:
    *
    * @return <tt>true</tt> if @a appinfo has been deleted.
    */
-  bool do_delete();
+  auto do_delete() -> bool;
 
 
   /** Sets the application as the default handler for a given type.
@@ -498,7 +498,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool set_as_default_for_type(const std::string& content_type);
+  auto set_as_default_for_type(const std::string& content_type) -> bool;
 
   /** Sets the application as the default handler for the given file extension.
    *
@@ -508,7 +508,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool set_as_default_for_extension(const std::string& extension);
+  auto set_as_default_for_extension(const std::string& extension) -> bool;
 
   /** Adds a content type to the application information to indicate the
    * application is capable of opening files with the given content type.
@@ -518,14 +518,14 @@ public:
    *
    * @throws Glib::Error
    */
-  bool add_supports_type(const std::string& content_type);
+  auto add_supports_type(const std::string& content_type) -> bool;
 
   /** Checks if a supported content type can be removed from an application.
    *
    * @return <tt>true</tt> if it is possible to remove supported
    * content types from a given @a appinfo, <tt>false</tt> if not.
    */
-  bool can_remove_supports_type() const;
+  auto can_remove_supports_type() const -> bool;
 
   /** Removes a supported type from an application, if possible.
    *
@@ -534,7 +534,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool remove_supports_type(const std::string& content_type);
+  auto remove_supports_type(const std::string& content_type) -> bool;
 
 
   /** Retrieves the list of content types that @a app_info claims to support.
@@ -548,7 +548,7 @@ public:
    *
    * @return A list of content types.
    */
-  std::vector<Glib::ustring> get_supported_types() const;
+  auto get_supported_types() const -> std::vector<Glib::ustring>;
 
 
   /** Sets the application as the last used application for a given type.
@@ -561,7 +561,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool set_as_last_used_for_type(const std::string& content_type);
+  auto set_as_last_used_for_type(const std::string& content_type) -> bool;
 
 
   /** Gets a list of all of the applications currently registered
@@ -575,7 +575,7 @@ public:
    *
    * @return A newly allocated List of references to AppInfos.
    */
-  static std::vector<Glib::RefPtr<AppInfo>> get_all();
+  static auto get_all() -> std::vector<Glib::RefPtr<AppInfo>>;
 
 
   /** Gets a list of all AppInfos for a given content type,
@@ -587,7 +587,7 @@ public:
    * @return List of AppInfos
    * for given @a content_type or <tt>nullptr</tt> on error.
    */
-  static std::vector<Glib::RefPtr<AppInfo>> get_all_for_type(const std::string& content_type);
+  static auto get_all_for_type(const std::string& content_type) -> std::vector<Glib::RefPtr<AppInfo>>;
 
   /** Gets the default AppInfo for a given content type.
    *
@@ -597,7 +597,7 @@ public:
    * @return AppInfo for given @a content_type or
    * <tt>nullptr</tt> on error.
    */
-  static Glib::RefPtr<AppInfo> get_default_for_type(const std::string& content_type, bool must_support_uris =  true);
+  static auto get_default_for_type(const std::string& content_type, bool must_support_uris =  true) -> Glib::RefPtr<AppInfo>;
 
   /** Asynchronously gets the default AppInfo for a given content type.
    *
@@ -627,7 +627,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<AppInfo> get_default_for_type_finish(const Glib::RefPtr<AsyncResult>& result);
+  static auto get_default_for_type_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<AppInfo>;
 
 
   /** Gets the default application for handling URIs with
@@ -639,7 +639,7 @@ public:
    * @return AppInfo for given @a uri_scheme or
    * <tt>nullptr</tt> on error.
    */
-  static Glib::RefPtr<AppInfo> get_default_for_uri_scheme(const std::string& uri_scheme);
+  static auto get_default_for_uri_scheme(const std::string& uri_scheme) -> Glib::RefPtr<AppInfo>;
 
   /** Asynchronously gets the default application for handling URIs with
    * the given URI scheme. A URI scheme is the initial part
@@ -670,7 +670,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<AppInfo> get_default_for_uri_scheme_finish(const Glib::RefPtr<AsyncResult>& result);
+  static auto get_default_for_uri_scheme_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<AppInfo>;
 
 
   /** Removes all changes to the type associations done by
@@ -700,10 +700,10 @@ public:
    *
    * @throws Glib::Error
    */
-  static bool launch_default_for_uri(const std::string& uri, const Glib::RefPtr<AppLaunchContext>& context);
+  static auto launch_default_for_uri(const std::string& uri, const Glib::RefPtr<AppLaunchContext>& context) -> bool;
 
   /// A launch_default_for_uri() convenience overload.
-  static bool launch_default_for_uri(const std::string& uri);
+  static auto launch_default_for_uri(const std::string& uri) -> bool;
 
 
   /** Async version of g_app_info_launch_default_for_uri().
@@ -756,7 +756,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static bool launch_default_for_uri_finish(const Glib::RefPtr<AsyncResult>& result);
+  static auto launch_default_for_uri_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 protected:
   //_WRAP_VFUNC(Glib::RefPtr<AppInfo> dup(), "dup")
@@ -797,31 +797,31 @@ namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline AppInfo::CreateFlags operator|(AppInfo::CreateFlags lhs, AppInfo::CreateFlags rhs)
+inline auto operator|(AppInfo::CreateFlags lhs, AppInfo::CreateFlags rhs) -> AppInfo::CreateFlags
   { return static_cast<AppInfo::CreateFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline AppInfo::CreateFlags operator&(AppInfo::CreateFlags lhs, AppInfo::CreateFlags rhs)
+inline auto operator&(AppInfo::CreateFlags lhs, AppInfo::CreateFlags rhs) -> AppInfo::CreateFlags
   { return static_cast<AppInfo::CreateFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline AppInfo::CreateFlags operator^(AppInfo::CreateFlags lhs, AppInfo::CreateFlags rhs)
+inline auto operator^(AppInfo::CreateFlags lhs, AppInfo::CreateFlags rhs) -> AppInfo::CreateFlags
   { return static_cast<AppInfo::CreateFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline AppInfo::CreateFlags operator~(AppInfo::CreateFlags flags)
+inline auto operator~(AppInfo::CreateFlags flags) -> AppInfo::CreateFlags
   { return static_cast<AppInfo::CreateFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline AppInfo::CreateFlags& operator|=(AppInfo::CreateFlags& lhs, AppInfo::CreateFlags rhs)
+inline auto operator|=(AppInfo::CreateFlags& lhs, AppInfo::CreateFlags rhs) -> AppInfo::CreateFlags&
   { return (lhs = static_cast<AppInfo::CreateFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline AppInfo::CreateFlags& operator&=(AppInfo::CreateFlags& lhs, AppInfo::CreateFlags rhs)
+inline auto operator&=(AppInfo::CreateFlags& lhs, AppInfo::CreateFlags rhs) -> AppInfo::CreateFlags&
   { return (lhs = static_cast<AppInfo::CreateFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline AppInfo::CreateFlags& operator^=(AppInfo::CreateFlags& lhs, AppInfo::CreateFlags rhs)
+inline auto operator^=(AppInfo::CreateFlags& lhs, AppInfo::CreateFlags rhs) -> AppInfo::CreateFlags&
   { return (lhs = static_cast<AppInfo::CreateFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 
@@ -836,7 +836,7 @@ namespace Glib
    * @relates Gio::AppInfo
    */
   GIOMM_API
-  Glib::RefPtr<Gio::AppInfo> wrap(GAppInfo* object, bool take_copy = false);
+  auto wrap(GAppInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::AppInfo>;
 
 } // namespace Glib
 

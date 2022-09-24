@@ -30,8 +30,8 @@
 namespace Gio
 {
 
-Glib::RefPtr<InputStream>
-LoadableIcon::load(int size, Glib::ustring& type, const Glib::RefPtr<Cancellable>& cancellable)
+auto
+LoadableIcon::load(int size, Glib::ustring& type, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<InputStream>
 {
   char* c_type;
   GError* gerror = nullptr;
@@ -47,8 +47,8 @@ LoadableIcon::load(int size, Glib::ustring& type, const Glib::RefPtr<Cancellable
   return retval;
 }
 
-Glib::RefPtr<InputStream>
-LoadableIcon::load(int size, Glib::ustring& type)
+auto
+LoadableIcon::load(int size, Glib::ustring& type) -> Glib::RefPtr<InputStream>
 {
   char* c_type;
   GError* gerror = nullptr;
@@ -97,7 +97,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::LoadableIcon> wrap(GLoadableIcon* object, bool take_copy)
+auto wrap(GLoadableIcon* object, bool take_copy) -> Glib::RefPtr<Gio::LoadableIcon>
 {
   return Glib::make_refptr_for_instance<Gio::LoadableIcon>( dynamic_cast<Gio::LoadableIcon*> (Glib::wrap_auto_interface<Gio::LoadableIcon> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -112,7 +112,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& LoadableIcon_Class::init()
+auto LoadableIcon_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -139,7 +139,7 @@ void LoadableIcon_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* LoadableIcon_Class::wrap_new(GObject* object)
+auto LoadableIcon_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new LoadableIcon((GLoadableIcon*)(object));
 }
@@ -166,7 +166,7 @@ LoadableIcon::LoadableIcon(LoadableIcon&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-LoadableIcon& LoadableIcon::operator=(LoadableIcon&& src) noexcept
+auto LoadableIcon::operator=(LoadableIcon&& src) noexcept -> LoadableIcon&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -183,13 +183,13 @@ void LoadableIcon::add_interface(GType gtype_implementer)
 
 LoadableIcon::CppClassType LoadableIcon::loadableicon_class_; // initialize static member
 
-GType LoadableIcon::get_type()
+auto LoadableIcon::get_type() -> GType
 {
   return loadableicon_class_.init().get_type();
 }
 
 
-GType LoadableIcon::get_base_type()
+auto LoadableIcon::get_base_type() -> GType
 {
   return g_loadable_icon_get_type();
 }

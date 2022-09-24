@@ -39,27 +39,27 @@ PatternSpec::~PatternSpec() noexcept
 // g_pattern_match() is deprecated in glib 2.70.
 // Its replacement, g_pattern_spec_match(), is new in glib 2.70.
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-bool
-PatternSpec::match(const Glib::ustring& str) const
+auto
+PatternSpec::match(const Glib::ustring& str) const -> bool
 {
   return g_pattern_match(gobject_, str.bytes(), str.c_str(), nullptr);
 }
 
-bool
-PatternSpec::match(const Glib::ustring& str, const Glib::ustring& str_reversed) const
+auto
+PatternSpec::match(const Glib::ustring& str, const Glib::ustring& str_reversed) const -> bool
 {
   return g_pattern_match(gobject_, str.bytes(), str.c_str(), str_reversed.c_str());
 }
 G_GNUC_END_IGNORE_DEPRECATIONS
 
-bool
-PatternSpec::operator==(const PatternSpec& rhs) const
+auto
+PatternSpec::operator==(const PatternSpec& rhs) const -> bool
 {
   return g_pattern_spec_equal(gobject_, rhs.gobject_);
 }
 
-bool
-PatternSpec::operator!=(const PatternSpec& rhs) const
+auto
+PatternSpec::operator!=(const PatternSpec& rhs) const -> bool
 {
   return !g_pattern_spec_equal(gobject_, rhs.gobject_);
 }

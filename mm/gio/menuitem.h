@@ -62,7 +62,7 @@ public:
 
   // noncopyable
   MenuItem(const MenuItem&) = delete;
-  MenuItem& operator=(const MenuItem&) = delete;
+  auto operator=(const MenuItem&) -> MenuItem& = delete;
 
 private:  friend class MenuItem_Class;
   static CppClassType menuitem_class_;
@@ -76,28 +76,28 @@ protected:
 public:
 
   MenuItem(MenuItem&& src) noexcept;
-  MenuItem& operator=(MenuItem&& src) noexcept;
+  auto operator=(MenuItem&& src) noexcept -> MenuItem&;
 
   ~MenuItem() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GMenuItem*       gobj()       { return reinterpret_cast<GMenuItem*>(gobject_); }
+  auto       gobj() -> GMenuItem*       { return reinterpret_cast<GMenuItem*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GMenuItem* gobj() const { return reinterpret_cast<GMenuItem*>(gobject_); }
+  auto gobj() const -> const GMenuItem* { return reinterpret_cast<GMenuItem*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GMenuItem* gobj_copy();
+  auto gobj_copy() -> GMenuItem*;
 
 private:
 
@@ -140,13 +140,13 @@ protected:
 
 public:
 
-  static Glib::RefPtr<MenuItem> create(const Glib::ustring& label, const Glib::ustring& detailed_action);
+  static auto create(const Glib::ustring& label, const Glib::ustring& detailed_action) -> Glib::RefPtr<MenuItem>;
 
 
-  static Glib::RefPtr<MenuItem> create(const Glib::ustring& label, const Glib::RefPtr<MenuModel>& submenu);
+  static auto create(const Glib::ustring& label, const Glib::RefPtr<MenuModel>& submenu) -> Glib::RefPtr<MenuItem>;
 
   /// A create() convenience overload.
-  static Glib::RefPtr<MenuItem> create(const Glib::RefPtr<MenuModel>& submenu);
+  static auto create(const Glib::RefPtr<MenuModel>& submenu) -> Glib::RefPtr<MenuItem>;
 
 
 /* TODO:
@@ -209,7 +209,7 @@ GMenuItem * g_menu_item_new_section                 (const Glib::ustring& label,
    * @param link The link name to query.
    * @return The link, or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<MenuModel> get_link(const Glib::ustring& link);
+  auto get_link(const Glib::ustring& link) -> Glib::RefPtr<MenuModel>;
 
   /** Queries the named @a link on @a menu_item.
    *
@@ -218,7 +218,7 @@ GMenuItem * g_menu_item_new_section                 (const Glib::ustring& label,
    * @param link The link name to query.
    * @return The link, or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<const MenuModel> get_link(const Glib::ustring& link) const;
+  auto get_link(const Glib::ustring& link) const -> Glib::RefPtr<const MenuModel>;
 
 
   /** Creates a link from @a menu_item to @a model if non-<tt>nullptr</tt>, or unsets it.
@@ -297,10 +297,10 @@ GMenuItem * g_menu_item_new_section                 (const Glib::ustring& label,
    * @param expected_type The expected type of the attribute.
    * @return The attribute value, or <tt>nullptr</tt>.
    */
-  Glib::VariantBase get_attribute_value(const Glib::ustring& attribute, const Glib::VariantType& expected_type) const;
+  auto get_attribute_value(const Glib::ustring& attribute, const Glib::VariantType& expected_type) const -> Glib::VariantBase;
 
   /// A get_attribute_value() convenience overload.
-  Glib::VariantBase get_attribute_value(const Glib::ustring& attribute) const;
+  auto get_attribute_value(const Glib::ustring& attribute) const -> Glib::VariantBase;
 
   // Ignore varargs function.
 
@@ -446,7 +446,7 @@ namespace Glib
    * @relates Gio::MenuItem
    */
   GIOMM_API
-  Glib::RefPtr<Gio::MenuItem> wrap(GMenuItem* object, bool take_copy = false);
+  auto wrap(GMenuItem* object, bool take_copy = false) -> Glib::RefPtr<Gio::MenuItem>;
 }
 
 

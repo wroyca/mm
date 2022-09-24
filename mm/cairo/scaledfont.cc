@@ -50,8 +50,8 @@ ScaledFont::~ScaledFont()
     cairo_scaled_font_destroy(cobj());
 }
 
-RefPtr<ScaledFont> ScaledFont::create(const RefPtr<FontFace>& font_face, const Matrix& font_matrix,
-    const Matrix& ctm, const FontOptions& options)
+auto ScaledFont::create(const RefPtr<FontFace>& font_face, const Matrix& font_matrix,
+    const Matrix& ctm, const FontOptions& options) -> RefPtr<ScaledFont>
 {
   return make_refptr_for_instance<ScaledFont>(new ScaledFont(font_face, font_matrix, ctm, options));
 }
@@ -62,7 +62,7 @@ void ScaledFont::get_extents(FontExtents& extents) const
   check_object_status_and_throw_exception(*this);
 }
 
-RefPtr<FontFace> ScaledFont::get_font_face() const
+auto ScaledFont::get_font_face() const -> RefPtr<FontFace>
 {
   auto face = cairo_scaled_font_get_font_face(m_cobject);
   check_object_status_and_throw_exception(*this);
@@ -88,7 +88,7 @@ void ScaledFont::get_ctm(Matrix& ctm) const
   check_object_status_and_throw_exception(*this);
 }
 
-FontType ScaledFont::get_type() const
+auto ScaledFont::get_type() const -> FontType
 {
   auto font_type = cairo_scaled_font_get_type(m_cobject);
   check_object_status_and_throw_exception(*this);
@@ -143,15 +143,15 @@ FtScaledFont::FtScaledFont(const RefPtr<FtFontFace>& font_face, const Matrix& fo
   check_object_status_and_throw_exception(*this);
 }
 
-RefPtr<FtScaledFont>
+auto
 FtScaledFont::create(const RefPtr<FtFontFace>& font_face,
                      const Matrix& font_matrix, const Matrix& ctm,
-                     const FontOptions& options)
+                     const FontOptions& options) -> RefPtr<FtScaledFont>
 {
   return make_refptr_for_instance<FtScaledFont>(new FtScaledFont(font_face, font_matrix, ctm, options));
 }
 
-FT_Face FtScaledFont::lock_face()
+auto FtScaledFont::lock_face() -> FT_Face
 {
   auto face = cairo_ft_scaled_font_lock_face(cobj());
   check_object_status_and_throw_exception(*this);

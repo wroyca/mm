@@ -54,7 +54,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::SocketAddressEnumerator> wrap(GSocketAddressEnumerator* object, bool take_copy)
+auto wrap(GSocketAddressEnumerator* object, bool take_copy) -> Glib::RefPtr<Gio::SocketAddressEnumerator>
 {
   return Glib::make_refptr_for_instance<Gio::SocketAddressEnumerator>( dynamic_cast<Gio::SocketAddressEnumerator*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -69,7 +69,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& SocketAddressEnumerator_Class::init()
+auto SocketAddressEnumerator_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -100,7 +100,7 @@ void SocketAddressEnumerator_Class::class_init_function(void* g_class, void* cla
 }
 
 
-Glib::ObjectBase* SocketAddressEnumerator_Class::wrap_new(GObject* object)
+auto SocketAddressEnumerator_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new SocketAddressEnumerator((GSocketAddressEnumerator*)object);
 }
@@ -108,7 +108,7 @@ Glib::ObjectBase* SocketAddressEnumerator_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GSocketAddressEnumerator* SocketAddressEnumerator::gobj_copy()
+auto SocketAddressEnumerator::gobj_copy() -> GSocketAddressEnumerator*
 {
   reference();
   return gobj();
@@ -131,7 +131,7 @@ SocketAddressEnumerator::SocketAddressEnumerator(SocketAddressEnumerator&& src) 
 : Glib::Object(std::move(src))
 {}
 
-SocketAddressEnumerator& SocketAddressEnumerator::operator=(SocketAddressEnumerator&& src) noexcept
+auto SocketAddressEnumerator::operator=(SocketAddressEnumerator&& src) noexcept -> SocketAddressEnumerator&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -144,19 +144,19 @@ SocketAddressEnumerator::~SocketAddressEnumerator() noexcept
 
 SocketAddressEnumerator::CppClassType SocketAddressEnumerator::socketaddressenumerator_class_; // initialize static member
 
-GType SocketAddressEnumerator::get_type()
+auto SocketAddressEnumerator::get_type() -> GType
 {
   return socketaddressenumerator_class_.init().get_type();
 }
 
 
-GType SocketAddressEnumerator::get_base_type()
+auto SocketAddressEnumerator::get_base_type() -> GType
 {
   return g_socket_address_enumerator_get_type();
 }
 
 
-Glib::RefPtr<SocketAddress> SocketAddressEnumerator::next(const Glib::RefPtr<Cancellable>& cancellable)
+auto SocketAddressEnumerator::next(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketAddress>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_address_enumerator_next(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -165,7 +165,7 @@ Glib::RefPtr<SocketAddress> SocketAddressEnumerator::next(const Glib::RefPtr<Can
   return retvalue;
 }
 
-Glib::RefPtr<SocketAddress> SocketAddressEnumerator::next()
+auto SocketAddressEnumerator::next() -> Glib::RefPtr<SocketAddress>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_address_enumerator_next(gobj(), nullptr, &(gerror)));
@@ -174,7 +174,7 @@ Glib::RefPtr<SocketAddress> SocketAddressEnumerator::next()
   return retvalue;
 }
 
-Glib::RefPtr<SocketAddress> SocketAddressEnumerator::next_finish(const Glib::RefPtr<AsyncResult>& result)
+auto SocketAddressEnumerator::next_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<SocketAddress>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_socket_address_enumerator_next_finish(gobj(), Glib::unwrap(result), &(gerror)));

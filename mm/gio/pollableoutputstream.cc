@@ -39,7 +39,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::PollableOutputStream> wrap(GPollableOutputStream* object, bool take_copy)
+auto wrap(GPollableOutputStream* object, bool take_copy) -> Glib::RefPtr<Gio::PollableOutputStream>
 {
   return Glib::make_refptr_for_instance<Gio::PollableOutputStream>( dynamic_cast<Gio::PollableOutputStream*> (Glib::wrap_auto_interface<Gio::PollableOutputStream> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -54,7 +54,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& PollableOutputStream_Class::init()
+auto PollableOutputStream_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -83,7 +83,7 @@ void PollableOutputStream_Class::iface_init_function(void* g_iface, void*)
 
 }
 
-gboolean PollableOutputStream_Class::can_poll_vfunc_callback(GPollableOutputStream* self)
+auto PollableOutputStream_Class::can_poll_vfunc_callback(GPollableOutputStream* self) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -122,7 +122,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = gboolean;
   return RType();
 }
-gboolean PollableOutputStream_Class::is_writable_vfunc_callback(GPollableOutputStream* self)
+auto PollableOutputStream_Class::is_writable_vfunc_callback(GPollableOutputStream* self) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -161,7 +161,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = gboolean;
   return RType();
 }
-gssize PollableOutputStream_Class::write_nonblocking_vfunc_callback(GPollableOutputStream* self, const void* buffer, gsize count, GError** error)
+auto PollableOutputStream_Class::write_nonblocking_vfunc_callback(GPollableOutputStream* self, const void* buffer, gsize count, GError** error) -> gssize
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -207,7 +207,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* PollableOutputStream_Class::wrap_new(GObject* object)
+auto PollableOutputStream_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new PollableOutputStream((GPollableOutputStream*)(object));
 }
@@ -234,7 +234,7 @@ PollableOutputStream::PollableOutputStream(PollableOutputStream&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-PollableOutputStream& PollableOutputStream::operator=(PollableOutputStream&& src) noexcept
+auto PollableOutputStream::operator=(PollableOutputStream&& src) noexcept -> PollableOutputStream&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -251,29 +251,29 @@ void PollableOutputStream::add_interface(GType gtype_implementer)
 
 PollableOutputStream::CppClassType PollableOutputStream::pollableoutputstream_class_; // initialize static member
 
-GType PollableOutputStream::get_type()
+auto PollableOutputStream::get_type() -> GType
 {
   return pollableoutputstream_class_.init().get_type();
 }
 
 
-GType PollableOutputStream::get_base_type()
+auto PollableOutputStream::get_base_type() -> GType
 {
   return g_pollable_output_stream_get_type();
 }
 
 
-bool PollableOutputStream::can_poll() const
+auto PollableOutputStream::can_poll() const -> bool
 {
   return g_pollable_output_stream_can_poll(const_cast<GPollableOutputStream*>(gobj()));
 }
 
-bool PollableOutputStream::is_writable() const
+auto PollableOutputStream::is_writable() const -> bool
 {
   return g_pollable_output_stream_is_writable(const_cast<GPollableOutputStream*>(gobj()));
 }
 
-gssize PollableOutputStream::write_nonblocking(const void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable)
+auto PollableOutputStream::write_nonblocking(const void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
   auto retvalue = g_pollable_output_stream_write_nonblocking(gobj(), buffer, count, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -282,7 +282,7 @@ gssize PollableOutputStream::write_nonblocking(const void* buffer, gsize count, 
   return retvalue;
 }
 
-gssize PollableOutputStream::write_nonblocking(const void* buffer, gsize count)
+auto PollableOutputStream::write_nonblocking(const void* buffer, gsize count) -> gssize
 {
   GError* gerror = nullptr;
   auto retvalue = g_pollable_output_stream_write_nonblocking(gobj(), buffer, count, nullptr, &(gerror));
@@ -292,7 +292,7 @@ gssize PollableOutputStream::write_nonblocking(const void* buffer, gsize count)
 }
 
 
-bool Gio::PollableOutputStream::can_poll_vfunc() const
+auto Gio::PollableOutputStream::can_poll_vfunc() const -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -308,7 +308,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = bool;
   return RType();
 }
-bool Gio::PollableOutputStream::is_writable_vfunc() const
+auto Gio::PollableOutputStream::is_writable_vfunc() const -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -324,7 +324,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = bool;
   return RType();
 }
-gssize Gio::PollableOutputStream::write_nonblocking_vfunc(const void* buffer, gsize count)
+auto Gio::PollableOutputStream::write_nonblocking_vfunc(const void* buffer, gsize count) -> gssize
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

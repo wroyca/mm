@@ -109,7 +109,7 @@ template <>
 class GIOMM_API Value<Gio::TlsProtocolVersion> : public Glib::Value_Enum<Gio::TlsProtocolVersion>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -144,7 +144,7 @@ public:
 
   // noncopyable
   TlsConnection(const TlsConnection&) = delete;
-  TlsConnection& operator=(const TlsConnection&) = delete;
+  auto operator=(const TlsConnection&) -> TlsConnection& = delete;
 
 private:  friend class TlsConnection_Class;
   static CppClassType tlsconnection_class_;
@@ -158,28 +158,28 @@ protected:
 public:
 
   TlsConnection(TlsConnection&& src) noexcept;
-  TlsConnection& operator=(TlsConnection&& src) noexcept;
+  auto operator=(TlsConnection&& src) noexcept -> TlsConnection&;
 
   ~TlsConnection() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GTlsConnection*       gobj()       { return reinterpret_cast<GTlsConnection*>(gobject_); }
+  auto       gobj() -> GTlsConnection*       { return reinterpret_cast<GTlsConnection*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GTlsConnection* gobj() const { return reinterpret_cast<GTlsConnection*>(gobject_); }
+  auto gobj() const -> const GTlsConnection* { return reinterpret_cast<GTlsConnection*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GTlsConnection* gobj_copy();
+  auto gobj_copy() -> GTlsConnection*;
 
 private:
 
@@ -222,7 +222,7 @@ public:
    *
    * @return  @a conn's certificate, or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<TlsCertificate> get_certificate();
+  auto get_certificate() -> Glib::RefPtr<TlsCertificate>;
 
   /** Gets @a conn's certificate, as set by
    * g_tls_connection_set_certificate().
@@ -231,7 +231,7 @@ public:
    *
    * @return  @a conn's certificate, or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<const TlsCertificate> get_certificate() const;
+  auto get_certificate() const -> Glib::RefPtr<const TlsCertificate>;
 
 
   /** Gets @a conn's peer's certificate after the handshake has completed
@@ -242,7 +242,7 @@ public:
    *
    * @return  @a conn's peer's certificate, or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<TlsCertificate> get_peer_certificate();
+  auto get_peer_certificate() -> Glib::RefPtr<TlsCertificate>;
 
   /** Gets @a conn's peer's certificate after the handshake has completed
    * or failed. (It is not set during the emission of
@@ -252,7 +252,7 @@ public:
    *
    * @return  @a conn's peer's certificate, or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<const TlsCertificate> get_peer_certificate() const;
+  auto get_peer_certificate() const -> Glib::RefPtr<const TlsCertificate>;
 
 
   /** Gets the errors associated with validating @a conn's peer's
@@ -265,7 +265,7 @@ public:
    *
    * @return  @a conn's peer's certificate errors.
    */
-  TlsCertificateFlags get_peer_certificate_errors() const;
+  auto get_peer_certificate_errors() const -> TlsCertificateFlags;
 
 
   /** Sets whether or not @a conn expects a proper TLS close notification
@@ -311,7 +311,7 @@ public:
    * @return <tt>true</tt> if @a conn requires a proper TLS close
    * notification.
    */
-  bool get_require_close_notify() const;
+  auto get_require_close_notify() const -> bool;
 
 
   /** Gets the certificate database that @a conn uses to verify
@@ -321,7 +321,7 @@ public:
    *
    * @return The certificate database that @a conn uses or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<TlsDatabase> get_database();
+  auto get_database() -> Glib::RefPtr<TlsDatabase>;
 
   /** Gets the certificate database that @a conn uses to verify
    * peer certificates. See g_tls_connection_set_database().
@@ -330,7 +330,7 @@ public:
    *
    * @return The certificate database that @a conn uses or <tt>nullptr</tt>.
    */
-  Glib::RefPtr<const TlsDatabase> get_database() const;
+  auto get_database() const -> Glib::RefPtr<const TlsDatabase>;
 
 
   /** Sets the certificate database that is used to verify peer certificates.
@@ -360,7 +360,7 @@ public:
    *
    * @return The interaction object.
    */
-  Glib::RefPtr<TlsInteraction> get_interaction();
+  auto get_interaction() -> Glib::RefPtr<TlsInteraction>;
 
   /** Get the object that will be used to interact with the user. It will be used
    * for things like prompting the user for passwords. If <tt>nullptr</tt> is returned, then
@@ -370,7 +370,7 @@ public:
    *
    * @return The interaction object.
    */
-  Glib::RefPtr<const TlsInteraction> get_interaction() const;
+  auto get_interaction() const -> Glib::RefPtr<const TlsInteraction>;
 
 
   /** Set the object that will be used to interact with the user. It will be used
@@ -426,10 +426,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool handshake(const Glib::RefPtr<Cancellable>& cancellable);
+  auto handshake(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A handshake() convenience overload.
-  bool handshake();
+  auto handshake() -> bool;
 
 
   /** Asynchronously performs a TLS handshake on @a conn. See
@@ -457,7 +457,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool handshake_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto handshake_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Returns the current TLS protocol version, which may be
@@ -469,7 +469,7 @@ public:
    *
    * @return The current TLS protocol version.
    */
-  TlsProtocolVersion get_protocol_version() const;
+  auto get_protocol_version() const -> TlsProtocolVersion;
 
   /** Returns the name of the current TLS ciphersuite, or <tt>nullptr</tt> if the
    * connection has not handshaked or has been closed. Beware that the TLS
@@ -484,7 +484,7 @@ public:
    *
    * @return The name of the current TLS ciphersuite, or <tt>nullptr</tt>.
    */
-  Glib::ustring get_ciphersuite_name() const;
+  auto get_ciphersuite_name() const -> Glib::ustring;
 
 
   /** Used by TlsConnection implementations to emit the
@@ -497,7 +497,7 @@ public:
    * @return <tt>true</tt> if one of the signal handlers has returned
    * <tt>true</tt> to accept @a peer_cert.
    */
-  bool emit_accept_certificate(const Glib::RefPtr<const TlsCertificate>& peer_cert, TlsCertificateFlags errors);
+  auto emit_accept_certificate(const Glib::RefPtr<const TlsCertificate>& peer_cert, TlsCertificateFlags errors) -> bool;
 
   /** The IOStream that the connection wraps. The connection holds a reference
    * to this stream, and may run operations on the stream from other threads
@@ -510,7 +510,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<IOStream> > property_base_io_stream() const;
+  auto property_base_io_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<IOStream> >;
 
 
   /** The connection's certificate; see
@@ -521,7 +521,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<TlsCertificate> > property_certificate() ;
+  auto property_certificate() -> Glib::PropertyProxy< Glib::RefPtr<TlsCertificate> > ;
 
 /** The connection's certificate; see
    * g_tls_connection_set_certificate().
@@ -531,7 +531,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsCertificate> > property_certificate() const;
+  auto property_certificate() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsCertificate> >;
 
   /** The certificate database to use when verifying this TLS connection.
    * If no certificate database is set, then the default database will be
@@ -555,7 +555,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<TlsDatabase> > property_database() ;
+  auto property_database() -> Glib::PropertyProxy< Glib::RefPtr<TlsDatabase> > ;
 
 /** The certificate database to use when verifying this TLS connection.
    * If no certificate database is set, then the default database will be
@@ -579,7 +579,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsDatabase> > property_database() const;
+  auto property_database() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsDatabase> >;
 
   /** A TlsInteraction object to be used when the connection or certificate
    * database need to interact with the user. This will be used to prompt the
@@ -590,7 +590,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<TlsInteraction> > property_interaction() ;
+  auto property_interaction() -> Glib::PropertyProxy< Glib::RefPtr<TlsInteraction> > ;
 
 /** A TlsInteraction object to be used when the connection or certificate
    * database need to interact with the user. This will be used to prompt the
@@ -601,7 +601,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsInteraction> > property_interaction() const;
+  auto property_interaction() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsInteraction> >;
 
   /** The connection's peer's certificate, after the TLS handshake has
    * completed or failed. Note in particular that this is not yet set
@@ -615,7 +615,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsCertificate> > property_peer_certificate() const;
+  auto property_peer_certificate() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsCertificate> >;
 
 
   /** The errors noticed while verifying
@@ -640,7 +640,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< TlsCertificateFlags > property_peer_certificate_errors() const;
+  auto property_peer_certificate_errors() const -> Glib::PropertyProxy_ReadOnly< TlsCertificateFlags >;
 
 
   /** Whether or not proper TLS close notification is required.
@@ -653,7 +653,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_require_close_notify() ;
+  auto property_require_close_notify() -> Glib::PropertyProxy< bool > ;
 
 /** Whether or not proper TLS close notification is required.
    * See g_tls_connection_set_require_close_notify().
@@ -665,7 +665,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_require_close_notify() const;
+  auto property_require_close_notify() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The TLS protocol version in use. See g_tls_connection_get_protocol_version().
    *
@@ -676,7 +676,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< TlsProtocolVersion > property_protocol_version() const;
+  auto property_protocol_version() const -> Glib::PropertyProxy_ReadOnly< TlsProtocolVersion >;
 
 
   /** The name of the TLS ciphersuite in use. See g_tls_connection_get_ciphersuite_name().
@@ -688,7 +688,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_ciphersuite_name() const;
+  auto property_ciphersuite_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /**
@@ -750,18 +750,18 @@ public:
    * no one else overrides it.
    */
 
-  Glib::SignalProxy<bool(const Glib::RefPtr<const TlsCertificate>&, TlsCertificateFlags)> signal_accept_certificate();
+  auto signal_accept_certificate() -> Glib::SignalProxy<bool(const Glib::RefPtr<const TlsCertificate>&, TlsCertificateFlags)>;
 
 
 protected:
   /// @throws Glib::Error.
-  virtual bool handshake_vfunc(const Glib::RefPtr<Cancellable>& cancellable);
+  virtual auto handshake_vfunc(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     virtual void handshake_async_vfunc(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, int io_priority);
 
 
   /// @throws Glib::Error.
-  virtual bool handshake_finish_vfunc(const Glib::RefPtr<AsyncResult>& result);
+  virtual auto handshake_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
 public:
@@ -774,7 +774,7 @@ protected:
 
   //Default Signal Handlers::
   /// This is a default handler for the signal signal_accept_certificate().
-  virtual bool on_accept_certificate(const Glib::RefPtr<const TlsCertificate>& peer_cert, TlsCertificateFlags errors);
+  virtual auto on_accept_certificate(const Glib::RefPtr<const TlsCertificate>& peer_cert, TlsCertificateFlags errors) -> bool;
 
 
 };
@@ -793,7 +793,7 @@ namespace Glib
    * @relates Gio::TlsConnection
    */
   GIOMM_API
-  Glib::RefPtr<Gio::TlsConnection> wrap(GTlsConnection* object, bool take_copy = false);
+  auto wrap(GTlsConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsConnection>;
 }
 
 

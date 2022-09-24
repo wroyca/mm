@@ -71,7 +71,7 @@ public:
 
   // noncopyable
   PageSetup(const PageSetup&) = delete;
-  PageSetup& operator=(const PageSetup&) = delete;
+  auto operator=(const PageSetup&) -> PageSetup& = delete;
 
 private:  friend class PageSetup_Class;
   static CppClassType pagesetup_class_;
@@ -85,28 +85,28 @@ protected:
 public:
 
   PageSetup(PageSetup&& src) noexcept;
-  PageSetup& operator=(PageSetup&& src) noexcept;
+  auto operator=(PageSetup&& src) noexcept -> PageSetup&;
 
   ~PageSetup() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkPageSetup*       gobj()       { return reinterpret_cast<GtkPageSetup*>(gobject_); }
+  auto       gobj() -> GtkPageSetup*       { return reinterpret_cast<GtkPageSetup*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkPageSetup* gobj() const { return reinterpret_cast<GtkPageSetup*>(gobject_); }
+  auto gobj() const -> const GtkPageSetup* { return reinterpret_cast<GtkPageSetup*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkPageSetup* gobj_copy();
+  auto gobj_copy() -> GtkPageSetup*;
 
 private:
 
@@ -115,7 +115,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<PageSetup> create();
+  static auto create() -> Glib::RefPtr<PageSetup>;
 
 
  /** Reads the page setup from the "Page Setup" group in the key file @a key_file.
@@ -129,7 +129,7 @@ public:
   *
   * @newin{2,14}
   */
-  static Glib::RefPtr<PageSetup> create_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file);
+  static auto create_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file) -> Glib::RefPtr<PageSetup>;
 
  /** Reads the page setup from the group @a group_name in the key file @a key_file.
   * Returns a new PageSetup object with the restored
@@ -143,7 +143,7 @@ public:
   *
   * @newin{2,14}
   */
-  static Glib::RefPtr<PageSetup> create_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file, const Glib::ustring& group_name);
+  static auto create_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file, const Glib::ustring& group_name) -> Glib::RefPtr<PageSetup>;
 
 
  /** Reads the page setup from the file @a file_name. Returns a
@@ -155,14 +155,14 @@ public:
   *
   * @newin{2,14}
   */
-  static Glib::RefPtr<PageSetup> create_from_file(const std::string& file_name);
+  static auto create_from_file(const std::string& file_name) -> Glib::RefPtr<PageSetup>;
 
 
   /** Copies a `Gtk::PageSetup`.
    *
    * @return A copy of @a other.
    */
-  Glib::RefPtr<PageSetup> copy() const;
+  auto copy() const -> Glib::RefPtr<PageSetup>;
 
   //The from_ infix was added to these functions to make them clearer. GTK+ didn't want to change them.
 
@@ -175,7 +175,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool load_from_file(const std::string& file_name);
+  auto load_from_file(const std::string& file_name) -> bool;
 
 
   /** Reads the page setup from the group @a group_name in the key file
@@ -188,7 +188,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool load_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file, const Glib::ustring& group_name);
+  auto load_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file, const Glib::ustring& group_name) -> bool;
 
  /** Reads the page setup from the "Page Setup" group in the key file @a key_file.
   *
@@ -199,14 +199,14 @@ public:
   *
   * @newin{2,14}
   */
-  bool load_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file);
+  auto load_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file) -> bool;
 
 
   /** Gets the page orientation of the `Gtk::PageSetup`.
    *
    * @return The page orientation.
    */
-  PageOrientation get_orientation() const;
+  auto get_orientation() const -> PageOrientation;
 
   /** Sets the page orientation of the `Gtk::PageSetup`.
    *
@@ -219,13 +219,13 @@ public:
    *
    * @return The paper size.
    */
-  PaperSize get_paper_size();
+  auto get_paper_size() -> PaperSize;
 
   /** Gets the paper size of the `Gtk::PageSetup`.
    *
    * @return The paper size.
    */
-  const PaperSize get_paper_size() const;
+  auto get_paper_size() const -> const PaperSize;
 
   /** Sets the paper size of the `Gtk::PageSetup` without
    * changing the margins.
@@ -242,7 +242,7 @@ public:
    * @param unit The unit for the return value.
    * @return The top margin.
    */
-  double get_top_margin(Unit unit) const;
+  auto get_top_margin(Unit unit) const -> double;
 
   /** Sets the top margin of the `Gtk::PageSetup`.
    *
@@ -257,7 +257,7 @@ public:
    * @param unit The unit for the return value.
    * @return The bottom margin.
    */
-  double get_bottom_margin(Unit unit) const;
+  auto get_bottom_margin(Unit unit) const -> double;
 
   /** Sets the bottom margin of the `Gtk::PageSetup`.
    *
@@ -272,7 +272,7 @@ public:
    * @param unit The unit for the return value.
    * @return The left margin.
    */
-  double get_left_margin(Unit unit) const;
+  auto get_left_margin(Unit unit) const -> double;
 
   /** Sets the left margin of the `Gtk::PageSetup`.
    *
@@ -287,7 +287,7 @@ public:
    * @param unit The unit for the return value.
    * @return The right margin.
    */
-  double get_right_margin(Unit unit) const;
+  auto get_right_margin(Unit unit) const -> double;
 
   /** Sets the right margin of the `Gtk::PageSetup`.
    *
@@ -314,7 +314,7 @@ public:
    * @param unit The unit for the return value.
    * @return The paper width.
    */
-  double get_paper_width(Unit unit) const;
+  auto get_paper_width(Unit unit) const -> double;
 
   /** Returns the paper height in units of @a unit.
    *
@@ -325,7 +325,7 @@ public:
    * @param unit The unit for the return value.
    * @return The paper height.
    */
-  double get_paper_height(Unit unit) const;
+  auto get_paper_height(Unit unit) const -> double;
 
 
   /** Returns the page width in units of @a unit.
@@ -337,7 +337,7 @@ public:
    * @param unit The unit for the return value.
    * @return The page width.
    */
-  double get_page_width(Unit unit) const;
+  auto get_page_width(Unit unit) const -> double;
 
   /** Returns the page height in units of @a unit.
    *
@@ -348,7 +348,7 @@ public:
    * @param unit The unit for the return value.
    * @return The page height.
    */
-  double get_page_height(Unit unit) const;
+  auto get_page_height(Unit unit) const -> double;
 
   //The save_ prefix was added to these functions to make them clearer. GTK+ didn't want to change them.
 
@@ -360,7 +360,7 @@ public:
    * @param file_name The file to save to.
    * @return <tt>true</tt> on success.
    */
-  bool save_to_file(const std::string& file_name) const;
+  auto save_to_file(const std::string& file_name) const -> bool;
 
 
   /** This function adds the page setup from @a setup to @a key_file.
@@ -407,7 +407,7 @@ namespace Glib
    * @relates Gtk::PageSetup
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::PageSetup> wrap(GtkPageSetup* object, bool take_copy = false);
+  auto wrap(GtkPageSetup* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PageSetup>;
 }
 
 

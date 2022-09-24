@@ -66,7 +66,7 @@ public:
 
   // noncopyable
   InputStream(const InputStream&) = delete;
-  InputStream& operator=(const InputStream&) = delete;
+  auto operator=(const InputStream&) -> InputStream& = delete;
 
 private:  friend class InputStream_Class;
   static CppClassType inputstream_class_;
@@ -80,28 +80,28 @@ protected:
 public:
 
   InputStream(InputStream&& src) noexcept;
-  InputStream& operator=(InputStream&& src) noexcept;
+  auto operator=(InputStream&& src) noexcept -> InputStream&;
 
   ~InputStream() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GInputStream*       gobj()       { return reinterpret_cast<GInputStream*>(gobject_); }
+  auto       gobj() -> GInputStream*       { return reinterpret_cast<GInputStream*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GInputStream* gobj() const { return reinterpret_cast<GInputStream*>(gobject_); }
+  auto gobj() const -> const GInputStream* { return reinterpret_cast<GInputStream*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GInputStream* gobj_copy();
+  auto gobj_copy() -> GInputStream*;
 
 private:
 
@@ -135,10 +135,10 @@ public:
    *
    * @throws Glib::Error
    */
-  gssize read(void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable);
+  auto read(void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
   /// A read() convenience overload.
-  gssize read(void* buffer, gsize count);
+  auto read(void* buffer, gsize count) -> gssize;
 
   //TODO: for glibmm 2.17/18, we should decide whether to provide a read()
   // function as below, which would presumably read until EOL, or one with
@@ -176,10 +176,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool read_all(void* buffer, gsize count, gsize& bytes_read, const Glib::RefPtr<Cancellable>& cancellable);
+  auto read_all(void* buffer, gsize count, gsize& bytes_read, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A read_all() convenience overload.
-  bool read_all(void* buffer, gsize count, gsize& bytes_read);
+  auto read_all(void* buffer, gsize count, gsize& bytes_read) -> bool;
 
   //TODO: bool read_all(std::string& buffer, gsize count, gsize& bytes_read, const Glib::RefPtr<Cancellable>& cancellable);
   //TODO: bool read_all(std::string& buffer, gsize count, gsize& bytes_read)
@@ -218,7 +218,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<Glib::Bytes> read_bytes(gsize count, const Glib::RefPtr<Cancellable>& cancellable);
+  auto read_bytes(gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Glib::Bytes>;
 
   //TODO: Why not use _WRAP_METHOD() for this?
   /** Request an asynchronous read of @a count bytes from the stream into a
@@ -288,7 +288,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<Glib::Bytes> read_bytes_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto read_bytes_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<Glib::Bytes>;
 
 
   /** Tries to skip @a count bytes from the stream. Will block during the operation.
@@ -312,10 +312,10 @@ public:
    *
    * @throws Glib::Error
    */
-  gssize skip(gsize count, const Glib::RefPtr<Cancellable>& cancellable);
+  auto skip(gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
   /// A skip() convenience overload.
-  gssize skip(gsize count);
+  auto skip(gsize count) -> gssize;
 
 
   /** Closes the stream, releasing resources related to it.
@@ -347,10 +347,10 @@ public:
    *
    * @throws Glib::Error
    */
-  bool close(const Glib::RefPtr<Cancellable>& cancellable);
+  auto close(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   /// A close() convenience overload.
-  bool close();
+  auto close() -> bool;
 
 
   /** Request an asynchronous read of @a count bytes from the stream into the buffer
@@ -424,7 +424,7 @@ public:
    *
    * @throws Glib::Error
    */
-  gssize read_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto read_finish(const Glib::RefPtr<AsyncResult>& result) -> gssize;
 
 
   /** Request an asynchronous read of @a count bytes from the stream into the buffer
@@ -513,7 +513,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool read_all_finish(const Glib::RefPtr<AsyncResult>& result, gsize& bytes_read);
+  auto read_all_finish(const Glib::RefPtr<AsyncResult>& result, gsize& bytes_read) -> bool;
 
 
   //TODO: Use std::size_type instead of gsize?
@@ -585,7 +585,7 @@ public:
    *
    * @throws Glib::Error
    */
-  gssize skip_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto skip_finish(const Glib::RefPtr<AsyncResult>& result) -> gssize;
 
   /** Requests an asynchronous closes of the stream, releasing resources related to it.
    * When the operation is finished @a slot will be called.
@@ -628,7 +628,7 @@ public:
    *
    * @throws Glib::Error
    */
-  gboolean close_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto close_finish(const Glib::RefPtr<AsyncResult>& result) -> gboolean;
 
 
   /** Checks if an input stream is closed.
@@ -637,7 +637,7 @@ public:
    *
    * @return <tt>true</tt> if the stream is closed.
    */
-  bool is_closed() const;
+  auto is_closed() const -> bool;
 
   /** Checks if an input stream has pending actions.
    *
@@ -645,7 +645,7 @@ public:
    *
    * @return <tt>true</tt> if @a stream has pending actions.
    */
-  bool has_pending() const;
+  auto has_pending() const -> bool;
 
 protected:
 
@@ -659,7 +659,7 @@ protected:
    *
    * @throws Glib::Error
    */
-  bool set_pending();
+  auto set_pending() -> bool;
 
   /** Clears the pending flag on @a stream.
    *
@@ -669,13 +669,13 @@ protected:
 
 
   /// @throws Glib::Error.
-  virtual gssize read_vfunc(void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable);
+  virtual auto read_vfunc(void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
   /// @throws Glib::Error.
-  virtual gssize skip_vfunc(gsize count, const Glib::RefPtr<Cancellable>& cancellable);
+  virtual auto skip_vfunc(gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
   /// @throws Glib::Error.
-  virtual bool close_vfunc(const Glib::RefPtr<Cancellable>& cancellable);
+  virtual auto close_vfunc(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
 
 public:
@@ -705,7 +705,7 @@ namespace Glib
    * @relates Gio::InputStream
    */
   GIOMM_API
-  Glib::RefPtr<Gio::InputStream> wrap(GInputStream* object, bool take_copy = false);
+  auto wrap(GInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::InputStream>;
 }
 
 

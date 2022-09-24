@@ -15,7 +15,7 @@ MyWindow::MyWindow()
   set_default_size(200, 200);
 }
 
-int main(int argc, char* argv[])
+auto main(int argc, char* argv[]) -> int
 {
   auto app = Gtk::Application::create("org.gtkmm.examples.base");
 

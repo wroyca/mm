@@ -46,7 +46,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::ToplevelLayout> wrap(GdkToplevelLayout* object, bool take_copy)
+auto wrap(GdkToplevelLayout* object, bool take_copy) -> Glib::RefPtr<Gdk::ToplevelLayout>
 {
   if(take_copy && object)
     gdk_toplevel_layout_ref(object);
@@ -73,19 +73,19 @@ void ToplevelLayout::unreference() const
   gdk_toplevel_layout_unref(reinterpret_cast<GdkToplevelLayout*>(const_cast<ToplevelLayout*>(this)));
 }
 
-GdkToplevelLayout* ToplevelLayout::gobj()
+auto ToplevelLayout::gobj() -> GdkToplevelLayout*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<GdkToplevelLayout*>(this);
 }
 
-const GdkToplevelLayout* ToplevelLayout::gobj() const
+auto ToplevelLayout::gobj() const -> const GdkToplevelLayout*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<const GdkToplevelLayout*>(this);
 }
 
-GdkToplevelLayout* ToplevelLayout::gobj_copy() const
+auto ToplevelLayout::gobj_copy() const -> GdkToplevelLayout*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   const auto gobject = reinterpret_cast<GdkToplevelLayout*>(const_cast<ToplevelLayout*>(this));
@@ -94,17 +94,17 @@ GdkToplevelLayout* ToplevelLayout::gobj_copy() const
 }
 
 
-Glib::RefPtr<ToplevelLayout> ToplevelLayout::create()
+auto ToplevelLayout::create() -> Glib::RefPtr<ToplevelLayout>
 {
   return Glib::wrap(gdk_toplevel_layout_new());
 }
 
-Glib::RefPtr<ToplevelLayout> ToplevelLayout::copy() const
+auto ToplevelLayout::copy() const -> Glib::RefPtr<ToplevelLayout>
 {
   return Glib::wrap(gdk_toplevel_layout_copy(const_cast<GdkToplevelLayout*>(gobj())));
 }
 
-bool ToplevelLayout::equal(const Glib::RefPtr<const ToplevelLayout>& other) const
+auto ToplevelLayout::equal(const Glib::RefPtr<const ToplevelLayout>& other) const -> bool
 {
   return gdk_toplevel_layout_equal(const_cast<GdkToplevelLayout*>(gobj()), const_cast<GdkToplevelLayout*>(Glib::unwrap(other)));
 }
@@ -119,17 +119,17 @@ void ToplevelLayout::set_fullscreen(bool fullscreen, const Glib::RefPtr<Monitor>
   gdk_toplevel_layout_set_fullscreen(gobj(), static_cast<int>(fullscreen), Glib::unwrap(monitor));
 }
 
-bool ToplevelLayout::get_maximized(bool& maximized) const
+auto ToplevelLayout::get_maximized(bool& maximized) const -> bool
 {
   return gdk_toplevel_layout_get_maximized(const_cast<GdkToplevelLayout*>(gobj()), ((gboolean*) &(maximized)));
 }
 
-bool ToplevelLayout::get_fullscreen(bool& fullscreen) const
+auto ToplevelLayout::get_fullscreen(bool& fullscreen) const -> bool
 {
   return gdk_toplevel_layout_get_fullscreen(const_cast<GdkToplevelLayout*>(gobj()), ((gboolean*) &(fullscreen)));
 }
 
-Glib::RefPtr<Monitor> ToplevelLayout::get_fullscreen_monitor()
+auto ToplevelLayout::get_fullscreen_monitor() -> Glib::RefPtr<Monitor>
 {
   auto retvalue = Glib::wrap(gdk_toplevel_layout_get_fullscreen_monitor(gobj()));
   if(retvalue)
@@ -137,7 +137,7 @@ Glib::RefPtr<Monitor> ToplevelLayout::get_fullscreen_monitor()
   return retvalue;
 }
 
-Glib::RefPtr<const Monitor> ToplevelLayout::get_fullscreen_monitor() const
+auto ToplevelLayout::get_fullscreen_monitor() const -> Glib::RefPtr<const Monitor>
 {
   return const_cast<ToplevelLayout*>(this)->get_fullscreen_monitor();
 }
@@ -147,7 +147,7 @@ void ToplevelLayout::set_resizable(bool resizable)
   gdk_toplevel_layout_set_resizable(gobj(), static_cast<int>(resizable));
 }
 
-bool ToplevelLayout::get_resizable() const
+auto ToplevelLayout::get_resizable() const -> bool
 {
   return gdk_toplevel_layout_get_resizable(const_cast<GdkToplevelLayout*>(gobj()));
 }

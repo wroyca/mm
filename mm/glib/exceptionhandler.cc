@@ -30,9 +30,9 @@ using HandlerList = std::list<sigc::slot<void()>>;
 
 // Each thread has its own list of exception handlers
 // to avoid thread synchronization problems.
-static thread_local HandlerList* thread_specific_handler_list = nullptr;
+thread_local HandlerList* thread_specific_handler_list = nullptr;
 
-static void
+void
 glibmm_exception_warning(const GError* error)
 {
   g_assert(error != nullptr);
@@ -45,7 +45,7 @@ glibmm_exception_warning(const GError* error)
     g_quark_to_string(error->domain), error->code, (error->message) ? error->message : "(null)");
 }
 
-static void
+void
 glibmm_unexpected_exception()
 {
   try
@@ -79,8 +79,8 @@ glibmm_unexpected_exception()
 namespace Glib
 {
 
-sigc::connection
-add_exception_handler(const sigc::slot<void()>& slot)
+auto
+add_exception_handler(const sigc::slot<void()>& slot) -> sigc::connection
 {
   HandlerList* handler_list = thread_specific_handler_list;
 

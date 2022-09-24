@@ -50,8 +50,8 @@ Dir::~Dir()
     g_dir_close(gobject_);
 }
 
-std::string
-Dir::read_name()
+auto
+Dir::read_name() -> std::string
 {
   const char* const name = g_dir_read_name(gobject_);
   return Glib::convert_const_gchar_ptr_to_stdstring(name);
@@ -73,15 +73,15 @@ Dir::close()
   }
 }
 
-DirIterator
-Dir::begin()
+auto
+Dir::begin() -> DirIterator
 {
   g_dir_rewind(gobject_);
   return DirIterator(gobject_, g_dir_read_name(gobject_));
 }
 
-DirIterator
-Dir::end()
+auto
+Dir::end() -> DirIterator
 {
   return DirIterator(gobject_, nullptr);
 }
@@ -96,12 +96,12 @@ DirIterator::DirIterator(GDir* gobject, const char* current) : gobject_(gobject)
 {
 }
 
-std::string DirIterator::operator*() const
+auto DirIterator::operator*() const -> std::string
 {
   return convert_const_gchar_ptr_to_stdstring(current_);
 }
 
-DirIterator& DirIterator::operator++()
+auto DirIterator::operator++() -> DirIterator&
 {
   current_ = g_dir_read_name(gobject_);
   return *this;
@@ -112,26 +112,26 @@ void DirIterator::operator++(int)
   current_ = g_dir_read_name(gobject_);
 }
 
-bool
-DirIterator::operator==(const DirIterator& rhs) const
+auto
+DirIterator::operator==(const DirIterator& rhs) const -> bool
 {
   return (current_ == rhs.current_);
 }
 
-bool
-DirIterator::operator!=(const DirIterator& rhs) const
+auto
+DirIterator::operator!=(const DirIterator& rhs) const -> bool
 {
   return (current_ != rhs.current_);
 }
 
-bool
-file_test(const std::string& filename, FileTest test)
+auto
+file_test(const std::string& filename, FileTest test) -> bool
 {
   return g_file_test(filename.c_str(), static_cast<GFileTest>(unsigned(test)));
 }
 
-int
-mkstemp(std::string& filename_template)
+auto
+mkstemp(std::string& filename_template) -> int
 {
   const auto buf =
     make_unique_ptr_gfree(g_strndup(filename_template.data(), filename_template.size()));
@@ -141,8 +141,8 @@ mkstemp(std::string& filename_template)
   return fileno;
 }
 
-int
-file_open_tmp(std::string& name_used, const std::string& prefix)
+auto
+file_open_tmp(std::string& name_used, const std::string& prefix) -> int
 {
   std::string basename_template(prefix);
   basename_template += "XXXXXX"; // this sillyness shouldn't be in the interface
@@ -159,8 +159,8 @@ file_open_tmp(std::string& name_used, const std::string& prefix)
   return fileno;
 }
 
-int
-file_open_tmp(std::string& name_used)
+auto
+file_open_tmp(std::string& name_used) -> int
 {
   GError* error = nullptr;
   char* pch_buf_name_used = nullptr;
@@ -174,8 +174,8 @@ file_open_tmp(std::string& name_used)
   return fileno;
 }
 
-std::string
-file_get_contents(const std::string& filename)
+auto
+file_get_contents(const std::string& filename) -> std::string
 {
   gsize length = 0;
   GError* error = nullptr;
@@ -223,7 +223,7 @@ Glib::FileError::FileError(GError* gobject)
   Glib::Error (gobject)
 {}
 
-Glib::FileError::Code Glib::FileError::code() const
+auto Glib::FileError::code() const -> Glib::FileError::Code
 {
   return static_cast<Code>(Glib::Error::code());
 }

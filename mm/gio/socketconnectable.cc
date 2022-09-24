@@ -37,7 +37,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::SocketConnectable> wrap(GSocketConnectable* object, bool take_copy)
+auto wrap(GSocketConnectable* object, bool take_copy) -> Glib::RefPtr<Gio::SocketConnectable>
 {
   return Glib::make_refptr_for_instance<Gio::SocketConnectable>( dynamic_cast<Gio::SocketConnectable*> (Glib::wrap_auto_interface<Gio::SocketConnectable> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -52,7 +52,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& SocketConnectable_Class::init()
+auto SocketConnectable_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -79,7 +79,7 @@ void SocketConnectable_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* SocketConnectable_Class::wrap_new(GObject* object)
+auto SocketConnectable_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new SocketConnectable((GSocketConnectable*)(object));
 }
@@ -106,7 +106,7 @@ SocketConnectable::SocketConnectable(SocketConnectable&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-SocketConnectable& SocketConnectable::operator=(SocketConnectable&& src) noexcept
+auto SocketConnectable::operator=(SocketConnectable&& src) noexcept -> SocketConnectable&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -123,39 +123,39 @@ void SocketConnectable::add_interface(GType gtype_implementer)
 
 SocketConnectable::CppClassType SocketConnectable::socketconnectable_class_; // initialize static member
 
-GType SocketConnectable::get_type()
+auto SocketConnectable::get_type() -> GType
 {
   return socketconnectable_class_.init().get_type();
 }
 
 
-GType SocketConnectable::get_base_type()
+auto SocketConnectable::get_base_type() -> GType
 {
   return g_socket_connectable_get_type();
 }
 
 
-Glib::RefPtr<SocketAddressEnumerator> SocketConnectable::enumerate()
+auto SocketConnectable::enumerate() -> Glib::RefPtr<SocketAddressEnumerator>
 {
   return Glib::wrap(g_socket_connectable_enumerate(gobj()));
 }
 
-Glib::RefPtr<const SocketAddressEnumerator> SocketConnectable::enumerate() const
+auto SocketConnectable::enumerate() const -> Glib::RefPtr<const SocketAddressEnumerator>
 {
   return const_cast<SocketConnectable*>(this)->enumerate();
 }
 
-Glib::RefPtr<SocketAddressEnumerator> SocketConnectable::proxy_enumerate()
+auto SocketConnectable::proxy_enumerate() -> Glib::RefPtr<SocketAddressEnumerator>
 {
   return Glib::wrap(g_socket_connectable_proxy_enumerate(gobj()));
 }
 
-Glib::RefPtr<const SocketAddressEnumerator> SocketConnectable::proxy_enumerate() const
+auto SocketConnectable::proxy_enumerate() const -> Glib::RefPtr<const SocketAddressEnumerator>
 {
   return const_cast<SocketConnectable*>(this)->proxy_enumerate();
 }
 
-Glib::ustring SocketConnectable::to_string() const
+auto SocketConnectable::to_string() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(g_socket_connectable_to_string(const_cast<GSocketConnectable*>(gobj())));
 }

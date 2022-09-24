@@ -81,7 +81,7 @@ public:
 
   // noncopyable
   Volume(const Volume&) = delete;
-  Volume& operator=(const Volume&) = delete;
+  auto operator=(const Volume&) -> Volume& = delete;
 
 private:
   friend class Volume_Class;
@@ -115,7 +115,7 @@ protected:
 public:
 
   Volume(Volume&& src) noexcept;
-  Volume& operator=(Volume&& src) noexcept;
+  auto operator=(Volume&& src) noexcept -> Volume&;
 
   ~Volume() noexcept override;
 
@@ -123,17 +123,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GVolume*       gobj()       { return reinterpret_cast<GVolume*>(gobject_); }
+  auto       gobj() -> GVolume*       { return reinterpret_cast<GVolume*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GVolume* gobj() const { return reinterpret_cast<GVolume*>(gobject_); }
+  auto gobj() const -> const GVolume* { return reinterpret_cast<GVolume*>(gobject_); }
 
 private:
 
@@ -143,7 +143,7 @@ public:
    *
    * @return The name for the given @a volume.
    */
-  std::string get_name() const;
+  auto get_name() const -> std::string;
 
   /** Gets the UUID for the @a volume. The reference is typically based on
    * the file system UUID for the volume in question and should be
@@ -153,7 +153,7 @@ public:
    * @return The UUID for @a volume or <tt>nullptr</tt> if no UUID
    * can be computed.
    */
-  std::string get_uuid() const;
+  auto get_uuid() const -> std::string;
 
 
   /** Gets the icon for @a volume.
@@ -162,7 +162,7 @@ public:
    * The returned object should be unreffed with Glib::object_unref()
    * when no longer needed.
    */
-  Glib::RefPtr<Icon> get_icon();
+  auto get_icon() -> Glib::RefPtr<Icon>;
 
   /** Gets the icon for @a volume.
    *
@@ -170,7 +170,7 @@ public:
    * The returned object should be unreffed with Glib::object_unref()
    * when no longer needed.
    */
-  Glib::RefPtr<const Icon> get_icon() const;
+  auto get_icon() const -> Glib::RefPtr<const Icon>;
 
 
   /** Gets the symbolic icon for @a volume.
@@ -181,7 +181,7 @@ public:
    * The returned object should be unreffed with Glib::object_unref()
    * when no longer needed.
    */
-  Glib::RefPtr<Icon> get_symbolic_icon();
+  auto get_symbolic_icon() -> Glib::RefPtr<Icon>;
 
   /** Gets the symbolic icon for @a volume.
    *
@@ -191,7 +191,7 @@ public:
    * The returned object should be unreffed with Glib::object_unref()
    * when no longer needed.
    */
-  Glib::RefPtr<const Icon> get_symbolic_icon() const;
+  auto get_symbolic_icon() const -> Glib::RefPtr<const Icon>;
 
 
   /** Gets the drive for the @a volume.
@@ -200,7 +200,7 @@ public:
    * associated with a drive. The returned object should be unreffed
    * with Glib::object_unref() when no longer needed.
    */
-  Glib::RefPtr<Drive> get_drive();
+  auto get_drive() -> Glib::RefPtr<Drive>;
 
   /** Gets the drive for the @a volume.
    *
@@ -208,7 +208,7 @@ public:
    * associated with a drive. The returned object should be unreffed
    * with Glib::object_unref() when no longer needed.
    */
-  Glib::RefPtr<const Drive> get_drive() const;
+  auto get_drive() const -> Glib::RefPtr<const Drive>;
 
 
   /** Gets the mount for the @a volume.
@@ -217,7 +217,7 @@ public:
    * The returned object should be unreffed with Glib::object_unref()
    * when no longer needed.
    */
-  Glib::RefPtr<Mount> get_mount();
+  auto get_mount() -> Glib::RefPtr<Mount>;
 
   /** Gets the mount for the @a volume.
    *
@@ -225,26 +225,26 @@ public:
    * The returned object should be unreffed with Glib::object_unref()
    * when no longer needed.
    */
-  Glib::RefPtr<const Mount> get_mount() const;
+  auto get_mount() const -> Glib::RefPtr<const Mount>;
 
 
   /** Checks if a volume can be mounted.
    *
    * @return <tt>true</tt> if the @a volume can be mounted. <tt>false</tt> otherwise.
    */
-  bool can_mount() const;
+  auto can_mount() const -> bool;
 
   /** Checks if a volume can be ejected.
    *
    * @return <tt>true</tt> if the @a volume can be ejected. <tt>false</tt> otherwise.
    */
-  bool can_eject() const;
+  auto can_eject() const -> bool;
 
   /** Returns whether the volume should be automatically mounted.
    *
    * @return <tt>true</tt> if the volume should be automatically mounted.
    */
-  bool should_automount() const;
+  auto should_automount() const -> bool;
 
   /** Mounts a volume.
    * This is an asynchronous operation, and is finished by calling mount_finish() with the AsyncResult data returned in the callback slot.
@@ -292,7 +292,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool mount_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto mount_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
   void eject(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
   void eject(const SlotAsyncReady& slot, Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
@@ -312,7 +312,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool eject_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto eject_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Gets the identifier of the given kind for @a volume.
@@ -324,7 +324,7 @@ public:
    * requested identifier, or <tt>nullptr</tt> if the Volume
    * doesn't have this kind of identifier.
    */
-  std::string get_identifier(const std::string& kind) const;
+  auto get_identifier(const std::string& kind) const -> std::string;
 
 
   /** Gets the kinds of [identifiers][volume-identifier] that @a volume has.
@@ -333,7 +333,7 @@ public:
    * @return A <tt>nullptr</tt>-terminated array
    * of strings containing kinds of identifiers.
    */
-  std::vector<Glib::ustring> enumerate_identifiers() const;
+  auto enumerate_identifiers() const -> std::vector<Glib::ustring>;
 
 
   /** Gets the activation root for a Volume if it is known ahead of
@@ -359,7 +359,7 @@ public:
    * @return The activation root of @a volume
    * or <tt>nullptr</tt>. Use Glib::object_unref() to free.
    */
-  Glib::RefPtr<File> get_activation_root();
+  auto get_activation_root() -> Glib::RefPtr<File>;
 
   /** Gets the activation root for a Volume if it is known ahead of
    * mount time. Returns <tt>nullptr</tt> otherwise. If not <tt>nullptr</tt> and if @a volume
@@ -384,7 +384,7 @@ public:
    * @return The activation root of @a volume
    * or <tt>nullptr</tt>. Use Glib::object_unref() to free.
    */
-  Glib::RefPtr<const File> get_activation_root() const;
+  auto get_activation_root() const -> Glib::RefPtr<const File>;
 
 
   /** Gets the sort key for @a volume, if any.
@@ -393,7 +393,7 @@ public:
    *
    * @return Sorting key for @a volume or <tt>nullptr</tt> if no such key is available.
    */
-  Glib::ustring sort_key();
+  auto sort_key() -> Glib::ustring;
 
 
   /**
@@ -405,7 +405,7 @@ public:
    * Emitted when the volume has been changed.
    */
 
-  Glib::SignalProxy<void()> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -419,7 +419,7 @@ public:
    * release them so the object can be finalized.
    */
 
-  Glib::SignalProxy<void()> signal_removed();
+  auto signal_removed() -> Glib::SignalProxy<void()>;
 
 
 protected:
@@ -472,7 +472,7 @@ namespace Glib
 
 //Pre-declare this so we can use it in TypeTrait:
 GIOMM_API
-Glib::RefPtr<Gio::Volume> wrap(GVolume* object, bool take_copy);
+auto wrap(GVolume* object, bool take_copy) -> Glib::RefPtr<Gio::Volume>;
 
 namespace Container_Helpers
 {
@@ -489,10 +489,10 @@ struct TypeTraits< Glib::RefPtr<Gio::Volume> >
   using CType = GVolume*;
   using CTypeNonConst = GVolume*;
 
-  static CType   to_c_type      (const CppType& item)
+  static auto   to_c_type      (const CppType& item) -> CType
   { return Glib::unwrap (item); }
 
-  static CppType to_cpp_type    (const CType& item)
+  static auto to_cpp_type    (const CType& item) -> CppType
   {
     //Use a specific Glib::wrap() function,
     //because CType has the specific type (not just GObject):
@@ -521,7 +521,7 @@ namespace Glib
    * @relates Gio::Volume
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Volume> wrap(GVolume* object, bool take_copy = false);
+  auto wrap(GVolume* object, bool take_copy = false) -> Glib::RefPtr<Gio::Volume>;
 
 } // namespace Glib
 

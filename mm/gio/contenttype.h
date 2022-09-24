@@ -42,7 +42,7 @@ namespace Gio
  * @return true if the two strings are identical or equivalent, false otherwise.
  */
 GIOMM_API
-bool content_type_equals(const Glib::ustring& type1, const Glib::ustring& type2);
+auto content_type_equals(const Glib::ustring& type1, const Glib::ustring& type2) -> bool;
 
 /**
  * Determines if @a type is a subset of @a supertype.
@@ -53,7 +53,7 @@ bool content_type_equals(const Glib::ustring& type1, const Glib::ustring& type2)
  * @return true if @a type is a kind of @a supertype, false otherwise.
  */
 GIOMM_API
-bool content_type_is_a(const Glib::ustring& type, const Glib::ustring& supertype);
+auto content_type_is_a(const Glib::ustring& type, const Glib::ustring& supertype) -> bool;
 
 /**
  * Checks if the content type is the generic "unknown" type.
@@ -65,7 +65,7 @@ bool content_type_is_a(const Glib::ustring& type, const Glib::ustring& supertype
  * @return true if the type is the unknown type.
  */
 GIOMM_API
-bool content_type_is_unknown(const Glib::ustring& type);
+auto content_type_is_unknown(const Glib::ustring& type) -> bool;
 
 /**
  * Gets the human readable description of the content type.
@@ -75,7 +75,7 @@ bool content_type_is_unknown(const Glib::ustring& type);
  * @return a short description of the content type @a type.
  */
 GIOMM_API
-Glib::ustring content_type_get_description(const Glib::ustring& type);
+auto content_type_get_description(const Glib::ustring& type) -> Glib::ustring;
 
 /**
  * Gets the mime-type for the content type, if one is registered.
@@ -85,7 +85,7 @@ Glib::ustring content_type_get_description(const Glib::ustring& type);
  * @return the registered mime-type for the given @a type, or an empty string if unknown.
  */
 GIOMM_API
-Glib::ustring content_type_get_mime_type(const Glib::ustring& type);
+auto content_type_get_mime_type(const Glib::ustring& type) -> Glib::ustring;
 
 /**
  * Gets the icon for a content type.
@@ -95,7 +95,7 @@ Glib::ustring content_type_get_mime_type(const Glib::ustring& type);
  * @return Icon corresponding to the content type.
  */
 GIOMM_API
-Glib::RefPtr<Icon> content_type_get_icon(const Glib::ustring& type);
+auto content_type_get_icon(const Glib::ustring& type) -> Glib::RefPtr<Icon>;
 
 #ifdef G_OS_UNIX
 /**
@@ -107,7 +107,7 @@ Glib::RefPtr<Icon> content_type_get_icon(const Glib::ustring& type);
  * @newin{2,34}
  */
 GIOMM_API
-Glib::RefPtr<Icon> content_type_get_symbolic_icon(const Glib::ustring& type);
+auto content_type_get_symbolic_icon(const Glib::ustring& type) -> Glib::RefPtr<Icon>;
 #endif
 
 /**
@@ -120,7 +120,7 @@ Glib::RefPtr<Icon> content_type_get_symbolic_icon(const Glib::ustring& type);
  * false otherwise.
  */
 GIOMM_API
-bool content_type_can_be_executable(const Glib::ustring& type);
+auto content_type_can_be_executable(const Glib::ustring& type) -> bool;
 
 /** Tries to find a content type based on the mime type name.
  *
@@ -130,7 +130,7 @@ bool content_type_can_be_executable(const Glib::ustring& type);
  * @newin{2,20}
  */
 GIOMM_API
-Glib::ustring content_type_from_mime_type(const Glib::ustring& mime_type);
+auto content_type_from_mime_type(const Glib::ustring& mime_type) -> Glib::ustring;
 
 /**
  * Guesses the content type based on example data. If the function is uncertain,
@@ -146,8 +146,8 @@ Glib::ustring content_type_from_mime_type(const Glib::ustring& mime_type);
  * given data.
  */
 GIOMM_API
-Glib::ustring content_type_guess(
-  const std::string& filename, const guchar* data, gsize data_size, bool& result_uncertain);
+auto content_type_guess(
+  const std::string& filename, const guchar* data, gsize data_size, bool& result_uncertain) -> Glib::ustring;
 
 /**
  * Guesses the content type based on example data. If the function is uncertain,
@@ -161,8 +161,8 @@ Glib::ustring content_type_guess(
  * given data.
  */
 GIOMM_API
-Glib::ustring content_type_guess(
-  const std::string& filename, const std::string& data, bool& result_uncertain);
+auto content_type_guess(
+  const std::string& filename, const std::string& data, bool& result_uncertain) -> Glib::ustring;
 
 /** Tries to guess the type of the tree with root @a root, by
  * looking at the files it contains. The result is a list
@@ -180,7 +180,7 @@ Glib::ustring content_type_guess(
  * @newin{2,18}
  */
 GIOMM_API
-std::vector<Glib::ustring> content_type_guess_for_tree(const Glib::RefPtr<const File>& root);
+auto content_type_guess_for_tree(const Glib::RefPtr<const File>& root) -> std::vector<Glib::ustring>;
 
 /**
  * Gets a list of strings containing all the registered content types
@@ -189,7 +189,7 @@ std::vector<Glib::ustring> content_type_guess_for_tree(const Glib::RefPtr<const 
  * @return List of the registered content types.
  */
 GIOMM_API
-std::vector<Glib::ustring> content_types_get_registered();
+auto content_types_get_registered() -> std::vector<Glib::ustring>;
 
 /** @} group giommContentType */
 

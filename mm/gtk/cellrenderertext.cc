@@ -29,7 +29,7 @@
 namespace Gtk
 {
 
-Glib::PropertyProxy_Base CellRendererText::_property_renderable()
+auto CellRendererText::_property_renderable() -> Glib::PropertyProxy_Base
 {
   return property_text();
 }
@@ -46,7 +46,7 @@ namespace
 {
 
 
-static void CellRendererText_signal_edited_callback(GtkCellRendererText* self, const gchar* p0,const gchar* p1,void* data)
+void CellRendererText_signal_edited_callback(GtkCellRendererText* self, const gchar* p0,const gchar* p1,void* data)
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&, const Glib::ustring&)>;
@@ -69,7 +69,7 @@ static void CellRendererText_signal_edited_callback(GtkCellRendererText* self, c
   }
 }
 
-static const Glib::SignalProxyInfo CellRendererText_signal_edited_info =
+const Glib::SignalProxyInfo CellRendererText_signal_edited_info =
 {
   "edited",
   (GCallback) &CellRendererText_signal_edited_callback,
@@ -83,7 +83,7 @@ static const Glib::SignalProxyInfo CellRendererText_signal_edited_info =
 namespace Glib
 {
 
-Gtk::CellRendererText* wrap(GtkCellRendererText* object, bool take_copy)
+auto wrap(GtkCellRendererText* object, bool take_copy) -> Gtk::CellRendererText*
 {
   return dynamic_cast<Gtk::CellRendererText *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -96,7 +96,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& CellRendererText_Class::init()
+auto CellRendererText_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -168,7 +168,7 @@ void CellRendererText_Class::edited_callback(GtkCellRendererText* self, const gc
 }
 
 
-Glib::ObjectBase* CellRendererText_Class::wrap_new(GObject* o)
+auto CellRendererText_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new CellRendererText((GtkCellRendererText*)(o)));
 
@@ -194,7 +194,7 @@ CellRendererText::CellRendererText(CellRendererText&& src) noexcept
 : Gtk::CellRenderer(std::move(src))
 {}
 
-CellRendererText& CellRendererText::operator=(CellRendererText&& src) noexcept
+auto CellRendererText::operator=(CellRendererText&& src) noexcept -> CellRendererText&
 {
   Gtk::CellRenderer::operator=(std::move(src));
   return *this;
@@ -207,13 +207,13 @@ CellRendererText::~CellRendererText() noexcept
 
 CellRendererText::CppClassType CellRendererText::cellrenderertext_class_; // initialize static member
 
-GType CellRendererText::get_type()
+auto CellRendererText::get_type() -> GType
 {
   return cellrenderertext_class_.init().get_type();
 }
 
 
-GType CellRendererText::get_base_type()
+auto CellRendererText::get_base_type() -> GType
 {
   return gtk_cell_renderer_text_get_type();
 }
@@ -235,23 +235,23 @@ void CellRendererText::set_fixed_height_from_font(int number_of_rows)
 }
 
 
-Glib::SignalProxy<void(const Glib::ustring&, const Glib::ustring&)> CellRendererText::signal_edited()
+auto CellRendererText::signal_edited() -> Glib::SignalProxy<void(const Glib::ustring&, const Glib::ustring&)>
 {
   return Glib::SignalProxy<void(const Glib::ustring&, const Glib::ustring&) >(this, &CellRendererText_signal_edited_info);
 }
 
 
-Glib::PropertyProxy< Glib::ustring > CellRendererText::property_text()
+auto CellRendererText::property_text() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "text");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > CellRendererText::property_text() const
+auto CellRendererText::property_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "text");
 }
 
-Glib::PropertyProxy_WriteOnly< Glib::ustring > CellRendererText::property_markup()
+auto CellRendererText::property_markup() -> Glib::PropertyProxy_WriteOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_WriteOnly< Glib::ustring >(this, "markup");
 }
@@ -260,22 +260,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::AttrList>::va
   "Type Pango::AttrList cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::AttrList > CellRendererText::property_attributes()
+auto CellRendererText::property_attributes() -> Glib::PropertyProxy< Pango::AttrList >
 {
   return Glib::PropertyProxy< Pango::AttrList >(this, "attributes");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::AttrList > CellRendererText::property_attributes() const
+auto CellRendererText::property_attributes() const -> Glib::PropertyProxy_ReadOnly< Pango::AttrList >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::AttrList >(this, "attributes");
 }
 
-Glib::PropertyProxy_WriteOnly< Glib::ustring > CellRendererText::property_background()
+auto CellRendererText::property_background() -> Glib::PropertyProxy_WriteOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_WriteOnly< Glib::ustring >(this, "background");
 }
 
-Glib::PropertyProxy_WriteOnly< Glib::ustring > CellRendererText::property_foreground()
+auto CellRendererText::property_foreground() -> Glib::PropertyProxy_WriteOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_WriteOnly< Glib::ustring >(this, "foreground");
 }
@@ -284,12 +284,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
   "Type Gdk::RGBA cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Gdk::RGBA > CellRendererText::property_background_rgba()
+auto CellRendererText::property_background_rgba() -> Glib::PropertyProxy< Gdk::RGBA >
 {
   return Glib::PropertyProxy< Gdk::RGBA >(this, "background-rgba");
 }
 
-Glib::PropertyProxy_ReadOnly< Gdk::RGBA > CellRendererText::property_background_rgba() const
+auto CellRendererText::property_background_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >
 {
   return Glib::PropertyProxy_ReadOnly< Gdk::RGBA >(this, "background-rgba");
 }
@@ -298,22 +298,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
   "Type Gdk::RGBA cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Gdk::RGBA > CellRendererText::property_foreground_rgba()
+auto CellRendererText::property_foreground_rgba() -> Glib::PropertyProxy< Gdk::RGBA >
 {
   return Glib::PropertyProxy< Gdk::RGBA >(this, "foreground-rgba");
 }
 
-Glib::PropertyProxy_ReadOnly< Gdk::RGBA > CellRendererText::property_foreground_rgba() const
+auto CellRendererText::property_foreground_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >
 {
   return Glib::PropertyProxy_ReadOnly< Gdk::RGBA >(this, "foreground-rgba");
 }
 
-Glib::PropertyProxy< Glib::ustring > CellRendererText::property_font()
+auto CellRendererText::property_font() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "font");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > CellRendererText::property_font() const
+auto CellRendererText::property_font() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "font");
 }
@@ -322,22 +322,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::FontDescripti
   "Type Pango::FontDescription cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::FontDescription > CellRendererText::property_font_desc()
+auto CellRendererText::property_font_desc() -> Glib::PropertyProxy< Pango::FontDescription >
 {
   return Glib::PropertyProxy< Pango::FontDescription >(this, "font-desc");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::FontDescription > CellRendererText::property_font_desc() const
+auto CellRendererText::property_font_desc() const -> Glib::PropertyProxy_ReadOnly< Pango::FontDescription >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::FontDescription >(this, "font-desc");
 }
 
-Glib::PropertyProxy< Glib::ustring > CellRendererText::property_family()
+auto CellRendererText::property_family() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "family");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > CellRendererText::property_family() const
+auto CellRendererText::property_family() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "family");
 }
@@ -346,12 +346,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Style>::value
   "Type Pango::Style cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::Style > CellRendererText::property_style()
+auto CellRendererText::property_style() -> Glib::PropertyProxy< Pango::Style >
 {
   return Glib::PropertyProxy< Pango::Style >(this, "style");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::Style > CellRendererText::property_style() const
+auto CellRendererText::property_style() const -> Glib::PropertyProxy_ReadOnly< Pango::Style >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::Style >(this, "style");
 }
@@ -360,22 +360,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Variant>::val
   "Type Pango::Variant cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::Variant > CellRendererText::property_variant()
+auto CellRendererText::property_variant() -> Glib::PropertyProxy< Pango::Variant >
 {
   return Glib::PropertyProxy< Pango::Variant >(this, "variant");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::Variant > CellRendererText::property_variant() const
+auto CellRendererText::property_variant() const -> Glib::PropertyProxy_ReadOnly< Pango::Variant >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::Variant >(this, "variant");
 }
 
-Glib::PropertyProxy< int > CellRendererText::property_weight()
+auto CellRendererText::property_weight() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "weight");
 }
 
-Glib::PropertyProxy_ReadOnly< int > CellRendererText::property_weight() const
+auto CellRendererText::property_weight() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "weight");
 }
@@ -384,62 +384,62 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Stretch>::val
   "Type Pango::Stretch cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::Stretch > CellRendererText::property_stretch()
+auto CellRendererText::property_stretch() -> Glib::PropertyProxy< Pango::Stretch >
 {
   return Glib::PropertyProxy< Pango::Stretch >(this, "stretch");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::Stretch > CellRendererText::property_stretch() const
+auto CellRendererText::property_stretch() const -> Glib::PropertyProxy_ReadOnly< Pango::Stretch >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::Stretch >(this, "stretch");
 }
 
-Glib::PropertyProxy< int > CellRendererText::property_size()
+auto CellRendererText::property_size() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "size");
 }
 
-Glib::PropertyProxy_ReadOnly< int > CellRendererText::property_size() const
+auto CellRendererText::property_size() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "size");
 }
 
-Glib::PropertyProxy< double > CellRendererText::property_size_points()
+auto CellRendererText::property_size_points() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "size-points");
 }
 
-Glib::PropertyProxy_ReadOnly< double > CellRendererText::property_size_points() const
+auto CellRendererText::property_size_points() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "size-points");
 }
 
-Glib::PropertyProxy< double > CellRendererText::property_scale()
+auto CellRendererText::property_scale() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "scale");
 }
 
-Glib::PropertyProxy_ReadOnly< double > CellRendererText::property_scale() const
+auto CellRendererText::property_scale() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "scale");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_editable()
+auto CellRendererText::property_editable() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "editable");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_editable() const
+auto CellRendererText::property_editable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "editable");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_strikethrough()
+auto CellRendererText::property_strikethrough() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "strikethrough");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_strikethrough() const
+auto CellRendererText::property_strikethrough() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "strikethrough");
 }
@@ -448,32 +448,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Underline>::v
   "Type Pango::Underline cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::Underline > CellRendererText::property_underline()
+auto CellRendererText::property_underline() -> Glib::PropertyProxy< Pango::Underline >
 {
   return Glib::PropertyProxy< Pango::Underline >(this, "underline");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::Underline > CellRendererText::property_underline() const
+auto CellRendererText::property_underline() const -> Glib::PropertyProxy_ReadOnly< Pango::Underline >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::Underline >(this, "underline");
 }
 
-Glib::PropertyProxy< int > CellRendererText::property_rise()
+auto CellRendererText::property_rise() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "rise");
 }
 
-Glib::PropertyProxy_ReadOnly< int > CellRendererText::property_rise() const
+auto CellRendererText::property_rise() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "rise");
 }
 
-Glib::PropertyProxy< Glib::ustring > CellRendererText::property_language()
+auto CellRendererText::property_language() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "language");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > CellRendererText::property_language() const
+auto CellRendererText::property_language() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "language");
 }
@@ -482,32 +482,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::EllipsizeMode
   "Type Pango::EllipsizeMode cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::EllipsizeMode > CellRendererText::property_ellipsize()
+auto CellRendererText::property_ellipsize() -> Glib::PropertyProxy< Pango::EllipsizeMode >
 {
   return Glib::PropertyProxy< Pango::EllipsizeMode >(this, "ellipsize");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::EllipsizeMode > CellRendererText::property_ellipsize() const
+auto CellRendererText::property_ellipsize() const -> Glib::PropertyProxy_ReadOnly< Pango::EllipsizeMode >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::EllipsizeMode >(this, "ellipsize");
 }
 
-Glib::PropertyProxy< int > CellRendererText::property_width_chars()
+auto CellRendererText::property_width_chars() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "width-chars");
 }
 
-Glib::PropertyProxy_ReadOnly< int > CellRendererText::property_width_chars() const
+auto CellRendererText::property_width_chars() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "width-chars");
 }
 
-Glib::PropertyProxy< int > CellRendererText::property_max_width_chars()
+auto CellRendererText::property_max_width_chars() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "max-width-chars");
 }
 
-Glib::PropertyProxy_ReadOnly< int > CellRendererText::property_max_width_chars() const
+auto CellRendererText::property_max_width_chars() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "max-width-chars");
 }
@@ -516,22 +516,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::WrapMode>::va
   "Type Pango::WrapMode cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::WrapMode > CellRendererText::property_wrap_mode()
+auto CellRendererText::property_wrap_mode() -> Glib::PropertyProxy< Pango::WrapMode >
 {
   return Glib::PropertyProxy< Pango::WrapMode >(this, "wrap-mode");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::WrapMode > CellRendererText::property_wrap_mode() const
+auto CellRendererText::property_wrap_mode() const -> Glib::PropertyProxy_ReadOnly< Pango::WrapMode >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::WrapMode >(this, "wrap-mode");
 }
 
-Glib::PropertyProxy< int > CellRendererText::property_wrap_width()
+auto CellRendererText::property_wrap_width() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "wrap-width");
 }
 
-Glib::PropertyProxy_ReadOnly< int > CellRendererText::property_wrap_width() const
+auto CellRendererText::property_wrap_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "wrap-width");
 }
@@ -540,192 +540,192 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Alignment>::v
   "Type Pango::Alignment cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Pango::Alignment > CellRendererText::property_alignment()
+auto CellRendererText::property_alignment() -> Glib::PropertyProxy< Pango::Alignment >
 {
   return Glib::PropertyProxy< Pango::Alignment >(this, "alignment");
 }
 
-Glib::PropertyProxy_ReadOnly< Pango::Alignment > CellRendererText::property_alignment() const
+auto CellRendererText::property_alignment() const -> Glib::PropertyProxy_ReadOnly< Pango::Alignment >
 {
   return Glib::PropertyProxy_ReadOnly< Pango::Alignment >(this, "alignment");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_background_set()
+auto CellRendererText::property_background_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "background-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_background_set() const
+auto CellRendererText::property_background_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "background-set");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_foreground_set()
+auto CellRendererText::property_foreground_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "foreground-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_foreground_set() const
+auto CellRendererText::property_foreground_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "foreground-set");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_family_set()
+auto CellRendererText::property_family_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "family-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_family_set() const
+auto CellRendererText::property_family_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "family-set");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_style_set()
+auto CellRendererText::property_style_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "style-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_style_set() const
+auto CellRendererText::property_style_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "style-set");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_variant_set()
+auto CellRendererText::property_variant_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "variant-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_variant_set() const
+auto CellRendererText::property_variant_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "variant-set");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_weight_set()
+auto CellRendererText::property_weight_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "weight-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_weight_set() const
+auto CellRendererText::property_weight_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "weight-set");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_stretch_set()
+auto CellRendererText::property_stretch_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "stretch-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_stretch_set() const
+auto CellRendererText::property_stretch_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "stretch-set");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_size_set()
+auto CellRendererText::property_size_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "size-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_size_set() const
+auto CellRendererText::property_size_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "size-set");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_scale_set()
+auto CellRendererText::property_scale_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "scale-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_scale_set() const
+auto CellRendererText::property_scale_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "scale-set");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_editable_set()
+auto CellRendererText::property_editable_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "editable-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_editable_set() const
+auto CellRendererText::property_editable_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "editable-set");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_strikethrough_set()
+auto CellRendererText::property_strikethrough_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "strikethrough-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_strikethrough_set() const
+auto CellRendererText::property_strikethrough_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "strikethrough-set");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_underline_set()
+auto CellRendererText::property_underline_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "underline-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_underline_set() const
+auto CellRendererText::property_underline_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "underline-set");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_rise_set()
+auto CellRendererText::property_rise_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "rise-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_rise_set() const
+auto CellRendererText::property_rise_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "rise-set");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_language_set()
+auto CellRendererText::property_language_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "language-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_language_set() const
+auto CellRendererText::property_language_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "language-set");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_ellipsize_set()
+auto CellRendererText::property_ellipsize_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "ellipsize-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_ellipsize_set() const
+auto CellRendererText::property_ellipsize_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "ellipsize-set");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_single_paragraph_mode()
+auto CellRendererText::property_single_paragraph_mode() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "single-paragraph-mode");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_single_paragraph_mode() const
+auto CellRendererText::property_single_paragraph_mode() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "single-paragraph-mode");
 }
 
-Glib::PropertyProxy< bool > CellRendererText::property_align_set()
+auto CellRendererText::property_align_set() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "align-set");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CellRendererText::property_align_set() const
+auto CellRendererText::property_align_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "align-set");
 }
 
-Glib::PropertyProxy< Glib::ustring > CellRendererText::property_placeholder_text()
+auto CellRendererText::property_placeholder_text() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "placeholder-text");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > CellRendererText::property_placeholder_text() const
+auto CellRendererText::property_placeholder_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "placeholder-text");
 }

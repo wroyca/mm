@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::SliceListModel> wrap(GtkSliceListModel* object, bool take_copy)
+auto wrap(GtkSliceListModel* object, bool take_copy) -> Glib::RefPtr<Gtk::SliceListModel>
 {
   return Glib::make_refptr_for_instance<Gtk::SliceListModel>( dynamic_cast<Gtk::SliceListModel*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& SliceListModel_Class::init()
+auto SliceListModel_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -73,7 +73,7 @@ void SliceListModel_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* SliceListModel_Class::wrap_new(GObject* object)
+auto SliceListModel_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new SliceListModel((GtkSliceListModel*)object);
 }
@@ -81,7 +81,7 @@ Glib::ObjectBase* SliceListModel_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkSliceListModel* SliceListModel::gobj_copy()
+auto SliceListModel::gobj_copy() -> GtkSliceListModel*
 {
   reference();
   return gobj();
@@ -105,7 +105,7 @@ SliceListModel::SliceListModel(SliceListModel&& src) noexcept
   , Gio::ListModel(std::move(src))
 {}
 
-SliceListModel& SliceListModel::operator=(SliceListModel&& src) noexcept
+auto SliceListModel::operator=(SliceListModel&& src) noexcept -> SliceListModel&
 {
   Glib::Object::operator=(std::move(src));
   Gio::ListModel::operator=(std::move(src));
@@ -119,13 +119,13 @@ SliceListModel::~SliceListModel() noexcept
 
 SliceListModel::CppClassType SliceListModel::slicelistmodel_class_; // initialize static member
 
-GType SliceListModel::get_type()
+auto SliceListModel::get_type() -> GType
 {
   return slicelistmodel_class_.init().get_type();
 }
 
 
-GType SliceListModel::get_base_type()
+auto SliceListModel::get_base_type() -> GType
 {
   return gtk_slice_list_model_get_type();
 }
@@ -141,7 +141,7 @@ SliceListModel::SliceListModel(const Glib::RefPtr<Gio::ListModel>& model, guint 
 
 }
 
-Glib::RefPtr<SliceListModel> SliceListModel::create(const Glib::RefPtr<Gio::ListModel>& model, guint offset, guint size)
+auto SliceListModel::create(const Glib::RefPtr<Gio::ListModel>& model, guint offset, guint size) -> Glib::RefPtr<SliceListModel>
 {
   return Glib::make_refptr_for_instance<SliceListModel>( new SliceListModel(model, offset, size) );
 }
@@ -151,7 +151,7 @@ void SliceListModel::set_model(const Glib::RefPtr<Gio::ListModel>& model)
   gtk_slice_list_model_set_model(gobj(), Glib::unwrap(model));
 }
 
-Glib::RefPtr<Gio::ListModel> SliceListModel::get_model()
+auto SliceListModel::get_model() -> Glib::RefPtr<Gio::ListModel>
 {
   auto retvalue = Glib::wrap(gtk_slice_list_model_get_model(gobj()));
   if(retvalue)
@@ -159,7 +159,7 @@ Glib::RefPtr<Gio::ListModel> SliceListModel::get_model()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::ListModel> SliceListModel::get_model() const
+auto SliceListModel::get_model() const -> Glib::RefPtr<const Gio::ListModel>
 {
   return const_cast<SliceListModel*>(this)->get_model();
 }
@@ -169,7 +169,7 @@ void SliceListModel::set_offset(guint offset)
   gtk_slice_list_model_set_offset(gobj(), offset);
 }
 
-guint SliceListModel::get_offset() const
+auto SliceListModel::get_offset() const -> guint
 {
   return gtk_slice_list_model_get_offset(const_cast<GtkSliceListModel*>(gobj()));
 }
@@ -179,7 +179,7 @@ void SliceListModel::set_size(guint size)
   gtk_slice_list_model_set_size(gobj(), size);
 }
 
-guint SliceListModel::get_size() const
+auto SliceListModel::get_size() const -> guint
 {
   return gtk_slice_list_model_get_size(const_cast<GtkSliceListModel*>(gobj()));
 }
@@ -189,7 +189,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
   "Type GType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< GType > SliceListModel::property_item_type() const
+auto SliceListModel::property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >
 {
   return Glib::PropertyProxy_ReadOnly< GType >(this, "item-type");
 }
@@ -198,37 +198,37 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Li
   "Type Glib::RefPtr<Gio::ListModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > SliceListModel::property_model()
+auto SliceListModel::property_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> >(this, "model");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > SliceListModel::property_model() const
+auto SliceListModel::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >(this, "model");
 }
 
-Glib::PropertyProxy_ReadOnly< unsigned int > SliceListModel::property_n_items() const
+auto SliceListModel::property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
   return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "n-items");
 }
 
-Glib::PropertyProxy< guint > SliceListModel::property_offset()
+auto SliceListModel::property_offset() -> Glib::PropertyProxy< guint >
 {
   return Glib::PropertyProxy< guint >(this, "offset");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > SliceListModel::property_offset() const
+auto SliceListModel::property_offset() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "offset");
 }
 
-Glib::PropertyProxy< guint > SliceListModel::property_size()
+auto SliceListModel::property_size() -> Glib::PropertyProxy< guint >
 {
   return Glib::PropertyProxy< guint >(this, "size");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > SliceListModel::property_size() const
+auto SliceListModel::property_size() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "size");
 }

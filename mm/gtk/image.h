@@ -67,11 +67,11 @@ class GTKMM_API Image : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Image(Image&& src) noexcept;
-  Image& operator=(Image&& src) noexcept;
+  auto operator=(Image&& src) noexcept -> Image&;
 
   // noncopyable
   Image(const Image&) = delete;
-  Image& operator=(const Image&) = delete;
+  auto operator=(const Image&) -> Image& = delete;
 
   ~Image() noexcept override;
 
@@ -91,19 +91,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkImage*       gobj()       { return reinterpret_cast<GtkImage*>(gobject_); }
+  auto       gobj() -> GtkImage*       { return reinterpret_cast<GtkImage*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkImage* gobj() const { return reinterpret_cast<GtkImage*>(gobject_); }
+  auto gobj() const -> const GtkImage* { return reinterpret_cast<GtkImage*>(gobject_); }
 
 private:
 
@@ -263,7 +263,7 @@ public:
    *
    * @return Image representation being used.
    */
-  Type get_storage_type() const;
+  auto get_storage_type() const -> Type;
 
 
   /** Gets the image `Gdk::Paintable` being displayed by the `Gtk::Image`.
@@ -275,7 +275,7 @@ public:
    *
    * @return The displayed paintable.
    */
-  Glib::RefPtr<Gdk::Paintable> get_paintable();
+  auto get_paintable() -> Glib::RefPtr<Gdk::Paintable>;
 
   /** Gets the image `Gdk::Paintable` being displayed by the `Gtk::Image`.
    *
@@ -286,7 +286,7 @@ public:
    *
    * @return The displayed paintable.
    */
-  Glib::RefPtr<const Gdk::Paintable> get_paintable() const;
+  auto get_paintable() const -> Glib::RefPtr<const Gdk::Paintable>;
 
 
   /** Suggests an icon size to the theme for named icons.
@@ -299,7 +299,7 @@ public:
    *
    * @return The image size used by icons.
    */
-  IconSize get_icon_size() const;
+  auto get_icon_size() const -> IconSize;
 
 
   /** Gets the `Gio::Icon` being displayed by the `Gtk::Image`.
@@ -311,7 +311,7 @@ public:
    *
    * @return A `Gio::Icon`.
    */
-  Glib::RefPtr<Gio::Icon> get_gicon();
+  auto get_gicon() -> Glib::RefPtr<Gio::Icon>;
 
   /** Gets the `Gio::Icon` being displayed by the `Gtk::Image`.
    *
@@ -322,7 +322,7 @@ public:
    *
    * @return A `Gio::Icon`.
    */
-  Glib::RefPtr<const Gio::Icon> get_gicon() const;
+  auto get_gicon() const -> Glib::RefPtr<const Gio::Icon>;
 
   /** Gets the icon name and size being displayed by the `Gtk::Image`.
    *
@@ -333,14 +333,14 @@ public:
    *
    * @return The icon name.
    */
-  Glib::ustring get_icon_name() const;
+  auto get_icon_name() const -> Glib::ustring;
 
 
   /** Gets the pixel size used for named icons.
    *
    * @return The pixel size used for named icons.
    */
-  int get_pixel_size() const;
+  auto get_pixel_size() const -> int;
 
   /** Sets the pixel size to use for named icons.
    *
@@ -358,7 +358,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_file() ;
+  auto property_file() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The `GFile to display.
    *
@@ -367,7 +367,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_file() const;
+  auto property_file() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The symbolic size to display icons at.
    *
@@ -376,7 +376,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< IconSize > property_icon_size() ;
+  auto property_icon_size() -> Glib::PropertyProxy< IconSize > ;
 
 /** The symbolic size to display icons at.
    *
@@ -385,7 +385,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< IconSize > property_icon_size() const;
+  auto property_icon_size() const -> Glib::PropertyProxy_ReadOnly< IconSize >;
 
   /** The size in pixels to display icons at.
    *
@@ -398,7 +398,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_pixel_size() ;
+  auto property_pixel_size() -> Glib::PropertyProxy< int > ;
 
 /** The size in pixels to display icons at.
    *
@@ -411,7 +411,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_pixel_size() const;
+  auto property_pixel_size() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The name of the icon in the icon theme.
    *
@@ -422,7 +422,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_icon_name() ;
+  auto property_icon_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The name of the icon in the icon theme.
    *
@@ -433,7 +433,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_icon_name() const;
+  auto property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The representation being used for image data.
    *
@@ -442,7 +442,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Type > property_storage_type() const;
+  auto property_storage_type() const -> Glib::PropertyProxy_ReadOnly< Type >;
 
 
   /** The `Gio::Icon` displayed in the GtkImage.
@@ -453,7 +453,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> > property_gicon() ;
+  auto property_gicon() -> Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> > ;
 
 /** The `Gio::Icon` displayed in the GtkImage.
    *
@@ -463,7 +463,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> > property_gicon() const;
+  auto property_gicon() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> >;
 
   /** Whether the icon displayed in the `Gtk::Image` will use
    * standard icon names fallback.
@@ -476,7 +476,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_use_fallback() ;
+  auto property_use_fallback() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the icon displayed in the `Gtk::Image` will use
    * standard icon names fallback.
@@ -489,7 +489,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_fallback() const;
+  auto property_use_fallback() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** A path to a resource file to display.
    *
@@ -498,7 +498,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< std::string > property_resource() ;
+  auto property_resource() -> Glib::PropertyProxy< std::string > ;
 
 /** A path to a resource file to display.
    *
@@ -507,21 +507,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::string > property_resource() const;
+  auto property_resource() const -> Glib::PropertyProxy_ReadOnly< std::string >;
 
   /** The `Gdk::Paintable` to display.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> > property_paintable() ;
+  auto property_paintable() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> > ;
 
 /** The `Gdk::Paintable` to display.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> > property_paintable() const;
+  auto property_paintable() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> >;
 
 
 public:
@@ -548,7 +548,7 @@ template <>
 class GTKMM_API Value<Gtk::Image::Type> : public Glib::Value_Enum<Gtk::Image::Type>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -566,7 +566,7 @@ namespace Glib
    * @relates Gtk::Image
    */
   GTKMM_API
-  Gtk::Image* wrap(GtkImage* object, bool take_copy = false);
+  auto wrap(GtkImage* object, bool take_copy = false) -> Gtk::Image*;
 } //namespace Glib
 
 

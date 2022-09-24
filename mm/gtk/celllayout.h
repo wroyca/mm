@@ -74,7 +74,7 @@ public:
 
   // noncopyable
   CellLayout(const CellLayout&) = delete;
-  CellLayout& operator=(const CellLayout&) = delete;
+  auto operator=(const CellLayout&) -> CellLayout& = delete;
 
 private:
   friend class CellLayout_Class;
@@ -108,7 +108,7 @@ protected:
 public:
 
   CellLayout(CellLayout&& src) noexcept;
-  CellLayout& operator=(CellLayout&& src) noexcept;
+  auto operator=(CellLayout&& src) noexcept -> CellLayout&;
 
   ~CellLayout() noexcept override;
 
@@ -116,17 +116,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkCellLayout*       gobj()       { return reinterpret_cast<GtkCellLayout*>(gobject_); }
+  auto       gobj() -> GtkCellLayout*       { return reinterpret_cast<GtkCellLayout*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkCellLayout* gobj() const { return reinterpret_cast<GtkCellLayout*>(gobject_); }
+  auto gobj() const -> const GtkCellLayout* { return reinterpret_cast<GtkCellLayout*>(gobject_); }
 
 private:
 
@@ -164,25 +164,25 @@ public:
    *
    * @return A vector of cell renderers.
    */
-  std::vector<CellRenderer*> get_cells();
+  auto get_cells() -> std::vector<CellRenderer*>;
 
   /** Returns the cell renderers which have been added to @a cell_layout.
    *
    * @return A vector of cell renderers.
    */
-  std::vector<const CellRenderer*> get_cells() const;
+  auto get_cells() const -> std::vector<const CellRenderer*>;
 
   /** Gets the CellRenderer for the first column if any has been added, or
     * nullptr otherwise.
     * You should dynamic_cast<> to the expected derived CellRenderer type.
     */
-  CellRenderer* get_first_cell();
+  auto get_first_cell() -> CellRenderer*;
 
   /** Gets the CellRenderer for the first column if any has been added, or
     * nullptr otherwise.
     * You should dynamic_cast<> to the expected derived CellRenderer type.
     */
-  const CellRenderer* get_first_cell() const;
+  auto get_first_cell() const -> const CellRenderer*;
 
 
   /** Unsets all the mappings on all renderers on @a cell_layout and
@@ -242,7 +242,7 @@ public:
    *
    * @return The cell area used by @a cell_layout.
    */
-  Glib::RefPtr<CellArea> get_area();
+  auto get_area() -> Glib::RefPtr<CellArea>;
 
   /** Returns the underlying `Gtk::CellArea` which might be @a cell_layout
    * if called on a `Gtk::CellArea` or might be <tt>nullptr</tt> if no `Gtk::CellArea`
@@ -250,7 +250,7 @@ public:
    *
    * @return The cell area used by @a cell_layout.
    */
-  Glib::RefPtr<const CellArea> get_area() const;
+  auto get_area() const -> Glib::RefPtr<const CellArea>;
 
 protected:
     virtual void pack_start_vfunc(CellRenderer* cell, bool expand);
@@ -309,7 +309,7 @@ namespace Glib
    * @relates Gtk::CellLayout
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::CellLayout> wrap(GtkCellLayout* object, bool take_copy = false);
+  auto wrap(GtkCellLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CellLayout>;
 
 } // namespace Glib
 

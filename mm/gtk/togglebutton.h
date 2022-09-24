@@ -67,11 +67,11 @@ class GTKMM_API ToggleButton : public Button
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ToggleButton(ToggleButton&& src) noexcept;
-  ToggleButton& operator=(ToggleButton&& src) noexcept;
+  auto operator=(ToggleButton&& src) noexcept -> ToggleButton&;
 
   // noncopyable
   ToggleButton(const ToggleButton&) = delete;
-  ToggleButton& operator=(const ToggleButton&) = delete;
+  auto operator=(const ToggleButton&) -> ToggleButton& = delete;
 
   ~ToggleButton() noexcept override;
 
@@ -91,19 +91,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkToggleButton*       gobj()       { return reinterpret_cast<GtkToggleButton*>(gobject_); }
+  auto       gobj() -> GtkToggleButton*       { return reinterpret_cast<GtkToggleButton*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkToggleButton* gobj() const { return reinterpret_cast<GtkToggleButton*>(gobject_); }
+  auto gobj() const -> const GtkToggleButton* { return reinterpret_cast<GtkToggleButton*>(gobject_); }
 
 private:
 
@@ -142,7 +142,7 @@ public:
    *
    * @return Whether the button is pressed.
    */
-  bool get_active() const;
+  auto get_active() const -> bool;
 
 
   /** Emits the signal_toggled() signal on the `Gtk::ToggleButton`.
@@ -180,7 +180,7 @@ public:
    * Emitted whenever the `Gtk::ToggleButton`'s state is changed.
    */
 
-  Glib::SignalProxy<void()> signal_toggled();
+  auto signal_toggled() -> Glib::SignalProxy<void()>;
 
 
   /** If the toggle button should be pressed in.
@@ -190,7 +190,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_active() ;
+  auto property_active() -> Glib::PropertyProxy< bool > ;
 
 /** If the toggle button should be pressed in.
    *
@@ -199,14 +199,14 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_active() const;
+  auto property_active() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The toggle button whose group this widget belongs to.
    *
    * @return A PropertyProxy_WriteOnly that allows you to set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_WriteOnly< ToggleButton* > property_group() ;
+  auto property_group() -> Glib::PropertyProxy_WriteOnly< ToggleButton* > ;
 
 
 public:
@@ -238,7 +238,7 @@ namespace Glib
    * @relates Gtk::ToggleButton
    */
   GTKMM_API
-  Gtk::ToggleButton* wrap(GtkToggleButton* object, bool take_copy = false);
+  auto wrap(GtkToggleButton* object, bool take_copy = false) -> Gtk::ToggleButton*;
 } //namespace Glib
 
 

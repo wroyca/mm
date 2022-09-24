@@ -29,25 +29,25 @@
 namespace Gio
 {
 
-Glib::RefPtr<SimpleAction>
-ActionMap::add_action(const Glib::ustring& name)
+auto
+ActionMap::add_action(const Glib::ustring& name) -> Glib::RefPtr<SimpleAction>
 {
   auto action = SimpleAction::create(name);
   add_action(action);
   return action;
 }
 
-Glib::RefPtr<SimpleAction>
-ActionMap::add_action(const Glib::ustring& name, const ActivateSlot& slot)
+auto
+ActionMap::add_action(const Glib::ustring& name, const ActivateSlot& slot) -> Glib::RefPtr<SimpleAction>
 {
   auto action = add_action(name);
   action->signal_activate().connect(sigc::hide(slot));
   return action;
 }
 
-Glib::RefPtr<SimpleAction>
+auto
 ActionMap::add_action_with_parameter(
-  const Glib::ustring& name, const Glib::VariantType& parameter_type, const ActivateWithParameterSlot& slot)
+  const Glib::ustring& name, const Glib::VariantType& parameter_type, const ActivateWithParameterSlot& slot) -> Glib::RefPtr<SimpleAction>
 {
   auto action = SimpleAction::create(name, parameter_type);
   action->signal_activate().connect(slot);
@@ -55,8 +55,8 @@ ActionMap::add_action_with_parameter(
   return action;
 }
 
-Glib::RefPtr<SimpleAction>
-ActionMap::add_action_bool(const Glib::ustring& name, bool state)
+auto
+ActionMap::add_action_bool(const Glib::ustring& name, bool state) -> Glib::RefPtr<SimpleAction>
 {
   auto action = SimpleAction::create_bool(name, state);
   add_action(action);
@@ -64,8 +64,8 @@ ActionMap::add_action_bool(const Glib::ustring& name, bool state)
 }
 
 // TODO: Use a slot that takes a bool?
-Glib::RefPtr<SimpleAction>
-ActionMap::add_action_bool(const Glib::ustring& name, const ActivateSlot& slot, bool state)
+auto
+ActionMap::add_action_bool(const Glib::ustring& name, const ActivateSlot& slot, bool state) -> Glib::RefPtr<SimpleAction>
 {
   auto action = add_action_bool(name, state);
   action->signal_activate().connect(sigc::hide(slot));
@@ -73,8 +73,8 @@ ActionMap::add_action_bool(const Glib::ustring& name, const ActivateSlot& slot, 
 }
 
 // TODO: Use a slot that takes a string?
-Glib::RefPtr<SimpleAction>
-ActionMap::add_action_radio_string(const Glib::ustring& name, const Glib::ustring& state)
+auto
+ActionMap::add_action_radio_string(const Glib::ustring& name, const Glib::ustring& state) -> Glib::RefPtr<SimpleAction>
 {
   auto action = SimpleAction::create_radio_string(name, state);
   add_action(action);
@@ -85,7 +85,7 @@ namespace
 {
 
 // Handle the normal activate signal, calling instead a slot that takes the specific type:
-static void
+void
 on_action_radio_string(
   const Glib::VariantBase& parameter, const Gio::ActionMap::ActivateWithStringParameterSlot& slot)
 {
@@ -96,9 +96,9 @@ on_action_radio_string(
 
 } // anonymous namespace
 
-Glib::RefPtr<SimpleAction>
+auto
 ActionMap::add_action_radio_string(const Glib::ustring& name,
-  const ActivateWithStringParameterSlot& slot, const Glib::ustring& state)
+  const ActivateWithStringParameterSlot& slot, const Glib::ustring& state) -> Glib::RefPtr<SimpleAction>
 {
   auto action = add_action_radio_string(name, state);
   action->signal_activate().connect(sigc::bind(sigc::ptr_fun(&on_action_radio_string), slot));
@@ -109,7 +109,7 @@ namespace
 {
 
 // Handle the normal activate signal, calling instead a slot that takes the specific type:
-static void
+void
 on_action_radio_int(
   const Glib::VariantBase& parameter, const Gio::ActionMap::ActivateWithIntParameterSlot& slot)
 {
@@ -121,17 +121,17 @@ on_action_radio_int(
 } // anonymous namespace
 
 // TODO: Use a slot that takes an integer?
-Glib::RefPtr<SimpleAction>
-ActionMap::add_action_radio_integer(const Glib::ustring& name, gint32 state)
+auto
+ActionMap::add_action_radio_integer(const Glib::ustring& name, gint32 state) -> Glib::RefPtr<SimpleAction>
 {
   auto action = SimpleAction::create_radio_integer(name, state);
   add_action(action);
   return action;
 }
 
-Glib::RefPtr<SimpleAction>
+auto
 ActionMap::add_action_radio_integer(
-  const Glib::ustring& name, const ActivateWithIntParameterSlot& slot, gint32 state)
+  const Glib::ustring& name, const ActivateWithIntParameterSlot& slot, gint32 state) -> Glib::RefPtr<SimpleAction>
 {
   auto action = add_action_radio_integer(name, state);
   action->signal_activate().connect(sigc::bind(sigc::ptr_fun(&on_action_radio_int), slot));
@@ -148,7 +148,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::ActionMap> wrap(GActionMap* object, bool take_copy)
+auto wrap(GActionMap* object, bool take_copy) -> Glib::RefPtr<Gio::ActionMap>
 {
   return Glib::make_refptr_for_instance<Gio::ActionMap>( dynamic_cast<Gio::ActionMap*> (Glib::wrap_auto_interface<Gio::ActionMap> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -163,7 +163,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& ActionMap_Class::init()
+auto ActionMap_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -192,7 +192,7 @@ void ActionMap_Class::iface_init_function(void* g_iface, void*)
 
 }
 
-GAction* ActionMap_Class::lookup_action_vfunc_callback(GActionMap* self, const gchar* action_name)
+auto ActionMap_Class::lookup_action_vfunc_callback(GActionMap* self, const gchar* action_name) -> GAction*
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -310,7 +310,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* ActionMap_Class::wrap_new(GObject* object)
+auto ActionMap_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ActionMap((GActionMap*)(object));
 }
@@ -337,7 +337,7 @@ ActionMap::ActionMap(ActionMap&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-ActionMap& ActionMap::operator=(ActionMap&& src) noexcept
+auto ActionMap::operator=(ActionMap&& src) noexcept -> ActionMap&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -354,13 +354,13 @@ void ActionMap::add_interface(GType gtype_implementer)
 
 ActionMap::CppClassType ActionMap::actionmap_class_; // initialize static member
 
-GType ActionMap::get_type()
+auto ActionMap::get_type() -> GType
 {
   return actionmap_class_.init().get_type();
 }
 
 
-GType ActionMap::get_base_type()
+auto ActionMap::get_base_type() -> GType
 {
   return g_action_map_get_type();
 }
@@ -376,7 +376,7 @@ void ActionMap::remove_action(const Glib::ustring& action_name)
   g_action_map_remove_action(gobj(), action_name.c_str());
 }
 
-Glib::RefPtr<Action> ActionMap::lookup_action(const Glib::ustring& action_name)
+auto ActionMap::lookup_action(const Glib::ustring& action_name) -> Glib::RefPtr<Action>
 {
   auto retvalue = Glib::wrap(g_action_map_lookup_action(gobj(), action_name.c_str()));
   if(retvalue)
@@ -384,13 +384,13 @@ Glib::RefPtr<Action> ActionMap::lookup_action(const Glib::ustring& action_name)
   return retvalue;
 }
 
-Glib::RefPtr<const Action> ActionMap::lookup_action(const Glib::ustring& action_name) const
+auto ActionMap::lookup_action(const Glib::ustring& action_name) const -> Glib::RefPtr<const Action>
 {
   return const_cast<ActionMap*>(this)->lookup_action(action_name);
 }
 
 
-Glib::RefPtr<Action> Gio::ActionMap::lookup_action_vfunc(const Glib::ustring& name) const
+auto Gio::ActionMap::lookup_action_vfunc(const Glib::ustring& name) const -> Glib::RefPtr<Action>
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

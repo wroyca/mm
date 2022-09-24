@@ -71,7 +71,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::Proxy> wrap(GProxy* object, bool take_copy)
+auto wrap(GProxy* object, bool take_copy) -> Glib::RefPtr<Gio::Proxy>
 {
   return Glib::make_refptr_for_instance<Gio::Proxy>( dynamic_cast<Gio::Proxy*> (Glib::wrap_auto_interface<Gio::Proxy> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -86,7 +86,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& Proxy_Class::init()
+auto Proxy_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -113,7 +113,7 @@ void Proxy_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* Proxy_Class::wrap_new(GObject* object)
+auto Proxy_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Proxy((GProxy*)(object));
 }
@@ -140,7 +140,7 @@ Proxy::Proxy(Proxy&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-Proxy& Proxy::operator=(Proxy&& src) noexcept
+auto Proxy::operator=(Proxy&& src) noexcept -> Proxy&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -157,24 +157,24 @@ void Proxy::add_interface(GType gtype_implementer)
 
 Proxy::CppClassType Proxy::proxy_class_; // initialize static member
 
-GType Proxy::get_type()
+auto Proxy::get_type() -> GType
 {
   return proxy_class_.init().get_type();
 }
 
 
-GType Proxy::get_base_type()
+auto Proxy::get_base_type() -> GType
 {
   return g_proxy_get_type();
 }
 
 
-Glib::RefPtr<Proxy> Proxy::get_default_for_protocol(const Glib::ustring& protocol)
+auto Proxy::get_default_for_protocol(const Glib::ustring& protocol) -> Glib::RefPtr<Proxy>
 {
   return Glib::wrap(g_proxy_get_default_for_protocol(protocol.c_str()));
 }
 
-Glib::RefPtr<IOStream> Proxy::connect(const Glib::RefPtr<IOStream>& connection, const Glib::RefPtr<const ProxyAddress>& proxy_address, const Glib::RefPtr<Cancellable>& cancellable)
+auto Proxy::connect(const Glib::RefPtr<IOStream>& connection, const Glib::RefPtr<const ProxyAddress>& proxy_address, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<IOStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_proxy_connect(gobj(), Glib::unwrap(connection), const_cast<GProxyAddress*>(Glib::unwrap(proxy_address)), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -183,7 +183,7 @@ Glib::RefPtr<IOStream> Proxy::connect(const Glib::RefPtr<IOStream>& connection, 
   return retvalue;
 }
 
-Glib::RefPtr<IOStream> Proxy::connect_finish(const Glib::RefPtr<AsyncResult>& result)
+auto Proxy::connect_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<IOStream>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(g_proxy_connect_finish(gobj(), Glib::unwrap(result), &(gerror)));
@@ -192,7 +192,7 @@ Glib::RefPtr<IOStream> Proxy::connect_finish(const Glib::RefPtr<AsyncResult>& re
   return retvalue;
 }
 
-bool Proxy::supports_hostname() const
+auto Proxy::supports_hostname() const -> bool
 {
   return g_proxy_supports_hostname(const_cast<GProxy*>(gobj()));
 }

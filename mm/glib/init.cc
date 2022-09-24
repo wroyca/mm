@@ -33,7 +33,7 @@ void set_init_to_users_preferred_locale(bool state)
   init_to_users_preferred_locale = state;
 }
 
-bool get_init_to_users_preferred_locale()
+auto get_init_to_users_preferred_locale() -> bool
 {
   return init_to_users_preferred_locale;
 }

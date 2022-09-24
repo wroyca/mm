@@ -66,7 +66,7 @@ public:
 
   // noncopyable
   SimpleAction(const SimpleAction&) = delete;
-  SimpleAction& operator=(const SimpleAction&) = delete;
+  auto operator=(const SimpleAction&) -> SimpleAction& = delete;
 
 private:  friend class SimpleAction_Class;
   static CppClassType simpleaction_class_;
@@ -80,28 +80,28 @@ protected:
 public:
 
   SimpleAction(SimpleAction&& src) noexcept;
-  SimpleAction& operator=(SimpleAction&& src) noexcept;
+  auto operator=(SimpleAction&& src) noexcept -> SimpleAction&;
 
   ~SimpleAction() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GSimpleAction*       gobj()       { return reinterpret_cast<GSimpleAction*>(gobject_); }
+  auto       gobj() -> GSimpleAction*       { return reinterpret_cast<GSimpleAction*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GSimpleAction* gobj() const { return reinterpret_cast<GSimpleAction*>(gobject_); }
+  auto gobj() const -> const GSimpleAction* { return reinterpret_cast<GSimpleAction*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GSimpleAction* gobj_copy();
+  auto gobj_copy() -> GSimpleAction*;
 
 private:
 
@@ -135,7 +135,7 @@ protected:
 public:
 
 
-  static Glib::RefPtr<SimpleAction> create(const Glib::ustring& name);
+  static auto create(const Glib::ustring& name) -> Glib::RefPtr<SimpleAction>;
 
 
   /** Creates a new action.
@@ -152,7 +152,7 @@ public:
    */
 
 
-  static Glib::RefPtr<SimpleAction> create(const Glib::ustring& name, const Glib::VariantType& parameter_type);
+  static auto create(const Glib::ustring& name, const Glib::VariantType& parameter_type) -> Glib::RefPtr<SimpleAction>;
 
 
   //TODO: Add a templated version of this to avoid the need fo Gio::Variant by the caller.
@@ -174,7 +174,7 @@ public:
    */
 
 
-  static Glib::RefPtr<SimpleAction> create(const Glib::ustring& name, const Glib::VariantType& parameter_type, const Glib::VariantBase& state);
+  static auto create(const Glib::ustring& name, const Glib::VariantType& parameter_type, const Glib::VariantBase& state) -> Glib::RefPtr<SimpleAction>;
 
 
   //TODO: Add a templated version of this to avoid the need fo Gio::Variant by the caller.
@@ -190,7 +190,7 @@ public:
    * @return A new SimpleAction.
    */
 
-  static Glib::RefPtr<SimpleAction> create(const Glib::ustring& name, const Glib::VariantBase& state);
+  static auto create(const Glib::ustring& name, const Glib::VariantBase& state) -> Glib::RefPtr<SimpleAction>;
 
 
   //TODO: Use similar C API if they ever add it. Doing this manually is tedious. See https://bugzilla.gnome.org/show_bug.cgi?id=705655
@@ -207,7 +207,7 @@ public:
    * @param state The initial state of the action.
    * @return A new SimpleAction.
    */
-  static Glib::RefPtr<SimpleAction> create_bool(const Glib::ustring&name, bool state = false);
+  static auto create_bool(const Glib::ustring&name, bool state = false) -> Glib::RefPtr<SimpleAction>;
 
   //TODO: Use similar C API if they ever add it. Doing this manually is tedious. See https://bugzilla.gnome.org/show_bug.cgi?id=705655
   //TODO: Create a derived SimpleToggleAction class for this?
@@ -223,7 +223,7 @@ public:
    * @param initial_state The initial state of the action.
    * @return A new SimpleAction.
    */
-  static Glib::RefPtr<SimpleAction> create_radio_string(const Glib::ustring& name, const Glib::ustring& initial_state);
+  static auto create_radio_string(const Glib::ustring& name, const Glib::ustring& initial_state) -> Glib::RefPtr<SimpleAction>;
 
   //TODO: Use similar C API if they ever add it. Doing this manually is tedious. See https://bugzilla.gnome.org/show_bug.cgi?id=705655
   //TODO: Create a derived SimpleToggleAction class for this?
@@ -240,7 +240,7 @@ public:
    * @param initial_state The initial state of the action.
    * @return A new SimpleAction.
    */
-  static Glib::RefPtr<SimpleAction> create_radio_integer(const Glib::ustring& name, gint32 initial_state);
+  static auto create_radio_integer(const Glib::ustring& name, gint32 initial_state) -> Glib::RefPtr<SimpleAction>;
 
 
   /** Sets the action as enabled or not.
@@ -300,7 +300,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_enabled() ;
+  auto property_enabled() -> Glib::PropertyProxy< bool > ;
 
 /** If @a action is currently enabled.
    *
@@ -314,7 +314,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_enabled() const;
+  auto property_enabled() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The name of the action. This is mostly meaningful for identifying
    * the action once it has been added to a SimpleActionGroup.
@@ -326,7 +326,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_name() const;
+  auto property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The type of the parameter that must be given when activating the
@@ -337,7 +337,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::VariantType > property_parameter_type() const;
+  auto property_parameter_type() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantType >;
 
 
   /** The state of the action, or <tt>nullptr</tt> if the action is stateless.
@@ -347,7 +347,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::VariantBase > property_state() ;
+  auto property_state() -> Glib::PropertyProxy< Glib::VariantBase > ;
 
 /** The state of the action, or <tt>nullptr</tt> if the action is stateless.
    *
@@ -356,7 +356,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::VariantBase > property_state() const;
+  auto property_state() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantBase >;
 
   /** The VariantType of the state that the action has, or <tt>nullptr</tt> if the
    * action is stateless.
@@ -366,7 +366,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::VariantType > property_state_type() const;
+  auto property_state_type() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantType >;
 
 
   /**
@@ -395,7 +395,7 @@ public:
    * no parameter.
    */
 
-  Glib::SignalProxy<void(const Glib::VariantBase&)> signal_activate();
+  auto signal_activate() -> Glib::SignalProxy<void(const Glib::VariantBase&)>;
 
 
   /**
@@ -430,7 +430,7 @@ public:
    * @param value The requested value for the state.
    */
 
-  Glib::SignalProxy<void(const Glib::VariantBase&)> signal_change_state();
+  auto signal_change_state() -> Glib::SignalProxy<void(const Glib::VariantBase&)>;
 
 
 public:
@@ -460,7 +460,7 @@ namespace Glib
    * @relates Gio::SimpleAction
    */
   GIOMM_API
-  Glib::RefPtr<Gio::SimpleAction> wrap(GSimpleAction* object, bool take_copy = false);
+  auto wrap(GSimpleAction* object, bool take_copy = false) -> Glib::RefPtr<Gio::SimpleAction>;
 }
 
 

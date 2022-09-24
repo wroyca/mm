@@ -62,7 +62,7 @@ public:
 
   // noncopyable
   Snapshot(const Snapshot&) = delete;
-  Snapshot& operator=(const Snapshot&) = delete;
+  auto operator=(const Snapshot&) -> Snapshot& = delete;
 
 private:  friend class Snapshot_Class;
   static CppClassType snapshot_class_;
@@ -76,28 +76,28 @@ protected:
 public:
 
   Snapshot(Snapshot&& src) noexcept;
-  Snapshot& operator=(Snapshot&& src) noexcept;
+  auto operator=(Snapshot&& src) noexcept -> Snapshot&;
 
   ~Snapshot() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GdkSnapshot*       gobj()       { return reinterpret_cast<GdkSnapshot*>(gobject_); }
+  auto       gobj() -> GdkSnapshot*       { return reinterpret_cast<GdkSnapshot*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GdkSnapshot* gobj() const { return reinterpret_cast<GdkSnapshot*>(gobject_); }
+  auto gobj() const -> const GdkSnapshot* { return reinterpret_cast<GdkSnapshot*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkSnapshot* gobj_copy();
+  auto gobj_copy() -> GdkSnapshot*;
 
 private:
 
@@ -133,7 +133,7 @@ namespace Glib
    * @relates Gdk::Snapshot
    */
   GDKMM_API
-  Glib::RefPtr<Gdk::Snapshot> wrap(GdkSnapshot* object, bool take_copy = false);
+  auto wrap(GdkSnapshot* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Snapshot>;
 }
 
 

@@ -37,7 +37,7 @@ namespace
 {
 
 
-static void ActionGroup_signal_action_added_callback(GActionGroup* self, const gchar* p0,void* data)
+void ActionGroup_signal_action_added_callback(GActionGroup* self, const gchar* p0,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -59,7 +59,7 @@ static void ActionGroup_signal_action_added_callback(GActionGroup* self, const g
   }
 }
 
-static const Glib::SignalProxyInfo ActionGroup_signal_action_added_info =
+const Glib::SignalProxyInfo ActionGroup_signal_action_added_info =
 {
   "action-added",
   (GCallback) &ActionGroup_signal_action_added_callback,
@@ -67,7 +67,7 @@ static const Glib::SignalProxyInfo ActionGroup_signal_action_added_info =
 };
 
 
-static void ActionGroup_signal_action_enabled_changed_callback(GActionGroup* self, const gchar* p0,gboolean p1,void* data)
+void ActionGroup_signal_action_enabled_changed_callback(GActionGroup* self, const gchar* p0,gboolean p1,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::ustring&, bool)>;
@@ -90,7 +90,7 @@ static void ActionGroup_signal_action_enabled_changed_callback(GActionGroup* sel
   }
 }
 
-static const Glib::SignalProxyInfo ActionGroup_signal_action_enabled_changed_info =
+const Glib::SignalProxyInfo ActionGroup_signal_action_enabled_changed_info =
 {
   "action-enabled-changed",
   (GCallback) &ActionGroup_signal_action_enabled_changed_callback,
@@ -98,7 +98,7 @@ static const Glib::SignalProxyInfo ActionGroup_signal_action_enabled_changed_inf
 };
 
 
-static void ActionGroup_signal_action_removed_callback(GActionGroup* self, const gchar* p0,void* data)
+void ActionGroup_signal_action_removed_callback(GActionGroup* self, const gchar* p0,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -120,7 +120,7 @@ static void ActionGroup_signal_action_removed_callback(GActionGroup* self, const
   }
 }
 
-static const Glib::SignalProxyInfo ActionGroup_signal_action_removed_info =
+const Glib::SignalProxyInfo ActionGroup_signal_action_removed_info =
 {
   "action-removed",
   (GCallback) &ActionGroup_signal_action_removed_callback,
@@ -128,7 +128,7 @@ static const Glib::SignalProxyInfo ActionGroup_signal_action_removed_info =
 };
 
 
-static void ActionGroup_signal_action_state_changed_callback(GActionGroup* self, const gchar* p0,GVariant* p1,void* data)
+void ActionGroup_signal_action_state_changed_callback(GActionGroup* self, const gchar* p0,GVariant* p1,void* data)
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::ustring&, const Glib::VariantBase&)>;
@@ -151,7 +151,7 @@ static void ActionGroup_signal_action_state_changed_callback(GActionGroup* self,
   }
 }
 
-static const Glib::SignalProxyInfo ActionGroup_signal_action_state_changed_info =
+const Glib::SignalProxyInfo ActionGroup_signal_action_state_changed_info =
 {
   "action-state-changed",
   (GCallback) &ActionGroup_signal_action_state_changed_callback,
@@ -165,7 +165,7 @@ static const Glib::SignalProxyInfo ActionGroup_signal_action_state_changed_info 
 namespace Glib
 {
 
-Glib::RefPtr<Gio::ActionGroup> wrap(GActionGroup* object, bool take_copy)
+auto wrap(GActionGroup* object, bool take_copy) -> Glib::RefPtr<Gio::ActionGroup>
 {
   return Glib::make_refptr_for_instance<Gio::ActionGroup>( dynamic_cast<Gio::ActionGroup*> (Glib::wrap_auto_interface<Gio::ActionGroup> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -180,7 +180,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& ActionGroup_Class::init()
+auto ActionGroup_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -219,7 +219,7 @@ void ActionGroup_Class::iface_init_function(void* g_iface, void*)
   klass->action_state_changed = &action_state_changed_callback;
 }
 
-gboolean ActionGroup_Class::has_action_vfunc_callback(GActionGroup* self, const gchar* action_name)
+auto ActionGroup_Class::has_action_vfunc_callback(GActionGroup* self, const gchar* action_name) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -259,7 +259,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = gboolean;
   return RType();
 }
-gchar** ActionGroup_Class::list_actions_vfunc_callback(GActionGroup* self)
+auto ActionGroup_Class::list_actions_vfunc_callback(GActionGroup* self) -> gchar**
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -298,7 +298,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = gchar**;
   return RType();
 }
-gboolean ActionGroup_Class::get_action_enabled_vfunc_callback(GActionGroup* self, const gchar* action_name)
+auto ActionGroup_Class::get_action_enabled_vfunc_callback(GActionGroup* self, const gchar* action_name) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -338,7 +338,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = gboolean;
   return RType();
 }
-const GVariantType* ActionGroup_Class::get_action_parameter_type_vfunc_callback(GActionGroup* self, const gchar* action_name)
+auto ActionGroup_Class::get_action_parameter_type_vfunc_callback(GActionGroup* self, const gchar* action_name) -> const GVariantType*
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -390,7 +390,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = const GVariantType*;
   return RType();
 }
-const GVariantType* ActionGroup_Class::get_action_state_type_vfunc_callback(GActionGroup* self, const gchar* action_name)
+auto ActionGroup_Class::get_action_state_type_vfunc_callback(GActionGroup* self, const gchar* action_name) -> const GVariantType*
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -442,7 +442,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = const GVariantType*;
   return RType();
 }
-GVariant* ActionGroup_Class::get_action_state_hint_vfunc_callback(GActionGroup* self, const gchar* action_name)
+auto ActionGroup_Class::get_action_state_hint_vfunc_callback(GActionGroup* self, const gchar* action_name) -> GVariant*
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -482,7 +482,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = GVariant*;
   return RType();
 }
-GVariant* ActionGroup_Class::get_action_state_vfunc_callback(GActionGroup* self, const gchar* action_name)
+auto ActionGroup_Class::get_action_state_vfunc_callback(GActionGroup* self, const gchar* action_name) -> GVariant*
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -757,7 +757,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* ActionGroup_Class::wrap_new(GObject* object)
+auto ActionGroup_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ActionGroup((GActionGroup*)(object));
 }
@@ -784,7 +784,7 @@ ActionGroup::ActionGroup(ActionGroup&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-ActionGroup& ActionGroup::operator=(ActionGroup&& src) noexcept
+auto ActionGroup::operator=(ActionGroup&& src) noexcept -> ActionGroup&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -801,29 +801,29 @@ void ActionGroup::add_interface(GType gtype_implementer)
 
 ActionGroup::CppClassType ActionGroup::actiongroup_class_; // initialize static member
 
-GType ActionGroup::get_type()
+auto ActionGroup::get_type() -> GType
 {
   return actiongroup_class_.init().get_type();
 }
 
 
-GType ActionGroup::get_base_type()
+auto ActionGroup::get_base_type() -> GType
 {
   return g_action_group_get_type();
 }
 
 
-bool ActionGroup::has_action(const Glib::ustring& action_name) const
+auto ActionGroup::has_action(const Glib::ustring& action_name) const -> bool
 {
   return g_action_group_has_action(const_cast<GActionGroup*>(gobj()), action_name.c_str());
 }
 
-std::vector<Glib::ustring> ActionGroup::list_actions() const
+auto ActionGroup::list_actions() const -> std::vector<Glib::ustring>
 {
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_action_group_list_actions(const_cast<GActionGroup*>(gobj())), Glib::OWNERSHIP_DEEP);
 }
 
-bool ActionGroup::query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantType& parameter_type, Glib::VariantBase& state_hint, Glib::VariantType& state_type, Glib::VariantBase& state)
+auto ActionGroup::query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantType& parameter_type, Glib::VariantBase& state_hint, Glib::VariantType& state_type, Glib::VariantBase& state) -> bool
 {
   gboolean g_enabled = gboolean();
   const GVariantType* g_parameter_type = nullptr;
@@ -839,7 +839,7 @@ enabled = static_cast<bool>(g_enabled);
   return retvalue;
 }
 
-bool ActionGroup::query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantType& parameter_type, Glib::VariantBase& state_hint, Glib::VariantType& state_type)
+auto ActionGroup::query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantType& parameter_type, Glib::VariantBase& state_hint, Glib::VariantType& state_type) -> bool
 {
   gboolean g_enabled = gboolean();
   const GVariantType* g_parameter_type = nullptr;
@@ -853,7 +853,7 @@ enabled = static_cast<bool>(g_enabled);
   return retvalue;
 }
 
-bool ActionGroup::query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantType& parameter_type, Glib::VariantBase& state_hint, Glib::VariantBase& state)
+auto ActionGroup::query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantType& parameter_type, Glib::VariantBase& state_hint, Glib::VariantBase& state) -> bool
 {
   gboolean g_enabled = gboolean();
   const GVariantType* g_parameter_type = nullptr;
@@ -867,7 +867,7 @@ enabled = static_cast<bool>(g_enabled);
   return retvalue;
 }
 
-bool ActionGroup::query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantType& parameter_type, Glib::VariantBase& state_hint)
+auto ActionGroup::query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantType& parameter_type, Glib::VariantBase& state_hint) -> bool
 {
   gboolean g_enabled = gboolean();
   const GVariantType* g_parameter_type = nullptr;
@@ -879,7 +879,7 @@ enabled = static_cast<bool>(g_enabled);
   return retvalue;
 }
 
-bool ActionGroup::query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantBase& state_hint, Glib::VariantType& state_type, Glib::VariantBase& state)
+auto ActionGroup::query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantBase& state_hint, Glib::VariantType& state_type, Glib::VariantBase& state) -> bool
 {
   gboolean g_enabled = gboolean();
   const GVariantType* g_state_type = nullptr;
@@ -893,7 +893,7 @@ enabled = static_cast<bool>(g_enabled);
   return retvalue;
 }
 
-bool ActionGroup::query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantBase& state_hint, Glib::VariantType& state_type)
+auto ActionGroup::query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantBase& state_hint, Glib::VariantType& state_type) -> bool
 {
   gboolean g_enabled = gboolean();
   const GVariantType* g_state_type = nullptr;
@@ -905,7 +905,7 @@ enabled = static_cast<bool>(g_enabled);
   return retvalue;
 }
 
-bool ActionGroup::query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantBase& state_hint, Glib::VariantBase& state)
+auto ActionGroup::query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantBase& state_hint, Glib::VariantBase& state) -> bool
 {
   gboolean g_enabled = gboolean();
   GVariant* g_state_hint = nullptr;
@@ -917,7 +917,7 @@ enabled = static_cast<bool>(g_enabled);
   return retvalue;
 }
 
-bool ActionGroup::query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantBase& state_hint)
+auto ActionGroup::query_action(const Glib::ustring& action_name, bool& enabled, Glib::VariantBase& state_hint) -> bool
 {
   gboolean g_enabled = gboolean();
   GVariant* g_state_hint = nullptr;
@@ -927,27 +927,27 @@ enabled = static_cast<bool>(g_enabled);
   return retvalue;
 }
 
-bool ActionGroup::get_action_enabled(const Glib::ustring& action_name) const
+auto ActionGroup::get_action_enabled(const Glib::ustring& action_name) const -> bool
 {
   return g_action_group_get_action_enabled(const_cast<GActionGroup*>(gobj()), action_name.c_str());
 }
 
-Glib::VariantType ActionGroup::get_action_parameter_type(const Glib::ustring& action_name) const
+auto ActionGroup::get_action_parameter_type(const Glib::ustring& action_name) const -> Glib::VariantType
 {
   return Glib::wrap(const_cast<GVariantType*>(g_action_group_get_action_parameter_type(const_cast<GActionGroup*>(gobj()), action_name.c_str())), true);
 }
 
-Glib::VariantType ActionGroup::get_action_state_type(const Glib::ustring& action_name) const
+auto ActionGroup::get_action_state_type(const Glib::ustring& action_name) const -> Glib::VariantType
 {
   return Glib::wrap(const_cast<GVariantType*>(g_action_group_get_action_state_type(const_cast<GActionGroup*>(gobj()), action_name.c_str())), true);
 }
 
-Glib::VariantContainerBase ActionGroup::get_action_state_hint_variant(const Glib::ustring& action_name) const
+auto ActionGroup::get_action_state_hint_variant(const Glib::ustring& action_name) const -> Glib::VariantContainerBase
 {
   return Glib::VariantContainerBase(g_action_group_get_action_state_hint(const_cast<GActionGroup*>(gobj()), action_name.c_str()), false);
 }
 
-Glib::VariantBase ActionGroup::get_action_state_variant(const Glib::ustring& action_name) const
+auto ActionGroup::get_action_state_variant(const Glib::ustring& action_name) const -> Glib::VariantBase
 {
   return Glib::wrap(g_action_group_get_action_state(const_cast<GActionGroup*>(gobj()), action_name.c_str()), false);
 }
@@ -988,25 +988,25 @@ void ActionGroup::action_state_changed(const Glib::ustring& action_name, const G
 }
 
 
-Glib::SignalProxyDetailed<void(const Glib::ustring&)> ActionGroup::signal_action_added(const Glib::ustring& action_name)
+auto ActionGroup::signal_action_added(const Glib::ustring& action_name) -> Glib::SignalProxyDetailed<void(const Glib::ustring&)>
 {
   return Glib::SignalProxyDetailed<void(const Glib::ustring&)>(this, &ActionGroup_signal_action_added_info, action_name);
 }
 
 
-Glib::SignalProxyDetailed<void(const Glib::ustring&, bool)> ActionGroup::signal_action_enabled_changed(const Glib::ustring& action_name)
+auto ActionGroup::signal_action_enabled_changed(const Glib::ustring& action_name) -> Glib::SignalProxyDetailed<void(const Glib::ustring&, bool)>
 {
   return Glib::SignalProxyDetailed<void(const Glib::ustring&, bool)>(this, &ActionGroup_signal_action_enabled_changed_info, action_name);
 }
 
 
-Glib::SignalProxyDetailed<void(const Glib::ustring&)> ActionGroup::signal_action_removed(const Glib::ustring& action_name)
+auto ActionGroup::signal_action_removed(const Glib::ustring& action_name) -> Glib::SignalProxyDetailed<void(const Glib::ustring&)>
 {
   return Glib::SignalProxyDetailed<void(const Glib::ustring&)>(this, &ActionGroup_signal_action_removed_info, action_name);
 }
 
 
-Glib::SignalProxyDetailed<void(const Glib::ustring&, const Glib::VariantBase&)> ActionGroup::signal_action_state_changed(const Glib::ustring& action_name)
+auto ActionGroup::signal_action_state_changed(const Glib::ustring& action_name) -> Glib::SignalProxyDetailed<void(const Glib::ustring&, const Glib::VariantBase&)>
 {
   return Glib::SignalProxyDetailed<void(const Glib::ustring&, const Glib::VariantBase&)>(this, &ActionGroup_signal_action_state_changed_info, action_name);
 }
@@ -1053,7 +1053,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->action_state_changed)(gobj(),action_name.c_str(),const_cast<GVariant*>((value).gobj()));
 }
 
-bool Gio::ActionGroup::has_action_vfunc(const Glib::ustring& name) const
+auto Gio::ActionGroup::has_action_vfunc(const Glib::ustring& name) const -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1069,7 +1069,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = bool;
   return RType();
 }
-std::vector<Glib::ustring> Gio::ActionGroup::list_actions_vfunc() const
+auto Gio::ActionGroup::list_actions_vfunc() const -> std::vector<Glib::ustring>
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1085,7 +1085,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = std::vector<Glib::ustring>;
   return RType();
 }
-bool Gio::ActionGroup::get_action_enabled_vfunc(const Glib::ustring& name) const
+auto Gio::ActionGroup::get_action_enabled_vfunc(const Glib::ustring& name) const -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1101,7 +1101,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = bool;
   return RType();
 }
-Glib::VariantType Gio::ActionGroup::get_action_parameter_type_vfunc(const Glib::ustring& name) const
+auto Gio::ActionGroup::get_action_parameter_type_vfunc(const Glib::ustring& name) const -> Glib::VariantType
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1117,7 +1117,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = Glib::VariantType;
   return RType();
 }
-Glib::VariantType Gio::ActionGroup::get_action_state_type_vfunc(const Glib::ustring& name) const
+auto Gio::ActionGroup::get_action_state_type_vfunc(const Glib::ustring& name) const -> Glib::VariantType
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1133,7 +1133,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = Glib::VariantType;
   return RType();
 }
-Glib::VariantBase Gio::ActionGroup::get_action_state_hint_vfunc(const Glib::ustring& name) const
+auto Gio::ActionGroup::get_action_state_hint_vfunc(const Glib::ustring& name) const -> Glib::VariantBase
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1149,7 +1149,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = Glib::VariantBase;
   return RType();
 }
-Glib::VariantBase Gio::ActionGroup::get_action_state_vfunc(const Glib::ustring& name) const
+auto Gio::ActionGroup::get_action_state_vfunc(const Glib::ustring& name) const -> Glib::VariantBase
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

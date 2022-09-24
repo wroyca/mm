@@ -67,7 +67,7 @@ public:
 
   // noncopyable
   TextTagTable(const TextTagTable&) = delete;
-  TextTagTable& operator=(const TextTagTable&) = delete;
+  auto operator=(const TextTagTable&) -> TextTagTable& = delete;
 
 private:  friend class TextTagTable_Class;
   static CppClassType texttagtable_class_;
@@ -81,28 +81,28 @@ protected:
 public:
 
   TextTagTable(TextTagTable&& src) noexcept;
-  TextTagTable& operator=(TextTagTable&& src) noexcept;
+  auto operator=(TextTagTable&& src) noexcept -> TextTagTable&;
 
   ~TextTagTable() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkTextTagTable*       gobj()       { return reinterpret_cast<GtkTextTagTable*>(gobject_); }
+  auto       gobj() -> GtkTextTagTable*       { return reinterpret_cast<GtkTextTagTable*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkTextTagTable* gobj() const { return reinterpret_cast<GtkTextTagTable*>(gobject_); }
+  auto gobj() const -> const GtkTextTagTable* { return reinterpret_cast<GtkTextTagTable*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkTextTagTable* gobj_copy();
+  auto gobj_copy() -> GtkTextTagTable*;
 
 private:
 
@@ -113,7 +113,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<TextTagTable> create();
+  static auto create() -> Glib::RefPtr<TextTagTable>;
 
 
   /** Add a tag to the table.
@@ -126,7 +126,7 @@ public:
    * @param tag A `Gtk::TextTag`.
    * @return <tt>true</tt> on success.
    */
-  bool add(const Glib::RefPtr<TextTag>& tag);
+  auto add(const Glib::RefPtr<TextTag>& tag) -> bool;
 
   /** Remove a tag from the table.
    *
@@ -144,14 +144,14 @@ public:
    * @param name Name of a tag.
    * @return The tag.
    */
-  Glib::RefPtr<TextTag> lookup(const Glib::ustring& name);
+  auto lookup(const Glib::ustring& name) -> Glib::RefPtr<TextTag>;
 
   /** Look up a named tag.
    *
    * @param name Name of a tag.
    * @return The tag.
    */
-  Glib::RefPtr<const TextTag> lookup(const Glib::ustring& name) const;
+  auto lookup(const Glib::ustring& name) const -> Glib::RefPtr<const TextTag>;
 
   typedef sigc::slot<void(const Glib::RefPtr<TextTag>&)> SlotForEach;
   void foreach(const SlotForEach& slot);
@@ -161,7 +161,7 @@ public:
    *
    * @return Number of tags in @a table.
    */
-  int get_size() const;
+  auto get_size() const -> int;
 
   // no_default_handler because GtkTextTagTableClass is private.
 
@@ -178,7 +178,7 @@ public:
    * @param size_changed Whether the change affects the `Gtk::TextView` layout.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&, bool)> signal_tag_changed();
+  auto signal_tag_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&, bool)>;
 
 
   /**
@@ -192,7 +192,7 @@ public:
    * @param tag The added tag.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&)> signal_tag_added();
+  auto signal_tag_added() -> Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&)>;
 
 
   /**
@@ -209,7 +209,7 @@ public:
    * @param tag The removed tag.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&)> signal_tag_removed();
+  auto signal_tag_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&)>;
 
 
 public:
@@ -239,7 +239,7 @@ namespace Glib
    * @relates Gtk::TextTagTable
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::TextTagTable> wrap(GtkTextTagTable* object, bool take_copy = false);
+  auto wrap(GtkTextTagTable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TextTagTable>;
 }
 
 

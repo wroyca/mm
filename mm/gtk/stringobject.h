@@ -54,7 +54,7 @@ public:
 
   // noncopyable
   StringObject(const StringObject&) = delete;
-  StringObject& operator=(const StringObject&) = delete;
+  auto operator=(const StringObject&) -> StringObject& = delete;
 
 private:  friend class StringObject_Class;
   static CppClassType stringobject_class_;
@@ -68,28 +68,28 @@ protected:
 public:
 
   StringObject(StringObject&& src) noexcept;
-  StringObject& operator=(StringObject&& src) noexcept;
+  auto operator=(StringObject&& src) noexcept -> StringObject&;
 
   ~StringObject() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkStringObject*       gobj()       { return reinterpret_cast<GtkStringObject*>(gobject_); }
+  auto       gobj() -> GtkStringObject*       { return reinterpret_cast<GtkStringObject*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkStringObject* gobj() const { return reinterpret_cast<GtkStringObject*>(gobject_); }
+  auto gobj() const -> const GtkStringObject* { return reinterpret_cast<GtkStringObject*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkStringObject* gobj_copy();
+  auto gobj_copy() -> GtkStringObject*;
 
 private:
 
@@ -103,14 +103,14 @@ public:
    * @param string The string to wrap.
    * @return A new `Gtk::StringObject`.
    */
-  static Glib::RefPtr<StringObject> create(const Glib::ustring& string);
+  static auto create(const Glib::ustring& string) -> Glib::RefPtr<StringObject>;
 
 
   /** Returns the string contained in a `Gtk::StringObject`.
    *
    * @return The string of @a self.
    */
-  Glib::ustring get_string() const;
+  auto get_string() const -> Glib::ustring;
   /** The string.
    *
    * Default value: ""
@@ -118,7 +118,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_string() const;
+  auto property_string() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -148,7 +148,7 @@ namespace Glib
    * @relates Gtk::StringObject
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::StringObject> wrap(GtkStringObject* object, bool take_copy = false);
+  auto wrap(GtkStringObject* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StringObject>;
 }
 
 

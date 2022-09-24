@@ -37,7 +37,7 @@ TabArray::TabArray(int initial_size, bool positions_in_pixels)
   gobject_ = pango_tab_array_new(initial_size, (gboolean)positions_in_pixels);
 }
 
-std::pair<TabAlign,int> TabArray::get_tab(int tab_index) const
+auto TabArray::get_tab(int tab_index) const -> std::pair<TabAlign,int>
 {
   PangoTabAlign p_alignment;
   TabAlign alignment;
@@ -47,7 +47,7 @@ std::pair<TabAlign,int> TabArray::get_tab(int tab_index) const
   return std::pair<TabAlign,int>(alignment, location);
 }
 
-std::vector<std::pair<TabAlign,int>> TabArray::get_tabs() const
+auto TabArray::get_tabs() const -> std::vector<std::pair<TabAlign,int>>
 {
   typedef std::pair<TabAlign,int> PairType;
 
@@ -89,7 +89,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Pango::TabAlign>::value_type()
+auto Glib::Value<Pango::TabAlign>::value_type() -> GType
 {
   return pango_tab_align_get_type();
 }
@@ -98,7 +98,7 @@ GType Glib::Value<Pango::TabAlign>::value_type()
 namespace Glib
 {
 
-Pango::TabArray wrap(PangoTabArray* object, bool take_copy)
+auto wrap(PangoTabArray* object, bool take_copy) -> Pango::TabArray
 {
   return Pango::TabArray(object, take_copy);
 }
@@ -111,7 +111,7 @@ namespace Pango
 
 
 // static
-GType TabArray::get_type()
+auto TabArray::get_type() -> GType
 {
   return pango_tab_array_get_type();
 }
@@ -133,7 +133,7 @@ TabArray::TabArray(TabArray&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-TabArray& TabArray::operator=(TabArray&& other) noexcept
+auto TabArray::operator=(TabArray&& other) noexcept -> TabArray&
 {
   TabArray temp (std::move(other));
   swap(temp);
@@ -148,7 +148,7 @@ TabArray::TabArray(PangoTabArray* gobject, bool make_a_copy)
   gobject_ ((make_a_copy && gobject) ? pango_tab_array_copy(gobject) : gobject)
 {}
 
-TabArray& TabArray::operator=(const TabArray& other)
+auto TabArray::operator=(const TabArray& other) -> TabArray&
 {
   TabArray temp (other);
   swap(temp);
@@ -166,13 +166,13 @@ void TabArray::swap(TabArray& other) noexcept
   std::swap(gobject_, other.gobject_);
 }
 
-PangoTabArray* TabArray::gobj_copy() const
+auto TabArray::gobj_copy() const -> PangoTabArray*
 {
   return pango_tab_array_copy(gobject_);
 }
 
 
-int TabArray::get_size() const
+auto TabArray::get_size() const -> int
 {
   return pango_tab_array_get_size(const_cast<PangoTabArray*>(gobj()));
 }
@@ -187,7 +187,7 @@ void TabArray::set_tab(int tab_index, TabAlign alignment, int location)
   pango_tab_array_set_tab(gobj(), tab_index, static_cast<PangoTabAlign>(alignment), location);
 }
 
-bool TabArray::get_positions_in_pixels() const
+auto TabArray::get_positions_in_pixels() const -> bool
 {
   return pango_tab_array_get_positions_in_pixels(const_cast<PangoTabArray*>(gobj()));
 }

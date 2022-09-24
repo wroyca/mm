@@ -52,8 +52,8 @@ using RefPtr = std::shared_ptr<T_CppObject>;
  * Cairo::UserFontFace.
  */
 template <typename T_CppObject>
-RefPtr<T_CppObject>
-make_refptr_for_instance(T_CppObject* object)
+auto
+make_refptr_for_instance(T_CppObject* object) -> RefPtr<T_CppObject>
 {
   return RefPtr<T_CppObject>(object);
 }

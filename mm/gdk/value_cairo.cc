@@ -17,17 +17,13 @@
 #include <mm/gdk/value_cairo.h>
 #include <cairo-gobject.h>
 
-namespace Gdk
-{
-namespace Cairo
+namespace Gdk::Cairo
 {
 
 template <>
-GType get_base_type<::Cairo::Region>() { return CAIRO_GOBJECT_TYPE_REGION; }
+auto get_base_type<::Cairo::Region>() -> GType { return CAIRO_GOBJECT_TYPE_REGION; }
 
 template <>
-GType get_base_type<::Cairo::Surface>() { return CAIRO_GOBJECT_TYPE_SURFACE; }
-
-} //namespace Cairo
+auto get_base_type<::Cairo::Surface>() -> GType { return CAIRO_GOBJECT_TYPE_SURFACE; }
 
 } //namespace Gdk

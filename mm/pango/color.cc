@@ -30,7 +30,7 @@ namespace Pango
 
 /* For some unknown reason pango doesn't provide pango_color_new(). Let's define an
  * equivalent function ourself! */
-PangoColor* _pango_color_new()
+auto _pango_color_new() -> PangoColor*
 {
   return g_new(PangoColor, 1);
 }
@@ -50,12 +50,12 @@ namespace
 namespace Glib
 {
 
-Pango::Color& wrap(PangoColor* object)
+auto wrap(PangoColor* object) -> Pango::Color&
 {
   return *reinterpret_cast<Pango::Color*>(object);
 }
 
-const Pango::Color& wrap(const PangoColor* object)
+auto wrap(const PangoColor* object) -> const Pango::Color&
 {
   return *reinterpret_cast<const Pango::Color*>(object);
 }
@@ -73,7 +73,7 @@ Color::Color(const Color& other) noexcept
 {
 }
 
-Color& Color::operator=(const Color& other) noexcept
+auto Color::operator=(const Color& other) noexcept -> Color&
 {
   gobject_ = other.gobject_;
   return *this;
@@ -88,14 +88,14 @@ Color::Color(Color&& other) noexcept
   //other.gobject_ = nullptr;
 }
 
-Color& Color::operator=(Color&& other) noexcept
+auto Color::operator=(Color&& other) noexcept -> Color&
 {
   gobject_ = std::move(other.gobject_);
   return *this;
 }
 
 // static
-GType Color::get_type()
+auto Color::get_type() -> GType
 {
   return pango_color_get_type();
 }
@@ -114,17 +114,17 @@ Color::Color(const PangoColor* gobject)
 }
 
 
-guint16 Color::get_red() const
+auto Color::get_red() const -> guint16
 {
   return gobj()->red;
 }
 
-guint16 Color::get_green() const
+auto Color::get_green() const -> guint16
 {
   return gobj()->green;
 }
 
-guint16 Color::get_blue() const
+auto Color::get_blue() const -> guint16
 {
   return gobj()->blue;
 }
@@ -144,12 +144,12 @@ void Color::set_blue(const guint16& value)
   gobj()->blue = value;
 }
 
-bool Color::parse(const Glib::ustring& spec)
+auto Color::parse(const Glib::ustring& spec) -> bool
 {
   return pango_color_parse(gobj(), spec.c_str());
 }
 
-Glib::ustring Color::to_string() const
+auto Color::to_string() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(pango_color_to_string(const_cast<PangoColor*>(gobj())));
 }

@@ -61,7 +61,7 @@ public:
 
   // noncopyable
   Cancellable(const Cancellable&) = delete;
-  Cancellable& operator=(const Cancellable&) = delete;
+  auto operator=(const Cancellable&) -> Cancellable& = delete;
 
 private:  friend class Cancellable_Class;
   static CppClassType cancellable_class_;
@@ -75,28 +75,28 @@ protected:
 public:
 
   Cancellable(Cancellable&& src) noexcept;
-  Cancellable& operator=(Cancellable&& src) noexcept;
+  auto operator=(Cancellable&& src) noexcept -> Cancellable&;
 
   ~Cancellable() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GCancellable*       gobj()       { return reinterpret_cast<GCancellable*>(gobject_); }
+  auto       gobj() -> GCancellable*       { return reinterpret_cast<GCancellable*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GCancellable* gobj() const { return reinterpret_cast<GCancellable*>(gobject_); }
+  auto gobj() const -> const GCancellable* { return reinterpret_cast<GCancellable*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GCancellable* gobj_copy();
+  auto gobj_copy() -> GCancellable*;
 
 private:
 
@@ -108,7 +108,7 @@ public:
   using SlotCancelledCallback = sigc::slot<void()>;
 
 
-  static Glib::RefPtr<Cancellable> create();
+  static auto create() -> Glib::RefPtr<Cancellable>;
 
 
   /** Checks if a cancellable job has been cancelled.
@@ -116,7 +116,7 @@ public:
    * @return <tt>true</tt> if @a cancellable is cancelled,
    * <tt>false</tt> if called with <tt>nullptr</tt> or if item is not cancelled.
    */
-  bool is_cancelled() const;
+  auto is_cancelled() const -> bool;
 
 
   //May return -1 if fds not supported, or on errors .
@@ -138,7 +138,7 @@ public:
    * @return A valid file descriptor. `-1` if the file descriptor
    * is not supported, or on errors.
    */
-  int get_fd() const;
+  auto get_fd() const -> int;
 
 
   /** Creates a PollFD corresponding to @a cancellable; this can be passed
@@ -166,7 +166,7 @@ public:
    * @return <tt>true</tt> if @a pollfd was successfully initialized, <tt>false</tt> on
    * failure to prepare the cancellable.
    */
-  bool make_pollfd(GPollFD* pollfd);
+  auto make_pollfd(GPollFD* pollfd) -> bool;
 
   /** Releases a resources previously allocated by g_cancellable_get_fd()
    * or g_cancellable_make_pollfd().
@@ -209,7 +209,7 @@ public:
    * @return A Cancellable from the top
    * of the stack, or <tt>nullptr</tt> if the stack is empty.
    */
-  static Glib::RefPtr<Cancellable> get_current();
+  static auto get_current() -> Glib::RefPtr<Cancellable>;
 
 
   /** Pushes @a cancellable onto the cancellable stack. The current
@@ -258,7 +258,7 @@ public:
    * @return The id of the signal handler or 0 if @a cancellable has already
    * been cancelled.
    */
-  gulong connect(const SlotCancelledCallback& slot);
+  auto connect(const SlotCancelledCallback& slot) -> gulong;
 
 
   /** Disconnects a handler from a cancellable instance similar to
@@ -321,7 +321,7 @@ public:
    * cancellable signal should not do something that can block.
    */
 
-  Glib::SignalProxy<void()> signal_cancelled();
+  auto signal_cancelled() -> Glib::SignalProxy<void()>;
 
 
 public:
@@ -353,7 +353,7 @@ namespace Glib
    * @relates Gio::Cancellable
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Cancellable> wrap(GCancellable* object, bool take_copy = false);
+  auto wrap(GCancellable* object, bool take_copy = false) -> Glib::RefPtr<Gio::Cancellable>;
 }
 
 

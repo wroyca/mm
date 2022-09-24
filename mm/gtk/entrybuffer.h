@@ -77,7 +77,7 @@ public:
 
   // noncopyable
   EntryBuffer(const EntryBuffer&) = delete;
-  EntryBuffer& operator=(const EntryBuffer&) = delete;
+  auto operator=(const EntryBuffer&) -> EntryBuffer& = delete;
 
 private:  friend class EntryBuffer_Class;
   static CppClassType entrybuffer_class_;
@@ -91,28 +91,28 @@ protected:
 public:
 
   EntryBuffer(EntryBuffer&& src) noexcept;
-  EntryBuffer& operator=(EntryBuffer&& src) noexcept;
+  auto operator=(EntryBuffer&& src) noexcept -> EntryBuffer&;
 
   ~EntryBuffer() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkEntryBuffer*       gobj()       { return reinterpret_cast<GtkEntryBuffer*>(gobject_); }
+  auto       gobj() -> GtkEntryBuffer*       { return reinterpret_cast<GtkEntryBuffer*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkEntryBuffer* gobj() const { return reinterpret_cast<GtkEntryBuffer*>(gobject_); }
+  auto gobj() const -> const GtkEntryBuffer* { return reinterpret_cast<GtkEntryBuffer*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkEntryBuffer* gobj_copy();
+  auto gobj_copy() -> GtkEntryBuffer*;
 
 private:
 
@@ -132,7 +132,7 @@ public:
   /** Create a new EntryBuffer object with no text.
    */
 
-  static Glib::RefPtr<EntryBuffer> create();
+  static auto create() -> Glib::RefPtr<EntryBuffer>;
 
 
   /** Create a new EntryBuffer object.
@@ -140,7 +140,7 @@ public:
    * @param text Initial buffer text.
    */
 
-  static Glib::RefPtr<EntryBuffer> create(const Glib::ustring& text);
+  static auto create(const Glib::ustring& text) -> Glib::RefPtr<EntryBuffer>;
 
 
   /** Retrieves the length in bytes of the buffer.
@@ -149,13 +149,13 @@ public:
    *
    * @return The byte length of the buffer.
    */
-  gsize get_bytes() const;
+  auto get_bytes() const -> gsize;
 
   /** Retrieves the length in characters of the buffer.
    *
    * @return The number of characters in the buffer.
    */
-  guint get_length() const;
+  auto get_length() const -> guint;
 
   /** Retrieves the contents of the buffer.
    *
@@ -166,7 +166,7 @@ public:
    * string. This string points to internally allocated storage
    * in the buffer and must not be freed, modified or stored.
    */
-  Glib::ustring get_text() const;
+  auto get_text() const -> Glib::ustring;
 
   /** Sets the text in the buffer.
    * This is roughly equivalent to calling delete_text() and insert_text().
@@ -192,7 +192,7 @@ public:
    * @return The maximum allowed number of characters
    * in `Gtk::EntryBuffer`, or 0 if there is no maximum.
    */
-  int get_max_length() const;
+  auto get_max_length() const -> int;
 
   /** Inserts @a text into the contents of the buffer, at position @a position.
    *
@@ -200,7 +200,7 @@ public:
    * @param text The text to insert into the buffer.
    * @result The number of characters actually inserted.
    */
-  guint insert_text(guint position, const Glib::ustring& text);
+  auto insert_text(guint position, const Glib::ustring& text) -> guint;
 
 
   /** Deletes a sequence of characters from the buffer.
@@ -219,7 +219,7 @@ public:
    * @param n_chars Number of characters to delete.
    * @return The number of characters deleted.
    */
-  guint delete_text(guint position, int n_chars);
+  auto delete_text(guint position, int n_chars) -> guint;
 
   /** Used when deriving from EntryBuffer.
    * @param position Position at which text was inserted.
@@ -249,7 +249,7 @@ public:
    * @param n_chars The number of characters that were inserted.
    */
 
-  Glib::SignalProxy<void(guint, const char*, guint)> signal_inserted_text();
+  auto signal_inserted_text() -> Glib::SignalProxy<void(guint, const char*, guint)>;
 
 
   /**
@@ -267,7 +267,7 @@ public:
    * @param n_chars The number of characters that were deleted.
    */
 
-  Glib::SignalProxy<void(guint, guint)> signal_deleted_text();
+  auto signal_deleted_text() -> Glib::SignalProxy<void(guint, guint)>;
 
 
   /** The contents of the buffer.
@@ -277,7 +277,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_text() ;
+  auto property_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The contents of the buffer.
    *
@@ -286,7 +286,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_text() const;
+  auto property_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The length (in characters) of the text in buffer.
    *
@@ -295,7 +295,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_length() const;
+  auto property_length() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
   /** The maximum length (in characters) of the text in the buffer.
@@ -305,7 +305,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_max_length() ;
+  auto property_max_length() -> Glib::PropertyProxy< int > ;
 
 /** The maximum length (in characters) of the text in the buffer.
    *
@@ -314,7 +314,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_max_length() const;
+  auto property_max_length() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
 public:
@@ -348,7 +348,7 @@ namespace Glib
    * @relates Gtk::EntryBuffer
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::EntryBuffer> wrap(GtkEntryBuffer* object, bool take_copy = false);
+  auto wrap(GtkEntryBuffer* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EntryBuffer>;
 }
 
 

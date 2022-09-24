@@ -61,7 +61,7 @@ public:
 
   // noncopyable
   MenuLinkIter(const MenuLinkIter&) = delete;
-  MenuLinkIter& operator=(const MenuLinkIter&) = delete;
+  auto operator=(const MenuLinkIter&) -> MenuLinkIter& = delete;
 
 private:  friend class MenuLinkIter_Class;
   static CppClassType menulinkiter_class_;
@@ -75,28 +75,28 @@ protected:
 public:
 
   MenuLinkIter(MenuLinkIter&& src) noexcept;
-  MenuLinkIter& operator=(MenuLinkIter&& src) noexcept;
+  auto operator=(MenuLinkIter&& src) noexcept -> MenuLinkIter&;
 
   ~MenuLinkIter() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GMenuLinkIter*       gobj()       { return reinterpret_cast<GMenuLinkIter*>(gobject_); }
+  auto       gobj() -> GMenuLinkIter*       { return reinterpret_cast<GMenuLinkIter*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GMenuLinkIter* gobj() const { return reinterpret_cast<GMenuLinkIter*>(gobject_); }
+  auto gobj() const -> const GMenuLinkIter* { return reinterpret_cast<GMenuLinkIter*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GMenuLinkIter* gobj_copy();
+  auto gobj_copy() -> GMenuLinkIter*;
 
 private:
 
@@ -114,7 +114,7 @@ public:
    *
    * @return The type of the link.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
 
   /** This function combines g_menu_link_iter_next() with
@@ -139,7 +139,7 @@ public:
    * @return <tt>true</tt> on success, or <tt>false</tt> if there is no additional link.
    */
 
-  bool get_next(Glib::ustring& out_link, Glib::RefPtr<MenuModel>& value);
+  auto get_next(Glib::ustring& out_link, Glib::RefPtr<MenuModel>& value) -> bool;
 
 
   /** Gets the linked MenuModel at the current iterator position.
@@ -150,7 +150,7 @@ public:
    *
    * @return The MenuModel that is linked to.
    */
-  Glib::RefPtr<MenuModel> get_value();
+  auto get_value() -> Glib::RefPtr<MenuModel>;
 
   /** Gets the linked MenuModel at the current iterator position.
    *
@@ -160,7 +160,7 @@ public:
    *
    * @return The MenuModel that is linked to.
    */
-  Glib::RefPtr<const MenuModel> get_value() const;
+  auto get_value() const -> Glib::RefPtr<const MenuModel>;
 
 
   /** Attempts to advance the iterator to the next (possibly first)
@@ -176,7 +176,7 @@ public:
    *
    * @return <tt>true</tt> on success, or <tt>false</tt> when there are no more links.
    */
-  bool next();
+  auto next() -> bool;
 
 
 public:
@@ -206,7 +206,7 @@ namespace Glib
    * @relates Gio::MenuLinkIter
    */
   GIOMM_API
-  Glib::RefPtr<Gio::MenuLinkIter> wrap(GMenuLinkIter* object, bool take_copy = false);
+  auto wrap(GMenuLinkIter* object, bool take_copy = false) -> Glib::RefPtr<Gio::MenuLinkIter>;
 }
 
 

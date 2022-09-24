@@ -79,7 +79,7 @@ public:
 
   // noncopyable
   Native(const Native&) = delete;
-  Native& operator=(const Native&) = delete;
+  auto operator=(const Native&) -> Native& = delete;
 
 private:
   friend class Native_Class;
@@ -113,7 +113,7 @@ protected:
 public:
 
   Native(Native&& src) noexcept;
-  Native& operator=(Native&& src) noexcept;
+  auto operator=(Native&& src) noexcept -> Native&;
 
   ~Native() noexcept override;
 
@@ -121,17 +121,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkNative*       gobj()       { return reinterpret_cast<GtkNative*>(gobject_); }
+  auto       gobj() -> GtkNative*       { return reinterpret_cast<GtkNative*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkNative* gobj() const { return reinterpret_cast<GtkNative*>(gobject_); }
+  auto gobj() const -> const GtkNative* { return reinterpret_cast<GtkNative*>(gobject_); }
 
 private:
 
@@ -155,20 +155,20 @@ public:
    * @param surface A `Gdk::Surface`.
    * @return The `Gtk::Native` that is associated with @a surface.
    */
-  static Native* get_for_surface(const Glib::RefPtr<const Gdk::Surface>& surface);
+  static auto get_for_surface(const Glib::RefPtr<const Gdk::Surface>& surface) -> Native*;
 
 
   /** Returns the surface of this `Gtk::Native`.
    *
    * @return The surface of @a self.
    */
-  Glib::RefPtr<Gdk::Surface> get_surface();
+  auto get_surface() -> Glib::RefPtr<Gdk::Surface>;
 
   /** Returns the surface of this `Gtk::Native`.
    *
    * @return The surface of @a self.
    */
-  Glib::RefPtr<const Gdk::Surface> get_surface() const;
+  auto get_surface() const -> Glib::RefPtr<const Gdk::Surface>;
 
   //?_WRAP_METHOD(GskRenderer* get_renderer(), gtk_native_get_renderer)
 
@@ -210,7 +210,7 @@ namespace Glib
    * @relates Gtk::Native
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Native> wrap(GtkNative* object, bool take_copy = false);
+  auto wrap(GtkNative* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Native>;
 
 } // namespace Glib
 

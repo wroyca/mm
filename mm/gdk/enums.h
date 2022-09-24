@@ -97,31 +97,31 @@ enum class AxisFlags
 };
 
 /** @ingroup gdkmmEnums */
-inline AxisFlags operator|(AxisFlags lhs, AxisFlags rhs)
+inline auto operator|(AxisFlags lhs, AxisFlags rhs) -> AxisFlags
   { return static_cast<AxisFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline AxisFlags operator&(AxisFlags lhs, AxisFlags rhs)
+inline auto operator&(AxisFlags lhs, AxisFlags rhs) -> AxisFlags
   { return static_cast<AxisFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline AxisFlags operator^(AxisFlags lhs, AxisFlags rhs)
+inline auto operator^(AxisFlags lhs, AxisFlags rhs) -> AxisFlags
   { return static_cast<AxisFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline AxisFlags operator~(AxisFlags flags)
+inline auto operator~(AxisFlags flags) -> AxisFlags
   { return static_cast<AxisFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gdkmmEnums */
-inline AxisFlags& operator|=(AxisFlags& lhs, AxisFlags rhs)
+inline auto operator|=(AxisFlags& lhs, AxisFlags rhs) -> AxisFlags&
   { return (lhs = static_cast<AxisFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline AxisFlags& operator&=(AxisFlags& lhs, AxisFlags rhs)
+inline auto operator&=(AxisFlags& lhs, AxisFlags rhs) -> AxisFlags&
   { return (lhs = static_cast<AxisFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline AxisFlags& operator^=(AxisFlags& lhs, AxisFlags rhs)
+inline auto operator^=(AxisFlags& lhs, AxisFlags rhs) -> AxisFlags&
   { return (lhs = static_cast<AxisFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -135,7 +135,7 @@ template <>
 class GDKMM_API Value<Gdk::AxisFlags> : public Glib::Value_Flags<Gdk::AxisFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -222,7 +222,7 @@ template <>
 class GDKMM_API Value<Gdk::AxisUse> : public Glib::Value_Enum<Gdk::AxisUse>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -294,7 +294,7 @@ template <>
 class GDKMM_API Value<Gdk::CrossingMode> : public Glib::Value_Enum<Gdk::CrossingMode>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -343,31 +343,31 @@ enum class DragAction
 };
 
 /** @ingroup gdkmmEnums */
-inline DragAction operator|(DragAction lhs, DragAction rhs)
+inline auto operator|(DragAction lhs, DragAction rhs) -> DragAction
   { return static_cast<DragAction>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline DragAction operator&(DragAction lhs, DragAction rhs)
+inline auto operator&(DragAction lhs, DragAction rhs) -> DragAction
   { return static_cast<DragAction>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline DragAction operator^(DragAction lhs, DragAction rhs)
+inline auto operator^(DragAction lhs, DragAction rhs) -> DragAction
   { return static_cast<DragAction>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline DragAction operator~(DragAction flags)
+inline auto operator~(DragAction flags) -> DragAction
   { return static_cast<DragAction>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gdkmmEnums */
-inline DragAction& operator|=(DragAction& lhs, DragAction rhs)
+inline auto operator|=(DragAction& lhs, DragAction rhs) -> DragAction&
   { return (lhs = static_cast<DragAction>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline DragAction& operator&=(DragAction& lhs, DragAction rhs)
+inline auto operator&=(DragAction& lhs, DragAction rhs) -> DragAction&
   { return (lhs = static_cast<DragAction>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline DragAction& operator^=(DragAction& lhs, DragAction rhs)
+inline auto operator^=(DragAction& lhs, DragAction rhs) -> DragAction&
   { return (lhs = static_cast<DragAction>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -381,7 +381,7 @@ template <>
 class GDKMM_API Value<Gdk::DragAction> : public Glib::Value_Flags<Gdk::DragAction>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -453,7 +453,7 @@ template <>
 class GDKMM_API Value<Gdk::Gravity> : public Glib::Value_Enum<Gdk::Gravity>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -541,31 +541,31 @@ enum class ModifierType
 };
 
 /** @ingroup gdkmmEnums */
-inline ModifierType operator|(ModifierType lhs, ModifierType rhs)
+inline auto operator|(ModifierType lhs, ModifierType rhs) -> ModifierType
   { return static_cast<ModifierType>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline ModifierType operator&(ModifierType lhs, ModifierType rhs)
+inline auto operator&(ModifierType lhs, ModifierType rhs) -> ModifierType
   { return static_cast<ModifierType>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline ModifierType operator^(ModifierType lhs, ModifierType rhs)
+inline auto operator^(ModifierType lhs, ModifierType rhs) -> ModifierType
   { return static_cast<ModifierType>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gdkmmEnums */
-inline ModifierType operator~(ModifierType flags)
+inline auto operator~(ModifierType flags) -> ModifierType
   { return static_cast<ModifierType>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gdkmmEnums */
-inline ModifierType& operator|=(ModifierType& lhs, ModifierType rhs)
+inline auto operator|=(ModifierType& lhs, ModifierType rhs) -> ModifierType&
   { return (lhs = static_cast<ModifierType>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline ModifierType& operator&=(ModifierType& lhs, ModifierType rhs)
+inline auto operator&=(ModifierType& lhs, ModifierType rhs) -> ModifierType&
   { return (lhs = static_cast<ModifierType>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gdkmmEnums */
-inline ModifierType& operator^=(ModifierType& lhs, ModifierType rhs)
+inline auto operator^=(ModifierType& lhs, ModifierType rhs) -> ModifierType&
   { return (lhs = static_cast<ModifierType>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 
 
@@ -579,7 +579,7 @@ template <>
 class GDKMM_API Value<Gdk::ModifierType> : public Glib::Value_Flags<Gdk::ModifierType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -644,7 +644,7 @@ template <>
 class GDKMM_API Value<Gdk::NotifyType> : public Glib::Value_Enum<Gdk::NotifyType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -696,7 +696,7 @@ template <>
 class GDKMM_API Value<Gdk::ScrollDirection> : public Glib::Value_Enum<Gdk::ScrollDirection>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -762,7 +762,7 @@ template <>
 class GDKMM_API Value<Gdk::TouchpadGesturePhase> : public Glib::Value_Enum<Gdk::TouchpadGesturePhase>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -819,7 +819,7 @@ template <>
 class GDKMM_API Value<Gdk::ScrollUnit> : public Glib::Value_Enum<Gdk::ScrollUnit>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib

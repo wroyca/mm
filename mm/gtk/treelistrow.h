@@ -74,7 +74,7 @@ public:
 
   // noncopyable
   TreeListRow(const TreeListRow&) = delete;
-  TreeListRow& operator=(const TreeListRow&) = delete;
+  auto operator=(const TreeListRow&) -> TreeListRow& = delete;
 
 private:  friend class TreeListRow_Class;
   static CppClassType treelistrow_class_;
@@ -88,28 +88,28 @@ protected:
 public:
 
   TreeListRow(TreeListRow&& src) noexcept;
-  TreeListRow& operator=(TreeListRow&& src) noexcept;
+  auto operator=(TreeListRow&& src) noexcept -> TreeListRow&;
 
   ~TreeListRow() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkTreeListRow*       gobj()       { return reinterpret_cast<GtkTreeListRow*>(gobject_); }
+  auto       gobj() -> GtkTreeListRow*       { return reinterpret_cast<GtkTreeListRow*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkTreeListRow* gobj() const { return reinterpret_cast<GtkTreeListRow*>(gobject_); }
+  auto gobj() const -> const GtkTreeListRow* { return reinterpret_cast<GtkTreeListRow*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkTreeListRow* gobj_copy();
+  auto gobj_copy() -> GtkTreeListRow*;
 
 private:
 
@@ -125,7 +125,7 @@ public:
    * @return The item
    * of this row or <tt>nullptr</tt> when the row was destroyed.
    */
-  Glib::RefPtr<Glib::ObjectBase> get_item();
+  auto get_item() -> Glib::RefPtr<Glib::ObjectBase>;
 
   /** Gets the item corresponding to this row,
    *
@@ -135,7 +135,7 @@ public:
    * @return The item
    * of this row or <tt>nullptr</tt> when the row was destroyed.
    */
-  Glib::RefPtr<const Glib::ObjectBase> get_item() const;
+  auto get_item() const -> Glib::RefPtr<const Glib::ObjectBase>;
 
   /** Expands or collapses a row.
    *
@@ -154,7 +154,7 @@ public:
    *
    * @return <tt>true</tt> if the row is expanded.
    */
-  bool get_expanded() const;
+  auto get_expanded() const -> bool;
 
   /** Checks if a row can be expanded.
    *
@@ -165,14 +165,14 @@ public:
    *
    * @return <tt>true</tt> if the row is expandable.
    */
-  bool is_expandable() const;
+  auto is_expandable() const -> bool;
 
   /** Returns the position in the `Gtk::TreeListModel` that @a self occupies
    * at the moment.
    *
    * @return The position in the model.
    */
-  guint get_position() const;
+  auto get_position() const -> guint;
 
   /** Gets the depth of this row.
    *
@@ -184,7 +184,7 @@ public:
    *
    * @return The depth of this row.
    */
-  guint get_depth() const;
+  auto get_depth() const -> guint;
 
   /** If the row is expanded, gets the model holding the children of @a self.
    *
@@ -195,7 +195,7 @@ public:
    *
    * @return The model containing the children.
    */
-  Glib::RefPtr<Gio::ListModel> get_children();
+  auto get_children() -> Glib::RefPtr<Gio::ListModel>;
 
   /** If the row is expanded, gets the model holding the children of @a self.
    *
@@ -206,7 +206,7 @@ public:
    *
    * @return The model containing the children.
    */
-  Glib::RefPtr<const Gio::ListModel> get_children() const;
+  auto get_children() const -> Glib::RefPtr<const Gio::ListModel>;
 
   /** Gets the row representing the parent for @a self.
    *
@@ -221,7 +221,7 @@ public:
    *
    * @return The parent of @a self.
    */
-  Glib::RefPtr<TreeListRow> get_parent();
+  auto get_parent() -> Glib::RefPtr<TreeListRow>;
 
   /** Gets the row representing the parent for @a self.
    *
@@ -236,7 +236,7 @@ public:
    *
    * @return The parent of @a self.
    */
-  Glib::RefPtr<const TreeListRow> get_parent() const;
+  auto get_parent() const -> Glib::RefPtr<const TreeListRow>;
 
   /** If @a self is not expanded or @a position is greater than the
    * number of children, <tt>nullptr</tt> is returned.
@@ -244,7 +244,7 @@ public:
    * @param position Position of the child to get.
    * @return The child in @a position.
    */
-  Glib::RefPtr<TreeListRow> get_child_row(guint position);
+  auto get_child_row(guint position) -> Glib::RefPtr<TreeListRow>;
 
   /** If @a self is not expanded or @a position is greater than the
    * number of children, <tt>nullptr</tt> is returned.
@@ -252,14 +252,14 @@ public:
    * @param position Position of the child to get.
    * @return The child in @a position.
    */
-  Glib::RefPtr<const TreeListRow> get_child_row(guint position) const;
+  auto get_child_row(guint position) const -> Glib::RefPtr<const TreeListRow>;
 
   /** The model holding the row's children.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > property_children() const;
+  auto property_children() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >;
 
 
   /** The depth in the tree of this row.
@@ -269,7 +269,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_depth() const;
+  auto property_depth() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
   /** If this row can ever be expanded.
@@ -279,7 +279,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_expandable() const;
+  auto property_expandable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** If this row is currently expanded.
@@ -289,7 +289,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_expanded() ;
+  auto property_expanded() -> Glib::PropertyProxy< bool > ;
 
 /** If this row is currently expanded.
    *
@@ -298,14 +298,14 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_expanded() const;
+  auto property_expanded() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The item held in this row.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> > property_item() const;
+  auto property_item() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> >;
 
 
 public:
@@ -335,7 +335,7 @@ namespace Glib
    * @relates Gtk::TreeListRow
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::TreeListRow> wrap(GtkTreeListRow* object, bool take_copy = false);
+  auto wrap(GtkTreeListRow* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeListRow>;
 }
 
 

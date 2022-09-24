@@ -47,7 +47,7 @@ class PANGOMM_API Coverage final
   using BaseObjectType = PangoCoverage;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  static Glib::RefPtr<Coverage> create();
+  static auto create() -> Glib::RefPtr<Coverage>;
 
   /** Increment the reference count for this object.
    * You should never need to do this manually - use the object via a RefPtr instead.
@@ -60,19 +60,19 @@ class PANGOMM_API Coverage final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  PangoCoverage*       gobj();
+  auto       gobj() -> PangoCoverage*;
 
   ///Provides access to the underlying C instance.
-  const PangoCoverage* gobj() const;
+  auto gobj() const -> const PangoCoverage*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  PangoCoverage* gobj_copy() const;
+  auto gobj_copy() const -> PangoCoverage*;
 
   Coverage() = delete;
 
   // noncopyable
   Coverage(const Coverage&) = delete;
-  Coverage& operator=(const Coverage&) = delete;
+  auto operator=(const Coverage&) -> Coverage& = delete;
 
 protected:
   // Do not derive this.  Pango::Coverage can neither be constructed nor deleted.
@@ -135,7 +135,7 @@ public:
    * @param index The index to check.
    * @return The coverage level of @a coverage for character @a index.
    */
-  Level get(int index) const;
+  auto get(int index) const -> Level;
 
   /** Modify a particular index within @a coverage
    *
@@ -158,7 +158,7 @@ template <>
 class PANGOMM_API Value<Pango::Coverage::Level> : public Glib::Value_Enum<Pango::Coverage::Level>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -177,7 +177,7 @@ namespace Glib
  * @relates Pango::Coverage
  */
 PANGOMM_API
-Glib::RefPtr<Pango::Coverage> wrap(PangoCoverage* object, bool take_copy = false);
+auto wrap(PangoCoverage* object, bool take_copy = false) -> Glib::RefPtr<Pango::Coverage>;
 
 } // namespace Glib
 

@@ -30,7 +30,7 @@
 namespace
 {
 
-inline GdkTimeCoord* time_coord_copy(const GdkTimeCoord* gobject)
+inline auto time_coord_copy(const GdkTimeCoord* gobject) -> GdkTimeCoord*
 {
   // Don't use g_memdup(). It's deprecated in glib 2.67.3.
   // Its replacement, g_memdup2(), is new in glib 2.67.3.
@@ -57,7 +57,7 @@ TimeCoord::TimeCoord(const TimeCoord& other)
   gobject_(time_coord_copy(other.gobject_))
 {}
 
-TimeCoord& TimeCoord::operator=(const TimeCoord& other)
+auto TimeCoord::operator=(const TimeCoord& other) -> TimeCoord&
 {
   TimeCoord temp(other);
   std::swap(gobject_, temp.gobject_);
@@ -71,7 +71,7 @@ TimeCoord::TimeCoord(TimeCoord&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-TimeCoord& TimeCoord::operator=(TimeCoord&& other) noexcept
+auto TimeCoord::operator=(TimeCoord&& other) noexcept -> TimeCoord&
 {
   TimeCoord temp(std::move(other));
   std::swap(gobject_, temp.gobject_);
@@ -84,7 +84,7 @@ TimeCoord::~TimeCoord() noexcept
   g_free(gobject_);
 }
 
-double TimeCoord::get_value_at_axis(guint index) const
+auto TimeCoord::get_value_at_axis(guint index) const -> double
 {
   if (gobject_)
   {
@@ -104,7 +104,7 @@ namespace Gdk
 {
 
 
-guint32 TimeCoord::get_time() const
+auto TimeCoord::get_time() const -> guint32
 {
   return gobj()->time;
 }

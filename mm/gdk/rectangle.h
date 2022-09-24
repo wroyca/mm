@@ -47,24 +47,24 @@ class GDKMM_API Rectangle
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Rectangle(const Rectangle& other) noexcept;
-  Rectangle& operator=(const Rectangle& other) noexcept;
+  auto operator=(const Rectangle& other) noexcept -> Rectangle&;
 
   Rectangle(Rectangle&& other) noexcept;
-  Rectangle& operator=(Rectangle&& other) noexcept;
+  auto operator=(Rectangle&& other) noexcept -> Rectangle&;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   Rectangle();
 
   explicit Rectangle(const GdkRectangle* gobject); // always takes a copy
 
   ///Provides access to the underlying C instance.
-  GdkRectangle*       gobj()       { return &gobject_; }
+  auto       gobj() -> GdkRectangle*       { return &gobject_; }
 
   ///Provides access to the underlying C instance.
-  const GdkRectangle* gobj() const { return &gobject_; }
+  auto gobj() const -> const GdkRectangle* { return &gobject_; }
 
 protected:
   GdkRectangle gobject_;
@@ -80,7 +80,7 @@ public:
   /**
    * @newin{3,20}
    */
-  bool operator==(const Rectangle& src) const;
+  auto operator==(const Rectangle& src) const -> bool;
 
 
   // 'union' is a C and C++ keyword. Can't be a method name.
@@ -94,7 +94,7 @@ public:
    * @param src2 The rectangle with which to calculate the union with this rectangle.
    * @returns A reference to this rectangle.
    */
-  Rectangle& join(const Rectangle& src2);
+  auto join(const Rectangle& src2) -> Rectangle&;
 
 
   /** Calculates the intersection of two rectangles, changing this rectangle.
@@ -107,7 +107,7 @@ public:
    * @param src2 The rectangle with which to calculate the intersection with this rectangle.
    * @returns A reference to this rectangle.
    */
-  Rectangle& intersect(const Rectangle& src2);
+  auto intersect(const Rectangle& src2) -> Rectangle&;
 
 
   /** Calculates the intersection of two rectangles, changing this rectangle.
@@ -122,7 +122,7 @@ public:
    *             if the rectangles intersect, else <tt>false</tt>.
    * @returns A reference to this rectangle.
    */
-  Rectangle& intersect(const Rectangle& src2, bool& rectangles_intersect);
+  auto intersect(const Rectangle& src2, bool& rectangles_intersect) -> Rectangle&;
 
   /** Checks whether two rectangles intersect.
    *
@@ -131,12 +131,12 @@ public:
    * @param src2 The rectangle with which to check intersection with this rectangle.
    * @result Whether this rectangle intersects @a src2.
    */
-  bool intersects(const Rectangle& src2) const;
+  auto intersects(const Rectangle& src2) const -> bool;
 
   /** Checks whether either the width or height is 0.
    * @result Whether this rectangle has 0 area.
    */
-  bool has_zero_area() const;
+  auto has_zero_area() const -> bool;
 
 
   /** Returns <tt>true</tt> if @a rect contains the point described by @a x and @a y.
@@ -145,15 +145,15 @@ public:
    * @param y Y coordinate.
    * @return <tt>true</tt> if @a rect contains the point.
    */
-  bool contains_point(int x, int y) const;
+  auto contains_point(int x, int y) const -> bool;
 
-  int get_x() const;
+  auto get_x() const -> int;
   void set_x(const int& value);
-  int get_y() const;
+  auto get_y() const -> int;
   void set_y(const int& value);
-  int get_width() const;
+  auto get_width() const -> int;
   void set_width(const int& value);
-  int get_height() const;
+  auto get_height() const -> int;
   void set_height(const int& value);
 
 
@@ -172,7 +172,7 @@ public:
  * @relates Gdk::Rectangle
  */
 GDKMM_API
-Rectangle join(const Rectangle& src1, const Rectangle& src2);
+auto join(const Rectangle& src1, const Rectangle& src2) -> Rectangle;
 
 /** Calculates the intersection of two rectangles.
  * If the rectangles do not intersect, the returned rectangle's width and height
@@ -187,7 +187,7 @@ Rectangle join(const Rectangle& src1, const Rectangle& src2);
  * @relates Gdk::Rectangle
  */
 GDKMM_API
-Rectangle intersect(const Rectangle& src1, const Rectangle& src2);
+auto intersect(const Rectangle& src1, const Rectangle& src2) -> Rectangle;
 
 /** Calculates the intersection of two rectangles.
  * If the rectangles do not intersect, the returned rectangle's width and height
@@ -204,7 +204,7 @@ Rectangle intersect(const Rectangle& src1, const Rectangle& src2);
  * @relates Gdk::Rectangle
  */
 GDKMM_API
-Rectangle intersect(const Rectangle& src1, const Rectangle& src2, bool& rectangles_intersect);
+auto intersect(const Rectangle& src1, const Rectangle& src2, bool& rectangles_intersect) -> Rectangle;
 
 } // namespace Gdk
 
@@ -217,14 +217,14 @@ namespace Glib
  * @result A C++ instance that wraps this C instance.
  */
 GDKMM_API
-Gdk::Rectangle& wrap(GdkRectangle* object);
+auto wrap(GdkRectangle* object) -> Gdk::Rectangle&;
 
 /** @relates Gdk::Rectangle
  * @param object The C instance
  * @result A C++ instance that wraps this C instance.
  */
 GDKMM_API
-const Gdk::Rectangle& wrap(const GdkRectangle* object);
+auto wrap(const GdkRectangle* object) -> const Gdk::Rectangle&;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

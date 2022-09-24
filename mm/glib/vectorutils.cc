@@ -22,8 +22,8 @@ namespace Glib
 namespace Container_Helpers
 {
 
-gboolean*
-create_bool_array(std::vector<bool>::const_iterator pbegin, std::size_t size)
+auto
+create_bool_array(std::vector<bool>::const_iterator pbegin, std::size_t size) -> gboolean*
 {
   gboolean* const array(static_cast<gboolean*>(g_malloc((size + 1) * sizeof(gboolean))));
   gboolean* const array_end(array + size);
@@ -42,9 +42,9 @@ create_bool_array(std::vector<bool>::const_iterator pbegin, std::size_t size)
 
 /**** Glib::ArrayHandler<bool> ************************/
 
-ArrayHandler<bool, Glib::Container_Helpers::TypeTraits<bool>>::VectorType
+auto
 ArrayHandler<bool, Glib::Container_Helpers::TypeTraits<bool>>::array_to_vector(
-  const CType* array, std::size_t array_size, Glib::OwnershipType ownership)
+  const CType* array, std::size_t array_size, Glib::OwnershipType ownership) -> ArrayHandler<bool, Glib::Container_Helpers::TypeTraits<bool>>::VectorType
 {
   if (array)
   {
@@ -63,16 +63,16 @@ ArrayHandler<bool, Glib::Container_Helpers::TypeTraits<bool>>::array_to_vector(
   return VectorType();
 }
 
-ArrayHandler<bool, Glib::Container_Helpers::TypeTraits<bool>>::VectorType
+auto
 ArrayHandler<bool, Glib::Container_Helpers::TypeTraits<bool>>::array_to_vector(
-  const CType* array, Glib::OwnershipType ownership)
+  const CType* array, Glib::OwnershipType ownership) -> ArrayHandler<bool, Glib::Container_Helpers::TypeTraits<bool>>::VectorType
 {
   return array_to_vector(array, Glib::Container_Helpers::compute_array_size2(array), ownership);
 }
 
-ArrayHandler<bool, Glib::Container_Helpers::TypeTraits<bool>>::ArrayKeeperType
+auto
 ArrayHandler<bool, Glib::Container_Helpers::TypeTraits<bool>>::vector_to_array(
-  const VectorType& vector)
+  const VectorType& vector) -> ArrayHandler<bool, Glib::Container_Helpers::TypeTraits<bool>>::ArrayKeeperType
 {
   return ArrayKeeperType(Glib::Container_Helpers::create_bool_array(vector.begin(), vector.size()),
     vector.size(), Glib::OWNERSHIP_SHALLOW);

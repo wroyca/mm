@@ -73,19 +73,19 @@ class GLIBMM_API Bytes final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GBytes*       gobj();
+  auto       gobj() -> GBytes*;
 
   ///Provides access to the underlying C instance.
-  const GBytes* gobj() const;
+  auto gobj() const -> const GBytes*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GBytes* gobj_copy() const;
+  auto gobj_copy() const -> GBytes*;
 
   Bytes() = delete;
 
   // noncopyable
   Bytes(const Bytes&) = delete;
-  Bytes& operator=(const Bytes&) = delete;
+  auto operator=(const Bytes&) -> Bytes& = delete;
 
 protected:
   // Do not derive this.  Glib::Bytes can neither be constructed nor deleted.
@@ -97,7 +97,7 @@ private:
 
 public:
 
-  static Glib::RefPtr<Glib::Bytes> create(gconstpointer data, gsize size);
+  static auto create(gconstpointer data, gsize size) -> Glib::RefPtr<Glib::Bytes>;
 
 
   /** Get the byte data in the Bytes. This data should not be modified.
@@ -113,7 +113,7 @@ public:
    * @param size Location to return size of byte data.
    * @return A pointer to the byte data, or <tt>nullptr</tt>.
    */
-  gconstpointer get_data(gsize& size) const;
+  auto get_data(gsize& size) const -> gconstpointer;
 
   /** Get the size of the byte data in the Bytes.
    *
@@ -123,7 +123,7 @@ public:
    *
    * @return The size.
    */
-  gsize get_size() const;
+  auto get_size() const -> gsize;
 
 
   /** Creates an integer hash code for the byte data in the Bytes.
@@ -136,7 +136,7 @@ public:
    * @param bytes A pointer to a Bytes key.
    * @return A hash value corresponding to the key.
    */
-  static guint hash(gconstpointer bytes);
+  static auto hash(gconstpointer bytes) -> guint;
 
   /** Compares the two Bytes values being pointed to and returns
    * <tt>true</tt> if they are equal.
@@ -150,7 +150,7 @@ public:
    * @param bytes2 A pointer to a Bytes to compare with @a bytes1.
    * @return <tt>true</tt> if the two keys match.
    */
-  static bool equal(gconstpointer bytes1, gconstpointer bytes2);
+  static auto equal(gconstpointer bytes1, gconstpointer bytes2) -> bool;
 
   /** Compares the two Bytes values.
    *
@@ -170,7 +170,7 @@ public:
    * if @a bytes1 is greater than @a bytes2, and zero if @a bytes1 is equal to
    *  @a bytes2.
    */
-  static gint compare(gconstpointer bytes1, gconstpointer bytes2);
+  static auto compare(gconstpointer bytes1, gconstpointer bytes2) -> gint;
 
 
 };
@@ -190,7 +190,7 @@ namespace Glib
  * @relates Glib::Bytes
  */
 GLIBMM_API
-Glib::RefPtr<Glib::Bytes> wrap(GBytes* object, bool take_copy = false);
+auto wrap(GBytes* object, bool take_copy = false) -> Glib::RefPtr<Glib::Bytes>;
 
 } // namespace Glib
 

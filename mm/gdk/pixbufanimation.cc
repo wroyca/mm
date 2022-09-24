@@ -32,7 +32,7 @@ namespace Gdk
 {
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-Glib::RefPtr<PixbufAnimationIter> PixbufAnimation::get_iter(gint64 start_time)
+auto PixbufAnimation::get_iter(gint64 start_time) -> Glib::RefPtr<PixbufAnimationIter>
 {
   // GTimeVal is deprecated, but gdk-pixbuf has no replacement for
   // gdk_pixbuf_animation_get_iter() without GTimeVal.
@@ -53,7 +53,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::PixbufAnimation> wrap(GdkPixbufAnimation* object, bool take_copy)
+auto wrap(GdkPixbufAnimation* object, bool take_copy) -> Glib::RefPtr<Gdk::PixbufAnimation>
 {
   return Glib::make_refptr_for_instance<Gdk::PixbufAnimation>( dynamic_cast<Gdk::PixbufAnimation*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -68,7 +68,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Class& PixbufAnimation_Class::init()
+auto PixbufAnimation_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -99,7 +99,7 @@ void PixbufAnimation_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* PixbufAnimation_Class::wrap_new(GObject* object)
+auto PixbufAnimation_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new PixbufAnimation((GdkPixbufAnimation*)object);
 }
@@ -107,7 +107,7 @@ Glib::ObjectBase* PixbufAnimation_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GdkPixbufAnimation* PixbufAnimation::gobj_copy()
+auto PixbufAnimation::gobj_copy() -> GdkPixbufAnimation*
 {
   reference();
   return gobj();
@@ -130,7 +130,7 @@ PixbufAnimation::PixbufAnimation(PixbufAnimation&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-PixbufAnimation& PixbufAnimation::operator=(PixbufAnimation&& src) noexcept
+auto PixbufAnimation::operator=(PixbufAnimation&& src) noexcept -> PixbufAnimation&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -143,19 +143,19 @@ PixbufAnimation::~PixbufAnimation() noexcept
 
 PixbufAnimation::CppClassType PixbufAnimation::pixbufanimation_class_; // initialize static member
 
-GType PixbufAnimation::get_type()
+auto PixbufAnimation::get_type() -> GType
 {
   return pixbufanimation_class_.init().get_type();
 }
 
 
-GType PixbufAnimation::get_base_type()
+auto PixbufAnimation::get_base_type() -> GType
 {
   return gdk_pixbuf_animation_get_type();
 }
 
 
-Glib::RefPtr<PixbufAnimation> PixbufAnimation::create_from_file(const std::string& filename)
+auto PixbufAnimation::create_from_file(const std::string& filename) -> Glib::RefPtr<PixbufAnimation>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(gdk_pixbuf_animation_new_from_file(filename.c_str(), &(gerror)));
@@ -164,7 +164,7 @@ Glib::RefPtr<PixbufAnimation> PixbufAnimation::create_from_file(const std::strin
   return retvalue;
 }
 
-Glib::RefPtr<PixbufAnimation> PixbufAnimation::create_from_stream(const Glib::RefPtr<Gio::InputStream>& stream, const Glib::RefPtr<Gio::Cancellable>& cancellable)
+auto PixbufAnimation::create_from_stream(const Glib::RefPtr<Gio::InputStream>& stream, const Glib::RefPtr<Gio::Cancellable>& cancellable) -> Glib::RefPtr<PixbufAnimation>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(gdk_pixbuf_animation_new_from_stream(const_cast<GInputStream*>(Glib::unwrap(stream)), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -181,7 +181,7 @@ void PixbufAnimation::create_from_stream_async(const Glib::RefPtr<Gio::InputStre
   gdk_pixbuf_animation_new_from_stream_async(const_cast<GInputStream*>(Glib::unwrap(stream)), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &Gio::SignalProxy_async_callback, slot_copy);
 }
 
-Glib::RefPtr<PixbufAnimation> PixbufAnimation::create_from_stream_finish(const Glib::RefPtr<Gio::AsyncResult>& result)
+auto PixbufAnimation::create_from_stream_finish(const Glib::RefPtr<Gio::AsyncResult>& result) -> Glib::RefPtr<PixbufAnimation>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(gdk_pixbuf_animation_new_from_stream_finish(Glib::unwrap(result), &(gerror)));
@@ -190,7 +190,7 @@ Glib::RefPtr<PixbufAnimation> PixbufAnimation::create_from_stream_finish(const G
   return retvalue;
 }
 
-Glib::RefPtr<PixbufAnimation> PixbufAnimation::create_from_resource(const std::string& resource_path)
+auto PixbufAnimation::create_from_resource(const std::string& resource_path) -> Glib::RefPtr<PixbufAnimation>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::wrap(gdk_pixbuf_animation_new_from_resource(resource_path.c_str(), &(gerror)));
@@ -199,22 +199,22 @@ Glib::RefPtr<PixbufAnimation> PixbufAnimation::create_from_resource(const std::s
   return retvalue;
 }
 
-int PixbufAnimation::get_width() const
+auto PixbufAnimation::get_width() const -> int
 {
   return gdk_pixbuf_animation_get_width(const_cast<GdkPixbufAnimation*>(gobj()));
 }
 
-int PixbufAnimation::get_height() const
+auto PixbufAnimation::get_height() const -> int
 {
   return gdk_pixbuf_animation_get_height(const_cast<GdkPixbufAnimation*>(gobj()));
 }
 
-bool PixbufAnimation::is_static_image() const
+auto PixbufAnimation::is_static_image() const -> bool
 {
   return gdk_pixbuf_animation_is_static_image(const_cast<GdkPixbufAnimation*>(gobj()));
 }
 
-Glib::RefPtr<Pixbuf> PixbufAnimation::get_static_image()
+auto PixbufAnimation::get_static_image() -> Glib::RefPtr<Pixbuf>
 {
   auto retvalue = Glib::wrap(gdk_pixbuf_animation_get_static_image(gobj()));
   if(retvalue)

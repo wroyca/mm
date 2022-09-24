@@ -53,7 +53,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo CheckButton_signal_toggled_info =
+const Glib::SignalProxyInfo CheckButton_signal_toggled_info =
 {
   "toggled",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -67,7 +67,7 @@ static const Glib::SignalProxyInfo CheckButton_signal_toggled_info =
 namespace Glib
 {
 
-Gtk::CheckButton* wrap(GtkCheckButton* object, bool take_copy)
+auto wrap(GtkCheckButton* object, bool take_copy) -> Gtk::CheckButton*
 {
   return dynamic_cast<Gtk::CheckButton *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -80,7 +80,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& CheckButton_Class::init()
+auto CheckButton_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -151,7 +151,7 @@ void CheckButton_Class::toggled_callback(GtkCheckButton* self)
 }
 
 
-Glib::ObjectBase* CheckButton_Class::wrap_new(GObject* o)
+auto CheckButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new CheckButton((GtkCheckButton*)(o)));
 
@@ -178,7 +178,7 @@ CheckButton::CheckButton(CheckButton&& src) noexcept
   , Actionable(std::move(src))
 {}
 
-CheckButton& CheckButton::operator=(CheckButton&& src) noexcept
+auto CheckButton::operator=(CheckButton&& src) noexcept -> CheckButton&
 {
   Gtk::Widget::operator=(std::move(src));
   Actionable::operator=(std::move(src));
@@ -192,13 +192,13 @@ CheckButton::~CheckButton() noexcept
 
 CheckButton::CppClassType CheckButton::checkbutton_class_; // initialize static member
 
-GType CheckButton::get_type()
+auto CheckButton::get_type() -> GType
 {
   return checkbutton_class_.init().get_type();
 }
 
 
-GType CheckButton::get_base_type()
+auto CheckButton::get_base_type() -> GType
 {
   return gtk_check_button_get_type();
 }
@@ -219,7 +219,7 @@ void CheckButton::set_inconsistent(bool inconsistent)
   gtk_check_button_set_inconsistent(gobj(), static_cast<int>(inconsistent));
 }
 
-bool CheckButton::get_inconsistent() const
+auto CheckButton::get_inconsistent() const -> bool
 {
   return gtk_check_button_get_inconsistent(const_cast<GtkCheckButton*>(gobj()));
 }
@@ -229,7 +229,7 @@ void CheckButton::set_active(bool setting)
   gtk_check_button_set_active(gobj(), static_cast<int>(setting));
 }
 
-bool CheckButton::get_active() const
+auto CheckButton::get_active() const -> bool
 {
   return gtk_check_button_get_active(const_cast<GtkCheckButton*>(gobj()));
 }
@@ -239,7 +239,7 @@ void CheckButton::set_label(const Glib::ustring& label)
   gtk_check_button_set_label(gobj(), label.c_str());
 }
 
-Glib::ustring CheckButton::get_label() const
+auto CheckButton::get_label() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_check_button_get_label(const_cast<GtkCheckButton*>(gobj())));
 }
@@ -249,7 +249,7 @@ void CheckButton::set_use_underline(bool setting)
   gtk_check_button_set_use_underline(gobj(), static_cast<int>(setting));
 }
 
-bool CheckButton::get_use_underline() const
+auto CheckButton::get_use_underline() const -> bool
 {
   return gtk_check_button_get_use_underline(const_cast<GtkCheckButton*>(gobj()));
 }
@@ -259,12 +259,12 @@ void CheckButton::set_child(Widget& child)
   gtk_check_button_set_child(gobj(), (child).gobj());
 }
 
-Widget* CheckButton::get_child()
+auto CheckButton::get_child() -> Widget*
 {
   return Glib::wrap(gtk_check_button_get_child(gobj()));
 }
 
-const Widget* CheckButton::get_child() const
+auto CheckButton::get_child() const -> const Widget*
 {
   return const_cast<CheckButton*>(this)->get_child();
 }
@@ -275,18 +275,18 @@ void CheckButton::set_group(CheckButton& group)
 }
 
 
-Glib::SignalProxy<void()> CheckButton::signal_toggled()
+auto CheckButton::signal_toggled() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &CheckButton_signal_toggled_info);
 }
 
 
-Glib::PropertyProxy< bool > CheckButton::property_active()
+auto CheckButton::property_active() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "active");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CheckButton::property_active() const
+auto CheckButton::property_active() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "active");
 }
@@ -295,47 +295,47 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<CheckButton*>::value
   "Type CheckButton* cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_WriteOnly< CheckButton* > CheckButton::property_group()
+auto CheckButton::property_group() -> Glib::PropertyProxy_WriteOnly< CheckButton* >
 {
   return Glib::PropertyProxy_WriteOnly< CheckButton* >(this, "group");
 }
 
-Glib::PropertyProxy< Glib::ustring > CheckButton::property_label()
+auto CheckButton::property_label() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "label");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > CheckButton::property_label() const
+auto CheckButton::property_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "label");
 }
 
-Glib::PropertyProxy< bool > CheckButton::property_inconsistent()
+auto CheckButton::property_inconsistent() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "inconsistent");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CheckButton::property_inconsistent() const
+auto CheckButton::property_inconsistent() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "inconsistent");
 }
 
-Glib::PropertyProxy< bool > CheckButton::property_use_underline()
+auto CheckButton::property_use_underline() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "use-underline");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CheckButton::property_use_underline() const
+auto CheckButton::property_use_underline() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "use-underline");
 }
 
-Glib::PropertyProxy< Widget* > CheckButton::property_child()
+auto CheckButton::property_child() -> Glib::PropertyProxy< Widget* >
 {
   return Glib::PropertyProxy< Widget* >(this, "child");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > CheckButton::property_child() const
+auto CheckButton::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
 }

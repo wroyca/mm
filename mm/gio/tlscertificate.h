@@ -75,7 +75,7 @@ public:
 
   // noncopyable
   TlsCertificate(const TlsCertificate&) = delete;
-  TlsCertificate& operator=(const TlsCertificate&) = delete;
+  auto operator=(const TlsCertificate&) -> TlsCertificate& = delete;
 
 private:  friend class TlsCertificate_Class;
   static CppClassType tlscertificate_class_;
@@ -89,28 +89,28 @@ protected:
 public:
 
   TlsCertificate(TlsCertificate&& src) noexcept;
-  TlsCertificate& operator=(TlsCertificate&& src) noexcept;
+  auto operator=(TlsCertificate&& src) noexcept -> TlsCertificate&;
 
   ~TlsCertificate() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GTlsCertificate*       gobj()       { return reinterpret_cast<GTlsCertificate*>(gobject_); }
+  auto       gobj() -> GTlsCertificate*       { return reinterpret_cast<GTlsCertificate*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GTlsCertificate* gobj() const { return reinterpret_cast<GTlsCertificate*>(gobject_); }
+  auto gobj() const -> const GTlsCertificate* { return reinterpret_cast<GTlsCertificate*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GTlsCertificate* gobj_copy();
+  auto gobj_copy() -> GTlsCertificate*;
 
 private:
 
@@ -153,7 +153,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<TlsCertificate> create_from_pem(const std::string& data, gssize length =  -1);
+  static auto create_from_pem(const std::string& data, gssize length =  -1) -> Glib::RefPtr<TlsCertificate>;
 
   /** Creates a TlsCertificate from the data in @a file.
    *
@@ -172,7 +172,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<TlsCertificate> create(const std::string& file);
+  static auto create(const std::string& file) -> Glib::RefPtr<TlsCertificate>;
 
   /** Creates a TlsCertificate from the PEM-encoded data in @a cert_file
    * and @a key_file. The returned certificate will be the first certificate
@@ -199,7 +199,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<TlsCertificate> create(const std::string& cert_file, const std::string& key_file);
+  static auto create(const std::string& cert_file, const std::string& key_file) -> Glib::RefPtr<TlsCertificate>;
 
 
   /** Creates one or more TlsCertificates from the PEM-encoded
@@ -217,7 +217,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static std::vector< Glib::RefPtr<TlsCertificate> > create_list_from_file(const std::string& file);
+  static auto create_list_from_file(const std::string& file) -> std::vector< Glib::RefPtr<TlsCertificate> >;
 
 
   /** Gets the TlsCertificate representing @a cert's issuer, if known
@@ -228,7 +228,7 @@ public:
    * or <tt>nullptr</tt> if @a cert is self-signed or signed with an unknown
    * certificate.
    */
-  Glib::RefPtr<TlsCertificate> get_issuer();
+  auto get_issuer() -> Glib::RefPtr<TlsCertificate>;
 
   /** Gets the TlsCertificate representing @a cert's issuer, if known
    *
@@ -238,7 +238,7 @@ public:
    * or <tt>nullptr</tt> if @a cert is self-signed or signed with an unknown
    * certificate.
    */
-  Glib::RefPtr<const TlsCertificate> get_issuer() const;
+  auto get_issuer() const -> Glib::RefPtr<const TlsCertificate>;
 
 
   /** This verifies @a cert and returns a set of TlsCertificateFlags
@@ -281,16 +281,16 @@ public:
    * @param trusted_ca The certificate of a trusted authority.
    * @return The appropriate TlsCertificateFlags.
    */
-  TlsCertificateFlags verify(const Glib::RefPtr<const SocketConnectable>& identity, const Glib::RefPtr<const TlsCertificate>& trusted_ca) const;
+  auto verify(const Glib::RefPtr<const SocketConnectable>& identity, const Glib::RefPtr<const TlsCertificate>& trusted_ca) const -> TlsCertificateFlags;
 
   /// A verify() convenience overload.
-  TlsCertificateFlags verify(const Glib::RefPtr<const SocketConnectable>& identity) const;
+  auto verify(const Glib::RefPtr<const SocketConnectable>& identity) const -> TlsCertificateFlags;
 
   /// A verify() convenience overload.
-  TlsCertificateFlags verify(const Glib::RefPtr<const TlsCertificate>& trusted_ca) const;
+  auto verify(const Glib::RefPtr<const TlsCertificate>& trusted_ca) const -> TlsCertificateFlags;
 
   /// A verify() convenience overload.
-  TlsCertificateFlags verify() const;
+  auto verify() const -> TlsCertificateFlags;
 
   /** Check if two TlsCertificate objects represent the same certificate.
    * The raw DER byte data of the two certificates are checked for equality.
@@ -303,7 +303,7 @@ public:
    * @param cert_two Second certificate to compare.
    * @return Whether the same or not.
    */
-  bool is_same(const Glib::RefPtr<const TlsCertificate>& cert_two) const;
+  auto is_same(const Glib::RefPtr<const TlsCertificate>& cert_two) const -> bool;
 
 
   /** Returns the time at which the certificate became or will become valid.
@@ -312,7 +312,7 @@ public:
    *
    * @return The not-valid-before date, or <tt>nullptr</tt> if it's not available.
    */
-  Glib::DateTime get_not_valid_before() const;
+  auto get_not_valid_before() const -> Glib::DateTime;
 
   /** Returns the time at which the certificate became or will become invalid.
    *
@@ -320,7 +320,7 @@ public:
    *
    * @return The not-valid-after date, or <tt>nullptr</tt> if it's not available.
    */
-  Glib::DateTime get_not_valid_after() const;
+  auto get_not_valid_after() const -> Glib::DateTime;
 
   /** Returns the subject name from the certificate.
    *
@@ -328,7 +328,7 @@ public:
    *
    * @return The subject name, or <tt>nullptr</tt> if it's not available.
    */
-  Glib::ustring get_subject_name() const;
+  auto get_subject_name() const -> Glib::ustring;
 
   /** Returns the issuer name from the certificate.
    *
@@ -336,7 +336,7 @@ public:
    *
    * @return The issuer name, or <tt>nullptr</tt> if it's not available.
    */
-  Glib::ustring get_issuer_name() const;
+  auto get_issuer_name() const -> Glib::ustring;
 
   /** The DER (binary) encoded representation of the certificate.
    * This property and the TlsCertificate::property_certificate_pem() property
@@ -347,7 +347,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ByteArray> > property_certificate() const;
+  auto property_certificate() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ByteArray> >;
 
 
   /** The PEM (ASCII) encoded representation of the certificate.
@@ -361,7 +361,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::string > property_certificate_pem() const;
+  auto property_certificate_pem() const -> Glib::PropertyProxy_ReadOnly< std::string >;
 
 
   /** The DER (binary) encoded representation of the certificate's
@@ -387,7 +387,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ByteArray> > property_private_key() const;
+  auto property_private_key() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ByteArray> >;
 
 
   /** The PEM (ASCII) encoded representation of the certificate's
@@ -416,7 +416,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::string > property_private_key_pem() const;
+  auto property_private_key_pem() const -> Glib::PropertyProxy_ReadOnly< std::string >;
 
 
   /** A TlsCertificate representing the entity that issued this
@@ -441,7 +441,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsCertificate> > property_issuer() const;
+  auto property_issuer() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsCertificate> >;
 
 
   /** A URI referencing the [PKCS \\#11](https://docs.oasis-open.org/pkcs11/pkcs11-base/v3.0/os/pkcs11-base-v3.0-os.html)
@@ -457,7 +457,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::string > property_pkcs11_uri() const;
+  auto property_pkcs11_uri() const -> Glib::PropertyProxy_ReadOnly< std::string >;
 
 
   /** A URI referencing a [PKCS \\#11](https://docs.oasis-open.org/pkcs11/pkcs11-base/v3.0/os/pkcs11-base-v3.0-os.html)
@@ -470,7 +470,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::string > property_private_key_pkcs11_uri() const;
+  auto property_private_key_pkcs11_uri() const -> Glib::PropertyProxy_ReadOnly< std::string >;
 
 
   /** The time at which this cert is considered to be valid,
@@ -481,7 +481,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::DateTime > property_not_valid_before() const;
+  auto property_not_valid_before() const -> Glib::PropertyProxy_ReadOnly< Glib::DateTime >;
 
 
   /** The time at which this cert is no longer valid,
@@ -492,7 +492,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::DateTime > property_not_valid_after() const;
+  auto property_not_valid_after() const -> Glib::PropertyProxy_ReadOnly< Glib::DateTime >;
 
 
   /** The subject from the cert,
@@ -505,7 +505,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_subject_name() const;
+  auto property_subject_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The issuer from the certificate,
@@ -518,13 +518,13 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_issuer_name() const;
+  auto property_issuer_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 protected:
 
 
-    virtual TlsCertificateFlags verify_vfunc(const Glib::RefPtr<const SocketConnectable>& identity, const Glib::RefPtr<const TlsCertificate>& trusted_ca) const;
+    virtual auto verify_vfunc(const Glib::RefPtr<const SocketConnectable>& identity, const Glib::RefPtr<const TlsCertificate>& trusted_ca) const -> TlsCertificateFlags;
 
 
 public:
@@ -554,7 +554,7 @@ namespace Glib
    * @relates Gio::TlsCertificate
    */
   GIOMM_API
-  Glib::RefPtr<Gio::TlsCertificate> wrap(GTlsCertificate* object, bool take_copy = false);
+  auto wrap(GTlsCertificate* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsCertificate>;
 }
 
 

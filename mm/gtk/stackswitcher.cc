@@ -45,7 +45,7 @@ namespace
 namespace Glib
 {
 
-Gtk::StackSwitcher* wrap(GtkStackSwitcher* object, bool take_copy)
+auto wrap(GtkStackSwitcher* object, bool take_copy) -> Gtk::StackSwitcher*
 {
   return dynamic_cast<Gtk::StackSwitcher *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -58,7 +58,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& StackSwitcher_Class::init()
+auto StackSwitcher_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -89,7 +89,7 @@ void StackSwitcher_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* StackSwitcher_Class::wrap_new(GObject* o)
+auto StackSwitcher_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new StackSwitcher((GtkStackSwitcher*)(o)));
 
@@ -115,7 +115,7 @@ StackSwitcher::StackSwitcher(StackSwitcher&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-StackSwitcher& StackSwitcher::operator=(StackSwitcher&& src) noexcept
+auto StackSwitcher::operator=(StackSwitcher&& src) noexcept -> StackSwitcher&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -128,13 +128,13 @@ StackSwitcher::~StackSwitcher() noexcept
 
 StackSwitcher::CppClassType StackSwitcher::stackswitcher_class_; // initialize static member
 
-GType StackSwitcher::get_type()
+auto StackSwitcher::get_type() -> GType
 {
   return stackswitcher_class_.init().get_type();
 }
 
 
-GType StackSwitcher::get_base_type()
+auto StackSwitcher::get_base_type() -> GType
 {
   return gtk_stack_switcher_get_type();
 }
@@ -155,12 +155,12 @@ void StackSwitcher::set_stack(Stack& stack)
   gtk_stack_switcher_set_stack(gobj(), (stack).gobj());
 }
 
-Stack* StackSwitcher::get_stack()
+auto StackSwitcher::get_stack() -> Stack*
 {
   return Glib::wrap(gtk_stack_switcher_get_stack(gobj()));
 }
 
-const Stack* StackSwitcher::get_stack() const
+auto StackSwitcher::get_stack() const -> const Stack*
 {
   return const_cast<StackSwitcher*>(this)->get_stack();
 }
@@ -170,12 +170,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Stack*>::value,
   "Type Stack* cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Stack* > StackSwitcher::property_stack()
+auto StackSwitcher::property_stack() -> Glib::PropertyProxy< Stack* >
 {
   return Glib::PropertyProxy< Stack* >(this, "stack");
 }
 
-Glib::PropertyProxy_ReadOnly< Stack* > StackSwitcher::property_stack() const
+auto StackSwitcher::property_stack() const -> Glib::PropertyProxy_ReadOnly< Stack* >
 {
   return Glib::PropertyProxy_ReadOnly< Stack* >(this, "stack");
 }

@@ -127,7 +127,7 @@ public:
 
   // noncopyable
   Binding(const Binding&) = delete;
-  Binding& operator=(const Binding&) = delete;
+  auto operator=(const Binding&) -> Binding& = delete;
 
 private:  friend class Binding_Class;
   static CppClassType binding_class_;
@@ -141,28 +141,28 @@ protected:
 public:
 
   Binding(Binding&& src) noexcept;
-  Binding& operator=(Binding&& src) noexcept;
+  auto operator=(Binding&& src) noexcept -> Binding&;
 
   ~Binding() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GBinding*       gobj()       { return reinterpret_cast<GBinding*>(gobject_); }
+  auto       gobj() -> GBinding*       { return reinterpret_cast<GBinding*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GBinding* gobj() const { return reinterpret_cast<GBinding*>(gobject_); }
+  auto gobj() const -> const GBinding* { return reinterpret_cast<GBinding*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GBinding* gobj_copy();
+  auto gobj_copy() -> GBinding*;
 
 private:
 
@@ -285,12 +285,12 @@ public:
    *
    * @newin{2,44}
    */
-  static Glib::RefPtr<Binding> bind_property_value(
+  static auto bind_property_value(
     const PropertyProxy_Base& source_property,
     const PropertyProxy_Base& target_property,
     Flags flags = Flags::DEFAULT,
     const SlotTransform& transform_to = {},
-    const SlotTransform& transform_from = {});
+    const SlotTransform& transform_from = {}) -> Glib::RefPtr<Binding>;
 
 
   /** Creates a binding between @a source_property and @a target_property.
@@ -305,10 +305,10 @@ public:
    *
    * @newin{2,44}
    */
-  static Glib::RefPtr<Binding> bind_property(
+  static auto bind_property(
     const PropertyProxy_Base& source_property,
     const PropertyProxy_Base& target_property,
-    Flags flags = Flags::DEFAULT)
+    Flags flags = Flags::DEFAULT) -> Glib::RefPtr<Binding>
   {
     return bind_property_value(source_property, target_property, flags);
   }
@@ -336,11 +336,11 @@ public:
    * @newin{2,44}
    */
   template <typename T_source, typename T_target, typename T_functor_to>
-  static Glib::RefPtr<Binding> bind_property(
+  static auto bind_property(
     const PropertyProxy<T_source>& source_property,
     const PropertyProxy<T_target>& target_property,
     Flags flags,
-    const T_functor_to& transform_to)
+    const T_functor_to& transform_to) -> Glib::RefPtr<Binding>
   {
     SlotTypedTransform<T_source, T_target> slot_transform_to = transform_to;
 
@@ -371,11 +371,11 @@ public:
    * @newin{2,44}
    */
   template <typename T_source, typename T_target, typename T_functor_to>
-  static Glib::RefPtr<Binding> bind_property(
+  static auto bind_property(
     const PropertyProxy<T_source>& source_property,
     const PropertyProxy_WriteOnly<T_target>& target_property,
     Flags flags,
-    const T_functor_to& transform_to)
+    const T_functor_to& transform_to) -> Glib::RefPtr<Binding>
   {
     SlotTypedTransform<T_source, T_target> slot_transform_to = transform_to;
 
@@ -406,11 +406,11 @@ public:
    * @newin{2,44}
    */
   template <typename T_source, typename T_target, typename T_functor_to>
-  static Glib::RefPtr<Binding> bind_property(
+  static auto bind_property(
     const PropertyProxy_ReadOnly<T_source>& source_property,
     const PropertyProxy<T_target>& target_property,
     Flags flags,
-    const T_functor_to& transform_to)
+    const T_functor_to& transform_to) -> Glib::RefPtr<Binding>
   {
     SlotTypedTransform<T_source, T_target> slot_transform_to = transform_to;
 
@@ -441,11 +441,11 @@ public:
    * @newin{2,44}
    */
   template <typename T_source, typename T_target, typename T_functor_to>
-  static Glib::RefPtr<Binding> bind_property(
+  static auto bind_property(
     const PropertyProxy_ReadOnly<T_source>& source_property,
     const PropertyProxy_WriteOnly<T_target>& target_property,
     Flags flags,
-    const T_functor_to& transform_to)
+    const T_functor_to& transform_to) -> Glib::RefPtr<Binding>
   {
     SlotTypedTransform<T_source, T_target> slot_transform_to = transform_to;
 
@@ -480,12 +480,12 @@ public:
    * @newin{2,44}
    */
   template <typename T_source, typename T_target, typename T_functor_to, typename T_functor_from>
-  static Glib::RefPtr<Binding> bind_property(
+  static auto bind_property(
     const PropertyProxy<T_source>& source_property,
     const PropertyProxy<T_target>& target_property,
     Flags flags,
     const T_functor_to& transform_to,
-    const T_functor_from& transform_from)
+    const T_functor_from& transform_from) -> Glib::RefPtr<Binding>
   {
     SlotTypedTransform<T_source, T_target> slot_transform_from = transform_from;
     SlotTypedTransform<T_target, T_source> slot_transform_to = transform_to;
@@ -518,7 +518,7 @@ public:
    * @return The source Object, or <tt>nullptr</tt> if the
    * source does not exist any more.
    */
-  Glib::ObjectBase* get_source();
+  auto get_source() -> Glib::ObjectBase*;
 #endif // GLIBMM_DISABLE_DEPRECATED
 
 
@@ -544,7 +544,7 @@ public:
    * @return The source Object, or <tt>nullptr</tt> if the
    * source does not exist any more.
    */
-  const Glib::ObjectBase* get_source() const;
+  auto get_source() const -> const Glib::ObjectBase*;
 #endif // GLIBMM_DISABLE_DEPRECATED
 
 
@@ -564,7 +564,7 @@ public:
    * @return The source Object, or <tt>nullptr</tt> if the
    * source does not exist any more.
    */
-  Glib::RefPtr<Glib::ObjectBase> dup_source();
+  auto dup_source() -> Glib::RefPtr<Glib::ObjectBase>;
 
   /** Retrieves the Object instance used as the source of the binding.
    *
@@ -577,7 +577,7 @@ public:
    * @return The source Object, or <tt>nullptr</tt> if the
    * source does not exist any more.
    */
-  Glib::RefPtr<const Glib::ObjectBase> dup_source() const;
+  auto dup_source() const -> Glib::RefPtr<const Glib::ObjectBase>;
 
 
   /** Retrieves the name of the property of Binding::property_source() used as the source
@@ -587,7 +587,7 @@ public:
    *
    * @return The name of the source property.
    */
-  Glib::ustring get_source_property() const;
+  auto get_source_property() const -> Glib::ustring;
 
 
 #ifndef GLIBMM_DISABLE_DEPRECATED
@@ -612,7 +612,7 @@ public:
    * @return The target Object, or <tt>nullptr</tt> if the
    * target does not exist any more.
    */
-  Glib::ObjectBase* get_target();
+  auto get_target() -> Glib::ObjectBase*;
 #endif // GLIBMM_DISABLE_DEPRECATED
 
 
@@ -638,7 +638,7 @@ public:
    * @return The target Object, or <tt>nullptr</tt> if the
    * target does not exist any more.
    */
-  const Glib::ObjectBase* get_target() const;
+  auto get_target() const -> const Glib::ObjectBase*;
 #endif // GLIBMM_DISABLE_DEPRECATED
 
 
@@ -653,7 +653,7 @@ public:
    * @return The target Object, or <tt>nullptr</tt> if the
    * target does not exist any more.
    */
-  Glib::RefPtr<Glib::ObjectBase> dup_target();
+  auto dup_target() -> Glib::RefPtr<Glib::ObjectBase>;
 
   /** Retrieves the Object instance used as the target of the binding.
    *
@@ -666,7 +666,7 @@ public:
    * @return The target Object, or <tt>nullptr</tt> if the
    * target does not exist any more.
    */
-  Glib::RefPtr<const Glib::ObjectBase> dup_target() const;
+  auto dup_target() const -> Glib::RefPtr<const Glib::ObjectBase>;
 
 
   /** Retrieves the name of the property of Binding::property_target() used as the target
@@ -676,7 +676,7 @@ public:
    *
    * @return The name of the target property.
    */
-  Glib::ustring get_target_property() const;
+  auto get_target_property() const -> Glib::ustring;
 
   /** Retrieves the flags passed when constructing the Binding.
    *
@@ -684,7 +684,7 @@ public:
    *
    * @return The Glib::Binding::Flags used by the Binding.
    */
-  Flags get_flags() const;
+  auto get_flags() const -> Flags;
 
   /** Explicitly releases the binding between the source and the target
    * property expressed by this Binding instance.
@@ -707,7 +707,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Flags > property_flags() const;
+  auto property_flags() const -> Glib::PropertyProxy_ReadOnly< Flags >;
 
 
   /** The Object that should be used as the source of the binding
@@ -717,7 +717,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> > property_source() const;
+  auto property_source() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> >;
 
 
   /** The name of the property of Binding::property_source() that should be used
@@ -733,7 +733,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_source_property() const;
+  auto property_source_property() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The Object that should be used as the target of the binding
@@ -743,7 +743,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> > property_target() const;
+  auto property_target() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> >;
 
 
   /** The name of the property of Binding::property_target() that should be used
@@ -759,7 +759,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_target_property() const;
+  auto property_target_property() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 private:
@@ -780,7 +780,7 @@ private:
 #if __GNUC__ >= 10
   __attribute__ ((optimize(0)))
 #endif
-    bool operator()(const GValue* from_value, GValue* to_value)
+    auto operator()(const GValue* from_value, GValue* to_value) -> bool
     {
       Glib::Value<T_from> from_glib_value;
       from_glib_value.init(from_value);
@@ -820,31 +820,31 @@ namespace Glib
 {
 
 /** @ingroup glibmmEnums */
-inline Binding::Flags operator|(Binding::Flags lhs, Binding::Flags rhs)
+inline auto operator|(Binding::Flags lhs, Binding::Flags rhs) -> Binding::Flags
   { return static_cast<Binding::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline Binding::Flags operator&(Binding::Flags lhs, Binding::Flags rhs)
+inline auto operator&(Binding::Flags lhs, Binding::Flags rhs) -> Binding::Flags
   { return static_cast<Binding::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline Binding::Flags operator^(Binding::Flags lhs, Binding::Flags rhs)
+inline auto operator^(Binding::Flags lhs, Binding::Flags rhs) -> Binding::Flags
   { return static_cast<Binding::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline Binding::Flags operator~(Binding::Flags flags)
+inline auto operator~(Binding::Flags flags) -> Binding::Flags
   { return static_cast<Binding::Flags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup glibmmEnums */
-inline Binding::Flags& operator|=(Binding::Flags& lhs, Binding::Flags rhs)
+inline auto operator|=(Binding::Flags& lhs, Binding::Flags rhs) -> Binding::Flags&
   { return (lhs = static_cast<Binding::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline Binding::Flags& operator&=(Binding::Flags& lhs, Binding::Flags rhs)
+inline auto operator&=(Binding::Flags& lhs, Binding::Flags rhs) -> Binding::Flags&
   { return (lhs = static_cast<Binding::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline Binding::Flags& operator^=(Binding::Flags& lhs, Binding::Flags rhs)
+inline auto operator^=(Binding::Flags& lhs, Binding::Flags rhs) -> Binding::Flags&
   { return (lhs = static_cast<Binding::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Glib
 
@@ -856,7 +856,7 @@ template <>
 class GLIBMM_API Value<Glib::Binding::Flags> : public Glib::Value_Flags<Glib::Binding::Flags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -874,7 +874,7 @@ namespace Glib
    * @relates Glib::Binding
    */
   GLIBMM_API
-  Glib::RefPtr<Glib::Binding> wrap(GBinding* object, bool take_copy = false);
+  auto wrap(GBinding* object, bool take_copy = false) -> Glib::RefPtr<Glib::Binding>;
 }
 
 

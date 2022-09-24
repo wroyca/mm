@@ -67,7 +67,7 @@ public:
 
   // noncopyable
   BufferedOutputStream(const BufferedOutputStream&) = delete;
-  BufferedOutputStream& operator=(const BufferedOutputStream&) = delete;
+  auto operator=(const BufferedOutputStream&) -> BufferedOutputStream& = delete;
 
 private:  friend class BufferedOutputStream_Class;
   static CppClassType bufferedoutputstream_class_;
@@ -81,28 +81,28 @@ protected:
 public:
 
   BufferedOutputStream(BufferedOutputStream&& src) noexcept;
-  BufferedOutputStream& operator=(BufferedOutputStream&& src) noexcept;
+  auto operator=(BufferedOutputStream&& src) noexcept -> BufferedOutputStream&;
 
   ~BufferedOutputStream() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GBufferedOutputStream*       gobj()       { return reinterpret_cast<GBufferedOutputStream*>(gobject_); }
+  auto       gobj() -> GBufferedOutputStream*       { return reinterpret_cast<GBufferedOutputStream*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GBufferedOutputStream* gobj() const { return reinterpret_cast<GBufferedOutputStream*>(gobject_); }
+  auto gobj() const -> const GBufferedOutputStream* { return reinterpret_cast<GBufferedOutputStream*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GBufferedOutputStream* gobj_copy();
+  auto gobj_copy() -> GBufferedOutputStream*;
 
 private:
 
@@ -122,7 +122,7 @@ public:
    * @result an OutputStream for the given base stream.
 	 */
 
-  static Glib::RefPtr<BufferedOutputStream> create(const Glib::RefPtr<OutputStream>& base_stream);
+  static auto create(const Glib::RefPtr<OutputStream>& base_stream) -> Glib::RefPtr<BufferedOutputStream>;
 
 
   /** Creates a new buffered output stream with a given buffer size.
@@ -131,14 +131,14 @@ public:
    * @param buffer_size A size.
    * @result an OutputStream with an internal buffer set to size.
 	 */
-  static Glib::RefPtr<BufferedOutputStream> create_sized(const Glib::RefPtr<OutputStream>& base_stream, gsize buffer_size);
+  static auto create_sized(const Glib::RefPtr<OutputStream>& base_stream, gsize buffer_size) -> Glib::RefPtr<BufferedOutputStream>;
 
 
   /** Gets the size of the buffer in the @a stream.
    *
    * @return The current size of the buffer.
    */
-  gsize get_buffer_size() const;
+  auto get_buffer_size() const -> gsize;
 
   /** Sets the size of the internal buffer to @a size.
    *
@@ -161,7 +161,7 @@ public:
    * @return <tt>true</tt> if the @a stream's buffer automatically grows,
    * <tt>false</tt> otherwise.
    */
-  bool get_auto_grow() const;
+  auto get_auto_grow() const -> bool;
 
   /** The size of the backend buffer.
    *
@@ -170,7 +170,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_buffer_size() ;
+  auto property_buffer_size() -> Glib::PropertyProxy< guint > ;
 
 /** The size of the backend buffer.
    *
@@ -179,7 +179,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_buffer_size() const;
+  auto property_buffer_size() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** Whether the buffer should automatically grow.
    *
@@ -188,7 +188,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_auto_grow() ;
+  auto property_auto_grow() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the buffer should automatically grow.
    *
@@ -197,7 +197,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_auto_grow() const;
+  auto property_auto_grow() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -227,7 +227,7 @@ namespace Glib
    * @relates Gio::BufferedOutputStream
    */
   GIOMM_API
-  Glib::RefPtr<Gio::BufferedOutputStream> wrap(GBufferedOutputStream* object, bool take_copy = false);
+  auto wrap(GBufferedOutputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::BufferedOutputStream>;
 }
 
 

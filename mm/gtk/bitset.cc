@@ -28,12 +28,12 @@
 namespace Gtk
 {
 
-Bitset::const_iterator Bitset::begin() const
+auto Bitset::begin() const -> Bitset::const_iterator
 {
   return BitsetConstIter(gobj(), false);
 }
 
-Bitset::const_iterator Bitset::end() const
+auto Bitset::end() const -> Bitset::const_iterator
 {
   return BitsetConstIter(gobj(), true);
 }
@@ -61,7 +61,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::Bitset> wrap(GtkBitset* object, bool take_copy)
+auto wrap(GtkBitset* object, bool take_copy) -> Glib::RefPtr<Gtk::Bitset>
 {
   if(take_copy && object)
     gtk_bitset_ref(object);
@@ -88,19 +88,19 @@ void Bitset::unreference() const
   gtk_bitset_unref(reinterpret_cast<GtkBitset*>(const_cast<Bitset*>(this)));
 }
 
-GtkBitset* Bitset::gobj()
+auto Bitset::gobj() -> GtkBitset*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<GtkBitset*>(this);
 }
 
-const GtkBitset* Bitset::gobj() const
+auto Bitset::gobj() const -> const GtkBitset*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<const GtkBitset*>(this);
 }
 
-GtkBitset* Bitset::gobj_copy() const
+auto Bitset::gobj_copy() const -> GtkBitset*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   const auto gobject = reinterpret_cast<GtkBitset*>(const_cast<Bitset*>(this));
@@ -109,52 +109,52 @@ GtkBitset* Bitset::gobj_copy() const
 }
 
 
-Glib::RefPtr<Bitset> Bitset::create()
+auto Bitset::create() -> Glib::RefPtr<Bitset>
 {
   return Glib::wrap(gtk_bitset_new_empty());
 }
 
-bool Bitset::contains(guint value) const
+auto Bitset::contains(guint value) const -> bool
 {
   return gtk_bitset_contains(const_cast<GtkBitset*>(gobj()), value);
 }
 
-bool Bitset::is_empty() const
+auto Bitset::is_empty() const -> bool
 {
   return gtk_bitset_is_empty(const_cast<GtkBitset*>(gobj()));
 }
 
-guint64 Bitset::get_size() const
+auto Bitset::get_size() const -> guint64
 {
   return gtk_bitset_get_size(const_cast<GtkBitset*>(gobj()));
 }
 
-guint64 Bitset::get_size(guint first, guint last) const
+auto Bitset::get_size(guint first, guint last) const -> guint64
 {
   return gtk_bitset_get_size_in_range(const_cast<GtkBitset*>(gobj()), first, last);
 }
 
-guint Bitset::get_nth(guint nth) const
+auto Bitset::get_nth(guint nth) const -> guint
 {
   return gtk_bitset_get_nth(const_cast<GtkBitset*>(gobj()), nth);
 }
 
-bool Bitset::equals(const Glib::RefPtr<const Bitset>& other) const
+auto Bitset::equals(const Glib::RefPtr<const Bitset>& other) const -> bool
 {
   return gtk_bitset_equals(const_cast<GtkBitset*>(gobj()), Glib::unwrap(other));
 }
 
-guint Bitset::get_minimum() const
+auto Bitset::get_minimum() const -> guint
 {
   return gtk_bitset_get_minimum(const_cast<GtkBitset*>(gobj()));
 }
 
-guint Bitset::get_maximum() const
+auto Bitset::get_maximum() const -> guint
 {
   return gtk_bitset_get_maximum(const_cast<GtkBitset*>(gobj()));
 }
 
-Glib::RefPtr<Bitset> Bitset::copy() const
+auto Bitset::copy() const -> Glib::RefPtr<Bitset>
 {
   return Glib::wrap(gtk_bitset_copy(const_cast<GtkBitset*>(gobj())));
 }
@@ -164,12 +164,12 @@ void Bitset::remove_all()
   gtk_bitset_remove_all(gobj());
 }
 
-bool Bitset::add(guint value)
+auto Bitset::add(guint value) -> bool
 {
   return gtk_bitset_add(gobj(), value);
 }
 
-bool Bitset::remove(guint value)
+auto Bitset::remove(guint value) -> bool
 {
   return gtk_bitset_remove(gobj(), value);
 }

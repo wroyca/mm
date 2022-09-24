@@ -72,7 +72,7 @@ public:
 
   // noncopyable
   Drive(const Drive&) = delete;
-  Drive& operator=(const Drive&) = delete;
+  auto operator=(const Drive&) -> Drive& = delete;
 
 private:
   friend class Drive_Class;
@@ -106,7 +106,7 @@ protected:
 public:
 
   Drive(Drive&& src) noexcept;
-  Drive& operator=(Drive&& src) noexcept;
+  auto operator=(Drive&& src) noexcept -> Drive&;
 
   ~Drive() noexcept override;
 
@@ -114,17 +114,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDrive*       gobj()       { return reinterpret_cast<GDrive*>(gobject_); }
+  auto       gobj() -> GDrive*       { return reinterpret_cast<GDrive*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDrive* gobj() const { return reinterpret_cast<GDrive*>(gobject_); }
+  auto gobj() const -> const GDrive* { return reinterpret_cast<GDrive*>(gobject_); }
 
 private:
 
@@ -205,7 +205,7 @@ public:
    * @return A string containing @a drive's name. The returned
    * string should be freed when no longer needed.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
 
   /** Gets the icon for @a drive.
@@ -213,14 +213,14 @@ public:
    * @return Icon for the @a drive.
    * Free the returned object with Glib::object_unref().
    */
-  Glib::RefPtr<Icon> get_icon();
+  auto get_icon() -> Glib::RefPtr<Icon>;
 
   /** Gets the icon for @a drive.
    *
    * @return Icon for the @a drive.
    * Free the returned object with Glib::object_unref().
    */
-  Glib::RefPtr<const Icon> get_icon() const;
+  auto get_icon() const -> Glib::RefPtr<const Icon>;
 
 
   /** Gets the icon for @a drive.
@@ -230,7 +230,7 @@ public:
    * @return Symbolic Icon for the @a drive.
    * Free the returned object with Glib::object_unref().
    */
-  Glib::RefPtr<Icon> get_symbolic_icon();
+  auto get_symbolic_icon() -> Glib::RefPtr<Icon>;
 
   /** Gets the icon for @a drive.
    *
@@ -239,28 +239,28 @@ public:
    * @return Symbolic Icon for the @a drive.
    * Free the returned object with Glib::object_unref().
    */
-  Glib::RefPtr<const Icon> get_symbolic_icon() const;
+  auto get_symbolic_icon() const -> Glib::RefPtr<const Icon>;
 
 
   /** Check if @a drive has any mountable volumes.
    *
    * @return <tt>true</tt> if the @a drive contains volumes, <tt>false</tt> otherwise.
    */
-  bool has_volumes() const;
+  auto has_volumes() const -> bool;
 
 
   /** Get a list of mountable volumes for @a drive.
    *
    * @return List containing any Volume objects on the given @a drive.
    */
-  std::vector<Glib::RefPtr<Volume>> get_volumes();
+  auto get_volumes() -> std::vector<Glib::RefPtr<Volume>>;
 
 
   /** Checks if the @a drive supports removable media.
    *
    * @return <tt>true</tt> if @a drive supports removable media, <tt>false</tt> otherwise.
    */
-  bool is_media_removable() const;
+  auto is_media_removable() const -> bool;
 
   /** Checks if the Drive and/or its media is considered removable by the user.
    * See g_drive_is_media_removable().
@@ -269,7 +269,7 @@ public:
    *
    * @return <tt>true</tt> if @a drive and/or its media is considered removable, <tt>false</tt> otherwise.
    */
-  bool is_removable() const;
+  auto is_removable() const -> bool;
 
   /** Checks if the @a drive has media. Note that the OS may not be polling
    * the drive for media changes; see g_drive_is_media_check_automatic()
@@ -277,27 +277,27 @@ public:
    *
    * @return <tt>true</tt> if @a drive has media, <tt>false</tt> otherwise.
    */
-  bool has_media() const;
+  auto has_media() const -> bool;
 
   /** Checks if @a drive is capable of automatically detecting media changes.
    *
    * @return <tt>true</tt> if the @a drive is capable of automatically detecting
    * media changes, <tt>false</tt> otherwise.
    */
-  bool is_media_check_automatic() const;
+  auto is_media_check_automatic() const -> bool;
 
   /** Checks if a drive can be polled for media changes.
    *
    * @return <tt>true</tt> if the @a drive can be polled for media changes,
    * <tt>false</tt> otherwise.
    */
-  bool can_poll_for_media() const;
+  auto can_poll_for_media() const -> bool;
 
   /** Checks if a drive can be ejected.
    *
    * @return <tt>true</tt> if the @a drive can be ejected, <tt>false</tt> otherwise.
    */
-  bool can_eject() const;
+  auto can_eject() const -> bool;
 
   /** Ejects the drive.
    * @param slot A callback which will be called when the eject is completed or canceled.
@@ -336,7 +336,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool eject_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto eject_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Polls drive to see if media has been inserted or removed.
@@ -363,7 +363,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool poll_for_media_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto poll_for_media_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Gets the identifier of the given kind for @a drive. The only
@@ -375,7 +375,7 @@ public:
    * requested identifier, or <tt>nullptr</tt> if the Drive
    * doesn't have this kind of identifier.
    */
-  std::string get_identifier(const std::string& kind) const;
+  auto get_identifier(const std::string& kind) const -> std::string;
 
 
   /** Gets the kinds of identifiers that @a drive has.
@@ -385,7 +385,7 @@ public:
    * @return A <tt>nullptr</tt>-terminated
    * array of strings containing kinds of identifiers.
    */
-  std::vector<Glib::ustring> enumerate_identifiers() const;
+  auto enumerate_identifiers() const -> std::vector<Glib::ustring>;
 
   /** @newin{2,22} */
   void start(const Glib::RefPtr<MountOperation>& mount_operation, const Glib::RefPtr<Cancellable>& cancellable, const SlotAsyncReady& slot, StartFlags flags = StartFlags::NONE);
@@ -403,15 +403,15 @@ public:
    *
    * @throws Glib::Error
    */
-  bool start_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto start_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
   /** @newin{2,22}
    */
-  bool can_start() const;
+  auto can_start() const -> bool;
 
   /** @newin{2,22}
    */
-  bool can_start_degraded() const;
+  auto can_start_degraded() const -> bool;
 
   /** @newin{2,22} */
   void stop(const Glib::RefPtr<MountOperation>& mount_operation, const Glib::RefPtr<Cancellable>& cancellable, const SlotAsyncReady& slot, Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
@@ -429,11 +429,11 @@ public:
    *
    * @throws Glib::Error
    */
-  bool stop_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto stop_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
   /** @newin{2,22}
    */
-  bool can_stop() const;
+  auto can_stop() const -> bool;
 
 
   /** Gets a hint about how a drive can be started/stopped.
@@ -442,7 +442,7 @@ public:
    *
    * @return A value from the Gio::Drive::StartStopType enumeration.
    */
-  StartStopType get_start_stop_type() const;
+  auto get_start_stop_type() const -> StartStopType;
 
 
   /** Gets the sort key for @a drive, if any.
@@ -451,7 +451,7 @@ public:
    *
    * @return Sorting key for @a drive or <tt>nullptr</tt> if no such key is available.
    */
-  Glib::ustring get_sort_key() const;
+  auto get_sort_key() const -> Glib::ustring;
 
 
   /**
@@ -465,7 +465,7 @@ public:
    * @newin{2,20}
    */
 
-  Glib::SignalProxy<void()> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -482,7 +482,7 @@ public:
    * @newin{2,20}
    */
 
-  Glib::SignalProxy<void()> signal_disconnected();
+  auto signal_disconnected() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -497,7 +497,7 @@ public:
    * @newin{2,20}
    */
 
-  Glib::SignalProxy<void()> signal_eject_button();
+  auto signal_eject_button() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -512,7 +512,7 @@ public:
    * @newin{2,22}
    */
 
-  Glib::SignalProxy<void()> signal_stop_button();
+  auto signal_stop_button() -> Glib::SignalProxy<void()>;
 
 
 protected:
@@ -549,7 +549,7 @@ namespace Glib
 
 //Pre-declare this so we can use it in TypeTrait:
 GIOMM_API
-Glib::RefPtr<Gio::Drive> wrap(GDrive* object, bool take_copy);
+auto wrap(GDrive* object, bool take_copy) -> Glib::RefPtr<Gio::Drive>;
 
 namespace Container_Helpers
 {
@@ -566,10 +566,10 @@ struct TypeTraits< Glib::RefPtr<Gio::Drive> >
   using CType = GDrive*;
   using CTypeNonConst = GDrive*;
 
-  static CType   to_c_type      (const CppType& item)
+  static auto   to_c_type      (const CppType& item) -> CType
   { return Glib::unwrap (item); }
 
-  static CppType to_cpp_type    (const CType& item)
+  static auto to_cpp_type    (const CType& item) -> CppType
   {
     //Use a specific Glib::wrap() function,
     //because CType has the specific type (not just GObject):
@@ -590,31 +590,31 @@ namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline Drive::StartFlags operator|(Drive::StartFlags lhs, Drive::StartFlags rhs)
+inline auto operator|(Drive::StartFlags lhs, Drive::StartFlags rhs) -> Drive::StartFlags
   { return static_cast<Drive::StartFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Drive::StartFlags operator&(Drive::StartFlags lhs, Drive::StartFlags rhs)
+inline auto operator&(Drive::StartFlags lhs, Drive::StartFlags rhs) -> Drive::StartFlags
   { return static_cast<Drive::StartFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Drive::StartFlags operator^(Drive::StartFlags lhs, Drive::StartFlags rhs)
+inline auto operator^(Drive::StartFlags lhs, Drive::StartFlags rhs) -> Drive::StartFlags
   { return static_cast<Drive::StartFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Drive::StartFlags operator~(Drive::StartFlags flags)
+inline auto operator~(Drive::StartFlags flags) -> Drive::StartFlags
   { return static_cast<Drive::StartFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline Drive::StartFlags& operator|=(Drive::StartFlags& lhs, Drive::StartFlags rhs)
+inline auto operator|=(Drive::StartFlags& lhs, Drive::StartFlags rhs) -> Drive::StartFlags&
   { return (lhs = static_cast<Drive::StartFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Drive::StartFlags& operator&=(Drive::StartFlags& lhs, Drive::StartFlags rhs)
+inline auto operator&=(Drive::StartFlags& lhs, Drive::StartFlags rhs) -> Drive::StartFlags&
   { return (lhs = static_cast<Drive::StartFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Drive::StartFlags& operator^=(Drive::StartFlags& lhs, Drive::StartFlags rhs)
+inline auto operator^=(Drive::StartFlags& lhs, Drive::StartFlags rhs) -> Drive::StartFlags&
   { return (lhs = static_cast<Drive::StartFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 
@@ -626,7 +626,7 @@ template <>
 class GIOMM_API Value<Gio::Drive::StartFlags> : public Glib::Value_Flags<Gio::Drive::StartFlags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -641,7 +641,7 @@ template <>
 class GIOMM_API Value<Gio::Drive::StartStopType> : public Glib::Value_Enum<Gio::Drive::StartStopType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -659,7 +659,7 @@ namespace Glib
    * @relates Gio::Drive
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Drive> wrap(GDrive* object, bool take_copy = false);
+  auto wrap(GDrive* object, bool take_copy = false) -> Glib::RefPtr<Gio::Drive>;
 
 } // namespace Glib
 

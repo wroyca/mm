@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::BuilderCScope> wrap(GtkBuilderCScope* object, bool take_copy)
+auto wrap(GtkBuilderCScope* object, bool take_copy) -> Glib::RefPtr<Gtk::BuilderCScope>
 {
   return Glib::make_refptr_for_instance<Gtk::BuilderCScope>( dynamic_cast<Gtk::BuilderCScope*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& BuilderCScope_Class::init()
+auto BuilderCScope_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -80,7 +80,7 @@ void BuilderCScope_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* BuilderCScope_Class::wrap_new(GObject* object)
+auto BuilderCScope_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new BuilderCScope((GtkBuilderCScope*)object);
 }
@@ -88,7 +88,7 @@ Glib::ObjectBase* BuilderCScope_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkBuilderCScope* BuilderCScope::gobj_copy()
+auto BuilderCScope::gobj_copy() -> GtkBuilderCScope*
 {
   reference();
   return gobj();
@@ -112,7 +112,7 @@ BuilderCScope::BuilderCScope(BuilderCScope&& src) noexcept
   , BuilderScope(std::move(src))
 {}
 
-BuilderCScope& BuilderCScope::operator=(BuilderCScope&& src) noexcept
+auto BuilderCScope::operator=(BuilderCScope&& src) noexcept -> BuilderCScope&
 {
   Glib::Object::operator=(std::move(src));
   BuilderScope::operator=(std::move(src));
@@ -126,13 +126,13 @@ BuilderCScope::~BuilderCScope() noexcept
 
 BuilderCScope::CppClassType BuilderCScope::buildercscope_class_; // initialize static member
 
-GType BuilderCScope::get_type()
+auto BuilderCScope::get_type() -> GType
 {
   return buildercscope_class_.init().get_type();
 }
 
 
-GType BuilderCScope::get_base_type()
+auto BuilderCScope::get_base_type() -> GType
 {
   return gtk_builder_cscope_get_type();
 }
@@ -148,7 +148,7 @@ BuilderCScope::BuilderCScope()
 
 }
 
-Glib::RefPtr<BuilderCScope> BuilderCScope::create()
+auto BuilderCScope::create() -> Glib::RefPtr<BuilderCScope>
 {
   return Glib::make_refptr_for_instance<BuilderCScope>( new BuilderCScope() );
 }

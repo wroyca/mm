@@ -79,11 +79,11 @@ class GTKMM_API PopoverMenu : public Popover
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   PopoverMenu(PopoverMenu&& src) noexcept;
-  PopoverMenu& operator=(PopoverMenu&& src) noexcept;
+  auto operator=(PopoverMenu&& src) noexcept -> PopoverMenu&;
 
   // noncopyable
   PopoverMenu(const PopoverMenu&) = delete;
-  PopoverMenu& operator=(const PopoverMenu&) = delete;
+  auto operator=(const PopoverMenu&) -> PopoverMenu& = delete;
 
   ~PopoverMenu() noexcept override;
 
@@ -103,19 +103,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkPopoverMenu*       gobj()       { return reinterpret_cast<GtkPopoverMenu*>(gobject_); }
+  auto       gobj() -> GtkPopoverMenu*       { return reinterpret_cast<GtkPopoverMenu*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkPopoverMenu* gobj() const { return reinterpret_cast<GtkPopoverMenu*>(gobject_); }
+  auto gobj() const -> const GtkPopoverMenu* { return reinterpret_cast<GtkPopoverMenu*>(gobject_); }
 
 private:
 
@@ -188,13 +188,13 @@ public:
    *
    * @return The menu model of @a popover.
    */
-  Glib::RefPtr<Gio::MenuModel> get_menu_model();
+  auto get_menu_model() -> Glib::RefPtr<Gio::MenuModel>;
 
   /** Returns the menu model used to populate the popover.
    *
    * @return The menu model of @a popover.
    */
-  Glib::RefPtr<const Gio::MenuModel> get_menu_model() const;
+  auto get_menu_model() const -> Glib::RefPtr<const Gio::MenuModel>;
 
 
   /** Adds a custom widget to a generated menu.
@@ -206,7 +206,7 @@ public:
    * @param id The ID to insert @a child at.
    * @return <tt>true</tt> if @a id was found and the widget added.
    */
-  bool add_child(Widget& child, const Glib::ustring& id);
+  auto add_child(Widget& child, const Glib::ustring& id) -> bool;
 
   /** Removes a widget that has previously been added with
    * add_child().
@@ -214,7 +214,7 @@ public:
    * @param child The `Gtk::Widget` to remove.
    * @return <tt>true</tt> if the widget was removed.
    */
-  bool remove_child(Widget& child);
+  auto remove_child(Widget& child) -> bool;
 
   /** The name of the visible submenu.
    *
@@ -223,7 +223,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_visible_submenu() ;
+  auto property_visible_submenu() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The name of the visible submenu.
    *
@@ -232,21 +232,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_visible_submenu() const;
+  auto property_visible_submenu() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The model from which the menu is made.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > property_menu_model() ;
+  auto property_menu_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > ;
 
 /** The model from which the menu is made.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> > property_menu_model() const;
+  auto property_menu_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >;
 
 
   // PopoverMenu has no signals nor vfuncs.
@@ -271,31 +271,31 @@ namespace Gtk
 {
 
 /** @ingroup gtkmmEnums */
-inline PopoverMenu::Flags operator|(PopoverMenu::Flags lhs, PopoverMenu::Flags rhs)
+inline auto operator|(PopoverMenu::Flags lhs, PopoverMenu::Flags rhs) -> PopoverMenu::Flags
   { return static_cast<PopoverMenu::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline PopoverMenu::Flags operator&(PopoverMenu::Flags lhs, PopoverMenu::Flags rhs)
+inline auto operator&(PopoverMenu::Flags lhs, PopoverMenu::Flags rhs) -> PopoverMenu::Flags
   { return static_cast<PopoverMenu::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline PopoverMenu::Flags operator^(PopoverMenu::Flags lhs, PopoverMenu::Flags rhs)
+inline auto operator^(PopoverMenu::Flags lhs, PopoverMenu::Flags rhs) -> PopoverMenu::Flags
   { return static_cast<PopoverMenu::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup gtkmmEnums */
-inline PopoverMenu::Flags operator~(PopoverMenu::Flags flags)
+inline auto operator~(PopoverMenu::Flags flags) -> PopoverMenu::Flags
   { return static_cast<PopoverMenu::Flags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup gtkmmEnums */
-inline PopoverMenu::Flags& operator|=(PopoverMenu::Flags& lhs, PopoverMenu::Flags rhs)
+inline auto operator|=(PopoverMenu::Flags& lhs, PopoverMenu::Flags rhs) -> PopoverMenu::Flags&
   { return (lhs = static_cast<PopoverMenu::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline PopoverMenu::Flags& operator&=(PopoverMenu::Flags& lhs, PopoverMenu::Flags rhs)
+inline auto operator&=(PopoverMenu::Flags& lhs, PopoverMenu::Flags rhs) -> PopoverMenu::Flags&
   { return (lhs = static_cast<PopoverMenu::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup gtkmmEnums */
-inline PopoverMenu::Flags& operator^=(PopoverMenu::Flags& lhs, PopoverMenu::Flags rhs)
+inline auto operator^=(PopoverMenu::Flags& lhs, PopoverMenu::Flags rhs) -> PopoverMenu::Flags&
   { return (lhs = static_cast<PopoverMenu::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gtk
 
@@ -307,7 +307,7 @@ template <>
 class GTKMM_API Value<Gtk::PopoverMenu::Flags> : public Glib::Value_Flags<Gtk::PopoverMenu::Flags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -325,7 +325,7 @@ namespace Glib
    * @relates Gtk::PopoverMenu
    */
   GTKMM_API
-  Gtk::PopoverMenu* wrap(GtkPopoverMenu* object, bool take_copy = false);
+  auto wrap(GtkPopoverMenu* object, bool take_copy = false) -> Gtk::PopoverMenu*;
 } //namespace Glib
 
 

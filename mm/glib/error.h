@@ -33,7 +33,7 @@ public:
   GLIBMM_API explicit Error(GError* gobject, bool take_copy = false);
 
   GLIBMM_API Error(const Error& other);
-  GLIBMM_API Error& operator=(const Error& other);
+  GLIBMM_API auto operator=(const Error& other) -> Error&;
 
   GLIBMM_API ~Error() noexcept override;
 
@@ -43,14 +43,14 @@ public:
    */
   GLIBMM_API explicit operator bool() const;
 
-  GLIBMM_API GQuark domain() const;
-  GLIBMM_API int code() const;
-  GLIBMM_API const char* what() const noexcept override;
+  GLIBMM_API auto domain() const -> GQuark;
+  GLIBMM_API auto code() const -> int;
+  GLIBMM_API auto what() const noexcept -> const char* override;
 
-  GLIBMM_API bool matches(GQuark error_domain, int error_code) const;
+  GLIBMM_API auto matches(GQuark error_domain, int error_code) const -> bool;
 
-  GLIBMM_API GError* gobj();
-  GLIBMM_API const GError* gobj() const;
+  GLIBMM_API auto gobj() -> GError*;
+  GLIBMM_API auto gobj() const -> const GError*;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -80,10 +80,10 @@ public:
   using CppType = Glib::Error;
   using CType = GError*;
 
-  static GType value_type();
+  static auto value_type() -> GType;
 
   void set(const CppType& data);
-  CppType get() const;
+  auto get() const -> CppType;
 };
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 

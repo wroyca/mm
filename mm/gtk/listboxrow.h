@@ -59,11 +59,11 @@ class GTKMM_API ListBoxRow : public Widget, public Actionable
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ListBoxRow(ListBoxRow&& src) noexcept;
-  ListBoxRow& operator=(ListBoxRow&& src) noexcept;
+  auto operator=(ListBoxRow&& src) noexcept -> ListBoxRow&;
 
   // noncopyable
   ListBoxRow(const ListBoxRow&) = delete;
-  ListBoxRow& operator=(const ListBoxRow&) = delete;
+  auto operator=(const ListBoxRow&) -> ListBoxRow& = delete;
 
   ~ListBoxRow() noexcept override;
 
@@ -83,19 +83,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkListBoxRow*       gobj()       { return reinterpret_cast<GtkListBoxRow*>(gobject_); }
+  auto       gobj() -> GtkListBoxRow*       { return reinterpret_cast<GtkListBoxRow*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkListBoxRow* gobj() const { return reinterpret_cast<GtkListBoxRow*>(gobject_); }
+  auto gobj() const -> const GtkListBoxRow* { return reinterpret_cast<GtkListBoxRow*>(gobject_); }
 
 private:
 
@@ -115,13 +115,13 @@ public:
    *
    * @return The child widget of @a row.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the child widget of @a row.
    *
    * @return The child widget of @a row.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
 
   /** Sets the current header of the ListBoxRow. This is only allowed to be called
@@ -150,7 +150,7 @@ public:
    *
    * @return The current header, or <tt>0</tt> if none.
    */
-  Widget* get_header();
+  auto get_header() -> Widget*;
 
 
   /** Returns the current header of the ListBoxRow. This can be used
@@ -161,14 +161,14 @@ public:
    *
    * @return The current header, or <tt>0</tt> if none.
    */
-  const Widget* get_header() const;
+  auto get_header() const -> const Widget*;
 
 
   /** Gets the current index of the @a row in its `Gtk::ListBox` container.
    *
    * @return The index of the @a row, or -1 if the @a row is not in a listbox.
    */
-  int get_index() const;
+  auto get_index() const -> int;
 
   /** Marks @a row as changed, causing any state that depends on this
    * to be updated.
@@ -197,7 +197,7 @@ public:
    *
    * @return <tt>true</tt> if @a row is selected.
    */
-  bool is_selected() const;
+  auto is_selected() const -> bool;
 
 
   /** Set whether the row can be selected.
@@ -210,7 +210,7 @@ public:
    *
    * @return <tt>true</tt> if the row is selectable.
    */
-  bool get_selectable() const;
+  auto get_selectable() const -> bool;
 
 
   /** Set whether the row is activatable.
@@ -223,7 +223,7 @@ public:
    *
    * @return <tt>true</tt> if the row is activatable.
    */
-  bool get_activatable() const;
+  auto get_activatable() const -> bool;
 
   /** Determines whether this row can be selected.
    *
@@ -232,7 +232,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_selectable() ;
+  auto property_selectable() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether this row can be selected.
    *
@@ -241,7 +241,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_selectable() const;
+  auto property_selectable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Determines whether the signal_row_activated()
    * signal will be emitted for this row.
@@ -251,7 +251,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_activatable() ;
+  auto property_activatable() -> Glib::PropertyProxy< bool > ;
 
 /** Determines whether the signal_row_activated()
    * signal will be emitted for this row.
@@ -261,21 +261,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_activatable() const;
+  auto property_activatable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The child widget.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The child widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
    // Action signal
@@ -308,7 +308,7 @@ namespace Glib
    * @relates Gtk::ListBoxRow
    */
   GTKMM_API
-  Gtk::ListBoxRow* wrap(GtkListBoxRow* object, bool take_copy = false);
+  auto wrap(GtkListBoxRow* object, bool take_copy = false) -> Gtk::ListBoxRow*;
 } //namespace Glib
 
 

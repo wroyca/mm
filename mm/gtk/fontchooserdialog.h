@@ -68,11 +68,11 @@ class GTKMM_API FontChooserDialog
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   FontChooserDialog(FontChooserDialog&& src) noexcept;
-  FontChooserDialog& operator=(FontChooserDialog&& src) noexcept;
+  auto operator=(FontChooserDialog&& src) noexcept -> FontChooserDialog&;
 
   // noncopyable
   FontChooserDialog(const FontChooserDialog&) = delete;
-  FontChooserDialog& operator=(const FontChooserDialog&) = delete;
+  auto operator=(const FontChooserDialog&) -> FontChooserDialog& = delete;
 
   ~FontChooserDialog() noexcept override;
 
@@ -92,19 +92,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkFontChooserDialog*       gobj()       { return reinterpret_cast<GtkFontChooserDialog*>(gobject_); }
+  auto       gobj() -> GtkFontChooserDialog*       { return reinterpret_cast<GtkFontChooserDialog*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkFontChooserDialog* gobj() const { return reinterpret_cast<GtkFontChooserDialog*>(gobject_); }
+  auto gobj() const -> const GtkFontChooserDialog* { return reinterpret_cast<GtkFontChooserDialog*>(gobject_); }
 
 private:
 
@@ -144,7 +144,7 @@ namespace Glib
    * @relates Gtk::FontChooserDialog
    */
   GTKMM_API
-  Gtk::FontChooserDialog* wrap(GtkFontChooserDialog* object, bool take_copy = false);
+  auto wrap(GtkFontChooserDialog* object, bool take_copy = false) -> Gtk::FontChooserDialog*;
 } //namespace Glib
 
 

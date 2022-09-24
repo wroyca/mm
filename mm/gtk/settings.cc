@@ -42,7 +42,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::Settings> wrap(GtkSettings* object, bool take_copy)
+auto wrap(GtkSettings* object, bool take_copy) -> Glib::RefPtr<Gtk::Settings>
 {
   return Glib::make_refptr_for_instance<Gtk::Settings>( dynamic_cast<Gtk::Settings*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -57,7 +57,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Settings_Class::init()
+auto Settings_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -89,7 +89,7 @@ void Settings_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Settings_Class::wrap_new(GObject* object)
+auto Settings_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Settings((GtkSettings*)object);
 }
@@ -97,7 +97,7 @@ Glib::ObjectBase* Settings_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkSettings* Settings::gobj_copy()
+auto Settings::gobj_copy() -> GtkSettings*
 {
   reference();
   return gobj();
@@ -121,7 +121,7 @@ Settings::Settings(Settings&& src) noexcept
   , StyleProvider(std::move(src))
 {}
 
-Settings& Settings::operator=(Settings&& src) noexcept
+auto Settings::operator=(Settings&& src) noexcept -> Settings&
 {
   Glib::Object::operator=(std::move(src));
   StyleProvider::operator=(std::move(src));
@@ -135,19 +135,19 @@ Settings::~Settings() noexcept
 
 Settings::CppClassType Settings::settings_class_; // initialize static member
 
-GType Settings::get_type()
+auto Settings::get_type() -> GType
 {
   return settings_class_.init().get_type();
 }
 
 
-GType Settings::get_base_type()
+auto Settings::get_base_type() -> GType
 {
   return gtk_settings_get_type();
 }
 
 
-Glib::RefPtr<Settings> Settings::get_default()
+auto Settings::get_default() -> Glib::RefPtr<Settings>
 {
 
   auto retvalue = Glib::wrap(gtk_settings_get_default());
@@ -156,7 +156,7 @@ Glib::RefPtr<Settings> Settings::get_default()
   return retvalue;
 }
 
-Glib::RefPtr<Settings> Settings::get_for_display(const Glib::RefPtr<Gdk::Display>& display)
+auto Settings::get_for_display(const Glib::RefPtr<Gdk::Display>& display) -> Glib::RefPtr<Settings>
 {
 
   auto retvalue = Glib::wrap(gtk_settings_get_for_display(Glib::unwrap(display)));
@@ -171,502 +171,502 @@ void Settings::reset_property(const Glib::ustring& name)
 }
 
 
-Glib::PropertyProxy< int > Settings::property_gtk_double_click_time()
+auto Settings::property_gtk_double_click_time() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "gtk-double-click-time");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Settings::property_gtk_double_click_time() const
+auto Settings::property_gtk_double_click_time() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "gtk-double-click-time");
 }
 
-Glib::PropertyProxy< int > Settings::property_gtk_double_click_distance()
+auto Settings::property_gtk_double_click_distance() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "gtk-double-click-distance");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Settings::property_gtk_double_click_distance() const
+auto Settings::property_gtk_double_click_distance() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "gtk-double-click-distance");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_cursor_blink()
+auto Settings::property_gtk_cursor_blink() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-cursor-blink");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_cursor_blink() const
+auto Settings::property_gtk_cursor_blink() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-cursor-blink");
 }
 
-Glib::PropertyProxy< int > Settings::property_gtk_cursor_blink_time()
+auto Settings::property_gtk_cursor_blink_time() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "gtk-cursor-blink-time");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Settings::property_gtk_cursor_blink_time() const
+auto Settings::property_gtk_cursor_blink_time() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "gtk-cursor-blink-time");
 }
 
-Glib::PropertyProxy< int > Settings::property_gtk_cursor_blink_timeout()
+auto Settings::property_gtk_cursor_blink_timeout() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "gtk-cursor-blink-timeout");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Settings::property_gtk_cursor_blink_timeout() const
+auto Settings::property_gtk_cursor_blink_timeout() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "gtk-cursor-blink-timeout");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_split_cursor()
+auto Settings::property_gtk_split_cursor() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-split-cursor");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_split_cursor() const
+auto Settings::property_gtk_split_cursor() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-split-cursor");
 }
 
-Glib::PropertyProxy< double > Settings::property_gtk_cursor_aspect_ratio()
+auto Settings::property_gtk_cursor_aspect_ratio() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "gtk-cursor-aspect-ratio");
 }
 
-Glib::PropertyProxy_ReadOnly< double > Settings::property_gtk_cursor_aspect_ratio() const
+auto Settings::property_gtk_cursor_aspect_ratio() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "gtk-cursor-aspect-ratio");
 }
 
-Glib::PropertyProxy< Glib::ustring > Settings::property_gtk_theme_name()
+auto Settings::property_gtk_theme_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "gtk-theme-name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Settings::property_gtk_theme_name() const
+auto Settings::property_gtk_theme_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "gtk-theme-name");
 }
 
-Glib::PropertyProxy< int > Settings::property_gtk_dnd_drag_threshold()
+auto Settings::property_gtk_dnd_drag_threshold() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "gtk-dnd-drag-threshold");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Settings::property_gtk_dnd_drag_threshold() const
+auto Settings::property_gtk_dnd_drag_threshold() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "gtk-dnd-drag-threshold");
 }
 
-Glib::PropertyProxy< Glib::ustring > Settings::property_gtk_font_name()
+auto Settings::property_gtk_font_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "gtk-font-name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Settings::property_gtk_font_name() const
+auto Settings::property_gtk_font_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "gtk-font-name");
 }
 
-Glib::PropertyProxy< int > Settings::property_gtk_xft_antialias()
+auto Settings::property_gtk_xft_antialias() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "gtk-xft-antialias");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Settings::property_gtk_xft_antialias() const
+auto Settings::property_gtk_xft_antialias() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "gtk-xft-antialias");
 }
 
-Glib::PropertyProxy< int > Settings::property_gtk_xft_hinting()
+auto Settings::property_gtk_xft_hinting() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "gtk-xft-hinting");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Settings::property_gtk_xft_hinting() const
+auto Settings::property_gtk_xft_hinting() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "gtk-xft-hinting");
 }
 
-Glib::PropertyProxy< Glib::ustring > Settings::property_gtk_xft_hintstyle()
+auto Settings::property_gtk_xft_hintstyle() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "gtk-xft-hintstyle");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Settings::property_gtk_xft_hintstyle() const
+auto Settings::property_gtk_xft_hintstyle() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "gtk-xft-hintstyle");
 }
 
-Glib::PropertyProxy< Glib::ustring > Settings::property_gtk_xft_rgba()
+auto Settings::property_gtk_xft_rgba() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "gtk-xft-rgba");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Settings::property_gtk_xft_rgba() const
+auto Settings::property_gtk_xft_rgba() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "gtk-xft-rgba");
 }
 
-Glib::PropertyProxy< int > Settings::property_gtk_xft_dpi()
+auto Settings::property_gtk_xft_dpi() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "gtk-xft-dpi");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Settings::property_gtk_xft_dpi() const
+auto Settings::property_gtk_xft_dpi() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "gtk-xft-dpi");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_hint_font_metrics()
+auto Settings::property_gtk_hint_font_metrics() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-hint-font-metrics");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_hint_font_metrics() const
+auto Settings::property_gtk_hint_font_metrics() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-hint-font-metrics");
 }
 
-Glib::PropertyProxy< Glib::ustring > Settings::property_gtk_cursor_theme_name()
+auto Settings::property_gtk_cursor_theme_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "gtk-cursor-theme-name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Settings::property_gtk_cursor_theme_name() const
+auto Settings::property_gtk_cursor_theme_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "gtk-cursor-theme-name");
 }
 
-Glib::PropertyProxy< int > Settings::property_gtk_cursor_theme_size()
+auto Settings::property_gtk_cursor_theme_size() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "gtk-cursor-theme-size");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Settings::property_gtk_cursor_theme_size() const
+auto Settings::property_gtk_cursor_theme_size() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "gtk-cursor-theme-size");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_alternative_button_order()
+auto Settings::property_gtk_alternative_button_order() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-alternative-button-order");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_alternative_button_order() const
+auto Settings::property_gtk_alternative_button_order() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-alternative-button-order");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_alternative_sort_arrows()
+auto Settings::property_gtk_alternative_sort_arrows() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-alternative-sort-arrows");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_alternative_sort_arrows() const
+auto Settings::property_gtk_alternative_sort_arrows() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-alternative-sort-arrows");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_enable_animations()
+auto Settings::property_gtk_enable_animations() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-enable-animations");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_enable_animations() const
+auto Settings::property_gtk_enable_animations() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-enable-animations");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_error_bell()
+auto Settings::property_gtk_error_bell() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-error-bell");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_error_bell() const
+auto Settings::property_gtk_error_bell() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-error-bell");
 }
 
-Glib::PropertyProxy< Glib::ustring > Settings::property_gtk_print_backends()
+auto Settings::property_gtk_print_backends() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "gtk-print-backends");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Settings::property_gtk_print_backends() const
+auto Settings::property_gtk_print_backends() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "gtk-print-backends");
 }
 
-Glib::PropertyProxy< Glib::ustring > Settings::property_gtk_print_preview_command()
+auto Settings::property_gtk_print_preview_command() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "gtk-print-preview-command");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Settings::property_gtk_print_preview_command() const
+auto Settings::property_gtk_print_preview_command() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "gtk-print-preview-command");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_enable_accels()
+auto Settings::property_gtk_enable_accels() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-enable-accels");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_enable_accels() const
+auto Settings::property_gtk_enable_accels() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-enable-accels");
 }
 
-Glib::PropertyProxy< Glib::ustring > Settings::property_gtk_im_module()
+auto Settings::property_gtk_im_module() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "gtk-im-module");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Settings::property_gtk_im_module() const
+auto Settings::property_gtk_im_module() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "gtk-im-module");
 }
 
-Glib::PropertyProxy< int > Settings::property_gtk_recent_files_max_age()
+auto Settings::property_gtk_recent_files_max_age() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "gtk-recent-files-max-age");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Settings::property_gtk_recent_files_max_age() const
+auto Settings::property_gtk_recent_files_max_age() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "gtk-recent-files-max-age");
 }
 
-Glib::PropertyProxy< int > Settings::property_gtk_fontconfig_timestamp()
+auto Settings::property_gtk_fontconfig_timestamp() -> Glib::PropertyProxy< int >
 {
   return Glib::PropertyProxy< int >(this, "gtk-fontconfig-timestamp");
 }
 
-Glib::PropertyProxy_ReadOnly< int > Settings::property_gtk_fontconfig_timestamp() const
+auto Settings::property_gtk_fontconfig_timestamp() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "gtk-fontconfig-timestamp");
 }
 
-Glib::PropertyProxy< Glib::ustring > Settings::property_gtk_sound_theme_name()
+auto Settings::property_gtk_sound_theme_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "gtk-sound-theme-name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Settings::property_gtk_sound_theme_name() const
+auto Settings::property_gtk_sound_theme_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "gtk-sound-theme-name");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_enable_input_feedback_sounds()
+auto Settings::property_gtk_enable_input_feedback_sounds() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-enable-input-feedback-sounds");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_enable_input_feedback_sounds() const
+auto Settings::property_gtk_enable_input_feedback_sounds() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-enable-input-feedback-sounds");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_enable_event_sounds()
+auto Settings::property_gtk_enable_event_sounds() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-enable-event-sounds");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_enable_event_sounds() const
+auto Settings::property_gtk_enable_event_sounds() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-enable-event-sounds");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_application_prefer_dark_theme()
+auto Settings::property_gtk_application_prefer_dark_theme() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-application-prefer-dark-theme");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_application_prefer_dark_theme() const
+auto Settings::property_gtk_application_prefer_dark_theme() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-application-prefer-dark-theme");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_shell_shows_app_menu()
+auto Settings::property_gtk_shell_shows_app_menu() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-shell-shows-app-menu");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_shell_shows_app_menu() const
+auto Settings::property_gtk_shell_shows_app_menu() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-shell-shows-app-menu");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_shell_shows_menubar()
+auto Settings::property_gtk_shell_shows_menubar() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-shell-shows-menubar");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_shell_shows_menubar() const
+auto Settings::property_gtk_shell_shows_menubar() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-shell-shows-menubar");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_shell_shows_desktop()
+auto Settings::property_gtk_shell_shows_desktop() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-shell-shows-desktop");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_shell_shows_desktop() const
+auto Settings::property_gtk_shell_shows_desktop() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-shell-shows-desktop");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_enable_primary_paste()
+auto Settings::property_gtk_enable_primary_paste() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-enable-primary-paste");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_enable_primary_paste() const
+auto Settings::property_gtk_enable_primary_paste() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-enable-primary-paste");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_label_select_on_focus()
+auto Settings::property_gtk_label_select_on_focus() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-label-select-on-focus");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_label_select_on_focus() const
+auto Settings::property_gtk_label_select_on_focus() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-label-select-on-focus");
 }
 
-Glib::PropertyProxy< guint > Settings::property_gtk_entry_password_hint_timeout()
+auto Settings::property_gtk_entry_password_hint_timeout() -> Glib::PropertyProxy< guint >
 {
   return Glib::PropertyProxy< guint >(this, "gtk-entry-password-hint-timeout");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > Settings::property_gtk_entry_password_hint_timeout() const
+auto Settings::property_gtk_entry_password_hint_timeout() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "gtk-entry-password-hint-timeout");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_entry_select_on_focus()
+auto Settings::property_gtk_entry_select_on_focus() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-entry-select-on-focus");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_entry_select_on_focus() const
+auto Settings::property_gtk_entry_select_on_focus() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-entry-select-on-focus");
 }
 
-Glib::PropertyProxy< Glib::ustring > Settings::property_gtk_icon_theme_name()
+auto Settings::property_gtk_icon_theme_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "gtk-icon-theme-name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Settings::property_gtk_icon_theme_name() const
+auto Settings::property_gtk_icon_theme_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "gtk-icon-theme-name");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_recent_files_enabled()
+auto Settings::property_gtk_recent_files_enabled() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-recent-files-enabled");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_recent_files_enabled() const
+auto Settings::property_gtk_recent_files_enabled() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-recent-files-enabled");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_primary_button_warps_slider()
+auto Settings::property_gtk_primary_button_warps_slider() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-primary-button-warps-slider");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_primary_button_warps_slider() const
+auto Settings::property_gtk_primary_button_warps_slider() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-primary-button-warps-slider");
 }
 
-Glib::PropertyProxy< Glib::ustring > Settings::property_gtk_decoration_layout()
+auto Settings::property_gtk_decoration_layout() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "gtk-decoration-layout");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Settings::property_gtk_decoration_layout() const
+auto Settings::property_gtk_decoration_layout() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "gtk-decoration-layout");
 }
 
-Glib::PropertyProxy< Glib::ustring > Settings::property_gtk_titlebar_double_click()
+auto Settings::property_gtk_titlebar_double_click() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "gtk-titlebar-double-click");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Settings::property_gtk_titlebar_double_click() const
+auto Settings::property_gtk_titlebar_double_click() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "gtk-titlebar-double-click");
 }
 
-Glib::PropertyProxy< Glib::ustring > Settings::property_gtk_titlebar_middle_click()
+auto Settings::property_gtk_titlebar_middle_click() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "gtk-titlebar-middle-click");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Settings::property_gtk_titlebar_middle_click() const
+auto Settings::property_gtk_titlebar_middle_click() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "gtk-titlebar-middle-click");
 }
 
-Glib::PropertyProxy< Glib::ustring > Settings::property_gtk_titlebar_right_click()
+auto Settings::property_gtk_titlebar_right_click() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "gtk-titlebar-right-click");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > Settings::property_gtk_titlebar_right_click() const
+auto Settings::property_gtk_titlebar_right_click() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "gtk-titlebar-right-click");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_dialogs_use_header()
+auto Settings::property_gtk_dialogs_use_header() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-dialogs-use-header");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_dialogs_use_header() const
+auto Settings::property_gtk_dialogs_use_header() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-dialogs-use-header");
 }
 
-Glib::PropertyProxy< guint > Settings::property_gtk_long_press_time()
+auto Settings::property_gtk_long_press_time() -> Glib::PropertyProxy< guint >
 {
   return Glib::PropertyProxy< guint >(this, "gtk-long-press-time");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > Settings::property_gtk_long_press_time() const
+auto Settings::property_gtk_long_press_time() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "gtk-long-press-time");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_keynav_use_caret()
+auto Settings::property_gtk_keynav_use_caret() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-keynav-use-caret");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_keynav_use_caret() const
+auto Settings::property_gtk_keynav_use_caret() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-keynav-use-caret");
 }
 
-Glib::PropertyProxy< bool > Settings::property_gtk_overlay_scrolling()
+auto Settings::property_gtk_overlay_scrolling() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "gtk-overlay-scrolling");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > Settings::property_gtk_overlay_scrolling() const
+auto Settings::property_gtk_overlay_scrolling() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "gtk-overlay-scrolling");
 }

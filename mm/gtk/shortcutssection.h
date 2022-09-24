@@ -67,11 +67,11 @@ class GTKMM_API ShortcutsSection : public Box
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ShortcutsSection(ShortcutsSection&& src) noexcept;
-  ShortcutsSection& operator=(ShortcutsSection&& src) noexcept;
+  auto operator=(ShortcutsSection&& src) noexcept -> ShortcutsSection&;
 
   // noncopyable
   ShortcutsSection(const ShortcutsSection&) = delete;
-  ShortcutsSection& operator=(const ShortcutsSection&) = delete;
+  auto operator=(const ShortcutsSection&) -> ShortcutsSection& = delete;
 
   ~ShortcutsSection() noexcept override;
 
@@ -91,19 +91,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkShortcutsSection*       gobj()       { return reinterpret_cast<GtkShortcutsSection*>(gobject_); }
+  auto       gobj() -> GtkShortcutsSection*       { return reinterpret_cast<GtkShortcutsSection*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkShortcutsSection* gobj() const { return reinterpret_cast<GtkShortcutsSection*>(gobject_); }
+  auto gobj() const -> const GtkShortcutsSection* { return reinterpret_cast<GtkShortcutsSection*>(gobject_); }
 
 private:
 
@@ -123,7 +123,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_section_name() ;
+  auto property_section_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** A unique name to identify this section among the sections
    * added to the `Gtk::ShortcutsWindow`.
@@ -136,7 +136,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_section_name() const;
+  auto property_section_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The string to show in the section selector of the `Gtk::ShortcutsWindow`
    * for this section.
@@ -149,7 +149,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_title() ;
+  auto property_title() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The string to show in the section selector of the `Gtk::ShortcutsWindow`
    * for this section.
@@ -162,7 +162,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_title() const;
+  auto property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The maximum number of lines to allow per column.
    *
@@ -175,7 +175,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< unsigned int > property_max_height() ;
+  auto property_max_height() -> Glib::PropertyProxy< unsigned int > ;
 
 /** The maximum number of lines to allow per column.
    *
@@ -188,7 +188,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_max_height() const;
+  auto property_max_height() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
 
 public:
@@ -218,7 +218,7 @@ namespace Glib
    * @relates Gtk::ShortcutsSection
    */
   GTKMM_API
-  Gtk::ShortcutsSection* wrap(GtkShortcutsSection* object, bool take_copy = false);
+  auto wrap(GtkShortcutsSection* object, bool take_copy = false) -> Gtk::ShortcutsSection*;
 } //namespace Glib
 
 

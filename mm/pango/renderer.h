@@ -66,7 +66,7 @@ public:
 
   // noncopyable
   Renderer(const Renderer&) = delete;
-  Renderer& operator=(const Renderer&) = delete;
+  auto operator=(const Renderer&) -> Renderer& = delete;
 
 private:  friend class Renderer_Class;
   static CppClassType renderer_class_;
@@ -80,28 +80,28 @@ protected:
 public:
 
   Renderer(Renderer&& src) noexcept;
-  Renderer& operator=(Renderer&& src) noexcept;
+  auto operator=(Renderer&& src) noexcept -> Renderer&;
 
   ~Renderer() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  PangoRenderer*       gobj()       { return reinterpret_cast<PangoRenderer*>(gobject_); }
+  auto       gobj() -> PangoRenderer*       { return reinterpret_cast<PangoRenderer*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const PangoRenderer* gobj() const { return reinterpret_cast<PangoRenderer*>(gobject_); }
+  auto gobj() const -> const PangoRenderer* { return reinterpret_cast<PangoRenderer*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  PangoRenderer* gobj_copy();
+  auto gobj_copy() -> PangoRenderer*;
 
 private:
 
@@ -349,7 +349,7 @@ public:
    * specified part, or <tt>nullptr</tt> if it hasn't been set and should be
    * inherited from the environment.
    */
-  Color get_color(Part part) const;
+  auto get_color(Part part) const -> Color;
 
 
   /** Sets the alpha for part of the rendering.
@@ -373,7 +373,7 @@ public:
    * or 0 if it hasn't been set and should be
    * inherited from the environment.
    */
-  guint16 get_alpha(Part part) const;
+  auto get_alpha(Part part) const -> guint16;
 
 
   /** Sets the transformation matrix that will be applied when rendering.
@@ -390,7 +390,7 @@ public:
    *
    * @return The matrix. If no matrix has been set, an identity matrix is returned.
    */
-  Matrix get_matrix() const;
+  auto get_matrix() const -> Matrix;
 
 
   /** Gets the layout currently being rendered using @a renderer.
@@ -406,7 +406,7 @@ public:
    * @return The layout, or <tt>nullptr</tt> if
    * no layout is being rendered using @a renderer at this time.
    */
-  Glib::RefPtr<Layout> get_layout();
+  auto get_layout() -> Glib::RefPtr<Layout>;
 
   /** Gets the layout currently being rendered using @a renderer.
    *
@@ -421,7 +421,7 @@ public:
    * @return The layout, or <tt>nullptr</tt> if
    * no layout is being rendered using @a renderer at this time.
    */
-  Glib::RefPtr<const Layout> get_layout() const;
+  auto get_layout() const -> Glib::RefPtr<const Layout>;
 
 
   /** Gets the layout line currently being rendered using @a renderer.
@@ -437,7 +437,7 @@ public:
    * @return The layout line, or <tt>nullptr</tt>
    * if no layout line is being rendered using @a renderer at this time.
    */
-  Glib::RefPtr<LayoutLine> get_layout_line();
+  auto get_layout_line() -> Glib::RefPtr<LayoutLine>;
 
   /** Gets the layout line currently being rendered using @a renderer.
    *
@@ -452,7 +452,7 @@ public:
    * @return The layout line, or <tt>nullptr</tt>
    * if no layout line is being rendered using @a renderer at this time.
    */
-  Glib::RefPtr<const LayoutLine> get_layout_line() const;
+  auto get_layout_line() const -> Glib::RefPtr<const LayoutLine>;
 
 protected:
 
@@ -504,7 +504,7 @@ template <>
 class PANGOMM_API Value<Pango::Renderer::Part> : public Glib::Value_Enum<Pango::Renderer::Part>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -522,7 +522,7 @@ namespace Glib
    * @relates Pango::Renderer
    */
   PANGOMM_API
-  Glib::RefPtr<Pango::Renderer> wrap(PangoRenderer* object, bool take_copy = false);
+  auto wrap(PangoRenderer* object, bool take_copy = false) -> Glib::RefPtr<Pango::Renderer>;
 }
 
 

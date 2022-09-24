@@ -200,12 +200,12 @@ enum FtSynthesize {
     FT_SYNTHESIZE_OBLIQUE = CAIRO_FT_SYNTHESIZE_OBLIQUE
 };
 
-inline FtSynthesize operator|(FtSynthesize a, FtSynthesize b)
+inline auto operator|(FtSynthesize a, FtSynthesize b) -> FtSynthesize
 {
   return static_cast<FtSynthesize>(static_cast<int>(a) | static_cast<int>(b));
 }
 
-inline FtSynthesize operator&(FtSynthesize a, FtSynthesize b)
+inline auto operator&(FtSynthesize a, FtSynthesize b) -> FtSynthesize
 {
     return static_cast<FtSynthesize>(static_cast<int>(a) & static_cast<int>(b));
 }

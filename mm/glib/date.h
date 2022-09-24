@@ -222,13 +222,13 @@ enum class DMY
    *
    * @newin{2,18}
    */
-  Date& operator=(const Date& other);
+  auto operator=(const Date& other) -> Date&;
 
   /// Provides access to the underlying C instance.
-  GDate*       gobj()       { return &gobject_; }
+  auto       gobj() -> GDate*       { return &gobject_; }
 
   /// Provides access to the underlying C instance.
-  const GDate* gobj() const { return &gobject_; }
+  auto gobj() const -> const GDate* { return &gobject_; }
 
 private:
   GDate gobject_;
@@ -295,7 +295,7 @@ public:
    * @param n_days Days to add.
    * @return Resulting Date
    */
-  Date& add_days(int n_days);
+  auto add_days(int n_days) -> Date&;
 
   /** Subtract n_days to a Date.
    * This method returns a reference to the object itself, so you can write code such as:
@@ -306,7 +306,7 @@ public:
    * @param n_days Days to subtract.
    * @return Resulting Date
    */
-  Date& subtract_days(int n_days);
+  auto subtract_days(int n_days) -> Date&;
 
   /** Add n_months to a Date.
    * This method returns a reference to the object itself, so you can write code such as:
@@ -317,7 +317,7 @@ public:
    * @param n_months Months to add.
    * @return Resulting Date
    */
-  Date& add_months(int n_months);
+  auto add_months(int n_months) -> Date&;
 
   /** Subtract n_months to a Date.
    * This method returns a reference to the object itself, so you can write code such as:
@@ -328,7 +328,7 @@ public:
    * @param n_months Months to subtract.
    * @return Resulting Date
    */
-  Date& subtract_months(int n_months);
+  auto subtract_months(int n_months) -> Date&;
 
   /** Add n_days to a Date.
    * This method returns a reference to the object itself, so you can write code such as:
@@ -339,7 +339,7 @@ public:
    * @param n_years Years to add.
    * @return Resulting Date
    */
-  Date& add_years(int n_years);
+  auto add_years(int n_years) -> Date&;
 
   /** Subtract n_years to a Date.
    * This method returns a reference to the object itself, so you can write code such as:
@@ -350,19 +350,19 @@ public:
    * @param n_years Years to subtract.
    * @return Resulting Date
    */
-  Date& subtract_years(int n_years);
+  auto subtract_years(int n_years) -> Date&;
 
   /** Calculate days between two dates.
    * @param rhs Date.
    * @return Numbers of days.
    */
-  int days_between(const Date& rhs) const;
+  auto days_between(const Date& rhs) const -> int;
 
   /** Compare two dates.
    * @param rhs Date to compare.
    * @return Result of comparition.
    */
-  int compare(const Date& rhs) const;
+  auto compare(const Date& rhs) const -> int;
 
   /** If date is prior to min_date, sets date equal to min_date.
    * If date falls after max_date, sets date equal to max_date. All dates must be valid.
@@ -372,7 +372,7 @@ public:
    * @param max_date Date maximum value.
    * @return Date in interval.
    */
-  Date& clamp(const Date& min_date, const Date& max_date);
+  auto clamp(const Date& min_date, const Date& max_date) -> Date&;
 
   /** If date is prior to min_date, sets date equal to min_date.
    * See also clamp(), and clamp_max().
@@ -380,7 +380,7 @@ public:
    * @param min_date Date minimum value.
    * @return Date in interval.
    */
-  Date& clamp_min(const Date& min_date);
+  auto clamp_min(const Date& min_date) -> Date&;
 
   /** If date falls after max_date, sets date equal to max_date.
    * See also clamp(), and clamp_min().
@@ -388,7 +388,7 @@ public:
    * @param max_date Date maximum value.
    * @return Date in interval.
    */
-  Date& clamp_max(const Date& max_date);
+  auto clamp_max(const Date& max_date) -> Date&;
 
   /** Checks if date is less than or equal to other date, and swap the values if this is not the case.
    * @param other Date ro compare.
@@ -399,32 +399,32 @@ public:
   /** Returns the day of the week for a Date. The date must be valid.
    * @return Day of the week as a Date::Weekday.
    */
-  Weekday get_weekday() const;
+  auto get_weekday() const -> Weekday;
 
   /** Returns the day of the week for a Date. The date must be valid.
    * @return Day of the week as an int. Monday=1 .. Sunday=7.
    */
-  int get_weekday_as_int() const;
+  auto get_weekday_as_int() const -> int;
 
   /** Returns the month of the year. The date must be valid.
    * @return Month of the year as a Date::Month.
    */
-  Month        get_month()               const;
+  auto        get_month()               const -> Month;
 
   /** Returns the month of the year. The date must be valid.
    * @return Month of the year as an int. January=1 .. December=12.
    */
-  int          get_month_as_int()        const;
+  auto          get_month_as_int()        const -> int;
 
   /** Returns the year of a Date. The date must be valid.
    * @return Year in which the date falls.
    */
-  Year         get_year()                const;
+  auto         get_year()                const -> Year;
 
   /** Returns the day of the month. The date must be valid.
    * @return Day of the month..
    */
-  Day          get_day()                 const;
+  auto          get_day()                 const -> Day;
 
   /** Returns the Julian day or "serial number" of the Date.
    * The Julian day is simply the number of days since January 1, Year 1;
@@ -432,27 +432,27 @@ public:
    * The date must be valid.
    * @return Julian day.
    */
-  guint32      get_julian()              const;
+  auto      get_julian()              const -> guint32;
 
   /** Returns the day of the year, where Jan 1 is the first day of the year.
    * The date must be valid.
    * @return Julian day.
    */
-  unsigned int get_day_of_year()         const;
+  auto get_day_of_year()         const -> unsigned int;
 
   /** Returns the week of the year, where weeks are understood to start on Monday.
    * If the date is before the first Monday of the year, return 0.
    * The date must be valid.
    * @return Week of the year.
    */
-  unsigned int get_monday_week_of_year() const;
+  auto get_monday_week_of_year() const -> unsigned int;
 
   /** Returns the week of the year during which this date falls, if weeks are understood to being on Sunday.
    * Can return 0 if the day is before the first Sunday of the year.
    * The date must be valid.
    * @return Week of the year.
    */
-  unsigned int get_sunday_week_of_year() const;
+  auto get_sunday_week_of_year() const -> unsigned int;
 
   /** Returns the week of the year, where weeks are interpreted according to ISO 8601.
    * The date must be valid.
@@ -460,46 +460,46 @@ public:
    *
    * @newin{2,22}
    */
-  unsigned int get_iso8601_week_of_year() const;
+  auto get_iso8601_week_of_year() const -> unsigned int;
 
   /** Returns true if the date is on the first of a month.
    * The date must be valid.
    * @return true if the date is the first of the month.
    */
-  bool         is_first_of_month()       const;
+  auto         is_first_of_month()       const -> bool;
 
   /** Returns true if the date is the last day of the month.
    * The date must be valid.
    * @return true if the date is the last day of the month.
    */
-  bool         is_last_of_month()        const;
+  auto         is_last_of_month()        const -> bool;
 
   /** Returns the number of days in a month, taking leap years into account.
    * @param month Month.
    * @param year Year.
    * @return Number of days in month during the year.
    */
-  static guint8 get_days_in_month(Month month, Year year);
+  static auto get_days_in_month(Month month, Year year) -> guint8;
 
   /** Returns the number of weeks in the year, where weeks are taken to start on Monday. Will be 52 or 53.
    * (Years always have 52 7-day periods, plus 1 or 2 extra days depending on whether it's a leap year. This function is basically telling you how many Mondays are in the year, i.e. there are 53 Mondays if one of the extra days happens to be a Monday.)
    * @param year Year to count weeks in.
    * @return Number of weeks.
    */
-  static guint8 get_monday_weeks_in_year(Year year);
+  static auto get_monday_weeks_in_year(Year year) -> guint8;
 
   /** Returns the number of weeks in the year, where weeks are taken to start on Sunday. Will be 52 or 53.
    * (Years always have 52 7-day periods, plus 1 or 2 extra days depending on whether it's a leap year. This function is basically telling you how many Sundays are in the year, i.e. there are 53 Sundays if one of the extra days happens to be a Sunday.)
    * @param year Year to count weeks in.
    * @return Number of weeks.
    */
-  static guint8 get_sunday_weeks_in_year(Year year);
+  static auto get_sunday_weeks_in_year(Year year) -> guint8;
 
   /** Returns true if the year is a leap year.
    * @param year Year to check.
    * @return true if the year is a leap year.
    */
-  static bool   is_leap_year(Year year);
+  static auto   is_leap_year(Year year) -> bool;
 
   /** Convert date to string.
    * @param format A format string as used by @c strftime(), in UTF-8
@@ -508,7 +508,7 @@ public:
    * @return The formatted date string.
    * @throw Glib::ConvertError
    */
-  Glib::ustring format_string(const Glib::ustring& format) const;
+  auto format_string(const Glib::ustring& format) const -> Glib::ustring;
 
   /** Fills in the date-related bits of a struct tm using the date value. Initializes the non-date parts with something sane but meaningless.
    * @param dest Struct tm to fill.
@@ -518,19 +518,19 @@ public:
   /** Returns true if the Date represents an existing day.
    * @return true if the date is valid.
    */
-  bool valid() const;
+  auto valid() const -> bool;
 
   /** Returns true if the day of the month is valid (a day is valid if it's between 1 and 31 inclusive).
    * @param day Day to check.
    * @return true if the day is valid.
    */
-  static bool valid_day(Day day);
+  static auto valid_day(Day day) -> bool;
 
   /** Returns true if the month value is valid. The 12 Date::Month enumeration values are the only valid months.
    * @param month Month to check.
    * @return true if the month is valid.
    */
-  static bool valid_month(Month month);
+  static auto valid_month(Month month) -> bool;
 
 
   /** Returns true if the year is valid.
@@ -538,21 +538,21 @@ public:
    * @param year Year to check.
    * @return true if the year is valid.
    */
-  static bool valid_year(Year year);
+  static auto valid_year(Year year) -> bool;
 
   /** Returns true if the weekday is valid.
    * The 7 Date::Weekday enumeration values are the only valid.
    * @param weekday Weekday to check.
    * @return true if the weekday is valid.
    */
-  static bool valid_weekday(Weekday weekday);
+  static auto valid_weekday(Weekday weekday) -> bool;
 
   /** Returns true if the Julian day is valid.
    * Anything greater than zero is basically a valid Julian, though there is a 32-bit limit.
    * @param julian_day Julian day to check.
    * @return true if the Julian day is valid.
    */
-  static bool valid_julian(guint32 julian_day);
+  static auto valid_julian(guint32 julian_day) -> bool;
 
 
   /** Returns true if the day-month-year triplet forms a valid, existing day in the range of days Date understands (Year 1 or later, no more than a few thousand years in the future).
@@ -561,32 +561,32 @@ public:
    * @param year Year to check.
    * @return true if the date is a valid one.
    */
-  static bool valid_dmy(Day day, Month month, Year year);
+  static auto valid_dmy(Day day, Month month, Year year) -> bool;
 };
 
 
 /** @relates Glib::Date */
-inline bool operator==(const Date& lhs, const Date& rhs)
+inline auto operator==(const Date& lhs, const Date& rhs) -> bool
   { return (lhs.compare(rhs) == 0); }
 
 /** @relates Glib::Date */
-inline bool operator!=(const Date& lhs, const Date& rhs)
+inline auto operator!=(const Date& lhs, const Date& rhs) -> bool
   { return (lhs.compare(rhs) != 0); }
 
 /** @relates Glib::Date */
-inline bool operator<(const Date& lhs, const Date& rhs)
+inline auto operator<(const Date& lhs, const Date& rhs) -> bool
   { return (lhs.compare(rhs) < 0); }
 
 /** @relates Glib::Date */
-inline bool operator>(const Date& lhs, const Date& rhs)
+inline auto operator>(const Date& lhs, const Date& rhs) -> bool
   { return (lhs.compare(rhs) > 0); }
 
 /** @relates Glib::Date */
-inline bool operator<=(const Date& lhs, const Date& rhs)
+inline auto operator<=(const Date& lhs, const Date& rhs) -> bool
   { return (lhs.compare(rhs) <= 0); }
 
 /** @relates Glib::Date */
-inline bool operator>=(const Date& lhs, const Date& rhs)
+inline auto operator>=(const Date& lhs, const Date& rhs) -> bool
   { return (lhs.compare(rhs) >= 0); }
 
 } // namespace Glib

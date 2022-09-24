@@ -118,7 +118,7 @@ template <>
 class GIOMM_API Value<Gio::SocketClientEvent> : public Glib::Value_Enum<Gio::SocketClientEvent>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -160,7 +160,7 @@ public:
 
   // noncopyable
   SocketClient(const SocketClient&) = delete;
-  SocketClient& operator=(const SocketClient&) = delete;
+  auto operator=(const SocketClient&) -> SocketClient& = delete;
 
 private:  friend class SocketClient_Class;
   static CppClassType socketclient_class_;
@@ -174,28 +174,28 @@ protected:
 public:
 
   SocketClient(SocketClient&& src) noexcept;
-  SocketClient& operator=(SocketClient&& src) noexcept;
+  auto operator=(SocketClient&& src) noexcept -> SocketClient&;
 
   ~SocketClient() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GSocketClient*       gobj()       { return reinterpret_cast<GSocketClient*>(gobject_); }
+  auto       gobj() -> GSocketClient*       { return reinterpret_cast<GSocketClient*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GSocketClient* gobj() const { return reinterpret_cast<GSocketClient*>(gobject_); }
+  auto gobj() const -> const GSocketClient* { return reinterpret_cast<GSocketClient*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GSocketClient* gobj_copy();
+  auto gobj_copy() -> GSocketClient*;
 
 private:
 
@@ -205,7 +205,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<SocketClient> create();
+  static auto create() -> Glib::RefPtr<SocketClient>;
 
 
   /** Gets the socket family of the socket client.
@@ -216,7 +216,7 @@ public:
    *
    * @return A SocketFamily.
    */
-  SocketFamily get_family() const;
+  auto get_family() const -> SocketFamily;
 
   /** Sets the socket family of the socket client.
    * If this is set to something other than Gio::SocketFamily::INVALID
@@ -241,7 +241,7 @@ public:
    *
    * @return A SocketFamily.
    */
-  Socket::Type get_socket_type() const;
+  auto get_socket_type() const -> Socket::Type;
 
   /** Sets the socket type of the socket client.
    * The sockets created by this object will be of the specified
@@ -264,7 +264,7 @@ public:
    *
    * @return A Gio::Socket::Protocol.
    */
-  Socket::Protocol get_protocol() const;
+  auto get_protocol() const -> Socket::Protocol;
 
   /** Sets the protocol of the socket client.
    * The sockets created by this object will use of the specified
@@ -287,7 +287,7 @@ public:
    *
    * @return A SocketAddress or <tt>nullptr</tt>. Do not free.
    */
-  Glib::RefPtr<SocketAddress> get_local_address();
+  auto get_local_address() -> Glib::RefPtr<SocketAddress>;
 
   /** Gets the local address of the socket client.
    *
@@ -297,7 +297,7 @@ public:
    *
    * @return A SocketAddress or <tt>nullptr</tt>. Do not free.
    */
-  Glib::RefPtr<const SocketAddress> get_local_address() const;
+  auto get_local_address() const -> Glib::RefPtr<const SocketAddress>;
 
   /** Sets the local address of the socket client.
    * The sockets created by this object will bound to the
@@ -341,10 +341,10 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<SocketConnection> connect(const Glib::RefPtr<SocketConnectable>& connectable, const Glib::RefPtr<Cancellable>& cancellable);
+  auto connect(const Glib::RefPtr<SocketConnectable>& connectable, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketConnection>;
 
   /// A connect() convenience overload.
-  Glib::RefPtr<SocketConnection> connect(const Glib::RefPtr<SocketConnectable>& connectable);
+  auto connect(const Glib::RefPtr<SocketConnectable>& connectable) -> Glib::RefPtr<SocketConnection>;
 
 
   /** This is a helper function for g_socket_client_connect().
@@ -387,10 +387,10 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<SocketConnection> connect_to_host(const Glib::ustring& host_and_port, guint16 default_port, const Glib::RefPtr<Cancellable>& cancellable);
+  auto connect_to_host(const Glib::ustring& host_and_port, guint16 default_port, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketConnection>;
 
   /// A connect_to_host() convenience overload.
-  Glib::RefPtr<SocketConnection> connect_to_host(const Glib::ustring& host_and_port, guint16 default_port);
+  auto connect_to_host(const Glib::ustring& host_and_port, guint16 default_port) -> Glib::RefPtr<SocketConnection>;
 
 
   /** Attempts to create a TCP connection to a service.
@@ -415,10 +415,10 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<SocketConnection> connect_to_service(const Glib::ustring& domain, const Glib::ustring& service, const Glib::RefPtr<Cancellable>& cancellable);
+  auto connect_to_service(const Glib::ustring& domain, const Glib::ustring& service, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketConnection>;
 
   /// A connect_to_service() convenience overload.
-  Glib::RefPtr<SocketConnection> connect_to_service(const Glib::ustring& domain, const Glib::ustring& service);
+  auto connect_to_service(const Glib::ustring& domain, const Glib::ustring& service) -> Glib::RefPtr<SocketConnection>;
 
 
   /** This is a helper function for g_socket_client_connect().
@@ -452,10 +452,10 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<SocketConnection> connect_to_uri(const Glib::ustring& uri, guint16 default_port, const Glib::RefPtr<Cancellable>& cancellable);
+  auto connect_to_uri(const Glib::ustring& uri, guint16 default_port, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketConnection>;
 
   /// A connect_to_uri() convenience overload.
-  Glib::RefPtr<SocketConnection> connect_to_uri(const Glib::ustring& uri, guint16 default_port);
+  auto connect_to_uri(const Glib::ustring& uri, guint16 default_port) -> Glib::RefPtr<SocketConnection>;
 
 
   /** This is the asynchronous version of g_socket_client_connect().
@@ -501,7 +501,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<SocketConnection> connect_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto connect_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<SocketConnection>;
 
 
   /** This is the asynchronous version of g_socket_client_connect_to_host().
@@ -540,7 +540,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<SocketConnection> connect_to_host_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto connect_to_host_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<SocketConnection>;
 
 
   /** This is the asynchronous version of
@@ -575,7 +575,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<SocketConnection> connect_to_service_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto connect_to_service_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<SocketConnection>;
 
 
   /** This is the asynchronous version of g_socket_client_connect_to_uri().
@@ -613,7 +613,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<SocketConnection> connect_to_uri_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto connect_to_uri_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<SocketConnection>;
 
 
   /** Gets the proxy enable state; see g_socket_client_set_enable_proxy()
@@ -622,7 +622,7 @@ public:
    *
    * @return Whether proxying is enabled.
    */
-  bool get_enable_proxy() const;
+  auto get_enable_proxy() const -> bool;
 
   /** Sets whether or not @a client attempts to make connections via a
    * proxy server. When enabled (the default), SocketClient will use a
@@ -645,7 +645,7 @@ public:
    *
    * @return Whether @a client uses TLS.
    */
-  bool get_tls() const;
+  auto get_tls() const -> bool;
 
   /** Sets whether @a client creates TLS (aka SSL) connections. If @a tls is
    * <tt>true</tt>, @a client will wrap its connections in a TlsClientConnection
@@ -690,7 +690,7 @@ public:
    *
    * @return The TLS validation flags.
    */
-  TlsCertificateFlags get_tls_validation_flags() const;
+  auto get_tls_validation_flags() const -> TlsCertificateFlags;
 #endif // GIOMM_DISABLE_DEPRECATED
 
 
@@ -724,7 +724,7 @@ public:
    * @return The ProxyResolver being used by
    *  @a client.
    */
-  Glib::RefPtr<ProxyResolver> get_proxy_resolver();
+  auto get_proxy_resolver() -> Glib::RefPtr<ProxyResolver>;
 
   /** Gets the ProxyResolver being used by @a client. Normally, this will
    * be the resolver returned by g_proxy_resolver_get_default(), but you
@@ -735,7 +735,7 @@ public:
    * @return The ProxyResolver being used by
    *  @a client.
    */
-  Glib::RefPtr<const ProxyResolver> get_proxy_resolver() const;
+  auto get_proxy_resolver() const -> Glib::RefPtr<const ProxyResolver>;
 
   /** Overrides the ProxyResolver used by @a client. You can call this if
    * you want to use specific proxies, rather than using the system
@@ -761,7 +761,7 @@ public:
    *
    * @return The timeout in seconds.
    */
-  guint get_timeout() const;
+  auto get_timeout() const -> guint;
 
   /** Sets the I/O timeout for sockets created by @a client. @a timeout is a
    * time in seconds, or 0 for no timeout (the default).
@@ -808,7 +808,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< SocketFamily > property_family() ;
+  auto property_family() -> Glib::PropertyProxy< SocketFamily > ;
 
 /** The sockets address family to use for socket construction.
    *
@@ -817,21 +817,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< SocketFamily > property_family() const;
+  auto property_family() const -> Glib::PropertyProxy_ReadOnly< SocketFamily >;
 
   /** The local address constructed sockets will be bound to.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<SocketAddress> > property_local_address() ;
+  auto property_local_address() -> Glib::PropertyProxy< Glib::RefPtr<SocketAddress> > ;
 
 /** The local address constructed sockets will be bound to.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> > property_local_address() const;
+  auto property_local_address() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> >;
 
   /** The protocol to use for socket construction, or 0 for default.
    *
@@ -840,7 +840,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Socket::Protocol > property_protocol() ;
+  auto property_protocol() -> Glib::PropertyProxy< Socket::Protocol > ;
 
 /** The protocol to use for socket construction, or 0 for default.
    *
@@ -849,7 +849,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Socket::Protocol > property_protocol() const;
+  auto property_protocol() const -> Glib::PropertyProxy_ReadOnly< Socket::Protocol >;
 
   /** The sockets type to use for socket construction.
    *
@@ -858,7 +858,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Socket::Type > property_type() ;
+  auto property_type() -> Glib::PropertyProxy< Socket::Type > ;
 
 /** The sockets type to use for socket construction.
    *
@@ -867,7 +867,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Socket::Type > property_type() const;
+  auto property_type() const -> Glib::PropertyProxy_ReadOnly< Socket::Type >;
 
   /** The I/O timeout for sockets, or 0 for none.
    *
@@ -876,7 +876,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_timeout() ;
+  auto property_timeout() -> Glib::PropertyProxy< guint > ;
 
 /** The I/O timeout for sockets, or 0 for none.
    *
@@ -885,7 +885,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_timeout() const;
+  auto property_timeout() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** Enable proxy support.
    *
@@ -894,7 +894,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_enable_proxy() ;
+  auto property_enable_proxy() -> Glib::PropertyProxy< bool > ;
 
 /** Enable proxy support.
    *
@@ -903,7 +903,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_enable_proxy() const;
+  auto property_enable_proxy() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether to create TLS connections.
    *
@@ -912,7 +912,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_tls() ;
+  auto property_tls() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to create TLS connections.
    *
@@ -921,7 +921,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_tls() const;
+  auto property_tls() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 #ifndef GIOMM_DISABLE_DEPRECATED
@@ -952,7 +952,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< TlsCertificateFlags > property_tls_validation_flags() ;
+  auto property_tls_validation_flags() -> Glib::PropertyProxy< TlsCertificateFlags > ;
 
 /** The TLS validation flags used when creating TLS connections. The
    * default value is Gio::TlsCertificateFlags::VALIDATE_ALL.
@@ -980,7 +980,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< TlsCertificateFlags > property_tls_validation_flags() const;
+  auto property_tls_validation_flags() const -> Glib::PropertyProxy_ReadOnly< TlsCertificateFlags >;
 
 #endif // GIOMM_DISABLE_DEPRECATED
 
@@ -991,7 +991,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<ProxyResolver> > property_proxy_resolver() ;
+  auto property_proxy_resolver() -> Glib::PropertyProxy< Glib::RefPtr<ProxyResolver> > ;
 
 /** The proxy resolver to use
    *
@@ -1000,7 +1000,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ProxyResolver> > property_proxy_resolver() const;
+  auto property_proxy_resolver() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ProxyResolver> >;
 
 
   /**
@@ -1066,7 +1066,7 @@ public:
    * @param connection The current representation of the connection.
    */
 
-  Glib::SignalProxy<void(SocketClientEvent, const Glib::RefPtr<SocketConnectable>&, const Glib::RefPtr<IOStream>&)> signal_event();
+  auto signal_event() -> Glib::SignalProxy<void(SocketClientEvent, const Glib::RefPtr<SocketConnectable>&, const Glib::RefPtr<IOStream>&)>;
 
 
 public:
@@ -1098,7 +1098,7 @@ namespace Glib
    * @relates Gio::SocketClient
    */
   GIOMM_API
-  Glib::RefPtr<Gio::SocketClient> wrap(GSocketClient* object, bool take_copy = false);
+  auto wrap(GSocketClient* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketClient>;
 }
 
 

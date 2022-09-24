@@ -40,7 +40,7 @@ ListViewText::TextModelColumns::~TextModelColumns() noexcept
     delete[] m_columns;
 }
 
-guint ListViewText::TextModelColumns::get_num_columns() const
+auto ListViewText::TextModelColumns::get_num_columns() const -> guint
 {
   return m_columns_count;
 }
@@ -81,14 +81,14 @@ void ListViewText::set_column_title(guint column, const Glib::ustring& title)
   get_column(column)->set_title(title);
 }
 
-Glib::ustring ListViewText::get_column_title(guint column) const
+auto ListViewText::get_column_title(guint column) const -> Glib::ustring
 {
   g_return_val_if_fail( column < get_columns().size(), "" ); //Using Glib::ustring() fails sometimes: Bug #352226
 
   return get_column(column)->get_title();
 }
 
-guint ListViewText::append(const Glib::ustring& column_one_value)
+auto ListViewText::append(const Glib::ustring& column_one_value) -> guint
 {
   auto newRow = *(m_model->append());
 
@@ -122,7 +122,7 @@ void ListViewText::clear_items()
   m_model->clear();
 }
 
-Glib::ustring ListViewText::get_text(guint row, guint column) const
+auto ListViewText::get_text(guint row, guint column) const -> Glib::ustring
 {
   Glib::ustring result;
 
@@ -150,17 +150,17 @@ void ListViewText::set_text(guint row, const Glib::ustring& value)
   childrow.set_value(0, value);
 }
 
-guint ListViewText::size() const
+auto ListViewText::size() const -> guint
 {
   return (guint)m_model->children().size();
 }
 
-guint ListViewText::get_num_columns() const
+auto ListViewText::get_num_columns() const -> guint
 {
   return m_model_columns.get_num_columns();
 }
 
-ListViewText::SelectionList ListViewText::get_selected()
+auto ListViewText::get_selected() -> ListViewText::SelectionList
 {
   Glib::RefPtr<Gtk::TreeSelection> selected = get_selection();
   std::vector<TreeModel::Path> selectedRows = selected->get_selected_rows();

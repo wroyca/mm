@@ -46,7 +46,7 @@ ToplevelSize::ToplevelSize(ToplevelSize&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-ToplevelSize& ToplevelSize::operator=(ToplevelSize&& other) noexcept
+auto ToplevelSize::operator=(ToplevelSize&& other) noexcept -> ToplevelSize&
 {
   ToplevelSize temp(std::move(other));
   std::swap(gobject_, temp.gobject_);

@@ -99,7 +99,7 @@ public:
 
   // noncopyable
   SelectionModel(const SelectionModel&) = delete;
-  SelectionModel& operator=(const SelectionModel&) = delete;
+  auto operator=(const SelectionModel&) -> SelectionModel& = delete;
 
 private:
   friend class SelectionModel_Class;
@@ -133,7 +133,7 @@ protected:
 public:
 
   SelectionModel(SelectionModel&& src) noexcept;
-  SelectionModel& operator=(SelectionModel&& src) noexcept;
+  auto operator=(SelectionModel&& src) noexcept -> SelectionModel&;
 
   ~SelectionModel() noexcept override;
 
@@ -141,17 +141,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkSelectionModel*       gobj()       { return reinterpret_cast<GtkSelectionModel*>(gobject_); }
+  auto       gobj() -> GtkSelectionModel*       { return reinterpret_cast<GtkSelectionModel*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkSelectionModel* gobj() const { return reinterpret_cast<GtkSelectionModel*>(gobject_); }
+  auto gobj() const -> const GtkSelectionModel* { return reinterpret_cast<GtkSelectionModel*>(gobject_); }
 
 private:
 
@@ -163,7 +163,7 @@ public:
    * @param position The position of the item to query.
    * @return <tt>true</tt> if the item is selected.
    */
-  bool is_selected(guint position) const;
+  auto is_selected(guint position) const -> bool;
 
   /** Gets the set containing all currently selected items in the model.
    *
@@ -175,7 +175,7 @@ public:
    * selected in @a model. If no items are selected, the bitset is empty.
    * The bitset must not be modified.
    */
-  Glib::RefPtr<const Bitset> get_selection() const;
+  auto get_selection() const -> Glib::RefPtr<const Bitset>;
 
   /** Gets the set of selected items in a range.
    *
@@ -191,7 +191,7 @@ public:
    * for the given range with all other values being undefined.
    * The bitset must not be modified.
    */
-  Glib::RefPtr<const Bitset> get_selection(guint position, guint n_items) const;
+  auto get_selection(guint position, guint n_items) const -> Glib::RefPtr<const Bitset>;
 
   /** Requests to select an item in the model.
    *
@@ -200,7 +200,7 @@ public:
    * @return <tt>true</tt> if this action was supported and no fallback should be
    * tried. This does not mean the item was selected.
    */
-  bool select_item(guint position, bool unselect_rest);
+  auto select_item(guint position, bool unselect_rest) -> bool;
 
   /** Requests to unselect an item in the model.
    *
@@ -208,7 +208,7 @@ public:
    * @return <tt>true</tt> if this action was supported and no fallback should be
    * tried. This does not mean the item was unselected.
    */
-  bool unselect_item(guint position);
+  auto unselect_item(guint position) -> bool;
 
   /** Requests to select a range of items in the model.
    *
@@ -218,7 +218,7 @@ public:
    * @return <tt>true</tt> if this action was supported and no fallback should be
    * tried. This does not mean the range was selected.
    */
-  bool select_range(guint position, guint n_items, bool unselect_rest);
+  auto select_range(guint position, guint n_items, bool unselect_rest) -> bool;
 
   /** Requests to unselect a range of items in the model.
    *
@@ -227,21 +227,21 @@ public:
    * @return <tt>true</tt> if this action was supported and no fallback should be
    * tried. This does not mean the range was unselected.
    */
-  bool unselect_range(guint position, guint n_items);
+  auto unselect_range(guint position, guint n_items) -> bool;
 
   /** Requests to select all items in the model.
    *
    * @return <tt>true</tt> if this action was supported and no fallback should be
    * tried. This does not mean that all items are now selected.
    */
-  bool select_all();
+  auto select_all() -> bool;
 
   /** Requests to unselect all items in the model.
    *
    * @return <tt>true</tt> if this action was supported and no fallback should be
    * tried. This does not mean that all items are now unselected.
    */
-  bool unselect_all();
+  auto unselect_all() -> bool;
 
   /** Make selection changes.
    *
@@ -268,7 +268,7 @@ public:
    * tried. This does not mean that all items were updated according
    * to the inputs.
    */
-  bool set_selection(const Glib::RefPtr<const Bitset>& selected, const Glib::RefPtr<const Bitset>& mask);
+  auto set_selection(const Glib::RefPtr<const Bitset>& selected, const Glib::RefPtr<const Bitset>& mask) -> bool;
 
   // no_default_handler because the wrapped C signal has no default handler.
 
@@ -289,7 +289,7 @@ public:
    * @param n_items Number of items with changes.
    */
 
-  Glib::SignalProxy<void(guint, guint)> signal_selection_changed();
+  auto signal_selection_changed() -> Glib::SignalProxy<void(guint, guint)>;
 
 
 protected:
@@ -305,25 +305,25 @@ protected:
    */
   void selection_changed(guint position, guint n_items);
 
-    virtual bool is_selected_vfunc(guint position) const;
+    virtual auto is_selected_vfunc(guint position) const -> bool;
 
 
-    virtual Glib::RefPtr<const Bitset> get_selection_vfunc(guint position, guint n_items);
+    virtual auto get_selection_vfunc(guint position, guint n_items) -> Glib::RefPtr<const Bitset>;
 
-    virtual bool select_item_vfunc(guint position, bool unselect_rest);
+    virtual auto select_item_vfunc(guint position, bool unselect_rest) -> bool;
 
-    virtual bool unselect_item_vfunc(guint position);
+    virtual auto unselect_item_vfunc(guint position) -> bool;
 
-    virtual bool select_range_vfunc(guint position, guint n_items, bool unselect_rest);
+    virtual auto select_range_vfunc(guint position, guint n_items, bool unselect_rest) -> bool;
 
-    virtual bool unselect_range_vfunc(guint position, guint n_items);
+    virtual auto unselect_range_vfunc(guint position, guint n_items) -> bool;
 
-    virtual bool select_all_vfunc();
+    virtual auto select_all_vfunc() -> bool;
 
-    virtual bool unselect_all_vfunc();
+    virtual auto unselect_all_vfunc() -> bool;
 
 
-    virtual bool set_selection_vfunc(const Glib::RefPtr<const Bitset>& selected, const Glib::RefPtr<const Bitset>& mask);
+    virtual auto set_selection_vfunc(const Glib::RefPtr<const Bitset>& selected, const Glib::RefPtr<const Bitset>& mask) -> bool;
 
 
 public:
@@ -353,7 +353,7 @@ namespace Glib
    * @relates Gtk::SelectionModel
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::SelectionModel> wrap(GtkSelectionModel* object, bool take_copy = false);
+  auto wrap(GtkSelectionModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SelectionModel>;
 
 } // namespace Glib
 

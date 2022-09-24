@@ -40,7 +40,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo SearchEntry_signal_search_changed_info =
+const Glib::SignalProxyInfo SearchEntry_signal_search_changed_info =
 {
   "search-changed",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -48,7 +48,7 @@ static const Glib::SignalProxyInfo SearchEntry_signal_search_changed_info =
 };
 
 
-static const Glib::SignalProxyInfo SearchEntry_signal_next_match_info =
+const Glib::SignalProxyInfo SearchEntry_signal_next_match_info =
 {
   "next-match",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -56,7 +56,7 @@ static const Glib::SignalProxyInfo SearchEntry_signal_next_match_info =
 };
 
 
-static const Glib::SignalProxyInfo SearchEntry_signal_previous_match_info =
+const Glib::SignalProxyInfo SearchEntry_signal_previous_match_info =
 {
   "previous-match",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -64,7 +64,7 @@ static const Glib::SignalProxyInfo SearchEntry_signal_previous_match_info =
 };
 
 
-static const Glib::SignalProxyInfo SearchEntry_signal_stop_search_info =
+const Glib::SignalProxyInfo SearchEntry_signal_stop_search_info =
 {
   "stop-search",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -72,7 +72,7 @@ static const Glib::SignalProxyInfo SearchEntry_signal_stop_search_info =
 };
 
 
-static const Glib::SignalProxyInfo SearchEntry_signal_search_started_info =
+const Glib::SignalProxyInfo SearchEntry_signal_search_started_info =
 {
   "search-started",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -86,7 +86,7 @@ static const Glib::SignalProxyInfo SearchEntry_signal_search_started_info =
 namespace Glib
 {
 
-Gtk::SearchEntry* wrap(GtkSearchEntry* object, bool take_copy)
+auto wrap(GtkSearchEntry* object, bool take_copy) -> Gtk::SearchEntry*
 {
   return dynamic_cast<Gtk::SearchEntry *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -99,7 +99,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& SearchEntry_Class::init()
+auto SearchEntry_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -130,7 +130,7 @@ void SearchEntry_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* SearchEntry_Class::wrap_new(GObject* o)
+auto SearchEntry_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new SearchEntry((GtkSearchEntry*)(o)));
 
@@ -156,7 +156,7 @@ SearchEntry::SearchEntry(SearchEntry&& src) noexcept
 : Gtk::Entry(std::move(src))
 {}
 
-SearchEntry& SearchEntry::operator=(SearchEntry&& src) noexcept
+auto SearchEntry::operator=(SearchEntry&& src) noexcept -> SearchEntry&
 {
   Gtk::Entry::operator=(std::move(src));
   return *this;
@@ -169,13 +169,13 @@ SearchEntry::~SearchEntry() noexcept
 
 SearchEntry::CppClassType SearchEntry::searchentry_class_; // initialize static member
 
-GType SearchEntry::get_type()
+auto SearchEntry::get_type() -> GType
 {
   return searchentry_class_.init().get_type();
 }
 
 
-GType SearchEntry::get_base_type()
+auto SearchEntry::get_base_type() -> GType
 {
   return gtk_search_entry_get_type();
 }
@@ -196,12 +196,12 @@ void SearchEntry::set_key_capture_widget(Widget& widget)
   gtk_search_entry_set_key_capture_widget(gobj(), (widget).gobj());
 }
 
-Widget* SearchEntry::get_key_capture_widget()
+auto SearchEntry::get_key_capture_widget() -> Widget*
 {
   return Glib::wrap(gtk_search_entry_get_key_capture_widget(gobj()));
 }
 
-const Widget* SearchEntry::get_key_capture_widget() const
+auto SearchEntry::get_key_capture_widget() const -> const Widget*
 {
   return const_cast<SearchEntry*>(this)->get_key_capture_widget();
 }
@@ -211,68 +211,68 @@ void SearchEntry::set_search_delay(unsigned int delay)
   gtk_search_entry_set_search_delay(gobj(), delay);
 }
 
-unsigned int SearchEntry::get_search_delay() const
+auto SearchEntry::get_search_delay() const -> unsigned int
 {
   return gtk_search_entry_get_search_delay(const_cast<GtkSearchEntry*>(gobj()));
 }
 
 
-Glib::SignalProxy<void()> SearchEntry::signal_search_changed()
+auto SearchEntry::signal_search_changed() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &SearchEntry_signal_search_changed_info);
 }
 
 
-Glib::SignalProxy<void()> SearchEntry::signal_next_match()
+auto SearchEntry::signal_next_match() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &SearchEntry_signal_next_match_info);
 }
 
 
-Glib::SignalProxy<void()> SearchEntry::signal_previous_match()
+auto SearchEntry::signal_previous_match() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &SearchEntry_signal_previous_match_info);
 }
 
 
-Glib::SignalProxy<void()> SearchEntry::signal_stop_search()
+auto SearchEntry::signal_stop_search() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &SearchEntry_signal_stop_search_info);
 }
 
 
-Glib::SignalProxy<void()> SearchEntry::signal_search_started()
+auto SearchEntry::signal_search_started() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &SearchEntry_signal_search_started_info);
 }
 
 
-Glib::PropertyProxy< Glib::ustring > SearchEntry::property_placeholder_text()
+auto SearchEntry::property_placeholder_text() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "placeholder-text");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > SearchEntry::property_placeholder_text() const
+auto SearchEntry::property_placeholder_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "placeholder-text");
 }
 
-Glib::PropertyProxy< bool > SearchEntry::property_activates_default()
+auto SearchEntry::property_activates_default() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "activates-default");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > SearchEntry::property_activates_default() const
+auto SearchEntry::property_activates_default() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "activates-default");
 }
 
-Glib::PropertyProxy< unsigned int > SearchEntry::property_search_delay()
+auto SearchEntry::property_search_delay() -> Glib::PropertyProxy< unsigned int >
 {
   return Glib::PropertyProxy< unsigned int >(this, "search-delay");
 }
 
-Glib::PropertyProxy_ReadOnly< unsigned int > SearchEntry::property_search_delay() const
+auto SearchEntry::property_search_delay() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
   return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "search-delay");
 }

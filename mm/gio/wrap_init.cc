@@ -169,236 +169,236 @@ extern "C"
 {
 //Declarations of the *_get_type() functions:
 
-GType g_app_info_monitor_get_type(void);
-GType g_app_launch_context_get_type(void);
-GType g_application_get_type(void);
-GType g_application_command_line_get_type(void);
-GType g_buffered_input_stream_get_type(void);
-GType g_buffered_output_stream_get_type(void);
-GType g_cancellable_get_type(void);
-GType g_charset_converter_get_type(void);
-GType g_converter_input_stream_get_type(void);
-GType g_converter_output_stream_get_type(void);
-GType g_credentials_get_type(void);
-GType g_data_input_stream_get_type(void);
-GType g_data_output_stream_get_type(void);
-GType g_dbus_action_group_get_type(void);
-GType g_dbus_auth_observer_get_type(void);
-GType g_dbus_connection_get_type(void);
-GType g_dbus_interface_skeleton_get_type(void);
-GType g_dbus_menu_model_get_type(void);
-GType g_dbus_message_get_type(void);
-GType g_dbus_method_invocation_get_type(void);
-GType g_dbus_object_manager_client_get_type(void);
-GType g_dbus_object_manager_server_get_type(void);
-GType g_dbus_object_proxy_get_type(void);
-GType g_dbus_object_skeleton_get_type(void);
-GType g_dbus_proxy_get_type(void);
-GType g_dbus_server_get_type(void);
+auto g_app_info_monitor_get_type(void) -> GType;
+auto g_app_launch_context_get_type(void) -> GType;
+auto g_application_get_type(void) -> GType;
+auto g_application_command_line_get_type(void) -> GType;
+auto g_buffered_input_stream_get_type(void) -> GType;
+auto g_buffered_output_stream_get_type(void) -> GType;
+auto g_cancellable_get_type(void) -> GType;
+auto g_charset_converter_get_type(void) -> GType;
+auto g_converter_input_stream_get_type(void) -> GType;
+auto g_converter_output_stream_get_type(void) -> GType;
+auto g_credentials_get_type(void) -> GType;
+auto g_data_input_stream_get_type(void) -> GType;
+auto g_data_output_stream_get_type(void) -> GType;
+auto g_dbus_action_group_get_type(void) -> GType;
+auto g_dbus_auth_observer_get_type(void) -> GType;
+auto g_dbus_connection_get_type(void) -> GType;
+auto g_dbus_interface_skeleton_get_type(void) -> GType;
+auto g_dbus_menu_model_get_type(void) -> GType;
+auto g_dbus_message_get_type(void) -> GType;
+auto g_dbus_method_invocation_get_type(void) -> GType;
+auto g_dbus_object_manager_client_get_type(void) -> GType;
+auto g_dbus_object_manager_server_get_type(void) -> GType;
+auto g_dbus_object_proxy_get_type(void) -> GType;
+auto g_dbus_object_skeleton_get_type(void) -> GType;
+auto g_dbus_proxy_get_type(void) -> GType;
+auto g_dbus_server_get_type(void) -> GType;
 #if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
-GType g_desktop_app_info_get_type(void);
+auto g_desktop_app_info_get_type(void) -> GType;
 #endif // if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
-GType g_emblem_get_type(void);
-GType g_emblemed_icon_get_type(void);
-GType g_file_enumerator_get_type(void);
-GType g_file_icon_get_type(void);
-GType g_file_info_get_type(void);
-GType g_file_input_stream_get_type(void);
-GType g_file_io_stream_get_type(void);
-GType g_file_monitor_get_type(void);
-GType g_filename_completer_get_type(void);
-GType g_file_output_stream_get_type(void);
-GType g_filter_input_stream_get_type(void);
-GType g_filter_output_stream_get_type(void);
-GType g_inet_address_get_type(void);
-GType g_inet_socket_address_get_type(void);
-GType g_input_stream_get_type(void);
-GType g_io_stream_get_type(void);
-GType g_list_store_get_type(void);
-GType g_memory_input_stream_get_type(void);
-GType g_memory_output_stream_get_type(void);
-GType g_menu_get_type(void);
-GType g_menu_attribute_iter_get_type(void);
-GType g_menu_item_get_type(void);
-GType g_menu_link_iter_get_type(void);
-GType g_menu_model_get_type(void);
-GType g_mount_operation_get_type(void);
-GType g_network_address_get_type(void);
-GType g_network_service_get_type(void);
-GType g_notification_get_type(void);
-GType g_output_stream_get_type(void);
-GType g_permission_get_type(void);
-GType g_property_action_get_type(void);
-GType g_proxy_address_get_type(void);
-GType g_resolver_get_type(void);
-GType g_settings_get_type(void);
-GType g_simple_action_get_type(void);
-GType g_simple_action_group_get_type(void);
-GType g_simple_io_stream_get_type(void);
-GType g_simple_permission_get_type(void);
-GType g_socket_get_type(void);
-GType g_socket_address_get_type(void);
-GType g_socket_address_enumerator_get_type(void);
-GType g_socket_client_get_type(void);
-GType g_socket_connection_get_type(void);
-GType g_socket_control_message_get_type(void);
-GType g_socket_listener_get_type(void);
-GType g_socket_service_get_type(void);
-GType g_tcp_connection_get_type(void);
-GType g_tcp_wrapper_connection_get_type(void);
-GType g_themed_icon_get_type(void);
-GType g_threaded_socket_service_get_type(void);
-GType g_tls_certificate_get_type(void);
-GType g_tls_connection_get_type(void);
-GType g_tls_database_get_type(void);
-GType g_tls_interaction_get_type(void);
-GType g_tls_password_get_type(void);
+auto g_emblem_get_type(void) -> GType;
+auto g_emblemed_icon_get_type(void) -> GType;
+auto g_file_enumerator_get_type(void) -> GType;
+auto g_file_icon_get_type(void) -> GType;
+auto g_file_info_get_type(void) -> GType;
+auto g_file_input_stream_get_type(void) -> GType;
+auto g_file_io_stream_get_type(void) -> GType;
+auto g_file_monitor_get_type(void) -> GType;
+auto g_filename_completer_get_type(void) -> GType;
+auto g_file_output_stream_get_type(void) -> GType;
+auto g_filter_input_stream_get_type(void) -> GType;
+auto g_filter_output_stream_get_type(void) -> GType;
+auto g_inet_address_get_type(void) -> GType;
+auto g_inet_socket_address_get_type(void) -> GType;
+auto g_input_stream_get_type(void) -> GType;
+auto g_io_stream_get_type(void) -> GType;
+auto g_list_store_get_type(void) -> GType;
+auto g_memory_input_stream_get_type(void) -> GType;
+auto g_memory_output_stream_get_type(void) -> GType;
+auto g_menu_get_type(void) -> GType;
+auto g_menu_attribute_iter_get_type(void) -> GType;
+auto g_menu_item_get_type(void) -> GType;
+auto g_menu_link_iter_get_type(void) -> GType;
+auto g_menu_model_get_type(void) -> GType;
+auto g_mount_operation_get_type(void) -> GType;
+auto g_network_address_get_type(void) -> GType;
+auto g_network_service_get_type(void) -> GType;
+auto g_notification_get_type(void) -> GType;
+auto g_output_stream_get_type(void) -> GType;
+auto g_permission_get_type(void) -> GType;
+auto g_property_action_get_type(void) -> GType;
+auto g_proxy_address_get_type(void) -> GType;
+auto g_resolver_get_type(void) -> GType;
+auto g_settings_get_type(void) -> GType;
+auto g_simple_action_get_type(void) -> GType;
+auto g_simple_action_group_get_type(void) -> GType;
+auto g_simple_io_stream_get_type(void) -> GType;
+auto g_simple_permission_get_type(void) -> GType;
+auto g_socket_get_type(void) -> GType;
+auto g_socket_address_get_type(void) -> GType;
+auto g_socket_address_enumerator_get_type(void) -> GType;
+auto g_socket_client_get_type(void) -> GType;
+auto g_socket_connection_get_type(void) -> GType;
+auto g_socket_control_message_get_type(void) -> GType;
+auto g_socket_listener_get_type(void) -> GType;
+auto g_socket_service_get_type(void) -> GType;
+auto g_tcp_connection_get_type(void) -> GType;
+auto g_tcp_wrapper_connection_get_type(void) -> GType;
+auto g_themed_icon_get_type(void) -> GType;
+auto g_threaded_socket_service_get_type(void) -> GType;
+auto g_tls_certificate_get_type(void) -> GType;
+auto g_tls_connection_get_type(void) -> GType;
+auto g_tls_database_get_type(void) -> GType;
+auto g_tls_interaction_get_type(void) -> GType;
+auto g_tls_password_get_type(void) -> GType;
 #ifndef G_OS_WIN32
-GType g_unix_connection_get_type(void);
+auto g_unix_connection_get_type(void) -> GType;
 #endif // ifndef G_OS_WIN32
 #ifndef G_OS_WIN32
-GType g_unix_credentials_message_get_type(void);
+auto g_unix_credentials_message_get_type(void) -> GType;
 #endif // ifndef G_OS_WIN32
 #ifndef G_OS_WIN32
-GType g_unix_fd_list_get_type(void);
+auto g_unix_fd_list_get_type(void) -> GType;
 #endif // ifndef G_OS_WIN32
 #ifndef G_OS_WIN32
-GType g_unix_fd_message_get_type(void);
+auto g_unix_fd_message_get_type(void) -> GType;
 #endif // ifndef G_OS_WIN32
 #ifndef G_OS_WIN32
-GType g_unix_input_stream_get_type(void);
+auto g_unix_input_stream_get_type(void) -> GType;
 #endif // ifndef G_OS_WIN32
 #ifndef G_OS_WIN32
-GType g_unix_output_stream_get_type(void);
+auto g_unix_output_stream_get_type(void) -> GType;
 #endif // ifndef G_OS_WIN32
 #ifndef G_OS_WIN32
-GType g_unix_socket_address_get_type(void);
+auto g_unix_socket_address_get_type(void) -> GType;
 #endif // ifndef G_OS_WIN32
-GType g_volume_monitor_get_type(void);
-GType g_zlib_compressor_get_type(void);
-GType g_zlib_decompressor_get_type(void);
+auto g_volume_monitor_get_type(void) -> GType;
+auto g_zlib_compressor_get_type(void) -> GType;
+auto g_zlib_decompressor_get_type(void) -> GType;
 
 //Declarations of the *_error_quark() functions:
 
-GQuark g_dbus_error_quark(void);
-GQuark g_io_error_quark(void);
-GQuark g_resolver_error_quark(void);
-GQuark g_tls_error_quark(void);
-GQuark g_resource_error_quark(void);
+auto g_dbus_error_quark(void) -> GQuark;
+auto g_io_error_quark(void) -> GQuark;
+auto g_resolver_error_quark(void) -> GQuark;
+auto g_tls_error_quark(void) -> GQuark;
+auto g_resource_error_quark(void) -> GQuark;
 } // extern "C"
 
 namespace Gio {
 
 //Declarations of the *_Class::wrap_new() methods, instead of including all the private headers:
 
-class AppInfoMonitor_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class AppLaunchContext_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Application_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class ApplicationCommandLine_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class BufferedInputStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class BufferedOutputStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Cancellable_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class CharsetConverter_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class ConverterInputStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class ConverterOutputStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Credentials_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class DataInputStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class DataOutputStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-namespace DBus { class ActionGroup_Class { public: static Glib::ObjectBase* wrap_new(GObject*); }; }
-namespace DBus { class AuthObserver_Class { public: static Glib::ObjectBase* wrap_new(GObject*); }; }
-namespace DBus { class Connection_Class { public: static Glib::ObjectBase* wrap_new(GObject*); }; }
-namespace DBus { class InterfaceSkeleton_Class { public: static Glib::ObjectBase* wrap_new(GObject*); }; }
-namespace DBus { class MenuModel_Class { public: static Glib::ObjectBase* wrap_new(GObject*); }; }
-namespace DBus { class Message_Class { public: static Glib::ObjectBase* wrap_new(GObject*); }; }
-namespace DBus { class MethodInvocation_Class { public: static Glib::ObjectBase* wrap_new(GObject*); }; }
-namespace DBus { class ObjectManagerClient_Class { public: static Glib::ObjectBase* wrap_new(GObject*); }; }
-namespace DBus { class ObjectManagerServer_Class { public: static Glib::ObjectBase* wrap_new(GObject*); }; }
-namespace DBus { class ObjectProxy_Class { public: static Glib::ObjectBase* wrap_new(GObject*); }; }
-namespace DBus { class ObjectSkeleton_Class { public: static Glib::ObjectBase* wrap_new(GObject*); }; }
-namespace DBus { class Proxy_Class { public: static Glib::ObjectBase* wrap_new(GObject*); }; }
-namespace DBus { class Server_Class { public: static Glib::ObjectBase* wrap_new(GObject*); }; }
+class AppInfoMonitor_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class AppLaunchContext_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Application_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class ApplicationCommandLine_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class BufferedInputStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class BufferedOutputStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Cancellable_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class CharsetConverter_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class ConverterInputStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class ConverterOutputStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Credentials_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class DataInputStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class DataOutputStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+namespace DBus { class ActionGroup_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; }; }
+namespace DBus { class AuthObserver_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; }; }
+namespace DBus { class Connection_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; }; }
+namespace DBus { class InterfaceSkeleton_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; }; }
+namespace DBus { class MenuModel_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; }; }
+namespace DBus { class Message_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; }; }
+namespace DBus { class MethodInvocation_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; }; }
+namespace DBus { class ObjectManagerClient_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; }; }
+namespace DBus { class ObjectManagerServer_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; }; }
+namespace DBus { class ObjectProxy_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; }; }
+namespace DBus { class ObjectSkeleton_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; }; }
+namespace DBus { class Proxy_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; }; }
+namespace DBus { class Server_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; }; }
 #if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
-class DesktopAppInfo_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
+class DesktopAppInfo_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 #endif // if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
-class Emblem_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class EmblemedIcon_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class FileEnumerator_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class FileIcon_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class FileInfo_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class FileInputStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class FileIOStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class FileMonitor_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class FilenameCompleter_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class FileOutputStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class FilterInputStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class FilterOutputStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class InetAddress_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class InetSocketAddress_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class InputStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class IOStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class ListStoreBase_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class MemoryInputStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class MemoryOutputStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Menu_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class MenuAttributeIter_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class MenuItem_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class MenuLinkIter_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class MenuModel_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class MountOperation_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class NetworkAddress_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class NetworkService_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Notification_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class OutputStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Permission_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class PropertyAction_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class ProxyAddress_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Resolver_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Settings_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class SimpleAction_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class SimpleActionGroup_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class SimpleIOStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class SimplePermission_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class Socket_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class SocketAddress_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class SocketAddressEnumerator_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class SocketClient_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class SocketConnection_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class SocketControlMessage_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class SocketListener_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class SocketService_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class TcpConnection_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class TcpWrapperConnection_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class ThemedIcon_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class ThreadedSocketService_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class TlsCertificate_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class TlsConnection_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class TlsDatabase_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class TlsInteraction_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class TlsPassword_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
+class Emblem_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class EmblemedIcon_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class FileEnumerator_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class FileIcon_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class FileInfo_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class FileInputStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class FileIOStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class FileMonitor_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class FilenameCompleter_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class FileOutputStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class FilterInputStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class FilterOutputStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class InetAddress_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class InetSocketAddress_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class InputStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class IOStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class ListStoreBase_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class MemoryInputStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class MemoryOutputStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Menu_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class MenuAttributeIter_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class MenuItem_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class MenuLinkIter_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class MenuModel_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class MountOperation_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class NetworkAddress_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class NetworkService_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Notification_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class OutputStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Permission_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class PropertyAction_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class ProxyAddress_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Resolver_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Settings_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class SimpleAction_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class SimpleActionGroup_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class SimpleIOStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class SimplePermission_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Socket_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class SocketAddress_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class SocketAddressEnumerator_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class SocketClient_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class SocketConnection_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class SocketControlMessage_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class SocketListener_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class SocketService_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class TcpConnection_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class TcpWrapperConnection_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class ThemedIcon_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class ThreadedSocketService_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class TlsCertificate_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class TlsConnection_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class TlsDatabase_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class TlsInteraction_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class TlsPassword_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 #ifndef G_OS_WIN32
-class UnixConnection_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
+class UnixConnection_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 #endif // ifndef G_OS_WIN32
 #ifndef G_OS_WIN32
-class UnixCredentialsMessage_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
+class UnixCredentialsMessage_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 #endif // ifndef G_OS_WIN32
 #ifndef G_OS_WIN32
-class UnixFDList_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
+class UnixFDList_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 #endif // ifndef G_OS_WIN32
 #ifndef G_OS_WIN32
-class UnixFDMessage_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
+class UnixFDMessage_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 #endif // ifndef G_OS_WIN32
 #ifndef G_OS_WIN32
-class UnixInputStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
+class UnixInputStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 #endif // ifndef G_OS_WIN32
 #ifndef G_OS_WIN32
-class UnixOutputStream_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
+class UnixOutputStream_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 #endif // ifndef G_OS_WIN32
 #ifndef G_OS_WIN32
-class UnixSocketAddress_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
+class UnixSocketAddress_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 #endif // ifndef G_OS_WIN32
-class VolumeMonitor_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class ZlibCompressor_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
-class ZlibDecompressor_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
+class VolumeMonitor_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class ZlibCompressor_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class ZlibDecompressor_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 
 // Register Error domains in sub-namespaces:
 

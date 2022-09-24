@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::FlattenListModel> wrap(GtkFlattenListModel* object, bool take_copy)
+auto wrap(GtkFlattenListModel* object, bool take_copy) -> Glib::RefPtr<Gtk::FlattenListModel>
 {
   return Glib::make_refptr_for_instance<Gtk::FlattenListModel>( dynamic_cast<Gtk::FlattenListModel*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& FlattenListModel_Class::init()
+auto FlattenListModel_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -73,7 +73,7 @@ void FlattenListModel_Class::class_init_function(void* g_class, void* class_data
 }
 
 
-Glib::ObjectBase* FlattenListModel_Class::wrap_new(GObject* object)
+auto FlattenListModel_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new FlattenListModel((GtkFlattenListModel*)object);
 }
@@ -81,7 +81,7 @@ Glib::ObjectBase* FlattenListModel_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkFlattenListModel* FlattenListModel::gobj_copy()
+auto FlattenListModel::gobj_copy() -> GtkFlattenListModel*
 {
   reference();
   return gobj();
@@ -105,7 +105,7 @@ FlattenListModel::FlattenListModel(FlattenListModel&& src) noexcept
   , Gio::ListModel(std::move(src))
 {}
 
-FlattenListModel& FlattenListModel::operator=(FlattenListModel&& src) noexcept
+auto FlattenListModel::operator=(FlattenListModel&& src) noexcept -> FlattenListModel&
 {
   Glib::Object::operator=(std::move(src));
   Gio::ListModel::operator=(std::move(src));
@@ -119,13 +119,13 @@ FlattenListModel::~FlattenListModel() noexcept
 
 FlattenListModel::CppClassType FlattenListModel::flattenlistmodel_class_; // initialize static member
 
-GType FlattenListModel::get_type()
+auto FlattenListModel::get_type() -> GType
 {
   return flattenlistmodel_class_.init().get_type();
 }
 
 
-GType FlattenListModel::get_base_type()
+auto FlattenListModel::get_base_type() -> GType
 {
   return gtk_flatten_list_model_get_type();
 }
@@ -141,7 +141,7 @@ FlattenListModel::FlattenListModel(const Glib::RefPtr<Gio::ListModel>& model)
 
 }
 
-Glib::RefPtr<FlattenListModel> FlattenListModel::create(const Glib::RefPtr<Gio::ListModel>& model)
+auto FlattenListModel::create(const Glib::RefPtr<Gio::ListModel>& model) -> Glib::RefPtr<FlattenListModel>
 {
   return Glib::make_refptr_for_instance<FlattenListModel>( new FlattenListModel(model) );
 }
@@ -151,7 +151,7 @@ void FlattenListModel::set_model(const Glib::RefPtr<Gio::ListModel>& model)
   gtk_flatten_list_model_set_model(gobj(), Glib::unwrap(model));
 }
 
-Glib::RefPtr<Gio::ListModel> FlattenListModel::get_model()
+auto FlattenListModel::get_model() -> Glib::RefPtr<Gio::ListModel>
 {
   auto retvalue = Glib::wrap(gtk_flatten_list_model_get_model(gobj()));
   if(retvalue)
@@ -159,12 +159,12 @@ Glib::RefPtr<Gio::ListModel> FlattenListModel::get_model()
   return retvalue;
 }
 
-Glib::RefPtr<const Gio::ListModel> FlattenListModel::get_model() const
+auto FlattenListModel::get_model() const -> Glib::RefPtr<const Gio::ListModel>
 {
   return const_cast<FlattenListModel*>(this)->get_model();
 }
 
-Glib::RefPtr<Gio::ListModel> FlattenListModel::get_model_for_item(guint position)
+auto FlattenListModel::get_model_for_item(guint position) -> Glib::RefPtr<Gio::ListModel>
 {
   auto retvalue = Glib::wrap(gtk_flatten_list_model_get_model_for_item(gobj(), position));
   if(retvalue)
@@ -177,7 +177,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
   "Type GType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< GType > FlattenListModel::property_item_type() const
+auto FlattenListModel::property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >
 {
   return Glib::PropertyProxy_ReadOnly< GType >(this, "item-type");
 }
@@ -186,17 +186,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Li
   "Type Glib::RefPtr<Gio::ListModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > FlattenListModel::property_model()
+auto FlattenListModel::property_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> >(this, "model");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > FlattenListModel::property_model() const
+auto FlattenListModel::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >(this, "model");
 }
 
-Glib::PropertyProxy_ReadOnly< unsigned int > FlattenListModel::property_n_items() const
+auto FlattenListModel::property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
   return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "n-items");
 }

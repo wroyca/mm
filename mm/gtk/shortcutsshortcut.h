@@ -108,7 +108,7 @@ template <>
 class GTKMM_API Value<Gtk::ShortcutType> : public Glib::Value_Enum<Gtk::ShortcutType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -139,11 +139,11 @@ class GTKMM_API ShortcutsShortcut : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ShortcutsShortcut(ShortcutsShortcut&& src) noexcept;
-  ShortcutsShortcut& operator=(ShortcutsShortcut&& src) noexcept;
+  auto operator=(ShortcutsShortcut&& src) noexcept -> ShortcutsShortcut&;
 
   // noncopyable
   ShortcutsShortcut(const ShortcutsShortcut&) = delete;
-  ShortcutsShortcut& operator=(const ShortcutsShortcut&) = delete;
+  auto operator=(const ShortcutsShortcut&) -> ShortcutsShortcut& = delete;
 
   ~ShortcutsShortcut() noexcept override;
 
@@ -163,19 +163,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkShortcutsShortcut*       gobj()       { return reinterpret_cast<GtkShortcutsShortcut*>(gobject_); }
+  auto       gobj() -> GtkShortcutsShortcut*       { return reinterpret_cast<GtkShortcutsShortcut*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkShortcutsShortcut* gobj() const { return reinterpret_cast<GtkShortcutsShortcut*>(gobject_); }
+  auto gobj() const -> const GtkShortcutsShortcut* { return reinterpret_cast<GtkShortcutsShortcut*>(gobject_); }
 
 private:
 
@@ -216,7 +216,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_accelerator() ;
+  auto property_accelerator() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The accelerator(s) represented by this object.
    *
@@ -251,7 +251,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_accelerator() const;
+  auto property_accelerator() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** An icon to represent the shortcut or gesture.
    *
@@ -263,7 +263,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> > property_icon() ;
+  auto property_icon() -> Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> > ;
 
 /** An icon to represent the shortcut or gesture.
    *
@@ -275,7 +275,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> > property_icon() const;
+  auto property_icon() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> >;
 
   /** <tt>true</tt> if an icon has been set.
    *
@@ -284,7 +284,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_icon_set() ;
+  auto property_icon_set() -> Glib::PropertyProxy< bool > ;
 
 /** <tt>true</tt> if an icon has been set.
    *
@@ -293,7 +293,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_icon_set() const;
+  auto property_icon_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The textual description for the shortcut or gesture represented by
    * this object.
@@ -305,7 +305,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_title() ;
+  auto property_title() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The textual description for the shortcut or gesture represented by
    * this object.
@@ -317,7 +317,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_title() const;
+  auto property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The subtitle for the shortcut or gesture.
    *
@@ -330,7 +330,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_subtitle() ;
+  auto property_subtitle() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The subtitle for the shortcut or gesture.
    *
@@ -343,7 +343,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_subtitle() const;
+  auto property_subtitle() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** <tt>true</tt> if a subtitle has been set.
    *
@@ -352,7 +352,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_subtitle_set() ;
+  auto property_subtitle_set() -> Glib::PropertyProxy< bool > ;
 
 /** <tt>true</tt> if a subtitle has been set.
    *
@@ -361,7 +361,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_subtitle_set() const;
+  auto property_subtitle_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The text direction for which this shortcut is active.
    *
@@ -373,7 +373,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< TextDirection > property_direction() ;
+  auto property_direction() -> Glib::PropertyProxy< TextDirection > ;
 
 /** The text direction for which this shortcut is active.
    *
@@ -385,7 +385,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< TextDirection > property_direction() const;
+  auto property_direction() const -> Glib::PropertyProxy_ReadOnly< TextDirection >;
 
   /** The type of shortcut that is represented.
    *
@@ -394,7 +394,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< ShortcutType > property_shortcut_type() ;
+  auto property_shortcut_type() -> Glib::PropertyProxy< ShortcutType > ;
 
 /** The type of shortcut that is represented.
    *
@@ -403,7 +403,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< ShortcutType > property_shortcut_type() const;
+  auto property_shortcut_type() const -> Glib::PropertyProxy_ReadOnly< ShortcutType >;
 
   /** A detailed action name.
    *
@@ -417,7 +417,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_action_name() ;
+  auto property_action_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** A detailed action name.
    *
@@ -431,7 +431,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_action_name() const;
+  auto property_action_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 public:
@@ -461,7 +461,7 @@ namespace Glib
    * @relates Gtk::ShortcutsShortcut
    */
   GTKMM_API
-  Gtk::ShortcutsShortcut* wrap(GtkShortcutsShortcut* object, bool take_copy = false);
+  auto wrap(GtkShortcutsShortcut* object, bool take_copy = false) -> Gtk::ShortcutsShortcut*;
 } //namespace Glib
 
 

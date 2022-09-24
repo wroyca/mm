@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::SelectionFilterModel> wrap(GtkSelectionFilterModel* object, bool take_copy)
+auto wrap(GtkSelectionFilterModel* object, bool take_copy) -> Glib::RefPtr<Gtk::SelectionFilterModel>
 {
   return Glib::make_refptr_for_instance<Gtk::SelectionFilterModel>( dynamic_cast<Gtk::SelectionFilterModel*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& SelectionFilterModel_Class::init()
+auto SelectionFilterModel_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -73,7 +73,7 @@ void SelectionFilterModel_Class::class_init_function(void* g_class, void* class_
 }
 
 
-Glib::ObjectBase* SelectionFilterModel_Class::wrap_new(GObject* object)
+auto SelectionFilterModel_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new SelectionFilterModel((GtkSelectionFilterModel*)object);
 }
@@ -81,7 +81,7 @@ Glib::ObjectBase* SelectionFilterModel_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkSelectionFilterModel* SelectionFilterModel::gobj_copy()
+auto SelectionFilterModel::gobj_copy() -> GtkSelectionFilterModel*
 {
   reference();
   return gobj();
@@ -105,7 +105,7 @@ SelectionFilterModel::SelectionFilterModel(SelectionFilterModel&& src) noexcept
   , Gio::ListModel(std::move(src))
 {}
 
-SelectionFilterModel& SelectionFilterModel::operator=(SelectionFilterModel&& src) noexcept
+auto SelectionFilterModel::operator=(SelectionFilterModel&& src) noexcept -> SelectionFilterModel&
 {
   Glib::Object::operator=(std::move(src));
   Gio::ListModel::operator=(std::move(src));
@@ -119,13 +119,13 @@ SelectionFilterModel::~SelectionFilterModel() noexcept
 
 SelectionFilterModel::CppClassType SelectionFilterModel::selectionfiltermodel_class_; // initialize static member
 
-GType SelectionFilterModel::get_type()
+auto SelectionFilterModel::get_type() -> GType
 {
   return selectionfiltermodel_class_.init().get_type();
 }
 
 
-GType SelectionFilterModel::get_base_type()
+auto SelectionFilterModel::get_base_type() -> GType
 {
   return gtk_selection_filter_model_get_type();
 }
@@ -141,7 +141,7 @@ SelectionFilterModel::SelectionFilterModel(const Glib::RefPtr<SelectionModel>& m
 
 }
 
-Glib::RefPtr<SelectionFilterModel> SelectionFilterModel::create(const Glib::RefPtr<SelectionModel>& model)
+auto SelectionFilterModel::create(const Glib::RefPtr<SelectionModel>& model) -> Glib::RefPtr<SelectionFilterModel>
 {
   return Glib::make_refptr_for_instance<SelectionFilterModel>( new SelectionFilterModel(model) );
 }
@@ -151,7 +151,7 @@ void SelectionFilterModel::set_model(const Glib::RefPtr<SelectionModel>& model)
   gtk_selection_filter_model_set_model(gobj(), Glib::unwrap(model));
 }
 
-Glib::RefPtr<SelectionModel> SelectionFilterModel::get_model()
+auto SelectionFilterModel::get_model() -> Glib::RefPtr<SelectionModel>
 {
   auto retvalue = Glib::wrap(gtk_selection_filter_model_get_model(gobj()));
   if(retvalue)
@@ -159,7 +159,7 @@ Glib::RefPtr<SelectionModel> SelectionFilterModel::get_model()
   return retvalue;
 }
 
-Glib::RefPtr<const SelectionModel> SelectionFilterModel::get_model() const
+auto SelectionFilterModel::get_model() const -> Glib::RefPtr<const SelectionModel>
 {
   return const_cast<SelectionFilterModel*>(this)->get_model();
 }
@@ -169,7 +169,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
   "Type GType cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< GType > SelectionFilterModel::property_item_type() const
+auto SelectionFilterModel::property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >
 {
   return Glib::PropertyProxy_ReadOnly< GType >(this, "item-type");
 }
@@ -178,17 +178,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Selecti
   "Type Glib::RefPtr<SelectionModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<SelectionModel> > SelectionFilterModel::property_model()
+auto SelectionFilterModel::property_model() -> Glib::PropertyProxy< Glib::RefPtr<SelectionModel> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<SelectionModel> >(this, "model");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> > SelectionFilterModel::property_model() const
+auto SelectionFilterModel::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> >(this, "model");
 }
 
-Glib::PropertyProxy_ReadOnly< unsigned int > SelectionFilterModel::property_n_items() const
+auto SelectionFilterModel::property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
   return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "n-items");
 }

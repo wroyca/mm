@@ -48,7 +48,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::StringList> wrap(GtkStringList* object, bool take_copy)
+auto wrap(GtkStringList* object, bool take_copy) -> Glib::RefPtr<Gtk::StringList>
 {
   return Glib::make_refptr_for_instance<Gtk::StringList>( dynamic_cast<Gtk::StringList*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -63,7 +63,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& StringList_Class::init()
+auto StringList_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -88,7 +88,7 @@ void StringList_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* StringList_Class::wrap_new(GObject* object)
+auto StringList_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new StringList((GtkStringList*)object);
 }
@@ -96,7 +96,7 @@ Glib::ObjectBase* StringList_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkStringList* StringList::gobj_copy()
+auto StringList::gobj_copy() -> GtkStringList*
 {
   reference();
   return gobj();
@@ -121,7 +121,7 @@ StringList::StringList(StringList&& src) noexcept
   , Buildable(std::move(src))
 {}
 
-StringList& StringList::operator=(StringList&& src) noexcept
+auto StringList::operator=(StringList&& src) noexcept -> StringList&
 {
   Glib::Object::operator=(std::move(src));
   Gio::ListModel::operator=(std::move(src));
@@ -136,19 +136,19 @@ StringList::~StringList() noexcept
 
 StringList::CppClassType StringList::stringlist_class_; // initialize static member
 
-GType StringList::get_type()
+auto StringList::get_type() -> GType
 {
   return stringlist_class_.init().get_type();
 }
 
 
-GType StringList::get_base_type()
+auto StringList::get_base_type() -> GType
 {
   return gtk_string_list_get_type();
 }
 
 
-Glib::RefPtr<StringList> StringList::create(const std::vector<Glib::ustring>& strings)
+auto StringList::create(const std::vector<Glib::ustring>& strings) -> Glib::RefPtr<StringList>
 {
   return Glib::make_refptr_for_instance<StringList>( new StringList(strings) );
 }
@@ -168,7 +168,7 @@ void StringList::splice(guint position, guint n_removals, const std::vector<Glib
   gtk_string_list_splice(gobj(), position, n_removals, Glib::ArrayHandler<Glib::ustring>::vector_to_array(additions).data());
 }
 
-Glib::ustring StringList::get_string(guint position) const
+auto StringList::get_string(guint position) const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_string_list_get_string(const_cast<GtkStringList*>(gobj()), position));
 }

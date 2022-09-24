@@ -83,11 +83,11 @@ class GTKMM_API LevelBar
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   LevelBar(LevelBar&& src) noexcept;
-  LevelBar& operator=(LevelBar&& src) noexcept;
+  auto operator=(LevelBar&& src) noexcept -> LevelBar&;
 
   // noncopyable
   LevelBar(const LevelBar&) = delete;
-  LevelBar& operator=(const LevelBar&) = delete;
+  auto operator=(const LevelBar&) -> LevelBar& = delete;
 
   ~LevelBar() noexcept override;
 
@@ -107,19 +107,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkLevelBar*       gobj()       { return reinterpret_cast<GtkLevelBar*>(gobject_); }
+  auto       gobj() -> GtkLevelBar*       { return reinterpret_cast<GtkLevelBar*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkLevelBar* gobj() const { return reinterpret_cast<GtkLevelBar*>(gobject_); }
+  auto gobj() const -> const GtkLevelBar* { return reinterpret_cast<GtkLevelBar*>(gobject_); }
 
 private:
 
@@ -163,7 +163,7 @@ public:
    *
    * @return A `Gtk::LevelBar::Mode`.
    */
-  Mode get_mode() const;
+  auto get_mode() const -> Mode;
 
 
   /** Sets the value of the `Gtk::LevelBar`.
@@ -178,7 +178,7 @@ public:
    * @return A value in the interval between
    * [property@Gtk.LevelBar:min-value[ and [property @a Gtk.LevelBar:max-value].
    */
-  double get_value() const;
+  auto get_value() const -> double;
 
 
   /** Sets the `min-value` of the `Gtk::LevelBar`.
@@ -194,7 +194,7 @@ public:
    *
    * @return A positive value.
    */
-  double get_min_value() const;
+  auto get_min_value() const -> double;
 
 
   /** Sets the `max-value` of the `Gtk::LevelBar`.
@@ -210,7 +210,7 @@ public:
    *
    * @return A positive value.
    */
-  double get_max_value() const;
+  auto get_max_value() const -> double;
 
 
   /** Sets whether the `Gtk::LevelBar` is inverted.
@@ -223,7 +223,7 @@ public:
    *
    * @return <tt>true</tt> if the level bar is inverted.
    */
-  bool get_inverted() const;
+  auto get_inverted() const -> bool;
 
 
   /** Adds a new offset marker on @a self at the position specified by @a value.
@@ -256,7 +256,7 @@ public:
    * @param value Location where to store the value.
    * @return <tt>true</tt> if the specified offset is found.
    */
-  bool get_offset_value(const Glib::ustring& name, double& value) const;
+  auto get_offset_value(const Glib::ustring& name, double& value) const -> bool;
 
   // no_default_handler because GtkLevelBarClass is private.
 
@@ -278,7 +278,7 @@ public:
    * @param name The name of the offset that changed value.
    */
 
-  Glib::SignalProxyDetailed<void(const Glib::ustring&)> signal_offset_changed(const Glib::ustring& offset_name = {});
+  auto signal_offset_changed(const Glib::ustring& offset_name = {}) -> Glib::SignalProxyDetailed<void(const Glib::ustring&)>;
 
 
   /** Determines the currently filled value of the level bar.
@@ -288,7 +288,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_value() ;
+  auto property_value() -> Glib::PropertyProxy< double > ;
 
 /** Determines the currently filled value of the level bar.
    *
@@ -297,7 +297,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_value() const;
+  auto property_value() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** Determines the minimum value of the interval that can be displayed by the bar.
    *
@@ -306,7 +306,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_min_value() ;
+  auto property_min_value() -> Glib::PropertyProxy< double > ;
 
 /** Determines the minimum value of the interval that can be displayed by the bar.
    *
@@ -315,7 +315,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_min_value() const;
+  auto property_min_value() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** Determines the maximum value of the interval that can be displayed by the bar.
    *
@@ -324,7 +324,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_max_value() ;
+  auto property_max_value() -> Glib::PropertyProxy< double > ;
 
 /** Determines the maximum value of the interval that can be displayed by the bar.
    *
@@ -333,7 +333,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_max_value() const;
+  auto property_max_value() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** Determines the way `Gtk::LevelBar` interprets the value properties to draw the
    * level fill area.
@@ -351,7 +351,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Mode > property_mode() ;
+  auto property_mode() -> Glib::PropertyProxy< Mode > ;
 
 /** Determines the way `Gtk::LevelBar` interprets the value properties to draw the
    * level fill area.
@@ -369,7 +369,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Mode > property_mode() const;
+  auto property_mode() const -> Glib::PropertyProxy_ReadOnly< Mode >;
 
   /** Whether the `Gtk::LeveBar` is inverted.
    *
@@ -381,7 +381,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_inverted() ;
+  auto property_inverted() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the `Gtk::LeveBar` is inverted.
    *
@@ -393,7 +393,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_inverted() const;
+  auto property_inverted() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -421,7 +421,7 @@ template <>
 class GTKMM_API Value<Gtk::LevelBar::Mode> : public Glib::Value_Enum<Gtk::LevelBar::Mode>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -439,7 +439,7 @@ namespace Glib
    * @relates Gtk::LevelBar
    */
   GTKMM_API
-  Gtk::LevelBar* wrap(GtkLevelBar* object, bool take_copy = false);
+  auto wrap(GtkLevelBar* object, bool take_copy = false) -> Gtk::LevelBar*;
 } //namespace Glib
 
 

@@ -67,7 +67,7 @@ public:
 
   // noncopyable
   SimpleActionGroup(const SimpleActionGroup&) = delete;
-  SimpleActionGroup& operator=(const SimpleActionGroup&) = delete;
+  auto operator=(const SimpleActionGroup&) -> SimpleActionGroup& = delete;
 
 private:  friend class SimpleActionGroup_Class;
   static CppClassType simpleactiongroup_class_;
@@ -81,28 +81,28 @@ protected:
 public:
 
   SimpleActionGroup(SimpleActionGroup&& src) noexcept;
-  SimpleActionGroup& operator=(SimpleActionGroup&& src) noexcept;
+  auto operator=(SimpleActionGroup&& src) noexcept -> SimpleActionGroup&;
 
   ~SimpleActionGroup() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GSimpleActionGroup*       gobj()       { return reinterpret_cast<GSimpleActionGroup*>(gobject_); }
+  auto       gobj() -> GSimpleActionGroup*       { return reinterpret_cast<GSimpleActionGroup*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GSimpleActionGroup* gobj() const { return reinterpret_cast<GSimpleActionGroup*>(gobject_); }
+  auto gobj() const -> const GSimpleActionGroup* { return reinterpret_cast<GSimpleActionGroup*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GSimpleActionGroup* gobj_copy();
+  auto gobj_copy() -> GSimpleActionGroup*;
 
 private:
 
@@ -120,7 +120,7 @@ public:
    */
 
 
-  static Glib::RefPtr<SimpleActionGroup> create();
+  static auto create() -> Glib::RefPtr<SimpleActionGroup>;
 
 
    // deprecated
@@ -153,7 +153,7 @@ namespace Glib
    * @relates Gio::SimpleActionGroup
    */
   GIOMM_API
-  Glib::RefPtr<Gio::SimpleActionGroup> wrap(GSimpleActionGroup* object, bool take_copy = false);
+  auto wrap(GSimpleActionGroup* object, bool take_copy = false) -> Glib::RefPtr<Gio::SimpleActionGroup>;
 }
 
 

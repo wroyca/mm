@@ -35,7 +35,7 @@ namespace
 namespace Glib
 {
 
-Gtk::Separator* wrap(GtkSeparator* object, bool take_copy)
+auto wrap(GtkSeparator* object, bool take_copy) -> Gtk::Separator*
 {
   return dynamic_cast<Gtk::Separator *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Separator_Class::init()
+auto Separator_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -80,7 +80,7 @@ void Separator_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Separator_Class::wrap_new(GObject* o)
+auto Separator_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new Separator((GtkSeparator*)(o)));
 
@@ -107,7 +107,7 @@ Separator::Separator(Separator&& src) noexcept
   , Orientable(std::move(src))
 {}
 
-Separator& Separator::operator=(Separator&& src) noexcept
+auto Separator::operator=(Separator&& src) noexcept -> Separator&
 {
   Gtk::Widget::operator=(std::move(src));
   Orientable::operator=(std::move(src));
@@ -121,13 +121,13 @@ Separator::~Separator() noexcept
 
 Separator::CppClassType Separator::separator_class_; // initialize static member
 
-GType Separator::get_type()
+auto Separator::get_type() -> GType
 {
   return separator_class_.init().get_type();
 }
 
 
-GType Separator::get_base_type()
+auto Separator::get_base_type() -> GType
 {
   return gtk_separator_get_type();
 }

@@ -68,11 +68,11 @@ class GTKMM_API FontChooserWidget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   FontChooserWidget(FontChooserWidget&& src) noexcept;
-  FontChooserWidget& operator=(FontChooserWidget&& src) noexcept;
+  auto operator=(FontChooserWidget&& src) noexcept -> FontChooserWidget&;
 
   // noncopyable
   FontChooserWidget(const FontChooserWidget&) = delete;
-  FontChooserWidget& operator=(const FontChooserWidget&) = delete;
+  auto operator=(const FontChooserWidget&) -> FontChooserWidget& = delete;
 
   ~FontChooserWidget() noexcept override;
 
@@ -92,19 +92,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkFontChooserWidget*       gobj()       { return reinterpret_cast<GtkFontChooserWidget*>(gobject_); }
+  auto       gobj() -> GtkFontChooserWidget*       { return reinterpret_cast<GtkFontChooserWidget*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkFontChooserWidget* gobj() const { return reinterpret_cast<GtkFontChooserWidget*>(gobject_); }
+  auto gobj() const -> const GtkFontChooserWidget* { return reinterpret_cast<GtkFontChooserWidget*>(gobject_); }
 
 private:
 
@@ -140,7 +140,7 @@ namespace Glib
    * @relates Gtk::FontChooserWidget
    */
   GTKMM_API
-  Gtk::FontChooserWidget* wrap(GtkFontChooserWidget* object, bool take_copy = false);
+  auto wrap(GtkFontChooserWidget* object, bool take_copy = false) -> Gtk::FontChooserWidget*;
 } //namespace Glib
 
 

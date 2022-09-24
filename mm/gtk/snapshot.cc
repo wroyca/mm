@@ -31,8 +31,8 @@
 
 namespace
 {
-std::unique_ptr<graphene_rect_t>
-gdk_rect_to_graphene_rect(const Gdk::Rectangle& gdk_rect)
+auto
+gdk_rect_to_graphene_rect(const Gdk::Rectangle& gdk_rect) -> std::unique_ptr<graphene_rect_t>
 {
   graphene_rect_t* graphene_rect = new graphene_rect_t;
   graphene_rect_init(graphene_rect, gdk_rect.get_x(), gdk_rect.get_y(),
@@ -57,7 +57,7 @@ void Snapshot::push_debug(const Glib::ustring& name)
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::Snapshot> wrap_gtk_snapshot(GtkSnapshot* object, bool take_copy)
+auto wrap_gtk_snapshot(GtkSnapshot* object, bool take_copy) -> Glib::RefPtr<Gtk::Snapshot>
 {
   return Glib::make_refptr_for_instance<Gtk::Snapshot>( dynamic_cast<Gtk::Snapshot*> (Glib::wrap_auto((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -76,7 +76,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Snapshot_Class::init()
+auto Snapshot_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -107,7 +107,7 @@ void Snapshot_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Snapshot_Class::wrap_new(GObject* object)
+auto Snapshot_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Snapshot((GtkSnapshot*)object);
 }
@@ -115,7 +115,7 @@ Glib::ObjectBase* Snapshot_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkSnapshot* Snapshot::gobj_copy()
+auto Snapshot::gobj_copy() -> GtkSnapshot*
 {
   reference();
   return gobj();
@@ -138,7 +138,7 @@ Snapshot::Snapshot(Snapshot&& src) noexcept
 : Gdk::Snapshot(std::move(src))
 {}
 
-Snapshot& Snapshot::operator=(Snapshot&& src) noexcept
+auto Snapshot::operator=(Snapshot&& src) noexcept -> Snapshot&
 {
   Gdk::Snapshot::operator=(std::move(src));
   return *this;
@@ -151,19 +151,19 @@ Snapshot::~Snapshot() noexcept
 
 Snapshot::CppClassType Snapshot::snapshot_class_; // initialize static member
 
-GType Snapshot::get_type()
+auto Snapshot::get_type() -> GType
 {
   return snapshot_class_.init().get_type();
 }
 
 
-GType Snapshot::get_base_type()
+auto Snapshot::get_base_type() -> GType
 {
   return gtk_snapshot_get_type();
 }
 
 
-Glib::RefPtr<Snapshot> Snapshot::create()
+auto Snapshot::create() -> Glib::RefPtr<Snapshot>
 {
   return Glib::wrap_gtk_snapshot(gtk_snapshot_new());
 }
@@ -248,12 +248,12 @@ void Snapshot::perspective(float depth)
   gtk_snapshot_perspective(gobj(), depth);
 }
 
-Cairo::RefPtr<Cairo::Context> Snapshot::append_cairo(const graphene_rect_t* bounds)
+auto Snapshot::append_cairo(const graphene_rect_t* bounds) -> Cairo::RefPtr<Cairo::Context>
 {
   return Gdk::Cairo::wrap(gtk_snapshot_append_cairo(gobj(), bounds));
 }
 
-Cairo::RefPtr<Cairo::Context> Snapshot::append_cairo(const Gdk::Rectangle& bounds)
+auto Snapshot::append_cairo(const Gdk::Rectangle& bounds) -> Cairo::RefPtr<Cairo::Context>
 {
   return Gdk::Cairo::wrap(gtk_snapshot_append_cairo(gobj(), gdk_rect_to_graphene_rect(bounds).get()));
 }

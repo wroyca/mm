@@ -36,7 +36,7 @@ namespace
 namespace Glib
 {
 
-Pango::GlyphItem wrap(PangoGlyphItem* object, bool take_copy)
+auto wrap(PangoGlyphItem* object, bool take_copy) -> Pango::GlyphItem
 {
   return Pango::GlyphItem(object, take_copy);
 }
@@ -49,7 +49,7 @@ namespace Pango
 
 
 // static
-GType GlyphItem::get_type()
+auto GlyphItem::get_type() -> GType
 {
   return pango_glyph_item_get_type();
 }
@@ -71,7 +71,7 @@ GlyphItem::GlyphItem(GlyphItem&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-GlyphItem& GlyphItem::operator=(GlyphItem&& other) noexcept
+auto GlyphItem::operator=(GlyphItem&& other) noexcept -> GlyphItem&
 {
   GlyphItem temp (std::move(other));
   swap(temp);
@@ -86,7 +86,7 @@ GlyphItem::GlyphItem(PangoGlyphItem* gobject, bool make_a_copy)
   gobject_ ((make_a_copy && gobject) ? pango_glyph_item_copy(gobject) : gobject)
 {}
 
-GlyphItem& GlyphItem::operator=(const GlyphItem& other)
+auto GlyphItem::operator=(const GlyphItem& other) -> GlyphItem&
 {
   GlyphItem temp (other);
   swap(temp);
@@ -104,13 +104,13 @@ void GlyphItem::swap(GlyphItem& other) noexcept
   std::swap(gobject_, other.gobject_);
 }
 
-PangoGlyphItem* GlyphItem::gobj_copy() const
+auto GlyphItem::gobj_copy() const -> PangoGlyphItem*
 {
   return pango_glyph_item_copy(gobject_);
 }
 
 
-GlyphItem GlyphItem::split(const Glib::ustring& text, int split_index)
+auto GlyphItem::split(const Glib::ustring& text, int split_index) -> GlyphItem
 {
   return Glib::wrap(pango_glyph_item_split(gobj(), text.c_str(), split_index));
 }
@@ -120,12 +120,12 @@ void GlyphItem::letter_space(const Glib::ustring& text, const LogAttr& log_attrs
   pango_glyph_item_letter_space(gobj(), text.c_str(), &(const_cast<LogAttr&>(log_attrs)), letter_spacing);
 }
 
-Item GlyphItem::get_item() const
+auto GlyphItem::get_item() const -> Item
 {
   return Item((gobj()->item));
 }
 
-GlyphString GlyphItem::get_glyphs() const
+auto GlyphItem::get_glyphs() const -> GlyphString
 {
   return GlyphString((gobj()->glyphs));
 }

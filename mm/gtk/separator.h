@@ -63,11 +63,11 @@ class GTKMM_API Separator
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Separator(Separator&& src) noexcept;
-  Separator& operator=(Separator&& src) noexcept;
+  auto operator=(Separator&& src) noexcept -> Separator&;
 
   // noncopyable
   Separator(const Separator&) = delete;
-  Separator& operator=(const Separator&) = delete;
+  auto operator=(const Separator&) -> Separator& = delete;
 
   ~Separator() noexcept override;
 
@@ -87,19 +87,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkSeparator*       gobj()       { return reinterpret_cast<GtkSeparator*>(gobject_); }
+  auto       gobj() -> GtkSeparator*       { return reinterpret_cast<GtkSeparator*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkSeparator* gobj() const { return reinterpret_cast<GtkSeparator*>(gobject_); }
+  auto gobj() const -> const GtkSeparator* { return reinterpret_cast<GtkSeparator*>(gobject_); }
 
 private:
 
@@ -137,7 +137,7 @@ namespace Glib
    * @relates Gtk::Separator
    */
   GTKMM_API
-  Gtk::Separator* wrap(GtkSeparator* object, bool take_copy = false);
+  auto wrap(GtkSeparator* object, bool take_copy = false) -> Gtk::Separator*;
 } //namespace Glib
 
 

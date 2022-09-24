@@ -62,7 +62,7 @@ public:
 
   // noncopyable
   FontFamily(const FontFamily&) = delete;
-  FontFamily& operator=(const FontFamily&) = delete;
+  auto operator=(const FontFamily&) -> FontFamily& = delete;
 
 private:  friend class FontFamily_Class;
   static CppClassType fontfamily_class_;
@@ -76,28 +76,28 @@ protected:
 public:
 
   FontFamily(FontFamily&& src) noexcept;
-  FontFamily& operator=(FontFamily&& src) noexcept;
+  auto operator=(FontFamily&& src) noexcept -> FontFamily&;
 
   ~FontFamily() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  PangoFontFamily*       gobj()       { return reinterpret_cast<PangoFontFamily*>(gobject_); }
+  auto       gobj() -> PangoFontFamily*       { return reinterpret_cast<PangoFontFamily*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const PangoFontFamily* gobj() const { return reinterpret_cast<PangoFontFamily*>(gobject_); }
+  auto gobj() const -> const PangoFontFamily* { return reinterpret_cast<PangoFontFamily*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  PangoFontFamily* gobj_copy();
+  auto gobj_copy() -> PangoFontFamily*;
 
 private:
 
@@ -107,7 +107,7 @@ public:
    * The faces in a family share a common design, but differ in slant, weight, width and other aspects.
    * @return an array of pointers to Pango::FontFace objects.
    */
-  std::vector<Glib::RefPtr<FontFace>> list_faces() const;
+  auto list_faces() const -> std::vector<Glib::RefPtr<FontFace>>;
 
 
   /** Gets the name of the family.
@@ -119,7 +119,7 @@ public:
    * @return The name of the family. This string is owned
    * by the family object and must not be modified or freed.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
   /** A monospace font is a font designed for text display where the the
    * characters form a regular grid.
@@ -140,7 +140,7 @@ public:
    *
    * @return <tt>true</tt> if the family is monospace.
    */
-  bool is_monospace() const;
+  auto is_monospace() const -> bool;
 
   /** A variable font is a font which has axes that can be modified to
    * produce different faces.
@@ -149,7 +149,7 @@ public:
    *
    * @return <tt>true</tt> if the family is variable.
    */
-  bool is_variable() const;
+  auto is_variable() const -> bool;
 
 
   /** Gets the `Pango::FontFace` of @a family with the given name.
@@ -162,7 +162,7 @@ public:
    * @return The `Pango::FontFace`,
    * or <tt>nullptr</tt> if no face with the given name exists.
    */
-  Glib::RefPtr<FontFace> get_face(const Glib::ustring& name =  {});
+  auto get_face(const Glib::ustring& name =  {}) -> Glib::RefPtr<FontFace>;
 
   /** Gets the `Pango::FontFace` of @a family with the given name.
    *
@@ -174,7 +174,7 @@ public:
    * @return The `Pango::FontFace`,
    * or <tt>nullptr</tt> if no face with the given name exists.
    */
-  Glib::RefPtr<const FontFace> get_face(const Glib::ustring& name =  {}) const;
+  auto get_face(const Glib::ustring& name =  {}) const -> Glib::RefPtr<const FontFace>;
 
 // PangoFontFamilyClass is hidden when PANGO_DISABLE_DEPRECATED is defined.
 // Don't wrap vfuncs.
@@ -221,7 +221,7 @@ namespace Glib
    * @relates Pango::FontFamily
    */
   PANGOMM_API
-  Glib::RefPtr<Pango::FontFamily> wrap(PangoFontFamily* object, bool take_copy = false);
+  auto wrap(PangoFontFamily* object, bool take_copy = false) -> Glib::RefPtr<Pango::FontFamily>;
 }
 
 

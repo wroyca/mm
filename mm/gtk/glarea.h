@@ -59,11 +59,11 @@ class GTKMM_API GLArea : public Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   GLArea(GLArea&& src) noexcept;
-  GLArea& operator=(GLArea&& src) noexcept;
+  auto operator=(GLArea&& src) noexcept -> GLArea&;
 
   // noncopyable
   GLArea(const GLArea&) = delete;
-  GLArea& operator=(const GLArea&) = delete;
+  auto operator=(const GLArea&) -> GLArea& = delete;
 
   ~GLArea() noexcept override;
 
@@ -83,19 +83,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkGLArea*       gobj()       { return reinterpret_cast<GtkGLArea*>(gobject_); }
+  auto       gobj() -> GtkGLArea*       { return reinterpret_cast<GtkGLArea*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkGLArea* gobj() const { return reinterpret_cast<GtkGLArea*>(gobject_); }
+  auto gobj() const -> const GtkGLArea* { return reinterpret_cast<GtkGLArea*>(gobject_); }
 
 private:
 
@@ -110,7 +110,7 @@ public:
    *
    * @return The `Gdk::GLContext`.
    */
-  Glib::RefPtr<Gdk::GLContext> get_context();
+  auto get_context() -> Glib::RefPtr<Gdk::GLContext>;
 
   /** Retrieves the `Gdk::GLContext` used by @a area.
    *
@@ -118,7 +118,7 @@ public:
    *
    * @return The `Gdk::GLContext`.
    */
-  Glib::RefPtr<const Gdk::GLContext> get_context() const;
+  auto get_context() const -> Glib::RefPtr<const Gdk::GLContext>;
 
   /** Ensures that the `Gdk::GLContext` used by @a area is associated with
    * the `Gtk::GLArea`.
@@ -167,7 +167,7 @@ public:
    *
    * @return true if an error is currently set.
    */
-  bool has_error() const;
+  auto has_error() const -> bool;
 
 
   /** Will throw the correct Glib::Error subclass if
@@ -203,7 +203,7 @@ public:
    *
    * @return <tt>true</tt> if the @a area has a depth buffer, <tt>false</tt> otherwise.
    */
-  bool get_has_depth_buffer() const;
+  auto get_has_depth_buffer() const -> bool;
 
   /** Sets whether the `Gtk::GLArea` should use a depth buffer.
    *
@@ -223,7 +223,7 @@ public:
    *
    * @return <tt>true</tt> if the @a area has a stencil buffer, <tt>false</tt> otherwise.
    */
-  bool get_has_stencil_buffer() const;
+  auto get_has_stencil_buffer() const -> bool;
 
   /** Sets whether the `Gtk::GLArea` should use a stencil buffer.
    *
@@ -243,7 +243,7 @@ public:
    *
    * @return <tt>true</tt> if the @a area is auto rendering, <tt>false</tt> otherwise.
    */
-  bool get_auto_render() const;
+  auto get_auto_render() const -> bool;
 
   /** Sets whether the `Gtk::GLArea` is in auto render mode.
    *
@@ -293,7 +293,7 @@ public:
    * @return <tt>true</tt> if the `Gtk::GLArea` should create an OpenGL ES context
    * and <tt>false</tt> otherwise.
    */
-  bool get_use_es() const;
+  auto get_use_es() const -> bool;
 
   /** Sets whether the @a area should create an OpenGL or an OpenGL ES context.
    *
@@ -322,7 +322,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_auto_render() ;
+  auto property_auto_render() -> Glib::PropertyProxy< bool > ;
 
 /** If set to <tt>true</tt> the signal_render() signal will be emitted every time
    * the widget draws.
@@ -342,7 +342,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_auto_render() const;
+  auto property_auto_render() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The `Gdk::GLContext` used by the `Gtk::GLArea` widget.
    *
@@ -355,7 +355,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::GLContext> > property_context() const;
+  auto property_context() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::GLContext> >;
 
 
   /** If set to <tt>true</tt> the widget will allocate and enable a depth buffer for the
@@ -372,7 +372,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_has_depth_buffer() ;
+  auto property_has_depth_buffer() -> Glib::PropertyProxy< bool > ;
 
 /** If set to <tt>true</tt> the widget will allocate and enable a depth buffer for the
    * target framebuffer.
@@ -388,7 +388,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_depth_buffer() const;
+  auto property_has_depth_buffer() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** If set to <tt>true</tt> the widget will allocate and enable a stencil buffer for the
    * target framebuffer.
@@ -400,7 +400,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_has_stencil_buffer() ;
+  auto property_has_stencil_buffer() -> Glib::PropertyProxy< bool > ;
 
 /** If set to <tt>true</tt> the widget will allocate and enable a stencil buffer for the
    * target framebuffer.
@@ -412,7 +412,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_stencil_buffer() const;
+  auto property_has_stencil_buffer() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** If set to <tt>true</tt> the widget will try to create a `Gdk::GLContext` using
    * OpenGL ES instead of OpenGL.
@@ -422,7 +422,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_use_es() ;
+  auto property_use_es() -> Glib::PropertyProxy< bool > ;
 
 /** If set to <tt>true</tt> the widget will try to create a `Gdk::GLContext` using
    * OpenGL ES instead of OpenGL.
@@ -432,7 +432,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_use_es() const;
+  auto property_use_es() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /**
@@ -457,7 +457,7 @@ public:
    * the `Gtk::GLArea` widget will take ownership of the returned value.
    */
 
-  Glib::SignalProxy<Glib::RefPtr<Gdk::GLContext>()> signal_create_context();
+  auto signal_create_context() -> Glib::SignalProxy<Glib::RefPtr<Gdk::GLContext>()>;
 
 
   /**
@@ -478,7 +478,7 @@ public:
    * <tt>false</tt> to propagate the event further.
    */
 
-  Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::GLContext>&)> signal_render();
+  auto signal_render() -> Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::GLContext>&)>;
 
 
   /**
@@ -505,7 +505,7 @@ public:
    * @param height The height of the viewport.
    */
 
-  Glib::SignalProxy<void(int, int)> signal_resize();
+  auto signal_resize() -> Glib::SignalProxy<void(int, int)>;
 
 
 public:
@@ -518,9 +518,9 @@ protected:
 
   //Default Signal Handlers::
   /// This is a default handler for the signal signal_create_context().
-  virtual Glib::RefPtr<Gdk::GLContext> on_create_context();
+  virtual auto on_create_context() -> Glib::RefPtr<Gdk::GLContext>;
   /// This is a default handler for the signal signal_render().
-  virtual bool on_render(const Glib::RefPtr<Gdk::GLContext>& context);
+  virtual auto on_render(const Glib::RefPtr<Gdk::GLContext>& context) -> bool;
   /// This is a default handler for the signal signal_resize().
   virtual void on_resize(int width, int height);
 
@@ -541,7 +541,7 @@ namespace Glib
    * @relates Gtk::GLArea
    */
   GTKMM_API
-  Gtk::GLArea* wrap(GtkGLArea* object, bool take_copy = false);
+  auto wrap(GtkGLArea* object, bool take_copy = false) -> Gtk::GLArea*;
 } //namespace Glib
 
 

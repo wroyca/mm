@@ -29,32 +29,32 @@
 namespace Gdk
 {
 
-Glib::RefPtr<ContentFormats> ContentFormats::create(const std::vector<Glib::ustring>& mime_types)
+auto ContentFormats::create(const std::vector<Glib::ustring>& mime_types) -> Glib::RefPtr<ContentFormats>
 {
   return Glib::wrap(gdk_content_formats_new(Glib::ArrayHandler<Glib::ustring>::vector_to_array(mime_types).data(), mime_types.size()));
 }
 
-Glib::RefPtr<ContentFormats> ContentFormats::create(const Glib::ustring& mime_type)
+auto ContentFormats::create(const Glib::ustring& mime_type) -> Glib::RefPtr<ContentFormats>
 {
   const char* c_mime_type = mime_type.c_str();
   return Glib::wrap(gdk_content_formats_new(&c_mime_type, 1));
 }
 
-std::vector<GType> ContentFormats::get_gtypes() const
+auto ContentFormats::get_gtypes() const -> std::vector<GType>
 {
   gsize n_gtypes = 0;
   const GType* gtype_array = gdk_content_formats_get_gtypes(gobj(), &n_gtypes);
   return Glib::ArrayHandler<GType>::array_to_vector(gtype_array, n_gtypes, Glib::OWNERSHIP_NONE);
 }
 
-std::vector<Glib::ustring> ContentFormats::get_mime_types() const
+auto ContentFormats::get_mime_types() const -> std::vector<Glib::ustring>
 {
   gsize n_mime_types = 0;
   const char* const* mime_type_array = gdk_content_formats_get_mime_types(gobj(), &n_mime_types);
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(mime_type_array, n_mime_types, Glib::OWNERSHIP_NONE);
 }
 
-Glib::RefPtr<ContentFormats> ContentFormats::join(const Glib::RefPtr<const ContentFormats>& second) const
+auto ContentFormats::join(const Glib::RefPtr<const ContentFormats>& second) const -> Glib::RefPtr<ContentFormats>
 {
   // gdk_content_formats_union() unref's *this! Compensate for that.
   reference();
@@ -66,7 +66,7 @@ Glib::RefPtr<ContentFormats> ContentFormats::join(const Glib::RefPtr<const Conte
 namespace Glib
 {
 
-GType Value<RefPtr<Gdk::ContentFormats> >::value_type()
+auto Value<RefPtr<Gdk::ContentFormats> >::value_type() -> GType
 {
   return gdk_content_formats_get_type();
 }
@@ -76,7 +76,7 @@ void Value<RefPtr<Gdk::ContentFormats> >::set(const CppType& data)
   set_boxed(Glib::unwrap(data));
 }
 
-Value<RefPtr<Gdk::ContentFormats>>::CppType Value<RefPtr<Gdk::ContentFormats>>::get() const
+auto Value<RefPtr<Gdk::ContentFormats>>::get() const -> Value<RefPtr<Gdk::ContentFormats>>::CppType
 {
   return Glib::wrap(static_cast<CType>(get_boxed()), true);
 }
@@ -104,7 +104,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::ContentFormats> wrap(GdkContentFormats* object, bool take_copy)
+auto wrap(GdkContentFormats* object, bool take_copy) -> Glib::RefPtr<Gdk::ContentFormats>
 {
   if(take_copy && object)
     gdk_content_formats_ref(object);
@@ -131,19 +131,19 @@ void ContentFormats::unreference() const
   gdk_content_formats_unref(reinterpret_cast<GdkContentFormats*>(const_cast<ContentFormats*>(this)));
 }
 
-GdkContentFormats* ContentFormats::gobj()
+auto ContentFormats::gobj() -> GdkContentFormats*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<GdkContentFormats*>(this);
 }
 
-const GdkContentFormats* ContentFormats::gobj() const
+auto ContentFormats::gobj() const -> const GdkContentFormats*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<const GdkContentFormats*>(this);
 }
 
-GdkContentFormats* ContentFormats::gobj_copy() const
+auto ContentFormats::gobj_copy() const -> GdkContentFormats*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   const auto gobject = reinterpret_cast<GdkContentFormats*>(const_cast<ContentFormats*>(this));
@@ -152,42 +152,42 @@ GdkContentFormats* ContentFormats::gobj_copy() const
 }
 
 
-Glib::RefPtr<ContentFormats> ContentFormats::create(GType type)
+auto ContentFormats::create(GType type) -> Glib::RefPtr<ContentFormats>
 {
   return Glib::wrap(gdk_content_formats_new_for_gtype(type));
 }
 
-Glib::RefPtr<ContentFormats> ContentFormats::parse(const Glib::ustring& string)
+auto ContentFormats::parse(const Glib::ustring& string) -> Glib::RefPtr<ContentFormats>
 {
   return Glib::wrap(gdk_content_formats_parse(string.c_str()));
 }
 
-Glib::ustring ContentFormats::to_string() const
+auto ContentFormats::to_string() const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gdk_content_formats_to_string(const_cast<GdkContentFormats*>(gobj())));
 }
 
-bool ContentFormats::contain_gtype(GType type) const
+auto ContentFormats::contain_gtype(GType type) const -> bool
 {
   return gdk_content_formats_contain_gtype(const_cast<GdkContentFormats*>(gobj()), type);
 }
 
-bool ContentFormats::contain_mime_type(const Glib::ustring& mime_type) const
+auto ContentFormats::contain_mime_type(const Glib::ustring& mime_type) const -> bool
 {
   return gdk_content_formats_contain_mime_type(const_cast<GdkContentFormats*>(gobj()), mime_type.c_str());
 }
 
-bool ContentFormats::match(const Glib::RefPtr<const ContentFormats>& second) const
+auto ContentFormats::match(const Glib::RefPtr<const ContentFormats>& second) const -> bool
 {
   return gdk_content_formats_match(const_cast<GdkContentFormats*>(gobj()), Glib::unwrap(second));
 }
 
-GType ContentFormats::match_gtype(const Glib::RefPtr<const ContentFormats>& second) const
+auto ContentFormats::match_gtype(const Glib::RefPtr<const ContentFormats>& second) const -> GType
 {
   return gdk_content_formats_match_gtype(const_cast<GdkContentFormats*>(gobj()), Glib::unwrap(second));
 }
 
-Glib::ustring ContentFormats::match_mime_type(const Glib::RefPtr<const ContentFormats>& second) const
+auto ContentFormats::match_mime_type(const Glib::RefPtr<const ContentFormats>& second) const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gdk_content_formats_match_mime_type(const_cast<GdkContentFormats*>(gobj()), Glib::unwrap(second)));
 }

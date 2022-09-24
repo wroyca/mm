@@ -41,12 +41,12 @@ void TreeModelColumnRecord::add(TreeModelColumnBase& column)
   column_types_.push_back(column.type_);
 }
 
-unsigned int TreeModelColumnRecord::size() const
+auto TreeModelColumnRecord::size() const -> unsigned int
 {
   return column_types_.size();
 }
 
-const GType* TreeModelColumnRecord::types() const
+auto TreeModelColumnRecord::types() const -> const GType*
 {
   g_return_val_if_fail(!column_types_.empty(), 0);
 

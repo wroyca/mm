@@ -31,8 +31,8 @@
 namespace Gio
 {
 
-Glib::RefPtr<NetworkAddress>
-NetworkAddress::parse(const std::string& host_and_port, guint16 default_port)
+auto
+NetworkAddress::parse(const std::string& host_and_port, guint16 default_port) -> Glib::RefPtr<NetworkAddress>
 {
   GError* error = nullptr;
   auto* address =
@@ -53,7 +53,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::NetworkAddress> wrap(GNetworkAddress* object, bool take_copy)
+auto wrap(GNetworkAddress* object, bool take_copy) -> Glib::RefPtr<Gio::NetworkAddress>
 {
   return Glib::make_refptr_for_instance<Gio::NetworkAddress>( dynamic_cast<Gio::NetworkAddress*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -68,7 +68,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& NetworkAddress_Class::init()
+auto NetworkAddress_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -100,7 +100,7 @@ void NetworkAddress_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* NetworkAddress_Class::wrap_new(GObject* object)
+auto NetworkAddress_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new NetworkAddress((GNetworkAddress*)object);
 }
@@ -108,7 +108,7 @@ Glib::ObjectBase* NetworkAddress_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GNetworkAddress* NetworkAddress::gobj_copy()
+auto NetworkAddress::gobj_copy() -> GNetworkAddress*
 {
   reference();
   return gobj();
@@ -132,7 +132,7 @@ NetworkAddress::NetworkAddress(NetworkAddress&& src) noexcept
   , SocketConnectable(std::move(src))
 {}
 
-NetworkAddress& NetworkAddress::operator=(NetworkAddress&& src) noexcept
+auto NetworkAddress::operator=(NetworkAddress&& src) noexcept -> NetworkAddress&
 {
   Glib::Object::operator=(std::move(src));
   SocketConnectable::operator=(std::move(src));
@@ -146,13 +146,13 @@ NetworkAddress::~NetworkAddress() noexcept
 
 NetworkAddress::CppClassType NetworkAddress::networkaddress_class_; // initialize static member
 
-GType NetworkAddress::get_type()
+auto NetworkAddress::get_type() -> GType
 {
   return networkaddress_class_.init().get_type();
 }
 
 
-GType NetworkAddress::get_base_type()
+auto NetworkAddress::get_base_type() -> GType
 {
   return g_network_address_get_type();
 }
@@ -168,38 +168,38 @@ NetworkAddress::NetworkAddress(const std::string& hostname, guint16 port)
 
 }
 
-Glib::RefPtr<NetworkAddress> NetworkAddress::create(const std::string& hostname, guint16 port)
+auto NetworkAddress::create(const std::string& hostname, guint16 port) -> Glib::RefPtr<NetworkAddress>
 {
   return Glib::make_refptr_for_instance<NetworkAddress>( new NetworkAddress(hostname, port) );
 }
 
-std::string NetworkAddress::get_hostname() const
+auto NetworkAddress::get_hostname() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_network_address_get_hostname(const_cast<GNetworkAddress*>(gobj())));
 }
 
-guint16 NetworkAddress::get_port() const
+auto NetworkAddress::get_port() const -> guint16
 {
   return g_network_address_get_port(const_cast<GNetworkAddress*>(gobj()));
 }
 
-std::string NetworkAddress::get_scheme() const
+auto NetworkAddress::get_scheme() const -> std::string
 {
   return Glib::convert_const_gchar_ptr_to_stdstring(g_network_address_get_scheme(const_cast<GNetworkAddress*>(gobj())));
 }
 
 
-Glib::PropertyProxy_ReadOnly< std::string > NetworkAddress::property_hostname() const
+auto NetworkAddress::property_hostname() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
   return Glib::PropertyProxy_ReadOnly< std::string >(this, "hostname");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > NetworkAddress::property_port() const
+auto NetworkAddress::property_port() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "port");
 }
 
-Glib::PropertyProxy_ReadOnly< std::string > NetworkAddress::property_scheme() const
+auto NetworkAddress::property_scheme() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
   return Glib::PropertyProxy_ReadOnly< std::string >(this, "scheme");
 }

@@ -80,11 +80,11 @@ class GTKMM_API TreeViewColumn
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   TreeViewColumn(TreeViewColumn&& src) noexcept;
-  TreeViewColumn& operator=(TreeViewColumn&& src) noexcept;
+  auto operator=(TreeViewColumn&& src) noexcept -> TreeViewColumn&;
 
   // noncopyable
   TreeViewColumn(const TreeViewColumn&) = delete;
-  TreeViewColumn& operator=(const TreeViewColumn&) = delete;
+  auto operator=(const TreeViewColumn&) -> TreeViewColumn& = delete;
 
   ~TreeViewColumn() noexcept override;
 
@@ -104,19 +104,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkTreeViewColumn*       gobj()       { return reinterpret_cast<GtkTreeViewColumn*>(gobject_); }
+  auto       gobj() -> GtkTreeViewColumn*       { return reinterpret_cast<GtkTreeViewColumn*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkTreeViewColumn* gobj() const { return reinterpret_cast<GtkTreeViewColumn*>(gobject_); }
+  auto gobj() const -> const GtkTreeViewColumn* { return reinterpret_cast<GtkTreeViewColumn*>(gobject_); }
 
 private:
 
@@ -284,7 +284,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    *
    * @return The spacing of @a tree_column.
    */
-  int get_spacing() const;
+  auto get_spacing() const -> int;
 
   /** Sets the visibility of @a tree_column.
    *
@@ -297,7 +297,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    * @return Whether the column is visible or not.  If it is visible, then
    * the tree will show the column.
    */
-  bool get_visible() const;
+  auto get_visible() const -> bool;
 
   /** If @a resizable is <tt>true</tt>, then the user can explicitly resize the column by
    * grabbing the outer edge of the column button.
@@ -314,7 +314,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    *
    * @return <tt>true</tt>, if the @a tree_column can be resized.
    */
-  bool get_resizable() const;
+  auto get_resizable() const -> bool;
 
   /** Sets the growth behavior of @a tree_column to @a type.
    *
@@ -326,26 +326,26 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    *
    * @return The type of @a tree_column.
    */
-  Sizing get_sizing();
+  auto get_sizing() -> Sizing;
 
   /** Returns the current X offset of @a tree_column in pixels.
    *
    * @return The current X offset of @a tree_column.
    */
-  int get_x_offset() const;
+  auto get_x_offset() const -> int;
 
   /** Returns the current size of @a tree_column in pixels.
    *
    * @return The current width of @a tree_column.
    */
-  int get_width() const;
+  auto get_width() const -> int;
 
   /** Gets the fixed width of the column.  This may not be the actual displayed
    * width of the column; for that, use get_width().
    *
    * @return The fixed width of the column.
    */
-  int get_fixed_width() const;
+  auto get_fixed_width() const -> int;
 
   /** If @a fixed_width is not -1, sets the fixed width of @a tree_column; otherwise
    * unsets it.  The effective value of @a fixed_width is clamped between the
@@ -375,7 +375,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    *
    * @return The minimum width of the @a tree_column.
    */
-  int get_min_width() const;
+  auto get_min_width() const -> int;
 
   /** Sets the maximum width of the @a tree_column.  If @a max_width is -1, then the
    * maximum width is unset.  Note, the column can actually be wider than max
@@ -391,7 +391,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    *
    * @return The maximum width of the @a tree_column.
    */
-  int get_max_width() const;
+  auto get_max_width() const -> int;
 
   /** Emits the “clicked” signal on the column.  This function will only work if
    *  @a tree_column is clickable.
@@ -411,7 +411,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    * @return The title of the column. This string should not be
    * modified or freed.
    */
-  Glib::ustring get_title() const;
+  auto get_title() const -> Glib::ustring;
 
 
   /** Sets the column to take available extra space.  This space is shared equally
@@ -430,7 +430,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    *
    * @return <tt>true</tt> if the column expands to fill available space.
    */
-  bool get_expand() const;
+  auto get_expand() const -> bool;
 
 
   /** Sets the header to be active if @a clickable is <tt>true</tt>.  When the header is
@@ -444,7 +444,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    *
    * @return <tt>true</tt> if user can click the column header.
    */
-  bool get_clickable() const;
+  auto get_clickable() const -> bool;
 
   /** Sets the widget in the header to be @a widget.  If widget is <tt>nullptr</tt>, then the
    * header button is set with a `Gtk::Label` set to the title of @a tree_column.
@@ -459,7 +459,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    *
    * @return The `Gtk::Widget` in the column header.
    */
-  Widget* get_widget();
+  auto get_widget() -> Widget*;
 
   /** Returns the `Gtk::Widget` in the button on the column header.
    *
@@ -467,7 +467,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    *
    * @return The `Gtk::Widget` in the column header.
    */
-  const Widget* get_widget() const;
+  auto get_widget() const -> const Widget*;
 
 
   /** Sets the alignment of the title or custom widget inside the column header.
@@ -492,7 +492,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    *
    * @return The current alignent of @a tree_column.
    */
-  float get_alignment() const;
+  auto get_alignment() const -> float;
 
   /** If @a reorderable is <tt>true</tt>, then the column can be reordered by the end user
    * dragging the header.
@@ -505,7 +505,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    *
    * @return <tt>true</tt> if the @a tree_column can be reordered by the user.
    */
-  bool get_reorderable() const;
+  auto get_reorderable() const -> bool;
 
 
   /** Sets the logical @a sort_column_id that this column sorts on when this column
@@ -531,7 +531,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    * @return The current @a sort_column_id for this column, or -1 if
    * this column can’t be used for sorting.
    */
-  int get_sort_column_id() const;
+  auto get_sort_column_id() const -> int;
 
   /** Call this function with a @a setting of <tt>true</tt> to display an arrow in
    * the header button indicating the column is sorted. Call
@@ -546,7 +546,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    *
    * @return Whether the sort indicator arrow is displayed.
    */
-  bool get_sort_indicator() const;
+  auto get_sort_indicator() const -> bool;
 
   /** Changes the appearance of the sort indicator.
    *
@@ -568,7 +568,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    *
    * @return The sort order the sort indicator is indicating.
    */
-  SortType get_sort_order() const;
+  auto get_sort_order() const -> SortType;
 
 
   /** Sets the cell renderer based on the @a tree_model and @a iter.  That is, for
@@ -601,7 +601,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    *
    * @return <tt>true</tt>, if any of the cells packed into the @a tree_column are currently visible.
    */
-  bool cell_is_visible() const;
+  auto cell_is_visible() const -> bool;
 
   /** Sets the current keyboard focus to be at @a cell, if the column contains
    * 2 or more editable and activatable cells.
@@ -622,7 +622,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    * @param width Return location for the width of @a cell.
    * @return <tt>true</tt> if @a cell belongs to @a tree_column.
    */
-  bool get_cell_position(const CellRenderer& cell_renderer, int& start_pos, int& width) const;
+  auto get_cell_position(const CellRenderer& cell_renderer, int& start_pos, int& width) const -> bool;
 
   /** Flags the column, and the cell renderers added to this column, to have
    * their sizes renegotiated.
@@ -637,7 +637,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    * @return The tree view wherein @a column
    * has been inserted.
    */
-  TreeView* get_tree_view();
+  auto get_tree_view() -> TreeView*;
 
   /** Returns the `Gtk::TreeView` wherein @a tree_column has been inserted.
    * If @a column is currently not inserted in any tree view, <tt>nullptr</tt> is
@@ -646,20 +646,20 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    * @return The tree view wherein @a column
    * has been inserted.
    */
-  const TreeView* get_tree_view() const;
+  auto get_tree_view() const -> const TreeView*;
 
 
   /** Returns the button used in the treeview column header
    *
    * @return The button for the column header.
    */
-  Button* get_button();
+  auto get_button() -> Button*;
 
   /** Returns the button used in the treeview column header
    *
    * @return The button for the column header.
    */
-  const Button* get_button() const;
+  auto get_button() const -> const Button*;
 
   // no_default_handler because GtkTreeViewColumnClass is private.
 
@@ -672,7 +672,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    * Emitted when the column's header has been clicked.
    */
 
-  Glib::SignalProxy<void()> signal_clicked();
+  auto signal_clicked() -> Glib::SignalProxy<void()>;
 
 
   /** Default value: <tt>true</tt>
@@ -680,35 +680,35 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_visible() ;
+  auto property_visible() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>true</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_visible() const;
+  auto property_visible() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_resizable() ;
+  auto property_resizable() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_resizable() const;
+  auto property_resizable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: 0
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_x_offset() const;
+  auto property_x_offset() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** Default value: 0
@@ -716,7 +716,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_width() const;
+  auto property_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** Default value: 0
@@ -724,182 +724,182 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_spacing() ;
+  auto property_spacing() -> Glib::PropertyProxy< int > ;
 
 /** Default value: 0
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_spacing() const;
+  auto property_spacing() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Default value: Gtk::TreeViewColumn::Sizing::GROW_ONLY
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Sizing > property_sizing() ;
+  auto property_sizing() -> Glib::PropertyProxy< Sizing > ;
 
 /** Default value: Gtk::TreeViewColumn::Sizing::GROW_ONLY
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Sizing > property_sizing() const;
+  auto property_sizing() const -> Glib::PropertyProxy_ReadOnly< Sizing >;
 
   /** Default value: -1
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_fixed_width() ;
+  auto property_fixed_width() -> Glib::PropertyProxy< int > ;
 
 /** Default value: -1
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_fixed_width() const;
+  auto property_fixed_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Default value: -1
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_min_width() ;
+  auto property_min_width() -> Glib::PropertyProxy< int > ;
 
 /** Default value: -1
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_min_width() const;
+  auto property_min_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Default value: -1
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_max_width() ;
+  auto property_max_width() -> Glib::PropertyProxy< int > ;
 
 /** Default value: -1
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_max_width() const;
+  auto property_max_width() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Default value: ""
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_title() ;
+  auto property_title() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Default value: ""
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_title() const;
+  auto property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_expand() ;
+  auto property_expand() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_expand() const;
+  auto property_expand() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_clickable() ;
+  auto property_clickable() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_clickable() const;
+  auto property_clickable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /**
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_widget() ;
+  auto property_widget() -> Glib::PropertyProxy< Widget* > ;
 
 /**
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_widget() const;
+  auto property_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
   /** Default value: 0
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< float > property_alignment() ;
+  auto property_alignment() -> Glib::PropertyProxy< float > ;
 
 /** Default value: 0
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< float > property_alignment() const;
+  auto property_alignment() const -> Glib::PropertyProxy_ReadOnly< float >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_reorderable() ;
+  auto property_reorderable() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_reorderable() const;
+  auto property_reorderable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_sort_indicator() ;
+  auto property_sort_indicator() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>false</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_sort_indicator() const;
+  auto property_sort_indicator() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: Gtk::SortType::ASCENDING
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< SortType > property_sort_order() ;
+  auto property_sort_order() -> Glib::PropertyProxy< SortType > ;
 
 /** Default value: Gtk::SortType::ASCENDING
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< SortType > property_sort_order() const;
+  auto property_sort_order() const -> Glib::PropertyProxy_ReadOnly< SortType >;
 
   /** Logical sort column ID this column sorts on when selected for sorting. Setting the sort column ID makes the column header
    * clickable. Set to -1 to make the column unsortable.
@@ -909,7 +909,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_sort_column_id() ;
+  auto property_sort_column_id() -> Glib::PropertyProxy< int > ;
 
 /** Logical sort column ID this column sorts on when selected for sorting. Setting the sort column ID makes the column header
    * clickable. Set to -1 to make the column unsortable.
@@ -919,7 +919,7 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_sort_column_id() const;
+  auto property_sort_column_id() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The `Gtk::CellArea` used to layout cell renderers for this column.
    *
@@ -929,13 +929,13 @@ void set_renderer(Gtk::CellRenderer& renderer, const TreeModelColumnBase& column
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> > property_cell_area() const;
+  auto property_cell_area() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> >;
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
   // Only necessary because of the templated ctor, see below.
-  static const Glib::Class& class_init_();
+  static auto class_init_() -> const Glib::Class&;
 #endif //DOXYGEN_SHOULD_SKIP_THIS
 
 
@@ -999,7 +999,7 @@ template <>
 class GTKMM_API Value<Gtk::TreeViewColumn::Sizing> : public Glib::Value_Enum<Gtk::TreeViewColumn::Sizing>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -1017,7 +1017,7 @@ namespace Glib
    * @relates Gtk::TreeViewColumn
    */
   GTKMM_API
-  Gtk::TreeViewColumn* wrap(GtkTreeViewColumn* object, bool take_copy = false);
+  auto wrap(GtkTreeViewColumn* object, bool take_copy = false) -> Gtk::TreeViewColumn*;
 } //namespace Glib
 
 

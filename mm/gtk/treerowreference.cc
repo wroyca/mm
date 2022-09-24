@@ -51,7 +51,7 @@ namespace
 namespace Glib
 {
 
-Gtk::TreeRowReference wrap(GtkTreeRowReference* object, bool take_copy)
+auto wrap(GtkTreeRowReference* object, bool take_copy) -> Gtk::TreeRowReference
 {
   return Gtk::TreeRowReference(object, take_copy);
 }
@@ -64,7 +64,7 @@ namespace Gtk
 
 
 // static
-GType TreeRowReference::get_type()
+auto TreeRowReference::get_type() -> GType
 {
   return gtk_tree_row_reference_get_type();
 }
@@ -86,7 +86,7 @@ TreeRowReference::TreeRowReference(TreeRowReference&& other) noexcept
   other.gobject_ = nullptr;
 }
 
-TreeRowReference& TreeRowReference::operator=(TreeRowReference&& other) noexcept
+auto TreeRowReference::operator=(TreeRowReference&& other) noexcept -> TreeRowReference&
 {
   TreeRowReference temp (std::move(other));
   swap(temp);
@@ -101,7 +101,7 @@ TreeRowReference::TreeRowReference(GtkTreeRowReference* gobject, bool make_a_cop
   gobject_ ((make_a_copy && gobject) ? gtk_tree_row_reference_copy(gobject) : gobject)
 {}
 
-TreeRowReference& TreeRowReference::operator=(const TreeRowReference& other)
+auto TreeRowReference::operator=(const TreeRowReference& other) -> TreeRowReference&
 {
   TreeRowReference temp (other);
   swap(temp);
@@ -119,18 +119,18 @@ void TreeRowReference::swap(TreeRowReference& other) noexcept
   std::swap(gobject_, other.gobject_);
 }
 
-GtkTreeRowReference* TreeRowReference::gobj_copy() const
+auto TreeRowReference::gobj_copy() const -> GtkTreeRowReference*
 {
   return gtk_tree_row_reference_copy(gobject_);
 }
 
 
-TreeModel::Path TreeRowReference::get_path() const
+auto TreeRowReference::get_path() const -> TreeModel::Path
 {
   return Gtk::TreePath(gtk_tree_row_reference_get_path(const_cast<GtkTreeRowReference*>(gobj())), false);
 }
 
-Glib::RefPtr<TreeModel> TreeRowReference::get_model()
+auto TreeRowReference::get_model() -> Glib::RefPtr<TreeModel>
 {
   auto retvalue = Glib::wrap(gtk_tree_row_reference_get_model(gobj()));
   if(retvalue)
@@ -138,12 +138,12 @@ Glib::RefPtr<TreeModel> TreeRowReference::get_model()
   return retvalue;
 }
 
-Glib::RefPtr<const TreeModel> TreeRowReference::get_model() const
+auto TreeRowReference::get_model() const -> Glib::RefPtr<const TreeModel>
 {
   return const_cast<TreeRowReference*>(this)->get_model();
 }
 
-bool TreeRowReference::is_valid() const
+auto TreeRowReference::is_valid() const -> bool
 {
   return gtk_tree_row_reference_valid(const_cast<GtkTreeRowReference*>(gobj()));
 }

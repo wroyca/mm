@@ -27,36 +27,26 @@
 #include <mm/glib/error.h>
 #include <mm/glib/utility.h>
 
-namespace Gio
+namespace Gio::DBus::ErrorUtils
 {
 
-namespace DBus
-{
-
-namespace ErrorUtils
-{
-
-bool
-is_remote_error(const Glib::Error& error)
+auto
+is_remote_error(const Glib::Error& error) -> bool
 {
   return static_cast<bool>(g_dbus_error_is_remote_error(error.gobj()));
 }
 
-Glib::ustring
-get_remote_error(const Glib::Error& error)
+auto
+get_remote_error(const Glib::Error& error) -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_dbus_error_get_remote_error(error.gobj()));
 }
 
-bool
-strip_remote_error(Glib::Error& error)
+auto
+strip_remote_error(Glib::Error& error) -> bool
 {
   return static_cast<bool>(g_dbus_error_strip_remote_error(error.gobj()));
 }
-
-} // namespace ErrorUtils
-
-} // namespace DBus
 
 } // namespace Gio
 

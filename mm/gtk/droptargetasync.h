@@ -94,7 +94,7 @@ public:
 
   // noncopyable
   DropTargetAsync(const DropTargetAsync&) = delete;
-  DropTargetAsync& operator=(const DropTargetAsync&) = delete;
+  auto operator=(const DropTargetAsync&) -> DropTargetAsync& = delete;
 
 private:  friend class DropTargetAsync_Class;
   static CppClassType droptargetasync_class_;
@@ -108,28 +108,28 @@ protected:
 public:
 
   DropTargetAsync(DropTargetAsync&& src) noexcept;
-  DropTargetAsync& operator=(DropTargetAsync&& src) noexcept;
+  auto operator=(DropTargetAsync&& src) noexcept -> DropTargetAsync&;
 
   ~DropTargetAsync() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkDropTargetAsync*       gobj()       { return reinterpret_cast<GtkDropTargetAsync*>(gobject_); }
+  auto       gobj() -> GtkDropTargetAsync*       { return reinterpret_cast<GtkDropTargetAsync*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkDropTargetAsync* gobj() const { return reinterpret_cast<GtkDropTargetAsync*>(gobject_); }
+  auto gobj() const -> const GtkDropTargetAsync* { return reinterpret_cast<GtkDropTargetAsync*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkDropTargetAsync* gobj_copy();
+  auto gobj_copy() -> GtkDropTargetAsync*;
 
 private:
 
@@ -137,9 +137,9 @@ private:
 public:
   // Gdk::ContentFormats is an immutable object. It can be declared const
   // in input parameters. No one can change it.
-  static Glib::RefPtr<DropTargetAsync> create(const Glib::RefPtr<const Gdk::ContentFormats>& formats,
-    Gdk::DragAction actions = static_cast<Gdk::DragAction>(0));
-  static Glib::RefPtr<DropTargetAsync> create(Gdk::DragAction actions = static_cast<Gdk::DragAction>(0));
+  static auto create(const Glib::RefPtr<const Gdk::ContentFormats>& formats,
+    Gdk::DragAction actions = static_cast<Gdk::DragAction>(0)) -> Glib::RefPtr<DropTargetAsync>;
+  static auto create(Gdk::DragAction actions = static_cast<Gdk::DragAction>(0)) -> Glib::RefPtr<DropTargetAsync>;
 
 
   /** Sets the data formats that this drop target will accept.
@@ -154,7 +154,7 @@ public:
    *
    * @return The supported data formats.
    */
-  Glib::RefPtr<Gdk::ContentFormats> get_formats();
+  auto get_formats() -> Glib::RefPtr<Gdk::ContentFormats>;
 
   /** Gets the data formats that this drop target accepts.
    *
@@ -162,7 +162,7 @@ public:
    *
    * @return The supported data formats.
    */
-  Glib::RefPtr<const Gdk::ContentFormats> get_formats() const;
+  auto get_formats() const -> Glib::RefPtr<const Gdk::ContentFormats>;
 
 
   /** Sets the actions that this drop target supports.
@@ -175,7 +175,7 @@ public:
    *
    * @return The actions that this drop target supports.
    */
-  Gdk::DragAction get_actions() const;
+  auto get_actions() const -> Gdk::DragAction;
 
 
   /** Sets the @a drop as not accepted on this drag site.
@@ -195,7 +195,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Gdk::DragAction > property_actions() ;
+  auto property_actions() -> Glib::PropertyProxy< Gdk::DragAction > ;
 
 /** The `Gdk::DragActions` that this drop target supports.
    *
@@ -204,21 +204,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Gdk::DragAction > property_actions() const;
+  auto property_actions() const -> Glib::PropertyProxy_ReadOnly< Gdk::DragAction >;
 
   /** The `Gdk::ContentFormats` that determines the supported data formats.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gdk::ContentFormats> > property_formats() ;
+  auto property_formats() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::ContentFormats> > ;
 
 /** The `Gdk::ContentFormats` that determines the supported data formats.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::ContentFormats> > property_formats() const;
+  auto property_formats() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::ContentFormats> >;
 
 
   // no_default_handler because GtkDropTargetAsyncClass is private.
@@ -253,7 +253,7 @@ public:
    * @return <tt>true</tt> if @a drop is accepted.
    */
 
-  Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drop>&)> signal_accept();
+  auto signal_accept() -> Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drop>&)>;
 
 
   /** Only one signal handler is called. If you connect a handler, it must be
@@ -275,7 +275,7 @@ public:
    * @return Preferred action for this drag operation.
    */
 
-  Glib::SignalProxy<Gdk::DragAction(const Glib::RefPtr<Gdk::Drop>&, double, double)> signal_drag_enter();
+  auto signal_drag_enter() -> Glib::SignalProxy<Gdk::DragAction(const Glib::RefPtr<Gdk::Drop>&, double, double)>;
 
 
   /** Only one signal handler is called. If you connect a handler, it must be
@@ -295,7 +295,7 @@ public:
    * @return Preferred action for this drag operation.
    */
 
-  Glib::SignalProxy<Gdk::DragAction(const Glib::RefPtr<Gdk::Drop>&, double, double)> signal_drag_motion();
+  auto signal_drag_motion() -> Glib::SignalProxy<Gdk::DragAction(const Glib::RefPtr<Gdk::Drop>&, double, double)>;
 
 
   /**
@@ -312,7 +312,7 @@ public:
    * @param drop The `Gdk::Drop`.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Gdk::Drop>&)> signal_drag_leave();
+  auto signal_drag_leave() -> Glib::SignalProxy<void(const Glib::RefPtr<Gdk::Drop>&)>;
 
 
   /** Only one signal handler is called. If you connect a handler, it must be
@@ -345,7 +345,7 @@ public:
    * @return Whether the drop is accepted at the given pointer position.
    */
 
-  Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drop>&, double, double)> signal_drop();
+  auto signal_drop() -> Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drop>&, double, double)>;
 
 
 public:
@@ -375,7 +375,7 @@ namespace Glib
    * @relates Gtk::DropTargetAsync
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::DropTargetAsync> wrap(GtkDropTargetAsync* object, bool take_copy = false);
+  auto wrap(GtkDropTargetAsync* object, bool take_copy = false) -> Glib::RefPtr<Gtk::DropTargetAsync>;
 }
 
 

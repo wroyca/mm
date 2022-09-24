@@ -30,7 +30,7 @@
 namespace Gtk
 {
 
-Glib::PropertyProxy_Base CellRendererSpin::_property_renderable()
+auto CellRendererSpin::_property_renderable() -> Glib::PropertyProxy_Base
 {
   return CellRendererText::_property_renderable();
 }
@@ -45,7 +45,7 @@ namespace
 namespace Glib
 {
 
-Gtk::CellRendererSpin* wrap(GtkCellRendererSpin* object, bool take_copy)
+auto wrap(GtkCellRendererSpin* object, bool take_copy) -> Gtk::CellRendererSpin*
 {
   return dynamic_cast<Gtk::CellRendererSpin *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -58,7 +58,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& CellRendererSpin_Class::init()
+auto CellRendererSpin_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -89,7 +89,7 @@ void CellRendererSpin_Class::class_init_function(void* g_class, void* class_data
 }
 
 
-Glib::ObjectBase* CellRendererSpin_Class::wrap_new(GObject* o)
+auto CellRendererSpin_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new CellRendererSpin((GtkCellRendererSpin*)(o)));
 
@@ -115,7 +115,7 @@ CellRendererSpin::CellRendererSpin(CellRendererSpin&& src) noexcept
 : Gtk::CellRendererText(std::move(src))
 {}
 
-CellRendererSpin& CellRendererSpin::operator=(CellRendererSpin&& src) noexcept
+auto CellRendererSpin::operator=(CellRendererSpin&& src) noexcept -> CellRendererSpin&
 {
   Gtk::CellRendererText::operator=(std::move(src));
   return *this;
@@ -128,13 +128,13 @@ CellRendererSpin::~CellRendererSpin() noexcept
 
 CellRendererSpin::CppClassType CellRendererSpin::cellrendererspin_class_; // initialize static member
 
-GType CellRendererSpin::get_type()
+auto CellRendererSpin::get_type() -> GType
 {
   return cellrendererspin_class_.init().get_type();
 }
 
 
-GType CellRendererSpin::get_base_type()
+auto CellRendererSpin::get_base_type() -> GType
 {
   return gtk_cell_renderer_spin_get_type();
 }
@@ -155,32 +155,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Adjustm
   "Type Glib::RefPtr<Adjustment> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Adjustment> > CellRendererSpin::property_adjustment()
+auto CellRendererSpin::property_adjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Adjustment> >(this, "adjustment");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> > CellRendererSpin::property_adjustment() const
+auto CellRendererSpin::property_adjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >(this, "adjustment");
 }
 
-Glib::PropertyProxy< double > CellRendererSpin::property_climb_rate()
+auto CellRendererSpin::property_climb_rate() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "climb-rate");
 }
 
-Glib::PropertyProxy_ReadOnly< double > CellRendererSpin::property_climb_rate() const
+auto CellRendererSpin::property_climb_rate() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "climb-rate");
 }
 
-Glib::PropertyProxy< guint > CellRendererSpin::property_digits()
+auto CellRendererSpin::property_digits() -> Glib::PropertyProxy< guint >
 {
   return Glib::PropertyProxy< guint >(this, "digits");
 }
 
-Glib::PropertyProxy_ReadOnly< guint > CellRendererSpin::property_digits() const
+auto CellRendererSpin::property_digits() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
   return Glib::PropertyProxy_ReadOnly< guint >(this, "digits");
 }

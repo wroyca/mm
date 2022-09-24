@@ -121,11 +121,11 @@ class GTKMM_API Widget
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   Widget(Widget&& src) noexcept;
-  Widget& operator=(Widget&& src) noexcept;
+  auto operator=(Widget&& src) noexcept -> Widget&;
 
   // noncopyable
   Widget(const Widget&) = delete;
-  Widget& operator=(const Widget&) = delete;
+  auto operator=(const Widget&) -> Widget& = delete;
 
   /** Destroys the widget. The widget will be automatically removed from the parent container.
    */
@@ -147,19 +147,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkWidget*       gobj()       { return reinterpret_cast<GtkWidget*>(gobject_); }
+  auto       gobj() -> GtkWidget*       { return reinterpret_cast<GtkWidget*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkWidget* gobj() const { return reinterpret_cast<GtkWidget*>(gobject_); }
+  auto gobj() const -> const GtkWidget* { return reinterpret_cast<GtkWidget*>(gobject_); }
 
 private:
 
@@ -170,11 +170,11 @@ public:
   /** Converts this widget to a reference counted Gtk::ConstraintTarget.
    * Useful in calls to Gtk::Constraint::create().
    */
-  Glib::RefPtr<ConstraintTarget> make_refptr_constrainttarget();
+  auto make_refptr_constrainttarget() -> Glib::RefPtr<ConstraintTarget>;
 
   /** Converts this widget to a reference counted Gtk::ConstraintTarget.
    */
-  Glib::RefPtr<const ConstraintTarget> make_refptr_constrainttarget() const;
+  auto make_refptr_constrainttarget() const -> Glib::RefPtr<const ConstraintTarget>;
 
 
   /** Flags a widget to be displayed.
@@ -258,7 +258,7 @@ public:
    *
    * @return The `Gtk::SizeRequestMode` preferred by @a widget.
    */
-  SizeRequestMode get_request_mode() const;
+  auto get_request_mode() const -> SizeRequestMode;
 
   /** Measures @a widget in the orientation @a orientation and for the given @a for_size.
    *
@@ -322,7 +322,7 @@ public:
    *
    * @return A `Gtk::LayoutManager`.
    */
-  Glib::RefPtr<LayoutManager> get_layout_manager();
+  auto get_layout_manager() -> Glib::RefPtr<LayoutManager>;
 
   /** Retrieves the layout manager used by @a widget.
    *
@@ -330,7 +330,7 @@ public:
    *
    * @return A `Gtk::LayoutManager`.
    */
-  Glib::RefPtr<const LayoutManager> get_layout_manager() const;
+  auto get_layout_manager() const -> Glib::RefPtr<const LayoutManager>;
 
 
   /** Emits the signal_mnemonic_activate() signal.
@@ -340,7 +340,7 @@ public:
    * @param group_cycling <tt>true</tt> if there are other widgets with the same mnemonic.
    * @return <tt>true</tt> if the signal has been handled.
    */
-  bool mnemonic_activate(bool group_cycling);
+  auto mnemonic_activate(bool group_cycling) -> bool;
 
 
   /** For widgets that can be “activated” (buttons, menu items, etc.)
@@ -358,7 +358,7 @@ public:
    *
    * @return <tt>true</tt> if the widget was activatable, else <tt>false</tt>.
    */
-  bool activate();
+  auto activate() -> bool;
 
 
   /** Specifies whether the input focus can enter the widget
@@ -388,7 +388,7 @@ public:
    *
    * @return <tt>true</tt> if the input focus can enter @a widget, <tt>false</tt> otherwise.
    */
-  bool get_can_focus() const;
+  auto get_can_focus() const -> bool;
 
   /** Specifies whether @a widget can own the input focus.
    *
@@ -414,7 +414,7 @@ public:
    *
    * @return <tt>true</tt> if @a widget can own the input focus, <tt>false</tt> otherwise.
    */
-  bool get_focusable() const;
+  auto get_focusable() const -> bool;
 
   /** Determines if the widget has the global input focus.
    *
@@ -424,7 +424,7 @@ public:
    *
    * @return <tt>true</tt> if the widget has the global input focus.
    */
-  bool has_focus() const;
+  auto has_focus() const -> bool;
 
 
   /** Determines if the widget is the focus widget within its
@@ -437,7 +437,7 @@ public:
    *
    * @return <tt>true</tt> if the widget is the focus widget.
    */
-  bool is_focus() const;
+  auto is_focus() const -> bool;
 
   /** Determines if the widget should show a visible indication that
    * it has the global input focus.
@@ -452,7 +452,7 @@ public:
    *
    * @return <tt>true</tt> if the widget should display a “focus rectangle”.
    */
-  bool has_visible_focus() const;
+  auto has_visible_focus() const -> bool;
 
   /** Causes @a widget to have the keyboard focus for the `Gtk::Window` it's inside.
    *
@@ -465,7 +465,7 @@ public:
    *
    * @return <tt>true</tt> if focus is now inside @a widget.
    */
-  bool grab_focus();
+  auto grab_focus() -> bool;
 
   /** Sets whether the widget should grab focus when it is clicked
    * with the mouse.
@@ -487,7 +487,7 @@ public:
    * @return <tt>true</tt> if the widget should grab focus when it is
    * clicked with the mouse.
    */
-  bool get_focus_on_click() const;
+  auto get_focus_on_click() const -> bool;
 
   /** Sets whether @a widget can be the target of pointer events.
    *
@@ -500,7 +500,7 @@ public:
    *
    * @return <tt>true</tt> if @a widget can receive pointer events.
    */
-  bool get_can_target() const;
+  auto get_can_target() const -> bool;
 
   /** Determines whether @a widget is the current default widget
    * within its toplevel.
@@ -508,7 +508,7 @@ public:
    * @return <tt>true</tt> if @a widget is the current default widget
    * within its toplevel, <tt>false</tt> otherwise.
    */
-  bool has_default() const;
+  auto has_default() const -> bool;
 
   /** Specifies whether @a widget will be treated as the default
    * widget within its toplevel when it has the focus, even if
@@ -527,7 +527,7 @@ public:
    * @return <tt>true</tt> if @a widget acts as the default widget when focused,
    * <tt>false</tt> otherwise.
    */
-  bool get_receives_default() const;
+  auto get_receives_default() const -> bool;
 
 
   /** Sets a widgets name.
@@ -554,7 +554,7 @@ public:
    * @return Name of the widget. This string is owned by GTK and
    * should not be modified or freed.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
 
   /** Turns on flag values in the current widget state.
@@ -594,7 +594,7 @@ public:
    *
    * @return The state flags for widget.
    */
-  StateFlags get_state_flags() const;
+  auto get_state_flags() const -> StateFlags;
 
 
   /** Sets the sensitivity of a widget.
@@ -619,7 +619,7 @@ public:
    *
    * @return <tt>true</tt> if the widget is sensitive.
    */
-  bool get_sensitive() const;
+  auto get_sensitive() const -> bool;
 
   /** Returns the widget’s effective sensitivity.
    *
@@ -628,7 +628,7 @@ public:
    *
    * @return <tt>true</tt> if the widget is effectively sensitive.
    */
-  bool is_sensitive() const;
+  auto is_sensitive() const -> bool;
 
   /** Sets the visibility state of @a widget.
    *
@@ -656,7 +656,7 @@ public:
    *
    * @return <tt>true</tt> if the widget is visible.
    */
-  bool get_visible() const;
+  auto get_visible() const -> bool;
 
   /** Determines whether the widget and all its parents are marked as
    * visible.
@@ -668,7 +668,7 @@ public:
    *
    * @return <tt>true</tt> if the widget and all its parents are visible.
    */
-  bool is_visible() const;
+  auto is_visible() const -> bool;
 
   /** Determines whether @a widget can be drawn to.
    *
@@ -676,19 +676,19 @@ public:
    *
    * @return <tt>true</tt> if @a widget is drawable, <tt>false</tt> otherwise.
    */
-  bool is_drawable() const;
+  auto is_drawable() const -> bool;
 
   /** Determines whether @a widget is realized.
    *
    * @return <tt>true</tt> if @a widget is realized, <tt>false</tt> otherwise.
    */
-  bool get_realized() const;
+  auto get_realized() const -> bool;
 
   /** Whether the widget is mapped.
    *
    * @return <tt>true</tt> if the widget is mapped, <tt>false</tt> otherwise.
    */
-  bool get_mapped() const;
+  auto get_mapped() const -> bool;
 
 
   /** Sets whether @a widget should be mapped along with its parent.
@@ -723,20 +723,20 @@ public:
    *
    * @return <tt>true</tt> if the widget is mapped with the parent.
    */
-  bool get_child_visible() const;
+  auto get_child_visible() const -> bool;
 
 
   /** Returns the width that has currently been allocated to @a widget.
    *
    * @return The width of the @a widget.
    */
-  int get_allocated_width() const;
+  auto get_allocated_width() const -> int;
 
   /** Returns the height that has currently been allocated to @a widget.
    *
    * @return The height of the @a widget.
    */
-  int get_allocated_height() const;
+  auto get_allocated_height() const -> int;
 
   /** Returns the baseline that has currently been allocated to @a widget.
    *
@@ -746,7 +746,7 @@ public:
    *
    * @return The baseline of the @a widget, or -1 if none.
    */
-  int get_allocated_baseline() const;
+  auto get_allocated_baseline() const -> int;
 
   /** Retrieves the widget’s location.
    * Note, when implementing a layout container: a widget’s allocation will be its “adjusted” allocation,
@@ -761,7 +761,7 @@ public:
    *
    * @return The widget’s allocated area.
    */
-  Allocation get_allocation() const;
+  auto get_allocation() const -> Allocation;
 
 
   /** Returns the content width of the widget.
@@ -774,7 +774,7 @@ public:
    *
    * @return The width of @a widget.
    */
-  int get_width() const;
+  auto get_width() const -> int;
 
   /** Returns the content height of the widget.
    *
@@ -786,7 +786,7 @@ public:
    *
    * @return The height of @a widget.
    */
-  int get_height() const;
+  auto get_height() const -> int;
 
   /** Returns the content width or height of the widget.
    *
@@ -801,20 +801,20 @@ public:
    * @param orientation The orientation to query.
    * @return The size of @a widget in @a orientation.
    */
-  int get_size(Orientation orientation) const;
+  auto get_size(Orientation orientation) const -> int;
 
 
   /** Returns the parent widget of @a widget.
    *
    * @return The parent widget of @a widget.
    */
-  Widget* get_parent();
+  auto get_parent() -> Widget*;
 
   /** Returns the parent widget of @a widget.
    *
    * @return The parent widget of @a widget.
    */
-  const Widget* get_parent() const;
+  auto get_parent() const -> const Widget*;
 
 
   /** Returns the `Gtk::Root` widget of @a widget.
@@ -826,7 +826,7 @@ public:
    *
    * @return The root widget of @a widget.
    */
-  Root* get_root();
+  auto get_root() -> Root*;
 
   /** Returns the `Gtk::Root` widget of @a widget.
    *
@@ -837,7 +837,7 @@ public:
    *
    * @return The root widget of @a widget.
    */
-  const Root* get_root() const;
+  auto get_root() const -> const Root*;
 
 
   /** Returns the nearest `Gtk::Native` ancestor of @a widget.
@@ -849,7 +849,7 @@ public:
    *
    * @return The `Gtk::Native` ancestor of @a widget.
    */
-  Native* get_native();
+  auto get_native() -> Native*;
 
   /** Returns the nearest `Gtk::Native` ancestor of @a widget.
    *
@@ -860,7 +860,7 @@ public:
    *
    * @return The `Gtk::Native` ancestor of @a widget.
    */
-  const Native* get_native() const;
+  auto get_native() const -> const Native*;
 
 
   /** Called by widgets as the user moves around the window using
@@ -887,7 +887,7 @@ public:
    * @param direction Direction of focus movement.
    * @return <tt>true</tt> if focus ended up inside @a widget.
    */
-  bool child_focus(DirectionType direction);
+  auto child_focus(DirectionType direction) -> bool;
 
 
   /** Emits the `::keynav-failed` signal on the widget.
@@ -923,7 +923,7 @@ public:
    * if the emitting widget should try to handle the keyboard
    * navigation attempt in its parent container(s).
    */
-  bool keynav_failed(DirectionType direction);
+  auto keynav_failed(DirectionType direction) -> bool;
 
   /** Notifies the user about an input-related error on this widget.
    * If the Gtk::Settings gtk-error-bell property is true, it calls
@@ -1028,7 +1028,7 @@ public:
    *
    * @return The requested opacity for this widget.
    */
-  double get_opacity() const;
+  auto get_opacity() const -> double;
 
 
   /** Sets how @a widget treats content that is drawn outside the
@@ -1053,7 +1053,7 @@ public:
    *
    * @return The widget's overflow.
    */
-  Overflow get_overflow() const;
+  auto get_overflow() const -> Overflow;
 
 
   /** Gets the first ancestor of @a widget with type @a widget_type.
@@ -1069,7 +1069,7 @@ public:
    * @param widget_type Ancestor type.
    * @return The ancestor widget.
    */
-  Widget* get_ancestor(GType widget_type);
+  auto get_ancestor(GType widget_type) -> Widget*;
 
   /** Gets the first ancestor of @a widget with type @a widget_type.
    *
@@ -1084,7 +1084,7 @@ public:
    * @param widget_type Ancestor type.
    * @return The ancestor widget.
    */
-  const Widget* get_ancestor(GType widget_type) const;
+  auto get_ancestor(GType widget_type) const -> const Widget*;
 
 
   /** Retrieves the internal scale factor that maps from window
@@ -1097,7 +1097,7 @@ public:
    *
    * @return The scale factor for @a widget.
    */
-  int get_scale_factor() const;
+  auto get_scale_factor() const -> int;
 
 
   /** Get the `Gdk::Display` for the toplevel window associated with
@@ -1113,7 +1113,7 @@ public:
    * @return The `Gdk::Display` for the toplevel
    * for this widget.
    */
-  Glib::RefPtr<Gdk::Display> get_display();
+  auto get_display() -> Glib::RefPtr<Gdk::Display>;
 
   /** Get the `Gdk::Display` for the toplevel window associated with
    * this widget.
@@ -1128,7 +1128,7 @@ public:
    * @return The `Gdk::Display` for the toplevel
    * for this widget.
    */
-  Glib::RefPtr<const Gdk::Display> get_display() const;
+  auto get_display() const -> Glib::RefPtr<const Gdk::Display>;
 
 
   /** Gets the settings object holding the settings used for this widget.
@@ -1140,7 +1140,7 @@ public:
    *
    * @return The relevant `Gtk::Settings` object.
    */
-  Glib::RefPtr<Settings> get_settings();
+  auto get_settings() -> Glib::RefPtr<Settings>;
 
 
   /** Gets the clipboard object for @a widget.
@@ -1153,7 +1153,7 @@ public:
    *
    * @return The appropriate clipboard object.
    */
-  Glib::RefPtr<Gdk::Clipboard> get_clipboard();
+  auto get_clipboard() -> Glib::RefPtr<Gdk::Clipboard>;
 
   /** Gets the clipboard object for @a widget.
    *
@@ -1165,7 +1165,7 @@ public:
    *
    * @return The appropriate clipboard object.
    */
-  Glib::RefPtr<const Gdk::Clipboard> get_clipboard() const;
+  auto get_clipboard() const -> Glib::RefPtr<const Gdk::Clipboard>;
 
   /** Gets the primary clipboard of @a widget.
    *
@@ -1177,7 +1177,7 @@ public:
    *
    * @return The appropriate clipboard object.
    */
-  Glib::RefPtr<Gdk::Clipboard> get_primary_clipboard();
+  auto get_primary_clipboard() -> Glib::RefPtr<Gdk::Clipboard>;
 
   /** Gets the primary clipboard of @a widget.
    *
@@ -1189,7 +1189,7 @@ public:
    *
    * @return The appropriate clipboard object.
    */
-  Glib::RefPtr<const Gdk::Clipboard> get_primary_clipboard() const;
+  auto get_primary_clipboard() const -> Glib::RefPtr<const Gdk::Clipboard>;
 
 
   /** Gets whether the widget would like any available extra horizontal
@@ -1211,7 +1211,7 @@ public:
    *
    * @return Whether hexpand flag is set.
    */
-  bool get_hexpand() const;
+  auto get_hexpand() const -> bool;
 
   /** Sets whether the widget would like any available extra horizontal
    * space.
@@ -1258,7 +1258,7 @@ public:
    *
    * @return Whether hexpand has been explicitly set.
    */
-  bool get_hexpand_set() const;
+  auto get_hexpand_set() const -> bool;
 
   /** Sets whether the hexpand flag will be used.
    *
@@ -1286,7 +1286,7 @@ public:
    *
    * @return Whether vexpand flag is set.
    */
-  bool get_vexpand() const;
+  auto get_vexpand() const -> bool;
 
   /** Sets whether the widget would like any available extra vertical
    * space.
@@ -1304,7 +1304,7 @@ public:
    *
    * @return Whether vexpand has been explicitly set.
    */
-  bool get_vexpand_set() const;
+  auto get_vexpand_set() const -> bool;
 
   /** Sets whether the vexpand flag will be used.
    *
@@ -1331,7 +1331,7 @@ public:
    * @param orientation Expand direction.
    * @return Whether widget tree rooted here should be expanded.
    */
-  bool compute_expand(Orientation orientation);
+  auto compute_expand(Orientation orientation) -> bool;
 
   /** Sets whether the widget would like any available extra space in both directions.
    *
@@ -1350,7 +1350,7 @@ public:
    *
    * @return The horizontal alignment of @a widget.
    */
-  Align get_halign() const;
+  auto get_halign() const -> Align;
 
   /** Sets the horizontal alignment of @a widget.
    *
@@ -1362,7 +1362,7 @@ public:
    *
    * @return The vertical alignment of @a widget.
    */
-  Align get_valign() const;
+  auto get_valign() const -> Align;
 
   /** Sets the vertical alignment of @a widget.
    *
@@ -1374,7 +1374,7 @@ public:
    *
    * @return The start margin of @a widget.
    */
-  int get_margin_start() const;
+  auto get_margin_start() const -> int;
 
   /** Sets the start margin of @a widget.
    *
@@ -1386,7 +1386,7 @@ public:
    *
    * @return The end margin of @a widget.
    */
-  int get_margin_end() const;
+  auto get_margin_end() const -> int;
 
   /** Sets the end margin of @a widget.
    *
@@ -1398,7 +1398,7 @@ public:
    *
    * @return The top margin of @a widget.
    */
-  int get_margin_top() const;
+  auto get_margin_top() const -> int;
 
   /** Sets the top margin of @a widget.
    *
@@ -1410,7 +1410,7 @@ public:
    *
    * @return The bottom margin of @a widget.
    */
-  int get_margin_bottom() const;
+  auto get_margin_bottom() const -> int;
 
   /** Sets the bottom margin of @a widget.
    *
@@ -1431,7 +1431,7 @@ public:
    * @return <tt>true</tt> if @a ancestor contains @a widget as a child,
    * grandchild, great grandchild, etc.
    */
-  bool is_ancestor(Widget & ancestor) const;
+  auto is_ancestor(Widget & ancestor) const -> bool;
 
 
   /** Translate coordinates relative to @a src_widget’s allocation
@@ -1449,7 +1449,7 @@ public:
    * ancestor. In this case, 0 is stored in * @a dest_x and * @a dest_y.
    * Otherwise <tt>true</tt>.
    */
-  bool translate_coordinates(Widget& dest_widget, double src_x, double src_y, double& dest_x, double& dest_y);
+  auto translate_coordinates(Widget& dest_widget, double src_x, double src_y, double& dest_x, double& dest_y) -> bool;
 
 
   /** Tests if the point at ( @a x, @a y) is contained in @a widget.
@@ -1461,7 +1461,7 @@ public:
    * @param y Y coordinate to test, relative to @a widget's origin.
    * @return <tt>true</tt> if @a widget contains ( @a x, @a y).
    */
-  bool contains(double x, double y) const;
+  auto contains(double x, double y) const -> bool;
 
   /** Finds the descendant of @a widget closest to the point ( @a x, @a y).
    *
@@ -1484,7 +1484,7 @@ public:
    * @return The widget descendant at
    * the given point.
    */
-  Widget* pick(double x, double y, PickFlags flags =  PickFlags::DEFAULT);
+  auto pick(double x, double y, PickFlags flags =  PickFlags::DEFAULT) -> Widget*;
 
   /** Finds the descendant of @a widget closest to the point ( @a x, @a y).
    *
@@ -1507,7 +1507,7 @@ public:
    * @return The widget descendant at
    * the given point.
    */
-  const Widget* pick(double x, double y, PickFlags flags =  PickFlags::DEFAULT) const;
+  auto pick(double x, double y, PickFlags flags =  PickFlags::DEFAULT) const -> const Widget*;
 
 
   /** Adds @a controller to @a widget so that it will receive events.
@@ -1542,7 +1542,7 @@ public:
    *
    * @return The new `Pango::Context`.
    */
-  Glib::RefPtr<Pango::Context> create_pango_context();
+  auto create_pango_context() -> Glib::RefPtr<Pango::Context>;
 
   /** Gets a `Pango::Context` with the appropriate font map, font description,
    * and base direction for this widget.
@@ -1556,7 +1556,7 @@ public:
    *
    * @return The `Pango::Context` for the widget.
    */
-  Glib::RefPtr<Pango::Context> get_pango_context();
+  auto get_pango_context() -> Glib::RefPtr<Pango::Context>;
 
 
   /** Sets the `cairo_font_options_t` used for Pango rendering
@@ -1584,7 +1584,7 @@ public:
    * @return The `cairo_font_options_t`
    * of widget.
    */
-  Cairo::FontOptions get_font_options() const;
+  auto get_font_options() const -> Cairo::FontOptions;
 
 
   /** Creates a new `Pango::Layout` with the appropriate font map,
@@ -1599,7 +1599,7 @@ public:
    * @param text Text to set on the layout.
    * @return The new `Pango::Layout`.
    */
-  Glib::RefPtr<Pango::Layout> create_pango_layout(const Glib::ustring& text);
+  auto create_pango_layout(const Glib::ustring& text) -> Glib::RefPtr<Pango::Layout>;
 
 /* Directionality of Text */
 
@@ -1628,7 +1628,7 @@ public:
    *
    * @return The reading direction for the widget.
    */
-  TextDirection get_direction() const;
+  auto get_direction() const -> TextDirection;
 
 
   /** Sets the default reading direction for widgets.
@@ -1645,7 +1645,7 @@ public:
    *
    * @return The current default direction.
    */
-  static TextDirection get_default_direction();
+  static auto get_default_direction() -> TextDirection;
 
 
   /** Sets the cursor to be shown when pointer devices point
@@ -1680,7 +1680,7 @@ public:
    * @return The cursor
    * currently in use or <tt>nullptr</tt> if the cursor is inherited.
    */
-  Glib::RefPtr<Gdk::Cursor> get_cursor();
+  auto get_cursor() -> Glib::RefPtr<Gdk::Cursor>;
 
   /** Queries the cursor set on @a widget.
    *
@@ -1689,7 +1689,7 @@ public:
    * @return The cursor
    * currently in use or <tt>nullptr</tt> if the cursor is inherited.
    */
-  Glib::RefPtr<const Gdk::Cursor> get_cursor() const;
+  auto get_cursor() const -> Glib::RefPtr<const Gdk::Cursor>;
 
 
   /** Returns the widgets for which this widget is the target of a
@@ -1708,7 +1708,7 @@ public:
    * of mnemonic labels; free this list with Glib::list_free() when you
    * are done with it.
    */
-  std::vector<Widget*> list_mnemonic_labels();
+  auto list_mnemonic_labels() -> std::vector<Widget*>;
 
 
   /** Returns the widgets for which this widget is the target of a
@@ -1727,7 +1727,7 @@ public:
    * of mnemonic labels; free this list with Glib::list_free() when you
    * are done with it.
    */
-  std::vector<const Widget*> list_mnemonic_labels() const;
+  auto list_mnemonic_labels() const -> std::vector<const Widget*>;
 
   /** Adds a widget to the list of mnemonic labels for
    * this widget. (See list_mnemonic_labels()). Note the
@@ -1761,7 +1761,7 @@ public:
    * @param current_y Current Y coordinate.
    * @return <tt>true</tt> if the drag threshold has been passed.
    */
-  bool drag_check_threshold(int start_x, int start_y, int current_x, int current_y);
+  auto drag_check_threshold(int start_x, int start_y, int current_x, int current_y) -> bool;
 
 
   /** Obtains the frame clock for a widget.
@@ -1791,7 +1791,7 @@ public:
    *
    * @return A `Gdk::FrameClock`.
    */
-  Glib::RefPtr<Gdk::FrameClock> get_frame_clock();
+  auto get_frame_clock() -> Glib::RefPtr<Gdk::FrameClock>;
 
   /** Obtains the frame clock for a widget.
    *
@@ -1820,7 +1820,7 @@ public:
    *
    * @return A `Gdk::FrameClock`.
    */
-  Glib::RefPtr<const Gdk::FrameClock> get_frame_clock() const;
+  auto get_frame_clock() const -> Glib::RefPtr<const Gdk::FrameClock>;
 
   //Used when implementing containers:
 
@@ -1889,7 +1889,7 @@ public:
    *
    * @return The tooltip text.
    */
-  Glib::ustring get_tooltip_text() const;
+  auto get_tooltip_text() const -> Glib::ustring;
 
   /** Sets @a markup as the contents of the tooltip, which is marked up with
    * the Pango text markup language.
@@ -1914,7 +1914,7 @@ public:
    *
    * @return The tooltip text.
    */
-  Glib::ustring get_tooltip_markup() const;
+  auto get_tooltip_markup() const -> Glib::ustring;
 
   /** Sets the `has-tooltip` property on @a widget to @a has_tooltip.
    *
@@ -1926,7 +1926,7 @@ public:
    *
    * @return Current value of `has-tooltip` on @a widget.
    */
-  bool get_has_tooltip() const;
+  auto get_has_tooltip() const -> bool;
 
 
   /** Returns whether the widget is currently being destroyed.
@@ -1936,7 +1936,7 @@ public:
    *
    * @return <tt>true</tt> if @a widget is being destroyed.
    */
-  bool in_destruction() const;
+  auto in_destruction() const -> bool;
 
 
   /** Returns the style context associated to @a widget.
@@ -1946,7 +1946,7 @@ public:
    *
    * @return The widgets `Gtk::StyleContext`.
    */
-  Glib::RefPtr<StyleContext> get_style_context();
+  auto get_style_context() -> Glib::RefPtr<StyleContext>;
 
   /** Returns the style context associated to @a widget.
    *
@@ -1955,7 +1955,7 @@ public:
    *
    * @return The widgets `Gtk::StyleContext`.
    */
-  Glib::RefPtr<const StyleContext> get_style_context() const;
+  auto get_style_context() const -> Glib::RefPtr<const StyleContext>;
 
   /** Callback type for adding a function to update animations. See add_tick_callback().
    *
@@ -2000,7 +2000,7 @@ public:
    * @return An id for the connection of this callback. Remove the callback
    *         by passing it to remove_tick_callback().
    */
-  guint add_tick_callback(const SlotTick& slot);
+  auto add_tick_callback(const SlotTick& slot) -> guint;
 
 
   /** Removes a tick callback previously registered with
@@ -2062,7 +2062,7 @@ public:
    * @return <tt>true</tt> if the action was activated, <tt>false</tt> if the
    *         action does not exist.
    */
-  bool activate_action(const Glib::ustring& name, const Glib::VariantBase& args =  {});
+  auto activate_action(const Glib::ustring& name, const Glib::VariantBase& args =  {}) -> bool;
 
 
   /** Activates the `default.activate` action from @a widget.
@@ -2090,7 +2090,7 @@ public:
    *
    * @return A `Pango::FontMap`.
    */
-  Glib::RefPtr<Pango::FontMap> get_font_map();
+  auto get_font_map() -> Glib::RefPtr<Pango::FontMap>;
 
   /** Gets the font map of @a widget.
    *
@@ -2098,7 +2098,7 @@ public:
    *
    * @return A `Pango::FontMap`.
    */
-  Glib::RefPtr<const Pango::FontMap> get_font_map() const;
+  auto get_font_map() const -> Glib::RefPtr<const Pango::FontMap>;
 
 
   /** Returns the widgets first child.
@@ -2107,7 +2107,7 @@ public:
    *
    * @return The widget's first child.
    */
-  Widget* get_first_child();
+  auto get_first_child() -> Widget*;
 
   /** Returns the widgets first child.
    *
@@ -2115,7 +2115,7 @@ public:
    *
    * @return The widget's first child.
    */
-  const Widget* get_first_child() const;
+  auto get_first_child() const -> const Widget*;
 
   /** Returns the widgets last child.
    *
@@ -2123,7 +2123,7 @@ public:
    *
    * @return The widget's last child.
    */
-  Widget* get_last_child();
+  auto get_last_child() -> Widget*;
 
   /** Returns the widgets last child.
    *
@@ -2131,7 +2131,7 @@ public:
    *
    * @return The widget's last child.
    */
-  const Widget* get_last_child() const;
+  auto get_last_child() const -> const Widget*;
 
   /** Returns the widgets next sibling.
    *
@@ -2139,7 +2139,7 @@ public:
    *
    * @return The widget's next sibling.
    */
-  Widget* get_next_sibling();
+  auto get_next_sibling() -> Widget*;
 
   /** Returns the widgets next sibling.
    *
@@ -2147,7 +2147,7 @@ public:
    *
    * @return The widget's next sibling.
    */
-  const Widget* get_next_sibling() const;
+  auto get_next_sibling() const -> const Widget*;
 
   /** Returns the widgets previous sibling.
    *
@@ -2155,7 +2155,7 @@ public:
    *
    * @return The widget's previous sibling.
    */
-  Widget* get_prev_sibling();
+  auto get_prev_sibling() -> Widget*;
 
   /** Returns the widgets previous sibling.
    *
@@ -2163,7 +2163,7 @@ public:
    *
    * @return The widget's previous sibling.
    */
-  const Widget* get_prev_sibling() const;
+  auto get_prev_sibling() const -> const Widget*;
 
 
   /** Returns a `Gio::ListModel` to track the children of @a widget.
@@ -2177,7 +2177,7 @@ public:
    *
    * @return A `Gio::ListModel` tracking @a widget's children.
    */
-  Glib::RefPtr<Gio::ListModel> observe_children();
+  auto observe_children() -> Glib::RefPtr<Gio::ListModel>;
 
   /** Returns a `Gio::ListModel` to track the children of @a widget.
    *
@@ -2190,7 +2190,7 @@ public:
    *
    * @return A `Gio::ListModel` tracking @a widget's children.
    */
-  Glib::RefPtr<const Gio::ListModel> observe_children() const;
+  auto observe_children() const -> Glib::RefPtr<const Gio::ListModel>;
 
   /** Returns a `Gio::ListModel` to track the Gtk::EventControllers
    * of @a widget.
@@ -2204,7 +2204,7 @@ public:
    *
    * @return A `Gio::ListModel` tracking @a widget's controllers.
    */
-  Glib::RefPtr<Gio::ListModel> observe_controllers();
+  auto observe_controllers() -> Glib::RefPtr<Gio::ListModel>;
 
   /** Returns a `Gio::ListModel` to track the Gtk::EventControllers
    * of @a widget.
@@ -2218,7 +2218,7 @@ public:
    *
    * @return A `Gio::ListModel` tracking @a widget's controllers.
    */
-  Glib::RefPtr<const Gio::ListModel> observe_controllers() const;
+  auto observe_controllers() const -> Glib::RefPtr<const Gio::ListModel>;
 
 
   /** Inserts the %Widget into the child widget list of @a parent after @a previous_sibling.
@@ -2301,14 +2301,14 @@ public:
    * @return <tt>true</tt> if child should be included in
    * measuring and allocating.
    */
-  bool should_layout() const;
+  auto should_layout() const -> bool;
 
 
   /** Returns the CSS name that is used for @a self.
    *
    * @return The CSS name.
    */
-  Glib::ustring get_css_name() const;
+  auto get_css_name() const -> Glib::ustring;
 
   /** Adds a style class to @a widget.
    *
@@ -2339,7 +2339,7 @@ public:
    * @return <tt>true</tt> if @a css_class is currently applied to @a widget,
    * <tt>false</tt> otherwise.
    */
-  bool has_css_class(const Glib::ustring& css_class) const;
+  auto has_css_class(const Glib::ustring& css_class) const -> bool;
 
 
   /** Returns the list of style classes applied to @a widget.
@@ -2347,7 +2347,7 @@ public:
    * @return A <tt>nullptr</tt>-terminated list of
    * css classes currently applied to @a widget.
    */
-  std::vector<Glib::ustring> get_css_classes() const;
+  auto get_css_classes() const -> std::vector<Glib::ustring>;
 
 
   /** Clear all style classes applied to @a widget
@@ -2367,7 +2367,7 @@ public:
    * Emitted when @a widget is shown.
    */
 
-  Glib::SignalProxy<void()> signal_show();
+  auto signal_show() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -2379,7 +2379,7 @@ public:
    * Emitted when @a widget is hidden.
    */
 
-  Glib::SignalProxy<void()> signal_hide();
+  auto signal_hide() -> Glib::SignalProxy<void()>;
 
 
   /// Emitted on mapping of a widget to the screen.
@@ -2402,7 +2402,7 @@ public:
    * emission of signal_unmap().
    */
 
-  Glib::SignalProxy<void()> signal_map();
+  auto signal_map() -> Glib::SignalProxy<void()>;
 
 
   //- See {flags.mapped}.
@@ -2422,7 +2422,7 @@ public:
    * it can be used to, for example, stop an animation on the widget.
    */
 
-  Glib::SignalProxy<void()> signal_unmap();
+  auto signal_unmap() -> Glib::SignalProxy<void()>;
 
 
   /// Emitted on realization of a widget.
@@ -2443,7 +2443,7 @@ public:
    * or the widget has been mapped (that is, it is going to be drawn).
    */
 
-  Glib::SignalProxy<void()> signal_realize();
+  auto signal_realize() -> Glib::SignalProxy<void()>;
 
 
   //- See {flags.realized}.  This should not be called by the user.
@@ -2461,7 +2461,7 @@ public:
    * or the widget has been unmapped (that is, it is going to be hidden).
    */
 
-  Glib::SignalProxy<void()> signal_unrealize();
+  auto signal_unrealize() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -2477,7 +2477,7 @@ public:
    * @param previous_state_flags The previous state flags.
    */
 
-  Glib::SignalProxy<void(Gtk::StateFlags)> signal_state_flags_changed();
+  auto signal_state_flags_changed() -> Glib::SignalProxy<void(Gtk::StateFlags)>;
 
 
   /**
@@ -2491,7 +2491,7 @@ public:
    * @param direction The previous text direction of @a widget.
    */
 
-  Glib::SignalProxy<void(TextDirection)> signal_direction_changed();
+  auto signal_direction_changed() -> Glib::SignalProxy<void(TextDirection)>;
 
 
   /**
@@ -2510,7 +2510,7 @@ public:
    * <tt>false</tt> to propagate the event further.
    */
 
-  Glib::SignalProxy<bool(bool)> signal_mnemonic_activate();
+  auto signal_mnemonic_activate() -> Glib::SignalProxy<bool(bool)>;
 
 
   /** Emitted during the dispose phase.
@@ -2555,7 +2555,7 @@ public:
    * @newin{4,8}
    */
 
-  Glib::SignalProxy<void()> signal_destroy();
+  auto signal_destroy() -> Glib::SignalProxy<void()>;
 
 
   //Keybinding signals:
@@ -2591,7 +2591,7 @@ public:
    * @return <tt>true</tt> if @a tooltip should be shown right now, <tt>false</tt> otherwise.
    */
 
-  Glib::SignalProxy<bool(int, int, bool, const Glib::RefPtr<Tooltip>&)> signal_query_tooltip();
+  auto signal_query_tooltip() -> Glib::SignalProxy<bool(int, int, bool, const Glib::RefPtr<Tooltip>&)>;
 
 
   /** The name of the widget.
@@ -2601,7 +2601,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_name() ;
+  auto property_name() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The name of the widget.
    *
@@ -2610,14 +2610,14 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_name() const;
+  auto property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The parent widget of this widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_parent() const;
+  auto property_parent() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
   /** The `Gtk::Root` widget of the widget tree containing this widget.
@@ -2627,7 +2627,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Root* > property_root() const;
+  auto property_root() const -> Glib::PropertyProxy_ReadOnly< Root* >;
 
 
   /** Override for width request of the widget.
@@ -2639,7 +2639,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_width_request() ;
+  auto property_width_request() -> Glib::PropertyProxy< int > ;
 
 /** Override for width request of the widget.
    *
@@ -2650,7 +2650,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_width_request() const;
+  auto property_width_request() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Override for height request of the widget.
    *
@@ -2661,7 +2661,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_height_request() ;
+  auto property_height_request() -> Glib::PropertyProxy< int > ;
 
 /** Override for height request of the widget.
    *
@@ -2672,7 +2672,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_height_request() const;
+  auto property_height_request() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Whether the widget is visible.
    *
@@ -2681,7 +2681,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_visible() ;
+  auto property_visible() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the widget is visible.
    *
@@ -2690,7 +2690,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_visible() const;
+  auto property_visible() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the widget responds to input.
    *
@@ -2699,7 +2699,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_sensitive() ;
+  auto property_sensitive() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the widget responds to input.
    *
@@ -2708,7 +2708,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_sensitive() const;
+  auto property_sensitive() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the widget or any of its descendents can accept
    * the input focus.
@@ -2721,7 +2721,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_can_focus() ;
+  auto property_can_focus() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the widget or any of its descendents can accept
    * the input focus.
@@ -2734,7 +2734,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_can_focus() const;
+  auto property_can_focus() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the widget has the input focus.
    *
@@ -2743,7 +2743,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_focus() const;
+  auto property_has_focus() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether the widget can receive pointer events.
@@ -2753,7 +2753,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_can_target() ;
+  auto property_can_target() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the widget can receive pointer events.
    *
@@ -2762,7 +2762,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_can_target() const;
+  auto property_can_target() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the widget should grab focus when it is clicked with the mouse.
    *
@@ -2773,7 +2773,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_focus_on_click() ;
+  auto property_focus_on_click() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the widget should grab focus when it is clicked with the mouse.
    *
@@ -2784,7 +2784,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_focus_on_click() const;
+  auto property_focus_on_click() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether this widget itself will accept the input focus.
    *
@@ -2793,7 +2793,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_focusable() ;
+  auto property_focusable() -> Glib::PropertyProxy< bool > ;
 
 /** Whether this widget itself will accept the input focus.
    *
@@ -2802,7 +2802,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_focusable() const;
+  auto property_focusable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the widget is the default widget.
    *
@@ -2811,7 +2811,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_default() const;
+  auto property_has_default() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Whether the widget will receive the default action when it is focused.
@@ -2821,7 +2821,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_receives_default() ;
+  auto property_receives_default() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the widget will receive the default action when it is focused.
    *
@@ -2830,21 +2830,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_receives_default() const;
+  auto property_receives_default() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The cursor used by @a widget.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gdk::Cursor> > property_cursor() ;
+  auto property_cursor() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Cursor> > ;
 
 /** The cursor used by @a widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Cursor> > property_cursor() const;
+  auto property_cursor() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Cursor> >;
 
   /** Enables or disables the emission of the signal_query_tooltip() signal on @a widget.
    *
@@ -2857,7 +2857,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_has_tooltip() ;
+  auto property_has_tooltip() -> Glib::PropertyProxy< bool > ;
 
 /** Enables or disables the emission of the signal_query_tooltip() signal on @a widget.
    *
@@ -2870,7 +2870,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_tooltip() const;
+  auto property_has_tooltip() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Sets the text of tooltip to be the given string, which is marked up
    * with Pango markup.
@@ -2891,7 +2891,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_tooltip_markup() ;
+  auto property_tooltip_markup() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Sets the text of tooltip to be the given string, which is marked up
    * with Pango markup.
@@ -2912,7 +2912,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_tooltip_markup() const;
+  auto property_tooltip_markup() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Sets the text of tooltip to be the given string.
    *
@@ -2932,7 +2932,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_tooltip_text() ;
+  auto property_tooltip_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Sets the text of tooltip to be the given string.
    *
@@ -2952,7 +2952,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_tooltip_text() const;
+  auto property_tooltip_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** How to distribute horizontal space if widget gets extra space.
@@ -2962,7 +2962,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Align > property_halign() ;
+  auto property_halign() -> Glib::PropertyProxy< Align > ;
 
 /** How to distribute horizontal space if widget gets extra space.
    *
@@ -2971,7 +2971,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Align > property_halign() const;
+  auto property_halign() const -> Glib::PropertyProxy_ReadOnly< Align >;
 
   /** How to distribute vertical space if widget gets extra space.
    *
@@ -2980,7 +2980,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Align > property_valign() ;
+  auto property_valign() -> Glib::PropertyProxy< Align > ;
 
 /** How to distribute vertical space if widget gets extra space.
    *
@@ -2989,7 +2989,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Align > property_valign() const;
+  auto property_valign() const -> Glib::PropertyProxy_ReadOnly< Align >;
 
   /** Margin on start of widget, horizontally.
    *
@@ -3005,7 +3005,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_margin_start() ;
+  auto property_margin_start() -> Glib::PropertyProxy< int > ;
 
 /** Margin on start of widget, horizontally.
    *
@@ -3021,7 +3021,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_margin_start() const;
+  auto property_margin_start() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Margin on end of widget, horizontally.
    *
@@ -3037,7 +3037,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_margin_end() ;
+  auto property_margin_end() -> Glib::PropertyProxy< int > ;
 
 /** Margin on end of widget, horizontally.
    *
@@ -3053,7 +3053,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_margin_end() const;
+  auto property_margin_end() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Margin on top side of widget.
    *
@@ -3066,7 +3066,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_margin_top() ;
+  auto property_margin_top() -> Glib::PropertyProxy< int > ;
 
 /** Margin on top side of widget.
    *
@@ -3079,7 +3079,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_margin_top() const;
+  auto property_margin_top() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Margin on bottom side of widget.
    *
@@ -3092,7 +3092,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_margin_bottom() ;
+  auto property_margin_bottom() -> Glib::PropertyProxy< int > ;
 
 /** Margin on bottom side of widget.
    *
@@ -3105,7 +3105,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_margin_bottom() const;
+  auto property_margin_bottom() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Whether to expand horizontally.
    *
@@ -3114,7 +3114,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_hexpand() ;
+  auto property_hexpand() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to expand horizontally.
    *
@@ -3123,7 +3123,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_hexpand() const;
+  auto property_hexpand() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether to use the `hexpand` property.
    *
@@ -3132,7 +3132,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_hexpand_set() ;
+  auto property_hexpand_set() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to use the `hexpand` property.
    *
@@ -3141,7 +3141,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_hexpand_set() const;
+  auto property_hexpand_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether to expand vertically.
    *
@@ -3150,7 +3150,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_vexpand() ;
+  auto property_vexpand() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to expand vertically.
    *
@@ -3159,7 +3159,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_vexpand() const;
+  auto property_vexpand() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether to use the `vexpand` property.
    *
@@ -3168,7 +3168,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_vexpand_set() ;
+  auto property_vexpand_set() -> Glib::PropertyProxy< bool > ;
 
 /** Whether to use the `vexpand` property.
    *
@@ -3177,7 +3177,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_vexpand_set() const;
+  auto property_vexpand_set() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The requested opacity of the widget.
    *
@@ -3186,7 +3186,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< double > property_opacity() ;
+  auto property_opacity() -> Glib::PropertyProxy< double > ;
 
 /** The requested opacity of the widget.
    *
@@ -3195,7 +3195,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< double > property_opacity() const;
+  auto property_opacity() const -> Glib::PropertyProxy_ReadOnly< double >;
 
   /** How content outside the widget's content area is treated.
    *
@@ -3209,7 +3209,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Overflow > property_overflow() ;
+  auto property_overflow() -> Glib::PropertyProxy< Overflow > ;
 
 /** How content outside the widget's content area is treated.
    *
@@ -3223,7 +3223,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Overflow > property_overflow() const;
+  auto property_overflow() const -> Glib::PropertyProxy_ReadOnly< Overflow >;
 
   /** The scale factor of the widget.
    *
@@ -3232,7 +3232,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_scale_factor() const;
+  auto property_scale_factor() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** The name of this widget in the CSS tree.
@@ -3245,7 +3245,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_css_name() const;
+  auto property_css_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** A list of css classes applied to this widget.
@@ -3253,14 +3253,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< std::vector<Glib::ustring> > property_css_classes() ;
+  auto property_css_classes() -> Glib::PropertyProxy< std::vector<Glib::ustring> > ;
 
 /** A list of css classes applied to this widget.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> > property_css_classes() const;
+  auto property_css_classes() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >;
 
   /** The `Gtk::LayoutManager` instance to use to compute the preferred size
    * of the widget, and allocate its children.
@@ -3271,7 +3271,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<LayoutManager> > property_layout_manager() ;
+  auto property_layout_manager() -> Glib::PropertyProxy< Glib::RefPtr<LayoutManager> > ;
 
 /** The `Gtk::LayoutManager` instance to use to compute the preferred size
    * of the widget, and allocate its children.
@@ -3282,7 +3282,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<LayoutManager> > property_layout_manager() const;
+  auto property_layout_manager() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<LayoutManager> >;
 
 
 protected:
@@ -3292,11 +3292,11 @@ protected:
 
     virtual void size_allocate_vfunc(int width, int height, int baseline);
 
-    virtual SizeRequestMode get_request_mode_vfunc() const;
+    virtual auto get_request_mode_vfunc() const -> SizeRequestMode;
 
     virtual void measure_vfunc(Orientation orientation, int for_size, int& minimum, int& natural, int& minimum_baseline, int& natural_baseline) const;
 
-    virtual bool grab_focus_vfunc();
+    virtual auto grab_focus_vfunc() -> bool;
 
   /** Sets the focused child of widget.
    *
@@ -3307,7 +3307,7 @@ protected:
 
     virtual void compute_expand_vfunc(bool& hexpand_p, bool& vexpand_p);
 
-    virtual bool contains_vfunc(double x, double y) const;
+    virtual auto contains_vfunc(double x, double y) const -> bool;
 
 
     virtual void snapshot_vfunc(const Glib::RefPtr<Gtk::Snapshot>& snapshot);
@@ -3370,14 +3370,14 @@ protected:
    * @return The current focus
    * child of @a widget.
    */
-  Widget* get_focus_child();
+  auto get_focus_child() -> Widget*;
 
   /** Returns the current focus child of @a widget.
    *
    * @return The current focus
    * child of @a widget.
    */
-  const Widget* get_focus_child() const;
+  auto get_focus_child() const -> const Widget*;
 
 
 public:
@@ -3406,9 +3406,9 @@ protected:
   /// This is a default handler for the signal signal_direction_changed().
   virtual void on_direction_changed(TextDirection direction);
   /// This is a default handler for the signal signal_mnemonic_activate().
-  virtual bool on_mnemonic_activate(bool group_cycling);
+  virtual auto on_mnemonic_activate(bool group_cycling) -> bool;
   /// This is a default handler for the signal signal_query_tooltip().
-  virtual bool on_query_tooltip(int x, int y, bool keyboard_tooltip, const Glib::RefPtr<Tooltip>& tooltip);
+  virtual auto on_query_tooltip(int x, int y, bool keyboard_tooltip, const Glib::RefPtr<Tooltip>& tooltip) -> bool;
 
 
 };
@@ -3427,7 +3427,7 @@ namespace Glib
    * @relates Gtk::Widget
    */
   GTKMM_API
-  Gtk::Widget* wrap(GtkWidget* object, bool take_copy = false);
+  auto wrap(GtkWidget* object, bool take_copy = false) -> Gtk::Widget*;
 } //namespace Glib
 
 

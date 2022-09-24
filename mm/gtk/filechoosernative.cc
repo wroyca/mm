@@ -59,7 +59,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::FileChooserNative> wrap(GtkFileChooserNative* object, bool take_copy)
+auto wrap(GtkFileChooserNative* object, bool take_copy) -> Glib::RefPtr<Gtk::FileChooserNative>
 {
   return Glib::make_refptr_for_instance<Gtk::FileChooserNative>( dynamic_cast<Gtk::FileChooserNative*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -74,7 +74,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& FileChooserNative_Class::init()
+auto FileChooserNative_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -99,7 +99,7 @@ void FileChooserNative_Class::class_init_function(void* g_class, void* class_dat
 }
 
 
-Glib::ObjectBase* FileChooserNative_Class::wrap_new(GObject* object)
+auto FileChooserNative_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new FileChooserNative((GtkFileChooserNative*)object);
 }
@@ -107,7 +107,7 @@ Glib::ObjectBase* FileChooserNative_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkFileChooserNative* FileChooserNative::gobj_copy()
+auto FileChooserNative::gobj_copy() -> GtkFileChooserNative*
 {
   reference();
   return gobj();
@@ -131,7 +131,7 @@ FileChooserNative::FileChooserNative(FileChooserNative&& src) noexcept
   , FileChooser(std::move(src))
 {}
 
-FileChooserNative& FileChooserNative::operator=(FileChooserNative&& src) noexcept
+auto FileChooserNative::operator=(FileChooserNative&& src) noexcept -> FileChooserNative&
 {
   NativeDialog::operator=(std::move(src));
   FileChooser::operator=(std::move(src));
@@ -145,13 +145,13 @@ FileChooserNative::~FileChooserNative() noexcept
 
 FileChooserNative::CppClassType FileChooserNative::filechoosernative_class_; // initialize static member
 
-GType FileChooserNative::get_type()
+auto FileChooserNative::get_type() -> GType
 {
   return filechoosernative_class_.init().get_type();
 }
 
 
-GType FileChooserNative::get_base_type()
+auto FileChooserNative::get_base_type() -> GType
 {
   return gtk_file_chooser_native_get_type();
 }
@@ -167,17 +167,17 @@ FileChooserNative::FileChooserNative()
 
 }
 
-Glib::RefPtr<FileChooserNative> FileChooserNative::create(const Glib::ustring& title, Window& parent, FileChooser::Action action, const Glib::ustring& accept_label, const Glib::ustring& cancel_label)
+auto FileChooserNative::create(const Glib::ustring& title, Window& parent, FileChooser::Action action, const Glib::ustring& accept_label, const Glib::ustring& cancel_label) -> Glib::RefPtr<FileChooserNative>
 {
   return Glib::make_refptr_for_instance<FileChooserNative>( new FileChooserNative(title, parent, action, accept_label, cancel_label) );
 }
 
-Glib::RefPtr<FileChooserNative> FileChooserNative::create(const Glib::ustring& title, FileChooser::Action action, const Glib::ustring& accept_label, const Glib::ustring& cancel_label)
+auto FileChooserNative::create(const Glib::ustring& title, FileChooser::Action action, const Glib::ustring& accept_label, const Glib::ustring& cancel_label) -> Glib::RefPtr<FileChooserNative>
 {
   return Glib::make_refptr_for_instance<FileChooserNative>( new FileChooserNative(title, action, accept_label, cancel_label) );
 }
 
-Glib::ustring FileChooserNative::get_accept_label() const
+auto FileChooserNative::get_accept_label() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_file_chooser_native_get_accept_label(const_cast<GtkFileChooserNative*>(gobj())));
 }
@@ -187,7 +187,7 @@ void FileChooserNative::set_accept_label(const Glib::ustring& accept_label)
   gtk_file_chooser_native_set_accept_label(gobj(), accept_label.empty() ? nullptr : accept_label.c_str());
 }
 
-Glib::ustring FileChooserNative::get_cancel_label() const
+auto FileChooserNative::get_cancel_label() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_file_chooser_native_get_cancel_label(const_cast<GtkFileChooserNative*>(gobj())));
 }
@@ -198,22 +198,22 @@ void FileChooserNative::set_cancel_label(const Glib::ustring& cancel_label)
 }
 
 
-Glib::PropertyProxy< Glib::ustring > FileChooserNative::property_accept_label()
+auto FileChooserNative::property_accept_label() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "accept-label");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > FileChooserNative::property_accept_label() const
+auto FileChooserNative::property_accept_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "accept-label");
 }
 
-Glib::PropertyProxy< Glib::ustring > FileChooserNative::property_cancel_label()
+auto FileChooserNative::property_cancel_label() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "cancel-label");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > FileChooserNative::property_cancel_label() const
+auto FileChooserNative::property_cancel_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "cancel-label");
 }

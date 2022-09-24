@@ -36,7 +36,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gio::ZlibCompressorFormat>::value_type()
+auto Glib::Value<Gio::ZlibCompressorFormat>::value_type() -> GType
 {
   return g_zlib_compressor_format_get_type();
 }
@@ -45,7 +45,7 @@ GType Glib::Value<Gio::ZlibCompressorFormat>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gio::ZlibCompressor> wrap(GZlibCompressor* object, bool take_copy)
+auto wrap(GZlibCompressor* object, bool take_copy) -> Glib::RefPtr<Gio::ZlibCompressor>
 {
   return Glib::make_refptr_for_instance<Gio::ZlibCompressor>( dynamic_cast<Gio::ZlibCompressor*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -60,7 +60,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& ZlibCompressor_Class::init()
+auto ZlibCompressor_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -92,7 +92,7 @@ void ZlibCompressor_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* ZlibCompressor_Class::wrap_new(GObject* object)
+auto ZlibCompressor_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ZlibCompressor((GZlibCompressor*)object);
 }
@@ -100,7 +100,7 @@ Glib::ObjectBase* ZlibCompressor_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GZlibCompressor* ZlibCompressor::gobj_copy()
+auto ZlibCompressor::gobj_copy() -> GZlibCompressor*
 {
   reference();
   return gobj();
@@ -124,7 +124,7 @@ ZlibCompressor::ZlibCompressor(ZlibCompressor&& src) noexcept
   , Converter(std::move(src))
 {}
 
-ZlibCompressor& ZlibCompressor::operator=(ZlibCompressor&& src) noexcept
+auto ZlibCompressor::operator=(ZlibCompressor&& src) noexcept -> ZlibCompressor&
 {
   Glib::Object::operator=(std::move(src));
   Converter::operator=(std::move(src));
@@ -138,13 +138,13 @@ ZlibCompressor::~ZlibCompressor() noexcept
 
 ZlibCompressor::CppClassType ZlibCompressor::zlibcompressor_class_; // initialize static member
 
-GType ZlibCompressor::get_type()
+auto ZlibCompressor::get_type() -> GType
 {
   return zlibcompressor_class_.init().get_type();
 }
 
 
-GType ZlibCompressor::get_base_type()
+auto ZlibCompressor::get_base_type() -> GType
 {
   return g_zlib_compressor_get_type();
 }
@@ -160,17 +160,17 @@ ZlibCompressor::ZlibCompressor(ZlibCompressorFormat format, int level)
 
 }
 
-Glib::RefPtr<ZlibCompressor> ZlibCompressor::create(ZlibCompressorFormat format, int level)
+auto ZlibCompressor::create(ZlibCompressorFormat format, int level) -> Glib::RefPtr<ZlibCompressor>
 {
   return Glib::make_refptr_for_instance<ZlibCompressor>( new ZlibCompressor(format, level) );
 }
 
-Glib::RefPtr<FileInfo> ZlibCompressor::get_file_info()
+auto ZlibCompressor::get_file_info() -> Glib::RefPtr<FileInfo>
 {
   return Glib::wrap(g_zlib_compressor_get_file_info(gobj()));
 }
 
-Glib::RefPtr<const FileInfo> ZlibCompressor::get_file_info() const
+auto ZlibCompressor::get_file_info() const -> Glib::RefPtr<const FileInfo>
 {
   return const_cast<ZlibCompressor*>(this)->get_file_info();
 }
@@ -185,12 +185,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<FileInf
   "Type Glib::RefPtr<FileInfo> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<FileInfo> > ZlibCompressor::property_file_info()
+auto ZlibCompressor::property_file_info() -> Glib::PropertyProxy< Glib::RefPtr<FileInfo> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<FileInfo> >(this, "file-info");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<FileInfo> > ZlibCompressor::property_file_info() const
+auto ZlibCompressor::property_file_info() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<FileInfo> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<FileInfo> >(this, "file-info");
 }
@@ -199,12 +199,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<ZlibCompressorFormat
   "Type ZlibCompressorFormat cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< ZlibCompressorFormat > ZlibCompressor::property_format() const
+auto ZlibCompressor::property_format() const -> Glib::PropertyProxy_ReadOnly< ZlibCompressorFormat >
 {
   return Glib::PropertyProxy_ReadOnly< ZlibCompressorFormat >(this, "format");
 }
 
-Glib::PropertyProxy_ReadOnly< int > ZlibCompressor::property_level() const
+auto ZlibCompressor::property_level() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "level");
 }

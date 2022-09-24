@@ -30,13 +30,13 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::PropagationPhase>::value_type()
+auto Glib::Value<Gtk::PropagationPhase>::value_type() -> GType
 {
   return gtk_propagation_phase_get_type();
 }
 
 // static
-GType Glib::Value<Gtk::PropagationLimit>::value_type()
+auto Glib::Value<Gtk::PropagationLimit>::value_type() -> GType
 {
   return gtk_propagation_limit_get_type();
 }
@@ -45,7 +45,7 @@ GType Glib::Value<Gtk::PropagationLimit>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::EventController> wrap(GtkEventController* object, bool take_copy)
+auto wrap(GtkEventController* object, bool take_copy) -> Glib::RefPtr<Gtk::EventController>
 {
   return Glib::make_refptr_for_instance<Gtk::EventController>( dynamic_cast<Gtk::EventController*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -60,7 +60,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& EventController_Class::init()
+auto EventController_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -91,7 +91,7 @@ void EventController_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* EventController_Class::wrap_new(GObject* object)
+auto EventController_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new EventController((GtkEventController*)object);
 }
@@ -99,7 +99,7 @@ Glib::ObjectBase* EventController_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkEventController* EventController::gobj_copy()
+auto EventController::gobj_copy() -> GtkEventController*
 {
   reference();
   return gobj();
@@ -122,7 +122,7 @@ EventController::EventController(EventController&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-EventController& EventController::operator=(EventController&& src) noexcept
+auto EventController::operator=(EventController&& src) noexcept -> EventController&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -135,13 +135,13 @@ EventController::~EventController() noexcept
 
 EventController::CppClassType EventController::eventcontroller_class_; // initialize static member
 
-GType EventController::get_type()
+auto EventController::get_type() -> GType
 {
   return eventcontroller_class_.init().get_type();
 }
 
 
-GType EventController::get_base_type()
+auto EventController::get_base_type() -> GType
 {
   return gtk_event_controller_get_type();
 }
@@ -157,12 +157,12 @@ EventController::EventController()
 
 }
 
-Widget* EventController::get_widget()
+auto EventController::get_widget() -> Widget*
 {
   return Glib::wrap(gtk_event_controller_get_widget(gobj()));
 }
 
-const Widget* EventController::get_widget() const
+auto EventController::get_widget() const -> const Widget*
 {
   return const_cast<EventController*>(this)->get_widget();
 }
@@ -172,7 +172,7 @@ void EventController::reset()
   gtk_event_controller_reset(gobj());
 }
 
-PropagationPhase EventController::get_propagation_phase() const
+auto EventController::get_propagation_phase() const -> PropagationPhase
 {
   return static_cast<PropagationPhase>(gtk_event_controller_get_propagation_phase(const_cast<GtkEventController*>(gobj())));
 }
@@ -182,7 +182,7 @@ void EventController::set_propagation_phase(PropagationPhase phase)
   gtk_event_controller_set_propagation_phase(gobj(), static_cast<GtkPropagationPhase>(phase));
 }
 
-PropagationLimit EventController::get_propagation_limit() const
+auto EventController::get_propagation_limit() const -> PropagationLimit
 {
   return static_cast<PropagationLimit>(gtk_event_controller_get_propagation_limit(const_cast<GtkEventController*>(gobj())));
 }
@@ -192,7 +192,7 @@ void EventController::set_propagation_limit(PropagationLimit limit)
   gtk_event_controller_set_propagation_limit(gobj(), static_cast<GtkPropagationLimit>(limit));
 }
 
-Glib::ustring EventController::get_name() const
+auto EventController::get_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_event_controller_get_name(const_cast<GtkEventController*>(gobj())));
 }
@@ -202,7 +202,7 @@ void EventController::set_name(const Glib::ustring& name)
   gtk_event_controller_set_name(gobj(), name.c_str());
 }
 
-Glib::RefPtr<const Gdk::Event> EventController::get_current_event() const
+auto EventController::get_current_event() const -> Glib::RefPtr<const Gdk::Event>
 {
   auto retvalue = Glib::wrap(gtk_event_controller_get_current_event(const_cast<GtkEventController*>(gobj())));
   if(retvalue)
@@ -210,12 +210,12 @@ Glib::RefPtr<const Gdk::Event> EventController::get_current_event() const
   return retvalue;
 }
 
-guint32 EventController::get_current_event_time() const
+auto EventController::get_current_event_time() const -> guint32
 {
   return gtk_event_controller_get_current_event_time(const_cast<GtkEventController*>(gobj()));
 }
 
-Glib::RefPtr<Gdk::Device> EventController::get_current_event_device()
+auto EventController::get_current_event_device() -> Glib::RefPtr<Gdk::Device>
 {
   auto retvalue = Glib::wrap(gtk_event_controller_get_current_event_device(gobj()));
   if(retvalue)
@@ -223,18 +223,18 @@ Glib::RefPtr<Gdk::Device> EventController::get_current_event_device()
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::Device> EventController::get_current_event_device() const
+auto EventController::get_current_event_device() const -> Glib::RefPtr<const Gdk::Device>
 {
   return const_cast<EventController*>(this)->get_current_event_device();
 }
 
-Gdk::ModifierType EventController::get_current_event_state() const
+auto EventController::get_current_event_state() const -> Gdk::ModifierType
 {
   return static_cast<Gdk::ModifierType>(gtk_event_controller_get_current_event_state(const_cast<GtkEventController*>(gobj())));
 }
 
 
-Glib::PropertyProxy_ReadOnly< Widget* > EventController::property_widget() const
+auto EventController::property_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "widget");
 }
@@ -243,12 +243,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<PropagationPhase>::v
   "Type PropagationPhase cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< PropagationPhase > EventController::property_propagation_phase()
+auto EventController::property_propagation_phase() -> Glib::PropertyProxy< PropagationPhase >
 {
   return Glib::PropertyProxy< PropagationPhase >(this, "propagation-phase");
 }
 
-Glib::PropertyProxy_ReadOnly< PropagationPhase > EventController::property_propagation_phase() const
+auto EventController::property_propagation_phase() const -> Glib::PropertyProxy_ReadOnly< PropagationPhase >
 {
   return Glib::PropertyProxy_ReadOnly< PropagationPhase >(this, "propagation-phase");
 }
@@ -257,22 +257,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<PropagationLimit>::v
   "Type PropagationLimit cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< PropagationLimit > EventController::property_propagation_limit()
+auto EventController::property_propagation_limit() -> Glib::PropertyProxy< PropagationLimit >
 {
   return Glib::PropertyProxy< PropagationLimit >(this, "propagation-limit");
 }
 
-Glib::PropertyProxy_ReadOnly< PropagationLimit > EventController::property_propagation_limit() const
+auto EventController::property_propagation_limit() const -> Glib::PropertyProxy_ReadOnly< PropagationLimit >
 {
   return Glib::PropertyProxy_ReadOnly< PropagationLimit >(this, "propagation-limit");
 }
 
-Glib::PropertyProxy< Glib::ustring > EventController::property_name()
+auto EventController::property_name() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "name");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > EventController::property_name() const
+auto EventController::property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name");
 }

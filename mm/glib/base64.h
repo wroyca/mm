@@ -23,15 +23,7 @@
 #include <string>
 #include <glib.h>
 
-namespace Glib
-{
-
-/** @defgroup Base64 Base64 routines
- * Base64 encoding/decoding routines.
- * @{
- */
-
-namespace Base64
+namespace Glib::Base64
 {
 
 /** Encode the given string in base64 encoding.
@@ -43,18 +35,14 @@ namespace Base64
  * @return The string encoded in Base-64.
  */
 GLIBMM_API
-std::string encode(const std::string& source, bool break_lines = false);
+auto encode(const std::string& source, bool break_lines = false) -> std::string;
 
 /** Decode the given base64 encoded string.
  * @param source A string to decode.
  * @return The resulting decode string
  */
 GLIBMM_API
-std::string decode(const std::string& source);
-}
-
-/** @} group Base64 */
-
+auto decode(const std::string& source) -> std::string;
 } // namespace Glib
 
 #endif /* _GLIBMM_BASE64_H */

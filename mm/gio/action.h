@@ -95,7 +95,7 @@ public:
 
   // noncopyable
   Action(const Action&) = delete;
-  Action& operator=(const Action&) = delete;
+  auto operator=(const Action&) -> Action& = delete;
 
 private:
   friend class Action_Class;
@@ -129,7 +129,7 @@ protected:
 public:
 
   Action(Action&& src) noexcept;
-  Action& operator=(Action&& src) noexcept;
+  auto operator=(Action&& src) noexcept -> Action&;
 
   ~Action() noexcept override;
 
@@ -137,17 +137,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GAction*       gobj()       { return reinterpret_cast<GAction*>(gobject_); }
+  auto       gobj() -> GAction*       { return reinterpret_cast<GAction*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GAction* gobj() const { return reinterpret_cast<GAction*>(gobject_); }
+  auto gobj() const -> const GAction* { return reinterpret_cast<GAction*>(gobject_); }
 
 private:
 
@@ -160,7 +160,7 @@ public:
    *
    * @return The name of the action.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
   /** Queries the type of the parameter that must be given when activating
    *  @a action.
@@ -175,7 +175,7 @@ public:
    *
    * @return The parameter type.
    */
-  Glib::VariantType get_parameter_type() const;
+  auto get_parameter_type() const -> Glib::VariantType;
 
   /** Queries the type of the state of @a action.
    *
@@ -194,7 +194,7 @@ public:
    *
    * @return The state type, if the action is stateful.
    */
-  Glib::VariantType get_state_type() const;
+  auto get_state_type() const -> Glib::VariantType;
 
   //TODO: Is there any specific type that can really be used with this? A std::list<>. We must test this.
   //  See also ActionGroup:::get_action_state_hint().
@@ -243,7 +243,7 @@ public:
    *
    * @return The state range hint.
    */
-  Glib::VariantContainerBase get_state_hint_variant() const;
+  auto get_state_hint_variant() const -> Glib::VariantContainerBase;
 
 
   /** Checks if @a action is currently enabled.
@@ -255,7 +255,7 @@ public:
    *
    * @return Whether the action is enabled.
    */
-  bool get_enabled() const;
+  auto get_enabled() const -> bool;
 
   /** Request for the state of @a action to be changed to @a value,
    * assuming that the action has the expected state type.
@@ -323,7 +323,7 @@ public:
    *
    * @return The current state of the action.
    */
-  Glib::VariantBase get_state_variant() const;
+  auto get_state_variant() const -> Glib::VariantBase;
 
   /** Activates the action without a parameter.
    */
@@ -375,7 +375,7 @@ public:
    * @param action_name A potential action name.
    * @return <tt>true</tt> if @a action_name is valid.
    */
-  static bool name_is_valid(const Glib::ustring& action_name);
+  static auto name_is_valid(const Glib::ustring& action_name) -> bool;
 
   /** Parses a detailed action name into its separate name and target components.
    *
@@ -440,7 +440,7 @@ public:
    * @result A detailed format string.
    */
   template <typename T_Value>
-  Glib::ustring print_detailed_name(const T_Value& target_value);
+  auto print_detailed_name(const T_Value& target_value) -> Glib::ustring;
 
 
   /** Formats a detailed action name from @a action_name and @a target_value.
@@ -460,7 +460,7 @@ public:
    * @param target_value A Variant target value, or <tt>nullptr</tt>.
    * @return A detailed format string.
    */
-  static Glib::ustring print_detailed_name_variant(const Glib::ustring& action_name, const Glib::VariantBase& target_value);
+  static auto print_detailed_name_variant(const Glib::ustring& action_name, const Glib::VariantBase& target_value) -> Glib::ustring;
 
   /** If @a action is currently enabled.
    *
@@ -474,7 +474,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_enabled() const;
+  auto property_enabled() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** The name of the action.  This is mostly meaningful for identifying
@@ -487,7 +487,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_name() const;
+  auto property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The type of the parameter that must be given when activating the
@@ -499,7 +499,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::VariantType > property_parameter_type() const;
+  auto property_parameter_type() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantType >;
 
 
   /** The state of the action, or <tt>nullptr</tt> if the action is stateless.
@@ -509,7 +509,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::VariantBase > property_state() const;
+  auto property_state() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantBase >;
 
 
   /** The VariantType of the state that the action has, or <tt>nullptr</tt> if the
@@ -520,27 +520,27 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::VariantType > property_state_type() const;
+  auto property_state_type() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantType >;
 
 
 protected:
 
 
-    virtual Glib::ustring get_name_vfunc() const;
+    virtual auto get_name_vfunc() const -> Glib::ustring;
 
 
-    virtual Glib::VariantType get_parameter_type_vfunc() const;
+    virtual auto get_parameter_type_vfunc() const -> Glib::VariantType;
 
-    virtual Glib::VariantType get_state_type_vfunc() const;
-
-
-    virtual Glib::VariantBase get_state_hint_vfunc() const;
+    virtual auto get_state_type_vfunc() const -> Glib::VariantType;
 
 
-    virtual bool get_enabled_vfunc() const;
+    virtual auto get_state_hint_vfunc() const -> Glib::VariantBase;
 
 
-    virtual Glib::VariantBase get_state_vfunc() const;
+    virtual auto get_enabled_vfunc() const -> bool;
+
+
+    virtual auto get_state_vfunc() const -> Glib::VariantBase;
 
 
     virtual void change_state_vfunc(const Glib::VariantBase& value);
@@ -624,7 +624,7 @@ void Action::parse_detailed_name(const Glib::ustring& detailed_name, Glib::ustri
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
 template <typename T_Value>
-Glib::ustring Action::print_detailed_name(const T_Value& target_value)
+auto Action::print_detailed_name(const T_Value& target_value) -> Glib::ustring
 {
   using type_glib_variant = Glib::Variant<T_Value>;
 
@@ -684,7 +684,7 @@ namespace Glib
    * @relates Gio::Action
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Action> wrap(GAction* object, bool take_copy = false);
+  auto wrap(GAction* object, bool take_copy = false) -> Glib::RefPtr<Gio::Action>;
 
 } // namespace Glib
 

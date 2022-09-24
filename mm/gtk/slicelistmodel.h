@@ -67,7 +67,7 @@ public:
 
   // noncopyable
   SliceListModel(const SliceListModel&) = delete;
-  SliceListModel& operator=(const SliceListModel&) = delete;
+  auto operator=(const SliceListModel&) -> SliceListModel& = delete;
 
 private:  friend class SliceListModel_Class;
   static CppClassType slicelistmodel_class_;
@@ -81,28 +81,28 @@ protected:
 public:
 
   SliceListModel(SliceListModel&& src) noexcept;
-  SliceListModel& operator=(SliceListModel&& src) noexcept;
+  auto operator=(SliceListModel&& src) noexcept -> SliceListModel&;
 
   ~SliceListModel() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkSliceListModel*       gobj()       { return reinterpret_cast<GtkSliceListModel*>(gobject_); }
+  auto       gobj() -> GtkSliceListModel*       { return reinterpret_cast<GtkSliceListModel*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkSliceListModel* gobj() const { return reinterpret_cast<GtkSliceListModel*>(gobject_); }
+  auto gobj() const -> const GtkSliceListModel* { return reinterpret_cast<GtkSliceListModel*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkSliceListModel* gobj_copy();
+  auto gobj_copy() -> GtkSliceListModel*;
 
 private:
 
@@ -113,7 +113,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<SliceListModel> create(const Glib::RefPtr<Gio::ListModel>& model, guint offset, guint size);
+  static auto create(const Glib::RefPtr<Gio::ListModel>& model, guint offset, guint size) -> Glib::RefPtr<SliceListModel>;
 
 
   /** Sets the model to show a slice of.
@@ -128,13 +128,13 @@ public:
    *
    * @return The model in use.
    */
-  Glib::RefPtr<Gio::ListModel> get_model();
+  auto get_model() -> Glib::RefPtr<Gio::ListModel>;
 
   /** Gets the model that is currently being used or <tt>nullptr</tt> if none.
    *
    * @return The model in use.
    */
-  Glib::RefPtr<const Gio::ListModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const Gio::ListModel>;
 
   /** Sets the offset into the original model for this slice.
    *
@@ -149,7 +149,7 @@ public:
    *
    * @return The offset.
    */
-  guint get_offset() const;
+  auto get_offset() const -> guint;
 
   /** Sets the maximum size. @a self will never have more items
    * than @a size.
@@ -165,7 +165,7 @@ public:
    *
    * @return The size.
    */
-  guint get_size() const;
+  auto get_size() const -> guint;
 
   /** The type of items. See Gio::ListModel::get_item_type().
    *
@@ -174,7 +174,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< GType > property_item_type() const;
+  auto property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >;
 
 
   /** Child model to take slice from.
@@ -182,14 +182,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > property_model() ;
+  auto property_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > ;
 
 /** Child model to take slice from.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >;
 
   /** The number of items. See Gio::ListModel::get_n_items().
    *
@@ -200,7 +200,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_n_items() const;
+  auto property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
 
   /** Offset of slice.
@@ -210,7 +210,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_offset() ;
+  auto property_offset() -> Glib::PropertyProxy< guint > ;
 
 /** Offset of slice.
    *
@@ -219,7 +219,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_offset() const;
+  auto property_offset() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** Maximum size of slice.
    *
@@ -228,7 +228,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_size() ;
+  auto property_size() -> Glib::PropertyProxy< guint > ;
 
 /** Maximum size of slice.
    *
@@ -237,7 +237,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_size() const;
+  auto property_size() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
 public:
@@ -267,7 +267,7 @@ namespace Glib
    * @relates Gtk::SliceListModel
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::SliceListModel> wrap(GtkSliceListModel* object, bool take_copy = false);
+  auto wrap(GtkSliceListModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SliceListModel>;
 }
 
 

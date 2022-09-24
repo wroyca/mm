@@ -39,19 +39,11 @@ using GDBusObjectClass = struct _GDBusObjectClass;
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
-{
-
-namespace DBus
-{ class GIOMM_API Object_Class; } // namespace DBus
-
-} // namespace Gio
+namespace Gio::DBus
+{ class GIOMM_API Object_Class; } // namespace Gio
 #endif // DOXYGEN_SHOULD_SKIP_THIS
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 class GIOMM_API Interface;
@@ -78,7 +70,7 @@ public:
 
   // noncopyable
   Object(const Object&) = delete;
-  Object& operator=(const Object&) = delete;
+  auto operator=(const Object&) -> Object& = delete;
 
 private:
   friend class Object_Class;
@@ -112,7 +104,7 @@ protected:
 public:
 
   Object(Object&& src) noexcept;
-  Object& operator=(Object&& src) noexcept;
+  auto operator=(Object&& src) noexcept -> Object&;
 
   ~Object() noexcept override;
 
@@ -120,17 +112,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDBusObject*       gobj()       { return reinterpret_cast<GDBusObject*>(gobject_); }
+  auto       gobj() -> GDBusObject*       { return reinterpret_cast<GDBusObject*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDBusObject* gobj() const { return reinterpret_cast<GDBusObject*>(gobject_); }
+  auto gobj() const -> const GDBusObject* { return reinterpret_cast<GDBusObject*>(gobject_); }
 
 private:
 
@@ -143,7 +135,7 @@ public:
    *
    * @return A string owned by @a object. Do not free.
    */
-  Glib::ustring get_object_path() const;
+  auto get_object_path() const -> Glib::ustring;
 
 
   /** Gets the D-Bus interfaces associated with @a object.
@@ -152,7 +144,7 @@ public:
    *
    * @return A list of DBusInterface instances.
    */
-  std::vector<Glib::RefPtr<Gio::DBus::Interface>> get_interfaces();
+  auto get_interfaces() -> std::vector<Glib::RefPtr<Gio::DBus::Interface>>;
 
 
   /** Gets the D-Bus interfaces associated with @a object.
@@ -161,7 +153,7 @@ public:
    *
    * @return A list of DBusInterface instances.
    */
-  std::vector<Glib::RefPtr<const Gio::DBus::Interface>> get_interfaces() const;
+  auto get_interfaces() const -> std::vector<Glib::RefPtr<const Gio::DBus::Interface>>;
 
 
   /** Gets the D-Bus interface with name @a interface_name associated with
@@ -173,7 +165,7 @@ public:
    * @return <tt>nullptr</tt> if not found, otherwise a
    * DBusInterface that must be freed with Glib::object_unref().
    */
-  Glib::RefPtr<Gio::DBus::Interface> get_interface(const Glib::ustring& interface_name);
+  auto get_interface(const Glib::ustring& interface_name) -> Glib::RefPtr<Gio::DBus::Interface>;
 
   /** Gets the D-Bus interface with name @a interface_name associated with
    *  @a object, if any.
@@ -184,7 +176,7 @@ public:
    * @return <tt>nullptr</tt> if not found, otherwise a
    * DBusInterface that must be freed with Glib::object_unref().
    */
-  Glib::RefPtr<const Gio::DBus::Interface> get_interface(const Glib::ustring& interface_name) const;
+  auto get_interface(const Glib::ustring& interface_name) const -> Glib::RefPtr<const Gio::DBus::Interface>;
 
 
   // The parameter name 'interface' can cause compilation errors with MinGW.
@@ -204,7 +196,7 @@ public:
    * @param iface The DBusInterface that was added.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::Interface>&)> signal_interface_added();
+  auto signal_interface_added() -> Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::Interface>&)>;
 
 
   /**
@@ -220,23 +212,23 @@ public:
    * @param iface The DBusInterface that was removed.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::Interface>&)> signal_interface_removed();
+  auto signal_interface_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::Interface>&)>;
 
 
 protected:
 
 
-    virtual Glib::ustring get_object_path_vfunc() const;
+    virtual auto get_object_path_vfunc() const -> Glib::ustring;
 
 
-    virtual std::vector<Glib::RefPtr<Gio::DBus::Interface>> get_interfaces_vfunc() const;
+    virtual auto get_interfaces_vfunc() const -> std::vector<Glib::RefPtr<Gio::DBus::Interface>>;
 
 
   // Can't use refreturn_ctype here. It generates a call to Glib::unwrap_copy(), which
   // can't be used for Glib::Interface classes. They have no gobj_copy() method.
 
 
-    virtual Glib::RefPtr<Gio::DBus::Interface> get_interface_vfunc(const Glib::ustring& interface_name) const;
+    virtual auto get_interface_vfunc(const Glib::ustring& interface_name) const -> Glib::RefPtr<Gio::DBus::Interface>;
 
 
 public:
@@ -256,8 +248,6 @@ protected:
 
 };
 
-} // namespace DBus
-
 } // namespace Gio
 
 
@@ -272,7 +262,7 @@ namespace Glib
    * @relates Gio::DBus::Object
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DBus::Object> wrap(GDBusObject* object, bool take_copy = false);
+  auto wrap(GDBusObject* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::Object>;
 
 } // namespace Glib
 

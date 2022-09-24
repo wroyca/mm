@@ -64,19 +64,19 @@ class GIOMM_API SettingsSchemaSource final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GSettingsSchemaSource*       gobj();
+  auto       gobj() -> GSettingsSchemaSource*;
 
   ///Provides access to the underlying C instance.
-  const GSettingsSchemaSource* gobj() const;
+  auto gobj() const -> const GSettingsSchemaSource*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GSettingsSchemaSource* gobj_copy() const;
+  auto gobj_copy() const -> GSettingsSchemaSource*;
 
   SettingsSchemaSource() = delete;
 
   // noncopyable
   SettingsSchemaSource(const SettingsSchemaSource&) = delete;
-  SettingsSchemaSource& operator=(const SettingsSchemaSource&) = delete;
+  auto operator=(const SettingsSchemaSource&) -> SettingsSchemaSource& = delete;
 
 protected:
   // Do not derive this.  Gio::SettingsSchemaSource can neither be constructed nor deleted.
@@ -109,7 +109,7 @@ public:
    *
    * @return The default schema source.
    */
-  static Glib::RefPtr<SettingsSchemaSource> get_default();
+  static auto get_default() -> Glib::RefPtr<SettingsSchemaSource>;
 
 
   /** Attempts to create a new schema source corresponding to the contents
@@ -152,7 +152,7 @@ public:
    *
    * @throws Glib::Error
    */
-  static Glib::RefPtr<SettingsSchemaSource> create(const std::string& directory, bool trusted, const Glib::RefPtr<SettingsSchemaSource>& parent =  get_default());
+  static auto create(const std::string& directory, bool trusted, const Glib::RefPtr<SettingsSchemaSource>& parent =  get_default()) -> Glib::RefPtr<SettingsSchemaSource>;
 
   //Note this doesn't need refreturn because the C function returns a reference.
   //- it is documented as transfer:full
@@ -174,7 +174,7 @@ public:
    * @param recursive <tt>true</tt> if the lookup should be recursive.
    * @return A new SettingsSchema.
    */
-  Glib::RefPtr<SettingsSchema> lookup(const Glib::ustring& schema_id, bool recursive);
+  auto lookup(const Glib::ustring& schema_id, bool recursive) -> Glib::RefPtr<SettingsSchema>;
 
   /** Looks up a schema with the identifier @a schema_id in @a source.
    *
@@ -193,7 +193,7 @@ public:
    * @param recursive <tt>true</tt> if the lookup should be recursive.
    * @return A new SettingsSchema.
    */
-  Glib::RefPtr<const SettingsSchema> lookup(const Glib::ustring& schema_id, bool recursive) const;
+  auto lookup(const Glib::ustring& schema_id, bool recursive) const -> Glib::RefPtr<const SettingsSchema>;
 
 
   /** Lists the schemas in a given source.
@@ -215,7 +215,7 @@ public:
    *
    * @return a vector of the names of the schemas matching the given parameters.
    */
-  std::vector<Glib::ustring> list_schemas(bool relocatable, bool recursive) const;
+  auto list_schemas(bool relocatable, bool recursive) const -> std::vector<Glib::ustring>;
 
 
 };
@@ -235,7 +235,7 @@ namespace Glib
  * @relates Gio::SettingsSchemaSource
  */
 GIOMM_API
-Glib::RefPtr<Gio::SettingsSchemaSource> wrap(GSettingsSchemaSource* object, bool take_copy = false);
+auto wrap(GSettingsSchemaSource* object, bool take_copy = false) -> Glib::RefPtr<Gio::SettingsSchemaSource>;
 
 } // namespace Glib
 

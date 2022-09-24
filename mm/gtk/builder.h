@@ -132,7 +132,7 @@ public:
 
   GTKMM_API BuilderError(Code error_code, const Glib::ustring& error_message);
   GTKMM_API explicit BuilderError(GError* gobject);
-  GTKMM_API Code code() const;
+  GTKMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -154,7 +154,7 @@ template <>
 class GTKMM_API Value<Gtk::BuilderError::Code> : public Glib::Value_Enum<Gtk::BuilderError::Code>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -218,7 +218,7 @@ public:
 
   // noncopyable
   Builder(const Builder&) = delete;
-  Builder& operator=(const Builder&) = delete;
+  auto operator=(const Builder&) -> Builder& = delete;
 
 private:  friend class Builder_Class;
   static CppClassType builder_class_;
@@ -232,28 +232,28 @@ protected:
 public:
 
   Builder(Builder&& src) noexcept;
-  Builder& operator=(Builder&& src) noexcept;
+  auto operator=(Builder&& src) noexcept -> Builder&;
 
   ~Builder() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkBuilder*       gobj()       { return reinterpret_cast<GtkBuilder*>(gobject_); }
+  auto       gobj() -> GtkBuilder*       { return reinterpret_cast<GtkBuilder*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkBuilder* gobj() const { return reinterpret_cast<GtkBuilder*>(gobject_); }
+  auto gobj() const -> const GtkBuilder* { return reinterpret_cast<GtkBuilder*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkBuilder* gobj_copy();
+  auto gobj_copy() -> GtkBuilder*;
 
 private:
 
@@ -266,7 +266,7 @@ public:
   /** Creates a new builder object.
    */
 
-  static Glib::RefPtr<Builder> create();
+  static auto create() -> Glib::RefPtr<Builder>;
 
 
   /** Parses a file containing a GtkBuilder UI definition.
@@ -277,7 +277,7 @@ public:
    *
    * @newin{2,12}
    */
-  static Glib::RefPtr<Builder> create_from_file(const std::string& filename);
+  static auto create_from_file(const std::string& filename) -> Glib::RefPtr<Builder>;
 
   /** Parses a file containing a GtkBuilder UI definition, building only the requested object.
    *
@@ -292,7 +292,7 @@ public:
    *
    * @newin{2,14}
    */
-  static Glib::RefPtr<Builder> create_from_file(const std::string& filename, const Glib::ustring& object_id);
+  static auto create_from_file(const std::string& filename, const Glib::ustring& object_id) -> Glib::RefPtr<Builder>;
 
   //This is just to avoid the ambiguous call when using a string literal,
   //caused by the overload that takes a std::vector<Glib::ustring>.
@@ -309,7 +309,7 @@ public:
    *
    * @newin{2,16}
    */
-  static Glib::RefPtr<Builder> create_from_file(const std::string& filename, const char* object_id);
+  static auto create_from_file(const std::string& filename, const char* object_id) -> Glib::RefPtr<Builder>;
 
   /** Parses a file containing a GtkBuilder UI definition, building only the requested objects.
    *
@@ -324,7 +324,7 @@ public:
    *
    * @newin{2,14}
    */
-  static Glib::RefPtr<Builder> create_from_file(const std::string& filename, const std::vector<Glib::ustring>& object_ids);
+  static auto create_from_file(const std::string& filename, const std::vector<Glib::ustring>& object_ids) -> Glib::RefPtr<Builder>;
 
 
   /** Parses a resource file containing a GtkBuilder UI definition.
@@ -335,7 +335,7 @@ public:
    *
    * @newin{3,6}
    */
-  static Glib::RefPtr<Builder> create_from_resource(const std::string& resource_path);
+  static auto create_from_resource(const std::string& resource_path) -> Glib::RefPtr<Builder>;
 
   /** Parses a resource file containing a GtkBuilder UI definition, building only the requested object.
    *
@@ -350,7 +350,7 @@ public:
    *
    * @newin{3,6}
    */
-  static Glib::RefPtr<Builder> create_from_resource(const std::string& resource_path, const Glib::ustring& object_id);
+  static auto create_from_resource(const std::string& resource_path, const Glib::ustring& object_id) -> Glib::RefPtr<Builder>;
 
   //This is just to avoid the ambiguous call when using a string literal,
   //caused by the overload that takes a std::vector<Glib::ustring>.
@@ -367,7 +367,7 @@ public:
    *
    * @newin{3,6}
    */
-  static Glib::RefPtr<Builder> create_from_resource(const std::string& resource_path, const char* object_id);
+  static auto create_from_resource(const std::string& resource_path, const char* object_id) -> Glib::RefPtr<Builder>;
 
   /** Parses a resource file containing a GtkBuilder UI definition, building only the requested objects.
    *
@@ -382,7 +382,7 @@ public:
    *
    * @newin{3,6}
    */
-  static Glib::RefPtr<Builder> create_from_resource(const std::string& resource_path, const std::vector<Glib::ustring>& object_ids);
+  static auto create_from_resource(const std::string& resource_path, const std::vector<Glib::ustring>& object_ids) -> Glib::RefPtr<Builder>;
 
 
   /** Parses a string containing a GtkBuilder UI definition.
@@ -393,7 +393,7 @@ public:
    *
    * @newin{2,12}
    */
-  static Glib::RefPtr<Builder> create_from_string(const Glib::ustring& buffer);
+  static auto create_from_string(const Glib::ustring& buffer) -> Glib::RefPtr<Builder>;
 
   //This is just to avoid the ambiguous call when using a string literal,
   //caused by the overload that takes a std::vector<Glib::ustring>.
@@ -406,7 +406,7 @@ public:
    *
    * @newin{2,16}
    */
-  static Glib::RefPtr<Builder> create_from_string(const Glib::ustring& buffer, const char* object_id);
+  static auto create_from_string(const Glib::ustring& buffer, const char* object_id) -> Glib::RefPtr<Builder>;
 
   /** Parses a string containing a GtkBuilder UI definition building only the requested object.
    *
@@ -417,7 +417,7 @@ public:
    *
    * @newin{2,14}
    */
-  static Glib::RefPtr<Builder> create_from_string(const Glib::ustring& buffer, const Glib::ustring& object_id);
+  static auto create_from_string(const Glib::ustring& buffer, const Glib::ustring& object_id) -> Glib::RefPtr<Builder>;
 
   /** Parses a string containing a GtkBuilder UI definition building only the requested objects.
    *
@@ -432,7 +432,7 @@ public:
    *
    * @newin{2,14}
    */
-  static Glib::RefPtr<Builder> create_from_string(const Glib::ustring& buffer, const std::vector<Glib::ustring>& object_ids);
+  static auto create_from_string(const Glib::ustring& buffer, const std::vector<Glib::ustring>& object_ids) -> Glib::RefPtr<Builder>;
 
 
   /** Parses a file containing a GtkBuilder UI definition,
@@ -444,7 +444,7 @@ public:
    *
    * @newin{2,14}
    */
-  bool add_from_file(const std::string& filename);
+  auto add_from_file(const std::string& filename) -> bool;
 
   //This is just to avoid the ambiguous call when using a string literal,
   //caused by the overload that takes a std::vector<Glib::ustring>.
@@ -463,7 +463,7 @@ public:
    *
    * @newin{2,16}
    */
-  bool add_from_file(const std::string& filename, const char* object_id);
+  auto add_from_file(const std::string& filename, const char* object_id) -> bool;
 
   /** Parses a file containing a GtkBuilder UI definition,
    * building only the requested object,
@@ -480,7 +480,7 @@ public:
    *
    * @newin{2,14}
    */
-  bool add_from_file(const std::string& filename, const Glib::ustring& object_id);
+  auto add_from_file(const std::string& filename, const Glib::ustring& object_id) -> bool;
 
 
   /** Parses a file containing a UI definition building only the
@@ -501,7 +501,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool add_from_file(const std::string& filename, const std::vector<Glib::ustring>& object_ids);
+  auto add_from_file(const std::string& filename, const std::vector<Glib::ustring>& object_ids) -> bool;
 
 
   /** Parses a resource file containing a GtkBuilder UI definition,
@@ -513,7 +513,7 @@ public:
    *
    * @newin{3,6}
    */
-  bool add_from_resource(const std::string& resource_path);
+  auto add_from_resource(const std::string& resource_path) -> bool;
 
   //This is just to avoid the ambiguous call when using a string literal,
   //caused by the overload that takes a std::vector<Glib::ustring>.
@@ -532,7 +532,7 @@ public:
    *
    * @newin{3,6}
    */
-  bool add_from_resource(const std::string& resource_path, const char* object_id);
+  auto add_from_resource(const std::string& resource_path, const char* object_id) -> bool;
 
   /** Parses a resource file containing a GtkBuilder UI definition,
    * building only the requested object,
@@ -549,7 +549,7 @@ public:
    *
    * @newin{3,6}
    */
-  bool add_from_resource(const std::string& resource_path, const Glib::ustring& object_id);
+  auto add_from_resource(const std::string& resource_path, const Glib::ustring& object_id) -> bool;
 
 
   /** Parses a resource file containing a UI definition, building
@@ -570,7 +570,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool add_from_resource(const std::string& resource_path, const std::vector<Glib::ustring>& object_ids);
+  auto add_from_resource(const std::string& resource_path, const std::vector<Glib::ustring>& object_ids) -> bool;
 
 
   //This is just to avoid the ambiguous call when using a string literal,
@@ -584,7 +584,7 @@ public:
    *
    * @newin{2,12}
    */
-  bool add_from_string(const Glib::ustring& buffer);
+  auto add_from_string(const Glib::ustring& buffer) -> bool;
 
   /** Parses a string containing a GtkBuilder UI definition,
    * building only the requested object,
@@ -597,7 +597,7 @@ public:
    *
    * @newin{2,16}
    */
-  bool add_from_string(const Glib::ustring& buffer, const char* object_id);
+  auto add_from_string(const Glib::ustring& buffer, const char* object_id) -> bool;
 
   /** Parses a string containing a GtkBuilder UI definition,
    * building only the requested object,
@@ -610,7 +610,7 @@ public:
    *
    * @newin{2,14}
    */
-  bool add_from_string(const Glib::ustring& buffer, const Glib::ustring& object_id);
+  auto add_from_string(const Glib::ustring& buffer, const Glib::ustring& object_id) -> bool;
 
   /** Parses a string containing a GtkBuilder UI definition,
    * building only the requested objects,
@@ -623,7 +623,7 @@ public:
    *
    * @newin{2,14}
    */
-  bool add_from_string(const Glib::ustring& buffer, const std::vector<Glib::ustring>& object_ids);
+  auto add_from_string(const Glib::ustring& buffer, const std::vector<Glib::ustring>& object_ids) -> bool;
 
 
   /** Parses a string containing a GtkBuilder UI definition
@@ -636,7 +636,7 @@ public:
    *
    * @newin{2,12}
    */
-  bool add_from_string(const char* buffer, gssize length);
+  auto add_from_string(const char* buffer, gssize length) -> bool;
 
 
   /** Add @a object to the @a builder object pool so it can be
@@ -675,7 +675,7 @@ public:
    * @param name Name of object to get.
    * @return The object named @a name or <tt>nullptr</tt> if it could not be found in the object tree.
    */
-  Glib::RefPtr<Glib::Object> get_object(const Glib::ustring& name);
+  auto get_object(const Glib::ustring& name) -> Glib::RefPtr<Glib::Object>;
 
 
   /** Gets the object named @a name.
@@ -685,7 +685,7 @@ public:
    * @param name Name of object to get.
    * @return The object named @a name or <tt>nullptr</tt> if it could not be found in the object tree.
    */
-  Glib::RefPtr<const Glib::Object> get_object(const Glib::ustring& name) const;
+  auto get_object(const Glib::ustring& name) const -> Glib::RefPtr<const Glib::Object>;
 
   /** Gets the object named @a name, cast to a specific derived type.
    *
@@ -702,7 +702,7 @@ public:
    *   found in the object tree or could not be cast to the specified type.
    */
   template <class T_Object> inline
-  Glib::RefPtr<T_Object> get_object(const Glib::ustring& name)
+  auto get_object(const Glib::ustring& name) -> Glib::RefPtr<T_Object>
   {
     return std::dynamic_pointer_cast<T_Object>(get_object(name));
   }
@@ -711,7 +711,7 @@ public:
    * @newin{3,96}
    */
   template <class T_Object> inline
-  Glib::RefPtr<const T_Object> get_object(const Glib::ustring& name) const
+  auto get_object(const Glib::ustring& name) const -> Glib::RefPtr<const T_Object>
   {
     return const_cast<Builder*>(this)->get_object<const T_Object>(name);
   }
@@ -738,7 +738,7 @@ public:
    * @newin{3,96}
    */
   template <class T_Widget> inline
-  T_Widget* get_widget(const Glib::ustring& name)
+  auto get_widget(const Glib::ustring& name) -> T_Widget*
   {
     T_Widget* widget = nullptr;
 
@@ -755,7 +755,7 @@ public:
    * @newin{3,96}
    */
   template <class T_Widget> inline
-  const T_Widget* get_widget(const Glib::ustring& name) const
+  auto get_widget(const Glib::ustring& name) const -> const T_Widget*
   {
     return const_cast<Builder*>(this)->get_widget<const T_Widget>(name);
   }
@@ -805,7 +805,7 @@ public:
    * @newin{3,96}
    */
   template <typename T_Widget, typename... Args> inline
-  static T_Widget* get_widget_derived(const Glib::RefPtr<Gtk::Builder>& builder, const Glib::ustring& name, Args&&... args)
+  static auto get_widget_derived(const Glib::RefPtr<Gtk::Builder>& builder, const Glib::ustring& name, Args&&... args) -> T_Widget*
   {
      // Get the widget from the GtkBuilder file.
      using cwidget_type = typename T_Widget::BaseObjectType;
@@ -849,7 +849,7 @@ public:
    * @newin{3,96}
    */
   template <typename T_Widget, typename... Args> inline
-  static const T_Widget* get_widget_derived(const Glib::RefPtr<const Gtk::Builder>& builder, const Glib::ustring& name, Args&&... args)
+  static auto get_widget_derived(const Glib::RefPtr<const Gtk::Builder>& builder, const Glib::ustring& name, Args&&... args) -> const T_Widget*
   {
     return get_widget_derived<const T_Widget>(std::const_pointer_cast<Gtk::Builder>(builder), name, std::forward<Args>(args)...);
   }
@@ -862,7 +862,7 @@ public:
    * @return A vector containing all the objects
    * constructed by the Gtk::Builder instance.
    */
-  std::vector<Glib::RefPtr<Glib::Object> > get_objects();
+  auto get_objects() -> std::vector<Glib::RefPtr<Glib::Object> >;
 
 
   /** Gets all objects that have been constructed by the Gtk::Builder.
@@ -872,7 +872,7 @@ public:
    * @return A vector containing all the objects
    * constructed by the Gtk::Builder instance.
    */
-  std::vector<Glib::RefPtr<const Glib::Object> > get_objects() const;
+  auto get_objects() const -> std::vector<Glib::RefPtr<const Glib::Object> >;
 
 
   /** Sets the translation domain of @a builder.
@@ -885,7 +885,7 @@ public:
    *
    * @return The translation domain.
    */
-  Glib::ustring get_translation_domain() const;
+  auto get_translation_domain() const -> Glib::ustring;
 
   // We ignore gtk_builder_get_type_from_name() because it only seems useful when implementing GtkBuildable for widgets.
 
@@ -904,7 +904,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_translation_domain() ;
+  auto property_translation_domain() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The translation domain used when translating property values that
    * have been marked as translatable.
@@ -917,17 +917,17 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_translation_domain() const;
+  auto property_translation_domain() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
 protected:
-  Gtk::Widget* get_widget_checked(const Glib::ustring& name, GType type);
-  GtkWidget* get_cwidget(const Glib::ustring& name);
+  auto get_widget_checked(const Glib::ustring& name, GType type) -> Gtk::Widget*;
+  auto get_cwidget(const Glib::ustring& name) -> GtkWidget*;
 
 private:
   bool no_gtkmm_derived_types {false};
   void set_no_gtkmm_derived_types(bool status);
-  bool get_no_gtkmm_derived_types() const;
+  auto get_no_gtkmm_derived_types() const -> bool;
   friend class GTKMM_API Buildable_Class;
   friend class GTKMM_API BuilderScope_Class;
 
@@ -959,7 +959,7 @@ namespace Glib
    * @relates Gtk::Builder
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::Builder> wrap(GtkBuilder* object, bool take_copy = false);
+  auto wrap(GtkBuilder* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Builder>;
 }
 
 

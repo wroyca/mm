@@ -91,7 +91,7 @@ template <>
 class GTKMM_API Value<Gtk::Unit> : public Glib::Value_Enum<Gtk::Unit>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -123,30 +123,30 @@ class GTKMM_API PaperSize
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
 
   PaperSize();
 
   explicit PaperSize(GtkPaperSize* gobject, bool make_a_copy = true);
 
   PaperSize(const PaperSize& other);
-  PaperSize& operator=(const PaperSize& other);
+  auto operator=(const PaperSize& other) -> PaperSize&;
 
   PaperSize(PaperSize&& other) noexcept;
-  PaperSize& operator=(PaperSize&& other) noexcept;
+  auto operator=(PaperSize&& other) noexcept -> PaperSize&;
 
   ~PaperSize() noexcept;
 
   void swap(PaperSize& other) noexcept;
 
   ///Provides access to the underlying C instance.
-  GtkPaperSize*       gobj()       { return gobject_; }
+  auto       gobj() -> GtkPaperSize*       { return gobject_; }
 
   ///Provides access to the underlying C instance.
-  const GtkPaperSize* gobj() const { return gobject_; }
+  auto gobj() const -> const GtkPaperSize* { return gobject_; }
 
   ///Provides access to the underlying C instance. The caller is responsible for freeing it. Use when directly setting fields in structs.
-  GtkPaperSize* gobj_copy() const;
+  auto gobj_copy() const -> GtkPaperSize*;
 
 protected:
   GtkPaperSize* gobject_;
@@ -173,7 +173,7 @@ public:
   explicit PaperSize(const Glib::RefPtr<const Glib::KeyFile>& key_file, const Glib::ustring& group_name = {});
 
 
-  bool equal(const PaperSize& other) const;
+  auto equal(const PaperSize& other) const -> bool;
 
    /** Returns true if the PaperSize is a valid object.
     * For instance,
@@ -194,27 +194,27 @@ public:
    * @return A newly allocated list of newly
    * allocated `Gtk::PaperSize` objects.
    */
-  static std::vector<PaperSize> get_paper_sizes(bool include_custom =  true);
+  static auto get_paper_sizes(bool include_custom =  true) -> std::vector<PaperSize>;
 
 
   /** Gets the name of the `Gtk::PaperSize`.
    *
    * @return The name of @a size.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
   /** Gets the human-readable name of the `Gtk::PaperSize`.
    *
    * @return The human-readable name of @a size.
    */
-  Glib::ustring get_display_name() const;
+  auto get_display_name() const -> Glib::ustring;
 
   /** Gets the PPD name of the `Gtk::PaperSize`, which
    * may be <tt>nullptr</tt>.
    *
    * @return The PPD name of @a size.
    */
-  Glib::ustring get_ppd_name() const;
+  auto get_ppd_name() const -> Glib::ustring;
 
 
   /** Gets the paper width of the `Gtk::PaperSize`, in
@@ -223,7 +223,7 @@ public:
    * @param unit The unit for the return value, not Gtk::Unit::NONE.
    * @return The paper width.
    */
-  double get_width(Unit unit) const;
+  auto get_width(Unit unit) const -> double;
 
   /** Gets the paper height of the `Gtk::PaperSize`, in
    * units of @a unit.
@@ -231,19 +231,19 @@ public:
    * @param unit The unit for the return value, not Gtk::Unit::NONE.
    * @return The paper height.
    */
-  double get_height(Unit unit) const;
+  auto get_height(Unit unit) const -> double;
 
   /** Returns <tt>true</tt> if @a size is not a standard paper size.
    *
    * @return Whether @a size is a custom paper size.
    */
-  bool is_custom() const;
+  auto is_custom() const -> bool;
 
   /** Returns <tt>true</tt> if @a size is an IPP standard paper size.
    *
    * @return Whether @a size is not an IPP custom paper size.
    */
-  bool is_ipp() const;
+  auto is_ipp() const -> bool;
 
 
   /** Changes the dimensions of a @a size to @a width x @a height.
@@ -259,28 +259,28 @@ public:
    * @param unit The unit for the return value, not Gtk::Unit::NONE.
    * @return The default top margin.
    */
-  double get_default_top_margin(Unit unit) const;
+  auto get_default_top_margin(Unit unit) const -> double;
 
   /** Gets the default bottom margin for the `Gtk::PaperSize`.
    *
    * @param unit The unit for the return value, not Gtk::Unit::NONE.
    * @return The default bottom margin.
    */
-  double get_default_bottom_margin(Unit unit) const;
+  auto get_default_bottom_margin(Unit unit) const -> double;
 
   /** Gets the default left margin for the `Gtk::PaperSize`.
    *
    * @param unit The unit for the return value, not Gtk::Unit::NONE.
    * @return The default left margin.
    */
-  double get_default_left_margin(Unit unit) const;
+  auto get_default_left_margin(Unit unit) const -> double;
 
   /** Gets the default right margin for the `Gtk::PaperSize`.
    *
    * @param unit The unit for the return value, not Gtk::Unit::NONE.
    * @return The default right margin.
    */
-  double get_default_right_margin(Unit unit) const;
+  auto get_default_right_margin(Unit unit) const -> double;
 
 
   /** Returns the name of the default paper size, which
@@ -289,7 +289,7 @@ public:
    * @return The name of the default paper size. The string
    * is owned by GTK and should not be modified.
    */
-  static Glib::ustring get_default();
+  static auto get_default() -> Glib::ustring;
 
 
   /** This function adds the paper size from @a size to @a key_file.
@@ -311,11 +311,11 @@ public:
 };
 
 /** @relates Gtk::PaperSize */
-inline bool operator==(const PaperSize& lhs, const PaperSize& rhs)
+inline auto operator==(const PaperSize& lhs, const PaperSize& rhs) -> bool
   { return lhs.equal(rhs); }
 
 /** @relates Gtk::PaperSize */
-inline bool operator!=(const PaperSize& lhs, const PaperSize& rhs)
+inline auto operator!=(const PaperSize& lhs, const PaperSize& rhs) -> bool
   { return !lhs.equal(rhs); }
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -325,9 +325,9 @@ struct PaperSizeTraits
   typedef const GtkPaperSize*      CType;
   typedef GtkPaperSize*            CTypeNonConst;
 
-  static CType   to_c_type      (const CppType& obj) { return obj.gobj();     }
-  static CType   to_c_type      (CType          ptr) { return ptr;                   }
-  static CppType to_cpp_type    (CType          ptr) { return PaperSize(const_cast<GtkPaperSize*>(ptr), true /* make_copy */); /* Does not take ownership */ }
+  static auto   to_c_type      (const CppType& obj) -> CType { return obj.gobj();     }
+  static auto   to_c_type      (CType          ptr) -> CType { return ptr;                   }
+  static auto to_cpp_type    (CType          ptr) -> CppType { return PaperSize(const_cast<GtkPaperSize*>(ptr), true /* make_copy */); /* Does not take ownership */ }
   static void    release_c_type (CType          ptr);
 };
 #endif //DOXYGEN_SHOULD_SKIP_THIS
@@ -359,7 +359,7 @@ namespace Glib
  * @relates Gtk::PaperSize
  */
 GTKMM_API
-Gtk::PaperSize wrap(GtkPaperSize* object, bool take_copy = false);
+auto wrap(GtkPaperSize* object, bool take_copy = false) -> Gtk::PaperSize;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <>

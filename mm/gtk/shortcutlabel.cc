@@ -34,7 +34,7 @@ namespace
 namespace Glib
 {
 
-Gtk::ShortcutLabel* wrap(GtkShortcutLabel* object, bool take_copy)
+auto wrap(GtkShortcutLabel* object, bool take_copy) -> Gtk::ShortcutLabel*
 {
   return dynamic_cast<Gtk::ShortcutLabel *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -47,7 +47,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ShortcutLabel_Class::init()
+auto ShortcutLabel_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -78,7 +78,7 @@ void ShortcutLabel_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* ShortcutLabel_Class::wrap_new(GObject* o)
+auto ShortcutLabel_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new ShortcutLabel((GtkShortcutLabel*)(o)));
 
@@ -104,7 +104,7 @@ ShortcutLabel::ShortcutLabel(ShortcutLabel&& src) noexcept
 : Widget(std::move(src))
 {}
 
-ShortcutLabel& ShortcutLabel::operator=(ShortcutLabel&& src) noexcept
+auto ShortcutLabel::operator=(ShortcutLabel&& src) noexcept -> ShortcutLabel&
 {
   Widget::operator=(std::move(src));
   return *this;
@@ -117,13 +117,13 @@ ShortcutLabel::~ShortcutLabel() noexcept
 
 ShortcutLabel::CppClassType ShortcutLabel::shortcutlabel_class_; // initialize static member
 
-GType ShortcutLabel::get_type()
+auto ShortcutLabel::get_type() -> GType
 {
   return shortcutlabel_class_.init().get_type();
 }
 
 
-GType ShortcutLabel::get_base_type()
+auto ShortcutLabel::get_base_type() -> GType
 {
   return gtk_shortcut_label_get_type();
 }
@@ -149,7 +149,7 @@ ShortcutLabel::ShortcutLabel(const Glib::ustring& accelerator)
 
 }
 
-Glib::ustring ShortcutLabel::get_accelerator() const
+auto ShortcutLabel::get_accelerator() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_shortcut_label_get_accelerator(const_cast<GtkShortcutLabel*>(gobj())));
 }
@@ -159,7 +159,7 @@ void ShortcutLabel::set_accelerator(const Glib::ustring& accelerator)
   gtk_shortcut_label_set_accelerator(gobj(), accelerator.c_str());
 }
 
-Glib::ustring ShortcutLabel::get_disabled_text() const
+auto ShortcutLabel::get_disabled_text() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_shortcut_label_get_disabled_text(const_cast<GtkShortcutLabel*>(gobj())));
 }
@@ -170,22 +170,22 @@ void ShortcutLabel::set_disabled_text(const Glib::ustring& disabled_text)
 }
 
 
-Glib::PropertyProxy< Glib::ustring > ShortcutLabel::property_accelerator()
+auto ShortcutLabel::property_accelerator() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "accelerator");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > ShortcutLabel::property_accelerator() const
+auto ShortcutLabel::property_accelerator() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "accelerator");
 }
 
-Glib::PropertyProxy< Glib::ustring > ShortcutLabel::property_disabled_text()
+auto ShortcutLabel::property_disabled_text() -> Glib::PropertyProxy< Glib::ustring >
 {
   return Glib::PropertyProxy< Glib::ustring >(this, "disabled-text");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > ShortcutLabel::property_disabled_text() const
+auto ShortcutLabel::property_disabled_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "disabled-text");
 }

@@ -70,11 +70,11 @@ class GTKMM_API CellRendererAccel : public CellRendererText
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   CellRendererAccel(CellRendererAccel&& src) noexcept;
-  CellRendererAccel& operator=(CellRendererAccel&& src) noexcept;
+  auto operator=(CellRendererAccel&& src) noexcept -> CellRendererAccel&;
 
   // noncopyable
   CellRendererAccel(const CellRendererAccel&) = delete;
-  CellRendererAccel& operator=(const CellRendererAccel&) = delete;
+  auto operator=(const CellRendererAccel&) -> CellRendererAccel& = delete;
 
   ~CellRendererAccel() noexcept override;
 
@@ -94,19 +94,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkCellRendererAccel*       gobj()       { return reinterpret_cast<GtkCellRendererAccel*>(gobject_); }
+  auto       gobj() -> GtkCellRendererAccel*       { return reinterpret_cast<GtkCellRendererAccel*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkCellRendererAccel* gobj() const { return reinterpret_cast<GtkCellRendererAccel*>(gobject_); }
+  auto gobj() const -> const GtkCellRendererAccel* { return reinterpret_cast<GtkCellRendererAccel*>(gobject_); }
 
 private:
 
@@ -154,7 +154,7 @@ public:
    * @param hardware_keycode The keycode of the new accelerator.
    */
 
-  Glib::SignalProxy<void(const Glib::ustring&, guint, Gdk::ModifierType, guint)> signal_accel_edited();
+  auto signal_accel_edited() -> Glib::SignalProxy<void(const Glib::ustring&, guint, Gdk::ModifierType, guint)>;
 
 
   /**
@@ -168,7 +168,7 @@ public:
    * @param path_string The path identifying the row of the edited cell.
    */
 
-  Glib::SignalProxy<void(const Glib::ustring&)> signal_accel_cleared();
+  auto signal_accel_cleared() -> Glib::SignalProxy<void(const Glib::ustring&)>;
 
 
   /** The keyval of the accelerator.
@@ -178,7 +178,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_accel_key() ;
+  auto property_accel_key() -> Glib::PropertyProxy< guint > ;
 
 /** The keyval of the accelerator.
    *
@@ -187,7 +187,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_accel_key() const;
+  auto property_accel_key() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** The modifier mask of the accelerator.
    *
@@ -196,7 +196,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Gdk::ModifierType > property_accel_mods() ;
+  auto property_accel_mods() -> Glib::PropertyProxy< Gdk::ModifierType > ;
 
 /** The modifier mask of the accelerator.
    *
@@ -205,7 +205,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Gdk::ModifierType > property_accel_mods() const;
+  auto property_accel_mods() const -> Glib::PropertyProxy_ReadOnly< Gdk::ModifierType >;
 
   /** The hardware keycode of the accelerator. Note that the hardware keycode is
    * only relevant if the key does not have a keyval. Normally, the keyboard
@@ -216,7 +216,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< guint > property_keycode() ;
+  auto property_keycode() -> Glib::PropertyProxy< guint > ;
 
 /** The hardware keycode of the accelerator. Note that the hardware keycode is
    * only relevant if the key does not have a keyval. Normally, the keyboard
@@ -227,7 +227,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_keycode() const;
+  auto property_keycode() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
   /** Determines if the edited accelerators are GTK accelerators. If
    * they are, consumed modifiers are suppressed, only accelerators
@@ -239,7 +239,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Mode > property_accel_mode() ;
+  auto property_accel_mode() -> Glib::PropertyProxy< Mode > ;
 
 /** Determines if the edited accelerators are GTK accelerators. If
    * they are, consumed modifiers are suppressed, only accelerators
@@ -251,10 +251,10 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Mode > property_accel_mode() const;
+  auto property_accel_mode() const -> Glib::PropertyProxy_ReadOnly< Mode >;
 
 
-  Glib::PropertyProxy_Base _property_renderable() override;
+  auto _property_renderable() -> Glib::PropertyProxy_Base override;
 
 
 public:
@@ -281,7 +281,7 @@ template <>
 class GTKMM_API Value<Gtk::CellRendererAccel::Mode> : public Glib::Value_Enum<Gtk::CellRendererAccel::Mode>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -299,7 +299,7 @@ namespace Glib
    * @relates Gtk::CellRendererAccel
    */
   GTKMM_API
-  Gtk::CellRendererAccel* wrap(GtkCellRendererAccel* object, bool take_copy = false);
+  auto wrap(GtkCellRendererAccel* object, bool take_copy = false) -> Gtk::CellRendererAccel*;
 } //namespace Glib
 
 

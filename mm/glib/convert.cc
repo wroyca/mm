@@ -63,8 +63,8 @@ IConv::~IConv()
   g_iconv_close(gobject_);
 }
 
-std::size_t
-IConv::iconv(char** inbuf, gsize* inbytes_left, char** outbuf, gsize* outbytes_left)
+auto
+IConv::iconv(char** inbuf, gsize* inbytes_left, char** outbuf, gsize* outbytes_left) -> std::size_t
 {
   return g_iconv(gobject_, inbuf, inbytes_left, outbuf, outbytes_left);
 }
@@ -83,8 +83,8 @@ IConv::reset()
   g_iconv(gobject_, nullptr, &inbytes_left, &outbuf, &outbytes_left);
 }
 
-std::string
-IConv::convert(const std::string& str)
+auto
+IConv::convert(const std::string& str) -> std::string
 {
   gsize bytes_written = 0;
   GError* gerror = nullptr;
@@ -100,14 +100,14 @@ IConv::convert(const std::string& str)
 
 /**** charset conversion functions *****************************************/
 
-bool
-get_charset()
+auto
+get_charset() -> bool
 {
   return g_get_charset(nullptr);
 }
 
-bool
-get_charset(std::string& charset)
+auto
+get_charset(std::string& charset) -> bool
 {
   const char* charset_cstr = nullptr;
   const bool is_utf8 = g_get_charset(&charset_cstr);
@@ -116,8 +116,8 @@ get_charset(std::string& charset)
   return is_utf8;
 }
 
-std::string
-convert(const std::string& str, const std::string& to_codeset, const std::string& from_codeset)
+auto
+convert(const std::string& str, const std::string& to_codeset, const std::string& from_codeset) -> std::string
 {
   gsize bytes_written = 0;
   GError* gerror = nullptr;
@@ -131,9 +131,9 @@ convert(const std::string& str, const std::string& to_codeset, const std::string
   return std::string(make_unique_ptr_gfree(buf).get(), bytes_written);
 }
 
-std::string
+auto
 convert_with_fallback(
-  const std::string& str, const std::string& to_codeset, const std::string& from_codeset)
+  const std::string& str, const std::string& to_codeset, const std::string& from_codeset) -> std::string
 {
   gsize bytes_written = 0;
   GError* gerror = nullptr;
@@ -147,9 +147,9 @@ convert_with_fallback(
   return std::string(make_unique_ptr_gfree(buf).get(), bytes_written);
 }
 
-std::string
+auto
 convert_with_fallback(const std::string& str, const std::string& to_codeset,
-  const std::string& from_codeset, const Glib::ustring& fallback)
+  const std::string& from_codeset, const Glib::ustring& fallback) -> std::string
 {
   gsize bytes_written = 0;
   GError* gerror = nullptr;
@@ -163,8 +163,8 @@ convert_with_fallback(const std::string& str, const std::string& to_codeset,
   return std::string(make_unique_ptr_gfree(buf).get(), bytes_written);
 }
 
-Glib::ustring
-locale_to_utf8(const std::string& opsys_string)
+auto
+locale_to_utf8(const std::string& opsys_string) -> Glib::ustring
 {
   gsize bytes_written = 0;
   GError* gerror = nullptr;
@@ -179,8 +179,8 @@ locale_to_utf8(const std::string& opsys_string)
   return Glib::ustring(scoped_buf.get(), scoped_buf.get() + bytes_written);
 }
 
-std::string
-locale_from_utf8(const Glib::ustring& utf8_string)
+auto
+locale_from_utf8(const Glib::ustring& utf8_string) -> std::string
 {
   gsize bytes_written = 0;
   GError* gerror = nullptr;
@@ -194,8 +194,8 @@ locale_from_utf8(const Glib::ustring& utf8_string)
   return std::string(make_unique_ptr_gfree(buf).get(), bytes_written);
 }
 
-Glib::ustring
-filename_to_utf8(const std::string& opsys_string)
+auto
+filename_to_utf8(const std::string& opsys_string) -> Glib::ustring
 {
   gsize bytes_written = 0;
   GError* gerror = nullptr;
@@ -210,8 +210,8 @@ filename_to_utf8(const std::string& opsys_string)
   return Glib::ustring(scoped_buf.get(), scoped_buf.get() + bytes_written);
 }
 
-std::string
-filename_from_utf8(const Glib::ustring& utf8_string)
+auto
+filename_from_utf8(const Glib::ustring& utf8_string) -> std::string
 {
   gsize bytes_written = 0;
   GError* gerror = nullptr;
@@ -225,8 +225,8 @@ filename_from_utf8(const Glib::ustring& utf8_string)
   return std::string(make_unique_ptr_gfree(buf).get(), bytes_written);
 }
 
-std::string
-filename_from_uri(const Glib::ustring& uri, Glib::ustring& hostname)
+auto
+filename_from_uri(const Glib::ustring& uri, Glib::ustring& hostname) -> std::string
 {
   char* hostname_buf = nullptr;
   GError* gerror = nullptr;
@@ -247,8 +247,8 @@ filename_from_uri(const Glib::ustring& uri, Glib::ustring& hostname)
   return std::string(scoped_buf.get());
 }
 
-std::string
-filename_from_uri(const Glib::ustring& uri)
+auto
+filename_from_uri(const Glib::ustring& uri) -> std::string
 {
   GError* gerror = nullptr;
   char* const buf = g_filename_from_uri(uri.c_str(), nullptr, &gerror);
@@ -259,8 +259,8 @@ filename_from_uri(const Glib::ustring& uri)
   return std::string(make_unique_ptr_gfree(buf).get());
 }
 
-Glib::ustring
-filename_to_uri(const std::string& filename, const Glib::ustring& hostname)
+auto
+filename_to_uri(const std::string& filename, const Glib::ustring& hostname) -> Glib::ustring
 {
   GError* gerror = nullptr;
   char* const buf = g_filename_to_uri(filename.c_str(), hostname.c_str(), &gerror);
@@ -271,8 +271,8 @@ filename_to_uri(const std::string& filename, const Glib::ustring& hostname)
   return Glib::ustring(make_unique_ptr_gfree(buf).get());
 }
 
-Glib::ustring
-filename_to_uri(const std::string& filename)
+auto
+filename_to_uri(const std::string& filename) -> Glib::ustring
 {
   GError* gerror = nullptr;
   char* const buf = g_filename_to_uri(filename.c_str(), nullptr, &gerror);
@@ -283,16 +283,16 @@ filename_to_uri(const std::string& filename)
   return Glib::ustring(make_unique_ptr_gfree(buf).get());
 }
 
-Glib::ustring
-filename_display_basename(const std::string& filename)
+auto
+filename_display_basename(const std::string& filename) -> Glib::ustring
 {
   char* const buf = g_filename_display_basename(filename.c_str());
 
   return Glib::ustring(make_unique_ptr_gfree(buf).get());
 }
 
-Glib::ustring
-filename_display_name(const std::string& filename)
+auto
+filename_display_name(const std::string& filename) -> Glib::ustring
 {
   char* const buf = g_filename_display_name(filename.c_str());
 
@@ -316,7 +316,7 @@ Glib::ConvertError::ConvertError(GError* gobject)
   Glib::Error (gobject)
 {}
 
-Glib::ConvertError::Code Glib::ConvertError::code() const
+auto Glib::ConvertError::code() const -> Glib::ConvertError::Code
 {
   return static_cast<Code>(Glib::Error::code());
 }

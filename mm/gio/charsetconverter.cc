@@ -47,7 +47,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::CharsetConverter> wrap(GCharsetConverter* object, bool take_copy)
+auto wrap(GCharsetConverter* object, bool take_copy) -> Glib::RefPtr<Gio::CharsetConverter>
 {
   return Glib::make_refptr_for_instance<Gio::CharsetConverter>( dynamic_cast<Gio::CharsetConverter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -62,7 +62,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& CharsetConverter_Class::init()
+auto CharsetConverter_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -95,7 +95,7 @@ void CharsetConverter_Class::class_init_function(void* g_class, void* class_data
 }
 
 
-Glib::ObjectBase* CharsetConverter_Class::wrap_new(GObject* object)
+auto CharsetConverter_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new CharsetConverter((GCharsetConverter*)object);
 }
@@ -103,7 +103,7 @@ Glib::ObjectBase* CharsetConverter_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GCharsetConverter* CharsetConverter::gobj_copy()
+auto CharsetConverter::gobj_copy() -> GCharsetConverter*
 {
   reference();
   return gobj();
@@ -128,7 +128,7 @@ CharsetConverter::CharsetConverter(CharsetConverter&& src) noexcept
   , Initable(std::move(src))
 {}
 
-CharsetConverter& CharsetConverter::operator=(CharsetConverter&& src) noexcept
+auto CharsetConverter::operator=(CharsetConverter&& src) noexcept -> CharsetConverter&
 {
   Glib::Object::operator=(std::move(src));
   Converter::operator=(std::move(src));
@@ -143,19 +143,19 @@ CharsetConverter::~CharsetConverter() noexcept
 
 CharsetConverter::CppClassType CharsetConverter::charsetconverter_class_; // initialize static member
 
-GType CharsetConverter::get_type()
+auto CharsetConverter::get_type() -> GType
 {
   return charsetconverter_class_.init().get_type();
 }
 
 
-GType CharsetConverter::get_base_type()
+auto CharsetConverter::get_base_type() -> GType
 {
   return g_charset_converter_get_type();
 }
 
 
-Glib::RefPtr<CharsetConverter> CharsetConverter::create(const Glib::ustring& to_charset, const Glib::ustring& from_charset)
+auto CharsetConverter::create(const Glib::ustring& to_charset, const Glib::ustring& from_charset) -> Glib::RefPtr<CharsetConverter>
 {
   return Glib::make_refptr_for_instance<CharsetConverter>( new CharsetConverter(to_charset, from_charset) );
 }
@@ -165,33 +165,33 @@ void CharsetConverter::set_use_fallback(bool use_fallback)
   g_charset_converter_set_use_fallback(gobj(), static_cast<int>(use_fallback));
 }
 
-bool CharsetConverter::get_use_fallback() const
+auto CharsetConverter::get_use_fallback() const -> bool
 {
   return g_charset_converter_get_use_fallback(const_cast<GCharsetConverter*>(gobj()));
 }
 
-guint CharsetConverter::get_num_fallbacks() const
+auto CharsetConverter::get_num_fallbacks() const -> guint
 {
   return g_charset_converter_get_num_fallbacks(const_cast<GCharsetConverter*>(gobj()));
 }
 
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > CharsetConverter::property_from_charset() const
+auto CharsetConverter::property_from_charset() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "from-charset");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > CharsetConverter::property_to_charset() const
+auto CharsetConverter::property_to_charset() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "to-charset");
 }
 
-Glib::PropertyProxy< bool > CharsetConverter::property_use_fallback()
+auto CharsetConverter::property_use_fallback() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "use-fallback");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > CharsetConverter::property_use_fallback() const
+auto CharsetConverter::property_use_fallback() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "use-fallback");
 }

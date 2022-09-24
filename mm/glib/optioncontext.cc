@@ -32,8 +32,8 @@ namespace Glib
 
 namespace OptionContextPrivate
 {
-static const gchar*
-SignalProxy_translate_gtk_callback(const gchar* str, gpointer data)
+static auto
+SignalProxy_translate_gtk_callback(const gchar* str, gpointer data) -> const gchar*
 {
   Glib::ustring translated_str;
   Glib::OptionContext::SlotTranslate* the_slot =
@@ -76,8 +76,8 @@ OptionContext::OptionContext(OptionContext&& other) noexcept
   other.has_ownership_ = false;
 }
 
-OptionContext&
-OptionContext::operator=(OptionContext&& other) noexcept
+auto
+OptionContext::operator=(OptionContext&& other) noexcept -> OptionContext&
 {
   if (has_ownership_)
     g_option_context_free(gobj());
@@ -136,8 +136,8 @@ OptionContext::set_translate_func(const SlotTranslate& slot)
     &OptionContextPrivate::SignalProxy_translate_gtk_callback_destroy);
 }
 
-Glib::ustring
-OptionContext::get_help(bool main_help) const
+auto
+OptionContext::get_help(bool main_help) const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(g_option_context_get_help(
     const_cast<GOptionContext*>(gobj()), static_cast<int>(main_help), nullptr));
@@ -160,7 +160,7 @@ Glib::OptionError::OptionError(GError* gobject)
   Glib::Error (gobject)
 {}
 
-Glib::OptionError::Code Glib::OptionError::code() const
+auto Glib::OptionError::code() const -> Glib::OptionError::Code
 {
   return static_cast<Code>(Glib::Error::code());
 }
@@ -180,7 +180,7 @@ void OptionContext::set_help_enabled(bool help_enabled)
   g_option_context_set_help_enabled(gobj(), static_cast<int>(help_enabled));
 }
 
-bool OptionContext::get_help_enabled() const
+auto OptionContext::get_help_enabled() const -> bool
 {
   return g_option_context_get_help_enabled(const_cast<GOptionContext*>(gobj()));
 }
@@ -190,7 +190,7 @@ void OptionContext::set_ignore_unknown_options(bool ignore_unknown)
   g_option_context_set_ignore_unknown_options(gobj(), static_cast<int>(ignore_unknown));
 }
 
-bool OptionContext::get_ignore_unknown_options() const
+auto OptionContext::get_ignore_unknown_options() const -> bool
 {
   return g_option_context_get_ignore_unknown_options(const_cast<GOptionContext*>(gobj()));
 }
@@ -200,12 +200,12 @@ void OptionContext::set_strict_posix(bool strict_posix)
   g_option_context_set_strict_posix(gobj(), static_cast<int>(strict_posix));
 }
 
-bool OptionContext::get_strict_posix() const
+auto OptionContext::get_strict_posix() const -> bool
 {
   return g_option_context_get_strict_posix(const_cast<GOptionContext*>(gobj()));
 }
 
-bool OptionContext::parse(int& argc, char**& argv)
+auto OptionContext::parse(int& argc, char**& argv) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_option_context_parse(gobj(), &(argc), &(argv), &(gerror));
@@ -214,7 +214,7 @@ bool OptionContext::parse(int& argc, char**& argv)
   return retvalue;
 }
 
-bool OptionContext::parse(char**& argv)
+auto OptionContext::parse(char**& argv) -> bool
 {
   GError* gerror = nullptr;
   auto retvalue = g_option_context_parse_strv(gobj(), &(argv), &(gerror));
@@ -223,7 +223,7 @@ bool OptionContext::parse(char**& argv)
   return retvalue;
 }
 
-Glib::ustring OptionContext::get_help(bool main_help, const OptionGroup& group) const
+auto OptionContext::get_help(bool main_help, const OptionGroup& group) const -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(g_option_context_get_help(const_cast<GOptionContext*>(gobj()), static_cast<int>(main_help), const_cast<GOptionGroup*>((group).gobj())));
 }
@@ -233,7 +233,7 @@ void OptionContext::set_summary(const Glib::ustring& summary)
   g_option_context_set_summary(gobj(), summary.c_str());
 }
 
-Glib::ustring OptionContext::get_summary() const
+auto OptionContext::get_summary() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_option_context_get_summary(const_cast<GOptionContext*>(gobj())));
 }
@@ -243,7 +243,7 @@ void OptionContext::set_description(const Glib::ustring& description)
   g_option_context_set_description(gobj(), description.c_str());
 }
 
-Glib::ustring OptionContext::get_description() const
+auto OptionContext::get_description() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(g_option_context_get_description(const_cast<GOptionContext*>(gobj())));
 }

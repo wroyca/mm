@@ -40,7 +40,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::CellAreaContext> wrap(GtkCellAreaContext* object, bool take_copy)
+auto wrap(GtkCellAreaContext* object, bool take_copy) -> Glib::RefPtr<Gtk::CellAreaContext>
 {
   return Glib::make_refptr_for_instance<Gtk::CellAreaContext>( dynamic_cast<Gtk::CellAreaContext*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -55,7 +55,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& CellAreaContext_Class::init()
+auto CellAreaContext_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -86,7 +86,7 @@ void CellAreaContext_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* CellAreaContext_Class::wrap_new(GObject* object)
+auto CellAreaContext_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new CellAreaContext((GtkCellAreaContext*)object);
 }
@@ -94,7 +94,7 @@ Glib::ObjectBase* CellAreaContext_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkCellAreaContext* CellAreaContext::gobj_copy()
+auto CellAreaContext::gobj_copy() -> GtkCellAreaContext*
 {
   reference();
   return gobj();
@@ -117,7 +117,7 @@ CellAreaContext::CellAreaContext(CellAreaContext&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-CellAreaContext& CellAreaContext::operator=(CellAreaContext&& src) noexcept
+auto CellAreaContext::operator=(CellAreaContext&& src) noexcept -> CellAreaContext&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -130,19 +130,19 @@ CellAreaContext::~CellAreaContext() noexcept
 
 CellAreaContext::CppClassType CellAreaContext::cellareacontext_class_; // initialize static member
 
-GType CellAreaContext::get_type()
+auto CellAreaContext::get_type() -> GType
 {
   return cellareacontext_class_.init().get_type();
 }
 
 
-GType CellAreaContext::get_base_type()
+auto CellAreaContext::get_base_type() -> GType
 {
   return gtk_cell_area_context_get_type();
 }
 
 
-Glib::RefPtr<CellArea> CellAreaContext::get_area()
+auto CellAreaContext::get_area() -> Glib::RefPtr<CellArea>
 {
   auto retvalue = Glib::wrap(gtk_cell_area_context_get_area(gobj()));
   if(retvalue)
@@ -150,7 +150,7 @@ Glib::RefPtr<CellArea> CellAreaContext::get_area()
   return retvalue;
 }
 
-Glib::RefPtr<const CellArea> CellAreaContext::get_area() const
+auto CellAreaContext::get_area() const -> Glib::RefPtr<const CellArea>
 {
   return const_cast<CellAreaContext*>(this)->get_area();
 }
@@ -205,27 +205,27 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<CellArea*>::value,
   "Type CellArea* cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< CellArea* > CellAreaContext::property_area() const
+auto CellAreaContext::property_area() const -> Glib::PropertyProxy_ReadOnly< CellArea* >
 {
   return Glib::PropertyProxy_ReadOnly< CellArea* >(this, "area");
 }
 
-Glib::PropertyProxy_ReadOnly< int > CellAreaContext::property_minimum_width() const
+auto CellAreaContext::property_minimum_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "minimum-width");
 }
 
-Glib::PropertyProxy_ReadOnly< int > CellAreaContext::property_natural_width() const
+auto CellAreaContext::property_natural_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "natural-width");
 }
 
-Glib::PropertyProxy_ReadOnly< int > CellAreaContext::property_minimum_height() const
+auto CellAreaContext::property_minimum_height() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "minimum-height");
 }
 
-Glib::PropertyProxy_ReadOnly< int > CellAreaContext::property_natural_height() const
+auto CellAreaContext::property_natural_height() const -> Glib::PropertyProxy_ReadOnly< int >
 {
   return Glib::PropertyProxy_ReadOnly< int >(this, "natural-height");
 }

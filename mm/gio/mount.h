@@ -81,7 +81,7 @@ public:
 
   // noncopyable
   Mount(const Mount&) = delete;
-  Mount& operator=(const Mount&) = delete;
+  auto operator=(const Mount&) -> Mount& = delete;
 
 private:
   friend class Mount_Class;
@@ -115,7 +115,7 @@ protected:
 public:
 
   Mount(Mount&& src) noexcept;
-  Mount& operator=(Mount&& src) noexcept;
+  auto operator=(Mount&& src) noexcept -> Mount&;
 
   ~Mount() noexcept override;
 
@@ -123,17 +123,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GMount*       gobj()       { return reinterpret_cast<GMount*>(gobject_); }
+  auto       gobj() -> GMount*       { return reinterpret_cast<GMount*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GMount* gobj() const { return reinterpret_cast<GMount*>(gobject_); }
+  auto gobj() const -> const GMount* { return reinterpret_cast<GMount*>(gobject_); }
 
 private:
 
@@ -200,7 +200,7 @@ public:
    * The returned object should be unreffed with
    * Glib::object_unref() when no longer needed.
    */
-  Glib::RefPtr<File> get_root();
+  auto get_root() -> Glib::RefPtr<File>;
 
   /** Gets the root directory on @a mount.
    *
@@ -208,14 +208,14 @@ public:
    * The returned object should be unreffed with
    * Glib::object_unref() when no longer needed.
    */
-  Glib::RefPtr<const File> get_root() const;
+  auto get_root() const -> Glib::RefPtr<const File>;
 
 
   /** Gets the name of @a mount.
    *
    * @return The name for the given @a mount.
    */
-  std::string get_name() const;
+  auto get_name() const -> std::string;
 
 
   /** Gets the icon for @a mount.
@@ -224,7 +224,7 @@ public:
    * The returned object should be unreffed with
    * Glib::object_unref() when no longer needed.
    */
-  Glib::RefPtr<Icon> get_icon();
+  auto get_icon() -> Glib::RefPtr<Icon>;
 
   /** Gets the icon for @a mount.
    *
@@ -232,7 +232,7 @@ public:
    * The returned object should be unreffed with
    * Glib::object_unref() when no longer needed.
    */
-  Glib::RefPtr<const Icon> get_icon() const;
+  auto get_icon() const -> Glib::RefPtr<const Icon>;
 
 
   /** Gets the symbolic icon for @a mount.
@@ -243,7 +243,7 @@ public:
    * The returned object should be unreffed with
    * Glib::object_unref() when no longer needed.
    */
-  Glib::RefPtr<Icon> get_symbolic_icon();
+  auto get_symbolic_icon() -> Glib::RefPtr<Icon>;
 
   /** Gets the symbolic icon for @a mount.
    *
@@ -253,7 +253,7 @@ public:
    * The returned object should be unreffed with
    * Glib::object_unref() when no longer needed.
    */
-  Glib::RefPtr<const Icon> get_symbolic_icon() const;
+  auto get_symbolic_icon() const -> Glib::RefPtr<const Icon>;
 
 
   /** Gets the UUID for the @a mount. The reference is typically based on
@@ -264,7 +264,7 @@ public:
    * @return The UUID for @a mount or <tt>nullptr</tt> if no UUID
    * can be computed.
    */
-  std::string get_uuid() const;
+  auto get_uuid() const -> std::string;
 
 
   /** Gets the volume for the @a mount.
@@ -274,7 +274,7 @@ public:
    * The returned object should be unreffed with
    * Glib::object_unref() when no longer needed.
    */
-  Glib::RefPtr<Volume> get_volume();
+  auto get_volume() -> Glib::RefPtr<Volume>;
 
   /** Gets the volume for the @a mount.
    *
@@ -283,7 +283,7 @@ public:
    * The returned object should be unreffed with
    * Glib::object_unref() when no longer needed.
    */
-  Glib::RefPtr<const Volume> get_volume() const;
+  auto get_volume() const -> Glib::RefPtr<const Volume>;
 
 
   /** Gets the drive for the @a mount.
@@ -296,7 +296,7 @@ public:
    * The returned object should be unreffed with
    * Glib::object_unref() when no longer needed.
    */
-  Glib::RefPtr<Drive> get_drive();
+  auto get_drive() -> Glib::RefPtr<Drive>;
 
   /** Gets the drive for the @a mount.
    *
@@ -308,20 +308,20 @@ public:
    * The returned object should be unreffed with
    * Glib::object_unref() when no longer needed.
    */
-  Glib::RefPtr<const Drive> get_drive() const;
+  auto get_drive() const -> Glib::RefPtr<const Drive>;
 
 
   /** Checks if @a mount can be unmounted.
    *
    * @return <tt>true</tt> if the @a mount can be unmounted.
    */
-  bool can_unmount() const;
+  auto can_unmount() const -> bool;
 
   /** Checks if @a mount can be ejected.
    *
    * @return <tt>true</tt> if the @a mount can be ejected.
    */
-  bool can_eject() const;
+  auto can_eject() const -> bool;
 
   void unmount(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, UnmountFlags flags = UnmountFlags::NONE);
   void unmount(const SlotAsyncReady& slot, UnmountFlags flags = UnmountFlags::NONE);
@@ -341,7 +341,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool unmount_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto unmount_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Remounts a mount.
@@ -401,7 +401,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool remount_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto remount_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
   void eject(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, UnmountFlags flags = UnmountFlags::NONE);
   void eject(const SlotAsyncReady& slot, UnmountFlags flags = UnmountFlags::NONE);
@@ -421,7 +421,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool eject_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto eject_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
 
 
   /** Tries to guess the type of content stored on the mount.
@@ -482,7 +482,7 @@ public:
    * @return An array of content types.
    * @throw Glib::Error
    */
-  std::vector<Glib::ustring> guess_content_type_finish(const Glib::RefPtr<AsyncResult>& result);
+  auto guess_content_type_finish(const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::ustring>;
 
 
   /** Determines if @a mount is shadowed. Applications or libraries should
@@ -513,7 +513,7 @@ public:
    *
    * @return <tt>true</tt> if @a mount is shadowed.
    */
-  bool is_shadowed() const;
+  auto is_shadowed() const -> bool;
 
   /** Increments the shadow count on @a mount. Usually used by
    * VolumeMonitor implementations when creating a shadow mount for
@@ -542,7 +542,7 @@ public:
    * The returned object should be unreffed with
    * Glib::object_unref() when no longer needed.
    */
-  Glib::RefPtr<File> get_default_location() const;
+  auto get_default_location() const -> Glib::RefPtr<File>;
 
 
   /** Gets the sort key for @a mount, if any.
@@ -551,7 +551,7 @@ public:
    *
    * @return Sorting key for @a mount or <tt>nullptr</tt> if no such key is available.
    */
-  Glib::ustring get_sort_key() const;
+  auto get_sort_key() const -> Glib::ustring;
 
 
   /**
@@ -563,7 +563,7 @@ public:
    * Emitted when the mount has been changed.
    */
 
-  Glib::SignalProxy<void()> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -578,7 +578,7 @@ public:
    * finalized.
    */
 
-  Glib::SignalProxy<void()> signal_unmounted();
+  auto signal_unmounted() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -596,7 +596,7 @@ public:
    * @newin{2,22}
    */
 
-  Glib::SignalProxy<void()> signal_pre_unmount();
+  auto signal_pre_unmount() -> Glib::SignalProxy<void()>;
 
 
   //There are no properties.
@@ -628,7 +628,7 @@ namespace Glib
 
 //Pre-declare this so we can use it in TypeTrait:
 GIOMM_API
-Glib::RefPtr<Gio::Mount> wrap(GMount* object, bool take_copy);
+auto wrap(GMount* object, bool take_copy) -> Glib::RefPtr<Gio::Mount>;
 
 namespace Container_Helpers
 {
@@ -645,10 +645,10 @@ struct TypeTraits< Glib::RefPtr<Gio::Mount> >
   using CType = GMount*;
   using CTypeNonConst = GMount*;
 
-  static CType   to_c_type      (const CppType& item)
+  static auto   to_c_type      (const CppType& item) -> CType
   { return Glib::unwrap (item); }
 
-  static CppType to_cpp_type    (const CType& item)
+  static auto to_cpp_type    (const CType& item) -> CppType
   {
     //Use a specific Glib::wrap() function,
     //because CType has the specific type (not just GObject):
@@ -669,62 +669,62 @@ namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline Mount::UnmountFlags operator|(Mount::UnmountFlags lhs, Mount::UnmountFlags rhs)
+inline auto operator|(Mount::UnmountFlags lhs, Mount::UnmountFlags rhs) -> Mount::UnmountFlags
   { return static_cast<Mount::UnmountFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Mount::UnmountFlags operator&(Mount::UnmountFlags lhs, Mount::UnmountFlags rhs)
+inline auto operator&(Mount::UnmountFlags lhs, Mount::UnmountFlags rhs) -> Mount::UnmountFlags
   { return static_cast<Mount::UnmountFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Mount::UnmountFlags operator^(Mount::UnmountFlags lhs, Mount::UnmountFlags rhs)
+inline auto operator^(Mount::UnmountFlags lhs, Mount::UnmountFlags rhs) -> Mount::UnmountFlags
   { return static_cast<Mount::UnmountFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Mount::UnmountFlags operator~(Mount::UnmountFlags flags)
+inline auto operator~(Mount::UnmountFlags flags) -> Mount::UnmountFlags
   { return static_cast<Mount::UnmountFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline Mount::UnmountFlags& operator|=(Mount::UnmountFlags& lhs, Mount::UnmountFlags rhs)
+inline auto operator|=(Mount::UnmountFlags& lhs, Mount::UnmountFlags rhs) -> Mount::UnmountFlags&
   { return (lhs = static_cast<Mount::UnmountFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Mount::UnmountFlags& operator&=(Mount::UnmountFlags& lhs, Mount::UnmountFlags rhs)
+inline auto operator&=(Mount::UnmountFlags& lhs, Mount::UnmountFlags rhs) -> Mount::UnmountFlags&
   { return (lhs = static_cast<Mount::UnmountFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Mount::UnmountFlags& operator^=(Mount::UnmountFlags& lhs, Mount::UnmountFlags rhs)
+inline auto operator^=(Mount::UnmountFlags& lhs, Mount::UnmountFlags rhs) -> Mount::UnmountFlags&
   { return (lhs = static_cast<Mount::UnmountFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 namespace Gio
 {
 
 /** @ingroup giommEnums */
-inline Mount::MountFlags operator|(Mount::MountFlags lhs, Mount::MountFlags rhs)
+inline auto operator|(Mount::MountFlags lhs, Mount::MountFlags rhs) -> Mount::MountFlags
   { return static_cast<Mount::MountFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Mount::MountFlags operator&(Mount::MountFlags lhs, Mount::MountFlags rhs)
+inline auto operator&(Mount::MountFlags lhs, Mount::MountFlags rhs) -> Mount::MountFlags
   { return static_cast<Mount::MountFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Mount::MountFlags operator^(Mount::MountFlags lhs, Mount::MountFlags rhs)
+inline auto operator^(Mount::MountFlags lhs, Mount::MountFlags rhs) -> Mount::MountFlags
   { return static_cast<Mount::MountFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline Mount::MountFlags operator~(Mount::MountFlags flags)
+inline auto operator~(Mount::MountFlags flags) -> Mount::MountFlags
   { return static_cast<Mount::MountFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline Mount::MountFlags& operator|=(Mount::MountFlags& lhs, Mount::MountFlags rhs)
+inline auto operator|=(Mount::MountFlags& lhs, Mount::MountFlags rhs) -> Mount::MountFlags&
   { return (lhs = static_cast<Mount::MountFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Mount::MountFlags& operator&=(Mount::MountFlags& lhs, Mount::MountFlags rhs)
+inline auto operator&=(Mount::MountFlags& lhs, Mount::MountFlags rhs) -> Mount::MountFlags&
   { return (lhs = static_cast<Mount::MountFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline Mount::MountFlags& operator^=(Mount::MountFlags& lhs, Mount::MountFlags rhs)
+inline auto operator^=(Mount::MountFlags& lhs, Mount::MountFlags rhs) -> Mount::MountFlags&
   { return (lhs = static_cast<Mount::MountFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Gio
 
@@ -739,7 +739,7 @@ namespace Glib
    * @relates Gio::Mount
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Mount> wrap(GMount* object, bool take_copy = false);
+  auto wrap(GMount* object, bool take_copy = false) -> Glib::RefPtr<Gio::Mount>;
 
 } // namespace Glib
 

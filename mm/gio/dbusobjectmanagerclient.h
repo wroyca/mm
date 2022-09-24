@@ -39,19 +39,11 @@ using GDBusObjectManagerClientClass = struct _GDBusObjectManagerClientClass;
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
-{
-
-namespace DBus
-{ class GIOMM_API ObjectManagerClient_Class; } // namespace DBus
-
-} // namespace Gio
+namespace Gio::DBus
+{ class GIOMM_API ObjectManagerClient_Class; } // namespace Gio
 #endif //DOXYGEN_SHOULD_SKIP_THIS
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 //The GMMPROC_EXTRA_NAMESPACE() macro is a hint to generate_wrap_init.pl to put it in the DBus sub-namespace
 
@@ -153,7 +145,7 @@ public:
 
   // noncopyable
   ObjectManagerClient(const ObjectManagerClient&) = delete;
-  ObjectManagerClient& operator=(const ObjectManagerClient&) = delete;
+  auto operator=(const ObjectManagerClient&) -> ObjectManagerClient& = delete;
 
 private:  friend class ObjectManagerClient_Class;
   static CppClassType objectmanagerclient_class_;
@@ -167,28 +159,28 @@ protected:
 public:
 
   ObjectManagerClient(ObjectManagerClient&& src) noexcept;
-  ObjectManagerClient& operator=(ObjectManagerClient&& src) noexcept;
+  auto operator=(ObjectManagerClient&& src) noexcept -> ObjectManagerClient&;
 
   ~ObjectManagerClient() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GDBusObjectManagerClient*       gobj()       { return reinterpret_cast<GDBusObjectManagerClient*>(gobject_); }
+  auto       gobj() -> GDBusObjectManagerClient*       { return reinterpret_cast<GDBusObjectManagerClient*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GDBusObjectManagerClient* gobj() const { return reinterpret_cast<GDBusObjectManagerClient*>(gobject_); }
+  auto gobj() const -> const GDBusObjectManagerClient* { return reinterpret_cast<GDBusObjectManagerClient*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GDBusObjectManagerClient* gobj_copy();
+  auto gobj_copy() -> GDBusObjectManagerClient*;
 
 private:
 
@@ -304,7 +296,7 @@ public:
    *         a Glib::Error is thrown and nothing is returned.
    * @throw Glib::Error.
    */
-  static Glib::RefPtr<Gio::DBus::ObjectManagerClient> create_finish(const Glib::RefPtr<AsyncResult>& res);
+  static auto create_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Gio::DBus::ObjectManagerClient>;
 
   /** Creates a new %Gio::DBus::ObjectManagerClient object.
    *
@@ -320,13 +312,13 @@ public:
    * @param flags Zero or more flags from the Gio::DBus::ObjectManagerClient::Flags enumeration.
    * @throw Glib::Error
    */
-  static Glib::RefPtr<Gio::DBus::ObjectManagerClient> create_sync(
+  static auto create_sync(
     const Glib::RefPtr<Connection>& connection,
     const Glib::ustring& name,
     const Glib::ustring& object_path,
     const Glib::RefPtr<Cancellable>& cancellable = {},
     const SlotProxyType& slot_proxy_type = {},
-    Flags flags = Flags::NONE);
+    Flags flags = Flags::NONE) -> Glib::RefPtr<Gio::DBus::ObjectManagerClient>;
 
   /** Creates a new %Gio::DBus::ObjectManagerClient object.
    *
@@ -363,7 +355,7 @@ public:
    *         a Glib::Error is thrown and nothing is returned.
    * @throw Glib::Error.
    */
-  static Glib::RefPtr<Gio::DBus::ObjectManagerClient> create_for_bus_finish(const Glib::RefPtr<AsyncResult>& res);
+  static auto create_for_bus_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Gio::DBus::ObjectManagerClient>;
 
   /** Creates a new %Gio::DBus::ObjectManagerClient object.
    *
@@ -383,13 +375,13 @@ public:
    * @param flags Zero or more flags from the Gio::DBus::ObjectManagerClient::Flags enumeration.
    * @throw Glib::Error
    */
-  static Glib::RefPtr<Gio::DBus::ObjectManagerClient> create_for_bus_sync(
+  static auto create_for_bus_sync(
     BusType bus_type,
     const Glib::ustring& name,
     const Glib::ustring& object_path,
     const Glib::RefPtr<Cancellable>& cancellable = {},
     const SlotProxyType& slot_proxy_type = {},
-    Flags flags = Flags::NONE);
+    Flags flags = Flags::NONE) -> Glib::RefPtr<Gio::DBus::ObjectManagerClient>;
 
 
   /** Gets the Gio::DBus::Connection used by @a manager.
@@ -399,7 +391,7 @@ public:
    * @return A Gio::DBus::Connection object. Do not free,
    * the object belongs to @a manager.
    */
-  Glib::RefPtr<Connection> get_connection();
+  auto get_connection() -> Glib::RefPtr<Connection>;
 
   /** Gets the Gio::DBus::Connection used by @a manager.
    *
@@ -408,7 +400,7 @@ public:
    * @return A Gio::DBus::Connection object. Do not free,
    * the object belongs to @a manager.
    */
-  Glib::RefPtr<const Connection> get_connection() const;
+  auto get_connection() const -> Glib::RefPtr<const Connection>;
 
 
   /** Gets the flags that @a manager was constructed with.
@@ -418,7 +410,7 @@ public:
    * @return Zero of more flags from the DBusObjectManagerClientFlags
    * enumeration.
    */
-  Flags get_flags() const;
+  auto get_flags() const -> Flags;
 
 
   /** Gets the name that @a manager is for, or <tt>nullptr</tt> if not a message bus
@@ -429,7 +421,7 @@ public:
    * @return A unique or well-known name. Do not free, the string
    * belongs to @a manager.
    */
-  Glib::ustring get_name() const;
+  auto get_name() const -> Glib::ustring;
 
   /** The unique name that owns the name that @a manager is for or <tt>nullptr</tt> if
    * no-one currently owns that name. You can connect to the
@@ -441,7 +433,7 @@ public:
    * @return The name owner or <tt>nullptr</tt> if no name owner
    * exists.
    */
-  Glib::ustring get_name_owner() const;
+  auto get_name_owner() const -> Glib::ustring;
 
  /** The Gio::DBus::Connection to use.
    *
@@ -450,7 +442,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Connection> > property_connection() const;
+  auto property_connection() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Connection> >;
 
 
  /** Flags from the DBusObjectManagerClientFlags enumeration.
@@ -462,7 +454,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Flags > property_flags() const;
+  auto property_flags() const -> Glib::PropertyProxy_ReadOnly< Flags >;
 
 
  /** The object path the manager is for.
@@ -474,7 +466,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_object_path() const;
+  auto property_object_path() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
  /** The well-known name or unique name that the manager is for.
@@ -486,7 +478,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_name() const;
+  auto property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
  /** The unique name that owns DBusObjectManagerClient::property_name() or <tt>nullptr</tt> if
@@ -500,7 +492,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_name_owner() const;
+  auto property_name_owner() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
  //_WRAP_PROPERTY("bus-type", BusType) // write-only construct-only
@@ -532,7 +524,7 @@ public:
    * @param parameters A Variant tuple with parameters for the signal.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::ObjectProxy>&, const Glib::RefPtr<Gio::DBus::Proxy>&, const Glib::ustring&, const Glib::ustring&, const Glib::VariantContainerBase&)> signal_interface_proxy_signal();
+  auto signal_interface_proxy_signal() -> Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::ObjectProxy>&, const Glib::RefPtr<Gio::DBus::Proxy>&, const Glib::ustring&, const Glib::ustring&, const Glib::VariantContainerBase&)>;
 
 
   using MapChangedProperties = std::map<Glib::ustring, Glib::VariantBase>;
@@ -567,7 +559,7 @@ public:
    * array of properties that were invalidated.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::ObjectProxy>&, const Glib::RefPtr<Gio::DBus::Proxy>&, const MapChangedProperties&, const std::vector<Glib::ustring>&)> signal_interface_proxy_properties_changed();
+  auto signal_interface_proxy_properties_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::ObjectProxy>&, const Glib::RefPtr<Gio::DBus::Proxy>&, const MapChangedProperties&, const std::vector<Glib::ustring>&)>;
 
 
 public:
@@ -587,45 +579,38 @@ protected:
 
 };
 
-} //namespace
-
 } // namespace Gio
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 /** @ingroup giommEnums */
-inline ObjectManagerClient::Flags operator|(ObjectManagerClient::Flags lhs, ObjectManagerClient::Flags rhs)
+inline auto operator|(ObjectManagerClient::Flags lhs, ObjectManagerClient::Flags rhs) -> ObjectManagerClient::Flags
   { return static_cast<ObjectManagerClient::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline ObjectManagerClient::Flags operator&(ObjectManagerClient::Flags lhs, ObjectManagerClient::Flags rhs)
+inline auto operator&(ObjectManagerClient::Flags lhs, ObjectManagerClient::Flags rhs) -> ObjectManagerClient::Flags
   { return static_cast<ObjectManagerClient::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline ObjectManagerClient::Flags operator^(ObjectManagerClient::Flags lhs, ObjectManagerClient::Flags rhs)
+inline auto operator^(ObjectManagerClient::Flags lhs, ObjectManagerClient::Flags rhs) -> ObjectManagerClient::Flags
   { return static_cast<ObjectManagerClient::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup giommEnums */
-inline ObjectManagerClient::Flags operator~(ObjectManagerClient::Flags flags)
+inline auto operator~(ObjectManagerClient::Flags flags) -> ObjectManagerClient::Flags
   { return static_cast<ObjectManagerClient::Flags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup giommEnums */
-inline ObjectManagerClient::Flags& operator|=(ObjectManagerClient::Flags& lhs, ObjectManagerClient::Flags rhs)
+inline auto operator|=(ObjectManagerClient::Flags& lhs, ObjectManagerClient::Flags rhs) -> ObjectManagerClient::Flags&
   { return (lhs = static_cast<ObjectManagerClient::Flags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline ObjectManagerClient::Flags& operator&=(ObjectManagerClient::Flags& lhs, ObjectManagerClient::Flags rhs)
+inline auto operator&=(ObjectManagerClient::Flags& lhs, ObjectManagerClient::Flags rhs) -> ObjectManagerClient::Flags&
   { return (lhs = static_cast<ObjectManagerClient::Flags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup giommEnums */
-inline ObjectManagerClient::Flags& operator^=(ObjectManagerClient::Flags& lhs, ObjectManagerClient::Flags rhs)
+inline auto operator^=(ObjectManagerClient::Flags& lhs, ObjectManagerClient::Flags rhs) -> ObjectManagerClient::Flags&
   { return (lhs = static_cast<ObjectManagerClient::Flags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
-} // namespace DBus
-
 } // namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -636,7 +621,7 @@ template <>
 class GIOMM_API Value<Gio::DBus::ObjectManagerClient::Flags> : public Glib::Value_Flags<Gio::DBus::ObjectManagerClient::Flags>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -654,7 +639,7 @@ namespace Glib
    * @relates Gio::DBus::ObjectManagerClient
    */
   GIOMM_API
-  Glib::RefPtr<Gio::DBus::ObjectManagerClient> wrap(GDBusObjectManagerClient* object, bool take_copy = false);
+  auto wrap(GDBusObjectManagerClient* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::ObjectManagerClient>;
 }
 
 

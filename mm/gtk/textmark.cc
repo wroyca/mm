@@ -41,12 +41,12 @@ TextMark::TextMark(bool left_gravity)
   Glib::Object(Glib::ConstructParams(textmark_class_.init(), "left_gravity",gboolean(left_gravity), nullptr))
 {}
 
-TextIter TextMark::get_iter()
+auto TextMark::get_iter() -> TextIter
 {
   return get_buffer()->get_iter_at_mark(gobj());
 }
 
-TextConstIter TextMark::get_iter() const
+auto TextMark::get_iter() const -> TextConstIter
 {
   return const_cast<TextMark*>(this)->get_iter();
 }
@@ -61,7 +61,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::TextMark> wrap(GtkTextMark* object, bool take_copy)
+auto wrap(GtkTextMark* object, bool take_copy) -> Glib::RefPtr<Gtk::TextMark>
 {
   return Glib::make_refptr_for_instance<Gtk::TextMark>( dynamic_cast<Gtk::TextMark*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -76,7 +76,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& TextMark_Class::init()
+auto TextMark_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -107,7 +107,7 @@ void TextMark_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* TextMark_Class::wrap_new(GObject* object)
+auto TextMark_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new TextMark((GtkTextMark*)object);
 }
@@ -115,7 +115,7 @@ Glib::ObjectBase* TextMark_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkTextMark* TextMark::gobj_copy()
+auto TextMark::gobj_copy() -> GtkTextMark*
 {
   reference();
   return gobj();
@@ -138,7 +138,7 @@ TextMark::TextMark(TextMark&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-TextMark& TextMark::operator=(TextMark&& src) noexcept
+auto TextMark::operator=(TextMark&& src) noexcept -> TextMark&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -151,13 +151,13 @@ TextMark::~TextMark() noexcept
 
 TextMark::CppClassType TextMark::textmark_class_; // initialize static member
 
-GType TextMark::get_type()
+auto TextMark::get_type() -> GType
 {
   return textmark_class_.init().get_type();
 }
 
 
-GType TextMark::get_base_type()
+auto TextMark::get_base_type() -> GType
 {
   return gtk_text_mark_get_type();
 }
@@ -173,12 +173,12 @@ TextMark::TextMark(const Glib::ustring& name, bool left_gravity)
 
 }
 
-Glib::RefPtr<TextMark> TextMark::create(bool left_gravity)
+auto TextMark::create(bool left_gravity) -> Glib::RefPtr<TextMark>
 {
   return Glib::make_refptr_for_instance<TextMark>( new TextMark(left_gravity) );
 }
 
-Glib::RefPtr<TextMark> TextMark::create(const Glib::ustring& name, bool left_gravity)
+auto TextMark::create(const Glib::ustring& name, bool left_gravity) -> Glib::RefPtr<TextMark>
 {
   return Glib::make_refptr_for_instance<TextMark>( new TextMark(name, left_gravity) );
 }
@@ -188,22 +188,22 @@ void TextMark::set_visible(bool setting)
   gtk_text_mark_set_visible(gobj(), static_cast<int>(setting));
 }
 
-bool TextMark::get_visible() const
+auto TextMark::get_visible() const -> bool
 {
   return gtk_text_mark_get_visible(const_cast<GtkTextMark*>(gobj()));
 }
 
-Glib::ustring TextMark::get_name() const
+auto TextMark::get_name() const -> Glib::ustring
 {
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_text_mark_get_name(const_cast<GtkTextMark*>(gobj())));
 }
 
-bool TextMark::get_deleted() const
+auto TextMark::get_deleted() const -> bool
 {
   return gtk_text_mark_get_deleted(const_cast<GtkTextMark*>(gobj()));
 }
 
-Glib::RefPtr<TextBuffer> TextMark::get_buffer()
+auto TextMark::get_buffer() -> Glib::RefPtr<TextBuffer>
 {
   auto retvalue = Glib::wrap(gtk_text_mark_get_buffer(gobj()));
   if(retvalue)
@@ -211,23 +211,23 @@ Glib::RefPtr<TextBuffer> TextMark::get_buffer()
   return retvalue;
 }
 
-Glib::RefPtr<const TextBuffer> TextMark::get_buffer() const
+auto TextMark::get_buffer() const -> Glib::RefPtr<const TextBuffer>
 {
   return const_cast<TextMark*>(this)->get_buffer();
 }
 
-bool TextMark::get_left_gravity() const
+auto TextMark::get_left_gravity() const -> bool
 {
   return gtk_text_mark_get_left_gravity(const_cast<GtkTextMark*>(gobj()));
 }
 
 
-Glib::PropertyProxy_ReadOnly< Glib::ustring > TextMark::property_name() const
+auto TextMark::property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > TextMark::property_left_gravity() const
+auto TextMark::property_left_gravity() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "left-gravity");
 }

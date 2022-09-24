@@ -64,7 +64,7 @@ public:
 
   // noncopyable
   SocketAddress(const SocketAddress&) = delete;
-  SocketAddress& operator=(const SocketAddress&) = delete;
+  auto operator=(const SocketAddress&) -> SocketAddress& = delete;
 
 private:  friend class SocketAddress_Class;
   static CppClassType socketaddress_class_;
@@ -78,28 +78,28 @@ protected:
 public:
 
   SocketAddress(SocketAddress&& src) noexcept;
-  SocketAddress& operator=(SocketAddress&& src) noexcept;
+  auto operator=(SocketAddress&& src) noexcept -> SocketAddress&;
 
   ~SocketAddress() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GSocketAddress*       gobj()       { return reinterpret_cast<GSocketAddress*>(gobject_); }
+  auto       gobj() -> GSocketAddress*       { return reinterpret_cast<GSocketAddress*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GSocketAddress* gobj() const { return reinterpret_cast<GSocketAddress*>(gobject_); }
+  auto gobj() const -> const GSocketAddress* { return reinterpret_cast<GSocketAddress*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GSocketAddress* gobj_copy();
+  auto gobj_copy() -> GSocketAddress*;
 
 private:
 
@@ -120,7 +120,7 @@ public:
    * @return A new SocketAddress if @a native could successfully
    * be converted, otherwise <tt>nullptr</tt>.
    */
-  static Glib::RefPtr<SocketAddress> create(gpointer native, gsize len);
+  static auto create(gpointer native, gsize len) -> Glib::RefPtr<SocketAddress>;
 
 
   /** Gets the socket family type of @a address.
@@ -129,7 +129,7 @@ public:
    *
    * @return The socket family type of @a address.
    */
-  SocketFamily get_family() const;
+  auto get_family() const -> SocketFamily;
 
   /** Converts a SocketAddress to a native struct sockaddr, which can
    * be passed to low-level functions like connect() or bind().
@@ -148,7 +148,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool to_native(gpointer dest, gsize destlen);
+  auto to_native(gpointer dest, gsize destlen) -> bool;
 
   /** Gets the size of @a address's native struct sockaddr.
    * You can use this to allocate memory to pass to
@@ -159,7 +159,7 @@ public:
    * @return The size of the native struct sockaddr that
    *  @a address represents.
    */
-  gssize get_native_size() const;
+  auto get_native_size() const -> gssize;
 
   /** The family of the socket address.
    *
@@ -168,7 +168,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< SocketFamily > property_family() const;
+  auto property_family() const -> Glib::PropertyProxy_ReadOnly< SocketFamily >;
 
 
 public:
@@ -198,7 +198,7 @@ namespace Glib
    * @relates Gio::SocketAddress
    */
   GIOMM_API
-  Glib::RefPtr<Gio::SocketAddress> wrap(GSocketAddress* object, bool take_copy = false);
+  auto wrap(GSocketAddress* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketAddress>;
 }
 
 

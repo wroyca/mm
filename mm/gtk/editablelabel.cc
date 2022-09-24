@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Gtk::EditableLabel* wrap(GtkEditableLabel* object, bool take_copy)
+auto wrap(GtkEditableLabel* object, bool take_copy) -> Gtk::EditableLabel*
 {
   return dynamic_cast<Gtk::EditableLabel *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -46,7 +46,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& EditableLabel_Class::init()
+auto EditableLabel_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -71,7 +71,7 @@ void EditableLabel_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* EditableLabel_Class::wrap_new(GObject* o)
+auto EditableLabel_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new EditableLabel((GtkEditableLabel*)(o)));
 
@@ -98,7 +98,7 @@ EditableLabel::EditableLabel(EditableLabel&& src) noexcept
   , Editable(std::move(src))
 {}
 
-EditableLabel& EditableLabel::operator=(EditableLabel&& src) noexcept
+auto EditableLabel::operator=(EditableLabel&& src) noexcept -> EditableLabel&
 {
   Gtk::Widget::operator=(std::move(src));
   Editable::operator=(std::move(src));
@@ -112,13 +112,13 @@ EditableLabel::~EditableLabel() noexcept
 
 EditableLabel::CppClassType EditableLabel::editablelabel_class_; // initialize static member
 
-GType EditableLabel::get_type()
+auto EditableLabel::get_type() -> GType
 {
   return editablelabel_class_.init().get_type();
 }
 
 
-GType EditableLabel::get_base_type()
+auto EditableLabel::get_base_type() -> GType
 {
   return gtk_editable_label_get_type();
 }
@@ -144,7 +144,7 @@ EditableLabel::EditableLabel(const Glib::ustring& text)
 
 }
 
-bool EditableLabel::get_editing() const
+auto EditableLabel::get_editing() const -> bool
 {
   return gtk_editable_label_get_editing(const_cast<GtkEditableLabel*>(gobj()));
 }
@@ -160,12 +160,12 @@ void EditableLabel::stop_editing(bool commit)
 }
 
 
-Glib::PropertyProxy< bool > EditableLabel::property_editing()
+auto EditableLabel::property_editing() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "editing");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > EditableLabel::property_editing() const
+auto EditableLabel::property_editing() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "editing");
 }

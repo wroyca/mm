@@ -40,27 +40,27 @@ extern "C"
 {
 //Declarations of the *_get_type() functions:
 
-GType g_binding_get_type(void);
+auto g_binding_get_type(void) -> GType;
 
 //Declarations of the *_error_quark() functions:
 
-GQuark g_convert_error_quark(void);
-GQuark g_file_error_quark(void);
-GQuark g_io_channel_error_quark(void);
-GQuark g_key_file_error_quark(void);
-GQuark g_markup_error_quark(void);
-GQuark g_option_error_quark(void);
-GQuark g_regex_error_quark(void);
-GQuark g_shell_error_quark(void);
-GQuark g_spawn_error_quark(void);
-GQuark g_variant_parse_error_quark(void);
+auto g_convert_error_quark(void) -> GQuark;
+auto g_file_error_quark(void) -> GQuark;
+auto g_io_channel_error_quark(void) -> GQuark;
+auto g_key_file_error_quark(void) -> GQuark;
+auto g_markup_error_quark(void) -> GQuark;
+auto g_option_error_quark(void) -> GQuark;
+auto g_regex_error_quark(void) -> GQuark;
+auto g_shell_error_quark(void) -> GQuark;
+auto g_spawn_error_quark(void) -> GQuark;
+auto g_variant_parse_error_quark(void) -> GQuark;
 } // extern "C"
 
 namespace Glib {
 
 //Declarations of the *_Class::wrap_new() methods, instead of including all the private headers:
 
-class Binding_Class { public: static Glib::ObjectBase* wrap_new(GObject*); };
+class Binding_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 
 void wrap_init()
 {

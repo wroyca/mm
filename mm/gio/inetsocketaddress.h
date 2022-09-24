@@ -67,7 +67,7 @@ public:
 
   // noncopyable
   InetSocketAddress(const InetSocketAddress&) = delete;
-  InetSocketAddress& operator=(const InetSocketAddress&) = delete;
+  auto operator=(const InetSocketAddress&) -> InetSocketAddress& = delete;
 
 private:  friend class InetSocketAddress_Class;
   static CppClassType inetsocketaddress_class_;
@@ -81,28 +81,28 @@ protected:
 public:
 
   InetSocketAddress(InetSocketAddress&& src) noexcept;
-  InetSocketAddress& operator=(InetSocketAddress&& src) noexcept;
+  auto operator=(InetSocketAddress&& src) noexcept -> InetSocketAddress&;
 
   ~InetSocketAddress() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GInetSocketAddress*       gobj()       { return reinterpret_cast<GInetSocketAddress*>(gobject_); }
+  auto       gobj() -> GInetSocketAddress*       { return reinterpret_cast<GInetSocketAddress*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GInetSocketAddress* gobj() const { return reinterpret_cast<GInetSocketAddress*>(gobject_); }
+  auto gobj() const -> const GInetSocketAddress* { return reinterpret_cast<GInetSocketAddress*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GInetSocketAddress* gobj_copy();
+  auto gobj_copy() -> GInetSocketAddress*;
 
 private:
 
@@ -113,7 +113,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<InetSocketAddress> create(const Glib::RefPtr<InetAddress>& address, guint16 port);
+  static auto create(const Glib::RefPtr<InetAddress>& address, guint16 port) -> Glib::RefPtr<InetSocketAddress>;
 
 
   /** Gets @a address's InetAddress.
@@ -123,7 +123,7 @@ public:
    * @return The InetAddress for @a address, which must be
    * Glib::object_ref()'d if it will be stored.
    */
-  Glib::RefPtr<InetAddress> get_address();
+  auto get_address() -> Glib::RefPtr<InetAddress>;
 
   /** Gets @a address's InetAddress.
    *
@@ -132,7 +132,7 @@ public:
    * @return The InetAddress for @a address, which must be
    * Glib::object_ref()'d if it will be stored.
    */
-  Glib::RefPtr<const InetAddress> get_address() const;
+  auto get_address() const -> Glib::RefPtr<const InetAddress>;
 
 
   /** Gets @a address's port.
@@ -141,7 +141,7 @@ public:
    *
    * @return The port for @a address.
    */
-  guint16 get_port() const;
+  auto get_port() const -> guint16;
 
 
   /** Gets the `sin6_flowinfo` field from @a address,
@@ -151,7 +151,7 @@ public:
    *
    * @return The flowinfo field.
    */
-  guint32 get_flowinfo() const;
+  auto get_flowinfo() const -> guint32;
 
   /** Gets the `sin6_scope_id` field from @a address,
    * which must be an IPv6 address.
@@ -160,14 +160,14 @@ public:
    *
    * @return The scope id field.
    */
-  guint32 get_scope_id() const;
+  auto get_scope_id() const -> guint32;
 
   /** The address.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InetAddress> > property_address() const;
+  auto property_address() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InetAddress> >;
 
 
   // Don't use guint16 or guint32 in _WRAP_PROPERTY().
@@ -180,7 +180,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_port() const;
+  auto property_port() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
   /** The `sin6_flowinfo` field, for IPv6 addresses.
@@ -192,7 +192,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_flowinfo() const;
+  auto property_flowinfo() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
   /** IPv6 scope ID.
@@ -202,7 +202,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_scope_id() const;
+  auto property_scope_id() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
 public:
@@ -232,7 +232,7 @@ namespace Glib
    * @relates Gio::InetSocketAddress
    */
   GIOMM_API
-  Glib::RefPtr<Gio::InetSocketAddress> wrap(GInetSocketAddress* object, bool take_copy = false);
+  auto wrap(GInetSocketAddress* object, bool take_copy = false) -> Glib::RefPtr<Gio::InetSocketAddress>;
 }
 
 

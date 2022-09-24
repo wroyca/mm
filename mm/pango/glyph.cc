@@ -63,22 +63,22 @@ GlyphVisAttr::GlyphVisAttr(const PangoGlyphVisAttr* src)
 namespace Glib
 {
 
-Pango::GlyphInfo& wrap(PangoGlyphInfo* object)
+auto wrap(PangoGlyphInfo* object) -> Pango::GlyphInfo&
 {
   return *reinterpret_cast<Pango::GlyphInfo*>(object);
 }
 
-const Pango::GlyphInfo& wrap(const PangoGlyphInfo* object)
+auto wrap(const PangoGlyphInfo* object) -> const Pango::GlyphInfo&
 {
   return *reinterpret_cast<const Pango::GlyphInfo*>(object);
 }
 
-Pango::GlyphGeometry& wrap(PangoGlyphGeometry* object)
+auto wrap(PangoGlyphGeometry* object) -> Pango::GlyphGeometry&
 {
   return *reinterpret_cast<Pango::GlyphGeometry*>(object);
 }
 
-const Pango::GlyphGeometry& wrap(const PangoGlyphGeometry* object)
+auto wrap(const PangoGlyphGeometry* object) -> const Pango::GlyphGeometry&
 {
   return *reinterpret_cast<const Pango::GlyphGeometry*>(object);
 }
@@ -104,17 +104,17 @@ namespace Pango
 {
 
 
-Glyph GlyphInfo::get_glyph() const
+auto GlyphInfo::get_glyph() const -> Glyph
 {
   return gobj()->glyph;
 }
 
-GlyphGeometry GlyphInfo::get_geometry() const
+auto GlyphInfo::get_geometry() const -> GlyphGeometry
 {
   return GlyphGeometry(&(gobj()->geometry));
 }
 
-GlyphVisAttr GlyphInfo::get_attr() const
+auto GlyphInfo::get_attr() const -> GlyphVisAttr
 {
   return gobj()->attr;
 }
@@ -127,17 +127,17 @@ namespace Pango
 {
 
 
-GlyphUnit GlyphGeometry::get_width() const
+auto GlyphGeometry::get_width() const -> GlyphUnit
 {
   return gobj()->width;
 }
 
-GlyphUnit GlyphGeometry::get_x_offset() const
+auto GlyphGeometry::get_x_offset() const -> GlyphUnit
 {
   return gobj()->x_offset;
 }
 
-GlyphUnit GlyphGeometry::get_y_offset() const
+auto GlyphGeometry::get_y_offset() const -> GlyphUnit
 {
   return gobj()->y_offset;
 }

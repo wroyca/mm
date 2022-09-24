@@ -28,7 +28,7 @@ TlsClientConnectionImpl::TlsClientConnectionImpl(TlsClientConnectionImpl&& src) 
   TlsConnection(std::move(src))
 {}
 
-TlsClientConnectionImpl& TlsClientConnectionImpl::operator=(TlsClientConnectionImpl&& src) noexcept
+auto TlsClientConnectionImpl::operator=(TlsClientConnectionImpl&& src) noexcept -> TlsClientConnectionImpl&
 {
   TlsClientConnection::operator=(std::move(src));
   TlsConnection::operator=(std::move(src));

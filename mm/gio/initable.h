@@ -79,7 +79,7 @@ public:
 
   // noncopyable
   Initable(const Initable&) = delete;
-  Initable& operator=(const Initable&) = delete;
+  auto operator=(const Initable&) -> Initable& = delete;
 
 private:
   friend class Initable_Class;
@@ -113,7 +113,7 @@ protected:
 public:
 
   Initable(Initable&& src) noexcept;
-  Initable& operator=(Initable&& src) noexcept;
+  auto operator=(Initable&& src) noexcept -> Initable&;
 
   ~Initable() noexcept override;
 
@@ -121,17 +121,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GInitable*       gobj()       { return reinterpret_cast<GInitable*>(gobject_); }
+  auto       gobj() -> GInitable*       { return reinterpret_cast<GInitable*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GInitable* gobj() const { return reinterpret_cast<GInitable*>(gobject_); }
+  auto gobj() const -> const GInitable* { return reinterpret_cast<GInitable*>(gobject_); }
 
 private:
 
@@ -189,7 +189,7 @@ protected:
   void init();
 
 protected:
-    virtual bool init_vfunc(const Glib::RefPtr<Cancellable>& cancellable, GError** error);
+    virtual auto init_vfunc(const Glib::RefPtr<Cancellable>& cancellable, GError** error) -> bool;
 
 
 public:
@@ -219,7 +219,7 @@ namespace Glib
    * @relates Gio::Initable
    */
   GIOMM_API
-  Glib::RefPtr<Gio::Initable> wrap(GInitable* object, bool take_copy = false);
+  auto wrap(GInitable* object, bool take_copy = false) -> Glib::RefPtr<Gio::Initable>;
 
 } // namespace Glib
 

@@ -53,8 +53,8 @@ UnixFDList::UnixFDList(const std::vector<int>&  fds, int n_fds)
 {
 }
 
-const std::vector<int>
-UnixFDList::peek_fds() const
+auto
+UnixFDList::peek_fds() const -> const std::vector<int>
 {
   int length = 0;
   const auto fds = g_unix_fd_list_peek_fds(const_cast<GUnixFDList*>(gobj()), &length);
@@ -63,8 +63,8 @@ UnixFDList::peek_fds() const
   return Glib::ArrayHandler<int>::array_to_vector(fds, length, Glib::OWNERSHIP_NONE);
 }
 
-std::vector<int>
-UnixFDList::steal_fds()
+auto
+UnixFDList::steal_fds() -> std::vector<int>
 {
   int length = 0;
   const auto fds = g_unix_fd_list_steal_fds(gobj(), &length);
@@ -83,7 +83,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::UnixFDList> wrap(GUnixFDList* object, bool take_copy)
+auto wrap(GUnixFDList* object, bool take_copy) -> Glib::RefPtr<Gio::UnixFDList>
 {
   return Glib::make_refptr_for_instance<Gio::UnixFDList>( dynamic_cast<Gio::UnixFDList*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -98,7 +98,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Class& UnixFDList_Class::init()
+auto UnixFDList_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -129,7 +129,7 @@ void UnixFDList_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* UnixFDList_Class::wrap_new(GObject* object)
+auto UnixFDList_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new UnixFDList((GUnixFDList*)object);
 }
@@ -137,7 +137,7 @@ Glib::ObjectBase* UnixFDList_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GUnixFDList* UnixFDList::gobj_copy()
+auto UnixFDList::gobj_copy() -> GUnixFDList*
 {
   reference();
   return gobj();
@@ -160,7 +160,7 @@ UnixFDList::UnixFDList(UnixFDList&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-UnixFDList& UnixFDList::operator=(UnixFDList&& src) noexcept
+auto UnixFDList::operator=(UnixFDList&& src) noexcept -> UnixFDList&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -173,13 +173,13 @@ UnixFDList::~UnixFDList() noexcept
 
 UnixFDList::CppClassType UnixFDList::unixfdlist_class_; // initialize static member
 
-GType UnixFDList::get_type()
+auto UnixFDList::get_type() -> GType
 {
   return unixfdlist_class_.init().get_type();
 }
 
 
-GType UnixFDList::get_base_type()
+auto UnixFDList::get_base_type() -> GType
 {
   return g_unix_fd_list_get_type();
 }
@@ -195,27 +195,27 @@ UnixFDList::UnixFDList()
 
 }
 
-Glib::RefPtr<UnixFDList> UnixFDList::create()
+auto UnixFDList::create() -> Glib::RefPtr<UnixFDList>
 {
   return Glib::make_refptr_for_instance<UnixFDList>( new UnixFDList() );
 }
 
-Glib::RefPtr<UnixFDList> UnixFDList::create(const std::vector<int>& fds)
+auto UnixFDList::create(const std::vector<int>& fds) -> Glib::RefPtr<UnixFDList>
 {
   return Glib::make_refptr_for_instance<UnixFDList>( new UnixFDList(fds) );
 }
 
-Glib::RefPtr<UnixFDList> UnixFDList::create(const std::vector<int>& fds, int n_fds)
+auto UnixFDList::create(const std::vector<int>& fds, int n_fds) -> Glib::RefPtr<UnixFDList>
 {
   return Glib::make_refptr_for_instance<UnixFDList>( new UnixFDList(fds, n_fds) );
 }
 
-int UnixFDList::get_length() const
+auto UnixFDList::get_length() const -> int
 {
   return g_unix_fd_list_get_length(const_cast<GUnixFDList*>(gobj()));
 }
 
-int UnixFDList::get(int index) const
+auto UnixFDList::get(int index) const -> int
 {
   GError* gerror = nullptr;
   auto retvalue = g_unix_fd_list_get(const_cast<GUnixFDList*>(gobj()), index, &(gerror));
@@ -224,7 +224,7 @@ int UnixFDList::get(int index) const
   return retvalue;
 }
 
-int UnixFDList::append(int fd)
+auto UnixFDList::append(int fd) -> int
 {
   GError* gerror = nullptr;
   auto retvalue = g_unix_fd_list_append(gobj(), fd, &(gerror));

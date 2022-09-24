@@ -99,7 +99,7 @@ template <>
 class GTKMM_API Value<Gtk::TextWindowType> : public Glib::Value_Enum<Gtk::TextWindowType>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -136,11 +136,11 @@ class GTKMM_API TextView
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   TextView(TextView&& src) noexcept;
-  TextView& operator=(TextView&& src) noexcept;
+  auto operator=(TextView&& src) noexcept -> TextView&;
 
   // noncopyable
   TextView(const TextView&) = delete;
-  TextView& operator=(const TextView&) = delete;
+  auto operator=(const TextView&) -> TextView& = delete;
 
   ~TextView() noexcept override;
 
@@ -160,19 +160,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkTextView*       gobj()       { return reinterpret_cast<GtkTextView*>(gobject_); }
+  auto       gobj() -> GtkTextView*       { return reinterpret_cast<GtkTextView*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkTextView* gobj() const { return reinterpret_cast<GtkTextView*>(gobject_); }
+  auto gobj() const -> const GtkTextView* { return reinterpret_cast<GtkTextView*>(gobject_); }
 
 private:
 
@@ -200,7 +200,7 @@ public:
    *
    * @return A `Gtk::TextBuffer`.
    */
-  Glib::RefPtr<TextBuffer> get_buffer();
+  auto get_buffer() -> Glib::RefPtr<TextBuffer>;
 
   /** Returns the `Gtk::TextBuffer` being displayed by this text view.
    *
@@ -209,7 +209,7 @@ public:
    *
    * @return A `Gtk::TextBuffer`.
    */
-  Glib::RefPtr<const TextBuffer> get_buffer() const;
+  auto get_buffer() const -> Glib::RefPtr<const TextBuffer>;
 
   /** Scrolls the TextView so that @a iter is on the screen, by scrolling the minimal distance to get the mark onscreen,
    * possibly not scrolling at all. The effective screen for purposes of this function is reduced by a margin of size
@@ -222,7 +222,7 @@ public:
    * @param within_margin margin as a [0.0,0.5] fraction of screen size.
    * @result true if scrolling occurred.
    */
-  bool scroll_to(TextBuffer::iterator& iter, double within_margin = 0);
+  auto scroll_to(TextBuffer::iterator& iter, double within_margin = 0) -> bool;
 
   /** Scrolls the TextView so that @a iter is on the screen, in the position indicated by xalign and yalign,
    * possibly not scrolling at all. The effective screen for purposes of this function is reduced by a margin of size
@@ -237,7 +237,7 @@ public:
    * @param yalign vertical alignment of mark within visible area. An alignment of 0.0 indicates top, 1.0 indicates bottom, 0.5 means center.
    * @result true if scrolling occurred.
    */
-  bool scroll_to(TextBuffer::iterator& iter, double within_margin, double xalign, double yalign);
+  auto scroll_to(TextBuffer::iterator& iter, double within_margin, double xalign, double yalign) -> bool;
 
 
   /** Scrolls text_view so that @a mark is on the screen, by scrolling the minimal distance to get the mark onscreen,
@@ -270,14 +270,14 @@ public:
    * @param mark A `Gtk::TextMark`.
    * @return <tt>true</tt> if the mark moved (wasn’t already onscreen).
    */
-  bool move_mark_onscreen(const Glib::RefPtr<TextBuffer::Mark>& mark);
+  auto move_mark_onscreen(const Glib::RefPtr<TextBuffer::Mark>& mark) -> bool;
 
   /** Moves the cursor to the currently visible region of the
    * buffer.
    *
    * @return <tt>true</tt> if the cursor had to be moved.
    */
-  bool place_cursor_onscreen();
+  auto place_cursor_onscreen() -> bool;
 
 
   /** Fills @a visible_rect with the currently-visible
@@ -306,7 +306,7 @@ public:
    *
    * @return Whether the insertion mark is visible.
    */
-  bool get_cursor_visible() const;
+  auto get_cursor_visible() const -> bool;
 
   /** Ensures that the cursor is shown.
    *
@@ -374,7 +374,7 @@ public:
    * @param y Y position, in buffer coordinates.
    * @return <tt>true</tt> if the position is over text.
    */
-  bool get_iter_at_location(TextBuffer::iterator& iter, int x, int y);
+  auto get_iter_at_location(TextBuffer::iterator& iter, int x, int y) -> bool;
 
   /** Retrieves the iterator at buffer coordinates @a x and @a y.
    *
@@ -388,7 +388,7 @@ public:
    * @param y Y position, in buffer coordinates.
    * @return <tt>true</tt> if the position is over text.
    */
-  bool get_iter_at_location(TextBuffer::const_iterator& iter, int x, int y) const;
+  auto get_iter_at_location(TextBuffer::const_iterator& iter, int x, int y) const -> bool;
 
   /** Retrieves the iterator pointing to the character at buffer
    * coordinates @a x and @a y.
@@ -410,7 +410,7 @@ public:
    * @param y Y position, in buffer coordinates.
    * @return <tt>true</tt> if the position is over text.
    */
-  bool get_iter_at_position(TextBuffer::iterator& iter, int& trailing, int x, int y);
+  auto get_iter_at_position(TextBuffer::iterator& iter, int& trailing, int x, int y) -> bool;
 
   /** Retrieves the iterator pointing to the character at buffer
    * coordinates @a x and @a y.
@@ -432,7 +432,7 @@ public:
    * @param y Y position, in buffer coordinates.
    * @return <tt>true</tt> if the position is over text.
    */
-  bool get_iter_at_position(TextBuffer::const_iterator& iter, int& trailing, int x, int y) const;
+  auto get_iter_at_position(TextBuffer::const_iterator& iter, int& trailing, int x, int y) const -> bool;
 
   /** Gets the y coordinate of the top of the line containing @a iter,
    * and the height of the line.
@@ -511,7 +511,7 @@ public:
    * @param iter A `Gtk::TextIter`.
    * @return <tt>true</tt> if @a iter was moved and is not on the end iterator.
    */
-  bool forward_display_line(TextBuffer::iterator& iter);
+  auto forward_display_line(TextBuffer::iterator& iter) -> bool;
 
   /** Moves the given @a iter backward by one display (wrapped) line.
    *
@@ -526,7 +526,7 @@ public:
    * @param iter A `Gtk::TextIter`.
    * @return <tt>true</tt> if @a iter was moved and is not on the end iterator.
    */
-  bool backward_display_line(TextBuffer::iterator& iter);
+  auto backward_display_line(TextBuffer::iterator& iter) -> bool;
 
   /** Moves the given @a iter forward to the next display line end.
    *
@@ -541,7 +541,7 @@ public:
    * @param iter A `Gtk::TextIter`.
    * @return <tt>true</tt> if @a iter was moved and is not on the end iterator.
    */
-  bool forward_display_line_end(TextBuffer::iterator& iter);
+  auto forward_display_line_end(TextBuffer::iterator& iter) -> bool;
 
   /** Moves the given @a iter backward to the next display line start.
    *
@@ -556,7 +556,7 @@ public:
    * @param iter A `Gtk::TextIter`.
    * @return <tt>true</tt> if @a iter was moved and is not on the end iterator.
    */
-  bool backward_display_line_start(TextBuffer::iterator& iter);
+  auto backward_display_line_start(TextBuffer::iterator& iter) -> bool;
 
   /** Determines whether @a iter is at the start of a display line.
    *
@@ -566,7 +566,7 @@ public:
    * @param iter A `Gtk::TextIter`.
    * @return <tt>true</tt> if @a iter begins a wrapped line.
    */
-  bool starts_display_line(const TextBuffer::iterator& iter);
+  auto starts_display_line(const TextBuffer::iterator& iter) -> bool;
 
   /** Move the iterator a given number of characters visually, treating
    * it as the strong cursor position.
@@ -586,7 +586,7 @@ public:
    * positive moves right).
    * @return <tt>true</tt> if @a iter moved and is not on the end iterator.
    */
-  bool move_visually(TextBuffer::iterator& iter, int count);
+  auto move_visually(TextBuffer::iterator& iter, int count) -> bool;
 
 
   /** Allow the `Gtk::TextView` input method to internally handle key press
@@ -606,7 +606,7 @@ public:
    * @param event The key event.
    * @return <tt>true</tt> if the input method handled the key event.
    */
-  bool im_context_filter_keypress(const Glib::RefPtr<Gdk::Event>& event);
+  auto im_context_filter_keypress(const Glib::RefPtr<Gdk::Event>& event) -> bool;
 
   /** Reset the input method context of the text view if needed.
    *
@@ -626,7 +626,7 @@ public:
    * @param win A `Gtk::TextWindowType`.
    * @return A `Gtk::Widget`.
    */
-  Widget* get_gutter(TextWindowType win);
+  auto get_gutter(TextWindowType win) -> Widget*;
 
   /** Gets a `Gtk::Widget` that has previously been set as gutter.
    *
@@ -638,7 +638,7 @@ public:
    * @param win A `Gtk::TextWindowType`.
    * @return A `Gtk::Widget`.
    */
-  const Widget* get_gutter(TextWindowType win) const;
+  auto get_gutter(TextWindowType win) const -> const Widget*;
 
   /** Places @a widget into the gutter specified by @a win.
    *
@@ -713,7 +713,7 @@ public:
    *
    * @return The line wrap setting.
    */
-  WrapMode get_wrap_mode() const;
+  auto get_wrap_mode() const -> WrapMode;
 
   /** Sets the default editability of the `Gtk::TextView`.
    *
@@ -730,7 +730,7 @@ public:
    *
    * @return Whether text is editable by default.
    */
-  bool get_editable() const;
+  auto get_editable() const -> bool;
 
   /** Sets the default number of blank pixels above paragraphs in @a text_view.
    *
@@ -747,7 +747,7 @@ public:
    *
    * @return Default number of pixels above paragraphs.
    */
-  int get_pixels_above_lines() const;
+  auto get_pixels_above_lines() const -> int;
 
   /** Sets the default number of pixels of blank space
    * to put below paragraphs in @a text_view.
@@ -765,7 +765,7 @@ public:
    *
    * @return Default number of blank pixels below paragraphs.
    */
-  int get_pixels_below_lines() const;
+  auto get_pixels_below_lines() const -> int;
 
   /** Sets the default number of pixels of blank space to leave between
    * display/wrapped lines within a paragraph.
@@ -781,7 +781,7 @@ public:
    *
    * @return Default number of pixels of blank space between wrapped lines.
    */
-  int get_pixels_inside_wrap() const;
+  auto get_pixels_inside_wrap() const -> int;
 
   /** Sets the default justification of text in @a text_view.
    *
@@ -797,7 +797,7 @@ public:
    *
    * @return Default justification.
    */
-  Justification get_justification() const;
+  auto get_justification() const -> Justification;
 
   /** Sets the default left margin for text in @a text_view.
    *
@@ -816,7 +816,7 @@ public:
    *
    * @return Left margin in pixels.
    */
-  int get_left_margin() const;
+  auto get_left_margin() const -> int;
 
   /** Sets the default right margin for text in the text view.
    *
@@ -835,7 +835,7 @@ public:
    *
    * @return Right margin in pixels.
    */
-  int get_right_margin() const;
+  auto get_right_margin() const -> int;
 
   /** Sets the top margin for text in @a text_view.
    *
@@ -854,7 +854,7 @@ public:
    *
    * @return Top margin in pixels.
    */
-  int get_top_margin() const;
+  auto get_top_margin() const -> int;
 
   /** Sets the bottom margin for text in @a text_view.
    *
@@ -873,7 +873,7 @@ public:
    *
    * @return Bottom margin in pixels.
    */
-  int get_bottom_margin() const;
+  auto get_bottom_margin() const -> int;
 
   /** Sets the default indentation for paragraphs in @a text_view.
    *
@@ -890,7 +890,7 @@ public:
    *
    * @return Number of pixels of indentation.
    */
-  int get_indent() const;
+  auto get_indent() const -> int;
 
 
   /** Sets the default tab stops for paragraphs in @a text_view.
@@ -907,7 +907,7 @@ public:
    *
    * @return Copy of default tab array, or an empty array if "standard" tabs are used.
    */
-  Pango::TabArray get_tabs() const;
+  auto get_tabs() const -> Pango::TabArray;
 
 
   /** Changes the `Gtk::TextView` overwrite mode.
@@ -920,7 +920,7 @@ public:
    *
    * @return Whether @a text_view is in overwrite mode or not.
    */
-  bool get_overwrite() const;
+  auto get_overwrite() const -> bool;
 
 
   /** Sets the behavior of the text widget when the <kbd>Tab</kbd> key is pressed.
@@ -942,7 +942,7 @@ public:
    * @return <tt>true</tt> if pressing the Tab key inserts a tab character,
    * <tt>false</tt> if pressing the Tab key moves the keyboard focus.
    */
-  bool get_accepts_tab() const;
+  auto get_accepts_tab() const -> bool;
 
 
   /** Sets the `input-purpose` of the `Gtk::TextView`.
@@ -956,7 +956,7 @@ public:
 
   /** Gets the `input-purpose` of the `Gtk::TextView`.
    */
-  InputPurpose get_input_purpose() const;
+  auto get_input_purpose() const -> InputPurpose;
 
 
   /** Sets the `input-hints` of the `Gtk::TextView`.
@@ -970,7 +970,7 @@ public:
 
   /** Gets the `input-hints` of the `Gtk::TextView`.
    */
-  InputHints get_input_hints() const;
+  auto get_input_hints() const -> InputHints;
 
 
   /** Sets whether the `Gtk::TextView` should display text in
@@ -984,7 +984,7 @@ public:
    *
    * Return: <tt>true</tt> if monospace fonts are desired
    */
-  bool get_monospace() const;
+  auto get_monospace() const -> bool;
 
 
   /** Sets a menu model to add when constructing the context
@@ -1001,14 +1001,14 @@ public:
    *
    * @return The menu model.
    */
-  Glib::RefPtr<Gio::MenuModel> get_extra_menu();
+  auto get_extra_menu() -> Glib::RefPtr<Gio::MenuModel>;
 
   /** Gets the menu model that gets added to the context menu
    * or <tt>nullptr</tt> if none has been set.
    *
    * @return The menu model.
    */
-  Glib::RefPtr<const Gio::MenuModel> get_extra_menu() const;
+  auto get_extra_menu() const -> Glib::RefPtr<const Gio::MenuModel>;
 
 
   /** Gets the `Pango::Context` that is used for rendering RTL directed
@@ -1020,7 +1020,7 @@ public:
    *
    * @return A `Pango::Context`.
    */
-  Glib::RefPtr<Pango::Context> get_rtl_context();
+  auto get_rtl_context() -> Glib::RefPtr<Pango::Context>;
 
   /** Gets the `Pango::Context` that is used for rendering RTL directed
    * text layouts.
@@ -1031,7 +1031,7 @@ public:
    *
    * @return A `Pango::Context`.
    */
-  Glib::RefPtr<const Pango::Context> get_rtl_context() const;
+  auto get_rtl_context() const -> Glib::RefPtr<const Pango::Context>;
 
   /** Gets the `Pango::Context` that is used for rendering LTR directed
    * text layouts.
@@ -1042,7 +1042,7 @@ public:
    *
    * @return A `Pango::Context`.
    */
-  Glib::RefPtr<Pango::Context> get_ltr_context();
+  auto get_ltr_context() -> Glib::RefPtr<Pango::Context>;
 
   /** Gets the `Pango::Context` that is used for rendering LTR directed
    * text layouts.
@@ -1053,7 +1053,7 @@ public:
    *
    * @return A `Pango::Context`.
    */
-  Glib::RefPtr<const Pango::Context> get_ltr_context() const;
+  auto get_ltr_context() const -> Glib::RefPtr<const Pango::Context>;
 
 
   /**
@@ -1072,7 +1072,7 @@ public:
    * This signal has no default bindings.
    */
 
-  Glib::SignalProxy<void()> signal_set_anchor();
+  auto signal_set_anchor() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -1091,7 +1091,7 @@ public:
    * @param str The string to insert.
    */
 
-  Glib::SignalProxy<void(const Glib::ustring&)> signal_insert_at_cursor();
+  auto signal_insert_at_cursor() -> Glib::SignalProxy<void(const Glib::ustring&)>;
 
 
   //Keybinding signals:
@@ -1102,84 +1102,84 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_pixels_above_lines() ;
+  auto property_pixels_above_lines() -> Glib::PropertyProxy< int > ;
 
 /** Default value: 0
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_pixels_above_lines() const;
+  auto property_pixels_above_lines() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Default value: 0
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_pixels_below_lines() ;
+  auto property_pixels_below_lines() -> Glib::PropertyProxy< int > ;
 
 /** Default value: 0
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_pixels_below_lines() const;
+  auto property_pixels_below_lines() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Default value: 0
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_pixels_inside_wrap() ;
+  auto property_pixels_inside_wrap() -> Glib::PropertyProxy< int > ;
 
 /** Default value: 0
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_pixels_inside_wrap() const;
+  auto property_pixels_inside_wrap() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Default value: <tt>true</tt>
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_editable() ;
+  auto property_editable() -> Glib::PropertyProxy< bool > ;
 
 /** Default value: <tt>true</tt>
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_editable() const;
+  auto property_editable() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Default value: Gtk::WrapMode::NONE
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< WrapMode > property_wrap_mode() ;
+  auto property_wrap_mode() -> Glib::PropertyProxy< WrapMode > ;
 
 /** Default value: Gtk::WrapMode::NONE
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< WrapMode > property_wrap_mode() const;
+  auto property_wrap_mode() const -> Glib::PropertyProxy_ReadOnly< WrapMode >;
 
   /** Default value: Gtk::Justification::LEFT
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Justification > property_justification() ;
+  auto property_justification() -> Glib::PropertyProxy< Justification > ;
 
 /** Default value: Gtk::Justification::LEFT
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Justification > property_justification() const;
+  auto property_justification() const -> Glib::PropertyProxy_ReadOnly< Justification >;
 
   /** The default left margin for text in the text view.
    *
@@ -1194,7 +1194,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_left_margin() ;
+  auto property_left_margin() -> Glib::PropertyProxy< int > ;
 
 /** The default left margin for text in the text view.
    *
@@ -1209,7 +1209,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_left_margin() const;
+  auto property_left_margin() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The default right margin for text in the text view.
    *
@@ -1224,7 +1224,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_right_margin() ;
+  auto property_right_margin() -> Glib::PropertyProxy< int > ;
 
 /** The default right margin for text in the text view.
    *
@@ -1239,7 +1239,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_right_margin() const;
+  auto property_right_margin() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The top margin for text in the text view.
    *
@@ -1256,7 +1256,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_top_margin() ;
+  auto property_top_margin() -> Glib::PropertyProxy< int > ;
 
 /** The top margin for text in the text view.
    *
@@ -1273,7 +1273,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_top_margin() const;
+  auto property_top_margin() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The bottom margin for text in the text view.
    *
@@ -1290,7 +1290,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_bottom_margin() ;
+  auto property_bottom_margin() -> Glib::PropertyProxy< int > ;
 
 /** The bottom margin for text in the text view.
    *
@@ -1307,7 +1307,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_bottom_margin() const;
+  auto property_bottom_margin() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** Amount to indent the paragraph, in pixels.
    *
@@ -1316,7 +1316,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_indent() ;
+  auto property_indent() -> Glib::PropertyProxy< int > ;
 
 /** Amount to indent the paragraph, in pixels.
    *
@@ -1325,21 +1325,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_indent() const;
+  auto property_indent() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /**
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Pango::TabArray > property_tabs() ;
+  auto property_tabs() -> Glib::PropertyProxy< Pango::TabArray > ;
 
 /**
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Pango::TabArray > property_tabs() const;
+  auto property_tabs() const -> Glib::PropertyProxy_ReadOnly< Pango::TabArray >;
 
   /** If the insertion cursor is shown.
    *
@@ -1348,7 +1348,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_cursor_visible() ;
+  auto property_cursor_visible() -> Glib::PropertyProxy< bool > ;
 
 /** If the insertion cursor is shown.
    *
@@ -1357,21 +1357,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_cursor_visible() const;
+  auto property_cursor_visible() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The buffer which is displayed.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<TextBuffer> > property_buffer() ;
+  auto property_buffer() -> Glib::PropertyProxy< Glib::RefPtr<TextBuffer> > ;
 
 /** The buffer which is displayed.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TextBuffer> > property_buffer() const;
+  auto property_buffer() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TextBuffer> >;
 
   /** Whether entered text overwrites existing contents.
    *
@@ -1380,7 +1380,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_overwrite() ;
+  auto property_overwrite() -> Glib::PropertyProxy< bool > ;
 
 /** Whether entered text overwrites existing contents.
    *
@@ -1389,7 +1389,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_overwrite() const;
+  auto property_overwrite() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether Tab will result in a tab character being entered.
    *
@@ -1398,7 +1398,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_accepts_tab() ;
+  auto property_accepts_tab() -> Glib::PropertyProxy< bool > ;
 
 /** Whether Tab will result in a tab character being entered.
    *
@@ -1407,7 +1407,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_accepts_tab() const;
+  auto property_accepts_tab() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Which IM (input method) module should be used for this text_view.
    *
@@ -1421,7 +1421,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_im_module() ;
+  auto property_im_module() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** Which IM (input method) module should be used for this text_view.
    *
@@ -1435,7 +1435,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_im_module() const;
+  auto property_im_module() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** The purpose of this text field.
    *
@@ -1447,7 +1447,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< InputPurpose > property_input_purpose() ;
+  auto property_input_purpose() -> Glib::PropertyProxy< InputPurpose > ;
 
 /** The purpose of this text field.
    *
@@ -1459,7 +1459,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< InputPurpose > property_input_purpose() const;
+  auto property_input_purpose() const -> Glib::PropertyProxy_ReadOnly< InputPurpose >;
 
   /** Additional hints (beyond property_input_purpose())
    * that allow input methods to fine-tune their behaviour.
@@ -1469,7 +1469,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< InputHints > property_input_hints() ;
+  auto property_input_hints() -> Glib::PropertyProxy< InputHints > ;
 
 /** Additional hints (beyond property_input_purpose())
    * that allow input methods to fine-tune their behaviour.
@@ -1479,7 +1479,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< InputHints > property_input_hints() const;
+  auto property_input_hints() const -> Glib::PropertyProxy_ReadOnly< InputHints >;
 
   /** Whether text should be displayed in a monospace font.
    *
@@ -1491,7 +1491,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_monospace() ;
+  auto property_monospace() -> Glib::PropertyProxy< bool > ;
 
 /** Whether text should be displayed in a monospace font.
    *
@@ -1503,21 +1503,21 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_monospace() const;
+  auto property_monospace() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** A menu model whose contents will be appended to the context menu.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > property_extra_menu() ;
+  auto property_extra_menu() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> > ;
 
 /** A menu model whose contents will be appended to the context menu.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> > property_extra_menu() const;
+  auto property_extra_menu() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >;
 
 
 public:
@@ -1551,7 +1551,7 @@ namespace Glib
    * @relates Gtk::TextView
    */
   GTKMM_API
-  Gtk::TextView* wrap(GtkTextView* object, bool take_copy = false);
+  auto wrap(GtkTextView* object, bool take_copy = false) -> Gtk::TextView*;
 } //namespace Glib
 
 

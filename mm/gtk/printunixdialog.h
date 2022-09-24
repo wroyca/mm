@@ -75,11 +75,11 @@ class GTKMM_API PrintUnixDialog : public Dialog
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   PrintUnixDialog(PrintUnixDialog&& src) noexcept;
-  PrintUnixDialog& operator=(PrintUnixDialog&& src) noexcept;
+  auto operator=(PrintUnixDialog&& src) noexcept -> PrintUnixDialog&;
 
   // noncopyable
   PrintUnixDialog(const PrintUnixDialog&) = delete;
-  PrintUnixDialog& operator=(const PrintUnixDialog&) = delete;
+  auto operator=(const PrintUnixDialog&) -> PrintUnixDialog& = delete;
 
   ~PrintUnixDialog() noexcept override;
 
@@ -99,19 +99,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkPrintUnixDialog*       gobj()       { return reinterpret_cast<GtkPrintUnixDialog*>(gobject_); }
+  auto       gobj() -> GtkPrintUnixDialog*       { return reinterpret_cast<GtkPrintUnixDialog*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkPrintUnixDialog* gobj() const { return reinterpret_cast<GtkPrintUnixDialog*>(gobject_); }
+  auto gobj() const -> const GtkPrintUnixDialog* { return reinterpret_cast<GtkPrintUnixDialog*>(gobject_); }
 
 private:
 
@@ -136,13 +136,13 @@ public:
    *
    * @return The page setup of @a dialog.
    */
-  Glib::RefPtr<PageSetup> get_page_setup();
+  auto get_page_setup() -> Glib::RefPtr<PageSetup>;
 
   /** Gets the page setup that is used by the `Gtk::PrintUnixDialog`.
    *
    * @return The page setup of @a dialog.
    */
-  Glib::RefPtr<const PageSetup> get_page_setup() const;
+  auto get_page_setup() const -> Glib::RefPtr<const PageSetup>;
 
 
   /** Sets the current page number.
@@ -158,7 +158,7 @@ public:
    *
    * @return The current page of @a dialog.
    */
-  int get_current_page() const;
+  auto get_current_page() const -> int;
 
 
   /** Sets the `Gtk::PrintSettings` for the `Gtk::PrintUnixDialog`.
@@ -179,7 +179,7 @@ public:
    *
    * @return A new `Gtk::PrintSettings` object with the values from @a dialog.
    */
-  Glib::RefPtr<PrintSettings> get_settings();
+  auto get_settings() -> Glib::RefPtr<PrintSettings>;
 
   /** Gets a new `Gtk::PrintSettings` object that represents the
    * current values in the print dialog.
@@ -189,20 +189,20 @@ public:
    *
    * @return A new `Gtk::PrintSettings` object with the values from @a dialog.
    */
-  Glib::RefPtr<const PrintSettings> get_settings() const;
+  auto get_settings() const -> Glib::RefPtr<const PrintSettings>;
 
 
   /** Gets the currently selected printer.
    *
    * @return The currently selected printer.
    */
-  Glib::RefPtr<Printer> get_selected_printer();
+  auto get_selected_printer() -> Glib::RefPtr<Printer>;
 
   /** Gets the currently selected printer.
    *
    * @return The currently selected printer.
    */
-  Glib::RefPtr<const Printer> get_selected_printer() const;
+  auto get_selected_printer() const -> Glib::RefPtr<const Printer>;
 
   void add_custom_tab(const Widget& child, const Glib::ustring& tab_label);
 
@@ -229,7 +229,7 @@ public:
    *
    * @return The printing capabilities.
    */
-  PrintCapabilities get_manual_capabilities() const;
+  auto get_manual_capabilities() const -> PrintCapabilities;
 
 
   /** Sets whether the print dialog allows user to print a selection.
@@ -242,7 +242,7 @@ public:
    *
    * @return Whether the application supports print of selection.
    */
-  bool get_support_selection() const;
+  auto get_support_selection() const -> bool;
 
   /** Sets whether a selection exists.
    *
@@ -254,7 +254,7 @@ public:
    *
    * @return Whether there is a selection.
    */
-  bool get_has_selection() const;
+  auto get_has_selection() const -> bool;
 
   /** Embed page size combo box and orientation combo box into page setup page.
    *
@@ -266,27 +266,27 @@ public:
    *
    * @return Whether to embed the page setup.
    */
-  bool get_embed_page_setup() const;
+  auto get_embed_page_setup() const -> bool;
 
   /** Gets whether a page setup was set by the user.
    *
    * @return Whether a page setup was set by user.
    */
-  bool get_page_setup_set() const;
+  auto get_page_setup_set() const -> bool;
 
   /** The `Gtk::PageSetup` object to use.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<PageSetup> > property_page_setup() ;
+  auto property_page_setup() -> Glib::PropertyProxy< Glib::RefPtr<PageSetup> > ;
 
 /** The `Gtk::PageSetup` object to use.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PageSetup> > property_page_setup() const;
+  auto property_page_setup() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PageSetup> >;
 
   /** The current page in the document.
    *
@@ -295,7 +295,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< int > property_current_page() ;
+  auto property_current_page() -> Glib::PropertyProxy< int > ;
 
 /** The current page in the document.
    *
@@ -304,28 +304,28 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_current_page() const;
+  auto property_current_page() const -> Glib::PropertyProxy_ReadOnly< int >;
 
   /** The `Gtk::PrintSettings` object used for this dialog.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<PrintSettings> > property_print_settings() ;
+  auto property_print_settings() -> Glib::PropertyProxy< Glib::RefPtr<PrintSettings> > ;
 
 /** The `Gtk::PrintSettings` object used for this dialog.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PrintSettings> > property_print_settings() const;
+  auto property_print_settings() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PrintSettings> >;
 
   /** The `Gtk::Printer` which is selected.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Printer> > property_selected_printer() const;
+  auto property_selected_printer() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Printer> >;
 
 
   /** Capabilities the application can handle.
@@ -335,7 +335,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_manual_capabilities() ;
+  auto property_manual_capabilities() -> Glib::PropertyProxy< bool > ;
 
 /** Capabilities the application can handle.
    *
@@ -344,7 +344,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_manual_capabilities() const;
+  auto property_manual_capabilities() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the dialog supports selection.
    *
@@ -353,7 +353,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_support_selection() ;
+  auto property_support_selection() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the dialog supports selection.
    *
@@ -362,7 +362,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_support_selection() const;
+  auto property_support_selection() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** Whether the application has a selection.
    *
@@ -371,7 +371,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_has_selection() ;
+  auto property_has_selection() -> Glib::PropertyProxy< bool > ;
 
 /** Whether the application has a selection.
    *
@@ -380,7 +380,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_selection() const;
+  auto property_has_selection() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** <tt>true</tt> if the page setup controls are embedded.
    *
@@ -389,7 +389,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_embed_page_setup() ;
+  auto property_embed_page_setup() -> Glib::PropertyProxy< bool > ;
 
 /** <tt>true</tt> if the page setup controls are embedded.
    *
@@ -398,7 +398,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_embed_page_setup() const;
+  auto property_embed_page_setup() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 public:
@@ -428,7 +428,7 @@ namespace Glib
    * @relates Gtk::PrintUnixDialog
    */
   GTKMM_API
-  Gtk::PrintUnixDialog* wrap(GtkPrintUnixDialog* object, bool take_copy = false);
+  auto wrap(GtkPrintUnixDialog* object, bool take_copy = false) -> Gtk::PrintUnixDialog*;
 } //namespace Glib
 
 

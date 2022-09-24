@@ -43,7 +43,7 @@ namespace
 namespace Glib
 {
 
-Gtk::WindowHandle* wrap(GtkWindowHandle* object, bool take_copy)
+auto wrap(GtkWindowHandle* object, bool take_copy) -> Gtk::WindowHandle*
 {
   return dynamic_cast<Gtk::WindowHandle *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -56,7 +56,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& WindowHandle_Class::init()
+auto WindowHandle_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -81,7 +81,7 @@ void WindowHandle_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* WindowHandle_Class::wrap_new(GObject* o)
+auto WindowHandle_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new WindowHandle((GtkWindowHandle*)(o)));
 
@@ -107,7 +107,7 @@ WindowHandle::WindowHandle(WindowHandle&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-WindowHandle& WindowHandle::operator=(WindowHandle&& src) noexcept
+auto WindowHandle::operator=(WindowHandle&& src) noexcept -> WindowHandle&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -120,13 +120,13 @@ WindowHandle::~WindowHandle() noexcept
 
 WindowHandle::CppClassType WindowHandle::windowhandle_class_; // initialize static member
 
-GType WindowHandle::get_type()
+auto WindowHandle::get_type() -> GType
 {
   return windowhandle_class_.init().get_type();
 }
 
 
-GType WindowHandle::get_base_type()
+auto WindowHandle::get_base_type() -> GType
 {
   return gtk_window_handle_get_type();
 }
@@ -147,23 +147,23 @@ void WindowHandle::set_child(Widget& child)
   gtk_window_handle_set_child(gobj(), (child).gobj());
 }
 
-Widget* WindowHandle::get_child()
+auto WindowHandle::get_child() -> Widget*
 {
   return Glib::wrap(gtk_window_handle_get_child(gobj()));
 }
 
-const Widget* WindowHandle::get_child() const
+auto WindowHandle::get_child() const -> const Widget*
 {
   return const_cast<WindowHandle*>(this)->get_child();
 }
 
 
-Glib::PropertyProxy< Widget* > WindowHandle::property_child()
+auto WindowHandle::property_child() -> Glib::PropertyProxy< Widget* >
 {
   return Glib::PropertyProxy< Widget* >(this, "child");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > WindowHandle::property_child() const
+auto WindowHandle::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
 }

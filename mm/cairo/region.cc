@@ -66,27 +66,27 @@ Region::Region(cairo_region_t* cobject, bool has_reference)
   check_object_status_and_throw_exception (*this);
 }
 
-RefPtr<Region> Region::create()
+auto Region::create() -> RefPtr<Region>
 {
   return make_refptr_for_instance<Region>(new Region());
 }
 
-RefPtr<Region> Region::create(const RectangleInt& rectangle)
+auto Region::create(const RectangleInt& rectangle) -> RefPtr<Region>
 {
   return make_refptr_for_instance<Region>(new Region(rectangle));
 }
 
-RefPtr<Region> Region::create(const std::vector<RectangleInt>& rects)
+auto Region::create(const std::vector<RectangleInt>& rects) -> RefPtr<Region>
 {
   return make_refptr_for_instance<Region>(new Region(rects));
 }
 
-RefPtr<Region> Region::create(const RectangleInt *rects, int count)
+auto Region::create(const RectangleInt *rects, int count) -> RefPtr<Region>
 {
   return make_refptr_for_instance<Region>(new Region(rects, count));
 }
 
-RefPtr<Region> Region::copy() const
+auto Region::copy() const -> RefPtr<Region>
 {
   return make_refptr_for_instance<Region>(new Region (cairo_region_copy (m_cobject), true));
 }
@@ -107,36 +107,36 @@ void Region::unreference() const
   cairo_region_destroy(m_cobject);
 }
 
-RectangleInt Region::get_extents() const
+auto Region::get_extents() const -> RectangleInt
 {
   RectangleInt result;
   cairo_region_get_extents(m_cobject, &result);
   return result;
 }
 
-int Region::get_num_rectangles() const
+auto Region::get_num_rectangles() const -> int
 {
   return cairo_region_num_rectangles(m_cobject);
 }
 
-RectangleInt Region::get_rectangle(int nth_rectangle) const
+auto Region::get_rectangle(int nth_rectangle) const -> RectangleInt
 {
   RectangleInt result;
   cairo_region_get_rectangle(m_cobject, nth_rectangle, &result);
   return result;
 }
 
-bool Region::empty() const
+auto Region::empty() const -> bool
 {
   return cairo_region_is_empty(m_cobject);
 }
 
-Region::Overlap Region::contains_rectangle(const RectangleInt& rectangle) const
+auto Region::contains_rectangle(const RectangleInt& rectangle) const -> Region::Overlap
 {
   return (Overlap)cairo_region_contains_rectangle(m_cobject, &rectangle);
 }
 
-bool Region::contains_point(int x, int y) const
+auto Region::contains_point(int x, int y) const -> bool
 {
   return cairo_region_contains_point(m_cobject, x, y);
 }

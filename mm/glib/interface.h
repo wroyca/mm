@@ -41,7 +41,7 @@ public:
   Interface();
 
   Interface(Interface&& src) noexcept;
-  Interface& operator=(Interface&& src) noexcept;
+  auto operator=(Interface&& src) noexcept -> Interface&;
 
   /** Called by constructors of derived classes. Provide the result of
    * the Class object's init() function to ensure that it is properly
@@ -62,7 +62,7 @@ public:
 
   // noncopyable
   Interface(const Interface&) = delete;
-  Interface& operator=(const Interface&) = delete;
+  auto operator=(const Interface&) -> Interface& = delete;
 
 // void add_interface(GType gtype_implementer);
 
@@ -70,15 +70,15 @@ public:
 // static Glib::Interface* wrap_new(GTypeInterface*);
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_type() G_GNUC_CONST;
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
-  inline GObject* gobj() { return gobject_; }
-  inline const GObject* gobj() const { return gobject_; }
+  inline auto gobj() -> GObject* { return gobject_; }
+  inline auto gobj() const -> const GObject* { return gobject_; }
 };
 
-RefPtr<ObjectBase> wrap_interface(GObject* object, bool take_copy = false);
+auto wrap_interface(GObject* object, bool take_copy = false) -> RefPtr<ObjectBase>;
 
 } // namespace Glib
 

@@ -79,7 +79,7 @@ public:
 
   GTKMM_API ConstraintVflParserError(Code error_code, const Glib::ustring& error_message);
   GTKMM_API explicit ConstraintVflParserError(GError* gobject);
-  GTKMM_API Code code() const;
+  GTKMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -101,7 +101,7 @@ template <>
 class GTKMM_API Value<Gtk::ConstraintVflParserError::Code> : public Glib::Value_Enum<Gtk::ConstraintVflParserError::Code>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -136,7 +136,7 @@ public:
 
   // noncopyable
   ConstraintLayout(const ConstraintLayout&) = delete;
-  ConstraintLayout& operator=(const ConstraintLayout&) = delete;
+  auto operator=(const ConstraintLayout&) -> ConstraintLayout& = delete;
 
 private:  friend class ConstraintLayout_Class;
   static CppClassType constraintlayout_class_;
@@ -150,28 +150,28 @@ protected:
 public:
 
   ConstraintLayout(ConstraintLayout&& src) noexcept;
-  ConstraintLayout& operator=(ConstraintLayout&& src) noexcept;
+  auto operator=(ConstraintLayout&& src) noexcept -> ConstraintLayout&;
 
   ~ConstraintLayout() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkConstraintLayout*       gobj()       { return reinterpret_cast<GtkConstraintLayout*>(gobject_); }
+  auto       gobj() -> GtkConstraintLayout*       { return reinterpret_cast<GtkConstraintLayout*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkConstraintLayout* gobj() const { return reinterpret_cast<GtkConstraintLayout*>(gobject_); }
+  auto gobj() const -> const GtkConstraintLayout* { return reinterpret_cast<GtkConstraintLayout*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkConstraintLayout* gobj_copy();
+  auto gobj_copy() -> GtkConstraintLayout*;
 
 private:
 
@@ -181,7 +181,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<ConstraintLayout> create();
+  static auto create() -> Glib::RefPtr<ConstraintLayout>;
 
 
   /** Adds a constraint to the layout manager.
@@ -264,8 +264,8 @@ public:
    * @return The vector of Gtk::Constraints that were added to the layout.
    * @throws Gtk::ConstraintVflParserError
    */
-  std::vector<Glib::RefPtr<Constraint>> add_constraints_from_description(
-    const std::vector<Glib::ustring>& lines, int hspacing, int vspacing, const VFLmap& views);
+  auto add_constraints_from_description(
+    const std::vector<Glib::ustring>& lines, int hspacing, int vspacing, const VFLmap& views) -> std::vector<Glib::RefPtr<Constraint>>;
 
 
   /** Returns a `Gio::ListModel` to track the constraints that are
@@ -281,7 +281,7 @@ public:
    * @return A
    * `Gio::ListModel` tracking the layout's constraints.
    */
-  Glib::RefPtr<Gio::ListModel> observe_constraints();
+  auto observe_constraints() -> Glib::RefPtr<Gio::ListModel>;
 
   /** Returns a `Gio::ListModel` to track the constraints that are
    * part of the layout.
@@ -296,7 +296,7 @@ public:
    * @return A
    * `Gio::ListModel` tracking the layout's constraints.
    */
-  Glib::RefPtr<const Gio::ListModel> observe_constraints() const;
+  auto observe_constraints() const -> Glib::RefPtr<const Gio::ListModel>;
 
   /** Returns a `Gio::ListModel` to track the guides that are
    * part of the layout.
@@ -311,7 +311,7 @@ public:
    * @return A
    * `Gio::ListModel` tracking the layout's guides.
    */
-  Glib::RefPtr<Gio::ListModel> observe_guides();
+  auto observe_guides() -> Glib::RefPtr<Gio::ListModel>;
 
   /** Returns a `Gio::ListModel` to track the guides that are
    * part of the layout.
@@ -326,7 +326,7 @@ public:
    * @return A
    * `Gio::ListModel` tracking the layout's guides.
    */
-  Glib::RefPtr<const Gio::ListModel> observe_guides() const;
+  auto observe_guides() const -> Glib::RefPtr<const Gio::ListModel>;
 
 
 public:
@@ -356,7 +356,7 @@ namespace Glib
    * @relates Gtk::ConstraintLayout
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::ConstraintLayout> wrap(GtkConstraintLayout* object, bool take_copy = false);
+  auto wrap(GtkConstraintLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ConstraintLayout>;
 }
 
 

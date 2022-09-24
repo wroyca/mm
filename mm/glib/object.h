@@ -80,7 +80,7 @@ public:
   ~ConstructParams() noexcept;
 
   ConstructParams(const ConstructParams& other) = delete;
-  ConstructParams& operator=(const ConstructParams&) = delete;
+  auto operator=(const ConstructParams&) -> ConstructParams& = delete;
 };
 
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
@@ -97,10 +97,10 @@ public:
 
   // noncopyable
   Object(const Object&) = delete;
-  Object& operator=(const Object&) = delete;
+  auto operator=(const Object&) -> Object& = delete;
 
   Object(Object&& src) noexcept;
-  Object& operator=(Object&& src) noexcept;
+  auto operator=(Object&& src) noexcept -> Object&;
 
 protected:
   Object(); // For use by C++-only sub-types.
@@ -112,8 +112,8 @@ public:
 // static RefPtr<Object> create(); //You must reimplement this in each derived class.
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_type() G_GNUC_CONST;
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_type() -> GType G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   // GObject* gobj_copy(); //Give a ref-ed copy to someone. Use for direct struct access.
@@ -121,13 +121,13 @@ public:
   // Glib::Objects contain a list<Quark, pair<void*, DestroyNotify> >
   // to store run time data added to the object at run time.
   // TODO: Use slots instead:
-  void* get_data(const QueryQuark& key);
+  auto get_data(const QueryQuark& key) -> void*;
   void set_data(const Quark& key, void* data);
   using DestroyNotify = void (*)(gpointer data);
   void set_data(const Quark& key, void* data, DestroyNotify notify);
   void remove_data(const QueryQuark& quark);
   // same as remove without notifying
-  void* steal_data(const QueryQuark& quark);
+  auto steal_data(const QueryQuark& quark) -> void*;
 
 // convenience functions
 // template <class T>

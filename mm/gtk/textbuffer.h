@@ -100,7 +100,7 @@ public:
 
   // noncopyable
   TextBuffer(const TextBuffer&) = delete;
-  TextBuffer& operator=(const TextBuffer&) = delete;
+  auto operator=(const TextBuffer&) -> TextBuffer& = delete;
 
 private:  friend class TextBuffer_Class;
   static CppClassType textbuffer_class_;
@@ -114,28 +114,28 @@ protected:
 public:
 
   TextBuffer(TextBuffer&& src) noexcept;
-  TextBuffer& operator=(TextBuffer&& src) noexcept;
+  auto operator=(TextBuffer&& src) noexcept -> TextBuffer&;
 
   ~TextBuffer() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkTextBuffer*       gobj()       { return reinterpret_cast<GtkTextBuffer*>(gobject_); }
+  auto       gobj() -> GtkTextBuffer*       { return reinterpret_cast<GtkTextBuffer*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkTextBuffer* gobj() const { return reinterpret_cast<GtkTextBuffer*>(gobject_); }
+  auto gobj() const -> const GtkTextBuffer* { return reinterpret_cast<GtkTextBuffer*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkTextBuffer* gobj_copy();
+  auto gobj_copy() -> GtkTextBuffer*;
 
 private:
 
@@ -154,10 +154,10 @@ protected:
 
 public:
 
-  static Glib::RefPtr<TextBuffer> create();
+  static auto create() -> Glib::RefPtr<TextBuffer>;
 
 
-  static Glib::RefPtr<TextBuffer> create(const Glib::RefPtr<TagTable>& tag_table);
+  static auto create(const Glib::RefPtr<TagTable>& tag_table) -> Glib::RefPtr<TextBuffer>;
 
 
   /** Obtains the number of lines in the buffer.
@@ -166,7 +166,7 @@ public:
    *
    * @return Number of lines in the buffer.
    */
-  int get_line_count() const;
+  auto get_line_count() const -> int;
 
   /** Gets the number of characters in the buffer.
    *
@@ -178,23 +178,23 @@ public:
    *
    * @return Number of characters in the buffer.
    */
-  int get_char_count() const;
+  auto get_char_count() const -> int;
 
   /// See get_char_count().
-  int size() const;
+  auto size() const -> int;
 
 
   /** Get the `Gtk::TextTagTable` associated with this buffer.
    *
    * @return The buffer’s tag table.
    */
-  Glib::RefPtr<TextBuffer::TagTable> get_tag_table();
+  auto get_tag_table() -> Glib::RefPtr<TextBuffer::TagTable>;
 
   /** Get the `Gtk::TextTagTable` associated with this buffer.
    *
    * @return The buffer’s tag table.
    */
-  Glib::RefPtr<const TextBuffer::TagTable> get_tag_table() const;
+  auto get_tag_table() const -> Glib::RefPtr<const TextBuffer::TagTable>;
 
   /** Removes the current contents of the buffer, and inserts @a text instead.
    * @param text The text to put in the buffer.
@@ -218,7 +218,7 @@ public:
    * @param text The text to be inserted in the buffer.
    * @result An iterator that points to the end of the inserted text.
    */
-  iterator insert(const iterator& pos, const Glib::ustring& text);
+  auto insert(const iterator& pos, const Glib::ustring& text) -> iterator;
 
   /** Inserts text at position @a pos.
    * Emits the "insert_text" signal; insertion actually occurs in the default handler for the signal.
@@ -229,7 +229,7 @@ public:
    * @param text_end The end of the UTF8 character array.
    * @result An iterator that points to the end of the inserted text.
    */
-  iterator insert(const iterator& pos, const char* text_begin, const char* text_end);
+  auto insert(const iterator& pos, const char* text_begin, const char* text_end) -> iterator;
 
   /** Inserts @a text, using the current cursor position as the insertion point.
    * Emits the "insert_text" signal; insertion actually occurs in the default handler for the signal.
@@ -257,8 +257,8 @@ public:
    * @param default_editable Default editability of buffer
    * @result Whether text was actually inserted
    */
-  std::pair<iterator,bool> insert_interactive(
-      const iterator& pos, const Glib::ustring& text, bool default_editable = true);
+  auto insert_interactive(
+      const iterator& pos, const Glib::ustring& text, bool default_editable = true) -> std::pair<iterator,bool>;
 
   /** Like insert(), but the insertion will not occur if @a pos is at a non-editable location in the buffer.
    * Usually you want to prevent insertions at ineditable locations if the insertion results from a user action (is interactive).
@@ -272,8 +272,8 @@ public:
    * @param default_editable Default editability of buffer.
    * @result Whether text was actually inserted
    */
-  std::pair<iterator,bool> insert_interactive(
-      const iterator& pos, const char* text_begin, const char* text_end, bool default_editable = true);
+  auto insert_interactive(
+      const iterator& pos, const char* text_begin, const char* text_end, bool default_editable = true) -> std::pair<iterator,bool>;
 
   /** Calls insert_interactive() at the cursor position.
    *
@@ -284,7 +284,7 @@ public:
    * @param default_editable Default editability of buffer
    * @result Whether text was actually inserted
    */
-  bool insert_interactive_at_cursor(const Glib::ustring& text, bool default_editable = true);
+  auto insert_interactive_at_cursor(const Glib::ustring& text, bool default_editable = true) -> bool;
 
   /** Calls insert_interactive() at the cursor position.
    *
@@ -296,8 +296,8 @@ public:
    * @param default_editable Default editability of buffer
    * @result Whether text was actually inserted
    */
-  bool insert_interactive_at_cursor(const char* text_begin, const char* text_end,
-                                    bool default_editable = true);
+  auto insert_interactive_at_cursor(const char* text_begin, const char* text_end,
+                                    bool default_editable = true) -> bool;
 
   /** Copies text, tags, and paintable between @a range_begin and @a range_end (the order of range_begin and range_begin doesn't
    * matter) and inserts the copy at @a pos. Used instead of simply getting/inserting text because it preserves images and tags.
@@ -310,7 +310,7 @@ public:
    * @param range_end Another position in the same buffer as @a range_begin.
    * @result Whether text was actually inserted
    */
-  iterator insert(const iterator& pos, const const_iterator& range_begin, const const_iterator& range_end);
+  auto insert(const iterator& pos, const const_iterator& range_begin, const const_iterator& range_end) -> iterator;
 
 
   /** Same as insert_range(), but does nothing if the insertion point isn't editable.
@@ -324,14 +324,14 @@ public:
    * @param default_editable Default editability of buffer.
    * @result Whether text was actually inserted
    */
-  std::pair<iterator,bool> insert_interactive(const iterator& pos, const const_iterator& range_begin, const const_iterator& range_end, bool default_editable = true);
+  auto insert_interactive(const iterator& pos, const const_iterator& range_begin, const const_iterator& range_end, bool default_editable = true) -> std::pair<iterator,bool>;
 
 
-  iterator insert_with_tag(const iterator& pos, const Glib::ustring& text, const Glib::RefPtr<Tag>& tag);
-  iterator insert_with_tag(const iterator& pos, const char* text_begin, const char* text_end, const Glib::RefPtr<Tag>& tag);
+  auto insert_with_tag(const iterator& pos, const Glib::ustring& text, const Glib::RefPtr<Tag>& tag) -> iterator;
+  auto insert_with_tag(const iterator& pos, const char* text_begin, const char* text_end, const Glib::RefPtr<Tag>& tag) -> iterator;
 
-  iterator insert_with_tag(const iterator& pos, const Glib::ustring& text, const Glib::ustring& tag_name);
-  iterator insert_with_tag(const iterator& pos, const char* text_begin, const char* text_end, const Glib::ustring& tag_name);
+  auto insert_with_tag(const iterator& pos, const Glib::ustring& text, const Glib::ustring& tag_name) -> iterator;
+  auto insert_with_tag(const iterator& pos, const char* text_begin, const char* text_end, const Glib::ustring& tag_name) -> iterator;
 
   /** Inserts text into buffer at @a pos, applying the list of tags to the newly-inserted text.
    * Equivalent to calling insert(), then apply_tag() on the inserted text; This is just a convenience function.
@@ -341,8 +341,8 @@ public:
    * @param tags A standard C++ container of @link Gtk::TextTag Gtk::TextBuffer::Tags@endlink.
    * @result Whether text was actually inserted
    */
-  iterator insert_with_tags(const iterator& pos, const Glib::ustring& text,
-                            const std::vector< Glib::RefPtr<Tag> >& tags);
+  auto insert_with_tags(const iterator& pos, const Glib::ustring& text,
+                            const std::vector< Glib::RefPtr<Tag> >& tags) -> iterator;
 
   /** Inserts text into buffer at @a pos, applying the list of tags to the newly-inserted text.
    * Equivalent to calling insert(), then apply_tag() on the inserted text; This is just a convenience function.
@@ -353,8 +353,8 @@ public:
    * @param tags A standard C++ container of @link Gtk::TextTag Gtk::TextBuffer::Tags@endlink.
    * @result Whether text was actually inserted
    */
-  iterator insert_with_tags(const iterator& pos, const char* text_begin, const char* text_end,
-                            const std::vector< Glib::RefPtr<Tag> >& tags);
+  auto insert_with_tags(const iterator& pos, const char* text_begin, const char* text_end,
+                            const std::vector< Glib::RefPtr<Tag> >& tags) -> iterator;
 
   /** Inserts text into buffer at @a pos, applying the list of tags to the newly-inserted text.
    * Equivalent to calling insert(), then apply_tag() on the inserted text; This is just a convenience function.
@@ -364,8 +364,8 @@ public:
    * @param tag_names A standard C++ container of tag names.
    * @result Whether text was actually inserted
    */
-  iterator insert_with_tags_by_name(const iterator& pos, const Glib::ustring& text,
-                                    const std::vector<Glib::ustring>& tag_names);
+  auto insert_with_tags_by_name(const iterator& pos, const Glib::ustring& text,
+                                    const std::vector<Glib::ustring>& tag_names) -> iterator;
 
 
   /** Equivalent to calling insert(), then apply_tag() on the inserted text; This is just a convenience function.
@@ -376,8 +376,8 @@ public:
    * @param tag_names A standard C++ container of tag names.
    * @result Whether text was actually inserted
    */
-  iterator insert_with_tags_by_name(const iterator& pos, const char* text_begin, const char* text_end,
-                                    const std::vector<Glib::ustring>& tag_names);
+  auto insert_with_tags_by_name(const iterator& pos, const char* text_begin, const char* text_end,
+                                    const std::vector<Glib::ustring>& tag_names) -> iterator;
 
   /** Inserts text in @a markup at position @a pos.
    * Emits the "insert_text" signal, possibly multiple times; insertion actually occurs in the
@@ -388,7 +388,7 @@ public:
    * @param markup The text containing pango markup to be inserted in the buffer.
    * @result An iterator that points to the end of the inserted markup text.
    */
-  iterator insert_markup(const iterator& pos, const Glib::ustring& markup);
+  auto insert_markup(const iterator& pos, const Glib::ustring& markup) -> iterator;
 
   /** Inserts markup text at position @a pos.
    * Emits the "insert_text" signal; insertion actually occurs in the default handler for the signal.
@@ -399,7 +399,7 @@ public:
    * @param markup_end The end of the UTF8 character array containing pango markup.
    * @result An iterator that points to the end of the inserted markup text.
    */
-  iterator insert_markup(const iterator& pos, const char* markup_begin, const char* markup_end);
+  auto insert_markup(const iterator& pos, const char* markup_begin, const char* markup_end) -> iterator;
 
   /* Deletes all text between @a range_begin and @a range_end. The order of range_begin and range_end is not actually relevant.
    * This function actually emits the "delete_range" signal, and the default handler of that signal deletes the text.
@@ -408,7 +408,7 @@ public:
    * @param range_end
    * @result An iterator that points to the location where text was deleted.
    */
-  iterator erase(const iterator& range_begin, const iterator& range_end);
+  auto erase(const iterator& range_begin, const iterator& range_end) -> iterator;
 
 
    /* Deletes all editable text between @a range_begin and @a range_end. The order of range_begin and range_end is not actually relevant.
@@ -423,7 +423,7 @@ public:
    * @param default_editable Default editability of buffer
    * @result An iterator that points to the location where text was deleted, or end() is no text was deleted.
    */
-  std::pair<iterator,bool> erase_interactive(const iterator& range_begin, const iterator& range_end, bool default_editable = true);
+  auto erase_interactive(const iterator& range_begin, const iterator& range_end, bool default_editable = true) -> std::pair<iterator,bool>;
 
 
   /** Performs the appropriate action as if the user hit the delete
@@ -444,7 +444,7 @@ public:
    *
    * @newin{2,6}
    */
-  iterator backspace(const iterator& iter, bool interactive = true, bool default_editable = true);
+  auto backspace(const iterator& iter, bool interactive = true, bool default_editable = true) -> iterator;
 
 
   /** Returns the text in the range [ @a range_start, @a range_end).
@@ -461,7 +461,7 @@ public:
    * @param include_hidden_chars Whether to include invisible text.
    * @return An allocated UTF-8 string.
    */
-  Glib::ustring get_text(const const_iterator& range_start, const const_iterator& range_end, bool include_hidden_chars =  true) const;
+  auto get_text(const const_iterator& range_start, const const_iterator& range_end, bool include_hidden_chars =  true) const -> Glib::ustring;
 
   /** Returns all the text in the buffer. Excludes undisplayed
    * text (text marked with tags that set the invisibility attribute) if
@@ -474,7 +474,7 @@ public:
    * @param include_hidden_chars Whether to include invisible text.
    * @return An allocated UTF-8 string.
    */
-  Glib::ustring get_text(bool include_hidden_chars = true) const;
+  auto get_text(bool include_hidden_chars = true) const -> Glib::ustring;
 
 
   /** Returns the text in the range [ @a range_start, @a range_end).
@@ -493,15 +493,15 @@ public:
    * @param include_hidden_chars Whether to include invisible text.
    * @return An allocated UTF-8 string.
    */
-  Glib::ustring get_slice(const const_iterator& range_start, const const_iterator& range_end, bool include_hidden_chars =  true) const;
+  auto get_slice(const const_iterator& range_start, const const_iterator& range_end, bool include_hidden_chars =  true) const -> Glib::ustring;
 
-  iterator insert_paintable(const iterator& pos, const Glib::RefPtr<Gdk::Paintable>& paintable);
-
-
-  iterator insert_child_anchor(const iterator& pos, const Glib::RefPtr<ChildAnchor>& anchor);
+  auto insert_paintable(const iterator& pos, const Glib::RefPtr<Gdk::Paintable>& paintable) -> iterator;
 
 
-  Glib::RefPtr<ChildAnchor> create_child_anchor(const iterator& pos);
+  auto insert_child_anchor(const iterator& pos, const Glib::RefPtr<ChildAnchor>& anchor) -> iterator;
+
+
+  auto create_child_anchor(const iterator& pos) -> Glib::RefPtr<ChildAnchor>;
 
 
   /** Adds the mark at position @a where.
@@ -536,7 +536,7 @@ public:
    * @param left_gravity Whether the mark has left gravity.
    * @return The new `Gtk::TextMark` object.
    */
-  Glib::RefPtr<TextBuffer::Mark> create_mark(const Glib::ustring& mark_name, const iterator& where, bool left_gravity =  true);
+  auto create_mark(const Glib::ustring& mark_name, const iterator& where, bool left_gravity =  true) -> Glib::RefPtr<TextBuffer::Mark>;
 
   /** Create an anonymous mark. */
   /** Creates an anonymous mark at position @a where.
@@ -555,7 +555,7 @@ public:
    * @param left_gravity Whether the mark has left gravity.
    * @return The new Gtk::TextMark object.
    */
-  Glib::RefPtr<Mark> create_mark(const iterator& where, bool left_gravity = true);
+  auto create_mark(const iterator& where, bool left_gravity = true) -> Glib::RefPtr<Mark>;
 
 
   /** Moves @a mark to the new location @a where.
@@ -589,7 +589,7 @@ public:
    * @param name A mark name.
    * @return A `Gtk::TextMark`.
    */
-  Glib::RefPtr<TextBuffer::Mark> get_mark(const Glib::ustring& name);
+  auto get_mark(const Glib::ustring& name) -> Glib::RefPtr<TextBuffer::Mark>;
 
   /** Returns the mark named @a name in buffer @a buffer, or <tt>nullptr</tt> if no such
    * mark exists in the buffer.
@@ -597,7 +597,7 @@ public:
    * @param name A mark name.
    * @return A `Gtk::TextMark`.
    */
-  Glib::RefPtr<const TextBuffer::Mark> get_mark(const Glib::ustring& name) const;
+  auto get_mark(const Glib::ustring& name) const -> Glib::RefPtr<const TextBuffer::Mark>;
 
 
   /** Moves the mark named @a name (which must exist) to location @a where.
@@ -626,7 +626,7 @@ public:
    *
    * @return Insertion point mark.
    */
-  Glib::RefPtr<TextBuffer::Mark> get_insert();
+  auto get_insert() -> Glib::RefPtr<TextBuffer::Mark>;
 
   /** Returns the mark that represents the selection bound.
    *
@@ -643,7 +643,7 @@ public:
    *
    * @return Selection bound mark.
    */
-  Glib::RefPtr<TextBuffer::Mark> get_selection_bound();
+  auto get_selection_bound() -> Glib::RefPtr<TextBuffer::Mark>;
 
 
   /** This function moves the “insert” and “selection_bound” marks
@@ -727,7 +727,7 @@ public:
    * @param tag_name The name for the new tag.
    * @result The new tag.
    */
-  Glib::RefPtr<Tag> create_tag(const Glib::ustring& tag_name);
+  auto create_tag(const Glib::ustring& tag_name) -> Glib::RefPtr<Tag>;
 
 
   /** Creates an anoymous tag and adds it to the tag table for buffer. Equivalent to calling Gtk::TextBuffer::Tag::create() and then adding
@@ -735,20 +735,20 @@ public:
    *
    * @result The new tag.
    */
-  Glib::RefPtr<Tag> create_tag();
+  auto create_tag() -> Glib::RefPtr<Tag>;
 
-  iterator get_iter_at_line_offset(int line_number, int char_offset);
-  const_iterator get_iter_at_line_offset(int line_number, int char_offset) const;
-  iterator get_iter_at_line_index(int line_number, int byte_index);
-  const_iterator get_iter_at_line_index(int line_number, int byte_index) const;
-  iterator get_iter_at_offset(int char_offset);
-  const_iterator get_iter_at_offset(int char_offset) const;
-  iterator get_iter_at_line(int line_number);
-  const_iterator get_iter_at_line(int line_number) const;
-  iterator begin();
-  const_iterator begin() const;
-  iterator end();
-  const_iterator end() const;
+  auto get_iter_at_line_offset(int line_number, int char_offset) -> iterator;
+  auto get_iter_at_line_offset(int line_number, int char_offset) const -> const_iterator;
+  auto get_iter_at_line_index(int line_number, int byte_index) -> iterator;
+  auto get_iter_at_line_index(int line_number, int byte_index) const -> const_iterator;
+  auto get_iter_at_offset(int char_offset) -> iterator;
+  auto get_iter_at_offset(int char_offset) const -> const_iterator;
+  auto get_iter_at_line(int line_number) -> iterator;
+  auto get_iter_at_line(int line_number) const -> const_iterator;
+  auto begin() -> iterator;
+  auto begin() const -> const_iterator;
+  auto end() -> iterator;
+  auto end() const -> const_iterator;
   void get_bounds(iterator& range_begin, iterator& range_end);
   void get_bounds(const_iterator& range_begin, const_iterator& range_end) const;
 
@@ -756,25 +756,25 @@ public:
    * @param mark The @link Gtk::TextMark Gtk::TextBuffer::Mark@endlink
    * @result An iterator that points to the position of the @a mark.
    */
-  iterator get_iter_at_mark(const Glib::RefPtr<Mark>& mark);
+  auto get_iter_at_mark(const Glib::RefPtr<Mark>& mark) -> iterator;
 
   /** Get the current position of a mark.
    * @param mark The @link Gtk::TextMark Gtk::TextBuffer::Mark@endlink
    * @result An iterator that points to the position of the @a mark.
    */
-  const_iterator get_iter_at_mark(const Glib::RefPtr<Mark>& mark) const;
+  auto get_iter_at_mark(const Glib::RefPtr<Mark>& mark) const -> const_iterator;
 
   /** Get the current position of an anchor.
    * @param anchor A @link Gtk::TextChildAnchor Gtk::TextBuffer::Anchor@endlink that appears in the buffer.
    * @result An iterator that points to the position of the @a anchor.
    */
-  iterator get_iter_at_child_anchor(const Glib::RefPtr<ChildAnchor>& anchor);
+  auto get_iter_at_child_anchor(const Glib::RefPtr<ChildAnchor>& anchor) -> iterator;
 
   /** Get the current position of an anchor.
    * @param anchor A @link Gtk::TextChildAnchor Gtk::TextBuffer::Anchor@endlink that appears in the buffer.
    * @result An iterator that points to the position of the @a anchor.
    */
-  const_iterator get_iter_at_child_anchor(const Glib::RefPtr<ChildAnchor>& anchor) const;
+  auto get_iter_at_child_anchor(const Glib::RefPtr<ChildAnchor>& anchor) const -> const_iterator;
 
 
   /** Indicates whether the buffer has been modified since the last call
@@ -785,7 +785,7 @@ public:
    *
    * @return <tt>true</tt> if the buffer has been modified.
    */
-  bool get_modified() const;
+  auto get_modified() const -> bool;
 
   /** Used to keep track of whether the buffer has been
    * modified since the last time it was saved.
@@ -806,7 +806,7 @@ public:
    *
    * @return <tt>true</tt> if the there is text selected.
    */
-  bool get_has_selection() const;
+  auto get_has_selection() const -> bool;
 
 
   /** Adds @a clipboard to the list of clipboards in which the selection
@@ -873,7 +873,7 @@ public:
    * @param range_end Iterator to initialize with selection end.
    * @return Whether the selection has nonzero length.
    */
-  bool get_selection_bounds(iterator& range_start, iterator& range_end);
+  auto get_selection_bounds(iterator& range_start, iterator& range_end) -> bool;
 
   /** Returns <tt>true</tt> if some text is selected; places the bounds
    * of the selection in @a range_start and @a range_end.
@@ -887,7 +887,7 @@ public:
    * @param range_end Iterator to initialize with selection end.
    * @return Whether the selection has nonzero length.
    */
-  bool get_selection_bounds(const_iterator& range_start, const_iterator& range_end) const;
+  auto get_selection_bounds(const_iterator& range_start, const_iterator& range_end) const -> bool;
 
   /** Deletes the range between the “insert” and “selection_bound” marks,
    * that is, the currently-selected text.
@@ -899,7 +899,7 @@ public:
    * @param default_editable Whether the buffer is editable by default.
    * @return Whether there was a non-empty selection to delete.
    */
-  bool erase_selection(bool interactive =  true, bool default_editable =  true);
+  auto erase_selection(bool interactive =  true, bool default_editable =  true) -> bool;
 
   // gtk_text_buffer_get_selection_content() gives us a ref. Don't add refreturn.
 
@@ -910,7 +910,7 @@ public:
    *
    * @return A new `Gdk::ContentProvider`.
    */
-  Glib::RefPtr<Gdk::ContentProvider> get_selection_content();
+  auto get_selection_content() -> Glib::RefPtr<Gdk::ContentProvider>;
 
 
   /** This function moves the “insert” and “selection_bound” marks
@@ -933,13 +933,13 @@ public:
    *
    * @return <tt>true</tt> if there is an undoable action.
    */
-  bool get_can_undo() const;
+  auto get_can_undo() const -> bool;
 
   /** Gets whether there is a redoable action in the history.
    *
    * @return <tt>true</tt> if there is an redoable action.
    */
-  bool get_can_redo() const;
+  auto get_can_redo() const -> bool;
 
   /** Gets whether the buffer is saving modifications to the buffer
    * to allow for undo and redo actions.
@@ -948,7 +948,7 @@ public:
    * end_irreversible_action() to create
    * changes to the buffer that cannot be undone.
    */
-  bool get_enable_undo() const;
+  auto get_enable_undo() const -> bool;
 
   /** Sets whether or not to enable undoable actions in the text buffer.
    *
@@ -972,7 +972,7 @@ public:
    * have a memory usage impact as it requires storing an additional
    * copy of the inserted or removed text within the text buffer.
    */
-  guint get_max_undo_levels() const;
+  auto get_max_undo_levels() const -> guint;
 
   /** Sets the maximum number of undo levels to perform.
    *
@@ -1073,7 +1073,7 @@ public:
    * @param bytes Length of the inserted text in bytes.
    */
 
-  Glib::SignalProxy<void(TextBuffer::iterator&, const Glib::ustring&, int)> signal_insert();
+  auto signal_insert() -> Glib::SignalProxy<void(TextBuffer::iterator&, const Glib::ustring&, int)>;
 
 
   /**
@@ -1097,7 +1097,7 @@ public:
    * @param paintable The `Gdk::Paintable` to be inserted.
    */
 
-  Glib::SignalProxy<void(TextBuffer::iterator&, const Glib::RefPtr<Gdk::Paintable>&)> signal_insert_paintable();
+  auto signal_insert_paintable() -> Glib::SignalProxy<void(TextBuffer::iterator&, const Glib::RefPtr<Gdk::Paintable>&)>;
 
 
   /**
@@ -1121,7 +1121,7 @@ public:
    * @param anchor The `Gtk::TextChildAnchor` to be inserted.
    */
 
-  Glib::SignalProxy<void(TextBuffer::iterator&, const Glib::RefPtr<ChildAnchor>&)> signal_insert_child_anchor();
+  auto signal_insert_child_anchor() -> Glib::SignalProxy<void(TextBuffer::iterator&, const Glib::RefPtr<ChildAnchor>&)>;
 
 
   /**
@@ -1146,7 +1146,7 @@ public:
    * @param range_end The end of the range to be deleted.
    */
 
-  Glib::SignalProxy<void(TextBuffer::iterator&, TextBuffer::iterator&)> signal_erase();
+  auto signal_erase() -> Glib::SignalProxy<void(TextBuffer::iterator&, TextBuffer::iterator&)>;
 
 
   /**
@@ -1158,7 +1158,7 @@ public:
    * Emitted when the content of a `Gtk::TextBuffer` has changed.
    */
 
-  Glib::SignalProxy<void()> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -1172,7 +1172,7 @@ public:
    * See also: Gtk::TextBuffer::set_modified().
    */
 
-  Glib::SignalProxy<void()> signal_modified_changed();
+  auto signal_modified_changed() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -1191,7 +1191,7 @@ public:
    * @param mark The mark that is set.
    */
 
-  Glib::SignalProxy<void(const TextBuffer::iterator&, const Glib::RefPtr<TextBuffer::Mark>&)> signal_mark_set();
+  auto signal_mark_set() -> Glib::SignalProxy<void(const TextBuffer::iterator&, const Glib::RefPtr<TextBuffer::Mark>&)>;
 
 
   /**
@@ -1207,7 +1207,7 @@ public:
    * @param mark The mark that was deleted.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<TextBuffer::Mark>&)> signal_mark_deleted();
+  auto signal_mark_deleted() -> Glib::SignalProxy<void(const Glib::RefPtr<TextBuffer::Mark>&)>;
 
 
   /**
@@ -1234,7 +1234,7 @@ public:
    * @param range_end The end of the range the tag is applied to.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<TextBuffer::Tag>&, const TextBuffer::iterator&, const TextBuffer::iterator&)> signal_apply_tag();
+  auto signal_apply_tag() -> Glib::SignalProxy<void(const Glib::RefPtr<TextBuffer::Tag>&, const TextBuffer::iterator&, const TextBuffer::iterator&)>;
 
 
   /**
@@ -1259,7 +1259,7 @@ public:
    * @param range_end The end of the range the tag is removed from.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<TextBuffer::Tag>&, const TextBuffer::iterator&, const TextBuffer::iterator&)> signal_remove_tag();
+  auto signal_remove_tag() -> Glib::SignalProxy<void(const Glib::RefPtr<TextBuffer::Tag>&, const TextBuffer::iterator&, const TextBuffer::iterator&)>;
 
 
   /**
@@ -1280,7 +1280,7 @@ public:
    * Gtk::TextBuffer::delete_selection().
    */
 
-  Glib::SignalProxy<void()> signal_begin_user_action();
+  auto signal_begin_user_action() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -1302,7 +1302,7 @@ public:
    * Gtk::TextBuffer::backspace().
    */
 
-  Glib::SignalProxy<void()> signal_end_user_action();
+  auto signal_end_user_action() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -1320,7 +1320,7 @@ public:
    * @param clipboard The `Gdk::Clipboard` pasted from.
    */
 
-  Glib::SignalProxy<void(const Glib::RefPtr<Gdk::Clipboard>&)> signal_paste_done();
+  auto signal_paste_done() -> Glib::SignalProxy<void(const Glib::RefPtr<Gdk::Clipboard>&)>;
 
 
   /**
@@ -1333,7 +1333,7 @@ public:
    * previously undone operation.
    */
 
-  Glib::SignalProxy<void()> signal_redo();
+  auto signal_redo() -> Glib::SignalProxy<void()>;
 
 
   /**
@@ -1347,7 +1347,7 @@ public:
    * been grouped together.
    */
 
-  Glib::SignalProxy<void()> signal_undo();
+  auto signal_undo() -> Glib::SignalProxy<void()>;
 
 
   /** The GtkTextTagTable for the buffer.
@@ -1355,7 +1355,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TextBuffer::TagTable> > property_tag_table() const;
+  auto property_tag_table() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TextBuffer::TagTable> >;
 
 
   /** The text content of the buffer.
@@ -1368,7 +1368,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::ustring > property_text() ;
+  auto property_text() -> Glib::PropertyProxy< Glib::ustring > ;
 
 /** The text content of the buffer.
    *
@@ -1380,7 +1380,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_text() const;
+  auto property_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
   /** Whether the buffer has some text currently selected.
    *
@@ -1389,7 +1389,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_has_selection() const;
+  auto property_has_selection() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** The position of the insert mark.
@@ -1402,7 +1402,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_cursor_position() const;
+  auto property_cursor_position() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
   /** Denotes that the buffer can undo the last applied action.
@@ -1412,7 +1412,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_can_undo() const;
+  auto property_can_undo() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Denotes that the buffer can reapply the last undone action.
@@ -1422,7 +1422,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_can_redo() const;
+  auto property_can_redo() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
   /** Denotes if support for undoing and redoing changes to the buffer is allowed.
@@ -1432,7 +1432,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_enable_undo() ;
+  auto property_enable_undo() -> Glib::PropertyProxy< bool > ;
 
 /** Denotes if support for undoing and redoing changes to the buffer is allowed.
    *
@@ -1441,13 +1441,13 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_enable_undo() const;
+  auto property_enable_undo() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
 
 private:
   friend TextMark;
 
-  iterator get_iter_at_mark(GtkTextMark* mark);
+  auto get_iter_at_mark(GtkTextMark* mark) -> iterator;
 
 
 public:
@@ -1507,7 +1507,7 @@ namespace Glib
    * @relates Gtk::TextBuffer
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::TextBuffer> wrap(GtkTextBuffer* object, bool take_copy = false);
+  auto wrap(GtkTextBuffer* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TextBuffer>;
 }
 
 

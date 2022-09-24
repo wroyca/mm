@@ -36,7 +36,7 @@ namespace Gtk
 // and when a GtkBorder is wrapped in a Gtk::Border, the Gtk::Border takes
 // ownership of the GtkBorder or a copy of it. The wrapped copy must be assigned
 // to the original GtkBorder after the call to the C++ vfunc.
-gboolean Scrollable_Class::get_border_vfunc_callback(GtkScrollable* self, GtkBorder* border)
+auto Scrollable_Class::get_border_vfunc_callback(GtkScrollable* self, GtkBorder* border) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -97,7 +97,7 @@ namespace
 } // anonymous namespace
 
 // static
-GType Glib::Value<Gtk::Scrollable::Policy>::value_type()
+auto Glib::Value<Gtk::Scrollable::Policy>::value_type() -> GType
 {
   return gtk_scrollable_policy_get_type();
 }
@@ -106,7 +106,7 @@ GType Glib::Value<Gtk::Scrollable::Policy>::value_type()
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::Scrollable> wrap(GtkScrollable* object, bool take_copy)
+auto wrap(GtkScrollable* object, bool take_copy) -> Glib::RefPtr<Gtk::Scrollable>
 {
   return Glib::make_refptr_for_instance<Gtk::Scrollable>( dynamic_cast<Gtk::Scrollable*> (Glib::wrap_auto_interface<Gtk::Scrollable> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -121,7 +121,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& Scrollable_Class::init()
+auto Scrollable_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -149,7 +149,7 @@ void Scrollable_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* Scrollable_Class::wrap_new(GObject* object)
+auto Scrollable_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Scrollable((GtkScrollable*)(object));
 }
@@ -176,7 +176,7 @@ Scrollable::Scrollable(Scrollable&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-Scrollable& Scrollable::operator=(Scrollable&& src) noexcept
+auto Scrollable::operator=(Scrollable&& src) noexcept -> Scrollable&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -193,19 +193,19 @@ void Scrollable::add_interface(GType gtype_implementer)
 
 Scrollable::CppClassType Scrollable::scrollable_class_; // initialize static member
 
-GType Scrollable::get_type()
+auto Scrollable::get_type() -> GType
 {
   return scrollable_class_.init().get_type();
 }
 
 
-GType Scrollable::get_base_type()
+auto Scrollable::get_base_type() -> GType
 {
   return gtk_scrollable_get_type();
 }
 
 
-Glib::RefPtr<Adjustment> Scrollable::get_hadjustment()
+auto Scrollable::get_hadjustment() -> Glib::RefPtr<Adjustment>
 {
   auto retvalue = Glib::wrap(gtk_scrollable_get_hadjustment(gobj()));
   if(retvalue)
@@ -213,7 +213,7 @@ Glib::RefPtr<Adjustment> Scrollable::get_hadjustment()
   return retvalue;
 }
 
-Glib::RefPtr<const Adjustment> Scrollable::get_hadjustment() const
+auto Scrollable::get_hadjustment() const -> Glib::RefPtr<const Adjustment>
 {
   return const_cast<Scrollable*>(this)->get_hadjustment();
 }
@@ -223,7 +223,7 @@ void Scrollable::set_hadjustment(const Glib::RefPtr<Adjustment>& hadjustment)
   gtk_scrollable_set_hadjustment(gobj(), Glib::unwrap(hadjustment));
 }
 
-Glib::RefPtr<Adjustment> Scrollable::get_vadjustment()
+auto Scrollable::get_vadjustment() -> Glib::RefPtr<Adjustment>
 {
   auto retvalue = Glib::wrap(gtk_scrollable_get_vadjustment(gobj()));
   if(retvalue)
@@ -231,7 +231,7 @@ Glib::RefPtr<Adjustment> Scrollable::get_vadjustment()
   return retvalue;
 }
 
-Glib::RefPtr<const Adjustment> Scrollable::get_vadjustment() const
+auto Scrollable::get_vadjustment() const -> Glib::RefPtr<const Adjustment>
 {
   auto retvalue = Glib::wrap(gtk_scrollable_get_vadjustment(const_cast<GtkScrollable*>(gobj())));
   if(retvalue)
@@ -244,7 +244,7 @@ void Scrollable::set_vadjustment(const Glib::RefPtr<Adjustment>& vadjustment)
   gtk_scrollable_set_vadjustment(gobj(), Glib::unwrap(vadjustment));
 }
 
-Policy Scrollable::get_hscroll_policy() const
+auto Scrollable::get_hscroll_policy() const -> Policy
 {
   return static_cast<Policy>(gtk_scrollable_get_hscroll_policy(const_cast<GtkScrollable*>(gobj())));
 }
@@ -254,7 +254,7 @@ void Scrollable::set_hscroll_policy(Policy policy)
   gtk_scrollable_set_hscroll_policy(gobj(), static_cast<GtkScrollablePolicy>(policy));
 }
 
-Policy Scrollable::get_vscroll_policy() const
+auto Scrollable::get_vscroll_policy() const -> Policy
 {
   return static_cast<Policy>(gtk_scrollable_get_vscroll_policy(const_cast<GtkScrollable*>(gobj())));
 }
@@ -264,7 +264,7 @@ void Scrollable::set_vscroll_policy(Policy policy)
   gtk_scrollable_set_vscroll_policy(gobj(), static_cast<GtkScrollablePolicy>(policy));
 }
 
-bool Scrollable::get_border(Border& border) const
+auto Scrollable::get_border(Border& border) const -> bool
 {
   return gtk_scrollable_get_border(const_cast<GtkScrollable*>(gobj()), (border).gobj());
 }
@@ -274,12 +274,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Adjustm
   "Type Glib::RefPtr<Adjustment> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Adjustment> > Scrollable::property_hadjustment()
+auto Scrollable::property_hadjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Adjustment> >(this, "hadjustment");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> > Scrollable::property_hadjustment() const
+auto Scrollable::property_hadjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >(this, "hadjustment");
 }
@@ -288,12 +288,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Adjustm
   "Type Glib::RefPtr<Adjustment> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Glib::RefPtr<Adjustment> > Scrollable::property_vadjustment()
+auto Scrollable::property_vadjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> >
 {
   return Glib::PropertyProxy< Glib::RefPtr<Adjustment> >(this, "vadjustment");
 }
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> > Scrollable::property_vadjustment() const
+auto Scrollable::property_vadjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >(this, "vadjustment");
 }
@@ -302,12 +302,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Policy>::value,
   "Type Policy cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Policy > Scrollable::property_hscroll_policy()
+auto Scrollable::property_hscroll_policy() -> Glib::PropertyProxy< Policy >
 {
   return Glib::PropertyProxy< Policy >(this, "hscroll-policy");
 }
 
-Glib::PropertyProxy_ReadOnly< Policy > Scrollable::property_hscroll_policy() const
+auto Scrollable::property_hscroll_policy() const -> Glib::PropertyProxy_ReadOnly< Policy >
 {
   return Glib::PropertyProxy_ReadOnly< Policy >(this, "hscroll-policy");
 }
@@ -316,18 +316,18 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Policy>::value,
   "Type Policy cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy< Policy > Scrollable::property_vscroll_policy()
+auto Scrollable::property_vscroll_policy() -> Glib::PropertyProxy< Policy >
 {
   return Glib::PropertyProxy< Policy >(this, "vscroll-policy");
 }
 
-Glib::PropertyProxy_ReadOnly< Policy > Scrollable::property_vscroll_policy() const
+auto Scrollable::property_vscroll_policy() const -> Glib::PropertyProxy_ReadOnly< Policy >
 {
   return Glib::PropertyProxy_ReadOnly< Policy >(this, "vscroll-policy");
 }
 
 
-bool Gtk::Scrollable::get_border_vfunc(Border& border) const
+auto Gtk::Scrollable::get_border_vfunc(Border& border) const -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

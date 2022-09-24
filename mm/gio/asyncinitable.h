@@ -75,7 +75,7 @@ public:
 
   // noncopyable
   AsyncInitable(const AsyncInitable&) = delete;
-  AsyncInitable& operator=(const AsyncInitable&) = delete;
+  auto operator=(const AsyncInitable&) -> AsyncInitable& = delete;
 
 private:
   friend class AsyncInitable_Class;
@@ -109,7 +109,7 @@ protected:
 public:
 
   AsyncInitable(AsyncInitable&& src) noexcept;
-  AsyncInitable& operator=(AsyncInitable&& src) noexcept;
+  auto operator=(AsyncInitable&& src) noexcept -> AsyncInitable&;
 
   ~AsyncInitable() noexcept override;
 
@@ -117,17 +117,17 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GAsyncInitable*       gobj()       { return reinterpret_cast<GAsyncInitable*>(gobject_); }
+  auto       gobj() -> GAsyncInitable*       { return reinterpret_cast<GAsyncInitable*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GAsyncInitable* gobj() const { return reinterpret_cast<GAsyncInitable*>(gobject_); }
+  auto gobj() const -> const GAsyncInitable* { return reinterpret_cast<GAsyncInitable*>(gobject_); }
 
 private:
 
@@ -190,7 +190,7 @@ protected:
    *
    * @throws Glib::Error
    */
-  bool init_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto init_finish(const Glib::RefPtr<AsyncResult>& res) -> bool;
 
 
   /** Finishes the async construction for the various g_async_initable_new
@@ -204,7 +204,7 @@ protected:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<Glib::Object> create_finish(const Glib::RefPtr<AsyncResult>& res);
+  auto create_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Glib::Object>;
 
   virtual void init_async_vfunc(const SlotAsyncReady& slot,
     const Glib::RefPtr<Cancellable>& cancellable,
@@ -212,7 +212,7 @@ protected:
 
   /** @throw Glib::Errror.
    */
-    virtual bool init_finish_vfunc(const Glib::RefPtr<AsyncResult>& res);
+    virtual auto init_finish_vfunc(const Glib::RefPtr<AsyncResult>& res) -> bool;
 
 protected:
 
@@ -244,7 +244,7 @@ namespace Glib
    * @relates Gio::AsyncInitable
    */
   GIOMM_API
-  Glib::RefPtr<Gio::AsyncInitable> wrap(GAsyncInitable* object, bool take_copy = false);
+  auto wrap(GAsyncInitable* object, bool take_copy = false) -> Glib::RefPtr<Gio::AsyncInitable>;
 
 } // namespace Glib
 

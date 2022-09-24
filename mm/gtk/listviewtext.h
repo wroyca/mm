@@ -55,13 +55,13 @@ public:
    * @param column the column number.
    * @return the title of column @a column.
    */
-  Glib::ustring get_column_title(guint column) const;
+  auto get_column_title(guint column) const -> Glib::ustring;
 
   /** Add a new row at the end of the list
    * @param column_one_value the new text for the new row, column 0
    * @return the number of the row added
    */
-  guint append(const Glib::ustring& column_one_value = {});
+  auto append(const Glib::ustring& column_one_value = {}) -> guint;
 
   /** Insert a new row at the beginning of the list
    * @param column_one_value the new text for the new row, column 0
@@ -82,7 +82,7 @@ public:
    * @param column the number of the column in the row.
    * @return the value of that cell, if it exists.
    */
-  Glib::ustring get_text(guint row, guint column = 0) const;
+  auto get_text(guint row, guint column = 0) const -> Glib::ustring;
 
   /** Change an existing value of cell of the list.
    * @param row the number of the row in the list.
@@ -98,17 +98,17 @@ public:
   void set_text(guint row, const Glib::ustring& value);
 
   /// @return the number of rows in the listbox
-  guint size() const;
+  auto size() const -> guint;
 
   /// @return the number of columns in the listbox
-  guint get_num_columns() const;
+  auto get_num_columns() const -> guint;
 
   typedef std::vector<int> SelectionList;
 
   /** Returns a vector of the indexes of the selected rows
     * @return a SelectionList with the selection results
     */
-  SelectionList get_selected();
+  auto get_selected() -> SelectionList;
 
 protected:
 
@@ -116,9 +116,9 @@ protected:
   {
   public:
     TextModelColumns(guint columns_count);
-    ~TextModelColumns() noexcept;
+    ~TextModelColumns() noexcept override;
 
-    guint get_num_columns() const;
+    auto get_num_columns() const -> guint;
 
     Gtk::TreeModelColumn<Glib::ustring>* m_columns;
 

@@ -52,19 +52,19 @@ class GTKMM_API ExpressionWatchBase
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GtkExpressionWatch*       gobj();
+  auto       gobj() -> GtkExpressionWatch*;
 
   ///Provides access to the underlying C instance.
-  const GtkExpressionWatch* gobj() const;
+  auto gobj() const -> const GtkExpressionWatch*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkExpressionWatch* gobj_copy() const;
+  auto gobj_copy() const -> GtkExpressionWatch*;
 
   ExpressionWatchBase() = delete;
 
   // noncopyable
   ExpressionWatchBase(const ExpressionWatchBase&) = delete;
-  ExpressionWatchBase& operator=(const ExpressionWatchBase&) = delete;
+  auto operator=(const ExpressionWatchBase&) -> ExpressionWatchBase& = delete;
 
 protected:
   // Do not derive this.  Gtk::ExpressionWatchBase can neither be constructed nor deleted.
@@ -94,11 +94,11 @@ public:
    *
    * @return The optional result of the evaluation.
    */
-  std::optional<T> evaluate();
+  auto evaluate() -> std::optional<T>;
 };
 
 template<class T>
-std::optional<T> ExpressionWatch<T>::evaluate()
+auto ExpressionWatch<T>::evaluate() -> std::optional<T>
 {
   Glib::Value<T> value;
   bool result = gtk_expression_watch_evaluate(gobj(), value.gobj());
@@ -121,7 +121,7 @@ namespace Glib
 {
 
 template<class T>
-RefPtr<Gtk::ExpressionWatch<T>> wrap(GtkExpressionWatch* object, bool take_copy = false)
+auto wrap(GtkExpressionWatch* object, bool take_copy = false) -> RefPtr<Gtk::ExpressionWatch<T>>
 {
   if (take_copy && object)
     gtk_expression_watch_ref(object);
@@ -145,7 +145,7 @@ namespace Glib
  * @relates Gtk::ExpressionWatchBase
  */
 GTKMM_API
-Glib::RefPtr<Gtk::ExpressionWatchBase> wrap(GtkExpressionWatch* object, bool take_copy = false);
+auto wrap(GtkExpressionWatch* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ExpressionWatchBase>;
 
 } // namespace Glib
 

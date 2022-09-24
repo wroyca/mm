@@ -69,7 +69,7 @@ public:
 
   // noncopyable
   FilterListModel(const FilterListModel&) = delete;
-  FilterListModel& operator=(const FilterListModel&) = delete;
+  auto operator=(const FilterListModel&) -> FilterListModel& = delete;
 
 private:  friend class FilterListModel_Class;
   static CppClassType filterlistmodel_class_;
@@ -83,28 +83,28 @@ protected:
 public:
 
   FilterListModel(FilterListModel&& src) noexcept;
-  FilterListModel& operator=(FilterListModel&& src) noexcept;
+  auto operator=(FilterListModel&& src) noexcept -> FilterListModel&;
 
   ~FilterListModel() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkFilterListModel*       gobj()       { return reinterpret_cast<GtkFilterListModel*>(gobject_); }
+  auto       gobj() -> GtkFilterListModel*       { return reinterpret_cast<GtkFilterListModel*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkFilterListModel* gobj() const { return reinterpret_cast<GtkFilterListModel*>(gobject_); }
+  auto gobj() const -> const GtkFilterListModel* { return reinterpret_cast<GtkFilterListModel*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkFilterListModel* gobj_copy();
+  auto gobj_copy() -> GtkFilterListModel*;
 
 private:
 
@@ -115,7 +115,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<FilterListModel> create(const Glib::RefPtr<Gio::ListModel>& model, const Glib::RefPtr<Filter>& filter);
+  static auto create(const Glib::RefPtr<Gio::ListModel>& model, const Glib::RefPtr<Filter>& filter) -> Glib::RefPtr<FilterListModel>;
 
 
   /** Sets the filter used to filter items.
@@ -128,13 +128,13 @@ public:
    *
    * @return The filter currently in use.
    */
-  Glib::RefPtr<Filter> get_filter();
+  auto get_filter() -> Glib::RefPtr<Filter>;
 
   /** Gets the `Gtk::Filter` currently set on @a self.
    *
    * @return The filter currently in use.
    */
-  Glib::RefPtr<const Filter> get_filter() const;
+  auto get_filter() const -> Glib::RefPtr<const Filter>;
 
 
   /** Sets the model to be filtered.
@@ -152,13 +152,13 @@ public:
    *
    * @return The model that gets filtered.
    */
-  Glib::RefPtr<Gio::ListModel> get_model();
+  auto get_model() -> Glib::RefPtr<Gio::ListModel>;
 
   /** Gets the model currently filtered or <tt>nullptr</tt> if none.
    *
    * @return The model that gets filtered.
    */
-  Glib::RefPtr<const Gio::ListModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const Gio::ListModel>;
 
 
   /** Sets the filter model to do an incremental sort.
@@ -188,7 +188,7 @@ public:
    *
    * @return <tt>true</tt> if incremental filtering is enabled.
    */
-  bool get_incremental() const;
+  auto get_incremental() const -> bool;
 
 
   /** Returns the number of items that have not been filtered yet.
@@ -207,21 +207,21 @@ public:
    *
    * @return The number of items not yet filtered.
    */
-  guint get_pending() const;
+  auto get_pending() const -> guint;
 
   /** The filter for this model.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Filter> > property_filter() ;
+  auto property_filter() -> Glib::PropertyProxy< Glib::RefPtr<Filter> > ;
 
 /** The filter for this model.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Filter> > property_filter() const;
+  auto property_filter() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Filter> >;
 
   /** If the model should filter items incrementally.
    *
@@ -230,7 +230,7 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< bool > property_incremental() ;
+  auto property_incremental() -> Glib::PropertyProxy< bool > ;
 
 /** If the model should filter items incrementally.
    *
@@ -239,7 +239,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< bool > property_incremental() const;
+  auto property_incremental() const -> Glib::PropertyProxy_ReadOnly< bool >;
 
   /** The type of items. See Gio::ListModel::get_item_type().
    *
@@ -248,7 +248,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< GType > property_item_type() const;
+  auto property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >;
 
 
   /** The model being filtered.
@@ -256,14 +256,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > property_model() ;
+  auto property_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > ;
 
 /** The model being filtered.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >;
 
   /** The number of items. See Gio::ListModel::get_n_items().
    *
@@ -274,7 +274,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_n_items() const;
+  auto property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
 
   /** Number of items not yet filtered.
@@ -284,7 +284,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< guint > property_pending() const;
+  auto property_pending() const -> Glib::PropertyProxy_ReadOnly< guint >;
 
 
 public:
@@ -314,7 +314,7 @@ namespace Glib
    * @relates Gtk::FilterListModel
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::FilterListModel> wrap(GtkFilterListModel* object, bool take_copy = false);
+  auto wrap(GtkFilterListModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FilterListModel>;
 }
 
 

@@ -53,11 +53,11 @@ class GTKMM_API ListBase : public Widget, public Orientable, public Scrollable
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   ListBase(ListBase&& src) noexcept;
-  ListBase& operator=(ListBase&& src) noexcept;
+  auto operator=(ListBase&& src) noexcept -> ListBase&;
 
   // noncopyable
   ListBase(const ListBase&) = delete;
-  ListBase& operator=(const ListBase&) = delete;
+  auto operator=(const ListBase&) -> ListBase& = delete;
 
   ~ListBase() noexcept override;
 
@@ -77,19 +77,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkListBase*       gobj()       { return reinterpret_cast<GtkListBase*>(gobject_); }
+  auto       gobj() -> GtkListBase*       { return reinterpret_cast<GtkListBase*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkListBase* gobj() const { return reinterpret_cast<GtkListBase*>(gobject_); }
+  auto gobj() const -> const GtkListBase* { return reinterpret_cast<GtkListBase*>(gobject_); }
 
 private:
 
@@ -121,7 +121,7 @@ namespace Glib
    * @relates Gtk::ListBase
    */
   GTKMM_API
-  Gtk::ListBase* wrap(GtkListBase* object, bool take_copy = false);
+  auto wrap(GtkListBase* object, bool take_copy = false) -> Gtk::ListBase*;
 } //namespace Glib
 
 

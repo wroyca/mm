@@ -30,14 +30,14 @@
 namespace Gio
 {
 
-static GObject*
-unwrap_objectbase_custom(const Glib::RefPtr<Glib::ObjectBase>& cpp_instance)
+static auto
+unwrap_objectbase_custom(const Glib::RefPtr<Glib::ObjectBase>& cpp_instance) -> GObject*
 {
   return (cpp_instance ? cpp_instance->gobj() : nullptr);
 }
 
-Glib::RefPtr<Glib::ObjectBase>
-AsyncResult::get_source_object_base()
+auto
+AsyncResult::get_source_object_base() -> Glib::RefPtr<Glib::ObjectBase>
 {
   // Glib::wrap(cobj) can't be used here. See tests/giomm_asyncresult_sourceobject
   // for a case where it would fail, and an explanation of why.
@@ -50,8 +50,8 @@ AsyncResult::get_source_object_base()
     cppobj); // g_async_result_get_source_object() gives us a ref, unusually.
 }
 
-Glib::RefPtr<const Glib::ObjectBase>
-AsyncResult::get_source_object_base() const
+auto
+AsyncResult::get_source_object_base() const -> Glib::RefPtr<const Glib::ObjectBase>
 {
   return const_cast<AsyncResult*>(this)->get_source_object_base();
 }
@@ -66,7 +66,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gio::AsyncResult> wrap(GAsyncResult* object, bool take_copy)
+auto wrap(GAsyncResult* object, bool take_copy) -> Glib::RefPtr<Gio::AsyncResult>
 {
   return Glib::make_refptr_for_instance<Gio::AsyncResult>( dynamic_cast<Gio::AsyncResult*> (Glib::wrap_auto_interface<Gio::AsyncResult> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -81,7 +81,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& AsyncResult_Class::init()
+auto AsyncResult_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -109,7 +109,7 @@ void AsyncResult_Class::iface_init_function(void* g_iface, void*)
 
 }
 
-GObject* AsyncResult_Class::get_source_object_vfunc_callback(GAsyncResult* self)
+auto AsyncResult_Class::get_source_object_vfunc_callback(GAsyncResult* self) -> GObject*
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -148,7 +148,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = GObject*;
   return RType();
 }
-gboolean AsyncResult_Class::is_tagged_vfunc_callback(GAsyncResult* self, gpointer source_tag)
+auto AsyncResult_Class::is_tagged_vfunc_callback(GAsyncResult* self, gpointer source_tag) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -189,7 +189,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 
 
-Glib::ObjectBase* AsyncResult_Class::wrap_new(GObject* object)
+auto AsyncResult_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new AsyncResult((GAsyncResult*)(object));
 }
@@ -216,7 +216,7 @@ AsyncResult::AsyncResult(AsyncResult&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-AsyncResult& AsyncResult::operator=(AsyncResult&& src) noexcept
+auto AsyncResult::operator=(AsyncResult&& src) noexcept -> AsyncResult&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -233,25 +233,25 @@ void AsyncResult::add_interface(GType gtype_implementer)
 
 AsyncResult::CppClassType AsyncResult::asyncresult_class_; // initialize static member
 
-GType AsyncResult::get_type()
+auto AsyncResult::get_type() -> GType
 {
   return asyncresult_class_.init().get_type();
 }
 
 
-GType AsyncResult::get_base_type()
+auto AsyncResult::get_base_type() -> GType
 {
   return g_async_result_get_type();
 }
 
 
-bool AsyncResult::is_tagged(gpointer source_tag) const
+auto AsyncResult::is_tagged(gpointer source_tag) const -> bool
 {
   return g_async_result_is_tagged(const_cast<GAsyncResult*>(gobj()), source_tag);
 }
 
 
-Glib::RefPtr<Glib::ObjectBase> Gio::AsyncResult::get_source_object_vfunc()
+auto Gio::AsyncResult::get_source_object_vfunc() -> Glib::RefPtr<Glib::ObjectBase>
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -267,7 +267,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = Glib::RefPtr<Glib::ObjectBase>;
   return RType();
 }
-bool Gio::AsyncResult::is_tagged_vfunc(gpointer source_tag)
+auto Gio::AsyncResult::is_tagged_vfunc(gpointer source_tag) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

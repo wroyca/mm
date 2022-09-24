@@ -71,11 +71,11 @@ class GTKMM_API DragIcon : public Widget, public Native, public Root
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   DragIcon(DragIcon&& src) noexcept;
-  DragIcon& operator=(DragIcon&& src) noexcept;
+  auto operator=(DragIcon&& src) noexcept -> DragIcon&;
 
   // noncopyable
   DragIcon(const DragIcon&) = delete;
-  DragIcon& operator=(const DragIcon&) = delete;
+  auto operator=(const DragIcon&) -> DragIcon& = delete;
 
   ~DragIcon() noexcept override;
 
@@ -95,19 +95,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkDragIcon*       gobj()       { return reinterpret_cast<GtkDragIcon*>(gobject_); }
+  auto       gobj() -> GtkDragIcon*       { return reinterpret_cast<GtkDragIcon*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkDragIcon* gobj() const { return reinterpret_cast<GtkDragIcon*>(gobject_); }
+  auto gobj() const -> const GtkDragIcon* { return reinterpret_cast<GtkDragIcon*>(gobject_); }
 
 private:
 
@@ -122,7 +122,7 @@ public:
    * @param drag A `Gdk::Drag`.
    * @return The `Gtk::DragIcon`.
    */
-  static DragIcon* get_for_drag(const Glib::RefPtr<Gdk::Drag>& drag);
+  static auto get_for_drag(const Glib::RefPtr<Gdk::Drag>& drag) -> DragIcon*;
 
 
   /** Sets the widget to display as the drag icon.
@@ -136,13 +136,13 @@ public:
    *
    * @return The drag icon.
    */
-  Widget* get_child();
+  auto get_child() -> Widget*;
 
   /** Gets the widget currently used as drag icon.
    *
    * @return The drag icon.
    */
-  const Widget* get_child() const;
+  auto get_child() const -> const Widget*;
 
 
   /** Creates a `Gtk::DragIcon` that shows @a paintable, and associates
@@ -174,21 +174,21 @@ public:
    * @return A new `Gtk::Widget`
    * for displaying @a value as a drag icon.
    */
-  static Widget* create_widget_for_value(const Glib::ValueBase& value);
+  static auto create_widget_for_value(const Glib::ValueBase& value) -> Widget*;
 
   /** The widget to display as drag icon.
    *
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Widget* > property_child() ;
+  auto property_child() -> Glib::PropertyProxy< Widget* > ;
 
 /** The widget to display as drag icon.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Widget* > property_child() const;
+  auto property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >;
 
 
 public:
@@ -218,7 +218,7 @@ namespace Glib
    * @relates Gtk::DragIcon
    */
   GTKMM_API
-  Gtk::DragIcon* wrap(GtkDragIcon* object, bool take_copy = false);
+  auto wrap(GtkDragIcon* object, bool take_copy = false) -> Gtk::DragIcon*;
 } //namespace Glib
 
 

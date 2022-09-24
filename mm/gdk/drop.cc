@@ -47,7 +47,7 @@ void Drop::failed()
   gdk_drop_finish(gobj(), (static_cast<GdkDragAction>(0)) /* see GDK docs */);
 }
 
-Glib::ValueBase Drop::read_value_finish(const Glib::RefPtr<Gio::AsyncResult>& result)
+auto Drop::read_value_finish(const Glib::RefPtr<Gio::AsyncResult>& result) -> Glib::ValueBase
 {
   GError* gerror = nullptr;
   const GValue* gvalue = gdk_drop_read_value_finish(gobj(), Glib::unwrap(result), &gerror);
@@ -69,7 +69,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gdk::Drop> wrap(GdkDrop* object, bool take_copy)
+auto wrap(GdkDrop* object, bool take_copy) -> Glib::RefPtr<Gdk::Drop>
 {
   return Glib::make_refptr_for_instance<Gdk::Drop>( dynamic_cast<Gdk::Drop*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -84,7 +84,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-const Glib::Class& Drop_Class::init()
+auto Drop_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -115,7 +115,7 @@ void Drop_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* Drop_Class::wrap_new(GObject* object)
+auto Drop_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Drop((GdkDrop*)object);
 }
@@ -123,7 +123,7 @@ Glib::ObjectBase* Drop_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GdkDrop* Drop::gobj_copy()
+auto Drop::gobj_copy() -> GdkDrop*
 {
   reference();
   return gobj();
@@ -146,7 +146,7 @@ Drop::Drop(Drop&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-Drop& Drop::operator=(Drop&& src) noexcept
+auto Drop::operator=(Drop&& src) noexcept -> Drop&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -159,19 +159,19 @@ Drop::~Drop() noexcept
 
 Drop::CppClassType Drop::drop_class_; // initialize static member
 
-GType Drop::get_type()
+auto Drop::get_type() -> GType
 {
   return drop_class_.init().get_type();
 }
 
 
-GType Drop::get_base_type()
+auto Drop::get_base_type() -> GType
 {
   return gdk_drop_get_type();
 }
 
 
-Glib::RefPtr<Display> Drop::get_display()
+auto Drop::get_display() -> Glib::RefPtr<Display>
 {
   auto retvalue = Glib::wrap(gdk_drop_get_display(gobj()));
   if(retvalue)
@@ -179,12 +179,12 @@ Glib::RefPtr<Display> Drop::get_display()
   return retvalue;
 }
 
-Glib::RefPtr<const Display> Drop::get_display() const
+auto Drop::get_display() const -> Glib::RefPtr<const Display>
 {
   return const_cast<Drop*>(this)->get_display();
 }
 
-Glib::RefPtr<Device> Drop::get_device()
+auto Drop::get_device() -> Glib::RefPtr<Device>
 {
   auto retvalue = Glib::wrap(gdk_drop_get_device(gobj()));
   if(retvalue)
@@ -192,12 +192,12 @@ Glib::RefPtr<Device> Drop::get_device()
   return retvalue;
 }
 
-Glib::RefPtr<const Device> Drop::get_device() const
+auto Drop::get_device() const -> Glib::RefPtr<const Device>
 {
   return const_cast<Drop*>(this)->get_device();
 }
 
-Glib::RefPtr<Surface> Drop::get_surface()
+auto Drop::get_surface() -> Glib::RefPtr<Surface>
 {
   auto retvalue = Glib::wrap(gdk_drop_get_surface(gobj()));
   if(retvalue)
@@ -205,12 +205,12 @@ Glib::RefPtr<Surface> Drop::get_surface()
   return retvalue;
 }
 
-Glib::RefPtr<const Surface> Drop::get_surface() const
+auto Drop::get_surface() const -> Glib::RefPtr<const Surface>
 {
   return const_cast<Drop*>(this)->get_surface();
 }
 
-Glib::RefPtr<ContentFormats> Drop::get_formats()
+auto Drop::get_formats() -> Glib::RefPtr<ContentFormats>
 {
   auto retvalue = Glib::wrap(gdk_drop_get_formats(gobj()));
   if(retvalue)
@@ -218,17 +218,17 @@ Glib::RefPtr<ContentFormats> Drop::get_formats()
   return retvalue;
 }
 
-Glib::RefPtr<const ContentFormats> Drop::get_formats() const
+auto Drop::get_formats() const -> Glib::RefPtr<const ContentFormats>
 {
   return const_cast<Drop*>(this)->get_formats();
 }
 
-DragAction Drop::get_actions() const
+auto Drop::get_actions() const -> DragAction
 {
   return static_cast<DragAction>(gdk_drop_get_actions(const_cast<GdkDrop*>(gobj())));
 }
 
-Glib::RefPtr<Drag> Drop::get_drag()
+auto Drop::get_drag() -> Glib::RefPtr<Drag>
 {
   auto retvalue = Glib::wrap(gdk_drop_get_drag(gobj()));
   if(retvalue)
@@ -236,7 +236,7 @@ Glib::RefPtr<Drag> Drop::get_drag()
   return retvalue;
 }
 
-Glib::RefPtr<const Drag> Drop::get_drag() const
+auto Drop::get_drag() const -> Glib::RefPtr<const Drag>
 {
   return const_cast<Drop*>(this)->get_drag();
 }
@@ -267,7 +267,7 @@ void Drop::read_async(const std::vector<Glib::ustring>& mime_types, int io_prior
   gdk_drop_read_async(gobj(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(mime_types).data(), io_priority, nullptr, &Gio::SignalProxy_async_callback, slot_copy);
 }
 
-Glib::RefPtr<Gio::InputStream> Drop::read_finish(const Glib::RefPtr<Gio::AsyncResult>& result, Glib::ustring& out_mime_type)
+auto Drop::read_finish(const Glib::RefPtr<Gio::AsyncResult>& result, Glib::ustring& out_mime_type) -> Glib::RefPtr<Gio::InputStream>
 {
   GError* gerror = nullptr;
   const char* g_out_mime_type = nullptr;
@@ -299,7 +299,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<DragAction>::value,
   "Type DragAction cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< DragAction > Drop::property_actions() const
+auto Drop::property_actions() const -> Glib::PropertyProxy_ReadOnly< DragAction >
 {
   return Glib::PropertyProxy_ReadOnly< DragAction >(this, "actions");
 }
@@ -308,7 +308,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Device>
   "Type Glib::RefPtr<Device> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Device> > Drop::property_device() const
+auto Drop::property_device() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Device> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Device> >(this, "device");
 }
@@ -317,7 +317,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Display
   "Type Glib::RefPtr<Display> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> > Drop::property_display() const
+auto Drop::property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >(this, "display");
 }
@@ -326,7 +326,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Drag>>:
   "Type Glib::RefPtr<Drag> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Drag> > Drop::property_drag() const
+auto Drop::property_drag() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Drag> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Drag> >(this, "drag");
 }
@@ -335,7 +335,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Content
   "Type Glib::RefPtr<ContentFormats> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> > Drop::property_formats() const
+auto Drop::property_formats() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> >(this, "formats");
 }
@@ -344,7 +344,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Surface
   "Type Glib::RefPtr<Surface> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> > Drop::property_surface() const
+auto Drop::property_surface() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >(this, "surface");
 }

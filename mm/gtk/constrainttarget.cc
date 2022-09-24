@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::ConstraintTarget> wrap(GtkConstraintTarget* object, bool take_copy)
+auto wrap(GtkConstraintTarget* object, bool take_copy) -> Glib::RefPtr<Gtk::ConstraintTarget>
 {
   return Glib::make_refptr_for_instance<Gtk::ConstraintTarget>( dynamic_cast<Gtk::ConstraintTarget*> (Glib::wrap_auto_interface<Gtk::ConstraintTarget> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& ConstraintTarget_Class::init()
+auto ConstraintTarget_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -75,7 +75,7 @@ void ConstraintTarget_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* ConstraintTarget_Class::wrap_new(GObject* object)
+auto ConstraintTarget_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new ConstraintTarget((GtkConstraintTarget*)(object));
 }
@@ -102,7 +102,7 @@ ConstraintTarget::ConstraintTarget(ConstraintTarget&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-ConstraintTarget& ConstraintTarget::operator=(ConstraintTarget&& src) noexcept
+auto ConstraintTarget::operator=(ConstraintTarget&& src) noexcept -> ConstraintTarget&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -119,13 +119,13 @@ void ConstraintTarget::add_interface(GType gtype_implementer)
 
 ConstraintTarget::CppClassType ConstraintTarget::constrainttarget_class_; // initialize static member
 
-GType ConstraintTarget::get_type()
+auto ConstraintTarget::get_type() -> GType
 {
   return constrainttarget_class_.init().get_type();
 }
 
 
-GType ConstraintTarget::get_base_type()
+auto ConstraintTarget::get_base_type() -> GType
 {
   return gtk_constraint_target_get_type();
 }

@@ -70,7 +70,7 @@ namespace
 namespace Glib
 {
 
-Gtk::ApplicationWindow* wrap(GtkApplicationWindow* object, bool take_copy)
+auto wrap(GtkApplicationWindow* object, bool take_copy) -> Gtk::ApplicationWindow*
 {
   return dynamic_cast<Gtk::ApplicationWindow *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -83,7 +83,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& ApplicationWindow_Class::init()
+auto ApplicationWindow_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -116,7 +116,7 @@ void ApplicationWindow_Class::class_init_function(void* g_class, void* class_dat
 }
 
 
-Glib::ObjectBase* ApplicationWindow_Class::wrap_new(GObject* o)
+auto ApplicationWindow_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return new ApplicationWindow((GtkApplicationWindow*)(o)); //top-level windows can not be manage()ed.
 
@@ -144,7 +144,7 @@ ApplicationWindow::ApplicationWindow(ApplicationWindow&& src) noexcept
   , Gio::ActionMap(std::move(src))
 {}
 
-ApplicationWindow& ApplicationWindow::operator=(ApplicationWindow&& src) noexcept
+auto ApplicationWindow::operator=(ApplicationWindow&& src) noexcept -> ApplicationWindow&
 {
   Gtk::Window::operator=(std::move(src));
   Gio::ActionGroup::operator=(std::move(src));
@@ -159,13 +159,13 @@ ApplicationWindow::~ApplicationWindow() noexcept
 
 ApplicationWindow::CppClassType ApplicationWindow::applicationwindow_class_; // initialize static member
 
-GType ApplicationWindow::get_type()
+auto ApplicationWindow::get_type() -> GType
 {
   return applicationwindow_class_.init().get_type();
 }
 
 
-GType ApplicationWindow::get_base_type()
+auto ApplicationWindow::get_base_type() -> GType
 {
   return gtk_application_window_get_type();
 }
@@ -186,12 +186,12 @@ void ApplicationWindow::set_show_menubar(bool show_menubar)
   gtk_application_window_set_show_menubar(gobj(), static_cast<int>(show_menubar));
 }
 
-bool ApplicationWindow::get_show_menubar() const
+auto ApplicationWindow::get_show_menubar() const -> bool
 {
   return gtk_application_window_get_show_menubar(const_cast<GtkApplicationWindow*>(gobj()));
 }
 
-guint ApplicationWindow::get_id() const
+auto ApplicationWindow::get_id() const -> guint
 {
   return gtk_application_window_get_id(const_cast<GtkApplicationWindow*>(gobj()));
 }
@@ -201,23 +201,23 @@ void ApplicationWindow::set_help_overlay(ShortcutsWindow& help_overlay)
   gtk_application_window_set_help_overlay(gobj(), (help_overlay).gobj());
 }
 
-ShortcutsWindow* ApplicationWindow::get_help_overlay()
+auto ApplicationWindow::get_help_overlay() -> ShortcutsWindow*
 {
   return Glib::wrap(gtk_application_window_get_help_overlay(gobj()));
 }
 
-const ShortcutsWindow* ApplicationWindow::get_help_overlay() const
+auto ApplicationWindow::get_help_overlay() const -> const ShortcutsWindow*
 {
   return const_cast<ApplicationWindow*>(this)->get_help_overlay();
 }
 
 
-Glib::PropertyProxy< bool > ApplicationWindow::property_show_menubar()
+auto ApplicationWindow::property_show_menubar() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "show-menubar");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > ApplicationWindow::property_show_menubar() const
+auto ApplicationWindow::property_show_menubar() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "show-menubar");
 }

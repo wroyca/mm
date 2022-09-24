@@ -57,7 +57,7 @@ class GIOMM_API FileAttributeInfoList final
   using BaseObjectType = GFileAttributeInfoList;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  static Glib::RefPtr<FileAttributeInfoList> create();
+  static auto create() -> Glib::RefPtr<FileAttributeInfoList>;
 
   /** Increment the reference count for this object.
    * You should never need to do this manually - use the object via a RefPtr instead.
@@ -70,19 +70,19 @@ class GIOMM_API FileAttributeInfoList final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GFileAttributeInfoList*       gobj();
+  auto       gobj() -> GFileAttributeInfoList*;
 
   ///Provides access to the underlying C instance.
-  const GFileAttributeInfoList* gobj() const;
+  auto gobj() const -> const GFileAttributeInfoList*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GFileAttributeInfoList* gobj_copy() const;
+  auto gobj_copy() const -> GFileAttributeInfoList*;
 
   FileAttributeInfoList() = delete;
 
   // noncopyable
   FileAttributeInfoList(const FileAttributeInfoList&) = delete;
-  FileAttributeInfoList& operator=(const FileAttributeInfoList&) = delete;
+  auto operator=(const FileAttributeInfoList&) -> FileAttributeInfoList& = delete;
 
 protected:
   // Do not derive this.  Gio::FileAttributeInfoList can neither be constructed nor deleted.
@@ -102,20 +102,20 @@ public:
   /** Whether the FileAttributeInfoList is empty or invalid.
    * @result true if this FileAttributeInfoList is empty.
    */
-  bool empty() const;
+  auto empty() const -> bool;
 
   /** Gets the file attribute with the name name from list.
    * @param name The name of the attribute to lookup.
    * @result A FileAttributeInfo for the name.
    */
-  FileAttributeInfo lookup(const std::string& name) const;
+  auto lookup(const std::string& name) const -> FileAttributeInfo;
 
 
   /** Makes a duplicate of a file attribute info list.
    *
    * @return A copy of the given @a list.
    */
-  Glib::RefPtr<FileAttributeInfoList> dup() const;
+  auto dup() const -> Glib::RefPtr<FileAttributeInfoList>;
 
 
   /** Adds a new attribute with @a name to the @a list, setting
@@ -145,7 +145,7 @@ namespace Glib
  * @relates Gio::FileAttributeInfoList
  */
 GIOMM_API
-Glib::RefPtr<Gio::FileAttributeInfoList> wrap(GFileAttributeInfoList* object, bool take_copy = false);
+auto wrap(GFileAttributeInfoList* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileAttributeInfoList>;
 
 } // namespace Glib
 

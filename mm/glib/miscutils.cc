@@ -33,8 +33,8 @@
 namespace Glib
 {
 
-Glib::ustring
-get_application_name()
+auto
+get_application_name() -> Glib::ustring
 {
   return convert_const_gchar_ptr_to_ustring(g_get_application_name());
 }
@@ -45,8 +45,8 @@ set_application_name(UStringView application_name)
   g_set_application_name(application_name.c_str());
 }
 
-std::string
-get_prgname()
+auto
+get_prgname() -> std::string
 {
   return convert_const_gchar_ptr_to_stdstring(g_get_prgname());
 }
@@ -57,22 +57,22 @@ set_prgname(StdStringView prgname)
   g_set_prgname(prgname.c_str());
 }
 
-std::string
-getenv(StdStringView variable, bool& found)
+auto
+getenv(StdStringView variable, bool& found) -> std::string
 {
   const char* const value = g_getenv(variable.c_str());
   found = (value != nullptr);
   return convert_const_gchar_ptr_to_stdstring(value);
 }
 
-std::string
-getenv(StdStringView variable)
+auto
+getenv(StdStringView variable) -> std::string
 {
   return convert_const_gchar_ptr_to_stdstring(g_getenv(variable.c_str()));
 }
 
-bool
-setenv(StdStringView variable, StdStringView value, bool overwrite)
+auto
+setenv(StdStringView variable, StdStringView value, bool overwrite) -> bool
 {
   return g_setenv(variable.c_str(), value.c_str(), overwrite);
 }
@@ -83,145 +83,145 @@ unsetenv(StdStringView variable)
   g_unsetenv(variable.c_str());
 }
 
-std::vector<std::string>
-listenv()
+auto
+listenv() -> std::vector<std::string>
 {
   return Glib::ArrayHandler<std::string>::array_to_vector(g_listenv(), Glib::OWNERSHIP_DEEP);
 }
 
-std::string
-get_user_name()
+auto
+get_user_name() -> std::string
 {
   return convert_const_gchar_ptr_to_stdstring(g_get_user_name());
 }
 
-std::string
-get_real_name()
+auto
+get_real_name() -> std::string
 {
   return convert_const_gchar_ptr_to_stdstring(g_get_real_name());
 }
 
-Glib::ustring
-get_host_name()
+auto
+get_host_name() -> Glib::ustring
 {
   return convert_const_gchar_ptr_to_ustring(g_get_host_name());
 }
 
-std::string
-get_home_dir()
+auto
+get_home_dir() -> std::string
 {
   return convert_const_gchar_ptr_to_stdstring(g_get_home_dir());
 }
 
-std::string
-get_tmp_dir()
+auto
+get_tmp_dir() -> std::string
 {
   return convert_const_gchar_ptr_to_stdstring(g_get_tmp_dir());
 }
 
-std::string
-get_current_dir()
+auto
+get_current_dir() -> std::string
 {
   return convert_return_gchar_ptr_to_stdstring(g_get_current_dir());
 }
 
-std::string
-get_user_special_dir(UserDirectory directory)
+auto
+get_user_special_dir(UserDirectory directory) -> std::string
 {
   return convert_const_gchar_ptr_to_stdstring(g_get_user_special_dir((GUserDirectory)directory));
 }
 
-std::string
-get_user_data_dir()
+auto
+get_user_data_dir() -> std::string
 {
   return convert_const_gchar_ptr_to_stdstring(g_get_user_data_dir());
 }
 
-std::string
-get_user_config_dir()
+auto
+get_user_config_dir() -> std::string
 {
   return convert_const_gchar_ptr_to_stdstring(g_get_user_config_dir());
 }
 
-std::vector<std::string>
-get_system_data_dirs()
+auto
+get_system_data_dirs() -> std::vector<std::string>
 {
   return Glib::ArrayHandler<std::string>::array_to_vector(g_get_system_data_dirs(), Glib::OWNERSHIP_NONE);
 }
 
-std::vector<std::string>
-get_system_config_dirs()
+auto
+get_system_config_dirs() -> std::vector<std::string>
 {
   return Glib::ArrayHandler<std::string>::array_to_vector(g_get_system_config_dirs(), Glib::OWNERSHIP_NONE);
 }
 
-std::string
-get_user_cache_dir()
+auto
+get_user_cache_dir() -> std::string
 {
   return convert_const_gchar_ptr_to_stdstring(g_get_user_cache_dir());
 }
 
-std::string
-get_user_runtime_dir()
+auto
+get_user_runtime_dir() -> std::string
 {
   return convert_const_gchar_ptr_to_stdstring(g_get_user_runtime_dir());
 }
 
-bool
-path_is_absolute(StdStringView filename)
+auto
+path_is_absolute(StdStringView filename) -> bool
 {
   return g_path_is_absolute(filename.c_str()) != 0;
 }
 
-std::string
-path_skip_root(StdStringView filename)
+auto
+path_skip_root(StdStringView filename) -> std::string
 {
   // g_path_skip_root() returns a pointer _into_ the argument string,
   // or NULL if there was no root component.
   return convert_const_gchar_ptr_to_stdstring(g_path_skip_root(filename.c_str()));
 }
 
-std::string
-path_get_basename(StdStringView filename)
+auto
+path_get_basename(StdStringView filename) -> std::string
 {
   return convert_return_gchar_ptr_to_stdstring(g_path_get_basename(filename.c_str()));
 }
 
-std::string
-path_get_dirname(StdStringView filename)
+auto
+path_get_dirname(StdStringView filename) -> std::string
 {
   return convert_return_gchar_ptr_to_stdstring(g_path_get_dirname(filename.c_str()));
 }
 
-std::string
-canonicalize_filename(StdStringView filename, StdStringView relative_to)
+auto
+canonicalize_filename(StdStringView filename, StdStringView relative_to) -> std::string
 {
   return convert_return_gchar_ptr_to_stdstring(g_canonicalize_filename(
     filename.c_str(), relative_to.c_str()));
 }
 
-std::string
-build_filename(const std::vector<std::string>& elements)
+auto
+build_filename(const std::vector<std::string>& elements) -> std::string
 {
   return convert_return_gchar_ptr_to_stdstring(
     g_build_filenamev(const_cast<char**>(Glib::ArrayHandler<std::string>::vector_to_array(elements).data())));
 }
 
-std::string
-build_path(const std::string& separator, const std::vector<std::string>& elements)
+auto
+build_path(const std::string& separator, const std::vector<std::string>& elements) -> std::string
 {
   return convert_return_gchar_ptr_to_stdstring(
     g_build_pathv(separator.c_str(), const_cast<char**>(Glib::ArrayHandler<std::string>::vector_to_array(elements).data())));
 }
 
-std::string
-find_program_in_path(StdStringView program)
+auto
+find_program_in_path(StdStringView program) -> std::string
 {
   return convert_return_gchar_ptr_to_stdstring(g_find_program_in_path(program.c_str()));
 }
 
-Glib::ustring
-format_size(guint64 size, FormatSizeFlags flags)
+auto
+format_size(guint64 size, FormatSizeFlags flags) -> Glib::ustring
 {
   return convert_return_gchar_ptr_to_ustring(g_format_size_full(size, (GFormatSizeFlags)flags));
 }

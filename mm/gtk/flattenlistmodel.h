@@ -66,7 +66,7 @@ public:
 
   // noncopyable
   FlattenListModel(const FlattenListModel&) = delete;
-  FlattenListModel& operator=(const FlattenListModel&) = delete;
+  auto operator=(const FlattenListModel&) -> FlattenListModel& = delete;
 
 private:  friend class FlattenListModel_Class;
   static CppClassType flattenlistmodel_class_;
@@ -80,28 +80,28 @@ protected:
 public:
 
   FlattenListModel(FlattenListModel&& src) noexcept;
-  FlattenListModel& operator=(FlattenListModel&& src) noexcept;
+  auto operator=(FlattenListModel&& src) noexcept -> FlattenListModel&;
 
   ~FlattenListModel() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkFlattenListModel*       gobj()       { return reinterpret_cast<GtkFlattenListModel*>(gobject_); }
+  auto       gobj() -> GtkFlattenListModel*       { return reinterpret_cast<GtkFlattenListModel*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkFlattenListModel* gobj() const { return reinterpret_cast<GtkFlattenListModel*>(gobject_); }
+  auto gobj() const -> const GtkFlattenListModel* { return reinterpret_cast<GtkFlattenListModel*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkFlattenListModel* gobj_copy();
+  auto gobj_copy() -> GtkFlattenListModel*;
 
 private:
 
@@ -112,7 +112,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<FlattenListModel> create(const Glib::RefPtr<Gio::ListModel>& model);
+  static auto create(const Glib::RefPtr<Gio::ListModel>& model) -> Glib::RefPtr<FlattenListModel>;
 
 
   /** Sets a new model to be flattened.
@@ -125,13 +125,13 @@ public:
    *
    * @return The model flattened by @a self.
    */
-  Glib::RefPtr<Gio::ListModel> get_model();
+  auto get_model() -> Glib::RefPtr<Gio::ListModel>;
 
   /** Gets the model set via set_model().
    *
    * @return The model flattened by @a self.
    */
-  Glib::RefPtr<const Gio::ListModel> get_model() const;
+  auto get_model() const -> Glib::RefPtr<const Gio::ListModel>;
 
 
   /** Returns the model containing the item at the given position.
@@ -139,7 +139,7 @@ public:
    * @param position A position.
    * @return The model containing the item at @a position.
    */
-  Glib::RefPtr<Gio::ListModel> get_model_for_item(guint position);
+  auto get_model_for_item(guint position) -> Glib::RefPtr<Gio::ListModel>;
 
   /** The type of items. See Gio::ListModel::get_item_type().
    *
@@ -148,7 +148,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< GType > property_item_type() const;
+  auto property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >;
 
 
   /** The model being flattened.
@@ -156,14 +156,14 @@ public:
    * @return A PropertyProxy that allows you to get or set the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > property_model() ;
+  auto property_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> > ;
 
 /** The model being flattened.
    *
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> > property_model() const;
+  auto property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >;
 
   /** The number of items. See Gio::ListModel::get_n_items().
    *
@@ -174,7 +174,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< unsigned int > property_n_items() const;
+  auto property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >;
 
 
 public:
@@ -204,7 +204,7 @@ namespace Glib
    * @relates Gtk::FlattenListModel
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::FlattenListModel> wrap(GtkFlattenListModel* object, bool take_copy = false);
+  auto wrap(GtkFlattenListModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FlattenListModel>;
 }
 
 

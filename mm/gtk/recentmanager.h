@@ -94,7 +94,7 @@ public:
 
   GTKMM_API RecentManagerError(Code error_code, const Glib::ustring& error_message);
   GTKMM_API explicit RecentManagerError(GError* gobject);
-  GTKMM_API Code code() const;
+  GTKMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -116,7 +116,7 @@ template <>
 class GTKMM_API Value<Gtk::RecentManagerError::Code> : public Glib::Value_Enum<Gtk::RecentManagerError::Code>
 {
 public:
-  static GType value_type() G_GNUC_CONST;
+  static auto value_type() -> GType G_GNUC_CONST;
 };
 
 } // namespace Glib
@@ -160,7 +160,7 @@ public:
 
   // noncopyable
   RecentManager(const RecentManager&) = delete;
-  RecentManager& operator=(const RecentManager&) = delete;
+  auto operator=(const RecentManager&) -> RecentManager& = delete;
 
 private:  friend class RecentManager_Class;
   static CppClassType recentmanager_class_;
@@ -174,28 +174,28 @@ protected:
 public:
 
   RecentManager(RecentManager&& src) noexcept;
-  RecentManager& operator=(RecentManager&& src) noexcept;
+  auto operator=(RecentManager&& src) noexcept -> RecentManager&;
 
   ~RecentManager() noexcept override;
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   ///Provides access to the underlying C GObject.
-  GtkRecentManager*       gobj()       { return reinterpret_cast<GtkRecentManager*>(gobject_); }
+  auto       gobj() -> GtkRecentManager*       { return reinterpret_cast<GtkRecentManager*>(gobject_); }
 
   ///Provides access to the underlying C GObject.
-  const GtkRecentManager* gobj() const { return reinterpret_cast<GtkRecentManager*>(gobject_); }
+  auto gobj() const -> const GtkRecentManager* { return reinterpret_cast<GtkRecentManager*>(gobject_); }
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GtkRecentManager* gobj_copy();
+  auto gobj_copy() -> GtkRecentManager*;
 
 private:
 
@@ -205,7 +205,7 @@ protected:
 
 public:
 
-  static Glib::RefPtr<RecentManager> create();
+  static auto create() -> Glib::RefPtr<RecentManager>;
 
 
   /** Gets a unique instance of `Gtk::RecentManager` that you can share
@@ -214,7 +214,7 @@ public:
    * @return A unique `Gtk::RecentManager`. Do not ref or
    * unref it.
    */
-  static Glib::RefPtr<RecentManager> get_default();
+  static auto get_default() -> Glib::RefPtr<RecentManager>;
 
   /** Meta-data passed to add_item().  You should
    * use RecentManager::Data if you want to control the meta-data associated
@@ -251,12 +251,12 @@ public:
    * know some of meta-data about the document yourself, set the desired
    * fields of a RecentManager::Data structure and pass it to add_item().
    */
-  bool add_item(const Glib::ustring& uri);
+  auto add_item(const Glib::ustring& uri) -> bool;
 
   /** Adds a new resource into the recently used resources list, taking
    * meta data from the given Data instead of guessing it from the URI.
    */
-  bool add_item(const Glib::ustring& uri, const Data& recent_data);
+  auto add_item(const Glib::ustring& uri, const Data& recent_data) -> bool;
 
 
   /** Removes a resource pointed by @a uri from the recently used resources
@@ -268,7 +268,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool remove_item(const Glib::ustring& uri);
+  auto remove_item(const Glib::ustring& uri) -> bool;
 
   /** Searches for a URI inside the recently used resources list, and
    * returns a `Gtk::RecentInfo` containing information about the resource
@@ -282,7 +282,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<RecentInfo> lookup_item(const Glib::ustring& uri);
+  auto lookup_item(const Glib::ustring& uri) -> Glib::RefPtr<RecentInfo>;
 
   /** Searches for a URI inside the recently used resources list, and
    * returns a `Gtk::RecentInfo` containing information about the resource
@@ -296,7 +296,7 @@ public:
    *
    * @throws Glib::Error
    */
-  Glib::RefPtr<const RecentInfo> lookup_item(const Glib::ustring& uri) const;
+  auto lookup_item(const Glib::ustring& uri) const -> Glib::RefPtr<const RecentInfo>;
 
   /** Checks whether there is a recently used resource registered
    * with @a uri inside the recent manager.
@@ -304,7 +304,7 @@ public:
    * @param uri A URI.
    * @return <tt>true</tt> if the resource was found, <tt>false</tt> otherwise.
    */
-  bool has_item(const Glib::ustring& uri) const;
+  auto has_item(const Glib::ustring& uri) const -> bool;
 
   /** Changes the location of a recently used resource from @a uri to @a new_uri.
    *
@@ -318,7 +318,7 @@ public:
    *
    * @throws Glib::Error
    */
-  bool move_item(const Glib::ustring& uri, const Glib::ustring& new_uri);
+  auto move_item(const Glib::ustring& uri, const Glib::ustring& new_uri) -> bool;
 
 
   /** Gets the list of recently used resources.
@@ -327,7 +327,7 @@ public:
    * newly allocated `GtkRecentInfo objects`. Use
    * [method @a Gtk.RecentInfo.
    */
-  std::vector<Glib::RefPtr<RecentInfo> > get_items() const;
+  auto get_items() const -> std::vector<Glib::RefPtr<RecentInfo> >;
 
 
   /** Purges every item from the recently used resources list.
@@ -337,7 +337,7 @@ public:
    *
    * @throws Glib::Error
    */
-  int purge_items();
+  auto purge_items() -> int;
 
 
   /**
@@ -353,7 +353,7 @@ public:
    * or by another application.
    */
 
-  Glib::SignalProxy<void()> signal_changed();
+  auto signal_changed() -> Glib::SignalProxy<void()>;
 
 
   /** The full path to the file to be used to store and read the
@@ -364,7 +364,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< Glib::ustring > property_filename() const;
+  auto property_filename() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
 
 
   /** The size of the recently used resources list.
@@ -374,7 +374,7 @@ public:
    * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
    * or receive notification when the value of the property changes.
    */
-  Glib::PropertyProxy_ReadOnly< int > property_size() const;
+  auto property_size() const -> Glib::PropertyProxy_ReadOnly< int >;
 
 
 public:
@@ -406,7 +406,7 @@ namespace Glib
    * @relates Gtk::RecentManager
    */
   GTKMM_API
-  Glib::RefPtr<Gtk::RecentManager> wrap(GtkRecentManager* object, bool take_copy = false);
+  auto wrap(GtkRecentManager* object, bool take_copy = false) -> Glib::RefPtr<Gtk::RecentManager>;
 }
 
 

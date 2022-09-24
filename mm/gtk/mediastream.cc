@@ -33,7 +33,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::MediaStream> wrap(GtkMediaStream* object, bool take_copy)
+auto wrap(GtkMediaStream* object, bool take_copy) -> Glib::RefPtr<Gtk::MediaStream>
 {
   return Glib::make_refptr_for_instance<Gtk::MediaStream>( dynamic_cast<Gtk::MediaStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& MediaStream_Class::init()
+auto MediaStream_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -85,7 +85,7 @@ void MediaStream_Class::class_init_function(void* g_class, void* class_data)
 
 }
 
-gboolean MediaStream_Class::play_vfunc_callback(GtkMediaStream* self)
+auto MediaStream_Class::play_vfunc_callback(GtkMediaStream* self) -> gboolean
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -308,7 +308,7 @@ void MediaStream_Class::unrealize_vfunc_callback(GtkMediaStream* self, GdkSurfac
 }
 
 
-Glib::ObjectBase* MediaStream_Class::wrap_new(GObject* object)
+auto MediaStream_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new MediaStream((GtkMediaStream*)object);
 }
@@ -316,7 +316,7 @@ Glib::ObjectBase* MediaStream_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GtkMediaStream* MediaStream::gobj_copy()
+auto MediaStream::gobj_copy() -> GtkMediaStream*
 {
   reference();
   return gobj();
@@ -340,7 +340,7 @@ MediaStream::MediaStream(MediaStream&& src) noexcept
   , Gdk::Paintable(std::move(src))
 {}
 
-MediaStream& MediaStream::operator=(MediaStream&& src) noexcept
+auto MediaStream::operator=(MediaStream&& src) noexcept -> MediaStream&
 {
   Glib::Object::operator=(std::move(src));
   Gdk::Paintable::operator=(std::move(src));
@@ -354,34 +354,34 @@ MediaStream::~MediaStream() noexcept
 
 MediaStream::CppClassType MediaStream::mediastream_class_; // initialize static member
 
-GType MediaStream::get_type()
+auto MediaStream::get_type() -> GType
 {
   return mediastream_class_.init().get_type();
 }
 
 
-GType MediaStream::get_base_type()
+auto MediaStream::get_base_type() -> GType
 {
   return gtk_media_stream_get_type();
 }
 
 
-bool MediaStream::is_prepared() const
+auto MediaStream::is_prepared() const -> bool
 {
   return gtk_media_stream_is_prepared(const_cast<GtkMediaStream*>(gobj()));
 }
 
-Glib::Error MediaStream::get_error() const
+auto MediaStream::get_error() const -> Glib::Error
 {
   return Glib::Error(const_cast<GError*>(gtk_media_stream_get_error(const_cast<GtkMediaStream*>(gobj()))), true);
 }
 
-bool MediaStream::has_audio() const
+auto MediaStream::has_audio() const -> bool
 {
   return gtk_media_stream_has_audio(const_cast<GtkMediaStream*>(gobj()));
 }
 
-bool MediaStream::has_video() const
+auto MediaStream::has_video() const -> bool
 {
   return gtk_media_stream_has_video(const_cast<GtkMediaStream*>(gobj()));
 }
@@ -396,7 +396,7 @@ void MediaStream::pause()
   gtk_media_stream_pause(gobj());
 }
 
-bool MediaStream::get_playing() const
+auto MediaStream::get_playing() const -> bool
 {
   return gtk_media_stream_get_playing(const_cast<GtkMediaStream*>(gobj()));
 }
@@ -406,27 +406,27 @@ void MediaStream::set_playing(bool playing)
   gtk_media_stream_set_playing(gobj(), static_cast<int>(playing));
 }
 
-bool MediaStream::get_ended() const
+auto MediaStream::get_ended() const -> bool
 {
   return gtk_media_stream_get_ended(const_cast<GtkMediaStream*>(gobj()));
 }
 
-gint64 MediaStream::get_timestamp() const
+auto MediaStream::get_timestamp() const -> gint64
 {
   return gtk_media_stream_get_timestamp(const_cast<GtkMediaStream*>(gobj()));
 }
 
-gint64 MediaStream::get_duration() const
+auto MediaStream::get_duration() const -> gint64
 {
   return gtk_media_stream_get_duration(const_cast<GtkMediaStream*>(gobj()));
 }
 
-bool MediaStream::is_seekable() const
+auto MediaStream::is_seekable() const -> bool
 {
   return gtk_media_stream_is_seekable(const_cast<GtkMediaStream*>(gobj()));
 }
 
-bool MediaStream::is_seeking() const
+auto MediaStream::is_seeking() const -> bool
 {
   return gtk_media_stream_is_seeking(const_cast<GtkMediaStream*>(gobj()));
 }
@@ -436,7 +436,7 @@ void MediaStream::seek(gint64 timestamp)
   gtk_media_stream_seek(gobj(), timestamp);
 }
 
-bool MediaStream::get_loop() const
+auto MediaStream::get_loop() const -> bool
 {
   return gtk_media_stream_get_loop(const_cast<GtkMediaStream*>(gobj()));
 }
@@ -446,7 +446,7 @@ void MediaStream::set_loop(bool loop)
   gtk_media_stream_set_loop(gobj(), static_cast<int>(loop));
 }
 
-bool MediaStream::get_muted() const
+auto MediaStream::get_muted() const -> bool
 {
   return gtk_media_stream_get_muted(const_cast<GtkMediaStream*>(gobj()));
 }
@@ -456,7 +456,7 @@ void MediaStream::set_muted(bool muted)
   gtk_media_stream_set_muted(gobj(), static_cast<int>(muted));
 }
 
-double MediaStream::get_volume() const
+auto MediaStream::get_volume() const -> double
 {
   return gtk_media_stream_get_volume(const_cast<GtkMediaStream*>(gobj()));
 }
@@ -539,12 +539,12 @@ void MediaStream::set_error(const Glib::Error& error)
 }
 
 
-Glib::PropertyProxy< bool > MediaStream::property_prepared()
+auto MediaStream::property_prepared() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "prepared");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > MediaStream::property_prepared() const
+auto MediaStream::property_prepared() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "prepared");
 }
@@ -553,32 +553,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::Error>::value,
   "Type Glib::Error cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< Glib::Error > MediaStream::property_error() const
+auto MediaStream::property_error() const -> Glib::PropertyProxy_ReadOnly< Glib::Error >
 {
   return Glib::PropertyProxy_ReadOnly< Glib::Error >(this, "error");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > MediaStream::property_has_audio() const
+auto MediaStream::property_has_audio() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "has-audio");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > MediaStream::property_has_video() const
+auto MediaStream::property_has_video() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "has-video");
 }
 
-Glib::PropertyProxy< bool > MediaStream::property_playing()
+auto MediaStream::property_playing() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "playing");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > MediaStream::property_playing() const
+auto MediaStream::property_playing() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "playing");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > MediaStream::property_ended() const
+auto MediaStream::property_ended() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "ended");
 }
@@ -587,7 +587,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<gint64>::value,
   "Type gint64 cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< gint64 > MediaStream::property_timestamp() const
+auto MediaStream::property_timestamp() const -> Glib::PropertyProxy_ReadOnly< gint64 >
 {
   return Glib::PropertyProxy_ReadOnly< gint64 >(this, "timestamp");
 }
@@ -596,53 +596,53 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<gint64>::value,
   "Type gint64 cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-Glib::PropertyProxy_ReadOnly< gint64 > MediaStream::property_duration() const
+auto MediaStream::property_duration() const -> Glib::PropertyProxy_ReadOnly< gint64 >
 {
   return Glib::PropertyProxy_ReadOnly< gint64 >(this, "duration");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > MediaStream::property_seekable() const
+auto MediaStream::property_seekable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "seekable");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > MediaStream::property_seeking() const
+auto MediaStream::property_seeking() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "seeking");
 }
 
-Glib::PropertyProxy< bool > MediaStream::property_loop()
+auto MediaStream::property_loop() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "loop");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > MediaStream::property_loop() const
+auto MediaStream::property_loop() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "loop");
 }
 
-Glib::PropertyProxy< bool > MediaStream::property_muted()
+auto MediaStream::property_muted() -> Glib::PropertyProxy< bool >
 {
   return Glib::PropertyProxy< bool >(this, "muted");
 }
 
-Glib::PropertyProxy_ReadOnly< bool > MediaStream::property_muted() const
+auto MediaStream::property_muted() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
   return Glib::PropertyProxy_ReadOnly< bool >(this, "muted");
 }
 
-Glib::PropertyProxy< double > MediaStream::property_volume()
+auto MediaStream::property_volume() -> Glib::PropertyProxy< double >
 {
   return Glib::PropertyProxy< double >(this, "volume");
 }
 
-Glib::PropertyProxy_ReadOnly< double > MediaStream::property_volume() const
+auto MediaStream::property_volume() const -> Glib::PropertyProxy_ReadOnly< double >
 {
   return Glib::PropertyProxy_ReadOnly< double >(this, "volume");
 }
 
 
-bool Gtk::MediaStream::play_vfunc()
+auto Gtk::MediaStream::play_vfunc() -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

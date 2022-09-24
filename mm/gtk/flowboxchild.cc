@@ -39,7 +39,7 @@ namespace
 {
 
 
-static const Glib::SignalProxyInfo FlowBoxChild_signal_activate_info =
+const Glib::SignalProxyInfo FlowBoxChild_signal_activate_info =
 {
   "activate",
   (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
@@ -53,7 +53,7 @@ static const Glib::SignalProxyInfo FlowBoxChild_signal_activate_info =
 namespace Glib
 {
 
-Gtk::FlowBoxChild* wrap(GtkFlowBoxChild* object, bool take_copy)
+auto wrap(GtkFlowBoxChild* object, bool take_copy) -> Gtk::FlowBoxChild*
 {
   return dynamic_cast<Gtk::FlowBoxChild *> (Glib::wrap_auto ((GObject*)(object), take_copy));
 }
@@ -66,7 +66,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Class& FlowBoxChild_Class::init()
+auto FlowBoxChild_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -136,7 +136,7 @@ void FlowBoxChild_Class::activate_callback(GtkFlowBoxChild* self)
 }
 
 
-Glib::ObjectBase* FlowBoxChild_Class::wrap_new(GObject* o)
+auto FlowBoxChild_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
   return manage(new FlowBoxChild((GtkFlowBoxChild*)(o)));
 
@@ -162,7 +162,7 @@ FlowBoxChild::FlowBoxChild(FlowBoxChild&& src) noexcept
 : Gtk::Widget(std::move(src))
 {}
 
-FlowBoxChild& FlowBoxChild::operator=(FlowBoxChild&& src) noexcept
+auto FlowBoxChild::operator=(FlowBoxChild&& src) noexcept -> FlowBoxChild&
 {
   Gtk::Widget::operator=(std::move(src));
   return *this;
@@ -175,13 +175,13 @@ FlowBoxChild::~FlowBoxChild() noexcept
 
 FlowBoxChild::CppClassType FlowBoxChild::flowboxchild_class_; // initialize static member
 
-GType FlowBoxChild::get_type()
+auto FlowBoxChild::get_type() -> GType
 {
   return flowboxchild_class_.init().get_type();
 }
 
 
-GType FlowBoxChild::get_base_type()
+auto FlowBoxChild::get_base_type() -> GType
 {
   return gtk_flow_box_child_get_type();
 }
@@ -202,22 +202,22 @@ void FlowBoxChild::set_child(Widget& child)
   gtk_flow_box_child_set_child(gobj(), (child).gobj());
 }
 
-Widget* FlowBoxChild::get_child()
+auto FlowBoxChild::get_child() -> Widget*
 {
   return Glib::wrap(gtk_flow_box_child_get_child(gobj()));
 }
 
-const Widget* FlowBoxChild::get_child() const
+auto FlowBoxChild::get_child() const -> const Widget*
 {
   return const_cast<FlowBoxChild*>(this)->get_child();
 }
 
-int FlowBoxChild::get_index() const
+auto FlowBoxChild::get_index() const -> int
 {
   return gtk_flow_box_child_get_index(const_cast<GtkFlowBoxChild*>(gobj()));
 }
 
-bool FlowBoxChild::is_selected() const
+auto FlowBoxChild::is_selected() const -> bool
 {
   return gtk_flow_box_child_is_selected(const_cast<GtkFlowBoxChild*>(gobj()));
 }
@@ -228,18 +228,18 @@ void FlowBoxChild::changed()
 }
 
 
-Glib::SignalProxy<void()> FlowBoxChild::signal_activate()
+auto FlowBoxChild::signal_activate() -> Glib::SignalProxy<void()>
 {
   return Glib::SignalProxy<void() >(this, &FlowBoxChild_signal_activate_info);
 }
 
 
-Glib::PropertyProxy< Widget* > FlowBoxChild::property_child()
+auto FlowBoxChild::property_child() -> Glib::PropertyProxy< Widget* >
 {
   return Glib::PropertyProxy< Widget* >(this, "child");
 }
 
-Glib::PropertyProxy_ReadOnly< Widget* > FlowBoxChild::property_child() const
+auto FlowBoxChild::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
   return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
 }

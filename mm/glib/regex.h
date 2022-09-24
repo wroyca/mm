@@ -323,7 +323,7 @@ public:
 
   GLIBMM_API RegexError(Code error_code, const Glib::ustring& error_message);
   GLIBMM_API explicit RegexError(GError* gobject);
-  GLIBMM_API Code code() const;
+  GLIBMM_API auto code() const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 private:
@@ -410,19 +410,19 @@ class GLIBMM_API Regex final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GRegex*       gobj();
+  auto       gobj() -> GRegex*;
 
   ///Provides access to the underlying C instance.
-  const GRegex* gobj() const;
+  auto gobj() const -> const GRegex*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GRegex* gobj_copy() const;
+  auto gobj_copy() const -> GRegex*;
 
   Regex() = delete;
 
   // noncopyable
   Regex(const Regex&) = delete;
-  Regex& operator=(const Regex&) = delete;
+  auto operator=(const Regex&) -> Regex& = delete;
 
 protected:
   // Do not derive this.  Glib::Regex can neither be constructed nor deleted.
@@ -721,7 +721,7 @@ public:
 
 
   /// @throws Glib::RegexError
-  static Glib::RefPtr<Glib::Regex> create(Glib::UStringView pattern, CompileFlags compile_options = static_cast<CompileFlags>(0), MatchFlags match_options = static_cast<MatchFlags>(0));
+  static auto create(Glib::UStringView pattern, CompileFlags compile_options = static_cast<CompileFlags>(0), MatchFlags match_options = static_cast<MatchFlags>(0)) -> Glib::RefPtr<Glib::Regex>;
 
 
   /** Gets the pattern string associated with @a regex, i.e.\ a copy of
@@ -731,7 +731,7 @@ public:
    *
    * @return The pattern of @a regex.
    */
-  Glib::ustring get_pattern() const;
+  auto get_pattern() const -> Glib::ustring;
 
   /** Returns the number of the highest back reference
    * in the pattern, or 0 if the pattern does not contain
@@ -741,7 +741,7 @@ public:
    *
    * @return The number of the highest back reference.
    */
-  int get_max_backref() const;
+  auto get_max_backref() const -> int;
 
   /** Returns the number of capturing subpatterns in the pattern.
    *
@@ -749,7 +749,7 @@ public:
    *
    * @return The number of capturing subpatterns.
    */
-  int get_capture_count() const;
+  auto get_capture_count() const -> int;
 
   /** Checks whether the pattern contains explicit CR or LF references.
    *
@@ -757,7 +757,7 @@ public:
    *
    * @return <tt>true</tt> if the pattern contains explicit CR or LF references.
    */
-  bool get_has_cr_or_lf() const;
+  auto get_has_cr_or_lf() const -> bool;
 
   /** Gets the number of characters in the longest lookbehind assertion in the
    * pattern. This information is useful when doing multi-segment matching using
@@ -767,7 +767,7 @@ public:
    *
    * @return The number of characters in the longest lookbehind assertion.
    */
-  int get_max_lookbehind() const;
+  auto get_max_lookbehind() const -> int;
 
   /** Retrieves the number of the subexpression named @a name.
    *
@@ -777,7 +777,7 @@ public:
    * @return The number of the subexpression or -1 if @a name
    * does not exists.
    */
-  int get_string_number(Glib::UStringView name) const;
+  auto get_string_number(Glib::UStringView name) const -> int;
 
   /** Returns the compile options that @a regex was created with.
    *
@@ -789,7 +789,7 @@ public:
    *
    * @return Flags from Glib::Regex::CompileFlags.
    */
-  CompileFlags get_compile_flags() const;
+  auto get_compile_flags() const -> CompileFlags;
 
   /** Returns the match options that @a regex was created with.
    *
@@ -797,9 +797,9 @@ public:
    *
    * @return Flags from Glib::Regex::MatchFlags.
    */
-  MatchFlags get_match_flags() const;
+  auto get_match_flags() const -> MatchFlags;
 
-  static Glib::ustring escape_string(const Glib::ustring& string);
+  static auto escape_string(const Glib::ustring& string) -> Glib::ustring;
 
 
   /** Scans for a match in @a string for @a pattern.
@@ -821,7 +821,7 @@ public:
    * @param match_options Match options, or 0.
    * @return <tt>true</tt> if the string matched, <tt>false</tt> otherwise.
    */
-  static bool match_simple(Glib::UStringView pattern, Glib::UStringView string, CompileFlags compile_options =  static_cast<CompileFlags>(0), MatchFlags match_options =  static_cast<MatchFlags>(0));
+  static auto match_simple(Glib::UStringView pattern, Glib::UStringView string, CompileFlags compile_options =  static_cast<CompileFlags>(0), MatchFlags match_options =  static_cast<MatchFlags>(0)) -> bool;
 
 
   /** Scans for a match in @a string for the pattern in @a regex.
@@ -855,24 +855,24 @@ public:
    * @return <tt>true</tt> is the string matched, <tt>false</tt> otherwise.
    */
 
-  bool match(
+  auto match(
     Glib::UStringView string,
     Glib::MatchInfo& match_info,
     MatchFlags match_options = static_cast<MatchFlags>(0)
-  );
+  ) -> bool;
 
   /// A match() method not requiring a Glib::MatchInfo.
-  bool match(Glib::UStringView string, MatchFlags match_options = static_cast<MatchFlags>(0));
+  auto match(Glib::UStringView string, MatchFlags match_options = static_cast<MatchFlags>(0)) -> bool;
 
   /** A match() method with a start position and a Glib::MatchInfo.
    * @throws Glib::RegexError
    */
-  bool match(
+  auto match(
     Glib::UStringView string,
     int start_position,
     Glib::MatchInfo& match_info,
     MatchFlags match_options = static_cast<MatchFlags>(0)
-  );
+  ) -> bool;
 
 
   /** Scans for a match in @a string for the pattern in @a regex.
@@ -915,23 +915,23 @@ public:
    * @throws Glib::RegexError
    */
 
-  bool match(
+  auto match(
     Glib::UStringView string,
     gssize string_len,
     int start_position,
     Glib::MatchInfo& match_info,
     MatchFlags match_options = static_cast<MatchFlags>(0)
-  );
+  ) -> bool;
 
   /** A match() method with a start position not requiring a Glib::MatchInfo.
    * @throws Glib::RegexError
    */
-  bool match(Glib::UStringView string, int start_position, MatchFlags match_options);
+  auto match(Glib::UStringView string, int start_position, MatchFlags match_options) -> bool;
 
   /** A match() method with a string length and start position not requiring a
    * Glib::MatchInfo.
    */
-  bool match(Glib::UStringView string, gssize string_len, int start_position, MatchFlags match_options);
+  auto match(Glib::UStringView string, gssize string_len, int start_position, MatchFlags match_options) -> bool;
 
 
   /** Using the standard algorithm for regular expression matching only
@@ -958,24 +958,24 @@ public:
    * @return <tt>true</tt> is the string matched, <tt>false</tt> otherwise.
    */
 
-  bool match_all(
+  auto match_all(
     Glib::UStringView string,
     Glib::MatchInfo& match_info,
     MatchFlags match_options = static_cast<MatchFlags>(0)
-  );
+  ) -> bool;
 
   /// A match_all() method not requiring a Glib::MatchInfo.
-  bool match_all(Glib::UStringView string, MatchFlags match_options = static_cast<MatchFlags>(0));
+  auto match_all(Glib::UStringView string, MatchFlags match_options = static_cast<MatchFlags>(0)) -> bool;
 
   /** A match_all() method with a start positon and a Glib::MatchInfo.
    * @throws Glib::RegexError
    */
-  bool match_all(
+  auto match_all(
     Glib::UStringView string,
     int start_position,
     Glib::MatchInfo& match_info,
     MatchFlags match_options = static_cast<MatchFlags>(0)
-  );
+  ) -> bool;
 
 
   /** Using the standard algorithm for regular expression matching only
@@ -1030,24 +1030,24 @@ public:
    * @throws Glib::RegexError
    */
 
-  bool match_all(
+  auto match_all(
     Glib::UStringView string,
     gssize string_len,
     int start_position,
     Glib::MatchInfo& match_info,
     MatchFlags match_options = static_cast<MatchFlags>(0)
-  );
+  ) -> bool;
 
   /** A match_all() method with a start position not requiring a Glib::MatchInfo.
    * @throws Glib::RegexError
    */
-  bool match_all(Glib::UStringView string, int start_position, MatchFlags match_options);
+  auto match_all(Glib::UStringView string, int start_position, MatchFlags match_options) -> bool;
 
   /** A match_all() method with a start position and a string length not
    * requiring a Glib::MatchInfo.
    * @throws Glib::RegexError
    */
-  bool match_all(Glib::UStringView string, gssize string_len, int start_position, MatchFlags match_options);
+  auto match_all(Glib::UStringView string, gssize string_len, int start_position, MatchFlags match_options) -> bool;
 
 
   /** Breaks the string on the pattern, and returns an array of
@@ -1086,7 +1086,7 @@ public:
    * @param match_options Match options, or 0.
    * @return A <tt>nullptr</tt>-terminated array of strings.
    */
-  static std::vector<Glib::ustring> split_simple(Glib::UStringView pattern, Glib::UStringView string, CompileFlags compile_options =  static_cast<CompileFlags>(0), MatchFlags match_options =  static_cast<MatchFlags>(0));
+  static auto split_simple(Glib::UStringView pattern, Glib::UStringView string, CompileFlags compile_options =  static_cast<CompileFlags>(0), MatchFlags match_options =  static_cast<MatchFlags>(0)) -> std::vector<Glib::ustring>;
 
   /** Breaks the string on the pattern, and returns an array of the tokens.
    * If the pattern contains capturing parentheses, then the text for each
@@ -1112,7 +1112,7 @@ public:
    * @param match_options Match time option flags.
    * @return A <tt>nullptr</tt>-terminated gchar ** array.
    */
-  std::vector<Glib::ustring> split(Glib::UStringView string, MatchFlags match_options =  static_cast<MatchFlags>(0));
+  auto split(Glib::UStringView string, MatchFlags match_options =  static_cast<MatchFlags>(0)) -> std::vector<Glib::ustring>;
 
 
   /** Breaks the string on the pattern, and returns an array of the tokens.
@@ -1149,10 +1149,10 @@ public:
    *
    * @throws Glib::RegexError
    */
-  std::vector<Glib::ustring> split(const gchar* string, gssize string_len, int start_position, MatchFlags match_options =  static_cast<MatchFlags>(0), int max_tokens =  0) const;
+  auto split(const gchar* string, gssize string_len, int start_position, MatchFlags match_options =  static_cast<MatchFlags>(0), int max_tokens =  0) const -> std::vector<Glib::ustring>;
 
   /// @throws Glib::RegexError
-  std::vector<Glib::ustring> split(Glib::UStringView string, int start_position, MatchFlags match_options, int max_tokens) const;
+  auto split(Glib::UStringView string, int start_position, MatchFlags match_options, int max_tokens) const -> std::vector<Glib::ustring>;
 
 
   /** Replaces all occurrences of the pattern in @a regex with the
@@ -1193,9 +1193,9 @@ public:
    *
    * @throws Glib::RegexError
    */
-  Glib::ustring replace(const gchar* string, gssize string_len, int start_position, Glib::UStringView replacement, MatchFlags match_options =  static_cast<MatchFlags>(0));
+  auto replace(const gchar* string, gssize string_len, int start_position, Glib::UStringView replacement, MatchFlags match_options =  static_cast<MatchFlags>(0)) -> Glib::ustring;
   /// @throws Glib::RegexError
-  Glib::ustring replace(Glib::UStringView string, int start_position, Glib::UStringView replacement, MatchFlags match_options);
+  auto replace(Glib::UStringView string, int start_position, Glib::UStringView replacement, MatchFlags match_options) -> Glib::ustring;
 
 
   /** Replaces all occurrences of the pattern in @a regex with the
@@ -1218,9 +1218,9 @@ public:
    *
    * @throws Glib::RegexError
    */
-  Glib::ustring replace_literal(const gchar * string, gssize string_len, int start_position, Glib::UStringView replacement, MatchFlags match_options =  static_cast<MatchFlags>(0));
+  auto replace_literal(const gchar * string, gssize string_len, int start_position, Glib::UStringView replacement, MatchFlags match_options =  static_cast<MatchFlags>(0)) -> Glib::ustring;
   /// @throws Glib::RegexError
-  Glib::ustring replace_literal(Glib::UStringView string, int start_position, Glib::UStringView replacement, MatchFlags match_options);
+  auto replace_literal(Glib::UStringView string, int start_position, Glib::UStringView replacement, MatchFlags match_options) -> Glib::ustring;
 
 
   /** Replaces occurrences of the pattern in regex with the output of
@@ -1247,7 +1247,7 @@ public:
    *
    * @throws Glib::RegexError
    */
-  Glib::ustring replace_eval(Glib::UStringView string, gssize string_len, int start_position, MatchFlags match_options, GRegexEvalCallback eval, gpointer user_data);
+  auto replace_eval(Glib::UStringView string, gssize string_len, int start_position, MatchFlags match_options, GRegexEvalCallback eval, gpointer user_data) -> Glib::ustring;
 
   /** Checks whether @a replacement is a valid replacement string
    * (see g_regex_replace()), i.e.\ that all escape sequences in
@@ -1268,7 +1268,7 @@ public:
    *
    * @throws Glib::RegexError
    */
-  static bool check_replacement(Glib::UStringView replacement, gboolean* has_references);
+  static auto check_replacement(Glib::UStringView replacement, gboolean* has_references) -> bool;
 
 
 };
@@ -1300,20 +1300,20 @@ public:
   explicit MatchInfo(GMatchInfo* castitem, bool take_ownership = true);
 
   MatchInfo(const MatchInfo& other) = delete;
-  MatchInfo& operator=(const MatchInfo& other) = delete;
+  auto operator=(const MatchInfo& other) -> MatchInfo& = delete;
 
   MatchInfo(MatchInfo&& other) noexcept;
-  MatchInfo& operator=(MatchInfo&& other) noexcept;
+  auto operator=(MatchInfo&& other) noexcept -> MatchInfo&;
 
   /// Destructor.
   virtual ~MatchInfo();
 
   /// Provides access to the underlying C object.
-  GMatchInfo* gobj()
+  auto gobj() -> GMatchInfo*
     { return reinterpret_cast<GMatchInfo*>(gobject_); }
 
   /// Provides access to the underlying C object.
-  const GMatchInfo* gobj() const
+  auto gobj() const -> const GMatchInfo*
     { return reinterpret_cast<GMatchInfo*>(gobject_); }
 
 private:
@@ -1331,7 +1331,7 @@ public:
    *
    * @return Regex object used in @a match_info.
    */
-  Glib::RefPtr<Regex> get_regex();
+  auto get_regex() -> Glib::RefPtr<Regex>;
 
   /** Returns Regex object used in @a match_info. It belongs to Glib
    * and must not be freed. Use g_regex_ref() if you need to keep it
@@ -1341,7 +1341,7 @@ public:
    *
    * @return Regex object used in @a match_info.
    */
-  Glib::RefPtr<const Regex> get_regex() const;
+  auto get_regex() const -> Glib::RefPtr<const Regex>;
 
 
   /** Returns the string searched with @a match_info. This is the
@@ -1352,7 +1352,7 @@ public:
    *
    * @return The string searched with @a match_info.
    */
-  Glib::ustring get_string() const;
+  auto get_string() const -> Glib::ustring;
 
   /** Returns whether the previous match operation succeeded.
    *
@@ -1361,7 +1361,7 @@ public:
    * @return <tt>true</tt> if the previous match operation succeeded,
    * <tt>false</tt> otherwise.
    */
-  bool matches() const;
+  auto matches() const -> bool;
 
 
   /** Scans for the next match using the same parameters of the previous
@@ -1377,7 +1377,7 @@ public:
    *
    * @throws Glib::RegexError
    */
-  bool next();
+  auto next() -> bool;
 
 
   /** Retrieves the number of matched substrings (including substring 0,
@@ -1393,7 +1393,7 @@ public:
    *
    * @return Number of matched substrings, or -1 if an error occurred.
    */
-  int get_match_count() const;
+  auto get_match_count() const -> int;
 
   /** Usually if the string passed to g_regex_match*() matches as far as
    * it goes, but is too short to match the entire pattern, <tt>false</tt> is
@@ -1433,7 +1433,7 @@ public:
    *
    * @return <tt>true</tt> if the match was partial, <tt>false</tt> otherwise.
    */
-  bool is_partial_match() const;
+  auto is_partial_match() const -> bool;
 
 
   /** Returns a new string containing the text in @a string_to_expand with
@@ -1461,7 +1461,7 @@ public:
    *
    * @throws Glib::RegexError
    */
-  Glib::ustring expand_references(Glib::UStringView string_to_expand);
+  auto expand_references(Glib::UStringView string_to_expand) -> Glib::ustring;
 
 
   /** Retrieves the text matching the @a match_num'th capturing
@@ -1487,7 +1487,7 @@ public:
    * @return The matched substring, or <tt>nullptr</tt> if an error
    * occurred. You have to free the string yourself.
    */
-  Glib::ustring fetch(int match_num);
+  auto fetch(int match_num) -> Glib::ustring;
 
 
   /** Retrieves the position in bytes of the @a match_num'th capturing
@@ -1515,7 +1515,7 @@ public:
    * the position cannot be fetched, @a start_pos and @a end_pos are left
    * unchanged.
    */
-  bool fetch_pos(int match_num, int& start_pos, int& end_pos);
+  auto fetch_pos(int match_num, int& start_pos, int& end_pos) -> bool;
 
 
   /** Retrieves the text matching the capturing parentheses named @a name.
@@ -1533,7 +1533,7 @@ public:
    * @return The matched substring, or <tt>nullptr</tt> if an error
    * occurred. You have to free the string yourself.
    */
-  Glib::ustring fetch_named(Glib::UStringView name);
+  auto fetch_named(Glib::UStringView name) -> Glib::ustring;
 
 
   /** Retrieves the position in bytes of the capturing parentheses named @a name.
@@ -1553,7 +1553,7 @@ public:
    * If the position cannot be fetched, @a start_pos and @a end_pos
    * are left unchanged.
    */
-  bool fetch_named_pos(Glib::UStringView name, int& start_pos, int& end_pos);
+  auto fetch_named_pos(Glib::UStringView name, int& start_pos, int& end_pos) -> bool;
 
 
   /** Bundles up pointers to each of the matching substrings from a match
@@ -1579,7 +1579,7 @@ public:
    * pointers. If the previous
    * match failed <tt>nullptr</tt> is returned.
    */
-  std::vector<Glib::ustring> fetch_all();
+  auto fetch_all() -> std::vector<Glib::ustring>;
 
 protected:
   GMatchInfo* gobject_;      // The C object.
@@ -1598,62 +1598,62 @@ namespace Glib
 {
 
 /** @ingroup glibmmEnums */
-inline Regex::CompileFlags operator|(Regex::CompileFlags lhs, Regex::CompileFlags rhs)
+inline auto operator|(Regex::CompileFlags lhs, Regex::CompileFlags rhs) -> Regex::CompileFlags
   { return static_cast<Regex::CompileFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline Regex::CompileFlags operator&(Regex::CompileFlags lhs, Regex::CompileFlags rhs)
+inline auto operator&(Regex::CompileFlags lhs, Regex::CompileFlags rhs) -> Regex::CompileFlags
   { return static_cast<Regex::CompileFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline Regex::CompileFlags operator^(Regex::CompileFlags lhs, Regex::CompileFlags rhs)
+inline auto operator^(Regex::CompileFlags lhs, Regex::CompileFlags rhs) -> Regex::CompileFlags
   { return static_cast<Regex::CompileFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline Regex::CompileFlags operator~(Regex::CompileFlags flags)
+inline auto operator~(Regex::CompileFlags flags) -> Regex::CompileFlags
   { return static_cast<Regex::CompileFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup glibmmEnums */
-inline Regex::CompileFlags& operator|=(Regex::CompileFlags& lhs, Regex::CompileFlags rhs)
+inline auto operator|=(Regex::CompileFlags& lhs, Regex::CompileFlags rhs) -> Regex::CompileFlags&
   { return (lhs = static_cast<Regex::CompileFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline Regex::CompileFlags& operator&=(Regex::CompileFlags& lhs, Regex::CompileFlags rhs)
+inline auto operator&=(Regex::CompileFlags& lhs, Regex::CompileFlags rhs) -> Regex::CompileFlags&
   { return (lhs = static_cast<Regex::CompileFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline Regex::CompileFlags& operator^=(Regex::CompileFlags& lhs, Regex::CompileFlags rhs)
+inline auto operator^=(Regex::CompileFlags& lhs, Regex::CompileFlags rhs) -> Regex::CompileFlags&
   { return (lhs = static_cast<Regex::CompileFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Glib
 namespace Glib
 {
 
 /** @ingroup glibmmEnums */
-inline Regex::MatchFlags operator|(Regex::MatchFlags lhs, Regex::MatchFlags rhs)
+inline auto operator|(Regex::MatchFlags lhs, Regex::MatchFlags rhs) -> Regex::MatchFlags
   { return static_cast<Regex::MatchFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline Regex::MatchFlags operator&(Regex::MatchFlags lhs, Regex::MatchFlags rhs)
+inline auto operator&(Regex::MatchFlags lhs, Regex::MatchFlags rhs) -> Regex::MatchFlags
   { return static_cast<Regex::MatchFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline Regex::MatchFlags operator^(Regex::MatchFlags lhs, Regex::MatchFlags rhs)
+inline auto operator^(Regex::MatchFlags lhs, Regex::MatchFlags rhs) -> Regex::MatchFlags
   { return static_cast<Regex::MatchFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs)); }
 
 /** @ingroup glibmmEnums */
-inline Regex::MatchFlags operator~(Regex::MatchFlags flags)
+inline auto operator~(Regex::MatchFlags flags) -> Regex::MatchFlags
   { return static_cast<Regex::MatchFlags>(~static_cast<unsigned>(flags)); }
 
 /** @ingroup glibmmEnums */
-inline Regex::MatchFlags& operator|=(Regex::MatchFlags& lhs, Regex::MatchFlags rhs)
+inline auto operator|=(Regex::MatchFlags& lhs, Regex::MatchFlags rhs) -> Regex::MatchFlags&
   { return (lhs = static_cast<Regex::MatchFlags>(static_cast<unsigned>(lhs) | static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline Regex::MatchFlags& operator&=(Regex::MatchFlags& lhs, Regex::MatchFlags rhs)
+inline auto operator&=(Regex::MatchFlags& lhs, Regex::MatchFlags rhs) -> Regex::MatchFlags&
   { return (lhs = static_cast<Regex::MatchFlags>(static_cast<unsigned>(lhs) & static_cast<unsigned>(rhs))); }
 
 /** @ingroup glibmmEnums */
-inline Regex::MatchFlags& operator^=(Regex::MatchFlags& lhs, Regex::MatchFlags rhs)
+inline auto operator^=(Regex::MatchFlags& lhs, Regex::MatchFlags rhs) -> Regex::MatchFlags&
   { return (lhs = static_cast<Regex::MatchFlags>(static_cast<unsigned>(lhs) ^ static_cast<unsigned>(rhs))); }
 } // namespace Glib
 
@@ -1669,7 +1669,7 @@ namespace Glib
  * @relates Glib::Regex
  */
 GLIBMM_API
-Glib::RefPtr<Glib::Regex> wrap(GRegex* object, bool take_copy = false);
+auto wrap(GRegex* object, bool take_copy = false) -> Glib::RefPtr<Glib::Regex>;
 
 } // namespace Glib
 

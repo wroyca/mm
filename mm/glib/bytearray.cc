@@ -28,8 +28,8 @@ namespace
 
 extern "C" {
 
-int
-ByteArray_Compare_Data_Func(gconstpointer a, gconstpointer b, gpointer user_data)
+auto
+ByteArray_Compare_Data_Func(gconstpointer a, gconstpointer b, gpointer user_data) -> int
 {
   Glib::ByteArray::SlotCompare* slot = static_cast<Glib::ByteArray::SlotCompare*>(user_data);
 
@@ -41,20 +41,20 @@ ByteArray_Compare_Data_Func(gconstpointer a, gconstpointer b, gpointer user_data
 namespace Glib
 {
 
-guint
-ByteArray::size() const
+auto
+ByteArray::size() const -> guint
 {
   return gobj()->len;
 }
 
-guint8*
-ByteArray::get_data()
+auto
+ByteArray::get_data() -> guint8*
 {
   return gobj()->data;
 }
 
-const guint8*
-ByteArray::get_data() const
+auto
+ByteArray::get_data() const -> const guint8*
 {
   return gobj()->data;
 }
@@ -82,7 +82,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Glib::ByteArray> wrap(GByteArray* object, bool take_copy)
+auto wrap(GByteArray* object, bool take_copy) -> Glib::RefPtr<Glib::ByteArray>
 {
   if(take_copy && object)
     g_byte_array_ref(object);
@@ -98,7 +98,7 @@ namespace Glib
 {
 
 // static
-GType ByteArray::get_type()
+auto ByteArray::get_type() -> GType
 {
   return g_byte_array_get_type();
 }
@@ -115,19 +115,19 @@ void ByteArray::unreference() const
   g_byte_array_unref(reinterpret_cast<GByteArray*>(const_cast<ByteArray*>(this)));
 }
 
-GByteArray* ByteArray::gobj()
+auto ByteArray::gobj() -> GByteArray*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<GByteArray*>(this);
 }
 
-const GByteArray* ByteArray::gobj() const
+auto ByteArray::gobj() const -> const GByteArray*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   return reinterpret_cast<const GByteArray*>(this);
 }
 
-GByteArray* ByteArray::gobj_copy() const
+auto ByteArray::gobj_copy() const -> GByteArray*
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   const auto gobject = reinterpret_cast<GByteArray*>(const_cast<ByteArray*>(this));
@@ -136,12 +136,12 @@ GByteArray* ByteArray::gobj_copy() const
 }
 
 
-Glib::RefPtr<ByteArray> ByteArray::create()
+auto ByteArray::create() -> Glib::RefPtr<ByteArray>
 {
   return Glib::wrap(g_byte_array_new());
 }
 
-Glib::RefPtr<ByteArray> ByteArray::append(const guint8* data, guint len)
+auto ByteArray::append(const guint8* data, guint len) -> Glib::RefPtr<ByteArray>
 {
   auto retvalue = Glib::wrap(g_byte_array_append(gobj(), data, len));
   if(retvalue)
@@ -149,7 +149,7 @@ Glib::RefPtr<ByteArray> ByteArray::append(const guint8* data, guint len)
   return retvalue;
 }
 
-Glib::RefPtr<ByteArray> ByteArray::prepend(const guint8* data, guint len)
+auto ByteArray::prepend(const guint8* data, guint len) -> Glib::RefPtr<ByteArray>
 {
   auto retvalue = Glib::wrap(g_byte_array_prepend(gobj(), data, len));
   if(retvalue)
@@ -157,7 +157,7 @@ Glib::RefPtr<ByteArray> ByteArray::prepend(const guint8* data, guint len)
   return retvalue;
 }
 
-Glib::RefPtr<ByteArray> ByteArray::remove_index(guint index)
+auto ByteArray::remove_index(guint index) -> Glib::RefPtr<ByteArray>
 {
   auto retvalue = Glib::wrap(g_byte_array_remove_index(gobj(), index));
   if(retvalue)
@@ -165,7 +165,7 @@ Glib::RefPtr<ByteArray> ByteArray::remove_index(guint index)
   return retvalue;
 }
 
-Glib::RefPtr<ByteArray> ByteArray::remove_index_fast(guint index)
+auto ByteArray::remove_index_fast(guint index) -> Glib::RefPtr<ByteArray>
 {
   auto retvalue = Glib::wrap(g_byte_array_remove_index_fast(gobj(), index));
   if(retvalue)
@@ -173,7 +173,7 @@ Glib::RefPtr<ByteArray> ByteArray::remove_index_fast(guint index)
   return retvalue;
 }
 
-Glib::RefPtr<ByteArray> ByteArray::remove_range(guint index, guint length)
+auto ByteArray::remove_range(guint index, guint length) -> Glib::RefPtr<ByteArray>
 {
   auto retvalue = Glib::wrap(g_byte_array_remove_range(gobj(), index, length));
   if(retvalue)
@@ -189,7 +189,7 @@ void ByteArray::sort(const SlotCompare& slot)
   g_byte_array_sort_with_data(gobj(), &ByteArray_Compare_Data_Func, slot_copy);
 }
 
-Glib::RefPtr<ByteArray> ByteArray::set_size(guint length)
+auto ByteArray::set_size(guint length) -> Glib::RefPtr<ByteArray>
 {
   auto retvalue = Glib::wrap(g_byte_array_set_size(gobj(), length));
   if(retvalue)

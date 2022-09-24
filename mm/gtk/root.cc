@@ -45,7 +45,7 @@ namespace
 namespace Glib
 {
 
-Glib::RefPtr<Gtk::Root> wrap(GtkRoot* object, bool take_copy)
+auto wrap(GtkRoot* object, bool take_copy) -> Glib::RefPtr<Gtk::Root>
 {
   return Glib::make_refptr_for_instance<Gtk::Root>( dynamic_cast<Gtk::Root*> (Glib::wrap_auto_interface<Gtk::Root> ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -60,7 +60,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-const Glib::Interface_Class& Root_Class::init()
+auto Root_Class::init() -> const Glib::Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -87,7 +87,7 @@ void Root_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-Glib::ObjectBase* Root_Class::wrap_new(GObject* object)
+auto Root_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new Root((GtkRoot*)(object));
 }
@@ -114,7 +114,7 @@ Root::Root(Root&& src) noexcept
 : Glib::Interface(std::move(src))
 {}
 
-Root& Root::operator=(Root&& src) noexcept
+auto Root::operator=(Root&& src) noexcept -> Root&
 {
   Glib::Interface::operator=(std::move(src));
   return *this;
@@ -131,19 +131,19 @@ void Root::add_interface(GType gtype_implementer)
 
 Root::CppClassType Root::root_class_; // initialize static member
 
-GType Root::get_type()
+auto Root::get_type() -> GType
 {
   return root_class_.init().get_type();
 }
 
 
-GType Root::get_base_type()
+auto Root::get_base_type() -> GType
 {
   return gtk_root_get_type();
 }
 
 
-Glib::RefPtr<Gdk::Display> Root::get_display()
+auto Root::get_display() -> Glib::RefPtr<Gdk::Display>
 {
   auto retvalue = Glib::wrap(gtk_root_get_display(gobj()));
   if(retvalue)
@@ -151,7 +151,7 @@ Glib::RefPtr<Gdk::Display> Root::get_display()
   return retvalue;
 }
 
-Glib::RefPtr<const Gdk::Display> Root::get_display() const
+auto Root::get_display() const -> Glib::RefPtr<const Gdk::Display>
 {
   return const_cast<Root*>(this)->get_display();
 }
@@ -161,12 +161,12 @@ void Root::set_focus(Widget& focus)
   gtk_root_set_focus(gobj(), (focus).gobj());
 }
 
-Widget* Root::get_focus()
+auto Root::get_focus() -> Widget*
 {
   return Glib::wrap(gtk_root_get_focus(gobj()));
 }
 
-const Widget* Root::get_focus() const
+auto Root::get_focus() const -> const Widget*
 {
   return const_cast<Root*>(this)->get_focus();
 }

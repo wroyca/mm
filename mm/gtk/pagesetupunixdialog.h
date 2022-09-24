@@ -64,11 +64,11 @@ class GTKMM_API PageSetupUnixDialog : public Dialog
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
   PageSetupUnixDialog(PageSetupUnixDialog&& src) noexcept;
-  PageSetupUnixDialog& operator=(PageSetupUnixDialog&& src) noexcept;
+  auto operator=(PageSetupUnixDialog&& src) noexcept -> PageSetupUnixDialog&;
 
   // noncopyable
   PageSetupUnixDialog(const PageSetupUnixDialog&) = delete;
-  PageSetupUnixDialog& operator=(const PageSetupUnixDialog&) = delete;
+  auto operator=(const PageSetupUnixDialog&) -> PageSetupUnixDialog& = delete;
 
   ~PageSetupUnixDialog() noexcept override;
 
@@ -88,19 +88,19 @@ public:
 
   /** Get the GType for this class, for use with the underlying GObject type system.
    */
-  static GType get_type()      G_GNUC_CONST;
+  static auto get_type() -> GType      G_GNUC_CONST;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 
-  static GType get_base_type() G_GNUC_CONST;
+  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
   /// Provides access to the underlying C GObject.
-  GtkPageSetupUnixDialog*       gobj()       { return reinterpret_cast<GtkPageSetupUnixDialog*>(gobject_); }
+  auto       gobj() -> GtkPageSetupUnixDialog*       { return reinterpret_cast<GtkPageSetupUnixDialog*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
-  const GtkPageSetupUnixDialog* gobj() const { return reinterpret_cast<GtkPageSetupUnixDialog*>(gobject_); }
+  auto gobj() const -> const GtkPageSetupUnixDialog* { return reinterpret_cast<GtkPageSetupUnixDialog*>(gobject_); }
 
 private:
 
@@ -126,13 +126,13 @@ public:
    *
    * @return The current page setup.
    */
-  Glib::RefPtr<PageSetup> get_page_setup();
+  auto get_page_setup() -> Glib::RefPtr<PageSetup>;
 
   /** Gets the currently selected page setup from the dialog.
    *
    * @return The current page setup.
    */
-  Glib::RefPtr<const PageSetup> get_page_setup() const;
+  auto get_page_setup() const -> Glib::RefPtr<const PageSetup>;
 
 
   /** Sets the `Gtk::PrintSettings` from which the page setup dialog
@@ -146,13 +146,13 @@ public:
    *
    * @return The current print settings.
    */
-  Glib::RefPtr<PrintSettings> get_print_settings();
+  auto get_print_settings() -> Glib::RefPtr<PrintSettings>;
 
   /** Gets the current print settings from the dialog.
    *
    * @return The current print settings.
    */
-  Glib::RefPtr<const PrintSettings> get_print_settings() const;
+  auto get_print_settings() const -> Glib::RefPtr<const PrintSettings>;
 
 
 public:
@@ -182,7 +182,7 @@ namespace Glib
    * @relates Gtk::PageSetupUnixDialog
    */
   GTKMM_API
-  Gtk::PageSetupUnixDialog* wrap(GtkPageSetupUnixDialog* object, bool take_copy = false);
+  auto wrap(GtkPageSetupUnixDialog* object, bool take_copy = false) -> Gtk::PageSetupUnixDialog*;
 } //namespace Glib
 
 

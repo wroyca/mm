@@ -40,7 +40,7 @@ namespace
 {
 
 
-static gboolean AuthObserver_signal_authorize_authenticated_peer_callback(GDBusAuthObserver* self, GIOStream* p0,GCredentials* p1,void* data)
+auto AuthObserver_signal_authorize_authenticated_peer_callback(GDBusAuthObserver* self, GIOStream* p0,GCredentials* p1,void* data) -> gboolean
 {
   using namespace Gio::DBus;
   using SlotType = sigc::slot<bool(const Glib::RefPtr<const IOStream>&, const Glib::RefPtr<const Credentials>&)>;
@@ -66,7 +66,7 @@ static gboolean AuthObserver_signal_authorize_authenticated_peer_callback(GDBusA
   return RType();
 }
 
-static gboolean AuthObserver_signal_authorize_authenticated_peer_notify_callback(GDBusAuthObserver* self, GIOStream* p0,GCredentials* p1, void* data)
+auto AuthObserver_signal_authorize_authenticated_peer_notify_callback(GDBusAuthObserver* self, GIOStream* p0,GCredentials* p1, void* data) -> gboolean
 {
   using namespace Gio::DBus;
   using SlotType = sigc::slot<void(const Glib::RefPtr<const IOStream>&, const Glib::RefPtr<const Credentials>&)>;
@@ -92,7 +92,7 @@ static gboolean AuthObserver_signal_authorize_authenticated_peer_notify_callback
   return RType();
 }
 
-static const Glib::SignalProxyInfo AuthObserver_signal_authorize_authenticated_peer_info =
+const Glib::SignalProxyInfo AuthObserver_signal_authorize_authenticated_peer_info =
 {
   "authorize-authenticated-peer",
   (GCallback) &AuthObserver_signal_authorize_authenticated_peer_callback,
@@ -100,7 +100,7 @@ static const Glib::SignalProxyInfo AuthObserver_signal_authorize_authenticated_p
 };
 
 
-static gboolean AuthObserver_signal_allow_mechanism_callback(GDBusAuthObserver* self, const gchar* p0,void* data)
+auto AuthObserver_signal_allow_mechanism_callback(GDBusAuthObserver* self, const gchar* p0,void* data) -> gboolean
 {
   using namespace Gio::DBus;
   using SlotType = sigc::slot<bool(const std::string&)>;
@@ -125,7 +125,7 @@ static gboolean AuthObserver_signal_allow_mechanism_callback(GDBusAuthObserver* 
   return RType();
 }
 
-static gboolean AuthObserver_signal_allow_mechanism_notify_callback(GDBusAuthObserver* self, const gchar* p0, void* data)
+auto AuthObserver_signal_allow_mechanism_notify_callback(GDBusAuthObserver* self, const gchar* p0, void* data) -> gboolean
 {
   using namespace Gio::DBus;
   using SlotType = sigc::slot<void(const std::string&)>;
@@ -150,7 +150,7 @@ static gboolean AuthObserver_signal_allow_mechanism_notify_callback(GDBusAuthObs
   return RType();
 }
 
-static const Glib::SignalProxyInfo AuthObserver_signal_allow_mechanism_info =
+const Glib::SignalProxyInfo AuthObserver_signal_allow_mechanism_info =
 {
   "allow_mechanism",
   (GCallback) &AuthObserver_signal_allow_mechanism_callback,
@@ -164,7 +164,7 @@ static const Glib::SignalProxyInfo AuthObserver_signal_allow_mechanism_info =
 namespace Glib
 {
 
-Glib::RefPtr<Gio::DBus::AuthObserver> wrap(GDBusAuthObserver* object, bool take_copy)
+auto wrap(GDBusAuthObserver* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::AuthObserver>
 {
   return Glib::make_refptr_for_instance<Gio::DBus::AuthObserver>( dynamic_cast<Gio::DBus::AuthObserver*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
@@ -173,16 +173,13 @@ Glib::RefPtr<Gio::DBus::AuthObserver> wrap(GDBusAuthObserver* object, bool take_
 } /* namespace Glib */
 
 
-namespace Gio
-{
-
-namespace DBus
+namespace Gio::DBus
 {
 
 
 /* The *_Class implementation: */
 
-const Glib::Class& AuthObserver_Class::init()
+auto AuthObserver_Class::init() -> const Glib::Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -213,7 +210,7 @@ void AuthObserver_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-Glib::ObjectBase* AuthObserver_Class::wrap_new(GObject* object)
+auto AuthObserver_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
   return new AuthObserver((GDBusAuthObserver*)object);
 }
@@ -221,7 +218,7 @@ Glib::ObjectBase* AuthObserver_Class::wrap_new(GObject* object)
 
 /* The implementation: */
 
-GDBusAuthObserver* AuthObserver::gobj_copy()
+auto AuthObserver::gobj_copy() -> GDBusAuthObserver*
 {
   reference();
   return gobj();
@@ -244,7 +241,7 @@ AuthObserver::AuthObserver(AuthObserver&& src) noexcept
 : Glib::Object(std::move(src))
 {}
 
-AuthObserver& AuthObserver::operator=(AuthObserver&& src) noexcept
+auto AuthObserver::operator=(AuthObserver&& src) noexcept -> AuthObserver&
 {
   Glib::Object::operator=(std::move(src));
   return *this;
@@ -257,13 +254,13 @@ AuthObserver::~AuthObserver() noexcept
 
 AuthObserver::CppClassType AuthObserver::authobserver_class_; // initialize static member
 
-GType AuthObserver::get_type()
+auto AuthObserver::get_type() -> GType
 {
   return authobserver_class_.init().get_type();
 }
 
 
-GType AuthObserver::get_base_type()
+auto AuthObserver::get_base_type() -> GType
 {
   return g_dbus_auth_observer_get_type();
 }
@@ -279,35 +276,33 @@ AuthObserver::AuthObserver()
 
 }
 
-Glib::RefPtr<AuthObserver> AuthObserver::create()
+auto AuthObserver::create() -> Glib::RefPtr<AuthObserver>
 {
   return Glib::make_refptr_for_instance<AuthObserver>( new AuthObserver() );
 }
 
-bool AuthObserver::authorize_authenticated_peer(const Glib::RefPtr<const IOStream>& stream, const Glib::RefPtr<const Credentials>& credentials)
+auto AuthObserver::authorize_authenticated_peer(const Glib::RefPtr<const IOStream>& stream, const Glib::RefPtr<const Credentials>& credentials) -> bool
 {
   return g_dbus_auth_observer_authorize_authenticated_peer(gobj(), const_cast<GIOStream*>(Glib::unwrap(stream)), const_cast<GCredentials*>(Glib::unwrap<Gio::Credentials>(credentials)));
 }
 
-bool AuthObserver::allow_mechanism(const std::string& mechanism)
+auto AuthObserver::allow_mechanism(const std::string& mechanism) -> bool
 {
   return g_dbus_auth_observer_allow_mechanism(gobj(), mechanism.c_str());
 }
 
 
-Glib::SignalProxy<bool(const Glib::RefPtr<const IOStream>&, const Glib::RefPtr<const Credentials>&)> AuthObserver::signal_authorize_authenticated_peer()
+auto AuthObserver::signal_authorize_authenticated_peer() -> Glib::SignalProxy<bool(const Glib::RefPtr<const IOStream>&, const Glib::RefPtr<const Credentials>&)>
 {
   return Glib::SignalProxy<bool(const Glib::RefPtr<const IOStream>&, const Glib::RefPtr<const Credentials>&) >(this, &AuthObserver_signal_authorize_authenticated_peer_info);
 }
 
 
-Glib::SignalProxy<bool(const std::string&)> AuthObserver::signal_allow_mechanism()
+auto AuthObserver::signal_allow_mechanism() -> Glib::SignalProxy<bool(const std::string&)>
 {
   return Glib::SignalProxy<bool(const std::string&) >(this, &AuthObserver_signal_allow_mechanism_info);
 }
 
-
-} // namespace DBus
 
 } // namespace Gio
 

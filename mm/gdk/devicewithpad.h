@@ -34,7 +34,7 @@ class GDKMM_API DeviceWithPad : public Device, public DevicePad
 private:
   // noncopyable
   DeviceWithPad(const DeviceWithPad&) = delete;
-  DeviceWithPad& operator=(const DeviceWithPad&) = delete;
+  auto operator=(const DeviceWithPad&) -> DeviceWithPad& = delete;
 
   friend class Device_Class;
 
@@ -44,7 +44,7 @@ protected:
 public:
 
   DeviceWithPad(DeviceWithPad&& src) noexcept;
-  DeviceWithPad& operator=(DeviceWithPad&& src) noexcept;
+  auto operator=(DeviceWithPad&& src) noexcept -> DeviceWithPad&;
 
   ~DeviceWithPad() noexcept override;
 };

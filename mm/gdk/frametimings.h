@@ -66,19 +66,19 @@ class GDKMM_API FrameTimings final
   void unreference() const;
 
   ///Provides access to the underlying C instance.
-  GdkFrameTimings*       gobj();
+  auto       gobj() -> GdkFrameTimings*;
 
   ///Provides access to the underlying C instance.
-  const GdkFrameTimings* gobj() const;
+  auto gobj() const -> const GdkFrameTimings*;
 
   ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  GdkFrameTimings* gobj_copy() const;
+  auto gobj_copy() const -> GdkFrameTimings*;
 
   FrameTimings() = delete;
 
   // noncopyable
   FrameTimings(const FrameTimings&) = delete;
-  FrameTimings& operator=(const FrameTimings&) = delete;
+  auto operator=(const FrameTimings&) -> FrameTimings& = delete;
 
 protected:
   // Do not derive this.  Gdk::FrameTimings can neither be constructed nor deleted.
@@ -95,7 +95,7 @@ public:
    *
    * @return The frame counter value for this frame.
    */
-  gint64 get_frame_counter() const;
+  auto get_frame_counter() const -> gint64;
 
   /** Returns whether @a timings are complete.
    *
@@ -114,7 +114,7 @@ public:
    * @return <tt>true</tt> if all information that will be available
    * for the frame has been filled in.
    */
-  bool get_complete() const;
+  auto get_complete() const -> bool;
 
   /** Returns the frame time for the frame.
    *
@@ -124,7 +124,7 @@ public:
    * @return The frame time for the frame, in the timescale
    * of Glib::get_monotonic_time().
    */
-  gint64 get_frame_time() const;
+  auto get_frame_time() const -> gint64;
 
   /** Reurns the presentation time.
    *
@@ -134,7 +134,7 @@ public:
    * timescale of Glib::get_monotonic_time(), or 0 if no presentation
    * time is available. See get_complete().
    */
-  gint64 get_presentation_time() const;
+  auto get_presentation_time() const -> gint64;
 
   /** Gets the natural interval between presentation times for
    * the display that this frame was displayed on.
@@ -146,7 +146,7 @@ public:
    * or 0 if the refresh interval is not available.
    * See get_complete().
    */
-  gint64 get_refresh_interval() const;
+  auto get_refresh_interval() const -> gint64;
 
   /** Gets the predicted time at which this frame will be displayed.
    *
@@ -165,7 +165,7 @@ public:
    * in the timescale of Glib::get_monotonic_time(), or 0 if no predicted
    * presentation time is available.
    */
-  gint64 get_predicted_presentation_time() const;
+  auto get_predicted_presentation_time() const -> gint64;
 
 
 };
@@ -185,7 +185,7 @@ namespace Glib
  * @relates Gdk::FrameTimings
  */
 GDKMM_API
-Glib::RefPtr<Gdk::FrameTimings> wrap(GdkFrameTimings* object, bool take_copy = false);
+auto wrap(GdkFrameTimings* object, bool take_copy = false) -> Glib::RefPtr<Gdk::FrameTimings>;
 
 } // namespace Glib
 
