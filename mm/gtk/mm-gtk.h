@@ -98,9 +98,9 @@ extern const int gtkmm_minor_version;
 extern const int gtkmm_micro_version;
 
 #include <mm/glib/mm-glib.h>
-#include <mm/gio.h>
+#include <mm/gio/gio.h>
 
-#include <mm/gdk.h>
+#include <mm/gdk/mm-gdk.h>
 
 #include <mm/gtk/object.h>
 #include <mm/gtk/aboutdialog.h>
@@ -230,7 +230,7 @@ extern const int gtkmm_micro_version;
 #include <mm/gtk/paned.h>
 #include <mm/gtk/pagesetup.h>
 #ifndef G_OS_WIN32
-# include <gtkmm/pagesetupunixdialog.h>
+# include <mm/gtk/pagesetupunixdialog.h>
 #endif
 #include <mm/gtk/papersize.h>
 #include <mm/gtk/passwordentry.h>
@@ -240,14 +240,14 @@ extern const int gtkmm_micro_version;
 #include <mm/gtk/popovermenubar.h>
 #include <mm/gtk/printcontext.h>
 #ifndef G_OS_WIN32
-# include <gtkmm/printer.h>
-# include <gtkmm/printjob.h>
+# include <mm/gtk/printer.h>
+# include <mm/gtk/printjob.h>
 #endif
 #include <mm/gtk/printoperation.h>
 #include <mm/gtk/printoperationpreview.h>
 #include <mm/gtk/printsettings.h>
 #ifndef G_OS_WIN32
-# include <gtkmm/printunixdialog.h>
+# include <mm/gtk/printunixdialog.h>
 #endif
 #include <mm/gtk/progressbar.h>
 #include <mm/gtk/range.h>
