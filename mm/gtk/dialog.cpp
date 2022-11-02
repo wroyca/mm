@@ -55,7 +55,7 @@ namespace
 {
 
 
-void Dialog_signal_response_callback(GtkDialog* self, gint p0,void* data)
+auto Dialog_signal_response_callback (GtkDialog *self, gint p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(int)>;
@@ -132,7 +132,7 @@ auto Dialog_Class::init() -> const Glib::Class&
 }
 
 
-void Dialog_Class::class_init_function(void* g_class, void* class_data)
+auto Dialog_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -142,7 +142,7 @@ void Dialog_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void Dialog_Class::response_callback(GtkDialog* self, gint p0)
+auto Dialog_Class::response_callback (GtkDialog *self, gint p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -242,7 +242,7 @@ Dialog::Dialog()
 
 }
 
-void Dialog::add_action_widget(Widget& child, int response_id)
+auto Dialog::add_action_widget (Widget &child, int response_id) -> void
 {
   gtk_dialog_add_action_widget(gobj(), (child).gobj(), response_id);
 }
@@ -252,12 +252,12 @@ auto Dialog::add_button(const Glib::ustring& button_text, int response_id) -> Bu
   return Glib::wrap((GtkButton*)(gtk_dialog_add_button(gobj(), button_text.c_str(), response_id)));
 }
 
-void Dialog::set_response_sensitive(int response_id, bool setting)
+auto Dialog::set_response_sensitive (int response_id, bool setting) -> void
 {
   gtk_dialog_set_response_sensitive(gobj(), response_id, static_cast<int>(setting));
 }
 
-void Dialog::set_default_response(int response_id)
+auto Dialog::set_default_response (int response_id) -> void
 {
   gtk_dialog_set_default_response(gobj(), response_id);
 }
@@ -277,7 +277,7 @@ auto Dialog::get_response_for_widget(const Gtk::Widget& widget) const -> int
   return gtk_dialog_get_response_for_widget(const_cast<GtkDialog*>(gobj()), const_cast<GtkWidget*>(widget.gobj()));
 }
 
-void Dialog::response(int response_id)
+auto Dialog::response (int response_id) -> void
 {
   gtk_dialog_response(gobj(), response_id);
 }
@@ -315,7 +315,7 @@ auto Dialog::property_use_header_bar() const -> Glib::PropertyProxy_ReadOnly< bo
 }
 
 
-void Gtk::Dialog::on_response(int response_id)
+auto Gtk::Dialog::on_response (int response_id) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

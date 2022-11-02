@@ -32,8 +32,7 @@ using HandlerList = std::list<sigc::slot<void()>>;
 // to avoid thread synchronization problems.
 thread_local HandlerList* thread_specific_handler_list = nullptr;
 
-void
-glibmm_exception_warning(const GError* error)
+auto glibmm_exception_warning (const GError *error) -> void
 {
   g_assert(error != nullptr);
 
@@ -45,8 +44,7 @@ glibmm_exception_warning(const GError* error)
     g_quark_to_string(error->domain), error->code, (error->message) ? error->message : "(null)");
 }
 
-void
-glibmm_unexpected_exception()
+auto glibmm_unexpected_exception () -> void
 {
   try
   {
@@ -96,8 +94,7 @@ add_exception_handler(const sigc::slot<void()>& slot) -> sigc::connection
 }
 
 // internal
-void
-exception_handlers_invoke() noexcept
+auto exception_handlers_invoke () noexcept -> void
 {
   // This function will be called from our GLib signal handler proxies
   // if an exception has been caught.  It's not possible to throw C++

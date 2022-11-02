@@ -64,7 +64,7 @@ auto Orientable_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Orientable_Class::iface_init_function(void* g_iface, void*)
+auto Orientable_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -113,7 +113,7 @@ Orientable::~Orientable() noexcept
 {}
 
 // static
-void Orientable::add_interface(GType gtype_implementer)
+auto Orientable::add_interface (GType gtype_implementer) -> void
 {
   orientable_class_.init().add_interface(gtype_implementer);
 }
@@ -132,7 +132,7 @@ auto Orientable::get_base_type() -> GType
 }
 
 
-void Orientable::set_orientation(Orientation orientation)
+auto Orientable::set_orientation (Orientation orientation) -> void
 {
   gtk_orientable_set_orientation(gobj(), static_cast<GtkOrientation>(orientation));
 }

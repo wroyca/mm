@@ -98,7 +98,7 @@ auto TextMark_Class::init() -> const Glib::Class&
 }
 
 
-void TextMark_Class::class_init_function(void* g_class, void* class_data)
+auto TextMark_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -183,7 +183,7 @@ auto TextMark::create(const Glib::ustring& name, bool left_gravity) -> Glib::Ref
   return Glib::make_refptr_for_instance<TextMark>( new TextMark(name, left_gravity) );
 }
 
-void TextMark::set_visible(bool setting)
+auto TextMark::set_visible (bool setting) -> void
 {
   gtk_text_mark_set_visible(gobj(), static_cast<int>(setting));
 }

@@ -38,7 +38,7 @@ ComboBoxText::ComboBoxText(bool has_entry)
   ComboBox(Glib::ConstructParams(comboboxtext_class_.init(), "has-entry",gboolean(has_entry), nullptr))
 {}
 
-void ComboBoxText::set_active_text(const Glib::ustring& text)
+auto ComboBoxText::set_active_text (const Glib::ustring &text) -> void
 {
   //Look for the row with this text, and activate it:
   auto model = get_model();
@@ -107,7 +107,7 @@ auto ComboBoxText_Class::init() -> const Glib::Class&
 }
 
 
-void ComboBoxText_Class::class_init_function(void* g_class, void* class_data)
+auto ComboBoxText_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -167,37 +167,37 @@ auto ComboBoxText::get_base_type() -> GType
 }
 
 
-void ComboBoxText::append(const Glib::ustring& text)
+auto ComboBoxText::append (const Glib::ustring &text) -> void
 {
   gtk_combo_box_text_append_text(gobj(), text.c_str());
 }
 
-void ComboBoxText::append(const Glib::ustring& id, const Glib::ustring& text)
+auto ComboBoxText::append (const Glib::ustring &id, const Glib::ustring &text) -> void
 {
   gtk_combo_box_text_append(gobj(), id.c_str(), text.c_str());
 }
 
-void ComboBoxText::insert(int position, const Glib::ustring& text)
+auto ComboBoxText::insert (int position, const Glib::ustring &text) -> void
 {
   gtk_combo_box_text_insert_text(gobj(), position, text.c_str());
 }
 
-void ComboBoxText::insert(int position, const Glib::ustring& id, const Glib::ustring& text)
+auto ComboBoxText::insert (int position, const Glib::ustring &id, const Glib::ustring &text) -> void
 {
   gtk_combo_box_text_insert(gobj(), position, id.c_str(), text.c_str());
 }
 
-void ComboBoxText::prepend(const Glib::ustring& text)
+auto ComboBoxText::prepend (const Glib::ustring &text) -> void
 {
   gtk_combo_box_text_prepend_text(gobj(), text.c_str());
 }
 
-void ComboBoxText::prepend(const Glib::ustring& id, const Glib::ustring& text)
+auto ComboBoxText::prepend (const Glib::ustring &id, const Glib::ustring &text) -> void
 {
   gtk_combo_box_text_prepend(gobj(), id.c_str(), text.c_str());
 }
 
-void ComboBoxText::remove_text(int position)
+auto ComboBoxText::remove_text (int position) -> void
 {
   gtk_combo_box_text_remove(gobj(), position);
 }
@@ -207,7 +207,7 @@ auto ComboBoxText::get_active_text() const -> Glib::ustring
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_combo_box_text_get_active_text(const_cast<GtkComboBoxText*>(gobj())));
 }
 
-void ComboBoxText::remove_all()
+auto ComboBoxText::remove_all () -> void
 {
   gtk_combo_box_text_remove_all(gobj());
 }

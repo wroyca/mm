@@ -71,7 +71,7 @@ auto ObjectManagerServer_Class::init() -> const Glib::Class&
 }
 
 
-void ObjectManagerServer_Class::class_init_function(void* g_class, void* class_data)
+auto ObjectManagerServer_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -163,17 +163,19 @@ auto ObjectManagerServer::get_connection() const -> Glib::RefPtr<const Connectio
   return const_cast<ObjectManagerServer*>(this)->get_connection();
 }
 
-void ObjectManagerServer::set_connection(const Glib::RefPtr<Connection>& connection)
+auto ObjectManagerServer::set_connection (const Glib::RefPtr <Connection> &connection) -> void
 {
   g_dbus_object_manager_server_set_connection(gobj(), Glib::unwrap(connection));
 }
 
-void ObjectManagerServer::export_object(const Glib::RefPtr<Gio::DBus::ObjectSkeleton>& object)
+auto ObjectManagerServer::export_object (
+  const Glib::RefPtr <Gio::DBus::ObjectSkeleton> &object) -> void
 {
   g_dbus_object_manager_server_export(gobj(), Glib::unwrap(object));
 }
 
-void ObjectManagerServer::export_uniquely(const Glib::RefPtr<Gio::DBus::ObjectSkeleton>& object)
+auto ObjectManagerServer::export_uniquely (
+  const Glib::RefPtr <Gio::DBus::ObjectSkeleton> &object) -> void
 {
   g_dbus_object_manager_server_export_uniquely(gobj(), Glib::unwrap(object));
 }

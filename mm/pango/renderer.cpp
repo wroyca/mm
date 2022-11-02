@@ -97,7 +97,7 @@ auto Renderer_Class::init() -> const Glib::Class&
 }
 
 
-void Renderer_Class::class_init_function(void* g_class, void* class_data)
+auto Renderer_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -116,7 +116,8 @@ void Renderer_Class::class_init_function(void* g_class, void* class_data)
 
 }
 
-void Renderer_Class::draw_glyphs_vfunc_callback(PangoRenderer* self, PangoFont* font, PangoGlyphString* glyphs, int x, int y)
+auto Renderer_Class::draw_glyphs_vfunc_callback (
+  PangoRenderer *self, PangoFont *font, PangoGlyphString *glyphs, int x, int y) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -154,7 +155,8 @@ void Renderer_Class::draw_glyphs_vfunc_callback(PangoRenderer* self, PangoFont* 
   if(base && base->draw_glyphs)
     (*base->draw_glyphs)(self, font, glyphs, x, y);
 }
-void Renderer_Class::draw_rectangle_vfunc_callback(PangoRenderer* self, PangoRenderPart part, int x, int y, int width, int height)
+auto Renderer_Class::draw_rectangle_vfunc_callback (
+  PangoRenderer *self, PangoRenderPart part, int x, int y, int width, int height) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -191,7 +193,8 @@ void Renderer_Class::draw_rectangle_vfunc_callback(PangoRenderer* self, PangoRen
   if(base && base->draw_rectangle)
     (*base->draw_rectangle)(self, part, x, y, width, height);
 }
-void Renderer_Class::draw_error_underline_vfunc_callback(PangoRenderer* self, int x, int y, int width, int height)
+auto Renderer_Class::draw_error_underline_vfunc_callback (
+  PangoRenderer *self, int x, int y, int width, int height) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -227,7 +230,8 @@ void Renderer_Class::draw_error_underline_vfunc_callback(PangoRenderer* self, in
   if(base && base->draw_error_underline)
     (*base->draw_error_underline)(self, x, y, width, height);
 }
-void Renderer_Class::draw_shape_vfunc_callback(PangoRenderer* self, PangoAttrShape* attr, int x, int y)
+auto Renderer_Class::draw_shape_vfunc_callback (
+  PangoRenderer *self, PangoAttrShape *attr, int x, int y) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -264,7 +268,9 @@ void Renderer_Class::draw_shape_vfunc_callback(PangoRenderer* self, PangoAttrSha
   if(base && base->draw_shape)
     (*base->draw_shape)(self, attr, x, y);
 }
-void Renderer_Class::draw_trapezoid_vfunc_callback(PangoRenderer* self, PangoRenderPart part, double y1, double x11, double x21, double y2, double x12, double x22)
+auto Renderer_Class::draw_trapezoid_vfunc_callback (
+  PangoRenderer *self, PangoRenderPart part, double y1, double x11, double x21, double y2,
+  double x12, double x22) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -301,7 +307,8 @@ void Renderer_Class::draw_trapezoid_vfunc_callback(PangoRenderer* self, PangoRen
   if(base && base->draw_trapezoid)
     (*base->draw_trapezoid)(self, part, y1, x11, x21, y2, x12, x22);
 }
-void Renderer_Class::draw_glyph_vfunc_callback(PangoRenderer* self, PangoFont* font, PangoGlyph glyph, double x, double y)
+auto Renderer_Class::draw_glyph_vfunc_callback (
+  PangoRenderer *self, PangoFont *font, PangoGlyph glyph, double x, double y) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -339,7 +346,7 @@ void Renderer_Class::draw_glyph_vfunc_callback(PangoRenderer* self, PangoFont* f
   if(base && base->draw_glyph)
     (*base->draw_glyph)(self, font, glyph, x, y);
 }
-void Renderer_Class::part_changed_vfunc_callback(PangoRenderer* self, PangoRenderPart part)
+auto Renderer_Class::part_changed_vfunc_callback (PangoRenderer *self, PangoRenderPart part) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -376,7 +383,7 @@ void Renderer_Class::part_changed_vfunc_callback(PangoRenderer* self, PangoRende
   if(base && base->part_changed)
     (*base->part_changed)(self, part);
 }
-void Renderer_Class::begin_vfunc_callback(PangoRenderer* self)
+auto Renderer_Class::begin_vfunc_callback (PangoRenderer *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -412,7 +419,7 @@ void Renderer_Class::begin_vfunc_callback(PangoRenderer* self)
   if(base && base->begin)
     (*base->begin)(self);
 }
-void Renderer_Class::end_vfunc_callback(PangoRenderer* self)
+auto Renderer_Class::end_vfunc_callback (PangoRenderer *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -448,7 +455,7 @@ void Renderer_Class::end_vfunc_callback(PangoRenderer* self)
   if(base && base->end)
     (*base->end)(self);
 }
-void Renderer_Class::prepare_run_vfunc_callback(PangoRenderer* self, PangoGlyphItem* run)
+auto Renderer_Class::prepare_run_vfunc_callback (PangoRenderer *self, PangoGlyphItem *run) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -485,7 +492,8 @@ void Renderer_Class::prepare_run_vfunc_callback(PangoRenderer* self, PangoGlyphI
   if(base && base->prepare_run)
     (*base->prepare_run)(self, run);
 }
-void Renderer_Class::draw_glyph_item_vfunc_callback(PangoRenderer* self, const char* text, PangoGlyphItem* glyph_item, int x, int y)
+auto Renderer_Class::draw_glyph_item_vfunc_callback (
+  PangoRenderer *self, const char *text, PangoGlyphItem *glyph_item, int x, int y) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -581,62 +589,65 @@ auto Renderer::get_base_type() -> GType
 }
 
 
-void Renderer::draw_layout(const Glib::RefPtr<Layout>& layout, int x, int y)
+auto Renderer::draw_layout (const Glib::RefPtr <Layout> &layout, int x, int y) -> void
 {
   pango_renderer_draw_layout(gobj(), Glib::unwrap(layout), x, y);
 }
 
-void Renderer::draw_layout_line(const Glib::RefPtr<LayoutLine>& line, int x, int y)
+auto Renderer::draw_layout_line (const Glib::RefPtr <LayoutLine> &line, int x, int y) -> void
 {
   pango_renderer_draw_layout_line(gobj(), Glib::unwrap(line), x, y);
 }
 
-void Renderer::draw_glyphs(const Glib::RefPtr<Font>& font, const GlyphString& glyphs, int x, int y)
+auto Renderer::draw_glyphs (
+  const Glib::RefPtr <Font> &font, const GlyphString &glyphs, int x, int y) -> void
 {
   pango_renderer_draw_glyphs(gobj(), Glib::unwrap(font), const_cast<PangoGlyphString*>(glyphs.gobj()), x, y);
 }
 
-void Renderer::draw_glyph_item(const Glib::ustring& text, const GlyphItem& glyph_item, int x, int y)
+auto Renderer::draw_glyph_item (
+  const Glib::ustring &text, const GlyphItem &glyph_item, int x, int y) -> void
 {
   pango_renderer_draw_glyph_item(gobj(), text.c_str(), const_cast<PangoGlyphItem*>(glyph_item.gobj()), x, y);
 }
 
-void Renderer::draw_rectangle(Part part, int x, int y, int width, int height)
+auto Renderer::draw_rectangle (Part part, int x, int y, int width, int height) -> void
 {
   pango_renderer_draw_rectangle(gobj(), static_cast<PangoRenderPart>(part), x, y, width, height);
 }
 
-void Renderer::draw_error_underline(int x, int y, int width, int height)
+auto Renderer::draw_error_underline (int x, int y, int width, int height) -> void
 {
   pango_renderer_draw_error_underline(gobj(), x, y, width, height);
 }
 
-void Renderer::draw_trapezoid(Part part, double y1, double x11, double x21, double y2, double x12, double x22)
+auto Renderer::draw_trapezoid (
+  Part part, double y1, double x11, double x21, double y2, double x12, double x22) -> void
 {
   pango_renderer_draw_trapezoid(gobj(), static_cast<PangoRenderPart>(part), y1, x11, x21, y2, x12, x22);
 }
 
-void Renderer::draw_glyph(const Glib::RefPtr<Font>& font, Glyph glyph, double x, double y)
+auto Renderer::draw_glyph (const Glib::RefPtr <Font> &font, Glyph glyph, double x, double y) -> void
 {
   pango_renderer_draw_glyph(gobj(), Glib::unwrap(font), glyph, x, y);
 }
 
-void Renderer::activate()
+auto Renderer::activate () -> void
 {
   pango_renderer_activate(gobj());
 }
 
-void Renderer::deactivate()
+auto Renderer::deactivate () -> void
 {
   pango_renderer_deactivate(gobj());
 }
 
-void Renderer::part_changed(Part part)
+auto Renderer::part_changed (Part part) -> void
 {
   pango_renderer_part_changed(gobj(), static_cast<PangoRenderPart>(part));
 }
 
-void Renderer::set_color(Part part, const Color& color)
+auto Renderer::set_color (Part part, const Color &color) -> void
 {
   pango_renderer_set_color(gobj(), static_cast<PangoRenderPart>(part), (color).gobj());
 }
@@ -646,7 +657,7 @@ auto Renderer::get_color(Part part) const -> Color
   return Color(pango_renderer_get_color(const_cast<PangoRenderer*>(gobj()), static_cast<PangoRenderPart>(part)));
 }
 
-void Renderer::set_alpha(Part part, guint16 alpha)
+auto Renderer::set_alpha (Part part, guint16 alpha) -> void
 {
   pango_renderer_set_alpha(gobj(), static_cast<PangoRenderPart>(part), alpha);
 }
@@ -656,7 +667,7 @@ auto Renderer::get_alpha(Part part) const -> guint16
   return pango_renderer_get_alpha(const_cast<PangoRenderer*>(gobj()), static_cast<PangoRenderPart>(part));
 }
 
-void Renderer::set_matrix(const Matrix& matrix)
+auto Renderer::set_matrix (const Matrix &matrix) -> void
 {
   pango_renderer_set_matrix(gobj(), &(matrix));
 }
@@ -688,7 +699,8 @@ auto Renderer::get_layout_line() const -> Glib::RefPtr<const LayoutLine>
 }
 
 
-void Pango::Renderer::draw_glyphs_vfunc(const Glib::RefPtr<Font>& font, const GlyphString& glyphs, int x, int y)
+auto Pango::Renderer::draw_glyphs_vfunc (
+  const Glib::RefPtr <Font> &font, const GlyphString &glyphs, int x, int y) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -699,7 +711,7 @@ void Pango::Renderer::draw_glyphs_vfunc(const Glib::RefPtr<Font>& font, const Gl
     (*base->draw_glyphs)(gobj(),Glib::unwrap(font),const_cast<PangoGlyphString*>(glyphs.gobj()),x,y);
   }
 }
-void Pango::Renderer::draw_rectangle_vfunc(Part part, int x, int y, int width, int height)
+auto Pango::Renderer::draw_rectangle_vfunc (Part part, int x, int y, int width, int height) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -710,7 +722,7 @@ void Pango::Renderer::draw_rectangle_vfunc(Part part, int x, int y, int width, i
     (*base->draw_rectangle)(gobj(),static_cast<PangoRenderPart>(part),x,y,width,height);
   }
 }
-void Pango::Renderer::draw_error_underline_vfunc(int x, int y, int width, int height)
+auto Pango::Renderer::draw_error_underline_vfunc (int x, int y, int width, int height) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -721,7 +733,7 @@ void Pango::Renderer::draw_error_underline_vfunc(int x, int y, int width, int he
     (*base->draw_error_underline)(gobj(),x,y,width,height);
   }
 }
-void Pango::Renderer::draw_shape_vfunc(const AttrShape& attr, int x, int y)
+auto Pango::Renderer::draw_shape_vfunc (const AttrShape &attr, int x, int y) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -732,7 +744,8 @@ void Pango::Renderer::draw_shape_vfunc(const AttrShape& attr, int x, int y)
     (*base->draw_shape)(gobj(),const_cast<PangoAttrShape*>((attr).gobj()),x,y);
   }
 }
-void Pango::Renderer::draw_trapezoid_vfunc(Part part, double y1, double x11, double x21, double y2, double x12, double x22)
+auto Pango::Renderer::draw_trapezoid_vfunc (
+  Part part, double y1, double x11, double x21, double y2, double x12, double x22) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -743,7 +756,8 @@ void Pango::Renderer::draw_trapezoid_vfunc(Part part, double y1, double x11, dou
     (*base->draw_trapezoid)(gobj(),static_cast<PangoRenderPart>(part),y1,x11,x21,y2,x12,x22);
   }
 }
-void Pango::Renderer::draw_glyph_vfunc(const Glib::RefPtr<Font>& font, Glyph glyph, double x, double y)
+auto Pango::Renderer::draw_glyph_vfunc (
+  const Glib::RefPtr <Font> &font, Glyph glyph, double x, double y) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -754,7 +768,7 @@ void Pango::Renderer::draw_glyph_vfunc(const Glib::RefPtr<Font>& font, Glyph gly
     (*base->draw_glyph)(gobj(),Glib::unwrap(font),glyph,x,y);
   }
 }
-void Pango::Renderer::part_changed_vfunc(Part part)
+auto Pango::Renderer::part_changed_vfunc (Part part) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -765,7 +779,7 @@ void Pango::Renderer::part_changed_vfunc(Part part)
     (*base->part_changed)(gobj(),static_cast<PangoRenderPart>(part));
   }
 }
-void Pango::Renderer::begin_vfunc()
+auto Pango::Renderer::begin_vfunc () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -776,7 +790,7 @@ void Pango::Renderer::begin_vfunc()
     (*base->begin)(gobj());
   }
 }
-void Pango::Renderer::end_vfunc()
+auto Pango::Renderer::end_vfunc () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -787,7 +801,7 @@ void Pango::Renderer::end_vfunc()
     (*base->end)(gobj());
   }
 }
-void Pango::Renderer::prepare_run_vfunc(const GlyphItem& run)
+auto Pango::Renderer::prepare_run_vfunc (const GlyphItem &run) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -798,7 +812,8 @@ void Pango::Renderer::prepare_run_vfunc(const GlyphItem& run)
     (*base->prepare_run)(gobj(),const_cast<PangoGlyphItem*>((run).gobj()));
   }
 }
-void Pango::Renderer::draw_glyph_item_vfunc(const Glib::ustring& text, const GlyphItem& glyph_item, int x, int y)
+auto Pango::Renderer::draw_glyph_item_vfunc (
+  const Glib::ustring &text, const GlyphItem &glyph_item, int x, int y) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

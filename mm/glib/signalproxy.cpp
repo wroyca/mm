@@ -73,15 +73,13 @@ SignalProxyNormal::connect_impl_(bool notify, sigc::slot_base&& slot, bool after
   return pConnectionNode->slot_;
 }
 
-void
-SignalProxyNormal::emission_stop()
+auto SignalProxyNormal::emission_stop () -> void
 {
   g_signal_stop_emission_by_name(obj_->gobj(), info_->signal_name);
 }
 
 // static
-void
-SignalProxyNormal::slot0_void_callback(GObject* self, void* data)
+auto SignalProxyNormal::slot0_void_callback (GObject *self, void *data) -> void
 {
   // Do not try to call a signal on a disassociated wrapper.
   if (Glib::ObjectBase::_get_current_wrapper(self))
@@ -145,8 +143,7 @@ SignalProxyDetailedBase::connect_impl_(bool notify, sigc::slot_base&& slot, bool
   return pConnectionNode->slot_;
 }
 
-void
-SignalProxyDetailedBase::emission_stop()
+auto SignalProxyDetailedBase::emission_stop () -> void
 {
   g_signal_stop_emission_by_name(obj_->gobj(), detailed_name_.c_str());
 }

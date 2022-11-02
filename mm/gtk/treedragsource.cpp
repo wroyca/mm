@@ -65,7 +65,7 @@ auto TreeDragSource_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void TreeDragSource_Class::iface_init_function(void* g_iface, void*)
+auto TreeDragSource_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -238,7 +238,7 @@ TreeDragSource::~TreeDragSource() noexcept
 {}
 
 // static
-void TreeDragSource::add_interface(GType gtype_implementer)
+auto TreeDragSource::add_interface (GType gtype_implementer) -> void
 {
   treedragsource_class_.init().add_interface(gtype_implementer);
 }

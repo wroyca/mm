@@ -35,7 +35,8 @@ namespace
 {
 
 
-void VolumeMonitor_signal_volume_added_callback(GVolumeMonitor* self, GVolume* p0,void* data)
+auto VolumeMonitor_signal_volume_added_callback (
+  GVolumeMonitor *self, GVolume *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Volume>&)>;
@@ -65,7 +66,8 @@ const Glib::SignalProxyInfo VolumeMonitor_signal_volume_added_info =
 };
 
 
-void VolumeMonitor_signal_volume_removed_callback(GVolumeMonitor* self, GVolume* p0,void* data)
+auto VolumeMonitor_signal_volume_removed_callback (
+  GVolumeMonitor *self, GVolume *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Volume>&)>;
@@ -95,7 +97,8 @@ const Glib::SignalProxyInfo VolumeMonitor_signal_volume_removed_info =
 };
 
 
-void VolumeMonitor_signal_volume_changed_callback(GVolumeMonitor* self, GVolume* p0,void* data)
+auto VolumeMonitor_signal_volume_changed_callback (
+  GVolumeMonitor *self, GVolume *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Volume>&)>;
@@ -125,7 +128,8 @@ const Glib::SignalProxyInfo VolumeMonitor_signal_volume_changed_info =
 };
 
 
-void VolumeMonitor_signal_mount_added_callback(GVolumeMonitor* self, GMount* p0,void* data)
+auto VolumeMonitor_signal_mount_added_callback (
+  GVolumeMonitor *self, GMount *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Mount>&)>;
@@ -155,7 +159,8 @@ const Glib::SignalProxyInfo VolumeMonitor_signal_mount_added_info =
 };
 
 
-void VolumeMonitor_signal_mount_removed_callback(GVolumeMonitor* self, GMount* p0,void* data)
+auto VolumeMonitor_signal_mount_removed_callback (
+  GVolumeMonitor *self, GMount *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Mount>&)>;
@@ -185,7 +190,8 @@ const Glib::SignalProxyInfo VolumeMonitor_signal_mount_removed_info =
 };
 
 
-void VolumeMonitor_signal_mount_pre_unmount_callback(GVolumeMonitor* self, GMount* p0,void* data)
+auto VolumeMonitor_signal_mount_pre_unmount_callback (
+  GVolumeMonitor *self, GMount *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Mount>&)>;
@@ -215,7 +221,8 @@ const Glib::SignalProxyInfo VolumeMonitor_signal_mount_pre_unmount_info =
 };
 
 
-void VolumeMonitor_signal_mount_changed_callback(GVolumeMonitor* self, GMount* p0,void* data)
+auto VolumeMonitor_signal_mount_changed_callback (
+  GVolumeMonitor *self, GMount *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Mount>&)>;
@@ -245,7 +252,8 @@ const Glib::SignalProxyInfo VolumeMonitor_signal_mount_changed_info =
 };
 
 
-void VolumeMonitor_signal_drive_connected_callback(GVolumeMonitor* self, GDrive* p0,void* data)
+auto VolumeMonitor_signal_drive_connected_callback (
+  GVolumeMonitor *self, GDrive *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Drive>&)>;
@@ -275,7 +283,8 @@ const Glib::SignalProxyInfo VolumeMonitor_signal_drive_connected_info =
 };
 
 
-void VolumeMonitor_signal_drive_disconnected_callback(GVolumeMonitor* self, GDrive* p0,void* data)
+auto VolumeMonitor_signal_drive_disconnected_callback (
+  GVolumeMonitor *self, GDrive *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Drive>&)>;
@@ -305,7 +314,8 @@ const Glib::SignalProxyInfo VolumeMonitor_signal_drive_disconnected_info =
 };
 
 
-void VolumeMonitor_signal_drive_changed_callback(GVolumeMonitor* self, GDrive* p0,void* data)
+auto VolumeMonitor_signal_drive_changed_callback (
+  GVolumeMonitor *self, GDrive *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Drive>&)>;
@@ -335,7 +345,8 @@ const Glib::SignalProxyInfo VolumeMonitor_signal_drive_changed_info =
 };
 
 
-void VolumeMonitor_signal_drive_eject_button_callback(GVolumeMonitor* self, GDrive* p0,void* data)
+auto VolumeMonitor_signal_drive_eject_button_callback (
+  GVolumeMonitor *self, GDrive *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Drive>&)>;
@@ -365,7 +376,8 @@ const Glib::SignalProxyInfo VolumeMonitor_signal_drive_eject_button_info =
 };
 
 
-void VolumeMonitor_signal_drive_stop_button_callback(GVolumeMonitor* self, GDrive* p0,void* data)
+auto VolumeMonitor_signal_drive_stop_button_callback (
+  GVolumeMonitor *self, GDrive *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Drive>&)>;
@@ -438,7 +450,7 @@ auto VolumeMonitor_Class::init() -> const Glib::Class&
 }
 
 
-void VolumeMonitor_Class::class_init_function(void* g_class, void* class_data)
+auto VolumeMonitor_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -459,7 +471,7 @@ void VolumeMonitor_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void VolumeMonitor_Class::volume_added_callback(GVolumeMonitor* self, GVolume* p0)
+auto VolumeMonitor_Class::volume_added_callback (GVolumeMonitor *self, GVolume *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -496,7 +508,7 @@ void VolumeMonitor_Class::volume_added_callback(GVolumeMonitor* self, GVolume* p
   if(base && base->volume_added)
     (*base->volume_added)(self, p0);
 }
-void VolumeMonitor_Class::volume_removed_callback(GVolumeMonitor* self, GVolume* p0)
+auto VolumeMonitor_Class::volume_removed_callback (GVolumeMonitor *self, GVolume *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -533,7 +545,7 @@ void VolumeMonitor_Class::volume_removed_callback(GVolumeMonitor* self, GVolume*
   if(base && base->volume_removed)
     (*base->volume_removed)(self, p0);
 }
-void VolumeMonitor_Class::volume_changed_callback(GVolumeMonitor* self, GVolume* p0)
+auto VolumeMonitor_Class::volume_changed_callback (GVolumeMonitor *self, GVolume *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -570,7 +582,7 @@ void VolumeMonitor_Class::volume_changed_callback(GVolumeMonitor* self, GVolume*
   if(base && base->volume_changed)
     (*base->volume_changed)(self, p0);
 }
-void VolumeMonitor_Class::mount_added_callback(GVolumeMonitor* self, GMount* p0)
+auto VolumeMonitor_Class::mount_added_callback (GVolumeMonitor *self, GMount *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -607,7 +619,7 @@ void VolumeMonitor_Class::mount_added_callback(GVolumeMonitor* self, GMount* p0)
   if(base && base->mount_added)
     (*base->mount_added)(self, p0);
 }
-void VolumeMonitor_Class::mount_removed_callback(GVolumeMonitor* self, GMount* p0)
+auto VolumeMonitor_Class::mount_removed_callback (GVolumeMonitor *self, GMount *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -644,7 +656,7 @@ void VolumeMonitor_Class::mount_removed_callback(GVolumeMonitor* self, GMount* p
   if(base && base->mount_removed)
     (*base->mount_removed)(self, p0);
 }
-void VolumeMonitor_Class::mount_pre_unmount_callback(GVolumeMonitor* self, GMount* p0)
+auto VolumeMonitor_Class::mount_pre_unmount_callback (GVolumeMonitor *self, GMount *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -681,7 +693,7 @@ void VolumeMonitor_Class::mount_pre_unmount_callback(GVolumeMonitor* self, GMoun
   if(base && base->mount_pre_unmount)
     (*base->mount_pre_unmount)(self, p0);
 }
-void VolumeMonitor_Class::mount_changed_callback(GVolumeMonitor* self, GMount* p0)
+auto VolumeMonitor_Class::mount_changed_callback (GVolumeMonitor *self, GMount *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -718,7 +730,7 @@ void VolumeMonitor_Class::mount_changed_callback(GVolumeMonitor* self, GMount* p
   if(base && base->mount_changed)
     (*base->mount_changed)(self, p0);
 }
-void VolumeMonitor_Class::drive_connected_callback(GVolumeMonitor* self, GDrive* p0)
+auto VolumeMonitor_Class::drive_connected_callback (GVolumeMonitor *self, GDrive *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -755,7 +767,7 @@ void VolumeMonitor_Class::drive_connected_callback(GVolumeMonitor* self, GDrive*
   if(base && base->drive_connected)
     (*base->drive_connected)(self, p0);
 }
-void VolumeMonitor_Class::drive_disconnected_callback(GVolumeMonitor* self, GDrive* p0)
+auto VolumeMonitor_Class::drive_disconnected_callback (GVolumeMonitor *self, GDrive *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -792,7 +804,7 @@ void VolumeMonitor_Class::drive_disconnected_callback(GVolumeMonitor* self, GDri
   if(base && base->drive_disconnected)
     (*base->drive_disconnected)(self, p0);
 }
-void VolumeMonitor_Class::drive_changed_callback(GVolumeMonitor* self, GDrive* p0)
+auto VolumeMonitor_Class::drive_changed_callback (GVolumeMonitor *self, GDrive *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -829,7 +841,7 @@ void VolumeMonitor_Class::drive_changed_callback(GVolumeMonitor* self, GDrive* p
   if(base && base->drive_changed)
     (*base->drive_changed)(self, p0);
 }
-void VolumeMonitor_Class::drive_eject_button_callback(GVolumeMonitor* self, GDrive* p0)
+auto VolumeMonitor_Class::drive_eject_button_callback (GVolumeMonitor *self, GDrive *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -866,7 +878,7 @@ void VolumeMonitor_Class::drive_eject_button_callback(GVolumeMonitor* self, GDri
   if(base && base->drive_eject_button)
     (*base->drive_eject_button)(self, p0);
 }
-void VolumeMonitor_Class::drive_stop_button_callback(GVolumeMonitor* self, GDrive* p0)
+auto VolumeMonitor_Class::drive_stop_button_callback (GVolumeMonitor *self, GDrive *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1070,7 +1082,7 @@ auto VolumeMonitor::signal_drive_stop_button() -> Glib::SignalProxy<void(const G
 }
 
 
-void Gio::VolumeMonitor::on_volume_added(const Glib::RefPtr<Volume>& volume)
+auto Gio::VolumeMonitor::on_volume_added (const Glib::RefPtr <Volume> &volume) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1079,7 +1091,7 @@ void Gio::VolumeMonitor::on_volume_added(const Glib::RefPtr<Volume>& volume)
   if(base && base->volume_added)
     (*base->volume_added)(gobj(),const_cast<GVolume*>(Glib::unwrap(volume)));
 }
-void Gio::VolumeMonitor::on_volume_removed(const Glib::RefPtr<Volume>& volume)
+auto Gio::VolumeMonitor::on_volume_removed (const Glib::RefPtr <Volume> &volume) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1088,7 +1100,7 @@ void Gio::VolumeMonitor::on_volume_removed(const Glib::RefPtr<Volume>& volume)
   if(base && base->volume_removed)
     (*base->volume_removed)(gobj(),const_cast<GVolume*>(Glib::unwrap(volume)));
 }
-void Gio::VolumeMonitor::on_volume_changed(const Glib::RefPtr<Volume>& volume)
+auto Gio::VolumeMonitor::on_volume_changed (const Glib::RefPtr <Volume> &volume) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1097,7 +1109,7 @@ void Gio::VolumeMonitor::on_volume_changed(const Glib::RefPtr<Volume>& volume)
   if(base && base->volume_changed)
     (*base->volume_changed)(gobj(),const_cast<GVolume*>(Glib::unwrap(volume)));
 }
-void Gio::VolumeMonitor::on_mount_added(const Glib::RefPtr<Mount>& mount)
+auto Gio::VolumeMonitor::on_mount_added (const Glib::RefPtr <Mount> &mount) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1106,7 +1118,7 @@ void Gio::VolumeMonitor::on_mount_added(const Glib::RefPtr<Mount>& mount)
   if(base && base->mount_added)
     (*base->mount_added)(gobj(),const_cast<GMount*>(Glib::unwrap(mount)));
 }
-void Gio::VolumeMonitor::on_mount_removed(const Glib::RefPtr<Mount>& mount)
+auto Gio::VolumeMonitor::on_mount_removed (const Glib::RefPtr <Mount> &mount) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1115,7 +1127,7 @@ void Gio::VolumeMonitor::on_mount_removed(const Glib::RefPtr<Mount>& mount)
   if(base && base->mount_removed)
     (*base->mount_removed)(gobj(),const_cast<GMount*>(Glib::unwrap(mount)));
 }
-void Gio::VolumeMonitor::on_mount_pre_unmount(const Glib::RefPtr<Mount>& mount)
+auto Gio::VolumeMonitor::on_mount_pre_unmount (const Glib::RefPtr <Mount> &mount) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1124,7 +1136,7 @@ void Gio::VolumeMonitor::on_mount_pre_unmount(const Glib::RefPtr<Mount>& mount)
   if(base && base->mount_pre_unmount)
     (*base->mount_pre_unmount)(gobj(),const_cast<GMount*>(Glib::unwrap(mount)));
 }
-void Gio::VolumeMonitor::on_mount_changed(const Glib::RefPtr<Mount>& mount)
+auto Gio::VolumeMonitor::on_mount_changed (const Glib::RefPtr <Mount> &mount) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1133,7 +1145,7 @@ void Gio::VolumeMonitor::on_mount_changed(const Glib::RefPtr<Mount>& mount)
   if(base && base->mount_changed)
     (*base->mount_changed)(gobj(),const_cast<GMount*>(Glib::unwrap(mount)));
 }
-void Gio::VolumeMonitor::on_drive_connected(const Glib::RefPtr<Drive>& drive)
+auto Gio::VolumeMonitor::on_drive_connected (const Glib::RefPtr <Drive> &drive) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1142,7 +1154,7 @@ void Gio::VolumeMonitor::on_drive_connected(const Glib::RefPtr<Drive>& drive)
   if(base && base->drive_connected)
     (*base->drive_connected)(gobj(),const_cast<GDrive*>(Glib::unwrap(drive)));
 }
-void Gio::VolumeMonitor::on_drive_disconnected(const Glib::RefPtr<Drive>& drive)
+auto Gio::VolumeMonitor::on_drive_disconnected (const Glib::RefPtr <Drive> &drive) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1151,7 +1163,7 @@ void Gio::VolumeMonitor::on_drive_disconnected(const Glib::RefPtr<Drive>& drive)
   if(base && base->drive_disconnected)
     (*base->drive_disconnected)(gobj(),const_cast<GDrive*>(Glib::unwrap(drive)));
 }
-void Gio::VolumeMonitor::on_drive_changed(const Glib::RefPtr<Drive>& drive)
+auto Gio::VolumeMonitor::on_drive_changed (const Glib::RefPtr <Drive> &drive) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1160,7 +1172,7 @@ void Gio::VolumeMonitor::on_drive_changed(const Glib::RefPtr<Drive>& drive)
   if(base && base->drive_changed)
     (*base->drive_changed)(gobj(),const_cast<GDrive*>(Glib::unwrap(drive)));
 }
-void Gio::VolumeMonitor::on_drive_eject_button(const Glib::RefPtr<Drive>& drive)
+auto Gio::VolumeMonitor::on_drive_eject_button (const Glib::RefPtr <Drive> &drive) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1169,7 +1181,7 @@ void Gio::VolumeMonitor::on_drive_eject_button(const Glib::RefPtr<Drive>& drive)
   if(base && base->drive_eject_button)
     (*base->drive_eject_button)(gobj(),const_cast<GDrive*>(Glib::unwrap(drive)));
 }
-void Gio::VolumeMonitor::on_drive_stop_button(const Glib::RefPtr<Drive>& drive)
+auto Gio::VolumeMonitor::on_drive_stop_button (const Glib::RefPtr <Drive> &drive) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

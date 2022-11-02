@@ -20,11 +20,11 @@ public:
 
   friend class Buildable;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -33,19 +33,19 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-    static gboolean custom_tag_start_vfunc_callback(
-      GtkBuildable* buildable,
-      GtkBuilder* builder,
-      GObject* child,
-      const char* tagname,
-      GtkBuildableParser* parser,
-      gpointer* data);
-    static void custom_tag_end_vfunc_callback(
-      GtkBuildable* buildable,
-      GtkBuilder* builder,
-      GObject* child,
-      const char* tagname,
-      gpointer data);
+    static auto custom_tag_start_vfunc_callback (
+      GtkBuildable *buildable,
+      GtkBuilder *builder,
+      GObject *child,
+      const char *tagname,
+      GtkBuildableParser *parser,
+      gpointer *data) -> gboolean;
+    static auto custom_tag_end_vfunc_callback (
+      GtkBuildable *buildable,
+      GtkBuilder *builder,
+      GObject *child,
+      const char *tagname,
+      gpointer data) -> void;
   };
 
 

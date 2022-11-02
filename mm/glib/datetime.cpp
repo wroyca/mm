@@ -107,7 +107,7 @@ DateTime::~DateTime() noexcept
     g_date_time_unref(gobject_);
 }
 
-void DateTime::swap(DateTime& other) noexcept
+auto DateTime::swap (DateTime &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }
@@ -233,7 +233,7 @@ auto DateTime::equal(const DateTime& other) const -> bool
   return g_date_time_equal(const_cast<GDateTime*>(gobj()), static_cast<gconstpointer>(other.gobj()));
 }
 
-void DateTime::get_ymd(int& year, int& month, int& day) const
+auto DateTime::get_ymd (int &year, int &month, int &day) const -> void
 {
   g_date_time_get_ymd(const_cast<GDateTime*>(gobj()), &(year), &(month), &(day));
 }

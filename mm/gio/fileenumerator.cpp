@@ -32,9 +32,9 @@
 namespace Gio
 {
 
-void
-FileEnumerator::next_files_async(const SlotAsyncReady& slot,
-  const Glib::RefPtr<Cancellable>& cancellable, int num_files, int io_priority)
+auto FileEnumerator::next_files_async (
+  const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, int num_files, int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -45,8 +45,8 @@ FileEnumerator::next_files_async(const SlotAsyncReady& slot,
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-FileEnumerator::next_files_async(const SlotAsyncReady& slot, int num_files, int io_priority)
+auto FileEnumerator::next_files_async (
+  const SlotAsyncReady &slot, int num_files, int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -58,9 +58,9 @@ FileEnumerator::next_files_async(const SlotAsyncReady& slot, int num_files, int 
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-FileEnumerator::close_async(
-  int io_priority, const Glib::RefPtr<Cancellable>& cancellable, const SlotAsyncReady& slot)
+auto FileEnumerator::close_async (
+  int io_priority, const Glib::RefPtr <Cancellable> &cancellable,
+  const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -71,8 +71,7 @@ FileEnumerator::close_async(
     gobj(), io_priority, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-FileEnumerator::close_async(int io_priority, const SlotAsyncReady& slot)
+auto FileEnumerator::close_async (int io_priority, const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -131,7 +130,7 @@ auto FileEnumerator_Class::init() -> const Glib::Class&
 }
 
 
-void FileEnumerator_Class::class_init_function(void* g_class, void* class_data)
+auto FileEnumerator_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -260,7 +259,7 @@ auto FileEnumerator::has_pending() const -> bool
   return g_file_enumerator_has_pending(const_cast<GFileEnumerator*>(gobj()));
 }
 
-void FileEnumerator::set_pending(bool pending)
+auto FileEnumerator::set_pending (bool pending) -> void
 {
   g_file_enumerator_set_pending(gobj(), static_cast<int>(pending));
 }

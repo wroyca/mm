@@ -39,8 +39,7 @@ get_application_name() -> Glib::ustring
   return convert_const_gchar_ptr_to_ustring(g_get_application_name());
 }
 
-void
-set_application_name(UStringView application_name)
+auto set_application_name (UStringView application_name) -> void
 {
   g_set_application_name(application_name.c_str());
 }
@@ -51,8 +50,7 @@ get_prgname() -> std::string
   return convert_const_gchar_ptr_to_stdstring(g_get_prgname());
 }
 
-void
-set_prgname(StdStringView prgname)
+auto set_prgname (StdStringView prgname) -> void
 {
   g_set_prgname(prgname.c_str());
 }
@@ -77,8 +75,7 @@ setenv(StdStringView variable, StdStringView value, bool overwrite) -> bool
   return g_setenv(variable.c_str(), value.c_str(), overwrite);
 }
 
-void
-unsetenv(StdStringView variable)
+auto unsetenv (StdStringView variable) -> void
 {
   g_unsetenv(variable.c_str());
 }

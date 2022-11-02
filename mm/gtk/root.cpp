@@ -30,7 +30,7 @@
 
 namespace Gtk
 {
-void Root::unset_focus()
+auto Root::unset_focus () -> void
 {
   gtk_root_set_focus(gobj(), nullptr);
 }
@@ -75,7 +75,7 @@ auto Root_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Root_Class::iface_init_function(void* g_iface, void*)
+auto Root_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -124,7 +124,7 @@ Root::~Root() noexcept
 {}
 
 // static
-void Root::add_interface(GType gtype_implementer)
+auto Root::add_interface (GType gtype_implementer) -> void
 {
   root_class_.init().add_interface(gtype_implementer);
 }
@@ -156,7 +156,7 @@ auto Root::get_display() const -> Glib::RefPtr<const Gdk::Display>
   return const_cast<Root*>(this)->get_display();
 }
 
-void Root::set_focus(Widget& focus)
+auto Root::set_focus (Widget &focus) -> void
 {
   gtk_root_set_focus(gobj(), (focus).gobj());
 }

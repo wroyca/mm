@@ -64,7 +64,7 @@ auto FilterListModel_Class::init() -> const Glib::Class&
 }
 
 
-void FilterListModel_Class::class_init_function(void* g_class, void* class_data)
+auto FilterListModel_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -146,7 +146,7 @@ auto FilterListModel::create(const Glib::RefPtr<Gio::ListModel>& model, const Gl
   return Glib::make_refptr_for_instance<FilterListModel>( new FilterListModel(model, filter) );
 }
 
-void FilterListModel::set_filter(const Glib::RefPtr<Filter>& filter)
+auto FilterListModel::set_filter (const Glib::RefPtr <Filter> &filter) -> void
 {
   gtk_filter_list_model_set_filter(gobj(), Glib::unwrap(filter));
 }
@@ -164,7 +164,7 @@ auto FilterListModel::get_filter() const -> Glib::RefPtr<const Filter>
   return const_cast<FilterListModel*>(this)->get_filter();
 }
 
-void FilterListModel::set_model(const Glib::RefPtr<Gio::ListModel>& model)
+auto FilterListModel::set_model (const Glib::RefPtr <Gio::ListModel> &model) -> void
 {
   gtk_filter_list_model_set_model(gobj(), Glib::unwrap(model));
 }
@@ -182,7 +182,7 @@ auto FilterListModel::get_model() const -> Glib::RefPtr<const Gio::ListModel>
   return const_cast<FilterListModel*>(this)->get_model();
 }
 
-void FilterListModel::set_incremental(bool incremental)
+auto FilterListModel::set_incremental (bool incremental) -> void
 {
   gtk_filter_list_model_set_incremental(gobj(), static_cast<int>(incremental));
 }

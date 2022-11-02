@@ -29,7 +29,7 @@ namespace
 {
 
 
-void ColumnView_signal_activate_callback(GtkColumnView* self, guint p0,void* data)
+auto ColumnView_signal_activate_callback (GtkColumnView *self, guint p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint)>;
@@ -100,7 +100,7 @@ auto ColumnView_Class::init() -> const Glib::Class&
 }
 
 
-void ColumnView_Class::class_init_function(void* g_class, void* class_data)
+auto ColumnView_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -185,17 +185,18 @@ auto ColumnView::get_columns() const -> Glib::RefPtr<const Gio::ListModel>
   return const_cast<ColumnView*>(this)->get_columns();
 }
 
-void ColumnView::append_column(const Glib::RefPtr<ColumnViewColumn>& column)
+auto ColumnView::append_column (const Glib::RefPtr <ColumnViewColumn> &column) -> void
 {
   gtk_column_view_append_column(gobj(), Glib::unwrap(column));
 }
 
-void ColumnView::remove_column(const Glib::RefPtr<ColumnViewColumn>& column)
+auto ColumnView::remove_column (const Glib::RefPtr <ColumnViewColumn> &column) -> void
 {
   gtk_column_view_remove_column(gobj(), Glib::unwrap(column));
 }
 
-void ColumnView::insert_column(guint position, const Glib::RefPtr<ColumnViewColumn>& column)
+auto ColumnView::insert_column (
+  guint position, const Glib::RefPtr <ColumnViewColumn> &column) -> void
 {
   gtk_column_view_insert_column(gobj(), position, Glib::unwrap(column));
 }
@@ -213,7 +214,7 @@ auto ColumnView::get_model() const -> Glib::RefPtr<const SelectionModel>
   return const_cast<ColumnView*>(this)->get_model();
 }
 
-void ColumnView::set_model(const Glib::RefPtr<SelectionModel>& model)
+auto ColumnView::set_model (const Glib::RefPtr <SelectionModel> &model) -> void
 {
   gtk_column_view_set_model(gobj(), Glib::unwrap(model));
 }
@@ -223,7 +224,7 @@ auto ColumnView::get_show_row_separators() const -> bool
   return gtk_column_view_get_show_row_separators(const_cast<GtkColumnView*>(gobj()));
 }
 
-void ColumnView::set_show_row_separators(bool show_separators)
+auto ColumnView::set_show_row_separators (bool show_separators) -> void
 {
   gtk_column_view_set_show_row_separators(gobj(), static_cast<int>(show_separators));
 }
@@ -233,7 +234,7 @@ auto ColumnView::get_show_column_separators() const -> bool
   return gtk_column_view_get_show_column_separators(const_cast<GtkColumnView*>(gobj()));
 }
 
-void ColumnView::set_show_column_separators(bool show_separators)
+auto ColumnView::set_show_column_separators (bool show_separators) -> void
 {
   gtk_column_view_set_show_column_separators(gobj(), static_cast<int>(show_separators));
 }
@@ -251,12 +252,13 @@ auto ColumnView::get_sorter() const -> Glib::RefPtr<const Sorter>
   return const_cast<ColumnView*>(this)->get_sorter();
 }
 
-void ColumnView::sort_by_column(const Glib::RefPtr<ColumnViewColumn>& column, SortType direction)
+auto ColumnView::sort_by_column (
+  const Glib::RefPtr <ColumnViewColumn> &column, SortType direction) -> void
 {
   gtk_column_view_sort_by_column(gobj(), Glib::unwrap(column), static_cast<GtkSortType>(direction));
 }
 
-void ColumnView::set_single_click_activate(bool single_click_activate)
+auto ColumnView::set_single_click_activate (bool single_click_activate) -> void
 {
   gtk_column_view_set_single_click_activate(gobj(), static_cast<int>(single_click_activate));
 }
@@ -266,7 +268,7 @@ auto ColumnView::get_single_click_activate() const -> bool
   return gtk_column_view_get_single_click_activate(const_cast<GtkColumnView*>(gobj()));
 }
 
-void ColumnView::set_reorderable(bool reorderable)
+auto ColumnView::set_reorderable (bool reorderable) -> void
 {
   gtk_column_view_set_reorderable(gobj(), static_cast<int>(reorderable));
 }
@@ -276,7 +278,7 @@ auto ColumnView::get_reorderable() const -> bool
   return gtk_column_view_get_reorderable(const_cast<GtkColumnView*>(gobj()));
 }
 
-void ColumnView::set_enable_rubberband(bool enable_rubberband)
+auto ColumnView::set_enable_rubberband (bool enable_rubberband) -> void
 {
   gtk_column_view_set_enable_rubberband(gobj(), static_cast<int>(enable_rubberband));
 }

@@ -64,7 +64,7 @@ auto ShortcutManager_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void ShortcutManager_Class::iface_init_function(void* g_iface, void*)
+auto ShortcutManager_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -77,7 +77,8 @@ void ShortcutManager_Class::iface_init_function(void* g_iface, void*)
 
 }
 
-void ShortcutManager_Class::add_controller_vfunc_callback(GtkShortcutManager* self, GtkShortcutController* controller)
+auto ShortcutManager_Class::add_controller_vfunc_callback (
+  GtkShortcutManager *self, GtkShortcutController *controller) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -115,7 +116,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->add_controller)
     (*base->add_controller)(self, controller);
 }
-void ShortcutManager_Class::remove_controller_vfunc_callback(GtkShortcutManager* self, GtkShortcutController* controller)
+auto ShortcutManager_Class::remove_controller_vfunc_callback (
+  GtkShortcutManager *self, GtkShortcutController *controller) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -192,7 +194,7 @@ ShortcutManager::~ShortcutManager() noexcept
 {}
 
 // static
-void ShortcutManager::add_interface(GType gtype_implementer)
+auto ShortcutManager::add_interface (GType gtype_implementer) -> void
 {
   shortcutmanager_class_.init().add_interface(gtype_implementer);
 }
@@ -211,7 +213,8 @@ auto ShortcutManager::get_base_type() -> GType
 }
 
 
-void Gtk::ShortcutManager::add_controller_vfunc(const Glib::RefPtr<ShortcutController>& controller)
+auto Gtk::ShortcutManager::add_controller_vfunc (
+  const Glib::RefPtr <ShortcutController> &controller) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -223,7 +226,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->add_controller)(gobj(),Glib::unwrap(controller));
   }
 }
-void Gtk::ShortcutManager::remove_controller_vfunc(const Glib::RefPtr<ShortcutController>& controller)
+auto Gtk::ShortcutManager::remove_controller_vfunc (
+  const Glib::RefPtr <ShortcutController> &controller) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

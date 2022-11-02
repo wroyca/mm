@@ -24,12 +24,12 @@ public:
   friend class Renderer;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  const Glib::Class& init();
+  auto init () -> const Glib::Class&;
 
 
-  static void class_init_function(void* g_class, void* class_data);
+  static auto class_init_function (void *g_class, void *class_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -38,17 +38,25 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static void draw_glyphs_vfunc_callback(PangoRenderer* self, PangoFont* font, PangoGlyphString* glyphs, int x, int y);
-  static void draw_rectangle_vfunc_callback(PangoRenderer* self, PangoRenderPart part, int x, int y, int width, int height);
-  static void draw_error_underline_vfunc_callback(PangoRenderer* self, int x, int y, int width, int height);
-  static void draw_shape_vfunc_callback(PangoRenderer* self, PangoAttrShape* attr, int x, int y);
-  static void draw_trapezoid_vfunc_callback(PangoRenderer* self, PangoRenderPart part, double y1, double x11, double x21, double y2, double x12, double x22);
-  static void draw_glyph_vfunc_callback(PangoRenderer* self, PangoFont* font, PangoGlyph glyph, double x, double y);
-  static void part_changed_vfunc_callback(PangoRenderer* self, PangoRenderPart part);
-  static void begin_vfunc_callback(PangoRenderer* self);
-  static void end_vfunc_callback(PangoRenderer* self);
-  static void prepare_run_vfunc_callback(PangoRenderer* self, PangoGlyphItem* run);
-  static void draw_glyph_item_vfunc_callback(PangoRenderer* self, const char* text, PangoGlyphItem* glyph_item, int x, int y);
+  static auto draw_glyphs_vfunc_callback (
+    PangoRenderer *self, PangoFont *font, PangoGlyphString *glyphs, int x, int y) -> void;
+  static auto draw_rectangle_vfunc_callback (
+    PangoRenderer *self, PangoRenderPart part, int x, int y, int width, int height) -> void;
+  static auto draw_error_underline_vfunc_callback (
+    PangoRenderer *self, int x, int y, int width, int height) -> void;
+  static auto draw_shape_vfunc_callback (
+    PangoRenderer *self, PangoAttrShape *attr, int x, int y) -> void;
+  static auto draw_trapezoid_vfunc_callback (
+    PangoRenderer *self, PangoRenderPart part, double y1, double x11, double x21, double y2,
+    double x12, double x22) -> void;
+  static auto draw_glyph_vfunc_callback (
+    PangoRenderer *self, PangoFont *font, PangoGlyph glyph, double x, double y) -> void;
+  static auto part_changed_vfunc_callback (PangoRenderer *self, PangoRenderPart part) -> void;
+  static auto begin_vfunc_callback (PangoRenderer *self) -> void;
+  static auto end_vfunc_callback (PangoRenderer *self) -> void;
+  static auto prepare_run_vfunc_callback (PangoRenderer *self, PangoGlyphItem *run) -> void;
+  static auto draw_glyph_item_vfunc_callback (
+    PangoRenderer *self, const char *text, PangoGlyphItem *glyph_item, int x, int y) -> void;
 };
 
 

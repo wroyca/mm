@@ -30,7 +30,8 @@ namespace
 {
 
 
-void PrintOperationPreview_signal_ready_callback(GtkPrintOperationPreview* self, GtkPrintContext* p0,void* data)
+auto PrintOperationPreview_signal_ready_callback (
+  GtkPrintOperationPreview *self, GtkPrintContext *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<PrintContext>&)>;
@@ -60,7 +61,8 @@ const Glib::SignalProxyInfo PrintOperationPreview_signal_ready_info =
 };
 
 
-void PrintOperationPreview_signal_got_page_size_callback(GtkPrintOperationPreview* self, GtkPrintContext* p0,GtkPageSetup* p1,void* data)
+auto PrintOperationPreview_signal_got_page_size_callback (
+  GtkPrintOperationPreview *self, GtkPrintContext *p0, GtkPageSetup *p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<PrintContext>&, const Glib::RefPtr<PageSetup>&)>;
@@ -127,7 +129,7 @@ auto PrintOperationPreview_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void PrintOperationPreview_Class::iface_init_function(void* g_iface, void*)
+auto PrintOperationPreview_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -143,7 +145,8 @@ void PrintOperationPreview_Class::iface_init_function(void* g_iface, void*)
   klass->got_page_size = &got_page_size_callback;
 }
 
-void PrintOperationPreview_Class::render_page_vfunc_callback(GtkPrintOperationPreview* self, gint page_nr)
+auto PrintOperationPreview_Class::render_page_vfunc_callback (
+  GtkPrintOperationPreview *self, gint page_nr) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -181,7 +184,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->render_page)
     (*base->render_page)(self, page_nr);
 }
-void PrintOperationPreview_Class::end_preview_vfunc_callback(GtkPrintOperationPreview* self)
+auto PrintOperationPreview_Class::end_preview_vfunc_callback (
+  GtkPrintOperationPreview *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -259,7 +263,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   return RType();
 }
 
-void PrintOperationPreview_Class::ready_callback(GtkPrintOperationPreview* self, GtkPrintContext* p0)
+auto PrintOperationPreview_Class::ready_callback (
+  GtkPrintOperationPreview *self, GtkPrintContext *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -297,7 +302,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->ready)
     (*base->ready)(self, p0);
 }
-void PrintOperationPreview_Class::got_page_size_callback(GtkPrintOperationPreview* self, GtkPrintContext* p0, GtkPageSetup* p1)
+auto PrintOperationPreview_Class::got_page_size_callback (
+  GtkPrintOperationPreview *self, GtkPrintContext *p0, GtkPageSetup *p1) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -375,7 +381,7 @@ PrintOperationPreview::~PrintOperationPreview() noexcept
 {}
 
 // static
-void PrintOperationPreview::add_interface(GType gtype_implementer)
+auto PrintOperationPreview::add_interface (GType gtype_implementer) -> void
 {
   printoperationpreview_class_.init().add_interface(gtype_implementer);
 }
@@ -394,12 +400,12 @@ auto PrintOperationPreview::get_base_type() -> GType
 }
 
 
-void PrintOperationPreview::render_page(int page_nr)
+auto PrintOperationPreview::render_page (int page_nr) -> void
 {
   gtk_print_operation_preview_render_page(gobj(), page_nr);
 }
 
-void PrintOperationPreview::end_preview()
+auto PrintOperationPreview::end_preview () -> void
 {
   gtk_print_operation_preview_end_preview(gobj());
 }
@@ -422,7 +428,7 @@ auto PrintOperationPreview::signal_got_page_size() -> Glib::SignalProxy<void(con
 }
 
 
-void Gtk::PrintOperationPreview::on_ready(const Glib::RefPtr<PrintContext>& context)
+auto Gtk::PrintOperationPreview::on_ready (const Glib::RefPtr <PrintContext> &context) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -432,7 +438,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->ready)
     (*base->ready)(gobj(),Glib::unwrap(context));
 }
-void Gtk::PrintOperationPreview::on_got_page_size(const Glib::RefPtr<PrintContext>& context, const Glib::RefPtr<PageSetup>& page_setup)
+auto Gtk::PrintOperationPreview::on_got_page_size (
+  const Glib::RefPtr <PrintContext> &context, const Glib::RefPtr <PageSetup> &page_setup) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -443,7 +450,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->got_page_size)(gobj(),Glib::unwrap(context),Glib::unwrap(page_setup));
 }
 
-void Gtk::PrintOperationPreview::render_page_vfunc(int page_nr)
+auto Gtk::PrintOperationPreview::render_page_vfunc (int page_nr) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -455,7 +462,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->render_page)(gobj(),page_nr);
   }
 }
-void Gtk::PrintOperationPreview::end_preview_vfunc()
+auto Gtk::PrintOperationPreview::end_preview_vfunc () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

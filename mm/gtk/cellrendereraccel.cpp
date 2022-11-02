@@ -44,7 +44,9 @@ namespace
 {
 
 
-void CellRendererAccel_signal_accel_edited_callback(GtkCellRendererAccel* self, const gchar* p0,guint p1,GdkModifierType p2,guint p3,void* data)
+auto CellRendererAccel_signal_accel_edited_callback (
+  GtkCellRendererAccel *self, const gchar *p0, guint p1, GdkModifierType p2, guint p3,
+  void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&, guint, Gdk::ModifierType, guint)>;
@@ -75,7 +77,8 @@ const Glib::SignalProxyInfo CellRendererAccel_signal_accel_edited_info =
 };
 
 
-void CellRendererAccel_signal_accel_cleared_callback(GtkCellRendererAccel* self, const gchar* p0,void* data)
+auto CellRendererAccel_signal_accel_cleared_callback (
+  GtkCellRendererAccel *self, const gchar *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -152,7 +155,7 @@ auto CellRendererAccel_Class::init() -> const Glib::Class&
 }
 
 
-void CellRendererAccel_Class::class_init_function(void* g_class, void* class_data)
+auto CellRendererAccel_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

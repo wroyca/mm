@@ -63,7 +63,7 @@ auto DragSurface_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void DragSurface_Class::iface_init_function(void* g_iface, void*)
+auto DragSurface_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -112,7 +112,7 @@ DragSurface::~DragSurface() noexcept
 {}
 
 // static
-void DragSurface::add_interface(GType gtype_implementer)
+auto DragSurface::add_interface (GType gtype_implementer) -> void
 {
   dragsurface_class_.init().add_interface(gtype_implementer);
 }

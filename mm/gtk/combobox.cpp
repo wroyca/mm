@@ -47,7 +47,7 @@ ComboBox::ComboBox(const Glib::RefPtr<TreeModel>& model, bool has_entry)
   Gtk::Widget(Glib::ConstructParams(combobox_class_.init(), "model",Glib::unwrap(model),"has-entry",gboolean(has_entry), nullptr))
 {}
 
-void ComboBox::unset_active()
+auto ComboBox::unset_active () -> void
 {
   gtk_combo_box_set_active(gobj(), -1 /* see GTK+ docs */);
 }
@@ -85,13 +85,13 @@ auto ComboBox::get_active() const -> TreeModel::const_iterator
 }
 
 
-void ComboBox::unset_model()
+auto ComboBox::unset_model () -> void
 {
   gtk_combo_box_set_model(gobj(), nullptr);
 }
 
 
-void ComboBox::set_row_separator_func(const SlotRowSeparator& slot)
+auto ComboBox::set_row_separator_func (const SlotRowSeparator &slot) -> void
 {
   //Create a copy of the slot. A pointer to this will be passed through the callback's data parameter.
   //It will be deleted when SignalProxy_RowSeparator_gtk_callback_destroy() is called.
@@ -102,12 +102,12 @@ void ComboBox::set_row_separator_func(const SlotRowSeparator& slot)
       &TreeView_Private::SignalProxy_RowSeparator_gtk_callback_destroy);
 }
 
-void ComboBox::unset_row_separator_func()
+auto ComboBox::unset_row_separator_func () -> void
 {
   gtk_combo_box_set_row_separator_func(gobj(), nullptr, nullptr, nullptr /* See C docs. */);
 }
 
-void ComboBox::unset_child()
+auto ComboBox::unset_child () -> void
 {
   gtk_combo_box_set_child(gobj(), nullptr);
 }
@@ -246,7 +246,7 @@ auto ComboBox_Class::init() -> const Glib::Class&
 }
 
 
-void ComboBox_Class::class_init_function(void* g_class, void* class_data)
+auto ComboBox_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -257,7 +257,7 @@ void ComboBox_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void ComboBox_Class::changed_callback(GtkComboBox* self)
+auto ComboBox_Class::changed_callback (GtkComboBox *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -394,12 +394,12 @@ auto ComboBox::get_active_row_number() const -> int
   return gtk_combo_box_get_active(const_cast<GtkComboBox*>(gobj()));
 }
 
-void ComboBox::set_active(int index)
+auto ComboBox::set_active (int index) -> void
 {
   gtk_combo_box_set_active(gobj(), index);
 }
 
-void ComboBox::set_active(const TreeModel::const_iterator& iter)
+auto ComboBox::set_active (const TreeModel::const_iterator &iter) -> void
 {
   gtk_combo_box_set_active_iter(gobj(), const_cast<GtkTreeIter*>((iter).gobj()));
 }
@@ -417,12 +417,12 @@ auto ComboBox::get_model() const -> Glib::RefPtr<const TreeModel>
   return const_cast<ComboBox*>(this)->get_model();
 }
 
-void ComboBox::set_model(const Glib::RefPtr<TreeModel>& model)
+auto ComboBox::set_model (const Glib::RefPtr <TreeModel> &model) -> void
 {
   gtk_combo_box_set_model(gobj(), Glib::unwrap(model));
 }
 
-void ComboBox::set_button_sensitivity(SensitivityType sensitivity)
+auto ComboBox::set_button_sensitivity (SensitivityType sensitivity) -> void
 {
   gtk_combo_box_set_button_sensitivity(gobj(), static_cast<GtkSensitivityType>(sensitivity));
 }
@@ -437,12 +437,12 @@ auto ComboBox::get_has_entry() const -> bool
   return gtk_combo_box_get_has_entry(const_cast<GtkComboBox*>(gobj()));
 }
 
-void ComboBox::set_entry_text_column(const TreeModelColumnBase& text_column) const
+auto ComboBox::set_entry_text_column (const TreeModelColumnBase &text_column) const -> void
 {
   gtk_combo_box_set_entry_text_column(const_cast<GtkComboBox*>(gobj()), (text_column).index());
 }
 
-void ComboBox::set_entry_text_column(int text_column)
+auto ComboBox::set_entry_text_column (int text_column) -> void
 {
   gtk_combo_box_set_entry_text_column(gobj(), text_column);
 }
@@ -452,7 +452,7 @@ auto ComboBox::get_entry_text_column() const -> int
   return gtk_combo_box_get_entry_text_column(const_cast<GtkComboBox*>(gobj()));
 }
 
-void ComboBox::set_popup_fixed_width(bool fixed)
+auto ComboBox::set_popup_fixed_width (bool fixed) -> void
 {
   gtk_combo_box_set_popup_fixed_width(gobj(), static_cast<int>(fixed));
 }
@@ -462,17 +462,17 @@ auto ComboBox::get_popup_fixed_width() const -> bool
   return gtk_combo_box_get_popup_fixed_width(const_cast<GtkComboBox*>(gobj()));
 }
 
-void ComboBox::popup()
+auto ComboBox::popup () -> void
 {
   gtk_combo_box_popup(gobj());
 }
 
-void ComboBox::popup(const Glib::RefPtr<Gdk::Device>& device)
+auto ComboBox::popup (const Glib::RefPtr <Gdk::Device> &device) -> void
 {
   gtk_combo_box_popup_for_device(gobj(), Glib::unwrap(device));
 }
 
-void ComboBox::popdown()
+auto ComboBox::popdown () -> void
 {
   gtk_combo_box_popdown(gobj());
 }
@@ -482,7 +482,7 @@ auto ComboBox::get_id_column() const -> int
   return gtk_combo_box_get_id_column(const_cast<GtkComboBox*>(gobj()));
 }
 
-void ComboBox::set_id_column(int id_column)
+auto ComboBox::set_id_column (int id_column) -> void
 {
   gtk_combo_box_set_id_column(gobj(), id_column);
 }
@@ -497,7 +497,7 @@ auto ComboBox::set_active_id(const Glib::ustring& active_id) -> bool
   return gtk_combo_box_set_active_id(gobj(), active_id.c_str());
 }
 
-void ComboBox::set_child(Widget& child)
+auto ComboBox::set_child (Widget &child) -> void
 {
   gtk_combo_box_set_child(gobj(), (child).gobj());
 }
@@ -634,7 +634,7 @@ auto ComboBox::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 }
 
 
-void Gtk::ComboBox::on_changed()
+auto Gtk::ComboBox::on_changed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

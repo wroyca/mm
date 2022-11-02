@@ -63,7 +63,7 @@ auto SocketControlMessage_Class::deserialize_vfunc_callback(
 }
 
 // static
-void SocketControlMessage::add_deserialize_func(DeserializeFunc func)
+auto SocketControlMessage::add_deserialize_func (DeserializeFunc func) -> void
 {
   // std::set never contains duplicates.
   m_deserialize_funcs.insert(func);
@@ -116,7 +116,7 @@ auto SocketControlMessage_Class::init() -> const Glib::Class&
 }
 
 
-void SocketControlMessage_Class::class_init_function(void* g_class, void* class_data)
+auto SocketControlMessage_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -243,7 +243,8 @@ auto SocketControlMessage_Class::get_type_vfunc_callback(GSocketControlMessage* 
   using RType = int;
   return RType();
 }
-void SocketControlMessage_Class::serialize_vfunc_callback(GSocketControlMessage* self, gpointer data)
+auto SocketControlMessage_Class::serialize_vfunc_callback (
+  GSocketControlMessage *self, gpointer data) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -367,7 +368,7 @@ auto SocketControlMessage::get_size() const -> gsize
   return g_socket_control_message_get_size(const_cast<GSocketControlMessage*>(gobj()));
 }
 
-void SocketControlMessage::serialize(gpointer data)
+auto SocketControlMessage::serialize (gpointer data) -> void
 {
   g_socket_control_message_serialize(gobj(), data);
 }
@@ -418,7 +419,7 @@ auto Gio::SocketControlMessage::get_type_vfunc() const -> int
   using RType = int;
   return RType();
 }
-void Gio::SocketControlMessage::serialize_vfunc(gpointer data)
+auto Gio::SocketControlMessage::serialize_vfunc (gpointer data) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

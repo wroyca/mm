@@ -29,7 +29,8 @@ namespace
 {
 
 
-void GestureZoom_signal_scale_changed_callback(GtkGestureZoom* self, gdouble p0,void* data)
+auto GestureZoom_signal_scale_changed_callback (
+  GtkGestureZoom *self, gdouble p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double)>;
@@ -102,7 +103,7 @@ auto GestureZoom_Class::init() -> const Glib::Class&
 }
 
 
-void GestureZoom_Class::class_init_function(void* g_class, void* class_data)
+auto GestureZoom_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

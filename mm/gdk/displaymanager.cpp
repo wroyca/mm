@@ -37,7 +37,8 @@ namespace
 {
 
 
-void DisplayManager_signal_display_opened_callback(GdkDisplayManager* self, GdkDisplay* p0,void* data)
+auto DisplayManager_signal_display_opened_callback (
+  GdkDisplayManager *self, GdkDisplay *p0, void *data) -> void
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Display>&)>;
@@ -110,7 +111,7 @@ auto DisplayManager_Class::init() -> const Glib::Class&
 }
 
 
-void DisplayManager_Class::class_init_function(void* g_class, void* class_data)
+auto DisplayManager_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -197,7 +198,7 @@ auto DisplayManager::get_default_display() const -> Glib::RefPtr<const Display>
   return const_cast<DisplayManager*>(this)->get_default_display();
 }
 
-void DisplayManager::set_default_display(const Glib::RefPtr<Display>& display)
+auto DisplayManager::set_default_display (const Glib::RefPtr <Display> &display) -> void
 {
   gdk_display_manager_set_default_display(gobj(), Glib::unwrap(display));
 }

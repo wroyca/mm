@@ -161,7 +161,7 @@ TabArray::~TabArray() noexcept
     pango_tab_array_free(gobject_);
 }
 
-void TabArray::swap(TabArray& other) noexcept
+auto TabArray::swap (TabArray &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }
@@ -177,12 +177,12 @@ auto TabArray::get_size() const -> int
   return pango_tab_array_get_size(const_cast<PangoTabArray*>(gobj()));
 }
 
-void TabArray::resize(int new_size)
+auto TabArray::resize (int new_size) -> void
 {
   pango_tab_array_resize(gobj(), new_size);
 }
 
-void TabArray::set_tab(int tab_index, TabAlign alignment, int location)
+auto TabArray::set_tab (int tab_index, TabAlign alignment, int location) -> void
 {
   pango_tab_array_set_tab(gobj(), tab_index, static_cast<PangoTabAlign>(alignment), location);
 }

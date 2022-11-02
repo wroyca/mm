@@ -31,7 +31,7 @@
 namespace Gtk
 {
 
-void LockButton::unset_permission()
+auto LockButton::unset_permission () -> void
 {
   gtk_lock_button_set_permission(gobj(), nullptr);
 }
@@ -82,7 +82,7 @@ auto LockButton_Class::init() -> const Glib::Class&
 }
 
 
-void LockButton_Class::class_init_function(void* g_class, void* class_data)
+auto LockButton_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -175,7 +175,7 @@ auto LockButton::get_permission() const -> Glib::RefPtr<const Gio::Permission>
   return const_cast<LockButton*>(this)->get_permission();
 }
 
-void LockButton::set_permission(const Glib::RefPtr<const Gio::Permission>& permission)
+auto LockButton::set_permission (const Glib::RefPtr <const Gio::Permission> &permission) -> void
 {
   gtk_lock_button_set_permission(gobj(), const_cast<GPermission*>(Glib::unwrap<Gio::Permission>(permission)));
 }

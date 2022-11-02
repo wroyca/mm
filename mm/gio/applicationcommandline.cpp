@@ -29,14 +29,12 @@
 namespace Gio
 {
 
-void
-ApplicationCommandLine::print(const Glib::ustring& message)
+auto ApplicationCommandLine::print (const Glib::ustring &message) -> void
 {
   g_application_command_line_print(gobj(), "%s", message.c_str());
 }
 
-void
-ApplicationCommandLine::printerr(const Glib::ustring& message)
+auto ApplicationCommandLine::printerr (const Glib::ustring &message) -> void
 {
   g_application_command_line_printerr(gobj(), "%s", message.c_str());
 }
@@ -88,7 +86,7 @@ auto ApplicationCommandLine_Class::init() -> const Glib::Class&
 }
 
 
-void ApplicationCommandLine_Class::class_init_function(void* g_class, void* class_data)
+auto ApplicationCommandLine_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -219,7 +217,7 @@ auto ApplicationCommandLine::get_platform_data() const -> Glib::Variant< std::ma
   return Glib::Variant< std::map<Glib::ustring, Glib::VariantBase> >(g_application_command_line_get_platform_data(const_cast<GApplicationCommandLine*>(gobj())));
 }
 
-void ApplicationCommandLine::set_exit_status(int exit_status)
+auto ApplicationCommandLine::set_exit_status (int exit_status) -> void
 {
   g_application_command_line_set_exit_status(gobj(), exit_status);
 }

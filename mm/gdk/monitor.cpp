@@ -87,7 +87,7 @@ auto Monitor_Class::init() -> const Glib::Class&
 }
 
 
-void Monitor_Class::class_init_function(void* g_class, void* class_data)
+auto Monitor_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -175,7 +175,7 @@ auto Monitor::get_display() const -> Glib::RefPtr<const Display>
   return const_cast<Monitor*>(this)->get_display();
 }
 
-void Monitor::get_geometry(Rectangle& geometry) const
+auto Monitor::get_geometry (Rectangle &geometry) const -> void
 {
   gdk_monitor_get_geometry(const_cast<GdkMonitor*>(gobj()), (geometry).gobj());
 }

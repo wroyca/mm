@@ -153,7 +153,7 @@ auto Value<VariantType>::value_type() -> GType
   return G_TYPE_VARIANT_TYPE;
 }
 
-void Value<VariantType>::set(const CppType& data)
+auto Value <VariantType>::set (const CppType &data) -> void
 {
   set_boxed(data.gobj());
 }
@@ -246,7 +246,7 @@ VariantType::~VariantType() noexcept
     g_variant_type_free(gobject_);
 }
 
-void VariantType::swap(VariantType& other) noexcept
+auto VariantType::swap (VariantType &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }

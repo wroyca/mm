@@ -94,13 +94,13 @@ auto FileAttributeInfoList::create() -> Glib::RefPtr<FileAttributeInfoList>
   return Glib::make_refptr_for_instance<FileAttributeInfoList>(reinterpret_cast<FileAttributeInfoList*>(g_file_attribute_info_list_new()));
 }
 
-void FileAttributeInfoList::reference() const
+auto FileAttributeInfoList::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_file_attribute_info_list_ref(reinterpret_cast<GFileAttributeInfoList*>(const_cast<FileAttributeInfoList*>(this)));
 }
 
-void FileAttributeInfoList::unreference() const
+auto FileAttributeInfoList::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_file_attribute_info_list_unref(reinterpret_cast<GFileAttributeInfoList*>(const_cast<FileAttributeInfoList*>(this)));
@@ -132,7 +132,8 @@ auto FileAttributeInfoList::dup() const -> Glib::RefPtr<FileAttributeInfoList>
   return Glib::wrap(g_file_attribute_info_list_dup(const_cast<GFileAttributeInfoList*>(gobj())));
 }
 
-void FileAttributeInfoList::add(const std::string& name, FileAttributeType type, FileAttributeInfo::Flags flags)
+auto FileAttributeInfoList::add (
+  const std::string &name, FileAttributeType type, FileAttributeInfo::Flags flags) -> void
 {
   g_file_attribute_info_list_add(gobj(), name.c_str(), static_cast<GFileAttributeType>(type), static_cast<GFileAttributeInfoFlags>(flags));
 }

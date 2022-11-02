@@ -161,7 +161,7 @@ auto TlsConnection_Class::init() -> const Glib::Class&
 }
 
 
-void TlsConnection_Class::class_init_function(void* g_class, void* class_data)
+auto TlsConnection_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -218,7 +218,9 @@ auto TlsConnection_Class::handshake_vfunc_callback(GTlsConnection* self, GCancel
   using RType = gboolean;
   return RType();
 }
-void TlsConnection_Class::handshake_async_vfunc_callback(GTlsConnection* self, int io_priority, GCancellable* cancellable, GAsyncReadyCallback callback, gpointer user_data)
+auto TlsConnection_Class::handshake_async_vfunc_callback (
+  GTlsConnection *self, int io_priority, GCancellable *cancellable, GAsyncReadyCallback callback,
+  gpointer user_data) -> void
 {
   const auto slot = static_cast<Gio::SlotAsyncReady*>(user_data);
 
@@ -405,7 +407,7 @@ TlsConnection::TlsConnection()
 
 }
 
-void TlsConnection::set_certificate(const Glib::RefPtr<TlsCertificate>& certificate)
+auto TlsConnection::set_certificate (const Glib::RefPtr <TlsCertificate> &certificate) -> void
 {
   g_tls_connection_set_certificate(gobj(), Glib::unwrap(certificate));
 }
@@ -441,7 +443,7 @@ auto TlsConnection::get_peer_certificate_errors() const -> TlsCertificateFlags
   return static_cast<TlsCertificateFlags>(g_tls_connection_get_peer_certificate_errors(const_cast<GTlsConnection*>(gobj())));
 }
 
-void TlsConnection::set_require_close_notify(bool require_close_notify)
+auto TlsConnection::set_require_close_notify (bool require_close_notify) -> void
 {
   g_tls_connection_set_require_close_notify(gobj(), static_cast<int>(require_close_notify));
 }
@@ -461,7 +463,7 @@ auto TlsConnection::get_database() const -> Glib::RefPtr<const TlsDatabase>
   return const_cast<TlsConnection*>(this)->get_database();
 }
 
-void TlsConnection::set_database(const Glib::RefPtr<TlsDatabase>& database)
+auto TlsConnection::set_database (const Glib::RefPtr <TlsDatabase> &database) -> void
 {
   g_tls_connection_set_database(gobj(), Glib::unwrap(database));
 }
@@ -476,7 +478,7 @@ auto TlsConnection::get_interaction() const -> Glib::RefPtr<const TlsInteraction
   return const_cast<TlsConnection*>(this)->get_interaction();
 }
 
-void TlsConnection::set_interaction(const Glib::RefPtr<TlsInteraction>& interaction)
+auto TlsConnection::set_interaction (const Glib::RefPtr <TlsInteraction> &interaction) -> void
 {
   g_tls_connection_set_interaction(gobj(), Glib::unwrap(interaction));
 }
@@ -499,7 +501,9 @@ auto TlsConnection::handshake() -> bool
   return retvalue;
 }
 
-void TlsConnection::handshake_async(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, int io_priority)
+auto TlsConnection::handshake_async (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
+  int io_priority) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -507,7 +511,7 @@ void TlsConnection::handshake_async(const SlotAsyncReady& slot, const Glib::RefP
   g_tls_connection_handshake_async(gobj(), io_priority, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsConnection::handshake_async(const SlotAsyncReady& slot, int io_priority)
+auto TlsConnection::handshake_async (const SlotAsyncReady &slot, int io_priority) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -671,7 +675,9 @@ auto Gio::TlsConnection::handshake_vfunc(const Glib::RefPtr<Cancellable>& cancel
   using RType = bool;
   return RType();
 }
-void Gio::TlsConnection::handshake_async_vfunc(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, int io_priority)
+auto Gio::TlsConnection::handshake_async_vfunc (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
+  int io_priority) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);

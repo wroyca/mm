@@ -65,7 +65,7 @@ CellView::CellView(const Glib::RefPtr<Gdk::Texture>& texture)
   pack_start(*cell);
 }
 
-void CellView::unset_model()
+auto CellView::unset_model () -> void
 {
   gtk_cell_view_set_model(gobj(), nullptr);
 }
@@ -118,7 +118,7 @@ auto CellView_Class::init() -> const Glib::Class&
 }
 
 
-void CellView_Class::class_init_function(void* g_class, void* class_data)
+auto CellView_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -192,7 +192,7 @@ CellView::CellView()
 
 }
 
-void CellView::set_model(const Glib::RefPtr<TreeModel>& model)
+auto CellView::set_model (const Glib::RefPtr <TreeModel> &model) -> void
 {
   gtk_cell_view_set_model(gobj(), Glib::unwrap(model));
 }
@@ -210,7 +210,7 @@ auto CellView::get_model() const -> Glib::RefPtr<const TreeModel>
   return const_cast<CellView*>(this)->get_model();
 }
 
-void CellView::set_displayed_row(const TreeModel::Path& path)
+auto CellView::set_displayed_row (const TreeModel::Path &path) -> void
 {
   gtk_cell_view_set_displayed_row(gobj(), const_cast<GtkTreePath*>((path).gobj()));
 }
@@ -225,7 +225,7 @@ auto CellView::get_draw_sensitive() const -> bool
   return gtk_cell_view_get_draw_sensitive(const_cast<GtkCellView*>(gobj()));
 }
 
-void CellView::set_draw_sensitive(bool draw_sensitive)
+auto CellView::set_draw_sensitive (bool draw_sensitive) -> void
 {
   gtk_cell_view_set_draw_sensitive(gobj(), static_cast<int>(draw_sensitive));
 }
@@ -235,7 +235,7 @@ auto CellView::get_fit_model() const -> bool
   return gtk_cell_view_get_fit_model(const_cast<GtkCellView*>(gobj()));
 }
 
-void CellView::set_fit_model(bool fit_model)
+auto CellView::set_fit_model (bool fit_model) -> void
 {
   gtk_cell_view_set_fit_model(gobj(), static_cast<int>(fit_model));
 }

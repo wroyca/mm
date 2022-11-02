@@ -21,10 +21,10 @@ public:
   friend class Cursor;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  const Glib::Class& init();
+  auto init () -> const Glib::Class&;
 
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 

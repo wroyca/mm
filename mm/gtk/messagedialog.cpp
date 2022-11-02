@@ -57,7 +57,7 @@ MessageDialog::MessageDialog(Gtk::Window& parent, const Glib::ustring& message, 
   set_message(message, use_markup);
 }
 
-void MessageDialog::set_message(const Glib::ustring& message, bool use_markup)
+auto MessageDialog::set_message (const Glib::ustring &message, bool use_markup) -> void
 {
   if(use_markup)
     gtk_message_dialog_set_markup(gobj(), message.c_str());
@@ -68,7 +68,7 @@ void MessageDialog::set_message(const Glib::ustring& message, bool use_markup)
   }
 }
 
-void MessageDialog::set_secondary_text(const Glib::ustring& text, bool use_markup)
+auto MessageDialog::set_secondary_text (const Glib::ustring &text, bool use_markup) -> void
 {
   if(use_markup)
     gtk_message_dialog_format_secondary_markup(gobj(), "%s", text.c_str());
@@ -127,7 +127,7 @@ auto MessageDialog_Class::init() -> const Glib::Class&
 }
 
 
-void MessageDialog_Class::class_init_function(void* g_class, void* class_data)
+auto MessageDialog_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

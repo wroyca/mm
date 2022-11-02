@@ -35,7 +35,7 @@ auto Statusbar::push(const Glib::ustring& text, guint context_id /* = 0 */) -> g
   return gtk_statusbar_push(gobj(), context_id, text.c_str());
 }
 
-void Statusbar::remove_message(guint message_id, guint context_id /* = 0 */)
+auto Statusbar::remove_message (guint message_id, guint context_id /* = 0 */) -> void
 {
   return gtk_statusbar_remove(gobj(), context_id, message_id);
 }
@@ -47,7 +47,8 @@ namespace
 {
 
 
-void Statusbar_signal_text_pushed_callback(GtkStatusbar* self, guint p0,const gchar* p1,void* data)
+auto Statusbar_signal_text_pushed_callback (
+  GtkStatusbar *self, guint p0, const gchar *p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint, const Glib::ustring&)>;
@@ -77,7 +78,8 @@ const Glib::SignalProxyInfo Statusbar_signal_text_pushed_info =
 };
 
 
-void Statusbar_signal_text_popped_callback(GtkStatusbar* self, guint p0,const gchar* p1,void* data)
+auto Statusbar_signal_text_popped_callback (
+  GtkStatusbar *self, guint p0, const gchar *p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint, const Glib::ustring&)>;
@@ -148,7 +150,7 @@ auto Statusbar_Class::init() -> const Glib::Class&
 }
 
 
-void Statusbar_Class::class_init_function(void* g_class, void* class_data)
+auto Statusbar_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -223,12 +225,12 @@ auto Statusbar::get_context_id(const Glib::ustring& context_description) -> guin
   return gtk_statusbar_get_context_id(gobj(), context_description.c_str());
 }
 
-void Statusbar::pop(guint context_id)
+auto Statusbar::pop (guint context_id) -> void
 {
   gtk_statusbar_pop(gobj(), context_id);
 }
 
-void Statusbar::remove_all_messages(guint context_id)
+auto Statusbar::remove_all_messages (guint context_id) -> void
 {
   gtk_statusbar_remove_all(gobj(), context_id);
 }

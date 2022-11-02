@@ -137,7 +137,7 @@ auto Switch_Class::init() -> const Glib::Class&
 }
 
 
-void Switch_Class::class_init_function(void* g_class, void* class_data)
+auto Switch_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -209,7 +209,7 @@ Switch::Switch()
 
 }
 
-void Switch::set_active(bool is_active)
+auto Switch::set_active (bool is_active) -> void
 {
   gtk_switch_set_active(gobj(), static_cast<int>(is_active));
 }
@@ -219,7 +219,7 @@ auto Switch::get_active() const -> bool
   return gtk_switch_get_active(const_cast<GtkSwitch*>(gobj()));
 }
 
-void Switch::set_state(bool state)
+auto Switch::set_state (bool state) -> void
 {
   gtk_switch_set_state(gobj(), static_cast<int>(state));
 }

@@ -35,9 +35,9 @@ BufferedInputStream::create_sized(const Glib::RefPtr<InputStream>& base_stream, 
   return Glib::make_refptr_for_instance<Gio::BufferedInputStream>(new BufferedInputStream(base_stream, buffer_size));
 }
 
-void
-BufferedInputStream::fill_async(const SlotAsyncReady& slot, gssize count,
-  const Glib::RefPtr<Cancellable>& cancellable, int io_priority)
+auto BufferedInputStream::fill_async (
+  const SlotAsyncReady &slot, gssize count,
+  const Glib::RefPtr <Cancellable> &cancellable, int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -48,8 +48,8 @@ BufferedInputStream::fill_async(const SlotAsyncReady& slot, gssize count,
     gobj(), count, io_priority, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-BufferedInputStream::fill_async(const SlotAsyncReady& slot, gssize count, int io_priority)
+auto BufferedInputStream::fill_async (
+  const SlotAsyncReady &slot, gssize count, int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -108,7 +108,7 @@ auto BufferedInputStream_Class::init() -> const Glib::Class&
 }
 
 
-void BufferedInputStream_Class::class_init_function(void* g_class, void* class_data)
+auto BufferedInputStream_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -251,7 +251,7 @@ auto BufferedInputStream::get_buffer_size() const -> gsize
   return g_buffered_input_stream_get_buffer_size(const_cast<GBufferedInputStream*>(gobj()));
 }
 
-void BufferedInputStream::set_buffer_size(gsize size)
+auto BufferedInputStream::set_buffer_size (gsize size) -> void
 {
   g_buffered_input_stream_set_buffer_size(gobj(), size);
 }

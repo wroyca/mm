@@ -68,7 +68,7 @@ auto PopoverMenuBar_Class::init() -> const Glib::Class&
 }
 
 
-void PopoverMenuBar_Class::class_init_function(void* g_class, void* class_data)
+auto PopoverMenuBar_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -138,7 +138,7 @@ PopoverMenuBar::PopoverMenuBar(const Glib::RefPtr<Gio::MenuModel>& menu_model)
 
 }
 
-void PopoverMenuBar::set_menu_model(const Glib::RefPtr<Gio::MenuModel>& model)
+auto PopoverMenuBar::set_menu_model (const Glib::RefPtr <Gio::MenuModel> &model) -> void
 {
   gtk_popover_menu_bar_set_menu_model(gobj(), Glib::unwrap(model));
 }

@@ -295,7 +295,7 @@ auto AttrString::operator=(const AttrString& src) -> AttrString&
   return *this;
 }
 
-void AttrString::set_string(const Glib::ustring& str)
+auto AttrString::set_string (const Glib::ustring &str) -> void
 {
   g_free(gobj()->value);
   gobj()->value = g_strdup(str.c_str());
@@ -401,7 +401,7 @@ auto AttrFontDesc::operator=(const AttrFontDesc& src) -> AttrFontDesc&
   return *this;
 }
 
-void AttrFontDesc::set_desc(const FontDescription& desc)
+auto AttrFontDesc::set_desc (const FontDescription &desc) -> void
 {
   pango_font_description_free(gobj()->desc);
   gobj()->desc = pango_font_description_copy(desc.gobj());
@@ -537,12 +537,12 @@ auto Attribute::get_end_index() const -> unsigned int
   return gobj()->end_index;
 }
 
-void Attribute::set_start_index(const unsigned int& value)
+auto Attribute::set_start_index (const unsigned int &value) -> void
 {
   gobj()->start_index = value;
 }
 
-void Attribute::set_end_index(const unsigned int& value)
+auto Attribute::set_end_index (const unsigned int &value) -> void
 {
   gobj()->end_index = value;
 }
@@ -578,7 +578,7 @@ auto AttrLanguage::get_language() const -> Language
   return Language(gobj()->value);
 }
 
-void AttrLanguage::set_language(const Language& value)
+auto AttrLanguage::set_language (const Language &value) -> void
 {
   gobj()->value = const_cast<PangoLanguage*>((value).gobj());
 }
@@ -596,7 +596,7 @@ auto AttrColor::get_color() const -> Color
   return Color(&(gobj()->color));
 }
 
-void AttrColor::set_color(const Color& value)
+auto AttrColor::set_color (const Color &value) -> void
 {
   gobj()->color = *(value).gobj();
 }
@@ -614,7 +614,7 @@ auto AttrInt::get_value() const -> int
   return gobj()->value;
 }
 
-void AttrInt::set_value(const int& value)
+auto AttrInt::set_value (const int &value) -> void
 {
   gobj()->value = value;
 }
@@ -632,7 +632,7 @@ auto AttrFloat::get_value() const -> double
   return gobj()->value;
 }
 
-void AttrFloat::set_value(const double& value)
+auto AttrFloat::set_value (const double &value) -> void
 {
   gobj()->value = value;
 }
@@ -668,12 +668,12 @@ auto AttrShape::get_logical_rect() const -> Rectangle
   return Rectangle(&(gobj()->logical_rect));
 }
 
-void AttrShape::set_ink_rect(const Rectangle& value)
+auto AttrShape::set_ink_rect (const Rectangle &value) -> void
 {
   gobj()->ink_rect = *(value).gobj();
 }
 
-void AttrShape::set_logical_rect(const Rectangle& value)
+auto AttrShape::set_logical_rect (const Rectangle &value) -> void
 {
   gobj()->logical_rect = *(value).gobj();
 }

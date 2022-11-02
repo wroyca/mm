@@ -23,24 +23,29 @@ public:
   friend class TlsConnection;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  const Glib::Class& init();
+  auto init () -> const Glib::Class&;
 
 
-  static void class_init_function(void* g_class, void* class_data);
+  static auto class_init_function (void *g_class, void *class_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
   //Callbacks (default signal handlers):
   //These will call the *_impl member methods, which will then call the existing default signal callbacks, if any.
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
-  static gboolean accept_certificate_callback(GTlsConnection* self, GTlsCertificate* p0, GTlsCertificateFlags p1);
+  static auto accept_certificate_callback (
+    GTlsConnection *self, GTlsCertificate *p0, GTlsCertificateFlags p1) -> gboolean;
 
   //Callbacks (virtual functions):
-  static gboolean handshake_vfunc_callback(GTlsConnection* self, GCancellable* cancellable, GError** error);
-  static void handshake_async_vfunc_callback(GTlsConnection* self, int io_priority, GCancellable* cancellable, GAsyncReadyCallback callback, gpointer user_data);
-  static gboolean handshake_finish_vfunc_callback(GTlsConnection* self, GAsyncResult* result, GError** error);
+  static auto handshake_vfunc_callback (
+    GTlsConnection *self, GCancellable *cancellable, GError **error) -> gboolean;
+  static auto handshake_async_vfunc_callback (
+    GTlsConnection *self, int io_priority, GCancellable *cancellable, GAsyncReadyCallback callback,
+    gpointer user_data) -> void;
+  static auto handshake_finish_vfunc_callback (
+    GTlsConnection *self, GAsyncResult *result, GError **error) -> gboolean;
 };
 
 

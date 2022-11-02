@@ -61,13 +61,13 @@ auto wrap(GdkFrameTimings* object, bool take_copy) -> Glib::RefPtr<Gdk::FrameTim
 namespace Gdk
 {
 
-void FrameTimings::reference() const
+auto FrameTimings::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gdk_frame_timings_ref(reinterpret_cast<GdkFrameTimings*>(const_cast<FrameTimings*>(this)));
 }
 
-void FrameTimings::unreference() const
+auto FrameTimings::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gdk_frame_timings_unref(reinterpret_cast<GdkFrameTimings*>(const_cast<FrameTimings*>(this)));

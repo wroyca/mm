@@ -64,7 +64,7 @@ auto MultiFilter_Class::init() -> const Glib::Class&
 }
 
 
-void MultiFilter_Class::class_init_function(void* g_class, void* class_data)
+auto MultiFilter_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -143,12 +143,12 @@ MultiFilter::MultiFilter()
 
 }
 
-void MultiFilter::append(const Glib::RefPtr<Filter>& filter)
+auto MultiFilter::append (const Glib::RefPtr <Filter> &filter) -> void
 {
   gtk_multi_filter_append(gobj(), Glib::unwrap_copy(filter));
 }
 
-void MultiFilter::remove(guint position)
+auto MultiFilter::remove (guint position) -> void
 {
   gtk_multi_filter_remove(gobj(), position);
 }
@@ -206,7 +206,7 @@ auto AnyFilter_Class::init() -> const Glib::Class&
 }
 
 
-void AnyFilter_Class::class_init_function(void* g_class, void* class_data)
+auto AnyFilter_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -323,7 +323,7 @@ auto EveryFilter_Class::init() -> const Glib::Class&
 }
 
 
-void EveryFilter_Class::class_init_function(void* g_class, void* class_data)
+auto EveryFilter_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

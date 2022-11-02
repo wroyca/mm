@@ -69,8 +69,7 @@ IConv::iconv(char** inbuf, gsize* inbytes_left, char** outbuf, gsize* outbytes_l
   return g_iconv(gobject_, inbuf, inbytes_left, outbuf, outbytes_left);
 }
 
-void
-IConv::reset()
+auto IConv::reset () -> void
 {
   // Apparently iconv() on Solaris <= 7 segfaults if you pass in
   // NULL for anything but inbuf; work around that. (NULL outbuf
@@ -321,7 +320,7 @@ auto Glib::ConvertError::code() const -> Glib::ConvertError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Glib::ConvertError::throw_func(GError* gobject)
+auto Glib::ConvertError::throw_func (GError *gobject) -> void
 {
   throw Glib::ConvertError(gobject);
 }

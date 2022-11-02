@@ -32,9 +32,9 @@
 namespace Gio
 {
 
-void
-AsyncInitable::init_async(
-  const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, int io_priority)
+auto AsyncInitable::init_async (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
+  int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -45,8 +45,7 @@ AsyncInitable::init_async(
     gobj(), io_priority, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-AsyncInitable::init_async(const SlotAsyncReady& slot, int io_priority)
+auto AsyncInitable::init_async (const SlotAsyncReady &slot, int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -56,9 +55,9 @@ AsyncInitable::init_async(const SlotAsyncReady& slot, int io_priority)
   g_async_initable_init_async(gobj(), io_priority, nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void
-AsyncInitable_Class::init_async_vfunc_callback(GAsyncInitable* self, int io_priority,
-  GCancellable* cancellable, GAsyncReadyCallback callback, gpointer user_data)
+auto AsyncInitable_Class::init_async_vfunc_callback (
+  GAsyncInitable *self, int io_priority,
+  GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data) -> void
 {
   const auto obj_base =
     static_cast<Glib::ObjectBase*>(Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -100,9 +99,9 @@ AsyncInitable_Class::init_async_vfunc_callback(GAsyncInitable* self, int io_prio
   if (base && base->init_async)
     (*base->init_async)(self, io_priority, cancellable, callback, user_data);
 }
-void
-Gio::AsyncInitable::init_async_vfunc(
-  const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, int io_priority)
+auto Gio::AsyncInitable::init_async_vfunc (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
+  int io_priority) -> void
 {
   const auto base = static_cast<BaseClassType*>(
     g_type_interface_peek_parent( // Get the parent interface of the interface (The original
@@ -226,7 +225,7 @@ auto AsyncInitable_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void AsyncInitable_Class::iface_init_function(void* g_iface, void*)
+auto AsyncInitable_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -277,7 +276,7 @@ AsyncInitable::~AsyncInitable() noexcept
 {}
 
 // static
-void AsyncInitable::add_interface(GType gtype_implementer)
+auto AsyncInitable::add_interface (GType gtype_implementer) -> void
 {
   asyncinitable_class_.init().add_interface(gtype_implementer);
 }

@@ -44,7 +44,7 @@ gdk_rect_to_graphene_rect(const Gdk::Rectangle& gdk_rect) -> std::unique_ptr<gra
 namespace Gtk
 {
 
-void Snapshot::push_debug(const Glib::ustring& name)
+auto Snapshot::push_debug (const Glib::ustring &name) -> void
 {
   if (name.empty())
     gtk_snapshot_push_debug(gobj(), nullptr);
@@ -98,7 +98,7 @@ auto Snapshot_Class::init() -> const Glib::Class&
 }
 
 
-void Snapshot_Class::class_init_function(void* g_class, void* class_data)
+auto Snapshot_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -168,82 +168,84 @@ auto Snapshot::create() -> Glib::RefPtr<Snapshot>
   return Glib::wrap_gtk_snapshot(gtk_snapshot_new());
 }
 
-void Snapshot::push_opacity(double opacity)
+auto Snapshot::push_opacity (double opacity) -> void
 {
   gtk_snapshot_push_opacity(gobj(), opacity);
 }
 
-void Snapshot::push_blur(double radius)
+auto Snapshot::push_blur (double radius) -> void
 {
   gtk_snapshot_push_blur(gobj(), radius);
 }
 
-void Snapshot::push_repeat(const graphene_rect_t* bounds, const graphene_rect_t* child_bounds)
+auto Snapshot::push_repeat (
+  const graphene_rect_t *bounds, const graphene_rect_t *child_bounds) -> void
 {
   gtk_snapshot_push_repeat(gobj(), bounds, child_bounds);
 }
 
-void Snapshot::push_repeat(const Gdk::Rectangle& bounds, const Gdk::Rectangle& child_bounds)
+auto Snapshot::push_repeat (
+  const Gdk::Rectangle &bounds, const Gdk::Rectangle &child_bounds) -> void
 {
   gtk_snapshot_push_repeat(gobj(), gdk_rect_to_graphene_rect(bounds).get(), gdk_rect_to_graphene_rect(child_bounds).get());
 }
 
-void Snapshot::push_repeat(const Gdk::Rectangle& bounds)
+auto Snapshot::push_repeat (const Gdk::Rectangle &bounds) -> void
 {
   gtk_snapshot_push_repeat(gobj(), gdk_rect_to_graphene_rect(bounds).get(), nullptr);
 }
 
-void Snapshot::push_clip(const graphene_rect_t* bounds)
+auto Snapshot::push_clip (const graphene_rect_t *bounds) -> void
 {
   gtk_snapshot_push_clip(gobj(), bounds);
 }
 
-void Snapshot::push_clip(const Gdk::Rectangle& bounds)
+auto Snapshot::push_clip (const Gdk::Rectangle &bounds) -> void
 {
   gtk_snapshot_push_clip(gobj(), gdk_rect_to_graphene_rect(bounds).get());
 }
 
-void Snapshot::push_cross_fade(double progress)
+auto Snapshot::push_cross_fade (double progress) -> void
 {
   gtk_snapshot_push_cross_fade(gobj(), progress);
 }
 
-void Snapshot::gl_shader_pop_texture()
+auto Snapshot::gl_shader_pop_texture () -> void
 {
   gtk_snapshot_gl_shader_pop_texture(gobj());
 }
 
-void Snapshot::pop()
+auto Snapshot::pop () -> void
 {
   gtk_snapshot_pop(gobj());
 }
 
-void Snapshot::save()
+auto Snapshot::save () -> void
 {
   gtk_snapshot_save(gobj());
 }
 
-void Snapshot::restore()
+auto Snapshot::restore () -> void
 {
   gtk_snapshot_restore(gobj());
 }
 
-void Snapshot::rotate(float angle)
+auto Snapshot::rotate (float angle) -> void
 {
   gtk_snapshot_rotate(gobj(), angle);
 }
 
-void Snapshot::scale(float factor_x, float factor_y)
+auto Snapshot::scale (float factor_x, float factor_y) -> void
 {
   gtk_snapshot_scale(gobj(), factor_x, factor_y);
 }
 
-void Snapshot::scale(float factor_x, float factor_y, float factor_z)
+auto Snapshot::scale (float factor_x, float factor_y, float factor_z) -> void
 {
   gtk_snapshot_scale_3d(gobj(), factor_x, factor_y, factor_z);
 }
 
-void Snapshot::perspective(float depth)
+auto Snapshot::perspective (float depth) -> void
 {
   gtk_snapshot_perspective(gobj(), depth);
 }
@@ -258,52 +260,65 @@ auto Snapshot::append_cairo(const Gdk::Rectangle& bounds) -> Cairo::RefPtr<Cairo
   return Gdk::Cairo::wrap(gtk_snapshot_append_cairo(gobj(), gdk_rect_to_graphene_rect(bounds).get()));
 }
 
-void Snapshot::append_texture(const Glib::RefPtr<Gdk::Texture>& texture, const graphene_rect_t* bounds)
+auto Snapshot::append_texture (
+  const Glib::RefPtr <Gdk::Texture> &texture, const graphene_rect_t *bounds) -> void
 {
   gtk_snapshot_append_texture(gobj(), Glib::unwrap(texture), bounds);
 }
 
-void Snapshot::append_texture(const Glib::RefPtr<Gdk::Texture>& texture, const Gdk::Rectangle& bounds)
+auto Snapshot::append_texture (
+  const Glib::RefPtr <Gdk::Texture> &texture, const Gdk::Rectangle &bounds) -> void
 {
   gtk_snapshot_append_texture(gobj(), Glib::unwrap(texture), gdk_rect_to_graphene_rect(bounds).get());
 }
 
-void Snapshot::append_color(const Gdk::RGBA& color, const graphene_rect_t* bounds)
+auto Snapshot::append_color (const Gdk::RGBA &color, const graphene_rect_t *bounds) -> void
 {
   gtk_snapshot_append_color(gobj(), (color).gobj(), bounds);
 }
 
-void Snapshot::append_color(const Gdk::RGBA& color, const Gdk::Rectangle& bounds)
+auto Snapshot::append_color (const Gdk::RGBA &color, const Gdk::Rectangle &bounds) -> void
 {
   gtk_snapshot_append_color(gobj(), (color).gobj(), gdk_rect_to_graphene_rect(bounds).get());
 }
 
-void Snapshot::append_layout(const Glib::RefPtr<Pango::Layout>& layout, const Gdk::RGBA& color)
+auto Snapshot::append_layout (
+  const Glib::RefPtr <Pango::Layout> &layout, const Gdk::RGBA &color) -> void
 {
   gtk_snapshot_append_layout(gobj(), Glib::unwrap(layout), (color).gobj());
 }
 
-void Snapshot::render_backgrount(const Glib::RefPtr<StyleContext>& context, double x, double y, double width, double height)
+auto Snapshot::render_backgrount (
+  const Glib::RefPtr <StyleContext> &context, double x, double y, double width,
+  double height) -> void
 {
   gtk_snapshot_render_background(gobj(), Glib::unwrap(context), x, y, width, height);
 }
 
-void Snapshot::render_frame(const Glib::RefPtr<StyleContext>& context, double x, double y, double width, double height)
+auto Snapshot::render_frame (
+  const Glib::RefPtr <StyleContext> &context, double x, double y, double width,
+  double height) -> void
 {
   gtk_snapshot_render_frame(gobj(), Glib::unwrap(context), x, y, width, height);
 }
 
-void Snapshot::render_focus(const Glib::RefPtr<StyleContext>& context, double x, double y, double width, double height)
+auto Snapshot::render_focus (
+  const Glib::RefPtr <StyleContext> &context, double x, double y, double width,
+  double height) -> void
 {
   gtk_snapshot_render_focus(gobj(), Glib::unwrap(context), x, y, width, height);
 }
 
-void Snapshot::render_layout(const Glib::RefPtr<StyleContext>& context, double x, double y, const Glib::RefPtr<Pango::Layout>& layout)
+auto Snapshot::render_layout (
+  const Glib::RefPtr <StyleContext> &context, double x, double y,
+  const Glib::RefPtr <Pango::Layout> &layout) -> void
 {
   gtk_snapshot_render_layout(gobj(), Glib::unwrap(context), x, y, Glib::unwrap(layout));
 }
 
-void Snapshot::render_insertion_cursor(const Glib::RefPtr<StyleContext>& context, double x, double y, const Glib::RefPtr<Pango::Layout>& layout, int index, Pango::Direction direction)
+auto Snapshot::render_insertion_cursor (
+  const Glib::RefPtr <StyleContext> &context, double x, double y,
+  const Glib::RefPtr <Pango::Layout> &layout, int index, Pango::Direction direction) -> void
 {
   gtk_snapshot_render_insertion_cursor(gobj(), Glib::unwrap(context), x, y, Glib::unwrap(layout), index, static_cast<PangoDirection>(direction));
 }

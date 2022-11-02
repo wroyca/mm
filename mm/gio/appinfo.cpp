@@ -49,7 +49,7 @@ struct TypeTraits_AppInfo
   static auto to_c_type(CType ptr) -> CType { return ptr; }
   static auto to_cpp_type(CType ptr) -> CppType { return Glib::wrap(ptr, true); }
 
-  static void release_c_type(CType ptr)
+  static auto release_c_type (CType ptr) -> void
   {
     GLIBMM_DEBUG_UNREFERENCE(nullptr, ptr);
     g_object_unref(ptr);
@@ -181,7 +181,7 @@ auto AppInfo_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void AppInfo_Class::iface_init_function(void* g_iface, void*)
+auto AppInfo_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -230,7 +230,7 @@ AppInfo::~AppInfo() noexcept
 {}
 
 // static
-void AppInfo::add_interface(GType gtype_implementer)
+auto AppInfo::add_interface (GType gtype_implementer) -> void
 {
   appinfo_class_.init().add_interface(gtype_implementer);
 }
@@ -343,7 +343,9 @@ auto AppInfo::launch_uris(const std::vector<std::string>& uris) -> bool
   return retvalue;
 }
 
-void AppInfo::launch_uris_async(const std::vector<std::string>& uris, const Glib::RefPtr<AppLaunchContext>& context, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto AppInfo::launch_uris_async (
+  const std::vector <std::string> &uris, const Glib::RefPtr <AppLaunchContext> &context,
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -351,7 +353,9 @@ void AppInfo::launch_uris_async(const std::vector<std::string>& uris, const Glib
   g_app_info_launch_uris_async(gobj(), Glib::ListHandler<std::string>::vector_to_list(uris).data(), Glib::unwrap(context), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void AppInfo::launch_uris_async(const std::vector<std::string>& uris, const Glib::RefPtr<AppLaunchContext>& context, const Glib::RefPtr<Cancellable>& cancellable)
+auto AppInfo::launch_uris_async (
+  const std::vector <std::string> &uris, const Glib::RefPtr <AppLaunchContext> &context,
+  const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   g_app_info_launch_uris_async(gobj(), Glib::ListHandler<std::string>::vector_to_list(uris).data(), Glib::unwrap(context), const_cast<GCancellable*>(Glib::unwrap(cancellable)), nullptr, nullptr);
 }
@@ -450,7 +454,9 @@ auto AppInfo::get_default_for_type(const std::string& content_type, bool must_su
   return Glib::wrap(g_app_info_get_default_for_type(content_type.c_str(), static_cast<int>(must_support_uris)));
 }
 
-void AppInfo::get_default_for_type_async(const std::string& content_type, bool must_support_uris, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto AppInfo::get_default_for_type_async (
+  const std::string &content_type, bool must_support_uris, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -458,7 +464,9 @@ void AppInfo::get_default_for_type_async(const std::string& content_type, bool m
   g_app_info_get_default_for_type_async(content_type.c_str(), static_cast<int>(must_support_uris), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void AppInfo::get_default_for_type_async(const std::string& content_type, bool must_support_uris, const Glib::RefPtr<Cancellable>& cancellable)
+auto AppInfo::get_default_for_type_async (
+  const std::string &content_type, bool must_support_uris,
+  const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   g_app_info_get_default_for_type_async(content_type.c_str(), static_cast<int>(must_support_uris), const_cast<GCancellable*>(Glib::unwrap(cancellable)), nullptr, nullptr);
 }
@@ -477,7 +485,9 @@ auto AppInfo::get_default_for_uri_scheme(const std::string& uri_scheme) -> Glib:
   return Glib::wrap(g_app_info_get_default_for_uri_scheme(uri_scheme.c_str()));
 }
 
-void AppInfo::get_default_for_uri_scheme_async(const std::string& content_type, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto AppInfo::get_default_for_uri_scheme_async (
+  const std::string &content_type, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -485,7 +495,8 @@ void AppInfo::get_default_for_uri_scheme_async(const std::string& content_type, 
   g_app_info_get_default_for_uri_scheme_async(content_type.c_str(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void AppInfo::get_default_for_uri_scheme_async(const std::string& content_type, const Glib::RefPtr<Cancellable>& cancellable)
+auto AppInfo::get_default_for_uri_scheme_async (
+  const std::string &content_type, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   g_app_info_get_default_for_uri_scheme_async(content_type.c_str(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), nullptr, nullptr);
 }
@@ -499,7 +510,7 @@ auto AppInfo::get_default_for_uri_scheme_finish(const Glib::RefPtr<AsyncResult>&
   return retvalue;
 }
 
-void AppInfo::reset_type_associations(const std::string& content_type)
+auto AppInfo::reset_type_associations (const std::string &content_type) -> void
 {
   g_app_info_reset_type_associations(content_type.c_str());
 }
@@ -522,7 +533,9 @@ auto AppInfo::launch_default_for_uri(const std::string& uri) -> bool
   return retvalue;
 }
 
-void AppInfo::launch_default_for_uri_async(const std::string& uri, const Glib::RefPtr<AppLaunchContext>& context, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto AppInfo::launch_default_for_uri_async (
+  const std::string &uri, const Glib::RefPtr <AppLaunchContext> &context,
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -530,7 +543,9 @@ void AppInfo::launch_default_for_uri_async(const std::string& uri, const Glib::R
   g_app_info_launch_default_for_uri_async(uri.c_str(), Glib::unwrap(context), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void AppInfo::launch_default_for_uri_async(const std::string& uri, const Glib::RefPtr<AppLaunchContext>& context, const SlotAsyncReady& slot)
+auto AppInfo::launch_default_for_uri_async (
+  const std::string &uri, const Glib::RefPtr <AppLaunchContext> &context,
+  const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -538,17 +553,22 @@ void AppInfo::launch_default_for_uri_async(const std::string& uri, const Glib::R
   g_app_info_launch_default_for_uri_async(uri.c_str(), Glib::unwrap(context), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void AppInfo::launch_default_for_uri_async(const std::string& uri, const Glib::RefPtr<AppLaunchContext>& context, const Glib::RefPtr<Cancellable>& cancellable)
+auto AppInfo::launch_default_for_uri_async (
+  const std::string &uri, const Glib::RefPtr <AppLaunchContext> &context,
+  const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   g_app_info_launch_default_for_uri_async(uri.c_str(), Glib::unwrap(context), const_cast<GCancellable*>(Glib::unwrap(cancellable)), nullptr, nullptr);
 }
 
-void AppInfo::launch_default_for_uri_async(const std::string& uri, const Glib::RefPtr<AppLaunchContext>& context)
+auto AppInfo::launch_default_for_uri_async (
+  const std::string &uri, const Glib::RefPtr <AppLaunchContext> &context) -> void
 {
   g_app_info_launch_default_for_uri_async(uri.c_str(), Glib::unwrap(context), nullptr, nullptr, nullptr);
 }
 
-void AppInfo::launch_default_for_uri_async(const std::string& uri, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto AppInfo::launch_default_for_uri_async (
+  const std::string &uri, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -556,7 +576,8 @@ void AppInfo::launch_default_for_uri_async(const std::string& uri, const SlotAsy
   g_app_info_launch_default_for_uri_async(uri.c_str(), nullptr, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void AppInfo::launch_default_for_uri_async(const std::string& uri, const SlotAsyncReady& slot)
+auto AppInfo::launch_default_for_uri_async (
+  const std::string &uri, const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -564,12 +585,13 @@ void AppInfo::launch_default_for_uri_async(const std::string& uri, const SlotAsy
   g_app_info_launch_default_for_uri_async(uri.c_str(), nullptr, nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void AppInfo::launch_default_for_uri_async(const std::string& uri, const Glib::RefPtr<Cancellable>& cancellable)
+auto AppInfo::launch_default_for_uri_async (
+  const std::string &uri, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   g_app_info_launch_default_for_uri_async(uri.c_str(), nullptr, const_cast<GCancellable*>(Glib::unwrap(cancellable)), nullptr, nullptr);
 }
 
-void AppInfo::launch_default_for_uri_async(const std::string& uri)
+auto AppInfo::launch_default_for_uri_async (const std::string &uri) -> void
 {
   g_app_info_launch_default_for_uri_async(uri.c_str(), nullptr, nullptr, nullptr, nullptr);
 }

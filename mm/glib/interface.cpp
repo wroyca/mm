@@ -22,8 +22,7 @@ namespace Glib
 
 /**** Glib::Interface_Class ************************************************/
 
-void
-Interface_Class::add_interface(GType instance_type) const
+auto Interface_Class::add_interface (GType instance_type) const -> void
 {
 #if GLIB_CHECK_VERSION(2,70,0)
   // If instance_type is a final type, it has not been registered by

@@ -23,21 +23,21 @@ public:
   friend class Settings;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  const Glib::Class& init();
+  auto init () -> const Glib::Class&;
 
 
-  static void class_init_function(void* g_class, void* class_data);
+  static auto class_init_function (void *g_class, void *class_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
   //Callbacks (default signal handlers):
   //These will call the *_impl member methods, which will then call the existing default signal callbacks, if any.
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
-  static void changed_callback(GSettings* self, const gchar* p0);
-  static gboolean writable_change_event_callback(GSettings* self, GQuark p0);
-  static void writable_changed_callback(GSettings* self, const gchar* p0);
+  static auto changed_callback (GSettings *self, const gchar *p0) -> void;
+  static auto writable_change_event_callback (GSettings *self, GQuark p0) -> gboolean;
+  static auto writable_changed_callback (GSettings *self, const gchar *p0) -> void;
 
   //Callbacks (virtual functions):
 };

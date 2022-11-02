@@ -35,10 +35,10 @@ class SourceConnectionNode : public sigc::notifiable
 public:
   explicit inline SourceConnectionNode(const sigc::slot_base& slot);
 
-  static void notify(sigc::notifiable* data);
-  static void destroy_notify_callback(sigc::notifiable* data);
+  static auto notify (sigc::notifiable *data) -> void;
+  static auto destroy_notify_callback (sigc::notifiable *data) -> void;
 
-  inline void install(GSource* source);
+  inline auto install (GSource *source) -> void;
   inline auto get_slot() -> sigc::slot_base*;
 
 private:
@@ -52,8 +52,7 @@ inline SourceConnectionNode::SourceConnectionNode(const sigc::slot_base& slot)
   slot_.set_parent(this, &SourceConnectionNode::notify);
 }
 
-void
-SourceConnectionNode::notify(sigc::notifiable* data)
+auto SourceConnectionNode::notify (sigc::notifiable *data) -> void
 {
   SourceConnectionNode* const self = static_cast<SourceConnectionNode*>(data);
 
@@ -71,8 +70,7 @@ SourceConnectionNode::notify(sigc::notifiable* data)
 }
 
 // static
-void
-SourceConnectionNode::destroy_notify_callback(sigc::notifiable* data)
+auto SourceConnectionNode::destroy_notify_callback (sigc::notifiable *data) -> void
 {
   SourceConnectionNode* const self = static_cast<SourceConnectionNode*>(data);
 
@@ -85,8 +83,7 @@ SourceConnectionNode::destroy_notify_callback(sigc::notifiable* data)
   }
 }
 
-inline void
-SourceConnectionNode::install(GSource* source)
+inline auto SourceConnectionNode::install (GSource *source) -> void
 {
   source_ = source;
 }
@@ -107,9 +104,9 @@ struct SourceCallbackData
 {
   explicit inline SourceCallbackData(Glib::Source* wrapper_);
 
-  void set_node(SourceConnectionNode* node_);
+  auto set_node (SourceConnectionNode *node_) -> void;
 
-  static void destroy_notify_callback(void* data);
+  static auto destroy_notify_callback (void *data) -> void;
 
   Glib::Source* wrapper;
   SourceConnectionNode* node;
@@ -120,8 +117,7 @@ inline SourceCallbackData::SourceCallbackData(Glib::Source* wrapper_)
 {
 }
 
-void
-SourceCallbackData::set_node(SourceConnectionNode* node_)
+auto SourceCallbackData::set_node (SourceConnectionNode *node_) -> void
 {
   if (node)
     SourceConnectionNode::destroy_notify_callback(node);
@@ -130,8 +126,7 @@ SourceCallbackData::set_node(SourceConnectionNode* node_)
 }
 
 // static
-void
-SourceCallbackData::destroy_notify_callback(void* data)
+auto SourceCallbackData::destroy_notify_callback (void *data) -> void
 {
   SourceCallbackData* const self = static_cast<SourceCallbackData*>(data);
 
@@ -227,8 +222,7 @@ glibmm_source_callback_once(void* data) -> gboolean
   return 0; // Destroy the event source after one call
 }
 
-void
-glibmm_source_destroy_notify_callback(void* data)
+auto glibmm_source_destroy_notify_callback (void *data) -> void
 {
   SourceConnectionNode* const conn_data = static_cast<SourceConnectionNode*>(data);
   SourceConnectionNode::destroy_notify_callback(conn_data);
@@ -274,9 +268,8 @@ glibmm_child_watch_callback(GPid pid, gint child_status, void* data) -> gboolean
   return 0;
 }
 
-void
-glibmm_signal_connect_once(
-  const sigc::slot<void()>& slot, int priority, GSource* source, GMainContext* context)
+auto glibmm_signal_connect_once (
+  const sigc::slot <void ()> &slot, int priority, GSource *source, GMainContext *context) -> void
 {
   SourceConnectionNode* const conn_node = new SourceConnectionNode(slot);
 
@@ -308,8 +301,7 @@ glibmm_main_context_invoke_callback(void* data) -> gboolean
   return 0;
 }
 
-void
-glibmm_main_context_invoke_destroy_notify_callback(void* data)
+auto glibmm_main_context_invoke_destroy_notify_callback (void *data) -> void
 {
   sigc::slot_base* const slot = reinterpret_cast<sigc::slot_base*>(data);
   delete slot;
@@ -372,8 +364,8 @@ SignalTimeout::connect(const sigc::slot<bool()>& slot, unsigned int interval, in
   return connection;
 }
 
-void
-SignalTimeout::connect_once(const sigc::slot<void()>& slot, unsigned int interval, int priority)
+auto SignalTimeout::connect_once (
+  const sigc::slot <void ()> &slot, unsigned int interval, int priority) -> void
 {
   GSource* const source = g_timeout_source_new(interval);
   glibmm_signal_connect_once(slot, priority, source, context_);
@@ -402,9 +394,8 @@ SignalTimeout::connect_seconds(const sigc::slot<bool()>& slot, unsigned int inte
   return connection;
 }
 
-void
-SignalTimeout::connect_seconds_once(
-  const sigc::slot<void()>& slot, unsigned int interval, int priority)
+auto SignalTimeout::connect_seconds_once (
+  const sigc::slot <void ()> &slot, unsigned int interval, int priority) -> void
 {
   GSource* const source = g_timeout_source_new_seconds(interval);
   glibmm_signal_connect_once(slot, priority, source, context_);
@@ -444,8 +435,7 @@ SignalIdle::connect(const sigc::slot<bool()>& slot, int priority) -> sigc::conne
   return connection;
 }
 
-void
-SignalIdle::connect_once(const sigc::slot<void()>& slot, int priority)
+auto SignalIdle::connect_once (const sigc::slot <void ()> &slot, int priority) -> void
 {
   GSource* const source = g_idle_source_new();
   glibmm_signal_connect_once(slot, priority, source, context_);
@@ -571,8 +561,7 @@ MainContext::pending() -> bool
   return g_main_context_pending(gobj());
 }
 
-void
-MainContext::wakeup()
+auto MainContext::wakeup () -> void
 {
   g_main_context_wakeup(gobj());
 }
@@ -583,8 +572,7 @@ MainContext::acquire() -> bool
   return g_main_context_acquire(gobj());
 }
 
-void
-MainContext::release()
+auto MainContext::release () -> void
 {
   g_main_context_release(gobj());
 }
@@ -601,8 +589,7 @@ MainContext::prepare() -> bool
   return g_main_context_prepare(gobj(), nullptr);
 }
 
-void
-MainContext::query(int max_priority, int& timeout, std::vector<PollFD>& fds)
+auto MainContext::query (int max_priority, int &timeout, std::vector <PollFD> &fds) -> void
 {
   if (fds.empty())
     fds.resize(8); // rather bogus number, but better than 0
@@ -630,44 +617,37 @@ MainContext::check(int max_priority, std::vector<PollFD>& fds) -> bool
     return false;
 }
 
-void
-MainContext::dispatch()
+auto MainContext::dispatch () -> void
 {
   g_main_context_dispatch(gobj());
 }
 
-void
-MainContext::set_poll_func(GPollFunc poll_func)
+auto MainContext::set_poll_func (GPollFunc poll_func) -> void
 {
   g_main_context_set_poll_func(gobj(), poll_func);
 }
 
-GPollFunc
-MainContext::get_poll_func()
+auto MainContext::get_poll_func () -> GPollFunc
 {
   return g_main_context_get_poll_func(gobj());
 }
 
-void
-MainContext::add_poll(PollFD& fd, int priority)
+auto MainContext::add_poll (PollFD &fd, int priority) -> void
 {
   g_main_context_add_poll(gobj(), fd.gobj(), priority);
 }
 
-void
-MainContext::remove_poll(PollFD& fd)
+auto MainContext::remove_poll (PollFD &fd) -> void
 {
   g_main_context_remove_poll(gobj(), fd.gobj());
 }
 
-void
-MainContext::push_thread_default()
+auto MainContext::push_thread_default () -> void
 {
   g_main_context_push_thread_default(gobj());
 }
 
-void
-MainContext::pop_thread_default()
+auto MainContext::pop_thread_default () -> void
 {
   g_main_context_pop_thread_default(gobj());
 }
@@ -680,8 +660,7 @@ MainContext::get_thread_default() -> Glib::RefPtr<MainContext>
   return Glib::wrap(g_main_context_ref_thread_default(), false);
 }
 
-void
-MainContext::invoke(const sigc::slot<bool()>& slot, int priority)
+auto MainContext::invoke (const sigc::slot <bool ()> &slot, int priority) -> void
 {
   // Make a copy of slot on the heap.
   sigc::slot_base* const slot_copy = new sigc::slot<bool()>(slot);
@@ -714,14 +693,12 @@ MainContext::signal_child_watch() -> SignalChildWatch
   return SignalChildWatch(gobj());
 }
 
-void
-MainContext::reference() const
+auto MainContext::reference () const -> void
 {
   g_main_context_ref(reinterpret_cast<GMainContext*>(const_cast<MainContext*>(this)));
 }
 
-void
-MainContext::unreference() const
+auto MainContext::unreference () const -> void
 {
   g_main_context_unref(reinterpret_cast<GMainContext*>(const_cast<MainContext*>(this)));
 }
@@ -769,14 +746,12 @@ MainLoop::create(const Glib::RefPtr<MainContext>& context, bool is_running) -> G
     reinterpret_cast<MainLoop*>(g_main_loop_new(Glib::unwrap(context), is_running)));
 }
 
-void
-MainLoop::run()
+auto MainLoop::run () -> void
 {
   g_main_loop_run(gobj());
 }
 
-void
-MainLoop::quit()
+auto MainLoop::quit () -> void
 {
   g_main_loop_quit(gobj());
 }
@@ -800,14 +775,12 @@ MainLoop::depth() -> int
   return g_main_depth();
 }
 
-void
-MainLoop::reference() const
+auto MainLoop::reference () const -> void
 {
   g_main_loop_ref(reinterpret_cast<GMainLoop*>(const_cast<MainLoop*>(this)));
 }
 
-void
-MainLoop::unreference() const
+auto MainLoop::unreference () const -> void
 {
   g_main_loop_unref(reinterpret_cast<GMainLoop*>(const_cast<MainLoop*>(this)));
 }
@@ -865,14 +838,12 @@ Source::attach() -> unsigned int
   return g_source_attach(gobject_, nullptr);
 }
 
-void
-Source::destroy()
+auto Source::destroy () -> void
 {
   g_source_destroy(gobject_);
 }
 
-void
-Source::set_priority(int priority)
+auto Source::set_priority (int priority) -> void
 {
   g_source_set_priority(gobject_, priority);
 }
@@ -883,8 +854,7 @@ Source::get_priority() const -> int
   return g_source_get_priority(gobject_);
 }
 
-void
-Source::set_can_recurse(bool can_recurse)
+auto Source::set_can_recurse (bool can_recurse) -> void
 {
   g_source_set_can_recurse(gobject_, can_recurse);
 }
@@ -913,14 +883,12 @@ Source::gobj_copy() const -> GSource*
   return g_source_ref(gobject_);
 }
 
-void
-Source::reference() const
+auto Source::reference () const -> void
 {
   ++ref_count_;
 }
 
-void
-Source::unreference() const
+auto Source::unreference () const -> void
 {
   if (--ref_count_ == 0)
   {
@@ -990,14 +958,12 @@ Source::connect_generic(const sigc::slot_base& slot) -> sigc::connection
   return connection;
 }
 
-void
-Source::add_poll(Glib::PollFD& poll_fd)
+auto Source::add_poll (Glib::PollFD &poll_fd) -> void
 {
   g_source_add_poll(gobject_, poll_fd.gobj());
 }
 
-void
-Source::remove_poll(Glib::PollFD& poll_fd)
+auto Source::remove_poll (Glib::PollFD &poll_fd) -> void
 {
   g_source_remove_poll(gobject_, poll_fd.gobj());
 }
@@ -1075,8 +1041,7 @@ Source::dispatch_vfunc(GSource*, GSourceFunc callback, void* user_data) -> gbool
 }
 
 // static
-void
-Source::destroy_notify_callback2(void* data)
+auto Source::destroy_notify_callback2 (void *data) -> void
 {
   if (data)
   {

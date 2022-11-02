@@ -24,12 +24,12 @@ public:
   friend class TlsInteraction;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  const Glib::Class& init();
+  auto init () -> const Glib::Class&;
 
 
-  static void class_init_function(void* g_class, void* class_data);
+  static auto class_init_function (void *g_class, void *class_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -38,9 +38,14 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static GTlsInteractionResult ask_password_vfunc_callback(GTlsInteraction* self, GTlsPassword* password, GCancellable* cancellable, GError** error);
-  static void ask_password_async_vfunc_callback(GTlsInteraction* self, GTlsPassword* password, GCancellable* cancellable, GAsyncReadyCallback callback, gpointer user_data);
-  static GTlsInteractionResult ask_password_finish_vfunc_callback(GTlsInteraction* self, GAsyncResult* result, GError** error);
+  static auto ask_password_vfunc_callback (
+    GTlsInteraction *self, GTlsPassword *password, GCancellable *cancellable,
+    GError **error) -> GTlsInteractionResult;
+  static auto ask_password_async_vfunc_callback (
+    GTlsInteraction *self, GTlsPassword *password, GCancellable *cancellable,
+    GAsyncReadyCallback callback, gpointer user_data) -> void;
+  static auto ask_password_finish_vfunc_callback (
+    GTlsInteraction *self, GAsyncResult *result, GError **error) -> GTlsInteractionResult;
 };
 
 

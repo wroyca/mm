@@ -24,7 +24,7 @@
 namespace Gtk
 {
 
-void init_gtkmm_internals()
+auto init_gtkmm_internals () -> void
 {
   static bool init_done = false;
 

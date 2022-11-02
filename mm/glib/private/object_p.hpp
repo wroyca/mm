@@ -15,11 +15,11 @@ public:
   using BaseObjectType = GObject;
   using BaseClassType = GObjectClass;
 
-  static void class_init_function(void* g_class, void* class_data);
+  static auto class_init_function (void *g_class, void *class_data) -> void;
 
-  const Glib::Class& init();
+  auto init () -> const Glib::Class&;
 
-  static Glib::Object* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::Object*;
 };
 
 } // namespace Glib

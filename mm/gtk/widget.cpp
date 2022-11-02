@@ -47,7 +47,7 @@ namespace //anonymous
 // This signal callback is custom implemented, so that we can refrain from calling
 // the signal handler if the C++ wrapper is being deleted.
 // https://bugzilla.gnome.org/show_bug.cgi?id=605728#c5
-void Widget_signal_hide_callback(GObject* self, void* data)
+auto Widget_signal_hide_callback (GObject *self, void *data) -> void
 {
   const auto obj = Glib::ObjectBase::_get_current_wrapper(self);
 
@@ -94,7 +94,7 @@ namespace Gtk
 
 // This default handler callback is custom implemented, so that we can refrain
 // from calling an on_hide() override, if the C++ wrapper is being deleted.
-void Widget_Class::hide_callback(GtkWidget* self)
+auto Widget_Class::hide_callback (GtkWidget *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -139,8 +139,9 @@ void Widget_Class::hide_callback(GtkWidget* self)
 // This vfunc callback is custom implemented because we want the output
 // arguments of the C++ vfunc to be int& (not int*), and the vfunc_callback
 // function may be called from gtk+ with NULL pointers.
-void Widget_Class::measure_vfunc_callback(GtkWidget* self, GtkOrientation orientation, int for_size,
-  int* minimum, int* natural, int* minimum_baseline, int* natural_baseline)
+auto Widget_Class::measure_vfunc_callback (
+  GtkWidget *self, GtkOrientation orientation, int for_size,
+  int *minimum, int *natural, int *minimum_baseline, int *natural_baseline) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -187,7 +188,8 @@ void Widget_Class::measure_vfunc_callback(GtkWidget* self, GtkOrientation orient
 
 // This vfunc callback and the corresponding vfunc are custom implemented because we want
 // the output arguments of the C++ vfunc to be bool& (not gboolean* or gboolean&).
-void Widget_Class::compute_expand_vfunc_callback(GtkWidget* self, gboolean* hexpand_p, gboolean* vexpand_p)
+auto Widget_Class::compute_expand_vfunc_callback (
+  GtkWidget *self, gboolean *hexpand_p, gboolean *vexpand_p) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -230,7 +232,7 @@ void Widget_Class::compute_expand_vfunc_callback(GtkWidget* self, gboolean* hexp
     (*base->compute_expand)(self, hexpand_p, vexpand_p);
 }
 
-void Gtk::Widget::compute_expand_vfunc(bool& hexpand_p, bool& vexpand_p)
+auto Gtk::Widget::compute_expand_vfunc (bool &hexpand_p, bool &vexpand_p) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -263,7 +265,7 @@ auto Widget::make_refptr_constrainttarget() const -> Glib::RefPtr<const Constrai
   return const_cast<Widget*>(this)->make_refptr_constrainttarget();
 }
 
-void Widget::set_layout_manager(const Glib::RefPtr<LayoutManager>& layout_manager)
+auto Widget::set_layout_manager (const Glib::RefPtr <LayoutManager> &layout_manager) -> void
 {
   // gtk_widget_set_layout_manager() does not take a ref.
   if (layout_manager)
@@ -271,23 +273,23 @@ void Widget::set_layout_manager(const Glib::RefPtr<LayoutManager>& layout_manage
   gtk_widget_set_layout_manager(gobj(), Glib::unwrap(layout_manager));
 }
 
-void Widget::unset_layout_manager()
+auto Widget::unset_layout_manager () -> void
 {
   gtk_widget_set_layout_manager(gobj(), nullptr);
 }
 
-void Widget::unset_name()
+auto Widget::unset_name () -> void
 {
   gtk_widget_set_name(gobj(), nullptr);
 }
 
-void Widget::realize_if_needed()
+auto Widget::realize_if_needed () -> void
 {
   if(!get_realized())
     realize();
 }
 
-void Widget::unset_focus_child()
+auto Widget::unset_focus_child () -> void
 {
   gtk_widget_set_focus_child(gobj(), nullptr);
 }
@@ -299,7 +301,7 @@ auto Widget::get_allocation() const -> Allocation
   return allocation;
 }
 
-void Widget_Class::dispose_vfunc_callback(GObject* self)
+auto Widget_Class::dispose_vfunc_callback (GObject *self) -> void
 {
   //Avoid disposal. See also Window_Class::dispose_vfunc_callback().
 
@@ -395,17 +397,17 @@ void Widget_Class::dispose_vfunc_callback(GObject* self)
   #endif
 }
 
-void Widget::unset_font_options()
+auto Widget::unset_font_options () -> void
 {
   gtk_widget_set_font_options(gobj(), nullptr);
 }
 
-void Widget::remove_action_group(const Glib::ustring& name)
+auto Widget::remove_action_group (const Glib::ustring &name) -> void
 {
   gtk_widget_insert_action_group(gobj(), name.c_str(), nullptr /* see C docs */);
 }
 
-void Widget::set_margin(int margin)
+auto Widget::set_margin (int margin) -> void
 {
   set_margin_start(margin);
   set_margin_end(margin);
@@ -413,13 +415,13 @@ void Widget::set_margin(int margin)
   set_margin_bottom(margin);
 }
 
-void Widget::set_expand(bool expand)
+auto Widget::set_expand (bool expand) -> void
 {
   set_hexpand(expand);
   set_vexpand(expand);
 }
 
-void Widget::add_controller(const Glib::RefPtr<EventController>& controller)
+auto Widget::add_controller (const Glib::RefPtr <EventController> &controller) -> void
 {
   // gtk_widget_add_controller() does not take a ref.
   if (controller)
@@ -438,12 +440,12 @@ auto Widget::add_tick_callback(const SlotTick& slot) -> guint
     &Glib::destroy_notify_delete<SlotTick>);
 }
 
-void Widget::insert_at_start(Widget& parent)
+auto Widget::insert_at_start (Widget &parent) -> void
 {
   gtk_widget_insert_after(gobj(), parent.gobj(), nullptr);
 }
 
-void Widget::insert_at_end(Widget& parent)
+auto Widget::insert_at_end (Widget &parent) -> void
 {
   gtk_widget_insert_before(gobj(), parent.gobj(), nullptr);
 }
@@ -502,7 +504,8 @@ const Glib::SignalProxyInfo Widget_signal_unrealize_info =
 };
 
 
-void Widget_signal_state_flags_changed_callback(GtkWidget* self, GtkStateFlags p0,void* data)
+auto Widget_signal_state_flags_changed_callback (
+  GtkWidget *self, GtkStateFlags p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Gtk::StateFlags)>;
@@ -532,7 +535,8 @@ const Glib::SignalProxyInfo Widget_signal_state_flags_changed_info =
 };
 
 
-void Widget_signal_direction_changed_callback(GtkWidget* self, GtkTextDirection p0,void* data)
+auto Widget_signal_direction_changed_callback (
+  GtkWidget *self, GtkTextDirection p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(TextDirection)>;
@@ -736,7 +740,7 @@ auto Widget_Class::init() -> const Glib::Class&
 }
 
 
-void Widget_Class::class_init_function(void* g_class, void* class_data)
+auto Widget_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -765,7 +769,7 @@ void Widget_Class::class_init_function(void* g_class, void* class_data)
   klass->query_tooltip = &query_tooltip_callback;
 }
 
-void Widget_Class::root_vfunc_callback(GtkWidget* self)
+auto Widget_Class::root_vfunc_callback (GtkWidget *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -801,7 +805,7 @@ void Widget_Class::root_vfunc_callback(GtkWidget* self)
   if(base && base->root)
     (*base->root)(self);
 }
-void Widget_Class::unroot_vfunc_callback(GtkWidget* self)
+auto Widget_Class::unroot_vfunc_callback (GtkWidget *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -837,7 +841,8 @@ void Widget_Class::unroot_vfunc_callback(GtkWidget* self)
   if(base && base->unroot)
     (*base->unroot)(self);
 }
-void Widget_Class::size_allocate_vfunc_callback(GtkWidget* self, int width, int height, int baseline)
+auto Widget_Class::size_allocate_vfunc_callback (
+  GtkWidget *self, int width, int height, int baseline) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -949,7 +954,7 @@ auto Widget_Class::grab_focus_vfunc_callback(GtkWidget* self) -> gboolean
   using RType = gboolean;
   return RType();
 }
-void Widget_Class::set_focus_child_vfunc_callback(GtkWidget* self, GtkWidget* child)
+auto Widget_Class::set_focus_child_vfunc_callback (GtkWidget *self, GtkWidget *child) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1026,7 +1031,7 @@ auto Widget_Class::contains_vfunc_callback(GtkWidget* self, gdouble x, gdouble y
   using RType = gboolean;
   return RType();
 }
-void Widget_Class::snapshot_vfunc_callback(GtkWidget* self, GtkSnapshot* snapshot)
+auto Widget_Class::snapshot_vfunc_callback (GtkWidget *self, GtkSnapshot *snapshot) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1064,7 +1069,7 @@ void Widget_Class::snapshot_vfunc_callback(GtkWidget* self, GtkSnapshot* snapsho
     (*base->snapshot)(self, snapshot);
 }
 
-void Widget_Class::show_callback(GtkWidget* self)
+auto Widget_Class::show_callback (GtkWidget *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1100,7 +1105,7 @@ void Widget_Class::show_callback(GtkWidget* self)
   if(base && base->show)
     (*base->show)(self);
 }
-void Widget_Class::map_callback(GtkWidget* self)
+auto Widget_Class::map_callback (GtkWidget *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1136,7 +1141,7 @@ void Widget_Class::map_callback(GtkWidget* self)
   if(base && base->map)
     (*base->map)(self);
 }
-void Widget_Class::unmap_callback(GtkWidget* self)
+auto Widget_Class::unmap_callback (GtkWidget *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1172,7 +1177,7 @@ void Widget_Class::unmap_callback(GtkWidget* self)
   if(base && base->unmap)
     (*base->unmap)(self);
 }
-void Widget_Class::realize_callback(GtkWidget* self)
+auto Widget_Class::realize_callback (GtkWidget *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1208,7 +1213,7 @@ void Widget_Class::realize_callback(GtkWidget* self)
   if(base && base->realize)
     (*base->realize)(self);
 }
-void Widget_Class::unrealize_callback(GtkWidget* self)
+auto Widget_Class::unrealize_callback (GtkWidget *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1244,7 +1249,7 @@ void Widget_Class::unrealize_callback(GtkWidget* self)
   if(base && base->unrealize)
     (*base->unrealize)(self);
 }
-void Widget_Class::state_flags_changed_callback(GtkWidget* self, GtkStateFlags p0)
+auto Widget_Class::state_flags_changed_callback (GtkWidget *self, GtkStateFlags p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1281,7 +1286,7 @@ void Widget_Class::state_flags_changed_callback(GtkWidget* self, GtkStateFlags p
   if(base && base->state_flags_changed)
     (*base->state_flags_changed)(self, p0);
 }
-void Widget_Class::direction_changed_callback(GtkWidget* self, GtkTextDirection p0)
+auto Widget_Class::direction_changed_callback (GtkWidget *self, GtkTextDirection p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1453,32 +1458,32 @@ auto Widget::get_base_type() -> GType
 }
 
 
-void Widget::show()
+auto Widget::show () -> void
 {
   gtk_widget_show(gobj());
 }
 
-void Widget::hide()
+auto Widget::hide () -> void
 {
   gtk_widget_hide(gobj());
 }
 
-void Widget::queue_draw()
+auto Widget::queue_draw () -> void
 {
   gtk_widget_queue_draw(gobj());
 }
 
-void Widget::queue_resize()
+auto Widget::queue_resize () -> void
 {
   gtk_widget_queue_resize(gobj());
 }
 
-void Widget::queue_allocate()
+auto Widget::queue_allocate () -> void
 {
   gtk_widget_queue_allocate(gobj());
 }
 
-void Widget::size_allocate(const Allocation& allocation, int baseline)
+auto Widget::size_allocate (const Allocation &allocation, int baseline) -> void
 {
   gtk_widget_size_allocate(gobj(), (allocation.gobj()), baseline);
 }
@@ -1488,12 +1493,14 @@ auto Widget::get_request_mode() const -> SizeRequestMode
   return static_cast<SizeRequestMode>(gtk_widget_get_request_mode(const_cast<GtkWidget*>(gobj())));
 }
 
-void Widget::measure(Orientation orientation, int for_size, int& minimum, int& natural, int& minimum_baseline, int& natural_baseline) const
+auto Widget::measure (
+  Orientation orientation, int for_size, int &minimum, int &natural, int &minimum_baseline,
+  int &natural_baseline) const -> void
 {
   gtk_widget_measure(const_cast<GtkWidget*>(gobj()), static_cast<GtkOrientation>(orientation), for_size, &(minimum), &(natural), &(minimum_baseline), &(natural_baseline));
 }
 
-void Widget::get_preferred_size(Requisition& minimum_size, Requisition& natural_size) const
+auto Widget::get_preferred_size (Requisition &minimum_size, Requisition &natural_size) const -> void
 {
   gtk_widget_get_preferred_size(const_cast<GtkWidget*>(gobj()), (minimum_size).gobj(), (natural_size).gobj());
 }
@@ -1521,7 +1528,7 @@ auto Widget::activate() -> bool
   return gtk_widget_activate(gobj());
 }
 
-void Widget::set_can_focus(bool can_focus)
+auto Widget::set_can_focus (bool can_focus) -> void
 {
   gtk_widget_set_can_focus(gobj(), static_cast<int>(can_focus));
 }
@@ -1531,7 +1538,7 @@ auto Widget::get_can_focus() const -> bool
   return gtk_widget_get_can_focus(const_cast<GtkWidget*>(gobj()));
 }
 
-void Widget::set_focusable(bool focusable)
+auto Widget::set_focusable (bool focusable) -> void
 {
   gtk_widget_set_focusable(gobj(), static_cast<int>(focusable));
 }
@@ -1561,7 +1568,7 @@ auto Widget::grab_focus() -> bool
   return gtk_widget_grab_focus(gobj());
 }
 
-void Widget::set_focus_on_click(bool focus_on_click)
+auto Widget::set_focus_on_click (bool focus_on_click) -> void
 {
   gtk_widget_set_focus_on_click(gobj(), static_cast<int>(focus_on_click));
 }
@@ -1571,7 +1578,7 @@ auto Widget::get_focus_on_click() const -> bool
   return gtk_widget_get_focus_on_click(const_cast<GtkWidget*>(gobj()));
 }
 
-void Widget::set_can_target(bool can_target)
+auto Widget::set_can_target (bool can_target) -> void
 {
   gtk_widget_set_can_target(gobj(), static_cast<int>(can_target));
 }
@@ -1586,7 +1593,7 @@ auto Widget::has_default() const -> bool
   return gtk_widget_has_default(const_cast<GtkWidget*>(gobj()));
 }
 
-void Widget::set_receives_default(bool receives_default)
+auto Widget::set_receives_default (bool receives_default) -> void
 {
   gtk_widget_set_receives_default(gobj(), static_cast<int>(receives_default));
 }
@@ -1596,7 +1603,7 @@ auto Widget::get_receives_default() const -> bool
   return gtk_widget_get_receives_default(const_cast<GtkWidget*>(gobj()));
 }
 
-void Widget::set_name(const Glib::ustring& name)
+auto Widget::set_name (const Glib::ustring &name) -> void
 {
   gtk_widget_set_name(gobj(), name.c_str());
 }
@@ -1606,12 +1613,12 @@ auto Widget::get_name() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_widget_get_name(const_cast<GtkWidget*>(gobj())));
 }
 
-void Widget::set_state_flags(StateFlags flags, bool clear)
+auto Widget::set_state_flags (StateFlags flags, bool clear) -> void
 {
   gtk_widget_set_state_flags(gobj(), static_cast<GtkStateFlags>(flags), static_cast<int>(clear));
 }
 
-void Widget::unset_state_flags(StateFlags flags)
+auto Widget::unset_state_flags (StateFlags flags) -> void
 {
   gtk_widget_unset_state_flags(gobj(), static_cast<GtkStateFlags>(flags));
 }
@@ -1621,7 +1628,7 @@ auto Widget::get_state_flags() const -> StateFlags
   return static_cast<StateFlags>(gtk_widget_get_state_flags(const_cast<GtkWidget*>(gobj())));
 }
 
-void Widget::set_sensitive(bool sensitive)
+auto Widget::set_sensitive (bool sensitive) -> void
 {
   gtk_widget_set_sensitive(gobj(), static_cast<int>(sensitive));
 }
@@ -1636,7 +1643,7 @@ auto Widget::is_sensitive() const -> bool
   return gtk_widget_is_sensitive(const_cast<GtkWidget*>(gobj()));
 }
 
-void Widget::set_visible(bool visible)
+auto Widget::set_visible (bool visible) -> void
 {
   gtk_widget_set_visible(gobj(), static_cast<int>(visible));
 }
@@ -1666,7 +1673,7 @@ auto Widget::get_mapped() const -> bool
   return gtk_widget_get_mapped(const_cast<GtkWidget*>(gobj()));
 }
 
-void Widget::set_child_visible(bool visible)
+auto Widget::set_child_visible (bool visible) -> void
 {
   gtk_widget_set_child_visible(gobj(), static_cast<int>(visible));
 }
@@ -1746,22 +1753,22 @@ auto Widget::keynav_failed(DirectionType direction) -> bool
   return gtk_widget_keynav_failed(gobj(), static_cast<GtkDirectionType>(direction));
 }
 
-void Widget::error_bell()
+auto Widget::error_bell () -> void
 {
   gtk_widget_error_bell(gobj());
 }
 
-void Widget::set_size_request(int width, int height)
+auto Widget::set_size_request (int width, int height) -> void
 {
   gtk_widget_set_size_request(gobj(), width, height);
 }
 
-void Widget::get_size_request(int& width, int& height) const
+auto Widget::get_size_request (int &width, int &height) const -> void
 {
   gtk_widget_get_size_request(const_cast<GtkWidget*>(gobj()), &(width), &(height));
 }
 
-void Widget::set_opacity(double opacity)
+auto Widget::set_opacity (double opacity) -> void
 {
   gtk_widget_set_opacity(gobj(), opacity);
 }
@@ -1771,7 +1778,7 @@ auto Widget::get_opacity() const -> double
   return gtk_widget_get_opacity(const_cast<GtkWidget*>(gobj()));
 }
 
-void Widget::set_overflow(Overflow overflow)
+auto Widget::set_overflow (Overflow overflow) -> void
 {
   gtk_widget_set_overflow(gobj(), static_cast<GtkOverflow>(overflow));
 }
@@ -1848,7 +1855,7 @@ auto Widget::get_hexpand() const -> bool
   return gtk_widget_get_hexpand(const_cast<GtkWidget*>(gobj()));
 }
 
-void Widget::set_hexpand(bool expand)
+auto Widget::set_hexpand (bool expand) -> void
 {
   gtk_widget_set_hexpand(gobj(), static_cast<int>(expand));
 }
@@ -1858,7 +1865,7 @@ auto Widget::get_hexpand_set() const -> bool
   return gtk_widget_get_hexpand_set(const_cast<GtkWidget*>(gobj()));
 }
 
-void Widget::set_hexpand_set(bool set)
+auto Widget::set_hexpand_set (bool set) -> void
 {
   gtk_widget_set_hexpand_set(gobj(), static_cast<int>(set));
 }
@@ -1868,7 +1875,7 @@ auto Widget::get_vexpand() const -> bool
   return gtk_widget_get_vexpand(const_cast<GtkWidget*>(gobj()));
 }
 
-void Widget::set_vexpand(bool expand)
+auto Widget::set_vexpand (bool expand) -> void
 {
   gtk_widget_set_vexpand(gobj(), static_cast<int>(expand));
 }
@@ -1878,7 +1885,7 @@ auto Widget::get_vexpand_set() const -> bool
   return gtk_widget_get_vexpand_set(const_cast<GtkWidget*>(gobj()));
 }
 
-void Widget::set_vexpand_set(bool set)
+auto Widget::set_vexpand_set (bool set) -> void
 {
   gtk_widget_set_vexpand_set(gobj(), static_cast<int>(set));
 }
@@ -1893,7 +1900,7 @@ auto Widget::get_halign() const -> Align
   return static_cast<Align>(gtk_widget_get_halign(const_cast<GtkWidget*>(gobj())));
 }
 
-void Widget::set_halign(Align align)
+auto Widget::set_halign (Align align) -> void
 {
   gtk_widget_set_halign(gobj(), static_cast<GtkAlign>(align));
 }
@@ -1903,7 +1910,7 @@ auto Widget::get_valign() const -> Align
   return static_cast<Align>(gtk_widget_get_valign(const_cast<GtkWidget*>(gobj())));
 }
 
-void Widget::set_valign(Align align)
+auto Widget::set_valign (Align align) -> void
 {
   gtk_widget_set_valign(gobj(), static_cast<GtkAlign>(align));
 }
@@ -1913,7 +1920,7 @@ auto Widget::get_margin_start() const -> int
   return gtk_widget_get_margin_start(const_cast<GtkWidget*>(gobj()));
 }
 
-void Widget::set_margin_start(int margin)
+auto Widget::set_margin_start (int margin) -> void
 {
   gtk_widget_set_margin_start(gobj(), margin);
 }
@@ -1923,7 +1930,7 @@ auto Widget::get_margin_end() const -> int
   return gtk_widget_get_margin_end(const_cast<GtkWidget*>(gobj()));
 }
 
-void Widget::set_margin_end(int margin)
+auto Widget::set_margin_end (int margin) -> void
 {
   gtk_widget_set_margin_end(gobj(), margin);
 }
@@ -1933,7 +1940,7 @@ auto Widget::get_margin_top() const -> int
   return gtk_widget_get_margin_top(const_cast<GtkWidget*>(gobj()));
 }
 
-void Widget::set_margin_top(int margin)
+auto Widget::set_margin_top (int margin) -> void
 {
   gtk_widget_set_margin_top(gobj(), margin);
 }
@@ -1943,7 +1950,7 @@ auto Widget::get_margin_bottom() const -> int
   return gtk_widget_get_margin_bottom(const_cast<GtkWidget*>(gobj()));
 }
 
-void Widget::set_margin_bottom(int margin)
+auto Widget::set_margin_bottom (int margin) -> void
 {
   gtk_widget_set_margin_bottom(gobj(), margin);
 }
@@ -1973,7 +1980,7 @@ auto Widget::pick(double x, double y, PickFlags flags) const -> const Widget*
   return const_cast<Widget*>(this)->pick(x, y, flags);
 }
 
-void Widget::remove_controller(const Glib::RefPtr<EventController>& controller)
+auto Widget::remove_controller (const Glib::RefPtr <EventController> &controller) -> void
 {
   gtk_widget_remove_controller(gobj(), Glib::unwrap(controller));
 }
@@ -1991,7 +1998,7 @@ auto Widget::get_pango_context() -> Glib::RefPtr<Pango::Context>
   return retvalue;
 }
 
-void Widget::set_font_options(const Cairo::FontOptions& options)
+auto Widget::set_font_options (const Cairo::FontOptions &options) -> void
 {
   gtk_widget_set_font_options(gobj(), (options).cobj());
 }
@@ -2006,7 +2013,7 @@ auto Widget::create_pango_layout(const Glib::ustring& text) -> Glib::RefPtr<Pang
   return Glib::wrap(gtk_widget_create_pango_layout(gobj(), text.c_str()));
 }
 
-void Widget::set_direction(TextDirection dir)
+auto Widget::set_direction (TextDirection dir) -> void
 {
   gtk_widget_set_direction(gobj(), static_cast<GtkTextDirection>(dir));
 }
@@ -2016,7 +2023,7 @@ auto Widget::get_direction() const -> TextDirection
   return static_cast<TextDirection>(gtk_widget_get_direction(const_cast<GtkWidget*>(gobj())));
 }
 
-void Widget::set_default_direction(TextDirection dir)
+auto Widget::set_default_direction (TextDirection dir) -> void
 {
   gtk_widget_set_default_direction(static_cast<GtkTextDirection>(dir));
 }
@@ -2026,12 +2033,12 @@ auto Widget::get_default_direction() -> TextDirection
   return static_cast<TextDirection>(gtk_widget_get_default_direction());
 }
 
-void Widget::set_cursor(const Glib::RefPtr<Gdk::Cursor>& cursor)
+auto Widget::set_cursor (const Glib::RefPtr <Gdk::Cursor> &cursor) -> void
 {
   gtk_widget_set_cursor(gobj(), Glib::unwrap(cursor));
 }
 
-void Widget::set_cursor(const Glib::ustring& name)
+auto Widget::set_cursor (const Glib::ustring &name) -> void
 {
   gtk_widget_set_cursor_from_name(gobj(), name.empty() ? nullptr : name.c_str());
 }
@@ -2059,12 +2066,12 @@ auto Widget::list_mnemonic_labels() const -> std::vector<const Widget*>
   return Glib::ListHandler<const Widget*>::list_to_vector(gtk_widget_list_mnemonic_labels(const_cast<GtkWidget*>(gobj())), Glib::OWNERSHIP_SHALLOW);
 }
 
-void Widget::add_mnemonic_label(Widget& label)
+auto Widget::add_mnemonic_label (Widget &label) -> void
 {
   gtk_widget_add_mnemonic_label(gobj(), (label).gobj());
 }
 
-void Widget::remove_mnemonic_label(Widget& label)
+auto Widget::remove_mnemonic_label (Widget &label) -> void
 {
   gtk_widget_remove_mnemonic_label(gobj(), (label).gobj());
 }
@@ -2087,32 +2094,32 @@ auto Widget::get_frame_clock() const -> Glib::RefPtr<const Gdk::FrameClock>
   return const_cast<Widget*>(this)->get_frame_clock();
 }
 
-void Widget::set_parent(Widget& parent)
+auto Widget::set_parent (Widget &parent) -> void
 {
   gtk_widget_set_parent(gobj(), (parent).gobj());
 }
 
-void Widget::unparent()
+auto Widget::unparent () -> void
 {
   gtk_widget_unparent(gobj());
 }
 
-void Widget::map()
+auto Widget::map () -> void
 {
   gtk_widget_map(gobj());
 }
 
-void Widget::unmap()
+auto Widget::unmap () -> void
 {
   gtk_widget_unmap(gobj());
 }
 
-void Widget::trigger_tooltip_query()
+auto Widget::trigger_tooltip_query () -> void
 {
   gtk_widget_trigger_tooltip_query(gobj());
 }
 
-void Widget::set_tooltip_text(const Glib::ustring& text)
+auto Widget::set_tooltip_text (const Glib::ustring &text) -> void
 {
   gtk_widget_set_tooltip_text(gobj(), text.c_str());
 }
@@ -2122,7 +2129,7 @@ auto Widget::get_tooltip_text() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_widget_get_tooltip_text(const_cast<GtkWidget*>(gobj())));
 }
 
-void Widget::set_tooltip_markup(const Glib::ustring& markup)
+auto Widget::set_tooltip_markup (const Glib::ustring &markup) -> void
 {
   gtk_widget_set_tooltip_markup(gobj(), markup.c_str());
 }
@@ -2132,7 +2139,7 @@ auto Widget::get_tooltip_markup() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_widget_get_tooltip_markup(const_cast<GtkWidget*>(gobj())));
 }
 
-void Widget::set_has_tooltip(bool has_tooltip)
+auto Widget::set_has_tooltip (bool has_tooltip) -> void
 {
   gtk_widget_set_has_tooltip(gobj(), static_cast<int>(has_tooltip));
 }
@@ -2160,12 +2167,13 @@ auto Widget::get_style_context() const -> Glib::RefPtr<const StyleContext>
   return const_cast<Widget*>(this)->get_style_context();
 }
 
-void Widget::remove_tick_callback(guint id)
+auto Widget::remove_tick_callback (guint id) -> void
 {
   gtk_widget_remove_tick_callback(gobj(), id);
 }
 
-void Widget::insert_action_group(const Glib::ustring& name, const Glib::RefPtr<Gio::ActionGroup>& group)
+auto Widget::insert_action_group (
+  const Glib::ustring &name, const Glib::RefPtr <Gio::ActionGroup> &group) -> void
 {
   gtk_widget_insert_action_group(gobj(), name.c_str(), const_cast<GActionGroup*>(Glib::unwrap<Gio::ActionGroup>(group)));
 }
@@ -2175,12 +2183,12 @@ auto Widget::activate_action(const Glib::ustring& name, const Glib::VariantBase&
   return gtk_widget_activate_action_variant(gobj(), name.c_str(), const_cast<GVariant*>((args).gobj()));
 }
 
-void Widget::activate_default()
+auto Widget::activate_default () -> void
 {
   gtk_widget_activate_default(gobj());
 }
 
-void Widget::set_font_map(const Glib::RefPtr<Pango::FontMap>& font_map)
+auto Widget::set_font_map (const Glib::RefPtr <Pango::FontMap> &font_map) -> void
 {
   gtk_widget_set_font_map(gobj(), Glib::unwrap(font_map));
 }
@@ -2258,17 +2266,17 @@ auto Widget::observe_controllers() const -> Glib::RefPtr<const Gio::ListModel>
   return const_cast<Widget*>(this)->observe_controllers();
 }
 
-void Widget::insert_after(Widget& parent, const Widget& previous_sibling)
+auto Widget::insert_after (Widget &parent, const Widget &previous_sibling) -> void
 {
   gtk_widget_insert_after(gobj(), (parent).gobj(), const_cast<GtkWidget*>((previous_sibling).gobj()));
 }
 
-void Widget::insert_before(Widget& parent, const Widget& next_sibling)
+auto Widget::insert_before (Widget &parent, const Widget &next_sibling) -> void
 {
   gtk_widget_insert_before(gobj(), (parent).gobj(), const_cast<GtkWidget*>((next_sibling).gobj()));
 }
 
-void Widget::snapshot_child(Widget& child, const Glib::RefPtr<Gtk::Snapshot>& snapshot)
+auto Widget::snapshot_child (Widget &child, const Glib::RefPtr <Gtk::Snapshot> &snapshot) -> void
 {
   gtk_widget_snapshot_child(gobj(), (child).gobj(), Glib::unwrap(snapshot));
 }
@@ -2283,12 +2291,12 @@ auto Widget::get_css_name() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_widget_get_css_name(const_cast<GtkWidget*>(gobj())));
 }
 
-void Widget::add_css_class(const Glib::ustring& css_class)
+auto Widget::add_css_class (const Glib::ustring &css_class) -> void
 {
   gtk_widget_add_css_class(gobj(), css_class.c_str());
 }
 
-void Widget::remove_css_class(const Glib::ustring& css_class)
+auto Widget::remove_css_class (const Glib::ustring &css_class) -> void
 {
   gtk_widget_remove_css_class(gobj(), css_class.c_str());
 }
@@ -2303,7 +2311,7 @@ auto Widget::get_css_classes() const -> std::vector<Glib::ustring>
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(gtk_widget_get_css_classes(const_cast<GtkWidget*>(gobj())), Glib::OWNERSHIP_DEEP);
 }
 
-void Widget::set_css_classes(const std::vector<Glib::ustring>& classes)
+auto Widget::set_css_classes (const std::vector <Glib::ustring> &classes) -> void
 {
   gtk_widget_set_css_classes(gobj(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(classes).data ());
 }
@@ -2318,17 +2326,17 @@ Widget::Widget()
 
 }
 
-void Widget::realize()
+auto Widget::realize () -> void
 {
   gtk_widget_realize(gobj());
 }
 
-void Widget::unrealize()
+auto Widget::unrealize () -> void
 {
   gtk_widget_unrealize(gobj());
 }
 
-void Widget::set_focus_child(Widget& child)
+auto Widget::set_focus_child (Widget &child) -> void
 {
   gtk_widget_set_focus_child(gobj(), (child).gobj());
 }
@@ -2749,7 +2757,7 @@ auto Widget::property_layout_manager() const -> Glib::PropertyProxy_ReadOnly< Gl
 }
 
 
-void Gtk::Widget::on_show()
+auto Gtk::Widget::on_show () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -2758,7 +2766,7 @@ void Gtk::Widget::on_show()
   if(base && base->show)
     (*base->show)(gobj());
 }
-void Gtk::Widget::on_hide()
+auto Gtk::Widget::on_hide () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -2767,7 +2775,7 @@ void Gtk::Widget::on_hide()
   if(base && base->hide)
     (*base->hide)(gobj());
 }
-void Gtk::Widget::on_map()
+auto Gtk::Widget::on_map () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -2776,7 +2784,7 @@ void Gtk::Widget::on_map()
   if(base && base->map)
     (*base->map)(gobj());
 }
-void Gtk::Widget::on_unmap()
+auto Gtk::Widget::on_unmap () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -2785,7 +2793,7 @@ void Gtk::Widget::on_unmap()
   if(base && base->unmap)
     (*base->unmap)(gobj());
 }
-void Gtk::Widget::on_realize()
+auto Gtk::Widget::on_realize () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -2794,7 +2802,7 @@ void Gtk::Widget::on_realize()
   if(base && base->realize)
     (*base->realize)(gobj());
 }
-void Gtk::Widget::on_unrealize()
+auto Gtk::Widget::on_unrealize () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -2803,7 +2811,7 @@ void Gtk::Widget::on_unrealize()
   if(base && base->unrealize)
     (*base->unrealize)(gobj());
 }
-void Gtk::Widget::on_state_flags_changed(Gtk::StateFlags previous_state_flags)
+auto Gtk::Widget::on_state_flags_changed (Gtk::StateFlags previous_state_flags) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -2812,7 +2820,7 @@ void Gtk::Widget::on_state_flags_changed(Gtk::StateFlags previous_state_flags)
   if(base && base->state_flags_changed)
     (*base->state_flags_changed)(gobj(),static_cast<GtkStateFlags>(previous_state_flags));
 }
-void Gtk::Widget::on_direction_changed(TextDirection direction)
+auto Gtk::Widget::on_direction_changed (TextDirection direction) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -2846,7 +2854,7 @@ auto Gtk::Widget::on_query_tooltip(int x, int y, bool keyboard_tooltip, const Gl
   return RType();
 }
 
-void Gtk::Widget::root_vfunc()
+auto Gtk::Widget::root_vfunc () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -2857,7 +2865,7 @@ void Gtk::Widget::root_vfunc()
     (*base->root)(gobj());
   }
 }
-void Gtk::Widget::unroot_vfunc()
+auto Gtk::Widget::unroot_vfunc () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -2868,7 +2876,7 @@ void Gtk::Widget::unroot_vfunc()
     (*base->unroot)(gobj());
   }
 }
-void Gtk::Widget::size_allocate_vfunc(int width, int height, int baseline)
+auto Gtk::Widget::size_allocate_vfunc (int width, int height, int baseline) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -2894,7 +2902,9 @@ auto Gtk::Widget::get_request_mode_vfunc() const -> SizeRequestMode
   using RType = SizeRequestMode;
   return RType();
 }
-void Gtk::Widget::measure_vfunc(Orientation orientation, int for_size, int& minimum, int& natural, int& minimum_baseline, int& natural_baseline) const
+auto Gtk::Widget::measure_vfunc (
+  Orientation orientation, int for_size, int &minimum, int &natural, int &minimum_baseline,
+  int &natural_baseline) const -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -2920,7 +2930,7 @@ auto Gtk::Widget::grab_focus_vfunc() -> bool
   using RType = bool;
   return RType();
 }
-void Gtk::Widget::set_focus_child_vfunc(Widget* child)
+auto Gtk::Widget::set_focus_child_vfunc (Widget *child) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -2946,7 +2956,7 @@ auto Gtk::Widget::contains_vfunc(double x, double y) const -> bool
   using RType = bool;
   return RType();
 }
-void Gtk::Widget::snapshot_vfunc(const Glib::RefPtr<Gtk::Snapshot>& snapshot)
+auto Gtk::Widget::snapshot_vfunc (const Glib::RefPtr <Gtk::Snapshot> &snapshot) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

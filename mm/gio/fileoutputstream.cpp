@@ -61,9 +61,10 @@ FileOutputStream::query_info(const std::string& attributes) -> Glib::RefPtr<File
   return retvalue;
 }
 
-void
-FileOutputStream::query_info_async(const SlotAsyncReady& slot,
-  const Glib::RefPtr<Cancellable>& cancellable, const std::string& attributes, int io_priority)
+auto FileOutputStream::query_info_async (
+  const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, const std::string &attributes,
+  int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -74,9 +75,8 @@ FileOutputStream::query_info_async(const SlotAsyncReady& slot,
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-FileOutputStream::query_info_async(
-  const SlotAsyncReady& slot, const std::string& attributes, int io_priority)
+auto FileOutputStream::query_info_async (
+  const SlotAsyncReady &slot, const std::string &attributes, int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -135,7 +135,7 @@ auto FileOutputStream_Class::init() -> const Glib::Class&
 }
 
 
-void FileOutputStream_Class::class_init_function(void* g_class, void* class_data)
+auto FileOutputStream_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

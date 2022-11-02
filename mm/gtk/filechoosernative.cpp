@@ -90,7 +90,7 @@ auto FileChooserNative_Class::init() -> const Glib::Class&
 }
 
 
-void FileChooserNative_Class::class_init_function(void* g_class, void* class_data)
+auto FileChooserNative_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -182,7 +182,7 @@ auto FileChooserNative::get_accept_label() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_file_chooser_native_get_accept_label(const_cast<GtkFileChooserNative*>(gobj())));
 }
 
-void FileChooserNative::set_accept_label(const Glib::ustring& accept_label)
+auto FileChooserNative::set_accept_label (const Glib::ustring &accept_label) -> void
 {
   gtk_file_chooser_native_set_accept_label(gobj(), accept_label.empty() ? nullptr : accept_label.c_str());
 }
@@ -192,7 +192,7 @@ auto FileChooserNative::get_cancel_label() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_file_chooser_native_get_cancel_label(const_cast<GtkFileChooserNative*>(gobj())));
 }
 
-void FileChooserNative::set_cancel_label(const Glib::ustring& cancel_label)
+auto FileChooserNative::set_cancel_label (const Glib::ustring &cancel_label) -> void
 {
   gtk_file_chooser_native_set_cancel_label(gobj(), cancel_label.empty() ? nullptr : cancel_label.c_str());
 }

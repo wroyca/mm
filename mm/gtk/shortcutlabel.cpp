@@ -69,7 +69,7 @@ auto ShortcutLabel_Class::init() -> const Glib::Class&
 }
 
 
-void ShortcutLabel_Class::class_init_function(void* g_class, void* class_data)
+auto ShortcutLabel_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -154,7 +154,7 @@ auto ShortcutLabel::get_accelerator() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_shortcut_label_get_accelerator(const_cast<GtkShortcutLabel*>(gobj())));
 }
 
-void ShortcutLabel::set_accelerator(const Glib::ustring& accelerator)
+auto ShortcutLabel::set_accelerator (const Glib::ustring &accelerator) -> void
 {
   gtk_shortcut_label_set_accelerator(gobj(), accelerator.c_str());
 }
@@ -164,7 +164,7 @@ auto ShortcutLabel::get_disabled_text() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_shortcut_label_get_disabled_text(const_cast<GtkShortcutLabel*>(gobj())));
 }
 
-void ShortcutLabel::set_disabled_text(const Glib::ustring& disabled_text)
+auto ShortcutLabel::set_disabled_text (const Glib::ustring &disabled_text) -> void
 {
   gtk_shortcut_label_set_disabled_text(gobj(), disabled_text.c_str());
 }

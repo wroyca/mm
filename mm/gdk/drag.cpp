@@ -37,7 +37,7 @@ namespace
 {
 
 
-void Drag_signal_cancel_callback(GdkDrag* self, GdkDragCancelReason p0,void* data)
+auto Drag_signal_cancel_callback (GdkDrag *self, GdkDragCancelReason p0, void *data) -> void
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(DragCancelReason)>;
@@ -132,7 +132,7 @@ auto Drag_Class::init() -> const Glib::Class&
 }
 
 
-void Drag_Class::class_init_function(void* g_class, void* class_data)
+auto Drag_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -251,7 +251,7 @@ auto Drag::action_is_unique(DragAction action) -> bool
   return gdk_drag_action_is_unique(static_cast<GdkDragAction>(action));
 }
 
-void Drag::drag_drop_done(bool success)
+auto Drag::drag_drop_done (bool success) -> void
 {
   gdk_drag_drop_done(gobj(), static_cast<int>(success));
 }
@@ -269,7 +269,7 @@ auto Drag::get_drag_surface() const -> Glib::RefPtr<const Surface>
   return const_cast<Drag*>(this)->get_drag_surface();
 }
 
-void Drag::set_hotspot(int hot_x, int hot_y)
+auto Drag::set_hotspot (int hot_x, int hot_y) -> void
 {
   gdk_drag_set_hotspot(gobj(), hot_x, hot_y);
 }

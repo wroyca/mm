@@ -21,11 +21,11 @@ public:
 
   friend class Action;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -34,14 +34,14 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static const gchar* get_name_vfunc_callback(GAction* self);
-  static const GVariantType* get_parameter_type_vfunc_callback(GAction* self);
-  static const GVariantType* get_state_type_vfunc_callback(GAction* self);
-  static GVariant* get_state_hint_vfunc_callback(GAction* self);
-  static gboolean get_enabled_vfunc_callback(GAction* self);
-  static GVariant* get_state_vfunc_callback(GAction* self);
-  static void change_state_vfunc_callback(GAction* self, GVariant* value);
-  static void activate_vfunc_callback(GAction* self, GVariant* parameter);
+  static auto get_name_vfunc_callback (GAction *self) -> const gchar*;
+  static auto get_parameter_type_vfunc_callback (GAction *self) -> const GVariantType*;
+  static auto get_state_type_vfunc_callback (GAction *self) -> const GVariantType*;
+  static auto get_state_hint_vfunc_callback (GAction *self) -> GVariant*;
+  static auto get_enabled_vfunc_callback (GAction *self) -> gboolean;
+  static auto get_state_vfunc_callback (GAction *self) -> GVariant*;
+  static auto change_state_vfunc_callback (GAction *self, GVariant *value) -> void;
+  static auto activate_vfunc_callback (GAction *self, GVariant *parameter) -> void;
 };
 
 

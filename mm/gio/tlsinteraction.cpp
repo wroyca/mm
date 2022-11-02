@@ -85,7 +85,7 @@ auto TlsInteraction_Class::init() -> const Glib::Class&
 }
 
 
-void TlsInteraction_Class::class_init_function(void* g_class, void* class_data)
+auto TlsInteraction_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -142,7 +142,9 @@ auto TlsInteraction_Class::ask_password_vfunc_callback(GTlsInteraction* self, GT
   using RType = GTlsInteractionResult;
   return RType();
 }
-void TlsInteraction_Class::ask_password_async_vfunc_callback(GTlsInteraction* self, GTlsPassword* password, GCancellable* cancellable, GAsyncReadyCallback callback, gpointer user_data)
+auto TlsInteraction_Class::ask_password_async_vfunc_callback (
+  GTlsInteraction *self, GTlsPassword *password, GCancellable *cancellable,
+  GAsyncReadyCallback callback, gpointer user_data) -> void
 {
   const auto slot = static_cast<Gio::SlotAsyncReady*>(user_data);
 
@@ -313,7 +315,9 @@ auto TlsInteraction::ask_password(const Glib::RefPtr<TlsPassword>& password) -> 
   return retvalue;
 }
 
-void TlsInteraction::ask_password_async(const Glib::RefPtr<TlsPassword>& password, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto TlsInteraction::ask_password_async (
+  const Glib::RefPtr <TlsPassword> &password, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -321,7 +325,8 @@ void TlsInteraction::ask_password_async(const Glib::RefPtr<TlsPassword>& passwor
   g_tls_interaction_ask_password_async(gobj(), Glib::unwrap(password), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsInteraction::ask_password_async(const Glib::RefPtr<TlsPassword>& password, const SlotAsyncReady& slot)
+auto TlsInteraction::ask_password_async (
+  const Glib::RefPtr <TlsPassword> &password, const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -329,12 +334,13 @@ void TlsInteraction::ask_password_async(const Glib::RefPtr<TlsPassword>& passwor
   g_tls_interaction_ask_password_async(gobj(), Glib::unwrap(password), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsInteraction::ask_password_async(const Glib::RefPtr<TlsPassword>& password, const Glib::RefPtr<Cancellable>& cancellable)
+auto TlsInteraction::ask_password_async (
+  const Glib::RefPtr <TlsPassword> &password, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   g_tls_interaction_ask_password_async(gobj(), Glib::unwrap(password), const_cast<GCancellable*>(Glib::unwrap(cancellable)), nullptr, nullptr);
 }
 
-void TlsInteraction::ask_password_async(const Glib::RefPtr<TlsPassword>& password)
+auto TlsInteraction::ask_password_async (const Glib::RefPtr <TlsPassword> &password) -> void
 {
   g_tls_interaction_ask_password_async(gobj(), Glib::unwrap(password), nullptr, nullptr, nullptr);
 }
@@ -402,7 +408,9 @@ auto TlsInteraction::request_certificate(const Glib::RefPtr<TlsConnection>& conn
   return retvalue;
 }
 
-void TlsInteraction::request_certificate_async(const Glib::RefPtr<TlsConnection>& connection, TlsCertificateRequestFlags flags, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto TlsInteraction::request_certificate_async (
+  const Glib::RefPtr <TlsConnection> &connection, TlsCertificateRequestFlags flags,
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -410,7 +418,9 @@ void TlsInteraction::request_certificate_async(const Glib::RefPtr<TlsConnection>
   g_tls_interaction_request_certificate_async(gobj(), Glib::unwrap(connection), static_cast<GTlsCertificateRequestFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsInteraction::request_certificate_async(const Glib::RefPtr<TlsConnection>& connection, TlsCertificateRequestFlags flags, const SlotAsyncReady& slot)
+auto TlsInteraction::request_certificate_async (
+  const Glib::RefPtr <TlsConnection> &connection, TlsCertificateRequestFlags flags,
+  const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -418,12 +428,15 @@ void TlsInteraction::request_certificate_async(const Glib::RefPtr<TlsConnection>
   g_tls_interaction_request_certificate_async(gobj(), Glib::unwrap(connection), static_cast<GTlsCertificateRequestFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsInteraction::request_certificate_async(const Glib::RefPtr<TlsConnection>& connection, TlsCertificateRequestFlags flags, const Glib::RefPtr<Cancellable>& cancellable)
+auto TlsInteraction::request_certificate_async (
+  const Glib::RefPtr <TlsConnection> &connection, TlsCertificateRequestFlags flags,
+  const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   g_tls_interaction_request_certificate_async(gobj(), Glib::unwrap(connection), static_cast<GTlsCertificateRequestFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), nullptr, nullptr);
 }
 
-void TlsInteraction::request_certificate_async(const Glib::RefPtr<TlsConnection>& connection, TlsCertificateRequestFlags flags)
+auto TlsInteraction::request_certificate_async (
+  const Glib::RefPtr <TlsConnection> &connection, TlsCertificateRequestFlags flags) -> void
 {
   g_tls_interaction_request_certificate_async(gobj(), Glib::unwrap(connection), static_cast<GTlsCertificateRequestFlags>(flags), nullptr, nullptr, nullptr);
 }
@@ -456,7 +469,9 @@ auto Gio::TlsInteraction::ask_password_vfunc(const Glib::RefPtr<TlsPassword>& pa
   using RType = TlsInteractionResult;
   return RType();
 }
-void Gio::TlsInteraction::ask_password_async_vfunc(const Glib::RefPtr<TlsPassword>& password, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto Gio::TlsInteraction::ask_password_async_vfunc (
+  const Glib::RefPtr <TlsPassword> &password, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);

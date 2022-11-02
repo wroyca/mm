@@ -63,9 +63,8 @@ LoadableIcon::load(int size, Glib::ustring& type) -> Glib::RefPtr<InputStream>
   return retval;
 }
 
-void
-LoadableIcon::load_async(
-  int size, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto LoadableIcon::load_async (
+  int size, const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -76,8 +75,7 @@ LoadableIcon::load_async(
     gobj(), size, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-LoadableIcon::load_async(int size, const SlotAsyncReady& slot)
+auto LoadableIcon::load_async (int size, const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -127,7 +125,7 @@ auto LoadableIcon_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void LoadableIcon_Class::iface_init_function(void* g_iface, void*)
+auto LoadableIcon_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -176,7 +174,7 @@ LoadableIcon::~LoadableIcon() noexcept
 {}
 
 // static
-void LoadableIcon::add_interface(GType gtype_implementer)
+auto LoadableIcon::add_interface (GType gtype_implementer) -> void
 {
   loadableicon_class_.init().add_interface(gtype_implementer);
 }

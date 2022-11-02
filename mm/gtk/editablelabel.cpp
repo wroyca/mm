@@ -62,7 +62,7 @@ auto EditableLabel_Class::init() -> const Glib::Class&
 }
 
 
-void EditableLabel_Class::class_init_function(void* g_class, void* class_data)
+auto EditableLabel_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -149,12 +149,12 @@ auto EditableLabel::get_editing() const -> bool
   return gtk_editable_label_get_editing(const_cast<GtkEditableLabel*>(gobj()));
 }
 
-void EditableLabel::start_editing()
+auto EditableLabel::start_editing () -> void
 {
   gtk_editable_label_start_editing(gobj());
 }
 
-void EditableLabel::stop_editing(bool commit)
+auto EditableLabel::stop_editing (bool commit) -> void
 {
   gtk_editable_label_stop_editing(gobj(), static_cast<int>(commit));
 }

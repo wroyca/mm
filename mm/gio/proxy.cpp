@@ -32,10 +32,10 @@
 namespace Gio
 {
 
-void
-Proxy::connect_async(const Glib::RefPtr<IOStream>& connection,
-  const Glib::RefPtr<const ProxyAddress>& proxy_address, const SlotAsyncReady& slot,
-  const Glib::RefPtr<Cancellable>& cancellable)
+auto Proxy::connect_async (
+  const Glib::RefPtr <IOStream> &connection,
+  const Glib::RefPtr <const ProxyAddress> &proxy_address, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -47,9 +47,9 @@ Proxy::connect_async(const Glib::RefPtr<IOStream>& connection,
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Proxy::connect_async(const Glib::RefPtr<IOStream>& connection,
-  const Glib::RefPtr<const ProxyAddress>& proxy_address, const SlotAsyncReady& slot)
+auto Proxy::connect_async (
+  const Glib::RefPtr <IOStream> &connection,
+  const Glib::RefPtr <const ProxyAddress> &proxy_address, const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -101,7 +101,7 @@ auto Proxy_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Proxy_Class::iface_init_function(void* g_iface, void*)
+auto Proxy_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -150,7 +150,7 @@ Proxy::~Proxy() noexcept
 {}
 
 // static
-void Proxy::add_interface(GType gtype_implementer)
+auto Proxy::add_interface (GType gtype_implementer) -> void
 {
   proxy_class_.init().add_interface(gtype_implementer);
 }

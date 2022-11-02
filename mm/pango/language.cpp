@@ -45,7 +45,7 @@ inline auto _pango_language_copy(const PangoLanguage* language) -> PangoLanguage
   return const_cast<PangoLanguage*>(language);
 }
 
-inline void _pango_language_free(PangoLanguage*)
+inline auto _pango_language_free (PangoLanguage *) -> void
 {
   return;
 }
@@ -151,7 +151,7 @@ Language::~Language() noexcept
     _pango_language_free(gobject_);
 }
 
-void Language::swap(Language& other) noexcept
+auto Language::swap (Language &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }

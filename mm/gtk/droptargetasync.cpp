@@ -231,7 +231,8 @@ const Glib::SignalProxyInfo DropTargetAsync_signal_drag_motion_info =
 };
 
 
-void DropTargetAsync_signal_drag_leave_callback(GtkDropTargetAsync* self, GdkDrop* p0,void* data)
+auto DropTargetAsync_signal_drag_leave_callback (
+  GtkDropTargetAsync *self, GdkDrop *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gdk::Drop>&)>;
@@ -366,7 +367,7 @@ auto DropTargetAsync_Class::init() -> const Glib::Class&
 }
 
 
-void DropTargetAsync_Class::class_init_function(void* g_class, void* class_data)
+auto DropTargetAsync_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -431,7 +432,7 @@ auto DropTargetAsync::get_base_type() -> GType
 }
 
 
-void DropTargetAsync::set_formats(const Glib::RefPtr<const Gdk::ContentFormats>& formats)
+auto DropTargetAsync::set_formats (const Glib::RefPtr <const Gdk::ContentFormats> &formats) -> void
 {
   gtk_drop_target_async_set_formats(gobj(), const_cast<GdkContentFormats*>(Glib::unwrap(formats)));
 }
@@ -449,7 +450,7 @@ auto DropTargetAsync::get_formats() const -> Glib::RefPtr<const Gdk::ContentForm
   return const_cast<DropTargetAsync*>(this)->get_formats();
 }
 
-void DropTargetAsync::set_actions(Gdk::DragAction actions)
+auto DropTargetAsync::set_actions (Gdk::DragAction actions) -> void
 {
   gtk_drop_target_async_set_actions(gobj(), static_cast<GdkDragAction>(actions));
 }
@@ -459,7 +460,7 @@ auto DropTargetAsync::get_actions() const -> Gdk::DragAction
   return static_cast<Gdk::DragAction>(gtk_drop_target_async_get_actions(const_cast<GtkDropTargetAsync*>(gobj())));
 }
 
-void DropTargetAsync::reject_drop(const Glib::RefPtr<Gdk::Drop>& drop)
+auto DropTargetAsync::reject_drop (const Glib::RefPtr <Gdk::Drop> &drop) -> void
 {
   gtk_drop_target_async_reject_drop(gobj(), Glib::unwrap(drop));
 }

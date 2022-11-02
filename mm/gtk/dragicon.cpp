@@ -28,7 +28,7 @@
 namespace Gtk
 {
 
-void DragIcon::unset_child()
+auto DragIcon::unset_child () -> void
 {
   gtk_drag_icon_set_child(gobj(), nullptr);
 }
@@ -72,7 +72,7 @@ auto DragIcon_Class::init() -> const Glib::Class&
 }
 
 
-void DragIcon_Class::class_init_function(void* g_class, void* class_data)
+auto DragIcon_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -141,7 +141,7 @@ auto DragIcon::get_for_drag(const Glib::RefPtr<Gdk::Drag>& drag) -> DragIcon*
   return Glib::wrap((GtkDragIcon*)(gtk_drag_icon_get_for_drag(Glib::unwrap(drag))));
 }
 
-void DragIcon::set_child(Widget& child)
+auto DragIcon::set_child (Widget &child) -> void
 {
   gtk_drag_icon_set_child(gobj(), (child).gobj());
 }
@@ -156,7 +156,9 @@ auto DragIcon::get_child() const -> const Widget*
   return const_cast<DragIcon*>(this)->get_child();
 }
 
-void DragIcon::set_from_paintable(const Glib::RefPtr<Gdk::Drag>& drag, const Glib::RefPtr<Gdk::Paintable>& paintable, int hot_x, int hot_y)
+auto DragIcon::set_from_paintable (
+  const Glib::RefPtr <Gdk::Drag> &drag, const Glib::RefPtr <Gdk::Paintable> &paintable, int hot_x,
+  int hot_y) -> void
 {
   gtk_drag_icon_set_from_paintable(Glib::unwrap(drag), Glib::unwrap(paintable), hot_x, hot_y);
 }

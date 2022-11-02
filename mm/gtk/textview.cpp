@@ -50,18 +50,20 @@ auto TextView::scroll_to(TextBuffer::iterator& iter, double within_margin, doubl
   return gtk_text_view_scroll_to_iter(gobj(), (iter).gobj(), within_margin, TRUE /* use_align */, xalign, yalign);
 }
 
-void TextView::scroll_to(const Glib::RefPtr<TextBuffer::Mark>& mark, double within_margin)
+auto TextView::scroll_to (const Glib::RefPtr <TextBuffer::Mark> &mark, double within_margin) -> void
 {
   //The last 2 arguments are ignored if use_align is FALSE.
   gtk_text_view_scroll_to_mark(gobj(), Glib::unwrap(mark), within_margin, FALSE, 0.0, 0.0);
 }
 
-void TextView::scroll_to(const Glib::RefPtr<TextBuffer::Mark>& mark, double within_margin, double xalign, double yalign)
+auto TextView::scroll_to (
+  const Glib::RefPtr <TextBuffer::Mark> &mark, double within_margin, double xalign,
+  double yalign) -> void
 {
   gtk_text_view_scroll_to_mark(gobj(), Glib::unwrap(mark), within_margin, TRUE /* use_align */, xalign, yalign);
 }
 
-void TextView::unset_gutter(TextWindowType win)
+auto TextView::unset_gutter (TextWindowType win) -> void
 {
   gtk_text_view_set_gutter(gobj(), static_cast<GtkTextWindowType>(win), nullptr);
 }
@@ -80,7 +82,8 @@ const Glib::SignalProxyInfo TextView_signal_set_anchor_info =
 };
 
 
-void TextView_signal_insert_at_cursor_callback(GtkTextView* self, const gchar* p0,void* data)
+auto TextView_signal_insert_at_cursor_callback (
+  GtkTextView *self, const gchar *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -158,7 +161,7 @@ auto TextView_Class::init() -> const Glib::Class&
 }
 
 
-void TextView_Class::class_init_function(void* g_class, void* class_data)
+auto TextView_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -169,7 +172,7 @@ void TextView_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void TextView_Class::set_anchor_callback(GtkTextView* self)
+auto TextView_Class::set_anchor_callback (GtkTextView *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -205,7 +208,7 @@ void TextView_Class::set_anchor_callback(GtkTextView* self)
   if(base && base->set_anchor)
     (*base->set_anchor)(self);
 }
-void TextView_Class::insert_at_cursor_callback(GtkTextView* self, const gchar* p0)
+auto TextView_Class::insert_at_cursor_callback (GtkTextView *self, const gchar *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -307,7 +310,7 @@ TextView::TextView()
 
 }
 
-void TextView::set_buffer(const Glib::RefPtr<TextBuffer>& buffer)
+auto TextView::set_buffer (const Glib::RefPtr <TextBuffer> &buffer) -> void
 {
   gtk_text_view_set_buffer(gobj(), Glib::unwrap(buffer));
 }
@@ -335,12 +338,12 @@ auto TextView::place_cursor_onscreen() -> bool
   return gtk_text_view_place_cursor_onscreen(gobj());
 }
 
-void TextView::get_visible_rect(Gdk::Rectangle& visible_rect) const
+auto TextView::get_visible_rect (Gdk::Rectangle &visible_rect) const -> void
 {
   gtk_text_view_get_visible_rect(const_cast<GtkTextView*>(gobj()), (visible_rect).gobj());
 }
 
-void TextView::set_cursor_visible(bool setting)
+auto TextView::set_cursor_visible (bool setting) -> void
 {
   gtk_text_view_set_cursor_visible(gobj(), static_cast<int>(setting));
 }
@@ -350,22 +353,25 @@ auto TextView::get_cursor_visible() const -> bool
   return gtk_text_view_get_cursor_visible(const_cast<GtkTextView*>(gobj()));
 }
 
-void TextView::reset_cursor_blink()
+auto TextView::reset_cursor_blink () -> void
 {
   gtk_text_view_reset_cursor_blink(gobj());
 }
 
-void TextView::get_cursor_locations(const TextBuffer::const_iterator& iter, Gdk::Rectangle& strong, Gdk::Rectangle& weak) const
+auto TextView::get_cursor_locations (
+  const TextBuffer::const_iterator &iter, Gdk::Rectangle &strong,
+  Gdk::Rectangle &weak) const -> void
 {
   gtk_text_view_get_cursor_locations(const_cast<GtkTextView*>(gobj()), (iter).gobj(), (strong).gobj(), (weak).gobj());
 }
 
-void TextView::get_cursor_locations(Gdk::Rectangle& strong, Gdk::Rectangle& weak) const
+auto TextView::get_cursor_locations (Gdk::Rectangle &strong, Gdk::Rectangle &weak) const -> void
 {
   gtk_text_view_get_cursor_locations(const_cast<GtkTextView*>(gobj()), nullptr, (strong).gobj(), (weak).gobj());
 }
 
-void TextView::get_iter_location(const TextBuffer::const_iterator& iter, Gdk::Rectangle& location) const
+auto TextView::get_iter_location (
+  const TextBuffer::const_iterator &iter, Gdk::Rectangle &location) const -> void
 {
   gtk_text_view_get_iter_location(const_cast<GtkTextView*>(gobj()), (iter).gobj(), (location).gobj());
 }
@@ -390,27 +396,31 @@ auto TextView::get_iter_at_position(TextBuffer::const_iterator& iter, int& trail
   return gtk_text_view_get_iter_at_position(const_cast<GtkTextView*>(gobj()), (iter).gobj(), &(trailing), x, y);
 }
 
-void TextView::get_line_yrange(const TextBuffer::const_iterator& iter, int& y, int& height) const
+auto TextView::get_line_yrange (
+  const TextBuffer::const_iterator &iter, int &y, int &height) const -> void
 {
   gtk_text_view_get_line_yrange(const_cast<GtkTextView*>(gobj()), (iter).gobj(), &(y), &(height));
 }
 
-void TextView::get_line_at_y(TextBuffer::iterator& target_iter, int y, int& line_top)
+auto TextView::get_line_at_y (TextBuffer::iterator &target_iter, int y, int &line_top) -> void
 {
   gtk_text_view_get_line_at_y(gobj(), (target_iter).gobj(), y, &(line_top));
 }
 
-void TextView::get_line_at_y(TextBuffer::const_iterator& target_iter, int y, int& line_top) const
+auto TextView::get_line_at_y (
+  TextBuffer::const_iterator &target_iter, int y, int &line_top) const -> void
 {
   gtk_text_view_get_line_at_y(const_cast<GtkTextView*>(gobj()), (target_iter).gobj(), y, &(line_top));
 }
 
-void TextView::buffer_to_window_coords(TextWindowType win, int buffer_x, int buffer_y, int& window_x, int& window_y) const
+auto TextView::buffer_to_window_coords (
+  TextWindowType win, int buffer_x, int buffer_y, int &window_x, int &window_y) const -> void
 {
   gtk_text_view_buffer_to_window_coords(const_cast<GtkTextView*>(gobj()), static_cast<GtkTextWindowType>(win), buffer_x, buffer_y, &(window_x), &(window_y));
 }
 
-void TextView::window_to_buffer_coords(TextWindowType win, int window_x, int window_y, int& buffer_x, int& buffer_y) const
+auto TextView::window_to_buffer_coords (
+  TextWindowType win, int window_x, int window_y, int &buffer_x, int &buffer_y) const -> void
 {
   gtk_text_view_window_to_buffer_coords(const_cast<GtkTextView*>(gobj()), static_cast<GtkTextWindowType>(win), window_x, window_y, &(buffer_x), &(buffer_y));
 }
@@ -450,7 +460,7 @@ auto TextView::im_context_filter_keypress(const Glib::RefPtr<Gdk::Event>& event)
   return gtk_text_view_im_context_filter_keypress(gobj(), Glib::unwrap(event));
 }
 
-void TextView::reset_im_context()
+auto TextView::reset_im_context () -> void
 {
   gtk_text_view_reset_im_context(gobj());
 }
@@ -465,32 +475,33 @@ auto TextView::get_gutter(TextWindowType win) const -> const Widget*
   return const_cast<TextView*>(this)->get_gutter(win);
 }
 
-void TextView::set_gutter(TextWindowType win, Widget& widget)
+auto TextView::set_gutter (TextWindowType win, Widget &widget) -> void
 {
   gtk_text_view_set_gutter(gobj(), static_cast<GtkTextWindowType>(win), (widget).gobj());
 }
 
-void TextView::add_child_at_anchor(Widget& child, const Glib::RefPtr<TextBuffer::ChildAnchor>& anchor)
+auto TextView::add_child_at_anchor (
+  Widget &child, const Glib::RefPtr <TextBuffer::ChildAnchor> &anchor) -> void
 {
   gtk_text_view_add_child_at_anchor(gobj(), (child).gobj(), Glib::unwrap(anchor));
 }
 
-void TextView::add_overlay(Widget& child, int xpos, int ypos)
+auto TextView::add_overlay (Widget &child, int xpos, int ypos) -> void
 {
   gtk_text_view_add_overlay(gobj(), (child).gobj(), xpos, ypos);
 }
 
-void TextView::move_overlay(Widget& child, int xpos, int ypos)
+auto TextView::move_overlay (Widget &child, int xpos, int ypos) -> void
 {
   gtk_text_view_move_overlay(gobj(), (child).gobj(), xpos, ypos);
 }
 
-void TextView::remove(Widget& child)
+auto TextView::remove (Widget &child) -> void
 {
   gtk_text_view_remove(gobj(), (child).gobj());
 }
 
-void TextView::set_wrap_mode(WrapMode wrap_mode)
+auto TextView::set_wrap_mode (WrapMode wrap_mode) -> void
 {
   gtk_text_view_set_wrap_mode(gobj(), static_cast<GtkWrapMode>(wrap_mode));
 }
@@ -500,7 +511,7 @@ auto TextView::get_wrap_mode() const -> WrapMode
   return static_cast<WrapMode>(gtk_text_view_get_wrap_mode(const_cast<GtkTextView*>(gobj())));
 }
 
-void TextView::set_editable(bool setting)
+auto TextView::set_editable (bool setting) -> void
 {
   gtk_text_view_set_editable(gobj(), static_cast<int>(setting));
 }
@@ -510,7 +521,7 @@ auto TextView::get_editable() const -> bool
   return gtk_text_view_get_editable(const_cast<GtkTextView*>(gobj()));
 }
 
-void TextView::set_pixels_above_lines(int pixels_above_lines)
+auto TextView::set_pixels_above_lines (int pixels_above_lines) -> void
 {
   gtk_text_view_set_pixels_above_lines(gobj(), pixels_above_lines);
 }
@@ -520,7 +531,7 @@ auto TextView::get_pixels_above_lines() const -> int
   return gtk_text_view_get_pixels_above_lines(const_cast<GtkTextView*>(gobj()));
 }
 
-void TextView::set_pixels_below_lines(int pixels_below_lines)
+auto TextView::set_pixels_below_lines (int pixels_below_lines) -> void
 {
   gtk_text_view_set_pixels_below_lines(gobj(), pixels_below_lines);
 }
@@ -530,7 +541,7 @@ auto TextView::get_pixels_below_lines() const -> int
   return gtk_text_view_get_pixels_below_lines(const_cast<GtkTextView*>(gobj()));
 }
 
-void TextView::set_pixels_inside_wrap(int pixels_inside_wrap)
+auto TextView::set_pixels_inside_wrap (int pixels_inside_wrap) -> void
 {
   gtk_text_view_set_pixels_inside_wrap(gobj(), pixels_inside_wrap);
 }
@@ -540,7 +551,7 @@ auto TextView::get_pixels_inside_wrap() const -> int
   return gtk_text_view_get_pixels_inside_wrap(const_cast<GtkTextView*>(gobj()));
 }
 
-void TextView::set_justification(Justification justification)
+auto TextView::set_justification (Justification justification) -> void
 {
   gtk_text_view_set_justification(gobj(), static_cast<GtkJustification>(justification));
 }
@@ -550,7 +561,7 @@ auto TextView::get_justification() const -> Justification
   return static_cast<Justification>(gtk_text_view_get_justification(const_cast<GtkTextView*>(gobj())));
 }
 
-void TextView::set_left_margin(int left_margin)
+auto TextView::set_left_margin (int left_margin) -> void
 {
   gtk_text_view_set_left_margin(gobj(), left_margin);
 }
@@ -560,7 +571,7 @@ auto TextView::get_left_margin() const -> int
   return gtk_text_view_get_left_margin(const_cast<GtkTextView*>(gobj()));
 }
 
-void TextView::set_right_margin(int right_margin)
+auto TextView::set_right_margin (int right_margin) -> void
 {
   gtk_text_view_set_right_margin(gobj(), right_margin);
 }
@@ -570,7 +581,7 @@ auto TextView::get_right_margin() const -> int
   return gtk_text_view_get_right_margin(const_cast<GtkTextView*>(gobj()));
 }
 
-void TextView::set_top_margin(int top_margin)
+auto TextView::set_top_margin (int top_margin) -> void
 {
   gtk_text_view_set_top_margin(gobj(), top_margin);
 }
@@ -580,7 +591,7 @@ auto TextView::get_top_margin() const -> int
   return gtk_text_view_get_top_margin(const_cast<GtkTextView*>(gobj()));
 }
 
-void TextView::set_bottom_margin(int bottom_margin)
+auto TextView::set_bottom_margin (int bottom_margin) -> void
 {
   gtk_text_view_set_bottom_margin(gobj(), bottom_margin);
 }
@@ -590,7 +601,7 @@ auto TextView::get_bottom_margin() const -> int
   return gtk_text_view_get_bottom_margin(const_cast<GtkTextView*>(gobj()));
 }
 
-void TextView::set_indent(int indent)
+auto TextView::set_indent (int indent) -> void
 {
   gtk_text_view_set_indent(gobj(), indent);
 }
@@ -600,7 +611,7 @@ auto TextView::get_indent() const -> int
   return gtk_text_view_get_indent(const_cast<GtkTextView*>(gobj()));
 }
 
-void TextView::set_tabs(Pango::TabArray& tabs)
+auto TextView::set_tabs (Pango::TabArray &tabs) -> void
 {
   gtk_text_view_set_tabs(gobj(), (tabs).gobj());
 }
@@ -610,7 +621,7 @@ auto TextView::get_tabs() const -> Pango::TabArray
   return Pango::TabArray((gtk_text_view_get_tabs(const_cast<GtkTextView*>(gobj()))), false);
 }
 
-void TextView::set_overwrite(bool overwrite)
+auto TextView::set_overwrite (bool overwrite) -> void
 {
   gtk_text_view_set_overwrite(gobj(), static_cast<int>(overwrite));
 }
@@ -620,7 +631,7 @@ auto TextView::get_overwrite() const -> bool
   return gtk_text_view_get_overwrite(const_cast<GtkTextView*>(gobj()));
 }
 
-void TextView::set_accepts_tab(bool accepts_tab)
+auto TextView::set_accepts_tab (bool accepts_tab) -> void
 {
   gtk_text_view_set_accepts_tab(gobj(), static_cast<int>(accepts_tab));
 }
@@ -630,7 +641,7 @@ auto TextView::get_accepts_tab() const -> bool
   return gtk_text_view_get_accepts_tab(const_cast<GtkTextView*>(gobj()));
 }
 
-void TextView::set_input_purpose(InputPurpose purpose)
+auto TextView::set_input_purpose (InputPurpose purpose) -> void
 {
   gtk_text_view_set_input_purpose(gobj(), static_cast<GtkInputPurpose>(purpose));
 }
@@ -640,7 +651,7 @@ auto TextView::get_input_purpose() const -> InputPurpose
   return static_cast<InputPurpose>(gtk_text_view_get_input_purpose(const_cast<GtkTextView*>(gobj())));
 }
 
-void TextView::set_input_hints(InputHints hints)
+auto TextView::set_input_hints (InputHints hints) -> void
 {
   gtk_text_view_set_input_hints(gobj(), static_cast<GtkInputHints>(hints));
 }
@@ -650,7 +661,7 @@ auto TextView::get_input_hints() const -> InputHints
   return static_cast<InputHints>(gtk_text_view_get_input_hints(const_cast<GtkTextView*>(gobj())));
 }
 
-void TextView::set_monospace(bool monospace)
+auto TextView::set_monospace (bool monospace) -> void
 {
   gtk_text_view_set_monospace(gobj(), static_cast<int>(monospace));
 }
@@ -660,7 +671,7 @@ auto TextView::get_monospace() const -> bool
   return gtk_text_view_get_monospace(const_cast<GtkTextView*>(gobj()));
 }
 
-void TextView::set_extra_menu(const Glib::RefPtr<Gio::MenuModel>& model)
+auto TextView::set_extra_menu (const Glib::RefPtr <Gio::MenuModel> &model) -> void
 {
   gtk_text_view_set_extra_menu(gobj(), Glib::unwrap(model));
 }
@@ -956,7 +967,7 @@ auto TextView::property_extra_menu() const -> Glib::PropertyProxy_ReadOnly< Glib
 }
 
 
-void Gtk::TextView::on_set_anchor()
+auto Gtk::TextView::on_set_anchor () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -965,7 +976,7 @@ void Gtk::TextView::on_set_anchor()
   if(base && base->set_anchor)
     (*base->set_anchor)(gobj());
 }
-void Gtk::TextView::on_insert_at_cursor(const Glib::ustring& str)
+auto Gtk::TextView::on_insert_at_cursor (const Glib::ustring &str) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

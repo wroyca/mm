@@ -59,8 +59,9 @@ auto ListStoreBase_EqualFuncFull(gconstpointer a, gconstpointer b, gpointer user
 
 namespace Gio
 {
-void ListStoreBase::splice(guint position, guint n_removals,
-  const std::vector<Glib::RefPtr<Glib::ObjectBase>>& additions)
+auto ListStoreBase::splice (
+  guint position, guint n_removals,
+  const std::vector <Glib::RefPtr <Glib::ObjectBase>> &additions) -> void
 {
   const std::size_t n_additions = additions.size();
   std::unique_ptr<gpointer[]> g_additions{new gpointer[n_additions]};
@@ -133,7 +134,7 @@ auto ListStoreBase_Class::init() -> const Glib::Class&
 }
 
 
-void ListStoreBase_Class::class_init_function(void* g_class, void* class_data)
+auto ListStoreBase_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -215,7 +216,7 @@ auto ListStoreBase::create(GType item_type) -> Glib::RefPtr<ListStoreBase>
   return Glib::make_refptr_for_instance<ListStoreBase>( new ListStoreBase(item_type) );
 }
 
-void ListStoreBase::insert(guint position, const Glib::RefPtr<Glib::ObjectBase>& item)
+auto ListStoreBase::insert (guint position, const Glib::RefPtr <Glib::ObjectBase> &item) -> void
 {
   g_list_store_insert(gobj(), position, (item)->gobj());
 }
@@ -228,7 +229,7 @@ auto ListStoreBase::insert_sorted(const Glib::RefPtr<Glib::ObjectBase>& item, co
   return g_list_store_insert_sorted(gobj(), (item)->gobj(), &ListStoreBase_CompareDataFunc, slot_copy);
 }
 
-void ListStoreBase::sort(const SlotCompare& slot)
+auto ListStoreBase::sort (const SlotCompare &slot) -> void
 {
   // Use the original slot (not a copy).
   auto slot_copy = const_cast<SlotCompare*>(&slot);
@@ -236,17 +237,17 @@ void ListStoreBase::sort(const SlotCompare& slot)
   g_list_store_sort(gobj(), &ListStoreBase_CompareDataFunc, slot_copy);
 }
 
-void ListStoreBase::append(const Glib::RefPtr<Glib::ObjectBase>& item)
+auto ListStoreBase::append (const Glib::RefPtr <Glib::ObjectBase> &item) -> void
 {
   g_list_store_append(gobj(), (item)->gobj());
 }
 
-void ListStoreBase::remove(guint position)
+auto ListStoreBase::remove (guint position) -> void
 {
   g_list_store_remove(gobj(), position);
 }
 
-void ListStoreBase::remove_all()
+auto ListStoreBase::remove_all () -> void
 {
   g_list_store_remove_all(gobj());
 }

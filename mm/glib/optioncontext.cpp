@@ -50,8 +50,7 @@ SignalProxy_translate_gtk_callback(const gchar* str, gpointer data) -> const gch
   return translated_str.c_str();
 }
 
-static void
-SignalProxy_translate_gtk_callback_destroy(gpointer data)
+static auto SignalProxy_translate_gtk_callback_destroy (gpointer data) -> void
 {
   delete static_cast<Glib::OptionContext::SlotTranslate*>(data);
 }
@@ -99,15 +98,13 @@ OptionContext::~OptionContext()
   gobject_ = nullptr;
 }
 
-void
-OptionContext::add_group(OptionGroup& group)
+auto OptionContext::add_group (OptionGroup &group) -> void
 {
   // GObjectContext takes ownership of the GOptionGroup, unrefing it later.
   g_option_context_add_group(gobj(), group.gobj_copy());
 }
 
-void
-OptionContext::set_main_group(OptionGroup& group)
+auto OptionContext::set_main_group (OptionGroup &group) -> void
 {
   // GObjectContext takes ownership of the GOptionGroup, unrefing it later.
   g_option_context_set_main_group(gobj(), group.gobj_copy());
@@ -123,8 +120,7 @@ OptionGroup OptionContext::get_main_group() const
 
 */
 
-void
-OptionContext::set_translate_func(const SlotTranslate& slot)
+auto OptionContext::set_translate_func (const SlotTranslate &slot) -> void
 {
   // Create a copy of the slot. A pointer to this will be passed through the callback's data
   // parameter.
@@ -165,7 +161,7 @@ auto Glib::OptionError::code() const -> Glib::OptionError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Glib::OptionError::throw_func(GError* gobject)
+auto Glib::OptionError::throw_func (GError *gobject) -> void
 {
   throw Glib::OptionError(gobject);
 }
@@ -175,7 +171,7 @@ namespace Glib
 {
 
 
-void OptionContext::set_help_enabled(bool help_enabled)
+auto OptionContext::set_help_enabled (bool help_enabled) -> void
 {
   g_option_context_set_help_enabled(gobj(), static_cast<int>(help_enabled));
 }
@@ -185,7 +181,7 @@ auto OptionContext::get_help_enabled() const -> bool
   return g_option_context_get_help_enabled(const_cast<GOptionContext*>(gobj()));
 }
 
-void OptionContext::set_ignore_unknown_options(bool ignore_unknown)
+auto OptionContext::set_ignore_unknown_options (bool ignore_unknown) -> void
 {
   g_option_context_set_ignore_unknown_options(gobj(), static_cast<int>(ignore_unknown));
 }
@@ -195,7 +191,7 @@ auto OptionContext::get_ignore_unknown_options() const -> bool
   return g_option_context_get_ignore_unknown_options(const_cast<GOptionContext*>(gobj()));
 }
 
-void OptionContext::set_strict_posix(bool strict_posix)
+auto OptionContext::set_strict_posix (bool strict_posix) -> void
 {
   g_option_context_set_strict_posix(gobj(), static_cast<int>(strict_posix));
 }
@@ -228,7 +224,7 @@ auto OptionContext::get_help(bool main_help, const OptionGroup& group) const -> 
   return Glib::convert_return_gchar_ptr_to_ustring(g_option_context_get_help(const_cast<GOptionContext*>(gobj()), static_cast<int>(main_help), const_cast<GOptionGroup*>((group).gobj())));
 }
 
-void OptionContext::set_summary(const Glib::ustring& summary)
+auto OptionContext::set_summary (const Glib::ustring &summary) -> void
 {
   g_option_context_set_summary(gobj(), summary.c_str());
 }
@@ -238,7 +234,7 @@ auto OptionContext::get_summary() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(g_option_context_get_summary(const_cast<GOptionContext*>(gobj())));
 }
 
-void OptionContext::set_description(const Glib::ustring& description)
+auto OptionContext::set_description (const Glib::ustring &description) -> void
 {
   g_option_context_set_description(gobj(), description.c_str());
 }
@@ -248,7 +244,7 @@ auto OptionContext::get_description() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(g_option_context_get_description(const_cast<GOptionContext*>(gobj())));
 }
 
-void OptionContext::set_translation_domain(const Glib::ustring& domain)
+auto OptionContext::set_translation_domain (const Glib::ustring &domain) -> void
 {
   g_option_context_set_translation_domain(gobj(), domain.c_str());
 }

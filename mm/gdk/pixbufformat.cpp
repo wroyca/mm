@@ -103,7 +103,7 @@ PixbufFormat::~PixbufFormat() noexcept
     gdk_pixbuf_format_free(gobject_);
 }
 
-void PixbufFormat::swap(PixbufFormat& other) noexcept
+auto PixbufFormat::swap (PixbufFormat &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }
@@ -154,7 +154,7 @@ auto PixbufFormat::is_disabled() const -> bool
   return gdk_pixbuf_format_is_disabled(const_cast<GdkPixbufFormat*>(gobj()));
 }
 
-void PixbufFormat::set_disabled(bool disabled)
+auto PixbufFormat::set_disabled (bool disabled) -> void
 {
   gdk_pixbuf_format_set_disabled(gobj(), static_cast<int>(disabled));
 }

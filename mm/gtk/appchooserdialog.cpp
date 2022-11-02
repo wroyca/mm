@@ -110,7 +110,7 @@ auto AppChooserDialog_Class::init() -> const Glib::Class&
 }
 
 
-void AppChooserDialog_Class::class_init_function(void* g_class, void* class_data)
+auto AppChooserDialog_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -182,7 +182,7 @@ auto AppChooserDialog::get_widget() const -> const Widget*
   return const_cast<AppChooserDialog*>(this)->get_widget();
 }
 
-void AppChooserDialog::set_heading(const Glib::ustring& heading)
+auto AppChooserDialog::set_heading (const Glib::ustring &heading) -> void
 {
   gtk_app_chooser_dialog_set_heading(gobj(), heading.c_str());
 }

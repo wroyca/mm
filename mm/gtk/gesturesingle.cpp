@@ -70,7 +70,7 @@ auto GestureSingle_Class::init() -> const Glib::Class&
 }
 
 
-void GestureSingle_Class::class_init_function(void* g_class, void* class_data)
+auto GestureSingle_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -150,7 +150,7 @@ auto GestureSingle::get_touch_only() const -> bool
   return gtk_gesture_single_get_touch_only(const_cast<GtkGestureSingle*>(gobj()));
 }
 
-void GestureSingle::set_touch_only(bool touch_only)
+auto GestureSingle::set_touch_only (bool touch_only) -> void
 {
   gtk_gesture_single_set_touch_only(gobj(), static_cast<int>(touch_only));
 }
@@ -160,7 +160,7 @@ auto GestureSingle::get_exclusive() const -> bool
   return gtk_gesture_single_get_exclusive(const_cast<GtkGestureSingle*>(gobj()));
 }
 
-void GestureSingle::set_exclusive(bool exclusive) const
+auto GestureSingle::set_exclusive (bool exclusive) const -> void
 {
   gtk_gesture_single_set_exclusive(const_cast<GtkGestureSingle*>(gobj()), static_cast<int>(exclusive));
 }
@@ -170,7 +170,7 @@ auto GestureSingle::get_button() const -> unsigned int
   return gtk_gesture_single_get_button(const_cast<GtkGestureSingle*>(gobj()));
 }
 
-void GestureSingle::set_button(unsigned int button)
+auto GestureSingle::set_button (unsigned int button) -> void
 {
   gtk_gesture_single_set_button(gobj(), button);
 }

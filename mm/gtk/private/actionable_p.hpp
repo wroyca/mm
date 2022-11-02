@@ -20,11 +20,11 @@ public:
 
   friend class Actionable;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -33,10 +33,11 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static const gchar* get_action_name_vfunc_callback(GtkActionable* self);
-  static void set_action_name_vfunc_callback(GtkActionable* self, const gchar* action_name);
-  static GVariant* get_action_target_value_vfunc_callback(GtkActionable* self);
-  static void set_action_target_value_vfunc_callback(GtkActionable* self, GVariant* action_target_value);
+  static auto get_action_name_vfunc_callback (GtkActionable *self) -> const gchar*;
+  static auto set_action_name_vfunc_callback (GtkActionable *self, const gchar *action_name) -> void;
+  static auto get_action_target_value_vfunc_callback (GtkActionable *self) -> GVariant*;
+  static auto set_action_target_value_vfunc_callback (
+    GtkActionable *self, GVariant *action_target_value) -> void;
 };
 
 

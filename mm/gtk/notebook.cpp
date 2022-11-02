@@ -71,7 +71,7 @@ auto Notebook::insert_page(Widget& child, const Glib::ustring& tab_label, const 
   return insert_page(child, *pLabel, *pLabelMenu, position);
 }
 
-void Notebook::remove_page(Widget& child)
+auto Notebook::remove_page (Widget &child) -> void
 {
   int pos = page_num(child);
   if(pos != -1)
@@ -99,7 +99,8 @@ namespace
 {
 
 
-void Notebook_signal_switch_page_callback(GtkNotebook* self, GtkWidget* p0,guint p1,void* data)
+auto Notebook_signal_switch_page_callback (
+  GtkNotebook *self, GtkWidget *p0, guint p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Widget*, guint)>;
@@ -129,7 +130,8 @@ const Glib::SignalProxyInfo Notebook_signal_switch_page_info =
 };
 
 
-void Notebook_signal_page_reordered_callback(GtkNotebook* self, GtkWidget* p0,guint p1,void* data)
+auto Notebook_signal_page_reordered_callback (
+  GtkNotebook *self, GtkWidget *p0, guint p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Widget*, guint)>;
@@ -159,7 +161,8 @@ const Glib::SignalProxyInfo Notebook_signal_page_reordered_info =
 };
 
 
-void Notebook_signal_page_removed_callback(GtkNotebook* self, GtkWidget* p0,guint p1,void* data)
+auto Notebook_signal_page_removed_callback (
+  GtkNotebook *self, GtkWidget *p0, guint p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Widget*, guint)>;
@@ -189,7 +192,8 @@ const Glib::SignalProxyInfo Notebook_signal_page_removed_info =
 };
 
 
-void Notebook_signal_page_added_callback(GtkNotebook* self, GtkWidget* p0,guint p1,void* data)
+auto Notebook_signal_page_added_callback (
+  GtkNotebook *self, GtkWidget *p0, guint p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Widget*, guint)>;
@@ -260,7 +264,7 @@ auto Notebook_Class::init() -> const Glib::Class&
 }
 
 
-void Notebook_Class::class_init_function(void* g_class, void* class_data)
+auto Notebook_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -360,12 +364,12 @@ auto Notebook::insert_page(Widget& child, Widget& tab_label, Widget& menu_label,
   return gtk_notebook_insert_page_menu(gobj(), (child).gobj(), (tab_label).gobj(), (menu_label).gobj(), position);
 }
 
-void Notebook::remove_page(int page_number)
+auto Notebook::remove_page (int page_number) -> void
 {
   gtk_notebook_remove_page(gobj(), page_number);
 }
 
-void Notebook::set_group_name(const Glib::ustring& group_name)
+auto Notebook::set_group_name (const Glib::ustring &group_name) -> void
 {
   gtk_notebook_set_group_name(gobj(), group_name.c_str());
 }
@@ -400,22 +404,22 @@ auto Notebook::page_num(const Widget& child) const -> int
   return gtk_notebook_page_num(const_cast<GtkNotebook*>(gobj()), const_cast<GtkWidget*>((child).gobj()));
 }
 
-void Notebook::set_current_page(int page_number)
+auto Notebook::set_current_page (int page_number) -> void
 {
   gtk_notebook_set_current_page(gobj(), page_number);
 }
 
-void Notebook::next_page()
+auto Notebook::next_page () -> void
 {
   gtk_notebook_next_page(gobj());
 }
 
-void Notebook::prev_page()
+auto Notebook::prev_page () -> void
 {
   gtk_notebook_prev_page(gobj());
 }
 
-void Notebook::set_show_border(bool show_border)
+auto Notebook::set_show_border (bool show_border) -> void
 {
   gtk_notebook_set_show_border(gobj(), static_cast<int>(show_border));
 }
@@ -425,7 +429,7 @@ auto Notebook::get_show_border() const -> bool
   return gtk_notebook_get_show_border(const_cast<GtkNotebook*>(gobj()));
 }
 
-void Notebook::set_show_tabs(bool show_tabs)
+auto Notebook::set_show_tabs (bool show_tabs) -> void
 {
   gtk_notebook_set_show_tabs(gobj(), static_cast<int>(show_tabs));
 }
@@ -435,7 +439,7 @@ auto Notebook::get_show_tabs() const -> bool
   return gtk_notebook_get_show_tabs(const_cast<GtkNotebook*>(gobj()));
 }
 
-void Notebook::set_tab_pos(PositionType pos)
+auto Notebook::set_tab_pos (PositionType pos) -> void
 {
   gtk_notebook_set_tab_pos(gobj(), static_cast<GtkPositionType>(pos));
 }
@@ -445,7 +449,7 @@ auto Notebook::get_tab_pos() const -> PositionType
   return static_cast<PositionType>(gtk_notebook_get_tab_pos(const_cast<GtkNotebook*>(gobj())));
 }
 
-void Notebook::set_scrollable(bool scrollable)
+auto Notebook::set_scrollable (bool scrollable) -> void
 {
   gtk_notebook_set_scrollable(gobj(), static_cast<int>(scrollable));
 }
@@ -455,12 +459,12 @@ auto Notebook::get_scrollable() const -> bool
   return gtk_notebook_get_scrollable(const_cast<GtkNotebook*>(gobj()));
 }
 
-void Notebook::popup_enable()
+auto Notebook::popup_enable () -> void
 {
   gtk_notebook_popup_enable(gobj());
 }
 
-void Notebook::popup_disable()
+auto Notebook::popup_disable () -> void
 {
   gtk_notebook_popup_disable(gobj());
 }
@@ -475,12 +479,12 @@ auto Notebook::get_tab_label(Widget& child) const -> const Widget*
   return const_cast<Notebook*>(this)->get_tab_label(child);
 }
 
-void Notebook::set_tab_label(Widget& child, Widget& tab_label)
+auto Notebook::set_tab_label (Widget &child, Widget &tab_label) -> void
 {
   gtk_notebook_set_tab_label(gobj(), (child).gobj(), (tab_label).gobj());
 }
 
-void Notebook::set_tab_label_text(Widget& child, const Glib::ustring& tab_text)
+auto Notebook::set_tab_label_text (Widget &child, const Glib::ustring &tab_text) -> void
 {
   gtk_notebook_set_tab_label_text(gobj(), (child).gobj(), tab_text.c_str());
 }
@@ -500,12 +504,12 @@ auto Notebook::get_menu_label(Widget& child) const -> const Widget*
   return const_cast<Notebook*>(this)->get_menu_label(child);
 }
 
-void Notebook::set_menu_label(Widget& child, Widget& menu_label)
+auto Notebook::set_menu_label (Widget &child, Widget &menu_label) -> void
 {
   gtk_notebook_set_menu_label(gobj(), (child).gobj(), (menu_label).gobj());
 }
 
-void Notebook::set_menu_label_text(Widget& child, const Glib::ustring& menu_text)
+auto Notebook::set_menu_label_text (Widget &child, const Glib::ustring &menu_text) -> void
 {
   gtk_notebook_set_menu_label_text(gobj(), (child).gobj(), menu_text.c_str());
 }
@@ -515,7 +519,7 @@ auto Notebook::get_menu_label_text(Widget& child) const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_notebook_get_menu_label_text(const_cast<GtkNotebook*>(gobj()), (child).gobj()));
 }
 
-void Notebook::reorder_child(Widget& child, int position)
+auto Notebook::reorder_child (Widget &child, int position) -> void
 {
   gtk_notebook_reorder_child(gobj(), (child).gobj(), position);
 }
@@ -525,7 +529,7 @@ auto Notebook::get_tab_reorderable(Widget& child) const -> bool
   return gtk_notebook_get_tab_reorderable(const_cast<GtkNotebook*>(gobj()), (child).gobj());
 }
 
-void Notebook::set_tab_reorderable(Widget& child, bool reorderable)
+auto Notebook::set_tab_reorderable (Widget &child, bool reorderable) -> void
 {
   gtk_notebook_set_tab_reorderable(gobj(), (child).gobj(), static_cast<int>(reorderable));
 }
@@ -535,12 +539,12 @@ auto Notebook::get_tab_detachable(Widget& child) const -> bool
   return gtk_notebook_get_tab_detachable(const_cast<GtkNotebook*>(gobj()), (child).gobj());
 }
 
-void Notebook::set_tab_detachable(Widget& child, bool detachable)
+auto Notebook::set_tab_detachable (Widget &child, bool detachable) -> void
 {
   gtk_notebook_set_tab_detachable(gobj(), (child).gobj(), static_cast<int>(detachable));
 }
 
-void Notebook::detach_tab(Widget& child)
+auto Notebook::detach_tab (Widget &child) -> void
 {
   gtk_notebook_detach_tab(gobj(), (child).gobj());
 }
@@ -550,7 +554,7 @@ auto Notebook::get_action_widget(PackType pack_type) -> Widget*
   return Glib::wrap(gtk_notebook_get_action_widget(gobj(), static_cast<GtkPackType>(pack_type)));
 }
 
-void Notebook::set_action_widget(Widget* widget, PackType pack_type)
+auto Notebook::set_action_widget (Widget *widget, PackType pack_type) -> void
 {
   gtk_notebook_set_action_widget(gobj(), (GtkWidget*)Glib::unwrap(widget), static_cast<GtkPackType>(pack_type));
 }

@@ -65,7 +65,7 @@ auto GridLayout_Class::init() -> const Glib::Class&
 }
 
 
-void GridLayout_Class::class_init_function(void* g_class, void* class_data)
+auto GridLayout_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -145,7 +145,7 @@ auto GridLayout::create() -> Glib::RefPtr<GridLayout>
   return Glib::make_refptr_for_instance<GridLayout>( new GridLayout() );
 }
 
-void GridLayout::set_row_homogeneous(bool homogeneous)
+auto GridLayout::set_row_homogeneous (bool homogeneous) -> void
 {
   gtk_grid_layout_set_row_homogeneous(gobj(), static_cast<int>(homogeneous));
 }
@@ -155,7 +155,7 @@ auto GridLayout::get_row_homogeneous() const -> bool
   return gtk_grid_layout_get_row_homogeneous(const_cast<GtkGridLayout*>(gobj()));
 }
 
-void GridLayout::set_row_spacing(guint spacing)
+auto GridLayout::set_row_spacing (guint spacing) -> void
 {
   gtk_grid_layout_set_row_spacing(gobj(), spacing);
 }
@@ -165,7 +165,7 @@ auto GridLayout::get_row_spacing() const -> guint
   return gtk_grid_layout_get_row_spacing(const_cast<GtkGridLayout*>(gobj()));
 }
 
-void GridLayout::set_column_homogeneous(bool homogeneous)
+auto GridLayout::set_column_homogeneous (bool homogeneous) -> void
 {
   gtk_grid_layout_set_column_homogeneous(gobj(), static_cast<int>(homogeneous));
 }
@@ -175,7 +175,7 @@ auto GridLayout::get_column_homogeneous() const -> bool
   return gtk_grid_layout_get_column_homogeneous(const_cast<GtkGridLayout*>(gobj()));
 }
 
-void GridLayout::set_column_spacing(guint spacing)
+auto GridLayout::set_column_spacing (guint spacing) -> void
 {
   gtk_grid_layout_set_column_spacing(gobj(), spacing);
 }
@@ -185,7 +185,7 @@ auto GridLayout::get_column_spacing() const -> guint
   return gtk_grid_layout_get_column_spacing(const_cast<GtkGridLayout*>(gobj()));
 }
 
-void GridLayout::set_row_baseline_position(int row, BaselinePosition pos)
+auto GridLayout::set_row_baseline_position (int row, BaselinePosition pos) -> void
 {
   gtk_grid_layout_set_row_baseline_position(gobj(), row, static_cast<GtkBaselinePosition>(pos));
 }
@@ -195,7 +195,7 @@ auto GridLayout::get_row_baseline_position(int row) const -> BaselinePosition
   return static_cast<BaselinePosition>(gtk_grid_layout_get_row_baseline_position(const_cast<GtkGridLayout*>(gobj()), row));
 }
 
-void GridLayout::set_baseline_row(int row)
+auto GridLayout::set_baseline_row (int row) -> void
 {
   gtk_grid_layout_set_baseline_row(gobj(), row);
 }

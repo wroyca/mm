@@ -87,7 +87,7 @@ auto FilenameCompleter_Class::init() -> const Glib::Class&
 }
 
 
-void FilenameCompleter_Class::class_init_function(void* g_class, void* class_data)
+auto FilenameCompleter_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -97,7 +97,7 @@ void FilenameCompleter_Class::class_init_function(void* g_class, void* class_dat
 }
 
 
-void FilenameCompleter_Class::got_completion_data_callback(GFilenameCompleter* self)
+auto FilenameCompleter_Class::got_completion_data_callback (GFilenameCompleter *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -216,7 +216,7 @@ auto FilenameCompleter::get_completions(const std::string& initial_text) const -
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_filename_completer_get_completions(const_cast<GFilenameCompleter*>(gobj()), initial_text.c_str()), Glib::OWNERSHIP_DEEP);
 }
 
-void FilenameCompleter::set_dirs_only(bool dirs_only)
+auto FilenameCompleter::set_dirs_only (bool dirs_only) -> void
 {
   g_filename_completer_set_dirs_only(gobj(), static_cast<int>(dirs_only));
 }
@@ -228,7 +228,7 @@ auto FilenameCompleter::signal_got_completion_data() -> Glib::SignalProxy<void()
 }
 
 
-void Gio::FilenameCompleter::on_got_completion_data()
+auto Gio::FilenameCompleter::on_got_completion_data () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

@@ -31,8 +31,7 @@
 namespace Gio
 {
 
-void
-Settings::get_value(const Glib::ustring& key, Glib::VariantBase& value) const
+auto Settings::get_value (const Glib::ustring &key, Glib::VariantBase &value) const -> void
 {
   const auto g_value = g_settings_get_value(const_cast<GSettings*>(gobj()), key.c_str());
   if (!g_value)
@@ -52,8 +51,7 @@ Settings::get_user_value(const Glib::ustring& key, Glib::VariantBase& value) con
   return true;
 }
 
-void
-Settings::get_default_value(const Glib::ustring& key, Glib::VariantBase& value) const
+auto Settings::get_default_value (const Glib::ustring &key, Glib::VariantBase &value) const -> void
 {
   const auto g_value = g_settings_get_default_value(const_cast<GSettings*>(gobj()), key.c_str());
   if (!g_value)
@@ -61,16 +59,14 @@ Settings::get_default_value(const Glib::ustring& key, Glib::VariantBase& value) 
 
   value.init(g_value, false /* don't take a reference */);
 }
-void
-Settings::bind(
-  const Glib::ustring& key, const Glib::PropertyProxy_Base& property_proxy, BindFlags flags)
+auto Settings::bind (
+  const Glib::ustring &key, const Glib::PropertyProxy_Base &property_proxy, BindFlags flags) -> void
 {
   bind(key, property_proxy.get_object(), property_proxy.get_name(), flags);
 }
 
-void
-Settings::bind_writable(
-  const Glib::ustring& key, const Glib::PropertyProxy_Base& property_proxy, bool inverted)
+auto Settings::bind_writable (
+  const Glib::ustring &key, const Glib::PropertyProxy_Base &property_proxy, bool inverted) -> void
 {
   bind_writable(key, property_proxy.get_object(), property_proxy.get_name(), inverted);
 }
@@ -81,7 +77,7 @@ namespace
 {
 
 
-void Settings_signal_changed_callback(GSettings* self, const gchar* p0,void* data)
+auto Settings_signal_changed_callback (GSettings *self, const gchar *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -167,7 +163,8 @@ const Glib::SignalProxyInfo Settings_signal_writable_change_event_info =
 };
 
 
-void Settings_signal_writable_changed_callback(GSettings* self, const gchar* p0,void* data)
+auto Settings_signal_writable_changed_callback (
+  GSettings *self, const gchar *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -246,7 +243,7 @@ auto Settings_Class::init() -> const Glib::Class&
 }
 
 
-void Settings_Class::class_init_function(void* g_class, void* class_data)
+auto Settings_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -258,7 +255,7 @@ void Settings_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void Settings_Class::changed_callback(GSettings* self, const gchar* p0)
+auto Settings_Class::changed_callback (GSettings *self, const gchar *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -333,7 +330,7 @@ auto Settings_Class::writable_change_event_callback(GSettings* self, GQuark p0) 
   using RType = gboolean;
   return RType();
 }
-void Settings_Class::writable_changed_callback(GSettings* self, const gchar* p0)
+auto Settings_Class::writable_changed_callback (GSettings *self, const gchar *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -578,17 +575,17 @@ auto Settings::is_writable(const Glib::ustring& name) const -> bool
   return g_settings_is_writable(const_cast<GSettings*>(gobj()), name.c_str());
 }
 
-void Settings::delay()
+auto Settings::delay () -> void
 {
   g_settings_delay(gobj());
 }
 
-void Settings::apply()
+auto Settings::apply () -> void
 {
   g_settings_apply(gobj());
 }
 
-void Settings::revert()
+auto Settings::revert () -> void
 {
   g_settings_revert(gobj());
 }
@@ -598,7 +595,7 @@ auto Settings::get_has_unapplied() const -> bool
   return g_settings_get_has_unapplied(const_cast<GSettings*>(gobj()));
 }
 
-void Settings::reset(const Glib::ustring& key)
+auto Settings::reset (const Glib::ustring &key) -> void
 {
   g_settings_reset(gobj(), key.c_str());
 }
@@ -608,12 +605,16 @@ auto Settings::list_children() const -> std::vector<Glib::ustring>
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_settings_list_children(const_cast<GSettings*>(gobj())), Glib::OWNERSHIP_DEEP);
 }
 
-void Settings::bind(const Glib::ustring& key, Glib::ObjectBase* object, const Glib::ustring& property, BindFlags flags)
+auto Settings::bind (
+  const Glib::ustring &key, Glib::ObjectBase *object, const Glib::ustring &property,
+  BindFlags flags) -> void
 {
   g_settings_bind(gobj(), key.c_str(), (gpointer)object->gobj(), property.c_str(), static_cast<GSettingsBindFlags>(flags));
 }
 
-void Settings::bind_writable(const Glib::ustring& key, Glib::ObjectBase* object, const Glib::ustring& property, bool inverted)
+auto Settings::bind_writable (
+  const Glib::ustring &key, Glib::ObjectBase *object, const Glib::ustring &property,
+  bool inverted) -> void
 {
   g_settings_bind_writable(gobj(), key.c_str(), (gpointer)object->gobj(), property.c_str(), static_cast<int>(inverted));
 }
@@ -672,7 +673,7 @@ auto Settings::property_settings_schema() const -> Glib::PropertyProxy_ReadOnly<
 }
 
 
-void Gio::Settings::on_changed(const Glib::ustring& key)
+auto Gio::Settings::on_changed (const Glib::ustring &key) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -693,7 +694,7 @@ auto Gio::Settings::on_writable_change_event(GQuark key) -> bool
   using RType = bool;
   return RType();
 }
-void Gio::Settings::on_writable_changed(const Glib::ustring& key)
+auto Gio::Settings::on_writable_changed (const Glib::ustring &key) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

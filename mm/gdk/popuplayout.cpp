@@ -27,7 +27,7 @@
 namespace Gdk
 {
 
-void PopupLayout::set_shadow_width(int width)
+auto PopupLayout::set_shadow_width (int width) -> void
 {
   gdk_popup_layout_set_shadow_width(gobj(), width, width, width, width);
 }
@@ -76,13 +76,13 @@ auto wrap(GdkPopupLayout* object, bool take_copy) -> Glib::RefPtr<Gdk::PopupLayo
 namespace Gdk
 {
 
-void PopupLayout::reference() const
+auto PopupLayout::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gdk_popup_layout_ref(reinterpret_cast<GdkPopupLayout*>(const_cast<PopupLayout*>(this)));
 }
 
-void PopupLayout::unreference() const
+auto PopupLayout::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gdk_popup_layout_unref(reinterpret_cast<GdkPopupLayout*>(const_cast<PopupLayout*>(this)));
@@ -124,7 +124,7 @@ auto PopupLayout::equal(const Glib::RefPtr<const PopupLayout>& other) const -> b
   return gdk_popup_layout_equal(const_cast<GdkPopupLayout*>(gobj()), const_cast<GdkPopupLayout*>(Glib::unwrap(other)));
 }
 
-void PopupLayout::set_anchor_rect(const Rectangle& anchor_rect)
+auto PopupLayout::set_anchor_rect (const Rectangle &anchor_rect) -> void
 {
   gdk_popup_layout_set_anchor_rect(gobj(), (anchor_rect).gobj());
 }
@@ -134,7 +134,7 @@ auto PopupLayout::get_anchor_rect() const -> Rectangle
   return Rectangle(gdk_popup_layout_get_anchor_rect(const_cast<GdkPopupLayout*>(gobj())));
 }
 
-void PopupLayout::set_rect_anchor(Gravity anchor)
+auto PopupLayout::set_rect_anchor (Gravity anchor) -> void
 {
   gdk_popup_layout_set_rect_anchor(gobj(), static_cast<GdkGravity>(anchor));
 }
@@ -144,7 +144,7 @@ auto PopupLayout::get_rect_anchor() const -> Gravity
   return static_cast<Gravity>(gdk_popup_layout_get_rect_anchor(const_cast<GdkPopupLayout*>(gobj())));
 }
 
-void PopupLayout::set_surface_anchor(Gravity anchor)
+auto PopupLayout::set_surface_anchor (Gravity anchor) -> void
 {
   gdk_popup_layout_set_surface_anchor(gobj(), static_cast<GdkGravity>(anchor));
 }
@@ -154,7 +154,7 @@ auto PopupLayout::get_surface_anchor() const -> Gravity
   return static_cast<Gravity>(gdk_popup_layout_get_surface_anchor(const_cast<GdkPopupLayout*>(gobj())));
 }
 
-void PopupLayout::set_anchor_hints(AnchorHints anchor_hints)
+auto PopupLayout::set_anchor_hints (AnchorHints anchor_hints) -> void
 {
   gdk_popup_layout_set_anchor_hints(gobj(), static_cast<GdkAnchorHints>(anchor_hints));
 }
@@ -164,22 +164,22 @@ auto PopupLayout::get_anchor_hints() const -> AnchorHints
   return static_cast<AnchorHints>(gdk_popup_layout_get_anchor_hints(const_cast<GdkPopupLayout*>(gobj())));
 }
 
-void PopupLayout::set_offset(int dx, int dy)
+auto PopupLayout::set_offset (int dx, int dy) -> void
 {
   gdk_popup_layout_set_offset(gobj(), dx, dy);
 }
 
-void PopupLayout::get_offset(int& dx, int& dy)
+auto PopupLayout::get_offset (int &dx, int &dy) -> void
 {
   gdk_popup_layout_get_offset(gobj(), &(dx), &(dy));
 }
 
-void PopupLayout::set_shadow_width(int left, int right, int top, int bottom)
+auto PopupLayout::set_shadow_width (int left, int right, int top, int bottom) -> void
 {
   gdk_popup_layout_set_shadow_width(gobj(), left, right, top, bottom);
 }
 
-void PopupLayout::get_shadow_width(int& left, int& right, int& top, int& bottom) const
+auto PopupLayout::get_shadow_width (int &left, int &right, int &top, int &bottom) const -> void
 {
   gdk_popup_layout_get_shadow_width(const_cast<GdkPopupLayout*>(gobj()), &(left), &(right), &(top), &(bottom));
 }

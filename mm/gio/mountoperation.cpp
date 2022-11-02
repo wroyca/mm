@@ -30,7 +30,9 @@ namespace
 {
 
 
-void MountOperation_signal_ask_password_callback(GMountOperation* self, const gchar* p0,const gchar* p1,const gchar* p2,GAskPasswordFlags p3,void* data)
+auto MountOperation_signal_ask_password_callback (
+  GMountOperation *self, const gchar *p0, const gchar *p1, const gchar *p2, GAskPasswordFlags p3,
+  void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::ustring&, const Glib::ustring&, const Glib::ustring&, AskPasswordFlags)>;
@@ -63,7 +65,8 @@ const Glib::SignalProxyInfo MountOperation_signal_ask_password_info =
 };
 
 
-void MountOperation_signal_ask_question_callback(GMountOperation* self, const gchar* p0,const gchar** p1,void* data)
+auto MountOperation_signal_ask_question_callback (
+  GMountOperation *self, const gchar *p0, const gchar **p1, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::ustring&, const std::vector<Glib::ustring>&)>;
@@ -94,7 +97,8 @@ const Glib::SignalProxyInfo MountOperation_signal_ask_question_info =
 };
 
 
-void MountOperation_signal_reply_callback(GMountOperation* self, GMountOperationResult p0,void* data)
+auto MountOperation_signal_reply_callback (
+  GMountOperation *self, GMountOperationResult p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(MountOperationResult)>;
@@ -132,7 +136,8 @@ const Glib::SignalProxyInfo MountOperation_signal_aborted_info =
 };
 
 
-void MountOperation_signal_show_unmount_progress_callback(GMountOperation* self, const gchar* p0,gint64 p1,gint64 p2,void* data)
+auto MountOperation_signal_show_unmount_progress_callback (
+  GMountOperation *self, const gchar *p0, gint64 p1, gint64 p2, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::ustring&, gint64, gint64)>;
@@ -211,7 +216,7 @@ auto MountOperation_Class::init() -> const Glib::Class&
 }
 
 
-void MountOperation_Class::class_init_function(void* g_class, void* class_data)
+auto MountOperation_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -225,7 +230,9 @@ void MountOperation_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void MountOperation_Class::ask_password_callback(GMountOperation* self, const gchar* p0, const gchar* p1, const gchar* p2, GAskPasswordFlags p3)
+auto MountOperation_Class::ask_password_callback (
+  GMountOperation *self, const gchar *p0, const gchar *p1, const gchar *p2,
+  GAskPasswordFlags p3) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -265,7 +272,8 @@ void MountOperation_Class::ask_password_callback(GMountOperation* self, const gc
   if(base && base->ask_password)
     (*base->ask_password)(self, p0, p1, p2, p3);
 }
-void MountOperation_Class::ask_question_callback(GMountOperation* self, const gchar* p0, const gchar** p1)
+auto MountOperation_Class::ask_question_callback (
+  GMountOperation *self, const gchar *p0, const gchar **p1) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -303,7 +311,7 @@ void MountOperation_Class::ask_question_callback(GMountOperation* self, const gc
   if(base && base->ask_question)
     (*base->ask_question)(self, p0, p1);
 }
-void MountOperation_Class::reply_callback(GMountOperation* self, GMountOperationResult p0)
+auto MountOperation_Class::reply_callback (GMountOperation *self, GMountOperationResult p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -340,7 +348,7 @@ void MountOperation_Class::reply_callback(GMountOperation* self, GMountOperation
   if(base && base->reply)
     (*base->reply)(self, p0);
 }
-void MountOperation_Class::aborted_callback(GMountOperation* self)
+auto MountOperation_Class::aborted_callback (GMountOperation *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -376,7 +384,8 @@ void MountOperation_Class::aborted_callback(GMountOperation* self)
   if(base && base->aborted)
     (*base->aborted)(self);
 }
-void MountOperation_Class::show_unmount_progress_callback(GMountOperation* self, const gchar* p0, gint64 p1, gint64 p2)
+auto MountOperation_Class::show_unmount_progress_callback (
+  GMountOperation *self, const gchar *p0, gint64 p1, gint64 p2) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -491,7 +500,7 @@ auto MountOperation::get_username() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(g_mount_operation_get_username(const_cast<GMountOperation*>(gobj())));
 }
 
-void MountOperation::set_username(const Glib::ustring& username)
+auto MountOperation::set_username (const Glib::ustring &username) -> void
 {
   g_mount_operation_set_username(gobj(), username.c_str());
 }
@@ -501,7 +510,7 @@ auto MountOperation::get_password() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(g_mount_operation_get_password(const_cast<GMountOperation*>(gobj())));
 }
 
-void MountOperation::set_password(const Glib::ustring& password)
+auto MountOperation::set_password (const Glib::ustring &password) -> void
 {
   g_mount_operation_set_password(gobj(), password.c_str());
 }
@@ -511,7 +520,7 @@ auto MountOperation::get_anonymous() const -> bool
   return g_mount_operation_get_anonymous(const_cast<GMountOperation*>(gobj()));
 }
 
-void MountOperation::set_anonymous(bool anonymous)
+auto MountOperation::set_anonymous (bool anonymous) -> void
 {
   g_mount_operation_set_anonymous(gobj(), static_cast<int>(anonymous));
 }
@@ -521,7 +530,7 @@ auto MountOperation::get_domain() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(g_mount_operation_get_domain(const_cast<GMountOperation*>(gobj())));
 }
 
-void MountOperation::set_domain(const Glib::ustring& domain)
+auto MountOperation::set_domain (const Glib::ustring &domain) -> void
 {
   g_mount_operation_set_domain(gobj(), domain.c_str());
 }
@@ -531,7 +540,7 @@ auto MountOperation::get_password_save() const -> PasswordSave
   return (PasswordSave)g_mount_operation_get_password_save(const_cast<GMountOperation*>(gobj()));
 }
 
-void MountOperation::set_password_save(PasswordSave save)
+auto MountOperation::set_password_save (PasswordSave save) -> void
 {
   g_mount_operation_set_password_save(gobj(), (GPasswordSave)save);
 }
@@ -541,12 +550,12 @@ auto MountOperation::get_choice() const -> int
   return g_mount_operation_get_choice(const_cast<GMountOperation*>(gobj()));
 }
 
-void MountOperation::set_choice(int choice)
+auto MountOperation::set_choice (int choice) -> void
 {
   g_mount_operation_set_choice(gobj(), choice);
 }
 
-void MountOperation::reply(MountOperationResult result)
+auto MountOperation::reply (MountOperationResult result) -> void
 {
   g_mount_operation_reply(gobj(), static_cast<GMountOperationResult>(result));
 }
@@ -647,7 +656,9 @@ auto MountOperation::property_choice() const -> Glib::PropertyProxy_ReadOnly< in
 }
 
 
-void Gio::MountOperation::on_ask_password(const Glib::ustring& message, const Glib::ustring& default_user, const Glib::ustring& default_domain, AskPasswordFlags flags)
+auto Gio::MountOperation::on_ask_password (
+  const Glib::ustring &message, const Glib::ustring &default_user,
+  const Glib::ustring &default_domain, AskPasswordFlags flags) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -656,7 +667,8 @@ void Gio::MountOperation::on_ask_password(const Glib::ustring& message, const Gl
   if(base && base->ask_password)
     (*base->ask_password)(gobj(),message.c_str(),default_user.c_str(),default_domain.c_str(),static_cast<GAskPasswordFlags>(flags));
 }
-void Gio::MountOperation::on_ask_question(const Glib::ustring& message, const std::vector<Glib::ustring>& choices)
+auto Gio::MountOperation::on_ask_question (
+  const Glib::ustring &message, const std::vector <Glib::ustring> &choices) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -665,7 +677,7 @@ void Gio::MountOperation::on_ask_question(const Glib::ustring& message, const st
   if(base && base->ask_question)
     (*base->ask_question)(gobj(),message.c_str(),const_cast<const gchar**>(Glib::ArrayHandler<Glib::ustring>::vector_to_array(choices).data()));
 }
-void Gio::MountOperation::on_reply(MountOperationResult result)
+auto Gio::MountOperation::on_reply (MountOperationResult result) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -674,7 +686,7 @@ void Gio::MountOperation::on_reply(MountOperationResult result)
   if(base && base->reply)
     (*base->reply)(gobj(),static_cast<GMountOperationResult>(result));
 }
-void Gio::MountOperation::on_aborted()
+auto Gio::MountOperation::on_aborted () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -683,7 +695,8 @@ void Gio::MountOperation::on_aborted()
   if(base && base->aborted)
     (*base->aborted)(gobj());
 }
-void Gio::MountOperation::on_show_unmount_progress(const Glib::ustring& message, gint64 time_left, gint64 bytes_left)
+auto Gio::MountOperation::on_show_unmount_progress (
+  const Glib::ustring &message, gint64 time_left, gint64 bytes_left) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

@@ -40,8 +40,7 @@ SignalProxyConnectionNode::SignalProxyConnectionNode(sigc::slot_base&& slot, GOb
 // notify is a message coming up from the slot to be passed back to Gtk+
 // disconnect is a message coming up from the Gtk+ to be passed down to SigC++
 // static
-void
-SignalProxyConnectionNode::notify(sigc::notifiable* data)
+auto SignalProxyConnectionNode::notify (sigc::notifiable *data) -> void
 {
   // notification from libsigc++.
   SignalProxyConnectionNode* conn = static_cast<SignalProxyConnectionNode*>(data);
@@ -75,8 +74,7 @@ SignalProxyConnectionNode::notify(sigc::notifiable* data)
 }
 
 // static
-void
-SignalProxyConnectionNode::destroy_notify_handler(gpointer data, GClosure*)
+auto SignalProxyConnectionNode::destroy_notify_handler (gpointer data, GClosure *) -> void
 {
   // glib calls this when it has finished with a glib signal connection,
   // either when the emitting object dies, or when the connection has been disconnected.

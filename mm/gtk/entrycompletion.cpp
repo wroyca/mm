@@ -49,7 +49,7 @@ static auto SignalProxy_Match_gtk_callback(GtkEntryCompletion* completion, const
   return false; //An arbitary default, just to avoid the compiler warning.
 }
 
-static void SignalProxy_Match_gtk_callback_destroy(void* data)
+static auto SignalProxy_Match_gtk_callback_destroy (void *data) -> void
 {
   delete static_cast<Gtk::EntryCompletion::SlotMatch*>(data);
 }
@@ -58,12 +58,12 @@ static void SignalProxy_Match_gtk_callback_destroy(void* data)
 namespace Gtk
 {
 
-void EntryCompletion::unset_model()
+auto EntryCompletion::unset_model () -> void
 {
   gtk_entry_completion_set_model(gobj(), nullptr);
 }
 
-void EntryCompletion::set_match_func(const SlotMatch& slot)
+auto EntryCompletion::set_match_func (const SlotMatch &slot) -> void
 {
   // Create a copy of the slot.  A pointer to this will be passed
   // through the callback's data parameter.  It will be deleted
@@ -342,7 +342,7 @@ auto EntryCompletion_Class::init() -> const Glib::Class&
 }
 
 
-void EntryCompletion_Class::class_init_function(void* g_class, void* class_data)
+auto EntryCompletion_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -436,7 +436,7 @@ auto EntryCompletion::get_entry() const -> const Entry*
   return Glib::wrap((GtkEntry*)(gtk_entry_completion_get_entry(const_cast<GtkEntryCompletion*>(gobj()))));
 }
 
-void EntryCompletion::set_model(const Glib::RefPtr<TreeModel>& model)
+auto EntryCompletion::set_model (const Glib::RefPtr <TreeModel> &model) -> void
 {
   gtk_entry_completion_set_model(gobj(), Glib::unwrap(model));
 }
@@ -454,7 +454,7 @@ auto EntryCompletion::get_model() const -> Glib::RefPtr<const TreeModel>
   return const_cast<EntryCompletion*>(this)->get_model();
 }
 
-void EntryCompletion::set_minimum_key_length(int length)
+auto EntryCompletion::set_minimum_key_length (int length) -> void
 {
   gtk_entry_completion_set_minimum_key_length(gobj(), length);
 }
@@ -469,17 +469,17 @@ auto EntryCompletion::compute_prefix(const Glib::ustring& key) -> Glib::ustring
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_entry_completion_compute_prefix(gobj(), key.c_str()));
 }
 
-void EntryCompletion::complete()
+auto EntryCompletion::complete () -> void
 {
   gtk_entry_completion_complete(gobj());
 }
 
-void EntryCompletion::insert_prefix()
+auto EntryCompletion::insert_prefix () -> void
 {
   gtk_entry_completion_insert_prefix(gobj());
 }
 
-void EntryCompletion::set_inline_completion(bool inline_completion)
+auto EntryCompletion::set_inline_completion (bool inline_completion) -> void
 {
   gtk_entry_completion_set_inline_completion(gobj(), static_cast<int>(inline_completion));
 }
@@ -489,7 +489,7 @@ auto EntryCompletion::get_inline_completion() const -> bool
   return gtk_entry_completion_get_inline_completion(const_cast<GtkEntryCompletion*>(gobj()));
 }
 
-void EntryCompletion::set_inline_selection(bool inline_selection)
+auto EntryCompletion::set_inline_selection (bool inline_selection) -> void
 {
   gtk_entry_completion_set_inline_selection(gobj(), static_cast<int>(inline_selection));
 }
@@ -499,7 +499,7 @@ auto EntryCompletion::get_inline_selection() const -> bool
   return gtk_entry_completion_get_inline_selection(const_cast<GtkEntryCompletion*>(gobj()));
 }
 
-void EntryCompletion::set_popup_completion(bool popup_completion)
+auto EntryCompletion::set_popup_completion (bool popup_completion) -> void
 {
   gtk_entry_completion_set_popup_completion(gobj(), static_cast<int>(popup_completion));
 }
@@ -509,7 +509,7 @@ auto EntryCompletion::get_popup_completion() const -> bool
   return gtk_entry_completion_get_popup_completion(const_cast<GtkEntryCompletion*>(gobj()));
 }
 
-void EntryCompletion::set_popup_set_width(bool popup_set_width)
+auto EntryCompletion::set_popup_set_width (bool popup_set_width) -> void
 {
   gtk_entry_completion_set_popup_set_width(gobj(), static_cast<int>(popup_set_width));
 }
@@ -519,7 +519,7 @@ auto EntryCompletion::get_popup_set_width() const -> bool
   return gtk_entry_completion_get_popup_set_width(const_cast<GtkEntryCompletion*>(gobj()));
 }
 
-void EntryCompletion::set_popup_single_match(bool popup_single_match)
+auto EntryCompletion::set_popup_single_match (bool popup_single_match) -> void
 {
   gtk_entry_completion_set_popup_single_match(gobj(), static_cast<int>(popup_single_match));
 }
@@ -534,12 +534,12 @@ auto EntryCompletion::get_completion_prefix() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_entry_completion_get_completion_prefix(const_cast<GtkEntryCompletion*>(gobj())));
 }
 
-void EntryCompletion::set_text_column(const TreeModelColumnBase& column)
+auto EntryCompletion::set_text_column (const TreeModelColumnBase &column) -> void
 {
   gtk_entry_completion_set_text_column(gobj(), (column).index());
 }
 
-void EntryCompletion::set_text_column(int column)
+auto EntryCompletion::set_text_column (int column) -> void
 {
   gtk_entry_completion_set_text_column(gobj(), column);
 }

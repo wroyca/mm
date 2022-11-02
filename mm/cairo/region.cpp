@@ -97,12 +97,12 @@ Region::~Region()
     cairo_region_destroy(m_cobject);
 }
 
-void Region::reference() const
+auto Region::reference () const -> void
 {
  cairo_region_reference(m_cobject);
 }
 
-void Region::unreference() const
+auto Region::unreference () const -> void
 {
   cairo_region_destroy(m_cobject);
 }
@@ -141,54 +141,54 @@ auto Region::contains_point(int x, int y) const -> bool
   return cairo_region_contains_point(m_cobject, x, y);
 }
 
-void Region::translate(int dx, int dy)
+auto Region::translate (int dx, int dy) -> void
 {
   cairo_region_translate(m_cobject, dx, dy);
 }
 
-void Region::subtract(const RefPtr<Region>& other)
+auto Region::subtract (const RefPtr <Region> &other) -> void
 {
   auto status = cairo_region_subtract(m_cobject, (other ? other->cobj() : nullptr));
   check_status_and_throw_exception (status);
 }
 
-void Region::subtract(const RectangleInt& rectangle)
+auto Region::subtract (const RectangleInt &rectangle) -> void
 {
   auto status = cairo_region_subtract_rectangle(m_cobject, &rectangle);
   check_status_and_throw_exception (status);
 }
 
-void Region::intersect(const RefPtr<Region>& other)
+auto Region::intersect (const RefPtr <Region> &other) -> void
 {
   auto status = cairo_region_intersect(m_cobject, (other ? other->cobj() : nullptr));
   check_status_and_throw_exception (status);
 }
 
-void Region::intersect(const RectangleInt& rectangle)
+auto Region::intersect (const RectangleInt &rectangle) -> void
 {
   auto status = cairo_region_intersect_rectangle(m_cobject, &rectangle);
   check_status_and_throw_exception (status);
 }
 
-void Region::do_union(const RefPtr<Region>& other)
+auto Region::do_union (const RefPtr <Region> &other) -> void
 {
   auto status = cairo_region_union(m_cobject, (other ? other->cobj() : nullptr));
   check_status_and_throw_exception (status);
 }
 
-void Region::do_union(const RectangleInt& rectangle)
+auto Region::do_union (const RectangleInt &rectangle) -> void
 {
   auto status = cairo_region_union_rectangle(m_cobject, &rectangle);
   check_status_and_throw_exception (status);
 }
 
-void Region::do_xor(const RefPtr<Region>& other)
+auto Region::do_xor (const RefPtr <Region> &other) -> void
 {
   auto status = cairo_region_xor(m_cobject, (other ? other->cobj() : nullptr));
   check_status_and_throw_exception (status);
 }
 
-void Region::do_xor(const RectangleInt& rectangle)
+auto Region::do_xor (const RectangleInt &rectangle) -> void
 {
   auto status = cairo_region_xor_rectangle(m_cobject, &rectangle);
   check_status_and_throw_exception (status);

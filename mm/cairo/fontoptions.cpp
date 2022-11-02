@@ -88,7 +88,7 @@ auto FontOptions::operator==(const FontOptions& src) const -> bool
   return cairo_font_options_equal(m_cobject, src.cobj());
 }
 
-void FontOptions::merge(const FontOptions& src)
+auto FontOptions::merge (const FontOptions &src) -> void
 {
   cairo_font_options_merge(m_cobject, src.cobj());
   check_object_status_and_throw_exception(*this);
@@ -101,7 +101,7 @@ auto FontOptions::hash() const -> unsigned long
   return result;
 }
 
-void FontOptions::set_antialias(Antialias antialias)
+auto FontOptions::set_antialias (Antialias antialias) -> void
 {
   cairo_font_options_set_antialias(m_cobject, static_cast<cairo_antialias_t>(antialias));
   check_object_status_and_throw_exception(*this);
@@ -114,7 +114,7 @@ auto FontOptions::get_antialias() const -> Antialias
   return result;
 }
 
-void FontOptions::set_subpixel_order(SubpixelOrder subpixel_order)
+auto FontOptions::set_subpixel_order (SubpixelOrder subpixel_order) -> void
 {
   cairo_font_options_set_subpixel_order(m_cobject, static_cast<cairo_subpixel_order_t>(subpixel_order));
   check_object_status_and_throw_exception(*this);
@@ -127,7 +127,7 @@ auto FontOptions::get_subpixel_order() const -> SubpixelOrder
   return result;
 }
 
-void FontOptions::set_hint_style(HintStyle hint_style)
+auto FontOptions::set_hint_style (HintStyle hint_style) -> void
 {
   cairo_font_options_set_hint_style(m_cobject, static_cast<cairo_hint_style_t>(hint_style));
   check_object_status_and_throw_exception(*this);
@@ -140,7 +140,7 @@ auto FontOptions::get_hint_style() const -> FontOptions::HintStyle
   return result;
 }
 
-void FontOptions::set_hint_metrics(HintMetrics hint_metrics)
+auto FontOptions::set_hint_metrics (HintMetrics hint_metrics) -> void
 {
   cairo_font_options_set_hint_metrics(m_cobject,
           static_cast<cairo_hint_metrics_t>(hint_metrics));
@@ -157,7 +157,7 @@ auto FontOptions::get_hint_metrics() const -> FontOptions::HintMetrics
 
 #ifdef CAIRO_HAS_FT_FONT
 #ifdef CAIRO_HAS_FC_FONT
-void FontOptions::substitute(FcPattern* pattern)
+auto FontOptions::substitute (FcPattern *pattern) -> void
 {
   cairo_ft_font_options_substitute(cobj(), pattern);
   check_object_status_and_throw_exception(*this);

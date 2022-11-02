@@ -93,7 +93,7 @@ auto Image_Class::init() -> const Glib::Class&
 }
 
 
-void Image_Class::class_init_function(void* g_class, void* class_data)
+auto Image_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -193,37 +193,37 @@ Image::Image(const Glib::RefPtr<Gio::Icon>& gicon)
 
 }
 
-void Image::set(const std::string& filename)
+auto Image::set (const std::string &filename) -> void
 {
   gtk_image_set_from_file(gobj(), filename.c_str());
 }
 
-void Image::set_from_resource(const std::string& resource_path)
+auto Image::set_from_resource (const std::string &resource_path) -> void
 {
   gtk_image_set_from_resource(gobj(), resource_path.c_str());
 }
 
-void Image::set(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf)
+auto Image::set (const Glib::RefPtr <Gdk::Pixbuf> &pixbuf) -> void
 {
   gtk_image_set_from_pixbuf(gobj(), Glib::unwrap(pixbuf));
 }
 
-void Image::set(const Glib::RefPtr<Gdk::Paintable>& paintable)
+auto Image::set (const Glib::RefPtr <Gdk::Paintable> &paintable) -> void
 {
   gtk_image_set_from_paintable(gobj(), Glib::unwrap(paintable));
 }
 
-void Image::set(const Glib::RefPtr<const Gio::Icon>& icon)
+auto Image::set (const Glib::RefPtr <const Gio::Icon> &icon) -> void
 {
   gtk_image_set_from_gicon(gobj(), const_cast<GIcon*>(Glib::unwrap<Gio::Icon>(icon)));
 }
 
-void Image::set_from_icon_name(const Glib::ustring& icon_name)
+auto Image::set_from_icon_name (const Glib::ustring &icon_name) -> void
 {
   gtk_image_set_from_icon_name(gobj(), icon_name.c_str());
 }
 
-void Image::clear()
+auto Image::clear () -> void
 {
   gtk_image_clear(gobj());
 }
@@ -246,7 +246,7 @@ auto Image::get_paintable() const -> Glib::RefPtr<const Gdk::Paintable>
   return const_cast<Image*>(this)->get_paintable();
 }
 
-void Image::set_icon_size(IconSize icon_size)
+auto Image::set_icon_size (IconSize icon_size) -> void
 {
   gtk_image_set_icon_size(gobj(), static_cast<GtkIconSize>(icon_size));
 }
@@ -279,7 +279,7 @@ auto Image::get_pixel_size() const -> int
   return gtk_image_get_pixel_size(const_cast<GtkImage*>(gobj()));
 }
 
-void Image::set_pixel_size(int pixel_size)
+auto Image::set_pixel_size (int pixel_size) -> void
 {
   gtk_image_set_pixel_size(gobj(), pixel_size);
 }

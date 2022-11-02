@@ -32,7 +32,7 @@
 namespace Gtk
 {
 
-void Viewport::unset_child()
+auto Viewport::unset_child () -> void
 {
   gtk_viewport_set_child(gobj(), nullptr);
 }
@@ -83,7 +83,7 @@ auto Viewport_Class::init() -> const Glib::Class&
 }
 
 
-void Viewport_Class::class_init_function(void* g_class, void* class_data)
+auto Viewport_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -155,7 +155,7 @@ Viewport::Viewport(const Glib::RefPtr<Adjustment>& hadjustment, const Glib::RefP
 
 }
 
-void Viewport::set_scroll_to_focus(bool scroll_to_focus)
+auto Viewport::set_scroll_to_focus (bool scroll_to_focus) -> void
 {
   gtk_viewport_set_scroll_to_focus(gobj(), static_cast<int>(scroll_to_focus));
 }
@@ -165,7 +165,7 @@ auto Viewport::get_scroll_to_focus() const -> bool
   return gtk_viewport_get_scroll_to_focus(const_cast<GtkViewport*>(gobj()));
 }
 
-void Viewport::set_child(Widget& child)
+auto Viewport::set_child (Widget &child) -> void
 {
   gtk_viewport_set_child(gobj(), (child).gobj());
 }

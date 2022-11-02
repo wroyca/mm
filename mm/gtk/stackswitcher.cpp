@@ -30,7 +30,7 @@
 namespace Gtk
 {
 
-void StackSwitcher::unset_stack()
+auto StackSwitcher::unset_stack () -> void
 {
   gtk_stack_switcher_set_stack(gobj(), nullptr);
 }
@@ -80,7 +80,7 @@ auto StackSwitcher_Class::init() -> const Glib::Class&
 }
 
 
-void StackSwitcher_Class::class_init_function(void* g_class, void* class_data)
+auto StackSwitcher_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -150,7 +150,7 @@ StackSwitcher::StackSwitcher()
 
 }
 
-void StackSwitcher::set_stack(Stack& stack)
+auto StackSwitcher::set_stack (Stack &stack) -> void
 {
   gtk_stack_switcher_set_stack(gobj(), (stack).gobj());
 }

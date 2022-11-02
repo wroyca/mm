@@ -32,33 +32,34 @@ using IconPosition = Gtk::Entry::IconPosition;
 namespace Gtk
 {
 
-void Entry::set_icon_from_icon_name(const Glib::ustring& icon_name, IconPosition icon_pos)
+auto Entry::set_icon_from_icon_name (const Glib::ustring &icon_name, IconPosition icon_pos) -> void
 {
   gtk_entry_set_icon_from_icon_name(gobj(), static_cast<GtkEntryIconPosition>(icon_pos), icon_name.c_str());
 }
 
-void Entry::set_icon_from_gicon(const Glib::RefPtr<Gio::Icon>& icon, IconPosition icon_pos)
+auto Entry::set_icon_from_gicon (
+  const Glib::RefPtr <Gio::Icon> &icon, IconPosition icon_pos) -> void
 {
   gtk_entry_set_icon_from_gicon(gobj(), static_cast<GtkEntryIconPosition>(icon_pos), const_cast<GIcon*>(Glib::unwrap<Gio::Icon>(icon)));
 }
 
-void Entry::unset_icon(IconPosition icon_pos)
+auto Entry::unset_icon (IconPosition icon_pos) -> void
 {
   //We could use any one of these set_icon_from_* functions:
   gtk_entry_set_icon_from_paintable(gobj(), static_cast<GtkEntryIconPosition>(icon_pos), nullptr);
 }
 
-void Entry::set_icon_activatable(bool activatable, IconPosition icon_pos)
+auto Entry::set_icon_activatable (bool activatable, IconPosition icon_pos) -> void
 {
   gtk_entry_set_icon_activatable(gobj(), static_cast<GtkEntryIconPosition>(icon_pos), static_cast<int>(activatable));
 }
 
-void Entry::set_icon_tooltip_text(const Glib::ustring& tooltip, IconPosition icon_pos)
+auto Entry::set_icon_tooltip_text (const Glib::ustring &tooltip, IconPosition icon_pos) -> void
 {
   gtk_entry_set_icon_tooltip_text(gobj(), static_cast<GtkEntryIconPosition>(icon_pos), tooltip.c_str());
 }
 
-void Entry::set_icon_tooltip_markup(const Glib::ustring& tooltip, IconPosition icon_pos)
+auto Entry::set_icon_tooltip_markup (const Glib::ustring &tooltip, IconPosition icon_pos) -> void
 {
   gtk_entry_set_icon_tooltip_markup(gobj(), static_cast<GtkEntryIconPosition>(icon_pos), tooltip.c_str());
 }
@@ -84,7 +85,8 @@ const Glib::SignalProxyInfo Entry_signal_activate_info =
 };
 
 
-void Entry_signal_icon_release_callback(GtkEntry* self, GtkEntryIconPosition p0,void* data)
+auto Entry_signal_icon_release_callback (
+  GtkEntry *self, GtkEntryIconPosition p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(IconPosition)>;
@@ -114,7 +116,7 @@ const Glib::SignalProxyInfo Entry_signal_icon_release_info =
 };
 
 
-void Entry_signal_icon_press_callback(GtkEntry* self, GtkEntryIconPosition p0,void* data)
+auto Entry_signal_icon_press_callback (GtkEntry *self, GtkEntryIconPosition p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(IconPosition)>;
@@ -193,7 +195,7 @@ auto Entry_Class::init() -> const Glib::Class&
 }
 
 
-void Entry_Class::class_init_function(void* g_class, void* class_data)
+auto Entry_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -290,12 +292,12 @@ auto Entry::get_buffer() const -> Glib::RefPtr<const EntryBuffer>
   return const_cast<Entry*>(this)->get_buffer();
 }
 
-void Entry::set_buffer(const Glib::RefPtr<EntryBuffer>& buffer)
+auto Entry::set_buffer (const Glib::RefPtr <EntryBuffer> &buffer) -> void
 {
   gtk_entry_set_buffer(gobj(), Glib::unwrap(buffer));
 }
 
-void Entry::set_visibility(bool visible)
+auto Entry::set_visibility (bool visible) -> void
 {
   gtk_entry_set_visibility(gobj(), static_cast<int>(visible));
 }
@@ -305,12 +307,12 @@ auto Entry::get_visibility() const -> bool
   return gtk_entry_get_visibility(const_cast<GtkEntry*>(gobj()));
 }
 
-void Entry::set_invisible_char(gunichar ch)
+auto Entry::set_invisible_char (gunichar ch) -> void
 {
   gtk_entry_set_invisible_char(gobj(), ch);
 }
 
-void Entry::unset_invisible_char()
+auto Entry::unset_invisible_char () -> void
 {
   gtk_entry_unset_invisible_char(gobj());
 }
@@ -320,7 +322,7 @@ auto Entry::get_invisible_char() const -> gunichar
   return gtk_entry_get_invisible_char(const_cast<GtkEntry*>(gobj()));
 }
 
-void Entry::set_has_frame(bool setting)
+auto Entry::set_has_frame (bool setting) -> void
 {
   gtk_entry_set_has_frame(gobj(), static_cast<int>(setting));
 }
@@ -330,7 +332,7 @@ auto Entry::get_has_frame() const -> bool
   return gtk_entry_get_has_frame(const_cast<GtkEntry*>(gobj()));
 }
 
-void Entry::set_overwrite_mode(bool overwrite)
+auto Entry::set_overwrite_mode (bool overwrite) -> void
 {
   gtk_entry_set_overwrite_mode(gobj(), static_cast<int>(overwrite));
 }
@@ -340,7 +342,7 @@ auto Entry::get_overwrite_mode() const -> bool
   return gtk_entry_get_overwrite_mode(const_cast<GtkEntry*>(gobj()));
 }
 
-void Entry::set_max_length(int max)
+auto Entry::set_max_length (int max) -> void
 {
   gtk_entry_set_max_length(gobj(), max);
 }
@@ -355,7 +357,7 @@ auto Entry::get_text_length() const -> guint16
   return gtk_entry_get_text_length(const_cast<GtkEntry*>(gobj()));
 }
 
-void Entry::set_activates_default(bool setting)
+auto Entry::set_activates_default (bool setting) -> void
 {
   gtk_entry_set_activates_default(gobj(), static_cast<int>(setting));
 }
@@ -365,12 +367,12 @@ auto Entry::get_activates_default() const -> gboolean
   return gtk_entry_get_activates_default(const_cast<GtkEntry*>(gobj()));
 }
 
-void Entry::set_alignment(float xalign)
+auto Entry::set_alignment (float xalign) -> void
 {
   gtk_entry_set_alignment(gobj(), xalign);
 }
 
-void Entry::set_alignment(Align xalign)
+auto Entry::set_alignment (Align xalign) -> void
 {
   gtk_entry_set_alignment(gobj(), _gtkmm_align_float_from_enum(xalign));
 }
@@ -380,7 +382,7 @@ auto Entry::get_alignment() const -> float
   return gtk_entry_get_alignment(const_cast<GtkEntry*>(gobj()));
 }
 
-void Entry::set_completion(const Glib::RefPtr<EntryCompletion>& completion)
+auto Entry::set_completion (const Glib::RefPtr <EntryCompletion> &completion) -> void
 {
   gtk_entry_set_completion(gobj(), Glib::unwrap(completion));
 }
@@ -398,7 +400,7 @@ auto Entry::get_completion() const -> Glib::RefPtr<const EntryCompletion>
   return const_cast<Entry*>(this)->get_completion();
 }
 
-void Entry::set_progress_fraction(double fraction)
+auto Entry::set_progress_fraction (double fraction) -> void
 {
   gtk_entry_set_progress_fraction(gobj(), fraction);
 }
@@ -408,7 +410,7 @@ auto Entry::get_progress_fraction() const -> double
   return gtk_entry_get_progress_fraction(const_cast<GtkEntry*>(gobj()));
 }
 
-void Entry::set_progress_pulse_step(double fraction)
+auto Entry::set_progress_pulse_step (double fraction) -> void
 {
   gtk_entry_set_progress_pulse_step(gobj(), fraction);
 }
@@ -418,7 +420,7 @@ auto Entry::get_progress_pulse_step() -> double
   return gtk_entry_get_progress_pulse_step(gobj());
 }
 
-void Entry::progress_pulse()
+auto Entry::progress_pulse () -> void
 {
   gtk_entry_progress_pulse(gobj());
 }
@@ -428,12 +430,13 @@ auto Entry::get_placeholder_text() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_entry_get_placeholder_text(const_cast<GtkEntry*>(gobj())));
 }
 
-void Entry::set_placeholder_text(const Glib::ustring& text)
+auto Entry::set_placeholder_text (const Glib::ustring &text) -> void
 {
   gtk_entry_set_placeholder_text(gobj(), text.c_str());
 }
 
-void Entry::set_icon_from_paintable(const Glib::RefPtr<Gdk::Paintable>& paintable, IconPosition icon_pos)
+auto Entry::set_icon_from_paintable (
+  const Glib::RefPtr <Gdk::Paintable> &paintable, IconPosition icon_pos) -> void
 {
   gtk_entry_set_icon_from_paintable(gobj(), static_cast<GtkEntryIconPosition>(icon_pos), Glib::unwrap(paintable));
 }
@@ -479,7 +482,7 @@ auto Entry::get_icon_activatable(IconPosition icon_pos) const -> bool
   return gtk_entry_get_icon_activatable(const_cast<GtkEntry*>(gobj()), static_cast<GtkEntryIconPosition>(icon_pos));
 }
 
-void Entry::set_icon_sensitive(IconPosition icon_pos, bool sensitive)
+auto Entry::set_icon_sensitive (IconPosition icon_pos, bool sensitive) -> void
 {
   gtk_entry_set_icon_sensitive(gobj(), static_cast<GtkEntryIconPosition>(icon_pos), static_cast<int>(sensitive));
 }
@@ -504,7 +507,9 @@ auto Entry::get_icon_tooltip_markup(IconPosition icon_pos) const -> Glib::ustrin
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_entry_get_icon_tooltip_markup(const_cast<GtkEntry*>(gobj()), static_cast<GtkEntryIconPosition>(icon_pos)));
 }
 
-void Entry::set_icon_drag_source(const Glib::RefPtr<Gdk::ContentProvider>& provider, Gdk::DragAction actions, IconPosition icon_pos)
+auto Entry::set_icon_drag_source (
+  const Glib::RefPtr <Gdk::ContentProvider> &provider, Gdk::DragAction actions,
+  IconPosition icon_pos) -> void
 {
   gtk_entry_set_icon_drag_source(gobj(), static_cast<GtkEntryIconPosition>(icon_pos), Glib::unwrap(provider), static_cast<GdkDragAction>(actions));
 }
@@ -514,12 +519,12 @@ auto Entry::get_current_icon_drag_source() -> int
   return gtk_entry_get_current_icon_drag_source(gobj());
 }
 
-void Entry::reset_im_context()
+auto Entry::reset_im_context () -> void
 {
   gtk_entry_reset_im_context(gobj());
 }
 
-void Entry::set_input_purpose(InputPurpose purpose)
+auto Entry::set_input_purpose (InputPurpose purpose) -> void
 {
   gtk_entry_set_input_purpose(gobj(), static_cast<GtkInputPurpose>(purpose));
 }
@@ -529,7 +534,7 @@ auto Entry::get_input_purpose() const -> InputPurpose
   return static_cast<InputPurpose>(gtk_entry_get_input_purpose(const_cast<GtkEntry*>(gobj())));
 }
 
-void Entry::set_input_hints(InputHints hints)
+auto Entry::set_input_hints (InputHints hints) -> void
 {
   gtk_entry_set_input_hints(gobj(), static_cast<GtkInputHints>(hints));
 }
@@ -539,7 +544,7 @@ auto Entry::get_input_hints() const -> InputHints
   return static_cast<InputHints>(gtk_entry_get_input_hints(const_cast<GtkEntry*>(gobj())));
 }
 
-void Entry::set_attributes(Pango::AttrList& attrs)
+auto Entry::set_attributes (Pango::AttrList &attrs) -> void
 {
   gtk_entry_set_attributes(gobj(), (attrs).gobj());
 }
@@ -549,7 +554,7 @@ auto Entry::get_attributes() const -> Pango::AttrList
   return Pango::AttrList((gtk_entry_get_attributes(const_cast<GtkEntry*>(gobj()))));
 }
 
-void Entry::set_tabs(const Pango::TabArray& tabs)
+auto Entry::set_tabs (const Pango::TabArray &tabs) -> void
 {
   gtk_entry_set_tabs(gobj(), const_cast<Pango::TabArray&>(tabs).gobj());
 }
@@ -559,12 +564,12 @@ auto Entry::get_tabs() const -> Pango::TabArray
   return Pango::TabArray((gtk_entry_get_tabs(const_cast<GtkEntry*>(gobj()))));
 }
 
-void Entry::grab_focus_without_selecting()
+auto Entry::grab_focus_without_selecting () -> void
 {
   gtk_entry_grab_focus_without_selecting(gobj());
 }
 
-void Entry::set_extra_menu(const Glib::RefPtr<Gio::MenuModel>& model)
+auto Entry::set_extra_menu (const Glib::RefPtr <Gio::MenuModel> &model) -> void
 {
   gtk_entry_set_extra_menu(gobj(), Glib::unwrap(model));
 }

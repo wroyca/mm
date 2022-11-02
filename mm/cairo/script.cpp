@@ -32,7 +32,7 @@ Script::~Script()
   // script device is destroyed in base class
 }
 
-void Script::add_from_recording_surface(const RefPtr<ScriptSurface>& recording_surface)
+auto Script::add_from_recording_surface (const RefPtr <ScriptSurface> &recording_surface) -> void
 {
   auto status = cairo_script_from_recording_surface(m_cobject,
                                                            recording_surface->cobj());
@@ -44,12 +44,12 @@ auto Script::get_mode() const -> ScriptMode
   return static_cast<ScriptMode>(cairo_script_get_mode(m_cobject));
 }
 
-void Script::set_mode(ScriptMode new_mode)
+auto Script::set_mode (ScriptMode new_mode) -> void
 {
   cairo_script_set_mode(m_cobject, static_cast<cairo_script_mode_t>(new_mode));
 }
 
-void Script::write_comment(const std::string& comment)
+auto Script::write_comment (const std::string &comment) -> void
 {
   cairo_script_write_comment(m_cobject, comment.data(), comment.length());
 }
@@ -63,7 +63,7 @@ auto Script::create(const std::string& filename) -> RefPtr<Script>
 
 static cairo_user_data_key_t USER_DATA_KEY_DEVICE_WRITE_FUNC = {0};
 
-static void device_free_slot(void* data)
+static auto device_free_slot (void *data) -> void
 {
   // FIXME: duplicates free_slot in surface.cc
   auto slot = static_cast<Surface::SlotWriteFunc*>(data);
@@ -80,8 +80,10 @@ auto device_write_func_wrapper(void* closure, const unsigned char* data,
   return static_cast<cairo_status_t>((*write_func)(data, length));
 }
 
-static void set_write_slot(cairo_device_t* surface,
-                           Surface::SlotWriteFunc* slot) {
+static auto set_write_slot (
+  cairo_device_t *surface,
+  Surface::SlotWriteFunc *slot) -> void
+{
   // the slot will automatically be freed by device_free_slot() when the
   // underlying C instance is destroyed
   cairo_device_set_user_data(surface, &USER_DATA_KEY_DEVICE_WRITE_FUNC, slot,

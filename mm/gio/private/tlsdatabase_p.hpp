@@ -23,12 +23,12 @@ public:
   friend class TlsDatabase;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  const Glib::Class& init();
+  auto init () -> const Glib::Class&;
 
 
-  static void class_init_function(void* g_class, void* class_data);
+  static auto class_init_function (void *g_class, void *class_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -37,19 +37,45 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static GTlsCertificateFlags verify_chain_vfunc_callback(GTlsDatabase* self, GTlsCertificate* chain, const gchar* purpose, GSocketConnectable* identity, GTlsInteraction* interaction, GTlsDatabaseVerifyFlags flags, GCancellable* cancellable, GError** error);
-  static void verify_chain_async_vfunc_callback(GTlsDatabase* self, GTlsCertificate* chain, const gchar* purpose, GSocketConnectable* identity, GTlsInteraction* interaction, GTlsDatabaseVerifyFlags flags, GCancellable* cancellable, GAsyncReadyCallback callback, gpointer user_data);
-  static GTlsCertificateFlags verify_chain_finish_vfunc_callback(GTlsDatabase* self, GAsyncResult* result, GError** error);
-  static gchar* create_certificate_handle_vfunc_callback(GTlsDatabase* self, GTlsCertificate* certificate);
-  static GTlsCertificate* lookup_certificate_for_handle_vfunc_callback(GTlsDatabase* self, const gchar* handle, GTlsInteraction* interaction, GTlsDatabaseLookupFlags flags, GCancellable* cancellable, GError** error);
-  static void lookup_certificate_for_handle_async_vfunc_callback(GTlsDatabase* self, const gchar* handle, GTlsInteraction* interaction, GTlsDatabaseLookupFlags flags, GCancellable* cancellable, GAsyncReadyCallback callback, gpointer user_data);
-  static GTlsCertificate* lookup_certificate_for_handle_finish_vfunc_callback(GTlsDatabase* self, GAsyncResult* result, GError** error);
-  static GTlsCertificate* lookup_certificate_issuer_vfunc_callback(GTlsDatabase* self, GTlsCertificate* certificate, GTlsInteraction* interaction, GTlsDatabaseLookupFlags flags, GCancellable* cancellable, GError** error);
-  static void lookup_certificate_issuer_async_vfunc_callback(GTlsDatabase* self, GTlsCertificate* certificate, GTlsInteraction* interaction, GTlsDatabaseLookupFlags flags, GCancellable* cancellable, GAsyncReadyCallback callback, gpointer user_data);
-  static GTlsCertificate* lookup_certificate_issuer_finish_vfunc_callback(GTlsDatabase* self, GAsyncResult* result, GError** error);
-  static GList* lookup_certificates_issued_by_vfunc_callback(GTlsDatabase* self, GByteArray* issuer_raw_dn, GTlsInteraction* interaction, GTlsDatabaseLookupFlags flags, GCancellable* cancellable, GError** error);
-  static void lookup_certificates_issued_by_async_vfunc_callback(GTlsDatabase* self, GByteArray* issuer_raw_dn, GTlsInteraction* interaction, GTlsDatabaseLookupFlags flags, GCancellable* cancellable, GAsyncReadyCallback callback, gpointer user_data);
-  static GList* lookup_certificates_issued_by_finish_vfunc_callback(GTlsDatabase* self, GAsyncResult* result, GError** error);
+  static auto verify_chain_vfunc_callback (
+    GTlsDatabase *self, GTlsCertificate *chain, const gchar *purpose, GSocketConnectable *identity,
+    GTlsInteraction *interaction, GTlsDatabaseVerifyFlags flags, GCancellable *cancellable,
+    GError **error) -> GTlsCertificateFlags;
+  static auto verify_chain_async_vfunc_callback (
+    GTlsDatabase *self, GTlsCertificate *chain, const gchar *purpose, GSocketConnectable *identity,
+    GTlsInteraction *interaction, GTlsDatabaseVerifyFlags flags, GCancellable *cancellable,
+    GAsyncReadyCallback callback, gpointer user_data) -> void;
+  static auto verify_chain_finish_vfunc_callback (
+    GTlsDatabase *self, GAsyncResult *result, GError **error) -> GTlsCertificateFlags;
+  static auto create_certificate_handle_vfunc_callback (
+    GTlsDatabase *self, GTlsCertificate *certificate) -> gchar*;
+  static auto lookup_certificate_for_handle_vfunc_callback (
+    GTlsDatabase *self, const gchar *handle, GTlsInteraction *interaction,
+    GTlsDatabaseLookupFlags flags, GCancellable *cancellable, GError **error) -> GTlsCertificate*;
+  static auto lookup_certificate_for_handle_async_vfunc_callback (
+    GTlsDatabase *self, const gchar *handle, GTlsInteraction *interaction,
+    GTlsDatabaseLookupFlags flags, GCancellable *cancellable, GAsyncReadyCallback callback,
+    gpointer user_data) -> void;
+  static auto lookup_certificate_for_handle_finish_vfunc_callback (
+    GTlsDatabase *self, GAsyncResult *result, GError **error) -> GTlsCertificate*;
+  static auto lookup_certificate_issuer_vfunc_callback (
+    GTlsDatabase *self, GTlsCertificate *certificate, GTlsInteraction *interaction,
+    GTlsDatabaseLookupFlags flags, GCancellable *cancellable, GError **error) -> GTlsCertificate*;
+  static auto lookup_certificate_issuer_async_vfunc_callback (
+    GTlsDatabase *self, GTlsCertificate *certificate, GTlsInteraction *interaction,
+    GTlsDatabaseLookupFlags flags, GCancellable *cancellable, GAsyncReadyCallback callback,
+    gpointer user_data) -> void;
+  static auto lookup_certificate_issuer_finish_vfunc_callback (
+    GTlsDatabase *self, GAsyncResult *result, GError **error) -> GTlsCertificate*;
+  static auto lookup_certificates_issued_by_vfunc_callback (
+    GTlsDatabase *self, GByteArray *issuer_raw_dn, GTlsInteraction *interaction,
+    GTlsDatabaseLookupFlags flags, GCancellable *cancellable, GError **error) -> GList*;
+  static auto lookup_certificates_issued_by_async_vfunc_callback (
+    GTlsDatabase *self, GByteArray *issuer_raw_dn, GTlsInteraction *interaction,
+    GTlsDatabaseLookupFlags flags, GCancellable *cancellable, GAsyncReadyCallback callback,
+    gpointer user_data) -> void;
+  static auto lookup_certificates_issued_by_finish_vfunc_callback (
+    GTlsDatabase *self, GAsyncResult *result, GError **error) -> GList*;
 };
 
 

@@ -64,7 +64,7 @@ auto NumericSorterBase_Class::init() -> const Glib::Class&
 }
 
 
-void NumericSorterBase_Class::class_init_function(void* g_class, void* class_data)
+auto NumericSorterBase_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -144,7 +144,7 @@ auto NumericSorterBase::get_sort_order() const -> SortType
   return static_cast<SortType>(gtk_numeric_sorter_get_sort_order(const_cast<GtkNumericSorter*>(gobj())));
 }
 
-void NumericSorterBase::set_sort_order(SortType sort_order)
+auto NumericSorterBase::set_sort_order (SortType sort_order) -> void
 {
   gtk_numeric_sorter_set_sort_order(gobj(), static_cast<GtkSortType>(sort_order));
 }

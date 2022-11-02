@@ -81,7 +81,7 @@ auto FilterInputStream_Class::init() -> const Glib::Class&
 }
 
 
-void FilterInputStream_Class::class_init_function(void* g_class, void* class_data)
+auto FilterInputStream_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -164,7 +164,7 @@ auto FilterInputStream::get_close_base_stream() const -> bool
   return g_filter_input_stream_get_close_base_stream(const_cast<GFilterInputStream*>(gobj()));
 }
 
-void FilterInputStream::set_close_base_stream(bool close_base)
+auto FilterInputStream::set_close_base_stream (bool close_base) -> void
 {
   g_filter_input_stream_set_close_base_stream(gobj(), static_cast<int>(close_base));
 }

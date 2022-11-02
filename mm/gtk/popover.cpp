@@ -30,7 +30,7 @@
 namespace Gtk
 {
 
-void Popover::unset_child()
+auto Popover::unset_child () -> void
 {
   gtk_popover_set_child(gobj(), nullptr);
 }
@@ -92,7 +92,7 @@ auto Popover_Class::init() -> const Glib::Class&
 }
 
 
-void Popover_Class::class_init_function(void* g_class, void* class_data)
+auto Popover_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -102,7 +102,7 @@ void Popover_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void Popover_Class::closed_callback(GtkPopover* self)
+auto Popover_Class::closed_callback (GtkPopover *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -205,7 +205,7 @@ Popover::Popover()
 
 }
 
-void Popover::set_child(Widget& child)
+auto Popover::set_child (Widget &child) -> void
 {
   gtk_popover_set_child(gobj(), (child).gobj());
 }
@@ -220,7 +220,7 @@ auto Popover::get_child() const -> const Widget*
   return const_cast<Popover*>(this)->get_child();
 }
 
-void Popover::set_pointing_to(const Gdk::Rectangle& rect)
+auto Popover::set_pointing_to (const Gdk::Rectangle &rect) -> void
 {
   gtk_popover_set_pointing_to(gobj(), (rect).gobj());
 }
@@ -230,7 +230,7 @@ auto Popover::get_pointing_to(Gdk::Rectangle& rect) const -> bool
   return gtk_popover_get_pointing_to(const_cast<GtkPopover*>(gobj()), (rect).gobj());
 }
 
-void Popover::set_position(PositionType position)
+auto Popover::set_position (PositionType position) -> void
 {
   gtk_popover_set_position(gobj(), static_cast<GtkPositionType>(position));
 }
@@ -240,7 +240,7 @@ auto Popover::get_position() const -> PositionType
   return static_cast<PositionType>(gtk_popover_get_position(const_cast<GtkPopover*>(gobj())));
 }
 
-void Popover::set_autohide(bool autohide)
+auto Popover::set_autohide (bool autohide) -> void
 {
   gtk_popover_set_autohide(gobj(), static_cast<int>(autohide));
 }
@@ -250,7 +250,7 @@ auto Popover::get_autohide() const -> bool
   return gtk_popover_get_autohide(const_cast<GtkPopover*>(gobj()));
 }
 
-void Popover::set_has_arrow(bool has_arrow)
+auto Popover::set_has_arrow (bool has_arrow) -> void
 {
   gtk_popover_set_has_arrow(gobj(), static_cast<int>(has_arrow));
 }
@@ -260,7 +260,7 @@ auto Popover::get_has_arrow() const -> bool
   return gtk_popover_get_has_arrow(const_cast<GtkPopover*>(gobj()));
 }
 
-void Popover::set_mnemonics_visible(bool mnemonics_visible)
+auto Popover::set_mnemonics_visible (bool mnemonics_visible) -> void
 {
   gtk_popover_set_mnemonics_visible(gobj(), static_cast<int>(mnemonics_visible));
 }
@@ -270,27 +270,27 @@ auto Popover::get_mnemonics_visible() const -> bool
   return gtk_popover_get_mnemonics_visible(const_cast<GtkPopover*>(gobj()));
 }
 
-void Popover::popup()
+auto Popover::popup () -> void
 {
   gtk_popover_popup(gobj());
 }
 
-void Popover::popdown()
+auto Popover::popdown () -> void
 {
   gtk_popover_popdown(gobj());
 }
 
-void Popover::set_offset(int x_offset, int y_offset)
+auto Popover::set_offset (int x_offset, int y_offset) -> void
 {
   gtk_popover_set_offset(gobj(), x_offset, y_offset);
 }
 
-void Popover::get_offset(int& x_offset, int& y_offset) const
+auto Popover::get_offset (int &x_offset, int &y_offset) const -> void
 {
   gtk_popover_get_offset(const_cast<GtkPopover*>(gobj()), &(x_offset), &(y_offset));
 }
 
-void Popover::set_cascade_popdown(bool cascade_popdown)
+auto Popover::set_cascade_popdown (bool cascade_popdown) -> void
 {
   gtk_popover_set_cascade_popdown(gobj(), static_cast<int>(cascade_popdown));
 }
@@ -300,12 +300,12 @@ auto Popover::get_cascade_popdown() const -> bool
   return gtk_popover_get_cascade_popdown(const_cast<GtkPopover*>(gobj()));
 }
 
-void Popover::set_default_widget(Widget& widget)
+auto Popover::set_default_widget (Widget &widget) -> void
 {
   gtk_popover_set_default_widget(gobj(), (widget).gobj());
 }
 
-void Popover::present()
+auto Popover::present () -> void
 {
   gtk_popover_present(gobj());
 }
@@ -406,7 +406,7 @@ auto Popover::property_cascade_popdown() const -> Glib::PropertyProxy_ReadOnly< 
 }
 
 
-void Gtk::Popover::on_closed()
+auto Gtk::Popover::on_closed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

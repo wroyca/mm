@@ -22,8 +22,7 @@
 namespace Gio
 {
 
-void
-init()
+auto init () -> void
 {
   static bool s_init = false;
   if (!s_init)

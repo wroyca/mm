@@ -72,7 +72,7 @@ auto ShortcutController_Class::init() -> const Glib::Class&
 }
 
 
-void ShortcutController_Class::class_init_function(void* g_class, void* class_data)
+auto ShortcutController_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -171,7 +171,7 @@ auto ShortcutController::create(const Glib::RefPtr<Gio::ListModel>& model) -> Gl
   return Glib::make_refptr_for_instance<ShortcutController>( new ShortcutController(model) );
 }
 
-void ShortcutController::set_mnemonics_modifiers(Gdk::ModifierType modifiers)
+auto ShortcutController::set_mnemonics_modifiers (Gdk::ModifierType modifiers) -> void
 {
   gtk_shortcut_controller_set_mnemonics_modifiers(gobj(), static_cast<GdkModifierType>(modifiers));
 }
@@ -181,7 +181,7 @@ auto ShortcutController::get_mnemonics_modifiers() const -> Gdk::ModifierType
   return static_cast<Gdk::ModifierType>(gtk_shortcut_controller_get_mnemonics_modifiers(const_cast<GtkShortcutController*>(gobj())));
 }
 
-void ShortcutController::set_scope(ShortcutScope scope)
+auto ShortcutController::set_scope (ShortcutScope scope) -> void
 {
   gtk_shortcut_controller_set_scope(gobj(), static_cast<GtkShortcutScope>(scope));
 }
@@ -200,12 +200,12 @@ auto ShortcutController::get_scope() const -> ShortcutScope
   return static_cast<ShortcutScope>(gtk_shortcut_controller_get_scope(const_cast<GtkShortcutController*>(gobj())));
 }
 
-void ShortcutController::add_shortcut(const Glib::RefPtr<Shortcut>& shortcut)
+auto ShortcutController::add_shortcut (const Glib::RefPtr <Shortcut> &shortcut) -> void
 {
   gtk_shortcut_controller_add_shortcut(gobj(), Glib::unwrap_copy(shortcut));
 }
 
-void ShortcutController::remove_shortcut(const Glib::RefPtr<const Shortcut>& shortcut)
+auto ShortcutController::remove_shortcut (const Glib::RefPtr <const Shortcut> &shortcut) -> void
 {
   gtk_shortcut_controller_remove_shortcut(gobj(), const_cast<GtkShortcut*>(Glib::unwrap(shortcut)));
 }

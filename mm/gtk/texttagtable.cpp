@@ -29,7 +29,7 @@
 #include <gtk/gtk.h>
 
 
-static void SignalProxy_ForEach_gtk_callback(GtkTextTag* texttag, gpointer data)
+static auto SignalProxy_ForEach_gtk_callback (GtkTextTag *texttag, gpointer data) -> void
 {
   auto the_slot = static_cast<Gtk::TextTagTable::SlotForEach*>(data);
   if(the_slot)
@@ -42,7 +42,7 @@ static void SignalProxy_ForEach_gtk_callback(GtkTextTag* texttag, gpointer data)
 namespace Gtk
 {
 
-void TextTagTable::foreach(const SlotForEach& slot)
+auto TextTagTable::foreach (const SlotForEach &slot) -> void
 {
   //The slot doesn't need to exist for longer than the function call.
   gtk_text_tag_table_foreach(gobj(),  &SignalProxy_ForEach_gtk_callback, (gpointer)&slot);
@@ -56,7 +56,8 @@ namespace
 {
 
 
-void TextTagTable_signal_tag_changed_callback(GtkTextTagTable* self, GtkTextTag* p0,gboolean p1,void* data)
+auto TextTagTable_signal_tag_changed_callback (
+  GtkTextTagTable *self, GtkTextTag *p0, gboolean p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<TextTag>&, bool)>;
@@ -87,7 +88,8 @@ const Glib::SignalProxyInfo TextTagTable_signal_tag_changed_info =
 };
 
 
-void TextTagTable_signal_tag_added_callback(GtkTextTagTable* self, GtkTextTag* p0,void* data)
+auto TextTagTable_signal_tag_added_callback (
+  GtkTextTagTable *self, GtkTextTag *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<TextTag>&)>;
@@ -117,7 +119,8 @@ const Glib::SignalProxyInfo TextTagTable_signal_tag_added_info =
 };
 
 
-void TextTagTable_signal_tag_removed_callback(GtkTextTagTable* self, GtkTextTag* p0,void* data)
+auto TextTagTable_signal_tag_removed_callback (
+  GtkTextTagTable *self, GtkTextTag *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<TextTag>&)>;
@@ -191,7 +194,7 @@ auto TextTagTable_Class::init() -> const Glib::Class&
 }
 
 
-void TextTagTable_Class::class_init_function(void* g_class, void* class_data)
+auto TextTagTable_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -278,7 +281,7 @@ auto TextTagTable::add(const Glib::RefPtr<TextTag>& tag) -> bool
   return gtk_text_tag_table_add(gobj(), Glib::unwrap(tag));
 }
 
-void TextTagTable::remove(const Glib::RefPtr<TextTag>& tag)
+auto TextTagTable::remove (const Glib::RefPtr <TextTag> &tag) -> void
 {
   gtk_text_tag_table_remove(gobj(), Glib::unwrap(tag));
 }

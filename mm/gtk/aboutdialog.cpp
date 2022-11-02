@@ -34,15 +34,17 @@ namespace Gtk
 
 // use-header-bar is construct-only. It must be set in the constructor,
 // if you don't want the default value.
-AboutDialog::AboutDialog(bool use_header_bar)
-:
+AboutDialog::AboutDialog (bool use_header_bar)
+  :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Window(Glib::ConstructParams(aboutdialog_class_.init(), "use-header-bar",static_cast<int>(use_header_bar), nullptr))
+  Glib::ObjectBase (nullptr),
+  Gtk::Window (
+    Glib::ConstructParams (
+      aboutdialog_class_.init(), "use-header-bar", static_cast <int> (use_header_bar), nullptr))
 {
 }
 
-void AboutDialog::set_logo_default()
+auto AboutDialog::set_logo_default () -> void
 {
   gtk_about_dialog_set_logo(gobj(), nullptr);
 }
@@ -159,7 +161,7 @@ auto AboutDialog_Class::init() -> const Glib::Class&
 }
 
 
-void AboutDialog_Class::class_init_function(void* g_class, void* class_data)
+auto AboutDialog_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -234,7 +236,7 @@ auto AboutDialog::get_program_name() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_program_name(const_cast<GtkAboutDialog*>(gobj())));
 }
 
-void AboutDialog::set_program_name(const Glib::ustring& name)
+auto AboutDialog::set_program_name (const Glib::ustring &name) -> void
 {
   gtk_about_dialog_set_program_name(gobj(), name.c_str());
 }
@@ -244,7 +246,7 @@ auto AboutDialog::get_version() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_version(const_cast<GtkAboutDialog*>(gobj())));
 }
 
-void AboutDialog::set_version(const Glib::ustring& version)
+auto AboutDialog::set_version (const Glib::ustring &version) -> void
 {
   gtk_about_dialog_set_version(gobj(), version.c_str());
 }
@@ -254,7 +256,7 @@ auto AboutDialog::get_copyright() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_copyright(const_cast<GtkAboutDialog*>(gobj())));
 }
 
-void AboutDialog::set_copyright(const Glib::ustring& copyright)
+auto AboutDialog::set_copyright (const Glib::ustring &copyright) -> void
 {
   gtk_about_dialog_set_copyright(gobj(), copyright.c_str());
 }
@@ -264,7 +266,7 @@ auto AboutDialog::get_comments() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_comments(const_cast<GtkAboutDialog*>(gobj())));
 }
 
-void AboutDialog::set_comments(const Glib::ustring& comments)
+auto AboutDialog::set_comments (const Glib::ustring &comments) -> void
 {
   gtk_about_dialog_set_comments(gobj(), comments.c_str());
 }
@@ -274,7 +276,7 @@ auto AboutDialog::get_license() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_license(const_cast<GtkAboutDialog*>(gobj())));
 }
 
-void AboutDialog::set_license(const Glib::ustring& license)
+auto AboutDialog::set_license (const Glib::ustring &license) -> void
 {
   gtk_about_dialog_set_license(gobj(), license.empty() ? nullptr : license.c_str());
 }
@@ -284,7 +286,7 @@ auto AboutDialog::get_license_type() const -> License
   return static_cast<License>(gtk_about_dialog_get_license_type(const_cast<GtkAboutDialog*>(gobj())));
 }
 
-void AboutDialog::set_license_type(License license_type)
+auto AboutDialog::set_license_type (License license_type) -> void
 {
   gtk_about_dialog_set_license_type(gobj(), static_cast<GtkLicense>(license_type));
 }
@@ -294,7 +296,7 @@ auto AboutDialog::get_system_information() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_system_information(const_cast<GtkAboutDialog*>(gobj())));
 }
 
-void AboutDialog::set_system_information(const Glib::ustring& system_information)
+auto AboutDialog::set_system_information (const Glib::ustring &system_information) -> void
 {
   gtk_about_dialog_set_system_information(gobj(), system_information.empty() ? nullptr : system_information.c_str());
 }
@@ -304,7 +306,7 @@ auto AboutDialog::get_website() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_website(const_cast<GtkAboutDialog*>(gobj())));
 }
 
-void AboutDialog::set_website(const Glib::ustring& website)
+auto AboutDialog::set_website (const Glib::ustring &website) -> void
 {
   gtk_about_dialog_set_website(gobj(), website.c_str());
 }
@@ -314,7 +316,7 @@ auto AboutDialog::get_website_label() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_website_label(const_cast<GtkAboutDialog*>(gobj())));
 }
 
-void AboutDialog::set_website_label(const Glib::ustring& website_label)
+auto AboutDialog::set_website_label (const Glib::ustring &website_label) -> void
 {
   gtk_about_dialog_set_website_label(gobj(), website_label.c_str());
 }
@@ -324,7 +326,7 @@ auto AboutDialog::get_authors() const -> std::vector<Glib::ustring>
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(gtk_about_dialog_get_authors(const_cast<GtkAboutDialog*>(gobj())), Glib::OWNERSHIP_NONE);
 }
 
-void AboutDialog::set_authors(const std::vector<Glib::ustring>& authors) const
+auto AboutDialog::set_authors (const std::vector <Glib::ustring> &authors) const -> void
 {
   gtk_about_dialog_set_authors(const_cast<GtkAboutDialog*>(gobj()), Glib::ArrayHandler<Glib::ustring>::vector_to_array(authors).data ());
 }
@@ -334,7 +336,7 @@ auto AboutDialog::get_documenters() const -> std::vector<Glib::ustring>
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(gtk_about_dialog_get_documenters(const_cast<GtkAboutDialog*>(gobj())), Glib::OWNERSHIP_NONE);
 }
 
-void AboutDialog::set_documenters(const std::vector<Glib::ustring>& documenters)
+auto AboutDialog::set_documenters (const std::vector <Glib::ustring> &documenters) -> void
 {
   gtk_about_dialog_set_documenters(gobj(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(documenters).data ());
 }
@@ -344,7 +346,7 @@ auto AboutDialog::get_artists() const -> std::vector<Glib::ustring>
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(gtk_about_dialog_get_artists(const_cast<GtkAboutDialog*>(gobj())), Glib::OWNERSHIP_NONE);
 }
 
-void AboutDialog::set_artists(const std::vector<Glib::ustring>& artists)
+auto AboutDialog::set_artists (const std::vector <Glib::ustring> &artists) -> void
 {
   gtk_about_dialog_set_artists(gobj(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(artists).data ());
 }
@@ -354,7 +356,7 @@ auto AboutDialog::get_translator_credits() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_translator_credits(const_cast<GtkAboutDialog*>(gobj())));
 }
 
-void AboutDialog::set_translator_credits(const Glib::ustring& translator_credits)
+auto AboutDialog::set_translator_credits (const Glib::ustring &translator_credits) -> void
 {
   gtk_about_dialog_set_translator_credits(gobj(), translator_credits.c_str());
 }
@@ -372,7 +374,7 @@ auto AboutDialog::get_logo() const -> Glib::RefPtr<const Gdk::Paintable>
   return const_cast<AboutDialog*>(this)->get_logo();
 }
 
-void AboutDialog::set_logo(const Glib::RefPtr<const Gdk::Paintable>& logo)
+auto AboutDialog::set_logo (const Glib::RefPtr <const Gdk::Paintable> &logo) -> void
 {
   gtk_about_dialog_set_logo(gobj(), const_cast<GdkPaintable*>(Glib::unwrap(logo)));
 }
@@ -382,7 +384,7 @@ auto AboutDialog::get_logo_icon_name() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_about_dialog_get_logo_icon_name(const_cast<GtkAboutDialog*>(gobj())));
 }
 
-void AboutDialog::set_logo_icon_name(const Glib::ustring& icon_name)
+auto AboutDialog::set_logo_icon_name (const Glib::ustring &icon_name) -> void
 {
   gtk_about_dialog_set_logo_icon_name(gobj(), icon_name.c_str());
 }
@@ -392,12 +394,13 @@ auto AboutDialog::get_wrap_license() const -> bool
   return gtk_about_dialog_get_wrap_license(const_cast<GtkAboutDialog*>(gobj()));
 }
 
-void AboutDialog::set_wrap_license(bool wrap_license)
+auto AboutDialog::set_wrap_license (bool wrap_license) -> void
 {
   gtk_about_dialog_set_wrap_license(gobj(), static_cast<int>(wrap_license));
 }
 
-void AboutDialog::add_credit_section(const Glib::ustring& section_name, const std::vector<Glib::ustring>& people)
+auto AboutDialog::add_credit_section (
+  const Glib::ustring &section_name, const std::vector <Glib::ustring> &people) -> void
 {
   gtk_about_dialog_add_credit_section(gobj(), section_name.c_str(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(people).data ());
 }

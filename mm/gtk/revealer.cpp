@@ -31,7 +31,7 @@
 namespace Gtk
 {
 
-void Revealer::unset_child()
+auto Revealer::unset_child () -> void
 {
   gtk_revealer_set_child(gobj(), nullptr);
 }
@@ -81,7 +81,7 @@ auto Revealer_Class::init() -> const Glib::Class&
 }
 
 
-void Revealer_Class::class_init_function(void* g_class, void* class_data)
+auto Revealer_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -156,7 +156,7 @@ auto Revealer::get_reveal_child() const -> bool
   return gtk_revealer_get_reveal_child(const_cast<GtkRevealer*>(gobj()));
 }
 
-void Revealer::set_reveal_child(bool reveal_child)
+auto Revealer::set_reveal_child (bool reveal_child) -> void
 {
   gtk_revealer_set_reveal_child(gobj(), static_cast<int>(reveal_child));
 }
@@ -171,7 +171,7 @@ auto Revealer::get_transition_duration() const -> guint
   return gtk_revealer_get_transition_duration(const_cast<GtkRevealer*>(gobj()));
 }
 
-void Revealer::set_transition_duration(guint duration)
+auto Revealer::set_transition_duration (guint duration) -> void
 {
   gtk_revealer_set_transition_duration(gobj(), duration);
 }
@@ -181,12 +181,12 @@ auto Revealer::get_transition_type() const -> RevealerTransitionType
   return static_cast<RevealerTransitionType>(gtk_revealer_get_transition_type(const_cast<GtkRevealer*>(gobj())));
 }
 
-void Revealer::set_transition_type(RevealerTransitionType transition)
+auto Revealer::set_transition_type (RevealerTransitionType transition) -> void
 {
   gtk_revealer_set_transition_type(gobj(), static_cast<GtkRevealerTransitionType>(transition));
 }
 
-void Revealer::set_child(Widget& child)
+auto Revealer::set_child (Widget &child) -> void
 {
   gtk_revealer_set_child(gobj(), (child).gobj());
 }

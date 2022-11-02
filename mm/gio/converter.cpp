@@ -83,7 +83,7 @@ auto Converter_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Converter_Class::iface_init_function(void* g_iface, void*)
+auto Converter_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -144,7 +144,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = GConverterResult;
   return RType();
 }
-void Converter_Class::reset_vfunc_callback(GConverter* self)
+auto Converter_Class::reset_vfunc_callback (GConverter *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -220,7 +220,7 @@ Converter::~Converter() noexcept
 {}
 
 // static
-void Converter::add_interface(GType gtype_implementer)
+auto Converter::add_interface (GType gtype_implementer) -> void
 {
   converter_class_.init().add_interface(gtype_implementer);
 }
@@ -248,7 +248,7 @@ auto Converter::convert(const void* inbuf, gsize inbuf_size, void* outbuf, gsize
   return retvalue;
 }
 
-void Converter::reset()
+auto Converter::reset () -> void
 {
   g_converter_reset(gobj());
 }
@@ -273,7 +273,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = Result;
   return RType();
 }
-void Gio::Converter::reset_vfunc()
+auto Gio::Converter::reset_vfunc () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

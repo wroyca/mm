@@ -83,7 +83,7 @@ auto CellEditable_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void CellEditable_Class::iface_init_function(void* g_iface, void*)
+auto CellEditable_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -97,7 +97,8 @@ void CellEditable_Class::iface_init_function(void* g_iface, void*)
   klass->remove_widget = &remove_widget_callback;
 }
 
-void CellEditable_Class::start_editing_vfunc_callback(GtkCellEditable* self, GdkEvent* event)
+auto CellEditable_Class::start_editing_vfunc_callback (
+  GtkCellEditable *self, GdkEvent *event) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -136,7 +137,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
     (*base->start_editing)(self, event);
 }
 
-void CellEditable_Class::editing_done_callback(GtkCellEditable* self)
+auto CellEditable_Class::editing_done_callback (GtkCellEditable *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -173,7 +174,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->editing_done)
     (*base->editing_done)(self);
 }
-void CellEditable_Class::remove_widget_callback(GtkCellEditable* self)
+auto CellEditable_Class::remove_widget_callback (GtkCellEditable *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -249,7 +250,7 @@ CellEditable::~CellEditable() noexcept
 {}
 
 // static
-void CellEditable::add_interface(GType gtype_implementer)
+auto CellEditable::add_interface (GType gtype_implementer) -> void
 {
   celleditable_class_.init().add_interface(gtype_implementer);
 }
@@ -268,17 +269,17 @@ auto CellEditable::get_base_type() -> GType
 }
 
 
-void CellEditable::start_editing(const Glib::RefPtr<const Gdk::Event>& event)
+auto CellEditable::start_editing (const Glib::RefPtr <const Gdk::Event> &event) -> void
 {
   gtk_cell_editable_start_editing(gobj(), const_cast<GdkEvent*>(Glib::unwrap(event)));
 }
 
-void CellEditable::editing_done()
+auto CellEditable::editing_done () -> void
 {
   gtk_cell_editable_editing_done(gobj());
 }
 
-void CellEditable::remove_widget()
+auto CellEditable::remove_widget () -> void
 {
   gtk_cell_editable_remove_widget(gobj());
 }
@@ -307,7 +308,7 @@ auto CellEditable::property_editing_canceled() const -> Glib::PropertyProxy_Read
 }
 
 
-void Gtk::CellEditable::on_editing_done()
+auto Gtk::CellEditable::on_editing_done () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -317,7 +318,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->editing_done)
     (*base->editing_done)(gobj());
 }
-void Gtk::CellEditable::on_remove_widget()
+auto Gtk::CellEditable::on_remove_widget () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -328,7 +329,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->remove_widget)(gobj());
 }
 
-void Gtk::CellEditable::start_editing_vfunc(const Glib::RefPtr<const Gdk::Event>& event)
+auto Gtk::CellEditable::start_editing_vfunc (const Glib::RefPtr <const Gdk::Event> &event) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

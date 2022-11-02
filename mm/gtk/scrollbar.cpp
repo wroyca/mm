@@ -40,7 +40,7 @@ Scrollbar::Scrollbar(const Glib::RefPtr<Adjustment>& adjustment, Orientation ori
 {
 }
 
-void Scrollbar::unset_adjustment()
+auto Scrollbar::unset_adjustment () -> void
 {
   gtk_scrollbar_set_adjustment(gobj(), nullptr);
 }
@@ -91,7 +91,7 @@ auto Scrollbar_Class::init() -> const Glib::Class&
 }
 
 
-void Scrollbar_Class::class_init_function(void* g_class, void* class_data)
+auto Scrollbar_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -163,7 +163,7 @@ Scrollbar::Scrollbar()
 
 }
 
-void Scrollbar::set_adjustment(const Glib::RefPtr<Adjustment>& adjustment)
+auto Scrollbar::set_adjustment (const Glib::RefPtr <Adjustment> &adjustment) -> void
 {
   gtk_scrollbar_set_adjustment(gobj(), Glib::unwrap(adjustment));
 }

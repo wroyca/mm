@@ -58,7 +58,8 @@ namespace
 {
 
 
-void MenuModel_signal_items_changed_callback(GMenuModel* self, gint p0,gint p1,gint p2,void* data)
+auto MenuModel_signal_items_changed_callback (
+  GMenuModel *self, gint p0, gint p1, gint p2, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(int, int, int)>;
@@ -133,7 +134,7 @@ auto MenuModel_Class::init() -> const Glib::Class&
 }
 
 
-void MenuModel_Class::class_init_function(void* g_class, void* class_data)
+auto MenuModel_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -253,7 +254,7 @@ auto MenuModel::iterate_item_links(int item_index) const -> Glib::RefPtr<const M
   return const_cast<MenuModel*>(this)->iterate_item_links(item_index);
 }
 
-void MenuModel::items_changed(int position, int removed, int added)
+auto MenuModel::items_changed (int position, int removed, int added) -> void
 {
   g_menu_model_items_changed(gobj(), position, removed, added);
 }

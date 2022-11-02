@@ -36,13 +36,13 @@
 namespace Gdk
 {
 
-void Drop::refuse()
+auto Drop::refuse () -> void
 {
   // see GDK docs
   gdk_drop_status(gobj(), static_cast<GdkDragAction>(0), static_cast<GdkDragAction>(0));
 }
 
-void Drop::failed()
+auto Drop::failed () -> void
 {
   gdk_drop_finish(gobj(), (static_cast<GdkDragAction>(0)) /* see GDK docs */);
 }
@@ -106,7 +106,7 @@ auto Drop_Class::init() -> const Glib::Class&
 }
 
 
-void Drop_Class::class_init_function(void* g_class, void* class_data)
+auto Drop_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -241,17 +241,19 @@ auto Drop::get_drag() const -> Glib::RefPtr<const Drag>
   return const_cast<Drop*>(this)->get_drag();
 }
 
-void Drop::status(DragAction actions, DragAction preferred)
+auto Drop::status (DragAction actions, DragAction preferred) -> void
 {
   gdk_drop_status(gobj(), static_cast<GdkDragAction>(actions), static_cast<GdkDragAction>(preferred));
 }
 
-void Drop::finish(DragAction action)
+auto Drop::finish (DragAction action) -> void
 {
   gdk_drop_finish(gobj(), static_cast<GdkDragAction>(action));
 }
 
-void Drop::read_async(const std::vector<Glib::ustring>& mime_types, int io_priority, const Gio::SlotAsyncReady& slot, const Glib::RefPtr<Gio::Cancellable>& cancellable)
+auto Drop::read_async (
+  const std::vector <Glib::ustring> &mime_types, int io_priority, const Gio::SlotAsyncReady &slot,
+  const Glib::RefPtr <Gio::Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new Gio::SlotAsyncReady(slot);
@@ -259,7 +261,9 @@ void Drop::read_async(const std::vector<Glib::ustring>& mime_types, int io_prior
   gdk_drop_read_async(gobj(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(mime_types).data(), io_priority, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &Gio::SignalProxy_async_callback, slot_copy);
 }
 
-void Drop::read_async(const std::vector<Glib::ustring>& mime_types, int io_priority, const Gio::SlotAsyncReady& slot)
+auto Drop::read_async (
+  const std::vector <Glib::ustring> &mime_types, int io_priority,
+  const Gio::SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new Gio::SlotAsyncReady(slot);
@@ -278,7 +282,9 @@ out_mime_type = Glib::convert_const_gchar_ptr_to_ustring(g_out_mime_type);
   return retvalue;
 }
 
-void Drop::read_value_async(GType type, int io_priority, const Gio::SlotAsyncReady& slot, const Glib::RefPtr<Gio::Cancellable>& cancellable)
+auto Drop::read_value_async (
+  GType type, int io_priority, const Gio::SlotAsyncReady &slot,
+  const Glib::RefPtr <Gio::Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new Gio::SlotAsyncReady(slot);
@@ -286,7 +292,7 @@ void Drop::read_value_async(GType type, int io_priority, const Gio::SlotAsyncRea
   gdk_drop_read_value_async(gobj(), type, io_priority, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &Gio::SignalProxy_async_callback, slot_copy);
 }
 
-void Drop::read_value_async(GType type, int io_priority, const Gio::SlotAsyncReady& slot)
+auto Drop::read_value_async (GType type, int io_priority, const Gio::SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new Gio::SlotAsyncReady(slot);

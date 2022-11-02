@@ -78,7 +78,8 @@ auto TreeModelSort::convert_iter_to_child_iter(const const_iterator& sorted_iter
   return child_iter;
 }
 
-void TreeModelSort::set_value_impl(const iterator& row, int column, const Glib::ValueBase& value)
+auto TreeModelSort::set_value_impl (
+  const iterator &row, int column, const Glib::ValueBase &value) -> void
 {
   // Avoid two extra ref/unref cycles -- we don't store the child
   // model pointer anywhere, so it's OK to do this _internally_.
@@ -144,7 +145,7 @@ auto TreeModelSort_Class::init() -> const Glib::Class&
 }
 
 
-void TreeModelSort_Class::class_init_function(void* g_class, void* class_data)
+auto TreeModelSort_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -253,12 +254,12 @@ auto TreeModelSort::convert_path_to_child_path(const Path& sorted_path) const ->
   return Gtk::TreePath(gtk_tree_model_sort_convert_path_to_child_path(const_cast<GtkTreeModelSort*>(gobj()), const_cast<GtkTreePath*>((sorted_path).gobj())), false);
 }
 
-void TreeModelSort::reset_default_sort_func()
+auto TreeModelSort::reset_default_sort_func () -> void
 {
   gtk_tree_model_sort_reset_default_sort_func(gobj());
 }
 
-void TreeModelSort::clear_cache()
+auto TreeModelSort::clear_cache () -> void
 {
   gtk_tree_model_sort_clear_cache(gobj());
 }

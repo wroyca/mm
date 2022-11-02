@@ -28,7 +28,7 @@
 namespace Gtk
 {
 
-void WidgetPaintable::unset_widget()
+auto WidgetPaintable::unset_widget () -> void
 {
   gtk_widget_paintable_set_widget(gobj(), nullptr);
 }
@@ -74,7 +74,7 @@ auto WidgetPaintable_Class::init() -> const Glib::Class&
 }
 
 
-void WidgetPaintable_Class::class_init_function(void* g_class, void* class_data)
+auto WidgetPaintable_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -181,7 +181,7 @@ auto WidgetPaintable::get_widget() const -> const Widget*
   return const_cast<WidgetPaintable*>(this)->get_widget();
 }
 
-void WidgetPaintable::set_widget(Widget& widget)
+auto WidgetPaintable::set_widget (Widget &widget) -> void
 {
   gtk_widget_paintable_set_widget(gobj(), (widget).gobj());
 }

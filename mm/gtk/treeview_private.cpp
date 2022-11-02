@@ -22,8 +22,9 @@
 namespace Gtk::TreeView_Private
 {
 
-void SignalProxy_CellData_gtk_callback(GtkTreeViewColumn*, GtkCellRenderer* cell,
-                                        GtkTreeModel* model, GtkTreeIter* iter, void* data)
+auto SignalProxy_CellData_gtk_callback (
+  GtkTreeViewColumn *, GtkCellRenderer *cell,
+  GtkTreeModel *model, GtkTreeIter *iter, void *data) -> void
 {
   if(!model)
     g_warning("SignalProxy_CellData_gtk_callback(): model is NULL, which is unusual.\n");
@@ -48,7 +49,7 @@ void SignalProxy_CellData_gtk_callback(GtkTreeViewColumn*, GtkCellRenderer* cell
   }
 }
 
-void SignalProxy_CellData_gtk_callback_destroy(void* data)
+auto SignalProxy_CellData_gtk_callback_destroy (void *data) -> void
 {
   delete static_cast<TreeViewColumn::SlotTreeCellData*>(data);
 }
@@ -70,7 +71,7 @@ auto SignalProxy_RowSeparator_gtk_callback(GtkTreeModel* model, GtkTreeIter* ite
   return 0; // arbitrary value
 }
 
-void SignalProxy_RowSeparator_gtk_callback_destroy(void* data)
+auto SignalProxy_RowSeparator_gtk_callback_destroy (void *data) -> void
 {
   delete static_cast<TreeView::SlotRowSeparator*>(data);
 }

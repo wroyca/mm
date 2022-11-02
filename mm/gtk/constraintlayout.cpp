@@ -28,7 +28,7 @@
 namespace Gtk
 {
 
-void ConstraintLayout::add_constraint(const Glib::RefPtr<Constraint>& constraint)
+auto ConstraintLayout::add_constraint (const Glib::RefPtr <Constraint> &constraint) -> void
 {
   // gtk_constraint_layout_add_constraint() does not take a ref.
   if (constraint)
@@ -36,7 +36,7 @@ void ConstraintLayout::add_constraint(const Glib::RefPtr<Constraint>& constraint
   gtk_constraint_layout_add_constraint(gobj(), Glib::unwrap(constraint));
 }
 
-void ConstraintLayout::add_guide(const Glib::RefPtr<ConstraintGuide>& guide)
+auto ConstraintLayout::add_guide (const Glib::RefPtr <ConstraintGuide> &guide) -> void
 {
   // gtk_constraint_layout_add_guide() does not take a ref.
   if (guide)
@@ -90,7 +90,7 @@ auto Gtk::ConstraintVflParserError::code() const -> Gtk::ConstraintVflParserErro
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Gtk::ConstraintVflParserError::throw_func(GError* gobject)
+auto Gtk::ConstraintVflParserError::throw_func (GError *gobject) -> void
 {
   throw Gtk::ConstraintVflParserError(gobject);
 }
@@ -136,7 +136,7 @@ auto ConstraintLayout_Class::init() -> const Glib::Class&
 }
 
 
-void ConstraintLayout_Class::class_init_function(void* g_class, void* class_data)
+auto ConstraintLayout_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -218,17 +218,17 @@ auto ConstraintLayout::create() -> Glib::RefPtr<ConstraintLayout>
   return Glib::make_refptr_for_instance<ConstraintLayout>( new ConstraintLayout() );
 }
 
-void ConstraintLayout::remove_constraint(const Glib::RefPtr<Constraint>& constraint)
+auto ConstraintLayout::remove_constraint (const Glib::RefPtr <Constraint> &constraint) -> void
 {
   gtk_constraint_layout_remove_constraint(gobj(), Glib::unwrap(constraint));
 }
 
-void ConstraintLayout::remove_all_constraints()
+auto ConstraintLayout::remove_all_constraints () -> void
 {
   gtk_constraint_layout_remove_all_constraints(gobj());
 }
 
-void ConstraintLayout::remove_guide(const Glib::RefPtr<ConstraintGuide>& guide)
+auto ConstraintLayout::remove_guide (const Glib::RefPtr <ConstraintGuide> &guide) -> void
 {
   gtk_constraint_layout_remove_guide(gobj(), Glib::unwrap(guide));
 }

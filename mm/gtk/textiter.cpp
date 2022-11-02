@@ -510,27 +510,27 @@ auto TextIterBase::backward_visible_cursor_positions(int count) -> bool
   return gtk_text_iter_backward_visible_cursor_positions(gobj(), count);
 }
 
-void TextIterBase::set_offset(int char_offset)
+auto TextIterBase::set_offset (int char_offset) -> void
 {
   gtk_text_iter_set_offset(gobj(), char_offset);
 }
 
-void TextIterBase::set_line(int line_number)
+auto TextIterBase::set_line (int line_number) -> void
 {
   gtk_text_iter_set_line(gobj(), line_number);
 }
 
-void TextIterBase::set_line_offset(int char_on_line)
+auto TextIterBase::set_line_offset (int char_on_line) -> void
 {
   gtk_text_iter_set_line_offset(gobj(), char_on_line);
 }
 
-void TextIterBase::set_line_index(int byte_on_line)
+auto TextIterBase::set_line_index (int byte_on_line) -> void
 {
   gtk_text_iter_set_line_index(gobj(), byte_on_line);
 }
 
-void TextIterBase::forward_to_end()
+auto TextIterBase::forward_to_end () -> void
 {
   gtk_text_iter_forward_to_end(gobj());
 }
@@ -540,12 +540,12 @@ auto TextIterBase::forward_to_line_end() -> bool
   return gtk_text_iter_forward_to_line_end(gobj());
 }
 
-void TextIterBase::set_visible_line_offset(int char_on_line)
+auto TextIterBase::set_visible_line_offset (int char_on_line) -> void
 {
   gtk_text_iter_set_visible_line_offset(gobj(), char_on_line);
 }
 
-void TextIterBase::set_visible_line_index(int byte_on_line)
+auto TextIterBase::set_visible_line_index (int byte_on_line) -> void
 {
   gtk_text_iter_set_visible_line_index(gobj(), byte_on_line);
 }
@@ -668,7 +668,7 @@ auto TextIter::backward_search(const Glib::ustring& str, TextSearchFlags flags, 
   return gtk_text_iter_backward_search(const_cast<GtkTextIter*>(gobj()), str.c_str(), static_cast<GtkTextSearchFlags>(flags), (match_start).gobj(), (match_end).gobj(), nullptr);
 }
 
-void TextIter::order(TextIter& second)
+auto TextIter::order (TextIter &second) -> void
 {
   gtk_text_iter_order(gobj(), (second).gobj());
 }
@@ -740,7 +740,7 @@ auto TextConstIter::backward_search(const Glib::ustring& str, TextSearchFlags fl
   return gtk_text_iter_backward_search(const_cast<GtkTextIter*>(gobj()), str.c_str(), static_cast<GtkTextSearchFlags>(flags), (match_start).gobj(), (match_end).gobj(), nullptr);
 }
 
-void TextConstIter::order(TextConstIter& second)
+auto TextConstIter::order (TextConstIter &second) -> void
 {
   gtk_text_iter_order(gobj(), (second).gobj());
 }

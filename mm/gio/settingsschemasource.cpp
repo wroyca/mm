@@ -82,13 +82,13 @@ auto wrap(GSettingsSchemaSource* object, bool take_copy) -> Glib::RefPtr<Gio::Se
 namespace Gio
 {
 
-void SettingsSchemaSource::reference() const
+auto SettingsSchemaSource::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_settings_schema_source_ref(reinterpret_cast<GSettingsSchemaSource*>(const_cast<SettingsSchemaSource*>(this)));
 }
 
-void SettingsSchemaSource::unreference() const
+auto SettingsSchemaSource::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_settings_schema_source_unref(reinterpret_cast<GSettingsSchemaSource*>(const_cast<SettingsSchemaSource*>(this)));

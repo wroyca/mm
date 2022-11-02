@@ -77,7 +77,7 @@ auto AppLaunchContext_Class::init() -> const Glib::Class&
 }
 
 
-void AppLaunchContext_Class::class_init_function(void* g_class, void* class_data)
+auto AppLaunchContext_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -170,22 +170,22 @@ auto AppLaunchContext::get_display() const -> Glib::RefPtr<const Display>
   return const_cast<AppLaunchContext*>(this)->get_display();
 }
 
-void AppLaunchContext::set_desktop(int desktop)
+auto AppLaunchContext::set_desktop (int desktop) -> void
 {
   gdk_app_launch_context_set_desktop(gobj(), desktop);
 }
 
-void AppLaunchContext::set_timestamp(guint32 timestamp)
+auto AppLaunchContext::set_timestamp (guint32 timestamp) -> void
 {
   gdk_app_launch_context_set_timestamp(gobj(), timestamp);
 }
 
-void AppLaunchContext::set_icon(const Glib::RefPtr<Gio::Icon>& icon)
+auto AppLaunchContext::set_icon (const Glib::RefPtr <Gio::Icon> &icon) -> void
 {
   gdk_app_launch_context_set_icon(gobj(), const_cast<GIcon*>(Glib::unwrap<Gio::Icon>(icon)));
 }
 
-void AppLaunchContext::set_icon_name(const Glib::ustring& icon_name)
+auto AppLaunchContext::set_icon_name (const Glib::ustring &icon_name) -> void
 {
   gdk_app_launch_context_set_icon_name(gobj(), icon_name.c_str());
 }

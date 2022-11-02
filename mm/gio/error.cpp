@@ -50,7 +50,7 @@ auto Gio::Error::code() const -> Gio::Error::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Gio::Error::throw_func(GError* gobject)
+auto Gio::Error::throw_func (GError *gobject) -> void
 {
   throw Gio::Error(gobject);
 }
@@ -71,7 +71,7 @@ auto Gio::ResolverError::code() const -> Gio::ResolverError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Gio::ResolverError::throw_func(GError* gobject)
+auto Gio::ResolverError::throw_func (GError *gobject) -> void
 {
   throw Gio::ResolverError(gobject);
 }
@@ -92,7 +92,7 @@ auto Gio::TlsError::code() const -> Gio::TlsError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Gio::TlsError::throw_func(GError* gobject)
+auto Gio::TlsError::throw_func (GError *gobject) -> void
 {
   throw Gio::TlsError(gobject);
 }

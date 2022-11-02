@@ -92,13 +92,13 @@ auto wrap(GDBusAnnotationInfo* object, bool take_copy) -> Glib::RefPtr<Gio::DBus
 namespace Gio::DBus
 {
 
-void AnnotationInfo::reference() const
+auto AnnotationInfo::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_dbus_annotation_info_ref(reinterpret_cast<GDBusAnnotationInfo*>(const_cast<AnnotationInfo*>(this)));
 }
 
-void AnnotationInfo::unreference() const
+auto AnnotationInfo::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_dbus_annotation_info_unref(reinterpret_cast<GDBusAnnotationInfo*>(const_cast<AnnotationInfo*>(this)));
@@ -165,13 +165,13 @@ auto wrap(GDBusArgInfo* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::ArgIn
 namespace Gio::DBus
 {
 
-void ArgInfo::reference() const
+auto ArgInfo::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_dbus_arg_info_ref(reinterpret_cast<GDBusArgInfo*>(const_cast<ArgInfo*>(this)));
 }
 
-void ArgInfo::unreference() const
+auto ArgInfo::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_dbus_arg_info_unref(reinterpret_cast<GDBusArgInfo*>(const_cast<ArgInfo*>(this)));
@@ -232,13 +232,13 @@ auto wrap(GDBusMethodInfo* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::Me
 namespace Gio::DBus
 {
 
-void MethodInfo::reference() const
+auto MethodInfo::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_dbus_method_info_ref(reinterpret_cast<GDBusMethodInfo*>(const_cast<MethodInfo*>(this)));
 }
 
-void MethodInfo::unreference() const
+auto MethodInfo::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_dbus_method_info_unref(reinterpret_cast<GDBusMethodInfo*>(const_cast<MethodInfo*>(this)));
@@ -299,13 +299,13 @@ auto wrap(GDBusSignalInfo* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::Si
 namespace Gio::DBus
 {
 
-void SignalInfo::reference() const
+auto SignalInfo::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_dbus_signal_info_ref(reinterpret_cast<GDBusSignalInfo*>(const_cast<SignalInfo*>(this)));
 }
 
-void SignalInfo::unreference() const
+auto SignalInfo::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_dbus_signal_info_unref(reinterpret_cast<GDBusSignalInfo*>(const_cast<SignalInfo*>(this)));
@@ -366,13 +366,13 @@ auto wrap(GDBusPropertyInfo* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::
 namespace Gio::DBus
 {
 
-void PropertyInfo::reference() const
+auto PropertyInfo::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_dbus_property_info_ref(reinterpret_cast<GDBusPropertyInfo*>(const_cast<PropertyInfo*>(this)));
 }
 
-void PropertyInfo::unreference() const
+auto PropertyInfo::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_dbus_property_info_unref(reinterpret_cast<GDBusPropertyInfo*>(const_cast<PropertyInfo*>(this)));
@@ -439,13 +439,13 @@ auto InterfaceInfo::get_type() -> GType
   return g_dbus_interface_info_get_type();
 }
 
-void InterfaceInfo::reference() const
+auto InterfaceInfo::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_dbus_interface_info_ref(reinterpret_cast<GDBusInterfaceInfo*>(const_cast<InterfaceInfo*>(this)));
 }
 
-void InterfaceInfo::unreference() const
+auto InterfaceInfo::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_dbus_interface_info_unref(reinterpret_cast<GDBusInterfaceInfo*>(const_cast<InterfaceInfo*>(this)));
@@ -510,12 +510,12 @@ auto InterfaceInfo::lookup_property(const Glib::ustring& name) const -> Glib::Re
   return const_cast<InterfaceInfo*>(this)->lookup_property(name);
 }
 
-void InterfaceInfo::cache_build()
+auto InterfaceInfo::cache_build () -> void
 {
   g_dbus_interface_info_cache_build(gobj());
 }
 
-void InterfaceInfo::cache_release()
+auto InterfaceInfo::cache_release () -> void
 {
   g_dbus_interface_info_cache_release(gobj());
 }
@@ -555,13 +555,13 @@ auto wrap(GDBusNodeInfo* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::Node
 namespace Gio::DBus
 {
 
-void NodeInfo::reference() const
+auto NodeInfo::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_dbus_node_info_ref(reinterpret_cast<GDBusNodeInfo*>(const_cast<NodeInfo*>(this)));
 }
 
-void NodeInfo::unreference() const
+auto NodeInfo::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_dbus_node_info_unref(reinterpret_cast<GDBusNodeInfo*>(const_cast<NodeInfo*>(this)));

@@ -86,7 +86,7 @@ auto CharsetConverter_Class::init() -> const Glib::Class&
 }
 
 
-void CharsetConverter_Class::class_init_function(void* g_class, void* class_data)
+auto CharsetConverter_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -160,7 +160,7 @@ auto CharsetConverter::create(const Glib::ustring& to_charset, const Glib::ustri
   return Glib::make_refptr_for_instance<CharsetConverter>( new CharsetConverter(to_charset, from_charset) );
 }
 
-void CharsetConverter::set_use_fallback(bool use_fallback)
+auto CharsetConverter::set_use_fallback (bool use_fallback) -> void
 {
   g_charset_converter_set_use_fallback(gobj(), static_cast<int>(use_fallback));
 }

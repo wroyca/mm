@@ -73,8 +73,7 @@ ObjectBase::ObjectBase(const std::type_info& custom_type_info)
 // as virtual base class, which means the most-derived class' ctor invokes
 // the Glib::ObjectBase ctor -- thus it's useless for Glib::Object.
 //
-void
-ObjectBase::initialize(GObject* castitem)
+auto ObjectBase::initialize (GObject *castitem) -> void
 {
   if (gobject_)
   {
@@ -94,8 +93,7 @@ ObjectBase::initialize(GObject* castitem)
   _set_current_wrapper(castitem);
 }
 
-void
-ObjectBase::initialize_move(GObject* castitem, Glib::ObjectBase* previous_wrapper)
+auto ObjectBase::initialize_move (GObject *castitem, Glib::ObjectBase *previous_wrapper) -> void
 {
   if (gobject_)
   {
@@ -186,15 +184,13 @@ ObjectBase::~ObjectBase() noexcept
   }
 }
 
-void
-ObjectBase::reference() const
+auto ObjectBase::reference () const -> void
 {
   GLIBMM_DEBUG_REFERENCE(this, gobject_);
   g_object_ref(gobject_);
 }
 
-void
-ObjectBase::unreference() const
+auto ObjectBase::unreference () const -> void
 {
   GLIBMM_DEBUG_UNREFERENCE(this, gobject_);
   g_object_unref(gobject_);
@@ -207,8 +203,7 @@ ObjectBase::gobj_copy() const -> GObject*
   return gobject_;
 }
 
-void
-ObjectBase::_set_current_wrapper(GObject* object)
+auto ObjectBase::_set_current_wrapper (GObject *object) -> void
 {
   // Store a pointer to this wrapper in the underlying instance, so that we
   // never create a second wrapper for the same underlying instance.  Also,
@@ -230,8 +225,8 @@ ObjectBase::_set_current_wrapper(GObject* object)
   }
 }
 
-void
-ObjectBase::_move_current_wrapper(GObject* object, Glib::ObjectBase* previous_wrapper) noexcept
+auto ObjectBase::_move_current_wrapper (
+  GObject *object, Glib::ObjectBase *previous_wrapper) noexcept -> void
 {
   // See _set_current_wrapper().
   ObjectBase* current_wrapper = _get_current_wrapper(object);
@@ -264,8 +259,7 @@ ObjectBase::_get_current_wrapper(GObject* object) -> ObjectBase*
 }
 
 // static
-void
-ObjectBase::destroy_notify_callback_(void* data)
+auto ObjectBase::destroy_notify_callback_ (void *data) -> void
 {
   // GLIBMM_LIFECYCLE
 
@@ -285,8 +279,7 @@ ObjectBase::destroy_notify_callback_(void* data)
   }
 }
 
-void
-ObjectBase::destroy_notify_()
+auto ObjectBase::destroy_notify_ () -> void
 {
 // The C instance is about to be disposed, making it unusable.  Now is a
 // good time to delete the C++ wrapper of the C instance.  There is no way
@@ -321,8 +314,7 @@ ObjectBase::is_derived_() const -> bool
   return (custom_type_name_ != nullptr);
 }
 
-void
-ObjectBase::set_manage()
+auto ObjectBase::set_manage () -> void
 {
   // This is a private method and Gtk::manage() is a template function.
   // Thus this will probably never run, unless you do something like:
@@ -339,14 +331,14 @@ ObjectBase::_cpp_destruction_is_in_progress() const -> bool
   return cpp_destruction_in_progress_;
 }
 
-void
-ObjectBase::set_property_value(const Glib::ustring& property_name, const Glib::ValueBase& value)
+auto ObjectBase::set_property_value (
+  const Glib::ustring &property_name, const Glib::ValueBase &value) -> void
 {
   g_object_set_property(gobj(), property_name.c_str(), value.gobj());
 }
 
-void
-ObjectBase::get_property_value(const Glib::ustring& property_name, Glib::ValueBase& value) const
+auto ObjectBase::get_property_value (
+  const Glib::ustring &property_name, Glib::ValueBase &value) const -> void
 {
   g_object_get_property(const_cast<GObject*>(gobj()), property_name.c_str(), value.gobj());
 }
@@ -377,14 +369,12 @@ ObjectBase::connect_property_changed(
   return pConnectionNode->connect_changed(property_name);
 }
 
-void
-ObjectBase::freeze_notify()
+auto ObjectBase::freeze_notify () -> void
 {
   g_object_freeze_notify(gobj());
 }
 
-void
-ObjectBase::thaw_notify()
+auto ObjectBase::thaw_notify () -> void
 {
   g_object_thaw_notify(gobj());
 }
@@ -394,14 +384,15 @@ auto ObjectBase::get_base_type() -> GType
   return G_TYPE_OBJECT;
 }
 
-void ObjectBase::add_custom_interface_class(const Interface_Class* iface_class)
+auto ObjectBase::add_custom_interface_class (const Interface_Class *iface_class) -> void
 {
   if (!priv_pimpl_)
     priv_pimpl_ = std::make_unique<PrivImpl>();
   priv_pimpl_->custom_interface_classes.emplace_back(iface_class);
 }
 
-void ObjectBase::add_custom_class_init_function(GClassInitFunc class_init_func, void* class_data)
+auto ObjectBase::add_custom_class_init_function (
+  GClassInitFunc class_init_func, void *class_data) -> void
 {
   if (!priv_pimpl_)
     priv_pimpl_ = std::make_unique<PrivImpl>();
@@ -409,7 +400,7 @@ void ObjectBase::add_custom_class_init_function(GClassInitFunc class_init_func, 
     std::make_tuple(class_init_func, class_data));
 }
 
-void ObjectBase::set_custom_instance_init_function(GInstanceInitFunc instance_init_func)
+auto ObjectBase::set_custom_instance_init_function (GInstanceInitFunc instance_init_func) -> void
 {
   if (!priv_pimpl_)
     priv_pimpl_ = std::make_unique<PrivImpl>();
@@ -426,12 +417,12 @@ auto ObjectBase::get_custom_class_init_functions() const -> const Class::class_i
   return priv_pimpl_ ? &priv_pimpl_->custom_class_init_functions : nullptr;
 }
 
-GInstanceInitFunc ObjectBase::get_custom_instance_init_function() const
+auto ObjectBase::get_custom_instance_init_function () const -> GInstanceInitFunc
 {
   return priv_pimpl_ ? priv_pimpl_->custom_instance_init_function : nullptr;
 }
 
-void ObjectBase::custom_class_init_finished()
+auto ObjectBase::custom_class_init_finished () -> void
 {
   priv_pimpl_.reset();
 }

@@ -80,12 +80,12 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   return RType();
 }
 
-void Scrollable::unset_hadjustment()
+auto Scrollable::unset_hadjustment () -> void
 {
   gtk_scrollable_set_hadjustment(gobj(), nullptr);
 }
 
-void Scrollable::unset_vadjustment()
+auto Scrollable::unset_vadjustment () -> void
 {
   gtk_scrollable_set_vadjustment(gobj(), nullptr);
 }
@@ -136,7 +136,7 @@ auto Scrollable_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Scrollable_Class::iface_init_function(void* g_iface, void*)
+auto Scrollable_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -186,7 +186,7 @@ Scrollable::~Scrollable() noexcept
 {}
 
 // static
-void Scrollable::add_interface(GType gtype_implementer)
+auto Scrollable::add_interface (GType gtype_implementer) -> void
 {
   scrollable_class_.init().add_interface(gtype_implementer);
 }
@@ -218,7 +218,7 @@ auto Scrollable::get_hadjustment() const -> Glib::RefPtr<const Adjustment>
   return const_cast<Scrollable*>(this)->get_hadjustment();
 }
 
-void Scrollable::set_hadjustment(const Glib::RefPtr<Adjustment>& hadjustment)
+auto Scrollable::set_hadjustment (const Glib::RefPtr <Adjustment> &hadjustment) -> void
 {
   gtk_scrollable_set_hadjustment(gobj(), Glib::unwrap(hadjustment));
 }
@@ -239,7 +239,7 @@ auto Scrollable::get_vadjustment() const -> Glib::RefPtr<const Adjustment>
   return retvalue;
 }
 
-void Scrollable::set_vadjustment(const Glib::RefPtr<Adjustment>& vadjustment)
+auto Scrollable::set_vadjustment (const Glib::RefPtr <Adjustment> &vadjustment) -> void
 {
   gtk_scrollable_set_vadjustment(gobj(), Glib::unwrap(vadjustment));
 }
@@ -249,7 +249,7 @@ auto Scrollable::get_hscroll_policy() const -> Policy
   return static_cast<Policy>(gtk_scrollable_get_hscroll_policy(const_cast<GtkScrollable*>(gobj())));
 }
 
-void Scrollable::set_hscroll_policy(Policy policy)
+auto Scrollable::set_hscroll_policy (Policy policy) -> void
 {
   gtk_scrollable_set_hscroll_policy(gobj(), static_cast<GtkScrollablePolicy>(policy));
 }
@@ -259,7 +259,7 @@ auto Scrollable::get_vscroll_policy() const -> Policy
   return static_cast<Policy>(gtk_scrollable_get_vscroll_policy(const_cast<GtkScrollable*>(gobj())));
 }
 
-void Scrollable::set_vscroll_policy(Policy policy)
+auto Scrollable::set_vscroll_policy (Policy policy) -> void
 {
   gtk_scrollable_set_vscroll_policy(gobj(), static_cast<GtkScrollablePolicy>(policy));
 }

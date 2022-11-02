@@ -64,7 +64,7 @@ auto SelectionFilterModel_Class::init() -> const Glib::Class&
 }
 
 
-void SelectionFilterModel_Class::class_init_function(void* g_class, void* class_data)
+auto SelectionFilterModel_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -146,7 +146,7 @@ auto SelectionFilterModel::create(const Glib::RefPtr<SelectionModel>& model) -> 
   return Glib::make_refptr_for_instance<SelectionFilterModel>( new SelectionFilterModel(model) );
 }
 
-void SelectionFilterModel::set_model(const Glib::RefPtr<SelectionModel>& model)
+auto SelectionFilterModel::set_model (const Glib::RefPtr <SelectionModel> &model) -> void
 {
   gtk_selection_filter_model_set_model(gobj(), Glib::unwrap(model));
 }

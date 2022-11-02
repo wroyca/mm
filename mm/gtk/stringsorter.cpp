@@ -64,7 +64,7 @@ auto StringSorter_Class::init() -> const Glib::Class&
 }
 
 
-void StringSorter_Class::class_init_function(void* g_class, void* class_data)
+auto StringSorter_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -160,7 +160,8 @@ auto StringSorter::get_expression() const -> Glib::RefPtr<const Expression<Glib:
   return retvalue;
 }
 
-void StringSorter::set_expression(const Glib::RefPtr<Expression<Glib::ustring>>& expression)
+auto StringSorter::set_expression (
+  const Glib::RefPtr <Expression <Glib::ustring>> &expression) -> void
 {
   gtk_string_sorter_set_expression(gobj(), ((expression) ? (expression)->gobj() : nullptr));
 }
@@ -170,7 +171,7 @@ auto StringSorter::get_ignore_case() const -> bool
   return gtk_string_sorter_get_ignore_case(const_cast<GtkStringSorter*>(gobj()));
 }
 
-void StringSorter::set_ignore_case(bool ignore_case)
+auto StringSorter::set_ignore_case (bool ignore_case) -> void
 {
   gtk_string_sorter_set_ignore_case(gobj(), static_cast<int>(ignore_case));
 }

@@ -75,7 +75,7 @@ auto DropDown_Class::init() -> const Glib::Class&
 }
 
 
-void DropDown_Class::class_init_function(void* g_class, void* class_data)
+auto DropDown_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -145,7 +145,7 @@ DropDown::DropDown(const Glib::RefPtr<Gio::ListModel>& model, const Glib::RefPtr
 
 }
 
-void DropDown::set_model(const Glib::RefPtr<Gio::ListModel>& model)
+auto DropDown::set_model (const Glib::RefPtr <Gio::ListModel> &model) -> void
 {
   gtk_drop_down_set_model(gobj(), Glib::unwrap(model));
 }
@@ -163,7 +163,7 @@ auto DropDown::get_model() const -> Glib::RefPtr<const Gio::ListModel>
   return const_cast<DropDown*>(this)->get_model();
 }
 
-void DropDown::set_selected(guint position)
+auto DropDown::set_selected (guint position) -> void
 {
   gtk_drop_down_set_selected(gobj(), position);
 }
@@ -186,7 +186,7 @@ auto DropDown::get_selected_item() const -> Glib::RefPtr<const Glib::ObjectBase>
   return const_cast<DropDown*>(this)->get_selected_item();
 }
 
-void DropDown::set_factory(const Glib::RefPtr<ListItemFactory>& factory)
+auto DropDown::set_factory (const Glib::RefPtr <ListItemFactory> &factory) -> void
 {
   gtk_drop_down_set_factory(gobj(), Glib::unwrap(factory));
 }
@@ -204,7 +204,7 @@ auto DropDown::get_factory() const -> Glib::RefPtr<const ListItemFactory>
   return const_cast<DropDown*>(this)->get_factory();
 }
 
-void DropDown::set_list_factory(const Glib::RefPtr<ListItemFactory>& factory)
+auto DropDown::set_list_factory (const Glib::RefPtr <ListItemFactory> &factory) -> void
 {
   gtk_drop_down_set_list_factory(gobj(), Glib::unwrap(factory));
 }
@@ -222,7 +222,7 @@ auto DropDown::get_list_factory() const -> Glib::RefPtr<const ListItemFactory>
   return const_cast<DropDown*>(this)->get_list_factory();
 }
 
-void DropDown::set_expression(const Glib::RefPtr<Expression<Glib::ustring>>& expression)
+auto DropDown::set_expression (const Glib::RefPtr <Expression <Glib::ustring>> &expression) -> void
 {
   gtk_drop_down_set_expression(gobj(), ((expression) ? (expression)->gobj() : nullptr));
 }
@@ -243,7 +243,7 @@ auto DropDown::get_expression() const -> Glib::RefPtr<const Expression<Glib::ust
   return retvalue;
 }
 
-void DropDown::set_enable_search(bool enable_search)
+auto DropDown::set_enable_search (bool enable_search) -> void
 {
   gtk_drop_down_set_enable_search(gobj(), static_cast<int>(enable_search));
 }
@@ -253,7 +253,7 @@ auto DropDown::get_enable_search() const -> bool
   return gtk_drop_down_get_enable_search(const_cast<GtkDropDown*>(gobj()));
 }
 
-void DropDown::set_show_arrow(bool show_arrow)
+auto DropDown::set_show_arrow (bool show_arrow) -> void
 {
   gtk_drop_down_set_show_arrow(gobj(), static_cast<int>(show_arrow));
 }

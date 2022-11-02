@@ -24,11 +24,11 @@ public:
 
   friend class Interface;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -37,10 +37,10 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static GDBusInterfaceInfo* get_info_vfunc_callback(GDBusInterface* self);
-  static GDBusObject* get_object_vfunc_callback(GDBusInterface* self);
-  static void set_object_vfunc_callback(GDBusInterface* self, GDBusObject* object);
-  static GDBusObject* dup_object_vfunc_callback(GDBusInterface* self);
+  static auto get_info_vfunc_callback (GDBusInterface *self) -> GDBusInterfaceInfo*;
+  static auto get_object_vfunc_callback (GDBusInterface *self) -> GDBusObject*;
+  static auto set_object_vfunc_callback (GDBusInterface *self, GDBusObject *object) -> void;
+  static auto dup_object_vfunc_callback (GDBusInterface *self) -> GDBusObject*;
 };
 
 

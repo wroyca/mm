@@ -70,7 +70,7 @@ auto SimpleIOStream_Class::init() -> const Glib::Class&
 }
 
 
-void SimpleIOStream_Class::class_init_function(void* g_class, void* class_data)
+auto SimpleIOStream_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

@@ -38,7 +38,8 @@ Button::Button(const Glib::ustring& label, bool mnemonic)
   Gtk::Widget(Glib::ConstructParams(button_class_.init(), "label",label.c_str(),"use_underline",gboolean(mnemonic), nullptr))
 {}
 
-void Button::set_image_from_icon_name(const Glib::ustring& icon_name, IconSize size, bool use_fallback)
+auto Button::set_image_from_icon_name (
+  const Glib::ustring &icon_name, IconSize size, bool use_fallback) -> void
 {
   // It would be possible to create a Gtk::Image and add it with Container::add()
   // instead of calling set_icon_name(), but only set_icon_name() sets style classes
@@ -57,7 +58,7 @@ void Button::set_image_from_icon_name(const Glib::ustring& icon_name, IconSize s
   }
 }
 
-void Button::unset_child()
+auto Button::unset_child () -> void
 {
   gtk_button_set_child(gobj(), nullptr);
 }
@@ -118,7 +119,7 @@ auto Button_Class::init() -> const Glib::Class&
 }
 
 
-void Button_Class::class_init_function(void* g_class, void* class_data)
+auto Button_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -128,7 +129,7 @@ void Button_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void Button_Class::clicked_callback(GtkButton* self)
+auto Button_Class::clicked_callback (GtkButton *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -229,7 +230,7 @@ Button::Button()
 
 }
 
-void Button::set_has_frame(bool has_frame)
+auto Button::set_has_frame (bool has_frame) -> void
 {
   gtk_button_set_has_frame(gobj(), static_cast<int>(has_frame));
 }
@@ -239,7 +240,7 @@ auto Button::get_has_frame() const -> bool
   return gtk_button_get_has_frame(const_cast<GtkButton*>(gobj()));
 }
 
-void Button::set_label(const Glib::ustring& label)
+auto Button::set_label (const Glib::ustring &label) -> void
 {
   gtk_button_set_label(gobj(), label.c_str());
 }
@@ -249,7 +250,7 @@ auto Button::get_label() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_button_get_label(const_cast<GtkButton*>(gobj())));
 }
 
-void Button::set_use_underline(bool use_underline)
+auto Button::set_use_underline (bool use_underline) -> void
 {
   gtk_button_set_use_underline(gobj(), static_cast<int>(use_underline));
 }
@@ -259,7 +260,7 @@ auto Button::get_use_underline() const -> bool
   return gtk_button_get_use_underline(const_cast<GtkButton*>(gobj()));
 }
 
-void Button::set_icon_name(const Glib::ustring& icon_name)
+auto Button::set_icon_name (const Glib::ustring &icon_name) -> void
 {
   gtk_button_set_icon_name(gobj(), icon_name.c_str());
 }
@@ -269,7 +270,7 @@ auto Button::get_icon_name() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_button_get_icon_name(const_cast<GtkButton*>(gobj())));
 }
 
-void Button::set_child(Widget& child)
+auto Button::set_child (Widget &child) -> void
 {
   gtk_button_set_child(gobj(), (child).gobj());
 }
@@ -342,7 +343,7 @@ auto Button::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 }
 
 
-void Gtk::Button::on_clicked()
+auto Gtk::Button::on_clicked () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

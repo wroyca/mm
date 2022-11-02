@@ -28,7 +28,7 @@
 namespace Gtk
 {
 
-void StackSidebar::unset_stack()
+auto StackSidebar::unset_stack () -> void
 {
   gtk_stack_sidebar_set_stack(gobj(), nullptr);
 }
@@ -78,7 +78,7 @@ auto StackSidebar_Class::init() -> const Glib::Class&
 }
 
 
-void StackSidebar_Class::class_init_function(void* g_class, void* class_data)
+auto StackSidebar_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -148,7 +148,7 @@ StackSidebar::StackSidebar()
 
 }
 
-void StackSidebar::set_stack(Stack& stack)
+auto StackSidebar::set_stack (Stack &stack) -> void
 {
   gtk_stack_sidebar_set_stack(gobj(), (stack).gobj());
 }

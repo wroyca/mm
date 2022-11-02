@@ -23,12 +23,12 @@ public:
   friend class LayoutManager;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  const Glib::Class& init();
+  auto init () -> const Glib::Class&;
 
 
-  static void class_init_function(void* g_class, void* class_data);
+  static auto class_init_function (void *g_class, void *class_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -37,12 +37,17 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static GtkSizeRequestMode get_request_mode_vfunc_callback(GtkLayoutManager* self, GtkWidget* widget);
-  static void measure_vfunc_callback(GtkLayoutManager* self, GtkWidget* widget, GtkOrientation orientation, int for_size, int* minimum, int* natural, int* minimum_baseline, int* natural_baseline);
-  static void allocate_vfunc_callback(GtkLayoutManager* self, GtkWidget* widget, int width, int height, int baseline);
-  static GtkLayoutChild* create_layout_child_vfunc_callback(GtkLayoutManager* self, GtkWidget* widget, GtkWidget* for_child);
-  static void root_vfunc_callback(GtkLayoutManager* self);
-  static void unroot_vfunc_callback(GtkLayoutManager* self);
+  static auto get_request_mode_vfunc_callback (
+    GtkLayoutManager *self, GtkWidget *widget) -> GtkSizeRequestMode;
+  static auto measure_vfunc_callback (
+    GtkLayoutManager *self, GtkWidget *widget, GtkOrientation orientation, int for_size,
+    int *minimum, int *natural, int *minimum_baseline, int *natural_baseline) -> void;
+  static auto allocate_vfunc_callback (
+    GtkLayoutManager *self, GtkWidget *widget, int width, int height, int baseline) -> void;
+  static auto create_layout_child_vfunc_callback (
+    GtkLayoutManager *self, GtkWidget *widget, GtkWidget *for_child) -> GtkLayoutChild*;
+  static auto root_vfunc_callback (GtkLayoutManager *self) -> void;
+  static auto unroot_vfunc_callback (GtkLayoutManager *self) -> void;
 };
 
 

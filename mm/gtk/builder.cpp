@@ -33,7 +33,7 @@
 namespace Gtk
 {
 // Called from Buildable
-void Builder::set_no_gtkmm_derived_types(bool status)
+auto Builder::set_no_gtkmm_derived_types (bool status) -> void
 {
   no_gtkmm_derived_types = status;
 }
@@ -309,7 +309,7 @@ auto Gtk::BuilderError::code() const -> Gtk::BuilderError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Gtk::BuilderError::throw_func(GError* gobject)
+auto Gtk::BuilderError::throw_func (GError *gobject) -> void
 {
   throw Gtk::BuilderError(gobject);
 }
@@ -361,7 +361,7 @@ auto Builder_Class::init() -> const Glib::Class&
 }
 
 
-void Builder_Class::class_init_function(void* g_class, void* class_data)
+auto Builder_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -476,12 +476,13 @@ auto Builder::add_from_string(const char* buffer, gssize length) -> bool
   return retvalue;
 }
 
-void Builder::expose_object(const Glib::ustring& name, const Glib::RefPtr<Glib::Object>& object)
+auto Builder::expose_object (
+  const Glib::ustring &name, const Glib::RefPtr <Glib::Object> &object) -> void
 {
   gtk_builder_expose_object(gobj(), name.c_str(), Glib::unwrap(object));
 }
 
-void Builder::expose_widget(const Glib::ustring& name, Widget& widget)
+auto Builder::expose_widget (const Glib::ustring &name, Widget &widget) -> void
 {
   gtk_builder_expose_object(gobj(), name.c_str(), G_OBJECT((widget).gobj()));
 }
@@ -509,7 +510,7 @@ auto Builder::get_objects() const -> std::vector<Glib::RefPtr<const Glib::Object
   return Glib::SListHandler<Glib::RefPtr<const Glib::Object> >::slist_to_vector(gtk_builder_get_objects(const_cast<GtkBuilder*>(gobj())), Glib::OWNERSHIP_SHALLOW);
 }
 
-void Builder::set_translation_domain(const Glib::ustring& domain)
+auto Builder::set_translation_domain (const Glib::ustring &domain) -> void
 {
   gtk_builder_set_translation_domain(gobj(), domain.c_str());
 }

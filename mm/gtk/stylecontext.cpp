@@ -113,7 +113,7 @@ auto StyleContext_Class::init() -> const Glib::Class&
 }
 
 
-void StyleContext_Class::class_init_function(void* g_class, void* class_data)
+auto StyleContext_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -188,37 +188,41 @@ StyleContext::StyleContext()
 
 }
 
-void StyleContext::add_provider_for_display(const Glib::RefPtr<Gdk::Display>& display, const Glib::RefPtr<StyleProvider>& provider, guint priority)
+auto StyleContext::add_provider_for_display (
+  const Glib::RefPtr <Gdk::Display> &display, const Glib::RefPtr <StyleProvider> &provider,
+  guint priority) -> void
 {
   gtk_style_context_add_provider_for_display(Glib::unwrap(display), Glib::unwrap(provider), priority);
 }
 
-void StyleContext::remove_provider_for_display(const Glib::RefPtr<Gdk::Display>& display, const Glib::RefPtr<StyleProvider>& provider)
+auto StyleContext::remove_provider_for_display (
+  const Glib::RefPtr <Gdk::Display> &display, const Glib::RefPtr <StyleProvider> &provider) -> void
 {
   gtk_style_context_remove_provider_for_display(Glib::unwrap(display), Glib::unwrap(provider));
 }
 
-void StyleContext::add_provider(const Glib::RefPtr<StyleProvider>& provider, guint priority)
+auto StyleContext::add_provider (
+  const Glib::RefPtr <StyleProvider> &provider, guint priority) -> void
 {
   gtk_style_context_add_provider(gobj(), Glib::unwrap(provider), priority);
 }
 
-void StyleContext::remove_provider(const Glib::RefPtr<StyleProvider>& provider)
+auto StyleContext::remove_provider (const Glib::RefPtr <StyleProvider> &provider) -> void
 {
   gtk_style_context_remove_provider(gobj(), Glib::unwrap(provider));
 }
 
-void StyleContext::context_save()
+auto StyleContext::context_save () -> void
 {
   gtk_style_context_save(gobj());
 }
 
-void StyleContext::context_restore()
+auto StyleContext::context_restore () -> void
 {
   gtk_style_context_restore(gobj());
 }
 
-void StyleContext::set_state(StateFlags flags)
+auto StyleContext::set_state (StateFlags flags) -> void
 {
   gtk_style_context_set_state(gobj(), static_cast<GtkStateFlags>(flags));
 }
@@ -228,7 +232,7 @@ auto StyleContext::get_state() const -> StateFlags
   return static_cast<StateFlags>(gtk_style_context_get_state(const_cast<GtkStyleContext*>(gobj())));
 }
 
-void StyleContext::set_scale(int scale)
+auto StyleContext::set_scale (int scale) -> void
 {
   gtk_style_context_set_scale(gobj(), scale);
 }
@@ -238,12 +242,12 @@ auto StyleContext::get_scale() const -> int
   return gtk_style_context_get_scale(const_cast<GtkStyleContext*>(gobj()));
 }
 
-void StyleContext::add_class(const Glib::ustring& class_name)
+auto StyleContext::add_class (const Glib::ustring &class_name) -> void
 {
   gtk_style_context_add_class(gobj(), class_name.c_str());
 }
 
-void StyleContext::remove_class(const Glib::ustring& class_name)
+auto StyleContext::remove_class (const Glib::ustring &class_name) -> void
 {
   gtk_style_context_remove_class(gobj(), class_name.c_str());
 }
@@ -253,7 +257,7 @@ auto StyleContext::has_class(const Glib::ustring& class_name) -> bool
   return gtk_style_context_has_class(gobj(), class_name.c_str());
 }
 
-void StyleContext::set_display(const Glib::RefPtr<Gdk::Display>& display)
+auto StyleContext::set_display (const Glib::RefPtr <Gdk::Display> &display) -> void
 {
   gtk_style_context_set_display(gobj(), Glib::unwrap(display));
 }
@@ -276,62 +280,76 @@ auto StyleContext::lookup_color(const Glib::ustring& color_name, Gdk::RGBA& colo
   return gtk_style_context_lookup_color(gobj(), color_name.c_str(), (color).gobj());
 }
 
-void StyleContext::render_check(const Cairo::RefPtr<Cairo::Context>& cr, double x, double y, double width, double height)
+auto StyleContext::render_check (
+  const Cairo::RefPtr <Cairo::Context> &cr, double x, double y, double width, double height) -> void
 {
   gtk_render_check(gobj(), ((cr) ? (cr)->cobj() : nullptr), x, y, width, height);
 }
 
-void StyleContext::render_option(const Cairo::RefPtr<Cairo::Context>& cr, double x, double y, double width, double height)
+auto StyleContext::render_option (
+  const Cairo::RefPtr <Cairo::Context> &cr, double x, double y, double width, double height) -> void
 {
   gtk_render_option(gobj(), ((cr) ? (cr)->cobj() : nullptr), x, y, width, height);
 }
 
-void StyleContext::render_arrow(const Cairo::RefPtr<Cairo::Context>& cr, double angle, double x, double y, double size)
+auto StyleContext::render_arrow (
+  const Cairo::RefPtr <Cairo::Context> &cr, double angle, double x, double y, double size) -> void
 {
   gtk_render_arrow(gobj(), ((cr) ? (cr)->cobj() : nullptr), angle, x, y, size);
 }
 
-void StyleContext::render_background(const Cairo::RefPtr<Cairo::Context>& cr, double x, double y, double width, double height)
+auto StyleContext::render_background (
+  const Cairo::RefPtr <Cairo::Context> &cr, double x, double y, double width, double height) -> void
 {
   gtk_render_background(gobj(), ((cr) ? (cr)->cobj() : nullptr), x, y, width, height);
 }
 
-void StyleContext::render_frame(const Cairo::RefPtr<Cairo::Context>& cr, double x, double y, double width, double height)
+auto StyleContext::render_frame (
+  const Cairo::RefPtr <Cairo::Context> &cr, double x, double y, double width, double height) -> void
 {
   gtk_render_frame(gobj(), ((cr) ? (cr)->cobj() : nullptr), x, y, width, height);
 }
 
-void StyleContext::render_expander(const Cairo::RefPtr<Cairo::Context>& cr, double x, double y, double width, double height)
+auto StyleContext::render_expander (
+  const Cairo::RefPtr <Cairo::Context> &cr, double x, double y, double width, double height) -> void
 {
   gtk_render_expander(gobj(), ((cr) ? (cr)->cobj() : nullptr), x, y, width, height);
 }
 
-void StyleContext::render_focus(const Cairo::RefPtr<Cairo::Context>& cr, double x, double y, double width, double height)
+auto StyleContext::render_focus (
+  const Cairo::RefPtr <Cairo::Context> &cr, double x, double y, double width, double height) -> void
 {
   gtk_render_focus(gobj(), ((cr) ? (cr)->cobj() : nullptr), x, y, width, height);
 }
 
-void StyleContext::render_layout(const Cairo::RefPtr<Cairo::Context>& cr, double x, double y, const Glib::RefPtr<Pango::Layout>& layout)
+auto StyleContext::render_layout (
+  const Cairo::RefPtr <Cairo::Context> &cr, double x, double y,
+  const Glib::RefPtr <Pango::Layout> &layout) -> void
 {
   gtk_render_layout(gobj(), ((cr) ? (cr)->cobj() : nullptr), x, y, Glib::unwrap(layout));
 }
 
-void StyleContext::render_line(const Cairo::RefPtr<Cairo::Context>& cr, double x0, double y0, double x1, double y1)
+auto StyleContext::render_line (
+  const Cairo::RefPtr <Cairo::Context> &cr, double x0, double y0, double x1, double y1) -> void
 {
   gtk_render_line(gobj(), ((cr) ? (cr)->cobj() : nullptr), x0, y0, x1, y1);
 }
 
-void StyleContext::render_handle(const Cairo::RefPtr<Cairo::Context>& cr, double x, double y, double width, double height)
+auto StyleContext::render_handle (
+  const Cairo::RefPtr <Cairo::Context> &cr, double x, double y, double width, double height) -> void
 {
   gtk_render_handle(gobj(), ((cr) ? (cr)->cobj() : nullptr), x, y, width, height);
 }
 
-void StyleContext::render_activity(const Cairo::RefPtr<Cairo::Context>& cr, double x, double y, double width, double height)
+auto StyleContext::render_activity (
+  const Cairo::RefPtr <Cairo::Context> &cr, double x, double y, double width, double height) -> void
 {
   gtk_render_activity(gobj(), ((cr) ? (cr)->cobj() : nullptr), x, y, width, height);
 }
 
-void StyleContext::render_icon(const Cairo::RefPtr<Cairo::Context>& cr, const Glib::RefPtr<Gdk::Texture>& texture, double x, double y)
+auto StyleContext::render_icon (
+  const Cairo::RefPtr <Cairo::Context> &cr, const Glib::RefPtr <Gdk::Texture> &texture, double x,
+  double y) -> void
 {
   gtk_render_icon(gobj(), ((cr) ? (cr)->cobj() : nullptr), Glib::unwrap(texture), x, y);
 }

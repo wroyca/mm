@@ -79,7 +79,7 @@ auto MethodInvocation_Class::init() -> const Glib::Class&
 }
 
 
-void MethodInvocation_Class::class_init_function(void* g_class, void* class_data)
+auto MethodInvocation_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -203,7 +203,7 @@ auto MethodInvocation::get_parameters() const -> Glib::VariantContainerBase
   return Glib::VariantContainerBase(g_dbus_method_invocation_get_parameters(const_cast<GDBusMethodInvocation*>(gobj())), false);
 }
 
-void MethodInvocation::return_value(const Glib::VariantContainerBase& parameters)
+auto MethodInvocation::return_value (const Glib::VariantContainerBase &parameters) -> void
 {
   g_dbus_method_invocation_return_value(gobj(), const_cast<GVariant*>((parameters).gobj()));
 }
@@ -215,17 +215,19 @@ void MethodInvocation::return_value(const Glib::VariantContainerBase& parameters
 }
 #endif // G_OS_UNIX
 
-void MethodInvocation::return_error(const Glib::ustring& domain, int code, const Glib::ustring& message)
+auto MethodInvocation::return_error (
+  const Glib::ustring &domain, int code, const Glib::ustring &message) -> void
 {
   g_dbus_method_invocation_return_error_literal(gobj(), Glib::QueryQuark(domain).id(), code, message.c_str());
 }
 
-void MethodInvocation::return_error(const Glib::Error& error)
+auto MethodInvocation::return_error (const Glib::Error &error) -> void
 {
   g_dbus_method_invocation_return_gerror(gobj(), error.gobj());
 }
 
-void MethodInvocation::return_dbus_error(const Glib::ustring& error_name, const Glib::ustring& error_message)
+auto MethodInvocation::return_dbus_error (
+  const Glib::ustring &error_name, const Glib::ustring &error_message) -> void
 {
   g_dbus_method_invocation_return_dbus_error(gobj(), error_name.c_str(), error_message.c_str());
 }

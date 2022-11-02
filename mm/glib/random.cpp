@@ -34,8 +34,7 @@ Rand::~Rand() noexcept
   g_rand_free(gobject_);
 }
 
-void
-Rand::set_seed(guint32 seed)
+auto Rand::set_seed (guint32 seed) -> void
 {
   g_rand_set_seed(gobject_, seed);
 }

@@ -62,7 +62,7 @@ auto Shortcut_Class::init() -> const Glib::Class&
 }
 
 
-void Shortcut_Class::class_init_function(void* g_class, void* class_data)
+auto Shortcut_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -150,7 +150,7 @@ auto Shortcut::get_trigger() const -> Glib::RefPtr<ShortcutTrigger>
   return retvalue;
 }
 
-void Shortcut::set_trigger(const Glib::RefPtr<const ShortcutTrigger>& trigger)
+auto Shortcut::set_trigger (const Glib::RefPtr <const ShortcutTrigger> &trigger) -> void
 {
   gtk_shortcut_set_trigger(gobj(), Glib::unwrap_copy(std::const_pointer_cast<ShortcutTrigger>(trigger)));
 }
@@ -163,7 +163,7 @@ auto Shortcut::get_action() const -> Glib::RefPtr<ShortcutAction>
   return retvalue;
 }
 
-void Shortcut::set_trigger(const Glib::RefPtr<const ShortcutAction>& action)
+auto Shortcut::set_trigger (const Glib::RefPtr <const ShortcutAction> &action) -> void
 {
   gtk_shortcut_set_action(gobj(), Glib::unwrap_copy(std::const_pointer_cast<ShortcutAction>(action)));
 }
@@ -173,7 +173,7 @@ auto Shortcut::get_arguments() const -> Glib::VariantBase
   return Glib::wrap(gtk_shortcut_get_arguments(const_cast<GtkShortcut*>(gobj())), true);
 }
 
-void Shortcut::set_arguments(const Glib::VariantBase& args) const
+auto Shortcut::set_arguments (const Glib::VariantBase &args) const -> void
 {
   gtk_shortcut_set_arguments(const_cast<GtkShortcut*>(gobj()), const_cast<GVariant*>((args).gobj()));
 }

@@ -74,13 +74,13 @@ auto wrap(GFileAttributeMatcher* object, bool take_copy) -> Glib::RefPtr<Gio::Fi
 namespace Gio
 {
 
-void FileAttributeMatcher::reference() const
+auto FileAttributeMatcher::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_file_attribute_matcher_ref(reinterpret_cast<GFileAttributeMatcher*>(const_cast<FileAttributeMatcher*>(this)));
 }
 
-void FileAttributeMatcher::unreference() const
+auto FileAttributeMatcher::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_file_attribute_matcher_unref(reinterpret_cast<GFileAttributeMatcher*>(const_cast<FileAttributeMatcher*>(this)));
@@ -181,7 +181,7 @@ auto FileInfo_Class::init() -> const Glib::Class&
 }
 
 
-void FileInfo_Class::class_init_function(void* g_class, void* class_data)
+auto FileInfo_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -260,7 +260,7 @@ auto FileInfo::dup() const -> Glib::RefPtr<FileInfo>
   return Glib::wrap(g_file_info_dup(const_cast<GFileInfo*>(gobj())));
 }
 
-void FileInfo::copy_into(Glib::RefPtr<FileInfo>& dest_info) const
+auto FileInfo::copy_into (Glib::RefPtr <FileInfo> &dest_info) const -> void
 {
   g_file_info_copy_into(const_cast<GFileInfo*>(gobj()), Glib::unwrap(dest_info));
 }
@@ -290,7 +290,7 @@ auto FileInfo::get_attribute_type(const std::string& attribute) const -> FileAtt
   return static_cast<FileAttributeType>(g_file_info_get_attribute_type(const_cast<GFileInfo*>(gobj()), attribute.c_str()));
 }
 
-void FileInfo::remove_attribute(const std::string& attribute)
+auto FileInfo::remove_attribute (const std::string &attribute) -> void
 {
   g_file_info_remove_attribute(gobj(), attribute.c_str());
 }
@@ -355,52 +355,56 @@ auto FileInfo::set_attribute_status(const std::string& attribute, FileAttributeS
   return g_file_info_set_attribute_status(gobj(), attribute.c_str(), static_cast<GFileAttributeStatus>(status));
 }
 
-void FileInfo::set_attribute_string(const std::string& attribute, const Glib::ustring& attr_value)
+auto FileInfo::set_attribute_string (
+  const std::string &attribute, const Glib::ustring &attr_value) -> void
 {
   g_file_info_set_attribute_string(gobj(), attribute.c_str(), attr_value.c_str());
 }
 
-void FileInfo::set_attribute_strings(const std::string& attribute, const std::vector<Glib::ustring>& attr_value)
+auto FileInfo::set_attribute_strings (
+  const std::string &attribute, const std::vector <Glib::ustring> &attr_value) -> void
 {
   g_file_info_set_attribute_stringv(gobj(), attribute.c_str(), const_cast<char**>(Glib::ArrayHandler<Glib::ustring>::vector_to_array(attr_value).data()));
 }
 
-void FileInfo::set_attribute_byte_string(const std::string& attribute, const std::string& attr_value)
+auto FileInfo::set_attribute_byte_string (
+  const std::string &attribute, const std::string &attr_value) -> void
 {
   g_file_info_set_attribute_byte_string(gobj(), attribute.c_str(), attr_value.c_str());
 }
 
-void FileInfo::set_attribute_boolean(const std::string& attribute, bool attr_value)
+auto FileInfo::set_attribute_boolean (const std::string &attribute, bool attr_value) -> void
 {
   g_file_info_set_attribute_boolean(gobj(), attribute.c_str(), static_cast<int>(attr_value));
 }
 
-void FileInfo::set_attribute_uint32(const std::string& attribute, guint32 attr_value)
+auto FileInfo::set_attribute_uint32 (const std::string &attribute, guint32 attr_value) -> void
 {
   g_file_info_set_attribute_uint32(gobj(), attribute.c_str(), attr_value);
 }
 
-void FileInfo::set_attribute_int32(const std::string& attribute, gint32 attr_value)
+auto FileInfo::set_attribute_int32 (const std::string &attribute, gint32 attr_value) -> void
 {
   g_file_info_set_attribute_int32(gobj(), attribute.c_str(), attr_value);
 }
 
-void FileInfo::set_attribute_uint64(const std::string& attribute, guint64 attr_value)
+auto FileInfo::set_attribute_uint64 (const std::string &attribute, guint64 attr_value) -> void
 {
   g_file_info_set_attribute_uint64(gobj(), attribute.c_str(), attr_value);
 }
 
-void FileInfo::set_attribute_int64(const std::string& attribute, gint64 attr_value)
+auto FileInfo::set_attribute_int64 (const std::string &attribute, gint64 attr_value) -> void
 {
   g_file_info_set_attribute_int64(gobj(), attribute.c_str(), attr_value);
 }
 
-void FileInfo::set_attribute_object(const std::string& attribute, const Glib::RefPtr<Glib::Object>& attr_value)
+auto FileInfo::set_attribute_object (
+  const std::string &attribute, const Glib::RefPtr <Glib::Object> &attr_value) -> void
 {
   g_file_info_set_attribute_object(gobj(), attribute.c_str(), Glib::unwrap(attr_value));
 }
 
-void FileInfo::clear_status()
+auto FileInfo::clear_status () -> void
 {
   g_file_info_clear_status(gobj());
 }
@@ -511,87 +515,87 @@ auto FileInfo::get_sort_order() const -> gint32
   return g_file_info_get_sort_order(const_cast<GFileInfo*>(gobj()));
 }
 
-void FileInfo::set_attribute_mask(const Glib::RefPtr<FileAttributeMatcher>& mask)
+auto FileInfo::set_attribute_mask (const Glib::RefPtr <FileAttributeMatcher> &mask) -> void
 {
   g_file_info_set_attribute_mask(gobj(), const_cast<GFileAttributeMatcher*>(Glib::unwrap(mask)));
 }
 
-void FileInfo::unset_attribute_mask()
+auto FileInfo::unset_attribute_mask () -> void
 {
   g_file_info_unset_attribute_mask(gobj());
 }
 
-void FileInfo::set_file_type(FileType type)
+auto FileInfo::set_file_type (FileType type) -> void
 {
   g_file_info_set_file_type(gobj(), static_cast<GFileType>(type));
 }
 
-void FileInfo::set_is_hidden(bool hidden)
+auto FileInfo::set_is_hidden (bool hidden) -> void
 {
   g_file_info_set_is_hidden(gobj(), static_cast<int>(hidden));
 }
 
-void FileInfo::set_is_symlink(bool symlink)
+auto FileInfo::set_is_symlink (bool symlink) -> void
 {
   g_file_info_set_is_symlink(gobj(), static_cast<int>(symlink));
 }
 
-void FileInfo::set_name(const std::string& name)
+auto FileInfo::set_name (const std::string &name) -> void
 {
   g_file_info_set_name(gobj(), name.c_str());
 }
 
-void FileInfo::set_display_name(const Glib::ustring& display_name)
+auto FileInfo::set_display_name (const Glib::ustring &display_name) -> void
 {
   g_file_info_set_display_name(gobj(), display_name.c_str());
 }
 
-void FileInfo::set_edit_name(const Glib::ustring& edit_name)
+auto FileInfo::set_edit_name (const Glib::ustring &edit_name) -> void
 {
   g_file_info_set_edit_name(gobj(), edit_name.c_str());
 }
 
-void FileInfo::set_icon(const Glib::RefPtr<Icon>& icon)
+auto FileInfo::set_icon (const Glib::RefPtr <Icon> &icon) -> void
 {
   g_file_info_set_icon(gobj(), const_cast<GIcon*>(Glib::unwrap(icon)));
 }
 
-void FileInfo::set_symbolic_icon(const Glib::RefPtr<Icon>& icon)
+auto FileInfo::set_symbolic_icon (const Glib::RefPtr <Icon> &icon) -> void
 {
   g_file_info_set_symbolic_icon(gobj(), const_cast<GIcon*>(Glib::unwrap(icon)));
 }
 
-void FileInfo::set_content_type(const Glib::ustring& content_type)
+auto FileInfo::set_content_type (const Glib::ustring &content_type) -> void
 {
   g_file_info_set_content_type(gobj(), content_type.c_str());
 }
 
-void FileInfo::set_size(goffset size)
+auto FileInfo::set_size (goffset size) -> void
 {
   g_file_info_set_size(gobj(), size);
 }
 
-void FileInfo::set_modification_date_time(const Glib::DateTime& mtime)
+auto FileInfo::set_modification_date_time (const Glib::DateTime &mtime) -> void
 {
   g_file_info_set_modification_date_time(gobj(), const_cast<GDateTime*>(mtime.gobj()));
 }
 
-void FileInfo::set_access_date_time(const Glib::DateTime& atime)
+auto FileInfo::set_access_date_time (const Glib::DateTime &atime) -> void
 {
   g_file_info_set_access_date_time(gobj(), const_cast<GDateTime*>(atime.gobj()));
 }
 
-void FileInfo::set_creation_date_time(const Glib::DateTime& creation_time)
+auto FileInfo::set_creation_date_time (const Glib::DateTime &creation_time) -> void
 {
   g_file_info_set_creation_date_time(gobj(), const_cast<GDateTime*>(creation_time.gobj()));
 }
 
-void FileInfo::set_symlink_target(const std::string& symlink_target)
+auto FileInfo::set_symlink_target (const std::string &symlink_target) -> void
 {
   g_file_info_set_symlink_target(gobj(), symlink_target.c_str());
 }
 
-void FileInfo::set_sort_order(gint32 sort_order)
+auto FileInfo::set_sort_order (gint32 sort_order) -> void
 {
   g_file_info_set_sort_order(gobj(), sort_order);
 }

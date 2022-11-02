@@ -44,13 +44,14 @@ static auto SignalProxy_Visible_gtk_callback(GtkTreeModel* model, GtkTreeIter* i
   return FALSE; //An arbitary default, just to avoid the compiler warning.
 }
 
-static void SignalProxy_Visible_gtk_callback_destroy(void* data)
+static auto SignalProxy_Visible_gtk_callback_destroy (void *data) -> void
 {
   delete static_cast<Gtk::TreeModelFilter::SlotVisible*>(data);
 }
 
 
-static void SignalProxy_Modify_gtk_callback(GtkTreeModel* model, GtkTreeIter* iter, GValue* value, int column, gpointer data)
+static auto SignalProxy_Modify_gtk_callback (
+  GtkTreeModel *model, GtkTreeIter *iter, GValue *value, int column, gpointer data) -> void
 {
   auto the_slot = static_cast<Gtk::TreeModelFilter::SlotModify*>(data);
 
@@ -76,7 +77,7 @@ static void SignalProxy_Modify_gtk_callback(GtkTreeModel* model, GtkTreeIter* it
   }
 }
 
-static void SignalProxy_Modify_gtk_callback_destroy(void* data)
+static auto SignalProxy_Modify_gtk_callback_destroy (void *data) -> void
 {
   delete static_cast<Gtk::TreeModelFilter::SlotModify*>(data);
 }
@@ -103,7 +104,7 @@ TreeModelFilter::TreeModelFilter(const Glib::RefPtr<TreeModel>& child_model, con
 {
 }
 
-void TreeModelFilter::set_visible_func(const SlotVisible& slot)
+auto TreeModelFilter::set_visible_func (const SlotVisible &slot) -> void
 {
   // Create a copy of the slot.  A pointer to this will be passed
   // through the callback's data parameter.  It will be deleted
@@ -162,7 +163,8 @@ auto TreeModelFilter::convert_iter_to_child_iter(const const_iterator& filter_it
   return child_iter;
 }
 
-void TreeModelFilter::set_modify_func(const TreeModelColumnRecord& columns, const SlotModify& slot)
+auto TreeModelFilter::set_modify_func (
+  const TreeModelColumnRecord &columns, const SlotModify &slot) -> void
 {
   // Create a copy of the slot.  A pointer to this will be passed
   // through the callback's data parameter.  It will be deleted
@@ -175,7 +177,8 @@ void TreeModelFilter::set_modify_func(const TreeModelColumnRecord& columns, cons
     &SignalProxy_Modify_gtk_callback_destroy);
 }
 
-void TreeModelFilter::set_value_impl(const iterator& row, int column, const Glib::ValueBase& value)
+auto TreeModelFilter::set_value_impl (
+  const iterator &row, int column, const Glib::ValueBase &value) -> void
 {
   // Avoid two extra ref/unref cycles -- we don't store the child
   // model pointer anywhere, so it's OK to do this _internally_.
@@ -241,7 +244,7 @@ auto TreeModelFilter_Class::init() -> const Glib::Class&
 }
 
 
-void TreeModelFilter_Class::class_init_function(void* g_class, void* class_data)
+auto TreeModelFilter_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -320,12 +323,12 @@ auto TreeModelFilter::create(const Glib::RefPtr<TreeModel>& child_model, const T
   return Glib::make_refptr_for_instance<TreeModelFilter>( new TreeModelFilter(child_model, virtual_root) );
 }
 
-void TreeModelFilter::set_visible_column(const TreeModelColumnBase& column)
+auto TreeModelFilter::set_visible_column (const TreeModelColumnBase &column) -> void
 {
   gtk_tree_model_filter_set_visible_column(gobj(), (column).index());
 }
 
-void TreeModelFilter::set_visible_column(int column)
+auto TreeModelFilter::set_visible_column (int column) -> void
 {
   gtk_tree_model_filter_set_visible_column(gobj(), column);
 }
@@ -353,12 +356,12 @@ auto TreeModelFilter::convert_path_to_child_path(const Path& filter_path) const 
   return Gtk::TreePath(gtk_tree_model_filter_convert_path_to_child_path(const_cast<GtkTreeModelFilter*>(gobj()), const_cast<GtkTreePath*>((filter_path).gobj())), false);
 }
 
-void TreeModelFilter::refilter()
+auto TreeModelFilter::refilter () -> void
 {
   gtk_tree_model_filter_refilter(gobj());
 }
 
-void TreeModelFilter::clear_cache()
+auto TreeModelFilter::clear_cache () -> void
 {
   gtk_tree_model_filter_clear_cache(gobj());
 }

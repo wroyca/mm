@@ -59,13 +59,13 @@ auto wrap(GdkContentFormatsBuilder* object, bool take_copy) -> Glib::RefPtr<Gdk:
 namespace Gdk
 {
 
-void ContentFormatsBuilder::reference() const
+auto ContentFormatsBuilder::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gdk_content_formats_builder_ref(reinterpret_cast<GdkContentFormatsBuilder*>(const_cast<ContentFormatsBuilder*>(this)));
 }
 
-void ContentFormatsBuilder::unreference() const
+auto ContentFormatsBuilder::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gdk_content_formats_builder_unref(reinterpret_cast<GdkContentFormatsBuilder*>(const_cast<ContentFormatsBuilder*>(this)));
@@ -97,17 +97,17 @@ auto ContentFormatsBuilder::create() -> Glib::RefPtr<ContentFormatsBuilder>
   return Glib::wrap(gdk_content_formats_builder_new());
 }
 
-void ContentFormatsBuilder::add_formats(const Glib::RefPtr<const ContentFormats>& formats)
+auto ContentFormatsBuilder::add_formats (const Glib::RefPtr <const ContentFormats> &formats) -> void
 {
   gdk_content_formats_builder_add_formats(gobj(), Glib::unwrap(formats));
 }
 
-void ContentFormatsBuilder::add_mime_type(const Glib::ustring& mime_type)
+auto ContentFormatsBuilder::add_mime_type (const Glib::ustring &mime_type) -> void
 {
   gdk_content_formats_builder_add_mime_type(gobj(), mime_type.c_str());
 }
 
-void ContentFormatsBuilder::add_gtype(GType gtype)
+auto ContentFormatsBuilder::add_gtype (GType gtype) -> void
 {
   gdk_content_formats_builder_add_gtype(gobj(), gtype);
 }

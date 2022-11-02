@@ -29,7 +29,8 @@ namespace
 {
 
 
-void SignalListItemFactory_signal_setup_callback(GtkSignalListItemFactory* self, GtkListItem* p0,void* data)
+auto SignalListItemFactory_signal_setup_callback (
+  GtkSignalListItemFactory *self, GtkListItem *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<ListItem>&)>;
@@ -59,7 +60,8 @@ const Glib::SignalProxyInfo SignalListItemFactory_signal_setup_info =
 };
 
 
-void SignalListItemFactory_signal_bind_callback(GtkSignalListItemFactory* self, GtkListItem* p0,void* data)
+auto SignalListItemFactory_signal_bind_callback (
+  GtkSignalListItemFactory *self, GtkListItem *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<ListItem>&)>;
@@ -89,7 +91,8 @@ const Glib::SignalProxyInfo SignalListItemFactory_signal_bind_info =
 };
 
 
-void SignalListItemFactory_signal_unbind_callback(GtkSignalListItemFactory* self, GtkListItem* p0,void* data)
+auto SignalListItemFactory_signal_unbind_callback (
+  GtkSignalListItemFactory *self, GtkListItem *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<ListItem>&)>;
@@ -119,7 +122,8 @@ const Glib::SignalProxyInfo SignalListItemFactory_signal_unbind_info =
 };
 
 
-void SignalListItemFactory_signal_teardown_callback(GtkSignalListItemFactory* self, GtkListItem* p0,void* data)
+auto SignalListItemFactory_signal_teardown_callback (
+  GtkSignalListItemFactory *self, GtkListItem *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<ListItem>&)>;
@@ -192,7 +196,7 @@ auto SignalListItemFactory_Class::init() -> const Glib::Class&
 }
 
 
-void SignalListItemFactory_Class::class_init_function(void* g_class, void* class_data)
+auto SignalListItemFactory_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

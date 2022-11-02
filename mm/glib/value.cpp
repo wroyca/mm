@@ -31,14 +31,12 @@ ValueBase::ValueBase()
   std::memset(&gobject_, 0, sizeof(GValue));
 }
 
-void
-ValueBase::init(GType type)
+auto ValueBase::init (GType type) -> void
 {
   g_value_init(&gobject_, type);
 }
 
-void
-ValueBase::init(const GValue* value)
+auto ValueBase::init (const GValue *value) -> void
 {
   g_value_init(&gobject_, G_VALUE_TYPE(value));
 
@@ -67,8 +65,7 @@ ValueBase::~ValueBase() noexcept
   g_value_unset(&gobject_);
 }
 
-void
-ValueBase::reset()
+auto ValueBase::reset () -> void
 {
   g_value_reset(&gobject_);
 }
@@ -82,8 +79,7 @@ ValueBase_Boxed::value_type() -> GType
   return G_TYPE_BOXED;
 }
 
-void
-ValueBase_Boxed::set_boxed(const void* data)
+auto ValueBase_Boxed::set_boxed (const void *data) -> void
 {
   g_value_set_boxed(&gobject_, data);
 }
@@ -111,8 +107,7 @@ ValueBase_Object::value_type() -> GType
   return G_TYPE_OBJECT;
 }
 
-void
-ValueBase_Object::set_object(Glib::ObjectBase* data)
+auto ValueBase_Object::set_object (Glib::ObjectBase *data) -> void
 {
   g_value_set_object(&gobject_, (data) ? data->gobj() : nullptr);
 }
@@ -164,8 +159,7 @@ ValueBase_Enum::value_type() -> GType
   return G_TYPE_ENUM;
 }
 
-void
-ValueBase_Enum::set_enum(int data)
+auto ValueBase_Enum::set_enum (int data) -> void
 {
   g_value_set_enum(&gobject_, data);
 }
@@ -194,8 +188,7 @@ ValueBase_Flags::value_type() -> GType
   return G_TYPE_FLAGS;
 }
 
-void
-ValueBase_Flags::set_flags(unsigned int data)
+auto ValueBase_Flags::set_flags (unsigned int data) -> void
 {
   g_value_set_flags(&gobject_, data);
 }
@@ -222,8 +215,7 @@ ValueBase_String::value_type() -> GType
   return G_TYPE_STRING;
 }
 
-void
-ValueBase_String::set_cstring(const char* data)
+auto ValueBase_String::set_cstring (const char *data) -> void
 {
   g_value_set_string(&gobject_, data);
 }
@@ -253,7 +245,7 @@ auto ValueBase_Variant::value_type() -> GType
   return G_TYPE_VARIANT;
 }
 
-void ValueBase_Variant::set_variant(GVariant* data)
+auto ValueBase_Variant::set_variant (GVariant *data) -> void
 {
   g_value_set_variant(&gobject_, data);
 }
@@ -276,16 +268,14 @@ auto ValueBase_Variant::create_param_spec(const Glib::ustring& name,
 
 /**** Glib::Value<std::string> *********************************************/
 
-void
-Value<std::string>::set(const std::string& data)
+auto Value <std::string>::set (const std::string &data) -> void
 {
   g_value_set_string(&gobject_, data.c_str());
 }
 
 /**** Glib::Value<Glib::ustring> *******************************************/
 
-void
-Value<Glib::ustring>::set(const Glib::ustring& data)
+auto Value <Glib::ustring>::set (const Glib::ustring &data) -> void
 {
   g_value_set_string(&gobject_, data.c_str());
 }
@@ -298,7 +288,7 @@ auto Value<std::vector<std::string>>::value_type() -> GType
   return G_TYPE_STRV;
 }
 
-void Value<std::vector<std::string>>::set(const CppType& data)
+auto Value <std::vector <std::string>>::set (const CppType &data) -> void
 {
   set_boxed(Glib::ArrayHandler<std::string>::vector_to_array(data).data());
 }
@@ -317,7 +307,7 @@ auto Value<std::vector<Glib::ustring>>::value_type() -> GType
   return G_TYPE_STRV;
 }
 
-void Value<std::vector<Glib::ustring>>::set(const CppType& data)
+auto Value <std::vector <Glib::ustring>>::set (const CppType &data) -> void
 {
   set_boxed(Glib::ArrayHandler<Glib::ustring>::vector_to_array(data).data());
 }

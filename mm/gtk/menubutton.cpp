@@ -29,8 +29,8 @@
 namespace
 {
 
-void SignalProxy_MenuButton_create_popup_callback(
-  GtkMenuButton* /* menu_button */, gpointer user_data)
+auto SignalProxy_MenuButton_create_popup_callback (
+  GtkMenuButton * /* menu_button */, gpointer user_data) -> void
 {
   auto the_slot = static_cast<Gtk::MenuButton::SlotCreatePopup*>(user_data);
 
@@ -50,17 +50,17 @@ void SignalProxy_MenuButton_create_popup_callback(
 namespace Gtk
 {
 
-void MenuButton::unset_popover()
+auto MenuButton::unset_popover () -> void
 {
   gtk_menu_button_set_popover(gobj(), nullptr);
 }
 
-void MenuButton::unset_menu_model()
+auto MenuButton::unset_menu_model () -> void
 {
   gtk_menu_button_set_menu_model(gobj(), nullptr);
 }
 
-void MenuButton::set_create_popup_func(const SlotCreatePopup& slot)
+auto MenuButton::set_create_popup_func (const SlotCreatePopup &slot) -> void
 {
   // Create a copy of the slot object. A pointer to this will be passed
   // through the callback's user_data parameter. It will be deleted
@@ -72,12 +72,12 @@ void MenuButton::set_create_popup_func(const SlotCreatePopup& slot)
     &Glib::destroy_notify_delete<SlotCreatePopup>);
 }
 
-void MenuButton::unset_create_popup_func()
+auto MenuButton::unset_create_popup_func () -> void
 {
   gtk_menu_button_set_create_popup_func(gobj(), nullptr, nullptr, nullptr);
 }
 
-void MenuButton::unset_child()
+auto MenuButton::unset_child () -> void
 {
   gtk_menu_button_set_child(gobj(), nullptr);
 }
@@ -127,7 +127,7 @@ auto MenuButton_Class::init() -> const Glib::Class&
 }
 
 
-void MenuButton_Class::class_init_function(void* g_class, void* class_data)
+auto MenuButton_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -197,7 +197,7 @@ MenuButton::MenuButton()
 
 }
 
-void MenuButton::set_popover(Popover& popover)
+auto MenuButton::set_popover (Popover &popover) -> void
 {
   gtk_menu_button_set_popover(gobj(), (popover).Gtk::Widget::gobj());
 }
@@ -212,7 +212,7 @@ auto MenuButton::get_popover() const -> const Popover*
   return const_cast<MenuButton*>(this)->get_popover();
 }
 
-void MenuButton::set_direction(ArrowType direction)
+auto MenuButton::set_direction (ArrowType direction) -> void
 {
   gtk_menu_button_set_direction(gobj(), static_cast<GtkArrowType>(direction));
 }
@@ -222,7 +222,7 @@ auto MenuButton::get_direction() const -> ArrowType
   return static_cast<ArrowType>(gtk_menu_button_get_direction(const_cast<GtkMenuButton*>(gobj())));
 }
 
-void MenuButton::set_menu_model(const Glib::RefPtr<const Gio::MenuModel>& menu_model)
+auto MenuButton::set_menu_model (const Glib::RefPtr <const Gio::MenuModel> &menu_model) -> void
 {
   gtk_menu_button_set_menu_model(gobj(), const_cast<GMenuModel*>(Glib::unwrap(menu_model)));
 }
@@ -240,7 +240,7 @@ auto MenuButton::get_menu_model() const -> Glib::RefPtr<const Gio::MenuModel>
   return const_cast<MenuButton*>(this)->get_menu_model();
 }
 
-void MenuButton::set_icon_name(const Glib::ustring& icon_name)
+auto MenuButton::set_icon_name (const Glib::ustring &icon_name) -> void
 {
   gtk_menu_button_set_icon_name(gobj(), icon_name.c_str());
 }
@@ -250,7 +250,7 @@ auto MenuButton::get_icon_name() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_menu_button_get_icon_name(const_cast<GtkMenuButton*>(gobj())));
 }
 
-void MenuButton::set_always_show_arrow(bool always_show_arrow)
+auto MenuButton::set_always_show_arrow (bool always_show_arrow) -> void
 {
   gtk_menu_button_set_always_show_arrow(gobj(), static_cast<int>(always_show_arrow));
 }
@@ -260,7 +260,7 @@ auto MenuButton::get_always_show_arrow() const -> bool
   return gtk_menu_button_get_always_show_arrow(const_cast<GtkMenuButton*>(gobj()));
 }
 
-void MenuButton::set_label(const Glib::ustring& label)
+auto MenuButton::set_label (const Glib::ustring &label) -> void
 {
   gtk_menu_button_set_label(gobj(), label.c_str());
 }
@@ -270,7 +270,7 @@ auto MenuButton::get_label() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_menu_button_get_label(const_cast<GtkMenuButton*>(gobj())));
 }
 
-void MenuButton::set_use_underline(bool use_underline)
+auto MenuButton::set_use_underline (bool use_underline) -> void
 {
   gtk_menu_button_set_use_underline(gobj(), static_cast<int>(use_underline));
 }
@@ -280,7 +280,7 @@ auto MenuButton::get_use_underline() const -> bool
   return gtk_menu_button_get_use_underline(const_cast<GtkMenuButton*>(gobj()));
 }
 
-void MenuButton::set_has_frame(bool has_frame)
+auto MenuButton::set_has_frame (bool has_frame) -> void
 {
   gtk_menu_button_set_has_frame(gobj(), static_cast<int>(has_frame));
 }
@@ -290,17 +290,17 @@ auto MenuButton::get_has_frame() const -> bool
   return gtk_menu_button_get_has_frame(const_cast<GtkMenuButton*>(gobj()));
 }
 
-void MenuButton::popup()
+auto MenuButton::popup () -> void
 {
   gtk_menu_button_popup(gobj());
 }
 
-void MenuButton::popdown()
+auto MenuButton::popdown () -> void
 {
   gtk_menu_button_popdown(gobj());
 }
 
-void MenuButton::set_primary(bool primary)
+auto MenuButton::set_primary (bool primary) -> void
 {
   gtk_menu_button_set_primary(gobj(), static_cast<int>(primary));
 }
@@ -310,7 +310,7 @@ auto MenuButton::get_primary() const -> bool
   return gtk_menu_button_get_primary(const_cast<GtkMenuButton*>(gobj()));
 }
 
-void MenuButton::set_child(Widget& child)
+auto MenuButton::set_child (Widget &child) -> void
 {
   gtk_menu_button_set_child(gobj(), (child).gobj());
 }

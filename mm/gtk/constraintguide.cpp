@@ -64,7 +64,7 @@ auto ConstraintGuide_Class::init() -> const Glib::Class&
 }
 
 
-void ConstraintGuide_Class::class_init_function(void* g_class, void* class_data)
+auto ConstraintGuide_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -146,37 +146,37 @@ auto ConstraintGuide::create() -> Glib::RefPtr<ConstraintGuide>
   return Glib::make_refptr_for_instance<ConstraintGuide>( new ConstraintGuide() );
 }
 
-void ConstraintGuide::set_min_size(int width, int height)
+auto ConstraintGuide::set_min_size (int width, int height) -> void
 {
   gtk_constraint_guide_set_min_size(gobj(), width, height);
 }
 
-void ConstraintGuide::get_min_size(int& width, int& height) const
+auto ConstraintGuide::get_min_size (int &width, int &height) const -> void
 {
   gtk_constraint_guide_get_min_size(const_cast<GtkConstraintGuide*>(gobj()), &(width), &(height));
 }
 
-void ConstraintGuide::set_nat_size(int width, int height)
+auto ConstraintGuide::set_nat_size (int width, int height) -> void
 {
   gtk_constraint_guide_set_nat_size(gobj(), width, height);
 }
 
-void ConstraintGuide::get_nat_size(int& width, int& height) const
+auto ConstraintGuide::get_nat_size (int &width, int &height) const -> void
 {
   gtk_constraint_guide_get_nat_size(const_cast<GtkConstraintGuide*>(gobj()), &(width), &(height));
 }
 
-void ConstraintGuide::set_max_size(int width, int height)
+auto ConstraintGuide::set_max_size (int width, int height) -> void
 {
   gtk_constraint_guide_set_max_size(gobj(), width, height);
 }
 
-void ConstraintGuide::get_max_size(int& width, int& height) const
+auto ConstraintGuide::get_max_size (int &width, int &height) const -> void
 {
   gtk_constraint_guide_get_max_size(const_cast<GtkConstraintGuide*>(gobj()), &(width), &(height));
 }
 
-void ConstraintGuide::set_strength(Constraint::Strength strength)
+auto ConstraintGuide::set_strength (Constraint::Strength strength) -> void
 {
   gtk_constraint_guide_set_strength(gobj(), static_cast<GtkConstraintStrength>(strength));
 }
@@ -186,7 +186,7 @@ auto ConstraintGuide::get_strength() const -> Constraint::Strength
   return static_cast<Constraint::Strength>(gtk_constraint_guide_get_strength(const_cast<GtkConstraintGuide*>(gobj())));
 }
 
-void ConstraintGuide::set_name(const Glib::ustring& name)
+auto ConstraintGuide::set_name (const Glib::ustring &name) -> void
 {
   gtk_constraint_guide_set_name(gobj(), name.c_str());
 }

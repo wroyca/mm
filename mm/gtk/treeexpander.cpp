@@ -28,12 +28,12 @@
 namespace Gtk
 {
 
-void TreeExpander::unset_child()
+auto TreeExpander::unset_child () -> void
 {
   gtk_tree_expander_set_child(gobj(), nullptr);
 }
 
-void TreeExpander::unset_list_row()
+auto TreeExpander::unset_list_row () -> void
 {
   gtk_tree_expander_set_list_row(gobj(), nullptr);
 }
@@ -77,7 +77,7 @@ auto TreeExpander_Class::init() -> const Glib::Class&
 }
 
 
-void TreeExpander_Class::class_init_function(void* g_class, void* class_data)
+auto TreeExpander_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -157,7 +157,7 @@ auto TreeExpander::get_child() const -> const Widget*
   return const_cast<TreeExpander*>(this)->get_child();
 }
 
-void TreeExpander::set_child(Widget& widget)
+auto TreeExpander::set_child (Widget &widget) -> void
 {
   gtk_tree_expander_set_child(gobj(), (widget).gobj());
 }
@@ -185,7 +185,7 @@ auto TreeExpander::get_list_row() const -> Glib::RefPtr<const TreeListRow>
   return const_cast<TreeExpander*>(this)->get_list_row();
 }
 
-void TreeExpander::set_list_row(const Glib::RefPtr<TreeListRow>& list_row)
+auto TreeExpander::set_list_row (const Glib::RefPtr <TreeListRow> &list_row) -> void
 {
   gtk_tree_expander_set_list_row(gobj(), Glib::unwrap(list_row));
 }
@@ -195,7 +195,7 @@ auto TreeExpander::get_indent_for_icon() const -> bool
   return gtk_tree_expander_get_indent_for_icon(const_cast<GtkTreeExpander*>(gobj()));
 }
 
-void TreeExpander::set_indent_for_icon(bool indent_for_icon)
+auto TreeExpander::set_indent_for_icon (bool indent_for_icon) -> void
 {
   gtk_tree_expander_set_indent_for_icon(gobj(), static_cast<int>(indent_for_icon));
 }

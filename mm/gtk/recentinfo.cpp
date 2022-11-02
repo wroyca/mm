@@ -80,7 +80,7 @@ auto Value<RefPtr<Gtk::RecentInfo> >::value_type() -> GType
   return gtk_recent_info_get_type();
 }
 
-void Value<RefPtr<Gtk::RecentInfo> >::set(const CppType& data)
+auto Value <RefPtr <Gtk::RecentInfo>>::set (const CppType &data) -> void
 {
   set_boxed(Glib::unwrap(data));
 }
@@ -128,13 +128,13 @@ auto wrap(GtkRecentInfo* object, bool take_copy) -> Glib::RefPtr<Gtk::RecentInfo
 namespace Gtk
 {
 
-void RecentInfo::reference() const
+auto RecentInfo::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gtk_recent_info_ref(reinterpret_cast<GtkRecentInfo*>(const_cast<RecentInfo*>(this)));
 }
 
-void RecentInfo::unreference() const
+auto RecentInfo::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gtk_recent_info_unref(reinterpret_cast<GtkRecentInfo*>(const_cast<RecentInfo*>(this)));

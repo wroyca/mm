@@ -75,7 +75,7 @@ auto Paned_Class::init() -> const Glib::Class&
 }
 
 
-void Paned_Class::class_init_function(void* g_class, void* class_data)
+auto Paned_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -147,7 +147,7 @@ Paned::Paned(Orientation orientation)
 
 }
 
-void Paned::set_start_child(Widget& child)
+auto Paned::set_start_child (Widget &child) -> void
 {
   gtk_paned_set_start_child(gobj(), (child).gobj());
 }
@@ -162,7 +162,7 @@ auto Paned::get_start_child() const -> const Widget*
   return const_cast<Paned*>(this)->get_start_child();
 }
 
-void Paned::set_resize_start_child(bool resize)
+auto Paned::set_resize_start_child (bool resize) -> void
 {
   gtk_paned_set_resize_start_child(gobj(), static_cast<int>(resize));
 }
@@ -172,7 +172,7 @@ auto Paned::get_resize_start_child() const -> bool
   return gtk_paned_get_resize_start_child(const_cast<GtkPaned*>(gobj()));
 }
 
-void Paned::set_shrink_start_child(bool resize)
+auto Paned::set_shrink_start_child (bool resize) -> void
 {
   gtk_paned_set_shrink_start_child(gobj(), static_cast<int>(resize));
 }
@@ -182,7 +182,7 @@ auto Paned::get_shrink_start_child() const -> bool
   return gtk_paned_get_shrink_start_child(const_cast<GtkPaned*>(gobj()));
 }
 
-void Paned::set_end_child(Widget& child)
+auto Paned::set_end_child (Widget &child) -> void
 {
   gtk_paned_set_end_child(gobj(), (child).gobj());
 }
@@ -197,7 +197,7 @@ auto Paned::get_end_child() const -> const Widget*
   return const_cast<Paned*>(this)->get_end_child();
 }
 
-void Paned::set_resize_end_child(bool resize)
+auto Paned::set_resize_end_child (bool resize) -> void
 {
   gtk_paned_set_resize_end_child(gobj(), static_cast<int>(resize));
 }
@@ -207,7 +207,7 @@ auto Paned::get_resize_end_child() const -> bool
   return gtk_paned_get_resize_end_child(const_cast<GtkPaned*>(gobj()));
 }
 
-void Paned::set_shrink_end_child(bool resize)
+auto Paned::set_shrink_end_child (bool resize) -> void
 {
   gtk_paned_set_shrink_end_child(gobj(), static_cast<int>(resize));
 }
@@ -222,12 +222,12 @@ auto Paned::get_position() const -> int
   return gtk_paned_get_position(const_cast<GtkPaned*>(gobj()));
 }
 
-void Paned::set_position(int position)
+auto Paned::set_position (int position) -> void
 {
   gtk_paned_set_position(gobj(), position);
 }
 
-void Paned::set_wide_handle(bool wide)
+auto Paned::set_wide_handle (bool wide) -> void
 {
   gtk_paned_set_wide_handle(gobj(), static_cast<int>(wide));
 }

@@ -69,8 +69,7 @@ struct DispatchNotifyData
   {}
 };
 
-void
-warn_failed_pipe_io(const char* what)
+auto warn_failed_pipe_io (const char *what) -> void
 {
 #ifdef G_OS_WIN32
   const char* const message = g_win32_error_message(GetLastError());
@@ -82,8 +81,7 @@ warn_failed_pipe_io(const char* what)
 
 #ifdef G_OS_WIN32
 
-static void
-fd_close_and_invalidate(HANDLE& fd)
+static auto fd_close_and_invalidate (HANDLE &fd) -> void
 {
   if (fd != 0)
   {
@@ -126,7 +124,7 @@ fd_close_and_invalidate(int& fd)
 }
 #endif /* !G_OS_WIN32 */
 
-void warn_dropped_dispatcher_message()
+auto warn_dropped_dispatcher_message () -> void
 {
   g_warning("Dropped dispatcher message as the dispatcher no longer exists.");
 }
@@ -163,9 +161,10 @@ public:
   auto operator=(const DispatchNotifier&) -> DispatchNotifier& = delete;
 
   static auto reference_instance(const Glib::RefPtr<MainContext>& context) -> DispatchNotifier*;
-  static void unreference_instance(DispatchNotifier* notifier, Dispatcher::Impl* dispatcher_impl);
+  static auto unreference_instance (
+    DispatchNotifier *notifier, Dispatcher::Impl *dispatcher_impl) -> void;
 
-  void send_notification(Dispatcher::Impl* dispatcher_impl);
+  auto send_notification (Dispatcher::Impl *dispatcher_impl) -> void;
 
 protected:
   // Only used by reference_instance().  Should be private, but that triggers
@@ -188,7 +187,7 @@ private:
   int fd_sender_;
 #endif
 
-  void create_pipe();
+  auto create_pipe () -> void;
   auto pipe_io_handler(Glib::IOCondition condition) -> bool;
   auto pipe_is_empty() -> bool;
 };
@@ -253,8 +252,7 @@ DispatchNotifier::~DispatchNotifier() noexcept
   fd_close_and_invalidate(fd_receiver_);
 }
 
-void
-DispatchNotifier::create_pipe()
+auto DispatchNotifier::create_pipe () -> void
 {
 #ifdef G_OS_WIN32
 
@@ -316,8 +314,8 @@ auto DispatchNotifier::reference_instance(
 }
 
 // static
-void DispatchNotifier::unreference_instance(
-  DispatchNotifier* notifier, Dispatcher::Impl* dispatcher_impl)
+auto DispatchNotifier::unreference_instance (
+  DispatchNotifier *notifier, Dispatcher::Impl *dispatcher_impl) -> void
 {
   DispatchNotifier* const instance = thread_specific_instance_;
 
@@ -351,7 +349,7 @@ void DispatchNotifier::unreference_instance(
   }
 }
 
-void DispatchNotifier::send_notification(Dispatcher::Impl* dispatcher_impl)
+auto DispatchNotifier::send_notification (Dispatcher::Impl *dispatcher_impl) -> void
 {
 #ifdef G_OS_WIN32
   {
@@ -505,14 +503,12 @@ Dispatcher::~Dispatcher() noexcept
   DispatchNotifier::unreference_instance(impl_->notifier_, impl_);
 }
 
-void
-Dispatcher::emit()
+auto Dispatcher::emit () -> void
 {
   impl_->notifier_->send_notification(impl_);
 }
 
-void
-Dispatcher::operator()()
+auto Dispatcher::operator() () -> void
 {
   impl_->notifier_->send_notification(impl_);
 }

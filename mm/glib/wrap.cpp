@@ -41,8 +41,7 @@ WrapFuncTable* wrap_func_table = nullptr;
 namespace Glib
 {
 
-void
-wrap_register_init()
+auto wrap_register_init () -> void
 {
   // g_type_init() is deprecated as of 2.36.
   // g_type_init();
@@ -62,8 +61,7 @@ wrap_register_init()
   }
 }
 
-void
-wrap_register_cleanup()
+auto wrap_register_cleanup () -> void
 {
   if (wrap_func_table)
   {
@@ -75,8 +73,7 @@ wrap_register_cleanup()
 // Register the unique wrap_new() function of a new C++ wrapper type.
 // The GType argument specifies the parent C type to wrap from.
 //
-void
-wrap_register(GType type, WrapNewFunction func)
+auto wrap_register (GType type, WrapNewFunction func) -> void
 {
   // 0 is not a valid GType.
   // It would lead to a critical warning in g_type_set_qdata().

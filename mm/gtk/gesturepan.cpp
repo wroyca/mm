@@ -29,7 +29,8 @@ namespace
 {
 
 
-void GesturePan_signal_pan_callback(GtkGesturePan* self, GtkPanDirection p0,gdouble p1,void* data)
+auto GesturePan_signal_pan_callback (
+  GtkGesturePan *self, GtkPanDirection p0, gdouble p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(PanDirection, double)>;
@@ -109,7 +110,7 @@ auto GesturePan_Class::init() -> const Glib::Class&
 }
 
 
-void GesturePan_Class::class_init_function(void* g_class, void* class_data)
+auto GesturePan_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -204,7 +205,7 @@ auto GesturePan::get_orientation() const -> Orientation
   return static_cast<Orientation>(gtk_gesture_pan_get_orientation(const_cast<GtkGesturePan*>(gobj())));
 }
 
-void GesturePan::set_orientation(Orientation orientation)
+auto GesturePan::set_orientation (Orientation orientation) -> void
 {
   gtk_gesture_pan_set_orientation(gobj(), static_cast<GtkOrientation>(orientation));
 }

@@ -28,8 +28,7 @@
 namespace Gio
 {
 
-void
-Action::activate()
+auto Action::activate () -> void
 {
   g_action_activate(gobj(), nullptr);
 }
@@ -74,7 +73,7 @@ auto Action_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Action_Class::iface_init_function(void* g_iface, void*)
+auto Action_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -363,7 +362,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = GVariant*;
   return RType();
 }
-void Action_Class::change_state_vfunc_callback(GAction* self, GVariant* value)
+auto Action_Class::change_state_vfunc_callback (GAction *self, GVariant *value) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -401,7 +400,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->change_state)
     (*base->change_state)(self, value);
 }
-void Action_Class::activate_vfunc_callback(GAction* self, GVariant* parameter)
+auto Action_Class::activate_vfunc_callback (GAction *self, GVariant *parameter) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -478,7 +477,7 @@ Action::~Action() noexcept
 {}
 
 // static
-void Action::add_interface(GType gtype_implementer)
+auto Action::add_interface (GType gtype_implementer) -> void
 {
   action_class_.init().add_interface(gtype_implementer);
 }
@@ -522,7 +521,7 @@ auto Action::get_enabled() const -> bool
   return g_action_get_enabled(const_cast<GAction*>(gobj()));
 }
 
-void Action::change_state_variant(const Glib::VariantBase& value)
+auto Action::change_state_variant (const Glib::VariantBase &value) -> void
 {
   g_action_change_state(gobj(), const_cast<GVariant*>((value).gobj()));
 }
@@ -532,7 +531,7 @@ auto Action::get_state_variant() const -> Glib::VariantBase
   return Glib::wrap(g_action_get_state(const_cast<GAction*>(gobj())), false);
 }
 
-void Action::activate_variant(const Glib::VariantBase& parameter)
+auto Action::activate_variant (const Glib::VariantBase &parameter) -> void
 {
   g_action_activate(gobj(), const_cast<GVariant*>((parameter).gobj()));
 }
@@ -542,7 +541,9 @@ auto Action::name_is_valid(const Glib::ustring& action_name) -> bool
   return g_action_name_is_valid(action_name.c_str());
 }
 
-void Action::parse_detailed_name_variant(const Glib::ustring& detailed_name, Glib::ustring& action_name, Glib::VariantBase& target_value)
+auto Action::parse_detailed_name_variant (
+  const Glib::ustring &detailed_name, Glib::ustring &action_name,
+  Glib::VariantBase &target_value) -> void
 {
   GError* gerror = nullptr;
   gchar* g_action_name = nullptr;
@@ -694,7 +695,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = Glib::VariantBase;
   return RType();
 }
-void Gio::Action::change_state_vfunc(const Glib::VariantBase& value)
+auto Gio::Action::change_state_vfunc (const Glib::VariantBase &value) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -706,7 +707,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->change_state)(gobj(),const_cast<GVariant*>((value).gobj()));
   }
 }
-void Gio::Action::activate_vfunc(const Glib::VariantBase& parameter)
+auto Gio::Action::activate_vfunc (const Glib::VariantBase &parameter) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

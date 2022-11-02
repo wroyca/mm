@@ -61,13 +61,13 @@ auto wrap(GtkCssSection* object, bool take_copy) -> Glib::RefPtr<Gtk::CssSection
 namespace Gtk
 {
 
-void CssSection::reference() const
+auto CssSection::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gtk_css_section_ref(reinterpret_cast<GtkCssSection*>(const_cast<CssSection*>(this)));
 }
 
-void CssSection::unreference() const
+auto CssSection::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gtk_css_section_unref(reinterpret_cast<GtkCssSection*>(const_cast<CssSection*>(this)));

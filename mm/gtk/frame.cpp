@@ -29,12 +29,12 @@
 namespace Gtk
 {
 
-void Frame::unset_label()
+auto Frame::unset_label () -> void
 {
   gtk_frame_set_label(gobj(), nullptr);
 }
 
-void Frame::unset_child()
+auto Frame::unset_child () -> void
 {
   gtk_frame_set_child(gobj(), nullptr);
 }
@@ -84,7 +84,7 @@ auto Frame_Class::init() -> const Glib::Class&
 }
 
 
-void Frame_Class::class_init_function(void* g_class, void* class_data)
+auto Frame_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -93,7 +93,8 @@ void Frame_Class::class_init_function(void* g_class, void* class_data)
 
 }
 
-void Frame_Class::compute_child_allocation_vfunc_callback(GtkFrame* self, GtkAllocation* allocation)
+auto Frame_Class::compute_child_allocation_vfunc_callback (
+  GtkFrame *self, GtkAllocation *allocation) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -203,7 +204,7 @@ Frame::Frame(const Glib::ustring& label)
 
 }
 
-void Frame::set_label(const Glib::ustring& label)
+auto Frame::set_label (const Glib::ustring &label) -> void
 {
   gtk_frame_set_label(gobj(), label.c_str());
 }
@@ -213,7 +214,7 @@ auto Frame::get_label() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_frame_get_label(const_cast<GtkFrame*>(gobj())));
 }
 
-void Frame::set_label_widget(Widget& label_widget)
+auto Frame::set_label_widget (Widget &label_widget) -> void
 {
   gtk_frame_set_label_widget(gobj(), (label_widget).gobj());
 }
@@ -228,12 +229,12 @@ auto Frame::get_label_widget() const -> const Widget*
   return const_cast<Frame*>(this)->get_label_widget();
 }
 
-void Frame::set_label_align(float xalign)
+auto Frame::set_label_align (float xalign) -> void
 {
   gtk_frame_set_label_align(gobj(), xalign);
 }
 
-void Frame::set_label_align(Align xalign)
+auto Frame::set_label_align (Align xalign) -> void
 {
   gtk_frame_set_label_align(gobj(), _gtkmm_align_float_from_enum(xalign));
 }
@@ -243,7 +244,7 @@ auto Frame::get_label_align() const -> float
   return gtk_frame_get_label_align(const_cast<GtkFrame*>(gobj()));
 }
 
-void Frame::set_child(Widget& child)
+auto Frame::set_child (Widget &child) -> void
 {
   gtk_frame_set_child(gobj(), (child).gobj());
 }
@@ -300,7 +301,7 @@ auto Frame::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 }
 
 
-void Gtk::Frame::compute_child_allocation_vfunc(Allocation& allocation)
+auto Gtk::Frame::compute_child_allocation_vfunc (Allocation &allocation) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

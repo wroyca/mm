@@ -23,12 +23,12 @@ public:
   friend class SocketControlMessage;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  const Glib::Class& init();
+  auto init () -> const Glib::Class&;
 
 
-  static void class_init_function(void* g_class, void* class_data);
+  static auto class_init_function (void *g_class, void *class_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -37,12 +37,12 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static GSocketControlMessage* deserialize_vfunc_callback(
-    int level, int type, gsize size, gpointer data);
-    static gsize get_size_vfunc_callback(GSocketControlMessage* self);
-  static int get_level_vfunc_callback(GSocketControlMessage* self);
-  static int get_type_vfunc_callback(GSocketControlMessage* self);
-  static void serialize_vfunc_callback(GSocketControlMessage* self, gpointer data);
+  static auto deserialize_vfunc_callback (
+    int level, int type, gsize size, gpointer data) -> GSocketControlMessage*;
+    static auto get_size_vfunc_callback (GSocketControlMessage *self) -> gsize;
+  static auto get_level_vfunc_callback (GSocketControlMessage *self) -> int;
+  static auto get_type_vfunc_callback (GSocketControlMessage *self) -> int;
+  static auto serialize_vfunc_callback (GSocketControlMessage *self, gpointer data) -> void;
 };
 
 

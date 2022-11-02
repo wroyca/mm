@@ -29,9 +29,9 @@
 namespace Gio
 {
 
-void
-SocketConnection::connect_async(const Glib::RefPtr<SocketAddress>& address,
-  const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto SocketConnection::connect_async (
+  const Glib::RefPtr <SocketAddress> &address,
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   auto slot_copy = new SlotAsyncReady(slot);
 
@@ -39,9 +39,8 @@ SocketConnection::connect_async(const Glib::RefPtr<SocketAddress>& address,
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-SocketConnection::connect_async(
-  const Glib::RefPtr<SocketAddress>& address, const SlotAsyncReady& slot)
+auto SocketConnection::connect_async (
+  const Glib::RefPtr <SocketAddress> &address, const SlotAsyncReady &slot) -> void
 {
   auto slot_copy = new SlotAsyncReady(slot);
 
@@ -96,7 +95,7 @@ auto SocketConnection_Class::init() -> const Glib::Class&
 }
 
 
-void SocketConnection_Class::class_init_function(void* g_class, void* class_data)
+auto SocketConnection_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

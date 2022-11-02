@@ -202,8 +202,7 @@ KeyFile::get_double(const Glib::ustring& key) const -> double
   return retvalue;
 }
 
-void
-KeyFile::set_double(const Glib::ustring& key, double value)
+auto KeyFile::set_double (const Glib::ustring &key, double value) -> void
 {
   g_key_file_set_double(gobj(), nullptr, key.c_str(), value);
 }
@@ -287,41 +286,39 @@ KeyFile::get_double_list(
   return Glib::ArrayHandler<double>::array_to_vector(array, length, Glib::OWNERSHIP_SHALLOW);
 }
 
-void
-KeyFile::set_string_list(const Glib::ustring& group_name, const Glib::ustring& key,
-  const std::vector<Glib::ustring>& list)
+auto KeyFile::set_string_list (
+  const Glib::ustring &group_name, const Glib::ustring &key,
+  const std::vector <Glib::ustring> &list) -> void
 {
   g_key_file_set_string_list(
     gobj(), Glib::c_str_or_nullptr(group_name), key.c_str(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(list).data(), list.size());
 }
 
-void
-KeyFile::set_locale_string_list(const Glib::ustring& group_name, const Glib::ustring& key,
-  const Glib::ustring& locale, const std::vector<Glib::ustring>& list)
+auto KeyFile::set_locale_string_list (
+  const Glib::ustring &group_name, const Glib::ustring &key,
+  const Glib::ustring &locale, const std::vector <Glib::ustring> &list) -> void
 {
   g_key_file_set_locale_string_list(gobj(), Glib::c_str_or_nullptr(group_name), key.c_str(),
     locale.c_str(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(list).data(), list.size());
 }
 
-void
-KeyFile::set_integer_list(
-  const Glib::ustring& group_name, const Glib::ustring& key, const std::vector<int>&  list)
+auto KeyFile::set_integer_list (
+  const Glib::ustring &group_name, const Glib::ustring &key, const std::vector <int> &list) -> void
 {
   g_key_file_set_integer_list(gobj(), Glib::c_str_or_nullptr(group_name), key.c_str(),
     const_cast<int*>(Glib::ArrayHandler<int>::vector_to_array(list).data()), list.size());
 }
 
-void
-KeyFile::set_double_list(
-  const Glib::ustring& group_name, const Glib::ustring& key, const std::vector<double>&  list)
+auto KeyFile::set_double_list (
+  const Glib::ustring &group_name, const Glib::ustring &key,
+  const std::vector <double> &list) -> void
 {
   g_key_file_set_double_list(
     gobj(), group_name.c_str(), key.c_str(), const_cast<double*>(Glib::ArrayHandler<double>::vector_to_array(list).data()), list.size());
 }
 
-void
-KeyFile::set_boolean_list(
-  const Glib::ustring& group_name, const Glib::ustring& key, const std::vector<bool>&  list)
+auto KeyFile::set_boolean_list (
+  const Glib::ustring &group_name, const Glib::ustring &key, const std::vector <bool> &list) -> void
 {
   g_key_file_set_boolean_list(gobj(), Glib::c_str_or_nullptr(group_name), key.c_str(),
     const_cast<gboolean*>(Glib::ArrayHandler<bool>::vector_to_array(list).data()), list.size());
@@ -350,8 +347,7 @@ KeyFile::get_comment(const Glib::ustring& group_name GLIBMM_ERROR_ARG) const -> 
   return Glib::convert_return_gchar_ptr_to_ustring(str);
 }
 
-void
-KeyFile::set_comment(const Glib::ustring& comment GLIBMM_ERROR_ARG)
+auto KeyFile::set_comment (const Glib::ustring &comment GLIBMM_ERROR_ARG) -> void
 {
   GError* gerror = nullptr;
   g_key_file_set_comment(gobj(), nullptr, nullptr, comment.c_str(), &gerror);
@@ -359,8 +355,8 @@ KeyFile::set_comment(const Glib::ustring& comment GLIBMM_ERROR_ARG)
   GLIBMM_THROW(gerror);
 }
 
-void
-KeyFile::set_comment(const Glib::ustring& group_name, const Glib::ustring& comment GLIBMM_ERROR_ARG)
+auto KeyFile::set_comment (
+  const Glib::ustring &group_name, const Glib::ustring &comment GLIBMM_ERROR_ARG) -> void
 {
   GError* gerror = nullptr;
   g_key_file_set_comment(
@@ -390,7 +386,7 @@ auto Glib::KeyFileError::code() const -> Glib::KeyFileError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Glib::KeyFileError::throw_func(GError* gobject)
+auto Glib::KeyFileError::throw_func (GError *gobject) -> void
 {
   throw Glib::KeyFileError(gobject);
 }
@@ -434,13 +430,13 @@ auto KeyFile::create() -> Glib::RefPtr<KeyFile>
   return Glib::make_refptr_for_instance<KeyFile>(reinterpret_cast<KeyFile*>(g_key_file_new()));
 }
 
-void KeyFile::reference() const
+auto KeyFile::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_key_file_ref(reinterpret_cast<GKeyFile*>(const_cast<KeyFile*>(this)));
 }
 
-void KeyFile::unreference() const
+auto KeyFile::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_key_file_unref(reinterpret_cast<GKeyFile*>(const_cast<KeyFile*>(this)));
@@ -581,7 +577,8 @@ auto KeyFile::get_double(const Glib::ustring& group_name, const Glib::ustring& k
   return retvalue;
 }
 
-void KeyFile::set_double(const Glib::ustring& group_name, const Glib::ustring& key, double value)
+auto KeyFile::set_double (
+  const Glib::ustring &group_name, const Glib::ustring &key, double value) -> void
 {
   g_key_file_set_double(gobj(), group_name.c_str(), key.c_str(), value);
 }
@@ -595,47 +592,56 @@ auto KeyFile::get_comment(const Glib::ustring& group_name, const Glib::ustring& 
   return retvalue;
 }
 
-void KeyFile::set_list_separator(gchar separator)
+auto KeyFile::set_list_separator (gchar separator) -> void
 {
   g_key_file_set_list_separator(gobj(), separator);
 }
 
-void KeyFile::set_value(const Glib::ustring& group_name, const Glib::ustring& key, const Glib::ustring& value)
+auto KeyFile::set_value (
+  const Glib::ustring &group_name, const Glib::ustring &key, const Glib::ustring &value) -> void
 {
   g_key_file_set_value(gobj(), group_name.c_str(), key.c_str(), value.c_str());
 }
 
-void KeyFile::set_string(const Glib::ustring& group_name, const Glib::ustring& key, const Glib::ustring& string)
+auto KeyFile::set_string (
+  const Glib::ustring &group_name, const Glib::ustring &key, const Glib::ustring &string) -> void
 {
   g_key_file_set_string(gobj(), group_name.c_str(), key.c_str(), string.c_str());
 }
 
-void KeyFile::set_locale_string(const Glib::ustring& group_name, const Glib::ustring& key, const Glib::ustring& locale, const Glib::ustring& string)
+auto KeyFile::set_locale_string (
+  const Glib::ustring &group_name, const Glib::ustring &key, const Glib::ustring &locale,
+  const Glib::ustring &string) -> void
 {
   g_key_file_set_locale_string(gobj(), group_name.c_str(), key.c_str(), locale.c_str(), string.c_str());
 }
 
-void KeyFile::set_boolean(const Glib::ustring& group_name, const Glib::ustring& key, bool value)
+auto KeyFile::set_boolean (
+  const Glib::ustring &group_name, const Glib::ustring &key, bool value) -> void
 {
   g_key_file_set_boolean(gobj(), group_name.c_str(), key.c_str(), static_cast<int>(value));
 }
 
-void KeyFile::set_integer(const Glib::ustring& group_name, const Glib::ustring& key, int value)
+auto KeyFile::set_integer (
+  const Glib::ustring &group_name, const Glib::ustring &key, int value) -> void
 {
   g_key_file_set_integer(gobj(), group_name.c_str(), key.c_str(), value);
 }
 
-void KeyFile::set_int64(const Glib::ustring& group_name, const Glib::ustring& key, gint64 value)
+auto KeyFile::set_int64 (
+  const Glib::ustring &group_name, const Glib::ustring &key, gint64 value) -> void
 {
   g_key_file_set_int64(gobj(), group_name.c_str(), key.c_str(), value);
 }
 
-void KeyFile::set_uint64(const Glib::ustring& group_name, const Glib::ustring& key, guint64 value)
+auto KeyFile::set_uint64 (
+  const Glib::ustring &group_name, const Glib::ustring &key, guint64 value) -> void
 {
   g_key_file_set_uint64(gobj(), group_name.c_str(), key.c_str(), value);
 }
 
-void KeyFile::set_comment(const Glib::ustring& group_name, const Glib::ustring& key, const Glib::ustring& comment)
+auto KeyFile::set_comment (
+  const Glib::ustring &group_name, const Glib::ustring &key, const Glib::ustring &comment) -> void
 {
   GError* gerror = nullptr;
   g_key_file_set_comment(gobj(), group_name.c_str(), key.c_str(), comment.c_str(), &(gerror));
@@ -643,7 +649,7 @@ void KeyFile::set_comment(const Glib::ustring& group_name, const Glib::ustring& 
     ::Glib::Error::throw_exception(gerror);
 }
 
-void KeyFile::remove_comment(const Glib::ustring& group_name, const Glib::ustring& key)
+auto KeyFile::remove_comment (const Glib::ustring &group_name, const Glib::ustring &key) -> void
 {
   GError* gerror = nullptr;
   g_key_file_remove_comment(gobj(), group_name.c_str(), key.c_str(), &(gerror));
@@ -651,7 +657,7 @@ void KeyFile::remove_comment(const Glib::ustring& group_name, const Glib::ustrin
     ::Glib::Error::throw_exception(gerror);
 }
 
-void KeyFile::remove_key(const Glib::ustring& group_name, const Glib::ustring& key)
+auto KeyFile::remove_key (const Glib::ustring &group_name, const Glib::ustring &key) -> void
 {
   GError* gerror = nullptr;
   g_key_file_remove_key(gobj(), group_name.c_str(), key.c_str(), &(gerror));
@@ -659,7 +665,7 @@ void KeyFile::remove_key(const Glib::ustring& group_name, const Glib::ustring& k
     ::Glib::Error::throw_exception(gerror);
 }
 
-void KeyFile::remove_group(const Glib::ustring& group_name)
+auto KeyFile::remove_group (const Glib::ustring &group_name) -> void
 {
   GError* gerror = nullptr;
   g_key_file_remove_group(gobj(), group_name.c_str(), &(gerror));

@@ -78,7 +78,7 @@ auto Module::get_supported() -> bool
   return g_module_supported();
 }
 
-void Module::make_resident()
+auto Module::make_resident () -> void
 {
   g_module_make_resident(gobj());
 }

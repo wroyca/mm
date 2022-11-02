@@ -80,13 +80,13 @@ auto wrap(GVariantDict* object, bool take_copy) -> Glib::RefPtr<Glib::VariantDic
 namespace Glib
 {
 
-void VariantDict::reference() const
+auto VariantDict::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_variant_dict_ref(reinterpret_cast<GVariantDict*>(const_cast<VariantDict*>(this)));
 }
 
-void VariantDict::unreference() const
+auto VariantDict::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_variant_dict_unref(reinterpret_cast<GVariantDict*>(const_cast<VariantDict*>(this)));
@@ -128,7 +128,7 @@ auto VariantDict::contains(const Glib::ustring& key) const -> bool
   return g_variant_dict_contains(const_cast<GVariantDict*>(gobj()), key.c_str());
 }
 
-void VariantDict::insert_value_variant(const Glib::ustring& key, const VariantBase& value)
+auto VariantDict::insert_value_variant (const Glib::ustring &key, const VariantBase &value) -> void
 {
   g_variant_dict_insert_value(gobj(), key.c_str(), const_cast<GVariant*>((value).gobj()));
 }
@@ -138,7 +138,7 @@ auto VariantDict::remove(const Glib::ustring& key) -> bool
   return g_variant_dict_remove(gobj(), key.c_str());
 }
 
-void VariantDict::clear()
+auto VariantDict::clear () -> void
 {
   g_variant_dict_clear(gobj());
 }

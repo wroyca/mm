@@ -38,9 +38,8 @@ struct WatchSlots
 
 extern "C" {
 
-static void
-Bus_Name_Appeared_giomm_callback(
-  GDBusConnection* connection, const gchar* name, const char* name_owner, gpointer data)
+static auto Bus_Name_Appeared_giomm_callback (
+  GDBusConnection *connection, const gchar *name, const char *name_owner, gpointer data) -> void
 {
   auto slots = static_cast<WatchSlots*>(data);
   auto the_slot = slots->name_appeared_slot;
@@ -56,8 +55,8 @@ Bus_Name_Appeared_giomm_callback(
   }
 }
 
-static void
-Bus_Name_Vanished_giomm_callback(GDBusConnection* connection, const gchar* name, gpointer data)
+static auto Bus_Name_Vanished_giomm_callback (
+  GDBusConnection *connection, const gchar *name, gpointer data) -> void
 {
   auto slots = static_cast<WatchSlots*>(data);
   auto the_slot = slots->name_vanished_slot;
@@ -72,8 +71,7 @@ Bus_Name_Vanished_giomm_callback(GDBusConnection* connection, const gchar* name,
   }
 }
 
-static void
-Bus_Watch_Name_giomm_callback_destroy(void* data)
+static auto Bus_Watch_Name_giomm_callback_destroy (void *data) -> void
 {
   auto slots = static_cast<WatchSlots*>(data);
 
@@ -124,8 +122,7 @@ watch_name(const Glib::RefPtr<Connection>& connection, const Glib::ustring& name
     &Bus_Name_Vanished_giomm_callback, slots, &Bus_Watch_Name_giomm_callback_destroy);
 }
 
-void
-unwatch_name(guint watcher_id)
+auto unwatch_name (guint watcher_id) -> void
 {
   g_bus_unwatch_name(watcher_id);
 }

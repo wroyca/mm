@@ -113,7 +113,7 @@ auto Calendar_Class::init() -> const Glib::Class&
 }
 
 
-void Calendar_Class::class_init_function(void* g_class, void* class_data)
+auto Calendar_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -183,27 +183,27 @@ Calendar::Calendar()
 
 }
 
-void Calendar::select_day(const Glib::DateTime& day)
+auto Calendar::select_day (const Glib::DateTime &day) -> void
 {
   gtk_calendar_select_day(gobj(), const_cast<GDateTime*>(day.gobj()));
 }
 
-void Calendar::mark_day(guint day)
+auto Calendar::mark_day (guint day) -> void
 {
   gtk_calendar_mark_day(gobj(), day);
 }
 
-void Calendar::unmark_day(guint day)
+auto Calendar::unmark_day (guint day) -> void
 {
   gtk_calendar_unmark_day(gobj(), day);
 }
 
-void Calendar::clear_marks()
+auto Calendar::clear_marks () -> void
 {
   gtk_calendar_clear_marks(gobj());
 }
 
-void Calendar::set_show_week_numbers(bool value)
+auto Calendar::set_show_week_numbers (bool value) -> void
 {
   gtk_calendar_set_show_week_numbers(gobj(), static_cast<int>(value));
 }
@@ -213,7 +213,7 @@ auto Calendar::get_show_week_numbers() const -> bool
   return gtk_calendar_get_show_week_numbers(const_cast<GtkCalendar*>(gobj()));
 }
 
-void Calendar::set_show_heading(bool value)
+auto Calendar::set_show_heading (bool value) -> void
 {
   gtk_calendar_set_show_heading(gobj(), static_cast<int>(value));
 }
@@ -223,7 +223,7 @@ auto Calendar::get_show_heading() const -> bool
   return gtk_calendar_get_show_heading(const_cast<GtkCalendar*>(gobj()));
 }
 
-void Calendar::set_show_day_names(bool value)
+auto Calendar::set_show_day_names (bool value) -> void
 {
   gtk_calendar_set_show_day_names(gobj(), static_cast<int>(value));
 }

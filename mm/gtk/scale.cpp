@@ -74,7 +74,7 @@ Scale::Scale(const Glib::RefPtr<Adjustment>& adjustment, Orientation orientation
 {
 }
 
-void Scale::set_format_value_func(const SlotFormatValue& slot)
+auto Scale::set_format_value_func (const SlotFormatValue &slot) -> void
 {
   // Create a copy of the slot object. A pointer to this will be passed
   // through the callback's data parameter. It will be deleted
@@ -86,7 +86,7 @@ void Scale::set_format_value_func(const SlotFormatValue& slot)
     &Glib::destroy_notify_delete<SlotFormatValue>);
 }
 
-void Scale::unset_format_value_func()
+auto Scale::unset_format_value_func () -> void
 {
   gtk_scale_set_format_value_func(gobj(), nullptr, nullptr, nullptr);
 }
@@ -136,7 +136,7 @@ auto Scale_Class::init() -> const Glib::Class&
 }
 
 
-void Scale_Class::class_init_function(void* g_class, void* class_data)
+auto Scale_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -206,7 +206,7 @@ Scale::Scale()
 
 }
 
-void Scale::set_digits(int digits)
+auto Scale::set_digits (int digits) -> void
 {
   gtk_scale_set_digits(gobj(), digits);
 }
@@ -216,7 +216,7 @@ auto Scale::get_digits() const -> int
   return gtk_scale_get_digits(const_cast<GtkScale*>(gobj()));
 }
 
-void Scale::set_draw_value(bool draw_value)
+auto Scale::set_draw_value (bool draw_value) -> void
 {
   gtk_scale_set_draw_value(gobj(), static_cast<int>(draw_value));
 }
@@ -226,7 +226,7 @@ auto Scale::get_draw_value() const -> bool
   return gtk_scale_get_draw_value(const_cast<GtkScale*>(gobj()));
 }
 
-void Scale::set_value_pos(PositionType pos)
+auto Scale::set_value_pos (PositionType pos) -> void
 {
   gtk_scale_set_value_pos(gobj(), static_cast<GtkPositionType>(pos));
 }
@@ -236,7 +236,7 @@ auto Scale::get_value_pos() const -> PositionType
   return static_cast<PositionType>(gtk_scale_get_value_pos(const_cast<GtkScale*>(gobj())));
 }
 
-void Scale::set_has_origin(bool has_origin)
+auto Scale::set_has_origin (bool has_origin) -> void
 {
   gtk_scale_set_has_origin(gobj(), static_cast<int>(has_origin));
 }
@@ -259,17 +259,17 @@ auto Scale::get_layout() const -> Glib::RefPtr<const Pango::Layout>
   return const_cast<Scale*>(this)->get_layout();
 }
 
-void Scale::get_layout_offsets(int& x, int& y) const
+auto Scale::get_layout_offsets (int &x, int &y) const -> void
 {
   gtk_scale_get_layout_offsets(const_cast<GtkScale*>(gobj()), &(x), &(y));
 }
 
-void Scale::add_mark(double value, PositionType position, const Glib::ustring& markup)
+auto Scale::add_mark (double value, PositionType position, const Glib::ustring &markup) -> void
 {
   gtk_scale_add_mark(gobj(), value, static_cast<GtkPositionType>(position), markup.c_str());
 }
 
-void Scale::clear_marks()
+auto Scale::clear_marks () -> void
 {
   gtk_scale_clear_marks(gobj());
 }

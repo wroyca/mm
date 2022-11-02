@@ -64,7 +64,7 @@ auto FlattenListModel_Class::init() -> const Glib::Class&
 }
 
 
-void FlattenListModel_Class::class_init_function(void* g_class, void* class_data)
+auto FlattenListModel_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -146,7 +146,7 @@ auto FlattenListModel::create(const Glib::RefPtr<Gio::ListModel>& model) -> Glib
   return Glib::make_refptr_for_instance<FlattenListModel>( new FlattenListModel(model) );
 }
 
-void FlattenListModel::set_model(const Glib::RefPtr<Gio::ListModel>& model)
+auto FlattenListModel::set_model (const Glib::RefPtr <Gio::ListModel> &model) -> void
 {
   gtk_flatten_list_model_set_model(gobj(), Glib::unwrap(model));
 }

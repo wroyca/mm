@@ -29,7 +29,8 @@ namespace
 {
 
 
-void EmojiChooser_signal_emoji_picked_callback(GtkEmojiChooser* self, const gchar* p0,void* data)
+auto EmojiChooser_signal_emoji_picked_callback (
+  GtkEmojiChooser *self, const gchar *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -100,7 +101,7 @@ auto EmojiChooser_Class::init() -> const Glib::Class&
 }
 
 
-void EmojiChooser_Class::class_init_function(void* g_class, void* class_data)
+auto EmojiChooser_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

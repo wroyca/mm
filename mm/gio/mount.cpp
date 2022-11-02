@@ -33,9 +33,9 @@
 namespace Gio
 {
 
-void
-Mount::unmount(
-  const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, UnmountFlags flags)
+auto Mount::unmount (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
+  UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -47,8 +47,7 @@ Mount::unmount(
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Mount::unmount(const SlotAsyncReady& slot, UnmountFlags flags)
+auto Mount::unmount (const SlotAsyncReady &slot, UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -61,8 +60,7 @@ Mount::unmount(const SlotAsyncReady& slot, UnmountFlags flags)
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Mount::unmount(UnmountFlags flags)
+auto Mount::unmount (UnmountFlags flags) -> void
 {
   g_mount_unmount_with_operation(gobj(), GMountUnmountFlags(flags),
     nullptr, // mount_operation
@@ -71,9 +69,9 @@ Mount::unmount(UnmountFlags flags)
     nullptr); // data
 }
 
-void
-Mount::unmount(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsyncReady& slot,
-  const Glib::RefPtr<Cancellable>& cancellable, UnmountFlags flags)
+auto Mount::unmount (
+  const Glib::RefPtr <MountOperation> &mount_operation, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -84,9 +82,9 @@ Mount::unmount(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAs
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Mount::unmount(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsyncReady& slot,
-  UnmountFlags flags)
+auto Mount::unmount (
+  const Glib::RefPtr <MountOperation> &mount_operation, const SlotAsyncReady &slot,
+  UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -98,8 +96,8 @@ Mount::unmount(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAs
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Mount::unmount(const Glib::RefPtr<MountOperation>& mount_operation, UnmountFlags flags)
+auto Mount::unmount (
+  const Glib::RefPtr <MountOperation> &mount_operation, UnmountFlags flags) -> void
 {
   g_mount_unmount_with_operation(gobj(), GMountUnmountFlags(flags), Glib::unwrap(mount_operation),
     nullptr, // cancellable
@@ -107,9 +105,9 @@ Mount::unmount(const Glib::RefPtr<MountOperation>& mount_operation, UnmountFlags
     nullptr); // data
 }
 
-void
-Mount::remount(const Glib::RefPtr<MountOperation>& operation, const SlotAsyncReady& slot,
-  const Glib::RefPtr<Cancellable>& cancellable, MountFlags flags)
+auto Mount::remount (
+  const Glib::RefPtr <MountOperation> &operation, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, MountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -120,9 +118,9 @@ Mount::remount(const Glib::RefPtr<MountOperation>& operation, const SlotAsyncRea
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Mount::remount(
-  const Glib::RefPtr<MountOperation>& operation, const SlotAsyncReady& slot, MountFlags flags)
+auto Mount::remount (
+  const Glib::RefPtr <MountOperation> &operation, const SlotAsyncReady &slot,
+  MountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -133,22 +131,20 @@ Mount::remount(
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Mount::remount(const Glib::RefPtr<MountOperation>& operation, MountFlags flags)
+auto Mount::remount (const Glib::RefPtr <MountOperation> &operation, MountFlags flags) -> void
 {
   g_mount_remount(gobj(), static_cast<GMountMountFlags>(flags), Glib::unwrap(operation), nullptr,
     nullptr, nullptr);
 }
 
-void
-Mount::remount(MountFlags flags)
+auto Mount::remount (MountFlags flags) -> void
 {
   g_mount_remount(gobj(), static_cast<GMountMountFlags>(flags), nullptr, nullptr, nullptr, nullptr);
 }
 
-void
-Mount::eject(
-  const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, UnmountFlags flags)
+auto Mount::eject (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
+  UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -160,8 +156,7 @@ Mount::eject(
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Mount::eject(const SlotAsyncReady& slot, UnmountFlags flags)
+auto Mount::eject (const SlotAsyncReady &slot, UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -174,8 +169,7 @@ Mount::eject(const SlotAsyncReady& slot, UnmountFlags flags)
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Mount::eject(UnmountFlags flags)
+auto Mount::eject (UnmountFlags flags) -> void
 {
   g_mount_eject_with_operation(gobj(), GMountUnmountFlags(flags),
     nullptr, // mount_operation
@@ -184,9 +178,9 @@ Mount::eject(UnmountFlags flags)
     nullptr); // data
 }
 
-void
-Mount::eject(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsyncReady& slot,
-  const Glib::RefPtr<Cancellable>& cancellable, UnmountFlags flags)
+auto Mount::eject (
+  const Glib::RefPtr <MountOperation> &mount_operation, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -197,9 +191,9 @@ Mount::eject(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsyn
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Mount::eject(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsyncReady& slot,
-  UnmountFlags flags)
+auto Mount::eject (
+  const Glib::RefPtr <MountOperation> &mount_operation, const SlotAsyncReady &slot,
+  UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -211,8 +205,7 @@ Mount::eject(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsyn
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Mount::eject(const Glib::RefPtr<MountOperation>& mount_operation, UnmountFlags flags)
+auto Mount::eject (const Glib::RefPtr <MountOperation> &mount_operation, UnmountFlags flags) -> void
 {
   g_mount_eject_with_operation(gobj(), GMountUnmountFlags(flags), Glib::unwrap(mount_operation),
     nullptr, // cancellable
@@ -220,9 +213,9 @@ Mount::eject(const Glib::RefPtr<MountOperation>& mount_operation, UnmountFlags f
     nullptr); // data
 }
 
-void
-Mount::guess_content_type(
-  const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, bool force_rescan)
+auto Mount::guess_content_type (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
+  bool force_rescan) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -233,8 +226,7 @@ Mount::guess_content_type(
     gobj(), force_rescan, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Mount::guess_content_type(const SlotAsyncReady& slot, bool force_rescan)
+auto Mount::guess_content_type (const SlotAsyncReady &slot, bool force_rescan) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -244,14 +236,13 @@ Mount::guess_content_type(const SlotAsyncReady& slot, bool force_rescan)
   g_mount_guess_content_type(gobj(), force_rescan, nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Mount::guess_content_type(bool force_rescan)
+auto Mount::guess_content_type (bool force_rescan) -> void
 {
   g_mount_guess_content_type(gobj(), force_rescan, nullptr, nullptr, nullptr);
 }
 
-void
-Mount::guess_content_type_sync(const Glib::RefPtr<Cancellable>& cancellable, bool force_rescan)
+auto Mount::guess_content_type_sync (
+  const Glib::RefPtr <Cancellable> &cancellable, bool force_rescan) -> void
 {
   GError* gerror = nullptr;
   g_mount_guess_content_type_sync(gobj(), force_rescan, Glib::unwrap(cancellable), &gerror);
@@ -259,8 +250,7 @@ Mount::guess_content_type_sync(const Glib::RefPtr<Cancellable>& cancellable, boo
     ::Glib::Error::throw_exception(gerror);
 }
 
-void
-Mount::guess_content_type_sync(bool force_rescan)
+auto Mount::guess_content_type_sync (bool force_rescan) -> void
 {
   GError* gerror = nullptr;
   g_mount_guess_content_type_sync(gobj(), force_rescan, nullptr, &gerror);
@@ -334,7 +324,7 @@ auto Mount_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Mount_Class::iface_init_function(void* g_iface, void*)
+auto Mount_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -349,7 +339,7 @@ void Mount_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-void Mount_Class::changed_callback(GMount* self)
+auto Mount_Class::changed_callback (GMount *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -386,7 +376,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->changed)
     (*base->changed)(self);
 }
-void Mount_Class::unmounted_callback(GMount* self)
+auto Mount_Class::unmounted_callback (GMount *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -423,7 +413,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->unmounted)
     (*base->unmounted)(self);
 }
-void Mount_Class::pre_unmount_callback(GMount* self)
+auto Mount_Class::pre_unmount_callback (GMount *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -499,7 +489,7 @@ Mount::~Mount() noexcept
 {}
 
 // static
-void Mount::add_interface(GType gtype_implementer)
+auto Mount::add_interface (GType gtype_implementer) -> void
 {
   mount_class_.init().add_interface(gtype_implementer);
 }
@@ -644,12 +634,12 @@ auto Mount::is_shadowed() const -> bool
   return g_mount_is_shadowed(const_cast<GMount*>(gobj()));
 }
 
-void Mount::shadow()
+auto Mount::shadow () -> void
 {
   g_mount_shadow(gobj());
 }
 
-void Mount::unshadow()
+auto Mount::unshadow () -> void
 {
   g_mount_unshadow(gobj());
 }
@@ -683,7 +673,7 @@ auto Mount::signal_pre_unmount() -> Glib::SignalProxy<void()>
 }
 
 
-void Gio::Mount::on_changed()
+auto Gio::Mount::on_changed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -693,7 +683,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->changed)
     (*base->changed)(gobj());
 }
-void Gio::Mount::on_unmounted()
+auto Gio::Mount::on_unmounted () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -703,7 +693,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->unmounted)
     (*base->unmounted)(gobj());
 }
-void Gio::Mount::on_pre_unmount()
+auto Gio::Mount::on_pre_unmount () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

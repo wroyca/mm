@@ -31,7 +31,7 @@ using Action = Gtk::FileChooser::Action;
 
 namespace Gtk
 {
-void FileChooser::add_choice(const Glib::ustring& id, const Glib::ustring& label)
+auto FileChooser::add_choice (const Glib::ustring &id, const Glib::ustring &label) -> void
 {
   gtk_file_chooser_add_choice(gobj(), id.c_str(), label.c_str(), nullptr, nullptr);
 }
@@ -58,7 +58,7 @@ auto Gtk::FileChooserError::code() const -> Gtk::FileChooserError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Gtk::FileChooserError::throw_func(GError* gobject)
+auto Gtk::FileChooserError::throw_func (GError *gobject) -> void
 {
   throw Gtk::FileChooserError(gobject);
 }
@@ -109,7 +109,7 @@ auto FileChooser_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void FileChooser_Class::iface_init_function(void* g_iface, void*)
+auto FileChooser_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -158,7 +158,7 @@ FileChooser::~FileChooser() noexcept
 {}
 
 // static
-void FileChooser::add_interface(GType gtype_implementer)
+auto FileChooser::add_interface (GType gtype_implementer) -> void
 {
   filechooser_class_.init().add_interface(gtype_implementer);
 }
@@ -177,7 +177,7 @@ auto FileChooser::get_base_type() -> GType
 }
 
 
-void FileChooser::set_action(Action action)
+auto FileChooser::set_action (Action action) -> void
 {
   gtk_file_chooser_set_action(gobj(), static_cast<GtkFileChooserAction>(action));
 }
@@ -187,7 +187,7 @@ auto FileChooser::get_action() const -> Action
   return static_cast<Action>(gtk_file_chooser_get_action(const_cast<GtkFileChooser*>(gobj())));
 }
 
-void FileChooser::set_select_multiple(bool select_multiple)
+auto FileChooser::set_select_multiple (bool select_multiple) -> void
 {
   gtk_file_chooser_set_select_multiple(gobj(), static_cast<int>(select_multiple));
 }
@@ -197,7 +197,7 @@ auto FileChooser::get_select_multiple() const -> bool
   return gtk_file_chooser_get_select_multiple(const_cast<GtkFileChooser*>(gobj()));
 }
 
-void FileChooser::set_create_folders(bool create_folders)
+auto FileChooser::set_create_folders (bool create_folders) -> void
 {
   gtk_file_chooser_set_create_folders(gobj(), static_cast<int>(create_folders));
 }
@@ -207,7 +207,7 @@ auto FileChooser::get_create_folders() const -> bool
   return gtk_file_chooser_get_create_folders(const_cast<GtkFileChooser*>(gobj()));
 }
 
-void FileChooser::set_current_name(const Glib::ustring& name)
+auto FileChooser::set_current_name (const Glib::ustring &name) -> void
 {
   gtk_file_chooser_set_current_name(gobj(), name.c_str());
 }
@@ -265,12 +265,12 @@ auto FileChooser::get_file() const -> Glib::RefPtr<const Gio::File>
   return const_cast<FileChooser*>(this)->get_file();
 }
 
-void FileChooser::add_filter(const Glib::RefPtr<FileFilter>& filter)
+auto FileChooser::add_filter (const Glib::RefPtr <FileFilter> &filter) -> void
 {
   gtk_file_chooser_add_filter(gobj(), const_cast<GtkFileFilter*>(Glib::unwrap(filter)));
 }
 
-void FileChooser::remove_filter(const Glib::RefPtr<FileFilter>& filter)
+auto FileChooser::remove_filter (const Glib::RefPtr <FileFilter> &filter) -> void
 {
   gtk_file_chooser_remove_filter(gobj(), const_cast<GtkFileFilter*>(Glib::unwrap(filter)));
 }
@@ -280,7 +280,7 @@ auto FileChooser::get_filters() const -> Glib::RefPtr<const Gio::ListModel>
   return Glib::wrap(gtk_file_chooser_get_filters(const_cast<GtkFileChooser*>(gobj())));
 }
 
-void FileChooser::set_filter(const Glib::RefPtr<FileFilter>& filter)
+auto FileChooser::set_filter (const Glib::RefPtr <FileFilter> &filter) -> void
 {
   gtk_file_chooser_set_filter(gobj(), const_cast<GtkFileFilter*>(Glib::unwrap(filter)));
 }
@@ -321,17 +321,19 @@ auto FileChooser::get_shortcut_folders() const -> Glib::RefPtr<const Gio::ListMo
   return Glib::wrap(gtk_file_chooser_get_shortcut_folders(const_cast<GtkFileChooser*>(gobj())));
 }
 
-void FileChooser::add_choice(const Glib::ustring& id, const Glib::ustring& label, const std::vector<Glib::ustring>& options, const std::vector<Glib::ustring>& option_labels)
+auto FileChooser::add_choice (
+  const Glib::ustring &id, const Glib::ustring &label, const std::vector <Glib::ustring> &options,
+  const std::vector <Glib::ustring> &option_labels) -> void
 {
   gtk_file_chooser_add_choice(gobj(), id.c_str(), label.c_str(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(options).data (), Glib::ArrayHandler<Glib::ustring>::vector_to_array(option_labels).data ());
 }
 
-void FileChooser::remove_choice(const Glib::ustring& id)
+auto FileChooser::remove_choice (const Glib::ustring &id) -> void
 {
   gtk_file_chooser_remove_choice(gobj(), id.c_str());
 }
 
-void FileChooser::set_choice(const Glib::ustring& id, const Glib::ustring& option)
+auto FileChooser::set_choice (const Glib::ustring &id, const Glib::ustring &option) -> void
 {
   gtk_file_chooser_set_choice(gobj(), id.c_str(), option.c_str());
 }

@@ -63,7 +63,7 @@ auto ConstraintTarget_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void ConstraintTarget_Class::iface_init_function(void* g_iface, void*)
+auto ConstraintTarget_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -112,7 +112,7 @@ ConstraintTarget::~ConstraintTarget() noexcept
 {}
 
 // static
-void ConstraintTarget::add_interface(GType gtype_implementer)
+auto ConstraintTarget::add_interface (GType gtype_implementer) -> void
 {
   constrainttarget_class_.init().add_interface(gtype_implementer);
 }

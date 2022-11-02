@@ -125,8 +125,7 @@ Object_Class::init() -> const Glib::Class&
   return *this;
 }
 
-void
-Object_Class::class_init_function(void*, void*)
+auto Object_Class::class_init_function (void *, void *) -> void
 {
 }
 
@@ -276,20 +275,17 @@ Object::get_data(const QueryQuark& id) -> void*
   return g_object_get_qdata(gobj(), id);
 }
 
-void
-Object::set_data(const Quark& id, void* data)
+auto Object::set_data (const Quark &id, void *data) -> void
 {
   g_object_set_qdata(gobj(), id, data);
 }
 
-void
-Object::set_data(const Quark& id, void* data, DestroyNotify destroy)
+auto Object::set_data (const Quark &id, void *data, DestroyNotify destroy) -> void
 {
   g_object_set_qdata_full(gobj(), id, data, destroy);
 }
 
-void
-Object::remove_data(const QueryQuark& id)
+auto Object::remove_data (const QueryQuark &id) -> void
 {
   // missing in glib??
   g_return_if_fail(id.id() > 0);

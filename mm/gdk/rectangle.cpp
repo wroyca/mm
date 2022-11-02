@@ -190,7 +190,7 @@ auto Rectangle::get_x() const -> int
   return gobj()->x;
 }
 
-void Rectangle::set_x(const int& value)
+auto Rectangle::set_x (const int &value) -> void
 {
   gobj()->x = value;
 }
@@ -200,7 +200,7 @@ auto Rectangle::get_y() const -> int
   return gobj()->y;
 }
 
-void Rectangle::set_y(const int& value)
+auto Rectangle::set_y (const int &value) -> void
 {
   gobj()->y = value;
 }
@@ -210,7 +210,7 @@ auto Rectangle::get_width() const -> int
   return gobj()->width;
 }
 
-void Rectangle::set_width(const int& value)
+auto Rectangle::set_width (const int &value) -> void
 {
   gobj()->width = value;
 }
@@ -220,7 +220,7 @@ auto Rectangle::get_height() const -> int
   return gobj()->height;
 }
 
-void Rectangle::set_height(const int& value)
+auto Rectangle::set_height (const int &value) -> void
 {
   gobj()->height = value;
 }

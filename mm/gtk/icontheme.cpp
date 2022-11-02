@@ -57,7 +57,7 @@ auto Gtk::IconThemeError::code() const -> Gtk::IconThemeError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Gtk::IconThemeError::throw_func(GError* gobject)
+auto Gtk::IconThemeError::throw_func (GError *gobject) -> void
 {
   throw Gtk::IconThemeError(gobject);
 }
@@ -109,7 +109,7 @@ auto IconTheme_Class::init() -> const Glib::Class&
 }
 
 
-void IconTheme_Class::class_init_function(void* g_class, void* class_data)
+auto IconTheme_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -211,7 +211,7 @@ auto IconTheme::get_display() const -> Glib::RefPtr<const Gdk::Display>
   return const_cast<IconTheme*>(this)->get_display();
 }
 
-void IconTheme::set_search_path(const std::vector<std::string>& path)
+auto IconTheme::set_search_path (const std::vector <std::string> &path) -> void
 {
   gtk_icon_theme_set_search_path(gobj(), Glib::ArrayHandler<std::string>::vector_to_array(path).data());
 }
@@ -221,12 +221,12 @@ auto IconTheme::get_search_path() const -> std::vector<std::string>
   return Glib::ArrayHandler<std::string>::array_to_vector(gtk_icon_theme_get_search_path(const_cast<GtkIconTheme*>(gobj())), Glib::OWNERSHIP_DEEP);
 }
 
-void IconTheme::add_search_path(const std::string& path)
+auto IconTheme::add_search_path (const std::string &path) -> void
 {
   gtk_icon_theme_add_search_path(gobj(), path.c_str());
 }
 
-void IconTheme::set_resource_path(const std::vector<std::string>& path)
+auto IconTheme::set_resource_path (const std::vector <std::string> &path) -> void
 {
   gtk_icon_theme_set_resource_path(gobj(), Glib::ArrayHandler<std::string>::vector_to_array(path).data());
 }
@@ -236,12 +236,12 @@ auto IconTheme::get_resource_path() const -> std::vector<std::string>
   return Glib::ArrayHandler<std::string>::array_to_vector(gtk_icon_theme_get_resource_path(const_cast<GtkIconTheme*>(gobj())), Glib::OWNERSHIP_DEEP);
 }
 
-void IconTheme::add_resource_path(const std::string& path)
+auto IconTheme::add_resource_path (const std::string &path) -> void
 {
   gtk_icon_theme_add_resource_path(gobj(), path.c_str());
 }
 
-void IconTheme::set_theme_name(const Glib::ustring& theme_name)
+auto IconTheme::set_theme_name (const Glib::ustring &theme_name) -> void
 {
   gtk_icon_theme_set_theme_name(gobj(), theme_name.c_str());
 }

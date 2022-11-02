@@ -72,7 +72,7 @@ TreeIterBase3::TreeIterBase3(GtkTreeModel* model, const GtkTreeIter* iter)
   TreeIterBase2(model, iter)
 {}
 
-void TreeIterBase3::plus_plus()
+auto TreeIterBase3::plus_plus () -> void
 {
   g_assert(!is_end_);
 
@@ -85,7 +85,7 @@ void TreeIterBase3::plus_plus()
   }
 }
 
-void TreeIterBase3::minus_minus()
+auto TreeIterBase3::minus_minus () -> void
 {
   if(!is_end_)
   {
@@ -121,7 +121,7 @@ auto TreeIterBase3::equal(const TreeIterBase3& other) const -> bool
          (gobject_.user_data3 == other.gobject_.user_data3);
 }
 
-void TreeIterBase3::setup_end_iterator(const TreeIterBase3& last_valid)
+auto TreeIterBase3::setup_end_iterator (const TreeIterBase3 &last_valid) -> void
 {
   g_assert(model_ == last_valid.model_);
 
@@ -133,12 +133,12 @@ void TreeIterBase3::setup_end_iterator(const TreeIterBase3& last_valid)
   is_end_ = true;
 }
 
-void TreeIterBase3::set_model_refptr(const Glib::RefPtr<TreeModel>& model)
+auto TreeIterBase3::set_model_refptr (const Glib::RefPtr <TreeModel> &model) -> void
 {
   model_ = model.operator->();
 }
 
-void TreeIterBase3::set_model_gobject(GtkTreeModel* model)
+auto TreeIterBase3::set_model_gobject (GtkTreeModel *model) -> void
 {
   model_ = dynamic_cast<TreeModel*>(Glib::wrap_auto((GObject*) model));
 }
@@ -158,7 +158,7 @@ auto TreeIterBase3::get_stamp() const -> int
   return gobj()->stamp;
 }
 
-void TreeIterBase3::set_stamp(int stamp)
+auto TreeIterBase3::set_stamp (int stamp) -> void
 {
   gobj()->stamp = stamp;
 }
@@ -214,17 +214,17 @@ auto TreeConstRow::get_iter() const -> TreeIter<TreeConstRow>
   return static_cast<const TreeIter<TreeConstRow>&>(static_cast<const TreeIterBase2&>(*this));
 }
 
-void TreeRow::set_value_impl(int column, const Glib::ValueBase& value)
+auto TreeRow::set_value_impl (int column, const Glib::ValueBase &value) -> void
 {
   model_->set_value_impl(static_cast<TreeIter<TreeRow>&>(static_cast<TreeIterBase2&>(*this)), column, value);
 }
 
-void TreeRow::get_value_impl(int column, Glib::ValueBase& value) const
+auto TreeRow::get_value_impl (int column, Glib::ValueBase &value) const -> void
 {
   model_->get_value_impl(static_cast<const TreeIter<TreeConstRow>&>(static_cast<const TreeIterBase2&>(*this)), column, value);
 }
 
-void TreeConstRow::get_value_impl(int column, Glib::ValueBase& value) const
+auto TreeConstRow::get_value_impl (int column, Glib::ValueBase &value) const -> void
 {
   model_->get_value_impl(static_cast<const TreeIter<TreeConstRow>&>(static_cast<const TreeIterBase2&>(*this)), column, value);
 }

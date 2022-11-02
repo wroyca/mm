@@ -69,7 +69,7 @@ auto Actionable_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Actionable_Class::iface_init_function(void* g_iface, void*)
+auto Actionable_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -135,7 +135,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = const gchar*;
   return RType();
 }
-void Actionable_Class::set_action_name_vfunc_callback(GtkActionable* self, const gchar* action_name)
+auto Actionable_Class::set_action_name_vfunc_callback (
+  GtkActionable *self, const gchar *action_name) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -224,7 +225,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = GVariant*;
   return RType();
 }
-void Actionable_Class::set_action_target_value_vfunc_callback(GtkActionable* self, GVariant* action_target_value)
+auto Actionable_Class::set_action_target_value_vfunc_callback (
+  GtkActionable *self, GVariant *action_target_value) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -301,7 +303,7 @@ Actionable::~Actionable() noexcept
 {}
 
 // static
-void Actionable::add_interface(GType gtype_implementer)
+auto Actionable::add_interface (GType gtype_implementer) -> void
 {
   actionable_class_.init().add_interface(gtype_implementer);
 }
@@ -325,7 +327,7 @@ auto Actionable::get_action_name() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_actionable_get_action_name(const_cast<GtkActionable*>(gobj())));
 }
 
-void Actionable::set_action_name(const Glib::ustring& action_name)
+auto Actionable::set_action_name (const Glib::ustring &action_name) -> void
 {
   gtk_actionable_set_action_name(gobj(), action_name.c_str());
 }
@@ -340,12 +342,12 @@ auto Actionable::get_action_target_value() const -> const Glib::VariantBase
   return const_cast<Actionable*>(this)->get_action_target_value();
 }
 
-void Actionable::set_action_target_value(const Glib::VariantBase& target_value)
+auto Actionable::set_action_target_value (const Glib::VariantBase &target_value) -> void
 {
   gtk_actionable_set_action_target_value(gobj(), const_cast<GVariant*>((target_value).gobj()));
 }
 
-void Actionable::set_detailed_action_name(const Glib::ustring& detailed_action_name)
+auto Actionable::set_detailed_action_name (const Glib::ustring &detailed_action_name) -> void
 {
   gtk_actionable_set_detailed_action_name(gobj(), detailed_action_name.c_str());
 }
@@ -392,7 +394,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = Glib::ustring;
   return RType();
 }
-void Gtk::Actionable::set_action_name_vfunc(const Glib::ustring& action_name)
+auto Gtk::Actionable::set_action_name_vfunc (const Glib::ustring &action_name) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -420,7 +422,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = Glib::VariantBase;
   return RType();
 }
-void Gtk::Actionable::set_action_target_value_vfunc(const Glib::VariantBase& action_target_value)
+auto Gtk::Actionable::set_action_target_value_vfunc (
+  const Glib::VariantBase &action_target_value) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

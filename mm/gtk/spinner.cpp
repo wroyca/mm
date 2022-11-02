@@ -69,7 +69,7 @@ auto Spinner_Class::init() -> const Glib::Class&
 }
 
 
-void Spinner_Class::class_init_function(void* g_class, void* class_data)
+auto Spinner_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -139,17 +139,17 @@ Spinner::Spinner()
 
 }
 
-void Spinner::start()
+auto Spinner::start () -> void
 {
   gtk_spinner_start(gobj());
 }
 
-void Spinner::stop()
+auto Spinner::stop () -> void
 {
   gtk_spinner_stop(gobj());
 }
 
-void Spinner::set_spinning(bool spinning)
+auto Spinner::set_spinning (bool spinning) -> void
 {
   gtk_spinner_set_spinning(gobj(), static_cast<int>(spinning));
 }

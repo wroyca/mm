@@ -65,7 +65,7 @@ auto BoxLayout_Class::init() -> const Glib::Class&
 }
 
 
-void BoxLayout_Class::class_init_function(void* g_class, void* class_data)
+auto BoxLayout_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -147,7 +147,7 @@ auto BoxLayout::create(Orientation orientation) -> Glib::RefPtr<BoxLayout>
   return Glib::make_refptr_for_instance<BoxLayout>( new BoxLayout(orientation) );
 }
 
-void BoxLayout::set_homogeneous(bool homogeneous)
+auto BoxLayout::set_homogeneous (bool homogeneous) -> void
 {
   gtk_box_layout_set_homogeneous(gobj(), static_cast<int>(homogeneous));
 }
@@ -157,7 +157,7 @@ auto BoxLayout::get_homogeneous() const -> bool
   return gtk_box_layout_get_homogeneous(const_cast<GtkBoxLayout*>(gobj()));
 }
 
-void BoxLayout::set_spacing(guint spacing)
+auto BoxLayout::set_spacing (guint spacing) -> void
 {
   gtk_box_layout_set_spacing(gobj(), spacing);
 }
@@ -167,7 +167,7 @@ auto BoxLayout::get_spacing() const -> guint
   return gtk_box_layout_get_spacing(const_cast<GtkBoxLayout*>(gobj()));
 }
 
-void BoxLayout::set_baseline_position(BaselinePosition position)
+auto BoxLayout::set_baseline_position (BaselinePosition position) -> void
 {
   gtk_box_layout_set_baseline_position(gobj(), static_cast<GtkBaselinePosition>(position));
 }

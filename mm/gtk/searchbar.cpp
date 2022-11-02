@@ -30,12 +30,12 @@
 namespace Gtk
 {
 
-void SearchBar::unset_key_capture_widget()
+auto SearchBar::unset_key_capture_widget () -> void
 {
   gtk_search_bar_set_key_capture_widget(gobj(), nullptr);
 }
 
-void SearchBar::unset_child()
+auto SearchBar::unset_child () -> void
 {
   gtk_search_bar_set_child(gobj(), nullptr);
 }
@@ -85,7 +85,7 @@ auto SearchBar_Class::init() -> const Glib::Class&
 }
 
 
-void SearchBar_Class::class_init_function(void* g_class, void* class_data)
+auto SearchBar_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -155,7 +155,7 @@ SearchBar::SearchBar()
 
 }
 
-void SearchBar::connect_entry(Editable& entry)
+auto SearchBar::connect_entry (Editable &entry) -> void
 {
   gtk_search_bar_connect_entry(gobj(), (entry).gobj());
 }
@@ -165,7 +165,7 @@ auto SearchBar::get_search_mode() const -> bool
   return gtk_search_bar_get_search_mode(const_cast<GtkSearchBar*>(gobj()));
 }
 
-void SearchBar::set_search_mode(bool search_mode)
+auto SearchBar::set_search_mode (bool search_mode) -> void
 {
   gtk_search_bar_set_search_mode(gobj(), static_cast<int>(search_mode));
 }
@@ -175,12 +175,12 @@ auto SearchBar::get_show_close_button() const -> bool
   return gtk_search_bar_get_show_close_button(const_cast<GtkSearchBar*>(gobj()));
 }
 
-void SearchBar::set_show_close_button(bool visible)
+auto SearchBar::set_show_close_button (bool visible) -> void
 {
   gtk_search_bar_set_show_close_button(gobj(), static_cast<int>(visible));
 }
 
-void SearchBar::set_key_capture_widget(Widget& widget)
+auto SearchBar::set_key_capture_widget (Widget &widget) -> void
 {
   gtk_search_bar_set_key_capture_widget(gobj(), (widget).gobj());
 }
@@ -195,7 +195,7 @@ auto SearchBar::get_key_capture_widget() const -> const Widget*
   return const_cast<SearchBar*>(this)->get_key_capture_widget();
 }
 
-void SearchBar::set_child(Widget& child)
+auto SearchBar::set_child (Widget &child) -> void
 {
   gtk_search_bar_set_child(gobj(), (child).gobj());
 }

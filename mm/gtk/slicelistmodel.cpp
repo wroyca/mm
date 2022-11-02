@@ -64,7 +64,7 @@ auto SliceListModel_Class::init() -> const Glib::Class&
 }
 
 
-void SliceListModel_Class::class_init_function(void* g_class, void* class_data)
+auto SliceListModel_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -146,7 +146,7 @@ auto SliceListModel::create(const Glib::RefPtr<Gio::ListModel>& model, guint off
   return Glib::make_refptr_for_instance<SliceListModel>( new SliceListModel(model, offset, size) );
 }
 
-void SliceListModel::set_model(const Glib::RefPtr<Gio::ListModel>& model)
+auto SliceListModel::set_model (const Glib::RefPtr <Gio::ListModel> &model) -> void
 {
   gtk_slice_list_model_set_model(gobj(), Glib::unwrap(model));
 }
@@ -164,7 +164,7 @@ auto SliceListModel::get_model() const -> Glib::RefPtr<const Gio::ListModel>
   return const_cast<SliceListModel*>(this)->get_model();
 }
 
-void SliceListModel::set_offset(guint offset)
+auto SliceListModel::set_offset (guint offset) -> void
 {
   gtk_slice_list_model_set_offset(gobj(), offset);
 }
@@ -174,7 +174,7 @@ auto SliceListModel::get_offset() const -> guint
   return gtk_slice_list_model_get_offset(const_cast<GtkSliceListModel*>(gobj()));
 }
 
-void SliceListModel::set_size(guint size)
+auto SliceListModel::set_size (guint size) -> void
 {
   gtk_slice_list_model_set_size(gobj(), size);
 }

@@ -16,8 +16,7 @@
 
 #include <mm/glib/utility.hpp>
 
-void
-Glib::append_canonical_typename(std::string& dest, const char* type_name)
+auto Glib::append_canonical_typename (std::string &dest, const char *type_name) -> void
 {
   const std::string::size_type offset = dest.size();
   dest += type_name;

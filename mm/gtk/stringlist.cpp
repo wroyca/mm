@@ -79,7 +79,7 @@ auto StringList_Class::init() -> const Glib::Class&
 }
 
 
-void StringList_Class::class_init_function(void* g_class, void* class_data)
+auto StringList_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -153,17 +153,18 @@ auto StringList::create(const std::vector<Glib::ustring>& strings) -> Glib::RefP
   return Glib::make_refptr_for_instance<StringList>( new StringList(strings) );
 }
 
-void StringList::append(const Glib::ustring& string)
+auto StringList::append (const Glib::ustring &string) -> void
 {
   gtk_string_list_append(gobj(), string.c_str());
 }
 
-void StringList::remove(guint position)
+auto StringList::remove (guint position) -> void
 {
   gtk_string_list_remove(gobj(), position);
 }
 
-void StringList::splice(guint position, guint n_removals, const std::vector<Glib::ustring>& additions)
+auto StringList::splice (
+  guint position, guint n_removals, const std::vector <Glib::ustring> &additions) -> void
 {
   gtk_string_list_splice(gobj(), position, n_removals, Glib::ArrayHandler<Glib::ustring>::vector_to_array(additions).data());
 }

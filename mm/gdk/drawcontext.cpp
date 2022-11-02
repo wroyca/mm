@@ -72,7 +72,7 @@ auto DrawContext_Class::init() -> const Glib::Class&
 }
 
 
-void DrawContext_Class::class_init_function(void* g_class, void* class_data)
+auto DrawContext_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -173,12 +173,12 @@ auto DrawContext::get_surface() const -> Glib::RefPtr<const Surface>
   return const_cast<DrawContext*>(this)->get_surface();
 }
 
-void DrawContext::begin_frame(const ::Cairo::RefPtr<const ::Cairo::Region>& region)
+auto DrawContext::begin_frame (const ::Cairo::RefPtr <const ::Cairo::Region> &region) -> void
 {
   gdk_draw_context_begin_frame(gobj(), ((region) ? (region)->cobj() : nullptr));
 }
 
-void DrawContext::end_frame()
+auto DrawContext::end_frame () -> void
 {
   gdk_draw_context_end_frame(gobj());
 }

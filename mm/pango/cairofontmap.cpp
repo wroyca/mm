@@ -65,7 +65,7 @@ auto CairoFontMap_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void CairoFontMap_Class::iface_init_function(void* g_iface, void*)
+auto CairoFontMap_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -114,7 +114,7 @@ CairoFontMap::~CairoFontMap() noexcept
 {}
 
 // static
-void CairoFontMap::add_interface(GType gtype_implementer)
+auto CairoFontMap::add_interface (GType gtype_implementer) -> void
 {
   cairofontmap_class_.init().add_interface(gtype_implementer);
 }
@@ -142,7 +142,7 @@ auto CairoFontMap::get_default() -> Glib::RefPtr<FontMap>
   return retvalue;
 }
 
-void CairoFontMap::set_default()
+auto CairoFontMap::set_default () -> void
 {
   pango_cairo_font_map_set_default(gobj());
 }
@@ -152,7 +152,7 @@ auto CairoFontMap::get_font_type() const -> Cairo::FontType
   return static_cast<Cairo::FontType>(pango_cairo_font_map_get_font_type(const_cast<PangoCairoFontMap*>(gobj())));
 }
 
-void CairoFontMap::set_resolution(double dpi)
+auto CairoFontMap::set_resolution (double dpi) -> void
 {
   pango_cairo_font_map_set_resolution(gobj(), dpi);
 }

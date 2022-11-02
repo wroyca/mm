@@ -14,7 +14,7 @@ public:
   using CppObjectType = Interface;
   using BaseClassType = GTypeInterface;
 
-  void add_interface(GType instance_type) const;
+  auto add_interface (GType instance_type) const -> void;
 };
 
 } // namespace Glib

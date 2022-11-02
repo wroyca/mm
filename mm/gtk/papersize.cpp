@@ -87,13 +87,13 @@ PaperSize::operator bool() const
   return gobj();
 }
 
-void PaperSize::save_to_key_file(const Glib::RefPtr<Glib::KeyFile>& key_file)
+auto PaperSize::save_to_key_file (const Glib::RefPtr <Glib::KeyFile> &key_file) -> void
 {
   gtk_paper_size_to_key_file( gobj(), Glib::unwrap(key_file), nullptr);
 }
 
 // static
-void PaperSizeTraits::release_c_type(CType ptr)
+auto PaperSizeTraits::release_c_type (CType ptr) -> void
 {
   gtk_paper_size_free(const_cast<CTypeNonConst>(ptr));
 }
@@ -177,7 +177,7 @@ PaperSize::~PaperSize() noexcept
     gtk_paper_size_free(gobject_);
 }
 
-void PaperSize::swap(PaperSize& other) noexcept
+auto PaperSize::swap (PaperSize &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }
@@ -228,7 +228,7 @@ auto PaperSize::is_ipp() const -> bool
   return gtk_paper_size_is_ipp(const_cast<GtkPaperSize*>(gobj()));
 }
 
-void PaperSize::set_size(double width, double height, Unit unit)
+auto PaperSize::set_size (double width, double height, Unit unit) -> void
 {
   gtk_paper_size_set_size(gobj(), width, height, static_cast<GtkUnit>(unit));
 }
@@ -258,7 +258,8 @@ auto PaperSize::get_default() -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_paper_size_get_default());
 }
 
-void PaperSize::save_to_key_file(const Glib::RefPtr<Glib::KeyFile>& key_file, const Glib::ustring& group_name)
+auto PaperSize::save_to_key_file (
+  const Glib::RefPtr <Glib::KeyFile> &key_file, const Glib::ustring &group_name) -> void
 {
   gtk_paper_size_to_key_file(gobj(), Glib::unwrap(key_file), group_name.c_str());
 }

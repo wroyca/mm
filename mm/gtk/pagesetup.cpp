@@ -56,7 +56,7 @@ auto PageSetup::create_from_file(const std::string& file_name) -> Glib::RefPtr<P
   return result;
 }
 
-void PageSetup::save_to_key_file(const Glib::RefPtr<Glib::KeyFile>& key_file) const
+auto PageSetup::save_to_key_file (const Glib::RefPtr <Glib::KeyFile> &key_file) const -> void
 {
   gtk_page_setup_to_key_file(const_cast<GtkPageSetup*>(gobj()), Glib::unwrap(key_file), nullptr);
 }
@@ -118,7 +118,7 @@ auto PageSetup_Class::init() -> const Glib::Class&
 }
 
 
-void PageSetup_Class::class_init_function(void* g_class, void* class_data)
+auto PageSetup_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -226,7 +226,7 @@ auto PageSetup::get_orientation() const -> PageOrientation
   return static_cast<PageOrientation>(gtk_page_setup_get_orientation(const_cast<GtkPageSetup*>(gobj())));
 }
 
-void PageSetup::set_orientation(PageOrientation orientation)
+auto PageSetup::set_orientation (PageOrientation orientation) -> void
 {
   gtk_page_setup_set_orientation(gobj(), static_cast<GtkPageOrientation>(orientation));
 }
@@ -241,7 +241,7 @@ auto PageSetup::get_paper_size() const -> const PaperSize
   return const_cast<PageSetup*>(this)->get_paper_size();
 }
 
-void PageSetup::set_paper_size(const PaperSize& size)
+auto PageSetup::set_paper_size (const PaperSize &size) -> void
 {
   gtk_page_setup_set_paper_size(gobj(), const_cast<GtkPaperSize*>((size).gobj()));
 }
@@ -251,7 +251,7 @@ auto PageSetup::get_top_margin(Unit unit) const -> double
   return gtk_page_setup_get_top_margin(const_cast<GtkPageSetup*>(gobj()), static_cast<GtkUnit>(unit));
 }
 
-void PageSetup::set_top_margin(double margin, Unit unit)
+auto PageSetup::set_top_margin (double margin, Unit unit) -> void
 {
   gtk_page_setup_set_top_margin(gobj(), margin, static_cast<GtkUnit>(unit));
 }
@@ -261,7 +261,7 @@ auto PageSetup::get_bottom_margin(Unit unit) const -> double
   return gtk_page_setup_get_bottom_margin(const_cast<GtkPageSetup*>(gobj()), static_cast<GtkUnit>(unit));
 }
 
-void PageSetup::set_bottom_margin(double margin, Unit unit)
+auto PageSetup::set_bottom_margin (double margin, Unit unit) -> void
 {
   gtk_page_setup_set_bottom_margin(gobj(), margin, static_cast<GtkUnit>(unit));
 }
@@ -271,7 +271,7 @@ auto PageSetup::get_left_margin(Unit unit) const -> double
   return gtk_page_setup_get_left_margin(const_cast<GtkPageSetup*>(gobj()), static_cast<GtkUnit>(unit));
 }
 
-void PageSetup::set_left_margin(double margin, Unit unit)
+auto PageSetup::set_left_margin (double margin, Unit unit) -> void
 {
   gtk_page_setup_set_left_margin(gobj(), margin, static_cast<GtkUnit>(unit));
 }
@@ -281,12 +281,12 @@ auto PageSetup::get_right_margin(Unit unit) const -> double
   return gtk_page_setup_get_right_margin(const_cast<GtkPageSetup*>(gobj()), static_cast<GtkUnit>(unit));
 }
 
-void PageSetup::set_right_margin(double margin, Unit unit)
+auto PageSetup::set_right_margin (double margin, Unit unit) -> void
 {
   gtk_page_setup_set_right_margin(gobj(), margin, static_cast<GtkUnit>(unit));
 }
 
-void PageSetup::set_paper_size_and_default_margins(const PaperSize& size)
+auto PageSetup::set_paper_size_and_default_margins (const PaperSize &size) -> void
 {
   gtk_page_setup_set_paper_size_and_default_margins(gobj(), const_cast<GtkPaperSize*>((size).gobj()));
 }
@@ -320,7 +320,8 @@ auto PageSetup::save_to_file(const std::string& file_name) const -> bool
   return retvalue;
 }
 
-void PageSetup::save_to_key_file(const Glib::RefPtr<Glib::KeyFile>& key_file, const Glib::ustring& group_name) const
+auto PageSetup::save_to_key_file (
+  const Glib::RefPtr <Glib::KeyFile> &key_file, const Glib::ustring &group_name) const -> void
 {
   gtk_page_setup_to_key_file(const_cast<GtkPageSetup*>(gobj()), Glib::unwrap(key_file), group_name.c_str());
 }

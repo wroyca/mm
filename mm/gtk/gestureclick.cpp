@@ -29,7 +29,8 @@ namespace
 {
 
 
-void GestureClick_signal_pressed_callback(GtkGestureClick* self, gint p0,gdouble p1,gdouble p2,void* data)
+auto GestureClick_signal_pressed_callback (
+  GtkGestureClick *self, gint p0, gdouble p1, gdouble p2, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(int, double, double)>;
@@ -61,7 +62,8 @@ const Glib::SignalProxyInfo GestureClick_signal_pressed_info =
 };
 
 
-void GestureClick_signal_released_callback(GtkGestureClick* self, gint p0,gdouble p1,gdouble p2,void* data)
+auto GestureClick_signal_released_callback (
+  GtkGestureClick *self, gint p0, gdouble p1, gdouble p2, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(int, double, double)>;
@@ -101,7 +103,8 @@ const Glib::SignalProxyInfo GestureClick_signal_stopped_info =
 };
 
 
-void GestureClick_signal_unpaired_release_callback(GtkGestureClick* self, gdouble p0,gdouble p1,guint p2,GdkEventSequence* p3,void* data)
+auto GestureClick_signal_unpaired_release_callback (
+  GtkGestureClick *self, gdouble p0, gdouble p1, guint p2, GdkEventSequence *p3, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double, guint, Gdk::EventSequence*)>;
@@ -176,7 +179,7 @@ auto GestureClick_Class::init() -> const Glib::Class&
 }
 
 
-void GestureClick_Class::class_init_function(void* g_class, void* class_data)
+auto GestureClick_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

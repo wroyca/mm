@@ -29,7 +29,7 @@ namespace
 {
 
 
-void GridView_signal_activate_callback(GtkGridView* self, guint p0,void* data)
+auto GridView_signal_activate_callback (GtkGridView *self, guint p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint)>;
@@ -99,7 +99,7 @@ auto GridView_Class::init() -> const Glib::Class&
 }
 
 
-void GridView_Class::class_init_function(void* g_class, void* class_data)
+auto GridView_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -182,12 +182,12 @@ auto GridView::get_model() const -> Glib::RefPtr<const SelectionModel>
   return const_cast<GridView*>(this)->get_model();
 }
 
-void GridView::set_model(const Glib::RefPtr<SelectionModel>& model)
+auto GridView::set_model (const Glib::RefPtr <SelectionModel> &model) -> void
 {
   gtk_grid_view_set_model(gobj(), Glib::unwrap(model));
 }
 
-void GridView::set_factory(const Glib::RefPtr<ListItemFactory>& factory)
+auto GridView::set_factory (const Glib::RefPtr <ListItemFactory> &factory) -> void
 {
   gtk_grid_view_set_factory(gobj(), Glib::unwrap(factory));
 }
@@ -210,7 +210,7 @@ auto GridView::get_min_columns() const -> guint
   return gtk_grid_view_get_min_columns(const_cast<GtkGridView*>(gobj()));
 }
 
-void GridView::set_min_columns(guint min_columns)
+auto GridView::set_min_columns (guint min_columns) -> void
 {
   gtk_grid_view_set_min_columns(gobj(), min_columns);
 }
@@ -220,12 +220,12 @@ auto GridView::get_max_columns() const -> guint
   return gtk_grid_view_get_max_columns(const_cast<GtkGridView*>(gobj()));
 }
 
-void GridView::set_max_columns(guint max_columns)
+auto GridView::set_max_columns (guint max_columns) -> void
 {
   gtk_grid_view_set_max_columns(gobj(), max_columns);
 }
 
-void GridView::set_enable_rubberband(bool enable_rubberband)
+auto GridView::set_enable_rubberband (bool enable_rubberband) -> void
 {
   gtk_grid_view_set_enable_rubberband(gobj(), static_cast<int>(enable_rubberband));
 }
@@ -235,7 +235,7 @@ auto GridView::get_enable_rubberband() const -> bool
   return gtk_grid_view_get_enable_rubberband(const_cast<GtkGridView*>(gobj()));
 }
 
-void GridView::set_single_click_activate(bool single_click_activate)
+auto GridView::set_single_click_activate (bool single_click_activate) -> void
 {
   gtk_grid_view_set_single_click_activate(gobj(), static_cast<int>(single_click_activate));
 }

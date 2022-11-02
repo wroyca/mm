@@ -71,13 +71,13 @@ auto wrap(GBytes* object, bool take_copy) -> Glib::RefPtr<Glib::Bytes>
 namespace Glib
 {
 
-void Bytes::reference() const
+auto Bytes::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_bytes_ref(reinterpret_cast<GBytes*>(const_cast<Bytes*>(this)));
 }
 
-void Bytes::unreference() const
+auto Bytes::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_bytes_unref(reinterpret_cast<GBytes*>(const_cast<Bytes*>(this)));

@@ -101,7 +101,7 @@ FontMetrics::~FontMetrics() noexcept
     pango_font_metrics_unref(gobject_);
 }
 
-void FontMetrics::swap(FontMetrics& other) noexcept
+auto FontMetrics::swap (FontMetrics &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }

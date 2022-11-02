@@ -65,7 +65,7 @@ auto Native_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Native_Class::iface_init_function(void* g_iface, void*)
+auto Native_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -114,7 +114,7 @@ Native::~Native() noexcept
 {}
 
 // static
-void Native::add_interface(GType gtype_implementer)
+auto Native::add_interface (GType gtype_implementer) -> void
 {
   native_class_.init().add_interface(gtype_implementer);
 }
@@ -133,12 +133,12 @@ auto Native::get_base_type() -> GType
 }
 
 
-void Native::realize()
+auto Native::realize () -> void
 {
   gtk_native_realize(gobj());
 }
 
-void Native::unrealize()
+auto Native::unrealize () -> void
 {
   gtk_native_unrealize(gobj());
 }
@@ -161,7 +161,7 @@ auto Native::get_surface() const -> Glib::RefPtr<const Gdk::Surface>
   return const_cast<Native*>(this)->get_surface();
 }
 
-void Native::get_surface_transform(double& x, double& y)
+auto Native::get_surface_transform (double &x, double &y) -> void
 {
   gtk_native_get_surface_transform(gobj(), &(x), &(y));
 }

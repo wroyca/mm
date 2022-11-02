@@ -79,7 +79,7 @@ auto CellAreaBox_Class::init() -> const Glib::Class&
 }
 
 
-void CellAreaBox_Class::class_init_function(void* g_class, void* class_data)
+auto CellAreaBox_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -161,12 +161,12 @@ auto CellAreaBox::create() -> Glib::RefPtr<CellAreaBox>
   return Glib::make_refptr_for_instance<CellAreaBox>( new CellAreaBox() );
 }
 
-void CellAreaBox::pack_start(CellRenderer& renderer, bool expand, bool align, bool fixed)
+auto CellAreaBox::pack_start (CellRenderer &renderer, bool expand, bool align, bool fixed) -> void
 {
   gtk_cell_area_box_pack_start(gobj(), (renderer).gobj(), static_cast<int>(expand), static_cast<int>(align), static_cast<int>(fixed));
 }
 
-void CellAreaBox::pack_end(CellRenderer& renderer, bool expand, bool align, bool fixed)
+auto CellAreaBox::pack_end (CellRenderer &renderer, bool expand, bool align, bool fixed) -> void
 {
   gtk_cell_area_box_pack_end(gobj(), (renderer).gobj(), static_cast<int>(expand), static_cast<int>(align), static_cast<int>(fixed));
 }
@@ -176,7 +176,7 @@ auto CellAreaBox::get_spacing() const -> int
   return gtk_cell_area_box_get_spacing(const_cast<GtkCellAreaBox*>(gobj()));
 }
 
-void CellAreaBox::set_spacing(int spacing)
+auto CellAreaBox::set_spacing (int spacing) -> void
 {
   gtk_cell_area_box_set_spacing(gobj(), spacing);
 }

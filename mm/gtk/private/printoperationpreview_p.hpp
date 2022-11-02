@@ -20,24 +20,25 @@ public:
 
   friend class PrintOperationPreview;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
   //Callbacks (default signal handlers):
   //These will call the *_impl member methods, which will then call the existing default signal callbacks, if any.
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
-  static void ready_callback(GtkPrintOperationPreview* self, GtkPrintContext* p0);
-  static void got_page_size_callback(GtkPrintOperationPreview* self, GtkPrintContext* p0, GtkPageSetup* p1);
+  static auto ready_callback (GtkPrintOperationPreview *self, GtkPrintContext *p0) -> void;
+  static auto got_page_size_callback (
+    GtkPrintOperationPreview *self, GtkPrintContext *p0, GtkPageSetup *p1) -> void;
 
   //Callbacks (virtual functions):
-  static void render_page_vfunc_callback(GtkPrintOperationPreview* self, gint page_nr);
-  static void end_preview_vfunc_callback(GtkPrintOperationPreview* self);
-  static gboolean is_selected_vfunc_callback(GtkPrintOperationPreview* self, gint page_nr);
+  static auto render_page_vfunc_callback (GtkPrintOperationPreview *self, gint page_nr) -> void;
+  static auto end_preview_vfunc_callback (GtkPrintOperationPreview *self) -> void;
+  static auto is_selected_vfunc_callback (GtkPrintOperationPreview *self, gint page_nr) -> gboolean;
 };
 
 

@@ -170,7 +170,7 @@ namespace Pango
 {
 
 
-void AttrIter::get_range(int& start, int& end) const
+auto AttrIter::get_range (int &start, int &end) const -> void
 {
   pango_attr_iterator_range(const_cast<PangoAttrIterator*>(gobj()), &(start), &(end));
 }

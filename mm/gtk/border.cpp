@@ -98,7 +98,7 @@ Border::~Border() noexcept
     gtk_border_free(gobject_);
 }
 
-void Border::swap(Border& other) noexcept
+auto Border::swap (Border &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }
@@ -114,7 +114,7 @@ auto Border::get_left() const -> int
   return gobj()->left;
 }
 
-void Border::set_left(const int& value)
+auto Border::set_left (const int &value) -> void
 {
   gobj()->left = value;
 }
@@ -124,7 +124,7 @@ auto Border::get_right() const -> int
   return gobj()->right;
 }
 
-void Border::set_right(const int& value)
+auto Border::set_right (const int &value) -> void
 {
   gobj()->right = value;
 }
@@ -134,7 +134,7 @@ auto Border::get_top() const -> int
   return gobj()->top;
 }
 
-void Border::set_top(const int& value)
+auto Border::set_top (const int &value) -> void
 {
   gobj()->top = value;
 }
@@ -144,7 +144,7 @@ auto Border::get_bottom() const -> int
   return gobj()->bottom;
 }
 
-void Border::set_bottom(const int& value)
+auto Border::set_bottom (const int &value) -> void
 {
   gobj()->bottom = value;
 }

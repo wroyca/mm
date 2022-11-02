@@ -47,12 +47,12 @@ FontFace::~FontFace()
     cairo_font_face_destroy(m_cobject);
 }
 
-void FontFace::reference() const
+auto FontFace::reference () const -> void
 {
  cairo_font_face_reference(m_cobject);
 }
 
-void FontFace::unreference() const
+auto FontFace::unreference () const -> void
 {
   cairo_font_face_destroy(m_cobject);
 }
@@ -117,8 +117,7 @@ auto ToyFontFace::get_weight() const -> ToyFontFace::Weight
 
 static const cairo_user_data_key_t user_font_key = {0};
 
-static void
-log_uncaught_exception(const char* message = nullptr)
+static auto log_uncaught_exception (const char *message = nullptr) -> void
 {
   std::cerr << "*** cairomm: Uncaught exception in UserFont callback";
   if(message)
@@ -405,12 +404,12 @@ FtFontFace::FtFontFace(FcPattern* pattern) :
 }
 #endif // CAIRO_HAS_FC_FONT
 
-void FtFontFace::set_synthesize(FtSynthesize synth_flags)
+auto FtFontFace::set_synthesize (FtSynthesize synth_flags) -> void
 {
   cairo_ft_font_face_set_synthesize(m_cobject, synth_flags);
 }
 
-void FtFontFace::unset_synthesize(FtSynthesize synth_flags)
+auto FtFontFace::unset_synthesize (FtSynthesize synth_flags) -> void
 {
   cairo_ft_font_face_unset_synthesize(m_cobject, synth_flags);
 }

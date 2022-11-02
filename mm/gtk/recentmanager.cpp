@@ -87,7 +87,7 @@ auto Gtk::RecentManagerError::code() const -> Gtk::RecentManagerError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Gtk::RecentManagerError::throw_func(GError* gobject)
+auto Gtk::RecentManagerError::throw_func (GError *gobject) -> void
 {
   throw Gtk::RecentManagerError(gobject);
 }
@@ -139,7 +139,7 @@ auto RecentManager_Class::init() -> const Glib::Class&
 }
 
 
-void RecentManager_Class::class_init_function(void* g_class, void* class_data)
+auto RecentManager_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -149,7 +149,7 @@ void RecentManager_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void RecentManager_Class::changed_callback(GtkRecentManager* self)
+auto RecentManager_Class::changed_callback (GtkRecentManager *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -349,7 +349,7 @@ auto RecentManager::property_size() const -> Glib::PropertyProxy_ReadOnly< int >
 }
 
 
-void Gtk::RecentManager::on_changed()
+auto Gtk::RecentManager::on_changed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

@@ -101,7 +101,7 @@ auto ContentProvider_Class::init() -> const Glib::Class&
 }
 
 
-void ContentProvider_Class::class_init_function(void* g_class, void* class_data)
+auto ContentProvider_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -111,7 +111,7 @@ void ContentProvider_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void ContentProvider_Class::content_changed_callback(GdkContentProvider* self)
+auto ContentProvider_Class::content_changed_callback (GdkContentProvider *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -235,12 +235,14 @@ auto ContentProvider::ref_storable_formats() const -> Glib::RefPtr<ContentFormat
   return Glib::wrap(gdk_content_provider_ref_storable_formats(const_cast<GdkContentProvider*>(gobj())));
 }
 
-void ContentProvider::content_changed()
+auto ContentProvider::content_changed () -> void
 {
   gdk_content_provider_content_changed(gobj());
 }
 
-void ContentProvider::write_mime_type_async(const Glib::ustring& mime_type, const Glib::RefPtr<Gio::OutputStream>& stream, int io_priority, const Gio::SlotAsyncReady& slot, const Glib::RefPtr<Gio::Cancellable>& cancellable) const
+auto ContentProvider::write_mime_type_async (
+  const Glib::ustring &mime_type, const Glib::RefPtr <Gio::OutputStream> &stream, int io_priority,
+  const Gio::SlotAsyncReady &slot, const Glib::RefPtr <Gio::Cancellable> &cancellable) const -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new Gio::SlotAsyncReady(slot);
@@ -248,7 +250,9 @@ void ContentProvider::write_mime_type_async(const Glib::ustring& mime_type, cons
   gdk_content_provider_write_mime_type_async(const_cast<GdkContentProvider*>(gobj()), mime_type.c_str(), Glib::unwrap(stream), io_priority, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &Gio::SignalProxy_async_callback, slot_copy);
 }
 
-void ContentProvider::write_mime_type_async(const Glib::ustring& mime_type, const Glib::RefPtr<Gio::OutputStream>& stream, int io_priority, const Gio::SlotAsyncReady& slot) const
+auto ContentProvider::write_mime_type_async (
+  const Glib::ustring &mime_type, const Glib::RefPtr <Gio::OutputStream> &stream, int io_priority,
+  const Gio::SlotAsyncReady &slot) const -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new Gio::SlotAsyncReady(slot);
@@ -256,7 +260,8 @@ void ContentProvider::write_mime_type_async(const Glib::ustring& mime_type, cons
   gdk_content_provider_write_mime_type_async(const_cast<GdkContentProvider*>(gobj()), mime_type.c_str(), Glib::unwrap(stream), io_priority, nullptr, &Gio::SignalProxy_async_callback, slot_copy);
 }
 
-void ContentProvider::write_mime_type_finish(const Glib::RefPtr<Gio::AsyncResult>& result) const
+auto ContentProvider::write_mime_type_finish (
+  const Glib::RefPtr <Gio::AsyncResult> &result) const -> void
 {
   GError* gerror = nullptr;
   gdk_content_provider_write_mime_type_finish(const_cast<GdkContentProvider*>(gobj()), Glib::unwrap(result), &(gerror));
@@ -264,7 +269,7 @@ void ContentProvider::write_mime_type_finish(const Glib::RefPtr<Gio::AsyncResult
     ::Glib::Error::throw_exception(gerror);
 }
 
-void ContentProvider::get_value(Glib::ValueBase& value) const
+auto ContentProvider::get_value (Glib::ValueBase &value) const -> void
 {
   GError* gerror = nullptr;
   gdk_content_provider_get_value(const_cast<GdkContentProvider*>(gobj()), (value).gobj(), &(gerror));
@@ -298,7 +303,7 @@ auto ContentProvider::property_storable_formats() const -> Glib::PropertyProxy_R
 }
 
 
-void Gdk::ContentProvider::on_content_changed()
+auto Gdk::ContentProvider::on_content_changed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

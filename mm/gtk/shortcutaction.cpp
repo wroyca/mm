@@ -107,7 +107,7 @@ auto ShortcutAction_Class::init() -> const Glib::Class&
 }
 
 
-void ShortcutAction_Class::class_init_function(void* g_class, void* class_data)
+auto ShortcutAction_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -235,7 +235,7 @@ auto NothingAction_Class::init() -> const Glib::Class&
 }
 
 
-void NothingAction_Class::class_init_function(void* g_class, void* class_data)
+auto NothingAction_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -356,7 +356,7 @@ auto CallbackAction_Class::init() -> const Glib::Class&
 }
 
 
-void CallbackAction_Class::class_init_function(void* g_class, void* class_data)
+auto CallbackAction_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -463,7 +463,7 @@ auto MnemonicAction_Class::init() -> const Glib::Class&
 }
 
 
-void MnemonicAction_Class::class_init_function(void* g_class, void* class_data)
+auto MnemonicAction_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -584,7 +584,7 @@ auto ActivateAction_Class::init() -> const Glib::Class&
 }
 
 
-void ActivateAction_Class::class_init_function(void* g_class, void* class_data)
+auto ActivateAction_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -705,7 +705,7 @@ auto SignalAction_Class::init() -> const Glib::Class&
 }
 
 
-void SignalAction_Class::class_init_function(void* g_class, void* class_data)
+auto SignalAction_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -833,7 +833,7 @@ auto NamedAction_Class::init() -> const Glib::Class&
 }
 
 
-void NamedAction_Class::class_init_function(void* g_class, void* class_data)
+auto NamedAction_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

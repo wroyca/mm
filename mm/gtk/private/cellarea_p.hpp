@@ -23,27 +23,39 @@ public:
   friend class CellArea;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  const Glib::Class& init();
+  auto init () -> const Glib::Class&;
 
 
-  static void class_init_function(void* g_class, void* class_data);
+  static auto class_init_function (void *g_class, void *class_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
   //Callbacks (default signal handlers):
   //These will call the *_impl member methods, which will then call the existing default signal callbacks, if any.
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
-  static void apply_attributes_callback(GtkCellArea* self, GtkTreeModel* p0, GtkTreeIter* p1, gboolean p2, gboolean p3);
+  static auto apply_attributes_callback (
+    GtkCellArea *self, GtkTreeModel *p0, GtkTreeIter *p1, gboolean p2, gboolean p3) -> void;
 
   //Callbacks (virtual functions):
-  static void snapshot_vfunc_callback(GtkCellArea* self, GtkCellAreaContext* context, GtkWidget* widget, GtkSnapshot* snapshot, const GdkRectangle* background_area, const GdkRectangle* cell_area, GtkCellRendererState flags, gboolean paint_focus);
-  static GtkSizeRequestMode get_request_mode_vfunc_callback(GtkCellArea* self);
-  static void get_preferred_width_vfunc_callback(GtkCellArea* self, GtkCellAreaContext* context, GtkWidget* widget, gint* minimum_width, gint* natural_width);
-  static void get_preferred_height_for_width_vfunc_callback(GtkCellArea* self, GtkCellAreaContext* context, GtkWidget* widget, gint width, gint* minimum_height, gint* natural_height);
-  static void get_preferred_height_vfunc_callback(GtkCellArea* self, GtkCellAreaContext* context, GtkWidget* widget, gint* minimum_height, gint* natural_height);
-  static void get_preferred_width_for_height_vfunc_callback(GtkCellArea* self, GtkCellAreaContext* context, GtkWidget* widget, gint height, gint* minimum_width, gint* natural_width);
+  static auto snapshot_vfunc_callback (
+    GtkCellArea *self, GtkCellAreaContext *context, GtkWidget *widget, GtkSnapshot *snapshot,
+    const GdkRectangle *background_area, const GdkRectangle *cell_area, GtkCellRendererState flags,
+    gboolean paint_focus) -> void;
+  static auto get_request_mode_vfunc_callback (GtkCellArea *self) -> GtkSizeRequestMode;
+  static auto get_preferred_width_vfunc_callback (
+    GtkCellArea *self, GtkCellAreaContext *context, GtkWidget *widget, gint *minimum_width,
+    gint *natural_width) -> void;
+  static auto get_preferred_height_for_width_vfunc_callback (
+    GtkCellArea *self, GtkCellAreaContext *context, GtkWidget *widget, gint width,
+    gint *minimum_height, gint *natural_height) -> void;
+  static auto get_preferred_height_vfunc_callback (
+    GtkCellArea *self, GtkCellAreaContext *context, GtkWidget *widget, gint *minimum_height,
+    gint *natural_height) -> void;
+  static auto get_preferred_width_for_height_vfunc_callback (
+    GtkCellArea *self, GtkCellAreaContext *context, GtkWidget *widget, gint height,
+    gint *minimum_width, gint *natural_width) -> void;
 };
 
 

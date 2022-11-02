@@ -33,9 +33,9 @@
 namespace Gio
 {
 
-void
-Volume::mount(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsyncReady& slot,
-  const Glib::RefPtr<Cancellable>& cancellable, Mount::MountFlags flags)
+auto Volume::mount (
+  const Glib::RefPtr <MountOperation> &mount_operation, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, Mount::MountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -46,9 +46,9 @@ Volume::mount(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsy
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Volume::mount(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsyncReady& slot,
-  Mount::MountFlags flags)
+auto Volume::mount (
+  const Glib::RefPtr <MountOperation> &mount_operation, const SlotAsyncReady &slot,
+  Mount::MountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -60,25 +60,24 @@ Volume::mount(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsy
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Volume::mount(const Glib::RefPtr<MountOperation>& mount_operation, Mount::MountFlags flags)
+auto Volume::mount (
+  const Glib::RefPtr <MountOperation> &mount_operation, Mount::MountFlags flags) -> void
 {
   g_volume_mount(gobj(), static_cast<GMountMountFlags>(flags), Glib::unwrap(mount_operation),
     nullptr, // cancellable
     nullptr, nullptr);
 }
 
-void
-Volume::mount(Mount::MountFlags flags)
+auto Volume::mount (Mount::MountFlags flags) -> void
 {
   g_volume_mount(gobj(), static_cast<GMountMountFlags>(flags), nullptr,
     nullptr, // cancellable
     nullptr, nullptr);
 }
 
-void
-Volume::eject(
-  const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, Mount::UnmountFlags flags)
+auto Volume::eject (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
+  Mount::UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -90,8 +89,7 @@ Volume::eject(
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Volume::eject(const SlotAsyncReady& slot, Mount::UnmountFlags flags)
+auto Volume::eject (const SlotAsyncReady &slot, Mount::UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -104,8 +102,7 @@ Volume::eject(const SlotAsyncReady& slot, Mount::UnmountFlags flags)
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Volume::eject(Mount::UnmountFlags flags)
+auto Volume::eject (Mount::UnmountFlags flags) -> void
 {
   g_volume_eject_with_operation(gobj(), static_cast<GMountUnmountFlags>(flags),
     nullptr, // mount_operation
@@ -114,9 +111,9 @@ Volume::eject(Mount::UnmountFlags flags)
     nullptr); // data
 }
 
-void
-Volume::eject(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsyncReady& slot,
-  const Glib::RefPtr<Cancellable>& cancellable, Mount::UnmountFlags flags)
+auto Volume::eject (
+  const Glib::RefPtr <MountOperation> &mount_operation, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, Mount::UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -128,9 +125,9 @@ Volume::eject(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsy
     slot_copy);
 }
 
-void
-Volume::eject(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsyncReady& slot,
-  Mount::UnmountFlags flags)
+auto Volume::eject (
+  const Glib::RefPtr <MountOperation> &mount_operation, const SlotAsyncReady &slot,
+  Mount::UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -143,8 +140,8 @@ Volume::eject(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsy
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Volume::eject(const Glib::RefPtr<MountOperation>& mount_operation, Mount::UnmountFlags flags)
+auto Volume::eject (
+  const Glib::RefPtr <MountOperation> &mount_operation, Mount::UnmountFlags flags) -> void
 {
   g_volume_eject_with_operation(gobj(), static_cast<GMountUnmountFlags>(flags),
     Glib::unwrap(mount_operation),
@@ -211,7 +208,7 @@ auto Volume_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Volume_Class::iface_init_function(void* g_iface, void*)
+auto Volume_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -225,7 +222,7 @@ void Volume_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-void Volume_Class::changed_callback(GVolume* self)
+auto Volume_Class::changed_callback (GVolume *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -262,7 +259,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->changed)
     (*base->changed)(self);
 }
-void Volume_Class::removed_callback(GVolume* self)
+auto Volume_Class::removed_callback (GVolume *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -338,7 +335,7 @@ Volume::~Volume() noexcept
 {}
 
 // static
-void Volume::add_interface(GType gtype_implementer)
+auto Volume::add_interface (GType gtype_implementer) -> void
 {
   volume_class_.init().add_interface(gtype_implementer);
 }
@@ -490,7 +487,7 @@ auto Volume::signal_removed() -> Glib::SignalProxy<void()>
 }
 
 
-void Gio::Volume::on_changed()
+auto Gio::Volume::on_changed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -500,7 +497,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->changed)
     (*base->changed)(gobj());
 }
-void Gio::Volume::on_removed()
+auto Gio::Volume::on_removed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

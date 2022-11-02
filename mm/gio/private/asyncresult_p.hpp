@@ -20,11 +20,11 @@ public:
 
   friend class AsyncResult;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -33,8 +33,8 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static GObject* get_source_object_vfunc_callback(GAsyncResult* self);
-  static gboolean is_tagged_vfunc_callback(GAsyncResult* self, gpointer source_tag);
+  static auto get_source_object_vfunc_callback (GAsyncResult *self) -> GObject*;
+  static auto is_tagged_vfunc_callback (GAsyncResult *self, gpointer source_tag) -> gboolean;
 };
 
 

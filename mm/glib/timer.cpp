@@ -31,26 +31,22 @@ Timer::~Timer() noexcept
   g_timer_destroy(gobject_);
 }
 
-void
-Timer::start()
+auto Timer::start () -> void
 {
   g_timer_start(gobject_);
 }
 
-void
-Timer::stop()
+auto Timer::stop () -> void
 {
   g_timer_stop(gobject_);
 }
 
-void
-Timer::reset()
+auto Timer::reset () -> void
 {
   g_timer_reset(gobject_);
 }
 
-void
-Timer::resume()
+auto Timer::resume () -> void
 {
   g_timer_continue(gobject_);
 }
@@ -73,8 +69,7 @@ Timer::is_active() const -> bool
   return g_timer_is_active(gobject_);
 }
 
-void
-usleep(unsigned long microseconds)
+auto usleep (unsigned long microseconds) -> void
 {
   g_usleep(microseconds);
 }

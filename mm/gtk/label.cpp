@@ -53,7 +53,7 @@ Label::Label(const Glib::ustring& label, Align halign, Align valign, bool mnemon
   set_valign(valign);
 }
 
-void Label::select_region(int start_offset)
+auto Label::select_region (int start_offset) -> void
 {
   gtk_label_select_region(gobj(), start_offset, -1 /* See C docs */);
 }
@@ -163,7 +163,7 @@ auto Label_Class::init() -> const Glib::Class&
 }
 
 
-void Label_Class::class_init_function(void* g_class, void* class_data)
+auto Label_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -223,7 +223,7 @@ auto Label::get_base_type() -> GType
 }
 
 
-void Label::set_text(const Glib::ustring & str)
+auto Label::set_text (const Glib::ustring &str) -> void
 {
   gtk_label_set_text(gobj(), str.c_str());
 }
@@ -233,7 +233,7 @@ auto Label::get_text() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_label_get_text(const_cast<GtkLabel*>(gobj())));
 }
 
-void Label::set_attributes(Pango::AttrList& attrs)
+auto Label::set_attributes (Pango::AttrList &attrs) -> void
 {
   gtk_label_set_attributes(gobj(), (attrs).gobj());
 }
@@ -243,7 +243,7 @@ auto Label::get_attributes() const -> Pango::AttrList
   return Pango::AttrList((gtk_label_get_attributes(const_cast<GtkLabel*>(gobj()))));
 }
 
-void Label::set_label(const Glib::ustring& str)
+auto Label::set_label (const Glib::ustring &str) -> void
 {
   gtk_label_set_label(gobj(), str.c_str());
 }
@@ -253,12 +253,12 @@ auto Label::get_label() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_label_get_label(const_cast<GtkLabel*>(gobj())));
 }
 
-void Label::set_markup(const Glib::ustring& str)
+auto Label::set_markup (const Glib::ustring &str) -> void
 {
   gtk_label_set_markup(gobj(), str.c_str());
 }
 
-void Label::set_use_markup(bool setting)
+auto Label::set_use_markup (bool setting) -> void
 {
   gtk_label_set_use_markup(gobj(), static_cast<int>(setting));
 }
@@ -268,7 +268,7 @@ auto Label::get_use_markup() const -> bool
   return gtk_label_get_use_markup(const_cast<GtkLabel*>(gobj()));
 }
 
-void Label::set_use_underline(bool setting)
+auto Label::set_use_underline (bool setting) -> void
 {
   gtk_label_set_use_underline(gobj(), static_cast<int>(setting));
 }
@@ -278,7 +278,7 @@ auto Label::get_use_underline() const -> bool
   return gtk_label_get_use_underline(const_cast<GtkLabel*>(gobj()));
 }
 
-void Label::set_markup_with_mnemonic(const Glib::ustring& str)
+auto Label::set_markup_with_mnemonic (const Glib::ustring &str) -> void
 {
   gtk_label_set_markup_with_mnemonic(gobj(), str.c_str());
 }
@@ -288,7 +288,7 @@ auto Label::get_mnemonic_keyval() const -> guint
   return gtk_label_get_mnemonic_keyval(const_cast<GtkLabel*>(gobj()));
 }
 
-void Label::set_mnemonic_widget(Widget& widget)
+auto Label::set_mnemonic_widget (Widget &widget) -> void
 {
   gtk_label_set_mnemonic_widget(gobj(), (widget).gobj());
 }
@@ -303,12 +303,12 @@ auto Label::get_mnemonic_widget() const -> const Widget*
   return Glib::wrap(gtk_label_get_mnemonic_widget(const_cast<GtkLabel*>(gobj())));
 }
 
-void Label::set_text_with_mnemonic(const Glib::ustring& str)
+auto Label::set_text_with_mnemonic (const Glib::ustring &str) -> void
 {
   gtk_label_set_text_with_mnemonic(gobj(), str.c_str());
 }
 
-void Label::set_justify(Justification jtype)
+auto Label::set_justify (Justification jtype) -> void
 {
   gtk_label_set_justify(gobj(), static_cast<GtkJustification>(jtype));
 }
@@ -318,7 +318,7 @@ auto Label::get_justify() const -> Justification
   return static_cast<Justification>(gtk_label_get_justify(const_cast<GtkLabel*>(gobj())));
 }
 
-void Label::set_ellipsize(Pango::EllipsizeMode mode)
+auto Label::set_ellipsize (Pango::EllipsizeMode mode) -> void
 {
   gtk_label_set_ellipsize(gobj(), static_cast<PangoEllipsizeMode>(mode));
 }
@@ -328,7 +328,7 @@ auto Label::get_ellipsize() const -> Pango::EllipsizeMode
   return static_cast<Pango::EllipsizeMode>(gtk_label_get_ellipsize(const_cast<GtkLabel*>(gobj())));
 }
 
-void Label::set_width_chars(int n_chars)
+auto Label::set_width_chars (int n_chars) -> void
 {
   gtk_label_set_width_chars(gobj(), n_chars);
 }
@@ -338,7 +338,7 @@ auto Label::get_width_chars() const -> int
   return gtk_label_get_width_chars(const_cast<GtkLabel*>(gobj()));
 }
 
-void Label::set_max_width_chars(int n_chars)
+auto Label::set_max_width_chars (int n_chars) -> void
 {
   gtk_label_set_max_width_chars(gobj(), n_chars);
 }
@@ -348,7 +348,7 @@ auto Label::get_max_width_chars() const -> int
   return gtk_label_get_max_width_chars(const_cast<GtkLabel*>(gobj()));
 }
 
-void Label::set_lines(int lines)
+auto Label::set_lines (int lines) -> void
 {
   gtk_label_set_lines(gobj(), lines);
 }
@@ -358,7 +358,7 @@ auto Label::get_lines() const -> int
   return gtk_label_get_lines(const_cast<GtkLabel*>(gobj()));
 }
 
-void Label::set_wrap(bool wrap)
+auto Label::set_wrap (bool wrap) -> void
 {
   gtk_label_set_wrap(gobj(), static_cast<int>(wrap));
 }
@@ -368,7 +368,7 @@ auto Label::get_wrap() const -> bool
   return gtk_label_get_wrap(const_cast<GtkLabel*>(gobj()));
 }
 
-void Label::set_wrap_mode(Pango::WrapMode wrap_mode)
+auto Label::set_wrap_mode (Pango::WrapMode wrap_mode) -> void
 {
   gtk_label_set_wrap_mode(gobj(), static_cast<PangoWrapMode>(wrap_mode));
 }
@@ -378,7 +378,7 @@ auto Label::get_wrap_mode() const -> Pango::WrapMode
   return static_cast<Pango::WrapMode>(gtk_label_get_wrap_mode(const_cast<GtkLabel*>(gobj())));
 }
 
-void Label::set_natural_wrap_mode(NaturalWrapMode wrap_mode)
+auto Label::set_natural_wrap_mode (NaturalWrapMode wrap_mode) -> void
 {
   gtk_label_set_natural_wrap_mode(gobj(), static_cast<GtkNaturalWrapMode>(wrap_mode));
 }
@@ -388,7 +388,7 @@ auto Label::get_natural_wrap_mode() const -> NaturalWrapMode
   return static_cast<NaturalWrapMode>(gtk_label_get_natural_wrap_mode(const_cast<GtkLabel*>(gobj())));
 }
 
-void Label::set_selectable(bool setting)
+auto Label::set_selectable (bool setting) -> void
 {
   gtk_label_set_selectable(gobj(), static_cast<int>(setting));
 }
@@ -398,7 +398,7 @@ auto Label::get_selectable() const -> bool
   return gtk_label_get_selectable(const_cast<GtkLabel*>(gobj()));
 }
 
-void Label::select_region(int start_offset, int end_offset)
+auto Label::select_region (int start_offset, int end_offset) -> void
 {
   gtk_label_select_region(gobj(), start_offset, end_offset);
 }
@@ -421,12 +421,12 @@ auto Label::get_layout() const -> Glib::RefPtr<const Pango::Layout>
   return const_cast<Label*>(this)->get_layout();
 }
 
-void Label::get_layout_offsets(int& x, int& y) const
+auto Label::get_layout_offsets (int &x, int &y) const -> void
 {
   gtk_label_get_layout_offsets(const_cast<GtkLabel*>(gobj()), &(x), &(y));
 }
 
-void Label::set_single_line_mode(bool single_line_mode)
+auto Label::set_single_line_mode (bool single_line_mode) -> void
 {
   gtk_label_set_single_line_mode(gobj(), static_cast<int>(single_line_mode));
 }
@@ -441,7 +441,7 @@ auto Label::get_current_uri() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_label_get_current_uri(const_cast<GtkLabel*>(gobj())));
 }
 
-void Label::set_xalign(float xalign)
+auto Label::set_xalign (float xalign) -> void
 {
   gtk_label_set_xalign(gobj(), xalign);
 }
@@ -451,7 +451,7 @@ auto Label::get_xalign() const -> float
   return gtk_label_get_xalign(const_cast<GtkLabel*>(gobj()));
 }
 
-void Label::set_yalign(float yalign)
+auto Label::set_yalign (float yalign) -> void
 {
   gtk_label_set_yalign(gobj(), yalign);
 }
@@ -461,7 +461,7 @@ auto Label::get_yalign() const -> float
   return gtk_label_get_yalign(const_cast<GtkLabel*>(gobj()));
 }
 
-void Label::set_extra_menu(const Glib::RefPtr<Gio::MenuModel>& model)
+auto Label::set_extra_menu (const Glib::RefPtr <Gio::MenuModel> &model) -> void
 {
   gtk_label_set_extra_menu(gobj(), Glib::unwrap(model));
 }
@@ -479,7 +479,7 @@ auto Label::get_extra_menu() const -> Glib::RefPtr<const Gio::MenuModel>
   return const_cast<Label*>(this)->get_extra_menu();
 }
 
-void Label::set_tabs(const Pango::TabArray& tabs)
+auto Label::set_tabs (const Pango::TabArray &tabs) -> void
 {
   gtk_label_set_tabs(gobj(), const_cast<Pango::TabArray&>(tabs).gobj());
 }

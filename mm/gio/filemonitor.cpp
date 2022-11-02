@@ -38,7 +38,8 @@ namespace
 {
 
 
-void FileMonitor_signal_changed_callback(GFileMonitor* self, GFile* p0,GFile* p1,GFileMonitorEvent p2,void* data)
+auto FileMonitor_signal_changed_callback (
+  GFileMonitor *self, GFile *p0, GFile *p1, GFileMonitorEvent p2, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<File>&, const Glib::RefPtr<File>&, Event)>;
@@ -113,7 +114,7 @@ auto FileMonitor_Class::init() -> const Glib::Class&
 }
 
 
-void FileMonitor_Class::class_init_function(void* g_class, void* class_data)
+auto FileMonitor_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -123,7 +124,8 @@ void FileMonitor_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void FileMonitor_Class::changed_callback(GFileMonitor* self, GFile* p0, GFile* p1, GFileMonitorEvent p2)
+auto FileMonitor_Class::changed_callback (
+  GFileMonitor *self, GFile *p0, GFile *p1, GFileMonitorEvent p2) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -230,7 +232,7 @@ auto FileMonitor::is_cancelled() const -> bool
   return g_file_monitor_is_cancelled(const_cast<GFileMonitor*>(gobj()));
 }
 
-void FileMonitor::set_rate_limit(int limit_msecs)
+auto FileMonitor::set_rate_limit (int limit_msecs) -> void
 {
   g_file_monitor_set_rate_limit(gobj(), limit_msecs);
 }
@@ -258,7 +260,8 @@ auto FileMonitor::property_cancelled() const -> Glib::PropertyProxy_ReadOnly< bo
 }
 
 
-void Gio::FileMonitor::on_changed(const Glib::RefPtr<File>& file, const Glib::RefPtr<File>& other_file, Event event_type)
+auto Gio::FileMonitor::on_changed (
+  const Glib::RefPtr <File> &file, const Glib::RefPtr <File> &other_file, Event event_type) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

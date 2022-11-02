@@ -36,7 +36,8 @@ auto ColorChooser::get_rgba() const -> Gdk::RGBA
   return Glib::wrap(&crgba, true);
 }
 
-void ColorChooser::add_palette(Orientation orientation, int colors_per_line, const std::vector<Gdk::RGBA>& colors)
+auto ColorChooser::add_palette (
+  Orientation orientation, int colors_per_line, const std::vector <Gdk::RGBA> &colors) -> void
 {
   gtk_color_chooser_add_palette(gobj(), (GtkOrientation)orientation, colors_per_line, colors.size(),
     Glib::ArrayHandler<Gdk::RGBA, Gdk::RGBATraits>::vector_to_array(colors).data() );
@@ -48,7 +49,8 @@ namespace
 {
 
 
-void ColorChooser_signal_color_activated_callback(GtkColorChooser* self, const GdkRGBA* p0,void* data)
+auto ColorChooser_signal_color_activated_callback (
+  GtkColorChooser *self, const GdkRGBA *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Gdk::RGBA&)>;
@@ -114,7 +116,7 @@ auto ColorChooser_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void ColorChooser_Class::iface_init_function(void* g_iface, void*)
+auto ColorChooser_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -127,7 +129,7 @@ void ColorChooser_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-void ColorChooser_Class::color_activated_callback(GtkColorChooser* self, const GdkRGBA* p0)
+auto ColorChooser_Class::color_activated_callback (GtkColorChooser *self, const GdkRGBA *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -204,7 +206,7 @@ ColorChooser::~ColorChooser() noexcept
 {}
 
 // static
-void ColorChooser::add_interface(GType gtype_implementer)
+auto ColorChooser::add_interface (GType gtype_implementer) -> void
 {
   colorchooser_class_.init().add_interface(gtype_implementer);
 }
@@ -223,7 +225,7 @@ auto ColorChooser::get_base_type() -> GType
 }
 
 
-void ColorChooser::set_rgba(const Gdk::RGBA& color)
+auto ColorChooser::set_rgba (const Gdk::RGBA &color) -> void
 {
   gtk_color_chooser_set_rgba(gobj(), (color).gobj());
 }
@@ -233,7 +235,7 @@ auto ColorChooser::get_use_alpha() const -> bool
   return gtk_color_chooser_get_use_alpha(const_cast<GtkColorChooser*>(gobj()));
 }
 
-void ColorChooser::set_use_alpha(bool use_alpha)
+auto ColorChooser::set_use_alpha (bool use_alpha) -> void
 {
   gtk_color_chooser_set_use_alpha(gobj(), static_cast<int>(use_alpha));
 }
@@ -270,7 +272,7 @@ auto ColorChooser::property_use_alpha() const -> Glib::PropertyProxy_ReadOnly< b
 }
 
 
-void Gtk::ColorChooser::on_color_activated(const Gdk::RGBA& color)
+auto Gtk::ColorChooser::on_color_activated (const Gdk::RGBA &color) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

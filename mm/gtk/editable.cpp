@@ -31,7 +31,8 @@ namespace
 {
 
 
-void Editable_signal_insert_text_callback(GtkEditable* self, const char* text,int length,int* position,void* data)
+auto Editable_signal_insert_text_callback (
+  GtkEditable *self, const char *text, int length, int *position, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&, int*)>;
@@ -60,7 +61,7 @@ const Glib::SignalProxyInfo Editable_signal_insert_text_info =
 };
 
 
-void Editable_signal_delete_text_callback(GtkEditable* self, gint p0,gint p1,void* data)
+auto Editable_signal_delete_text_callback (GtkEditable *self, gint p0, gint p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(int, int)>;
@@ -135,7 +136,7 @@ auto Editable_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Editable_Class::iface_init_function(void* g_iface, void*)
+auto Editable_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -154,7 +155,8 @@ void Editable_Class::iface_init_function(void* g_iface, void*)
   klass->changed = &changed_callback;
 }
 
-void Editable_Class::do_insert_text_vfunc_callback(GtkEditable* self, const char* text, int length, int* position)
+auto Editable_Class::do_insert_text_vfunc_callback (
+  GtkEditable *self, const char *text, int length, int *position) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)      self));
@@ -191,7 +193,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->do_insert_text)
     (*base->do_insert_text)(      self, text, length, position);
 }
-void Editable_Class::do_delete_text_vfunc_callback(GtkEditable* self, int start_pos, int end_pos)
+auto Editable_Class::do_delete_text_vfunc_callback (
+  GtkEditable *self, int start_pos, int end_pos) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -279,7 +282,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = const char*;
   return RType();
 }
-void Editable_Class::set_selection_bounds_vfunc_callback(GtkEditable* self, int start_pos, int end_pos)
+auto Editable_Class::set_selection_bounds_vfunc_callback (
+  GtkEditable *self, int start_pos, int end_pos) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -358,7 +362,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   return RType();
 }
 
-void Editable_Class::insert_text_callback(GtkEditable* self, const char* text, int length, int* position)
+auto Editable_Class::insert_text_callback (
+  GtkEditable *self, const char *text, int length, int *position) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)      self));
@@ -395,7 +400,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->insert_text)
     (*base->insert_text)(      self, text, length, position);
 }
-void Editable_Class::delete_text_callback(GtkEditable* self, gint p0, gint p1)
+auto Editable_Class::delete_text_callback (GtkEditable *self, gint p0, gint p1) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -434,7 +439,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->delete_text)
     (*base->delete_text)(self, p0, p1);
 }
-void Editable_Class::changed_callback(GtkEditable* self)
+auto Editable_Class::changed_callback (GtkEditable *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -510,7 +515,7 @@ Editable::~Editable() noexcept
 {}
 
 // static
-void Editable::add_interface(GType gtype_implementer)
+auto Editable::add_interface (GType gtype_implementer) -> void
 {
   editable_class_.init().add_interface(gtype_implementer);
 }
@@ -534,17 +539,17 @@ auto Editable::get_text() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_editable_get_text(const_cast<GtkEditable*>(gobj())));
 }
 
-void Editable::set_text(const Glib::ustring& text)
+auto Editable::set_text (const Glib::ustring &text) -> void
 {
   gtk_editable_set_text(gobj(), text.c_str());
 }
 
-void Editable::delete_selection()
+auto Editable::delete_selection () -> void
 {
   gtk_editable_delete_selection(gobj());
 }
 
-void Editable::set_editable(bool is_editable)
+auto Editable::set_editable (bool is_editable) -> void
 {
   gtk_editable_set_editable(gobj(), static_cast<int>(is_editable));
 }
@@ -554,12 +559,13 @@ auto Editable::get_editable() const -> bool
   return gtk_editable_get_editable(const_cast<GtkEditable*>(gobj()));
 }
 
-void Editable::insert_text(const Glib::ustring& new_text, int new_text_length, int& position)
+auto Editable::insert_text (
+  const Glib::ustring &new_text, int new_text_length, int &position) -> void
 {
   gtk_editable_insert_text(gobj(), new_text.c_str(), new_text_length, &(position));
 }
 
-void Editable::delete_text(int start_pos, int end_pos)
+auto Editable::delete_text (int start_pos, int end_pos) -> void
 {
   gtk_editable_delete_text(gobj(), start_pos, end_pos);
 }
@@ -569,7 +575,7 @@ auto Editable::get_chars(int start_pos, int end_pos) const -> Glib::ustring
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_editable_get_chars(const_cast<GtkEditable*>(gobj()), start_pos, end_pos));
 }
 
-void Editable::select_region(int start_pos, int end_pos)
+auto Editable::select_region (int start_pos, int end_pos) -> void
 {
   gtk_editable_select_region(gobj(), start_pos, end_pos);
 }
@@ -579,7 +585,7 @@ auto Editable::get_selection_bounds(int& start_pos, int& end_pos) const -> bool
   return gtk_editable_get_selection_bounds(const_cast<GtkEditable*>(gobj()), &(start_pos), &(end_pos));
 }
 
-void Editable::set_position(int position)
+auto Editable::set_position (int position) -> void
 {
   gtk_editable_set_position(gobj(), position);
 }
@@ -594,7 +600,7 @@ auto Editable::get_alignment() const -> float
   return gtk_editable_get_alignment(const_cast<GtkEditable*>(gobj()));
 }
 
-void Editable::set_alignment(float xalign)
+auto Editable::set_alignment (float xalign) -> void
 {
   gtk_editable_set_alignment(gobj(), xalign);
 }
@@ -604,7 +610,7 @@ auto Editable::get_width_chars() const -> int
   return gtk_editable_get_width_chars(const_cast<GtkEditable*>(gobj()));
 }
 
-void Editable::set_width_chars(int n_chars)
+auto Editable::set_width_chars (int n_chars) -> void
 {
   gtk_editable_set_width_chars(gobj(), n_chars);
 }
@@ -614,7 +620,7 @@ auto Editable::get_max_width_chars() const -> int
   return gtk_editable_get_max_width_chars(const_cast<GtkEditable*>(gobj()));
 }
 
-void Editable::set_max_width_chars(int n_chars)
+auto Editable::set_max_width_chars (int n_chars) -> void
 {
   gtk_editable_set_max_width_chars(gobj(), n_chars);
 }
@@ -624,7 +630,7 @@ auto Editable::get_enable_undo() const -> bool
   return gtk_editable_get_enable_undo(const_cast<GtkEditable*>(gobj()));
 }
 
-void Editable::set_enable_undo(bool enable_undo)
+auto Editable::set_enable_undo (bool enable_undo) -> void
 {
   gtk_editable_set_enable_undo(gobj(), static_cast<int>(enable_undo));
 }
@@ -719,7 +725,7 @@ auto Editable::property_xalign() const -> Glib::PropertyProxy_ReadOnly< float >
 }
 
 
-void Gtk::Editable::on_insert_text(const Glib::ustring& text, int* position)
+auto Gtk::Editable::on_insert_text (const Glib::ustring &text, int *position) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -729,7 +735,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->insert_text)
     (*base->insert_text)(gobj(),text.data(),text.bytes(),position);
 }
-void Gtk::Editable::on_delete_text(int start_pos, int end_pos)
+auto Gtk::Editable::on_delete_text (int start_pos, int end_pos) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -739,7 +745,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->delete_text)
     (*base->delete_text)(gobj(),start_pos,end_pos);
 }
-void Gtk::Editable::on_changed()
+auto Gtk::Editable::on_changed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -750,7 +756,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->changed)(gobj());
 }
 
-void Gtk::Editable::insert_text_vfunc(const Glib::ustring& text, int& position)
+auto Gtk::Editable::insert_text_vfunc (const Glib::ustring &text, int &position) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -762,7 +768,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->do_insert_text)(gobj(),text.data(),text.bytes(),&position);
   }
 }
-void Gtk::Editable::delete_text_vfunc(int start_pos, int end_pos)
+auto Gtk::Editable::delete_text_vfunc (int start_pos, int end_pos) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -790,7 +796,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = Glib::ustring;
   return RType();
 }
-void Gtk::Editable::select_region_vfunc(int start_pos, int end_pos)
+auto Gtk::Editable::select_region_vfunc (int start_pos, int end_pos) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

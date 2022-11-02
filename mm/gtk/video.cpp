@@ -75,7 +75,7 @@ auto Video_Class::init() -> const Glib::Class&
 }
 
 
-void Video_Class::class_init_function(void* g_class, void* class_data)
+auto Video_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -178,7 +178,7 @@ auto Video::get_media_stream() const -> Glib::RefPtr<const MediaStream>
   return const_cast<Video*>(this)->get_media_stream();
 }
 
-void Video::set_media_stream(const Glib::RefPtr<MediaStream>& stream)
+auto Video::set_media_stream (const Glib::RefPtr <MediaStream> &stream) -> void
 {
   gtk_video_set_media_stream(gobj(), Glib::unwrap(stream));
 }
@@ -196,17 +196,17 @@ auto Video::get_file() const -> Glib::RefPtr<const Gio::File>
   return const_cast<Video*>(this)->get_file();
 }
 
-void Video::set_file(const Glib::RefPtr<const Gio::File>& file)
+auto Video::set_file (const Glib::RefPtr <const Gio::File> &file) -> void
 {
   gtk_video_set_file(gobj(), const_cast<GFile*>(Glib::unwrap<Gio::File>(file)));
 }
 
-void Video::set_filename(const std::string& filename)
+auto Video::set_filename (const std::string &filename) -> void
 {
   gtk_video_set_filename(gobj(), filename.c_str());
 }
 
-void Video::set_resource(const std::string& resource_path)
+auto Video::set_resource (const std::string &resource_path) -> void
 {
   gtk_video_set_resource(gobj(), resource_path.c_str());
 }
@@ -216,7 +216,7 @@ auto Video::get_autoplay() const -> bool
   return gtk_video_get_autoplay(const_cast<GtkVideo*>(gobj()));
 }
 
-void Video::set_autoplay(bool autoplay)
+auto Video::set_autoplay (bool autoplay) -> void
 {
   gtk_video_set_autoplay(gobj(), static_cast<int>(autoplay));
 }
@@ -226,7 +226,7 @@ auto Video::get_loop() const -> bool
   return gtk_video_get_loop(const_cast<GtkVideo*>(gobj()));
 }
 
-void Video::set_loop(bool loop)
+auto Video::set_loop (bool loop) -> void
 {
   gtk_video_set_loop(gobj(), static_cast<int>(loop));
 }

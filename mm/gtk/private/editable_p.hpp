@@ -20,27 +20,31 @@ public:
 
   friend class Editable;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
   //Callbacks (default signal handlers):
   //These will call the *_impl member methods, which will then call the existing default signal callbacks, if any.
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
-  static void insert_text_callback(GtkEditable* self, const char* text, int length, int* position);
-  static void delete_text_callback(GtkEditable* self, gint p0, gint p1);
-  static void changed_callback(GtkEditable* self);
+  static auto insert_text_callback (
+    GtkEditable *self, const char *text, int length, int *position) -> void;
+  static auto delete_text_callback (GtkEditable *self, gint p0, gint p1) -> void;
+  static auto changed_callback (GtkEditable *self) -> void;
 
   //Callbacks (virtual functions):
-  static void do_insert_text_vfunc_callback(GtkEditable* self, const char* text, int length, int* position);
-  static void do_delete_text_vfunc_callback(GtkEditable* self, int start_pos, int end_pos);
-  static const char* get_text_vfunc_callback(GtkEditable* self);
-  static void set_selection_bounds_vfunc_callback(GtkEditable* self, int start_pos, int end_pos);
-  static gboolean get_selection_bounds_vfunc_callback(GtkEditable* self, int* start_pos, int* end_pos);
+  static auto do_insert_text_vfunc_callback (
+    GtkEditable *self, const char *text, int length, int *position) -> void;
+  static auto do_delete_text_vfunc_callback (GtkEditable *self, int start_pos, int end_pos) -> void;
+  static auto get_text_vfunc_callback (GtkEditable *self) -> const char*;
+  static auto set_selection_bounds_vfunc_callback (
+    GtkEditable *self, int start_pos, int end_pos) -> void;
+  static auto get_selection_bounds_vfunc_callback (
+    GtkEditable *self, int *start_pos, int *end_pos) -> gboolean;
 };
 
 

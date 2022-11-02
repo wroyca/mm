@@ -57,21 +57,19 @@ public:
   {
   }
 
-  void reference() const override;
-  void unreference() const override;
+  auto reference () const -> void override;
+  auto unreference () const -> void override;
 
 private:
   mutable int ref_count_;
 };
 
-void
-ForeignIOChannel::reference() const
+auto ForeignIOChannel::reference () const -> void
 {
   ++ref_count_;
 }
 
-void
-ForeignIOChannel::unreference() const
+auto ForeignIOChannel::unreference () const -> void
 {
   if (!(--ref_count_))
     delete this;
@@ -115,8 +113,7 @@ IOChannel::IOChannel(GIOChannel* gobject, bool take_copy) : gobject_(gobject)
     g_io_channel_ref(gobject_);
 }
 
-void
-IOChannel::release_gobject()
+auto IOChannel::release_gobject () -> void
 {
   if (gobject_)
   {
@@ -154,14 +151,12 @@ IOChannel::create_from_fd(int fd) -> Glib::RefPtr<IOChannel>
 
 #ifdef G_OS_WIN32
 
-Glib::RefPtr<IOChannel>
-IOChannel::create_from_win32_fd(int fd)
+auto IOChannel::create_from_win32_fd (int fd) -> Glib::RefPtr <IOChannel>
 {
   return Glib::wrap(g_io_channel_win32_new_fd(fd), false);
 }
 
-Glib::RefPtr<IOChannel>
-IOChannel::create_from_win32_socket(int socket)
+auto IOChannel::create_from_win32_socket (int socket) -> Glib::RefPtr <IOChannel>
 {
   return Glib::wrap(g_io_channel_win32_new_socket(socket), false);
 }
@@ -263,8 +258,7 @@ IOChannel::get_encoding() const -> std::string
   return convert_const_gchar_ptr_to_stdstring(encoding);
 }
 
-void
-IOChannel::set_line_term(const std::string& term)
+auto IOChannel::set_line_term (const std::string &term) -> void
 {
   if (term.empty())
     g_io_channel_set_line_term(gobj(), nullptr, 0);
@@ -287,14 +281,12 @@ IOChannel::create_watch(IOCondition condition) -> Glib::RefPtr<IOSource>
   return IOSource::create(gobj(), condition);
 }
 
-void
-IOChannel::reference() const
+auto IOChannel::reference () const -> void
 {
   g_io_channel_ref(gobject_);
 }
 
-void
-IOChannel::unreference() const
+auto IOChannel::unreference () const -> void
 {
   g_io_channel_unref(gobject_);
 }
@@ -335,7 +327,7 @@ auto Glib::IOChannelError::code() const -> Glib::IOChannelError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Glib::IOChannelError::throw_func(GError* gobject)
+auto Glib::IOChannelError::throw_func (GError *gobject) -> void
 {
   throw Glib::IOChannelError(gobject);
 }
@@ -413,7 +405,7 @@ auto IOChannel::get_buffer_size() const -> gsize
   return g_io_channel_get_buffer_size(const_cast<GIOChannel*>(gobj()));
 }
 
-void IOChannel::set_buffer_size(gsize size)
+auto IOChannel::set_buffer_size (gsize size) -> void
 {
   g_io_channel_set_buffer_size(gobj(), size);
 }
@@ -432,7 +424,7 @@ auto IOChannel::set_flags(IOFlags flags) -> IOStatus
   return retvalue;
 }
 
-void IOChannel::set_buffered(bool buffered)
+auto IOChannel::set_buffered (bool buffered) -> void
 {
   g_io_channel_set_buffered(gobj(), static_cast<int>(buffered));
 }
@@ -452,7 +444,7 @@ auto IOChannel::get_close_on_unref() const -> bool
   return g_io_channel_get_close_on_unref(const_cast<GIOChannel*>(gobj()));
 }
 
-void IOChannel::set_close_on_unref(bool do_close)
+auto IOChannel::set_close_on_unref (bool do_close) -> void
 {
   g_io_channel_set_close_on_unref(gobj(), static_cast<int>(do_close));
 }

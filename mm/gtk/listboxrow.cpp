@@ -28,12 +28,12 @@
 namespace Gtk
 {
 
-void ListBoxRow::unset_header()
+auto ListBoxRow::unset_header () -> void
 {
   gtk_list_box_row_set_header(gobj(), nullptr);
 }
 
-void ListBoxRow::unset_child()
+auto ListBoxRow::unset_child () -> void
 {
   gtk_list_box_row_set_child(gobj(), nullptr);
 }
@@ -84,7 +84,7 @@ auto ListBoxRow_Class::init() -> const Glib::Class&
 }
 
 
-void ListBoxRow_Class::class_init_function(void* g_class, void* class_data)
+auto ListBoxRow_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -156,7 +156,7 @@ ListBoxRow::ListBoxRow()
 
 }
 
-void ListBoxRow::set_child(Widget& child)
+auto ListBoxRow::set_child (Widget &child) -> void
 {
   gtk_list_box_row_set_child(gobj(), (child).gobj());
 }
@@ -171,7 +171,7 @@ auto ListBoxRow::get_child() const -> const Widget*
   return const_cast<ListBoxRow*>(this)->get_child();
 }
 
-void ListBoxRow::set_header(Widget& header)
+auto ListBoxRow::set_header (Widget &header) -> void
 {
   gtk_list_box_row_set_header(gobj(), (header).gobj());
 }
@@ -191,7 +191,7 @@ auto ListBoxRow::get_index() const -> int
   return gtk_list_box_row_get_index(const_cast<GtkListBoxRow*>(gobj()));
 }
 
-void ListBoxRow::changed()
+auto ListBoxRow::changed () -> void
 {
   gtk_list_box_row_changed(gobj());
 }
@@ -201,7 +201,7 @@ auto ListBoxRow::is_selected() const -> bool
   return gtk_list_box_row_is_selected(const_cast<GtkListBoxRow*>(gobj()));
 }
 
-void ListBoxRow::set_selectable(bool selectable)
+auto ListBoxRow::set_selectable (bool selectable) -> void
 {
   gtk_list_box_row_set_selectable(gobj(), static_cast<int>(selectable));
 }
@@ -211,7 +211,7 @@ auto ListBoxRow::get_selectable() const -> bool
   return gtk_list_box_row_get_selectable(const_cast<GtkListBoxRow*>(gobj()));
 }
 
-void ListBoxRow::set_activatable(bool activatable)
+auto ListBoxRow::set_activatable (bool activatable) -> void
 {
   gtk_list_box_row_set_activatable(gobj(), static_cast<int>(activatable));
 }

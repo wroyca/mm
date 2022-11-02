@@ -30,9 +30,8 @@
 namespace Gio
 {
 
-void
-UnixConnection::receive_credentials_async(
-  const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto UnixConnection::receive_credentials_async (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   auto slot_copy = new SlotAsyncReady(slot);
 
@@ -40,8 +39,7 @@ UnixConnection::receive_credentials_async(
     gobj(), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-UnixConnection::receive_credentials_async(const SlotAsyncReady& slot)
+auto UnixConnection::receive_credentials_async (const SlotAsyncReady &slot) -> void
 {
   auto slot_copy = new SlotAsyncReady(slot);
 
@@ -49,9 +47,8 @@ UnixConnection::receive_credentials_async(const SlotAsyncReady& slot)
     gobj(), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void
-UnixConnection::send_credentials_async(
-  const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto UnixConnection::send_credentials_async (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   auto slot_copy = new SlotAsyncReady(slot);
 
@@ -59,8 +56,7 @@ UnixConnection::send_credentials_async(
     gobj(), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-UnixConnection::send_credentials_async(const SlotAsyncReady& slot)
+auto UnixConnection::send_credentials_async (const SlotAsyncReady &slot) -> void
 
 {
   auto slot_copy = new SlotAsyncReady(slot);
@@ -115,7 +111,7 @@ auto UnixConnection_Class::init() -> const Glib::Class&
 }
 
 
-void UnixConnection_Class::class_init_function(void* g_class, void* class_data)
+auto UnixConnection_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

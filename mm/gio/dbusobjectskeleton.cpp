@@ -133,7 +133,7 @@ auto ObjectSkeleton_Class::init() -> const Glib::Class&
 }
 
 
-void ObjectSkeleton_Class::class_init_function(void* g_class, void* class_data)
+auto ObjectSkeleton_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -258,27 +258,29 @@ auto ObjectSkeleton::create(const Glib::ustring& object_path) -> Glib::RefPtr<Ob
   return Glib::make_refptr_for_instance<ObjectSkeleton>( new ObjectSkeleton(object_path) );
 }
 
-void ObjectSkeleton::flush()
+auto ObjectSkeleton::flush () -> void
 {
   g_dbus_object_skeleton_flush(gobj());
 }
 
-void ObjectSkeleton::add_interface(const Glib::RefPtr<Gio::DBus::InterfaceSkeleton>& iface)
+auto ObjectSkeleton::add_interface (
+  const Glib::RefPtr <Gio::DBus::InterfaceSkeleton> &iface) -> void
 {
   g_dbus_object_skeleton_add_interface(gobj(), Glib::unwrap(iface));
 }
 
-void ObjectSkeleton::remove_interface(const Glib::RefPtr<Gio::DBus::InterfaceSkeleton>& iface)
+auto ObjectSkeleton::remove_interface (
+  const Glib::RefPtr <Gio::DBus::InterfaceSkeleton> &iface) -> void
 {
   g_dbus_object_skeleton_remove_interface(gobj(), Glib::unwrap(iface));
 }
 
-void ObjectSkeleton::remove_interface(const Glib::ustring& interface_name)
+auto ObjectSkeleton::remove_interface (const Glib::ustring &interface_name) -> void
 {
   g_dbus_object_skeleton_remove_interface_by_name(gobj(), interface_name.c_str());
 }
 
-void ObjectSkeleton::set_object_path(const Glib::ustring& object_path)
+auto ObjectSkeleton::set_object_path (const Glib::ustring &object_path) -> void
 {
   g_dbus_object_skeleton_set_object_path(gobj(), object_path.c_str());
 }

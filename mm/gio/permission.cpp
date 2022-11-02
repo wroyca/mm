@@ -75,7 +75,7 @@ auto Permission_Class::init() -> const Glib::Class&
 }
 
 
-void Permission_Class::class_init_function(void* g_class, void* class_data)
+auto Permission_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -134,7 +134,9 @@ auto Permission_Class::acquire_vfunc_callback(GPermission* self, GCancellable* c
   using RType = gboolean;
   return RType();
 }
-void Permission_Class::acquire_async_vfunc_callback(GPermission* self, GCancellable* cancellable, GAsyncReadyCallback callback, gpointer user_data)
+auto Permission_Class::acquire_async_vfunc_callback (
+  GPermission *self, GCancellable *cancellable, GAsyncReadyCallback callback,
+  gpointer user_data) -> void
 {
   const auto slot = static_cast<Gio::SlotAsyncReady*>(user_data);
 
@@ -263,7 +265,9 @@ auto Permission_Class::release_vfunc_callback(GPermission* self, GCancellable* c
   using RType = gboolean;
   return RType();
 }
-void Permission_Class::release_async_vfunc_callback(GPermission* self, GCancellable* cancellable, GAsyncReadyCallback callback, gpointer user_data)
+auto Permission_Class::release_async_vfunc_callback (
+  GPermission *self, GCancellable *cancellable, GAsyncReadyCallback callback,
+  gpointer user_data) -> void
 {
   const auto slot = static_cast<Gio::SlotAsyncReady*>(user_data);
 
@@ -423,7 +427,8 @@ auto Permission::acquire() -> bool
   return retvalue;
 }
 
-void Permission::acquire_async(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto Permission::acquire_async (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -431,7 +436,7 @@ void Permission::acquire_async(const SlotAsyncReady& slot, const Glib::RefPtr<Ca
   g_permission_acquire_async(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void Permission::acquire_async(const SlotAsyncReady& slot)
+auto Permission::acquire_async (const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -466,7 +471,8 @@ auto Permission::release() -> bool
   return retvalue;
 }
 
-void Permission::release_async(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto Permission::release_async (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -474,7 +480,7 @@ void Permission::release_async(const SlotAsyncReady& slot, const Glib::RefPtr<Ca
   g_permission_release_async(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void Permission::release_async(const SlotAsyncReady& slot)
+auto Permission::release_async (const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -516,7 +522,7 @@ Permission::Permission()
 
 }
 
-void Permission::impl_update(bool allowed, bool can_acquire, bool can_release)
+auto Permission::impl_update (bool allowed, bool can_acquire, bool can_release) -> void
 {
   g_permission_impl_update(gobj(), static_cast<int>(allowed), static_cast<int>(can_acquire), static_cast<int>(can_release));
 }
@@ -556,7 +562,8 @@ auto Gio::Permission::acquire_vfunc(const Glib::RefPtr<Cancellable>& cancellable
   using RType = bool;
   return RType();
 }
-void Gio::Permission::acquire_async_vfunc(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto Gio::Permission::acquire_async_vfunc (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -606,7 +613,8 @@ auto Gio::Permission::release_vfunc(const Glib::RefPtr<Cancellable>& cancellable
   using RType = bool;
   return RType();
 }
-void Gio::Permission::release_async_vfunc(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto Gio::Permission::release_async_vfunc (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);

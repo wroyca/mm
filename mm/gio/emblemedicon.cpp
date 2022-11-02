@@ -82,7 +82,7 @@ auto EmblemedIcon_Class::init() -> const Glib::Class&
 }
 
 
-void EmblemedIcon_Class::class_init_function(void* g_class, void* class_data)
+auto EmblemedIcon_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -189,12 +189,12 @@ auto EmblemedIcon::get_emblems() const -> std::vector<Glib::RefPtr<const Emblem>
   return Glib::ListHandler<Glib::RefPtr<const Emblem>>::list_to_vector(g_emblemed_icon_get_emblems(const_cast<GEmblemedIcon*>(gobj())), Glib::OWNERSHIP_NONE);
 }
 
-void EmblemedIcon::add_emblem(const Glib::RefPtr<Emblem>& emblem)
+auto EmblemedIcon::add_emblem (const Glib::RefPtr <Emblem> &emblem) -> void
 {
   g_emblemed_icon_add_emblem(gobj(), const_cast<GEmblem*>(Glib::unwrap(emblem)));
 }
 
-void EmblemedIcon::clear_emblems()
+auto EmblemedIcon::clear_emblems () -> void
 {
   g_emblemed_icon_clear_emblems(gobj());
 }

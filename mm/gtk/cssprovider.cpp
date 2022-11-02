@@ -28,7 +28,8 @@
 
 namespace
 {
-void CssProvider_signal_parsing_error_callback(GtkCssProvider* self, GtkCssSection* p0,const GError* p1,void* data)
+auto CssProvider_signal_parsing_error_callback (
+  GtkCssProvider *self, GtkCssSection *p0, const GError *p1, void *data) -> void
 {
   using namespace Gtk;
   typedef sigc::slot<void(const Glib::RefPtr<const CssSection>&,const Glib::Error&)> SlotType;
@@ -62,7 +63,7 @@ void CssProvider_signal_parsing_error_callback(GtkCssProvider* self, GtkCssSecti
 namespace Gtk
 {
 
-void CssProvider::load_from_data(const std::string& data)
+auto CssProvider::load_from_data (const std::string &data) -> void
 {
   gtk_css_provider_load_from_data(gobj(), data.c_str(), -1);
 }
@@ -99,7 +100,7 @@ auto Gtk::CssParserError::code() const -> Gtk::CssParserError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Gtk::CssParserError::throw_func(GError* gobject)
+auto Gtk::CssParserError::throw_func (GError *gobject) -> void
 {
   throw Gtk::CssParserError(gobject);
 }
@@ -126,7 +127,7 @@ auto Gtk::CssParserWarning::code() const -> Gtk::CssParserWarning::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Gtk::CssParserWarning::throw_func(GError* gobject)
+auto Gtk::CssParserWarning::throw_func (GError *gobject) -> void
 {
   throw Gtk::CssParserWarning(gobject);
 }
@@ -179,7 +180,7 @@ auto CssProvider_Class::init() -> const Glib::Class&
 }
 
 
-void CssProvider_Class::class_init_function(void* g_class, void* class_data)
+auto CssProvider_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -266,22 +267,22 @@ auto CssProvider::to_string() const -> Glib::ustring
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_css_provider_to_string(const_cast<GtkCssProvider*>(gobj())));
 }
 
-void CssProvider::load_from_file(const Glib::RefPtr<const Gio::File>& file)
+auto CssProvider::load_from_file (const Glib::RefPtr <const Gio::File> &file) -> void
 {
   gtk_css_provider_load_from_file(gobj(), const_cast<GFile*>(Glib::unwrap<Gio::File>(file)));
 }
 
-void CssProvider::load_from_path(const std::string& path)
+auto CssProvider::load_from_path (const std::string &path) -> void
 {
   gtk_css_provider_load_from_path(gobj(), path.c_str());
 }
 
-void CssProvider::load_from_resource(const std::string& resource_path)
+auto CssProvider::load_from_resource (const std::string &resource_path) -> void
 {
   gtk_css_provider_load_from_resource(gobj(), resource_path.c_str());
 }
 
-void CssProvider::load_named(const Glib::ustring& name, const Glib::ustring& variant)
+auto CssProvider::load_named (const Glib::ustring &name, const Glib::ustring &variant) -> void
 {
   gtk_css_provider_load_named(gobj(), name.c_str(), variant.empty() ? nullptr : variant.c_str());
 }

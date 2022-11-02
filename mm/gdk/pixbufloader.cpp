@@ -76,7 +76,8 @@ const Glib::SignalProxyInfo PixbufLoader_signal_area_prepared_info =
 };
 
 
-void PixbufLoader_signal_area_updated_callback(GdkPixbufLoader* self, gint p0,gint p1,gint p2,gint p3,void* data)
+auto PixbufLoader_signal_area_updated_callback (
+  GdkPixbufLoader *self, gint p0, gint p1, gint p2, gint p3, void *data) -> void
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(int, int, int, int)>;
@@ -117,7 +118,8 @@ const Glib::SignalProxyInfo PixbufLoader_signal_closed_info =
 };
 
 
-void PixbufLoader_signal_size_prepared_callback(GdkPixbufLoader* self, gint p0,gint p1,void* data)
+auto PixbufLoader_signal_size_prepared_callback (
+  GdkPixbufLoader *self, gint p0, gint p1, void *data) -> void
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(int, int)>;
@@ -191,7 +193,7 @@ auto PixbufLoader_Class::init() -> const Glib::Class&
 }
 
 
-void PixbufLoader_Class::class_init_function(void* g_class, void* class_data)
+auto PixbufLoader_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -204,7 +206,7 @@ void PixbufLoader_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void PixbufLoader_Class::area_prepared_callback(GdkPixbufLoader* self)
+auto PixbufLoader_Class::area_prepared_callback (GdkPixbufLoader *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -240,7 +242,8 @@ void PixbufLoader_Class::area_prepared_callback(GdkPixbufLoader* self)
   if(base && base->area_prepared)
     (*base->area_prepared)(self);
 }
-void PixbufLoader_Class::area_updated_callback(GdkPixbufLoader* self, gint p0, gint p1, gint p2, gint p3)
+auto PixbufLoader_Class::area_updated_callback (
+  GdkPixbufLoader *self, gint p0, gint p1, gint p2, gint p3) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -280,7 +283,7 @@ void PixbufLoader_Class::area_updated_callback(GdkPixbufLoader* self, gint p0, g
   if(base && base->area_updated)
     (*base->area_updated)(self, p0, p1, p2, p3);
 }
-void PixbufLoader_Class::closed_callback(GdkPixbufLoader* self)
+auto PixbufLoader_Class::closed_callback (GdkPixbufLoader *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -316,7 +319,7 @@ void PixbufLoader_Class::closed_callback(GdkPixbufLoader* self)
   if(base && base->closed)
     (*base->closed)(self);
 }
-void PixbufLoader_Class::size_prepared_callback(GdkPixbufLoader* self, gint p0, gint p1)
+auto PixbufLoader_Class::size_prepared_callback (GdkPixbufLoader *self, gint p0, gint p1) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -432,12 +435,12 @@ auto PixbufLoader::create(const Glib::ustring& image_type, bool mime_type) -> Gl
   return Glib::make_refptr_for_instance<PixbufLoader>( new PixbufLoader(image_type, mime_type) );
 }
 
-void PixbufLoader::set_size(int width, int height)
+auto PixbufLoader::set_size (int width, int height) -> void
 {
   gdk_pixbuf_loader_set_size(gobj(), width, height);
 }
 
-void PixbufLoader::write(const guint8* buf, gsize count)
+auto PixbufLoader::write (const guint8 *buf, gsize count) -> void
 {
   GError* gerror = nullptr;
   gdk_pixbuf_loader_write(gobj(), (buf), count, &(gerror));
@@ -445,7 +448,7 @@ void PixbufLoader::write(const guint8* buf, gsize count)
     ::Glib::Error::throw_exception(gerror);
 }
 
-void PixbufLoader::close()
+auto PixbufLoader::close () -> void
 {
   GError* gerror = nullptr;
   gdk_pixbuf_loader_close(gobj(), &(gerror));
@@ -499,7 +502,7 @@ auto PixbufLoader::signal_size_prepared() -> Glib::SignalProxy<void(int, int)>
 }
 
 
-void Gdk::PixbufLoader::on_area_prepared()
+auto Gdk::PixbufLoader::on_area_prepared () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -508,7 +511,7 @@ void Gdk::PixbufLoader::on_area_prepared()
   if(base && base->area_prepared)
     (*base->area_prepared)(gobj());
 }
-void Gdk::PixbufLoader::on_area_updated(int x, int y, int width, int height)
+auto Gdk::PixbufLoader::on_area_updated (int x, int y, int width, int height) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -517,7 +520,7 @@ void Gdk::PixbufLoader::on_area_updated(int x, int y, int width, int height)
   if(base && base->area_updated)
     (*base->area_updated)(gobj(),x,y,width,height);
 }
-void Gdk::PixbufLoader::on_closed()
+auto Gdk::PixbufLoader::on_closed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -526,7 +529,7 @@ void Gdk::PixbufLoader::on_closed()
   if(base && base->closed)
     (*base->closed)(gobj());
 }
-void Gdk::PixbufLoader::on_size_prepared(int width, int height)
+auto Gdk::PixbufLoader::on_size_prepared (int width, int height) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

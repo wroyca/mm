@@ -57,14 +57,12 @@ MenuItem::MenuItem(const Glib::RefPtr<MenuModel>& submenu) : // Mark this class 
   set_submenu(submenu);
 }
 
-void
-MenuItem::set_action(const Glib::ustring& action)
+auto MenuItem::set_action (const Glib::ustring &action) -> void
 {
   g_menu_item_set_action_and_target_value(gobj(), action.c_str(), nullptr);
 }
 
-void
-MenuItem::unset_target()
+auto MenuItem::unset_target () -> void
 {
   const gchar* action_name = nullptr;
   g_menu_item_get_attribute(gobj(), G_MENU_ATTRIBUTE_ACTION, "&s", &action_name);
@@ -72,14 +70,12 @@ MenuItem::unset_target()
   g_menu_item_set_action_and_target_value(gobj(), action_name, nullptr);
 }
 
-void
-MenuItem::unset_action_and_target()
+auto MenuItem::unset_action_and_target () -> void
 {
   g_menu_item_set_action_and_target_value(gobj(), nullptr, nullptr);
 }
 
-void
-MenuItem::unset_icon()
+auto MenuItem::unset_icon () -> void
 {
   g_menu_item_set_icon(gobj(), nullptr);
 }
@@ -131,7 +127,7 @@ auto MenuItem_Class::init() -> const Glib::Class&
 }
 
 
-void MenuItem_Class::class_init_function(void* g_class, void* class_data)
+auto MenuItem_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -211,7 +207,8 @@ auto MenuItem::create(const Glib::RefPtr<MenuModel>& submenu) -> Glib::RefPtr<Me
   return Glib::make_refptr_for_instance<MenuItem>( new MenuItem(submenu) );
 }
 
-void MenuItem::set_attribute_value(const Glib::ustring& attribute, const Glib::VariantBase& value)
+auto MenuItem::set_attribute_value (
+  const Glib::ustring &attribute, const Glib::VariantBase &value) -> void
 {
   g_menu_item_set_attribute_value(gobj(), attribute.c_str(), const_cast<GVariant*>((value).gobj()));
 }
@@ -226,22 +223,22 @@ auto MenuItem::get_link(const Glib::ustring& link) const -> Glib::RefPtr<const M
   return const_cast<MenuItem*>(this)->get_link(link);
 }
 
-void MenuItem::set_link(const Glib::ustring& link, const Glib::RefPtr<MenuModel>& model)
+auto MenuItem::set_link (const Glib::ustring &link, const Glib::RefPtr <MenuModel> &model) -> void
 {
   g_menu_item_set_link(gobj(), link.c_str(), const_cast<GMenuModel*>(Glib::unwrap(model)));
 }
 
-void MenuItem::set_label(const Glib::ustring& label)
+auto MenuItem::set_label (const Glib::ustring &label) -> void
 {
   g_menu_item_set_label(gobj(), label.c_str());
 }
 
-void MenuItem::set_submenu(const Glib::RefPtr<MenuModel>& submenu)
+auto MenuItem::set_submenu (const Glib::RefPtr <MenuModel> &submenu) -> void
 {
   g_menu_item_set_submenu(gobj(), const_cast<GMenuModel*>(Glib::unwrap(submenu)));
 }
 
-void MenuItem::set_section(const Glib::RefPtr<MenuModel>& section)
+auto MenuItem::set_section (const Glib::RefPtr <MenuModel> &section) -> void
 {
   g_menu_item_set_section(gobj(), const_cast<GMenuModel*>(Glib::unwrap(section)));
 }
@@ -256,17 +253,18 @@ auto MenuItem::get_attribute_value(const Glib::ustring& attribute) const -> Glib
   return Glib::wrap(g_menu_item_get_attribute_value(const_cast<GMenuItem*>(gobj()), attribute.c_str(), nullptr), false);
 }
 
-void MenuItem::set_action_and_target(const Glib::ustring& action, const Glib::VariantBase& target_value)
+auto MenuItem::set_action_and_target (
+  const Glib::ustring &action, const Glib::VariantBase &target_value) -> void
 {
   g_menu_item_set_action_and_target_value(gobj(), action.c_str(), const_cast<GVariant*>((target_value).gobj()));
 }
 
-void MenuItem::set_detailed_action(const Glib::ustring& detailed_action)
+auto MenuItem::set_detailed_action (const Glib::ustring &detailed_action) -> void
 {
   g_menu_item_set_detailed_action(gobj(), detailed_action.c_str());
 }
 
-void MenuItem::set_icon(const Glib::RefPtr<Icon>& icon)
+auto MenuItem::set_icon (const Glib::RefPtr <Icon> &icon) -> void
 {
   g_menu_item_set_icon(gobj(), const_cast<GIcon*>(Glib::unwrap(icon)));
 }

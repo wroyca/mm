@@ -37,10 +37,10 @@ namespace
 
 extern "C" {
 
-static void
-DBusInterfaceVTable_MethodCall_giomm_callback(GDBusConnection* connection, const char* sender,
-  const char* object_path, const char* interface_name, const char* method_name,
-  GVariant* parameters, GDBusMethodInvocation* invocation, void* user_data)
+static auto DBusInterfaceVTable_MethodCall_giomm_callback (
+  GDBusConnection *connection, const char *sender,
+  const char *object_path, const char *interface_name, const char *method_name,
+  GVariant *parameters, GDBusMethodInvocation *invocation, void *user_data) -> void
 {
   Gio::DBus::InterfaceVTable* vtable = static_cast<Gio::DBus::InterfaceVTable*>(user_data);
 

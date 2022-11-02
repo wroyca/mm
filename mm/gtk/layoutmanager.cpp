@@ -32,9 +32,10 @@ namespace Gtk
 // This vfunc callback is custom implemented because we want the output
 // arguments of the C++ vfunc to be int& (not int*), and the vfunc_callback
 // function may be called from gtk with NULL pointers.
-void LayoutManager_Class::measure_vfunc_callback(GtkLayoutManager* self,
-  GtkWidget* widget, GtkOrientation orientation, int for_size,
-  int* minimum, int* natural, int* minimum_baseline, int* natural_baseline)
+auto LayoutManager_Class::measure_vfunc_callback (
+  GtkLayoutManager *self,
+  GtkWidget *widget, GtkOrientation orientation, int for_size,
+  int *minimum, int *natural, int *minimum_baseline, int *natural_baseline) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -127,7 +128,7 @@ auto LayoutManager_Class::init() -> const Glib::Class&
 }
 
 
-void LayoutManager_Class::class_init_function(void* g_class, void* class_data)
+auto LayoutManager_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -180,7 +181,8 @@ auto LayoutManager_Class::get_request_mode_vfunc_callback(GtkLayoutManager* self
   using RType = GtkSizeRequestMode;
   return RType();
 }
-void LayoutManager_Class::allocate_vfunc_callback(GtkLayoutManager* self, GtkWidget* widget, int width, int height, int baseline)
+auto LayoutManager_Class::allocate_vfunc_callback (
+  GtkLayoutManager *self, GtkWidget *widget, int width, int height, int baseline) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -257,7 +259,7 @@ auto LayoutManager_Class::create_layout_child_vfunc_callback(GtkLayoutManager* s
   using RType = GtkLayoutChild*;
   return RType();
 }
-void LayoutManager_Class::root_vfunc_callback(GtkLayoutManager* self)
+auto LayoutManager_Class::root_vfunc_callback (GtkLayoutManager *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -293,7 +295,7 @@ void LayoutManager_Class::root_vfunc_callback(GtkLayoutManager* self)
   if(base && base->root)
     (*base->root)(self);
 }
-void LayoutManager_Class::unroot_vfunc_callback(GtkLayoutManager* self)
+auto LayoutManager_Class::unroot_vfunc_callback (GtkLayoutManager *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -397,12 +399,14 @@ LayoutManager::LayoutManager()
 
 }
 
-void LayoutManager::measure(Widget& widget, Orientation orientation, int for_size, int& minimum, int& natural, int& minimum_baseline, int& natural_baseline) const
+auto LayoutManager::measure (
+  Widget &widget, Orientation orientation, int for_size, int &minimum, int &natural,
+  int &minimum_baseline, int &natural_baseline) const -> void
 {
   gtk_layout_manager_measure(const_cast<GtkLayoutManager*>(gobj()), (widget).gobj(), static_cast<GtkOrientation>(orientation), for_size, &(minimum), &(natural), &(minimum_baseline), &(natural_baseline));
 }
 
-void LayoutManager::allocate(Widget& widget, int width, int height, int baseline)
+auto LayoutManager::allocate (Widget &widget, int width, int height, int baseline) -> void
 {
   gtk_layout_manager_allocate(gobj(), (widget).gobj(), width, height, baseline);
 }
@@ -422,7 +426,7 @@ auto LayoutManager::get_widget() const -> const Widget*
   return const_cast<LayoutManager*>(this)->get_widget();
 }
 
-void LayoutManager::layout_changed()
+auto LayoutManager::layout_changed () -> void
 {
   gtk_layout_manager_layout_changed(gobj());
 }
@@ -456,7 +460,9 @@ auto Gtk::LayoutManager::get_request_mode_vfunc(const Widget& widget) const -> S
   using RType = SizeRequestMode;
   return RType();
 }
-void Gtk::LayoutManager::measure_vfunc(const Widget& widget, Orientation orientation, int for_size, int& minimum, int& natural, int& minimum_baseline, int& natural_baseline) const
+auto Gtk::LayoutManager::measure_vfunc (
+  const Widget &widget, Orientation orientation, int for_size, int &minimum, int &natural,
+  int &minimum_baseline, int &natural_baseline) const -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -467,7 +473,8 @@ void Gtk::LayoutManager::measure_vfunc(const Widget& widget, Orientation orienta
     (*base->measure)(const_cast<GtkLayoutManager*>(gobj()),const_cast<GtkWidget*>((widget).gobj()),static_cast<GtkOrientation>(orientation),for_size,&(minimum),&(natural),&(minimum_baseline),&(natural_baseline));
   }
 }
-void Gtk::LayoutManager::allocate_vfunc(const Widget& widget, int width, int height, int baseline)
+auto Gtk::LayoutManager::allocate_vfunc (
+  const Widget &widget, int width, int height, int baseline) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -493,7 +500,7 @@ auto Gtk::LayoutManager::create_layout_child_vfunc(const Widget& widget, const W
   using RType = Glib::RefPtr<LayoutChild>;
   return RType();
 }
-void Gtk::LayoutManager::root_vfunc()
+auto Gtk::LayoutManager::root_vfunc () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -504,7 +511,7 @@ void Gtk::LayoutManager::root_vfunc()
     (*base->root)(gobj());
   }
 }
-void Gtk::LayoutManager::unroot_vfunc()
+auto Gtk::LayoutManager::unroot_vfunc () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

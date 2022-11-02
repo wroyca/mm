@@ -84,7 +84,7 @@ auto Picture_Class::init() -> const Glib::Class&
 }
 
 
-void Picture_Class::class_init_function(void* g_class, void* class_data)
+auto Picture_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -174,7 +174,7 @@ Picture::Picture(const Glib::RefPtr<Gio::File>& file)
 
 }
 
-void Picture::set_paintable(const Glib::RefPtr<Gdk::Paintable>& paintable)
+auto Picture::set_paintable (const Glib::RefPtr <Gdk::Paintable> &paintable) -> void
 {
   gtk_picture_set_paintable(gobj(), Glib::unwrap(paintable));
 }
@@ -192,7 +192,7 @@ auto Picture::get_paintable() const -> Glib::RefPtr<const Gdk::Paintable>
   return const_cast<Picture*>(this)->get_paintable();
 }
 
-void Picture::set_file(const Glib::RefPtr<const Gio::File>& file)
+auto Picture::set_file (const Glib::RefPtr <const Gio::File> &file) -> void
 {
   gtk_picture_set_file(gobj(), const_cast<GFile*>(Glib::unwrap<Gio::File>(file)));
 }
@@ -210,24 +210,24 @@ auto Picture::get_file() const -> Glib::RefPtr<const Gio::File>
   return const_cast<Picture*>(this)->get_file();
 }
 
-void Picture::set_filename(const std::string& filename)
+auto Picture::set_filename (const std::string &filename) -> void
 {
   gtk_picture_set_filename(gobj(), filename.c_str());
 }
 
-void Picture::set_resource(const std::string& resource_path)
+auto Picture::set_resource (const std::string &resource_path) -> void
 {
   gtk_picture_set_resource(gobj(), resource_path.c_str());
 }
 
-void Picture::set_pixbuf(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf)
+auto Picture::set_pixbuf (const Glib::RefPtr <Gdk::Pixbuf> &pixbuf) -> void
 {
   gtk_picture_set_pixbuf(gobj(), Glib::unwrap(pixbuf));
 }
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-void Picture::set_keep_aspect_ratio(bool keep_aspect_ratio)
+auto Picture::set_keep_aspect_ratio (bool keep_aspect_ratio) -> void
 {
   gtk_picture_set_keep_aspect_ratio(gobj(), static_cast<int>(keep_aspect_ratio));
 }
@@ -243,7 +243,7 @@ auto Picture::get_keep_aspect_ratio() const -> bool
 G_GNUC_END_IGNORE_DEPRECATIONS
 #endif // GTKMM_DISABLE_DEPRECATED
 
-void Picture::set_can_shrink(bool can_shrink)
+auto Picture::set_can_shrink (bool can_shrink) -> void
 {
   gtk_picture_set_can_shrink(gobj(), static_cast<int>(can_shrink));
 }
@@ -253,7 +253,7 @@ auto Picture::get_can_shrink() const -> bool
   return gtk_picture_get_can_shrink(const_cast<GtkPicture*>(gobj()));
 }
 
-void Picture::set_content_fit(ContentFit content_fit)
+auto Picture::set_content_fit (ContentFit content_fit) -> void
 {
   gtk_picture_set_content_fit(gobj(), static_cast<GtkContentFit>(content_fit));
 }
@@ -263,7 +263,7 @@ auto Picture::get_content_fit() const -> ContentFit
   return static_cast<ContentFit>(gtk_picture_get_content_fit(const_cast<GtkPicture*>(gobj())));
 }
 
-void Picture::set_alternative_text(const Glib::ustring& alternative_text)
+auto Picture::set_alternative_text (const Glib::ustring &alternative_text) -> void
 {
   gtk_picture_set_alternative_text(gobj(), alternative_text.empty() ? nullptr : alternative_text.c_str());
 }

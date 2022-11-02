@@ -21,11 +21,11 @@ public:
 
   friend class SelectionModel;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -34,15 +34,20 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static gboolean is_selected_vfunc_callback(GtkSelectionModel* self, guint position);
-  static GtkBitset* get_selection_in_range_vfunc_callback(GtkSelectionModel* self, guint position, guint n_items);
-  static gboolean select_item_vfunc_callback(GtkSelectionModel* self, guint position, gboolean unselect_rest);
-  static gboolean unselect_item_vfunc_callback(GtkSelectionModel* self, guint position);
-  static gboolean select_range_vfunc_callback(GtkSelectionModel* self, guint position, guint n_items, gboolean unselect_rest);
-  static gboolean unselect_range_vfunc_callback(GtkSelectionModel* self, guint position, guint n_items);
-  static gboolean select_all_vfunc_callback(GtkSelectionModel* self);
-  static gboolean unselect_all_vfunc_callback(GtkSelectionModel* self);
-  static gboolean set_selection_vfunc_callback(GtkSelectionModel* self, GtkBitset* selected, GtkBitset* mask);
+  static auto is_selected_vfunc_callback (GtkSelectionModel *self, guint position) -> gboolean;
+  static auto get_selection_in_range_vfunc_callback (
+    GtkSelectionModel *self, guint position, guint n_items) -> GtkBitset*;
+  static auto select_item_vfunc_callback (
+    GtkSelectionModel *self, guint position, gboolean unselect_rest) -> gboolean;
+  static auto unselect_item_vfunc_callback (GtkSelectionModel *self, guint position) -> gboolean;
+  static auto select_range_vfunc_callback (
+    GtkSelectionModel *self, guint position, guint n_items, gboolean unselect_rest) -> gboolean;
+  static auto unselect_range_vfunc_callback (
+    GtkSelectionModel *self, guint position, guint n_items) -> gboolean;
+  static auto select_all_vfunc_callback (GtkSelectionModel *self) -> gboolean;
+  static auto unselect_all_vfunc_callback (GtkSelectionModel *self) -> gboolean;
+  static auto set_selection_vfunc_callback (
+    GtkSelectionModel *self, GtkBitset *selected, GtkBitset *mask) -> gboolean;
 };
 
 

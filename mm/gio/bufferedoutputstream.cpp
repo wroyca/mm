@@ -83,7 +83,7 @@ auto BufferedOutputStream_Class::init() -> const Glib::Class&
 }
 
 
-void BufferedOutputStream_Class::class_init_function(void* g_class, void* class_data)
+auto BufferedOutputStream_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -180,12 +180,12 @@ auto BufferedOutputStream::get_buffer_size() const -> gsize
   return g_buffered_output_stream_get_buffer_size(const_cast<GBufferedOutputStream*>(gobj()));
 }
 
-void BufferedOutputStream::set_buffer_size(gsize size)
+auto BufferedOutputStream::set_buffer_size (gsize size) -> void
 {
   g_buffered_output_stream_set_buffer_size(gobj(), size);
 }
 
-void BufferedOutputStream::set_auto_grow(bool auto_grow)
+auto BufferedOutputStream::set_auto_grow (bool auto_grow) -> void
 {
   g_buffered_output_stream_set_auto_grow(gobj(), static_cast<int>(auto_grow));
 }

@@ -108,7 +108,8 @@ const Glib::SignalProxyInfo EventControllerScroll_signal_scroll_end_info =
 };
 
 
-void EventControllerScroll_signal_decelerate_callback(GtkEventControllerScroll* self, gdouble p0,gdouble p1,void* data)
+auto EventControllerScroll_signal_decelerate_callback (
+  GtkEventControllerScroll *self, gdouble p0, gdouble p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
@@ -188,7 +189,7 @@ auto EventControllerScroll_Class::init() -> const Glib::Class&
 }
 
 
-void EventControllerScroll_Class::class_init_function(void* g_class, void* class_data)
+auto EventControllerScroll_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -268,7 +269,7 @@ auto EventControllerScroll::create() -> Glib::RefPtr<EventControllerScroll>
   return Glib::make_refptr_for_instance<EventControllerScroll>( new EventControllerScroll() );
 }
 
-void EventControllerScroll::set_flags(Flags flags)
+auto EventControllerScroll::set_flags (Flags flags) -> void
 {
   gtk_event_controller_scroll_set_flags(gobj(), static_cast<GtkEventControllerScrollFlags>(flags));
 }

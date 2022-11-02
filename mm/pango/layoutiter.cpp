@@ -166,7 +166,7 @@ LayoutIter::~LayoutIter() noexcept
     pango_layout_iter_free(gobject_);
 }
 
-void LayoutIter::swap(LayoutIter& other) noexcept
+auto LayoutIter::swap (LayoutIter &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }
@@ -249,27 +249,27 @@ auto LayoutIter::next_line() -> bool
   return pango_layout_iter_next_line(gobj());
 }
 
-void LayoutIter::get_cluster_extents(Rectangle& ink_rect, Rectangle& logical_rect) const
+auto LayoutIter::get_cluster_extents (Rectangle &ink_rect, Rectangle &logical_rect) const -> void
 {
   pango_layout_iter_get_cluster_extents(const_cast<PangoLayoutIter*>(gobj()), (ink_rect).gobj(), (logical_rect).gobj());
 }
 
-void LayoutIter::get_run_extents(Rectangle& ink_rect, Rectangle& logical_rect) const
+auto LayoutIter::get_run_extents (Rectangle &ink_rect, Rectangle &logical_rect) const -> void
 {
   pango_layout_iter_get_run_extents(const_cast<PangoLayoutIter*>(gobj()), (ink_rect).gobj(), (logical_rect).gobj());
 }
 
-void LayoutIter::get_line_extents(Rectangle& ink_rect, Rectangle& logical_rect) const
+auto LayoutIter::get_line_extents (Rectangle &ink_rect, Rectangle &logical_rect) const -> void
 {
   pango_layout_iter_get_line_extents(const_cast<PangoLayoutIter*>(gobj()), (ink_rect).gobj(), (logical_rect).gobj());
 }
 
-void LayoutIter::get_line_yrange(int& y0, int& y1) const
+auto LayoutIter::get_line_yrange (int &y0, int &y1) const -> void
 {
   pango_layout_iter_get_line_yrange(const_cast<PangoLayoutIter*>(gobj()), &(y0), &(y1));
 }
 
-void LayoutIter::get_layout_extents(Rectangle& ink_rect, Rectangle& logical_rect) const
+auto LayoutIter::get_layout_extents (Rectangle &ink_rect, Rectangle &logical_rect) const -> void
 {
   pango_layout_iter_get_layout_extents(const_cast<PangoLayoutIter*>(gobj()), (ink_rect).gobj(), (logical_rect).gobj());
 }

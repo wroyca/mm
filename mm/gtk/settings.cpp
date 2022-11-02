@@ -80,7 +80,7 @@ auto Settings_Class::init() -> const Glib::Class&
 }
 
 
-void Settings_Class::class_init_function(void* g_class, void* class_data)
+auto Settings_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -165,7 +165,7 @@ auto Settings::get_for_display(const Glib::RefPtr<Gdk::Display>& display) -> Gli
   return retvalue;
 }
 
-void Settings::reset_property(const Glib::ustring& name)
+auto Settings::reset_property (const Glib::ustring &name) -> void
 {
   gtk_settings_reset_property(gobj(), name.c_str());
 }

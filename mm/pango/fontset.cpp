@@ -46,7 +46,7 @@ static auto fontset_foreach_callback(PangoFontset* /* fontset */, PangoFont* fon
 namespace Pango
 {
 
-void Fontset::foreach(const ForeachSlot& slot)
+auto Fontset::foreach (const ForeachSlot &slot) -> void
 {
   pango_fontset_foreach(gobj(), &fontset_foreach_callback, (void*)&slot);
 }
@@ -98,7 +98,7 @@ auto Fontset_Class::init() -> const Glib::Class&
 }
 
 
-void Fontset_Class::class_init_function(void* g_class, void* class_data)
+auto Fontset_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

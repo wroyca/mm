@@ -102,7 +102,7 @@ auto FrameClock_Class::init() -> const Glib::Class&
 }
 
 
-void FrameClock_Class::class_init_function(void* g_class, void* class_data)
+auto FrameClock_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -172,17 +172,17 @@ auto FrameClock::get_frame_time() const -> gint64
   return gdk_frame_clock_get_frame_time(const_cast<GdkFrameClock*>(gobj()));
 }
 
-void FrameClock::request_phase(Phase phase)
+auto FrameClock::request_phase (Phase phase) -> void
 {
   gdk_frame_clock_request_phase(gobj(), static_cast<GdkFrameClockPhase>(phase));
 }
 
-void FrameClock::begin_updating()
+auto FrameClock::begin_updating () -> void
 {
   gdk_frame_clock_begin_updating(gobj());
 }
 
-void FrameClock::end_updating()
+auto FrameClock::end_updating () -> void
 {
   gdk_frame_clock_end_updating(gobj());
 }
@@ -223,7 +223,8 @@ auto FrameClock::get_current_timings() const -> Glib::RefPtr<const FrameTimings>
   return const_cast<FrameClock*>(this)->get_current_timings();
 }
 
-void FrameClock::get_refresh_info(gint64 base_time, gint64& refresh_interval_return, gint64& presentation_time_return) const
+auto FrameClock::get_refresh_info (
+  gint64 base_time, gint64 &refresh_interval_return, gint64 &presentation_time_return) const -> void
 {
   gdk_frame_clock_get_refresh_info(const_cast<GdkFrameClock*>(gobj()), base_time, &(refresh_interval_return), &(presentation_time_return));
 }

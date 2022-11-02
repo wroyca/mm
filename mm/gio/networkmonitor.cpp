@@ -30,9 +30,9 @@
 namespace Gio
 {
 
-void
-NetworkMonitor::can_reach_async(const Glib::RefPtr<SocketConnectable>& connectable,
-  const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto NetworkMonitor::can_reach_async (
+  const Glib::RefPtr <SocketConnectable> &connectable,
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -49,7 +49,8 @@ namespace
 {
 
 
-void NetworkMonitor_signal_network_changed_callback(GNetworkMonitor* self, gboolean p0,void* data)
+auto NetworkMonitor_signal_network_changed_callback (
+  GNetworkMonitor *self, gboolean p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(bool)>;
@@ -121,7 +122,7 @@ auto NetworkMonitor_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void NetworkMonitor_Class::iface_init_function(void* g_iface, void*)
+auto NetworkMonitor_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -134,7 +135,7 @@ void NetworkMonitor_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-void NetworkMonitor_Class::network_changed_callback(GNetworkMonitor* self, gboolean p0)
+auto NetworkMonitor_Class::network_changed_callback (GNetworkMonitor *self, gboolean p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -211,7 +212,7 @@ NetworkMonitor::~NetworkMonitor() noexcept
 {}
 
 // static
-void NetworkMonitor::add_interface(GType gtype_implementer)
+auto NetworkMonitor::add_interface (GType gtype_implementer) -> void
 {
   networkmonitor_class_.init().add_interface(gtype_implementer);
 }
@@ -304,7 +305,7 @@ auto NetworkMonitor::property_network_metered() const -> Glib::PropertyProxy_Rea
 }
 
 
-void Gio::NetworkMonitor::on_network_changed(bool available)
+auto Gio::NetworkMonitor::on_network_changed (bool available) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

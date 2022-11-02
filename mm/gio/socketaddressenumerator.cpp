@@ -31,9 +31,8 @@
 namespace Gio
 {
 
-void
-SocketAddressEnumerator::next_async(
-  const Glib::RefPtr<Cancellable>& cancellable, const SlotAsyncReady& slot)
+auto SocketAddressEnumerator::next_async (
+  const Glib::RefPtr <Cancellable> &cancellable, const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -91,7 +90,7 @@ auto SocketAddressEnumerator_Class::init() -> const Glib::Class&
 }
 
 
-void SocketAddressEnumerator_Class::class_init_function(void* g_class, void* class_data)
+auto SocketAddressEnumerator_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

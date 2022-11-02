@@ -23,12 +23,12 @@ public:
   friend class MediaStream;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  const Glib::Class& init();
+  auto init () -> const Glib::Class&;
 
 
-  static void class_init_function(void* g_class, void* class_data);
+  static auto class_init_function (void *g_class, void *class_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -37,12 +37,13 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static gboolean play_vfunc_callback(GtkMediaStream* self);
-  static void pause_vfunc_callback(GtkMediaStream* self);
-  static void seek_vfunc_callback(GtkMediaStream* self, gint64 timestamp);
-  static void update_audio_vfunc_callback(GtkMediaStream* self, gboolean muted, double volume);
-  static void realize_vfunc_callback(GtkMediaStream* self, GdkSurface* surface);
-  static void unrealize_vfunc_callback(GtkMediaStream* self, GdkSurface* surface);
+  static auto play_vfunc_callback (GtkMediaStream *self) -> gboolean;
+  static auto pause_vfunc_callback (GtkMediaStream *self) -> void;
+  static auto seek_vfunc_callback (GtkMediaStream *self, gint64 timestamp) -> void;
+  static auto update_audio_vfunc_callback (
+    GtkMediaStream *self, gboolean muted, double volume) -> void;
+  static auto realize_vfunc_callback (GtkMediaStream *self, GdkSurface *surface) -> void;
+  static auto unrealize_vfunc_callback (GtkMediaStream *self, GdkSurface *surface) -> void;
 };
 
 

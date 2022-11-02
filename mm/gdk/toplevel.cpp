@@ -30,7 +30,8 @@ using State = Gdk::Toplevel::State;
 namespace
 {
 // Hand-coded because the slot can't be called with a non-const temporary ToplevelSize.
-void Toplevel_signal_compute_size_callback(GdkToplevel* self, GdkToplevelSize* p0, void* data)
+auto Toplevel_signal_compute_size_callback (
+  GdkToplevel *self, GdkToplevelSize *p0, void *data) -> void
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(ToplevelSize&)>;
@@ -123,7 +124,7 @@ auto Toplevel_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Toplevel_Class::iface_init_function(void* g_iface, void*)
+auto Toplevel_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -172,7 +173,7 @@ Toplevel::~Toplevel() noexcept
 {}
 
 // static
-void Toplevel::add_interface(GType gtype_implementer)
+auto Toplevel::add_interface (GType gtype_implementer) -> void
 {
   toplevel_class_.init().add_interface(gtype_implementer);
 }
@@ -191,7 +192,7 @@ auto Toplevel::get_base_type() -> GType
 }
 
 
-void Toplevel::present(const Glib::RefPtr<ToplevelLayout>& layout)
+auto Toplevel::present (const Glib::RefPtr <ToplevelLayout> &layout) -> void
 {
   gdk_toplevel_present(gobj(), Glib::unwrap(layout));
 }
@@ -206,7 +207,7 @@ auto Toplevel::lower() -> bool
   return gdk_toplevel_lower(gobj());
 }
 
-void Toplevel::focus(guint32 timestamp)
+auto Toplevel::focus (guint32 timestamp) -> void
 {
   gdk_toplevel_focus(gobj(), timestamp);
 }
@@ -216,27 +217,27 @@ auto Toplevel::get_state() const -> State
   return static_cast<State>(gdk_toplevel_get_state(const_cast<GdkToplevel*>(gobj())));
 }
 
-void Toplevel::set_title(const Glib::ustring& title)
+auto Toplevel::set_title (const Glib::ustring &title) -> void
 {
   gdk_toplevel_set_title(gobj(), title.c_str());
 }
 
-void Toplevel::set_startup_id(const Glib::ustring& startup_id)
+auto Toplevel::set_startup_id (const Glib::ustring &startup_id) -> void
 {
   gdk_toplevel_set_startup_id(gobj(), startup_id.c_str());
 }
 
-void Toplevel::set_transient_for(const Glib::RefPtr<Surface>& parent)
+auto Toplevel::set_transient_for (const Glib::RefPtr <Surface> &parent) -> void
 {
   gdk_toplevel_set_transient_for(gobj(), Glib::unwrap(parent));
 }
 
-void Toplevel::set_modal(bool modal)
+auto Toplevel::set_modal (bool modal) -> void
 {
   gdk_toplevel_set_modal(gobj(), static_cast<int>(modal));
 }
 
-void Toplevel::set_icon_list(const std::vector<Glib::RefPtr<Texture>>& surfaces)
+auto Toplevel::set_icon_list (const std::vector <Glib::RefPtr <Texture>> &surfaces) -> void
 {
   gdk_toplevel_set_icon_list(gobj(), Glib::ListHandler<Glib::RefPtr<Texture>>::vector_to_list(surfaces).data());
 }
@@ -246,12 +247,12 @@ auto Toplevel::show_window_menu(const Glib::RefPtr<Event>& event) -> bool
   return gdk_toplevel_show_window_menu(gobj(), Glib::unwrap(event));
 }
 
-void Toplevel::set_decorated(bool decorated)
+auto Toplevel::set_decorated (bool decorated) -> void
 {
   gdk_toplevel_set_decorated(gobj(), static_cast<int>(decorated));
 }
 
-void Toplevel::set_deletable(bool deletable)
+auto Toplevel::set_deletable (bool deletable) -> void
 {
   gdk_toplevel_set_deletable(gobj(), static_cast<int>(deletable));
 }
@@ -261,22 +262,25 @@ auto Toplevel::supports_edge_constraints() const -> bool
   return gdk_toplevel_supports_edge_constraints(const_cast<GdkToplevel*>(gobj()));
 }
 
-void Toplevel::inhibit_system_shortcuts(const Glib::RefPtr<Event>& event)
+auto Toplevel::inhibit_system_shortcuts (const Glib::RefPtr <Event> &event) -> void
 {
   gdk_toplevel_inhibit_system_shortcuts(gobj(), Glib::unwrap(event));
 }
 
-void Toplevel::restore_system_shortcuts()
+auto Toplevel::restore_system_shortcuts () -> void
 {
   gdk_toplevel_restore_system_shortcuts(gobj());
 }
 
-void Toplevel::begin_resize(SurfaceEdge edge, const Glib::RefPtr<Device>& device, int button, double x, double y, guint32 timestamp)
+auto Toplevel::begin_resize (
+  SurfaceEdge edge, const Glib::RefPtr <Device> &device, int button, double x, double y,
+  guint32 timestamp) -> void
 {
   gdk_toplevel_begin_resize(gobj(), static_cast<GdkSurfaceEdge>(edge), Glib::unwrap(device), button, x, y, timestamp);
 }
 
-void Toplevel::begin_move(const Glib::RefPtr<Device>& device, int button, double x, double y, guint32 timestamp)
+auto Toplevel::begin_move (
+  const Glib::RefPtr <Device> &device, int button, double x, double y, guint32 timestamp) -> void
 {
   gdk_toplevel_begin_move(gobj(), Glib::unwrap(device), button, x, y, timestamp);
 }

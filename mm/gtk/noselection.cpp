@@ -64,7 +64,7 @@ auto NoSelection_Class::init() -> const Glib::Class&
 }
 
 
-void NoSelection_Class::class_init_function(void* g_class, void* class_data)
+auto NoSelection_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -176,7 +176,7 @@ auto NoSelection::get_model() const -> Glib::RefPtr<const Gio::ListModel>
   return const_cast<NoSelection*>(this)->get_model();
 }
 
-void NoSelection::set_model(const Glib::RefPtr<Gio::ListModel>& model)
+auto NoSelection::set_model (const Glib::RefPtr <Gio::ListModel> &model) -> void
 {
   gtk_no_selection_set_model(gobj(), Glib::unwrap(model));
 }

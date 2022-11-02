@@ -39,8 +39,8 @@ struct OwnSlots
 
 extern "C" {
 
-static void
-Bus_Acquired_giomm_callback(GDBusConnection* connection, const gchar* name, gpointer data)
+static auto Bus_Acquired_giomm_callback (
+  GDBusConnection *connection, const gchar *name, gpointer data) -> void
 {
   auto slots = static_cast<OwnSlots*>(data);
   auto the_slot = slots->bus_acquired_slot;
@@ -55,8 +55,8 @@ Bus_Acquired_giomm_callback(GDBusConnection* connection, const gchar* name, gpoi
   }
 }
 
-static void
-Bus_Name_Acquired_giomm_callback(GDBusConnection* connection, const gchar* name, gpointer data)
+static auto Bus_Name_Acquired_giomm_callback (
+  GDBusConnection *connection, const gchar *name, gpointer data) -> void
 {
   auto slots = static_cast<OwnSlots*>(data);
   auto the_slot = slots->name_acquired_slot;
@@ -71,8 +71,8 @@ Bus_Name_Acquired_giomm_callback(GDBusConnection* connection, const gchar* name,
   }
 }
 
-static void
-Bus_Name_Lost_giomm_callback(GDBusConnection* connection, const gchar* name, gpointer data)
+static auto Bus_Name_Lost_giomm_callback (
+  GDBusConnection *connection, const gchar *name, gpointer data) -> void
 {
   auto slots = static_cast<OwnSlots*>(data);
   auto the_slot = slots->name_lost_slot;
@@ -87,8 +87,7 @@ Bus_Name_Lost_giomm_callback(GDBusConnection* connection, const gchar* name, gpo
   }
 }
 
-static void
-Bus_Own_Name_giomm_callback_destroy(void* data)
+static auto Bus_Own_Name_giomm_callback_destroy (void *data) -> void
 {
   auto slots = static_cast<OwnSlots*>(data);
 
@@ -129,8 +128,7 @@ own_name(BusType bus_type, const Glib::ustring& name, const SlotBusAcquired& bus
     &Bus_Own_Name_giomm_callback_destroy);
 }
 
-void
-unown_name(guint owner_id)
+auto unown_name (guint owner_id) -> void
 {
   g_bus_unown_name(owner_id);
 }

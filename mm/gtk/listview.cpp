@@ -29,7 +29,7 @@ namespace
 {
 
 
-void ListView_signal_activate_callback(GtkListView* self, guint p0,void* data)
+auto ListView_signal_activate_callback (GtkListView *self, guint p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint)>;
@@ -99,7 +99,7 @@ auto ListView_Class::init() -> const Glib::Class&
 }
 
 
-void ListView_Class::class_init_function(void* g_class, void* class_data)
+auto ListView_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -182,12 +182,12 @@ auto ListView::get_model() const -> Glib::RefPtr<const SelectionModel>
   return const_cast<ListView*>(this)->get_model();
 }
 
-void ListView::set_model(const Glib::RefPtr<SelectionModel>& model)
+auto ListView::set_model (const Glib::RefPtr <SelectionModel> &model) -> void
 {
   gtk_list_view_set_model(gobj(), Glib::unwrap(model));
 }
 
-void ListView::set_factory(const Glib::RefPtr<ListItemFactory>& factory)
+auto ListView::set_factory (const Glib::RefPtr <ListItemFactory> &factory) -> void
 {
   gtk_list_view_set_factory(gobj(), Glib::unwrap(factory));
 }
@@ -205,7 +205,7 @@ auto ListView::get_factory() const -> Glib::RefPtr<const ListItemFactory>
   return const_cast<ListView*>(this)->get_factory();
 }
 
-void ListView::set_show_separators(bool show_separators)
+auto ListView::set_show_separators (bool show_separators) -> void
 {
   gtk_list_view_set_show_separators(gobj(), static_cast<int>(show_separators));
 }
@@ -215,7 +215,7 @@ auto ListView::get_show_separators() const -> bool
   return gtk_list_view_get_show_separators(const_cast<GtkListView*>(gobj()));
 }
 
-void ListView::set_single_click_activate(bool single_click_activate)
+auto ListView::set_single_click_activate (bool single_click_activate) -> void
 {
   gtk_list_view_set_single_click_activate(gobj(), static_cast<int>(single_click_activate));
 }
@@ -225,7 +225,7 @@ auto ListView::get_single_click_activate() const -> bool
   return gtk_list_view_get_single_click_activate(const_cast<GtkListView*>(gobj()));
 }
 
-void ListView::set_enable_rubberband(bool enable_rubberband)
+auto ListView::set_enable_rubberband (bool enable_rubberband) -> void
 {
   gtk_list_view_set_enable_rubberband(gobj(), static_cast<int>(enable_rubberband));
 }

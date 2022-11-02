@@ -31,7 +31,7 @@
 namespace Gtk
 {
 
-void Overlay::unset_child()
+auto Overlay::unset_child () -> void
 {
   gtk_overlay_set_child(gobj(), nullptr);
 }
@@ -143,7 +143,7 @@ auto Overlay_Class::init() -> const Glib::Class&
 }
 
 
-void Overlay_Class::class_init_function(void* g_class, void* class_data)
+auto Overlay_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -213,17 +213,17 @@ Overlay::Overlay()
 
 }
 
-void Overlay::add_overlay(Gtk::Widget& widget)
+auto Overlay::add_overlay (Gtk::Widget &widget) -> void
 {
   gtk_overlay_add_overlay(gobj(), (widget).gobj());
 }
 
-void Overlay::remove_overlay(Gtk::Widget& widget)
+auto Overlay::remove_overlay (Gtk::Widget &widget) -> void
 {
   gtk_overlay_remove_overlay(gobj(), (widget).gobj());
 }
 
-void Overlay::set_child(Widget& child)
+auto Overlay::set_child (Widget &child) -> void
 {
   gtk_overlay_set_child(gobj(), (child).gobj());
 }
@@ -243,7 +243,7 @@ auto Overlay::get_measure_overlay(Widget& widget) const -> bool
   return gtk_overlay_get_measure_overlay(const_cast<GtkOverlay*>(gobj()), (widget).gobj());
 }
 
-void Overlay::set_measure_overlay(Widget& widget, bool measure)
+auto Overlay::set_measure_overlay (Widget &widget, bool measure) -> void
 {
   gtk_overlay_set_measure_overlay(gobj(), (widget).gobj(), static_cast<int>(measure));
 }
@@ -253,7 +253,7 @@ auto Overlay::get_clip_overlay(const Widget& widget) const -> bool
   return gtk_overlay_get_clip_overlay(const_cast<GtkOverlay*>(gobj()), const_cast<GtkWidget*>((widget).gobj()));
 }
 
-void Overlay::set_clip_overlay(const Widget& widget, bool clip_overlay)
+auto Overlay::set_clip_overlay (const Widget &widget, bool clip_overlay) -> void
 {
   gtk_overlay_set_clip_overlay(gobj(), const_cast<GtkWidget*>((widget).gobj()), static_cast<int>(clip_overlay));
 }

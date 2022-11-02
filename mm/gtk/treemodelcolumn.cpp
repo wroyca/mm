@@ -33,7 +33,7 @@ TreeModelColumnRecord::TreeModelColumnRecord()
 TreeModelColumnRecord::~TreeModelColumnRecord() noexcept
 {}
 
-void TreeModelColumnRecord::add(TreeModelColumnBase& column)
+auto TreeModelColumnRecord::add (TreeModelColumnBase &column) -> void
 {
   g_return_if_fail(column.index_ == -1); //Check that it hasn't been set before.
 

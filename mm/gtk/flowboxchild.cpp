@@ -28,7 +28,7 @@
 namespace Gtk
 {
 
-void FlowBoxChild::unset_child()
+auto FlowBoxChild::unset_child () -> void
 {
   gtk_flow_box_child_set_child(gobj(), nullptr);
 }
@@ -88,7 +88,7 @@ auto FlowBoxChild_Class::init() -> const Glib::Class&
 }
 
 
-void FlowBoxChild_Class::class_init_function(void* g_class, void* class_data)
+auto FlowBoxChild_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -98,7 +98,7 @@ void FlowBoxChild_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void FlowBoxChild_Class::activate_callback(GtkFlowBoxChild* self)
+auto FlowBoxChild_Class::activate_callback (GtkFlowBoxChild *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -197,7 +197,7 @@ FlowBoxChild::FlowBoxChild()
 
 }
 
-void FlowBoxChild::set_child(Widget& child)
+auto FlowBoxChild::set_child (Widget &child) -> void
 {
   gtk_flow_box_child_set_child(gobj(), (child).gobj());
 }
@@ -222,7 +222,7 @@ auto FlowBoxChild::is_selected() const -> bool
   return gtk_flow_box_child_is_selected(const_cast<GtkFlowBoxChild*>(gobj()));
 }
 
-void FlowBoxChild::changed()
+auto FlowBoxChild::changed () -> void
 {
   gtk_flow_box_child_changed(gobj());
 }
@@ -245,7 +245,7 @@ auto FlowBoxChild::property_child() const -> Glib::PropertyProxy_ReadOnly< Widge
 }
 
 
-void Gtk::FlowBoxChild::on_activate()
+auto Gtk::FlowBoxChild::on_activate () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

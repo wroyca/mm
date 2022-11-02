@@ -42,7 +42,7 @@ namespace Glib {
 
 class Binding_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 
-void wrap_init()
+auto wrap_init () -> void
 {
   // Register Error domains in the main namespace:
   Glib::Error::register_domain(g_convert_error_quark(), &ConvertError::throw_func);

@@ -97,7 +97,7 @@ auto SizeGroup_Class::init() -> const Glib::Class&
 }
 
 
-void SizeGroup_Class::class_init_function(void* g_class, void* class_data)
+auto SizeGroup_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -169,7 +169,7 @@ auto SizeGroup::create(Mode mode) -> Glib::RefPtr<SizeGroup>
   return Glib::make_refptr_for_instance<SizeGroup>( new SizeGroup(mode) );
 }
 
-void SizeGroup::set_mode(Mode mode)
+auto SizeGroup::set_mode (Mode mode) -> void
 {
   gtk_size_group_set_mode(gobj(), static_cast<GtkSizeGroupMode>(mode));
 }
@@ -179,12 +179,12 @@ auto SizeGroup::get_mode() const -> Mode
   return static_cast<Mode>(gtk_size_group_get_mode(const_cast<GtkSizeGroup*>(gobj())));
 }
 
-void SizeGroup::add_widget(Widget& widget)
+auto SizeGroup::add_widget (Widget &widget) -> void
 {
   gtk_size_group_add_widget(gobj(), (widget).gobj());
 }
 
-void SizeGroup::remove_widget(Widget& widget)
+auto SizeGroup::remove_widget (Widget &widget) -> void
 {
   gtk_size_group_remove_widget(gobj(), (widget).gobj());
 }

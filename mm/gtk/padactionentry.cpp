@@ -49,7 +49,7 @@ PadActionEntry::~PadActionEntry()
   release_gobject();
 }
 
-void PadActionEntry::release_gobject() noexcept
+auto PadActionEntry::release_gobject () noexcept -> void
 {
   if (!gobject_)
     return;
@@ -131,7 +131,7 @@ auto PadActionEntry::get_type() const -> PadActionType
   return static_cast<PadActionType>(gobj()->type);
 }
 
-void PadActionEntry::set_type(const PadActionType& value)
+auto PadActionEntry::set_type (const PadActionType &value) -> void
 {
   gobj()->type = static_cast<GtkPadActionType>(value);
 }
@@ -141,7 +141,7 @@ auto PadActionEntry::get_index() const -> int
   return gobj()->index;
 }
 
-void PadActionEntry::set_index(const int& value)
+auto PadActionEntry::set_index (const int &value) -> void
 {
   gobj()->index = value;
 }
@@ -151,7 +151,7 @@ auto PadActionEntry::get_mode() const -> int
   return gobj()->mode;
 }
 
-void PadActionEntry::set_mode(const int& value)
+auto PadActionEntry::set_mode (const int &value) -> void
 {
   gobj()->mode = value;
 }
@@ -161,7 +161,7 @@ auto PadActionEntry::get_label() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gobj()->label);
 }
 
-void PadActionEntry::set_label(const Glib::ustring& value)
+auto PadActionEntry::set_label (const Glib::ustring &value) -> void
 {
   g_free((char*)gobj()->label); // Cast away const, if any
   gobj()->label = g_strdup((value).c_str());
@@ -172,7 +172,7 @@ auto PadActionEntry::get_action_name() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gobj()->action_name);
 }
 
-void PadActionEntry::set_action_name(const Glib::ustring& value)
+auto PadActionEntry::set_action_name (const Glib::ustring &value) -> void
 {
   g_free((char*)gobj()->action_name); // Cast away const, if any
   gobj()->action_name = g_strdup((value).c_str());

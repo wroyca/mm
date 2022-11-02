@@ -32,7 +32,8 @@
 namespace
 {
 
-void proxy_foreach_selection_iter_callback(GtkTreeModel* model, GtkTreePath*, GtkTreeIter* iter, void* data)
+auto proxy_foreach_selection_iter_callback (
+  GtkTreeModel *model, GtkTreePath *, GtkTreeIter *iter, void *data) -> void
 {
   typedef Gtk::TreeSelection::SlotForeachIter SlotType;
   auto& slot = *static_cast<SlotType*>(data);
@@ -47,7 +48,8 @@ void proxy_foreach_selection_iter_callback(GtkTreeModel* model, GtkTreePath*, Gt
   }
 }
 
-void proxy_foreach_selection_path_callback(GtkTreeModel*, GtkTreePath* path, GtkTreeIter*, void* data)
+auto proxy_foreach_selection_path_callback (
+  GtkTreeModel *, GtkTreePath *path, GtkTreeIter *, void *data) -> void
 {
   typedef Gtk::TreeSelection::SlotForeachPath SlotType;
   auto& slot = *static_cast<SlotType*>(data);
@@ -62,8 +64,9 @@ void proxy_foreach_selection_path_callback(GtkTreeModel*, GtkTreePath* path, Gtk
   }
 }
 
-void proxy_foreach_selection_path_and_iter_callback(GtkTreeModel* model, GtkTreePath* path,
-                                                    GtkTreeIter* iter, void* data)
+auto proxy_foreach_selection_path_and_iter_callback (
+  GtkTreeModel *model, GtkTreePath *path,
+  GtkTreeIter *iter, void *data) -> void
 {
   typedef Gtk::TreeSelection::SlotForeachPathAndIter SlotType;
   auto& slot = *static_cast<SlotType*>(data);
@@ -100,7 +103,7 @@ auto SignalProxy_Select_gtk_callback(GtkTreeSelection*, GtkTreeModel* model, Gtk
 
 } // anonymous namespace
 
-static void SignalProxy_Select_gtk_callback_destroy(void* data)
+static auto SignalProxy_Select_gtk_callback_destroy (void *data) -> void
 {
   delete static_cast<Gtk::TreeSelection::SlotSelect*>(data);
 }
@@ -109,7 +112,7 @@ static void SignalProxy_Select_gtk_callback_destroy(void* data)
 namespace Gtk
 {
 
-void TreeSelection::set_select_function(const SlotSelect& slot)
+auto TreeSelection::set_select_function (const SlotSelect &slot) -> void
 {
   // Create a copy of the slot.  A pointer to this will be passed
   // through the callback's data parameter.  It will be deleted
@@ -178,19 +181,19 @@ auto TreeSelection::get_selected(Glib::RefPtr<const TreeModel>& model) const -> 
   return iter;
 }
 
-void TreeSelection::selected_foreach_iter(const SlotForeachIter& slot) const
+auto TreeSelection::selected_foreach_iter (const SlotForeachIter &slot) const -> void
 {
   SlotForeachIter slot_copy (slot);
   gtk_tree_selection_selected_foreach(const_cast<GtkTreeSelection*>(gobj()), &proxy_foreach_selection_iter_callback, &slot_copy);
 }
 
-void TreeSelection::selected_foreach_path(const SlotForeachPath& slot) const
+auto TreeSelection::selected_foreach_path (const SlotForeachPath &slot) const -> void
 {
   SlotForeachPath slot_copy (slot);
   gtk_tree_selection_selected_foreach(const_cast<GtkTreeSelection*>(gobj()), &proxy_foreach_selection_path_callback, &slot_copy);
 }
 
-void TreeSelection::selected_foreach(const SlotForeachPathAndIter& slot) const
+auto TreeSelection::selected_foreach (const SlotForeachPathAndIter &slot) const -> void
 {
   SlotForeachPathAndIter slot_copy (slot);
   gtk_tree_selection_selected_foreach(const_cast<GtkTreeSelection*>(gobj()), &proxy_foreach_selection_path_and_iter_callback, &slot_copy);
@@ -270,7 +273,7 @@ auto TreeSelection_Class::init() -> const Glib::Class&
 }
 
 
-void TreeSelection_Class::class_init_function(void* g_class, void* class_data)
+auto TreeSelection_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -335,7 +338,7 @@ auto TreeSelection::get_base_type() -> GType
 }
 
 
-void TreeSelection::set_mode(SelectionMode type)
+auto TreeSelection::set_mode (SelectionMode type) -> void
 {
   gtk_tree_selection_set_mode(gobj(), static_cast<GtkSelectionMode>(type));
 }
@@ -360,32 +363,34 @@ auto TreeSelection::count_selected_rows() const -> int
   return gtk_tree_selection_count_selected_rows(const_cast<GtkTreeSelection*>(gobj()));
 }
 
-void TreeSelection::select(const TreeModel::Path& path)
+auto TreeSelection::select (const TreeModel::Path &path) -> void
 {
   gtk_tree_selection_select_path(gobj(), const_cast<GtkTreePath*>((path).gobj()));
 }
 
-void TreeSelection::select(const TreeModel::Path& start_path, const TreeModel::Path& end_path)
+auto TreeSelection::select (
+  const TreeModel::Path &start_path, const TreeModel::Path &end_path) -> void
 {
   gtk_tree_selection_select_range(gobj(), const_cast<GtkTreePath*>((start_path).gobj()), const_cast<GtkTreePath*>((end_path).gobj()));
 }
 
-void TreeSelection::select(const TreeModel::const_iterator& iter)
+auto TreeSelection::select (const TreeModel::const_iterator &iter) -> void
 {
   gtk_tree_selection_select_iter(gobj(), const_cast<GtkTreeIter*>((iter).gobj()));
 }
 
-void TreeSelection::unselect(const TreeModel::Path& path)
+auto TreeSelection::unselect (const TreeModel::Path &path) -> void
 {
   gtk_tree_selection_unselect_path(gobj(), const_cast<GtkTreePath*>((path).gobj()));
 }
 
-void TreeSelection::unselect(const TreeModel::Path& start_path, const TreeModel::Path& end_path)
+auto TreeSelection::unselect (
+  const TreeModel::Path &start_path, const TreeModel::Path &end_path) -> void
 {
   gtk_tree_selection_unselect_range(gobj(), const_cast<GtkTreePath*>((start_path).gobj()), const_cast<GtkTreePath*>((end_path).gobj()));
 }
 
-void TreeSelection::unselect(const TreeModel::const_iterator& iter)
+auto TreeSelection::unselect (const TreeModel::const_iterator &iter) -> void
 {
   gtk_tree_selection_unselect_iter(gobj(), const_cast<GtkTreeIter*>((iter).gobj()));
 }
@@ -400,12 +405,12 @@ auto TreeSelection::is_selected(const TreeModel::const_iterator& iter) const -> 
   return gtk_tree_selection_iter_is_selected(const_cast<GtkTreeSelection*>(gobj()), const_cast<GtkTreeIter*>((iter).gobj()));
 }
 
-void TreeSelection::select_all()
+auto TreeSelection::select_all () -> void
 {
   gtk_tree_selection_select_all(gobj());
 }
 
-void TreeSelection::unselect_all()
+auto TreeSelection::unselect_all () -> void
 {
   gtk_tree_selection_unselect_all(gobj());
 }

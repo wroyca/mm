@@ -28,7 +28,7 @@ namespace
 
 namespace Glib
 {
-void set_init_to_users_preferred_locale(bool state)
+auto set_init_to_users_preferred_locale (bool state) -> void
 {
   init_to_users_preferred_locale = state;
 }
@@ -38,7 +38,7 @@ auto get_init_to_users_preferred_locale() -> bool
   return init_to_users_preferred_locale;
 }
 
-void init()
+auto init () -> void
 {
   static bool is_initialized = false;
 

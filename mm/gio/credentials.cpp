@@ -76,7 +76,7 @@ auto Credentials_Class::init() -> const Glib::Class&
 }
 
 
-void Credentials_Class::class_init_function(void* g_class, void* class_data)
+auto Credentials_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -166,7 +166,7 @@ auto Credentials::get_native(Type native_type) -> gpointer
   return g_credentials_get_native(gobj(), static_cast<GCredentialsType>(native_type));
 }
 
-void Credentials::set_native(Type native_type, gpointer native)
+auto Credentials::set_native (Type native_type, gpointer native) -> void
 {
   g_credentials_set_native(gobj(), static_cast<GCredentialsType>(native_type), native);
 }

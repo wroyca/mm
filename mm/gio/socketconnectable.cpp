@@ -67,7 +67,7 @@ auto SocketConnectable_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void SocketConnectable_Class::iface_init_function(void* g_iface, void*)
+auto SocketConnectable_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -116,7 +116,7 @@ SocketConnectable::~SocketConnectable() noexcept
 {}
 
 // static
-void SocketConnectable::add_interface(GType gtype_implementer)
+auto SocketConnectable::add_interface (GType gtype_implementer) -> void
 {
   socketconnectable_class_.init().add_interface(gtype_implementer);
 }

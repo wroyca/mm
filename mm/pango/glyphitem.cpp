@@ -99,7 +99,7 @@ GlyphItem::~GlyphItem() noexcept
     pango_glyph_item_free(gobject_);
 }
 
-void GlyphItem::swap(GlyphItem& other) noexcept
+auto GlyphItem::swap (GlyphItem &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }
@@ -115,7 +115,8 @@ auto GlyphItem::split(const Glib::ustring& text, int split_index) -> GlyphItem
   return Glib::wrap(pango_glyph_item_split(gobj(), text.c_str(), split_index));
 }
 
-void GlyphItem::letter_space(const Glib::ustring& text, const LogAttr& log_attrs, int letter_spacing)
+auto GlyphItem::letter_space (
+  const Glib::ustring &text, const LogAttr &log_attrs, int letter_spacing) -> void
 {
   pango_glyph_item_letter_space(gobj(), text.c_str(), &(const_cast<LogAttr&>(log_attrs)), letter_spacing);
 }

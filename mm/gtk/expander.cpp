@@ -37,7 +37,7 @@ Expander::Expander(const Glib::ustring& label, bool mnemonic)
   Gtk::Widget(Glib::ConstructParams(expander_class_.init(), "label",label.c_str(),"use_underline",gboolean(mnemonic), nullptr))
 {}
 
-void Expander::unset_child()
+auto Expander::unset_child () -> void
 {
   gtk_expander_set_child(gobj(), nullptr);
 }
@@ -87,7 +87,7 @@ auto Expander_Class::init() -> const Glib::Class&
 }
 
 
-void Expander_Class::class_init_function(void* g_class, void* class_data)
+auto Expander_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -157,7 +157,7 @@ Expander::Expander()
 
 }
 
-void Expander::set_expanded(bool expanded)
+auto Expander::set_expanded (bool expanded) -> void
 {
   gtk_expander_set_expanded(gobj(), static_cast<int>(expanded));
 }
@@ -167,7 +167,7 @@ auto Expander::get_expanded() const -> bool
   return gtk_expander_get_expanded(const_cast<GtkExpander*>(gobj()));
 }
 
-void Expander::set_label(const Glib::ustring& label)
+auto Expander::set_label (const Glib::ustring &label) -> void
 {
   gtk_expander_set_label(gobj(), label.c_str());
 }
@@ -177,7 +177,7 @@ auto Expander::get_label() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_expander_get_label(const_cast<GtkExpander*>(gobj())));
 }
 
-void Expander::set_use_underline(bool use_underline)
+auto Expander::set_use_underline (bool use_underline) -> void
 {
   gtk_expander_set_use_underline(gobj(), static_cast<int>(use_underline));
 }
@@ -187,7 +187,7 @@ auto Expander::get_use_underline() const -> bool
   return gtk_expander_get_use_underline(const_cast<GtkExpander*>(gobj()));
 }
 
-void Expander::set_use_markup(bool use_markup)
+auto Expander::set_use_markup (bool use_markup) -> void
 {
   gtk_expander_set_use_markup(gobj(), static_cast<int>(use_markup));
 }
@@ -197,7 +197,7 @@ auto Expander::get_use_markup() const -> bool
   return gtk_expander_get_use_markup(const_cast<GtkExpander*>(gobj()));
 }
 
-void Expander::set_label_widget(Widget& label_widget)
+auto Expander::set_label_widget (Widget &label_widget) -> void
 {
   gtk_expander_set_label_widget(gobj(), (label_widget).gobj());
 }
@@ -212,7 +212,7 @@ auto Expander::get_label_widget() const -> const Widget*
   return const_cast<Expander*>(this)->get_label_widget();
 }
 
-void Expander::set_resize_toplevel(bool resize_toplevel)
+auto Expander::set_resize_toplevel (bool resize_toplevel) -> void
 {
   gtk_expander_set_resize_toplevel(gobj(), static_cast<int>(resize_toplevel));
 }
@@ -222,7 +222,7 @@ auto Expander::get_resize_toplevel() const -> bool
   return gtk_expander_get_resize_toplevel(const_cast<GtkExpander*>(gobj()));
 }
 
-void Expander::set_child(Widget& child)
+auto Expander::set_child (Widget &child) -> void
 {
   gtk_expander_set_child(gobj(), (child).gobj());
 }

@@ -132,12 +132,13 @@ auto TreeModel::children() const -> const TreeModel::ConstChildren
   return TreeNodeConstChildren(this);
 }
 
-void TreeModel::set_value_impl(const iterator&, int, const Glib::ValueBase&)
+auto TreeModel::set_value_impl (const iterator &, int, const Glib::ValueBase &) -> void
 {
   g_assert_not_reached();
 }
 
-void TreeModel::get_value_impl(const const_iterator& iter, int column, Glib::ValueBase& value) const
+auto TreeModel::get_value_impl (
+  const const_iterator &iter, int column, Glib::ValueBase &value) const -> void
 {
   gtk_tree_model_get_value(
       const_cast<GtkTreeModel*>(gobj()),
@@ -145,19 +146,19 @@ void TreeModel::get_value_impl(const const_iterator& iter, int column, Glib::Val
       column, value.gobj());
 }
 
-void TreeModel::foreach_iter(const SlotForeachIter& slot)
+auto TreeModel::foreach_iter (const SlotForeachIter &slot) -> void
 {
   SlotForeachIter slot_copy (slot);
   gtk_tree_model_foreach(gobj(), &proxy_foreach_iter_callback, &slot_copy);
 }
 
-void TreeModel::foreach_path(const SlotForeachPath& slot)
+auto TreeModel::foreach_path (const SlotForeachPath &slot) -> void
 {
   SlotForeachPath slot_copy (slot);
   gtk_tree_model_foreach(gobj(), &proxy_foreach_path_callback, &slot_copy);
 }
 
-void TreeModel::foreach(const SlotForeachPathAndIter& slot)
+auto TreeModel::foreach (const SlotForeachPathAndIter &slot) -> void
 {
   SlotForeachPathAndIter slot_copy (slot);
   gtk_tree_model_foreach(gobj(), &proxy_foreach_path_and_iter_callback, &slot_copy);
@@ -610,7 +611,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
 }
 
 
-void TreeModel::rows_reordered(const Path& path, const const_iterator& iter, const std::vector<int>& new_order)
+auto TreeModel::rows_reordered (
+  const Path &path, const const_iterator &iter, const std::vector <int> &new_order) -> void
 {
   //The size of the array seems to be based on the known number of children. murrayc.
   gtk_tree_model_rows_reordered(gobj(),
@@ -619,7 +621,7 @@ void TreeModel::rows_reordered(const Path& path, const const_iterator& iter, con
                                 const_cast<int*>(Glib::ArrayHandler<int>::vector_to_array(new_order).data ()));
 }
 
-void TreeModel::rows_reordered(const Path& path, const std::vector<int>& new_order)
+auto TreeModel::rows_reordered (const Path &path, const std::vector <int> &new_order) -> void
 {
   //The size of the array seems to be based on the known number of children. murrayc.
   gtk_tree_model_rows_reordered(gobj(),
@@ -634,7 +636,8 @@ namespace
 {
 
 
-void TreeModel_signal_row_changed_callback(GtkTreeModel* self, GtkTreePath* p0,GtkTreeIter* p1,void* data)
+auto TreeModel_signal_row_changed_callback (
+  GtkTreeModel *self, GtkTreePath *p0, GtkTreeIter *p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const TreeModel::Path&, const TreeModel::iterator&)>;
@@ -665,7 +668,8 @@ const Glib::SignalProxyInfo TreeModel_signal_row_changed_info =
 };
 
 
-void TreeModel_signal_row_inserted_callback(GtkTreeModel* self, GtkTreePath* p0,GtkTreeIter* p1,void* data)
+auto TreeModel_signal_row_inserted_callback (
+  GtkTreeModel *self, GtkTreePath *p0, GtkTreeIter *p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const TreeModel::Path&, const TreeModel::iterator&)>;
@@ -696,7 +700,8 @@ const Glib::SignalProxyInfo TreeModel_signal_row_inserted_info =
 };
 
 
-void TreeModel_signal_row_has_child_toggled_callback(GtkTreeModel* self, GtkTreePath* p0,GtkTreeIter* p1,void* data)
+auto TreeModel_signal_row_has_child_toggled_callback (
+  GtkTreeModel *self, GtkTreePath *p0, GtkTreeIter *p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const TreeModel::Path&, const TreeModel::iterator&)>;
@@ -727,7 +732,7 @@ const Glib::SignalProxyInfo TreeModel_signal_row_has_child_toggled_info =
 };
 
 
-void TreeModel_signal_row_deleted_callback(GtkTreeModel* self, GtkTreePath* p0,void* data)
+auto TreeModel_signal_row_deleted_callback (GtkTreeModel *self, GtkTreePath *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const TreeModel::Path&)>;
@@ -757,7 +762,8 @@ const Glib::SignalProxyInfo TreeModel_signal_row_deleted_info =
 };
 
 
-void TreeModel_signal_rows_reordered_callback(GtkTreeModel* self, GtkTreePath* p0,GtkTreeIter* p1,gint* p2,void* data)
+auto TreeModel_signal_rows_reordered_callback (
+  GtkTreeModel *self, GtkTreePath *p0, GtkTreeIter *p1, gint *p2, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const TreeModel::Path&, const TreeModel::iterator&, int*)>;
@@ -831,7 +837,7 @@ auto TreeModel_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void TreeModel_Class::iface_init_function(void* g_iface, void*)
+auto TreeModel_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -1019,7 +1025,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = gboolean;
   return RType();
 }
-void TreeModel_Class::ref_node_vfunc_callback(GtkTreeModel* self, GtkTreeIter* iter)
+auto TreeModel_Class::ref_node_vfunc_callback (GtkTreeModel *self, GtkTreeIter *iter) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1057,7 +1063,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->ref_node)
     (*base->ref_node)(self, iter);
 }
-void TreeModel_Class::unref_node_vfunc_callback(GtkTreeModel* self, GtkTreeIter* iter)
+auto TreeModel_Class::unref_node_vfunc_callback (GtkTreeModel *self, GtkTreeIter *iter) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1135,7 +1141,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = GtkTreePath*;
   return RType();
 }
-void TreeModel_Class::get_value_vfunc_callback(GtkTreeModel* self, GtkTreeIter* iter, gint column, GValue* value)
+auto TreeModel_Class::get_value_vfunc_callback (
+  GtkTreeModel *self, GtkTreeIter *iter, gint column, GValue *value) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1176,7 +1183,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
     (*base->get_value)(self, iter, column, value);
 }
 
-void TreeModel_Class::row_changed_callback(GtkTreeModel* self, GtkTreePath* p0, GtkTreeIter* p1)
+auto TreeModel_Class::row_changed_callback (
+  GtkTreeModel *self, GtkTreePath *p0, GtkTreeIter *p1) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1215,7 +1223,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->row_changed)
     (*base->row_changed)(self, p0, p1);
 }
-void TreeModel_Class::row_inserted_callback(GtkTreeModel* self, GtkTreePath* p0, GtkTreeIter* p1)
+auto TreeModel_Class::row_inserted_callback (
+  GtkTreeModel *self, GtkTreePath *p0, GtkTreeIter *p1) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1254,7 +1263,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->row_inserted)
     (*base->row_inserted)(self, p0, p1);
 }
-void TreeModel_Class::row_has_child_toggled_callback(GtkTreeModel* self, GtkTreePath* p0, GtkTreeIter* p1)
+auto TreeModel_Class::row_has_child_toggled_callback (
+  GtkTreeModel *self, GtkTreePath *p0, GtkTreeIter *p1) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1293,7 +1303,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->row_has_child_toggled)
     (*base->row_has_child_toggled)(self, p0, p1);
 }
-void TreeModel_Class::row_deleted_callback(GtkTreeModel* self, GtkTreePath* p0)
+auto TreeModel_Class::row_deleted_callback (GtkTreeModel *self, GtkTreePath *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1331,7 +1341,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->row_deleted)
     (*base->row_deleted)(self, p0);
 }
-void TreeModel_Class::rows_reordered_callback(GtkTreeModel* self, GtkTreePath* p0, GtkTreeIter* p1, gint* p2)
+auto TreeModel_Class::rows_reordered_callback (
+  GtkTreeModel *self, GtkTreePath *p0, GtkTreeIter *p1, gint *p2) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -1410,7 +1421,7 @@ TreeModel::~TreeModel() noexcept
 {}
 
 // static
-void TreeModel::add_interface(GType gtype_implementer)
+auto TreeModel::add_interface (GType gtype_implementer) -> void
 {
   treemodel_class_.init().add_interface(gtype_implementer);
 }
@@ -1449,27 +1460,28 @@ auto TreeModel::get_path(const const_iterator& iter) const -> TreeModel::Path
   return Gtk::TreePath(gtk_tree_model_get_path(const_cast<GtkTreeModel*>(gobj()), const_cast<GtkTreeIter*>((iter).gobj())), false);
 }
 
-void TreeModel::row_changed(const Path& path, const const_iterator& iter)
+auto TreeModel::row_changed (const Path &path, const const_iterator &iter) -> void
 {
   gtk_tree_model_row_changed(gobj(), const_cast<GtkTreePath*>((path).gobj()), const_cast<GtkTreeIter*>((iter).gobj()));
 }
 
-void TreeModel::row_inserted(const Path& path, const const_iterator& iter)
+auto TreeModel::row_inserted (const Path &path, const const_iterator &iter) -> void
 {
   gtk_tree_model_row_inserted(gobj(), const_cast<GtkTreePath*>((path).gobj()), const_cast<GtkTreeIter*>((iter).gobj()));
 }
 
-void TreeModel::row_has_child_toggled(const Path& path, const const_iterator& iter)
+auto TreeModel::row_has_child_toggled (const Path &path, const const_iterator &iter) -> void
 {
   gtk_tree_model_row_has_child_toggled(gobj(), const_cast<GtkTreePath*>((path).gobj()), const_cast<GtkTreeIter*>((iter).gobj()));
 }
 
-void TreeModel::row_deleted(const Path& path)
+auto TreeModel::row_deleted (const Path &path) -> void
 {
   gtk_tree_model_row_deleted(gobj(), const_cast<GtkTreePath*>((path).gobj()));
 }
 
-void TreeModel::rows_reordered(const Path& path, const const_iterator& iter, int* new_order)
+auto TreeModel::rows_reordered (
+  const Path &path, const const_iterator &iter, int *new_order) -> void
 {
   gtk_tree_model_rows_reordered(gobj(), const_cast<GtkTreePath*>((path).gobj()), const_cast<GtkTreeIter*>((iter).gobj()), new_order);
 }
@@ -1510,7 +1522,8 @@ auto TreeModel::signal_rows_reordered() -> Glib::SignalProxy<void(const TreeMode
 }
 
 
-void Gtk::TreeModel::on_row_changed(const TreeModel::Path& path, const TreeModel::iterator& iter)
+auto Gtk::TreeModel::on_row_changed (
+  const TreeModel::Path &path, const TreeModel::iterator &iter) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1520,7 +1533,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->row_changed)
     (*base->row_changed)(gobj(),const_cast<GtkTreePath*>((path).gobj()),const_cast<GtkTreeIter*>((iter).gobj()));
 }
-void Gtk::TreeModel::on_row_inserted(const TreeModel::Path& path, const TreeModel::iterator& iter)
+auto Gtk::TreeModel::on_row_inserted (
+  const TreeModel::Path &path, const TreeModel::iterator &iter) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1530,7 +1544,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->row_inserted)
     (*base->row_inserted)(gobj(),const_cast<GtkTreePath*>((path).gobj()),const_cast<GtkTreeIter*>((iter).gobj()));
 }
-void Gtk::TreeModel::on_row_has_child_toggled(const TreeModel::Path& path, const TreeModel::iterator& iter)
+auto Gtk::TreeModel::on_row_has_child_toggled (
+  const TreeModel::Path &path, const TreeModel::iterator &iter) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1540,7 +1555,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->row_has_child_toggled)
     (*base->row_has_child_toggled)(gobj(),const_cast<GtkTreePath*>((path).gobj()),const_cast<GtkTreeIter*>((iter).gobj()));
 }
-void Gtk::TreeModel::on_row_deleted(const TreeModel::Path& path)
+auto Gtk::TreeModel::on_row_deleted (const TreeModel::Path &path) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1550,7 +1565,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->row_deleted)
     (*base->row_deleted)(gobj(),const_cast<GtkTreePath*>((path).gobj()));
 }
-void Gtk::TreeModel::on_rows_reordered(const TreeModel::Path& path, const TreeModel::iterator& iter, int* new_order)
+auto Gtk::TreeModel::on_rows_reordered (
+  const TreeModel::Path &path, const TreeModel::iterator &iter, int *new_order) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1625,7 +1641,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = bool;
   return RType();
 }
-void Gtk::TreeModel::ref_node_vfunc(const iterator& iter) const
+auto Gtk::TreeModel::ref_node_vfunc (const iterator &iter) const -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1637,7 +1653,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->ref_node)(const_cast<GtkTreeModel*>(gobj()),const_cast<GtkTreeIter*>((iter).gobj()));
   }
 }
-void Gtk::TreeModel::unref_node_vfunc(const iterator& iter) const
+auto Gtk::TreeModel::unref_node_vfunc (const iterator &iter) const -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1665,7 +1681,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = TreeModel::Path;
   return RType();
 }
-void Gtk::TreeModel::get_value_vfunc(const const_iterator& iter, int column, Glib::ValueBase& value) const
+auto Gtk::TreeModel::get_value_vfunc (
+  const const_iterator &iter, int column, Glib::ValueBase &value) const -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

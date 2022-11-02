@@ -126,16 +126,14 @@ Error::gobj() const -> const GError*
   return gobject_;
 }
 
-void
-Error::propagate(GError** dest)
+auto Error::propagate (GError **dest) -> void
 {
   g_propagate_error(dest, gobject_);
   gobject_ = nullptr;
 }
 
 // static
-void
-Error::register_init()
+auto Error::register_init () -> void
 {
   if (!throw_func_table)
   {
@@ -146,8 +144,7 @@ Error::register_init()
 }
 
 // static
-void
-Error::register_cleanup()
+auto Error::register_cleanup () -> void
 {
   if (throw_func_table)
   {
@@ -157,8 +154,7 @@ Error::register_cleanup()
 }
 
 // static
-void
-Error::register_domain(GQuark error_domain, Error::ThrowFunc throw_func)
+auto Error::register_domain (GQuark error_domain, Error::ThrowFunc throw_func) -> void
 {
   g_assert(throw_func_table != nullptr);
 
@@ -166,8 +162,7 @@ Error::register_domain(GQuark error_domain, Error::ThrowFunc throw_func)
 }
 
 // static, noreturn
-void
-Error::throw_exception(GError* gobject)
+auto Error::throw_exception (GError *gobject) -> void
 {
   g_assert(gobject != nullptr);
 
@@ -195,7 +190,7 @@ auto Value<Error>::value_type() -> GType
   return g_error_get_type();
 }
 
-void Value<Error>::set(const CppType& data)
+auto Value <Error>::set (const CppType &data) -> void
 {
   set_boxed(data.gobj());
 }

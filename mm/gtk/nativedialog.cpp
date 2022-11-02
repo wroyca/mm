@@ -29,7 +29,7 @@
 namespace Gtk
 {
 
-void NativeDialog::unset_transient_for()
+auto NativeDialog::unset_transient_for () -> void
 {
   gtk_native_dialog_set_transient_for(gobj(), nullptr);
 }
@@ -41,7 +41,7 @@ namespace
 {
 
 
-void NativeDialog_signal_response_callback(GtkNativeDialog* self, gint p0,void* data)
+auto NativeDialog_signal_response_callback (GtkNativeDialog *self, gint p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(int)>;
@@ -114,7 +114,7 @@ auto NativeDialog_Class::init() -> const Glib::Class&
 }
 
 
-void NativeDialog_Class::class_init_function(void* g_class, void* class_data)
+auto NativeDialog_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -124,7 +124,7 @@ void NativeDialog_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void NativeDialog_Class::response_callback(GtkNativeDialog* self, gint p0)
+auto NativeDialog_Class::response_callback (GtkNativeDialog *self, gint p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -229,12 +229,12 @@ NativeDialog::NativeDialog()
 
 }
 
-void NativeDialog::show()
+auto NativeDialog::show () -> void
 {
   gtk_native_dialog_show(gobj());
 }
 
-void NativeDialog::hide()
+auto NativeDialog::hide () -> void
 {
   gtk_native_dialog_hide(gobj());
 }
@@ -244,7 +244,7 @@ auto NativeDialog::get_visible() const -> bool
   return gtk_native_dialog_get_visible(const_cast<GtkNativeDialog*>(gobj()));
 }
 
-void NativeDialog::set_modal(bool modal)
+auto NativeDialog::set_modal (bool modal) -> void
 {
   gtk_native_dialog_set_modal(gobj(), static_cast<int>(modal));
 }
@@ -254,7 +254,7 @@ auto NativeDialog::get_modal() const -> bool
   return gtk_native_dialog_get_modal(const_cast<GtkNativeDialog*>(gobj()));
 }
 
-void NativeDialog::set_title(const Glib::ustring& title)
+auto NativeDialog::set_title (const Glib::ustring &title) -> void
 {
   gtk_native_dialog_set_title(gobj(), title.c_str());
 }
@@ -264,7 +264,7 @@ auto NativeDialog::get_title() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_native_dialog_get_title(const_cast<GtkNativeDialog*>(gobj())));
 }
 
-void NativeDialog::set_transient_for(Window& parent)
+auto NativeDialog::set_transient_for (Window &parent) -> void
 {
   gtk_native_dialog_set_transient_for(gobj(), (parent).gobj());
 }
@@ -331,7 +331,7 @@ auto NativeDialog::property_transient_for() const -> Glib::PropertyProxy_ReadOnl
 }
 
 
-void Gtk::NativeDialog::on_response(int response_id)
+auto Gtk::NativeDialog::on_response (int response_id) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

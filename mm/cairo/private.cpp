@@ -26,7 +26,7 @@ namespace Cairo
 {
 
 #ifdef CAIROMM_EXCEPTIONS_ENABLED
-void throw_exception(ErrorStatus status)
+auto throw_exception (ErrorStatus status) -> void
 {
   switch(status)
   {

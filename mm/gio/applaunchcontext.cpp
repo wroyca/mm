@@ -77,7 +77,7 @@ auto AppLaunchContext_Class::init() -> const Glib::Class&
 }
 
 
-void AppLaunchContext_Class::class_init_function(void* g_class, void* class_data)
+auto AppLaunchContext_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -157,12 +157,12 @@ auto AppLaunchContext::create() -> Glib::RefPtr<AppLaunchContext>
   return Glib::make_refptr_for_instance<AppLaunchContext>( new AppLaunchContext() );
 }
 
-void AppLaunchContext::setenv(const Glib::ustring& variable, const Glib::ustring& value)
+auto AppLaunchContext::setenv (const Glib::ustring &variable, const Glib::ustring &value) -> void
 {
   g_app_launch_context_setenv(gobj(), variable.c_str(), value.c_str());
 }
 
-void AppLaunchContext::unsetenv(const Glib::ustring& variable)
+auto AppLaunchContext::unsetenv (const Glib::ustring &variable) -> void
 {
   g_app_launch_context_unsetenv(gobj(), variable.c_str());
 }
@@ -182,7 +182,7 @@ auto AppLaunchContext::get_startup_notify_id(const Glib::RefPtr<AppInfo>& info, 
   return Glib::convert_return_gchar_ptr_to_stdstring(g_app_launch_context_get_startup_notify_id(gobj(), Glib::unwrap(info), Glib::ListHandler<Glib::RefPtr<Gio::File>>::vector_to_list(files).data()));
 }
 
-void AppLaunchContext::launch_failed(const std::string& startup_notify_id)
+auto AppLaunchContext::launch_failed (const std::string &startup_notify_id) -> void
 {
   g_app_launch_context_launch_failed(gobj(), startup_notify_id.c_str());
 }

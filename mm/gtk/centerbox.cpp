@@ -27,17 +27,17 @@
 
 namespace Gtk
 {
-void CenterBox::unset_start_widget()
+auto CenterBox::unset_start_widget () -> void
 {
   gtk_center_box_set_start_widget(gobj(), nullptr);
 }
 
-void CenterBox::unset_center_widget()
+auto CenterBox::unset_center_widget () -> void
 {
   gtk_center_box_set_center_widget(gobj(), nullptr);
 }
 
-void CenterBox::unset_end_widget()
+auto CenterBox::unset_end_widget () -> void
 {
   gtk_center_box_set_end_widget(gobj(), nullptr);
 }
@@ -87,7 +87,7 @@ auto CenterBox_Class::init() -> const Glib::Class&
 }
 
 
-void CenterBox_Class::class_init_function(void* g_class, void* class_data)
+auto CenterBox_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -159,7 +159,7 @@ CenterBox::CenterBox()
 
 }
 
-void CenterBox::set_start_widget(Widget& child)
+auto CenterBox::set_start_widget (Widget &child) -> void
 {
   gtk_center_box_set_start_widget(gobj(), (child).gobj());
 }
@@ -174,7 +174,7 @@ auto CenterBox::get_start_widget() const -> const Widget*
   return const_cast<CenterBox*>(this)->get_start_widget();
 }
 
-void CenterBox::set_center_widget(Widget& child)
+auto CenterBox::set_center_widget (Widget &child) -> void
 {
   gtk_center_box_set_center_widget(gobj(), (child).gobj());
 }
@@ -189,7 +189,7 @@ auto CenterBox::get_center_widget() const -> const Widget*
   return const_cast<CenterBox*>(this)->get_center_widget();
 }
 
-void CenterBox::set_end_widget(Widget& child)
+auto CenterBox::set_end_widget (Widget &child) -> void
 {
   gtk_center_box_set_end_widget(gobj(), (child).gobj());
 }
@@ -204,7 +204,7 @@ auto CenterBox::get_end_widget() const -> const Widget*
   return const_cast<CenterBox*>(this)->get_end_widget();
 }
 
-void CenterBox::set_baseline_position(BaselinePosition position)
+auto CenterBox::set_baseline_position (BaselinePosition position) -> void
 {
   gtk_center_box_set_baseline_position(gobj(), static_cast<GtkBaselinePosition>(position));
 }

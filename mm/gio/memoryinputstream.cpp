@@ -41,15 +41,14 @@ public:
 
   ~SlotWithData() { delete m_slot; }
 
-  void operator()() { (*m_slot)(m_data); }
+  auto operator() () -> void { (*m_slot)(m_data); }
 
 private:
   Gio::MemoryInputStream::SlotDestroyData* m_slot;
   void* m_data;
 };
 
-void
-destroy_data_callback(void* user_data)
+auto destroy_data_callback (void *user_data) -> void
 {
   auto slot_with_data = static_cast<SlotWithData*>(user_data);
   g_return_if_fail(slot_with_data != nullptr);
@@ -71,8 +70,8 @@ destroy_data_callback(void* user_data)
 namespace Gio
 {
 
-void
-MemoryInputStream::add_data(const void* data, gssize len, const SlotDestroyData& destroy_slot)
+auto MemoryInputStream::add_data (
+  const void *data, gssize len, const SlotDestroyData &destroy_slot) -> void
 {
   auto slot_with_data = new SlotWithData(destroy_slot, const_cast<void*>(data));
   auto bytes = g_bytes_new_with_free_func(data, len, &destroy_data_callback, slot_with_data);
@@ -129,7 +128,7 @@ auto MemoryInputStream_Class::init() -> const Glib::Class&
 }
 
 
-void MemoryInputStream_Class::class_init_function(void* g_class, void* class_data)
+auto MemoryInputStream_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -213,12 +212,12 @@ auto MemoryInputStream::create() -> Glib::RefPtr<MemoryInputStream>
   return Glib::make_refptr_for_instance<MemoryInputStream>( new MemoryInputStream() );
 }
 
-void MemoryInputStream::add_data(const void* data, gssize len, GDestroyNotify destroy)
+auto MemoryInputStream::add_data (const void *data, gssize len, GDestroyNotify destroy) -> void
 {
   g_memory_input_stream_add_data(gobj(), data, len, destroy);
 }
 
-void MemoryInputStream::add_bytes(const Glib::RefPtr<const Glib::Bytes>& bytes)
+auto MemoryInputStream::add_bytes (const Glib::RefPtr <const Glib::Bytes> &bytes) -> void
 {
   g_memory_input_stream_add_bytes(gobj(), const_cast<GBytes*>(Glib::unwrap<Glib::Bytes>(bytes)));
 }

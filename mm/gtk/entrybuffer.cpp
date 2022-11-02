@@ -40,7 +40,7 @@ EntryBuffer::EntryBuffer(const Glib::ustring& text)
   set_text(text);
 }
 
-void EntryBuffer::set_text(const Glib::ustring& text)
+auto EntryBuffer::set_text (const Glib::ustring &text) -> void
 {
   gtk_entry_buffer_set_text(gobj(), text.c_str(), -1 /* see docs */);
 }
@@ -50,7 +50,7 @@ auto EntryBuffer::insert_text(guint position, const Glib::ustring& text) -> guin
   return gtk_entry_buffer_insert_text(gobj(), position, text.c_str(), -1 /* see docs */);
 }
 
-void EntryBuffer::emit_inserted_text(guint position, const Glib::ustring& text)
+auto EntryBuffer::emit_inserted_text (guint position, const Glib::ustring &text) -> void
 {
   gtk_entry_buffer_emit_inserted_text(gobj(), position, text.c_str(), -1 /* see docs */);
 }
@@ -61,7 +61,8 @@ namespace
 {
 
 
-void EntryBuffer_signal_inserted_text_callback(GtkEntryBuffer* self, guint p0,const gchar* p1,guint p2,void* data)
+auto EntryBuffer_signal_inserted_text_callback (
+  GtkEntryBuffer *self, guint p0, const gchar *p1, guint p2, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint, const char*, guint)>;
@@ -91,7 +92,8 @@ const Glib::SignalProxyInfo EntryBuffer_signal_inserted_text_info =
 };
 
 
-void EntryBuffer_signal_deleted_text_callback(GtkEntryBuffer* self, guint p0,guint p1,void* data)
+auto EntryBuffer_signal_deleted_text_callback (
+  GtkEntryBuffer *self, guint p0, guint p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint, guint)>;
@@ -163,7 +165,7 @@ auto EntryBuffer_Class::init() -> const Glib::Class&
 }
 
 
-void EntryBuffer_Class::class_init_function(void* g_class, void* class_data)
+auto EntryBuffer_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -174,7 +176,8 @@ void EntryBuffer_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void EntryBuffer_Class::inserted_text_callback(GtkEntryBuffer* self, guint p0, const gchar* p1, guint p2)
+auto EntryBuffer_Class::inserted_text_callback (
+  GtkEntryBuffer *self, guint p0, const gchar *p1, guint p2) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -211,7 +214,7 @@ void EntryBuffer_Class::inserted_text_callback(GtkEntryBuffer* self, guint p0, c
   if(base && base->inserted_text)
     (*base->inserted_text)(self, p0, p1, p2);
 }
-void EntryBuffer_Class::deleted_text_callback(GtkEntryBuffer* self, guint p0, guint p1)
+auto EntryBuffer_Class::deleted_text_callback (GtkEntryBuffer *self, guint p0, guint p1) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -340,7 +343,7 @@ auto EntryBuffer::get_text() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_entry_buffer_get_text(const_cast<GtkEntryBuffer*>(gobj())));
 }
 
-void EntryBuffer::set_max_length(int max_length)
+auto EntryBuffer::set_max_length (int max_length) -> void
 {
   gtk_entry_buffer_set_max_length(gobj(), max_length);
 }
@@ -355,7 +358,7 @@ auto EntryBuffer::delete_text(guint position, int n_chars) -> guint
   return gtk_entry_buffer_delete_text(gobj(), position, n_chars);
 }
 
-void EntryBuffer::emit_deleted_text(guint position, guint n_chars)
+auto EntryBuffer::emit_deleted_text (guint position, guint n_chars) -> void
 {
   gtk_entry_buffer_emit_deleted_text(gobj(), position, n_chars);
 }
@@ -399,7 +402,7 @@ auto EntryBuffer::property_max_length() const -> Glib::PropertyProxy_ReadOnly< i
 }
 
 
-void Gtk::EntryBuffer::on_inserted_text(guint position, const char* chars, guint n_chars)
+auto Gtk::EntryBuffer::on_inserted_text (guint position, const char *chars, guint n_chars) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -408,7 +411,7 @@ void Gtk::EntryBuffer::on_inserted_text(guint position, const char* chars, guint
   if(base && base->inserted_text)
     (*base->inserted_text)(gobj(),position,chars,n_chars);
 }
-void Gtk::EntryBuffer::on_deleted_text(guint position, guint n_chars)
+auto Gtk::EntryBuffer::on_deleted_text (guint position, guint n_chars) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

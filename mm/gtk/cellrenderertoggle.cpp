@@ -41,7 +41,8 @@ namespace
 {
 
 
-void CellRendererToggle_signal_toggled_callback(GtkCellRendererToggle* self, const gchar* p0,void* data)
+auto CellRendererToggle_signal_toggled_callback (
+  GtkCellRendererToggle *self, const gchar *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -112,7 +113,7 @@ auto CellRendererToggle_Class::init() -> const Glib::Class&
 }
 
 
-void CellRendererToggle_Class::class_init_function(void* g_class, void* class_data)
+auto CellRendererToggle_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -187,7 +188,7 @@ auto CellRendererToggle::get_radio() const -> bool
   return gtk_cell_renderer_toggle_get_radio(const_cast<GtkCellRendererToggle*>(gobj()));
 }
 
-void CellRendererToggle::set_radio(bool radio)
+auto CellRendererToggle::set_radio (bool radio) -> void
 {
   gtk_cell_renderer_toggle_set_radio(gobj(), static_cast<int>(radio));
 }
@@ -197,7 +198,7 @@ auto CellRendererToggle::get_active() const -> bool
   return gtk_cell_renderer_toggle_get_active(const_cast<GtkCellRendererToggle*>(gobj()));
 }
 
-void CellRendererToggle::set_active(bool setting)
+auto CellRendererToggle::set_active (bool setting) -> void
 {
   gtk_cell_renderer_toggle_set_active(gobj(), static_cast<int>(setting));
 }
@@ -207,7 +208,7 @@ auto CellRendererToggle::get_activatable() const -> bool
   return gtk_cell_renderer_toggle_get_activatable(const_cast<GtkCellRendererToggle*>(gobj()));
 }
 
-void CellRendererToggle::set_activatable(bool setting)
+auto CellRendererToggle::set_activatable (bool setting) -> void
 {
   gtk_cell_renderer_toggle_set_activatable(gobj(), static_cast<int>(setting));
 }

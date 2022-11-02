@@ -66,13 +66,13 @@ auto wrap(GSettingsSchemaKey* object, bool take_copy) -> Glib::RefPtr<Gio::Setti
 namespace Gio
 {
 
-void SettingsSchemaKey::reference() const
+auto SettingsSchemaKey::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_settings_schema_key_ref(reinterpret_cast<GSettingsSchemaKey*>(const_cast<SettingsSchemaKey*>(this)));
 }
 
-void SettingsSchemaKey::unreference() const
+auto SettingsSchemaKey::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_settings_schema_key_unref(reinterpret_cast<GSettingsSchemaKey*>(const_cast<SettingsSchemaKey*>(this)));

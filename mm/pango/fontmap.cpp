@@ -100,7 +100,7 @@ auto FontMap_Class::init() -> const Glib::Class&
 }
 
 
-void FontMap_Class::class_init_function(void* g_class, void* class_data)
+auto FontMap_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

@@ -24,27 +24,32 @@ public:
 
   friend class ObjectManager;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
   //Callbacks (default signal handlers):
   //These will call the *_impl member methods, which will then call the existing default signal callbacks, if any.
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
-  static void object_added_callback(GDBusObjectManager* self, GDBusObject* p0);
-  static void object_removed_callback(GDBusObjectManager* self, GDBusObject* p0);
-  static void interface_added_callback(GDBusObjectManager* self, GDBusObject* p0, GDBusInterface* p1);
-  static void interface_removed_callback(GDBusObjectManager* self, GDBusObject* p0, GDBusInterface* p1);
+  static auto object_added_callback (GDBusObjectManager *self, GDBusObject *p0) -> void;
+  static auto object_removed_callback (GDBusObjectManager *self, GDBusObject *p0) -> void;
+  static auto interface_added_callback (
+    GDBusObjectManager *self, GDBusObject *p0, GDBusInterface *p1) -> void;
+  static auto interface_removed_callback (
+    GDBusObjectManager *self, GDBusObject *p0, GDBusInterface *p1) -> void;
 
   //Callbacks (virtual functions):
-  static const gchar* get_object_path_vfunc_callback(GDBusObjectManager* self);
-  static GList* get_objects_vfunc_callback(GDBusObjectManager* self);
-  static GDBusObject* get_object_vfunc_callback(GDBusObjectManager* self, const gchar* object_path);
-  static GDBusInterface* get_interface_vfunc_callback(GDBusObjectManager* self, const gchar* object_path, const gchar* interface_name);
+  static auto get_object_path_vfunc_callback (GDBusObjectManager *self) -> const gchar*;
+  static auto get_objects_vfunc_callback (GDBusObjectManager *self) -> GList*;
+  static auto get_object_vfunc_callback (
+    GDBusObjectManager *self, const gchar *object_path) -> GDBusObject*;
+  static auto get_interface_vfunc_callback (
+    GDBusObjectManager *self, const gchar *object_path,
+    const gchar *interface_name) -> GDBusInterface*;
 };
 
 

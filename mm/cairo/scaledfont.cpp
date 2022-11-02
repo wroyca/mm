@@ -56,7 +56,7 @@ auto ScaledFont::create(const RefPtr<FontFace>& font_face, const Matrix& font_ma
   return make_refptr_for_instance<ScaledFont>(new ScaledFont(font_face, font_matrix, ctm, options));
 }
 
-void ScaledFont::get_extents(FontExtents& extents) const
+auto ScaledFont::get_extents (FontExtents &extents) const -> void
 {
   cairo_scaled_font_extents(m_cobject, static_cast<cairo_font_extents_t*>(&extents));
   check_object_status_and_throw_exception(*this);
@@ -69,20 +69,20 @@ auto ScaledFont::get_font_face() const -> RefPtr<FontFace>
   return make_refptr_for_instance<FontFace>(new FontFace(face, false /* returned face doesn't have a reference */));
 }
 
-void ScaledFont::get_font_options(FontOptions& options) const
+auto ScaledFont::get_font_options (FontOptions &options) const -> void
 {
   cairo_scaled_font_get_font_options(m_cobject, options.cobj());
   check_object_status_and_throw_exception(*this);
 }
 
-void ScaledFont::get_font_matrix(Matrix& font_matrix) const
+auto ScaledFont::get_font_matrix (Matrix &font_matrix) const -> void
 {
   cairo_scaled_font_get_font_matrix(m_cobject,
                                     &font_matrix);
   check_object_status_and_throw_exception(*this);
 }
 
-void ScaledFont::get_ctm(Matrix& ctm) const
+auto ScaledFont::get_ctm (Matrix &ctm) const -> void
 {
   cairo_scaled_font_get_ctm(m_cobject, &ctm);
   check_object_status_and_throw_exception(*this);
@@ -95,13 +95,13 @@ auto ScaledFont::get_type() const -> FontType
   return static_cast<FontType>(font_type);
 }
 
-void
-ScaledFont::text_to_glyphs (double x,
-                            double y,
-                            const std::string& utf8,
-                            std::vector<Glyph>& glyphs,
-                            std::vector<TextCluster>& clusters,
-                            TextClusterFlags& cluster_flags)
+auto ScaledFont::text_to_glyphs (
+  double x,
+  double y,
+  const std::string &utf8,
+  std::vector <Glyph> &glyphs,
+  std::vector <TextCluster> &clusters,
+  TextClusterFlags &cluster_flags) -> void
 {
   int num_glyphs = -1;
   int num_clusters = -1;
@@ -129,7 +129,7 @@ ScaledFont::text_to_glyphs (double x,
   check_object_status_and_throw_exception(*this);
 }
 
-void ScaledFont::get_scale_matrix(Matrix& scale_matrix) const
+auto ScaledFont::get_scale_matrix (Matrix &scale_matrix) const -> void
 {
   cairo_scaled_font_get_scale_matrix(const_cast<cairo_scaled_font_t*>(cobj()), &scale_matrix);
   check_object_status_and_throw_exception(*this);
@@ -158,7 +158,7 @@ auto FtScaledFont::lock_face() -> FT_Face
   return face;
 }
 
-void FtScaledFont::unlock_face()
+auto FtScaledFont::unlock_face () -> void
 {
   cairo_ft_scaled_font_unlock_face(cobj());
   check_object_status_and_throw_exception(*this);

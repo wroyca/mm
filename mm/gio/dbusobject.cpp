@@ -48,7 +48,8 @@ namespace
 {
 
 
-void Object_signal_interface_added_callback(GDBusObject* self, GDBusInterface* p0,void* data)
+auto Object_signal_interface_added_callback (
+  GDBusObject *self, GDBusInterface *p0, void *data) -> void
 {
   using namespace Gio::DBus;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gio::DBus::Interface>&)>;
@@ -78,7 +79,8 @@ const Glib::SignalProxyInfo Object_signal_interface_added_info =
 };
 
 
-void Object_signal_interface_removed_callback(GDBusObject* self, GDBusInterface* p0,void* data)
+auto Object_signal_interface_removed_callback (
+  GDBusObject *self, GDBusInterface *p0, void *data) -> void
 {
   using namespace Gio::DBus;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gio::DBus::Interface>&)>;
@@ -144,7 +146,7 @@ auto Object_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Object_Class::iface_init_function(void* g_iface, void*)
+auto Object_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -291,7 +293,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   return RType();
 }
 
-void Object_Class::interface_added_callback(GDBusObject* self, GDBusInterface* p0)
+auto Object_Class::interface_added_callback (GDBusObject *self, GDBusInterface *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -329,7 +331,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->interface_added)
     (*base->interface_added)(self, p0);
 }
-void Object_Class::interface_removed_callback(GDBusObject* self, GDBusInterface* p0)
+auto Object_Class::interface_removed_callback (GDBusObject *self, GDBusInterface *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -406,7 +408,7 @@ Object::~Object() noexcept
 {}
 
 // static
-void Object::add_interface(GType gtype_implementer)
+auto Object::add_interface (GType gtype_implementer) -> void
 {
   object_class_.init().add_interface(gtype_implementer);
 }
@@ -463,7 +465,8 @@ auto Object::signal_interface_removed() -> Glib::SignalProxy<void(const Glib::Re
 }
 
 
-void Gio::DBus::Object::on_interface_added(const Glib::RefPtr<Gio::DBus::Interface>& iface)
+auto Gio::DBus::Object::on_interface_added (
+  const Glib::RefPtr <Gio::DBus::Interface> &iface) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -473,7 +476,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->interface_added)
     (*base->interface_added)(gobj(),Glib::unwrap(iface));
 }
-void Gio::DBus::Object::on_interface_removed(const Glib::RefPtr<Gio::DBus::Interface>& iface)
+auto Gio::DBus::Object::on_interface_removed (
+  const Glib::RefPtr <Gio::DBus::Interface> &iface) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

@@ -29,13 +29,13 @@
 namespace Gtk::Expression_Private
 {
 
-void watch_callback(gpointer data)
+auto watch_callback (gpointer data) -> void
 {
   auto slot = static_cast<sigc::slot<void()>*>(data);
   (*slot)();
 }
 
-void closure_callback_func()
+auto closure_callback_func () -> void
 {}
 
 } // namespace Gtk
@@ -76,13 +76,13 @@ auto wrap(GtkExpression* object, bool take_copy) -> Glib::RefPtr<Gtk::Expression
 namespace Gtk
 {
 
-void ExpressionBase::reference() const
+auto ExpressionBase::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gtk_expression_ref(reinterpret_cast<GtkExpression*>(const_cast<ExpressionBase*>(this)));
 }
 
-void ExpressionBase::unreference() const
+auto ExpressionBase::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gtk_expression_unref(reinterpret_cast<GtkExpression*>(const_cast<ExpressionBase*>(this)));

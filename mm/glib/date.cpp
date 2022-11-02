@@ -72,57 +72,48 @@ Date::operator=(const Date& other) -> Date&
   return *this;
 }
 
-void
-Date::clear()
+auto Date::clear () -> void
 {
   g_date_clear(&gobject_, 1);
 }
 
-void
-Date::set_parse(const Glib::ustring& str)
+auto Date::set_parse (const Glib::ustring &str) -> void
 {
   g_date_set_parse(&gobject_, str.c_str());
 }
 
-void
-Date::set_time(std::time_t timet)
+auto Date::set_time (std::time_t timet) -> void
 {
   g_date_set_time_t(&gobject_, timet);
 }
 
-void
-Date::set_time_current()
+auto Date::set_time_current () -> void
 {
   // As suggested in the C documentation:
   g_date_set_time_t(&gobject_, time(nullptr));
 }
 
-void
-Date::set_month(Date::Month month)
+auto Date::set_month (Date::Month month) -> void
 {
   g_date_set_month(&gobject_, (GDateMonth)month);
 }
 
-void
-Date::set_day(Date::Day day)
+auto Date::set_day (Date::Day day) -> void
 {
   g_date_set_day(&gobject_, day);
 }
 
-void
-Date::set_year(Date::Year year)
+auto Date::set_year (Date::Year year) -> void
 {
   g_date_set_year(&gobject_, year);
 }
 
-void
-Date::set_dmy(Date::Day day, Date::Month month, Date::Year year)
+auto Date::set_dmy (Date::Day day, Date::Month month, Date::Year year) -> void
 {
   g_date_set_dmy(&gobject_, day, (GDateMonth)month, year);
 }
 
-void
-Date::set_julian(guint32 julian_day)
+auto Date::set_julian (guint32 julian_day) -> void
 {
   g_date_set_julian(&gobject_, julian_day);
 }
@@ -220,8 +211,7 @@ Date::clamp_max(const Date& max_date) -> Date&
   return *this;
 }
 
-void
-Date::order(Date& other)
+auto Date::order (Date &other) -> void
 {
   g_date_order(&gobject_, &other.gobject_);
 }
@@ -362,8 +352,7 @@ Date::format_string(const Glib::ustring& format) const -> Glib::ustring
   return Glib::ustring();
 }
 
-void
-Date::to_struct_tm(struct tm& dest) const
+auto Date::to_struct_tm (struct tm &dest) const -> void
 {
   g_date_to_struct_tm(&gobject_, &dest);
 }

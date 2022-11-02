@@ -37,12 +37,12 @@ Device::~Device()
     cairo_device_destroy(m_cobject);
 }
 
-void Device::reference() const
+auto Device::reference () const -> void
 {
  cairo_device_reference(m_cobject);
 }
 
-void Device::unreference() const
+auto Device::unreference () const -> void
 {
   cairo_device_destroy(m_cobject);
 }
@@ -55,25 +55,25 @@ auto Device::get_type() const -> Device::DeviceType
   return static_cast<DeviceType>(surface_type);
 }
 
-void Device::flush()
+auto Device::flush () -> void
 {
   cairo_device_flush(m_cobject);
   check_object_status_and_throw_exception(*this);
 }
 
-void Device::finish()
+auto Device::finish () -> void
 {
   cairo_device_flush(m_cobject);
   check_object_status_and_throw_exception(*this);
 }
 
-void Device::acquire()
+auto Device::acquire () -> void
 {
   auto status = cairo_device_acquire(m_cobject);
   check_status_and_throw_exception(status);
 }
 
-void Device::release()
+auto Device::release () -> void
 {
   cairo_device_release(m_cobject);
   check_object_status_and_throw_exception(*this);

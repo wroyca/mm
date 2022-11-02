@@ -129,17 +129,17 @@ auto Color::get_blue() const -> guint16
   return gobj()->blue;
 }
 
-void Color::set_red(const guint16& value)
+auto Color::set_red (const guint16 &value) -> void
 {
   gobj()->red = value;
 }
 
-void Color::set_green(const guint16& value)
+auto Color::set_green (const guint16 &value) -> void
 {
   gobj()->green = value;
 }
 
-void Color::set_blue(const guint16& value)
+auto Color::set_blue (const guint16 &value) -> void
 {
   gobj()->blue = value;
 }

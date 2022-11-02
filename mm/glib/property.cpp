@@ -62,8 +62,7 @@ namespace
 // b) It's comparatively efficient, and does not need a hash-table lookup.
 
 // Delete the interface property values when an object of a custom type is finalized.
-void
-destroy_notify_obj_iface_props(void* data)
+auto destroy_notify_obj_iface_props (void *data) -> void
 {
   auto obj_iface_props = static_cast<Glib::Class::iface_properties_type*>(data);
   if (obj_iface_props)
@@ -93,7 +92,7 @@ const GQuark custom_properties_quark =
   g_quark_from_string("gtkmm_CustomObject_custom_properties");
 
 // Delete the custom properties data when an object of a custom type is finalized.
-void destroy_notify_obj_custom_props(void* data)
+auto destroy_notify_obj_custom_props (void *data) -> void
 {
   auto obj_custom_props = static_cast<custom_properties_type*>(data);
   // prop_base_vector does not own the objects pointed to.
@@ -126,9 +125,8 @@ get_obj_custom_props(GObject* obj) -> custom_properties_type*
 namespace Glib
 {
 
-void
-custom_get_property_callback(
-  GObject* object, unsigned int property_id, GValue* value, GParamSpec* param_spec)
+auto custom_get_property_callback (
+  GObject *object, unsigned int property_id, GValue *value, GParamSpec *param_spec) -> void
 {
   // If the id is zero there is no property to get.
   g_return_if_fail(property_id != 0);
@@ -184,9 +182,8 @@ custom_get_property_callback(
   }
 }
 
-void
-custom_set_property_callback(
-  GObject* object, unsigned int property_id, const GValue* value, GParamSpec* param_spec)
+auto custom_set_property_callback (
+  GObject *object, unsigned int property_id, const GValue *value, GParamSpec *param_spec) -> void
 {
   // If the id is zero there is no property to set.
   g_return_if_fail(property_id != 0);
@@ -306,8 +303,7 @@ PropertyBase::lookup_property(const Glib::ustring& name) -> bool
   return (param_spec_ != nullptr);
 }
 
-void
-PropertyBase::install_property(GParamSpec* param_spec)
+auto PropertyBase::install_property (GParamSpec *param_spec) -> void
 {
   g_return_if_fail(param_spec != nullptr);
 
@@ -366,8 +362,7 @@ PropertyBase::get_blurb() const -> Glib::ustring
     g_param_spec_get_blurb(param_spec_));
 }
 
-void
-PropertyBase::notify()
+auto PropertyBase::notify () -> void
 {
   g_object_notify_by_pspec(object_->gobj(), param_spec_);
 }

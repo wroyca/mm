@@ -61,7 +61,8 @@ PropertyProxyConnectionNode::connect_changed(const Glib::ustring& property_name)
   return sigc::connection(slot_);
 }
 
-void PropertyProxyConnectionNode::callback(GObject*, GParamSpec* pspec, gpointer data) // static
+auto PropertyProxyConnectionNode::callback (
+  GObject *, GParamSpec *pspec, gpointer data) -> void // static
 {
   if (pspec && data)
   {
@@ -123,20 +124,17 @@ PropertyProxy_Base::signal_changed() -> SignalProxyProperty
   return SignalProxyProperty(obj_, property_name_);
 }
 
-void
-PropertyProxy_Base::set_property_(const Glib::ValueBase& value)
+auto PropertyProxy_Base::set_property_ (const Glib::ValueBase &value) -> void
 {
   g_object_set_property(obj_->gobj(), property_name_, value.gobj());
 }
 
-void
-PropertyProxy_Base::get_property_(Glib::ValueBase& value) const
+auto PropertyProxy_Base::get_property_ (Glib::ValueBase &value) const -> void
 {
   g_object_get_property(obj_->gobj(), property_name_, value.gobj());
 }
 
-void
-PropertyProxy_Base::reset_property_()
+auto PropertyProxy_Base::reset_property_ () -> void
 {
   // Get information about the parameter:
   const GParamSpec* const pParamSpec =

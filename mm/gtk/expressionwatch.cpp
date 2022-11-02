@@ -61,13 +61,13 @@ auto wrap(GtkExpressionWatch* object, bool take_copy) -> Glib::RefPtr<Gtk::Expre
 namespace Gtk
 {
 
-void ExpressionWatchBase::reference() const
+auto ExpressionWatchBase::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gtk_expression_watch_ref(reinterpret_cast<GtkExpressionWatch*>(const_cast<ExpressionWatchBase*>(this)));
 }
 
-void ExpressionWatchBase::unreference() const
+auto ExpressionWatchBase::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gtk_expression_watch_unref(reinterpret_cast<GtkExpressionWatch*>(const_cast<ExpressionWatchBase*>(this)));
@@ -94,7 +94,7 @@ auto ExpressionWatchBase::gobj_copy() const -> GtkExpressionWatch*
 }
 
 
-void ExpressionWatchBase::unwatch()
+auto ExpressionWatchBase::unwatch () -> void
 {
   gtk_expression_watch_unwatch(gobj());
 }

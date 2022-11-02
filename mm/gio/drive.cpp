@@ -34,9 +34,9 @@ using StartStopType = Gio::Drive::StartStopType;
 namespace Gio
 {
 
-void
-Drive::eject(
-  const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, Mount::UnmountFlags flags)
+auto Drive::eject (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
+  Mount::UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -48,8 +48,7 @@ Drive::eject(
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Drive::eject(const SlotAsyncReady& slot, Mount::UnmountFlags flags)
+auto Drive::eject (const SlotAsyncReady &slot, Mount::UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -62,9 +61,9 @@ Drive::eject(const SlotAsyncReady& slot, Mount::UnmountFlags flags)
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Drive::eject(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsyncReady& slot,
-  const Glib::RefPtr<Cancellable>& cancellable, Mount::UnmountFlags flags)
+auto Drive::eject (
+  const Glib::RefPtr <MountOperation> &mount_operation, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, Mount::UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -76,9 +75,9 @@ Drive::eject(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsyn
     slot_copy);
 }
 
-void
-Drive::eject(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsyncReady& slot,
-  Mount::UnmountFlags flags)
+auto Drive::eject (
+  const Glib::RefPtr <MountOperation> &mount_operation, const SlotAsyncReady &slot,
+  Mount::UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -91,8 +90,8 @@ Drive::eject(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsyn
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Drive::eject(const Glib::RefPtr<MountOperation>& mount_operation, Mount::UnmountFlags flags)
+auto Drive::eject (
+  const Glib::RefPtr <MountOperation> &mount_operation, Mount::UnmountFlags flags) -> void
 {
   g_drive_eject_with_operation(gobj(), static_cast<GMountUnmountFlags>(flags),
     Glib::unwrap(mount_operation),
@@ -101,8 +100,7 @@ Drive::eject(const Glib::RefPtr<MountOperation>& mount_operation, Mount::Unmount
     nullptr); // user_data
 }
 
-void
-Drive::eject(Mount::UnmountFlags flags)
+auto Drive::eject (Mount::UnmountFlags flags) -> void
 {
   g_drive_eject_with_operation(gobj(), static_cast<GMountUnmountFlags>(flags),
     nullptr, // mount_operation
@@ -111,8 +109,8 @@ Drive::eject(Mount::UnmountFlags flags)
     nullptr); // user_data
 }
 
-void
-Drive::poll_for_media(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto Drive::poll_for_media (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -122,8 +120,7 @@ Drive::poll_for_media(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable
   g_drive_poll_for_media(gobj(), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Drive::poll_for_media(const SlotAsyncReady& slot)
+auto Drive::poll_for_media (const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -135,17 +132,17 @@ Drive::poll_for_media(const SlotAsyncReady& slot)
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Drive::poll_for_media()
+auto Drive::poll_for_media () -> void
 {
   g_drive_poll_for_media(gobj(),
     nullptr, // cancellable
     nullptr, nullptr);
 }
 
-void
-Drive::stop(const Glib::RefPtr<MountOperation>& mount_operation,
-  const Glib::RefPtr<Cancellable>& cancellable, const SlotAsyncReady& slot, Mount::UnmountFlags flags)
+auto Drive::stop (
+  const Glib::RefPtr <MountOperation> &mount_operation,
+  const Glib::RefPtr <Cancellable> &cancellable, const SlotAsyncReady &slot,
+  Mount::UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -156,9 +153,9 @@ Drive::stop(const Glib::RefPtr<MountOperation>& mount_operation,
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Drive::stop(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsyncReady& slot,
-  Mount::UnmountFlags flags)
+auto Drive::stop (
+  const Glib::RefPtr <MountOperation> &mount_operation, const SlotAsyncReady &slot,
+  Mount::UnmountFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -169,9 +166,10 @@ Drive::stop(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsync
     nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Drive::start(const Glib::RefPtr<MountOperation>& mount_operation,
-  const Glib::RefPtr<Cancellable>& cancellable, const SlotAsyncReady& slot, StartFlags flags)
+auto Drive::start (
+  const Glib::RefPtr <MountOperation> &mount_operation,
+  const Glib::RefPtr <Cancellable> &cancellable, const SlotAsyncReady &slot,
+  StartFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -182,9 +180,9 @@ Drive::start(const Glib::RefPtr<MountOperation>& mount_operation,
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Drive::start(const Glib::RefPtr<MountOperation>& mount_operation, const SlotAsyncReady& slot,
-  StartFlags flags)
+auto Drive::start (
+  const Glib::RefPtr <MountOperation> &mount_operation, const SlotAsyncReady &slot,
+  StartFlags flags) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -281,7 +279,7 @@ auto Drive_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Drive_Class::iface_init_function(void* g_iface, void*)
+auto Drive_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -297,7 +295,7 @@ void Drive_Class::iface_init_function(void* g_iface, void*)
 }
 
 
-void Drive_Class::changed_callback(GDrive* self)
+auto Drive_Class::changed_callback (GDrive *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -334,7 +332,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->changed)
     (*base->changed)(self);
 }
-void Drive_Class::disconnected_callback(GDrive* self)
+auto Drive_Class::disconnected_callback (GDrive *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -371,7 +369,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->disconnected)
     (*base->disconnected)(self);
 }
-void Drive_Class::eject_button_callback(GDrive* self)
+auto Drive_Class::eject_button_callback (GDrive *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -408,7 +406,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->eject_button)
     (*base->eject_button)(self);
 }
-void Drive_Class::stop_button_callback(GDrive* self)
+auto Drive_Class::stop_button_callback (GDrive *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -484,7 +482,7 @@ Drive::~Drive() noexcept
 {}
 
 // static
-void Drive::add_interface(GType gtype_implementer)
+auto Drive::add_interface (GType gtype_implementer) -> void
 {
   drive_class_.init().add_interface(gtype_implementer);
 }
@@ -670,7 +668,7 @@ auto Drive::signal_stop_button() -> Glib::SignalProxy<void()>
 }
 
 
-void Gio::Drive::on_changed()
+auto Gio::Drive::on_changed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -680,7 +678,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->changed)
     (*base->changed)(gobj());
 }
-void Gio::Drive::on_disconnected()
+auto Gio::Drive::on_disconnected () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -690,7 +688,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->disconnected)
     (*base->disconnected)(gobj());
 }
-void Gio::Drive::on_eject_button()
+auto Gio::Drive::on_eject_button () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -700,7 +698,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->eject_button)
     (*base->eject_button)(gobj());
 }
-void Gio::Drive::on_stop_button()
+auto Gio::Drive::on_stop_button () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

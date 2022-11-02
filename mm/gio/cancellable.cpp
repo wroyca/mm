@@ -31,16 +31,14 @@ namespace Gio
 
 extern "C" {
 
-void
-delete_slot(gpointer data)
+auto delete_slot (gpointer data) -> void
 {
   Cancellable::SlotCancelledCallback* callback =
     reinterpret_cast<Cancellable::SlotCancelledCallback*>(data);
   delete callback;
 }
 
-void
-slot_cancelled_proxy(GCancellable* /*cancellable*/, gpointer data)
+auto slot_cancelled_proxy (GCancellable * /*cancellable*/, gpointer data) -> void
 {
   Cancellable::SlotCancelledCallback* callback =
     reinterpret_cast<Cancellable::SlotCancelledCallback*>(data);
@@ -113,7 +111,7 @@ auto Cancellable_Class::init() -> const Glib::Class&
 }
 
 
-void Cancellable_Class::class_init_function(void* g_class, void* class_data)
+auto Cancellable_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -123,7 +121,7 @@ void Cancellable_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void Cancellable_Class::cancelled_callback(GCancellable* self)
+auto Cancellable_Class::cancelled_callback (GCancellable *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -247,12 +245,12 @@ auto Cancellable::make_pollfd(GPollFD* pollfd) -> bool
   return g_cancellable_make_pollfd(gobj(), pollfd);
 }
 
-void Cancellable::release_fd()
+auto Cancellable::release_fd () -> void
 {
   g_cancellable_release_fd(gobj());
 }
 
-void Cancellable::cancel()
+auto Cancellable::cancel () -> void
 {
   g_cancellable_cancel(gobj());
 }
@@ -266,22 +264,22 @@ auto Cancellable::get_current() -> Glib::RefPtr<Cancellable>
   return retvalue;
 }
 
-void Cancellable::push_current()
+auto Cancellable::push_current () -> void
 {
   g_cancellable_push_current(gobj());
 }
 
-void Cancellable::pop_current()
+auto Cancellable::pop_current () -> void
 {
   g_cancellable_pop_current(gobj());
 }
 
-void Cancellable::reset()
+auto Cancellable::reset () -> void
 {
   g_cancellable_reset(gobj());
 }
 
-void Cancellable::disconnect(gulong handler_id)
+auto Cancellable::disconnect (gulong handler_id) -> void
 {
   g_cancellable_disconnect(gobj(), handler_id);
 }
@@ -293,7 +291,7 @@ auto Cancellable::signal_cancelled() -> Glib::SignalProxy<void()>
 }
 
 
-void Gio::Cancellable::on_cancelled()
+auto Gio::Cancellable::on_cancelled () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

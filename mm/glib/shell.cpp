@@ -86,7 +86,7 @@ auto Glib::ShellError::code() const -> Glib::ShellError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Glib::ShellError::throw_func(GError* gobject)
+auto Glib::ShellError::throw_func (GError *gobject) -> void
 {
   throw Glib::ShellError(gobject);
 }

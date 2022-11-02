@@ -104,13 +104,13 @@ auto wrap(GdkEvent* object, bool take_copy) -> Glib::RefPtr<Gdk::Event>
 namespace Gdk
 {
 
-void Event::reference() const
+auto Event::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gdk_event_ref(reinterpret_cast<GdkEvent*>(const_cast<Event*>(this)));
 }
 
-void Event::unreference() const
+auto Event::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gdk_event_unref(reinterpret_cast<GdkEvent*>(const_cast<Event*>(this)));
@@ -247,7 +247,7 @@ auto Event::get_direction() const -> ScrollDirection
   return static_cast<ScrollDirection>(gdk_scroll_event_get_direction(const_cast<GdkEvent*>(gobj())));
 }
 
-void Event::get_deltas(double& delta_x, double& delta_y) const
+auto Event::get_deltas (double &delta_x, double &delta_y) const -> void
 {
   gdk_scroll_event_get_deltas(const_cast<GdkEvent*>(gobj()), &(delta_x), &(delta_y));
 }
@@ -327,7 +327,7 @@ auto Event::get_touchpad_n_fingers() const -> guint
   return gdk_touchpad_event_get_n_fingers(const_cast<GdkEvent*>(gobj()));
 }
 
-void Event::get_touchpad_deltas(double& dx, double& dy) const
+auto Event::get_touchpad_deltas (double &dx, double &dy) const -> void
 {
   gdk_touchpad_event_get_deltas(const_cast<GdkEvent*>(gobj()), &(dx), &(dy));
 }
@@ -347,12 +347,12 @@ auto Event::get_pad_button() const -> guint
   return gdk_pad_event_get_button(const_cast<GdkEvent*>(gobj()));
 }
 
-void Event::get_pad_axis_value(guint& index, double& value) const
+auto Event::get_pad_axis_value (guint &index, double &value) const -> void
 {
   gdk_pad_event_get_axis_value(const_cast<GdkEvent*>(gobj()), &(index), &(value));
 }
 
-void Event::get_pad_group_mode(guint& group, guint& mode) const
+auto Event::get_pad_group_mode (guint &group, guint &mode) const -> void
 {
   gdk_pad_event_get_group_mode(const_cast<GdkEvent*>(gobj()), &(group), &(mode));
 }

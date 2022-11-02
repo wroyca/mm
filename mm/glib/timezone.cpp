@@ -106,7 +106,7 @@ TimeZone::~TimeZone() noexcept
     g_time_zone_unref(gobject_);
 }
 
-void TimeZone::swap(TimeZone& other) noexcept
+auto TimeZone::swap (TimeZone &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }

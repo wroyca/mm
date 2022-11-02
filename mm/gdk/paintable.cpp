@@ -90,7 +90,7 @@ auto Paintable_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Paintable_Class::iface_init_function(void* g_iface, void*)
+auto Paintable_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -107,7 +107,8 @@ void Paintable_Class::iface_init_function(void* g_iface, void*)
 
 }
 
-void Paintable_Class::snapshot_vfunc_callback(GdkPaintable* self, GdkSnapshot* snapshot, double width, double height)
+auto Paintable_Class::snapshot_vfunc_callback (
+  GdkPaintable *self, GdkSnapshot *snapshot, double width, double height) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -379,7 +380,7 @@ Paintable::~Paintable() noexcept
 {}
 
 // static
-void Paintable::add_interface(GType gtype_implementer)
+auto Paintable::add_interface (GType gtype_implementer) -> void
 {
   paintable_class_.init().add_interface(gtype_implementer);
 }
@@ -398,7 +399,8 @@ auto Paintable::get_base_type() -> GType
 }
 
 
-void Paintable::snapshot(const Glib::RefPtr<Gdk::Snapshot>& snapshot, double width, double height)
+auto Paintable::snapshot (
+  const Glib::RefPtr <Gdk::Snapshot> &snapshot, double width, double height) -> void
 {
   gdk_paintable_snapshot(gobj(), Glib::unwrap(snapshot), width, height);
 }
@@ -428,17 +430,19 @@ auto Paintable::get_intrinsic_aspect_ratio() const -> double
   return gdk_paintable_get_intrinsic_aspect_ratio(const_cast<GdkPaintable*>(gobj()));
 }
 
-void Paintable::compute_concrete_size(double specified_width, double specified_height, double default_width, double default_height, double& concrete_width, double& concrete_height) const
+auto Paintable::compute_concrete_size (
+  double specified_width, double specified_height, double default_width, double default_height,
+  double &concrete_width, double &concrete_height) const -> void
 {
   gdk_paintable_compute_concrete_size(const_cast<GdkPaintable*>(gobj()), specified_width, specified_height, default_width, default_height, &(concrete_width), &(concrete_height));
 }
 
-void Paintable::invalidate_contents()
+auto Paintable::invalidate_contents () -> void
 {
   gdk_paintable_invalidate_contents(gobj());
 }
 
-void Paintable::invalidate_size()
+auto Paintable::invalidate_size () -> void
 {
   gdk_paintable_invalidate_size(gobj());
 }
@@ -456,7 +460,8 @@ auto Paintable::signal_invalidate_size() -> Glib::SignalProxy<void()>
 }
 
 
-void Gdk::Paintable::snapshot_vfunc(const Glib::RefPtr<Gdk::Snapshot>& snapshot, double width, double height)
+auto Gdk::Paintable::snapshot_vfunc (
+  const Glib::RefPtr <Gdk::Snapshot> &snapshot, double width, double height) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

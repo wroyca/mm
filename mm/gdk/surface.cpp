@@ -57,7 +57,7 @@ auto Surface_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
   return new Surface((GdkSurface*)object);
 }
 
-void Surface::set_cursor()
+auto Surface::set_cursor () -> void
 {
   gdk_surface_set_cursor(gobj(), nullptr);
 }
@@ -68,7 +68,7 @@ namespace
 {
 
 
-void Surface_signal_layout_callback(GdkSurface* self, gint p0,gint p1,void* data)
+auto Surface_signal_layout_callback (GdkSurface *self, gint p0, gint p1, void *data) -> void
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(int, int)>;
@@ -215,7 +215,7 @@ const Glib::SignalProxyInfo Surface_signal_event_info =
 };
 
 
-void Surface_signal_enter_monitor_callback(GdkSurface* self, GdkMonitor* p0,void* data)
+auto Surface_signal_enter_monitor_callback (GdkSurface *self, GdkMonitor *p0, void *data) -> void
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Monitor>&)>;
@@ -245,7 +245,7 @@ const Glib::SignalProxyInfo Surface_signal_enter_monitor_info =
 };
 
 
-void Surface_signal_leave_monitor_callback(GdkSurface* self, GdkMonitor* p0,void* data)
+auto Surface_signal_leave_monitor_callback (GdkSurface *self, GdkMonitor *p0, void *data) -> void
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Monitor>&)>;
@@ -318,7 +318,7 @@ auto Surface_Class::init() -> const Glib::Class&
 }
 
 
-void Surface_Class::class_init_function(void* g_class, void* class_data)
+auto Surface_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -400,12 +400,12 @@ auto Surface::get_display() const -> Glib::RefPtr<const Display>
   return const_cast<Surface*>(this)->get_display();
 }
 
-void Surface::hide()
+auto Surface::hide () -> void
 {
   gdk_surface_hide(gobj());
 }
 
-void Surface::set_input_region(const ::Cairo::RefPtr< ::Cairo::Region>& region)
+auto Surface::set_input_region (const ::Cairo::RefPtr <::Cairo::Region> &region) -> void
 {
   gdk_surface_set_input_region(gobj(), ((region) ? (region)->cobj() : nullptr));
 }
@@ -415,12 +415,13 @@ auto Surface::get_mapped() const -> bool
   return gdk_surface_get_mapped(const_cast<GdkSurface*>(gobj()));
 }
 
-void Surface::set_cursor(const Glib::RefPtr<Cursor>& cursor)
+auto Surface::set_cursor (const Glib::RefPtr <Cursor> &cursor) -> void
 {
   gdk_surface_set_cursor(gobj(), Glib::unwrap(cursor));
 }
 
-void Surface::set_device_cursor(const Glib::RefPtr<Device>& device, const Glib::RefPtr<Cursor>& cursor)
+auto Surface::set_device_cursor (
+  const Glib::RefPtr <Device> &device, const Glib::RefPtr <Cursor> &cursor) -> void
 {
   gdk_surface_set_device_cursor(gobj(), Glib::unwrap(device), Glib::unwrap(cursor));
 }
@@ -479,7 +480,7 @@ auto Surface::create_similar_surface(::Cairo::Content content, int width, int he
   return Gdk::Cairo::wrap(gdk_surface_create_similar_surface(gobj(), (cairo_content_t)(content), width, height));
 }
 
-void Surface::beep()
+auto Surface::beep () -> void
 {
   gdk_surface_beep(gobj());
 }
@@ -489,12 +490,12 @@ auto Surface::drag_begin_from_point(const Glib::RefPtr<Device>& device, const Gl
   return Glib::wrap(gdk_drag_begin(gobj(), Glib::unwrap(device), Glib::unwrap(content), static_cast<GdkDragAction>(actions), dx, dy));
 }
 
-void Surface::queue_render()
+auto Surface::queue_render () -> void
 {
   gdk_surface_queue_render(gobj());
 }
 
-void Surface::request_layout()
+auto Surface::request_layout () -> void
 {
   gdk_surface_request_layout(gobj());
 }
@@ -512,7 +513,7 @@ auto Surface::get_frame_clock() const -> Glib::RefPtr<const FrameClock>
   return const_cast<Surface*>(this)->get_frame_clock();
 }
 
-void Surface::set_opaque_region(const ::Cairo::RefPtr<const ::Cairo::Region>& region)
+auto Surface::set_opaque_region (const ::Cairo::RefPtr <const ::Cairo::Region> &region) -> void
 {
   gdk_surface_set_opaque_region(gobj(), const_cast<cairo_region_t*>((region) ? (region)->cobj() : nullptr));
 }

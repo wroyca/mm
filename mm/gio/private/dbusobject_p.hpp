@@ -24,24 +24,25 @@ public:
 
   friend class Object;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
   //Callbacks (default signal handlers):
   //These will call the *_impl member methods, which will then call the existing default signal callbacks, if any.
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
-  static void interface_added_callback(GDBusObject* self, GDBusInterface* p0);
-  static void interface_removed_callback(GDBusObject* self, GDBusInterface* p0);
+  static auto interface_added_callback (GDBusObject *self, GDBusInterface *p0) -> void;
+  static auto interface_removed_callback (GDBusObject *self, GDBusInterface *p0) -> void;
 
   //Callbacks (virtual functions):
-  static const gchar* get_object_path_vfunc_callback(GDBusObject* self);
-  static GList* get_interfaces_vfunc_callback(GDBusObject* self);
-  static GDBusInterface* get_interface_vfunc_callback(GDBusObject* self, const gchar* interface_name);
+  static auto get_object_path_vfunc_callback (GDBusObject *self) -> const gchar*;
+  static auto get_interfaces_vfunc_callback (GDBusObject *self) -> GList*;
+  static auto get_interface_vfunc_callback (
+    GDBusObject *self, const gchar *interface_name) -> GDBusInterface*;
 };
 
 

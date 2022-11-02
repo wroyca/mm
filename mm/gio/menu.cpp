@@ -75,7 +75,7 @@ auto Menu_Class::init() -> const Glib::Class&
 }
 
 
-void Menu_Class::class_init_function(void* g_class, void* class_data)
+auto Menu_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -155,107 +155,114 @@ auto Menu::create() -> Glib::RefPtr<Menu>
   return Glib::make_refptr_for_instance<Menu>( new Menu() );
 }
 
-void Menu::freeze()
+auto Menu::freeze () -> void
 {
   g_menu_freeze(gobj());
 }
 
-void Menu::insert_item(int position, const Glib::RefPtr<const MenuItem>& item)
+auto Menu::insert_item (int position, const Glib::RefPtr <const MenuItem> &item) -> void
 {
   g_menu_insert_item(gobj(), position, const_cast<GMenuItem*>(Glib::unwrap(item)));
 }
 
-void Menu::prepend_item(const Glib::RefPtr<const MenuItem>& item)
+auto Menu::prepend_item (const Glib::RefPtr <const MenuItem> &item) -> void
 {
   g_menu_prepend_item(gobj(), const_cast<GMenuItem*>(Glib::unwrap(item)));
 }
 
-void Menu::append_item(const Glib::RefPtr<const MenuItem>& item)
+auto Menu::append_item (const Glib::RefPtr <const MenuItem> &item) -> void
 {
   g_menu_append_item(gobj(), const_cast<GMenuItem*>(Glib::unwrap(item)));
 }
 
-void Menu::remove(int position)
+auto Menu::remove (int position) -> void
 {
   g_menu_remove(gobj(), position);
 }
 
-void Menu::remove_all()
+auto Menu::remove_all () -> void
 {
   g_menu_remove_all(gobj());
 }
 
-void Menu::insert(int position, const Glib::ustring& label, const Glib::ustring& detailed_action)
+auto Menu::insert (
+  int position, const Glib::ustring &label, const Glib::ustring &detailed_action) -> void
 {
   g_menu_insert(gobj(), position, label.c_str(), detailed_action.empty() ? nullptr : detailed_action.c_str());
 }
 
-void Menu::insert(int position, const Glib::ustring& label)
+auto Menu::insert (int position, const Glib::ustring &label) -> void
 {
   g_menu_insert(gobj(), position, label.c_str(), nullptr);
 }
 
-void Menu::prepend(const Glib::ustring& label, const Glib::ustring& detailed_action)
+auto Menu::prepend (const Glib::ustring &label, const Glib::ustring &detailed_action) -> void
 {
   g_menu_prepend(gobj(), label.c_str(), detailed_action.empty() ? nullptr : detailed_action.c_str());
 }
 
-void Menu::prepend(const Glib::ustring& label)
+auto Menu::prepend (const Glib::ustring &label) -> void
 {
   g_menu_prepend(gobj(), label.c_str(), nullptr);
 }
 
-void Menu::append(const Glib::ustring& label, const Glib::ustring& detailed_action)
+auto Menu::append (const Glib::ustring &label, const Glib::ustring &detailed_action) -> void
 {
   g_menu_append(gobj(), label.c_str(), detailed_action.empty() ? nullptr : detailed_action.c_str());
 }
 
-void Menu::append(const Glib::ustring& label)
+auto Menu::append (const Glib::ustring &label) -> void
 {
   g_menu_append(gobj(), label.c_str(), nullptr);
 }
 
-void Menu::insert_section(int position, const Glib::ustring& label, const Glib::RefPtr<MenuModel>& section)
+auto Menu::insert_section (
+  int position, const Glib::ustring &label, const Glib::RefPtr <MenuModel> &section) -> void
 {
   g_menu_insert_section(gobj(), position, label.empty() ? nullptr : label.c_str(), const_cast<GMenuModel*>(Glib::unwrap(section)));
 }
 
-void Menu::insert_section(int position, const Glib::RefPtr<MenuModel>& section)
+auto Menu::insert_section (int position, const Glib::RefPtr <MenuModel> &section) -> void
 {
   g_menu_insert_section(gobj(), position, nullptr, const_cast<GMenuModel*>(Glib::unwrap(section)));
 }
 
-void Menu::prepend_section(const Glib::ustring& label, const Glib::RefPtr<MenuModel>& section)
+auto Menu::prepend_section (
+  const Glib::ustring &label, const Glib::RefPtr <MenuModel> &section) -> void
 {
   g_menu_prepend_section(gobj(), label.empty() ? nullptr : label.c_str(), const_cast<GMenuModel*>(Glib::unwrap(section)));
 }
 
-void Menu::prepend_section(const Glib::RefPtr<MenuModel>& section)
+auto Menu::prepend_section (const Glib::RefPtr <MenuModel> &section) -> void
 {
   g_menu_prepend_section(gobj(), nullptr, const_cast<GMenuModel*>(Glib::unwrap(section)));
 }
 
-void Menu::append_section(const Glib::ustring& label, const Glib::RefPtr<MenuModel>& section)
+auto Menu::append_section (
+  const Glib::ustring &label, const Glib::RefPtr <MenuModel> &section) -> void
 {
   g_menu_append_section(gobj(), label.empty() ? nullptr : label.c_str(), const_cast<GMenuModel*>(Glib::unwrap(section)));
 }
 
-void Menu::append_section(const Glib::RefPtr<MenuModel>& section)
+auto Menu::append_section (const Glib::RefPtr <MenuModel> &section) -> void
 {
   g_menu_append_section(gobj(), nullptr, const_cast<GMenuModel*>(Glib::unwrap(section)));
 }
 
-void Menu::insert_submenu(int position, const Glib::ustring& label, const Glib::RefPtr<MenuModel>& submenu)
+auto Menu::insert_submenu (
+  int position, const Glib::ustring &label, const Glib::RefPtr <MenuModel> &submenu) -> void
 {
   g_menu_insert_submenu(gobj(), position, label.c_str(), const_cast<GMenuModel*>(Glib::unwrap(submenu)));
 }
 
-void Menu::prepend_submenu(const Glib::ustring& label, const Glib::RefPtr<MenuModel>& submenu)
+auto Menu::prepend_submenu (
+  const Glib::ustring &label, const Glib::RefPtr <MenuModel> &submenu) -> void
 {
   g_menu_prepend_submenu(gobj(), label.c_str(), const_cast<GMenuModel*>(Glib::unwrap(submenu)));
 }
 
-void Menu::append_submenu(const Glib::ustring& label, const Glib::RefPtr<MenuModel>& submenu)
+auto Menu::append_submenu (
+  const Glib::ustring &label, const Glib::RefPtr <MenuModel> &submenu) -> void
 {
   g_menu_append_submenu(gobj(), label.c_str(), const_cast<GMenuModel*>(Glib::unwrap(submenu)));
 }

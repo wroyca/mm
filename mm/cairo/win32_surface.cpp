@@ -33,12 +33,12 @@ Win32Surface::~Win32Surface()
   // surface is destroyed in base class
 }
 
-HDC Win32Surface::get_dc() const
+auto Win32Surface::get_dc () const -> HDC
 {
   return cairo_win32_surface_get_dc(m_cobject);
 }
 
-RefPtr<ImageSurface> Win32Surface::get_image()
+auto Win32Surface::get_image () -> RefPtr <ImageSurface>
 {
   RefPtr<ImageSurface> surface(new ImageSurface(cairo_win32_surface_get_image(cobj()),
                                                 false /* no reference, owned by this win32surface*/));
@@ -46,21 +46,22 @@ RefPtr<ImageSurface> Win32Surface::get_image()
   return surface;
 }
 
-RefPtr<Win32Surface> Win32Surface::create(HDC hdc)
+auto Win32Surface::create (HDC hdc) -> RefPtr <Win32Surface>
 {
   auto cobject = cairo_win32_surface_create(hdc);
   check_status_and_throw_exception(cairo_surface_status(cobject));
   return make_refptr_for_instance<Win32Surface>(new Win32Surface(cobject, true /* has reference */));
 }
 
-RefPtr<Win32Surface> Win32Surface::create_with_dib(Format format, int width, int height)
+auto Win32Surface::create_with_dib (Format format, int width, int height) -> RefPtr <Win32Surface>
 {
   auto cobject = cairo_win32_surface_create_with_dib((cairo_format_t)format, width, height);
   check_status_and_throw_exception(cairo_surface_status(cobject));
   return make_refptr_for_instance<Win32Surface>(new Win32Surface(cobject, true /* has reference */));
 }
 
-RefPtr<Win32Surface> Win32Surface::create_with_ddb(HDC hdc, Format format, int width, int height)
+auto Win32Surface::create_with_ddb (
+  HDC hdc, Format format, int width, int height) -> RefPtr <Win32Surface>
 {
   auto cobject =
     cairo_win32_surface_create_with_ddb(hdc, (cairo_format_t)format, width, height);
@@ -78,7 +79,7 @@ Win32PrintingSurface::~Win32PrintingSurface()
   // surface is destroyed in base class
 }
 
-RefPtr<Win32PrintingSurface> Win32PrintingSurface::create(HDC hdc)
+auto Win32PrintingSurface::create (HDC hdc) -> RefPtr <Win32PrintingSurface>
 {
   auto cobject = cairo_win32_surface_create(hdc);
   check_status_and_throw_exception(cairo_surface_status(cobject));

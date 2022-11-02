@@ -37,7 +37,7 @@ ToggleButton::ToggleButton(const Glib::ustring& label, bool mnemonic)
   Gtk::Button(Glib::ConstructParams(togglebutton_class_.init(), "label",label.c_str(),"use_underline",gboolean(mnemonic), nullptr))
 {}
 
-void ToggleButton::unset_group()
+auto ToggleButton::unset_group () -> void
 {
   gtk_toggle_button_set_group(gobj(), nullptr);
 }
@@ -97,7 +97,7 @@ auto ToggleButton_Class::init() -> const Glib::Class&
 }
 
 
-void ToggleButton_Class::class_init_function(void* g_class, void* class_data)
+auto ToggleButton_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -107,7 +107,7 @@ void ToggleButton_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void ToggleButton_Class::toggled_callback(GtkToggleButton* self)
+auto ToggleButton_Class::toggled_callback (GtkToggleButton *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -206,7 +206,7 @@ ToggleButton::ToggleButton()
 
 }
 
-void ToggleButton::set_active(bool is_active)
+auto ToggleButton::set_active (bool is_active) -> void
 {
   gtk_toggle_button_set_active(gobj(), static_cast<int>(is_active));
 }
@@ -216,12 +216,12 @@ auto ToggleButton::get_active() const -> bool
   return gtk_toggle_button_get_active(const_cast<GtkToggleButton*>(gobj()));
 }
 
-void ToggleButton::toggled()
+auto ToggleButton::toggled () -> void
 {
   gtk_toggle_button_toggled(gobj());
 }
 
-void ToggleButton::set_group(ToggleButton& group)
+auto ToggleButton::set_group (ToggleButton &group) -> void
 {
   gtk_toggle_button_set_group(gobj(), (group).gobj());
 }
@@ -253,7 +253,7 @@ auto ToggleButton::property_group() -> Glib::PropertyProxy_WriteOnly< ToggleButt
 }
 
 
-void Gtk::ToggleButton::on_toggled()
+auto Gtk::ToggleButton::on_toggled () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

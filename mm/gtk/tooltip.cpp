@@ -30,22 +30,22 @@
 namespace Gtk
 {
 
-void Tooltip::unset_markup()
+auto Tooltip::unset_markup () -> void
 {
   gtk_tooltip_set_markup(gobj(), nullptr);
 }
 
-void Tooltip::unset_text()
+auto Tooltip::unset_text () -> void
 {
   gtk_tooltip_set_text(gobj(), nullptr);
 }
 
-void Tooltip::unset_icon()
+auto Tooltip::unset_icon () -> void
 {
   gtk_tooltip_set_icon(gobj(), nullptr);
 }
 
-void Tooltip::unset_custom()
+auto Tooltip::unset_custom () -> void
 {
   gtk_tooltip_set_custom(gobj(), nullptr);
 }
@@ -97,7 +97,7 @@ auto Tooltip_Class::init() -> const Glib::Class&
 }
 
 
-void Tooltip_Class::class_init_function(void* g_class, void* class_data)
+auto Tooltip_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -162,37 +162,37 @@ auto Tooltip::get_base_type() -> GType
 }
 
 
-void Tooltip::set_markup(const Glib::ustring& markup)
+auto Tooltip::set_markup (const Glib::ustring &markup) -> void
 {
   gtk_tooltip_set_markup(gobj(), markup.c_str());
 }
 
-void Tooltip::set_text(const Glib::ustring& text)
+auto Tooltip::set_text (const Glib::ustring &text) -> void
 {
   gtk_tooltip_set_text(gobj(), text.c_str());
 }
 
-void Tooltip::set_icon(const Glib::RefPtr<Gdk::Paintable>& paintable)
+auto Tooltip::set_icon (const Glib::RefPtr <Gdk::Paintable> &paintable) -> void
 {
   gtk_tooltip_set_icon(gobj(), Glib::unwrap(paintable));
 }
 
-void Tooltip::set_icon(const Glib::RefPtr<Gio::Icon>& gicon)
+auto Tooltip::set_icon (const Glib::RefPtr <Gio::Icon> &gicon) -> void
 {
   gtk_tooltip_set_icon_from_gicon(gobj(), const_cast<GIcon*>(Glib::unwrap<Gio::Icon>(gicon)));
 }
 
-void Tooltip::set_icon(const Glib::ustring& icon_name)
+auto Tooltip::set_icon (const Glib::ustring &icon_name) -> void
 {
   gtk_tooltip_set_icon_from_icon_name(gobj(), icon_name.empty() ? nullptr : icon_name.c_str());
 }
 
-void Tooltip::set_custom(Widget& custom_widget)
+auto Tooltip::set_custom (Widget &custom_widget) -> void
 {
   gtk_tooltip_set_custom(gobj(), (custom_widget).gobj());
 }
 
-void Tooltip::set_tip_area(const Gdk::Rectangle& rect)
+auto Tooltip::set_tip_area (const Gdk::Rectangle &rect) -> void
 {
   gtk_tooltip_set_tip_area(gobj(), (rect).gobj());
 }

@@ -78,8 +78,7 @@ Binding_transform_from_callback(
   return Binding_transform_callback_common(from_value, to_value, the_slot);
 }
 
-void
-Binding_transform_callback_destroy(gpointer user_data)
+auto Binding_transform_callback_destroy (gpointer user_data) -> void
 {
   delete static_cast<BindingTransformSlots*>(user_data);
 }
@@ -126,8 +125,7 @@ Binding::bind_property_value(const PropertyProxy_Base& source_property,
   return Glib::make_refptr_for_instance<Binding>(new Binding(binding));
 }
 
-void
-Binding::unbind()
+auto Binding::unbind () -> void
 {
   // Call g_binding_unbind() only once. It always calls g_object_unref().
   GObject* source = g_binding_dup_source(gobj());
@@ -191,7 +189,7 @@ auto Binding_Class::init() -> const Glib::Class&
 }
 
 
-void Binding_Class::class_init_function(void* g_class, void* class_data)
+auto Binding_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

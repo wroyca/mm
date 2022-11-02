@@ -82,7 +82,7 @@ auto EventController_Class::init() -> const Glib::Class&
 }
 
 
-void EventController_Class::class_init_function(void* g_class, void* class_data)
+auto EventController_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -167,7 +167,7 @@ auto EventController::get_widget() const -> const Widget*
   return const_cast<EventController*>(this)->get_widget();
 }
 
-void EventController::reset()
+auto EventController::reset () -> void
 {
   gtk_event_controller_reset(gobj());
 }
@@ -177,7 +177,7 @@ auto EventController::get_propagation_phase() const -> PropagationPhase
   return static_cast<PropagationPhase>(gtk_event_controller_get_propagation_phase(const_cast<GtkEventController*>(gobj())));
 }
 
-void EventController::set_propagation_phase(PropagationPhase phase)
+auto EventController::set_propagation_phase (PropagationPhase phase) -> void
 {
   gtk_event_controller_set_propagation_phase(gobj(), static_cast<GtkPropagationPhase>(phase));
 }
@@ -187,7 +187,7 @@ auto EventController::get_propagation_limit() const -> PropagationLimit
   return static_cast<PropagationLimit>(gtk_event_controller_get_propagation_limit(const_cast<GtkEventController*>(gobj())));
 }
 
-void EventController::set_propagation_limit(PropagationLimit limit)
+auto EventController::set_propagation_limit (PropagationLimit limit) -> void
 {
   gtk_event_controller_set_propagation_limit(gobj(), static_cast<GtkPropagationLimit>(limit));
 }
@@ -197,7 +197,7 @@ auto EventController::get_name() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_event_controller_get_name(const_cast<GtkEventController*>(gobj())));
 }
 
-void EventController::set_name(const Glib::ustring& name)
+auto EventController::set_name (const Glib::ustring &name) -> void
 {
   gtk_event_controller_set_name(gobj(), name.c_str());
 }

@@ -31,7 +31,7 @@
 namespace Gtk
 {
 
-void HeaderBar::unset_decoration_layout()
+auto HeaderBar::unset_decoration_layout () -> void
 {
   gtk_header_bar_set_decoration_layout(gobj(), nullptr);
 }
@@ -82,7 +82,7 @@ auto HeaderBar_Class::init() -> const Glib::Class&
 }
 
 
-void HeaderBar_Class::class_init_function(void* g_class, void* class_data)
+auto HeaderBar_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -152,7 +152,7 @@ HeaderBar::HeaderBar()
 
 }
 
-void HeaderBar::set_title_widget(Gtk::Widget& title_widget)
+auto HeaderBar::set_title_widget (Gtk::Widget &title_widget) -> void
 {
   gtk_header_bar_set_title_widget(gobj(), (title_widget).gobj());
 }
@@ -167,22 +167,22 @@ auto HeaderBar::get_title_widget() const -> const Widget*
   return const_cast<HeaderBar*>(this)->get_title_widget();
 }
 
-void HeaderBar::pack_start(Gtk::Widget& child)
+auto HeaderBar::pack_start (Gtk::Widget &child) -> void
 {
   gtk_header_bar_pack_start(gobj(), (child).gobj());
 }
 
-void HeaderBar::pack_end(Gtk::Widget& child)
+auto HeaderBar::pack_end (Gtk::Widget &child) -> void
 {
   gtk_header_bar_pack_end(gobj(), (child).gobj());
 }
 
-void HeaderBar::remove(Gtk::Widget& child)
+auto HeaderBar::remove (Gtk::Widget &child) -> void
 {
   gtk_header_bar_remove(gobj(), (child).gobj());
 }
 
-void HeaderBar::set_show_title_buttons(bool setting)
+auto HeaderBar::set_show_title_buttons (bool setting) -> void
 {
   gtk_header_bar_set_show_title_buttons(gobj(), static_cast<int>(setting));
 }
@@ -192,7 +192,7 @@ auto HeaderBar::get_show_title_buttons() const -> bool
   return gtk_header_bar_get_show_title_buttons(const_cast<GtkHeaderBar*>(gobj()));
 }
 
-void HeaderBar::set_decoration_layout(const Glib::ustring& layout)
+auto HeaderBar::set_decoration_layout (const Glib::ustring &layout) -> void
 {
   gtk_header_bar_set_decoration_layout(gobj(), layout.c_str());
 }

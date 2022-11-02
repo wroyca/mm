@@ -85,7 +85,7 @@ Window::Window()
   signal_hide().connect(sigc::mem_fun(*this, &Window::on_window_hide));
 }
 
-void Window::on_window_hide()
+auto Window::on_window_hide () -> void
 {
   #ifdef GLIBMM_DEBUG_REFCOUNTING
   g_warning("Gtk::Window::on_window_hide() gobject_=%p\n", (void*) gobject_);
@@ -107,14 +107,14 @@ void Window::on_window_hide()
   }
 }
 
-void Window::set_manage()
+auto Window::set_manage () -> void
 {
   // This C++ wrapper is deleted by Gtk::Object::destroy_notify_() when the
   // underlying C instance is destroyed.
   referenced_ = false; // Managed
 }
 
-void Window::destroy_()
+auto Window::destroy_ () -> void
 {
   //Called from destructors.
   //overridden so that the correct _release_c_instance() ends up being called by the destructor.
@@ -139,7 +139,7 @@ void Window::destroy_()
   //The C++ destructor will be reached later. This function was called by a destructor.
 }
 
-void Window::_release_c_instance()
+auto Window::_release_c_instance () -> void
 {
   //We override this, (though it's not virtual - we just call it from this class),
   //because top-level windows can only be destroyed with gtk_window_destroy, according to Owen Taylor. murrayc.
@@ -163,7 +163,7 @@ void Window::_release_c_instance()
   }
 }
 
-void Window_Class::dispose_vfunc_callback(GObject* self)
+auto Window_Class::dispose_vfunc_callback (GObject *self) -> void
 {
   #ifdef GLIBMM_DEBUG_REFCOUNTING
   g_warning("Window_Class::dispose_vfunc_callback(): gobject_: %p\n", (void*)self);
@@ -222,7 +222,7 @@ void Window_Class::dispose_vfunc_callback(GObject* self)
   #endif
 }
 
-void Window::destroy()
+auto Window::destroy () -> void
 {
   // Don't crash if destroy() is called twice.
   // gobj() can be nullptr after the first call to destroy().
@@ -230,32 +230,32 @@ void Window::destroy()
     gtk_window_destroy(gobj());
 }
 
-void Window::unset_focus()
+auto Window::unset_focus () -> void
 {
   gtk_window_set_focus(gobj(), nullptr /* See GTK+ docs */);
 }
 
-void Window::unset_default_widget()
+auto Window::unset_default_widget () -> void
 {
   gtk_window_set_default_widget(gobj(), nullptr /* See GTK+ docs */);
 }
 
-void Window::unset_transient_for()
+auto Window::unset_transient_for () -> void
 {
   gtk_window_set_transient_for(gobj(), nullptr /* See GTK+ docs */);
 }
 
-void Window::unset_child()
+auto Window::unset_child () -> void
 {
   gtk_window_set_child(gobj(), nullptr);
 }
 
-void Window::unset_application()
+auto Window::unset_application () -> void
 {
   gtk_window_set_application(gobj(), nullptr /* See GTK+ docs */);
 }
 
-void Window::unset_titlebar()
+auto Window::unset_titlebar () -> void
 {
   gtk_window_set_titlebar(gobj(), nullptr);
 }
@@ -374,7 +374,7 @@ auto Window_Class::init() -> const Glib::Class&
 }
 
 
-void Window_Class::class_init_function(void* g_class, void* class_data)
+auto Window_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -386,7 +386,7 @@ void Window_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void Window_Class::keys_changed_callback(GtkWindow* self)
+auto Window_Class::keys_changed_callback (GtkWindow *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -491,7 +491,7 @@ auto Window::get_base_type() -> GType
 }
 
 
-void Window::set_title(const Glib::ustring& title)
+auto Window::set_title (const Glib::ustring &title) -> void
 {
   gtk_window_set_title(gobj(), title.c_str());
 }
@@ -501,12 +501,12 @@ auto Window::get_title() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_window_get_title(const_cast<GtkWindow*>(gobj())));
 }
 
-void Window::set_startup_id(const Glib::ustring& startup_id)
+auto Window::set_startup_id (const Glib::ustring &startup_id) -> void
 {
   gtk_window_set_startup_id(gobj(), startup_id.c_str());
 }
 
-void Window::set_focus(Gtk::Widget& focus)
+auto Window::set_focus (Gtk::Widget &focus) -> void
 {
   gtk_window_set_focus(gobj(), (focus).gobj());
 }
@@ -521,7 +521,7 @@ auto Window::get_focus() const -> const Widget*
   return const_cast<Window*>(this)->get_focus();
 }
 
-void Window::set_default_widget(Gtk::Widget& default_widget)
+auto Window::set_default_widget (Gtk::Widget &default_widget) -> void
 {
   gtk_window_set_default_widget(gobj(), (default_widget).gobj());
 }
@@ -536,7 +536,7 @@ auto Window::get_default_widget() const -> const Widget*
   return const_cast<Window*>(this)->get_default_widget();
 }
 
-void Window::set_transient_for(Window& parent)
+auto Window::set_transient_for (Window &parent) -> void
 {
   gtk_window_set_transient_for(gobj(), (parent).gobj());
 }
@@ -551,7 +551,7 @@ auto Window::get_transient_for() const -> const Window*
   return const_cast<Window*>(this)->get_transient_for();
 }
 
-void Window::set_destroy_with_parent(bool setting)
+auto Window::set_destroy_with_parent (bool setting) -> void
 {
   gtk_window_set_destroy_with_parent(gobj(), static_cast<int>(setting));
 }
@@ -561,7 +561,7 @@ auto Window::get_destroy_with_parent() const -> bool
   return gtk_window_get_destroy_with_parent(const_cast<GtkWindow*>(gobj()));
 }
 
-void Window::set_hide_on_close(bool setting)
+auto Window::set_hide_on_close (bool setting) -> void
 {
   gtk_window_set_hide_on_close(gobj(), static_cast<int>(setting));
 }
@@ -571,7 +571,7 @@ auto Window::get_hide_on_close() const -> bool
   return gtk_window_get_hide_on_close(const_cast<GtkWindow*>(gobj()));
 }
 
-void Window::set_mnemonics_visible(bool setting)
+auto Window::set_mnemonics_visible (bool setting) -> void
 {
   gtk_window_set_mnemonics_visible(gobj(), static_cast<int>(setting));
 }
@@ -581,7 +581,7 @@ auto Window::get_mnemonics_visible() const -> bool
   return gtk_window_get_mnemonics_visible(const_cast<GtkWindow*>(gobj()));
 }
 
-void Window::set_focus_visible(bool setting)
+auto Window::set_focus_visible (bool setting) -> void
 {
   gtk_window_set_focus_visible(gobj(), static_cast<int>(setting));
 }
@@ -591,7 +591,7 @@ auto Window::get_focus_visible() const -> bool
   return gtk_window_get_focus_visible(const_cast<GtkWindow*>(gobj()));
 }
 
-void Window::set_resizable(bool resizable)
+auto Window::set_resizable (bool resizable) -> void
 {
   gtk_window_set_resizable(gobj(), static_cast<int>(resizable));
 }
@@ -601,7 +601,7 @@ auto Window::get_resizable() const -> bool
   return gtk_window_get_resizable(const_cast<GtkWindow*>(gobj()));
 }
 
-void Window::set_display(const Glib::RefPtr<Gdk::Display>& display)
+auto Window::set_display (const Glib::RefPtr <Gdk::Display> &display) -> void
 {
   gtk_window_set_display(gobj(), Glib::unwrap(display));
 }
@@ -611,7 +611,7 @@ auto Window::is_active() const -> bool
   return gtk_window_is_active(const_cast<GtkWindow*>(gobj()));
 }
 
-void Window::set_decorated(bool setting)
+auto Window::set_decorated (bool setting) -> void
 {
   gtk_window_set_decorated(gobj(), static_cast<int>(setting));
 }
@@ -621,7 +621,7 @@ auto Window::get_decorated() const -> bool
   return gtk_window_get_decorated(const_cast<GtkWindow*>(gobj()));
 }
 
-void Window::set_deletable(bool setting)
+auto Window::set_deletable (bool setting) -> void
 {
   gtk_window_set_deletable(gobj(), static_cast<int>(setting));
 }
@@ -631,7 +631,7 @@ auto Window::get_deletable() const -> bool
   return gtk_window_get_deletable(const_cast<GtkWindow*>(gobj()));
 }
 
-void Window::set_icon_name(const Glib::ustring& name)
+auto Window::set_icon_name (const Glib::ustring &name) -> void
 {
   gtk_window_set_icon_name(gobj(), name.c_str());
 }
@@ -641,7 +641,7 @@ auto Window::get_icon_name() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_window_get_icon_name(const_cast<GtkWindow*>(gobj())));
 }
 
-void Window::set_default_icon_name(const Glib::ustring& name)
+auto Window::set_default_icon_name (const Glib::ustring &name) -> void
 {
   gtk_window_set_default_icon_name(name.c_str());
 }
@@ -651,12 +651,12 @@ auto Window::get_default_icon_name() -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_window_get_default_icon_name());
 }
 
-void Window::set_auto_startup_notification(bool setting)
+auto Window::set_auto_startup_notification (bool setting) -> void
 {
   gtk_window_set_auto_startup_notification(static_cast<int>(setting));
 }
 
-void Window::set_modal(bool modal)
+auto Window::set_modal (bool modal) -> void
 {
   gtk_window_set_modal(gobj(), static_cast<int>(modal));
 }
@@ -680,62 +680,62 @@ auto Window::list_toplevels() -> std::vector<Window*>
   return Glib::ListHandler<Window*>::list_to_vector(gtk_window_list_toplevels(), Glib::OWNERSHIP_SHALLOW);
 }
 
-void Window::present()
+auto Window::present () -> void
 {
   gtk_window_present(gobj());
 }
 
-void Window::present(guint32 timestamp)
+auto Window::present (guint32 timestamp) -> void
 {
   gtk_window_present_with_time(gobj(), timestamp);
 }
 
-void Window::minimize()
+auto Window::minimize () -> void
 {
   gtk_window_minimize(gobj());
 }
 
-void Window::unminimize()
+auto Window::unminimize () -> void
 {
   gtk_window_unminimize(gobj());
 }
 
-void Window::maximize()
+auto Window::maximize () -> void
 {
   gtk_window_maximize(gobj());
 }
 
-void Window::unmaximize()
+auto Window::unmaximize () -> void
 {
   gtk_window_unmaximize(gobj());
 }
 
-void Window::fullscreen()
+auto Window::fullscreen () -> void
 {
   gtk_window_fullscreen(gobj());
 }
 
-void Window::unfullscreen()
+auto Window::unfullscreen () -> void
 {
   gtk_window_unfullscreen(gobj());
 }
 
-void Window::fullscreen_on_monitor(const Glib::RefPtr<Gdk::Monitor>& monitor)
+auto Window::fullscreen_on_monitor (const Glib::RefPtr <Gdk::Monitor> &monitor) -> void
 {
   gtk_window_fullscreen_on_monitor(gobj(), Glib::unwrap(monitor));
 }
 
-void Window::close()
+auto Window::close () -> void
 {
   gtk_window_close(gobj());
 }
 
-void Window::set_default_size(int width, int height)
+auto Window::set_default_size (int width, int height) -> void
 {
   gtk_window_set_default_size(gobj(), width, height);
 }
 
-void Window::get_default_size(int& width, int& height) const
+auto Window::get_default_size (int &width, int &height) const -> void
 {
   gtk_window_get_default_size(const_cast<GtkWindow*>(gobj()), &(width), &(height));
 }
@@ -774,12 +774,12 @@ auto Window::get_application() const -> Glib::RefPtr<const Application>
   return retvalue;
 }
 
-void Window::set_application(const Glib::RefPtr<Application>& application)
+auto Window::set_application (const Glib::RefPtr <Application> &application) -> void
 {
   gtk_window_set_application(gobj(), Glib::unwrap(application));
 }
 
-void Window::set_child(Widget& child)
+auto Window::set_child (Widget &child) -> void
 {
   gtk_window_set_child(gobj(), (child).gobj());
 }
@@ -794,7 +794,7 @@ auto Window::get_child() const -> const Widget*
   return const_cast<Window*>(this)->get_child();
 }
 
-void Window::set_titlebar(Widget& titlebar)
+auto Window::set_titlebar (Widget &titlebar) -> void
 {
   gtk_window_set_titlebar(gobj(), (titlebar).gobj());
 }
@@ -819,7 +819,7 @@ auto Window::is_fullscreen() const -> bool
   return gtk_window_is_fullscreen(const_cast<GtkWindow*>(gobj()));
 }
 
-void Window::set_handle_menubar_accel(bool handle_menubar_accel)
+auto Window::set_handle_menubar_accel (bool handle_menubar_accel) -> void
 {
   gtk_window_set_handle_menubar_accel(gobj(), static_cast<int>(handle_menubar_accel));
 }
@@ -1085,7 +1085,7 @@ auto Window::property_handle_menubar_accel() const -> Glib::PropertyProxy_ReadOn
 }
 
 
-void Gtk::Window::on_keys_changed()
+auto Gtk::Window::on_keys_changed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

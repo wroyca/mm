@@ -78,12 +78,12 @@ auto LayoutLine::get_x_ranges(int start_index, int end_index) const -> std::vect
   return Glib::ArrayHandler<std::pair<int,int>>::array_to_vector(reinterpret_cast<std::pair<int,int>*>(ranges), n_ranges, Glib::OWNERSHIP_SHALLOW);
 }
 
-void LayoutLine::show_in_cairo_context(const Cairo::RefPtr<Cairo::Context>& context)
+auto LayoutLine::show_in_cairo_context (const Cairo::RefPtr <Cairo::Context> &context) -> void
 {
   pango_cairo_show_layout_line(context->cobj(), gobj());
 }
 
-void LayoutLine::add_to_cairo_context(const Cairo::RefPtr<Cairo::Context>& context)
+auto LayoutLine::add_to_cairo_context (const Cairo::RefPtr <Cairo::Context> &context) -> void
 {
   pango_cairo_layout_line_path(context->cobj(), gobj());
 }
@@ -126,13 +126,13 @@ auto wrap(PangoLayoutLine* object, bool take_copy) -> Glib::RefPtr<Pango::Layout
 namespace Pango
 {
 
-void LayoutLine::reference() const
+auto LayoutLine::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   pango_layout_line_ref(reinterpret_cast<PangoLayoutLine*>(const_cast<LayoutLine*>(this)));
 }
 
-void LayoutLine::unreference() const
+auto LayoutLine::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   pango_layout_line_unref(reinterpret_cast<PangoLayoutLine*>(const_cast<LayoutLine*>(this)));
@@ -164,12 +164,12 @@ auto LayoutLine::x_to_index(int x_pos, int& index, int& trailing) const -> bool
   return pango_layout_line_x_to_index(const_cast<PangoLayoutLine*>(gobj()), x_pos, &(index), &(trailing));
 }
 
-void LayoutLine::get_extents(Rectangle& ink_rect, Rectangle& logical_rect) const
+auto LayoutLine::get_extents (Rectangle &ink_rect, Rectangle &logical_rect) const -> void
 {
   pango_layout_line_get_extents(const_cast<PangoLayoutLine*>(gobj()), (ink_rect).gobj(), (logical_rect).gobj());
 }
 
-void LayoutLine::get_pixel_extents(Rectangle& ink_rect, Rectangle& logical_rect) const
+auto LayoutLine::get_pixel_extents (Rectangle &ink_rect, Rectangle &logical_rect) const -> void
 {
   pango_layout_line_get_pixel_extents(const_cast<PangoLayoutLine*>(gobj()), (ink_rect).gobj(), (logical_rect).gobj());
 }

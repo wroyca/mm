@@ -64,7 +64,7 @@ auto SingleSelection_Class::init() -> const Glib::Class&
 }
 
 
-void SingleSelection_Class::class_init_function(void* g_class, void* class_data)
+auto SingleSelection_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -176,7 +176,7 @@ auto SingleSelection::get_model() const -> Glib::RefPtr<const Gio::ListModel>
   return const_cast<SingleSelection*>(this)->get_model();
 }
 
-void SingleSelection::set_model(const Glib::RefPtr<Gio::ListModel>& model)
+auto SingleSelection::set_model (const Glib::RefPtr <Gio::ListModel> &model) -> void
 {
   gtk_single_selection_set_model(gobj(), Glib::unwrap(model));
 }
@@ -186,7 +186,7 @@ auto SingleSelection::get_selected() const -> guint
   return gtk_single_selection_get_selected(const_cast<GtkSingleSelection*>(gobj()));
 }
 
-void SingleSelection::set_selected(guint position)
+auto SingleSelection::set_selected (guint position) -> void
 {
   gtk_single_selection_set_selected(gobj(), position);
 }
@@ -209,7 +209,7 @@ auto SingleSelection::get_autoselect() const -> bool
   return gtk_single_selection_get_autoselect(const_cast<GtkSingleSelection*>(gobj()));
 }
 
-void SingleSelection::set_autoselect(bool autoselect)
+auto SingleSelection::set_autoselect (bool autoselect) -> void
 {
   gtk_single_selection_set_autoselect(gobj(), static_cast<int>(autoselect));
 }
@@ -219,7 +219,7 @@ auto SingleSelection::get_can_unselect() const -> bool
   return gtk_single_selection_get_can_unselect(const_cast<GtkSingleSelection*>(gobj()));
 }
 
-void SingleSelection::set_can_unselect(bool can_unselect)
+auto SingleSelection::set_can_unselect (bool can_unselect) -> void
 {
   gtk_single_selection_set_can_unselect(gobj(), static_cast<int>(can_unselect));
 }

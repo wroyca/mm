@@ -38,7 +38,7 @@ PadController::PadController(const Glib::RefPtr<Gio::ActionGroup>& action_group,
 {
 }
 
-void PadController::set_action_entries(const std::vector<PadActionEntry>& entries)
+auto PadController::set_action_entries (const std::vector <PadActionEntry> &entries) -> void
 {
   if (entries.empty())
     return;
@@ -101,7 +101,7 @@ auto PadController_Class::init() -> const Glib::Class&
 }
 
 
-void PadController_Class::class_init_function(void* g_class, void* class_data)
+auto PadController_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -171,7 +171,9 @@ auto PadController::create(const Glib::RefPtr<Gio::ActionGroup>& action_group, c
   return Glib::make_refptr_for_instance<PadController>( new PadController(action_group, pad) );
 }
 
-void PadController::set_action(PadActionType type, int index, int mode, const Glib::ustring& label, const Glib::ustring& action_name)
+auto PadController::set_action (
+  PadActionType type, int index, int mode, const Glib::ustring &label,
+  const Glib::ustring &action_name) -> void
 {
   gtk_pad_controller_set_action(gobj(), static_cast<GtkPadActionType>(type), index, mode, label.c_str(), action_name.c_str());
 }

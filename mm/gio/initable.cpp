@@ -70,7 +70,7 @@ auto Initable_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Initable_Class::iface_init_function(void* g_iface, void*)
+auto Initable_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -161,7 +161,7 @@ Initable::~Initable() noexcept
 {}
 
 // static
-void Initable::add_interface(GType gtype_implementer)
+auto Initable::add_interface (GType gtype_implementer) -> void
 {
   initable_class_.init().add_interface(gtype_implementer);
 }
@@ -180,7 +180,7 @@ auto Initable::get_base_type() -> GType
 }
 
 
-void Initable::init(const Glib::RefPtr<Cancellable>& cancellable)
+auto Initable::init (const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   GError* gerror = nullptr;
   g_initable_init(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
@@ -188,7 +188,7 @@ void Initable::init(const Glib::RefPtr<Cancellable>& cancellable)
     ::Glib::Error::throw_exception(gerror);
 }
 
-void Initable::init()
+auto Initable::init () -> void
 {
   GError* gerror = nullptr;
   g_initable_init(gobj(), nullptr, &(gerror));

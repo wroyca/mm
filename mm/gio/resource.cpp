@@ -28,9 +28,9 @@
 namespace Gio
 {
 // Hand-coded because we want Flags& instead of guint32&.
-void
-Resource::get_info(const std::string& path, gsize& size, Flags& flags,
-  LookupFlags lookup_flags) const
+auto Resource::get_info (
+  const std::string &path, gsize &size, Flags &flags,
+  LookupFlags lookup_flags) const -> void
 {
   guint32 file_flags = 0;
   GError* gerror = nullptr;
@@ -43,8 +43,7 @@ Resource::get_info(const std::string& path, gsize& size, Flags& flags,
   flags = static_cast<Flags>(file_flags);
 }
 
-void
-Resource::get_file_exists(const std::string& path, LookupFlags lookup_flags) const
+auto Resource::get_file_exists (const std::string &path, LookupFlags lookup_flags) const -> void
 {
   GError* gerror = nullptr;
   g_resource_get_info(const_cast<GResource*>(gobj()), path.c_str(),
@@ -62,9 +61,8 @@ Resource::get_file_exists_nothrow(const std::string& path, LookupFlags lookup_fl
 
 // Hand-coded because we want Flags& instead of guint32&.
 // static
-void
-Resource::get_info_global(
-  const std::string& path, gsize& size, Flags& flags, LookupFlags lookup_flags)
+auto Resource::get_info_global (
+  const std::string &path, gsize &size, Flags &flags, LookupFlags lookup_flags) -> void
 {
   guint32 file_flags = 0;
   GError* gerror = nullptr;
@@ -78,8 +76,7 @@ Resource::get_info_global(
 }
 
 // static
-void
-Resource::get_file_exists_global(const std::string& path, LookupFlags lookup_flags)
+auto Resource::get_file_exists_global (const std::string &path, LookupFlags lookup_flags) -> void
 {
   GError* gerror = nullptr;
   g_resources_get_info(path.c_str(), (GResourceLookupFlags)lookup_flags, nullptr, nullptr, &gerror);
@@ -117,7 +114,7 @@ auto Gio::ResourceError::code() const -> Gio::ResourceError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Gio::ResourceError::throw_func(GError* gobject)
+auto Gio::ResourceError::throw_func (GError *gobject) -> void
 {
   throw Gio::ResourceError(gobject);
 }
@@ -166,13 +163,13 @@ auto wrap(GResource* object, bool take_copy) -> Glib::RefPtr<Gio::Resource>
 namespace Gio
 {
 
-void Resource::reference() const
+auto Resource::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_resource_ref(reinterpret_cast<GResource*>(const_cast<Resource*>(this)));
 }
 
-void Resource::unreference() const
+auto Resource::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_resource_unref(reinterpret_cast<GResource*>(const_cast<Resource*>(this)));
@@ -244,12 +241,12 @@ auto Resource::enumerate_children(const std::string& path, LookupFlags lookup_fl
   return retvalue;
 }
 
-void Resource::register_global()
+auto Resource::register_global () -> void
 {
   g_resources_register(gobj());
 }
 
-void Resource::unregister_global()
+auto Resource::unregister_global () -> void
 {
   g_resources_unregister(gobj());
 }

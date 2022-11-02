@@ -69,7 +69,7 @@ auto PasswordEntry_Class::init() -> const Glib::Class&
 }
 
 
-void PasswordEntry_Class::class_init_function(void* g_class, void* class_data)
+auto PasswordEntry_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -141,7 +141,7 @@ PasswordEntry::PasswordEntry()
 
 }
 
-void PasswordEntry::set_show_peek_icon(bool show_peek_icon)
+auto PasswordEntry::set_show_peek_icon (bool show_peek_icon) -> void
 {
   gtk_password_entry_set_show_peek_icon(gobj(), static_cast<int>(show_peek_icon));
 }
@@ -151,7 +151,7 @@ auto PasswordEntry::get_show_peek_icon() const -> bool
   return gtk_password_entry_get_show_peek_icon(const_cast<GtkPasswordEntry*>(gobj()));
 }
 
-void PasswordEntry::set_extra_menu(const Glib::RefPtr<Gio::MenuModel>& model)
+auto PasswordEntry::set_extra_menu (const Glib::RefPtr <Gio::MenuModel> &model) -> void
 {
   gtk_password_entry_set_extra_menu(gobj(), Glib::unwrap(model));
 }

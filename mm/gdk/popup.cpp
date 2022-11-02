@@ -63,7 +63,7 @@ auto Popup_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Popup_Class::iface_init_function(void* g_iface, void*)
+auto Popup_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -112,7 +112,7 @@ Popup::~Popup() noexcept
 {}
 
 // static
-void Popup::add_interface(GType gtype_implementer)
+auto Popup::add_interface (GType gtype_implementer) -> void
 {
   popup_class_.init().add_interface(gtype_implementer);
 }

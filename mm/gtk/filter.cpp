@@ -32,7 +32,7 @@ namespace
 {
 
 
-void Filter_signal_changed_callback(GtkFilter* self, GtkFilterChange p0,void* data)
+auto Filter_signal_changed_callback (GtkFilter *self, GtkFilterChange p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Change)>;
@@ -117,7 +117,7 @@ auto Filter_Class::init() -> const Glib::Class&
 }
 
 
-void Filter_Class::class_init_function(void* g_class, void* class_data)
+auto Filter_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -282,7 +282,7 @@ auto Filter::get_strictness() -> Match
   return static_cast<Match>(gtk_filter_get_strictness(gobj()));
 }
 
-void Filter::changed(Change change)
+auto Filter::changed (Change change) -> void
 {
   gtk_filter_changed(gobj(), static_cast<GtkFilterChange>(change));
 }

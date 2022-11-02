@@ -56,7 +56,7 @@ struct ItemTraits
   static auto   to_c_type      (const CppType& obj) -> CType { return obj.gobj(); }
   static auto   to_c_type      (CType ptr) -> CType { return ptr; }
   static auto to_cpp_type    (CType ptr) -> CppType { return CppType(const_cast<CTypeNonConst>(ptr), true); }
-  static void    release_c_type (CType ptr) { pango_item_free(const_cast<CTypeNonConst>(ptr)); }
+  static auto release_c_type (CType ptr) -> void { pango_item_free(const_cast<CTypeNonConst>(ptr)); }
 };
 
 using ListHandler_Item = Glib::ListHandler<Item, ItemTraits>;
@@ -80,7 +80,7 @@ auto Context::itemize(const Glib::ustring& text, int start_index, int length,
       Glib::OWNERSHIP_DEEP);
 }
 
-void Context::update_from_cairo_context(const Cairo::RefPtr<Cairo::Context>& context)
+auto Context::update_from_cairo_context (const Cairo::RefPtr <Cairo::Context> &context) -> void
 {
   pango_cairo_update_context(context->cobj(), gobj());
 }
@@ -156,7 +156,7 @@ auto Context_Class::init() -> const Glib::Class&
 }
 
 
-void Context_Class::class_init_function(void* g_class, void* class_data)
+auto Context_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -231,7 +231,7 @@ Context::Context()
 
 }
 
-void Context::set_font_map(const Glib::RefPtr<FontMap>& font_map)
+auto Context::set_font_map (const Glib::RefPtr <FontMap> &font_map) -> void
 {
   pango_context_set_font_map(gobj(), Glib::unwrap(font_map));
 }
@@ -269,7 +269,7 @@ auto Context::get_metrics(const FontDescription& desc, const Language& language)
   return FontMetrics((pango_context_get_metrics(const_cast<PangoContext*>(gobj()), (desc).gobj(), const_cast<PangoLanguage*>((language).gobj()))));
 }
 
-void Context::set_font_description(const FontDescription& desc)
+auto Context::set_font_description (const FontDescription &desc) -> void
 {
   pango_context_set_font_description(gobj(), (desc).gobj());
 }
@@ -284,12 +284,12 @@ auto Context::get_language() const -> Language
   return Language(pango_context_get_language(const_cast<PangoContext*>(gobj())));
 }
 
-void Context::set_language(const Language& language)
+auto Context::set_language (const Language &language) -> void
 {
   pango_context_set_language(gobj(), const_cast<PangoLanguage*>((language).gobj()));
 }
 
-void Context::set_base_dir(Direction direction)
+auto Context::set_base_dir (Direction direction) -> void
 {
   pango_context_set_base_dir(gobj(), static_cast<PangoDirection>(direction));
 }
@@ -299,7 +299,7 @@ auto Context::get_base_dir() const -> Direction
   return static_cast<Direction>(pango_context_get_base_dir(const_cast<PangoContext*>(gobj())));
 }
 
-void Context::set_base_gravity(Gravity gravity)
+auto Context::set_base_gravity (Gravity gravity) -> void
 {
   pango_context_set_base_gravity(gobj(), static_cast<PangoGravity>(gravity));
 }
@@ -314,7 +314,7 @@ auto Context::get_gravity() const -> Gravity
   return static_cast<Gravity>(pango_context_get_gravity(const_cast<PangoContext*>(gobj())));
 }
 
-void Context::set_gravity_hint(GravityHint hint)
+auto Context::set_gravity_hint (GravityHint hint) -> void
 {
   pango_context_set_gravity_hint(gobj(), static_cast<PangoGravityHint>(hint));
 }
@@ -324,12 +324,12 @@ auto Context::get_gravity_hint() const -> GravityHint
   return static_cast<GravityHint>(pango_context_get_gravity_hint(const_cast<PangoContext*>(gobj())));
 }
 
-void Context::set_matrix(const Matrix& matrix)
+auto Context::set_matrix (const Matrix &matrix) -> void
 {
   pango_context_set_matrix(gobj(), &(matrix));
 }
 
-void Context::set_cairo_font_options(const Cairo::FontOptions& options)
+auto Context::set_cairo_font_options (const Cairo::FontOptions &options) -> void
 {
   pango_cairo_context_set_font_options(gobj(), (options).cobj());
 }
@@ -339,7 +339,7 @@ auto Context::get_font_options() const -> Cairo::FontOptions
   return Cairo::FontOptions(const_cast< cairo_font_options_t*>(pango_cairo_context_get_font_options(const_cast<PangoContext*>(gobj()))), false /* take_copy */);
 }
 
-void Context::set_resolution(double dpi)
+auto Context::set_resolution (double dpi) -> void
 {
   pango_cairo_context_set_resolution(gobj(), dpi);
 }

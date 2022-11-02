@@ -21,11 +21,11 @@ public:
 
   friend class ShortcutManager;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -34,8 +34,10 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static void add_controller_vfunc_callback(GtkShortcutManager* self, GtkShortcutController* controller);
-  static void remove_controller_vfunc_callback(GtkShortcutManager* self, GtkShortcutController* controller);
+  static auto add_controller_vfunc_callback (
+    GtkShortcutManager *self, GtkShortcutController *controller) -> void;
+  static auto remove_controller_vfunc_callback (
+    GtkShortcutManager *self, GtkShortcutController *controller) -> void;
 };
 
 

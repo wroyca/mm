@@ -112,7 +112,7 @@ auto BuilderScope_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void BuilderScope_Class::iface_init_function(void* g_iface, void*)
+auto BuilderScope_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -162,7 +162,7 @@ BuilderScope::~BuilderScope() noexcept
 {}
 
 // static
-void BuilderScope::add_interface(GType gtype_implementer)
+auto BuilderScope::add_interface (GType gtype_implementer) -> void
 {
   builderscope_class_.init().add_interface(gtype_implementer);
 }

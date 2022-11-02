@@ -31,12 +31,12 @@
 
 namespace Gtk
 {
-void Box::insert_child_at_start(Widget& child)
+auto Box::insert_child_at_start (Widget &child) -> void
 {
   gtk_box_insert_child_after(gobj(), child.gobj(), nullptr);
 }
 
-void Box::reorder_child_at_start(Widget& child)
+auto Box::reorder_child_at_start (Widget &child) -> void
 {
   gtk_box_reorder_child_after(gobj(), child.gobj(), nullptr);
 }
@@ -87,7 +87,7 @@ auto Box_Class::init() -> const Glib::Class&
 }
 
 
-void Box_Class::class_init_function(void* g_class, void* class_data)
+auto Box_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -159,7 +159,7 @@ Box::Box(Orientation orientation, int spacing)
 
 }
 
-void Box::set_homogeneous(bool homogeneous)
+auto Box::set_homogeneous (bool homogeneous) -> void
 {
   gtk_box_set_homogeneous(gobj(), static_cast<int>(homogeneous));
 }
@@ -169,7 +169,7 @@ auto Box::get_homogeneous() const -> bool
   return gtk_box_get_homogeneous(const_cast<GtkBox*>(gobj()));
 }
 
-void Box::set_spacing(int spacing)
+auto Box::set_spacing (int spacing) -> void
 {
   gtk_box_set_spacing(gobj(), spacing);
 }
@@ -179,7 +179,7 @@ auto Box::get_spacing() const -> int
   return gtk_box_get_spacing(const_cast<GtkBox*>(gobj()));
 }
 
-void Box::set_baseline_position(BaselinePosition position)
+auto Box::set_baseline_position (BaselinePosition position) -> void
 {
   gtk_box_set_baseline_position(gobj(), static_cast<GtkBaselinePosition>(position));
 }
@@ -189,27 +189,27 @@ auto Box::get_baseline_position() const -> BaselinePosition
   return static_cast<BaselinePosition>(gtk_box_get_baseline_position(const_cast<GtkBox*>(gobj())));
 }
 
-void Box::append(Gtk::Widget& child)
+auto Box::append (Gtk::Widget &child) -> void
 {
   gtk_box_append(gobj(), (child).gobj());
 }
 
-void Box::prepend(Gtk::Widget& child)
+auto Box::prepend (Gtk::Widget &child) -> void
 {
   gtk_box_prepend(gobj(), (child).gobj());
 }
 
-void Box::remove(Gtk::Widget& child)
+auto Box::remove (Gtk::Widget &child) -> void
 {
   gtk_box_remove(gobj(), (child).gobj());
 }
 
-void Box::insert_child_after(Widget& child, const Widget& sibling)
+auto Box::insert_child_after (Widget &child, const Widget &sibling) -> void
 {
   gtk_box_insert_child_after(gobj(), (child).gobj(), const_cast<GtkWidget*>((sibling).gobj()));
 }
 
-void Box::reorder_child_after(Widget& child, const Widget& sibling)
+auto Box::reorder_child_after (Widget &child, const Widget &sibling) -> void
 {
   gtk_box_reorder_child_after(gobj(), (child).gobj(), const_cast<GtkWidget*>((sibling).gobj()));
 }

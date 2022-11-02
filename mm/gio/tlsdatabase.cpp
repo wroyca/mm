@@ -99,7 +99,7 @@ auto TlsDatabase_Class::init() -> const Glib::Class&
 }
 
 
-void TlsDatabase_Class::class_init_function(void* g_class, void* class_data)
+auto TlsDatabase_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -170,7 +170,10 @@ auto TlsDatabase_Class::verify_chain_vfunc_callback(GTlsDatabase* self, GTlsCert
   using RType = GTlsCertificateFlags;
   return RType();
 }
-void TlsDatabase_Class::verify_chain_async_vfunc_callback(GTlsDatabase* self, GTlsCertificate* chain, const gchar* purpose, GSocketConnectable* identity, GTlsInteraction* interaction, GTlsDatabaseVerifyFlags flags, GCancellable* cancellable, GAsyncReadyCallback callback, gpointer user_data)
+auto TlsDatabase_Class::verify_chain_async_vfunc_callback (
+  GTlsDatabase *self, GTlsCertificate *chain, const gchar *purpose, GSocketConnectable *identity,
+  GTlsInteraction *interaction, GTlsDatabaseVerifyFlags flags, GCancellable *cancellable,
+  GAsyncReadyCallback callback, gpointer user_data) -> void
 {
   const auto slot = static_cast<Gio::SlotAsyncReady*>(user_data);
 
@@ -346,7 +349,10 @@ auto TlsDatabase_Class::lookup_certificate_for_handle_vfunc_callback(GTlsDatabas
   using RType = GTlsCertificate*;
   return RType();
 }
-void TlsDatabase_Class::lookup_certificate_for_handle_async_vfunc_callback(GTlsDatabase* self, const gchar* handle, GTlsInteraction* interaction, GTlsDatabaseLookupFlags flags, GCancellable* cancellable, GAsyncReadyCallback callback, gpointer user_data)
+auto TlsDatabase_Class::lookup_certificate_for_handle_async_vfunc_callback (
+  GTlsDatabase *self, const gchar *handle, GTlsInteraction *interaction,
+  GTlsDatabaseLookupFlags flags, GCancellable *cancellable, GAsyncReadyCallback callback,
+  gpointer user_data) -> void
 {
   const auto slot = static_cast<Gio::SlotAsyncReady*>(user_data);
 
@@ -481,7 +487,10 @@ auto TlsDatabase_Class::lookup_certificate_issuer_vfunc_callback(GTlsDatabase* s
   using RType = GTlsCertificate*;
   return RType();
 }
-void TlsDatabase_Class::lookup_certificate_issuer_async_vfunc_callback(GTlsDatabase* self, GTlsCertificate* certificate, GTlsInteraction* interaction, GTlsDatabaseLookupFlags flags, GCancellable* cancellable, GAsyncReadyCallback callback, gpointer user_data)
+auto TlsDatabase_Class::lookup_certificate_issuer_async_vfunc_callback (
+  GTlsDatabase *self, GTlsCertificate *certificate, GTlsInteraction *interaction,
+  GTlsDatabaseLookupFlags flags, GCancellable *cancellable, GAsyncReadyCallback callback,
+  gpointer user_data) -> void
 {
   const auto slot = static_cast<Gio::SlotAsyncReady*>(user_data);
 
@@ -616,7 +625,10 @@ auto TlsDatabase_Class::lookup_certificates_issued_by_vfunc_callback(GTlsDatabas
   using RType = GList*;
   return RType();
 }
-void TlsDatabase_Class::lookup_certificates_issued_by_async_vfunc_callback(GTlsDatabase* self, GByteArray* issuer_raw_dn, GTlsInteraction* interaction, GTlsDatabaseLookupFlags flags, GCancellable* cancellable, GAsyncReadyCallback callback, gpointer user_data)
+auto TlsDatabase_Class::lookup_certificates_issued_by_async_vfunc_callback (
+  GTlsDatabase *self, GByteArray *issuer_raw_dn, GTlsInteraction *interaction,
+  GTlsDatabaseLookupFlags flags, GCancellable *cancellable, GAsyncReadyCallback callback,
+  gpointer user_data) -> void
 {
   const auto slot = static_cast<Gio::SlotAsyncReady*>(user_data);
 
@@ -843,7 +855,11 @@ auto TlsDatabase::verify_chain(const Glib::RefPtr<TlsCertificate>& chain, const 
   return retvalue;
 }
 
-void TlsDatabase::verify_chain_async(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const Glib::RefPtr<const SocketConnectable>& identity, const Glib::RefPtr<TlsInteraction>& interaction, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, VerifyFlags flags) const
+auto TlsDatabase::verify_chain_async (
+  const Glib::RefPtr <TlsCertificate> &chain, const Glib::ustring &purpose,
+  const Glib::RefPtr <const SocketConnectable> &identity,
+  const Glib::RefPtr <TlsInteraction> &interaction, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -851,7 +867,11 @@ void TlsDatabase::verify_chain_async(const Glib::RefPtr<TlsCertificate>& chain, 
   g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsDatabase::verify_chain_async(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const Glib::RefPtr<const SocketConnectable>& identity, const Glib::RefPtr<TlsInteraction>& interaction, const SlotAsyncReady& slot, VerifyFlags flags) const
+auto TlsDatabase::verify_chain_async (
+  const Glib::RefPtr <TlsCertificate> &chain, const Glib::ustring &purpose,
+  const Glib::RefPtr <const SocketConnectable> &identity,
+  const Glib::RefPtr <TlsInteraction> &interaction, const SlotAsyncReady &slot,
+  VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -859,7 +879,10 @@ void TlsDatabase::verify_chain_async(const Glib::RefPtr<TlsCertificate>& chain, 
   g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsDatabase::verify_chain_async(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const Glib::RefPtr<const SocketConnectable>& identity, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, VerifyFlags flags) const
+auto TlsDatabase::verify_chain_async (
+  const Glib::RefPtr <TlsCertificate> &chain, const Glib::ustring &purpose,
+  const Glib::RefPtr <const SocketConnectable> &identity, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -867,7 +890,10 @@ void TlsDatabase::verify_chain_async(const Glib::RefPtr<TlsCertificate>& chain, 
   g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), nullptr, static_cast<GTlsDatabaseVerifyFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsDatabase::verify_chain_async(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const Glib::RefPtr<const SocketConnectable>& identity, const SlotAsyncReady& slot, VerifyFlags flags) const
+auto TlsDatabase::verify_chain_async (
+  const Glib::RefPtr <TlsCertificate> &chain, const Glib::ustring &purpose,
+  const Glib::RefPtr <const SocketConnectable> &identity, const SlotAsyncReady &slot,
+  VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -875,7 +901,10 @@ void TlsDatabase::verify_chain_async(const Glib::RefPtr<TlsCertificate>& chain, 
   g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), nullptr, static_cast<GTlsDatabaseVerifyFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsDatabase::verify_chain_async(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const Glib::RefPtr<TlsInteraction>& interaction, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, VerifyFlags flags) const
+auto TlsDatabase::verify_chain_async (
+  const Glib::RefPtr <TlsCertificate> &chain, const Glib::ustring &purpose,
+  const Glib::RefPtr <TlsInteraction> &interaction, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -883,7 +912,10 @@ void TlsDatabase::verify_chain_async(const Glib::RefPtr<TlsCertificate>& chain, 
   g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), nullptr, Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsDatabase::verify_chain_async(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const Glib::RefPtr<TlsInteraction>& interaction, const SlotAsyncReady& slot, VerifyFlags flags) const
+auto TlsDatabase::verify_chain_async (
+  const Glib::RefPtr <TlsCertificate> &chain, const Glib::ustring &purpose,
+  const Glib::RefPtr <TlsInteraction> &interaction, const SlotAsyncReady &slot,
+  VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -891,7 +923,10 @@ void TlsDatabase::verify_chain_async(const Glib::RefPtr<TlsCertificate>& chain, 
   g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), nullptr, Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsDatabase::verify_chain_async(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, VerifyFlags flags) const
+auto TlsDatabase::verify_chain_async (
+  const Glib::RefPtr <TlsCertificate> &chain, const Glib::ustring &purpose,
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
+  VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -899,7 +934,9 @@ void TlsDatabase::verify_chain_async(const Glib::RefPtr<TlsCertificate>& chain, 
   g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), nullptr, nullptr, static_cast<GTlsDatabaseVerifyFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsDatabase::verify_chain_async(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const SlotAsyncReady& slot, VerifyFlags flags) const
+auto TlsDatabase::verify_chain_async (
+  const Glib::RefPtr <TlsCertificate> &chain, const Glib::ustring &purpose,
+  const SlotAsyncReady &slot, VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -972,7 +1009,10 @@ auto TlsDatabase::lookup_certificate_issuer(const Glib::RefPtr<const TlsCertific
   return const_cast<TlsDatabase*>(this)->lookup_certificate_issuer(certificate, flags);
 }
 
-void TlsDatabase::lookup_certificate_issuer_async(const Glib::RefPtr<const TlsCertificate>& certificate, const Glib::RefPtr<TlsInteraction>& interaction, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags)
+auto TlsDatabase::lookup_certificate_issuer_async (
+  const Glib::RefPtr <const TlsCertificate> &certificate,
+  const Glib::RefPtr <TlsInteraction> &interaction, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -980,7 +1020,10 @@ void TlsDatabase::lookup_certificate_issuer_async(const Glib::RefPtr<const TlsCe
   g_tls_database_lookup_certificate_issuer_async(gobj(), const_cast<GTlsCertificate*>(Glib::unwrap(certificate)), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsDatabase::lookup_certificate_issuer_async(const Glib::RefPtr<const TlsCertificate>& certificate, const Glib::RefPtr<TlsInteraction>& interaction, const SlotAsyncReady& slot, LookupFlags flags)
+auto TlsDatabase::lookup_certificate_issuer_async (
+  const Glib::RefPtr <const TlsCertificate> &certificate,
+  const Glib::RefPtr <TlsInteraction> &interaction, const SlotAsyncReady &slot,
+  LookupFlags flags) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -988,7 +1031,9 @@ void TlsDatabase::lookup_certificate_issuer_async(const Glib::RefPtr<const TlsCe
   g_tls_database_lookup_certificate_issuer_async(gobj(), const_cast<GTlsCertificate*>(Glib::unwrap(certificate)), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsDatabase::lookup_certificate_issuer_async(const Glib::RefPtr<const TlsCertificate>& certificate, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags)
+auto TlsDatabase::lookup_certificate_issuer_async (
+  const Glib::RefPtr <const TlsCertificate> &certificate, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -996,7 +1041,9 @@ void TlsDatabase::lookup_certificate_issuer_async(const Glib::RefPtr<const TlsCe
   g_tls_database_lookup_certificate_issuer_async(gobj(), const_cast<GTlsCertificate*>(Glib::unwrap(certificate)), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsDatabase::lookup_certificate_issuer_async(const Glib::RefPtr<const TlsCertificate>& certificate, const SlotAsyncReady& slot, LookupFlags flags)
+auto TlsDatabase::lookup_certificate_issuer_async (
+  const Glib::RefPtr <const TlsCertificate> &certificate, const SlotAsyncReady &slot,
+  LookupFlags flags) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -1085,7 +1132,10 @@ auto TlsDatabase::lookup_certificates_issued_by(const Glib::RefPtr<Glib::ByteArr
   return retvalue;
 }
 
-void TlsDatabase::lookup_certificates_issued_by_async(const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn, const Glib::RefPtr<TlsInteraction>& interaction, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags)
+auto TlsDatabase::lookup_certificates_issued_by_async (
+  const Glib::RefPtr <Glib::ByteArray> &issuer_raw_dn,
+  const Glib::RefPtr <TlsInteraction> &interaction, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -1093,7 +1143,10 @@ void TlsDatabase::lookup_certificates_issued_by_async(const Glib::RefPtr<Glib::B
   g_tls_database_lookup_certificates_issued_by_async(gobj(), Glib::unwrap(issuer_raw_dn), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsDatabase::lookup_certificates_issued_by_async(const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn, const Glib::RefPtr<TlsInteraction>& interaction, const SlotAsyncReady& slot, LookupFlags flags)
+auto TlsDatabase::lookup_certificates_issued_by_async (
+  const Glib::RefPtr <Glib::ByteArray> &issuer_raw_dn,
+  const Glib::RefPtr <TlsInteraction> &interaction, const SlotAsyncReady &slot,
+  LookupFlags flags) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -1101,7 +1154,9 @@ void TlsDatabase::lookup_certificates_issued_by_async(const Glib::RefPtr<Glib::B
   g_tls_database_lookup_certificates_issued_by_async(gobj(), Glib::unwrap(issuer_raw_dn), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsDatabase::lookup_certificates_issued_by_async(const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags)
+auto TlsDatabase::lookup_certificates_issued_by_async (
+  const Glib::RefPtr <Glib::ByteArray> &issuer_raw_dn, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -1109,7 +1164,9 @@ void TlsDatabase::lookup_certificates_issued_by_async(const Glib::RefPtr<Glib::B
   g_tls_database_lookup_certificates_issued_by_async(gobj(), Glib::unwrap(issuer_raw_dn), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsDatabase::lookup_certificates_issued_by_async(const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn, const SlotAsyncReady& slot, LookupFlags flags)
+auto TlsDatabase::lookup_certificates_issued_by_async (
+  const Glib::RefPtr <Glib::ByteArray> &issuer_raw_dn, const SlotAsyncReady &slot,
+  LookupFlags flags) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -1187,7 +1244,10 @@ auto TlsDatabase::lookup_certificate_for_handle(const Glib::ustring& handle, Loo
   return const_cast<TlsDatabase*>(this)->lookup_certificate_for_handle(handle, flags);
 }
 
-void TlsDatabase::lookup_certificate_for_handle_async(const Glib::ustring& handle, const Glib::RefPtr<TlsInteraction>& interaction, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags)
+auto TlsDatabase::lookup_certificate_for_handle_async (
+  const Glib::ustring &handle, const Glib::RefPtr <TlsInteraction> &interaction,
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
+  LookupFlags flags) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -1195,7 +1255,9 @@ void TlsDatabase::lookup_certificate_for_handle_async(const Glib::ustring& handl
   g_tls_database_lookup_certificate_for_handle_async(gobj(), handle.c_str(), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsDatabase::lookup_certificate_for_handle_async(const Glib::ustring& handle, const Glib::RefPtr<TlsInteraction>& interaction, const SlotAsyncReady& slot, LookupFlags flags)
+auto TlsDatabase::lookup_certificate_for_handle_async (
+  const Glib::ustring &handle, const Glib::RefPtr <TlsInteraction> &interaction,
+  const SlotAsyncReady &slot, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -1203,7 +1265,9 @@ void TlsDatabase::lookup_certificate_for_handle_async(const Glib::ustring& handl
   g_tls_database_lookup_certificate_for_handle_async(gobj(), handle.c_str(), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsDatabase::lookup_certificate_for_handle_async(const Glib::ustring& handle, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags)
+auto TlsDatabase::lookup_certificate_for_handle_async (
+  const Glib::ustring &handle, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -1211,7 +1275,8 @@ void TlsDatabase::lookup_certificate_for_handle_async(const Glib::ustring& handl
   g_tls_database_lookup_certificate_for_handle_async(gobj(), handle.c_str(), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
 }
 
-void TlsDatabase::lookup_certificate_for_handle_async(const Glib::ustring& handle, const SlotAsyncReady& slot, LookupFlags flags)
+auto TlsDatabase::lookup_certificate_for_handle_async (
+  const Glib::ustring &handle, const SlotAsyncReady &slot, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -1247,7 +1312,11 @@ auto Gio::TlsDatabase::verify_chain_vfunc(const Glib::RefPtr<TlsCertificate>& ch
   using RType = TlsCertificateFlags;
   return RType();
 }
-void Gio::TlsDatabase::verify_chain_async_vfunc(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const Glib::RefPtr<const SocketConnectable>& identity, const Glib::RefPtr<TlsInteraction>& interaction, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, VerifyFlags flags) const
+auto Gio::TlsDatabase::verify_chain_async_vfunc (
+  const Glib::RefPtr <TlsCertificate> &chain, const Glib::ustring &purpose,
+  const Glib::RefPtr <const SocketConnectable> &identity,
+  const Glib::RefPtr <TlsInteraction> &interaction, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -1312,7 +1381,10 @@ auto Gio::TlsDatabase::lookup_certificate_for_handle_vfunc(const Glib::ustring& 
   using RType = Glib::RefPtr<TlsCertificate>;
   return RType();
 }
-void Gio::TlsDatabase::lookup_certificate_for_handle_async_vfunc(const Glib::ustring& handle, const Glib::RefPtr<TlsInteraction>& interaction, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags)
+auto Gio::TlsDatabase::lookup_certificate_for_handle_async_vfunc (
+  const Glib::ustring &handle, const Glib::RefPtr <TlsInteraction> &interaction,
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
+  LookupFlags flags) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -1362,7 +1434,10 @@ auto Gio::TlsDatabase::lookup_certificate_issuer_vfunc(const Glib::RefPtr<TlsCer
   using RType = Glib::RefPtr<TlsCertificate>;
   return RType();
 }
-void Gio::TlsDatabase::lookup_certificate_issuer_async_vfunc(const Glib::RefPtr<TlsCertificate>& certificate, const Glib::RefPtr<TlsInteraction>& interaction, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags)
+auto Gio::TlsDatabase::lookup_certificate_issuer_async_vfunc (
+  const Glib::RefPtr <TlsCertificate> &certificate,
+  const Glib::RefPtr <TlsInteraction> &interaction, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -1412,7 +1487,10 @@ auto Gio::TlsDatabase::lookup_certificates_issued_by_vfunc(const Glib::RefPtr<Gl
   using RType = std::vector< Glib::RefPtr<TlsCertificate> >;
   return RType();
 }
-void Gio::TlsDatabase::lookup_certificates_issued_by_async_vfunc(const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn, const Glib::RefPtr<TlsInteraction>& interaction, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags)
+auto Gio::TlsDatabase::lookup_certificates_issued_by_async_vfunc (
+  const Glib::RefPtr <Glib::ByteArray> &issuer_raw_dn,
+  const Glib::RefPtr <TlsInteraction> &interaction, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);

@@ -61,13 +61,13 @@ auto wrap(GdkToplevelLayout* object, bool take_copy) -> Glib::RefPtr<Gdk::Toplev
 namespace Gdk
 {
 
-void ToplevelLayout::reference() const
+auto ToplevelLayout::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gdk_toplevel_layout_ref(reinterpret_cast<GdkToplevelLayout*>(const_cast<ToplevelLayout*>(this)));
 }
 
-void ToplevelLayout::unreference() const
+auto ToplevelLayout::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gdk_toplevel_layout_unref(reinterpret_cast<GdkToplevelLayout*>(const_cast<ToplevelLayout*>(this)));
@@ -109,12 +109,12 @@ auto ToplevelLayout::equal(const Glib::RefPtr<const ToplevelLayout>& other) cons
   return gdk_toplevel_layout_equal(const_cast<GdkToplevelLayout*>(gobj()), const_cast<GdkToplevelLayout*>(Glib::unwrap(other)));
 }
 
-void ToplevelLayout::set_maximized(bool maximized)
+auto ToplevelLayout::set_maximized (bool maximized) -> void
 {
   gdk_toplevel_layout_set_maximized(gobj(), static_cast<int>(maximized));
 }
 
-void ToplevelLayout::set_fullscreen(bool fullscreen, const Glib::RefPtr<Monitor>& monitor)
+auto ToplevelLayout::set_fullscreen (bool fullscreen, const Glib::RefPtr <Monitor> &monitor) -> void
 {
   gdk_toplevel_layout_set_fullscreen(gobj(), static_cast<int>(fullscreen), Glib::unwrap(monitor));
 }
@@ -142,7 +142,7 @@ auto ToplevelLayout::get_fullscreen_monitor() const -> Glib::RefPtr<const Monito
   return const_cast<ToplevelLayout*>(this)->get_fullscreen_monitor();
 }
 
-void ToplevelLayout::set_resizable(bool resizable)
+auto ToplevelLayout::set_resizable (bool resizable) -> void
 {
   gdk_toplevel_layout_set_resizable(gobj(), static_cast<int>(resizable));
 }

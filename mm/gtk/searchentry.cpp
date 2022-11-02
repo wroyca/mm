@@ -29,7 +29,7 @@
 namespace Gtk
 {
 
-void SearchEntry::unset_key_capture_widget()
+auto SearchEntry::unset_key_capture_widget () -> void
 {
   gtk_search_entry_set_key_capture_widget(gobj(), nullptr);
 }
@@ -121,7 +121,7 @@ auto SearchEntry_Class::init() -> const Glib::Class&
 }
 
 
-void SearchEntry_Class::class_init_function(void* g_class, void* class_data)
+auto SearchEntry_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -191,7 +191,7 @@ SearchEntry::SearchEntry()
 
 }
 
-void SearchEntry::set_key_capture_widget(Widget& widget)
+auto SearchEntry::set_key_capture_widget (Widget &widget) -> void
 {
   gtk_search_entry_set_key_capture_widget(gobj(), (widget).gobj());
 }
@@ -206,7 +206,7 @@ auto SearchEntry::get_key_capture_widget() const -> const Widget*
   return const_cast<SearchEntry*>(this)->get_key_capture_widget();
 }
 
-void SearchEntry::set_search_delay(unsigned int delay)
+auto SearchEntry::set_search_delay (unsigned int delay) -> void
 {
   gtk_search_entry_set_search_delay(gobj(), delay);
 }

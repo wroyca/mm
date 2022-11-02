@@ -64,7 +64,7 @@ auto MultiSorter_Class::init() -> const Glib::Class&
 }
 
 
-void MultiSorter_Class::class_init_function(void* g_class, void* class_data)
+auto MultiSorter_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -148,12 +148,12 @@ auto MultiSorter::create() -> Glib::RefPtr<MultiSorter>
   return Glib::make_refptr_for_instance<MultiSorter>( new MultiSorter() );
 }
 
-void MultiSorter::append(const Glib::RefPtr<Sorter>& sorter)
+auto MultiSorter::append (const Glib::RefPtr <Sorter> &sorter) -> void
 {
   gtk_multi_sorter_append(gobj(), Glib::unwrap_copy(sorter));
 }
 
-void MultiSorter::remove(guint position)
+auto MultiSorter::remove (guint position) -> void
 {
   gtk_multi_sorter_remove(gobj(), position);
 }

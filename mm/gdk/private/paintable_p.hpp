@@ -21,11 +21,11 @@ public:
 
   friend class Paintable;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -34,12 +34,13 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static void snapshot_vfunc_callback(GdkPaintable* self, GdkSnapshot* snapshot, double width, double height);
-  static GdkPaintable* get_current_image_vfunc_callback(GdkPaintable* self);
-  static GdkPaintableFlags get_flags_vfunc_callback(GdkPaintable* self);
-  static int get_intrinsic_width_vfunc_callback(GdkPaintable* self);
-  static int get_intrinsic_height_vfunc_callback(GdkPaintable* self);
-  static double get_intrinsic_aspect_ratio_vfunc_callback(GdkPaintable* self);
+  static auto snapshot_vfunc_callback (
+    GdkPaintable *self, GdkSnapshot *snapshot, double width, double height) -> void;
+  static auto get_current_image_vfunc_callback (GdkPaintable *self) -> GdkPaintable*;
+  static auto get_flags_vfunc_callback (GdkPaintable *self) -> GdkPaintableFlags;
+  static auto get_intrinsic_width_vfunc_callback (GdkPaintable *self) -> int;
+  static auto get_intrinsic_height_vfunc_callback (GdkPaintable *self) -> int;
+  static auto get_intrinsic_aspect_ratio_vfunc_callback (GdkPaintable *self) -> double;
 };
 
 

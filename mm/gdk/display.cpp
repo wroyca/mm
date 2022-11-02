@@ -45,7 +45,7 @@ namespace
 {
 
 
-void Display_signal_closed_callback(GdkDisplay* self, gboolean p0,void* data)
+auto Display_signal_closed_callback (GdkDisplay *self, gboolean p0, void *data) -> void
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(bool)>;
@@ -83,7 +83,7 @@ const Glib::SignalProxyInfo Display_signal_opened_info =
 };
 
 
-void Display_signal_seat_added_callback(GdkDisplay* self, GdkSeat* p0,void* data)
+auto Display_signal_seat_added_callback (GdkDisplay *self, GdkSeat *p0, void *data) -> void
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Seat>&)>;
@@ -113,7 +113,7 @@ const Glib::SignalProxyInfo Display_signal_seat_added_info =
 };
 
 
-void Display_signal_seat_removed_callback(GdkDisplay* self, GdkSeat* p0,void* data)
+auto Display_signal_seat_removed_callback (GdkDisplay *self, GdkSeat *p0, void *data) -> void
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Seat>&)>;
@@ -143,7 +143,7 @@ const Glib::SignalProxyInfo Display_signal_seat_removed_info =
 };
 
 
-void Display_signal_setting_changed_callback(GdkDisplay* self, const gchar* p0,void* data)
+auto Display_signal_setting_changed_callback (GdkDisplay *self, const gchar *p0, void *data) -> void
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -216,7 +216,7 @@ auto Display_Class::init() -> const Glib::Class&
 }
 
 
-void Display_Class::class_init_function(void* g_class, void* class_data)
+auto Display_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -310,17 +310,17 @@ auto Display::device_is_grabbed(const Glib::RefPtr<const Gdk::Device>& device) c
   return gdk_display_device_is_grabbed(const_cast<GdkDisplay*>(gobj()), const_cast<GdkDevice*>(Glib::unwrap<Gdk::Device>(device)));
 }
 
-void Display::beep()
+auto Display::beep () -> void
 {
   gdk_display_beep(gobj());
 }
 
-void Display::sync()
+auto Display::sync () -> void
 {
   gdk_display_sync(gobj());
 }
 
-void Display::close()
+auto Display::close () -> void
 {
   gdk_display_close(gobj());
 }
@@ -340,7 +340,7 @@ auto Display::is_rgba() const -> bool
   return gdk_display_is_rgba(const_cast<GdkDisplay*>(gobj()));
 }
 
-void Display::put_event(const Glib::RefPtr<const Event>& event)
+auto Display::put_event (const Glib::RefPtr <const Event> &event) -> void
 {
   gdk_display_put_event(gobj(), const_cast<GdkEvent*>(Glib::unwrap(event)));
 }
@@ -354,7 +354,7 @@ auto Display::get_default() -> Glib::RefPtr<Display>
   return retvalue;
 }
 
-void Display::flush()
+auto Display::flush () -> void
 {
   gdk_display_flush(gobj());
 }
@@ -390,7 +390,7 @@ auto Display::supports_input_shapes() const -> bool
   return gdk_display_supports_input_shapes(const_cast<GdkDisplay*>(gobj()));
 }
 
-void Display::prepare_gl()
+auto Display::prepare_gl () -> void
 {
   GError* gerror = nullptr;
   gdk_display_prepare_gl(gobj(), &(gerror));
@@ -407,7 +407,7 @@ auto Display::create_gl_context() -> Glib::RefPtr<GLContext>
   return retvalue;
 }
 
-void Display::notify_startup_complete(const Glib::ustring& startup_id)
+auto Display::notify_startup_complete (const Glib::ustring &startup_id) -> void
 {
   gdk_display_notify_startup_complete(gobj(), startup_id.c_str());
 }

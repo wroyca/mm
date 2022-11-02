@@ -74,7 +74,7 @@ ListViewText::~ListViewText() noexcept
 {
 }
 
-void ListViewText::set_column_title(guint column, const Glib::ustring& title)
+auto ListViewText::set_column_title (guint column, const Glib::ustring &title) -> void
 {
   g_return_if_fail( column < get_columns().size() );
 
@@ -97,14 +97,14 @@ auto ListViewText::append(const Glib::ustring& column_one_value) -> guint
   return size() - 1;
 }
 
-void ListViewText::prepend(const Glib::ustring& column_one_value)
+auto ListViewText::prepend (const Glib::ustring &column_one_value) -> void
 {
   auto newRow = *(m_model->prepend());
 
   newRow[m_model_columns.m_columns[0]] = column_one_value;
 }
 
-void ListViewText::insert(guint row, const Glib::ustring& column_one_value)
+auto ListViewText::insert (guint row, const Glib::ustring &column_one_value) -> void
 {
   g_return_if_fail( row < size() );
 
@@ -117,7 +117,7 @@ void ListViewText::insert(guint row, const Glib::ustring& column_one_value)
   }
 }
 
-void ListViewText::clear_items()
+auto ListViewText::clear_items () -> void
 {
   m_model->clear();
 }
@@ -134,7 +134,7 @@ auto ListViewText::get_text(guint row, guint column) const -> Glib::ustring
   return result;
 }
 
-void ListViewText::set_text(guint row, guint column, const Glib::ustring& value)
+auto ListViewText::set_text (guint row, guint column, const Glib::ustring &value) -> void
 {
   g_return_if_fail( row < size() );
 
@@ -142,7 +142,7 @@ void ListViewText::set_text(guint row, guint column, const Glib::ustring& value)
   childrow.set_value(column, value);
 }
 
-void ListViewText::set_text(guint row, const Glib::ustring& value)
+auto ListViewText::set_text (guint row, const Glib::ustring &value) -> void
 {
   g_return_if_fail( row < size() );
 

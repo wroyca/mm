@@ -36,8 +36,7 @@ extern "C" {
  * We don't need to worry about (un)referencing, since the
  * child process gets its own copy of the parent's memory anyway.
  */
-static void
-child_setup_callback(void* user_data)
+static auto child_setup_callback (void *user_data) -> void
 {
   try
   {
@@ -49,8 +48,7 @@ child_setup_callback(void* user_data)
   }
 }
 
-static void
-copy_output_buf(std::string* dest, const char* buf)
+static auto copy_output_buf (std::string *dest, const char *buf) -> void
 {
   if (dest)
   {
@@ -70,11 +68,11 @@ namespace Glib
 
 /**** process spawning functions *******************************************/
 
-void
-spawn_async_with_pipes(const std::string& working_directory,
-  const std::vector<std::string>& argv, const std::vector<std::string>& envp,
-  SpawnFlags flags, const SlotSpawnChildSetup& child_setup, Pid* child_pid, int* standard_input,
-  int* standard_output, int* standard_error)
+auto spawn_async_with_pipes (
+  const std::string &working_directory,
+  const std::vector <std::string> &argv, const std::vector <std::string> &envp,
+  SpawnFlags flags, const SlotSpawnChildSetup &child_setup, Pid *child_pid, int *standard_input,
+  int *standard_output, int *standard_error) -> void
 {
   const bool setup_slot = !child_setup.empty();
   auto child_setup_ = child_setup;
@@ -90,11 +88,11 @@ spawn_async_with_pipes(const std::string& working_directory,
     Glib::Error::throw_exception(gerror);
 }
 
-void
-spawn_async_with_pipes(const std::string& working_directory,
-  const std::vector<std::string>& argv, SpawnFlags flags,
-  const SlotSpawnChildSetup& child_setup, Pid* child_pid, int* standard_input, int* standard_output,
-  int* standard_error)
+auto spawn_async_with_pipes (
+  const std::string &working_directory,
+  const std::vector <std::string> &argv, SpawnFlags flags,
+  const SlotSpawnChildSetup &child_setup, Pid *child_pid, int *standard_input, int *standard_output,
+  int *standard_error) -> void
 {
   const bool setup_slot = !child_setup.empty();
   auto child_setup_ = child_setup;
@@ -109,10 +107,10 @@ spawn_async_with_pipes(const std::string& working_directory,
     Glib::Error::throw_exception(gerror);
 }
 
-void
-spawn_async(const std::string& working_directory, const std::vector<std::string>& argv,
-  const std::vector<std::string>& envp, SpawnFlags flags,
-  const SlotSpawnChildSetup& child_setup, Pid* child_pid)
+auto spawn_async (
+  const std::string &working_directory, const std::vector <std::string> &argv,
+  const std::vector <std::string> &envp, SpawnFlags flags,
+  const SlotSpawnChildSetup &child_setup, Pid *child_pid) -> void
 {
   const bool setup_slot = !child_setup.empty();
   auto child_setup_ = child_setup;
@@ -127,9 +125,9 @@ spawn_async(const std::string& working_directory, const std::vector<std::string>
     Glib::Error::throw_exception(gerror);
 }
 
-void
-spawn_async(const std::string& working_directory, const std::vector<std::string>& argv,
-  SpawnFlags flags, const SlotSpawnChildSetup& child_setup, Pid* child_pid)
+auto spawn_async (
+  const std::string &working_directory, const std::vector <std::string> &argv,
+  SpawnFlags flags, const SlotSpawnChildSetup &child_setup, Pid *child_pid) -> void
 {
   const bool setup_slot = !child_setup.empty();
   auto child_setup_ = child_setup;
@@ -143,11 +141,11 @@ spawn_async(const std::string& working_directory, const std::vector<std::string>
     Glib::Error::throw_exception(gerror);
 }
 
-void
-spawn_sync(const std::string& working_directory, const std::vector<std::string>& argv,
-  const std::vector<std::string>& envp, SpawnFlags flags,
-  const SlotSpawnChildSetup& child_setup, std::string* standard_output, std::string* standard_error,
-  int* wait_status)
+auto spawn_sync (
+  const std::string &working_directory, const std::vector <std::string> &argv,
+  const std::vector <std::string> &envp, SpawnFlags flags,
+  const SlotSpawnChildSetup &child_setup, std::string *standard_output, std::string *standard_error,
+  int *wait_status) -> void
 {
   const bool setup_slot = !child_setup.empty();
   auto child_setup_ = child_setup;
@@ -170,10 +168,10 @@ spawn_sync(const std::string& working_directory, const std::vector<std::string>&
   copy_output_buf(standard_error, buf_standard_error.get());
 }
 
-void
-spawn_sync(const std::string& working_directory, const std::vector<std::string>& argv,
-  SpawnFlags flags, const SlotSpawnChildSetup& child_setup, std::string* standard_output,
-  std::string* standard_error, int* wait_status)
+auto spawn_sync (
+  const std::string &working_directory, const std::vector <std::string> &argv,
+  SpawnFlags flags, const SlotSpawnChildSetup &child_setup, std::string *standard_output,
+  std::string *standard_error, int *wait_status) -> void
 {
   const bool setup_slot = !child_setup.empty();
   auto child_setup_ = child_setup;
@@ -196,8 +194,7 @@ spawn_sync(const std::string& working_directory, const std::vector<std::string>&
   copy_output_buf(standard_error, buf_standard_error.get());
 }
 
-void
-spawn_command_line_async(const std::string& command_line)
+auto spawn_command_line_async (const std::string &command_line) -> void
 {
   GError* gerror = nullptr;
   g_spawn_command_line_async(command_line.c_str(), &gerror);
@@ -206,9 +203,9 @@ spawn_command_line_async(const std::string& command_line)
     Glib::Error::throw_exception(gerror);
 }
 
-void
-spawn_command_line_sync(const std::string& command_line, std::string* standard_output,
-  std::string* standard_error, int* wait_status)
+auto spawn_command_line_sync (
+  const std::string &command_line, std::string *standard_output,
+  std::string *standard_error, int *wait_status) -> void
 {
   char* pch_buf_standard_output = nullptr;
   char* pch_buf_standard_error = nullptr;
@@ -227,8 +224,7 @@ spawn_command_line_sync(const std::string& command_line, std::string* standard_o
   copy_output_buf(standard_error, buf_standard_error.get());
 }
 
-void
-spawn_close_pid(Pid pid)
+auto spawn_close_pid (Pid pid) -> void
 {
   g_spawn_close_pid(pid);
 }
@@ -255,7 +251,7 @@ auto Glib::SpawnError::code() const -> Glib::SpawnError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Glib::SpawnError::throw_func(GError* gobject)
+auto Glib::SpawnError::throw_func (GError *gobject) -> void
 {
   throw Glib::SpawnError(gobject);
 }

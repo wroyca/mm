@@ -278,8 +278,7 @@ MatchInfo::operator=(MatchInfo&& other) noexcept -> MatchInfo&
   return *this;
 }
 
-void
-MatchInfo::set_gobject(GMatchInfo* castitem, bool take_ownership)
+auto MatchInfo::set_gobject (GMatchInfo *castitem, bool take_ownership) -> void
 {
   if (gobject_ && this->take_ownership_)
     g_match_info_free(gobject_);
@@ -316,7 +315,7 @@ auto Glib::RegexError::code() const -> Glib::RegexError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Glib::RegexError::throw_func(GError* gobject)
+auto Glib::RegexError::throw_func (GError *gobject) -> void
 {
   throw Glib::RegexError(gobject);
 }
@@ -353,13 +352,13 @@ auto wrap(GRegex* object, bool take_copy) -> Glib::RefPtr<Glib::Regex>
 namespace Glib
 {
 
-void Regex::reference() const
+auto Regex::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_regex_ref(reinterpret_cast<GRegex*>(const_cast<Regex*>(this)));
 }
 
-void Regex::unreference() const
+auto Regex::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_regex_unref(reinterpret_cast<GRegex*>(const_cast<Regex*>(this)));

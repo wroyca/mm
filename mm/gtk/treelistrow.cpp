@@ -64,7 +64,7 @@ auto TreeListRow_Class::init() -> const Glib::Class&
 }
 
 
-void TreeListRow_Class::class_init_function(void* g_class, void* class_data)
+auto TreeListRow_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -139,7 +139,7 @@ auto TreeListRow::get_item() const -> Glib::RefPtr<const Glib::ObjectBase>
   return const_cast<TreeListRow*>(this)->get_item();
 }
 
-void TreeListRow::set_expanded(bool expanded)
+auto TreeListRow::set_expanded (bool expanded) -> void
 {
   gtk_tree_list_row_set_expanded(gobj(), static_cast<int>(expanded));
 }

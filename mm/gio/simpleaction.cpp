@@ -73,7 +73,7 @@ namespace
 {
 
 
-void SimpleAction_signal_activate_callback(GSimpleAction* self, GVariant* p0,void* data)
+auto SimpleAction_signal_activate_callback (GSimpleAction *self, GVariant *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::VariantBase&)>;
@@ -103,7 +103,8 @@ const Glib::SignalProxyInfo SimpleAction_signal_activate_info =
 };
 
 
-void SimpleAction_signal_change_state_callback(GSimpleAction* self, GVariant* p0,void* data)
+auto SimpleAction_signal_change_state_callback (
+  GSimpleAction *self, GVariant *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::VariantBase&)>;
@@ -177,7 +178,7 @@ auto SimpleAction_Class::init() -> const Glib::Class&
 }
 
 
-void SimpleAction_Class::class_init_function(void* g_class, void* class_data)
+auto SimpleAction_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -284,17 +285,17 @@ auto SimpleAction::create(const Glib::ustring& name, const Glib::VariantBase& st
   return Glib::make_refptr_for_instance<SimpleAction>( new SimpleAction(name, state) );
 }
 
-void SimpleAction::set_enabled(bool enabled)
+auto SimpleAction::set_enabled (bool enabled) -> void
 {
   g_simple_action_set_enabled(gobj(), static_cast<int>(enabled));
 }
 
-void SimpleAction::set_state(const Glib::VariantBase& value)
+auto SimpleAction::set_state (const Glib::VariantBase &value) -> void
 {
   g_simple_action_set_state(gobj(), const_cast<GVariant*>((value).gobj()));
 }
 
-void SimpleAction::set_state_hint(const Glib::VariantBase& state_hint)
+auto SimpleAction::set_state_hint (const Glib::VariantBase &state_hint) -> void
 {
   g_simple_action_set_state_hint(gobj(), const_cast<GVariant*>((state_hint).gobj()));
 }

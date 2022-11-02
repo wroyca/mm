@@ -55,7 +55,7 @@ ApplicationWindow::ApplicationWindow(const Glib::RefPtr<Application>& applicatio
     application->add_window(*this);
 }
 
-void ApplicationWindow::unset_help_overlay()
+auto ApplicationWindow::unset_help_overlay () -> void
 {
   gtk_application_window_set_help_overlay(gobj(), nullptr);
 }
@@ -107,7 +107,7 @@ auto ApplicationWindow_Class::init() -> const Glib::Class&
 }
 
 
-void ApplicationWindow_Class::class_init_function(void* g_class, void* class_data)
+auto ApplicationWindow_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -181,7 +181,7 @@ ApplicationWindow::ApplicationWindow()
 
 }
 
-void ApplicationWindow::set_show_menubar(bool show_menubar)
+auto ApplicationWindow::set_show_menubar (bool show_menubar) -> void
 {
   gtk_application_window_set_show_menubar(gobj(), static_cast<int>(show_menubar));
 }
@@ -196,7 +196,7 @@ auto ApplicationWindow::get_id() const -> guint
   return gtk_application_window_get_id(const_cast<GtkApplicationWindow*>(gobj()));
 }
 
-void ApplicationWindow::set_help_overlay(ShortcutsWindow& help_overlay)
+auto ApplicationWindow::set_help_overlay (ShortcutsWindow &help_overlay) -> void
 {
   gtk_application_window_set_help_overlay(gobj(), (help_overlay).gobj());
 }

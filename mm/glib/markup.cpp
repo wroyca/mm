@@ -53,19 +53,23 @@ class ParserCallbacks
 public:
   static const GMarkupParser vfunc_table;
 
-  static void start_element(GMarkupParseContext* context, const char* element_name,
-    const char** attribute_names, const char** attribute_values, void* user_data, GError** error);
+  static auto start_element (
+    GMarkupParseContext *context, const char *element_name,
+    const char **attribute_names, const char **attribute_values, void *user_data,
+    GError **error) -> void;
 
-  static void end_element(
-    GMarkupParseContext* context, const char* element_name, void* user_data, GError** error);
+  static auto end_element (
+    GMarkupParseContext *context, const char *element_name, void *user_data, GError **error) -> void;
 
-  static void text(GMarkupParseContext* context, const char* text, gsize text_len, void* user_data,
-    GError** error);
+  static auto text (
+    GMarkupParseContext *context, const char *text, gsize text_len, void *user_data,
+    GError **error) -> void;
 
-  static void passthrough(GMarkupParseContext* context, const char* passthrough_text,
-    gsize text_len, void* user_data, GError** error);
+  static auto passthrough (
+    GMarkupParseContext *context, const char *passthrough_text,
+    gsize text_len, void *user_data, GError **error) -> void;
 
-  static void error(GMarkupParseContext* context, GError* error, void* user_data);
+  static auto error (GMarkupParseContext *context, GError *error, void *user_data) -> void;
 };
 
 const GMarkupParser ParserCallbacks::vfunc_table = {
@@ -73,9 +77,10 @@ const GMarkupParser ParserCallbacks::vfunc_table = {
   &ParserCallbacks::passthrough, &ParserCallbacks::error,
 };
 
-void
-ParserCallbacks::start_element(GMarkupParseContext* context, const char* element_name,
-  const char** attribute_names, const char** attribute_values, void* user_data, GError** error)
+auto ParserCallbacks::start_element (
+  GMarkupParseContext *context, const char *element_name,
+  const char **attribute_names, const char **attribute_values, void *user_data,
+  GError **error) -> void
 {
   ParseContext& cpp_context = *static_cast<ParseContext*>(user_data);
   g_return_if_fail(context == cpp_context.gobj());
@@ -107,9 +112,8 @@ ParserCallbacks::start_element(GMarkupParseContext* context, const char* element
   }
 }
 
-void
-ParserCallbacks::end_element(
-  GMarkupParseContext* context, const char* element_name, void* user_data, GError** error)
+auto ParserCallbacks::end_element (
+  GMarkupParseContext *context, const char *element_name, void *user_data, GError **error) -> void
 {
   ParseContext& cpp_context = *static_cast<ParseContext*>(user_data);
   g_return_if_fail(context == cpp_context.gobj());
@@ -128,9 +132,9 @@ ParserCallbacks::end_element(
   }
 }
 
-void
-ParserCallbacks::text(
-  GMarkupParseContext* context, const char* text, gsize text_len, void* user_data, GError** error)
+auto ParserCallbacks::text (
+  GMarkupParseContext *context, const char *text, gsize text_len, void *user_data,
+  GError **error) -> void
 {
   ParseContext& cpp_context = *static_cast<ParseContext*>(user_data);
   g_return_if_fail(context == cpp_context.gobj());
@@ -149,9 +153,9 @@ ParserCallbacks::text(
   }
 }
 
-void
-ParserCallbacks::passthrough(GMarkupParseContext* context, const char* passthrough_text,
-  gsize text_len, void* user_data, GError** error)
+auto ParserCallbacks::passthrough (
+  GMarkupParseContext *context, const char *passthrough_text,
+  gsize text_len, void *user_data, GError **error) -> void
 {
   ParseContext& cpp_context = *static_cast<ParseContext*>(user_data);
   g_return_if_fail(context == cpp_context.gobj());
@@ -171,8 +175,7 @@ ParserCallbacks::passthrough(GMarkupParseContext* context, const char* passthrou
   }
 }
 
-void
-ParserCallbacks::error(GMarkupParseContext* context, GError* error, void* user_data)
+auto ParserCallbacks::error (GMarkupParseContext *context, GError *error, void *user_data) -> void
 {
   ParseContext& cpp_context = *static_cast<ParseContext*>(user_data);
 
@@ -210,28 +213,24 @@ Parser::~Parser()
 {
 }
 
-void
-Parser::on_start_element(ParseContext&, const Glib::ustring&, const Parser::AttributeMap&)
+auto Parser::on_start_element (
+  ParseContext &, const Glib::ustring &, const Parser::AttributeMap &) -> void
 {
 }
 
-void
-Parser::on_end_element(ParseContext&, const Glib::ustring&)
+auto Parser::on_end_element (ParseContext &, const Glib::ustring &) -> void
 {
 }
 
-void
-Parser::on_text(ParseContext&, const Glib::ustring&)
+auto Parser::on_text (ParseContext &, const Glib::ustring &) -> void
 {
 }
 
-void
-Parser::on_passthrough(ParseContext&, const Glib::ustring&)
+auto Parser::on_passthrough (ParseContext &, const Glib::ustring &) -> void
 {
 }
 
-void
-Parser::on_error(ParseContext&, const MarkupError&)
+auto Parser::on_error (ParseContext &, const MarkupError &) -> void
 {
 }
 
@@ -270,8 +269,7 @@ ParseContext::~ParseContext()
   g_markup_parse_context_free(gobject_);
 }
 
-void
-ParseContext::parse(const Glib::ustring& text)
+auto ParseContext::parse (const Glib::ustring &text) -> void
 {
   GError* error = nullptr;
   g_markup_parse_context_parse(gobject_, text.data(), text.bytes(), &error);
@@ -280,8 +278,7 @@ ParseContext::parse(const Glib::ustring& text)
     Glib::Error::throw_exception(error);
 }
 
-void
-ParseContext::parse(const char* text_begin, const char* text_end)
+auto ParseContext::parse (const char *text_begin, const char *text_end) -> void
 {
   GError* error = nullptr;
   g_markup_parse_context_parse(gobject_, text_begin, text_end - text_begin, &error);
@@ -290,8 +287,7 @@ ParseContext::parse(const char* text_begin, const char* text_end)
     Glib::Error::throw_exception(error);
 }
 
-void
-ParseContext::end_parse()
+auto ParseContext::end_parse () -> void
 {
   GError* error = nullptr;
   g_markup_parse_context_end_parse(gobject_, &error);
@@ -324,8 +320,7 @@ ParseContext::get_char_number() const -> int
 }
 
 // static
-void
-ParseContext::destroy_notify_callback(void* data)
+auto ParseContext::destroy_notify_callback (void *data) -> void
 {
   ParseContext* const self = static_cast<ParseContext*>(data);
 
@@ -355,7 +350,7 @@ auto Glib::MarkupError::code() const -> Glib::MarkupError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Glib::MarkupError::throw_func(GError* gobject)
+auto Glib::MarkupError::throw_func (GError *gobject) -> void
 {
   throw Glib::MarkupError(gobject);
 }

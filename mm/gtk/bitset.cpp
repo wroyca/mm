@@ -76,13 +76,13 @@ auto wrap(GtkBitset* object, bool take_copy) -> Glib::RefPtr<Gtk::Bitset>
 namespace Gtk
 {
 
-void Bitset::reference() const
+auto Bitset::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gtk_bitset_ref(reinterpret_cast<GtkBitset*>(const_cast<Bitset*>(this)));
 }
 
-void Bitset::unreference() const
+auto Bitset::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gtk_bitset_unref(reinterpret_cast<GtkBitset*>(const_cast<Bitset*>(this)));
@@ -159,7 +159,7 @@ auto Bitset::copy() const -> Glib::RefPtr<Bitset>
   return Glib::wrap(gtk_bitset_copy(const_cast<GtkBitset*>(gobj())));
 }
 
-void Bitset::remove_all()
+auto Bitset::remove_all () -> void
 {
   gtk_bitset_remove_all(gobj());
 }
@@ -174,67 +174,67 @@ auto Bitset::remove(guint value) -> bool
   return gtk_bitset_remove(gobj(), value);
 }
 
-void Bitset::add_range(guint start, guint n_items)
+auto Bitset::add_range (guint start, guint n_items) -> void
 {
   gtk_bitset_add_range(gobj(), start, n_items);
 }
 
-void Bitset::remove_range(guint start, guint n_items)
+auto Bitset::remove_range (guint start, guint n_items) -> void
 {
   gtk_bitset_remove_range(gobj(), start, n_items);
 }
 
-void Bitset::add_range_closed(guint first, guint last)
+auto Bitset::add_range_closed (guint first, guint last) -> void
 {
   gtk_bitset_add_range_closed(gobj(), first, last);
 }
 
-void Bitset::remove_range_closed(guint first, guint last)
+auto Bitset::remove_range_closed (guint first, guint last) -> void
 {
   gtk_bitset_remove_range_closed(gobj(), first, last);
 }
 
-void Bitset::add_rectangle(guint start, guint width, guint height, guint stride)
+auto Bitset::add_rectangle (guint start, guint width, guint height, guint stride) -> void
 {
   gtk_bitset_add_rectangle(gobj(), start, width, height, stride);
 }
 
-void Bitset::remove_rectangle(guint start, guint width, guint height, guint stride)
+auto Bitset::remove_rectangle (guint start, guint width, guint height, guint stride) -> void
 {
   gtk_bitset_remove_rectangle(gobj(), start, width, height, stride);
 }
 
-void Bitset::join(const Glib::RefPtr<const Bitset>& other)
+auto Bitset::join (const Glib::RefPtr <const Bitset> &other) -> void
 {
   gtk_bitset_union(gobj(), Glib::unwrap(other));
 }
 
-void Bitset::intersect(const Glib::RefPtr<const Bitset>& other)
+auto Bitset::intersect (const Glib::RefPtr <const Bitset> &other) -> void
 {
   gtk_bitset_intersect(gobj(), Glib::unwrap(other));
 }
 
-void Bitset::subtract(const Glib::RefPtr<const Bitset>& other)
+auto Bitset::subtract (const Glib::RefPtr <const Bitset> &other) -> void
 {
   gtk_bitset_subtract(gobj(), Glib::unwrap(other));
 }
 
-void Bitset::difference(const Glib::RefPtr<const Bitset>& other)
+auto Bitset::difference (const Glib::RefPtr <const Bitset> &other) -> void
 {
   gtk_bitset_difference(gobj(), Glib::unwrap(other));
 }
 
-void Bitset::shift_left(guint amount)
+auto Bitset::shift_left (guint amount) -> void
 {
   gtk_bitset_shift_left(gobj(), amount);
 }
 
-void Bitset::shift_right(guint amount)
+auto Bitset::shift_right (guint amount) -> void
 {
   gtk_bitset_shift_right(gobj(), amount);
 }
 
-void Bitset::splice(guint position, guint removed, guint value)
+auto Bitset::splice (guint position, guint removed, guint value) -> void
 {
   gtk_bitset_splice(gobj(), position, removed, value);
 }

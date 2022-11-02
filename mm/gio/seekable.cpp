@@ -68,7 +68,7 @@ auto Seekable_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Seekable_Class::iface_init_function(void* g_iface, void*)
+auto Seekable_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -117,7 +117,7 @@ Seekable::~Seekable() noexcept
 {}
 
 // static
-void Seekable::add_interface(GType gtype_implementer)
+auto Seekable::add_interface (GType gtype_implementer) -> void
 {
   seekable_class_.init().add_interface(gtype_implementer);
 }

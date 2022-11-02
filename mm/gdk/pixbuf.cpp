@@ -37,7 +37,7 @@
 namespace
 {
 
-void pixbuf_destroy_data_callback(guint8* pixels, void* user_data)
+auto pixbuf_destroy_data_callback (guint8 *pixels, void *user_data) -> void
 {
   const auto slot = static_cast<Gdk::Pixbuf::SlotDestroyData*>(user_data);
   g_return_if_fail(slot != nullptr);
@@ -115,7 +115,7 @@ auto Pixbuf::create_from_stream_at_scale(const Glib::RefPtr<Gio::InputStream>& s
   return retvalue;
 }
 
-void Pixbuf::save(const std::string& filename, const Glib::ustring& type) const
+auto Pixbuf::save (const std::string &filename, const Glib::ustring &type) const -> void
 {
   GError* gerror = nullptr;
   gdk_pixbuf_savev(const_cast<GdkPixbuf*>(gobj()),
@@ -125,9 +125,10 @@ void Pixbuf::save(const std::string& filename, const Glib::ustring& type) const
     ::Glib::Error::throw_exception(gerror);
 }
 
-void Pixbuf::save(const std::string& filename, const Glib::ustring& type,
-                  const std::vector<Glib::ustring>& option_keys,
-                  const std::vector<Glib::ustring>& option_values) const
+auto Pixbuf::save (
+  const std::string &filename, const Glib::ustring &type,
+  const std::vector <Glib::ustring> &option_keys,
+  const std::vector <Glib::ustring> &option_values) const -> void
 {
   GError* gerror = nullptr;
 
@@ -141,8 +142,9 @@ void Pixbuf::save(const std::string& filename, const Glib::ustring& type,
     ::Glib::Error::throw_exception(gerror);
 }
 
-void Pixbuf::save_to_buffer(gchar*& buffer, gsize& buffer_size,
-                            const Glib::ustring& type) const
+auto Pixbuf::save_to_buffer (
+  gchar *&buffer, gsize &buffer_size,
+  const Glib::ustring &type) const -> void
 {
   GError* gerror = nullptr;
 
@@ -155,10 +157,11 @@ void Pixbuf::save_to_buffer(gchar*& buffer, gsize& buffer_size,
     ::Glib::Error::throw_exception(gerror);
 }
 
-void Pixbuf::save_to_buffer(gchar*& buffer, gsize& buffer_size,
-                            const Glib::ustring& type,
-                            const std::vector<Glib::ustring>& option_keys,
-                            const std::vector<Glib::ustring>& option_values) const
+auto Pixbuf::save_to_buffer (
+  gchar *&buffer, gsize &buffer_size,
+  const Glib::ustring &type,
+  const std::vector <Glib::ustring> &option_keys,
+  const std::vector <Glib::ustring> &option_values) const -> void
 {
   GError* gerror = nullptr;
 
@@ -218,7 +221,7 @@ auto Gdk::PixbufError::code() const -> Gdk::PixbufError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Gdk::PixbufError::throw_func(GError* gobject)
+auto Gdk::PixbufError::throw_func (GError *gobject) -> void
 {
   throw Gdk::PixbufError(gobject);
 }
@@ -278,7 +281,7 @@ auto Pixbuf_Class::init() -> const Glib::Class&
 }
 
 
-void Pixbuf_Class::class_init_function(void* g_class, void* class_data)
+auto Pixbuf_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -481,7 +484,7 @@ auto Pixbuf::get_byte_length() const -> gsize
   return gdk_pixbuf_get_byte_length(const_cast<GdkPixbuf*>(gobj()));
 }
 
-void Pixbuf::fill(guint32 pixel)
+auto Pixbuf::fill (guint32 pixel) -> void
 {
   gdk_pixbuf_fill(gobj(), pixel);
 }
@@ -491,27 +494,40 @@ auto Pixbuf::add_alpha(bool substitute_color, guint8 r, guint8 g, guint8 b) cons
   return Glib::wrap(gdk_pixbuf_add_alpha(const_cast<GdkPixbuf*>(gobj()), static_cast<int>(substitute_color), r, g, b));
 }
 
-void Pixbuf::copy_area(int src_x, int src_y, int width, int height, const Glib::RefPtr<Gdk::Pixbuf>& dest_pixbuf, int dest_x, int dest_y) const
+auto Pixbuf::copy_area (
+  int src_x, int src_y, int width, int height, const Glib::RefPtr <Gdk::Pixbuf> &dest_pixbuf,
+  int dest_x, int dest_y) const -> void
 {
   gdk_pixbuf_copy_area(const_cast<GdkPixbuf*>(gobj()), src_x, src_y, width, height, Glib::unwrap(dest_pixbuf), dest_x, dest_y);
 }
 
-void Pixbuf::saturate_and_pixelate(const Glib::RefPtr<Gdk::Pixbuf>& dest, float saturation, bool pixelate) const
+auto Pixbuf::saturate_and_pixelate (
+  const Glib::RefPtr <Gdk::Pixbuf> &dest, float saturation, bool pixelate) const -> void
 {
   gdk_pixbuf_saturate_and_pixelate(const_cast<GdkPixbuf*>(gobj()), Glib::unwrap(dest), saturation, static_cast<int>(pixelate));
 }
 
-void Pixbuf::scale(const Glib::RefPtr<Gdk::Pixbuf>& dest, int dest_x, int dest_y, int dest_width, int dest_height, double offset_x, double offset_y, double scale_x, double scale_y, InterpType interp_type) const
+auto Pixbuf::scale (
+  const Glib::RefPtr <Gdk::Pixbuf> &dest, int dest_x, int dest_y, int dest_width, int dest_height,
+  double offset_x, double offset_y, double scale_x, double scale_y,
+  InterpType interp_type) const -> void
 {
   gdk_pixbuf_scale(const_cast<GdkPixbuf*>(gobj()), Glib::unwrap(dest), dest_x, dest_y, dest_width, dest_height, offset_x, offset_y, scale_x, scale_y, static_cast<GdkInterpType>(interp_type));
 }
 
-void Pixbuf::composite(const Glib::RefPtr<Gdk::Pixbuf>& dest, int dest_x, int dest_y, int dest_width, int dest_height, double offset_x, double offset_y, double scale_x, double scale_y, InterpType interp_type, int overall_alpha) const
+auto Pixbuf::composite (
+  const Glib::RefPtr <Gdk::Pixbuf> &dest, int dest_x, int dest_y, int dest_width, int dest_height,
+  double offset_x, double offset_y, double scale_x, double scale_y, InterpType interp_type,
+  int overall_alpha) const -> void
 {
   gdk_pixbuf_composite(const_cast<GdkPixbuf*>(gobj()), Glib::unwrap(dest), dest_x, dest_y, dest_width, dest_height, offset_x, offset_y, scale_x, scale_y, static_cast<GdkInterpType>(interp_type), overall_alpha);
 }
 
-void Pixbuf::composite_color(const Glib::RefPtr<Gdk::Pixbuf>& dest, int dest_x, int dest_y, int dest_width, int dest_height, double offset_x, double offset_y, double scale_x, double scale_y, InterpType interp_type, int overall_alpha, int check_x, int check_y, int check_size, guint32 color1, guint32 color2) const
+auto Pixbuf::composite_color (
+  const Glib::RefPtr <Gdk::Pixbuf> &dest, int dest_x, int dest_y, int dest_width, int dest_height,
+  double offset_x, double offset_y, double scale_x, double scale_y, InterpType interp_type,
+  int overall_alpha, int check_x, int check_y, int check_size, guint32 color1,
+  guint32 color2) const -> void
 {
   gdk_pixbuf_composite_color(const_cast<GdkPixbuf*>(gobj()), Glib::unwrap(dest), dest_x, dest_y, dest_width, dest_height, offset_x, offset_y, scale_x, scale_y, static_cast<GdkInterpType>(interp_type), overall_alpha, check_x, check_y, check_size, color1, color2);
 }

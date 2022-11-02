@@ -72,7 +72,7 @@ auto StackPage_Class::init() -> const Glib::Class&
 }
 
 
-void StackPage_Class::class_init_function(void* g_class, void* class_data)
+auto StackPage_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -154,7 +154,7 @@ auto StackPage::get_visible() const -> bool
   return gtk_stack_page_get_visible(const_cast<GtkStackPage*>(gobj()));
 }
 
-void StackPage::set_visible(bool visible)
+auto StackPage::set_visible (bool visible) -> void
 {
   gtk_stack_page_set_visible(gobj(), static_cast<int>(visible));
 }
@@ -164,7 +164,7 @@ auto StackPage::get_needs_attention() const -> bool
   return gtk_stack_page_get_needs_attention(const_cast<GtkStackPage*>(gobj()));
 }
 
-void StackPage::set_needs_attention(bool setting)
+auto StackPage::set_needs_attention (bool setting) -> void
 {
   gtk_stack_page_set_needs_attention(gobj(), static_cast<int>(setting));
 }
@@ -174,7 +174,7 @@ auto StackPage::get_use_underline() const -> bool
   return gtk_stack_page_get_use_underline(const_cast<GtkStackPage*>(gobj()));
 }
 
-void StackPage::set_use_underline(bool setting)
+auto StackPage::set_use_underline (bool setting) -> void
 {
   gtk_stack_page_set_use_underline(gobj(), static_cast<int>(setting));
 }
@@ -184,7 +184,7 @@ auto StackPage::get_name() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_stack_page_get_name(const_cast<GtkStackPage*>(gobj())));
 }
 
-void StackPage::set_name(const Glib::ustring& setting)
+auto StackPage::set_name (const Glib::ustring &setting) -> void
 {
   gtk_stack_page_set_name(gobj(), setting.c_str());
 }
@@ -194,7 +194,7 @@ auto StackPage::get_title() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_stack_page_get_title(const_cast<GtkStackPage*>(gobj())));
 }
 
-void StackPage::set_title(const Glib::ustring& setting)
+auto StackPage::set_title (const Glib::ustring &setting) -> void
 {
   gtk_stack_page_set_title(gobj(), setting.c_str());
 }
@@ -204,7 +204,7 @@ auto StackPage::get_icon_name() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_stack_page_get_icon_name(const_cast<GtkStackPage*>(gobj())));
 }
 
-void StackPage::set_icon_name(const Glib::ustring& setting)
+auto StackPage::set_icon_name (const Glib::ustring &setting) -> void
 {
   gtk_stack_page_set_icon_name(gobj(), setting.c_str());
 }

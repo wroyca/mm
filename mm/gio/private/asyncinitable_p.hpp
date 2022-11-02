@@ -21,11 +21,11 @@ public:
 
   friend class AsyncInitable;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -34,11 +34,13 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static void init_async_vfunc_callback(GAsyncInitable* self,
-    int io_priority, GCancellable* cancellable, GAsyncReadyCallback callback,
-    gpointer user_data);
-  static gboolean init_finish_vfunc_callback(GAsyncInitable* self,
-    GAsyncResult* res, GError** error);
+  static auto init_async_vfunc_callback (
+    GAsyncInitable *self,
+    int io_priority, GCancellable *cancellable, GAsyncReadyCallback callback,
+    gpointer user_data) -> void;
+  static auto init_finish_vfunc_callback (
+    GAsyncInitable *self,
+    GAsyncResult *res, GError **error) -> gboolean;
   };
 
 

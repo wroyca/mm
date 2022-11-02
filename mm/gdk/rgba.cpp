@@ -50,19 +50,19 @@ RGBA::RGBA(float red_, float green_, float blue_, float alpha_)
   gobject_ = gdk_rgba_copy(&tmp);
 }
 
-void RGBA::set_grey_u(gushort value, gushort alpha)
+auto RGBA::set_grey_u (gushort value, gushort alpha) -> void
 {
   gobject_->red = gobject_->green = gobject_->blue = (value / MULTIPLIER);
   gobject_->alpha = alpha / MULTIPLIER;
 }
 
-void RGBA::set_grey(float g, float alpha)
+auto RGBA::set_grey (float g, float alpha) -> void
 {
   gobject_->red = gobject_->green = gobject_->blue = g;
   gobject_->alpha = alpha;
 }
 
-void RGBA::set_rgba_u(gushort red_, gushort green_, gushort blue_, gushort alpha_)
+auto RGBA::set_rgba_u (gushort red_, gushort green_, gushort blue_, gushort alpha_) -> void
 {
   gobject_->red = red_ / MULTIPLIER;
   gobject_->green = green_/ MULTIPLIER;
@@ -70,7 +70,7 @@ void RGBA::set_rgba_u(gushort red_, gushort green_, gushort blue_, gushort alpha
   gobject_->alpha = alpha_/ MULTIPLIER;
 }
 
-void RGBA::set_rgba(float red_, float green_, float blue_, float alpha_)
+auto RGBA::set_rgba (float red_, float green_, float blue_, float alpha_) -> void
 {
   gobject_->red = red_;
   gobject_->green = green_;
@@ -78,7 +78,7 @@ void RGBA::set_rgba(float red_, float green_, float blue_, float alpha_)
   gobject_->alpha = alpha_;
 }
 
-void RGBA::set_hsv(float h, float s, float v, float alpha)
+auto RGBA::set_hsv (float h, float s, float v, float alpha) -> void
 {
   // The HSV color space is described in a long Wikipedia article,
   // http://en.wikipedia.org/wiki/HSV_color_space
@@ -121,7 +121,7 @@ void RGBA::set_hsv(float h, float s, float v, float alpha)
   }
 }
 
-void RGBA::set_hsl(float h, float s, float l, float alpha)
+auto RGBA::set_hsl (float h, float s, float l, float alpha) -> void
 {
   // The HSL color space is described in a long Wikipedia article,
   // http://en.wikipedia.org/wiki/HSV_color_space
@@ -200,42 +200,42 @@ auto RGBA::get_alpha_u() const -> gushort
   return gobject_->alpha *  MULTIPLIER;
 }
 
-void RGBA::set_red_u(gushort value)
+auto RGBA::set_red_u (gushort value) -> void
 {
   gobject_->red = value / MULTIPLIER;
 }
 
-void RGBA::set_green_u(gushort value)
+auto RGBA::set_green_u (gushort value) -> void
 {
   gobject_->green = value / MULTIPLIER;
 }
 
-void RGBA::set_blue_u(gushort value)
+auto RGBA::set_blue_u (gushort value) -> void
 {
   gobject_->blue = value / MULTIPLIER;
 }
 
-void RGBA::set_alpha_u(gushort value)
+auto RGBA::set_alpha_u (gushort value) -> void
 {
   gobject_->alpha = value / MULTIPLIER;
 }
 
-void RGBA::set_red(float value)
+auto RGBA::set_red (float value) -> void
 {
   gobject_->red = value;
 }
 
-void RGBA::set_green(float value)
+auto RGBA::set_green (float value) -> void
 {
   gobject_->green = value;
 }
 
-void RGBA::set_blue(float value)
+auto RGBA::set_blue (float value) -> void
 {
   gobject_->blue = value;
 }
 
-void RGBA::set_alpha(float value)
+auto RGBA::set_alpha (float value) -> void
 {
   gobject_->alpha = value;
 }
@@ -329,7 +329,7 @@ RGBA::~RGBA() noexcept
     gdk_rgba_free(gobject_);
 }
 
-void RGBA::swap(RGBA& other) noexcept
+auto RGBA::swap (RGBA &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }

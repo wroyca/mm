@@ -21,32 +21,41 @@ public:
 
   friend class ActionGroup;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
   //Callbacks (default signal handlers):
   //These will call the *_impl member methods, which will then call the existing default signal callbacks, if any.
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
-  static void action_added_callback(GActionGroup* self, const gchar* p0);
-  static void action_enabled_changed_callback(GActionGroup* self, const gchar* p0, gboolean p1);
-  static void action_removed_callback(GActionGroup* self, const gchar* p0);
-  static void action_state_changed_callback(GActionGroup* self, const gchar* p0, GVariant* p1);
+  static auto action_added_callback (GActionGroup *self, const gchar *p0) -> void;
+  static auto action_enabled_changed_callback (
+    GActionGroup *self, const gchar *p0, gboolean p1) -> void;
+  static auto action_removed_callback (GActionGroup *self, const gchar *p0) -> void;
+  static auto action_state_changed_callback (
+    GActionGroup *self, const gchar *p0, GVariant *p1) -> void;
 
   //Callbacks (virtual functions):
-  static gboolean has_action_vfunc_callback(GActionGroup* self, const gchar* action_name);
-  static gchar** list_actions_vfunc_callback(GActionGroup* self);
-  static gboolean get_action_enabled_vfunc_callback(GActionGroup* self, const gchar* action_name);
-  static const GVariantType* get_action_parameter_type_vfunc_callback(GActionGroup* self, const gchar* action_name);
-  static const GVariantType* get_action_state_type_vfunc_callback(GActionGroup* self, const gchar* action_name);
-  static GVariant* get_action_state_hint_vfunc_callback(GActionGroup* self, const gchar* action_name);
-  static GVariant* get_action_state_vfunc_callback(GActionGroup* self, const gchar* action_name);
-  static void change_action_state_vfunc_callback(GActionGroup* self, const gchar* action_name, GVariant* value);
-  static void activate_action_vfunc_callback(GActionGroup* self, const gchar* action_name, GVariant* parameter);
+  static auto has_action_vfunc_callback (GActionGroup *self, const gchar *action_name) -> gboolean;
+  static auto list_actions_vfunc_callback (GActionGroup *self) -> gchar**;
+  static auto get_action_enabled_vfunc_callback (
+    GActionGroup *self, const gchar *action_name) -> gboolean;
+  static auto get_action_parameter_type_vfunc_callback (
+    GActionGroup *self, const gchar *action_name) -> const GVariantType*;
+  static auto get_action_state_type_vfunc_callback (
+    GActionGroup *self, const gchar *action_name) -> const GVariantType*;
+  static auto get_action_state_hint_vfunc_callback (
+    GActionGroup *self, const gchar *action_name) -> GVariant*;
+  static auto get_action_state_vfunc_callback (
+    GActionGroup *self, const gchar *action_name) -> GVariant*;
+  static auto change_action_state_vfunc_callback (
+    GActionGroup *self, const gchar *action_name, GVariant *value) -> void;
+  static auto activate_action_vfunc_callback (
+    GActionGroup *self, const gchar *action_name, GVariant *parameter) -> void;
 };
 
 

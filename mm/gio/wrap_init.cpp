@@ -282,7 +282,7 @@ class ZlibDecompressor_Class { public: static auto wrap_new(GObject*) -> Glib::O
 
 namespace DBus {
 
-void wrap_init()
+auto wrap_init () -> void
 {
   Glib::Error::register_domain(g_dbus_error_quark(), &DBus::Error::throw_func);
 
@@ -290,7 +290,7 @@ void wrap_init()
 
 } // DBus
 
-void wrap_init()
+auto wrap_init () -> void
 {
   // Register Error domains in the main namespace:
   Glib::Error::register_domain(g_io_error_quark(), &Error::throw_func);

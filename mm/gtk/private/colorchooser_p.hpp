@@ -20,18 +20,18 @@ public:
 
   friend class ColorChooser;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
   //Callbacks (default signal handlers):
   //These will call the *_impl member methods, which will then call the existing default signal callbacks, if any.
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
-  static void color_activated_callback(GtkColorChooser* self, const GdkRGBA* p0);
+  static auto color_activated_callback (GtkColorChooser *self, const GdkRGBA *p0) -> void;
 
   //Callbacks (virtual functions):
 };

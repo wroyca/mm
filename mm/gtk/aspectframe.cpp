@@ -30,7 +30,7 @@
 namespace Gtk
 {
 
-void AspectFrame::unset_child()
+auto AspectFrame::unset_child () -> void
 {
   gtk_aspect_frame_set_child(gobj(), nullptr);
 }
@@ -80,7 +80,7 @@ auto AspectFrame_Class::init() -> const Glib::Class&
 }
 
 
-void AspectFrame_Class::class_init_function(void* g_class, void* class_data)
+auto AspectFrame_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -160,12 +160,12 @@ AspectFrame::AspectFrame(float xalign, float yalign, float ratio, bool obey_chil
 
 }
 
-void AspectFrame::set_xalign(Align xalign)
+auto AspectFrame::set_xalign (Align xalign) -> void
 {
   gtk_aspect_frame_set_xalign(gobj(), _gtkmm_align_float_from_enum(xalign));
 }
 
-void AspectFrame::set_xalign(float xalign)
+auto AspectFrame::set_xalign (float xalign) -> void
 {
   gtk_aspect_frame_set_xalign(gobj(), xalign);
 }
@@ -175,12 +175,12 @@ auto AspectFrame::get_xalign() const -> float
   return gtk_aspect_frame_get_xalign(const_cast<GtkAspectFrame*>(gobj()));
 }
 
-void AspectFrame::set_yalign(Align yalign)
+auto AspectFrame::set_yalign (Align yalign) -> void
 {
   gtk_aspect_frame_set_yalign(gobj(), _gtkmm_align_float_from_enum(yalign));
 }
 
-void AspectFrame::set_yalign(float yalign)
+auto AspectFrame::set_yalign (float yalign) -> void
 {
   gtk_aspect_frame_set_yalign(gobj(), yalign);
 }
@@ -190,7 +190,7 @@ auto AspectFrame::get_yalign() const -> float
   return gtk_aspect_frame_get_yalign(const_cast<GtkAspectFrame*>(gobj()));
 }
 
-void AspectFrame::set_ratio(float ratio)
+auto AspectFrame::set_ratio (float ratio) -> void
 {
   gtk_aspect_frame_set_ratio(gobj(), ratio);
 }
@@ -200,7 +200,7 @@ auto AspectFrame::get_ratio() const -> float
   return gtk_aspect_frame_get_ratio(const_cast<GtkAspectFrame*>(gobj()));
 }
 
-void AspectFrame::set_obey_child(bool obey_child)
+auto AspectFrame::set_obey_child (bool obey_child) -> void
 {
   gtk_aspect_frame_set_obey_child(gobj(), static_cast<int>(obey_child));
 }
@@ -210,7 +210,7 @@ auto AspectFrame::get_obey_child() const -> bool
   return gtk_aspect_frame_get_obey_child(const_cast<GtkAspectFrame*>(gobj()));
 }
 
-void AspectFrame::set_child(Widget& child)
+auto AspectFrame::set_child (Widget &child) -> void
 {
   gtk_aspect_frame_set_child(gobj(), (child).gobj());
 }

@@ -28,7 +28,7 @@
 
 namespace Gtk
 {
-void DropTarget::set_gtypes(const std::vector<GType>& types)
+auto DropTarget::set_gtypes (const std::vector <GType> &types) -> void
 {
   gtk_drop_target_set_gtypes(gobj(), const_cast<GType*>(types.data()), types.size());
 }
@@ -347,7 +347,7 @@ auto DropTarget_Class::init() -> const Glib::Class&
 }
 
 
-void DropTarget_Class::class_init_function(void* g_class, void* class_data)
+auto DropTarget_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -430,7 +430,7 @@ auto DropTarget::get_formats() const -> Glib::RefPtr<const Gdk::ContentFormats>
   return const_cast<DropTarget*>(this)->get_formats();
 }
 
-void DropTarget::set_actions(Gdk::DragAction actions)
+auto DropTarget::set_actions (Gdk::DragAction actions) -> void
 {
   gtk_drop_target_set_actions(gobj(), static_cast<GdkDragAction>(actions));
 }
@@ -440,7 +440,7 @@ auto DropTarget::get_actions() const -> Gdk::DragAction
   return static_cast<Gdk::DragAction>(gtk_drop_target_get_actions(const_cast<GtkDropTarget*>(gobj())));
 }
 
-void DropTarget::set_preload(bool preload)
+auto DropTarget::set_preload (bool preload) -> void
 {
   gtk_drop_target_set_preload(gobj(), static_cast<int>(preload));
 }
@@ -484,7 +484,7 @@ auto DropTarget::get_current_drop() const -> Glib::RefPtr<const Gdk::Drop>
   return const_cast<DropTarget*>(this)->get_current_drop();
 }
 
-void DropTarget::reject()
+auto DropTarget::reject () -> void
 {
   gtk_drop_target_reject(gobj());
 }

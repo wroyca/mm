@@ -20,11 +20,11 @@ public:
 
   friend class Scrollable;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -33,7 +33,7 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static gboolean get_border_vfunc_callback(GtkScrollable* self, GtkBorder* border);
+  static auto get_border_vfunc_callback (GtkScrollable *self, GtkBorder *border) -> gboolean;
 };
 
 

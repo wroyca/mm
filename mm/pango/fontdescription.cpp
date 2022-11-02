@@ -150,7 +150,7 @@ FontDescription::~FontDescription() noexcept
     pango_font_description_free(gobject_);
 }
 
-void FontDescription::swap(FontDescription& other) noexcept
+auto FontDescription::swap (FontDescription &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }
@@ -166,7 +166,7 @@ auto FontDescription::hash() const -> guint
   return pango_font_description_hash(const_cast<PangoFontDescription*>(gobj()));
 }
 
-void FontDescription::set_family(const Glib::ustring& family)
+auto FontDescription::set_family (const Glib::ustring &family) -> void
 {
   pango_font_description_set_family(gobj(), family.c_str());
 }
@@ -176,7 +176,7 @@ auto FontDescription::get_family() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(pango_font_description_get_family(const_cast<PangoFontDescription*>(gobj())));
 }
 
-void FontDescription::set_style(Style style)
+auto FontDescription::set_style (Style style) -> void
 {
   pango_font_description_set_style(gobj(), static_cast<PangoStyle>(style));
 }
@@ -186,7 +186,7 @@ auto FontDescription::get_style() const -> Style
   return static_cast<Style>(pango_font_description_get_style(const_cast<PangoFontDescription*>(gobj())));
 }
 
-void FontDescription::set_variant(Variant variant)
+auto FontDescription::set_variant (Variant variant) -> void
 {
   pango_font_description_set_variant(gobj(), static_cast<PangoVariant>(variant));
 }
@@ -196,7 +196,7 @@ auto FontDescription::get_variant() const -> Variant
   return static_cast<Variant>(pango_font_description_get_variant(const_cast<PangoFontDescription*>(gobj())));
 }
 
-void FontDescription::set_weight(Weight weight)
+auto FontDescription::set_weight (Weight weight) -> void
 {
   pango_font_description_set_weight(gobj(), static_cast<PangoWeight>(weight));
 }
@@ -206,7 +206,7 @@ auto FontDescription::get_weight() const -> Weight
   return static_cast<Weight>(pango_font_description_get_weight(const_cast<PangoFontDescription*>(gobj())));
 }
 
-void FontDescription::set_stretch(Stretch stretch)
+auto FontDescription::set_stretch (Stretch stretch) -> void
 {
   pango_font_description_set_stretch(gobj(), static_cast<PangoStretch>(stretch));
 }
@@ -216,7 +216,7 @@ auto FontDescription::get_stretch() const -> Stretch
   return static_cast<Stretch>(pango_font_description_get_stretch(const_cast<PangoFontDescription*>(gobj())));
 }
 
-void FontDescription::set_size(int size)
+auto FontDescription::set_size (int size) -> void
 {
   pango_font_description_set_size(gobj(), size);
 }
@@ -226,7 +226,7 @@ auto FontDescription::get_size() const -> int
   return pango_font_description_get_size(const_cast<PangoFontDescription*>(gobj()));
 }
 
-void FontDescription::set_absolute_size(double size)
+auto FontDescription::set_absolute_size (double size) -> void
 {
   pango_font_description_set_absolute_size(gobj(), size);
 }
@@ -236,7 +236,7 @@ auto FontDescription::get_size_is_absolute() const -> bool
   return pango_font_description_get_size_is_absolute(const_cast<PangoFontDescription*>(gobj()));
 }
 
-void FontDescription::set_gravity(Gravity gravity)
+auto FontDescription::set_gravity (Gravity gravity) -> void
 {
   pango_font_description_set_gravity(gobj(), static_cast<PangoGravity>(gravity));
 }
@@ -246,7 +246,7 @@ auto FontDescription::get_gravity() const -> Gravity
   return static_cast<Gravity>(pango_font_description_get_gravity(const_cast<PangoFontDescription*>(gobj())));
 }
 
-void FontDescription::set_variations(const Glib::ustring& settings)
+auto FontDescription::set_variations (const Glib::ustring &settings) -> void
 {
   pango_font_description_set_variations(gobj(), settings.c_str());
 }
@@ -261,12 +261,12 @@ auto FontDescription::get_set_fields() const -> FontMask
   return static_cast<FontMask>(pango_font_description_get_set_fields(const_cast<PangoFontDescription*>(gobj())));
 }
 
-void FontDescription::unset_fields(FontMask to_unset)
+auto FontDescription::unset_fields (FontMask to_unset) -> void
 {
   pango_font_description_unset_fields(gobj(), static_cast<PangoFontMask>(to_unset));
 }
 
-void FontDescription::merge(const FontDescription& desc_to_merge, bool replace_existing)
+auto FontDescription::merge (const FontDescription &desc_to_merge, bool replace_existing) -> void
 {
   pango_font_description_merge(gobj(), (desc_to_merge).gobj(), static_cast<int>(replace_existing));
 }

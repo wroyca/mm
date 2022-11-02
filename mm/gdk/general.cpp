@@ -23,23 +23,29 @@
 namespace Gdk::Cairo
 {
 
-void set_source_rgba(const ::Cairo::RefPtr< ::Cairo::Context >& context, const Gdk::RGBA& color)
+auto set_source_rgba (
+  const ::Cairo::RefPtr <::Cairo::Context> &context, const Gdk::RGBA &color) -> void
 {
   gdk_cairo_set_source_rgba(context->cobj(), const_cast<GdkRGBA*>(color.gobj()));
 }
 
-void set_source_pixbuf(const ::Cairo::RefPtr< ::Cairo::Context >& context, const Glib::RefPtr<const Gdk::Pixbuf>& pixbuf, double pixbuf_x, double pixbuf_y)
+auto set_source_pixbuf (
+  const ::Cairo::RefPtr <::Cairo::Context> &context, const Glib::RefPtr <const Gdk::Pixbuf> &pixbuf,
+  double pixbuf_x, double pixbuf_y) -> void
 {
   gdk_cairo_set_source_pixbuf(context->cobj(), pixbuf->gobj(), pixbuf_x, pixbuf_y);
 }
 
 
-void add_rectangle_to_path(const ::Cairo::RefPtr< ::Cairo::Context >& context, const Gdk::Rectangle& rectangle)
+auto add_rectangle_to_path (
+  const ::Cairo::RefPtr <::Cairo::Context> &context, const Gdk::Rectangle &rectangle) -> void
 {
   gdk_cairo_rectangle(context->cobj(), const_cast<GdkRectangle*>(rectangle.gobj()));
 }
 
-void add_region_to_path(const ::Cairo::RefPtr< ::Cairo::Context >& context, const ::Cairo::RefPtr< ::Cairo::Region>& region)
+auto add_region_to_path (
+  const ::Cairo::RefPtr <::Cairo::Context> &context,
+  const ::Cairo::RefPtr <::Cairo::Region> &region) -> void
 {
   gdk_cairo_region(context->cobj(), (region ? region->cobj() : nullptr));
 }
@@ -51,9 +57,10 @@ auto create_region_from_surface(const ::Cairo::RefPtr< ::Cairo::Surface>& surfac
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-void draw_from_gl(const ::Cairo::RefPtr< ::Cairo::Context >& context,
-  const Glib::RefPtr<Gdk::Surface>& surface, int source, int source_type,
-  int buffer_scale, int x, int y, int width, int height)
+auto draw_from_gl (
+  const ::Cairo::RefPtr <::Cairo::Context> &context,
+  const Glib::RefPtr <Gdk::Surface> &surface, int source, int source_type,
+  int buffer_scale, int x, int y, int width, int height) -> void
 {
   gdk_cairo_draw_from_gl(context->cobj(), surface->gobj(), source, source_type,
     buffer_scale, x, y, width, height);

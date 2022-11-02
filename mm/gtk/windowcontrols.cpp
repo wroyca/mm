@@ -32,7 +32,7 @@ namespace Gtk
 // gtk_window_controls_set_decoration_layout(gobj(), "").
 // nullptr means: Use Gtk::Settings::property_gtk_decoration_layout().
 // An empty string means: No decorations.
-void WindowControls::unset_decoration_layout()
+auto WindowControls::unset_decoration_layout () -> void
 {
   gtk_window_controls_set_decoration_layout(gobj(), nullptr);
 }
@@ -76,7 +76,7 @@ auto WindowControls_Class::init() -> const Glib::Class&
 }
 
 
-void WindowControls_Class::class_init_function(void* g_class, void* class_data)
+auto WindowControls_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -146,7 +146,7 @@ WindowControls::WindowControls(PackType side)
 
 }
 
-void WindowControls::set_side(PackType side)
+auto WindowControls::set_side (PackType side) -> void
 {
   gtk_window_controls_set_side(gobj(), static_cast<GtkPackType>(side));
 }
@@ -156,7 +156,7 @@ auto WindowControls::get_side() const -> PackType
   return static_cast<PackType>(gtk_window_controls_get_side(const_cast<GtkWindowControls*>(gobj())));
 }
 
-void WindowControls::set_decoration_layout(const Glib::ustring& layout)
+auto WindowControls::set_decoration_layout (const Glib::ustring &layout) -> void
 {
   gtk_window_controls_set_decoration_layout(gobj(), layout.c_str());
 }

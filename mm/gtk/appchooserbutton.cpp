@@ -44,7 +44,8 @@ const Glib::SignalProxyInfo AppChooserButton_signal_changed_info =
 };
 
 
-void AppChooserButton_signal_custom_item_activated_callback(GtkAppChooserButton* self, const gchar* p0,void* data)
+auto AppChooserButton_signal_custom_item_activated_callback (
+  GtkAppChooserButton *self, const gchar *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -116,7 +117,7 @@ auto AppChooserButton_Class::init() -> const Glib::Class&
 }
 
 
-void AppChooserButton_Class::class_init_function(void* g_class, void* class_data)
+auto AppChooserButton_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -188,22 +189,24 @@ AppChooserButton::AppChooserButton(const Glib::ustring& content_type)
 
 }
 
-void AppChooserButton::append_separator()
+auto AppChooserButton::append_separator () -> void
 {
   gtk_app_chooser_button_append_separator(gobj());
 }
 
-void AppChooserButton::append_custom_item(const Glib::ustring& name, const Glib::ustring& label, const Glib::RefPtr<Gio::Icon>& icon)
+auto AppChooserButton::append_custom_item (
+  const Glib::ustring &name, const Glib::ustring &label,
+  const Glib::RefPtr <Gio::Icon> &icon) -> void
 {
   gtk_app_chooser_button_append_custom_item(gobj(), name.c_str(), label.c_str(), const_cast<GIcon*>(Glib::unwrap<Gio::Icon>(icon)));
 }
 
-void AppChooserButton::set_active_custom_item(const Glib::ustring& name)
+auto AppChooserButton::set_active_custom_item (const Glib::ustring &name) -> void
 {
   gtk_app_chooser_button_set_active_custom_item(gobj(), name.c_str());
 }
 
-void AppChooserButton::set_show_dialog_item(bool setting)
+auto AppChooserButton::set_show_dialog_item (bool setting) -> void
 {
   gtk_app_chooser_button_set_show_dialog_item(gobj(), static_cast<int>(setting));
 }
@@ -213,7 +216,7 @@ auto AppChooserButton::get_show_dialog_item() const -> bool
   return gtk_app_chooser_button_get_show_dialog_item(const_cast<GtkAppChooserButton*>(gobj()));
 }
 
-void AppChooserButton::set_heading(const Glib::ustring& heading)
+auto AppChooserButton::set_heading (const Glib::ustring &heading) -> void
 {
   gtk_app_chooser_button_set_heading(gobj(), heading.c_str());
 }
@@ -223,7 +226,7 @@ auto AppChooserButton::get_heading() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_app_chooser_button_get_heading(const_cast<GtkAppChooserButton*>(gobj())));
 }
 
-void AppChooserButton::set_show_default_item(bool setting)
+auto AppChooserButton::set_show_default_item (bool setting) -> void
 {
   gtk_app_chooser_button_set_show_default_item(gobj(), static_cast<int>(setting));
 }
@@ -233,7 +236,7 @@ auto AppChooserButton::get_show_default_item() const -> bool
   return gtk_app_chooser_button_get_show_default_item(const_cast<GtkAppChooserButton*>(gobj()));
 }
 
-void AppChooserButton::set_modal(bool modal)
+auto AppChooserButton::set_modal (bool modal) -> void
 {
   gtk_app_chooser_button_set_modal(gobj(), static_cast<int>(modal));
 }

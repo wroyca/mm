@@ -69,7 +69,7 @@ auto Text_Class::init() -> const Glib::Class&
 }
 
 
-void Text_Class::class_init_function(void* g_class, void* class_data)
+auto Text_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -164,12 +164,12 @@ auto Text::get_buffer() const -> Glib::RefPtr<const EntryBuffer>
   return const_cast<Text*>(this)->get_buffer();
 }
 
-void Text::set_buffer(const Glib::RefPtr<EntryBuffer>& buffer)
+auto Text::set_buffer (const Glib::RefPtr <EntryBuffer> &buffer) -> void
 {
   gtk_text_set_buffer(gobj(), Glib::unwrap(buffer));
 }
 
-void Text::set_visibility(bool visible)
+auto Text::set_visibility (bool visible) -> void
 {
   gtk_text_set_visibility(gobj(), static_cast<int>(visible));
 }
@@ -179,12 +179,12 @@ auto Text::get_visibility() const -> bool
   return gtk_text_get_visibility(const_cast<GtkText*>(gobj()));
 }
 
-void Text::set_invisible_char(gunichar ch)
+auto Text::set_invisible_char (gunichar ch) -> void
 {
   gtk_text_set_invisible_char(gobj(), ch);
 }
 
-void Text::unset_invisible_char()
+auto Text::unset_invisible_char () -> void
 {
   gtk_text_unset_invisible_char(gobj());
 }
@@ -194,7 +194,7 @@ auto Text::get_invisible_char() const -> gunichar
   return gtk_text_get_invisible_char(const_cast<GtkText*>(gobj()));
 }
 
-void Text::set_overwrite_mode(bool overwrite)
+auto Text::set_overwrite_mode (bool overwrite) -> void
 {
   gtk_text_set_overwrite_mode(gobj(), static_cast<int>(overwrite));
 }
@@ -204,7 +204,7 @@ auto Text::get_overwrite_mode() const -> bool
   return gtk_text_get_overwrite_mode(const_cast<GtkText*>(gobj()));
 }
 
-void Text::set_max_length(int max)
+auto Text::set_max_length (int max) -> void
 {
   gtk_text_set_max_length(gobj(), max);
 }
@@ -219,7 +219,7 @@ auto Text::get_text_length() const -> guint16
   return gtk_text_get_text_length(const_cast<GtkText*>(gobj()));
 }
 
-void Text::set_activates_default(bool setting)
+auto Text::set_activates_default (bool setting) -> void
 {
   gtk_text_set_activates_default(gobj(), static_cast<int>(setting));
 }
@@ -234,12 +234,12 @@ auto Text::get_placeholder_text() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_text_get_placeholder_text(const_cast<GtkText*>(gobj())));
 }
 
-void Text::set_placeholder_text(const Glib::ustring& text)
+auto Text::set_placeholder_text (const Glib::ustring &text) -> void
 {
   gtk_text_set_placeholder_text(gobj(), text.c_str());
 }
 
-void Text::set_input_purpose(InputPurpose purpose)
+auto Text::set_input_purpose (InputPurpose purpose) -> void
 {
   gtk_text_set_input_purpose(gobj(), static_cast<GtkInputPurpose>(purpose));
 }
@@ -249,7 +249,7 @@ auto Text::get_input_purpose() const -> InputPurpose
   return static_cast<InputPurpose>(gtk_text_get_input_purpose(const_cast<GtkText*>(gobj())));
 }
 
-void Text::set_input_hints(InputHints hints)
+auto Text::set_input_hints (InputHints hints) -> void
 {
   gtk_text_set_input_hints(gobj(), static_cast<GtkInputHints>(hints));
 }
@@ -259,7 +259,7 @@ auto Text::get_input_hints() const -> InputHints
   return static_cast<InputHints>(gtk_text_get_input_hints(const_cast<GtkText*>(gobj())));
 }
 
-void Text::set_attributes(Pango::AttrList& attrs)
+auto Text::set_attributes (Pango::AttrList &attrs) -> void
 {
   gtk_text_set_attributes(gobj(), (attrs).gobj());
 }
@@ -269,7 +269,7 @@ auto Text::get_attributes() const -> Pango::AttrList
   return Pango::AttrList((gtk_text_get_attributes(const_cast<GtkText*>(gobj()))));
 }
 
-void Text::set_tabs(const Pango::TabArray& tabs)
+auto Text::set_tabs (const Pango::TabArray &tabs) -> void
 {
   gtk_text_set_tabs(gobj(), const_cast<Pango::TabArray&>(tabs).gobj());
 }
@@ -284,7 +284,7 @@ auto Text::grab_focus_without_selecting() -> bool
   return gtk_text_grab_focus_without_selecting(gobj());
 }
 
-void Text::set_extra_menu(const Glib::RefPtr<Gio::MenuModel>& model)
+auto Text::set_extra_menu (const Glib::RefPtr <Gio::MenuModel> &model) -> void
 {
   gtk_text_set_extra_menu(gobj(), Glib::unwrap(model));
 }
@@ -302,7 +302,7 @@ auto Text::get_extra_menu() const -> Glib::RefPtr<const Gio::MenuModel>
   return const_cast<Text*>(this)->get_extra_menu();
 }
 
-void Text::set_enable_emoji_completion(bool enable_emoji_completion)
+auto Text::set_enable_emoji_completion (bool enable_emoji_completion) -> void
 {
   gtk_text_set_enable_emoji_completion(gobj(), static_cast<int>(enable_emoji_completion));
 }
@@ -312,7 +312,7 @@ auto Text::get_enable_emoji_completion() const -> bool
   return gtk_text_get_enable_emoji_completion(const_cast<GtkText*>(gobj()));
 }
 
-void Text::set_propagate_text_width(bool propagate_text_width)
+auto Text::set_propagate_text_width (bool propagate_text_width) -> void
 {
   gtk_text_set_propagate_text_width(gobj(), static_cast<int>(propagate_text_width));
 }
@@ -322,7 +322,7 @@ auto Text::get_propagate_text_width() const -> bool
   return gtk_text_get_propagate_text_width(const_cast<GtkText*>(gobj()));
 }
 
-void Text::set_truncate_multiline(bool truncate_multiline)
+auto Text::set_truncate_multiline (bool truncate_multiline) -> void
 {
   gtk_text_set_truncate_multiline(gobj(), static_cast<int>(truncate_multiline));
 }

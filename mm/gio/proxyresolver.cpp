@@ -45,9 +45,9 @@ ProxyResolver::lookup(const Glib::ustring& uri) -> std::vector<Glib::ustring>
   return retvalue;
 }
 
-void
-ProxyResolver::lookup_async(const Glib::ustring& uri, const SlotAsyncReady& slot,
-  const Glib::RefPtr<Cancellable>& cancellable)
+auto ProxyResolver::lookup_async (
+  const Glib::ustring &uri, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -58,8 +58,7 @@ ProxyResolver::lookup_async(const Glib::ustring& uri, const SlotAsyncReady& slot
     gobj(), uri.c_str(), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-ProxyResolver::lookup_async(const Glib::ustring& uri, const SlotAsyncReady& slot)
+auto ProxyResolver::lookup_async (const Glib::ustring &uri, const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -110,7 +109,7 @@ auto ProxyResolver_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void ProxyResolver_Class::iface_init_function(void* g_iface, void*)
+auto ProxyResolver_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -159,7 +158,7 @@ ProxyResolver::~ProxyResolver() noexcept
 {}
 
 // static
-void ProxyResolver::add_interface(GType gtype_implementer)
+auto ProxyResolver::add_interface (GType gtype_implementer) -> void
 {
   proxyresolver_class_.init().add_interface(gtype_implementer);
 }

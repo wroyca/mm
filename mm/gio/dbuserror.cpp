@@ -50,7 +50,7 @@ auto Gio::DBus::Error::code() const -> Gio::DBus::Error::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Gio::DBus::Error::throw_func(GError* gobject)
+auto Gio::DBus::Error::throw_func (GError *gobject) -> void
 {
   throw Gio::DBus::Error(gobject);
 }

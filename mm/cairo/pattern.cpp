@@ -43,23 +43,23 @@ Pattern::~Pattern()
     cairo_pattern_destroy(m_cobject);
 }
 
-void Pattern::reference() const
+auto Pattern::reference () const -> void
 {
  cairo_pattern_reference(m_cobject);
 }
 
-void Pattern::unreference() const
+auto Pattern::unreference () const -> void
 {
   cairo_pattern_destroy(m_cobject);
 }
 
-void Pattern::set_matrix(const Matrix& matrix)
+auto Pattern::set_matrix (const Matrix &matrix) -> void
 {
   cairo_pattern_set_matrix(m_cobject, (cairo_matrix_t*)&matrix);
   check_object_status_and_throw_exception(*this);
 }
 
-void Pattern::get_matrix(Matrix& matrix) const
+auto Pattern::get_matrix (Matrix &matrix) const -> void
 {
   cairo_pattern_get_matrix(m_cobject, (cairo_matrix_t*)&matrix);
   check_object_status_and_throw_exception(*this);
@@ -80,7 +80,7 @@ auto Pattern::get_type() const -> Pattern::Type
   return static_cast<Type>(pattern_type);
 }
 
-void Pattern::set_extend(Extend extend)
+auto Pattern::set_extend (Extend extend) -> void
 {
   cairo_pattern_set_extend(m_cobject, (cairo_extend_t)extend);
   check_object_status_and_throw_exception(*this);
@@ -97,9 +97,9 @@ SolidPattern::SolidPattern(cairo_pattern_t* cobject, bool has_reference)
 : Pattern(cobject, has_reference)
 {
 }
-void
-SolidPattern::get_rgba(double& red, double& green,
-                        double& blue, double& alpha) const
+auto SolidPattern::get_rgba (
+  double &red, double &green,
+  double &blue, double &alpha) const -> void
 {
   // ignore the return value since we know that this is a solid color pattern
   cairo_pattern_get_rgba(m_cobject, &red, &green, &blue, &alpha);
@@ -161,7 +161,7 @@ SurfacePattern::~SurfacePattern()
 {
 }
 
-void SurfacePattern::set_filter(Filter filter)
+auto SurfacePattern::set_filter (Filter filter) -> void
 {
   cairo_pattern_set_filter(m_cobject, (cairo_filter_t)filter);
   check_object_status_and_throw_exception(*this);
@@ -189,13 +189,14 @@ Gradient::~Gradient()
 {
 }
 
-void Gradient::add_color_stop_rgb(double offset, double red, double green, double blue)
+auto Gradient::add_color_stop_rgb (double offset, double red, double green, double blue) -> void
 {
   cairo_pattern_add_color_stop_rgb(m_cobject, offset, red, green, blue);
   check_object_status_and_throw_exception(*this);
 }
 
-void Gradient::add_color_stop_rgba(double offset, double red, double green, double blue, double alpha)
+auto Gradient::add_color_stop_rgba (
+  double offset, double red, double green, double blue, double alpha) -> void
 {
   cairo_pattern_add_color_stop_rgba(m_cobject, offset, red, green, blue, alpha);
   check_object_status_and_throw_exception(*this);
@@ -229,9 +230,9 @@ LinearGradient::LinearGradient(double x0, double y0, double x1, double y1)
   check_object_status_and_throw_exception(*this);
 }
 
-void
-LinearGradient::get_linear_points(double &x0, double &y0,
-                                   double &x1, double &y1) const
+auto LinearGradient::get_linear_points (
+  double &x0, double &y0,
+  double &x1, double &y1) const -> void
 {
   // ignore the return value since we know that this is a linear gradient
   // pattern
@@ -261,9 +262,9 @@ RadialGradient::RadialGradient(double cx0, double cy0, double radius0, double cx
   check_object_status_and_throw_exception(*this);
 }
 
-void
-RadialGradient::get_radial_circles(double& x0, double& y0, double& r0,
-                                    double& x1, double& y1, double& r1) const
+auto RadialGradient::get_radial_circles (
+  double &x0, double &y0, double &r0,
+  double &x1, double &y1, double &r1) const -> void
 {
   // ignore the return value since we know that this is a radial gradient
   // pattern

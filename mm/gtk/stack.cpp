@@ -95,7 +95,7 @@ auto Stack_Class::init() -> const Glib::Class&
 }
 
 
-void Stack_Class::class_init_function(void* g_class, void* class_data)
+auto Stack_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -189,7 +189,7 @@ auto Stack::add(Widget& child, const Glib::ustring& name, const Glib::ustring& t
   return retvalue;
 }
 
-void Stack::remove(Widget& child)
+auto Stack::remove (Widget &child) -> void
 {
   gtk_stack_remove(gobj(), (child).gobj());
 }
@@ -210,7 +210,7 @@ auto Stack::get_page(const Widget& child) const -> Glib::RefPtr<const StackPage>
   return retvalue;
 }
 
-void Stack::set_visible_child(Widget& child)
+auto Stack::set_visible_child (Widget &child) -> void
 {
   gtk_stack_set_visible_child(gobj(), (child).gobj());
 }
@@ -225,12 +225,12 @@ auto Stack::get_visible_child() const -> const Widget*
   return const_cast<Stack*>(this)->get_visible_child();
 }
 
-void Stack::set_visible_child(const Glib::ustring& name)
+auto Stack::set_visible_child (const Glib::ustring &name) -> void
 {
   gtk_stack_set_visible_child_name(gobj(), name.c_str());
 }
 
-void Stack::set_visible_child(const Glib::ustring& name, StackTransitionType transition)
+auto Stack::set_visible_child (const Glib::ustring &name, StackTransitionType transition) -> void
 {
   gtk_stack_set_visible_child_full(gobj(), name.c_str(), static_cast<GtkStackTransitionType>(transition));
 }
@@ -240,7 +240,7 @@ auto Stack::get_visible_child_name() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_stack_get_visible_child_name(const_cast<GtkStack*>(gobj())));
 }
 
-void Stack::set_hhomogeneous(bool hhomogeneous)
+auto Stack::set_hhomogeneous (bool hhomogeneous) -> void
 {
   gtk_stack_set_hhomogeneous(gobj(), static_cast<int>(hhomogeneous));
 }
@@ -250,7 +250,7 @@ auto Stack::get_hhomogeneous() const -> bool
   return gtk_stack_get_hhomogeneous(const_cast<GtkStack*>(gobj()));
 }
 
-void Stack::set_vhomogeneous(bool vhomogeneous)
+auto Stack::set_vhomogeneous (bool vhomogeneous) -> void
 {
   gtk_stack_set_vhomogeneous(gobj(), static_cast<int>(vhomogeneous));
 }
@@ -260,7 +260,7 @@ auto Stack::get_vhomogeneous() const -> bool
   return gtk_stack_get_vhomogeneous(const_cast<GtkStack*>(gobj()));
 }
 
-void Stack::set_transition_duration(guint duration)
+auto Stack::set_transition_duration (guint duration) -> void
 {
   gtk_stack_set_transition_duration(gobj(), duration);
 }
@@ -270,7 +270,7 @@ auto Stack::get_transition_duration() const -> guint
   return gtk_stack_get_transition_duration(const_cast<GtkStack*>(gobj()));
 }
 
-void Stack::set_transition_type(StackTransitionType transition)
+auto Stack::set_transition_type (StackTransitionType transition) -> void
 {
   gtk_stack_set_transition_type(gobj(), static_cast<GtkStackTransitionType>(transition));
 }
@@ -295,7 +295,7 @@ auto Stack::get_child_by_name(const Glib::ustring& name) const -> const Widget*
   return const_cast<Stack*>(this)->get_child_by_name(name);
 }
 
-void Stack::set_interpolate_size(bool interpolate_size)
+auto Stack::set_interpolate_size (bool interpolate_size) -> void
 {
   gtk_stack_set_interpolate_size(gobj(), static_cast<int>(interpolate_size));
 }

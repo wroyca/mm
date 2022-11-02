@@ -72,7 +72,7 @@ auto StringFilter_Class::init() -> const Glib::Class&
 }
 
 
-void StringFilter_Class::class_init_function(void* g_class, void* class_data)
+auto StringFilter_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -157,7 +157,7 @@ auto StringFilter::get_search() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_string_filter_get_search(const_cast<GtkStringFilter*>(gobj())));
 }
 
-void StringFilter::set_search(const Glib::ustring& search)
+auto StringFilter::set_search (const Glib::ustring &search) -> void
 {
   gtk_string_filter_set_search(gobj(), search.c_str());
 }
@@ -178,7 +178,8 @@ auto StringFilter::get_expression() const -> Glib::RefPtr<const Expression<Glib:
   return retvalue;
 }
 
-void StringFilter::set_expression(const Glib::RefPtr<Expression<Glib::ustring>>& expression)
+auto StringFilter::set_expression (
+  const Glib::RefPtr <Expression <Glib::ustring>> &expression) -> void
 {
   gtk_string_filter_set_expression(gobj(), ((expression) ? (expression)->gobj() : nullptr));
 }
@@ -188,7 +189,7 @@ auto StringFilter::get_ignore_case() const -> bool
   return gtk_string_filter_get_ignore_case(const_cast<GtkStringFilter*>(gobj()));
 }
 
-void StringFilter::set_ignore_case(bool ignore_case)
+auto StringFilter::set_ignore_case (bool ignore_case) -> void
 {
   gtk_string_filter_set_ignore_case(gobj(), static_cast<int>(ignore_case));
 }
@@ -198,7 +199,7 @@ auto StringFilter::get_match_mode() const -> MatchMode
   return static_cast<MatchMode>(gtk_string_filter_get_match_mode(const_cast<GtkStringFilter*>(gobj())));
 }
 
-void StringFilter::set_match_mode(MatchMode mode)
+auto StringFilter::set_match_mode (MatchMode mode) -> void
 {
   gtk_string_filter_set_match_mode(gobj(), static_cast<GtkStringFilterMatchMode>(mode));
 }

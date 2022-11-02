@@ -131,7 +131,7 @@ VariantIter::~VariantIter() noexcept
     g_variant_iter_free(gobject_);
 }
 
-void VariantIter::swap(VariantIter& other) noexcept
+auto VariantIter::swap (VariantIter &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }

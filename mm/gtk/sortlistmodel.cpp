@@ -64,7 +64,7 @@ auto SortListModel_Class::init() -> const Glib::Class&
 }
 
 
-void SortListModel_Class::class_init_function(void* g_class, void* class_data)
+auto SortListModel_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -146,7 +146,7 @@ auto SortListModel::create(const Glib::RefPtr<Gio::ListModel>& model, const Glib
   return Glib::make_refptr_for_instance<SortListModel>( new SortListModel(model, sorter) );
 }
 
-void SortListModel::set_sorter(const Glib::RefPtr<Sorter>& sorter)
+auto SortListModel::set_sorter (const Glib::RefPtr <Sorter> &sorter) -> void
 {
   gtk_sort_list_model_set_sorter(gobj(), Glib::unwrap(sorter));
 }
@@ -164,7 +164,7 @@ auto SortListModel::get_sorter() const -> Glib::RefPtr<const Sorter>
   return const_cast<SortListModel*>(this)->get_sorter();
 }
 
-void SortListModel::set_model(const Glib::RefPtr<Gio::ListModel>& model)
+auto SortListModel::set_model (const Glib::RefPtr <Gio::ListModel> &model) -> void
 {
   gtk_sort_list_model_set_model(gobj(), Glib::unwrap(model));
 }
@@ -182,7 +182,7 @@ auto SortListModel::get_model() const -> Glib::RefPtr<const Gio::ListModel>
   return const_cast<SortListModel*>(this)->get_model();
 }
 
-void SortListModel::set_incremental(bool incremental)
+auto SortListModel::set_incremental (bool incremental) -> void
 {
   gtk_sort_list_model_set_incremental(gobj(), static_cast<int>(incremental));
 }

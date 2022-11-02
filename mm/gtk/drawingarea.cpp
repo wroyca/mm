@@ -31,8 +31,9 @@
 namespace
 {
 
-void SignalProxy_Draw_gtk_callback(GtkDrawingArea* /* drawing_area */, cairo_t* cr,
-  int width, int height, void* user_data)
+auto SignalProxy_Draw_gtk_callback (
+  GtkDrawingArea * /* drawing_area */, cairo_t *cr,
+  int width, int height, void *user_data) -> void
 {
   auto the_slot = static_cast<Gtk::DrawingArea::SlotDraw*>(user_data);
   auto cr2 = Gdk::Cairo::wrap(cr, false /* has_reference */);
@@ -51,7 +52,7 @@ void SignalProxy_Draw_gtk_callback(GtkDrawingArea* /* drawing_area */, cairo_t* 
 
 namespace Gtk
 {
-void DrawingArea::set_draw_func(const SlotDraw& slot)
+auto DrawingArea::set_draw_func (const SlotDraw &slot) -> void
 {
   // Create a copy of the slot object. A pointer to this will be passed
   // through the callback's data parameter. It will be deleted
@@ -69,7 +70,7 @@ namespace
 {
 
 
-void DrawingArea_signal_resize_callback(GtkDrawingArea* self, gint p0,gint p1,void* data)
+auto DrawingArea_signal_resize_callback (GtkDrawingArea *self, gint p0, gint p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(int, int)>;
@@ -141,7 +142,7 @@ auto DrawingArea_Class::init() -> const Glib::Class&
 }
 
 
-void DrawingArea_Class::class_init_function(void* g_class, void* class_data)
+auto DrawingArea_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -151,7 +152,7 @@ void DrawingArea_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void DrawingArea_Class::resize_callback(GtkDrawingArea* self, gint p0, gint p1)
+auto DrawingArea_Class::resize_callback (GtkDrawingArea *self, gint p0, gint p1) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -252,7 +253,7 @@ DrawingArea::DrawingArea()
 
 }
 
-void DrawingArea::set_content_width(int width)
+auto DrawingArea::set_content_width (int width) -> void
 {
   gtk_drawing_area_set_content_width(gobj(), width);
 }
@@ -262,7 +263,7 @@ auto DrawingArea::get_content_width() const -> int
   return gtk_drawing_area_get_content_width(const_cast<GtkDrawingArea*>(gobj()));
 }
 
-void DrawingArea::set_content_height(int width)
+auto DrawingArea::set_content_height (int width) -> void
 {
   gtk_drawing_area_set_content_height(gobj(), width);
 }
@@ -300,7 +301,7 @@ auto DrawingArea::property_content_height() const -> Glib::PropertyProxy_ReadOnl
 }
 
 
-void Gtk::DrawingArea::on_resize(int width, int height)
+auto Gtk::DrawingArea::on_resize (int width, int height) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

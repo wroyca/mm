@@ -31,9 +31,9 @@
 namespace Gio
 {
 
-void
-IOStream::close_async(
-  const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, int io_priority)
+auto IOStream::close_async (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
+  int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -44,8 +44,7 @@ IOStream::close_async(
     gobj(), io_priority, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-IOStream::close_async(const SlotAsyncReady& slot, int io_priority)
+auto IOStream::close_async (const SlotAsyncReady &slot, int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -55,9 +54,9 @@ IOStream::close_async(const SlotAsyncReady& slot, int io_priority)
   g_io_stream_close_async(gobj(), io_priority, nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void
-IOStream::splice_async(const Glib::RefPtr<IOStream>& stream2, const SlotAsyncReady& slot,
-  const Glib::RefPtr<Cancellable>& cancellable, SpliceFlags flags, int io_priority)
+auto IOStream::splice_async (
+  const Glib::RefPtr <IOStream> &stream2, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, SpliceFlags flags, int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -68,9 +67,9 @@ IOStream::splice_async(const Glib::RefPtr<IOStream>& stream2, const SlotAsyncRea
     io_priority, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-IOStream::splice_async(const Glib::RefPtr<IOStream>& stream2, const SlotAsyncReady& slot,
-  SpliceFlags flags, int io_priority)
+auto IOStream::splice_async (
+  const Glib::RefPtr <IOStream> &stream2, const SlotAsyncReady &slot,
+  SpliceFlags flags, int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -128,7 +127,7 @@ auto IOStream_Class::init() -> const Glib::Class&
 }
 
 
-void IOStream_Class::class_init_function(void* g_class, void* class_data)
+auto IOStream_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -264,7 +263,7 @@ auto IOStream::set_pending() -> bool
   return retvalue;
 }
 
-void IOStream::clear_pending()
+auto IOStream::clear_pending () -> void
 {
   g_io_stream_clear_pending(gobj());
 }

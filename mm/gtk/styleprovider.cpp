@@ -65,7 +65,7 @@ auto StyleProvider_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void StyleProvider_Class::iface_init_function(void* g_iface, void*)
+auto StyleProvider_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -114,7 +114,7 @@ StyleProvider::~StyleProvider() noexcept
 {}
 
 // static
-void StyleProvider::add_interface(GType gtype_implementer)
+auto StyleProvider::add_interface (GType gtype_implementer) -> void
 {
   styleprovider_class_.init().add_interface(gtype_implementer);
 }

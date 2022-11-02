@@ -72,7 +72,7 @@ auto TextTag_Class::init() -> const Glib::Class&
 }
 
 
-void TextTag_Class::class_init_function(void* g_class, void* class_data)
+auto TextTag_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -172,12 +172,12 @@ auto TextTag::get_priority() const -> int
   return gtk_text_tag_get_priority(const_cast<GtkTextTag*>(gobj()));
 }
 
-void TextTag::set_priority(int priority)
+auto TextTag::set_priority (int priority) -> void
 {
   gtk_text_tag_set_priority(gobj(), priority);
 }
 
-void TextTag::tag_changed(bool size_changed)
+auto TextTag::tag_changed (bool size_changed) -> void
 {
   gtk_text_tag_changed(gobj(), static_cast<int>(size_changed));
 }

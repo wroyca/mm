@@ -20,22 +20,22 @@ public:
 
   friend class CellEditable;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
   //Callbacks (default signal handlers):
   //These will call the *_impl member methods, which will then call the existing default signal callbacks, if any.
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
-  static void editing_done_callback(GtkCellEditable* self);
-  static void remove_widget_callback(GtkCellEditable* self);
+  static auto editing_done_callback (GtkCellEditable *self) -> void;
+  static auto remove_widget_callback (GtkCellEditable *self) -> void;
 
   //Callbacks (virtual functions):
-  static void start_editing_vfunc_callback(GtkCellEditable* self, GdkEvent* event);
+  static auto start_editing_vfunc_callback (GtkCellEditable *self, GdkEvent *event) -> void;
 };
 
 

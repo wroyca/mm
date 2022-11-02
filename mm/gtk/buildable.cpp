@@ -69,12 +69,12 @@ auto Buildable_Class::custom_tag_start_vfunc_callback(
 }
 
 //static
-void Buildable_Class::custom_tag_end_vfunc_callback(
-  GtkBuildable* buildable,
-  GtkBuilder* builder,
-  GObject* child,
-  const char* tagname,
-  gpointer data)
+auto Buildable_Class::custom_tag_end_vfunc_callback (
+  GtkBuildable *buildable,
+  GtkBuilder *builder,
+  GObject *child,
+  const char *tagname,
+  gpointer data) -> void
 {
   const auto base = static_cast<BaseClassType*>(
     g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -139,7 +139,7 @@ auto Buildable_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Buildable_Class::iface_init_function(void* g_iface, void*)
+auto Buildable_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -190,7 +190,7 @@ Buildable::~Buildable() noexcept
 {}
 
 // static
-void Buildable::add_interface(GType gtype_implementer)
+auto Buildable::add_interface (GType gtype_implementer) -> void
 {
   buildable_class_.init().add_interface(gtype_implementer);
 }

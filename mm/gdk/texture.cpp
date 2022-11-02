@@ -48,7 +48,7 @@ auto Gdk::TextureError::code() const -> Gdk::TextureError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Gdk::TextureError::throw_func(GError* gobject)
+auto Gdk::TextureError::throw_func (GError *gobject) -> void
 {
   throw Gdk::TextureError(gobject);
 }
@@ -101,7 +101,7 @@ auto Texture_Class::init() -> const Glib::Class&
 }
 
 
-void Texture_Class::class_init_function(void* g_class, void* class_data)
+auto Texture_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -225,7 +225,7 @@ auto Texture::get_height() const -> int
   return gdk_texture_get_height(const_cast<GdkTexture*>(gobj()));
 }
 
-void Texture::download(guchar* data, gsize stride) const
+auto Texture::download (guchar *data, gsize stride) const -> void
 {
   gdk_texture_download(const_cast<GdkTexture*>(gobj()), data, stride);
 }

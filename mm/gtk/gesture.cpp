@@ -49,7 +49,7 @@ namespace
 {
 
 
-void Gesture_signal_begin_callback(GtkGesture* self, GdkEventSequence* p0,void* data)
+auto Gesture_signal_begin_callback (GtkGesture *self, GdkEventSequence *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Gdk::EventSequence*)>;
@@ -79,7 +79,7 @@ const Glib::SignalProxyInfo Gesture_signal_begin_info =
 };
 
 
-void Gesture_signal_end_callback(GtkGesture* self, GdkEventSequence* p0,void* data)
+auto Gesture_signal_end_callback (GtkGesture *self, GdkEventSequence *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Gdk::EventSequence*)>;
@@ -109,7 +109,7 @@ const Glib::SignalProxyInfo Gesture_signal_end_info =
 };
 
 
-void Gesture_signal_update_callback(GtkGesture* self, GdkEventSequence* p0,void* data)
+auto Gesture_signal_update_callback (GtkGesture *self, GdkEventSequence *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Gdk::EventSequence*)>;
@@ -139,7 +139,7 @@ const Glib::SignalProxyInfo Gesture_signal_update_info =
 };
 
 
-void Gesture_signal_cancel_callback(GtkGesture* self, GdkEventSequence* p0,void* data)
+auto Gesture_signal_cancel_callback (GtkGesture *self, GdkEventSequence *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Gdk::EventSequence*)>;
@@ -169,7 +169,8 @@ const Glib::SignalProxyInfo Gesture_signal_cancel_info =
 };
 
 
-void Gesture_signal_sequence_state_changed_callback(GtkGesture* self, GdkEventSequence* p0,GtkEventSequenceState p1,void* data)
+auto Gesture_signal_sequence_state_changed_callback (
+  GtkGesture *self, GdkEventSequence *p0, GtkEventSequenceState p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Gdk::EventSequence*, EventSequenceState)>;
@@ -249,7 +250,7 @@ auto Gesture_Class::init() -> const Glib::Class&
 }
 
 
-void Gesture_Class::class_init_function(void* g_class, void* class_data)
+auto Gesture_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -405,12 +406,12 @@ auto Gesture::is_recognized() const -> bool
   return gtk_gesture_is_recognized(const_cast<GtkGesture*>(gobj()));
 }
 
-void Gesture::group(const Glib::RefPtr<Gesture>& group_gesture)
+auto Gesture::group (const Glib::RefPtr <Gesture> &group_gesture) -> void
 {
   gtk_gesture_group(gobj(), Glib::unwrap(group_gesture));
 }
 
-void Gesture::ungroup()
+auto Gesture::ungroup () -> void
 {
   gtk_gesture_ungroup(gobj());
 }

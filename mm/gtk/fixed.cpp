@@ -75,7 +75,7 @@ auto Fixed_Class::init() -> const Glib::Class&
 }
 
 
-void Fixed_Class::class_init_function(void* g_class, void* class_data)
+auto Fixed_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -145,22 +145,22 @@ Fixed::Fixed()
 
 }
 
-void Fixed::put(Widget& widget, double x, double y)
+auto Fixed::put (Widget &widget, double x, double y) -> void
 {
   gtk_fixed_put(gobj(), (widget).gobj(), x, y);
 }
 
-void Fixed::remove(Widget& widget)
+auto Fixed::remove (Widget &widget) -> void
 {
   gtk_fixed_remove(gobj(), (widget).gobj());
 }
 
-void Fixed::move(Widget& widget, double x, double y)
+auto Fixed::move (Widget &widget, double x, double y) -> void
 {
   gtk_fixed_move(gobj(), (widget).gobj(), x, y);
 }
 
-void Fixed::get_child_position(Widget& widget, double& x, double& y) const
+auto Fixed::get_child_position (Widget &widget, double &x, double &y) const -> void
 {
   gtk_fixed_get_child_position(const_cast<GtkFixed*>(gobj()), (widget).gobj(), &(x), &(y));
 }

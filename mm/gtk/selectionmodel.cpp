@@ -29,7 +29,8 @@ namespace
 {
 
 
-void SelectionModel_signal_selection_changed_callback(GtkSelectionModel* self, guint p0,guint p1,void* data)
+auto SelectionModel_signal_selection_changed_callback (
+  GtkSelectionModel *self, guint p0, guint p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint, guint)>;
@@ -94,7 +95,7 @@ auto SelectionModel_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void SelectionModel_Class::iface_init_function(void* g_iface, void*)
+auto SelectionModel_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -508,7 +509,7 @@ SelectionModel::~SelectionModel() noexcept
 {}
 
 // static
-void SelectionModel::add_interface(GType gtype_implementer)
+auto SelectionModel::add_interface (GType gtype_implementer) -> void
 {
   selectionmodel_class_.init().add_interface(gtype_implementer);
 }
@@ -577,7 +578,7 @@ auto SelectionModel::set_selection(const Glib::RefPtr<const Bitset>& selected, c
   return gtk_selection_model_set_selection(gobj(), const_cast<GtkBitset*>(Glib::unwrap(selected)), const_cast<GtkBitset*>(Glib::unwrap(mask)));
 }
 
-void SelectionModel::selection_changed(guint position, guint n_items)
+auto SelectionModel::selection_changed (guint position, guint n_items) -> void
 {
   gtk_selection_model_selection_changed(gobj(), position, n_items);
 }

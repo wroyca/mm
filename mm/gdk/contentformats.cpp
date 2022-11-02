@@ -71,7 +71,7 @@ auto Value<RefPtr<Gdk::ContentFormats> >::value_type() -> GType
   return gdk_content_formats_get_type();
 }
 
-void Value<RefPtr<Gdk::ContentFormats> >::set(const CppType& data)
+auto Value <RefPtr <Gdk::ContentFormats>>::set (const CppType &data) -> void
 {
   set_boxed(Glib::unwrap(data));
 }
@@ -119,13 +119,13 @@ auto wrap(GdkContentFormats* object, bool take_copy) -> Glib::RefPtr<Gdk::Conten
 namespace Gdk
 {
 
-void ContentFormats::reference() const
+auto ContentFormats::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gdk_content_formats_ref(reinterpret_cast<GdkContentFormats*>(const_cast<ContentFormats*>(this)));
 }
 
-void ContentFormats::unreference() const
+auto ContentFormats::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   gdk_content_formats_unref(reinterpret_cast<GdkContentFormats*>(const_cast<ContentFormats*>(this)));

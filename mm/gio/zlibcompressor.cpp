@@ -83,7 +83,7 @@ auto ZlibCompressor_Class::init() -> const Glib::Class&
 }
 
 
-void ZlibCompressor_Class::class_init_function(void* g_class, void* class_data)
+auto ZlibCompressor_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -175,7 +175,7 @@ auto ZlibCompressor::get_file_info() const -> Glib::RefPtr<const FileInfo>
   return const_cast<ZlibCompressor*>(this)->get_file_info();
 }
 
-void ZlibCompressor::set_file_info(const Glib::RefPtr<FileInfo>& file_info)
+auto ZlibCompressor::set_file_info (const Glib::RefPtr <FileInfo> &file_info) -> void
 {
   g_zlib_compressor_set_file_info(gobj(), Glib::unwrap(file_info));
 }

@@ -114,7 +114,7 @@ TreeRowReference::~TreeRowReference() noexcept
     gtk_tree_row_reference_free(gobject_);
 }
 
-void TreeRowReference::swap(TreeRowReference& other) noexcept
+auto TreeRowReference::swap (TreeRowReference &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }

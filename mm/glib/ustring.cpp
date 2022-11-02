@@ -341,8 +341,7 @@ ustring::~ustring() noexcept
 {
 }
 
-void
-ustring::swap(ustring& other)
+auto ustring::swap (ustring &other) -> void
 {
   string_.swap(other.string_);
 }
@@ -485,15 +484,13 @@ ustring::operator+=(char c) -> ustring&
 
 /**** Glib::ustring::push_back() *******************************************/
 
-void
-ustring::push_back(gunichar uc)
+auto ustring::push_back (gunichar uc) -> void
 {
   const UnicharToUtf8 conv(uc);
   string_.append(conv.buf, conv.len);
 }
 
-void
-ustring::push_back(char c)
+auto ustring::push_back (char c) -> void
 {
   string_ += c;
 }
@@ -604,14 +601,12 @@ ustring::insert(ustring::iterator p, char c) -> ustring::iterator
   return iterator(string_.insert(p.base(), c));
 }
 
-void
-ustring::insert(ustring::iterator p, ustring::size_type n, gunichar uc)
+auto ustring::insert (ustring::iterator p, ustring::size_type n, gunichar uc) -> void
 {
   string_.insert(p.base() - string_.begin(), ustring(n, uc).string_);
 }
 
-void
-ustring::insert(ustring::iterator p, ustring::size_type n, char c)
+auto ustring::insert (ustring::iterator p, ustring::size_type n, char c) -> void
 {
   string_.insert(p.base(), n, c);
 }
@@ -707,8 +702,7 @@ ustring::replace(ustring::iterator pbegin, ustring::iterator pend, ustring::size
 
 /**** Glib::ustring::erase() ***********************************************/
 
-void
-ustring::clear()
+auto ustring::clear () -> void
 {
   string_.erase();
 }
@@ -1135,8 +1129,7 @@ ustring::max_size() const -> ustring::size_type
   return string_.max_size();
 }
 
-void
-ustring::resize(ustring::size_type n, gunichar uc)
+auto ustring::resize (ustring::size_type n, gunichar uc) -> void
 {
   const size_type size_now = size();
   if (n < size_now)
@@ -1145,8 +1138,7 @@ ustring::resize(ustring::size_type n, gunichar uc)
     append(n - size_now, uc);
 }
 
-void
-ustring::resize(ustring::size_type n, char c)
+auto ustring::resize (ustring::size_type n, char c) -> void
 {
   const size_type size_now = size();
   if (n < size_now)
@@ -1155,8 +1147,7 @@ ustring::resize(ustring::size_type n, char c)
     string_.append(n - size_now, c);
 }
 
-void
-ustring::reserve(ustring::size_type n)
+auto ustring::reserve (ustring::size_type n) -> void
 {
   string_.reserve(n);
 }

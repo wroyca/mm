@@ -90,7 +90,7 @@ auto PixbufAnimation_Class::init() -> const Glib::Class&
 }
 
 
-void PixbufAnimation_Class::class_init_function(void* g_class, void* class_data)
+auto PixbufAnimation_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -173,7 +173,9 @@ auto PixbufAnimation::create_from_stream(const Glib::RefPtr<Gio::InputStream>& s
   return retvalue;
 }
 
-void PixbufAnimation::create_from_stream_async(const Glib::RefPtr<Gio::InputStream>& stream, const Gio::SlotAsyncReady& slot, const Glib::RefPtr<Gio::Cancellable>& cancellable)
+auto PixbufAnimation::create_from_stream_async (
+  const Glib::RefPtr <Gio::InputStream> &stream, const Gio::SlotAsyncReady &slot,
+  const Glib::RefPtr <Gio::Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new Gio::SlotAsyncReady(slot);

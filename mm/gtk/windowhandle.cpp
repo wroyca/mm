@@ -28,7 +28,7 @@
 namespace Gtk
 {
 
-void WindowHandle::unset_child()
+auto WindowHandle::unset_child () -> void
 {
   gtk_window_handle_set_child(gobj(), nullptr);
 }
@@ -72,7 +72,7 @@ auto WindowHandle_Class::init() -> const Glib::Class&
 }
 
 
-void WindowHandle_Class::class_init_function(void* g_class, void* class_data)
+auto WindowHandle_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -142,7 +142,7 @@ WindowHandle::WindowHandle()
 
 }
 
-void WindowHandle::set_child(Widget& child)
+auto WindowHandle::set_child (Widget &child) -> void
 {
   gtk_window_handle_set_child(gobj(), (child).gobj());
 }

@@ -21,7 +21,7 @@ auto Value<bool>::value_type() -> GType
   return G_TYPE_BOOLEAN;
 }
 
-void Value<bool>::set(bool data)
+auto Value <bool>::set (bool data) -> void
 {
   g_value_set_boolean(&gobject_, data);
 }
@@ -50,7 +50,7 @@ auto Value<signed char>::value_type() -> GType
   return G_TYPE_CHAR;
 }
 
-void Value<signed char>::set(signed char data)
+auto Value <signed char>::set (signed char data) -> void
 {
   g_value_set_schar(&gobject_, data);
 }
@@ -79,7 +79,7 @@ auto Value<unsigned char>::value_type() -> GType
   return G_TYPE_UCHAR;
 }
 
-void Value<unsigned char>::set(unsigned char data)
+auto Value <unsigned char>::set (unsigned char data) -> void
 {
   g_value_set_uchar(&gobject_, data);
 }
@@ -108,7 +108,7 @@ auto Value<int>::value_type() -> GType
   return G_TYPE_INT;
 }
 
-void Value<int>::set(int data)
+auto Value <int>::set (int data) -> void
 {
   g_value_set_int(&gobject_, data);
 }
@@ -137,7 +137,7 @@ auto Value<unsigned int>::value_type() -> GType
   return G_TYPE_UINT;
 }
 
-void Value<unsigned int>::set(unsigned int data)
+auto Value <unsigned int>::set (unsigned int data) -> void
 {
   g_value_set_uint(&gobject_, data);
 }
@@ -166,7 +166,7 @@ auto Value<long>::value_type() -> GType
   return G_TYPE_LONG;
 }
 
-void Value<long>::set(long data)
+auto Value <long>::set (long data) -> void
 {
   g_value_set_long(&gobject_, data);
 }
@@ -195,7 +195,7 @@ auto Value<unsigned long>::value_type() -> GType
   return G_TYPE_ULONG;
 }
 
-void Value<unsigned long>::set(unsigned long data)
+auto Value <unsigned long>::set (unsigned long data) -> void
 {
   g_value_set_ulong(&gobject_, data);
 }
@@ -224,7 +224,7 @@ auto Value<long_long>::value_type() -> GType
   return G_TYPE_INT64;
 }
 
-void Value<long_long>::set(long_long data)
+auto Value <long_long>::set (long_long data) -> void
 {
   g_value_set_int64(&gobject_, data);
 }
@@ -253,7 +253,7 @@ auto Value<unsigned_long_long>::value_type() -> GType
   return G_TYPE_UINT64;
 }
 
-void Value<unsigned_long_long>::set(unsigned_long_long data)
+auto Value <unsigned_long_long>::set (unsigned_long_long data) -> void
 {
   g_value_set_uint64(&gobject_, data);
 }
@@ -282,7 +282,7 @@ auto Value<float>::value_type() -> GType
   return G_TYPE_FLOAT;
 }
 
-void Value<float>::set(float data)
+auto Value <float>::set (float data) -> void
 {
   g_value_set_float(&gobject_, data);
 }
@@ -311,7 +311,7 @@ auto Value<double>::value_type() -> GType
   return G_TYPE_DOUBLE;
 }
 
-void Value<double>::set(double data)
+auto Value <double>::set (double data) -> void
 {
   g_value_set_double(&gobject_, data);
 }
@@ -340,7 +340,7 @@ auto Value<void*>::value_type() -> GType
   return G_TYPE_POINTER;
 }
 
-void Value<void*>::set(void* data)
+auto Value <void *>::set (void *data) -> void
 {
   g_value_set_pointer(&gobject_, data);
 }

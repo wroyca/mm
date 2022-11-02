@@ -32,7 +32,8 @@ namespace
 {
 
 
-void LevelBar_signal_offset_changed_callback(GtkLevelBar* self, const gchar* p0,void* data)
+auto LevelBar_signal_offset_changed_callback (
+  GtkLevelBar *self, const gchar *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -110,7 +111,7 @@ auto LevelBar_Class::init() -> const Glib::Class&
 }
 
 
-void LevelBar_Class::class_init_function(void* g_class, void* class_data)
+auto LevelBar_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -182,7 +183,7 @@ LevelBar::LevelBar()
 
 }
 
-void LevelBar::set_mode(Mode mode)
+auto LevelBar::set_mode (Mode mode) -> void
 {
   gtk_level_bar_set_mode(gobj(), static_cast<GtkLevelBarMode>(mode));
 }
@@ -192,7 +193,7 @@ auto LevelBar::get_mode() const -> Mode
   return static_cast<Mode>(gtk_level_bar_get_mode(const_cast<GtkLevelBar*>(gobj())));
 }
 
-void LevelBar::set_value(double value)
+auto LevelBar::set_value (double value) -> void
 {
   gtk_level_bar_set_value(gobj(), value);
 }
@@ -202,7 +203,7 @@ auto LevelBar::get_value() const -> double
   return gtk_level_bar_get_value(const_cast<GtkLevelBar*>(gobj()));
 }
 
-void LevelBar::set_min_value(double value)
+auto LevelBar::set_min_value (double value) -> void
 {
   gtk_level_bar_set_min_value(gobj(), value);
 }
@@ -212,7 +213,7 @@ auto LevelBar::get_min_value() const -> double
   return gtk_level_bar_get_min_value(const_cast<GtkLevelBar*>(gobj()));
 }
 
-void LevelBar::set_max_value(double value)
+auto LevelBar::set_max_value (double value) -> void
 {
   gtk_level_bar_set_max_value(gobj(), value);
 }
@@ -222,7 +223,7 @@ auto LevelBar::get_max_value() const -> double
   return gtk_level_bar_get_max_value(const_cast<GtkLevelBar*>(gobj()));
 }
 
-void LevelBar::set_inverted(bool inverted)
+auto LevelBar::set_inverted (bool inverted) -> void
 {
   gtk_level_bar_set_inverted(gobj(), static_cast<int>(inverted));
 }
@@ -232,12 +233,12 @@ auto LevelBar::get_inverted() const -> bool
   return gtk_level_bar_get_inverted(const_cast<GtkLevelBar*>(gobj()));
 }
 
-void LevelBar::add_offset_value(const Glib::ustring& name, double value)
+auto LevelBar::add_offset_value (const Glib::ustring &name, double value) -> void
 {
   gtk_level_bar_add_offset_value(gobj(), name.c_str(), value);
 }
 
-void LevelBar::remove_offset_value(const Glib::ustring& name)
+auto LevelBar::remove_offset_value (const Glib::ustring &name) -> void
 {
   gtk_level_bar_remove_offset_value(gobj(), name.c_str());
 }

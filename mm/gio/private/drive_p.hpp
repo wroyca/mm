@@ -20,21 +20,21 @@ public:
 
   friend class Drive;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
   //Callbacks (default signal handlers):
   //These will call the *_impl member methods, which will then call the existing default signal callbacks, if any.
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
-  static void changed_callback(GDrive* self);
-  static void disconnected_callback(GDrive* self);
-  static void eject_button_callback(GDrive* self);
-  static void stop_button_callback(GDrive* self);
+  static auto changed_callback (GDrive *self) -> void;
+  static auto disconnected_callback (GDrive *self) -> void;
+  static auto eject_button_callback (GDrive *self) -> void;
+  static auto stop_button_callback (GDrive *self) -> void;
 
   //Callbacks (virtual functions):
 };

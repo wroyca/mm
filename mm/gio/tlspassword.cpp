@@ -78,7 +78,7 @@ auto TlsPassword_Class::init() -> const Glib::Class&
 }
 
 
-void TlsPassword_Class::class_init_function(void* g_class, void* class_data)
+auto TlsPassword_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -260,7 +260,7 @@ auto TlsPassword::get_value() const -> const guchar*
   return g_tls_password_get_value(const_cast<GTlsPassword*>(gobj()), nullptr);
 }
 
-void TlsPassword::set_value(const guchar* value, gssize length)
+auto TlsPassword::set_value (const guchar *value, gssize length) -> void
 {
   g_tls_password_set_value(gobj(), value, length);
 }
@@ -270,7 +270,7 @@ auto TlsPassword::get_description() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(g_tls_password_get_description(const_cast<GTlsPassword*>(gobj())));
 }
 
-void TlsPassword::set_description(const Glib::ustring& description)
+auto TlsPassword::set_description (const Glib::ustring &description) -> void
 {
   g_tls_password_set_description(gobj(), description.c_str());
 }
@@ -280,7 +280,7 @@ auto TlsPassword::get_flags() const -> Flags
   return static_cast<Flags>(g_tls_password_get_flags(const_cast<GTlsPassword*>(gobj())));
 }
 
-void TlsPassword::set_flags(Flags flags)
+auto TlsPassword::set_flags (Flags flags) -> void
 {
   g_tls_password_set_flags(gobj(), static_cast<GTlsPasswordFlags>(flags));
 }
@@ -290,7 +290,7 @@ auto TlsPassword::get_warning() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(g_tls_password_get_warning(const_cast<GTlsPassword*>(gobj())));
 }
 
-void TlsPassword::set_warning(const Glib::ustring& warning)
+auto TlsPassword::set_warning (const Glib::ustring &warning) -> void
 {
   g_tls_password_set_warning(gobj(), warning.c_str());
 }

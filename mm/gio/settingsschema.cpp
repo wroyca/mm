@@ -72,13 +72,13 @@ auto SettingsSchema::get_type() -> GType
   return g_settings_schema_get_type();
 }
 
-void SettingsSchema::reference() const
+auto SettingsSchema::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_settings_schema_ref(reinterpret_cast<GSettingsSchema*>(const_cast<SettingsSchema*>(this)));
 }
 
-void SettingsSchema::unreference() const
+auto SettingsSchema::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_settings_schema_unref(reinterpret_cast<GSettingsSchema*>(const_cast<SettingsSchema*>(this)));

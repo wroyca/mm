@@ -57,14 +57,12 @@ Dir::read_name() -> std::string
   return Glib::convert_const_gchar_ptr_to_stdstring(name);
 }
 
-void
-Dir::rewind()
+auto Dir::rewind () -> void
 {
   g_dir_rewind(gobject_);
 }
 
-void
-Dir::close()
+auto Dir::close () -> void
 {
   if (gobject_)
   {
@@ -107,7 +105,7 @@ auto DirIterator::operator++() -> DirIterator&
   return *this;
 }
 
-void DirIterator::operator++(int)
+auto DirIterator::operator++ (int) -> void
 {
   current_ = g_dir_read_name(gobject_);
 }
@@ -189,8 +187,7 @@ file_get_contents(const std::string& filename) -> std::string
   return std::string(contents.get(), length);
 }
 
-void
-file_set_contents(const std::string& filename, const gchar* contents, gssize length)
+auto file_set_contents (const std::string &filename, const gchar *contents, gssize length) -> void
 {
   GError* error = nullptr;
 
@@ -200,8 +197,7 @@ file_set_contents(const std::string& filename, const gchar* contents, gssize len
     Glib::Error::throw_exception(error);
 }
 
-void
-file_set_contents(const std::string& filename, const std::string& contents)
+auto file_set_contents (const std::string &filename, const std::string &contents) -> void
 {
   file_set_contents(filename, contents.c_str(), contents.size());
 }
@@ -228,7 +224,7 @@ auto Glib::FileError::code() const -> Glib::FileError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Glib::FileError::throw_func(GError* gobject)
+auto Glib::FileError::throw_func (GError *gobject) -> void
 {
   throw Glib::FileError(gobject);
 }

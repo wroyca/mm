@@ -66,7 +66,7 @@ auto RemoteActionGroup_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void RemoteActionGroup_Class::iface_init_function(void* g_iface, void*)
+auto RemoteActionGroup_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -79,7 +79,9 @@ void RemoteActionGroup_Class::iface_init_function(void* g_iface, void*)
 
 }
 
-void RemoteActionGroup_Class::activate_action_full_vfunc_callback(GRemoteActionGroup* self, const gchar* action_name, GVariant* parameter, GVariant* platform_data)
+auto RemoteActionGroup_Class::activate_action_full_vfunc_callback (
+  GRemoteActionGroup *self, const gchar *action_name, GVariant *parameter,
+  GVariant *platform_data) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -119,7 +121,9 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->activate_action_full)
     (*base->activate_action_full)(self, action_name, parameter, platform_data);
 }
-void RemoteActionGroup_Class::change_action_state_full_vfunc_callback(GRemoteActionGroup* self, const gchar* action_name, GVariant* value, GVariant* platform_data)
+auto RemoteActionGroup_Class::change_action_state_full_vfunc_callback (
+  GRemoteActionGroup *self, const gchar *action_name, GVariant *value,
+  GVariant *platform_data) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -198,7 +202,7 @@ RemoteActionGroup::~RemoteActionGroup() noexcept
 {}
 
 // static
-void RemoteActionGroup::add_interface(GType gtype_implementer)
+auto RemoteActionGroup::add_interface (GType gtype_implementer) -> void
 {
   remoteactiongroup_class_.init().add_interface(gtype_implementer);
 }
@@ -217,18 +221,24 @@ auto RemoteActionGroup::get_base_type() -> GType
 }
 
 
-void RemoteActionGroup::activate_action(const Glib::ustring& action_name, const Glib::VariantBase& parameter, const Glib::VariantBase& platform_data)
+auto RemoteActionGroup::activate_action (
+  const Glib::ustring &action_name, const Glib::VariantBase &parameter,
+  const Glib::VariantBase &platform_data) -> void
 {
   g_remote_action_group_activate_action_full(gobj(), action_name.c_str(), const_cast<GVariant*>((parameter).gobj()), const_cast<GVariant*>((platform_data).gobj()));
 }
 
-void RemoteActionGroup::change_action_state(const Glib::ustring& action_name, const Glib::VariantBase& value, const Glib::VariantBase& platform_data)
+auto RemoteActionGroup::change_action_state (
+  const Glib::ustring &action_name, const Glib::VariantBase &value,
+  const Glib::VariantBase &platform_data) -> void
 {
   g_remote_action_group_change_action_state_full(gobj(), action_name.c_str(), const_cast<GVariant*>((value).gobj()), const_cast<GVariant*>((platform_data).gobj()));
 }
 
 
-void Gio::RemoteActionGroup::activate_action_full_vfunc(const Glib::ustring& action_name, const Glib::VariantBase& parameter, const Glib::VariantBase& platform_data)
+auto Gio::RemoteActionGroup::activate_action_full_vfunc (
+  const Glib::ustring &action_name, const Glib::VariantBase &parameter,
+  const Glib::VariantBase &platform_data) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -240,7 +250,9 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->activate_action_full)(gobj(),action_name.c_str(),const_cast<GVariant*>((parameter).gobj()),const_cast<GVariant*>((platform_data).gobj()));
   }
 }
-void Gio::RemoteActionGroup::change_action_state_full_vfunc(const Glib::ustring& action_name, const Glib::VariantBase& value, const Glib::VariantBase& platform_data)
+auto Gio::RemoteActionGroup::change_action_state_full_vfunc (
+  const Glib::ustring &action_name, const Glib::VariantBase &value,
+  const Glib::VariantBase &platform_data) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

@@ -20,11 +20,11 @@ public:
 
   friend class CellLayout;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -33,12 +33,16 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static void pack_start_vfunc_callback(GtkCellLayout* self, GtkCellRenderer* cell, gboolean expand);
-  static void pack_end_vfunc_callback(GtkCellLayout* self, GtkCellRenderer* cell, gboolean expand);
-  static void clear_vfunc_callback(GtkCellLayout* self);
-  static void add_attribute_vfunc_callback(GtkCellLayout* self, GtkCellRenderer* cell, const gchar* attribute, gint column);
-  static void clear_attributes_vfunc_callback(GtkCellLayout* self, GtkCellRenderer* cell);
-  static void reorder_vfunc_callback(GtkCellLayout* self, GtkCellRenderer* cell, gint position);
+  static auto pack_start_vfunc_callback (
+    GtkCellLayout *self, GtkCellRenderer *cell, gboolean expand) -> void;
+  static auto pack_end_vfunc_callback (
+    GtkCellLayout *self, GtkCellRenderer *cell, gboolean expand) -> void;
+  static auto clear_vfunc_callback (GtkCellLayout *self) -> void;
+  static auto add_attribute_vfunc_callback (
+    GtkCellLayout *self, GtkCellRenderer *cell, const gchar *attribute, gint column) -> void;
+  static auto clear_attributes_vfunc_callback (GtkCellLayout *self, GtkCellRenderer *cell) -> void;
+  static auto reorder_vfunc_callback (
+    GtkCellLayout *self, GtkCellRenderer *cell, gint position) -> void;
 };
 
 

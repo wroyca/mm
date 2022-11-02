@@ -51,8 +51,7 @@ Checksum::compute_checksum(Type checksum_type, const std::string& data) -> std::
     g_compute_checksum_for_string(((GChecksumType)checksum_type), data.c_str(), data.size()));
 }
 
-void
-Checksum::update(const std::string& data)
+auto Checksum::update (const std::string &data) -> void
 {
   g_checksum_update(gobj(), (const guchar*)data.c_str(), data.size());
 }
@@ -130,7 +129,7 @@ Checksum::~Checksum() noexcept
     g_checksum_free(gobject_);
 }
 
-void Checksum::swap(Checksum& other) noexcept
+auto Checksum::swap (Checksum &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }
@@ -141,17 +140,17 @@ auto Checksum::gobj_copy() const -> GChecksum*
 }
 
 
-void Checksum::reset()
+auto Checksum::reset () -> void
 {
   g_checksum_reset(gobj());
 }
 
-void Checksum::update(const guchar* data, gssize length)
+auto Checksum::update (const guchar *data, gssize length) -> void
 {
   g_checksum_update(gobj(), data, length);
 }
 
-void Checksum::get_digest(guint8 * buffer, gsize * digest_len) const
+auto Checksum::get_digest (guint8 *buffer, gsize *digest_len) const -> void
 {
   g_checksum_get_digest(const_cast<GChecksum*>(gobj()), buffer, digest_len);
 }

@@ -71,7 +71,7 @@ auto MediaStream_Class::init() -> const Glib::Class&
 }
 
 
-void MediaStream_Class::class_init_function(void* g_class, void* class_data)
+auto MediaStream_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -123,7 +123,7 @@ auto MediaStream_Class::play_vfunc_callback(GtkMediaStream* self) -> gboolean
   using RType = gboolean;
   return RType();
 }
-void MediaStream_Class::pause_vfunc_callback(GtkMediaStream* self)
+auto MediaStream_Class::pause_vfunc_callback (GtkMediaStream *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -159,7 +159,7 @@ void MediaStream_Class::pause_vfunc_callback(GtkMediaStream* self)
   if(base && base->pause)
     (*base->pause)(self);
 }
-void MediaStream_Class::seek_vfunc_callback(GtkMediaStream* self, gint64 timestamp)
+auto MediaStream_Class::seek_vfunc_callback (GtkMediaStream *self, gint64 timestamp) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -195,7 +195,8 @@ void MediaStream_Class::seek_vfunc_callback(GtkMediaStream* self, gint64 timesta
   if(base && base->seek)
     (*base->seek)(self, timestamp);
 }
-void MediaStream_Class::update_audio_vfunc_callback(GtkMediaStream* self, gboolean muted, double volume)
+auto MediaStream_Class::update_audio_vfunc_callback (
+  GtkMediaStream *self, gboolean muted, double volume) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -232,7 +233,7 @@ void MediaStream_Class::update_audio_vfunc_callback(GtkMediaStream* self, gboole
   if(base && base->update_audio)
     (*base->update_audio)(self, muted, volume);
 }
-void MediaStream_Class::realize_vfunc_callback(GtkMediaStream* self, GdkSurface* surface)
+auto MediaStream_Class::realize_vfunc_callback (GtkMediaStream *self, GdkSurface *surface) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -269,7 +270,7 @@ void MediaStream_Class::realize_vfunc_callback(GtkMediaStream* self, GdkSurface*
   if(base && base->realize)
     (*base->realize)(self, surface);
 }
-void MediaStream_Class::unrealize_vfunc_callback(GtkMediaStream* self, GdkSurface* surface)
+auto MediaStream_Class::unrealize_vfunc_callback (GtkMediaStream *self, GdkSurface *surface) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -386,12 +387,12 @@ auto MediaStream::has_video() const -> bool
   return gtk_media_stream_has_video(const_cast<GtkMediaStream*>(gobj()));
 }
 
-void MediaStream::play()
+auto MediaStream::play () -> void
 {
   gtk_media_stream_play(gobj());
 }
 
-void MediaStream::pause()
+auto MediaStream::pause () -> void
 {
   gtk_media_stream_pause(gobj());
 }
@@ -401,7 +402,7 @@ auto MediaStream::get_playing() const -> bool
   return gtk_media_stream_get_playing(const_cast<GtkMediaStream*>(gobj()));
 }
 
-void MediaStream::set_playing(bool playing)
+auto MediaStream::set_playing (bool playing) -> void
 {
   gtk_media_stream_set_playing(gobj(), static_cast<int>(playing));
 }
@@ -431,7 +432,7 @@ auto MediaStream::is_seeking() const -> bool
   return gtk_media_stream_is_seeking(const_cast<GtkMediaStream*>(gobj()));
 }
 
-void MediaStream::seek(gint64 timestamp)
+auto MediaStream::seek (gint64 timestamp) -> void
 {
   gtk_media_stream_seek(gobj(), timestamp);
 }
@@ -441,7 +442,7 @@ auto MediaStream::get_loop() const -> bool
   return gtk_media_stream_get_loop(const_cast<GtkMediaStream*>(gobj()));
 }
 
-void MediaStream::set_loop(bool loop)
+auto MediaStream::set_loop (bool loop) -> void
 {
   gtk_media_stream_set_loop(gobj(), static_cast<int>(loop));
 }
@@ -451,7 +452,7 @@ auto MediaStream::get_muted() const -> bool
   return gtk_media_stream_get_muted(const_cast<GtkMediaStream*>(gobj()));
 }
 
-void MediaStream::set_muted(bool muted)
+auto MediaStream::set_muted (bool muted) -> void
 {
   gtk_media_stream_set_muted(gobj(), static_cast<int>(muted));
 }
@@ -461,24 +462,24 @@ auto MediaStream::get_volume() const -> double
   return gtk_media_stream_get_volume(const_cast<GtkMediaStream*>(gobj()));
 }
 
-void MediaStream::set_volume(double volume)
+auto MediaStream::set_volume (double volume) -> void
 {
   gtk_media_stream_set_volume(gobj(), volume);
 }
 
-void MediaStream::realize(const Glib::RefPtr<Gdk::Surface>& surface)
+auto MediaStream::realize (const Glib::RefPtr <Gdk::Surface> &surface) -> void
 {
   gtk_media_stream_realize(gobj(), Glib::unwrap(surface));
 }
 
-void MediaStream::unrealize(const Glib::RefPtr<Gdk::Surface>& surface)
+auto MediaStream::unrealize (const Glib::RefPtr <Gdk::Surface> &surface) -> void
 {
   gtk_media_stream_unrealize(gobj(), Glib::unwrap(surface));
 }
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-void MediaStream::prepared(bool has_audio, bool has_video, bool seekable, gint64 duration)
+auto MediaStream::prepared (bool has_audio, bool has_video, bool seekable, gint64 duration) -> void
 {
   gtk_media_stream_prepared(gobj(), static_cast<int>(has_audio), static_cast<int>(has_video), static_cast<int>(seekable), duration);
 }
@@ -487,53 +488,54 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-void MediaStream::unprepared()
+auto MediaStream::unprepared () -> void
 {
   gtk_media_stream_unprepared(gobj());
 }
 G_GNUC_END_IGNORE_DEPRECATIONS
 #endif // GTKMM_DISABLE_DEPRECATED
 
-void MediaStream::stream_prepared(bool has_audio, bool has_video, bool seekable, gint64 duration)
+auto MediaStream::stream_prepared (
+  bool has_audio, bool has_video, bool seekable, gint64 duration) -> void
 {
   gtk_media_stream_stream_prepared(gobj(), static_cast<int>(has_audio), static_cast<int>(has_video), static_cast<int>(seekable), duration);
 }
 
-void MediaStream::stream_unprepared()
+auto MediaStream::stream_unprepared () -> void
 {
   gtk_media_stream_stream_unprepared(gobj());
 }
 
-void MediaStream::update(gint64 timestamp)
+auto MediaStream::update (gint64 timestamp) -> void
 {
   gtk_media_stream_update(gobj(), timestamp);
 }
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-void MediaStream::ended()
+auto MediaStream::ended () -> void
 {
   gtk_media_stream_ended(gobj());
 }
 G_GNUC_END_IGNORE_DEPRECATIONS
 #endif // GTKMM_DISABLE_DEPRECATED
 
-void MediaStream::stream_ended()
+auto MediaStream::stream_ended () -> void
 {
   gtk_media_stream_stream_ended(gobj());
 }
 
-void MediaStream::seek_success()
+auto MediaStream::seek_success () -> void
 {
   gtk_media_stream_seek_success(gobj());
 }
 
-void MediaStream::seek_failed()
+auto MediaStream::seek_failed () -> void
 {
   gtk_media_stream_seek_failed(gobj());
 }
 
-void MediaStream::set_error(const Glib::Error& error)
+auto MediaStream::set_error (const Glib::Error &error) -> void
 {
   gtk_media_stream_gerror(gobj(), g_error_copy((error).gobj()));
 }
@@ -657,7 +659,7 @@ auto Gtk::MediaStream::play_vfunc() -> bool
   using RType = bool;
   return RType();
 }
-void Gtk::MediaStream::pause_vfunc()
+auto Gtk::MediaStream::pause_vfunc () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -668,7 +670,7 @@ void Gtk::MediaStream::pause_vfunc()
     (*base->pause)(gobj());
   }
 }
-void Gtk::MediaStream::seek_vfunc(gint64 timestamp)
+auto Gtk::MediaStream::seek_vfunc (gint64 timestamp) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -679,7 +681,7 @@ void Gtk::MediaStream::seek_vfunc(gint64 timestamp)
     (*base->seek)(gobj(),timestamp);
   }
 }
-void Gtk::MediaStream::update_audio_vfunc(bool muted, double volume)
+auto Gtk::MediaStream::update_audio_vfunc (bool muted, double volume) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -690,7 +692,7 @@ void Gtk::MediaStream::update_audio_vfunc(bool muted, double volume)
     (*base->update_audio)(gobj(),static_cast<int>(muted),volume);
   }
 }
-void Gtk::MediaStream::realize_vfunc(const Glib::RefPtr<Gdk::Surface>& surface)
+auto Gtk::MediaStream::realize_vfunc (const Glib::RefPtr <Gdk::Surface> &surface) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -701,7 +703,7 @@ void Gtk::MediaStream::realize_vfunc(const Glib::RefPtr<Gdk::Surface>& surface)
     (*base->realize)(gobj(),Glib::unwrap(surface));
   }
 }
-void Gtk::MediaStream::unrealize_vfunc(const Glib::RefPtr<Gdk::Surface>& surface)
+auto Gtk::MediaStream::unrealize_vfunc (const Glib::RefPtr <Gdk::Surface> &surface) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

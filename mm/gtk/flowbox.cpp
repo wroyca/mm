@@ -29,7 +29,7 @@
 namespace
 {
 
-void FuncProxy_Foreach_gtk_callback(GtkFlowBox* box, GtkFlowBoxChild* child, void* data)
+auto FuncProxy_Foreach_gtk_callback (GtkFlowBox *box, GtkFlowBoxChild *child, void *data) -> void
 {
   auto the_slot = static_cast<Gtk::FlowBox::SlotSelectedForeach*>(data);
 
@@ -58,7 +58,7 @@ auto SignalProxy_Filter_gtk_callback(GtkFlowBoxChild* child, void* data) -> gboo
   }
 }
 
-void SignalProxy_Filter_gtk_callback_destroy(void* data)
+auto SignalProxy_Filter_gtk_callback_destroy (void *data) -> void
 {
   delete static_cast<Gtk::FlowBox::SlotFilter*>(data);
 }
@@ -78,7 +78,7 @@ auto SignalProxy_Sort_gtk_callback(GtkFlowBoxChild* child1, GtkFlowBoxChild* chi
   }
 }
 
-void SignalProxy_Sort_gtk_callback_destroy(void* data)
+auto SignalProxy_Sort_gtk_callback_destroy (void *data) -> void
 {
   delete static_cast<Gtk::FlowBox::SlotSort*>(data);
 }
@@ -108,7 +108,7 @@ auto proxy_bind_model_create_widget_callback(void* item, void* data) -> GtkWidge
 namespace Gtk
 {
 
-void FlowBox::selected_foreach(const SlotSelectedForeach& slot)
+auto FlowBox::selected_foreach (const SlotSelectedForeach &slot) -> void
 {
   SlotSelectedForeach slot_local_copy(slot);
 
@@ -116,7 +116,7 @@ void FlowBox::selected_foreach(const SlotSelectedForeach& slot)
     &FuncProxy_Foreach_gtk_callback, &slot_local_copy);
 }
 
-void FlowBox::set_filter_func(const SlotFilter& slot)
+auto FlowBox::set_filter_func (const SlotFilter &slot) -> void
 {
   // Create a copy of the slot object. A pointer to this will be passed
   // through the callback's data parameter. It will be deleted
@@ -128,12 +128,12 @@ void FlowBox::set_filter_func(const SlotFilter& slot)
     &SignalProxy_Filter_gtk_callback_destroy);
 }
 
-void FlowBox::unset_filter_func()
+auto FlowBox::unset_filter_func () -> void
 {
   gtk_flow_box_set_filter_func(gobj(), nullptr, nullptr, nullptr);
 }
 
-void FlowBox::set_sort_func(const SlotSort& slot)
+auto FlowBox::set_sort_func (const SlotSort &slot) -> void
 {
   // Create a copy of the slot object. A pointer to this will be passed
   // through the callback's data parameter. It will be deleted
@@ -145,13 +145,14 @@ void FlowBox::set_sort_func(const SlotSort& slot)
     &SignalProxy_Sort_gtk_callback_destroy);
 }
 
-void FlowBox::unset_sort_func()
+auto FlowBox::unset_sort_func () -> void
 {
   gtk_flow_box_set_sort_func(gobj(), nullptr, nullptr, nullptr);
 }
 
-void FlowBox::bind_model(const Glib::RefPtr<Gio::ListModel>& model,
-  const SlotCreateWidget<Glib::Object>& slot_create_widget)
+auto FlowBox::bind_model (
+  const Glib::RefPtr <Gio::ListModel> &model,
+  const SlotCreateWidget <Glib::Object> &slot_create_widget) -> void
 {
   // Create a copy of the slot.
   // It will be deleted by Glib::destroy_notify_delete<SlotCreateWidget>.
@@ -168,7 +169,8 @@ namespace
 {
 
 
-void FlowBox_signal_child_activated_callback(GtkFlowBox* self, GtkFlowBoxChild* p0,void* data)
+auto FlowBox_signal_child_activated_callback (
+  GtkFlowBox *self, GtkFlowBoxChild *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(FlowBoxChild*)>;
@@ -248,7 +250,7 @@ auto FlowBox_Class::init() -> const Glib::Class&
 }
 
 
-void FlowBox_Class::class_init_function(void* g_class, void* class_data)
+auto FlowBox_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -320,7 +322,7 @@ FlowBox::FlowBox()
 
 }
 
-void FlowBox::set_homogeneous(bool homogeneous)
+auto FlowBox::set_homogeneous (bool homogeneous) -> void
 {
   gtk_flow_box_set_homogeneous(gobj(), static_cast<int>(homogeneous));
 }
@@ -330,7 +332,7 @@ auto FlowBox::get_homogeneous() const -> bool
   return gtk_flow_box_get_homogeneous(const_cast<GtkFlowBox*>(gobj()));
 }
 
-void FlowBox::set_row_spacing(guint spacing)
+auto FlowBox::set_row_spacing (guint spacing) -> void
 {
   gtk_flow_box_set_row_spacing(gobj(), spacing);
 }
@@ -340,7 +342,7 @@ auto FlowBox::get_row_spacing() const -> guint
   return gtk_flow_box_get_row_spacing(const_cast<GtkFlowBox*>(gobj()));
 }
 
-void FlowBox::set_column_spacing(guint spacing)
+auto FlowBox::set_column_spacing (guint spacing) -> void
 {
   gtk_flow_box_set_column_spacing(gobj(), spacing);
 }
@@ -350,7 +352,7 @@ auto FlowBox::get_column_spacing() const -> guint
   return gtk_flow_box_get_column_spacing(const_cast<GtkFlowBox*>(gobj()));
 }
 
-void FlowBox::set_min_children_per_line(guint n_children)
+auto FlowBox::set_min_children_per_line (guint n_children) -> void
 {
   gtk_flow_box_set_min_children_per_line(gobj(), n_children);
 }
@@ -360,7 +362,7 @@ auto FlowBox::get_min_children_per_line() const -> guint
   return gtk_flow_box_get_min_children_per_line(const_cast<GtkFlowBox*>(gobj()));
 }
 
-void FlowBox::set_max_children_per_line(guint n_children)
+auto FlowBox::set_max_children_per_line (guint n_children) -> void
 {
   gtk_flow_box_set_max_children_per_line(gobj(), n_children);
 }
@@ -370,7 +372,7 @@ auto FlowBox::get_max_children_per_line() const -> guint
   return gtk_flow_box_get_max_children_per_line(const_cast<GtkFlowBox*>(gobj()));
 }
 
-void FlowBox::set_activate_on_single_click(bool single)
+auto FlowBox::set_activate_on_single_click (bool single) -> void
 {
   gtk_flow_box_set_activate_on_single_click(gobj(), static_cast<int>(single));
 }
@@ -380,22 +382,22 @@ auto FlowBox::get_activate_on_single_click() const -> bool
   return gtk_flow_box_get_activate_on_single_click(const_cast<GtkFlowBox*>(gobj()));
 }
 
-void FlowBox::prepend(Widget& child)
+auto FlowBox::prepend (Widget &child) -> void
 {
   gtk_flow_box_prepend(gobj(), (child).gobj());
 }
 
-void FlowBox::append(Widget& child)
+auto FlowBox::append (Widget &child) -> void
 {
   gtk_flow_box_append(gobj(), (child).gobj());
 }
 
-void FlowBox::insert(Widget& widget, int position)
+auto FlowBox::insert (Widget &widget, int position) -> void
 {
   gtk_flow_box_insert(gobj(), (widget).gobj(), position);
 }
 
-void FlowBox::remove(Widget& widget)
+auto FlowBox::remove (Widget &widget) -> void
 {
   gtk_flow_box_remove(gobj(), (widget).gobj());
 }
@@ -430,27 +432,27 @@ auto FlowBox::get_selected_children() const -> std::vector< const Gtk::FlowBoxCh
   return Glib::ListHandler< const Gtk::FlowBoxChild* >::list_to_vector(gtk_flow_box_get_selected_children(const_cast<GtkFlowBox*>(gobj())), Glib::OWNERSHIP_SHALLOW);
 }
 
-void FlowBox::select_child(FlowBoxChild& child)
+auto FlowBox::select_child (FlowBoxChild &child) -> void
 {
   gtk_flow_box_select_child(gobj(), (child).gobj());
 }
 
-void FlowBox::unselect_child(FlowBoxChild& child)
+auto FlowBox::unselect_child (FlowBoxChild &child) -> void
 {
   gtk_flow_box_unselect_child(gobj(), (child).gobj());
 }
 
-void FlowBox::select_all()
+auto FlowBox::select_all () -> void
 {
   gtk_flow_box_select_all(gobj());
 }
 
-void FlowBox::unselect_all()
+auto FlowBox::unselect_all () -> void
 {
   gtk_flow_box_unselect_all(gobj());
 }
 
-void FlowBox::set_selection_mode(SelectionMode mode)
+auto FlowBox::set_selection_mode (SelectionMode mode) -> void
 {
   gtk_flow_box_set_selection_mode(gobj(), static_cast<GtkSelectionMode>(mode));
 }
@@ -460,22 +462,22 @@ auto FlowBox::get_selection_mode() const -> SelectionMode
   return static_cast<SelectionMode>(gtk_flow_box_get_selection_mode(const_cast<GtkFlowBox*>(gobj())));
 }
 
-void FlowBox::set_hadjustment(const Glib::RefPtr<Adjustment>& adjustment)
+auto FlowBox::set_hadjustment (const Glib::RefPtr <Adjustment> &adjustment) -> void
 {
   gtk_flow_box_set_hadjustment(gobj(), Glib::unwrap(adjustment));
 }
 
-void FlowBox::set_vadjustment(const Glib::RefPtr<Adjustment>& adjustment)
+auto FlowBox::set_vadjustment (const Glib::RefPtr <Adjustment> &adjustment) -> void
 {
   gtk_flow_box_set_vadjustment(gobj(), Glib::unwrap(adjustment));
 }
 
-void FlowBox::invalidate_filter()
+auto FlowBox::invalidate_filter () -> void
 {
   gtk_flow_box_invalidate_filter(gobj());
 }
 
-void FlowBox::invalidate_sort()
+auto FlowBox::invalidate_sort () -> void
 {
   gtk_flow_box_invalidate_sort(gobj());
 }

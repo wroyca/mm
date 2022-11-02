@@ -24,12 +24,12 @@ public:
   friend class Permission;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  const Glib::Class& init();
+  auto init () -> const Glib::Class&;
 
 
-  static void class_init_function(void* g_class, void* class_data);
+  static auto class_init_function (void *g_class, void *class_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -38,12 +38,20 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static gboolean acquire_vfunc_callback(GPermission* self, GCancellable* cancellable, GError** error);
-  static void acquire_async_vfunc_callback(GPermission* self, GCancellable* cancellable, GAsyncReadyCallback callback, gpointer user_data);
-  static gboolean acquire_finish_vfunc_callback(GPermission* self, GAsyncResult* result, GError** error);
-  static gboolean release_vfunc_callback(GPermission* self, GCancellable* cancellable, GError** error);
-  static void release_async_vfunc_callback(GPermission* self, GCancellable* cancellable, GAsyncReadyCallback callback, gpointer user_data);
-  static gboolean release_finish_vfunc_callback(GPermission* self, GAsyncResult* result, GError** error);
+  static auto acquire_vfunc_callback (
+    GPermission *self, GCancellable *cancellable, GError **error) -> gboolean;
+  static auto acquire_async_vfunc_callback (
+    GPermission *self, GCancellable *cancellable, GAsyncReadyCallback callback,
+    gpointer user_data) -> void;
+  static auto acquire_finish_vfunc_callback (
+    GPermission *self, GAsyncResult *result, GError **error) -> gboolean;
+  static auto release_vfunc_callback (
+    GPermission *self, GCancellable *cancellable, GError **error) -> gboolean;
+  static auto release_async_vfunc_callback (
+    GPermission *self, GCancellable *cancellable, GAsyncReadyCallback callback,
+    gpointer user_data) -> void;
+  static auto release_finish_vfunc_callback (
+    GPermission *self, GAsyncResult *result, GError **error) -> gboolean;
 };
 
 

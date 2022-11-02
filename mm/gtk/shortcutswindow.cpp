@@ -27,7 +27,7 @@
 
 namespace Gtk
 {
-void ShortcutsWindow::unset_view_name()
+auto ShortcutsWindow::unset_view_name () -> void
 {
   // Set gtk+'s char* to nullptr.
   property_view_name().reset_value();
@@ -77,7 +77,7 @@ auto ShortcutsWindow_Class::init() -> const Glib::Class&
 }
 
 
-void ShortcutsWindow_Class::class_init_function(void* g_class, void* class_data)
+auto ShortcutsWindow_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

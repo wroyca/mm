@@ -24,12 +24,12 @@ public:
   friend class OutputStream;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  const Glib::Class& init();
+  auto init () -> const Glib::Class&;
 
 
-  static void class_init_function(void* g_class, void* class_data);
+  static auto class_init_function (void *g_class, void *class_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -38,10 +38,16 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static gssize write_fn_vfunc_callback(GOutputStream* self, const void* buffer, gsize count, GCancellable* cancellable, GError** error);
-  static gssize splice_vfunc_callback(GOutputStream* self, GInputStream* source, GOutputStreamSpliceFlags flags, GCancellable* cancellable, GError** error);
-  static gboolean flush_vfunc_callback(GOutputStream* self, GCancellable* cancellable, GError** error);
-  static gboolean close_fn_vfunc_callback(GOutputStream* self, GCancellable* cancellable, GError** error);
+  static auto write_fn_vfunc_callback (
+    GOutputStream *self, const void *buffer, gsize count, GCancellable *cancellable,
+    GError **error) -> gssize;
+  static auto splice_vfunc_callback (
+    GOutputStream *self, GInputStream *source, GOutputStreamSpliceFlags flags,
+    GCancellable *cancellable, GError **error) -> gssize;
+  static auto flush_vfunc_callback (
+    GOutputStream *self, GCancellable *cancellable, GError **error) -> gboolean;
+  static auto close_fn_vfunc_callback (
+    GOutputStream *self, GCancellable *cancellable, GError **error) -> gboolean;
 };
 
 

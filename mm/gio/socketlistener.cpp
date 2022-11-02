@@ -155,9 +155,8 @@ SocketListener::accept_socket() -> Glib::RefPtr<Socket>
   return Glib::wrap(retvalue);
 }
 
-void
-SocketListener::accept_socket_async(
-  const Glib::RefPtr<Cancellable>& cancellable, const SlotAsyncReady& slot)
+auto SocketListener::accept_socket_async (
+  const Glib::RefPtr <Cancellable> &cancellable, const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -168,8 +167,7 @@ SocketListener::accept_socket_async(
     gobj(), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-SocketListener::accept_socket_async(const SlotAsyncReady& slot)
+auto SocketListener::accept_socket_async (const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -260,8 +258,7 @@ SocketListener::accept() -> Glib::RefPtr<SocketConnection>
   return Glib::wrap(retvalue);
 }
 
-void
-SocketListener::accept_async(const SlotAsyncReady& slot)
+auto SocketListener::accept_async (const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -271,9 +268,8 @@ SocketListener::accept_async(const SlotAsyncReady& slot)
   g_socket_listener_accept_async(gobj(), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void
-SocketListener::accept_async(
-  const Glib::RefPtr<Cancellable>& cancellable, const SlotAsyncReady& slot)
+auto SocketListener::accept_async (
+  const Glib::RefPtr <Cancellable> &cancellable, const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -357,7 +353,7 @@ auto SocketListener_Class::init() -> const Glib::Class&
 }
 
 
-void SocketListener_Class::class_init_function(void* g_class, void* class_data)
+auto SocketListener_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -437,7 +433,7 @@ auto SocketListener::create() -> Glib::RefPtr<SocketListener>
   return Glib::make_refptr_for_instance<SocketListener>( new SocketListener() );
 }
 
-void SocketListener::set_backlog(int listen_backlog)
+auto SocketListener::set_backlog (int listen_backlog) -> void
 {
   g_socket_listener_set_backlog(gobj(), listen_backlog);
 }
@@ -469,7 +465,7 @@ auto SocketListener::add_any_inet_port(const Glib::RefPtr<Glib::Object>& source_
   return retvalue;
 }
 
-void SocketListener::close()
+auto SocketListener::close () -> void
 {
   g_socket_listener_close(gobj());
 }

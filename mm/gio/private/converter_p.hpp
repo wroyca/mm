@@ -21,11 +21,11 @@ public:
 
   friend class Converter;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -34,8 +34,11 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static GConverterResult convert_vfunc_callback(GConverter* self, const void* inbuf, gsize inbuf_size, void* outbuf, gsize outbuf_size, GConverterFlags flags, gsize* bytes_read, gsize* bytes_written, GError** error);
-  static void reset_vfunc_callback(GConverter* self);
+  static auto convert_vfunc_callback (
+    GConverter *self, const void *inbuf, gsize inbuf_size, void *outbuf, gsize outbuf_size,
+    GConverterFlags flags, gsize *bytes_read, gsize *bytes_written,
+    GError **error) -> GConverterResult;
+  static auto reset_vfunc_callback (GConverter *self) -> void;
 };
 
 

@@ -52,8 +52,7 @@ VariantBase::operator bool() const
   return gobj();
 }
 
-void
-VariantBase::init(const GVariant* cobject, bool take_a_reference)
+auto VariantBase::init (const GVariant *cobject, bool take_a_reference) -> void
 {
   if (gobject_)
     g_variant_unref(gobject_);
@@ -73,8 +72,7 @@ auto VariantBase::operator!=(const VariantBase& other) const -> bool
   return !equal(other);
 }
 
-void
-VariantBase::get_normal_form(VariantBase& result) const
+auto VariantBase::get_normal_form (VariantBase &result) const -> void
 {
   GVariant* const g_value = g_variant_get_normal_form(const_cast<GVariant*>(gobj()));
 
@@ -83,8 +81,7 @@ VariantBase::get_normal_form(VariantBase& result) const
   result.init(g_value); // g_value is already referenced.
 }
 
-void
-VariantBase::byteswap(VariantBase& result) const
+auto VariantBase::byteswap (VariantBase &result) const -> void
 {
   GVariant* const g_value = g_variant_byteswap(const_cast<GVariant*>(gobj()));
   result.init(g_value); // g_value is already referenced.
@@ -157,8 +154,8 @@ VariantStringBase::VariantStringBase(GVariant* castitem, bool take_a_reference)
 }
 
 // static
-void
-VariantStringBase::create_object_path(VariantStringBase& output, const std::string& object_path)
+auto VariantStringBase::create_object_path (
+  VariantStringBase &output, const std::string &object_path) -> void
 {
   GVariant* result = nullptr;
   result = g_variant_new_object_path(object_path.c_str());
@@ -167,8 +164,8 @@ VariantStringBase::create_object_path(VariantStringBase& output, const std::stri
 }
 
 // static
-void
-VariantStringBase::create_signature(VariantStringBase& output, const std::string& signature)
+auto VariantStringBase::create_signature (
+  VariantStringBase &output, const std::string &signature) -> void
 {
   GVariant* result = nullptr;
   result = g_variant_new_signature(signature.c_str());
@@ -221,8 +218,7 @@ VariantContainerBase::create_maybe(const VariantType& child_type, const VariantB
   return result;
 }
 
-void
-VariantContainerBase::get_child(VariantBase& child, gsize index) const
+auto VariantContainerBase::get_child (VariantBase &child, gsize index) const -> void
 {
   if (index >= get_n_children())
     throw std::out_of_range("VariantContainerBase::get_child(): Index out of bounds.");
@@ -310,8 +306,7 @@ Variant<VariantBase>::create(const VariantBase& data) -> Variant<VariantBase>
   return result;
 }
 
-void
-Variant<VariantBase>::get(VariantBase& variant) const
+auto Variant <VariantBase>::get (VariantBase &variant) const -> void
 {
   GVariant* const gvariant = g_variant_get_variant(gobject_);
   variant.init(gvariant);
@@ -703,7 +698,7 @@ Variant<type_vec_string>::get_iter() const -> VariantIter
 
 /*---------------------Value<Glib::VariantBase>---------------------*/
 
-void Value<VariantBase>::set(CppType data)
+auto Value <VariantBase>::set (CppType data) -> void
 {
   set_variant(data.gobj());
 }
@@ -735,7 +730,7 @@ auto Glib::VariantParseError::code() const -> Glib::VariantParseError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Glib::VariantParseError::throw_func(GError* gobject)
+auto Glib::VariantParseError::throw_func (GError *gobject) -> void
 {
   throw Glib::VariantParseError(gobject);
 }
@@ -799,7 +794,7 @@ VariantBase::~VariantBase() noexcept
     g_variant_unref(gobject_);
 }
 
-void VariantBase::swap(VariantBase& other) noexcept
+auto VariantBase::swap (VariantBase &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }
@@ -855,7 +850,7 @@ auto VariantBase::get_data_as_bytes() const -> Glib::RefPtr<const Glib::Bytes>
   return Glib::wrap(g_variant_get_data_as_bytes(const_cast<GVariant*>(gobj())));
 }
 
-void VariantBase::store(gpointer data) const
+auto VariantBase::store (gpointer data) const -> void
 {
   g_variant_store(const_cast<GVariant*>(gobj()), data);
 }

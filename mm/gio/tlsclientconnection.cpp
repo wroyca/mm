@@ -65,7 +65,7 @@ auto TlsClientConnection_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void TlsClientConnection_Class::iface_init_function(void* g_iface, void*)
+auto TlsClientConnection_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -114,7 +114,7 @@ TlsClientConnection::~TlsClientConnection() noexcept
 {}
 
 // static
-void TlsClientConnection::add_interface(GType gtype_implementer)
+auto TlsClientConnection::add_interface (GType gtype_implementer) -> void
 {
   tlsclientconnection_class_.init().add_interface(gtype_implementer);
 }
@@ -151,7 +151,8 @@ auto TlsClientConnection::create(const Glib::RefPtr<IOStream>& base_io_stream) -
   return retvalue;
 }
 
-void TlsClientConnection::set_server_identity(const Glib::RefPtr<SocketConnectable>& identity)
+auto TlsClientConnection::set_server_identity (
+  const Glib::RefPtr <SocketConnectable> &identity) -> void
 {
   g_tls_client_connection_set_server_identity(gobj(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)));
 }
@@ -171,7 +172,7 @@ auto TlsClientConnection::get_server_identity() const -> Glib::RefPtr<const Sock
 
 #ifndef GIOMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-void TlsClientConnection::set_validation_flags(TlsCertificateFlags flags)
+auto TlsClientConnection::set_validation_flags (TlsCertificateFlags flags) -> void
 {
   g_tls_client_connection_set_validation_flags(gobj(), static_cast<GTlsCertificateFlags>(flags));
 }
@@ -197,7 +198,8 @@ auto TlsClientConnection::get_accepted_cas() const -> std::vector< Glib::RefPtr<
   return Glib::ListHandler< Glib::RefPtr<const Glib::ByteArray> >::list_to_vector(g_tls_client_connection_get_accepted_cas(const_cast<GTlsClientConnection*>(gobj())), Glib::OWNERSHIP_DEEP);
 }
 
-void TlsClientConnection::copy_session_state(const Glib::RefPtr<TlsClientConnection>& source)
+auto TlsClientConnection::copy_session_state (
+  const Glib::RefPtr <TlsClientConnection> &source) -> void
 {
   g_tls_client_connection_copy_session_state(gobj(), Glib::unwrap(source));
 }

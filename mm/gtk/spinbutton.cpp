@@ -40,7 +40,7 @@ SpinButton::SpinButton(double climb_rate, guint digits)
   Gtk::Widget(Glib::ConstructParams(spinbutton_class_.init(), "climb_rate",climb_rate,"digits",digits, nullptr))
 {}
 
-void SpinButton::unset_adjustment()
+auto SpinButton::unset_adjustment () -> void
 {
   gtk_spin_button_set_adjustment(gobj(), nullptr);
 }
@@ -238,7 +238,7 @@ auto SpinButton_Class::init() -> const Glib::Class&
 }
 
 
-void SpinButton_Class::class_init_function(void* g_class, void* class_data)
+auto SpinButton_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -314,12 +314,13 @@ SpinButton::SpinButton(const Glib::RefPtr<Adjustment>& adjustment, double climb_
 
 }
 
-void SpinButton::configure(const Glib::RefPtr<Adjustment>& adjustment, double climb_rate, guint digits)
+auto SpinButton::configure (
+  const Glib::RefPtr <Adjustment> &adjustment, double climb_rate, guint digits) -> void
 {
   gtk_spin_button_configure(gobj(), Glib::unwrap(adjustment), climb_rate, digits);
 }
 
-void SpinButton::set_adjustment(const Glib::RefPtr<Adjustment>& adjustment)
+auto SpinButton::set_adjustment (const Glib::RefPtr <Adjustment> &adjustment) -> void
 {
   gtk_spin_button_set_adjustment(gobj(), Glib::unwrap(adjustment));
 }
@@ -337,7 +338,7 @@ auto SpinButton::get_adjustment() const -> Glib::RefPtr<const Adjustment>
   return const_cast<SpinButton*>(this)->get_adjustment();
 }
 
-void SpinButton::set_digits(guint digits)
+auto SpinButton::set_digits (guint digits) -> void
 {
   gtk_spin_button_set_digits(gobj(), digits);
 }
@@ -347,22 +348,22 @@ auto SpinButton::get_digits() const -> guint
   return gtk_spin_button_get_digits(const_cast<GtkSpinButton*>(gobj()));
 }
 
-void SpinButton::set_increments(double step, double page)
+auto SpinButton::set_increments (double step, double page) -> void
 {
   gtk_spin_button_set_increments(gobj(), step, page);
 }
 
-void SpinButton::get_increments(double& step, double& page) const
+auto SpinButton::get_increments (double &step, double &page) const -> void
 {
   gtk_spin_button_get_increments(const_cast<GtkSpinButton*>(gobj()), &(step), &(page));
 }
 
-void SpinButton::set_range(double min, double max)
+auto SpinButton::set_range (double min, double max) -> void
 {
   gtk_spin_button_set_range(gobj(), min, max);
 }
 
-void SpinButton::get_range(double& min, double& max) const
+auto SpinButton::get_range (double &min, double &max) const -> void
 {
   gtk_spin_button_get_range(const_cast<GtkSpinButton*>(gobj()), &(min), &(max));
 }
@@ -377,12 +378,12 @@ auto SpinButton::get_value_as_int() const -> int
   return gtk_spin_button_get_value_as_int(const_cast<GtkSpinButton*>(gobj()));
 }
 
-void SpinButton::set_value(double value)
+auto SpinButton::set_value (double value) -> void
 {
   gtk_spin_button_set_value(gobj(), value);
 }
 
-void SpinButton::set_update_policy(UpdatePolicy policy)
+auto SpinButton::set_update_policy (UpdatePolicy policy) -> void
 {
   gtk_spin_button_set_update_policy(gobj(), static_cast<GtkSpinButtonUpdatePolicy>(policy));
 }
@@ -392,7 +393,7 @@ auto SpinButton::get_update_policy() const -> UpdatePolicy
   return static_cast<UpdatePolicy>(gtk_spin_button_get_update_policy(const_cast<GtkSpinButton*>(gobj())));
 }
 
-void SpinButton::set_numeric(bool numeric)
+auto SpinButton::set_numeric (bool numeric) -> void
 {
   gtk_spin_button_set_numeric(gobj(), static_cast<int>(numeric));
 }
@@ -402,12 +403,12 @@ auto SpinButton::get_numeric() const -> bool
   return gtk_spin_button_get_numeric(const_cast<GtkSpinButton*>(gobj()));
 }
 
-void SpinButton::spin(SpinType direction, double increment)
+auto SpinButton::spin (SpinType direction, double increment) -> void
 {
   gtk_spin_button_spin(gobj(), static_cast<GtkSpinType>(direction), increment);
 }
 
-void SpinButton::set_wrap(bool wrap)
+auto SpinButton::set_wrap (bool wrap) -> void
 {
   gtk_spin_button_set_wrap(gobj(), static_cast<int>(wrap));
 }
@@ -417,7 +418,7 @@ auto SpinButton::get_wrap() const -> bool
   return gtk_spin_button_get_wrap(const_cast<GtkSpinButton*>(gobj()));
 }
 
-void SpinButton::set_snap_to_ticks(bool snap_to_ticks)
+auto SpinButton::set_snap_to_ticks (bool snap_to_ticks) -> void
 {
   gtk_spin_button_set_snap_to_ticks(gobj(), static_cast<int>(snap_to_ticks));
 }
@@ -427,7 +428,7 @@ auto SpinButton::get_snap_to_ticks() const -> bool
   return gtk_spin_button_get_snap_to_ticks(const_cast<GtkSpinButton*>(gobj()));
 }
 
-void SpinButton::set_climb_rate(double climb_rate)
+auto SpinButton::set_climb_rate (double climb_rate) -> void
 {
   gtk_spin_button_set_climb_rate(gobj(), climb_rate);
 }
@@ -437,7 +438,7 @@ auto SpinButton::get_climb_rate() const -> double
   return gtk_spin_button_get_climb_rate(const_cast<GtkSpinButton*>(gobj()));
 }
 
-void SpinButton::update()
+auto SpinButton::update () -> void
 {
   gtk_spin_button_update(gobj());
 }

@@ -30,9 +30,9 @@
 namespace Gio
 {
 
-void
-SocketClient::connect_async(const Glib::RefPtr<SocketConnectable>& connectable,
-  const Glib::RefPtr<Cancellable>& cancellable, const SlotAsyncReady& slot)
+auto SocketClient::connect_async (
+  const Glib::RefPtr <SocketConnectable> &connectable,
+  const Glib::RefPtr <Cancellable> &cancellable, const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -43,9 +43,8 @@ SocketClient::connect_async(const Glib::RefPtr<SocketConnectable>& connectable,
     gobj(), connectable->gobj(), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-SocketClient::connect_async(
-  const Glib::RefPtr<SocketConnectable>& connectable, const SlotAsyncReady& slot)
+auto SocketClient::connect_async (
+  const Glib::RefPtr <SocketConnectable> &connectable, const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -56,9 +55,9 @@ SocketClient::connect_async(
     gobj(), connectable->gobj(), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void
-SocketClient::connect_to_host_async(const Glib::ustring& host_and_port, guint16 default_port,
-  const Glib::RefPtr<Cancellable>& cancellable, const SlotAsyncReady& slot)
+auto SocketClient::connect_to_host_async (
+  const Glib::ustring &host_and_port, guint16 default_port,
+  const Glib::RefPtr <Cancellable> &cancellable, const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -69,9 +68,8 @@ SocketClient::connect_to_host_async(const Glib::ustring& host_and_port, guint16 
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-SocketClient::connect_to_host_async(
-  const Glib::ustring& host_and_port, guint16 default_port, const SlotAsyncReady& slot)
+auto SocketClient::connect_to_host_async (
+  const Glib::ustring &host_and_port, guint16 default_port, const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -82,9 +80,9 @@ SocketClient::connect_to_host_async(
     gobj(), host_and_port.c_str(), default_port, nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void
-SocketClient::connect_to_service_async(const Glib::ustring& domain, const Glib::ustring& service,
-  const Glib::RefPtr<Cancellable>& cancellable, const SlotAsyncReady& slot)
+auto SocketClient::connect_to_service_async (
+  const Glib::ustring &domain, const Glib::ustring &service,
+  const Glib::RefPtr <Cancellable> &cancellable, const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -95,9 +93,8 @@ SocketClient::connect_to_service_async(const Glib::ustring& domain, const Glib::
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-SocketClient::connect_to_service_async(
-  const Glib::ustring& domain, const Glib::ustring& service, const SlotAsyncReady& slot)
+auto SocketClient::connect_to_service_async (
+  const Glib::ustring &domain, const Glib::ustring &service, const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -108,9 +105,9 @@ SocketClient::connect_to_service_async(
     gobj(), domain.c_str(), service.c_str(), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void
-SocketClient::connect_to_uri_async(const Glib::ustring& uri, guint16 default_port,
-  const Glib::RefPtr<Cancellable>& cancellable, const SlotAsyncReady& slot)
+auto SocketClient::connect_to_uri_async (
+  const Glib::ustring &uri, guint16 default_port,
+  const Glib::RefPtr <Cancellable> &cancellable, const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -121,9 +118,8 @@ SocketClient::connect_to_uri_async(const Glib::ustring& uri, guint16 default_por
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-SocketClient::connect_to_uri_async(
-  const Glib::ustring& uri, guint16 default_port, const SlotAsyncReady& slot)
+auto SocketClient::connect_to_uri_async (
+  const Glib::ustring &uri, guint16 default_port, const SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -140,7 +136,9 @@ namespace
 {
 
 
-void SocketClient_signal_event_callback(GSocketClient* self, GSocketClientEvent p0,GSocketConnectable* p1,GIOStream* p2,void* data)
+auto SocketClient_signal_event_callback (
+  GSocketClient *self, GSocketClientEvent p0, GSocketConnectable *p1, GIOStream *p2,
+  void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(SocketClientEvent, const Glib::RefPtr<SocketConnectable>&, const Glib::RefPtr<IOStream>&)>;
@@ -221,7 +219,7 @@ auto SocketClient_Class::init() -> const Glib::Class&
 }
 
 
-void SocketClient_Class::class_init_function(void* g_class, void* class_data)
+auto SocketClient_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -231,7 +229,8 @@ void SocketClient_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void SocketClient_Class::event_callback(GSocketClient* self, GSocketClientEvent p0, GSocketConnectable* p1, GIOStream* p2)
+auto SocketClient_Class::event_callback (
+  GSocketClient *self, GSocketClientEvent p0, GSocketConnectable *p1, GIOStream *p2) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -348,7 +347,7 @@ auto SocketClient::get_family() const -> SocketFamily
   return static_cast<SocketFamily>(g_socket_client_get_family(const_cast<GSocketClient*>(gobj())));
 }
 
-void SocketClient::set_family(SocketFamily family)
+auto SocketClient::set_family (SocketFamily family) -> void
 {
   g_socket_client_set_family(gobj(), static_cast<GSocketFamily>(family));
 }
@@ -358,7 +357,7 @@ auto SocketClient::get_socket_type() const -> Socket::Type
   return static_cast<Socket::Type>(g_socket_client_get_socket_type(const_cast<GSocketClient*>(gobj())));
 }
 
-void SocketClient::set_socket_type(Socket::Type type)
+auto SocketClient::set_socket_type (Socket::Type type) -> void
 {
   g_socket_client_set_socket_type(gobj(), static_cast<GSocketType>(type));
 }
@@ -368,7 +367,7 @@ auto SocketClient::get_protocol() const -> Socket::Protocol
   return static_cast<Socket::Protocol>(g_socket_client_get_protocol(const_cast<GSocketClient*>(gobj())));
 }
 
-void SocketClient::set_protocol(Socket::Protocol protocol)
+auto SocketClient::set_protocol (Socket::Protocol protocol) -> void
 {
   g_socket_client_set_protocol(gobj(), static_cast<GSocketProtocol>(protocol));
 }
@@ -383,7 +382,7 @@ auto SocketClient::get_local_address() const -> Glib::RefPtr<const SocketAddress
   return const_cast<SocketClient*>(this)->get_local_address();
 }
 
-void SocketClient::set_local_address(const Glib::RefPtr<SocketAddress>& address)
+auto SocketClient::set_local_address (const Glib::RefPtr <SocketAddress> &address) -> void
 {
   g_socket_client_set_local_address(gobj(), const_cast<GSocketAddress*>(Glib::unwrap(address)));
 }
@@ -501,7 +500,7 @@ auto SocketClient::get_enable_proxy() const -> bool
   return g_socket_client_get_enable_proxy(const_cast<GSocketClient*>(gobj()));
 }
 
-void SocketClient::set_enable_proxy(bool enable)
+auto SocketClient::set_enable_proxy (bool enable) -> void
 {
   g_socket_client_set_enable_proxy(gobj(), static_cast<int>(enable));
 }
@@ -511,7 +510,7 @@ auto SocketClient::get_tls() const -> bool
   return g_socket_client_get_tls(const_cast<GSocketClient*>(gobj()));
 }
 
-void SocketClient::set_tls(bool tls)
+auto SocketClient::set_tls (bool tls) -> void
 {
   g_socket_client_set_tls(gobj(), static_cast<int>(tls));
 }
@@ -527,7 +526,7 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 
 #ifndef GIOMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-void SocketClient::set_tls_validation_flags(TlsCertificateFlags flags)
+auto SocketClient::set_tls_validation_flags (TlsCertificateFlags flags) -> void
 {
   g_socket_client_set_tls_validation_flags(gobj(), static_cast<GTlsCertificateFlags>(flags));
 }
@@ -547,7 +546,7 @@ auto SocketClient::get_proxy_resolver() const -> Glib::RefPtr<const ProxyResolve
   return const_cast<SocketClient*>(this)->get_proxy_resolver();
 }
 
-void SocketClient::set_proxy_resolver(const Glib::RefPtr<ProxyResolver>& proxy_resolver)
+auto SocketClient::set_proxy_resolver (const Glib::RefPtr <ProxyResolver> &proxy_resolver) -> void
 {
   g_socket_client_set_proxy_resolver(gobj(), const_cast<GProxyResolver*>(Glib::unwrap(proxy_resolver)));
 }
@@ -557,12 +556,12 @@ auto SocketClient::get_timeout() const -> guint
   return g_socket_client_get_timeout(const_cast<GSocketClient*>(gobj()));
 }
 
-void SocketClient::set_timeout(guint timeout)
+auto SocketClient::set_timeout (guint timeout) -> void
 {
   g_socket_client_set_timeout(gobj(), timeout);
 }
 
-void SocketClient::add_application_proxy(const Glib::ustring& protocol)
+auto SocketClient::add_application_proxy (const Glib::ustring &protocol) -> void
 {
   g_socket_client_add_application_proxy(gobj(), protocol.c_str());
 }
@@ -697,7 +696,9 @@ auto SocketClient::property_proxy_resolver() const -> Glib::PropertyProxy_ReadOn
 }
 
 
-void Gio::SocketClient::on_event(SocketClientEvent event, const Glib::RefPtr<SocketConnectable>& connectable, const Glib::RefPtr<IOStream>& connection)
+auto Gio::SocketClient::on_event (
+  SocketClientEvent event, const Glib::RefPtr <SocketConnectable> &connectable,
+  const Glib::RefPtr <IOStream> &connection) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

@@ -42,7 +42,7 @@ static auto SignalProxy_SlotForwardPage_gtk_callback(int current_page, gpointer 
   }
 }
 
-static void SignalProxy_SlotForwardPage_gtk_callback_destroy(void* data)
+static auto SignalProxy_SlotForwardPage_gtk_callback_destroy (void *data) -> void
 {
   delete static_cast<Gtk::Assistant::SlotForwardPage*>(data);
 }
@@ -61,7 +61,7 @@ Assistant::Assistant(bool use_header_bar)
 {
 }
 
-void Assistant::set_forward_page_func(const SlotForwardPage& slot)
+auto Assistant::set_forward_page_func (const SlotForwardPage &slot) -> void
 {
   // Create a copy of the slot object. A pointer to this will be passed
   // through the callback's data parameter.  It will be deleted
@@ -81,7 +81,7 @@ namespace
 {
 
 
-void Assistant_signal_prepare_callback(GtkAssistant* self, GtkWidget* p0,void* data)
+auto Assistant_signal_prepare_callback (GtkAssistant *self, GtkWidget *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Gtk::Widget*)>;
@@ -176,7 +176,7 @@ auto Assistant_Class::init() -> const Glib::Class&
 }
 
 
-void Assistant_Class::class_init_function(void* g_class, void* class_data)
+auto Assistant_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -246,12 +246,12 @@ Assistant::Assistant()
 
 }
 
-void Assistant::next_page()
+auto Assistant::next_page () -> void
 {
   gtk_assistant_next_page(gobj());
 }
 
-void Assistant::previous_page()
+auto Assistant::previous_page () -> void
 {
   gtk_assistant_previous_page(gobj());
 }
@@ -261,7 +261,7 @@ auto Assistant::get_current_page() const -> int
   return gtk_assistant_get_current_page(const_cast<GtkAssistant*>(gobj()));
 }
 
-void Assistant::set_current_page(int page_num)
+auto Assistant::set_current_page (int page_num) -> void
 {
   gtk_assistant_set_current_page(gobj(), page_num);
 }
@@ -296,12 +296,12 @@ auto Assistant::insert_page(Widget& page, int position) -> int
   return gtk_assistant_insert_page(gobj(), (page).gobj(), position);
 }
 
-void Assistant::remove_page(int page_num)
+auto Assistant::remove_page (int page_num) -> void
 {
   gtk_assistant_remove_page(gobj(), page_num);
 }
 
-void Assistant::set_page_type(const Widget& page, AssistantPage::Type type)
+auto Assistant::set_page_type (const Widget &page, AssistantPage::Type type) -> void
 {
   gtk_assistant_set_page_type(gobj(), const_cast<GtkWidget*>((page).gobj()), static_cast<GtkAssistantPageType>(type));
 }
@@ -311,7 +311,7 @@ auto Assistant::get_page_type(const Widget& page) const -> AssistantPage::Type
   return static_cast<AssistantPage::Type>(gtk_assistant_get_page_type(const_cast<GtkAssistant*>(gobj()), const_cast<GtkWidget*>((page).gobj())));
 }
 
-void Assistant::set_page_title(const Widget& page, const Glib::ustring& title)
+auto Assistant::set_page_title (const Widget &page, const Glib::ustring &title) -> void
 {
   gtk_assistant_set_page_title(gobj(), const_cast<GtkWidget*>((page).gobj()), title.c_str());
 }
@@ -321,7 +321,7 @@ auto Assistant::get_page_title(const Widget& page) const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_assistant_get_page_title(const_cast<GtkAssistant*>(gobj()), const_cast<GtkWidget*>((page).gobj())));
 }
 
-void Assistant::set_page_complete(const Widget& page, bool complete)
+auto Assistant::set_page_complete (const Widget &page, bool complete) -> void
 {
   gtk_assistant_set_page_complete(gobj(), const_cast<GtkWidget*>((page).gobj()), static_cast<int>(complete));
 }
@@ -331,22 +331,22 @@ auto Assistant::get_page_complete(const Widget& page) const -> bool
   return gtk_assistant_get_page_complete(const_cast<GtkAssistant*>(gobj()), const_cast<GtkWidget*>((page).gobj()));
 }
 
-void Assistant::add_action_widget(Widget& child)
+auto Assistant::add_action_widget (Widget &child) -> void
 {
   gtk_assistant_add_action_widget(gobj(), (child).gobj());
 }
 
-void Assistant::remove_action_widget(Widget& child)
+auto Assistant::remove_action_widget (Widget &child) -> void
 {
   gtk_assistant_remove_action_widget(gobj(), (child).gobj());
 }
 
-void Assistant::update_buttons_state()
+auto Assistant::update_buttons_state () -> void
 {
   gtk_assistant_update_buttons_state(gobj());
 }
 
-void Assistant::commit()
+auto Assistant::commit () -> void
 {
   gtk_assistant_commit(gobj());
 }

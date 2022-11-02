@@ -64,17 +64,17 @@ AttrList::AttrList(const Glib::ustring& markup_text, gunichar accel_marker, Glib
   }
 }
 
-void AttrList::insert(Attribute& attr)
+auto AttrList::insert (Attribute &attr) -> void
 {
   pango_attr_list_insert(gobj(), pango_attribute_copy(attr.gobj()));
 }
 
-void AttrList::insert_before(Attribute& attr)
+auto AttrList::insert_before (Attribute &attr) -> void
 {
   pango_attr_list_insert_before(gobj(), pango_attribute_copy(attr.gobj()));
 }
 
-void AttrList::change(Attribute& attr)
+auto AttrList::change (Attribute &attr) -> void
 {
   pango_attr_list_change(gobj(), pango_attribute_copy(attr.gobj()));
 }
@@ -152,7 +152,7 @@ AttrList::~AttrList() noexcept
     pango_attr_list_unref(gobject_);
 }
 
-void AttrList::swap(AttrList& other) noexcept
+auto AttrList::swap (AttrList &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }
@@ -163,12 +163,12 @@ auto AttrList::gobj_copy() const -> PangoAttrList*
 }
 
 
-void AttrList::splice(AttrList& other, int pos, int len)
+auto AttrList::splice (AttrList &other, int pos, int len) -> void
 {
   pango_attr_list_splice(gobj(), (other).gobj(), pos, len);
 }
 
-void AttrList::update(int pos, int remove, int add)
+auto AttrList::update (int pos, int remove, int add) -> void
 {
   pango_attr_list_update(gobj(), pos, remove, add);
 }

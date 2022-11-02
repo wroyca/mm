@@ -64,7 +64,7 @@ auto GridLayoutChild_Class::init() -> const Glib::Class&
 }
 
 
-void GridLayoutChild_Class::class_init_function(void* g_class, void* class_data)
+auto GridLayoutChild_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -139,7 +139,7 @@ GridLayoutChild::GridLayoutChild()
 
 }
 
-void GridLayoutChild::set_row(int row)
+auto GridLayoutChild::set_row (int row) -> void
 {
   gtk_grid_layout_child_set_row(gobj(), row);
 }
@@ -149,7 +149,7 @@ auto GridLayoutChild::get_row() const -> int
   return gtk_grid_layout_child_get_row(const_cast<GtkGridLayoutChild*>(gobj()));
 }
 
-void GridLayoutChild::set_column(int column)
+auto GridLayoutChild::set_column (int column) -> void
 {
   gtk_grid_layout_child_set_column(gobj(), column);
 }
@@ -159,7 +159,7 @@ auto GridLayoutChild::get_column() const -> int
   return gtk_grid_layout_child_get_column(const_cast<GtkGridLayoutChild*>(gobj()));
 }
 
-void GridLayoutChild::set_column_span(int span)
+auto GridLayoutChild::set_column_span (int span) -> void
 {
   gtk_grid_layout_child_set_column_span(gobj(), span);
 }
@@ -169,7 +169,7 @@ auto GridLayoutChild::get_column_span() const -> int
   return gtk_grid_layout_child_get_column_span(const_cast<GtkGridLayoutChild*>(gobj()));
 }
 
-void GridLayoutChild::set_row_span(int span)
+auto GridLayoutChild::set_row_span (int span) -> void
 {
   gtk_grid_layout_child_set_row_span(gobj(), span);
 }

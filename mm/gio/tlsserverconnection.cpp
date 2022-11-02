@@ -64,7 +64,7 @@ auto TlsServerConnection_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void TlsServerConnection_Class::iface_init_function(void* g_iface, void*)
+auto TlsServerConnection_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -113,7 +113,7 @@ TlsServerConnection::~TlsServerConnection() noexcept
 {}
 
 // static
-void TlsServerConnection::add_interface(GType gtype_implementer)
+auto TlsServerConnection::add_interface (GType gtype_implementer) -> void
 {
   tlsserverconnection_class_.init().add_interface(gtype_implementer);
 }

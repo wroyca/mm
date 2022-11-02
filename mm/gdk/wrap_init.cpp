@@ -117,7 +117,7 @@ class Snapshot_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBas
 class Surface_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 class Texture_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 
-void wrap_init()
+auto wrap_init () -> void
 {
   // Register Error domains in the main namespace:
   Glib::Error::register_domain(gdk_gl_error_quark(), &GLError::throw_func);

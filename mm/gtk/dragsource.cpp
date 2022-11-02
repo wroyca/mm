@@ -89,7 +89,7 @@ const Glib::SignalProxyInfo DragSource_signal_prepare_info =
 };
 
 
-void DragSource_signal_drag_begin_callback(GtkDragSource* self, GdkDrag* p0,void* data)
+auto DragSource_signal_drag_begin_callback (GtkDragSource *self, GdkDrag *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gdk::Drag>&)>;
@@ -119,7 +119,8 @@ const Glib::SignalProxyInfo DragSource_signal_drag_begin_info =
 };
 
 
-void DragSource_signal_drag_end_callback(GtkDragSource* self, GdkDrag* p0,gboolean p1,void* data)
+auto DragSource_signal_drag_end_callback (
+  GtkDragSource *self, GdkDrag *p0, gboolean p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gdk::Drag>&, bool)>;
@@ -253,7 +254,7 @@ auto DragSource_Class::init() -> const Glib::Class&
 }
 
 
-void DragSource_Class::class_init_function(void* g_class, void* class_data)
+auto DragSource_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -333,7 +334,7 @@ auto DragSource::create() -> Glib::RefPtr<DragSource>
   return Glib::make_refptr_for_instance<DragSource>( new DragSource() );
 }
 
-void DragSource::set_content(const Glib::RefPtr<Gdk::ContentProvider>& content)
+auto DragSource::set_content (const Glib::RefPtr <Gdk::ContentProvider> &content) -> void
 {
   gtk_drag_source_set_content(gobj(), Glib::unwrap(content));
 }
@@ -351,7 +352,7 @@ auto DragSource::get_content() const -> Glib::RefPtr<const Gdk::ContentProvider>
   return const_cast<DragSource*>(this)->get_content();
 }
 
-void DragSource::set_actions(Gdk::DragAction actions)
+auto DragSource::set_actions (Gdk::DragAction actions) -> void
 {
   gtk_drag_source_set_actions(gobj(), static_cast<GdkDragAction>(actions));
 }
@@ -361,12 +362,13 @@ auto DragSource::get_actions() const -> Gdk::DragAction
   return static_cast<Gdk::DragAction>(gtk_drag_source_get_actions(const_cast<GtkDragSource*>(gobj())));
 }
 
-void DragSource::set_icon(const Glib::RefPtr<const Gdk::Paintable>& paintable, int hot_x, int hot_y)
+auto DragSource::set_icon (
+  const Glib::RefPtr <const Gdk::Paintable> &paintable, int hot_x, int hot_y) -> void
 {
   gtk_drag_source_set_icon(gobj(), const_cast<GdkPaintable*>(Glib::unwrap(paintable)), hot_x, hot_y);
 }
 
-void DragSource::drag_cancel()
+auto DragSource::drag_cancel () -> void
 {
   gtk_drag_source_drag_cancel(gobj());
 }

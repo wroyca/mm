@@ -75,7 +75,7 @@ auto TreePath::operator=(const TreeModel::iterator& iter) -> TreePath&
   return *this;
 }
 
-void TreePath::clear()
+auto TreePath::clear () -> void
 {
   TreePath empty_path;
   swap(empty_path);
@@ -229,7 +229,7 @@ TreePath::~TreePath() noexcept
     gtk_tree_path_free(gobject_);
 }
 
-void TreePath::swap(TreePath& other) noexcept
+auto TreePath::swap (TreePath &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }
@@ -240,17 +240,17 @@ auto TreePath::gobj_copy() const -> GtkTreePath*
 }
 
 
-void TreePath::push_back(int index)
+auto TreePath::push_back (int index) -> void
 {
   gtk_tree_path_append_index(gobj(), index);
 }
 
-void TreePath::push_front(int index)
+auto TreePath::push_front (int index) -> void
 {
   gtk_tree_path_prepend_index(gobj(), index);
 }
 
-void TreePath::next()
+auto TreePath::next () -> void
 {
   gtk_tree_path_next(gobj());
 }
@@ -265,7 +265,7 @@ auto TreePath::up() -> bool
   return gtk_tree_path_up(gobj());
 }
 
-void TreePath::down()
+auto TreePath::down () -> void
 {
   gtk_tree_path_down(gobj());
 }

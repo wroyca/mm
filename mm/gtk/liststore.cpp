@@ -41,7 +41,7 @@ ListStore::ListStore(const TreeModelColumnRecord& columns)
   gtk_list_store_set_column_types(gobj(), columns.size(), const_cast<GType*>(columns.types()));
 }
 
-void ListStore::set_column_types(const TreeModelColumnRecord& columns)
+auto ListStore::set_column_types (const TreeModelColumnRecord &columns) -> void
 {
    gtk_list_store_set_column_types(gobj(), columns.size(), const_cast<GType*>(columns.types()));
 }
@@ -118,19 +118,20 @@ auto ListStore::append() -> TreeModel::iterator
   return new_pos;
 }
 
-void ListStore::move(const iterator& source, const iterator& destination)
+auto ListStore::move (const iterator &source, const iterator &destination) -> void
 {
   gtk_list_store_move_before(gobj(),
       const_cast<GtkTreeIter*>(source.get_gobject_if_not_end()),
       const_cast<GtkTreeIter*>(destination.get_gobject_if_not_end()));
 }
 
-void ListStore::reorder(const std::vector<int>& new_order)
+auto ListStore::reorder (const std::vector <int> &new_order) -> void
 {
   gtk_list_store_reorder(gobj(), const_cast<int*>(Glib::ArrayHandler<int>::vector_to_array(new_order).data()));
 }
 
-void ListStore::set_value_impl(const iterator& row, int column, const Glib::ValueBase& value)
+auto ListStore::set_value_impl (
+  const iterator &row, int column, const Glib::ValueBase &value) -> void
 {
   gtk_list_store_set_value(
       gobj(), const_cast<GtkTreeIter*>(row.gobj()),
@@ -190,7 +191,7 @@ auto ListStore_Class::init() -> const Glib::Class&
 }
 
 
-void ListStore_Class::class_init_function(void* g_class, void* class_data)
+auto ListStore_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -280,12 +281,12 @@ auto ListStore::create(const TreeModelColumnRecord& columns) -> Glib::RefPtr<Lis
   return Glib::make_refptr_for_instance<ListStore>( new ListStore(columns) );
 }
 
-void ListStore::iter_swap(const iterator& a, const iterator& b)
+auto ListStore::iter_swap (const iterator &a, const iterator &b) -> void
 {
   gtk_list_store_swap(gobj(), const_cast<GtkTreeIter*>((a).gobj()), const_cast<GtkTreeIter*>((b).gobj()));
 }
 
-void ListStore::clear()
+auto ListStore::clear () -> void
 {
   gtk_list_store_clear(gobj());
 }

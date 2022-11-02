@@ -64,7 +64,7 @@ auto AppChooser_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void AppChooser_Class::iface_init_function(void* g_iface, void*)
+auto AppChooser_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -113,7 +113,7 @@ AppChooser::~AppChooser() noexcept
 {}
 
 // static
-void AppChooser::add_interface(GType gtype_implementer)
+auto AppChooser::add_interface (GType gtype_implementer) -> void
 {
   appchooser_class_.init().add_interface(gtype_implementer);
 }
@@ -150,7 +150,7 @@ auto AppChooser::get_content_type() const -> Glib::ustring
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_app_chooser_get_content_type(const_cast<GtkAppChooser*>(gobj())));
 }
 
-void AppChooser::refresh()
+auto AppChooser::refresh () -> void
 {
   gtk_app_chooser_refresh(gobj());
 }

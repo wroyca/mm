@@ -32,7 +32,7 @@ namespace Gdk
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-void GLContext::unset_use_es()
+auto GLContext::unset_use_es () -> void
 {
   gdk_gl_context_set_use_es(gobj(), -1);
 }
@@ -75,7 +75,7 @@ auto Gdk::GLError::code() const -> Gdk::GLError::Code
   return static_cast<Code>(Glib::Error::code());
 }
 
-void Gdk::GLError::throw_func(GError* gobject)
+auto Gdk::GLError::throw_func (GError *gobject) -> void
 {
   throw Gdk::GLError(gobject);
 }
@@ -127,7 +127,7 @@ auto GLContext_Class::init() -> const Glib::Class&
 }
 
 
-void GLContext_Class::class_init_function(void* g_class, void* class_data)
+auto GLContext_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -249,7 +249,7 @@ auto GLContext::get_shared_context() const -> Glib::RefPtr<const GLContext>
 G_GNUC_END_IGNORE_DEPRECATIONS
 #endif // GDKMM_DISABLE_DEPRECATED
 
-void GLContext::get_version(int& major, int& minor) const
+auto GLContext::get_version (int &major, int &minor) const -> void
 {
   gdk_gl_context_get_version(const_cast<GdkGLContext*>(gobj()), &(major), &(minor));
 }
@@ -264,12 +264,12 @@ auto GLContext::is_shared(const Glib::RefPtr<const GLContext>& other) const -> b
   return gdk_gl_context_is_shared(const_cast<GdkGLContext*>(gobj()), const_cast<GdkGLContext*>(Glib::unwrap<Gdk::GLContext>(other)));
 }
 
-void GLContext::get_required_version(int& major, int& minor) const
+auto GLContext::get_required_version (int &major, int &minor) const -> void
 {
   gdk_gl_context_get_required_version(const_cast<GdkGLContext*>(gobj()), &(major), &(minor));
 }
 
-void GLContext::set_required_version(int major, int minor)
+auto GLContext::set_required_version (int major, int minor) -> void
 {
   gdk_gl_context_set_required_version(gobj(), major, minor);
 }
@@ -279,7 +279,7 @@ auto GLContext::get_debug_enabled() const -> bool
   return gdk_gl_context_get_debug_enabled(const_cast<GdkGLContext*>(gobj()));
 }
 
-void GLContext::set_debug_enabled(bool enabled)
+auto GLContext::set_debug_enabled (bool enabled) -> void
 {
   gdk_gl_context_set_debug_enabled(gobj(), static_cast<int>(enabled));
 }
@@ -289,14 +289,14 @@ auto GLContext::get_forward_compatible() const -> bool
   return gdk_gl_context_get_forward_compatible(const_cast<GdkGLContext*>(gobj()));
 }
 
-void GLContext::set_forward_compatible(bool compatible)
+auto GLContext::set_forward_compatible (bool compatible) -> void
 {
   gdk_gl_context_set_forward_compatible(gobj(), static_cast<int>(compatible));
 }
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-void GLContext::set_allowed_apis(GLAPI apis)
+auto GLContext::set_allowed_apis (GLAPI apis) -> void
 {
   gdk_gl_context_set_allowed_apis(gobj(), static_cast<GdkGLAPI>(apis));
 }
@@ -321,7 +321,7 @@ auto GLContext::get_api() const -> GLAPI
 G_GNUC_END_IGNORE_DEPRECATIONS
 #endif // GDKMM_DISABLE_DEPRECATED
 
-void GLContext::set_allowed_apis(GLApi apis)
+auto GLContext::set_allowed_apis (GLApi apis) -> void
 {
   gdk_gl_context_set_allowed_apis(gobj(), static_cast<GdkGLAPI>(apis));
 }
@@ -338,7 +338,7 @@ auto GLContext::get_api2() const -> GLApi
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-void GLContext::set_use_es(bool use_es)
+auto GLContext::set_use_es (bool use_es) -> void
 {
   gdk_gl_context_set_use_es(gobj(), static_cast<int>(use_es));
 }
@@ -359,7 +359,7 @@ auto GLContext::realize() -> bool
   return retvalue;
 }
 
-void GLContext::make_current()
+auto GLContext::make_current () -> void
 {
   gdk_gl_context_make_current(gobj());
 }
@@ -373,7 +373,7 @@ auto GLContext::get_current() -> Glib::RefPtr<GLContext>
   return retvalue;
 }
 
-void GLContext::clear_current()
+auto GLContext::clear_current () -> void
 {
   gdk_gl_context_clear_current();
 }

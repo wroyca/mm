@@ -98,7 +98,7 @@ auto TreeListModel_Class::init() -> const Glib::Class&
 }
 
 
-void TreeListModel_Class::class_init_function(void* g_class, void* class_data)
+auto TreeListModel_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -188,7 +188,7 @@ auto TreeListModel::get_passthrough() const -> bool
   return gtk_tree_list_model_get_passthrough(const_cast<GtkTreeListModel*>(gobj()));
 }
 
-void TreeListModel::set_autoexpand(bool autoexpand)
+auto TreeListModel::set_autoexpand (bool autoexpand) -> void
 {
   gtk_tree_list_model_set_autoexpand(gobj(), static_cast<int>(autoexpand));
 }

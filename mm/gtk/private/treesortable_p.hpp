@@ -20,26 +20,32 @@ public:
 
   friend class TreeSortable;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
   //Callbacks (default signal handlers):
   //These will call the *_impl member methods, which will then call the existing default signal callbacks, if any.
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
-  static void sort_column_changed_callback(GtkTreeSortable* self);
+  static auto sort_column_changed_callback (GtkTreeSortable *self) -> void;
 
   //Callbacks (virtual functions):
-  static gboolean get_sort_column_id_vfunc_callback(GtkTreeSortable* self, int* sort_column_id, GtkSortType* order);
-  static void set_sort_column_id_vfunc_callback(GtkTreeSortable* self, int sort_column_id, GtkSortType order);
-  static void set_sort_func_vfunc_callback(GtkTreeSortable* self, int sort_column_id, GtkTreeIterCompareFunc func, gpointer data, GDestroyNotify destroy);
-  static void set_default_sort_func_vfunc_callback(GtkTreeSortable* self, GtkTreeIterCompareFunc func, gpointer data, GDestroyNotify destroy);
-  static gboolean has_default_sort_func_vfunc_callback(GtkTreeSortable* self);
-  static void sort_column_changed_vfunc_callback(GtkTreeSortable* self);
+  static auto get_sort_column_id_vfunc_callback (
+    GtkTreeSortable *self, int *sort_column_id, GtkSortType *order) -> gboolean;
+  static auto set_sort_column_id_vfunc_callback (
+    GtkTreeSortable *self, int sort_column_id, GtkSortType order) -> void;
+  static auto set_sort_func_vfunc_callback (
+    GtkTreeSortable *self, int sort_column_id, GtkTreeIterCompareFunc func, gpointer data,
+    GDestroyNotify destroy) -> void;
+  static auto set_default_sort_func_vfunc_callback (
+    GtkTreeSortable *self, GtkTreeIterCompareFunc func, gpointer data,
+    GDestroyNotify destroy) -> void;
+  static auto has_default_sort_func_vfunc_callback (GtkTreeSortable *self) -> gboolean;
+  static auto sort_column_changed_vfunc_callback (GtkTreeSortable *self) -> void;
 };
 
 

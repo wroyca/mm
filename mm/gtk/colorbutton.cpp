@@ -85,7 +85,7 @@ auto ColorButton_Class::init() -> const Glib::Class&
 }
 
 
-void ColorButton_Class::class_init_function(void* g_class, void* class_data)
+auto ColorButton_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -167,7 +167,7 @@ ColorButton::ColorButton(const Gdk::RGBA& rgba)
 
 }
 
-void ColorButton::set_title(const Glib::ustring& title)
+auto ColorButton::set_title (const Glib::ustring &title) -> void
 {
   gtk_color_button_set_title(gobj(), title.c_str());
 }
@@ -177,7 +177,7 @@ auto ColorButton::get_title() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_color_button_get_title(const_cast<GtkColorButton*>(gobj())));
 }
 
-void ColorButton::set_modal(bool modal)
+auto ColorButton::set_modal (bool modal) -> void
 {
   gtk_color_button_set_modal(gobj(), static_cast<int>(modal));
 }

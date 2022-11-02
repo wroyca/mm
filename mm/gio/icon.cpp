@@ -87,7 +87,7 @@ auto Icon_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Icon_Class::iface_init_function(void* g_iface, void*)
+auto Icon_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -136,7 +136,7 @@ Icon::~Icon() noexcept
 {}
 
 // static
-void Icon::add_interface(GType gtype_implementer)
+auto Icon::add_interface (GType gtype_implementer) -> void
 {
   icon_class_.init().add_interface(gtype_implementer);
 }

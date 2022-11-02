@@ -105,9 +105,8 @@ g_callback_pre_parse(
   return false;
 }
 
-static void
-g_callback_error(
-  GOptionContext* context, GOptionGroup* /* group */, gpointer data, GError** error)
+static auto g_callback_error (
+  GOptionContext *context, GOptionGroup * /* group */, gpointer data, GError **error) -> void
 {
   // GError** error is input data containing information on an error that
   // has occurred before this function is called.
@@ -146,8 +145,7 @@ OptionGroup_Translate_glibmm_callback(const gchar* string, gpointer data) -> con
   return nullptr;
 }
 
-static void
-OptionGroup_Translate_glibmm_callback_destroy(void* data)
+static auto OptionGroup_Translate_glibmm_callback_destroy (void *data) -> void
 {
   delete static_cast<Glib::OptionGroup::SlotTranslate*>(data);
 }
@@ -302,8 +300,7 @@ OptionGroup::OptionGroup(GOptionGroup* castitem) : gobject_(castitem)
   // Always takes ownership - never takes copy.
 }
 
-void
-OptionGroup::release_gobject() noexcept
+auto OptionGroup::release_gobject () noexcept -> void
 {
   // Free any C types that were allocated during add_entry():
   for (auto& the_pair : map_entries_)
@@ -324,8 +321,7 @@ OptionGroup::~OptionGroup()
   release_gobject();
 }
 
-void
-OptionGroup::add_entry(const OptionEntry& entry)
+auto OptionGroup::add_entry (const OptionEntry &entry) -> void
 {
   // It does not copy the entry, so it needs to live as long as the group.
 
@@ -341,46 +337,39 @@ OptionGroup::add_entry(const OptionEntry& entry)
   g_option_group_add_entries(gobj(), array);
 }
 
-void
-OptionGroup::add_entry(const OptionEntry& entry, bool& arg)
+auto OptionGroup::add_entry (const OptionEntry &entry, bool &arg) -> void
 {
   add_entry_with_wrapper(entry,
     G_OPTION_ARG_NONE /* Actually a boolean on/off, depending on whether the argument name was given, without argument parameters. */,
     &arg);
 }
 
-void
-OptionGroup::add_entry(const OptionEntry& entry, int& arg)
+auto OptionGroup::add_entry (const OptionEntry &entry, int &arg) -> void
 {
   add_entry_with_wrapper(entry, G_OPTION_ARG_INT, &arg);
 }
 
-void
-OptionGroup::add_entry(const OptionEntry& entry, double& arg)
+auto OptionGroup::add_entry (const OptionEntry &entry, double &arg) -> void
 {
   add_entry_with_wrapper(entry, G_OPTION_ARG_DOUBLE, &arg);
 }
 
-void
-OptionGroup::add_entry(const OptionEntry& entry, Glib::ustring& arg)
+auto OptionGroup::add_entry (const OptionEntry &entry, Glib::ustring &arg) -> void
 {
   add_entry_with_wrapper(entry, G_OPTION_ARG_STRING, &arg);
 }
 
-void
-OptionGroup::add_entry(const OptionEntry& entry, vecustrings& arg)
+auto OptionGroup::add_entry (const OptionEntry &entry, vecustrings &arg) -> void
 {
   add_entry_with_wrapper(entry, G_OPTION_ARG_STRING_ARRAY, &arg);
 }
 
-void
-OptionGroup::add_entry_filename(const OptionEntry& entry, std::string& arg)
+auto OptionGroup::add_entry_filename (const OptionEntry &entry, std::string &arg) -> void
 {
   add_entry_with_wrapper(entry, G_OPTION_ARG_FILENAME, &arg);
 }
 
-void
-OptionGroup::add_entry_filename(const OptionEntry& entry, vecstrings& arg)
+auto OptionGroup::add_entry_filename (const OptionEntry &entry, vecstrings &arg) -> void
 {
   add_entry_with_wrapper(entry, G_OPTION_ARG_FILENAME_ARRAY, &arg);
 }
@@ -397,22 +386,21 @@ OptionGroup::add_entry_filename(const OptionEntry& entry, vecstrings& arg)
 // with OptionEntry::Flags::FILENAME. We do this automatiically in set_c_arg_default().
 // Other option flags are set by OptionEntry::set_flags().
 
-void
-OptionGroup::add_entry(const OptionEntry& entry, const SlotOptionArgString& slot)
+auto OptionGroup::add_entry (const OptionEntry &entry, const SlotOptionArgString &slot) -> void
 {
   // The OptionArgCallback is deleted in release_c_arg().
   add_entry_with_wrapper(entry, G_OPTION_ARG_CALLBACK, new OptionArgCallback(slot));
 }
 
-void
-OptionGroup::add_entry_filename(const OptionEntry& entry, const SlotOptionArgFilename& slot)
+auto OptionGroup::add_entry_filename (
+  const OptionEntry &entry, const SlotOptionArgFilename &slot) -> void
 {
   // The OptionArgCallback is deleted in release_c_arg().
   add_entry_with_wrapper(entry, G_OPTION_ARG_CALLBACK, new OptionArgCallback(slot));
 }
 
-void
-OptionGroup::add_entry_with_wrapper(const OptionEntry& entry, GOptionArg arg_type, void* cpp_arg)
+auto OptionGroup::add_entry_with_wrapper (
+  const OptionEntry &entry, GOptionArg arg_type, void *cpp_arg) -> void
 {
   const auto name = entry.get_long_name();
   type_map_entries::iterator iterFind = map_entries_.find(name);
@@ -483,13 +471,11 @@ OptionGroup::on_post_parse(OptionContext& /* context */) -> bool
   return true;
 }
 
-void
-OptionGroup::on_error(OptionContext& /* context */, const Error& /* error */)
+auto OptionGroup::on_error (OptionContext & /* context */, const Error & /* error */) -> void
 {
 }
 
-void
-OptionGroup::set_translate_func(const SlotTranslate& slot)
+auto OptionGroup::set_translate_func (const SlotTranslate &slot) -> void
 {
   // Create a copy of the slot. A pointer to this will be passed through the
   // callback's data parameter.  It will be deleted when
@@ -504,8 +490,7 @@ OptionGroup::CppOptionEntry::CppOptionEntry()
 {
 }
 
-void
-OptionGroup::CppOptionEntry::allocate_c_arg()
+auto OptionGroup::CppOptionEntry::allocate_c_arg () -> void
 {
   // Create an instance of the appropriate C type.
   // This will be destroyed in the OptionGroup destructor.
@@ -585,8 +570,7 @@ OptionGroup::CppOptionEntry::allocate_c_arg()
   }
 }
 
-void
-OptionGroup::CppOptionEntry::set_c_arg_default(void* cpp_arg)
+auto OptionGroup::CppOptionEntry::set_c_arg_default (void *cpp_arg) -> void
 {
   switch (carg_type_)
   {
@@ -641,8 +625,7 @@ OptionGroup::CppOptionEntry::set_c_arg_default(void* cpp_arg)
   }
 }
 
-void
-OptionGroup::CppOptionEntry::release_c_arg()
+auto OptionGroup::CppOptionEntry::release_c_arg () -> void
 {
   // Delete the instances that we created in allocate_c_arg().
   // Notice that we delete the type that we created, but not the value to which it points.
@@ -713,8 +696,7 @@ OptionGroup::CppOptionEntry::release_c_arg()
     delete entry_;
 }
 
-void
-OptionGroup::CppOptionEntry::convert_c_to_cpp()
+auto OptionGroup::CppOptionEntry::convert_c_to_cpp () -> void
 {
   if (!carg_)
     return;
@@ -846,7 +828,7 @@ namespace Glib
 {
 
 
-void OptionGroup::set_translation_domain(const Glib::ustring& domain)
+auto OptionGroup::set_translation_domain (const Glib::ustring &domain) -> void
 {
   g_option_group_set_translation_domain(gobj(), domain.c_str());
 }

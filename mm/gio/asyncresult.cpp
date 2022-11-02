@@ -96,7 +96,7 @@ auto AsyncResult_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void AsyncResult_Class::iface_init_function(void* g_iface, void*)
+auto AsyncResult_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -226,7 +226,7 @@ AsyncResult::~AsyncResult() noexcept
 {}
 
 // static
-void AsyncResult::add_interface(GType gtype_implementer)
+auto AsyncResult::add_interface (GType gtype_implementer) -> void
 {
   asyncresult_class_.init().add_interface(gtype_implementer);
 }

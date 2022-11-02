@@ -35,7 +35,7 @@ Object::Object(GObject* castitem)
    _init_unmanage(); //We don't like the GTK+ default memory management - we want to be in control.
 }
 
-void Object::_init_unmanage()
+auto Object::_init_unmanage () -> void
 {
   //GTKMM_LIFECYCLE
 
@@ -74,7 +74,7 @@ void Object::_init_unmanage()
   }
 }
 
-void Object::_release_c_instance()
+auto Object::_release_c_instance () -> void
 {
   #ifdef GLIBMM_DEBUG_REFCOUNTING
   g_warning("Gtk::Object::_release_c_instance() this=%p, gobject_=%p\n", (void*)(Glib::ObjectBase*)this, (void*)gobject_);
@@ -189,7 +189,7 @@ Object::~Object() noexcept
   _release_c_instance();
 }
 
-void Object::disconnect_cpp_wrapper(bool prevent_creation_of_another_wrapper)
+auto Object::disconnect_cpp_wrapper (bool prevent_creation_of_another_wrapper) -> void
 {
   //GTKMM_LIFECYCLE:
 
@@ -216,7 +216,7 @@ void Object::disconnect_cpp_wrapper(bool prevent_creation_of_another_wrapper)
   }
 }
 
-void Object::destroy_notify_()
+auto Object::destroy_notify_ () -> void
 {
   //Overriden.
   //GTKMM_LIFECYCLE
@@ -250,7 +250,7 @@ void Object::destroy_notify_()
   }
 }
 
-void Object::destroy_()
+auto Object::destroy_ () -> void
 {
   //Called from destructors.
   //GTKMM_LIFECYCLE
@@ -272,7 +272,7 @@ void Object::destroy_()
   //The C++ destructor will be reached later. This function was called by a destructor.
 }
 
-void Object::set_manage()
+auto Object::set_manage () -> void
 {
   //GTKMM_LIFECYCLE
   //This object will not be unref()ed by gtkmm, though it could be destroyed if the coder deletes the C++ instance early.
@@ -341,7 +341,7 @@ auto Object_Class::init() -> const Glib::Class&
 }
 
 
-void Object_Class::class_init_function(void* g_class, void* class_data)
+auto Object_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   BaseClassType *const klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

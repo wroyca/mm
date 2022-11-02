@@ -109,7 +109,7 @@ auto Adjustment_Class::init() -> const Glib::Class&
 }
 
 
-void Adjustment_Class::class_init_function(void* g_class, void* class_data)
+auto Adjustment_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -120,7 +120,7 @@ void Adjustment_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void Adjustment_Class::changed_callback(GtkAdjustment* self)
+auto Adjustment_Class::changed_callback (GtkAdjustment *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -156,7 +156,7 @@ void Adjustment_Class::changed_callback(GtkAdjustment* self)
   if(base && base->changed)
     (*base->changed)(self);
 }
-void Adjustment_Class::value_changed_callback(GtkAdjustment* self)
+auto Adjustment_Class::value_changed_callback (GtkAdjustment *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -257,12 +257,12 @@ auto Adjustment::create(double value, double lower, double upper, double step_in
   return Glib::make_refptr_for_instance<Adjustment>( new Adjustment(value, lower, upper, step_increment, page_increment, page_size) );
 }
 
-void Adjustment::clamp_page(double lower, double upper)
+auto Adjustment::clamp_page (double lower, double upper) -> void
 {
   gtk_adjustment_clamp_page(gobj(), lower, upper);
 }
 
-void Adjustment::set_value(double value)
+auto Adjustment::set_value (double value) -> void
 {
   gtk_adjustment_set_value(gobj(), value);
 }
@@ -272,7 +272,7 @@ auto Adjustment::get_value() const -> double
   return gtk_adjustment_get_value(const_cast<GtkAdjustment*>(gobj()));
 }
 
-void Adjustment::set_lower(double lower)
+auto Adjustment::set_lower (double lower) -> void
 {
   gtk_adjustment_set_lower(gobj(), lower);
 }
@@ -282,7 +282,7 @@ auto Adjustment::get_lower() const -> double
   return gtk_adjustment_get_lower(const_cast<GtkAdjustment*>(gobj()));
 }
 
-void Adjustment::set_upper(double upper)
+auto Adjustment::set_upper (double upper) -> void
 {
   gtk_adjustment_set_upper(gobj(), upper);
 }
@@ -292,7 +292,7 @@ auto Adjustment::get_upper() const -> double
   return gtk_adjustment_get_upper(const_cast<GtkAdjustment*>(gobj()));
 }
 
-void Adjustment::set_step_increment(double step_increment)
+auto Adjustment::set_step_increment (double step_increment) -> void
 {
   gtk_adjustment_set_step_increment(gobj(), step_increment);
 }
@@ -302,7 +302,7 @@ auto Adjustment::get_step_increment() const -> double
   return gtk_adjustment_get_step_increment(const_cast<GtkAdjustment*>(gobj()));
 }
 
-void Adjustment::set_page_increment(double page_increment)
+auto Adjustment::set_page_increment (double page_increment) -> void
 {
   gtk_adjustment_set_page_increment(gobj(), page_increment);
 }
@@ -312,7 +312,7 @@ auto Adjustment::get_page_increment() const -> double
   return gtk_adjustment_get_page_increment(const_cast<GtkAdjustment*>(gobj()));
 }
 
-void Adjustment::set_page_size(double page_size)
+auto Adjustment::set_page_size (double page_size) -> void
 {
   gtk_adjustment_set_page_size(gobj(), page_size);
 }
@@ -322,7 +322,9 @@ auto Adjustment::get_page_size() const -> double
   return gtk_adjustment_get_page_size(const_cast<GtkAdjustment*>(gobj()));
 }
 
-void Adjustment::configure(double value, double lower, double upper, double step_increment, double page_increment, double page_size)
+auto Adjustment::configure (
+  double value, double lower, double upper, double step_increment, double page_increment,
+  double page_size) -> void
 {
   gtk_adjustment_configure(gobj(), value, lower, upper, step_increment, page_increment, page_size);
 }
@@ -406,7 +408,7 @@ auto Adjustment::property_page_size() const -> Glib::PropertyProxy_ReadOnly< dou
 }
 
 
-void Gtk::Adjustment::on_changed()
+auto Gtk::Adjustment::on_changed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -415,7 +417,7 @@ void Gtk::Adjustment::on_changed()
   if(base && base->changed)
     (*base->changed)(gobj());
 }
-void Gtk::Adjustment::on_value_changed()
+auto Gtk::Adjustment::on_value_changed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

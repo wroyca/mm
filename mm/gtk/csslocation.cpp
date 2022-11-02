@@ -72,7 +72,7 @@ auto CssLocation::get_bytes() const -> std::size_t
   return gobj()->bytes;
 }
 
-void CssLocation::set_bytes(const std::size_t& value)
+auto CssLocation::set_bytes (const std::size_t &value) -> void
 {
   gobj()->bytes = value;
 }
@@ -82,7 +82,7 @@ auto CssLocation::get_chars() const -> std::size_t
   return gobj()->chars;
 }
 
-void CssLocation::set_chars(const std::size_t& value)
+auto CssLocation::set_chars (const std::size_t &value) -> void
 {
   gobj()->chars = value;
 }
@@ -92,7 +92,7 @@ auto CssLocation::get_lines() const -> std::size_t
   return gobj()->lines;
 }
 
-void CssLocation::set_lines(const std::size_t& value)
+auto CssLocation::set_lines (const std::size_t &value) -> void
 {
   gobj()->lines = value;
 }
@@ -102,7 +102,7 @@ auto CssLocation::get_line_bytes() const -> std::size_t
   return gobj()->line_bytes;
 }
 
-void CssLocation::set_line_bytes(const std::size_t& value)
+auto CssLocation::set_line_bytes (const std::size_t &value) -> void
 {
   gobj()->line_bytes = value;
 }
@@ -112,7 +112,7 @@ auto CssLocation::get_line_chars() const -> std::size_t
   return gobj()->line_chars;
 }
 
-void CssLocation::set_line_chars(const std::size_t& value)
+auto CssLocation::set_line_chars (const std::size_t &value) -> void
 {
   gobj()->line_chars = value;
 }

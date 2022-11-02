@@ -28,7 +28,7 @@
 namespace Gtk
 {
 
-void ListItem::unset_child()
+auto ListItem::unset_child () -> void
 {
   gtk_list_item_set_child(gobj(), nullptr);
 }
@@ -80,7 +80,7 @@ auto ListItem_Class::init() -> const Glib::Class&
 }
 
 
-void ListItem_Class::class_init_function(void* g_class, void* class_data)
+auto ListItem_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -173,7 +173,7 @@ auto ListItem::get_selectable() const -> bool
   return gtk_list_item_get_selectable(const_cast<GtkListItem*>(gobj()));
 }
 
-void ListItem::set_selectable(bool selectable)
+auto ListItem::set_selectable (bool selectable) -> void
 {
   gtk_list_item_set_selectable(gobj(), static_cast<int>(selectable));
 }
@@ -183,12 +183,12 @@ auto ListItem::get_activatable() const -> bool
   return gtk_list_item_get_activatable(const_cast<GtkListItem*>(gobj()));
 }
 
-void ListItem::set_activatable(bool activatable)
+auto ListItem::set_activatable (bool activatable) -> void
 {
   gtk_list_item_set_activatable(gobj(), static_cast<int>(activatable));
 }
 
-void ListItem::set_child(Widget& child)
+auto ListItem::set_child (Widget &child) -> void
 {
   gtk_list_item_set_child(gobj(), (child).gobj());
 }

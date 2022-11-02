@@ -113,7 +113,7 @@ auto Requisition::get_width() const -> int
   return gobj()->width;
 }
 
-void Requisition::set_width(const int& value)
+auto Requisition::set_width (const int &value) -> void
 {
   gobj()->width = value;
 }
@@ -123,7 +123,7 @@ auto Requisition::get_height() const -> int
   return gobj()->height;
 }
 
-void Requisition::set_height(const int& value)
+auto Requisition::set_height (const int &value) -> void
 {
   gobj()->height = value;
 }

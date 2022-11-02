@@ -20,11 +20,11 @@ public:
 
   friend class TreeDragSource;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -33,9 +33,11 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static gboolean row_draggable_vfunc_callback(GtkTreeDragSource* self, GtkTreePath* path);
-  static GdkContentProvider* drag_data_get_vfunc_callback(GtkTreeDragSource* self, GtkTreePath* path);
-  static gboolean drag_data_delete_vfunc_callback(GtkTreeDragSource* self, GtkTreePath* path);
+  static auto row_draggable_vfunc_callback (GtkTreeDragSource *self, GtkTreePath *path) -> gboolean;
+  static auto drag_data_get_vfunc_callback (
+    GtkTreeDragSource *self, GtkTreePath *path) -> GdkContentProvider*;
+  static auto drag_data_delete_vfunc_callback (
+    GtkTreeDragSource *self, GtkTreePath *path) -> gboolean;
 };
 
 

@@ -58,39 +58,39 @@ auto rotation_matrix(double radians) -> Matrix
   return m;
 }
 
-void Matrix::translate(double tx, double ty)
+auto Matrix::translate (double tx, double ty) -> void
 {
   cairo_matrix_translate(this, tx, ty);
 }
 
-void Matrix::scale(double sx, double sy)
+auto Matrix::scale (double sx, double sy) -> void
 {
   cairo_matrix_scale(this, sx, sy);
 }
 
-void Matrix::rotate(double radians)
+auto Matrix::rotate (double radians) -> void
 {
   cairo_matrix_rotate(this, radians);
 }
 
-void Matrix::invert()
+auto Matrix::invert () -> void
 {
   auto status = cairo_matrix_invert(this);
   check_status_and_throw_exception(status);
 }
 
 // throws exception
-void Matrix::multiply(Matrix& a, Matrix& b)
+auto Matrix::multiply (Matrix &a, Matrix &b) -> void
 {
   cairo_matrix_multiply(this, &a, &b);
 }
 
-void Matrix::transform_distance(double& dx, double& dy) const
+auto Matrix::transform_distance (double &dx, double &dy) const -> void
 {
   cairo_matrix_transform_distance(this, &dx, &dy);
 }
 
-void Matrix::transform_point(double& x, double& y) const
+auto Matrix::transform_point (double &x, double &y) const -> void
 {
   cairo_matrix_transform_point(this, &x, &y);
 }

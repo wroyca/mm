@@ -88,7 +88,7 @@ auto FontButton_Class::init() -> const Glib::Class&
 }
 
 
-void FontButton_Class::class_init_function(void* g_class, void* class_data)
+auto FontButton_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -175,7 +175,7 @@ auto FontButton::get_title() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_font_button_get_title(const_cast<GtkFontButton*>(gobj())));
 }
 
-void FontButton::set_title(const Glib::ustring& title)
+auto FontButton::set_title (const Glib::ustring &title) -> void
 {
   gtk_font_button_set_title(gobj(), title.c_str());
 }
@@ -185,7 +185,7 @@ auto FontButton::get_modal() const -> bool
   return gtk_font_button_get_modal(const_cast<GtkFontButton*>(gobj()));
 }
 
-void FontButton::set_modal(bool modal)
+auto FontButton::set_modal (bool modal) -> void
 {
   gtk_font_button_set_modal(gobj(), static_cast<int>(modal));
 }
@@ -195,7 +195,7 @@ auto FontButton::get_use_font() const -> bool
   return gtk_font_button_get_use_font(const_cast<GtkFontButton*>(gobj()));
 }
 
-void FontButton::set_use_font(bool use_font)
+auto FontButton::set_use_font (bool use_font) -> void
 {
   gtk_font_button_set_use_font(gobj(), static_cast<int>(use_font));
 }
@@ -205,7 +205,7 @@ auto FontButton::get_use_size() const -> bool
   return gtk_font_button_get_use_size(const_cast<GtkFontButton*>(gobj()));
 }
 
-void FontButton::set_use_size(bool use_size)
+auto FontButton::set_use_size (bool use_size) -> void
 {
   gtk_font_button_set_use_size(gobj(), static_cast<int>(use_size));
 }

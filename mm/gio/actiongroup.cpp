@@ -37,7 +37,8 @@ namespace
 {
 
 
-void ActionGroup_signal_action_added_callback(GActionGroup* self, const gchar* p0,void* data)
+auto ActionGroup_signal_action_added_callback (
+  GActionGroup *self, const gchar *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -67,7 +68,8 @@ const Glib::SignalProxyInfo ActionGroup_signal_action_added_info =
 };
 
 
-void ActionGroup_signal_action_enabled_changed_callback(GActionGroup* self, const gchar* p0,gboolean p1,void* data)
+auto ActionGroup_signal_action_enabled_changed_callback (
+  GActionGroup *self, const gchar *p0, gboolean p1, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::ustring&, bool)>;
@@ -98,7 +100,8 @@ const Glib::SignalProxyInfo ActionGroup_signal_action_enabled_changed_info =
 };
 
 
-void ActionGroup_signal_action_removed_callback(GActionGroup* self, const gchar* p0,void* data)
+auto ActionGroup_signal_action_removed_callback (
+  GActionGroup *self, const gchar *p0, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
@@ -128,7 +131,8 @@ const Glib::SignalProxyInfo ActionGroup_signal_action_removed_info =
 };
 
 
-void ActionGroup_signal_action_state_changed_callback(GActionGroup* self, const gchar* p0,GVariant* p1,void* data)
+auto ActionGroup_signal_action_state_changed_callback (
+  GActionGroup *self, const gchar *p0, GVariant *p1, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::ustring&, const Glib::VariantBase&)>;
@@ -195,7 +199,7 @@ auto ActionGroup_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void ActionGroup_Class::iface_init_function(void* g_iface, void*)
+auto ActionGroup_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -522,7 +526,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = GVariant*;
   return RType();
 }
-void ActionGroup_Class::change_action_state_vfunc_callback(GActionGroup* self, const gchar* action_name, GVariant* value)
+auto ActionGroup_Class::change_action_state_vfunc_callback (
+  GActionGroup *self, const gchar *action_name, GVariant *value) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -561,7 +566,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->change_action_state)
     (*base->change_action_state)(self, action_name, value);
 }
-void ActionGroup_Class::activate_action_vfunc_callback(GActionGroup* self, const gchar* action_name, GVariant* parameter)
+auto ActionGroup_Class::activate_action_vfunc_callback (
+  GActionGroup *self, const gchar *action_name, GVariant *parameter) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -601,7 +607,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
     (*base->activate_action)(self, action_name, parameter);
 }
 
-void ActionGroup_Class::action_added_callback(GActionGroup* self, const gchar* p0)
+auto ActionGroup_Class::action_added_callback (GActionGroup *self, const gchar *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -639,7 +645,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->action_added)
     (*base->action_added)(self, p0);
 }
-void ActionGroup_Class::action_enabled_changed_callback(GActionGroup* self, const gchar* p0, gboolean p1)
+auto ActionGroup_Class::action_enabled_changed_callback (
+  GActionGroup *self, const gchar *p0, gboolean p1) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -678,7 +685,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->action_enabled_changed)
     (*base->action_enabled_changed)(self, p0, p1);
 }
-void ActionGroup_Class::action_removed_callback(GActionGroup* self, const gchar* p0)
+auto ActionGroup_Class::action_removed_callback (GActionGroup *self, const gchar *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -716,7 +723,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   if(base && base->action_removed)
     (*base->action_removed)(self, p0);
 }
-void ActionGroup_Class::action_state_changed_callback(GActionGroup* self, const gchar* p0, GVariant* p1)
+auto ActionGroup_Class::action_state_changed_callback (
+  GActionGroup *self, const gchar *p0, GVariant *p1) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -794,7 +802,7 @@ ActionGroup::~ActionGroup() noexcept
 {}
 
 // static
-void ActionGroup::add_interface(GType gtype_implementer)
+auto ActionGroup::add_interface (GType gtype_implementer) -> void
 {
   actiongroup_class_.init().add_interface(gtype_implementer);
 }
@@ -952,37 +960,40 @@ auto ActionGroup::get_action_state_variant(const Glib::ustring& action_name) con
   return Glib::wrap(g_action_group_get_action_state(const_cast<GActionGroup*>(gobj()), action_name.c_str()), false);
 }
 
-void ActionGroup::change_action_state(const Glib::ustring& action_name, const Glib::VariantBase& value)
+auto ActionGroup::change_action_state (
+  const Glib::ustring &action_name, const Glib::VariantBase &value) -> void
 {
   g_action_group_change_action_state(gobj(), action_name.c_str(), const_cast<GVariant*>((value).gobj()));
 }
 
-void ActionGroup::activate_action(const Glib::ustring& action_name, const Glib::VariantBase& parameter)
+auto ActionGroup::activate_action (
+  const Glib::ustring &action_name, const Glib::VariantBase &parameter) -> void
 {
   g_action_group_activate_action(gobj(), action_name.c_str(), const_cast<GVariant*>((parameter).gobj()));
 }
 
-void ActionGroup::activate_action(const Glib::ustring& action_name)
+auto ActionGroup::activate_action (const Glib::ustring &action_name) -> void
 {
   g_action_group_activate_action(gobj(), action_name.c_str(), nullptr);
 }
 
-void ActionGroup::action_added(const Glib::ustring& action_name)
+auto ActionGroup::action_added (const Glib::ustring &action_name) -> void
 {
   g_action_group_action_added(gobj(), action_name.c_str());
 }
 
-void ActionGroup::action_removed(const Glib::ustring& action_name)
+auto ActionGroup::action_removed (const Glib::ustring &action_name) -> void
 {
   g_action_group_action_removed(gobj(), action_name.c_str());
 }
 
-void ActionGroup::action_enabled_changed(const Glib::ustring& action_name, bool enabled)
+auto ActionGroup::action_enabled_changed (const Glib::ustring &action_name, bool enabled) -> void
 {
   g_action_group_action_enabled_changed(gobj(), action_name.c_str(), static_cast<int>(enabled));
 }
 
-void ActionGroup::action_state_changed(const Glib::ustring& action_name, const Glib::VariantBase& state)
+auto ActionGroup::action_state_changed (
+  const Glib::ustring &action_name, const Glib::VariantBase &state) -> void
 {
   g_action_group_action_state_changed(gobj(), action_name.c_str(), const_cast<GVariant*>((state).gobj()));
 }
@@ -1012,7 +1023,7 @@ auto ActionGroup::signal_action_state_changed(const Glib::ustring& action_name) 
 }
 
 
-void Gio::ActionGroup::on_action_added(const Glib::ustring& action_name)
+auto Gio::ActionGroup::on_action_added (const Glib::ustring &action_name) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1022,7 +1033,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->action_added)
     (*base->action_added)(gobj(),action_name.c_str());
 }
-void Gio::ActionGroup::on_action_enabled_changed(const Glib::ustring& action_name, bool enabled)
+auto Gio::ActionGroup::on_action_enabled_changed (
+  const Glib::ustring &action_name, bool enabled) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1032,7 +1044,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->action_enabled_changed)
     (*base->action_enabled_changed)(gobj(),action_name.c_str(),static_cast<int>(enabled));
 }
-void Gio::ActionGroup::on_action_removed(const Glib::ustring& action_name)
+auto Gio::ActionGroup::on_action_removed (const Glib::ustring &action_name) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1042,7 +1054,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   if(base && base->action_removed)
     (*base->action_removed)(gobj(),action_name.c_str());
 }
-void Gio::ActionGroup::on_action_state_changed(const Glib::ustring& action_name, const Glib::VariantBase& value)
+auto Gio::ActionGroup::on_action_state_changed (
+  const Glib::ustring &action_name, const Glib::VariantBase &value) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1165,7 +1178,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   using RType = Glib::VariantBase;
   return RType();
 }
-void Gio::ActionGroup::change_action_state_vfunc(const Glib::ustring& name, const Glib::VariantBase& value)
+auto Gio::ActionGroup::change_action_state_vfunc (
+  const Glib::ustring &name, const Glib::VariantBase &value) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -1177,7 +1191,8 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->change_action_state)(gobj(),name.c_str(),const_cast<GVariant*>((value).gobj()));
   }
 }
-void Gio::ActionGroup::activate_action_vfunc(const Glib::ustring& name, const Glib::VariantBase& parameter)
+auto Gio::ActionGroup::activate_action_vfunc (
+  const Glib::ustring &name, const Glib::VariantBase &parameter) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).

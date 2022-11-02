@@ -59,7 +59,8 @@ namespace
 {
 
 
-void ScaleButton_signal_value_changed_callback(GtkScaleButton* self, gdouble p0,void* data)
+auto ScaleButton_signal_value_changed_callback (
+  GtkScaleButton *self, gdouble p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double)>;
@@ -131,7 +132,7 @@ auto ScaleButton_Class::init() -> const Glib::Class&
 }
 
 
-void ScaleButton_Class::class_init_function(void* g_class, void* class_data)
+auto ScaleButton_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -141,7 +142,7 @@ void ScaleButton_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void ScaleButton_Class::value_changed_callback(GtkScaleButton* self, gdouble p0)
+auto ScaleButton_Class::value_changed_callback (GtkScaleButton *self, gdouble p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -233,7 +234,7 @@ auto ScaleButton::get_base_type() -> GType
 }
 
 
-void ScaleButton::set_icons(const std::vector<Glib::ustring>& icons)
+auto ScaleButton::set_icons (const std::vector <Glib::ustring> &icons) -> void
 {
   gtk_scale_button_set_icons(gobj(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(icons).data ());
 }
@@ -243,7 +244,7 @@ auto ScaleButton::get_value() const -> double
   return gtk_scale_button_get_value(const_cast<GtkScaleButton*>(gobj()));
 }
 
-void ScaleButton::set_value(double value)
+auto ScaleButton::set_value (double value) -> void
 {
   gtk_scale_button_set_value(gobj(), value);
 }
@@ -261,7 +262,7 @@ auto ScaleButton::get_adjustment() const -> Glib::RefPtr<const Adjustment>
   return const_cast<ScaleButton*>(this)->get_adjustment();
 }
 
-void ScaleButton::set_adjustment(const Glib::RefPtr<Adjustment>& adjustment)
+auto ScaleButton::set_adjustment (const Glib::RefPtr <Adjustment> &adjustment) -> void
 {
   gtk_scale_button_set_adjustment(gobj(), Glib::unwrap(adjustment));
 }
@@ -342,7 +343,7 @@ auto ScaleButton::property_icons() const -> Glib::PropertyProxy_ReadOnly< std::v
 }
 
 
-void Gtk::ScaleButton::on_value_changed(double value)
+auto Gtk::ScaleButton::on_value_changed (double value) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

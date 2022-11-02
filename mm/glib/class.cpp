@@ -24,14 +24,12 @@
 namespace Glib
 {
 
-void
-Class::register_derived_type(GType base_type)
+auto Class::register_derived_type (GType base_type) -> void
 {
   return register_derived_type(base_type, nullptr);
 }
 
-void
-Class::register_derived_type(GType base_type, GTypeModule* module)
+auto Class::register_derived_type (GType base_type, GTypeModule *module) -> void
 {
   if (gtype_)
     return; // already initialized
@@ -169,8 +167,7 @@ Class::clone_custom_type(
 GQuark Class::iface_properties_quark = g_quark_from_string("gtkmm_CustomObject_iface_properties");
 
 // static
-void
-Class::custom_class_base_finalize_function(void* g_class)
+auto Class::custom_class_base_finalize_function (void *g_class) -> void
 {
   const GType gtype = G_TYPE_FROM_CLASS(g_class);
 
@@ -190,8 +187,7 @@ Class::custom_class_base_finalize_function(void* g_class)
 }
 
 // static
-void
-Class::custom_class_init_function(void* g_class, void* class_data)
+auto Class::custom_class_init_function (void *g_class, void *class_data) -> void
 {
   // clone_custom_type() sets the class data pointer to a pointer to a vector
   // of pointers to functions to be called.

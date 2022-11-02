@@ -73,7 +73,7 @@ auto ProgressBar_Class::init() -> const Glib::Class&
 }
 
 
-void ProgressBar_Class::class_init_function(void* g_class, void* class_data)
+auto ProgressBar_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -145,7 +145,7 @@ ProgressBar::ProgressBar()
 
 }
 
-void ProgressBar::pulse()
+auto ProgressBar::pulse () -> void
 {
   gtk_progress_bar_pulse(gobj());
 }
@@ -155,7 +155,7 @@ auto ProgressBar::get_text() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_progress_bar_get_text(const_cast<GtkProgressBar*>(gobj())));
 }
 
-void ProgressBar::set_text(const Glib::ustring& text)
+auto ProgressBar::set_text (const Glib::ustring &text) -> void
 {
   gtk_progress_bar_set_text(gobj(), text.c_str());
 }
@@ -165,7 +165,7 @@ auto ProgressBar::get_fraction() const -> double
   return gtk_progress_bar_get_fraction(const_cast<GtkProgressBar*>(gobj()));
 }
 
-void ProgressBar::set_fraction(double fraction)
+auto ProgressBar::set_fraction (double fraction) -> void
 {
   gtk_progress_bar_set_fraction(gobj(), fraction);
 }
@@ -175,12 +175,12 @@ auto ProgressBar::get_pulse_step() const -> double
   return gtk_progress_bar_get_pulse_step(const_cast<GtkProgressBar*>(gobj()));
 }
 
-void ProgressBar::set_pulse_step(double fraction)
+auto ProgressBar::set_pulse_step (double fraction) -> void
 {
   gtk_progress_bar_set_pulse_step(gobj(), fraction);
 }
 
-void ProgressBar::set_inverted(bool inverted)
+auto ProgressBar::set_inverted (bool inverted) -> void
 {
   gtk_progress_bar_set_inverted(gobj(), static_cast<int>(inverted));
 }
@@ -190,7 +190,7 @@ auto ProgressBar::get_inverted() const -> bool
   return gtk_progress_bar_get_inverted(const_cast<GtkProgressBar*>(gobj()));
 }
 
-void ProgressBar::set_ellipsize(Pango::EllipsizeMode mode)
+auto ProgressBar::set_ellipsize (Pango::EllipsizeMode mode) -> void
 {
   gtk_progress_bar_set_ellipsize(gobj(), static_cast<PangoEllipsizeMode>(mode));
 }
@@ -200,7 +200,7 @@ auto ProgressBar::get_ellipsize() const -> Pango::EllipsizeMode
   return static_cast<Pango::EllipsizeMode>(gtk_progress_bar_get_ellipsize(const_cast<GtkProgressBar*>(gobj())));
 }
 
-void ProgressBar::set_show_text(bool show_text)
+auto ProgressBar::set_show_text (bool show_text) -> void
 {
   gtk_progress_bar_set_show_text(gobj(), static_cast<int>(show_text));
 }

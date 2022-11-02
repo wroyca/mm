@@ -43,7 +43,7 @@ typedef struct _GtkWindow GtkWindow;
 namespace
 {
 
-void init_gtkmm_internals()
+auto init_gtkmm_internals () -> void
 {
   static bool init_done = false;
 
@@ -69,7 +69,7 @@ void init_gtkmm_internals()
 // The first call to Glib::init() fixes this. We repeat it here just to be sure.
 // The application program may have changed the locale settings after
 // the first call to Glib::init(). Unlikely, but possible.
-void set_cxx_locale_to_c_locale()
+auto set_cxx_locale_to_c_locale () -> void
 {
   try
   {
@@ -126,14 +126,15 @@ auto Application::run() -> int
   return Gio::Application::run(0, nullptr);
 }
 
-void Application::set_accel_for_action(const Glib::ustring& detailed_action_name, const Glib::ustring& accel)
+auto Application::set_accel_for_action (
+  const Glib::ustring &detailed_action_name, const Glib::ustring &accel) -> void
 {
   std::vector<Glib::ustring> vec;
   vec.push_back(accel);
   set_accels_for_action(detailed_action_name, vec);
 }
 
-void Application::unset_accels_for_action(const Glib::ustring& detailed_action_name)
+auto Application::unset_accels_for_action (const Glib::ustring &detailed_action_name) -> void
 {
   //gtk_application_set_accels_for_action() can take an empty array, but not NULL.
   //See https://bugzilla.gnome.org/show_bug.cgi?id=708905#c10
@@ -147,7 +148,8 @@ namespace
 {
 
 
-void Application_signal_window_added_callback(GtkApplication* self, GtkWindow* p0,void* data)
+auto Application_signal_window_added_callback (
+  GtkApplication *self, GtkWindow *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Window*)>;
@@ -177,7 +179,8 @@ const Glib::SignalProxyInfo Application_signal_window_added_info =
 };
 
 
-void Application_signal_window_removed_callback(GtkApplication* self, GtkWindow* p0,void* data)
+auto Application_signal_window_removed_callback (
+  GtkApplication *self, GtkWindow *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Window*)>;
@@ -264,7 +267,7 @@ auto Application_Class::init() -> const Glib::Class&
 }
 
 
-void Application_Class::class_init_function(void* g_class, void* class_data)
+auto Application_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -275,7 +278,7 @@ void Application_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void Application_Class::window_added_callback(GtkApplication* self, GtkWindow* p0)
+auto Application_Class::window_added_callback (GtkApplication *self, GtkWindow *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -312,7 +315,7 @@ void Application_Class::window_added_callback(GtkApplication* self, GtkWindow* p
   if(base && base->window_added)
     (*base->window_added)(self, p0);
 }
-void Application_Class::window_removed_callback(GtkApplication* self, GtkWindow* p0)
+auto Application_Class::window_removed_callback (GtkApplication *self, GtkWindow *p0) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -417,12 +420,12 @@ auto Application::get_windows() const -> std::vector<const Window*>
   return Glib::ListHandler<const Window*>::list_to_vector(gtk_application_get_windows(const_cast<GtkApplication*>(gobj())), Glib::OWNERSHIP_NONE);
 }
 
-void Application::add_window(Window& window)
+auto Application::add_window (Window &window) -> void
 {
   gtk_application_add_window(gobj(), (window).gobj());
 }
 
-void Application::remove_window(Window& window)
+auto Application::remove_window (Window &window) -> void
 {
   gtk_application_remove_window(gobj(), (window).gobj());
 }
@@ -440,7 +443,7 @@ auto Application::get_menubar() const -> Glib::RefPtr<const Gio::MenuModel>
   return const_cast<Application*>(this)->get_menubar();
 }
 
-void Application::set_menubar(const Glib::RefPtr<Gio::MenuModel>& menubar)
+auto Application::set_menubar (const Glib::RefPtr <Gio::MenuModel> &menubar) -> void
 {
   gtk_application_set_menubar(gobj(), Glib::unwrap(menubar));
 }
@@ -450,7 +453,7 @@ auto Application::inhibit(Window& window, InhibitFlags flags, const Glib::ustrin
   return gtk_application_inhibit(gobj(), (window).gobj(), static_cast<GtkApplicationInhibitFlags>(flags), reason.c_str());
 }
 
-void Application::uninhibit(guint cookie)
+auto Application::uninhibit (guint cookie) -> void
 {
   gtk_application_uninhibit(gobj(), cookie);
 }
@@ -496,7 +499,8 @@ auto Application::get_actions_for_accel(const Glib::ustring& accel) const -> std
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(gtk_application_get_actions_for_accel(const_cast<GtkApplication*>(gobj()), accel.c_str()), Glib::OWNERSHIP_DEEP);
 }
 
-void Application::set_accels_for_action(const Glib::ustring& detailed_action_name, const std::vector<Glib::ustring>& accels)
+auto Application::set_accels_for_action (
+  const Glib::ustring &detailed_action_name, const std::vector <Glib::ustring> &accels) -> void
 {
   gtk_application_set_accels_for_action(gobj(), detailed_action_name.c_str(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(accels).data ());
 }
@@ -572,7 +576,7 @@ auto Application::property_active_window() const -> Glib::PropertyProxy_ReadOnly
 }
 
 
-void Gtk::Application::on_window_added(Window* window)
+auto Gtk::Application::on_window_added (Window *window) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -581,7 +585,7 @@ void Gtk::Application::on_window_added(Window* window)
   if(base && base->window_added)
     (*base->window_added)(gobj(),(GtkWindow*)Glib::unwrap(window));
 }
-void Gtk::Application::on_window_removed(Window* window)
+auto Gtk::Application::on_window_removed (Window *window) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

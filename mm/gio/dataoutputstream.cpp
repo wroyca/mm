@@ -77,7 +77,7 @@ auto DataOutputStream_Class::init() -> const Glib::Class&
 }
 
 
-void DataOutputStream_Class::class_init_function(void* g_class, void* class_data)
+auto DataOutputStream_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -159,7 +159,7 @@ auto DataOutputStream::create(const Glib::RefPtr<OutputStream>& base_stream) -> 
   return Glib::make_refptr_for_instance<DataOutputStream>( new DataOutputStream(base_stream) );
 }
 
-void DataOutputStream::set_byte_order(DataStreamByteOrder order)
+auto DataOutputStream::set_byte_order (DataStreamByteOrder order) -> void
 {
   g_data_output_stream_set_byte_order(gobj(), static_cast<GDataStreamByteOrder>(order));
 }

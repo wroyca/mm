@@ -69,7 +69,7 @@ auto PollableInputStream_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void PollableInputStream_Class::iface_init_function(void* g_iface, void*)
+auto PollableInputStream_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -244,7 +244,7 @@ PollableInputStream::~PollableInputStream() noexcept
 {}
 
 // static
-void PollableInputStream::add_interface(GType gtype_implementer)
+auto PollableInputStream::add_interface (GType gtype_implementer) -> void
 {
   pollableinputstream_class_.init().add_interface(gtype_implementer);
 }

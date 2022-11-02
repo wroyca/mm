@@ -64,7 +64,7 @@ auto DirectoryList_Class::init() -> const Glib::Class&
 }
 
 
-void DirectoryList_Class::class_init_function(void* g_class, void* class_data)
+auto DirectoryList_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -146,7 +146,7 @@ auto DirectoryList::create(const std::string& attributes, const Glib::RefPtr<Gio
   return Glib::make_refptr_for_instance<DirectoryList>( new DirectoryList(attributes, file) );
 }
 
-void DirectoryList::set_file(const Glib::RefPtr<Gio::File>& file)
+auto DirectoryList::set_file (const Glib::RefPtr <Gio::File> &file) -> void
 {
   gtk_directory_list_set_file(gobj(), const_cast<GFile*>(Glib::unwrap<Gio::File>(file)));
 }
@@ -164,7 +164,7 @@ auto DirectoryList::get_file() const -> Glib::RefPtr<const Gio::File>
   return const_cast<DirectoryList*>(this)->get_file();
 }
 
-void DirectoryList::set_attributes(const std::string& attributes)
+auto DirectoryList::set_attributes (const std::string &attributes) -> void
 {
   gtk_directory_list_set_attributes(gobj(), attributes.c_str());
 }
@@ -174,7 +174,7 @@ auto DirectoryList::get_attributes() const -> std::string
   return Glib::convert_const_gchar_ptr_to_stdstring(gtk_directory_list_get_attributes(const_cast<GtkDirectoryList*>(gobj())));
 }
 
-void DirectoryList::set_io_priority(int io_priority)
+auto DirectoryList::set_io_priority (int io_priority) -> void
 {
   gtk_directory_list_set_io_priority(gobj(), io_priority);
 }
@@ -194,7 +194,7 @@ auto DirectoryList::get_error() const -> Glib::Error
   return Glib::Error(const_cast<GError*>(gtk_directory_list_get_error(const_cast<GtkDirectoryList*>(gobj()))), true);
 }
 
-void DirectoryList::set_monitored(bool monitored)
+auto DirectoryList::set_monitored (bool monitored) -> void
 {
   gtk_directory_list_set_monitored(gobj(), static_cast<int>(monitored));
 }

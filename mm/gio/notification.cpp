@@ -91,7 +91,7 @@ auto Notification_Class::init() -> const Glib::Class&
 }
 
 
-void Notification_Class::class_init_function(void* g_class, void* class_data)
+auto Notification_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -161,47 +161,50 @@ auto Notification::create(const Glib::ustring& title) -> Glib::RefPtr<Notificati
   return Glib::make_refptr_for_instance<Notification>( new Notification(title) );
 }
 
-void Notification::set_title(const Glib::ustring& title)
+auto Notification::set_title (const Glib::ustring &title) -> void
 {
   g_notification_set_title(gobj(), title.c_str());
 }
 
-void Notification::set_body(const Glib::ustring& body)
+auto Notification::set_body (const Glib::ustring &body) -> void
 {
   g_notification_set_body(gobj(), body.c_str());
 }
 
-void Notification::set_icon(const Glib::RefPtr<Icon>& icon)
+auto Notification::set_icon (const Glib::RefPtr <Icon> &icon) -> void
 {
   g_notification_set_icon(gobj(), const_cast<GIcon*>(Glib::unwrap(icon)));
 }
 
-void Notification::set_priority(Priority priority)
+auto Notification::set_priority (Priority priority) -> void
 {
   g_notification_set_priority(gobj(), static_cast<GNotificationPriority>(priority));
 }
 
-void Notification::set_category(const Glib::ustring& category)
+auto Notification::set_category (const Glib::ustring &category) -> void
 {
   g_notification_set_category(gobj(), category.c_str());
 }
 
-void Notification::add_button(const Glib::ustring& label, const Glib::ustring& detailed_action)
+auto Notification::add_button (
+  const Glib::ustring &label, const Glib::ustring &detailed_action) -> void
 {
   g_notification_add_button(gobj(), label.c_str(), detailed_action.c_str());
 }
 
-void Notification::add_button_variant(const Glib::ustring& label, const Glib::ustring& action, const Glib::VariantBase& target)
+auto Notification::add_button_variant (
+  const Glib::ustring &label, const Glib::ustring &action, const Glib::VariantBase &target) -> void
 {
   g_notification_add_button_with_target_value(gobj(), label.c_str(), action.c_str(), const_cast<GVariant*>((target).gobj()));
 }
 
-void Notification::set_default_action(const Glib::ustring& detailed_action)
+auto Notification::set_default_action (const Glib::ustring &detailed_action) -> void
 {
   g_notification_set_default_action(gobj(), detailed_action.c_str());
 }
 
-void Notification::set_default_action_variant(const Glib::ustring& action, const Glib::VariantBase& target)
+auto Notification::set_default_action_variant (
+  const Glib::ustring &action, const Glib::VariantBase &target) -> void
 {
   g_notification_set_default_action_and_target_value(gobj(), action.c_str(), const_cast<GVariant*>((target).gobj()));
 }

@@ -77,7 +77,7 @@ auto CellAreaContext_Class::init() -> const Glib::Class&
 }
 
 
-void CellAreaContext_Class::class_init_function(void* g_class, void* class_data)
+auto CellAreaContext_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -155,47 +155,49 @@ auto CellAreaContext::get_area() const -> Glib::RefPtr<const CellArea>
   return const_cast<CellAreaContext*>(this)->get_area();
 }
 
-void CellAreaContext::allocate(int width, int height)
+auto CellAreaContext::allocate (int width, int height) -> void
 {
   gtk_cell_area_context_allocate(gobj(), width, height);
 }
 
-void CellAreaContext::reset()
+auto CellAreaContext::reset () -> void
 {
   gtk_cell_area_context_reset(gobj());
 }
 
-void CellAreaContext::get_preferred_width(int& minimum_width, int& natural_width) const
+auto CellAreaContext::get_preferred_width (int &minimum_width, int &natural_width) const -> void
 {
   gtk_cell_area_context_get_preferred_width(const_cast<GtkCellAreaContext*>(gobj()), &(minimum_width), &(natural_width));
 }
 
-void CellAreaContext::get_preferred_height(int& minimum_height, int& natural_height) const
+auto CellAreaContext::get_preferred_height (int &minimum_height, int &natural_height) const -> void
 {
   gtk_cell_area_context_get_preferred_height(const_cast<GtkCellAreaContext*>(gobj()), &(minimum_height), &(natural_height));
 }
 
-void CellAreaContext::get_preferred_height_for_width(int width, int& minimum_height, int& natural_height) const
+auto CellAreaContext::get_preferred_height_for_width (
+  int width, int &minimum_height, int &natural_height) const -> void
 {
   gtk_cell_area_context_get_preferred_height_for_width(const_cast<GtkCellAreaContext*>(gobj()), width, &(minimum_height), &(natural_height));
 }
 
-void CellAreaContext::get_preferred_width_for_height(int height, int& minimum_width, int& natural_width) const
+auto CellAreaContext::get_preferred_width_for_height (
+  int height, int &minimum_width, int &natural_width) const -> void
 {
   gtk_cell_area_context_get_preferred_width_for_height(const_cast<GtkCellAreaContext*>(gobj()), height, &(minimum_width), &(natural_width));
 }
 
-void CellAreaContext::get_allocation(int& width, int& height) const
+auto CellAreaContext::get_allocation (int &width, int &height) const -> void
 {
   gtk_cell_area_context_get_allocation(const_cast<GtkCellAreaContext*>(gobj()), &(width), &(height));
 }
 
-void CellAreaContext::push_preferred_width(int minimum_width, int natural_width)
+auto CellAreaContext::push_preferred_width (int minimum_width, int natural_width) -> void
 {
   gtk_cell_area_context_push_preferred_width(gobj(), minimum_width, natural_width);
 }
 
-void CellAreaContext::push_preferred_height(int minimum_height, int natural_height)
+auto CellAreaContext::push_preferred_height (int minimum_height, int natural_height) -> void
 {
   gtk_cell_area_context_push_preferred_height(gobj(), minimum_height, natural_height);
 }

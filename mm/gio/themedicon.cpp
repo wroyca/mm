@@ -90,7 +90,7 @@ auto ThemedIcon_Class::init() -> const Glib::Class&
 }
 
 
-void ThemedIcon_Class::class_init_function(void* g_class, void* class_data)
+auto ThemedIcon_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -167,12 +167,12 @@ auto ThemedIcon::create(const std::vector<Glib::ustring>& iconnames) -> Glib::Re
   return Glib::make_refptr_for_instance<ThemedIcon>( new ThemedIcon(iconnames) );
 }
 
-void ThemedIcon::prepend_name(const Glib::ustring& iconname)
+auto ThemedIcon::prepend_name (const Glib::ustring &iconname) -> void
 {
   g_themed_icon_prepend_name(gobj(), iconname.c_str());
 }
 
-void ThemedIcon::append_name(const Glib::ustring& iconname)
+auto ThemedIcon::append_name (const Glib::ustring &iconname) -> void
 {
   g_themed_icon_append_name(gobj(), iconname.c_str());
 }

@@ -23,12 +23,12 @@ public:
   friend class MediaFile;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  const Glib::Class& init();
+  auto init () -> const Glib::Class&;
 
 
-  static void class_init_function(void* g_class, void* class_data);
+  static auto class_init_function (void *g_class, void *class_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -37,8 +37,8 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static void open_vfunc_callback(GtkMediaFile* self);
-  static void close_vfunc_callback(GtkMediaFile* self);
+  static auto open_vfunc_callback (GtkMediaFile *self) -> void;
+  static auto close_vfunc_callback (GtkMediaFile *self) -> void;
 };
 
 

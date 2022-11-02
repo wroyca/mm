@@ -98,7 +98,7 @@ auto Font_Class::init() -> const Glib::Class&
 }
 
 
-void Font_Class::class_init_function(void* g_class, void* class_data)
+auto Font_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -183,7 +183,8 @@ auto Font::get_metrics(const Language& language) const -> FontMetrics
   return FontMetrics((pango_font_get_metrics(const_cast<PangoFont*>(gobj()), const_cast<PangoLanguage*>((language).gobj()))));
 }
 
-void Font::get_glyph_extents(Glyph glyph, Rectangle& ink_rect, Rectangle& logical_rect) const
+auto Font::get_glyph_extents (
+  Glyph glyph, Rectangle &ink_rect, Rectangle &logical_rect) const -> void
 {
   pango_font_get_glyph_extents(const_cast<PangoFont*>(gobj()), glyph, (ink_rect).gobj(), (logical_rect).gobj());
 }

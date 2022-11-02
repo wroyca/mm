@@ -103,13 +103,13 @@ auto ByteArray::get_type() -> GType
   return g_byte_array_get_type();
 }
 
-void ByteArray::reference() const
+auto ByteArray::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_byte_array_ref(reinterpret_cast<GByteArray*>(const_cast<ByteArray*>(this)));
 }
 
-void ByteArray::unreference() const
+auto ByteArray::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   g_byte_array_unref(reinterpret_cast<GByteArray*>(const_cast<ByteArray*>(this)));
@@ -181,7 +181,7 @@ auto ByteArray::remove_range(guint index, guint length) -> Glib::RefPtr<ByteArra
   return retvalue;
 }
 
-void ByteArray::sort(const SlotCompare& slot)
+auto ByteArray::sort (const SlotCompare &slot) -> void
 {
   // Use the original slot (not a copy).
   auto slot_copy = const_cast<SlotCompare*>(&slot);

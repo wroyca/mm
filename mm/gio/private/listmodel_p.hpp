@@ -21,11 +21,11 @@ public:
 
   friend class ListModel;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -34,9 +34,9 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static GType get_item_type_vfunc_callback(GListModel* self);
-  static guint get_n_items_vfunc_callback(GListModel* self);
-  static gpointer get_item_vfunc_callback(GListModel* self, guint position);
+  static auto get_item_type_vfunc_callback (GListModel *self) -> GType;
+  static auto get_n_items_vfunc_callback (GListModel *self) -> guint;
+  static auto get_item_vfunc_callback (GListModel *self, guint position) -> gpointer;
 };
 
 

@@ -77,7 +77,7 @@ auto NetworkService_Class::init() -> const Glib::Class&
 }
 
 
-void NetworkService_Class::class_init_function(void* g_class, void* class_data)
+auto NetworkService_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -179,7 +179,7 @@ auto NetworkService::get_scheme() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(g_network_service_get_scheme(const_cast<GNetworkService*>(gobj())));
 }
 
-void NetworkService::set_scheme(const Glib::ustring& scheme)
+auto NetworkService::set_scheme (const Glib::ustring &scheme) -> void
 {
   g_network_service_set_scheme(gobj(), scheme.c_str());
 }

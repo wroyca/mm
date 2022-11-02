@@ -35,7 +35,7 @@ auto GLArea::has_error() const -> bool
   return gtk_gl_area_get_error(const_cast<GtkGLArea*>(gobj()));
 }
 
-void GLArea::throw_if_error() const
+auto GLArea::throw_if_error () const -> void
 {
   GError* error = gtk_gl_area_get_error(const_cast<GtkGLArea*>(gobj()));
   if(error)
@@ -44,7 +44,7 @@ void GLArea::throw_if_error() const
   }
 }
 
-void GLArea::unset_error()
+auto GLArea::unset_error () -> void
 {
   gtk_gl_area_set_error(gobj(), nullptr);
 }
@@ -169,7 +169,7 @@ const Glib::SignalProxyInfo GLArea_signal_render_info =
 };
 
 
-void GLArea_signal_resize_callback(GtkGLArea* self, gint p0,gint p1,void* data)
+auto GLArea_signal_resize_callback (GtkGLArea *self, gint p0, gint p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(int, int)>;
@@ -241,7 +241,7 @@ auto GLArea_Class::init() -> const Glib::Class&
 }
 
 
-void GLArea_Class::class_init_function(void* g_class, void* class_data)
+auto GLArea_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -330,7 +330,7 @@ auto GLArea_Class::render_callback(GtkGLArea* self, GdkGLContext* p0) -> gboolea
   using RType = gboolean;
   return RType();
 }
-void GLArea_Class::resize_callback(GtkGLArea* self, gint p0, gint p1)
+auto GLArea_Class::resize_callback (GtkGLArea *self, gint p0, gint p1) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -444,22 +444,22 @@ auto GLArea::get_context() const -> Glib::RefPtr<const Gdk::GLContext>
   return const_cast<GLArea*>(this)->get_context();
 }
 
-void GLArea::make_current()
+auto GLArea::make_current () -> void
 {
   gtk_gl_area_make_current(gobj());
 }
 
-void GLArea::queue_render()
+auto GLArea::queue_render () -> void
 {
   gtk_gl_area_queue_render(gobj());
 }
 
-void GLArea::attach_buffers()
+auto GLArea::attach_buffers () -> void
 {
   gtk_gl_area_attach_buffers(gobj());
 }
 
-void GLArea::set_error(const Glib::Error& error)
+auto GLArea::set_error (const Glib::Error &error) -> void
 {
   gtk_gl_area_set_error(gobj(), (error).gobj());
 }
@@ -469,7 +469,7 @@ auto GLArea::get_has_depth_buffer() const -> bool
   return gtk_gl_area_get_has_depth_buffer(const_cast<GtkGLArea*>(gobj()));
 }
 
-void GLArea::set_has_depth_buffer(bool has_depth_buffer)
+auto GLArea::set_has_depth_buffer (bool has_depth_buffer) -> void
 {
   gtk_gl_area_set_has_depth_buffer(gobj(), static_cast<int>(has_depth_buffer));
 }
@@ -479,7 +479,7 @@ auto GLArea::get_has_stencil_buffer() const -> bool
   return gtk_gl_area_get_has_stencil_buffer(const_cast<GtkGLArea*>(gobj()));
 }
 
-void GLArea::set_has_stencil_buffer(bool has_stencil_buffer)
+auto GLArea::set_has_stencil_buffer (bool has_stencil_buffer) -> void
 {
   gtk_gl_area_set_has_stencil_buffer(gobj(), static_cast<int>(has_stencil_buffer));
 }
@@ -489,17 +489,17 @@ auto GLArea::get_auto_render() const -> bool
   return gtk_gl_area_get_auto_render(const_cast<GtkGLArea*>(gobj()));
 }
 
-void GLArea::set_auto_render(bool auto_render)
+auto GLArea::set_auto_render (bool auto_render) -> void
 {
   gtk_gl_area_set_auto_render(gobj(), static_cast<int>(auto_render));
 }
 
-void GLArea::get_required_version(int& major, int& minor) const
+auto GLArea::get_required_version (int &major, int &minor) const -> void
 {
   gtk_gl_area_get_required_version(const_cast<GtkGLArea*>(gobj()), &(major), &(minor));
 }
 
-void GLArea::set_required_version(int major, int minor)
+auto GLArea::set_required_version (int major, int minor) -> void
 {
   gtk_gl_area_set_required_version(gobj(), major, minor);
 }
@@ -509,7 +509,7 @@ auto GLArea::get_use_es() const -> bool
   return gtk_gl_area_get_use_es(const_cast<GtkGLArea*>(gobj()));
 }
 
-void GLArea::set_use_es(bool use_es)
+auto GLArea::set_use_es (bool use_es) -> void
 {
   gtk_gl_area_set_use_es(gobj(), static_cast<int>(use_es));
 }
@@ -607,7 +607,7 @@ auto Gtk::GLArea::on_render(const Glib::RefPtr<Gdk::GLContext>& context) -> bool
   using RType = bool;
   return RType();
 }
-void Gtk::GLArea::on_resize(int width, int height)
+auto Gtk::GLArea::on_resize (int width, int height) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

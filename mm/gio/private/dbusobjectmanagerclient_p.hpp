@@ -26,20 +26,24 @@ public:
   friend class ObjectManagerClient;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  const Glib::Class& init();
+  auto init () -> const Glib::Class&;
 
 
-  static void class_init_function(void* g_class, void* class_data);
+  static auto class_init_function (void *g_class, void *class_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
   //Callbacks (default signal handlers):
   //These will call the *_impl member methods, which will then call the existing default signal callbacks, if any.
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
-  static void interface_proxy_signal_callback(GDBusObjectManagerClient* self, GDBusObjectProxy* p0, GDBusProxy* p1, const gchar* p2, const gchar* p3, GVariant* p4);
-  static void interface_proxy_properties_changed_callback(GDBusObjectManagerClient* self, GDBusObjectProxy* p0, GDBusProxy* p1, GVariant* p2, const gchar*const* p3);
+  static auto interface_proxy_signal_callback (
+    GDBusObjectManagerClient *self, GDBusObjectProxy *p0, GDBusProxy *p1, const gchar *p2,
+    const gchar *p3, GVariant *p4) -> void;
+  static auto interface_proxy_properties_changed_callback (
+    GDBusObjectManagerClient *self, GDBusObjectProxy *p0, GDBusProxy *p1, GVariant *p2,
+    const gchar *const*p3) -> void;
 
   //Callbacks (virtual functions):
 };

@@ -72,7 +72,7 @@ auto FileFilter_Class::init() -> const Glib::Class&
 }
 
 
-void FileFilter_Class::class_init_function(void* g_class, void* class_data)
+auto FileFilter_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -154,7 +154,7 @@ auto FileFilter::create() -> Glib::RefPtr<FileFilter>
   return Glib::make_refptr_for_instance<FileFilter>( new FileFilter() );
 }
 
-void FileFilter::set_name(const Glib::ustring& name)
+auto FileFilter::set_name (const Glib::ustring &name) -> void
 {
   gtk_file_filter_set_name(gobj(), name.c_str());
 }
@@ -164,22 +164,22 @@ auto FileFilter::get_name() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_file_filter_get_name(const_cast<GtkFileFilter*>(gobj())));
 }
 
-void FileFilter::add_mime_type(const Glib::ustring& mime_type)
+auto FileFilter::add_mime_type (const Glib::ustring &mime_type) -> void
 {
   gtk_file_filter_add_mime_type(gobj(), mime_type.c_str());
 }
 
-void FileFilter::add_pattern(const Glib::ustring& pattern)
+auto FileFilter::add_pattern (const Glib::ustring &pattern) -> void
 {
   gtk_file_filter_add_pattern(gobj(), pattern.c_str());
 }
 
-void FileFilter::add_suffix(const std::string& suffix)
+auto FileFilter::add_suffix (const std::string &suffix) -> void
 {
   gtk_file_filter_add_suffix(gobj(), suffix.c_str());
 }
 
-void FileFilter::add_pixbuf_formats()
+auto FileFilter::add_pixbuf_formats () -> void
 {
   gtk_file_filter_add_pixbuf_formats(gobj());
 }

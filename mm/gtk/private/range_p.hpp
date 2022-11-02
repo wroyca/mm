@@ -23,25 +23,25 @@ public:
   friend class Range;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  const Glib::Class& init();
+  auto init () -> const Glib::Class&;
 
 
-  static void class_init_function(void* g_class, void* class_data);
+  static auto class_init_function (void *g_class, void *class_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
   //Callbacks (default signal handlers):
   //These will call the *_impl member methods, which will then call the existing default signal callbacks, if any.
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
-  static void value_changed_callback(GtkRange* self);
-  static void adjust_bounds_callback(GtkRange* self, gdouble p0);
-  static void move_slider_callback(GtkRange* self, GtkScrollType p0);
-  static gboolean change_value_callback(GtkRange* self, GtkScrollType p0, gdouble p1);
+  static auto value_changed_callback (GtkRange *self) -> void;
+  static auto adjust_bounds_callback (GtkRange *self, gdouble p0) -> void;
+  static auto move_slider_callback (GtkRange *self, GtkScrollType p0) -> void;
+  static auto change_value_callback (GtkRange *self, GtkScrollType p0, gdouble p1) -> gboolean;
 
   //Callbacks (virtual functions):
-  static void get_range_border_vfunc_callback(GtkRange* self, GtkBorder* border);
+  static auto get_range_border_vfunc_callback (GtkRange *self, GtkBorder *border) -> void;
 };
 
 

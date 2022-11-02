@@ -63,7 +63,7 @@ class Fontset_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase
 class Layout_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 class Renderer_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 
-void wrap_init()
+auto wrap_init () -> void
 {
   // Register Error domains in the main namespace:
 

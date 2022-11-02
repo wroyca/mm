@@ -141,7 +141,7 @@ auto InterfaceSkeleton_Class::init() -> const Glib::Class&
 }
 
 
-void InterfaceSkeleton_Class::class_init_function(void* g_class, void* class_data)
+auto InterfaceSkeleton_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -250,7 +250,7 @@ auto InterfaceSkeleton::get_base_type() -> GType
 }
 
 
-void InterfaceSkeleton::flush()
+auto InterfaceSkeleton::flush () -> void
 {
   g_dbus_interface_skeleton_flush(gobj());
 }
@@ -270,7 +270,8 @@ auto InterfaceSkeleton::get_properties() const -> Glib::VariantBase
   return Glib::wrap(g_dbus_interface_skeleton_get_properties(const_cast<GDBusInterfaceSkeleton*>(gobj())), false);
 }
 
-void InterfaceSkeleton::export_interface_skeleton(const Glib::RefPtr<Connection>& connection, const Glib::ustring& object_path)
+auto InterfaceSkeleton::export_interface_skeleton (
+  const Glib::RefPtr <Connection> &connection, const Glib::ustring &object_path) -> void
 {
   GError* gerror = nullptr;
   g_dbus_interface_skeleton_export(gobj(), Glib::unwrap(connection), object_path.c_str(), &(gerror));
@@ -278,12 +279,13 @@ void InterfaceSkeleton::export_interface_skeleton(const Glib::RefPtr<Connection>
     ::Glib::Error::throw_exception(gerror);
 }
 
-void InterfaceSkeleton::unexport()
+auto InterfaceSkeleton::unexport () -> void
 {
   g_dbus_interface_skeleton_unexport(gobj());
 }
 
-void InterfaceSkeleton::unexport_from_connection(const Glib::RefPtr<Connection>& connection)
+auto InterfaceSkeleton::unexport_from_connection (
+  const Glib::RefPtr <Connection> &connection) -> void
 {
   g_dbus_interface_skeleton_unexport_from_connection(gobj(), Glib::unwrap(connection));
 }
@@ -323,7 +325,7 @@ auto InterfaceSkeleton::get_flags() const -> Flags
   return static_cast<Flags>(g_dbus_interface_skeleton_get_flags(const_cast<GDBusInterfaceSkeleton*>(gobj())));
 }
 
-void InterfaceSkeleton::set_flags(Flags flags)
+auto InterfaceSkeleton::set_flags (Flags flags) -> void
 {
   g_dbus_interface_skeleton_set_flags(gobj(), static_cast<GDBusInterfaceSkeletonFlags>(flags));
 }

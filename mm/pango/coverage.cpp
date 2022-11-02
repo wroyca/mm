@@ -77,13 +77,13 @@ auto Coverage::create() -> Glib::RefPtr<Coverage>
   return Glib::make_refptr_for_instance<Coverage>(reinterpret_cast<Coverage*>(pango_coverage_new()));
 }
 
-void Coverage::reference() const
+auto Coverage::reference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   pango_coverage_ref(reinterpret_cast<PangoCoverage*>(const_cast<Coverage*>(this)));
 }
 
-void Coverage::unreference() const
+auto Coverage::unreference () const -> void
 {
   // See the comment at the top of this file, if you want to know why the cast works.
   pango_coverage_unref(reinterpret_cast<PangoCoverage*>(const_cast<Coverage*>(this)));
@@ -115,7 +115,7 @@ auto Coverage::get(int index) const -> Level
   return static_cast<Level>(pango_coverage_get(const_cast<PangoCoverage*>(gobj()), index));
 }
 
-void Coverage::set(int index, Level level)
+auto Coverage::set (int index, Level level) -> void
 {
   pango_coverage_set(gobj(), index, static_cast<PangoCoverageLevel>(level));
 }

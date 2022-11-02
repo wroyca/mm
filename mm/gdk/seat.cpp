@@ -33,7 +33,7 @@ namespace
 {
 
 
-void Seat_signal_device_added_callback(GdkSeat* self, GdkDevice* p0,void* data)
+auto Seat_signal_device_added_callback (GdkSeat *self, GdkDevice *p0, void *data) -> void
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Device>&)>;
@@ -63,7 +63,7 @@ const Glib::SignalProxyInfo Seat_signal_device_added_info =
 };
 
 
-void Seat_signal_device_removed_callback(GdkSeat* self, GdkDevice* p0,void* data)
+auto Seat_signal_device_removed_callback (GdkSeat *self, GdkDevice *p0, void *data) -> void
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Device>&)>;
@@ -93,7 +93,7 @@ const Glib::SignalProxyInfo Seat_signal_device_removed_info =
 };
 
 
-void Seat_signal_tool_added_callback(GdkSeat* self, GdkDeviceTool* p0,void* data)
+auto Seat_signal_tool_added_callback (GdkSeat *self, GdkDeviceTool *p0, void *data) -> void
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<DeviceTool>&)>;
@@ -123,7 +123,7 @@ const Glib::SignalProxyInfo Seat_signal_tool_added_info =
 };
 
 
-void Seat_signal_tool_removed_callback(GdkSeat* self, GdkDeviceTool* p0,void* data)
+auto Seat_signal_tool_removed_callback (GdkSeat *self, GdkDeviceTool *p0, void *data) -> void
 {
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<DeviceTool>&)>;
@@ -202,7 +202,7 @@ auto Seat_Class::init() -> const Glib::Class&
 }
 
 
-void Seat_Class::class_init_function(void* g_class, void* class_data)
+auto Seat_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

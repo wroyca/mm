@@ -128,7 +128,7 @@ auto LinkButton_Class::init() -> const Glib::Class&
 }
 
 
-void LinkButton_Class::class_init_function(void* g_class, void* class_data)
+auto LinkButton_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -213,7 +213,7 @@ auto LinkButton::get_uri() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_link_button_get_uri(const_cast<GtkLinkButton*>(gobj())));
 }
 
-void LinkButton::set_uri(const Glib::ustring& uri)
+auto LinkButton::set_uri (const Glib::ustring &uri) -> void
 {
   gtk_link_button_set_uri(gobj(), uri.c_str());
 }
@@ -223,7 +223,7 @@ auto LinkButton::get_visited() const -> bool
   return gtk_link_button_get_visited(const_cast<GtkLinkButton*>(gobj()));
 }
 
-void LinkButton::set_visited(bool visited)
+auto LinkButton::set_visited (bool visited) -> void
 {
   gtk_link_button_set_visited(gobj(), static_cast<int>(visited));
 }

@@ -71,22 +71,22 @@ namespace Gdk
 {
 
 
-void ToplevelSize::get_bounds(int& bounds_width, int& bounds_height) const
+auto ToplevelSize::get_bounds (int &bounds_width, int &bounds_height) const -> void
 {
   gdk_toplevel_size_get_bounds(const_cast<GdkToplevelSize*>(gobj()), &(bounds_width), &(bounds_height));
 }
 
-void ToplevelSize::set_size(int width, int height)
+auto ToplevelSize::set_size (int width, int height) -> void
 {
   gdk_toplevel_size_set_size(gobj(), width, height);
 }
 
-void ToplevelSize::set_min_size(int min_width, int min_height)
+auto ToplevelSize::set_min_size (int min_width, int min_height) -> void
 {
   gdk_toplevel_size_set_min_size(gobj(), min_width, min_height);
 }
 
-void ToplevelSize::set_shadow_width(int left, int right, int top, int bottom)
+auto ToplevelSize::set_shadow_width (int left, int right, int top, int bottom) -> void
 {
   gdk_toplevel_size_set_shadow_width(gobj(), left, right, top, bottom);
 }

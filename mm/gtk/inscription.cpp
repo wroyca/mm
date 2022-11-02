@@ -143,7 +143,7 @@ auto Inscription::get_text() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_inscription_get_text(const_cast<GtkInscription*>(gobj())));
 }
 
-void Inscription::set_text(const Glib::ustring& text)
+auto Inscription::set_text (const Glib::ustring &text) -> void
 {
   gtk_inscription_set_text(gobj(), text.empty() ? nullptr : text.c_str());
 }
@@ -153,12 +153,12 @@ auto Inscription::get_attributes() const -> Pango::AttrList
   return Pango::AttrList((gtk_inscription_get_attributes(const_cast<GtkInscription*>(gobj()))));
 }
 
-void Inscription::set_attributes(Pango::AttrList& attrs)
+auto Inscription::set_attributes (Pango::AttrList &attrs) -> void
 {
   gtk_inscription_set_attributes(gobj(), (attrs).gobj());
 }
 
-void Inscription::set_markup(const Glib::ustring& markup)
+auto Inscription::set_markup (const Glib::ustring &markup) -> void
 {
   gtk_inscription_set_markup(gobj(), markup.empty() ? nullptr : markup.c_str());
 }
@@ -168,7 +168,7 @@ auto Inscription::get_text_overflow() const -> Inscription::Overflow
   return static_cast<Inscription::Overflow>(gtk_inscription_get_text_overflow(const_cast<GtkInscription*>(gobj())));
 }
 
-void Inscription::set_text_overflow(Overflow overflow)
+auto Inscription::set_text_overflow (Overflow overflow) -> void
 {
   gtk_inscription_set_text_overflow(gobj(), static_cast<GtkInscriptionOverflow>(overflow));
 }
@@ -178,7 +178,7 @@ auto Inscription::get_wrap_mode() const -> Pango::WrapMode
   return static_cast<Pango::WrapMode>(gtk_inscription_get_wrap_mode(const_cast<GtkInscription*>(gobj())));
 }
 
-void Inscription::set_wrap_mode(Pango::WrapMode wrap_mode)
+auto Inscription::set_wrap_mode (Pango::WrapMode wrap_mode) -> void
 {
   gtk_inscription_set_wrap_mode(gobj(), static_cast<PangoWrapMode>(wrap_mode));
 }
@@ -188,7 +188,7 @@ auto Inscription::get_min_chars() const -> unsigned int
   return gtk_inscription_get_min_chars(const_cast<GtkInscription*>(gobj()));
 }
 
-void Inscription::set_min_chars(unsigned int min_chars)
+auto Inscription::set_min_chars (unsigned int min_chars) -> void
 {
   gtk_inscription_set_min_chars(gobj(), min_chars);
 }
@@ -198,7 +198,7 @@ auto Inscription::get_nat_chars() const -> unsigned int
   return gtk_inscription_get_nat_chars(const_cast<GtkInscription*>(gobj()));
 }
 
-void Inscription::set_nat_chars(unsigned int nat_chars)
+auto Inscription::set_nat_chars (unsigned int nat_chars) -> void
 {
   gtk_inscription_set_nat_chars(gobj(), nat_chars);
 }
@@ -208,7 +208,7 @@ auto Inscription::get_min_lines() const -> unsigned int
   return gtk_inscription_get_min_lines(const_cast<GtkInscription*>(gobj()));
 }
 
-void Inscription::set_min_lines(unsigned int min_lines)
+auto Inscription::set_min_lines (unsigned int min_lines) -> void
 {
   gtk_inscription_set_min_lines(gobj(), min_lines);
 }
@@ -218,7 +218,7 @@ auto Inscription::get_nat_lines() const -> unsigned int
   return gtk_inscription_get_nat_lines(const_cast<GtkInscription*>(gobj()));
 }
 
-void Inscription::set_nat_lines(unsigned int nat_lines)
+auto Inscription::set_nat_lines (unsigned int nat_lines) -> void
 {
   gtk_inscription_set_nat_lines(gobj(), nat_lines);
 }
@@ -228,7 +228,7 @@ auto Inscription::get_xalign() const -> float
   return gtk_inscription_get_xalign(const_cast<GtkInscription*>(gobj()));
 }
 
-void Inscription::set_xalign(float xalign)
+auto Inscription::set_xalign (float xalign) -> void
 {
   gtk_inscription_set_xalign(gobj(), xalign);
 }
@@ -238,7 +238,7 @@ auto Inscription::get_yalign() const -> float
   return gtk_inscription_get_yalign(const_cast<GtkInscription*>(gobj()));
 }
 
-void Inscription::set_yalign(float yalign)
+auto Inscription::set_yalign (float yalign) -> void
 {
   gtk_inscription_set_yalign(gobj(), yalign);
 }

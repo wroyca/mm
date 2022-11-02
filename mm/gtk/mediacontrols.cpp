@@ -63,7 +63,7 @@ auto MediaControls_Class::init() -> const Glib::Class&
 }
 
 
-void MediaControls_Class::class_init_function(void* g_class, void* class_data)
+auto MediaControls_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -156,7 +156,7 @@ auto MediaControls::get_media_stream() const -> Glib::RefPtr<const MediaStream>
   return const_cast<MediaControls*>(this)->get_media_stream();
 }
 
-void MediaControls::set_media_stream(const Glib::RefPtr<MediaStream>& stream)
+auto MediaControls::set_media_stream (const Glib::RefPtr <MediaStream> &stream) -> void
 {
   gtk_media_controls_set_media_stream(gobj(), Glib::unwrap(stream));
 }

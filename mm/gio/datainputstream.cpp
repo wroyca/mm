@@ -68,9 +68,9 @@ DataInputStream::read_line(std::string& line) -> bool
   return false;
 }
 
-void
-DataInputStream::read_line_async(
-  const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable, int io_priority)
+auto DataInputStream::read_line_async (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
+  int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -146,9 +146,9 @@ DataInputStream::read_upto(std::string& data, const std::string& stop_chars) -> 
   return false;
 }
 
-void
-DataInputStream::read_upto_async(const std::string& stop_chars, const SlotAsyncReady& slot,
-  const Glib::RefPtr<Cancellable>& cancellable, int io_priority)
+auto DataInputStream::read_upto_async (
+  const std::string &stop_chars, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
@@ -227,7 +227,7 @@ auto DataInputStream_Class::init() -> const Glib::Class&
 }
 
 
-void DataInputStream_Class::class_init_function(void* g_class, void* class_data)
+auto DataInputStream_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -307,7 +307,7 @@ auto DataInputStream::create(const Glib::RefPtr<InputStream>& base_stream) -> Gl
   return Glib::make_refptr_for_instance<DataInputStream>( new DataInputStream(base_stream) );
 }
 
-void DataInputStream::set_byte_order(DataStreamByteOrder order)
+auto DataInputStream::set_byte_order (DataStreamByteOrder order) -> void
 {
   g_data_input_stream_set_byte_order(gobj(), static_cast<GDataStreamByteOrder>(order));
 }
@@ -317,7 +317,7 @@ auto DataInputStream::get_byte_order() const -> DataStreamByteOrder
   return static_cast<DataStreamByteOrder>(g_data_input_stream_get_byte_order(const_cast<GDataInputStream*>(gobj())));
 }
 
-void DataInputStream::set_newline_type(DataStreamNewlineType type)
+auto DataInputStream::set_newline_type (DataStreamNewlineType type) -> void
 {
   g_data_input_stream_set_newline_type(gobj(), static_cast<GDataStreamNewlineType>(type));
 }
@@ -453,7 +453,8 @@ auto DataInputStream::read_uint64() -> guint64
   return retvalue;
 }
 
-void DataInputStream::read_line_utf8(std::string& line, const Glib::RefPtr<Cancellable>& cancellable, gsize& length)
+auto DataInputStream::read_line_utf8 (
+  std::string &line, const Glib::RefPtr <Cancellable> &cancellable, gsize &length) -> void
 {
   GError* gerror = nullptr;
   line = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_utf8(gobj(), &(length), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -461,7 +462,8 @@ void DataInputStream::read_line_utf8(std::string& line, const Glib::RefPtr<Cance
     ::Glib::Error::throw_exception(gerror);
 }
 
-void DataInputStream::read_line_utf8(std::string& line, const Glib::RefPtr<Cancellable>& cancellable)
+auto DataInputStream::read_line_utf8 (
+  std::string &line, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   GError* gerror = nullptr;
   line = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_utf8(gobj(), nullptr, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
@@ -469,7 +471,7 @@ void DataInputStream::read_line_utf8(std::string& line, const Glib::RefPtr<Cance
     ::Glib::Error::throw_exception(gerror);
 }
 
-void DataInputStream::read_line_utf8(std::string& line, gsize& length)
+auto DataInputStream::read_line_utf8 (std::string &line, gsize &length) -> void
 {
   GError* gerror = nullptr;
   line = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_utf8(gobj(), &(length), nullptr, &(gerror)));
@@ -477,7 +479,7 @@ void DataInputStream::read_line_utf8(std::string& line, gsize& length)
     ::Glib::Error::throw_exception(gerror);
 }
 
-void DataInputStream::read_line_utf8(std::string& line)
+auto DataInputStream::read_line_utf8 (std::string &line) -> void
 {
   GError* gerror = nullptr;
   line = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_utf8(gobj(), nullptr, nullptr, &(gerror)));
@@ -485,7 +487,8 @@ void DataInputStream::read_line_utf8(std::string& line)
     ::Glib::Error::throw_exception(gerror);
 }
 
-void DataInputStream::read_line_finish_utf8(const Glib::RefPtr<AsyncResult>& result, std::string& data, gsize& length)
+auto DataInputStream::read_line_finish_utf8 (
+  const Glib::RefPtr <AsyncResult> &result, std::string &data, gsize &length) -> void
 {
   GError* gerror = nullptr;
   data = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_finish_utf8(gobj(), Glib::unwrap(result), &(length), &(gerror)));
@@ -493,7 +496,8 @@ void DataInputStream::read_line_finish_utf8(const Glib::RefPtr<AsyncResult>& res
     ::Glib::Error::throw_exception(gerror);
 }
 
-void DataInputStream::read_line_finish_utf8(const Glib::RefPtr<AsyncResult>& result, std::string& data)
+auto DataInputStream::read_line_finish_utf8 (
+  const Glib::RefPtr <AsyncResult> &result, std::string &data) -> void
 {
   GError* gerror = nullptr;
   data = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_finish_utf8(gobj(), Glib::unwrap(result), nullptr, &(gerror)));

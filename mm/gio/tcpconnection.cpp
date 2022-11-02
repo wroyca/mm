@@ -74,7 +74,7 @@ auto TcpConnection_Class::init() -> const Glib::Class&
 }
 
 
-void TcpConnection_Class::class_init_function(void* g_class, void* class_data)
+auto TcpConnection_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -139,7 +139,7 @@ auto TcpConnection::get_base_type() -> GType
 }
 
 
-void TcpConnection::set_graceful_disconnect(bool graceful_disconnect)
+auto TcpConnection::set_graceful_disconnect (bool graceful_disconnect) -> void
 {
   g_tcp_connection_set_graceful_disconnect(gobj(), static_cast<int>(graceful_disconnect));
 }

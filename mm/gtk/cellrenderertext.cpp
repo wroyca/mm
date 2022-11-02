@@ -34,7 +34,7 @@ auto CellRendererText::_property_renderable() -> Glib::PropertyProxy_Base
   return property_text();
 }
 
-void CellRendererText::edited(const Glib::ustring& path, const Glib::ustring& new_text)
+auto CellRendererText::edited (const Glib::ustring &path, const Glib::ustring &new_text) -> void
 {
   g_signal_emit_by_name(gobj(), "edited", path.c_str(), new_text.c_str());
 }
@@ -46,7 +46,8 @@ namespace
 {
 
 
-void CellRendererText_signal_edited_callback(GtkCellRendererText* self, const gchar* p0,const gchar* p1,void* data)
+auto CellRendererText_signal_edited_callback (
+  GtkCellRendererText *self, const gchar *p0, const gchar *p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&, const Glib::ustring&)>;
@@ -118,7 +119,7 @@ auto CellRendererText_Class::init() -> const Glib::Class&
 }
 
 
-void CellRendererText_Class::class_init_function(void* g_class, void* class_data)
+auto CellRendererText_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -128,7 +129,8 @@ void CellRendererText_Class::class_init_function(void* g_class, void* class_data
 }
 
 
-void CellRendererText_Class::edited_callback(GtkCellRendererText* self, const gchar* p0, const gchar* p1)
+auto CellRendererText_Class::edited_callback (
+  GtkCellRendererText *self, const gchar *p0, const gchar *p1) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -229,7 +231,7 @@ CellRendererText::CellRendererText()
 
 }
 
-void CellRendererText::set_fixed_height_from_font(int number_of_rows)
+auto CellRendererText::set_fixed_height_from_font (int number_of_rows) -> void
 {
   gtk_cell_renderer_text_set_fixed_height_from_font(gobj(), number_of_rows);
 }
@@ -731,7 +733,8 @@ auto CellRendererText::property_placeholder_text() const -> Glib::PropertyProxy_
 }
 
 
-void Gtk::CellRendererText::on_edited(const Glib::ustring& path, const Glib::ustring& new_text)
+auto Gtk::CellRendererText::on_edited (
+  const Glib::ustring &path, const Glib::ustring &new_text) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

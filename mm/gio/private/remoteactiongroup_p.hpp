@@ -21,11 +21,11 @@ public:
 
   friend class RemoteActionGroup;
 
-  const Glib::Interface_Class& init();
+  auto init () -> const Glib::Interface_Class&;
 
-  static void iface_init_function(void* g_iface, void* iface_data);
+  static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 
-  static Glib::ObjectBase* wrap_new(GObject*);
+  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
 
 protected:
 
@@ -34,8 +34,12 @@ protected:
   //You could prevent the original default signal handlers being called by overriding the *_impl method.
 
   //Callbacks (virtual functions):
-  static void activate_action_full_vfunc_callback(GRemoteActionGroup* self, const gchar* action_name, GVariant* parameter, GVariant* platform_data);
-  static void change_action_state_full_vfunc_callback(GRemoteActionGroup* self, const gchar* action_name, GVariant* value, GVariant* platform_data);
+  static auto activate_action_full_vfunc_callback (
+    GRemoteActionGroup *self, const gchar *action_name, GVariant *parameter,
+    GVariant *platform_data) -> void;
+  static auto change_action_state_full_vfunc_callback (
+    GRemoteActionGroup *self, const gchar *action_name, GVariant *value,
+    GVariant *platform_data) -> void;
 };
 
 

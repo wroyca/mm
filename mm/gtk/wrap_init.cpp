@@ -756,7 +756,7 @@ class WindowControls_Class { public: static auto wrap_new(GObject*) -> Glib::Obj
 class WindowGroup_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 class WindowHandle_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
 
-void wrap_init()
+auto wrap_init () -> void
 {
   // Register Error domains in the main namespace:
   Glib::Error::register_domain(gtk_builder_error_quark(), &BuilderError::throw_func);

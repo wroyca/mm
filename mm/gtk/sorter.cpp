@@ -32,7 +32,7 @@ namespace
 {
 
 
-void Sorter_signal_changed_callback(GtkSorter* self, GtkSorterChange p0,void* data)
+auto Sorter_signal_changed_callback (GtkSorter *self, GtkSorterChange p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(Change)>;
@@ -117,7 +117,7 @@ auto Sorter_Class::init() -> const Glib::Class&
 }
 
 
-void Sorter_Class::class_init_function(void* g_class, void* class_data)
+auto Sorter_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -281,7 +281,7 @@ auto Sorter::get_order() const -> Order
   return static_cast<Order>(gtk_sorter_get_order(const_cast<GtkSorter*>(gobj())));
 }
 
-void Sorter::changed(Change change)
+auto Sorter::changed (Change change) -> void
 {
   gtk_sorter_changed(gobj(), static_cast<GtkSorterChange>(change));
 }

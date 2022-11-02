@@ -40,12 +40,12 @@ auto Environ::get(StdStringView variable) const -> std::optional<std::string>
   return std::optional<std::string>();
 }
 
-void Environ::set(StdStringView variable, StdStringView value, bool overwrite)
+auto Environ::set (StdStringView variable, StdStringView value, bool overwrite) -> void
 {
   envp.reset(g_environ_setenv(envp.release(), variable.c_str(), value.c_str(), overwrite));
 }
 
-void Environ::unset(StdStringView variable)
+auto Environ::unset (StdStringView variable) -> void
 {
   envp.reset(g_environ_unsetenv(envp.release(), variable.c_str()));
 }

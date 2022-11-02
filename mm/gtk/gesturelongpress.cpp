@@ -29,7 +29,8 @@ namespace
 {
 
 
-void GestureLongPress_signal_pressed_callback(GtkGestureLongPress* self, gdouble p0,gdouble p1,void* data)
+auto GestureLongPress_signal_pressed_callback (
+  GtkGestureLongPress *self, gdouble p0, gdouble p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
@@ -111,7 +112,7 @@ auto GestureLongPress_Class::init() -> const Glib::Class&
 }
 
 
-void GestureLongPress_Class::class_init_function(void* g_class, void* class_data)
+auto GestureLongPress_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -191,7 +192,7 @@ auto GestureLongPress::create() -> Glib::RefPtr<GestureLongPress>
   return Glib::make_refptr_for_instance<GestureLongPress>( new GestureLongPress() );
 }
 
-void GestureLongPress::set_delay_factor(double delay_factor)
+auto GestureLongPress::set_delay_factor (double delay_factor) -> void
 {
   gtk_gesture_long_press_set_delay_factor(gobj(), delay_factor);
 }

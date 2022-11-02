@@ -75,7 +75,7 @@ auto WindowGroup_Class::init() -> const Glib::Class&
 }
 
 
-void WindowGroup_Class::class_init_function(void* g_class, void* class_data)
+auto WindowGroup_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -155,12 +155,12 @@ auto WindowGroup::create() -> Glib::RefPtr<WindowGroup>
   return Glib::make_refptr_for_instance<WindowGroup>( new WindowGroup() );
 }
 
-void WindowGroup::add_window(Window& window)
+auto WindowGroup::add_window (Window &window) -> void
 {
   gtk_window_group_add_window(gobj(), (window).gobj());
 }
 
-void WindowGroup::remove_window(Window& window)
+auto WindowGroup::remove_window (Window &window) -> void
 {
   gtk_window_group_remove_window(gobj(), (window).gobj());
 }

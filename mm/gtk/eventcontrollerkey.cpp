@@ -88,7 +88,8 @@ const Glib::SignalProxyInfo EventControllerKey_signal_key_pressed_info =
 };
 
 
-void EventControllerKey_signal_key_released_callback(GtkEventControllerKey* self, guint p0,guint p1,GdkModifierType p2,void* data)
+auto EventControllerKey_signal_key_released_callback (
+  GtkEventControllerKey *self, guint p0, guint p1, GdkModifierType p2, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint, guint, Gdk::ModifierType)>;
@@ -227,7 +228,7 @@ auto EventControllerKey_Class::init() -> const Glib::Class&
 }
 
 
-void EventControllerKey_Class::class_init_function(void* g_class, void* class_data)
+auto EventControllerKey_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

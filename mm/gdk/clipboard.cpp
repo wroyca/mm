@@ -90,7 +90,7 @@ auto Clipboard_Class::init() -> const Glib::Class&
 }
 
 
-void Clipboard_Class::class_init_function(void* g_class, void* class_data)
+auto Clipboard_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -199,7 +199,9 @@ auto Clipboard::get_content() const -> Glib::RefPtr<const ContentProvider>
   return const_cast<Clipboard*>(this)->get_content();
 }
 
-void Clipboard::read_async(const std::vector<Glib::ustring>& mime_types, int io_priority, const Gio::SlotAsyncReady& slot, const Glib::RefPtr<Gio::Cancellable>& cancellable)
+auto Clipboard::read_async (
+  const std::vector <Glib::ustring> &mime_types, int io_priority, const Gio::SlotAsyncReady &slot,
+  const Glib::RefPtr <Gio::Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new Gio::SlotAsyncReady(slot);
@@ -207,7 +209,9 @@ void Clipboard::read_async(const std::vector<Glib::ustring>& mime_types, int io_
   gdk_clipboard_read_async(gobj(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(mime_types).data(), io_priority, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &Gio::SignalProxy_async_callback, slot_copy);
 }
 
-void Clipboard::read_async(const std::vector<Glib::ustring>& mime_types, int io_priority, const Gio::SlotAsyncReady& slot)
+auto Clipboard::read_async (
+  const std::vector <Glib::ustring> &mime_types, int io_priority,
+  const Gio::SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new Gio::SlotAsyncReady(slot);
@@ -226,7 +230,8 @@ out_mime_type = Glib::convert_const_gchar_ptr_to_ustring(g_out_mime_type);
   return retvalue;
 }
 
-void Clipboard::read_texture_async(const Gio::SlotAsyncReady& slot, const Glib::RefPtr<Gio::Cancellable>& cancellable)
+auto Clipboard::read_texture_async (
+  const Gio::SlotAsyncReady &slot, const Glib::RefPtr <Gio::Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new Gio::SlotAsyncReady(slot);
@@ -234,7 +239,7 @@ void Clipboard::read_texture_async(const Gio::SlotAsyncReady& slot, const Glib::
   gdk_clipboard_read_texture_async(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &Gio::SignalProxy_async_callback, slot_copy);
 }
 
-void Clipboard::read_texture_async(const Gio::SlotAsyncReady& slot)
+auto Clipboard::read_texture_async (const Gio::SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new Gio::SlotAsyncReady(slot);
@@ -251,7 +256,8 @@ auto Clipboard::read_texture_finish(const Glib::RefPtr<Gio::AsyncResult>& result
   return retvalue;
 }
 
-void Clipboard::read_text_async(const Gio::SlotAsyncReady& slot, const Glib::RefPtr<Gio::Cancellable>& cancellable)
+auto Clipboard::read_text_async (
+  const Gio::SlotAsyncReady &slot, const Glib::RefPtr <Gio::Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new Gio::SlotAsyncReady(slot);
@@ -259,7 +265,7 @@ void Clipboard::read_text_async(const Gio::SlotAsyncReady& slot, const Glib::Ref
   gdk_clipboard_read_text_async(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &Gio::SignalProxy_async_callback, slot_copy);
 }
 
-void Clipboard::read_text_async(const Gio::SlotAsyncReady& slot)
+auto Clipboard::read_text_async (const Gio::SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new Gio::SlotAsyncReady(slot);
@@ -281,12 +287,12 @@ auto Clipboard::set_content(const Glib::RefPtr<const ContentProvider>& provider)
   return gdk_clipboard_set_content(gobj(), const_cast<GdkContentProvider*>(Glib::unwrap(provider)));
 }
 
-void Clipboard::set_text(const Glib::ustring& text)
+auto Clipboard::set_text (const Glib::ustring &text) -> void
 {
   gdk_clipboard_set_text(gobj(), text.c_str());
 }
 
-void Clipboard::set_texture(const Glib::RefPtr<const Texture>& texture)
+auto Clipboard::set_texture (const Glib::RefPtr <const Texture> &texture) -> void
 {
   gdk_clipboard_set_texture(gobj(), const_cast<GdkTexture*>(Glib::unwrap(texture)));
 }

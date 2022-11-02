@@ -29,7 +29,8 @@ namespace
 {
 
 
-void GestureDrag_signal_drag_begin_callback(GtkGestureDrag* self, gdouble p0,gdouble p1,void* data)
+auto GestureDrag_signal_drag_begin_callback (
+  GtkGestureDrag *self, gdouble p0, gdouble p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
@@ -60,7 +61,8 @@ const Glib::SignalProxyInfo GestureDrag_signal_drag_begin_info =
 };
 
 
-void GestureDrag_signal_drag_update_callback(GtkGestureDrag* self, gdouble p0,gdouble p1,void* data)
+auto GestureDrag_signal_drag_update_callback (
+  GtkGestureDrag *self, gdouble p0, gdouble p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
@@ -91,7 +93,8 @@ const Glib::SignalProxyInfo GestureDrag_signal_drag_update_info =
 };
 
 
-void GestureDrag_signal_drag_end_callback(GtkGestureDrag* self, gdouble p0,gdouble p1,void* data)
+auto GestureDrag_signal_drag_end_callback (
+  GtkGestureDrag *self, gdouble p0, gdouble p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
@@ -165,7 +168,7 @@ auto GestureDrag_Class::init() -> const Glib::Class&
 }
 
 
-void GestureDrag_Class::class_init_function(void* g_class, void* class_data)
+auto GestureDrag_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

@@ -27,7 +27,7 @@
 
 namespace
 {
-void GLTexture_destroy_callback(void* data)
+auto GLTexture_destroy_callback (void *data) -> void
 {
   auto the_slot = static_cast<Gdk::GLTexture::SlotGLReleased*>(data);
   try
@@ -88,7 +88,7 @@ auto GLTexture_Class::init() -> const Glib::Class&
 }
 
 
-void GLTexture_Class::class_init_function(void* g_class, void* class_data)
+auto GLTexture_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -171,7 +171,7 @@ auto GLTexture::create(const Glib::RefPtr<GLContext>& context, guint id, int wid
   return Glib::wrap(gdk_gl_texture_new(Glib::unwrap(context), id, width, height, &GLTexture_destroy_callback, slot_copy));
 }
 
-void GLTexture::release()
+auto GLTexture::release () -> void
 {
   gdk_gl_texture_release(gobj());
 }

@@ -34,7 +34,8 @@ namespace
 {
 
 
-void ListModel_signal_items_changed_callback(GListModel* self, guint p0,guint p1,guint p2,void* data)
+auto ListModel_signal_items_changed_callback (
+  GListModel *self, guint p0, guint p1, guint p2, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(guint, guint, guint)>;
@@ -99,7 +100,7 @@ auto ListModel_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void ListModel_Class::iface_init_function(void* g_iface, void*)
+auto ListModel_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -269,7 +270,7 @@ ListModel::~ListModel() noexcept
 {}
 
 // static
-void ListModel::add_interface(GType gtype_implementer)
+auto ListModel::add_interface (GType gtype_implementer) -> void
 {
   listmodel_class_.init().add_interface(gtype_implementer);
 }
@@ -288,7 +289,7 @@ auto ListModel::get_base_type() -> GType
 }
 
 
-void ListModel::items_changed(guint position, guint removed, guint added)
+auto ListModel::items_changed (guint position, guint removed, guint added) -> void
 {
   g_list_model_items_changed(gobj(), position, removed, added);
 }

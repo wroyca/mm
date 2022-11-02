@@ -102,7 +102,7 @@ SrvTarget::~SrvTarget() noexcept
     g_srv_target_free(gobject_);
 }
 
-void SrvTarget::swap(SrvTarget& other) noexcept
+auto SrvTarget::swap (SrvTarget &other) noexcept -> void
 {
   std::swap(gobject_, other.gobject_);
 }

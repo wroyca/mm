@@ -137,7 +137,7 @@ auto SocketService_Class::init() -> const Glib::Class&
 }
 
 
-void SocketService_Class::class_init_function(void* g_class, void* class_data)
+auto SocketService_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -260,12 +260,12 @@ auto SocketService::create() -> Glib::RefPtr<SocketService>
   return Glib::make_refptr_for_instance<SocketService>( new SocketService() );
 }
 
-void SocketService::start()
+auto SocketService::start () -> void
 {
   g_socket_service_start(gobj());
 }
 
-void SocketService::stop()
+auto SocketService::stop () -> void
 {
   g_socket_service_stop(gobj());
 }

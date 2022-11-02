@@ -78,7 +78,7 @@ auto PrintContext_Class::init() -> const Glib::Class&
 }
 
 
-void PrintContext_Class::class_init_function(void* g_class, void* class_data)
+auto PrintContext_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -223,7 +223,8 @@ auto PrintContext::create_pango_layout() -> Glib::RefPtr<Pango::Layout>
   return retvalue;
 }
 
-void PrintContext::set_cairo_context(const Cairo::RefPtr<Cairo::Context>& cr, double dpi_x, double dpi_y)
+auto PrintContext::set_cairo_context (
+  const Cairo::RefPtr <Cairo::Context> &cr, double dpi_x, double dpi_y) -> void
 {
   gtk_print_context_set_cairo_context(gobj(), ((cr) ? (cr)->cobj() : nullptr), dpi_x, dpi_y);
 }

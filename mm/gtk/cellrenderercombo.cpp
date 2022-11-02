@@ -52,7 +52,8 @@ namespace
 {
 
 
-void CellRendererCombo_signal_changed_callback(GtkCellRendererCombo* self, const gchar* p0,GtkTreeIter* p1,void* data)
+auto CellRendererCombo_signal_changed_callback (
+  GtkCellRendererCombo *self, const gchar *p0, GtkTreeIter *p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&, const TreeModel::iterator&)>;
@@ -124,7 +125,7 @@ auto CellRendererCombo_Class::init() -> const Glib::Class&
 }
 
 
-void CellRendererCombo_Class::class_init_function(void* g_class, void* class_data)
+auto CellRendererCombo_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

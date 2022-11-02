@@ -38,7 +38,7 @@ struct SrvTargetListTraits
   static auto to_c_type(const CppType& item) -> CType { return item.gobj(); }
   static auto to_c_type(CType ptr) -> CType { return ptr; }
   static auto to_cpp_type(CType item) -> CppType { return CppType(const_cast<CTypeNonConst>(item), true /* take_copy */); }
-  static void release_c_type(CType item) { g_srv_target_free(const_cast<CTypeNonConst>(item)); }
+  static auto release_c_type (CType item) -> void { g_srv_target_free(const_cast<CTypeNonConst>(item)); }
 };
 
 } // anonymous namespace
@@ -52,15 +52,14 @@ Resolver::get_default() -> Glib::RefPtr<Resolver>
   return Glib::wrap(g_resolver_get_default());
 }
 
-void
-Resolver::set_default(const Glib::RefPtr<Resolver>& resolver)
+auto Resolver::set_default (const Glib::RefPtr <Resolver> &resolver) -> void
 {
   g_resolver_set_default(Glib::unwrap(resolver));
 }
 
-void
-Resolver::lookup_by_name_async(const Glib::ustring& hostname, const SlotAsyncReady& slot,
-  const Glib::RefPtr<Cancellable>& cancellable)
+auto Resolver::lookup_by_name_async (
+  const Glib::ustring &hostname, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   auto slot_copy = new SlotAsyncReady(slot);
 
@@ -68,8 +67,8 @@ Resolver::lookup_by_name_async(const Glib::ustring& hostname, const SlotAsyncRea
     gobj(), hostname.c_str(), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Resolver::lookup_by_name_async(const Glib::ustring& hostname, const SlotAsyncReady& slot)
+auto Resolver::lookup_by_name_async (
+  const Glib::ustring &hostname, const SlotAsyncReady &slot) -> void
 {
   auto slot_copy = new SlotAsyncReady(slot);
 
@@ -77,9 +76,9 @@ Resolver::lookup_by_name_async(const Glib::ustring& hostname, const SlotAsyncRea
     gobj(), hostname.c_str(), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Resolver::lookup_by_address_async(const Glib::RefPtr<InetAddress>& address,
-  const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto Resolver::lookup_by_address_async (
+  const Glib::RefPtr <InetAddress> &address,
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   auto slot_copy = new SlotAsyncReady(slot);
 
@@ -87,9 +86,8 @@ Resolver::lookup_by_address_async(const Glib::RefPtr<InetAddress>& address,
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Resolver::lookup_by_address_async(
-  const Glib::RefPtr<InetAddress>& address, const SlotAsyncReady& slot)
+auto Resolver::lookup_by_address_async (
+  const Glib::RefPtr <InetAddress> &address, const SlotAsyncReady &slot) -> void
 {
   auto slot_copy = new SlotAsyncReady(slot);
 
@@ -97,10 +95,10 @@ Resolver::lookup_by_address_async(
     gobj(), Glib::unwrap(address), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Resolver::lookup_service_async(const Glib::ustring& service, const Glib::ustring& protocol,
-  const Glib::ustring& domain, const SlotAsyncReady& slot,
-  const Glib::RefPtr<Cancellable>& cancellable)
+auto Resolver::lookup_service_async (
+  const Glib::ustring &service, const Glib::ustring &protocol,
+  const Glib::ustring &domain, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   auto slot_copy = new SlotAsyncReady(slot);
 
@@ -108,9 +106,9 @@ Resolver::lookup_service_async(const Glib::ustring& service, const Glib::ustring
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Resolver::lookup_service_async(const Glib::ustring& service, const Glib::ustring& protocol,
-  const Glib::ustring& domain, const SlotAsyncReady& slot)
+auto Resolver::lookup_service_async (
+  const Glib::ustring &service, const Glib::ustring &protocol,
+  const Glib::ustring &domain, const SlotAsyncReady &slot) -> void
 {
   auto slot_copy = new SlotAsyncReady(slot);
 
@@ -118,9 +116,9 @@ Resolver::lookup_service_async(const Glib::ustring& service, const Glib::ustring
     nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Resolver::lookup_records_async(const Glib::ustring& rrname, RecordType record_type,
-  const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto Resolver::lookup_records_async (
+  const Glib::ustring &rrname, RecordType record_type,
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   auto slot_copy = new SlotAsyncReady(slot);
 
@@ -129,9 +127,8 @@ Resolver::lookup_records_async(const Glib::ustring& rrname, RecordType record_ty
     &SignalProxy_async_callback, slot_copy);
 }
 
-void
-Resolver::lookup_records_async(
-  const Glib::ustring& rrname, RecordType record_type, const SlotAsyncReady& slot)
+auto Resolver::lookup_records_async (
+  const Glib::ustring &rrname, RecordType record_type, const SlotAsyncReady &slot) -> void
 {
   auto slot_copy = new SlotAsyncReady(slot);
 
@@ -238,7 +235,7 @@ auto Resolver_Class::init() -> const Glib::Class&
 }
 
 
-void Resolver_Class::class_init_function(void* g_class, void* class_data)
+auto Resolver_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -248,7 +245,7 @@ void Resolver_Class::class_init_function(void* g_class, void* class_data)
 }
 
 
-void Resolver_Class::reload_callback(GResolver* self)
+auto Resolver_Class::reload_callback (GResolver *self) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -378,7 +375,9 @@ auto Resolver::lookup_by_name_with_flags(const Glib::ustring& hostname, NameLook
   return retvalue;
 }
 
-void Resolver::lookup_by_name_with_flags_async(const Glib::ustring& hostname, NameLookupFlags flags, const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable)
+auto Resolver::lookup_by_name_with_flags_async (
+  const Glib::ustring &hostname, NameLookupFlags flags, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
   auto slot_copy = new SlotAsyncReady(slot);
@@ -483,7 +482,7 @@ auto Resolver::signal_reload() -> Glib::SignalProxy<void()>
 }
 
 
-void Gio::Resolver::on_reload()
+auto Gio::Resolver::on_reload () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

@@ -30,19 +30,19 @@ using Role = Gtk::Accessible::Role;
 namespace Gtk
 {
 
-void Accessible::update_state(State state, const Glib::ValueBase& value)
+auto Accessible::update_state (State state, const Glib::ValueBase &value) -> void
 {
   auto c_state = static_cast<GtkAccessibleState>(state);
   gtk_accessible_update_state_value(gobj(), 1, &c_state, value.gobj());
 }
 
-void Accessible::update_property(Property property, const Glib::ValueBase& value)
+auto Accessible::update_property (Property property, const Glib::ValueBase &value) -> void
 {
   auto c_prop = static_cast<GtkAccessibleProperty>(property);
   gtk_accessible_update_property_value(gobj(), 1, &c_prop, value.gobj());
 }
 
-void Accessible::update_relation(Relation relation, const Glib::ValueBase& value)
+auto Accessible::update_relation (Relation relation, const Glib::ValueBase &value) -> void
 {
   auto c_rel = static_cast<GtkAccessibleRelation>(relation);
   gtk_accessible_update_relation_value(gobj(), 1, &c_rel, value.gobj());
@@ -112,7 +112,7 @@ auto Accessible_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void Accessible_Class::iface_init_function(void* g_iface, void*)
+auto Accessible_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -161,7 +161,7 @@ Accessible::~Accessible() noexcept
 {}
 
 // static
-void Accessible::add_interface(GType gtype_implementer)
+auto Accessible::add_interface (GType gtype_implementer) -> void
 {
   accessible_class_.init().add_interface(gtype_implementer);
 }
@@ -185,17 +185,17 @@ auto Accessible::get_accessible_role() const -> Role
   return static_cast<Role>(gtk_accessible_get_accessible_role(const_cast<GtkAccessible*>(gobj())));
 }
 
-void Accessible::reset_state(State state)
+auto Accessible::reset_state (State state) -> void
 {
   gtk_accessible_reset_state(gobj(), static_cast<GtkAccessibleState>(state));
 }
 
-void Accessible::reset_property(Property property)
+auto Accessible::reset_property (Property property) -> void
 {
   gtk_accessible_reset_property(gobj(), static_cast<GtkAccessibleProperty>(property));
 }
 
-void Accessible::reset_relation(Relation relation)
+auto Accessible::reset_relation (Relation relation) -> void
 {
   gtk_accessible_reset_relation(gobj(), static_cast<GtkAccessibleRelation>(relation));
 }

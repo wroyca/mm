@@ -69,7 +69,7 @@ auto DevicePad_Class::init() -> const Glib::Interface_Class&
   return *this;
 }
 
-void DevicePad_Class::iface_init_function(void* g_iface, void*)
+auto DevicePad_Class::iface_init_function (void *g_iface, void *) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_iface);
 
@@ -118,7 +118,7 @@ DevicePad::~DevicePad() noexcept
 {}
 
 // static
-void DevicePad::add_interface(GType gtype_implementer)
+auto DevicePad::add_interface (GType gtype_implementer) -> void
 {
   devicepad_class_.init().add_interface(gtype_implementer);
 }

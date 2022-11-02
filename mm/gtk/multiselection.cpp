@@ -64,7 +64,7 @@ auto MultiSelection_Class::init() -> const Glib::Class&
 }
 
 
-void MultiSelection_Class::class_init_function(void* g_class, void* class_data)
+auto MultiSelection_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -176,7 +176,7 @@ auto MultiSelection::get_model() const -> Glib::RefPtr<const Gio::ListModel>
   return const_cast<MultiSelection*>(this)->get_model();
 }
 
-void MultiSelection::set_model(const Glib::RefPtr<Gio::ListModel>& model)
+auto MultiSelection::set_model (const Glib::RefPtr <Gio::ListModel> &model) -> void
 {
   gtk_multi_selection_set_model(gobj(), Glib::unwrap(model));
 }

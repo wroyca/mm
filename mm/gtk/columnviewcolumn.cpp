@@ -71,7 +71,7 @@ auto ColumnViewColumn_Class::init() -> const Glib::Class&
 }
 
 
-void ColumnViewColumn_Class::class_init_function(void* g_class, void* class_data)
+auto ColumnViewColumn_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -161,7 +161,7 @@ auto ColumnViewColumn::get_column_view() const -> const ColumnView*
   return const_cast<ColumnViewColumn*>(this)->get_column_view();
 }
 
-void ColumnViewColumn::set_factory(const Glib::RefPtr<ListItemFactory>& factory)
+auto ColumnViewColumn::set_factory (const Glib::RefPtr <ListItemFactory> &factory) -> void
 {
   gtk_column_view_column_set_factory(gobj(), Glib::unwrap(factory));
 }
@@ -179,7 +179,7 @@ auto ColumnViewColumn::get_factory() const -> Glib::RefPtr<const ListItemFactory
   return const_cast<ColumnViewColumn*>(this)->get_factory();
 }
 
-void ColumnViewColumn::set_title(const Glib::ustring& title)
+auto ColumnViewColumn::set_title (const Glib::ustring &title) -> void
 {
   gtk_column_view_column_set_title(gobj(), title.c_str());
 }
@@ -189,7 +189,7 @@ auto ColumnViewColumn::get_title() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_column_view_column_get_title(const_cast<GtkColumnViewColumn*>(gobj())));
 }
 
-void ColumnViewColumn::set_sorter(const Glib::RefPtr<Sorter>& sorter)
+auto ColumnViewColumn::set_sorter (const Glib::RefPtr <Sorter> &sorter) -> void
 {
   gtk_column_view_column_set_sorter(gobj(), Glib::unwrap(sorter));
 }
@@ -207,7 +207,7 @@ auto ColumnViewColumn::get_sorter() const -> Glib::RefPtr<const Sorter>
   return const_cast<ColumnViewColumn*>(this)->get_sorter();
 }
 
-void ColumnViewColumn::set_visible(bool visible)
+auto ColumnViewColumn::set_visible (bool visible) -> void
 {
   gtk_column_view_column_set_visible(gobj(), static_cast<int>(visible));
 }
@@ -217,7 +217,7 @@ auto ColumnViewColumn::get_visible() const -> bool
   return gtk_column_view_column_get_visible(const_cast<GtkColumnViewColumn*>(gobj()));
 }
 
-void ColumnViewColumn::set_header_menu(const Glib::RefPtr<Gio::MenuModel>& model)
+auto ColumnViewColumn::set_header_menu (const Glib::RefPtr <Gio::MenuModel> &model) -> void
 {
   gtk_column_view_column_set_header_menu(gobj(), Glib::unwrap(model));
 }
@@ -235,7 +235,7 @@ auto ColumnViewColumn::get_header_menu() const -> Glib::RefPtr<const Gio::MenuMo
   return const_cast<ColumnViewColumn*>(this)->get_header_menu();
 }
 
-void ColumnViewColumn::set_fixed_width(int fixed_width)
+auto ColumnViewColumn::set_fixed_width (int fixed_width) -> void
 {
   gtk_column_view_column_set_fixed_width(gobj(), fixed_width);
 }
@@ -245,7 +245,7 @@ auto ColumnViewColumn::get_fixed_width() const -> int
   return gtk_column_view_column_get_fixed_width(const_cast<GtkColumnViewColumn*>(gobj()));
 }
 
-void ColumnViewColumn::set_resizable(bool resizable)
+auto ColumnViewColumn::set_resizable (bool resizable) -> void
 {
   gtk_column_view_column_set_resizable(gobj(), static_cast<int>(resizable));
 }
@@ -255,7 +255,7 @@ auto ColumnViewColumn::get_resizable() const -> bool
   return gtk_column_view_column_get_resizable(const_cast<GtkColumnViewColumn*>(gobj()));
 }
 
-void ColumnViewColumn::set_expand(bool expand)
+auto ColumnViewColumn::set_expand (bool expand) -> void
 {
   gtk_column_view_column_set_expand(gobj(), static_cast<int>(expand));
 }

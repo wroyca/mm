@@ -64,7 +64,7 @@ auto ShortcutTrigger_Class::init() -> const Glib::Class&
 }
 
 
-void ShortcutTrigger_Class::class_init_function(void* g_class, void* class_data)
+auto ShortcutTrigger_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -207,7 +207,7 @@ auto NeverTrigger_Class::init() -> const Glib::Class&
 }
 
 
-void NeverTrigger_Class::class_init_function(void* g_class, void* class_data)
+auto NeverTrigger_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -328,7 +328,7 @@ auto KeyvalTrigger_Class::init() -> const Glib::Class&
 }
 
 
-void KeyvalTrigger_Class::class_init_function(void* g_class, void* class_data)
+auto KeyvalTrigger_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -470,7 +470,7 @@ auto MnemonicTrigger_Class::init() -> const Glib::Class&
 }
 
 
-void MnemonicTrigger_Class::class_init_function(void* g_class, void* class_data)
+auto MnemonicTrigger_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -598,7 +598,7 @@ auto AlternativeTrigger_Class::init() -> const Glib::Class&
 }
 
 
-void AlternativeTrigger_Class::class_init_function(void* g_class, void* class_data)
+auto AlternativeTrigger_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);

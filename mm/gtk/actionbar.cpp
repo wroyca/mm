@@ -31,7 +31,7 @@
 namespace Gtk
 {
 
-void ActionBar::unset_center_widget()
+auto ActionBar::unset_center_widget () -> void
 {
   gtk_action_bar_set_center_widget(gobj(), nullptr);
 }
@@ -82,7 +82,7 @@ auto ActionBar_Class::init() -> const Glib::Class&
 }
 
 
-void ActionBar_Class::class_init_function(void* g_class, void* class_data)
+auto ActionBar_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -152,17 +152,17 @@ ActionBar::ActionBar()
 
 }
 
-void ActionBar::pack_start(Gtk::Widget& child)
+auto ActionBar::pack_start (Gtk::Widget &child) -> void
 {
   gtk_action_bar_pack_start(gobj(), (child).gobj());
 }
 
-void ActionBar::pack_end(Gtk::Widget& child)
+auto ActionBar::pack_end (Gtk::Widget &child) -> void
 {
   gtk_action_bar_pack_end(gobj(), (child).gobj());
 }
 
-void ActionBar::remove(Gtk::Widget& child)
+auto ActionBar::remove (Gtk::Widget &child) -> void
 {
   gtk_action_bar_remove(gobj(), (child).gobj());
 }
@@ -177,12 +177,12 @@ auto ActionBar::get_center_widget() const -> const Widget*
   return const_cast<ActionBar*>(this)->get_center_widget();
 }
 
-void ActionBar::set_center_widget(Widget& center_widget)
+auto ActionBar::set_center_widget (Widget &center_widget) -> void
 {
   gtk_action_bar_set_center_widget(gobj(), (center_widget).gobj());
 }
 
-void ActionBar::set_revealed(bool revealed)
+auto ActionBar::set_revealed (bool revealed) -> void
 {
   gtk_action_bar_set_revealed(gobj(), static_cast<int>(revealed));
 }

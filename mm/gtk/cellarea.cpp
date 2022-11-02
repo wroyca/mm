@@ -71,13 +71,15 @@ auto proxy_foreach_alloc_callback(GtkCellRenderer* cell, const GdkRectangle* cel
 namespace Gtk
 {
 
-void CellArea::foreach(const SlotForeach& slot)
+auto CellArea::foreach (const SlotForeach &slot) -> void
 {
   SlotForeach slot_copy(slot);
   gtk_cell_area_foreach(const_cast<GtkCellArea*>(gobj()), &proxy_foreach_callback, &slot_copy);
 }
 
-void CellArea::foreach(const Glib::RefPtr<CellAreaContext>& context, Widget* widget, const Gdk::Rectangle& cell_area, const Gdk::Rectangle& background_area, const SlotForeachAlloc& slot)
+auto CellArea::foreach (
+  const Glib::RefPtr <CellAreaContext> &context, Widget *widget, const Gdk::Rectangle &cell_area,
+  const Gdk::Rectangle &background_area, const SlotForeachAlloc &slot) -> void
 {
   SlotForeachAlloc slot_copy(slot);
   gtk_cell_area_foreach_alloc(const_cast<GtkCellArea*>(gobj()), Glib::unwrap(context), Glib::unwrap(widget), cell_area.gobj(), background_area.gobj(), &proxy_foreach_alloc_callback, &slot_copy);
@@ -87,7 +89,9 @@ void CellArea::foreach(const Glib::RefPtr<CellAreaContext>& context, Widget* wid
 //These vfunc callbacks are custom implemented because we want the output
 //arguments of the C++ vfuncs to be int& (not int*), and the vfunc_callback
 //functions may be called from gtk+ with a NULL pointer.
-void CellArea_Class::get_preferred_width_vfunc_callback(GtkCellArea* self, GtkCellAreaContext* context, GtkWidget* widget, int* minimum_width, int* natural_width)
+auto CellArea_Class::get_preferred_width_vfunc_callback (
+  GtkCellArea *self, GtkCellAreaContext *context, GtkWidget *widget, int *minimum_width,
+  int *natural_width) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -129,7 +133,9 @@ void CellArea_Class::get_preferred_width_vfunc_callback(GtkCellArea* self, GtkCe
     (*base->get_preferred_width)(self, context, widget, minimum_width, natural_width);
 }
 
-void CellArea_Class::get_preferred_height_for_width_vfunc_callback(GtkCellArea* self, GtkCellAreaContext* context, GtkWidget* widget, int width, int* minimum_height, int* natural_height)
+auto CellArea_Class::get_preferred_height_for_width_vfunc_callback (
+  GtkCellArea *self, GtkCellAreaContext *context, GtkWidget *widget, int width, int *minimum_height,
+  int *natural_height) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -171,7 +177,9 @@ void CellArea_Class::get_preferred_height_for_width_vfunc_callback(GtkCellArea* 
     (*base->get_preferred_height_for_width)(self, context, widget, width, minimum_height, natural_height);
 }
 
-void CellArea_Class::get_preferred_height_vfunc_callback(GtkCellArea* self, GtkCellAreaContext* context, GtkWidget* widget, int* minimum_height, int* natural_height)
+auto CellArea_Class::get_preferred_height_vfunc_callback (
+  GtkCellArea *self, GtkCellAreaContext *context, GtkWidget *widget, int *minimum_height,
+  int *natural_height) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -213,7 +221,9 @@ void CellArea_Class::get_preferred_height_vfunc_callback(GtkCellArea* self, GtkC
     (*base->get_preferred_height)(self, context, widget, minimum_height, natural_height);
 }
 
-void CellArea_Class::get_preferred_width_for_height_vfunc_callback(GtkCellArea* self, GtkCellAreaContext* context, GtkWidget* widget, int height, int* minimum_width, int* natural_width)
+auto CellArea_Class::get_preferred_width_for_height_vfunc_callback (
+  GtkCellArea *self, GtkCellAreaContext *context, GtkWidget *widget, int height, int *minimum_width,
+  int *natural_width) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -263,7 +273,9 @@ namespace
 {
 
 
-void CellArea_signal_apply_attributes_callback(GtkCellArea* self, GtkTreeModel* p0,GtkTreeIter* p1,gboolean p2,gboolean p3,void* data)
+auto CellArea_signal_apply_attributes_callback (
+  GtkCellArea *self, GtkTreeModel *p0, GtkTreeIter *p1, gboolean p2, gboolean p3,
+  void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<TreeModel>&, const TreeModel::iterator&, bool, bool)>;
@@ -296,7 +308,9 @@ const Glib::SignalProxyInfo CellArea_signal_apply_attributes_info =
 };
 
 
-void CellArea_signal_add_editable_callback(GtkCellArea* self, GtkCellRenderer* p0,GtkCellEditable* p1,GdkRectangle* p2,const gchar* p3,void* data)
+auto CellArea_signal_add_editable_callback (
+  GtkCellArea *self, GtkCellRenderer *p0, GtkCellEditable *p1, GdkRectangle *p2, const gchar *p3,
+  void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(CellRenderer*, CellEditable*, const Gdk::Rectangle&, const Glib::ustring&)>;
@@ -329,7 +343,8 @@ const Glib::SignalProxyInfo CellArea_signal_add_editable_info =
 };
 
 
-void CellArea_signal_remove_editable_callback(GtkCellArea* self, GtkCellRenderer* p0,GtkCellEditable* p1,void* data)
+auto CellArea_signal_remove_editable_callback (
+  GtkCellArea *self, GtkCellRenderer *p0, GtkCellEditable *p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(CellRenderer*, CellEditable*)>;
@@ -360,7 +375,8 @@ const Glib::SignalProxyInfo CellArea_signal_remove_editable_info =
 };
 
 
-void CellArea_signal_focus_changed_callback(GtkCellArea* self, GtkCellRenderer* p0,const gchar* p1,void* data)
+auto CellArea_signal_focus_changed_callback (
+  GtkCellArea *self, GtkCellRenderer *p0, const gchar *p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(CellRenderer*, const Glib::ustring&)>;
@@ -436,7 +452,7 @@ auto CellArea_Class::init() -> const Glib::Class&
 }
 
 
-void CellArea_Class::class_init_function(void* g_class, void* class_data)
+auto CellArea_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -451,7 +467,10 @@ void CellArea_Class::class_init_function(void* g_class, void* class_data)
   klass->apply_attributes = &apply_attributes_callback;
 }
 
-void CellArea_Class::snapshot_vfunc_callback(GtkCellArea* self, GtkCellAreaContext* context, GtkWidget* widget, GtkSnapshot* snapshot, const GdkRectangle* background_area, const GdkRectangle* cell_area, GtkCellRendererState flags, gboolean paint_focus)
+auto CellArea_Class::snapshot_vfunc_callback (
+  GtkCellArea *self, GtkCellAreaContext *context, GtkWidget *widget, GtkSnapshot *snapshot,
+  const GdkRectangle *background_area, const GdkRectangle *cell_area, GtkCellRendererState flags,
+  gboolean paint_focus) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -533,7 +552,8 @@ auto CellArea_Class::get_request_mode_vfunc_callback(GtkCellArea* self) -> GtkSi
   return RType();
 }
 
-void CellArea_Class::apply_attributes_callback(GtkCellArea* self, GtkTreeModel* p0, GtkTreeIter* p1, gboolean p2, gboolean p3)
+auto CellArea_Class::apply_attributes_callback (
+  GtkCellArea *self, GtkTreeModel *p0, GtkTreeIter *p1, gboolean p2, gboolean p3) -> void
 {
   const auto obj_base = static_cast<Glib::ObjectBase*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
@@ -649,12 +669,12 @@ CellArea::CellArea()
 
 }
 
-void CellArea::add(CellRenderer& renderer)
+auto CellArea::add (CellRenderer &renderer) -> void
 {
   gtk_cell_area_add(gobj(), (renderer).gobj());
 }
 
-void CellArea::remove(CellRenderer& renderer)
+auto CellArea::remove (CellRenderer &renderer) -> void
 {
   gtk_cell_area_remove(gobj(), (renderer).gobj());
 }
@@ -669,12 +689,17 @@ auto CellArea::event(const Glib::RefPtr<CellAreaContext>& context, Widget& widge
   return gtk_cell_area_event(gobj(), Glib::unwrap(context), (widget).gobj(), const_cast<GdkEvent*>(Glib::unwrap(gdk_event)), (cell_area).gobj(), flags);
 }
 
-void CellArea::snapshot(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, const Glib::RefPtr<Gtk::Snapshot>& snapshot, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags, bool paint_focus)
+auto CellArea::snapshot (
+  const Glib::RefPtr <CellAreaContext> &context, Widget &widget,
+  const Glib::RefPtr <Gtk::Snapshot> &snapshot, const Gdk::Rectangle &background_area,
+  const Gdk::Rectangle &cell_area, CellRendererState flags, bool paint_focus) -> void
 {
   gtk_cell_area_snapshot(gobj(), Glib::unwrap(context), (widget).gobj(), Glib::unwrap(snapshot), (background_area).gobj(), (cell_area).gobj(), static_cast<GtkCellRendererState>(flags), static_cast<int>(paint_focus));
 }
 
-void CellArea::get_cell_allocation(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, CellRenderer& renderer, const Gdk::Rectangle& cell_area, Gdk::Rectangle& allocation)
+auto CellArea::get_cell_allocation (
+  const Glib::RefPtr <CellAreaContext> &context, Widget &widget, CellRenderer &renderer,
+  const Gdk::Rectangle &cell_area, Gdk::Rectangle &allocation) -> void
 {
   gtk_cell_area_get_cell_allocation(gobj(), Glib::unwrap(context), (widget).gobj(), (renderer).gobj(), (cell_area).gobj(), (allocation).gobj());
 }
@@ -704,22 +729,30 @@ auto CellArea::get_request_mode() const -> SizeRequestMode
   return static_cast<SizeRequestMode>(gtk_cell_area_get_request_mode(const_cast<GtkCellArea*>(gobj())));
 }
 
-void CellArea::get_preferred_width(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, int& minimum_width, int& natural_width)
+auto CellArea::get_preferred_width (
+  const Glib::RefPtr <CellAreaContext> &context, Widget &widget, int &minimum_width,
+  int &natural_width) -> void
 {
   gtk_cell_area_get_preferred_width(gobj(), Glib::unwrap(context), (widget).gobj(), &(minimum_width), &(natural_width));
 }
 
-void CellArea::get_preferred_height_for_width(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, int width, int& minimum_height, int& natural_height)
+auto CellArea::get_preferred_height_for_width (
+  const Glib::RefPtr <CellAreaContext> &context, Widget &widget, int width, int &minimum_height,
+  int &natural_height) -> void
 {
   gtk_cell_area_get_preferred_height_for_width(gobj(), Glib::unwrap(context), (widget).gobj(), width, &(minimum_height), &(natural_height));
 }
 
-void CellArea::get_preferred_height(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, int& minimum_height, int& natural_height)
+auto CellArea::get_preferred_height (
+  const Glib::RefPtr <CellAreaContext> &context, Widget &widget, int &minimum_height,
+  int &natural_height) -> void
 {
   gtk_cell_area_get_preferred_height(gobj(), Glib::unwrap(context), (widget).gobj(), &(minimum_height), &(natural_height));
 }
 
-void CellArea::get_preferred_width_for_height(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, int height, int& minimum_width, int& natural_width)
+auto CellArea::get_preferred_width_for_height (
+  const Glib::RefPtr <CellAreaContext> &context, Widget &widget, int height, int &minimum_width,
+  int &natural_width) -> void
 {
   gtk_cell_area_get_preferred_width_for_height(gobj(), Glib::unwrap(context), (widget).gobj(), height, &(minimum_width), &(natural_width));
 }
@@ -729,17 +762,20 @@ auto CellArea::get_current_path_string() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_cell_area_get_current_path_string(const_cast<GtkCellArea*>(gobj())));
 }
 
-void CellArea::apply_attributes(const Glib::RefPtr<TreeModel>& tree_model, const TreeModel::iterator& iter, bool is_expander, bool is_expanded)
+auto CellArea::apply_attributes (
+  const Glib::RefPtr <TreeModel> &tree_model, const TreeModel::iterator &iter, bool is_expander,
+  bool is_expanded) -> void
 {
   gtk_cell_area_apply_attributes(gobj(), Glib::unwrap(tree_model), const_cast<GtkTreeIter*>((iter).gobj()), static_cast<int>(is_expander), static_cast<int>(is_expanded));
 }
 
-void CellArea::attribute_connect(CellRenderer& renderer, const Glib::ustring& attribute, int column)
+auto CellArea::attribute_connect (
+  CellRenderer &renderer, const Glib::ustring &attribute, int column) -> void
 {
   gtk_cell_area_attribute_connect(gobj(), (renderer).gobj(), attribute.c_str(), column);
 }
 
-void CellArea::attribute_disconnect(CellRenderer& renderer, const Glib::ustring& attribute)
+auto CellArea::attribute_disconnect (CellRenderer &renderer, const Glib::ustring &attribute) -> void
 {
   gtk_cell_area_attribute_disconnect(gobj(), (renderer).gobj(), attribute.c_str());
 }
@@ -749,12 +785,14 @@ auto CellArea::attribute_get_column(CellRenderer& renderer, const Glib::ustring&
   return gtk_cell_area_attribute_get_column(const_cast<GtkCellArea*>(gobj()), (renderer).gobj(), attribute.c_str());
 }
 
-void CellArea::cell_set_property(CellRenderer& renderer, const Glib::ustring& property_name, const Glib::ValueBase& value)
+auto CellArea::cell_set_property (
+  CellRenderer &renderer, const Glib::ustring &property_name, const Glib::ValueBase &value) -> void
 {
   gtk_cell_area_cell_set_property(gobj(), (renderer).gobj(), property_name.c_str(), (value).gobj());
 }
 
-void CellArea::cell_get_property(CellRenderer& renderer, const Glib::ustring& property_name, Glib::ValueBase& value)
+auto CellArea::cell_get_property (
+  CellRenderer &renderer, const Glib::ustring &property_name, Glib::ValueBase &value) -> void
 {
   gtk_cell_area_cell_get_property(gobj(), (renderer).gobj(), property_name.c_str(), (value).gobj());
 }
@@ -774,7 +812,7 @@ auto CellArea::focus(DirectionType direction) -> bool
   return gtk_cell_area_focus(gobj(), static_cast<GtkDirectionType>(direction));
 }
 
-void CellArea::set_focus_cell(CellRenderer& renderer)
+auto CellArea::set_focus_cell (CellRenderer &renderer) -> void
 {
   gtk_cell_area_set_focus_cell(gobj(), (renderer).gobj());
 }
@@ -789,12 +827,12 @@ auto CellArea::get_focus_cell() const -> const CellRenderer*
   return const_cast<CellArea*>(this)->get_focus_cell();
 }
 
-void CellArea::add_focus_sibling(CellRenderer& renderer, CellRenderer& sibling)
+auto CellArea::add_focus_sibling (CellRenderer &renderer, CellRenderer &sibling) -> void
 {
   gtk_cell_area_add_focus_sibling(gobj(), (renderer).gobj(), (sibling).gobj());
 }
 
-void CellArea::remove_focus_sibling(CellRenderer& renderer, CellRenderer& sibling)
+auto CellArea::remove_focus_sibling (CellRenderer &renderer, CellRenderer &sibling) -> void
 {
   gtk_cell_area_remove_focus_sibling(gobj(), (renderer).gobj(), (sibling).gobj());
 }
@@ -849,17 +887,20 @@ auto CellArea::activate_cell(Widget& widget, CellRenderer& renderer, const Glib:
   return gtk_cell_area_activate_cell(gobj(), (widget).gobj(), (renderer).gobj(), const_cast<GdkEvent*>(Glib::unwrap(gdk_event)), (cell_area).gobj(), static_cast<GtkCellRendererState>(flags));
 }
 
-void CellArea::stop_editing(bool canceled)
+auto CellArea::stop_editing (bool canceled) -> void
 {
   gtk_cell_area_stop_editing(gobj(), static_cast<int>(canceled));
 }
 
-void CellArea::inner_cell_area(Widget& widget, const Gdk::Rectangle& cell_area, Gdk::Rectangle& inner_area)
+auto CellArea::inner_cell_area (
+  Widget &widget, const Gdk::Rectangle &cell_area, Gdk::Rectangle &inner_area) -> void
 {
   gtk_cell_area_inner_cell_area(gobj(), (widget).gobj(), (cell_area).gobj(), (inner_area).gobj());
 }
 
-void CellArea::request_renderer(CellRenderer& renderer, Orientation orientation, Widget& widget, int for_size, int& minimum_size, int& natural_size)
+auto CellArea::request_renderer (
+  CellRenderer &renderer, Orientation orientation, Widget &widget, int for_size, int &minimum_size,
+  int &natural_size) -> void
 {
   gtk_cell_area_request_renderer(gobj(), (renderer).gobj(), static_cast<GtkOrientation>(orientation), (widget).gobj(), for_size, &(minimum_size), &(natural_size));
 }
@@ -922,7 +963,9 @@ auto CellArea::property_edit_widget() const -> Glib::PropertyProxy_ReadOnly< Cel
 }
 
 
-void Gtk::CellArea::on_apply_attributes(const Glib::RefPtr<TreeModel>& tree_model, const TreeModel::iterator& iter, bool is_expander, bool is_expanded)
+auto Gtk::CellArea::on_apply_attributes (
+  const Glib::RefPtr <TreeModel> &tree_model, const TreeModel::iterator &iter, bool is_expander,
+  bool is_expanded) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -932,7 +975,10 @@ void Gtk::CellArea::on_apply_attributes(const Glib::RefPtr<TreeModel>& tree_mode
     (*base->apply_attributes)(gobj(),Glib::unwrap(tree_model),const_cast<GtkTreeIter*>((iter).gobj()),static_cast<int>(is_expander),static_cast<int>(is_expanded));
 }
 
-void Gtk::CellArea::snapshot_vfunc(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, const Glib::RefPtr<Gtk::Snapshot>& snapshot, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags, bool paint_focus)
+auto Gtk::CellArea::snapshot_vfunc (
+  const Glib::RefPtr <CellAreaContext> &context, Widget &widget,
+  const Glib::RefPtr <Gtk::Snapshot> &snapshot, const Gdk::Rectangle &background_area,
+  const Gdk::Rectangle &cell_area, CellRendererState flags, bool paint_focus) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -958,7 +1004,9 @@ auto Gtk::CellArea::get_request_mode_vfunc() const -> SizeRequestMode
   using RType = SizeRequestMode;
   return RType();
 }
-void Gtk::CellArea::get_preferred_width_vfunc(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, int& minimum_width, int& natural_width)
+auto Gtk::CellArea::get_preferred_width_vfunc (
+  const Glib::RefPtr <CellAreaContext> &context, Widget &widget, int &minimum_width,
+  int &natural_width) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -969,7 +1017,9 @@ void Gtk::CellArea::get_preferred_width_vfunc(const Glib::RefPtr<CellAreaContext
     (*base->get_preferred_width)(gobj(),Glib::unwrap(context),(widget).gobj(),&(minimum_width),&(natural_width));
   }
 }
-void Gtk::CellArea::get_preferred_height_for_width_vfunc(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, int width, int& minimum_height, int& natural_height)
+auto Gtk::CellArea::get_preferred_height_for_width_vfunc (
+  const Glib::RefPtr <CellAreaContext> &context, Widget &widget, int width, int &minimum_height,
+  int &natural_height) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -980,7 +1030,9 @@ void Gtk::CellArea::get_preferred_height_for_width_vfunc(const Glib::RefPtr<Cell
     (*base->get_preferred_height_for_width)(gobj(),Glib::unwrap(context),(widget).gobj(),width,&(minimum_height),&(natural_height));
   }
 }
-void Gtk::CellArea::get_preferred_height_vfunc(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, int& minimum_height, int& natural_height)
+auto Gtk::CellArea::get_preferred_height_vfunc (
+  const Glib::RefPtr <CellAreaContext> &context, Widget &widget, int &minimum_height,
+  int &natural_height) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -991,7 +1043,9 @@ void Gtk::CellArea::get_preferred_height_vfunc(const Glib::RefPtr<CellAreaContex
     (*base->get_preferred_height)(gobj(),Glib::unwrap(context),(widget).gobj(),&(minimum_height),&(natural_height));
   }
 }
-void Gtk::CellArea::get_preferred_width_for_height_vfunc(const Glib::RefPtr<CellAreaContext>& context, Widget& widget, int height, int& minimum_width, int& natural_width)
+auto Gtk::CellArea::get_preferred_width_for_height_vfunc (
+  const Glib::RefPtr <CellAreaContext> &context, Widget &widget, int height, int &minimum_width,
+  int &natural_width) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

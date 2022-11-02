@@ -64,7 +64,7 @@ auto BoolFilter_Class::init() -> const Glib::Class&
 }
 
 
-void BoolFilter_Class::class_init_function(void* g_class, void* class_data)
+auto BoolFilter_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -160,7 +160,7 @@ auto BoolFilter::get_expression() const -> Glib::RefPtr<const Expression<bool>>
   return retvalue;
 }
 
-void BoolFilter::set_expression(const Glib::RefPtr<Expression<bool>>& expression)
+auto BoolFilter::set_expression (const Glib::RefPtr <Expression <bool>> &expression) -> void
 {
   gtk_bool_filter_set_expression(gobj(), ((expression) ? (expression)->gobj() : nullptr));
 }
@@ -170,7 +170,7 @@ auto BoolFilter::get_invert() const -> bool
   return gtk_bool_filter_get_invert(const_cast<GtkBoolFilter*>(gobj()));
 }
 
-void BoolFilter::set_invert(bool invert)
+auto BoolFilter::set_invert (bool invert) -> void
 {
   gtk_bool_filter_set_invert(gobj(), static_cast<int>(invert));
 }

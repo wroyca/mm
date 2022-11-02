@@ -212,7 +212,7 @@ auto Server_Class::init() -> const Glib::Class&
 }
 
 
-void Server_Class::class_init_function(void* g_class, void* class_data)
+auto Server_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -279,12 +279,12 @@ auto Server::get_base_type() -> GType
 }
 
 
-void Server::start()
+auto Server::start () -> void
 {
   g_dbus_server_start(gobj());
 }
 
-void Server::stop()
+auto Server::stop () -> void
 {
   g_dbus_server_stop(gobj());
 }

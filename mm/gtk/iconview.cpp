@@ -32,7 +32,7 @@
 namespace //anonymous namespace
 {
 
-void proxy_foreach_callback(GtkIconView* /* icon_view */, GtkTreePath* path, void* data)
+auto proxy_foreach_callback (GtkIconView * /* icon_view */, GtkTreePath *path, void *data) -> void
 {
   typedef Gtk::IconView::SlotForeach SlotType;
   auto& slot = *static_cast<SlotType*>(data);
@@ -53,12 +53,12 @@ void proxy_foreach_callback(GtkIconView* /* icon_view */, GtkTreePath* path, voi
 namespace Gtk
 {
 
-void IconView::unset_model()
+auto IconView::unset_model () -> void
 {
   gtk_icon_view_set_model(gobj(), nullptr);
 }
 
-void IconView::selected_foreach(const SlotForeach& slot)
+auto IconView::selected_foreach (const SlotForeach &slot) -> void
 {
   SlotForeach slot_copy(slot);
   gtk_icon_view_selected_foreach(const_cast<GtkIconView*>(gobj()), &proxy_foreach_callback, &slot_copy);
@@ -134,7 +134,7 @@ auto IconView::get_cursor(CellRenderer*& cell) const -> bool
   return result;
 }
 
-void IconView::get_drag_dest_item(TreeModel::Path& path, DropPosition& pos) const
+auto IconView::get_drag_dest_item (TreeModel::Path &path, DropPosition &pos) const -> void
 {
   GtkTreePath* cpath = nullptr;
   gtk_icon_view_get_drag_dest_item(const_cast<GtkIconView*>(gobj()), &cpath, (GtkIconViewDropPosition*)(&pos));
@@ -142,7 +142,7 @@ void IconView::get_drag_dest_item(TreeModel::Path& path, DropPosition& pos) cons
     path = Gtk::TreeModel::Path(cpath, true /* make_a_copy */);
 }
 
-void IconView::get_drag_dest_item(TreeModel::Path& path) const
+auto IconView::get_drag_dest_item (TreeModel::Path &path) const -> void
 {
   GtkTreePath* cpath = nullptr;
   gtk_icon_view_get_drag_dest_item(const_cast<GtkIconView*>(gobj()), &cpath, nullptr);
@@ -150,7 +150,7 @@ void IconView::get_drag_dest_item(TreeModel::Path& path) const
     path = Gtk::TreeModel::Path(cpath, true /* make_a_copy */);
 }
 
-void IconView::get_drag_dest_item(DropPosition& pos) const
+auto IconView::get_drag_dest_item (DropPosition &pos) const -> void
 {
    gtk_icon_view_get_drag_dest_item(const_cast<GtkIconView*>(gobj()), nullptr, (GtkIconViewDropPosition*)(&pos));
 }
@@ -230,7 +230,8 @@ namespace
 {
 
 
-void IconView_signal_item_activated_callback(GtkIconView* self, GtkTreePath* p0,void* data)
+auto IconView_signal_item_activated_callback (
+  GtkIconView *self, GtkTreePath *p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const TreeModel::Path&)>;
@@ -317,7 +318,7 @@ auto IconView_Class::init() -> const Glib::Class&
 }
 
 
-void IconView_Class::class_init_function(void* g_class, void* class_data)
+auto IconView_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
@@ -411,7 +412,7 @@ IconView::IconView(const Glib::RefPtr<CellArea>& cell_area)
 
 }
 
-void IconView::set_model(const Glib::RefPtr<TreeModel>& model)
+auto IconView::set_model (const Glib::RefPtr <TreeModel> &model) -> void
 {
   gtk_icon_view_set_model(gobj(), Glib::unwrap(model));
 }
@@ -429,12 +430,12 @@ auto IconView::get_model() const -> Glib::RefPtr<const TreeModel>
   return const_cast<IconView*>(this)->get_model();
 }
 
-void IconView::set_text_column(int column)
+auto IconView::set_text_column (int column) -> void
 {
   gtk_icon_view_set_text_column(gobj(), column);
 }
 
-void IconView::set_text_column(const TreeModelColumnBase& model_column)
+auto IconView::set_text_column (const TreeModelColumnBase &model_column) -> void
 {
   gtk_icon_view_set_text_column(gobj(), (model_column).index());
 }
@@ -444,12 +445,12 @@ auto IconView::get_text_column() const -> int
   return gtk_icon_view_get_text_column(const_cast<GtkIconView*>(gobj()));
 }
 
-void IconView::set_markup_column(int column)
+auto IconView::set_markup_column (int column) -> void
 {
   gtk_icon_view_set_markup_column(gobj(), column);
 }
 
-void IconView::set_markup_column(const TreeModelColumnBase& column)
+auto IconView::set_markup_column (const TreeModelColumnBase &column) -> void
 {
   gtk_icon_view_set_markup_column(gobj(), (column).index());
 }
@@ -459,12 +460,12 @@ auto IconView::get_markup_column() const -> int
   return gtk_icon_view_get_markup_column(const_cast<GtkIconView*>(gobj()));
 }
 
-void IconView::set_pixbuf_column(int column)
+auto IconView::set_pixbuf_column (int column) -> void
 {
   gtk_icon_view_set_pixbuf_column(gobj(), column);
 }
 
-void IconView::set_pixbuf_column(const TreeModelColumnBase& column)
+auto IconView::set_pixbuf_column (const TreeModelColumnBase &column) -> void
 {
   gtk_icon_view_set_pixbuf_column(gobj(), (column).index());
 }
@@ -474,7 +475,7 @@ auto IconView::get_pixbuf_column() const -> int
   return gtk_icon_view_get_pixbuf_column(const_cast<GtkIconView*>(gobj()));
 }
 
-void IconView::set_item_orientation(Orientation orientation)
+auto IconView::set_item_orientation (Orientation orientation) -> void
 {
   gtk_icon_view_set_item_orientation(gobj(), static_cast<GtkOrientation>(orientation));
 }
@@ -484,7 +485,7 @@ auto IconView::get_item_orientation() const -> Orientation
   return static_cast<Orientation>(gtk_icon_view_get_item_orientation(const_cast<GtkIconView*>(gobj())));
 }
 
-void IconView::set_columns(int columns)
+auto IconView::set_columns (int columns) -> void
 {
   gtk_icon_view_set_columns(gobj(), columns);
 }
@@ -494,7 +495,7 @@ auto IconView::get_columns() const -> int
   return gtk_icon_view_get_columns(const_cast<GtkIconView*>(gobj()));
 }
 
-void IconView::set_item_width(int item_width)
+auto IconView::set_item_width (int item_width) -> void
 {
   gtk_icon_view_set_item_width(gobj(), item_width);
 }
@@ -504,7 +505,7 @@ auto IconView::get_icon_width() const -> int
   return gtk_icon_view_get_item_width(const_cast<GtkIconView*>(gobj()));
 }
 
-void IconView::set_spacing(int spacing)
+auto IconView::set_spacing (int spacing) -> void
 {
   gtk_icon_view_set_spacing(gobj(), spacing);
 }
@@ -514,7 +515,7 @@ auto IconView::get_spacing() const -> int
   return gtk_icon_view_get_spacing(const_cast<GtkIconView*>(gobj()));
 }
 
-void IconView::set_row_spacing(int row_spacing)
+auto IconView::set_row_spacing (int row_spacing) -> void
 {
   gtk_icon_view_set_row_spacing(gobj(), row_spacing);
 }
@@ -524,7 +525,7 @@ auto IconView::get_row_spacing() const -> int
   return gtk_icon_view_get_row_spacing(const_cast<GtkIconView*>(gobj()));
 }
 
-void IconView::set_column_spacing(int column_spacing)
+auto IconView::set_column_spacing (int column_spacing) -> void
 {
   gtk_icon_view_set_column_spacing(gobj(), column_spacing);
 }
@@ -534,7 +535,7 @@ auto IconView::get_column_spacing() const -> int
   return gtk_icon_view_get_column_spacing(const_cast<GtkIconView*>(gobj()));
 }
 
-void IconView::set_margin(int margin)
+auto IconView::set_margin (int margin) -> void
 {
   gtk_icon_view_set_margin(gobj(), margin);
 }
@@ -544,7 +545,7 @@ auto IconView::get_margin() const -> int
   return gtk_icon_view_get_margin(const_cast<GtkIconView*>(gobj()));
 }
 
-void IconView::set_item_padding(int item_padding)
+auto IconView::set_item_padding (int item_padding) -> void
 {
   gtk_icon_view_set_item_padding(gobj(), item_padding);
 }
@@ -559,7 +560,7 @@ auto IconView::get_path_at_pos(int x, int y) const -> TreeModel::Path
   return Gtk::TreePath(gtk_icon_view_get_path_at_pos(const_cast<GtkIconView*>(gobj()), x, y), false);
 }
 
-void IconView::set_activate_on_single_click(bool single)
+auto IconView::set_activate_on_single_click (bool single) -> void
 {
   gtk_icon_view_set_activate_on_single_click(gobj(), static_cast<int>(single));
 }
@@ -569,7 +570,7 @@ auto IconView::get_activate_on_single_click() const -> bool
   return gtk_icon_view_get_activate_on_single_click(const_cast<GtkIconView*>(gobj()));
 }
 
-void IconView::set_selection_mode(SelectionMode mode)
+auto IconView::set_selection_mode (SelectionMode mode) -> void
 {
   gtk_icon_view_set_selection_mode(gobj(), static_cast<GtkSelectionMode>(mode));
 }
@@ -579,12 +580,12 @@ auto IconView::get_selection_mode() const -> SelectionMode
   return static_cast<SelectionMode>(gtk_icon_view_get_selection_mode(const_cast<GtkIconView*>(gobj())));
 }
 
-void IconView::select_path(const TreeModel::Path& path)
+auto IconView::select_path (const TreeModel::Path &path) -> void
 {
   gtk_icon_view_select_path(gobj(), const_cast<GtkTreePath*>((path).gobj()));
 }
 
-void IconView::unselect_path(const TreeModel::Path& path)
+auto IconView::unselect_path (const TreeModel::Path &path) -> void
 {
   gtk_icon_view_unselect_path(gobj(), const_cast<GtkTreePath*>((path).gobj()));
 }
@@ -609,57 +610,62 @@ auto IconView::get_selected_items() const -> std::vector<TreePath>
   return Glib::ListHandler<TreePath, TreePathTraits>::list_to_vector(gtk_icon_view_get_selected_items(const_cast<GtkIconView*>(gobj())), Glib::OWNERSHIP_DEEP);
 }
 
-void IconView::select_all()
+auto IconView::select_all () -> void
 {
   gtk_icon_view_select_all(gobj());
 }
 
-void IconView::unselect_all()
+auto IconView::unselect_all () -> void
 {
   gtk_icon_view_unselect_all(gobj());
 }
 
-void IconView::item_activated(const TreeModel::Path& path)
+auto IconView::item_activated (const TreeModel::Path &path) -> void
 {
   gtk_icon_view_item_activated(gobj(), const_cast<GtkTreePath*>((path).gobj()));
 }
 
-void IconView::set_cursor(const TreeModel::Path& path, CellRenderer& cell, bool start_editing)
+auto IconView::set_cursor (
+  const TreeModel::Path &path, CellRenderer &cell, bool start_editing) -> void
 {
   gtk_icon_view_set_cursor(gobj(), const_cast<GtkTreePath*>((path).gobj()), (cell).gobj(), static_cast<int>(start_editing));
 }
 
-void IconView::set_cursor(const TreeModel::Path& path, bool start_editing)
+auto IconView::set_cursor (const TreeModel::Path &path, bool start_editing) -> void
 {
   gtk_icon_view_set_cursor(gobj(), const_cast<GtkTreePath*>((path).gobj()), nullptr, static_cast<int>(start_editing));
 }
 
-void IconView::scroll_to_path(const TreeModel::Path& path, bool use_align, float row_align, float col_align)
+auto IconView::scroll_to_path (
+  const TreeModel::Path &path, bool use_align, float row_align, float col_align) -> void
 {
   gtk_icon_view_scroll_to_path(gobj(), const_cast<GtkTreePath*>((path).gobj()), static_cast<int>(use_align), row_align, col_align);
 }
 
-void IconView::enable_model_drag_source(const Glib::RefPtr<const Gdk::ContentFormats>& formats, Gdk::ModifierType start_button_mask, Gdk::DragAction actions)
+auto IconView::enable_model_drag_source (
+  const Glib::RefPtr <const Gdk::ContentFormats> &formats, Gdk::ModifierType start_button_mask,
+  Gdk::DragAction actions) -> void
 {
   gtk_icon_view_enable_model_drag_source(gobj(), static_cast<GdkModifierType>(start_button_mask), const_cast<GdkContentFormats*>(Glib::unwrap(formats)), static_cast<GdkDragAction>(actions));
 }
 
-void IconView::enable_model_drag_dest(const Glib::RefPtr<const Gdk::ContentFormats>& formats, Gdk::DragAction actions)
+auto IconView::enable_model_drag_dest (
+  const Glib::RefPtr <const Gdk::ContentFormats> &formats, Gdk::DragAction actions) -> void
 {
   gtk_icon_view_enable_model_drag_dest(gobj(), const_cast<GdkContentFormats*>(Glib::unwrap(formats)), static_cast<GdkDragAction>(actions));
 }
 
-void IconView::unset_model_drag_source()
+auto IconView::unset_model_drag_source () -> void
 {
   gtk_icon_view_unset_model_drag_source(gobj());
 }
 
-void IconView::unset_model_drag_dest()
+auto IconView::unset_model_drag_dest () -> void
 {
   gtk_icon_view_unset_model_drag_dest(gobj());
 }
 
-void IconView::set_reorderable(bool reorderable)
+auto IconView::set_reorderable (bool reorderable) -> void
 {
   gtk_icon_view_set_reorderable(gobj(), static_cast<int>(reorderable));
 }
@@ -669,7 +675,7 @@ auto IconView::get_reorderable() const -> bool
   return gtk_icon_view_get_reorderable(const_cast<GtkIconView*>(gobj()));
 }
 
-void IconView::set_drag_dest_item(const TreeModel::Path& path, DropPosition pos)
+auto IconView::set_drag_dest_item (const TreeModel::Path &path, DropPosition pos) -> void
 {
   gtk_icon_view_set_drag_dest_item(gobj(), const_cast<GtkTreePath*>((path).gobj()), static_cast<GtkIconViewDropPosition>(pos));
 }
@@ -695,17 +701,19 @@ rect = Glib::wrap(&(g_rect));
   return retvalue;
 }
 
-void IconView::set_tooltip_item(const Glib::RefPtr<Tooltip>& tooltip, const TreeModel::Path& path)
+auto IconView::set_tooltip_item (
+  const Glib::RefPtr <Tooltip> &tooltip, const TreeModel::Path &path) -> void
 {
   gtk_icon_view_set_tooltip_item(gobj(), Glib::unwrap(tooltip), const_cast<GtkTreePath*>((path).gobj()));
 }
 
-void IconView::set_tooltip_cell(const Glib::RefPtr<Tooltip>& tooltip, const TreeModel::Path& path, CellRenderer& cell)
+auto IconView::set_tooltip_cell (
+  const Glib::RefPtr <Tooltip> &tooltip, const TreeModel::Path &path, CellRenderer &cell) -> void
 {
   gtk_icon_view_set_tooltip_cell(gobj(), Glib::unwrap(tooltip), const_cast<GtkTreePath*>((path).gobj()), (cell).gobj());
 }
 
-void IconView::set_tooltip_column(int column)
+auto IconView::set_tooltip_column (int column) -> void
 {
   gtk_icon_view_set_tooltip_column(gobj(), column);
 }

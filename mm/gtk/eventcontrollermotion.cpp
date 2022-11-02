@@ -30,7 +30,8 @@ namespace
 {
 
 
-void EventControllerMotion_signal_enter_callback(GtkEventControllerMotion* self, gdouble p0,gdouble p1,void* data)
+auto EventControllerMotion_signal_enter_callback (
+  GtkEventControllerMotion *self, gdouble p0, gdouble p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
@@ -69,7 +70,8 @@ const Glib::SignalProxyInfo EventControllerMotion_signal_leave_info =
 };
 
 
-void EventControllerMotion_signal_motion_callback(GtkEventControllerMotion* self, gdouble p0,gdouble p1,void* data)
+auto EventControllerMotion_signal_motion_callback (
+  GtkEventControllerMotion *self, gdouble p0, gdouble p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
@@ -143,7 +145,7 @@ auto EventControllerMotion_Class::init() -> const Glib::Class&
 }
 
 
-void EventControllerMotion_Class::class_init_function(void* g_class, void* class_data)
+auto EventControllerMotion_Class::class_init_function (void *g_class, void *class_data) -> void
 {
   const auto klass = static_cast<BaseClassType*>(g_class);
   CppClassParent::class_init_function(klass, class_data);
