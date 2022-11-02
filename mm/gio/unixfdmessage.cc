@@ -23,6 +23,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef _WIN32
+
 #include <gio/gunixfdmessage.h>
 #include <mm/glib/error.h>
 #include <mm/gio/unixfdlist.h>
@@ -217,4 +219,4 @@ auto UnixFDMessage::property_fd_list() const -> Glib::PropertyProxy_ReadOnly< Gl
 
 } // namespace Gio
 
-
+#endif // _WIN32

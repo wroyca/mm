@@ -26,7 +26,7 @@
 #include <mm/cairo/script_surface.h>
 #include <mm/cairo/scaledfont.h>
 
-/* Solaris et. al. need math.h for M_PI too */
+/* Windows et. al. need _USE_MATH_DEFINES for M_PI too */
 #include <cmath>
 
 using namespace Cairo::Private;

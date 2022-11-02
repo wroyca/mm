@@ -1,12 +1,12 @@
-file(GLOB_RECURSE sources CONFIGURE_DEPENDS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cc *.h)
+file(GLOB_RECURSE mm-pango CONFIGURE_DEPENDS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cc *.h)
 
 add_library(mm-pango
-  ${sources}
+  ${mm-pango}
 )
 
 target_compile_definitions(mm-pango
 PUBLIC
-  PANGOMM_BUILD=1
+  PANGOMM_BUILD
 )
 
 target_link_libraries(mm-pango

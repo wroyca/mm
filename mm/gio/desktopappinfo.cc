@@ -23,6 +23,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef _WIN32
+
 #include <gio/gio.h>
 #include <gio/gdesktopappinfo.h>
 #include <mm/glib/keyfile.h>
@@ -238,4 +240,4 @@ auto DesktopAppInfo::get_action_name(const Glib::ustring& action_name) const -> 
 
 } // namespace Gio
 
-
+#endif // _WIN32

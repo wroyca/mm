@@ -23,17 +23,7 @@
 # define GTKMM_DLL 1
 #endif
 
-#ifdef GTKMM_DLL
-# if defined (GDKMM_BUILD) || defined(GTKMM_BUILD)
 #  define GTKMM_API __declspec(dllexport)
-# elif !defined (__GNUC__)
-#  define GTKMM_API __declspec(dllimport)
-# else /* don't dllimport classes/methods on GCC/MinGW */
-#  define GTKMM_API
-# endif
-#else
-/* Build a static library or a non-native Windows library */
-# define GTKMM_API
-#endif /* GTKMM_DLL */
+
 
 #endif /* !_GTKMM_CONFIG_H */

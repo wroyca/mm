@@ -11,7 +11,3 @@
 
 # Build results
 [Bb]uild/
-[Bb]uilddir/
-
-# Meson subprojects
-[Ss]ubprojects/*/

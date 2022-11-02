@@ -1,12 +1,12 @@
-file(GLOB_RECURSE sources CONFIGURE_DEPENDS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cc *.h)
+file(GLOB_RECURSE mm-gdk CONFIGURE_DEPENDS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cc *.h)
 
 add_library(mm-gdk STATIC
-  ${sources}
+  ${mm-gdk}
 )
 
 target_compile_definitions(mm-gdk
 PUBLIC
-  GDKMM_BUILD=1
+  GDKMM_BUILD
 )
 
 target_link_libraries(mm-gdk

@@ -1,34 +1,15 @@
-file(GLOB_RECURSE sources CONFIGURE_DEPENDS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cc *.h)
+file(GLOB_RECURSE mm-gtk CONFIGURE_DEPENDS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cc *.h)
 
 add_library(mm-gtk
-  ${sources}
+  ${mm-gtk}
 )
 
 target_compile_definitions(mm-gtk
 PUBLIC
-  GTKMM_BUILD=1
+  GTKMM_BUILD
 )
 
-include_directories(
-  ${GTK4_INCLUDE_DIRS}
-  ${GOBJECT_INCLUDE_DIRS}
-  ${GLIB_INCLUDE_DIRS}
-  ${GIO_INCLUDE_DIRS}
-  ${SIGC_INCLUDE_DIRS}
-  ${CAIRO_INCLUDE_DIRS}
-  ${PANGO_INCLUDE_DIRS}
-  ${PANGOCAIRO_INCLUDE_DIRS}
+target_link_libraries(mm-gtk
+PUBLIC
+ mm-pango
 )
-
-link_directories(
-  ${GTK4_LIBRARY_DIRS}
-  ${GOBJECT_LIBRARY_DIRS}
-  ${GLIB_LIBRARY_DIRS}
-  ${GIO_LIBRARY_DIRS}
-  ${SIGC_LIBRARY_DIRS}
-  ${CAIRO_LIBRARY_DIRS}
-  ${PANGO_LIBRARY_DIRS}
-  ${PANGOCAIRO_LIBRARY_DIRS}
-)
-
-

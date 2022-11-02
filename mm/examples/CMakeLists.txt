@@ -1,7 +1,7 @@
-file(GLOB_RECURSE sources CONFIGURE_DEPENDS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cc *.h)
+file(GLOB_RECURSE mm-examples CONFIGURE_DEPENDS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cc *.h)
 
 add_executable(mm-examples
-  ${sources}
+  ${mm-examples}
 )
 
 target_link_libraries(mm-examples

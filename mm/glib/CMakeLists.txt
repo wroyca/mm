@@ -1,10 +1,10 @@
-file(GLOB_RECURSE sources CONFIGURE_DEPENDS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cc *.h)
+file(GLOB_RECURSE mm-glib CONFIGURE_DEPENDS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cc *.h)
 
-add_library(mm-glib
-  ${sources}
+add_library(mm-glib STATIC
+  ${mm-glib}
 )
 
 target_compile_definitions(mm-glib
 PUBLIC
-  GLIBMM_BUILD=1
+  GLIBMM_BUILD
 )
