@@ -9,3 +9,9 @@ PUBLIC
   CAIROMM_BUILD
  _USE_MATH_DEFINES
 )
+
+target_link_libraries(mm-cairo
+PUBLIC
+  mm-glib
+  mm-gio
+)

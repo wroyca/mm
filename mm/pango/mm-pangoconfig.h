@@ -2,9 +2,6 @@
 #ifndef PANGOMM_PANGOMMCONFIG_H_INCLUDED
 #define PANGOMM_PANGOMMCONFIG_H_INCLUDED
 
-#include <mm/glib/mm-glibconfig.h>
-
-
 /* Define to omit deprecated API from the library. */
 /* #undef PANGOMM_DISABLE_DEPRECATED */
 
@@ -25,7 +22,7 @@
 #ifdef PANGOMM_DLL
 # if defined(PANGOMM_BUILD)
 #  define PANGOMM_API __declspec(dllexport)
-# elif !defined (__GNUC__ ) || !defined (_MSC_VER)
+# elif !defined (__GNUC__)
 #  define PANGOMM_API __declspec(dllimport)
 # else /* don't dllimport classes/methods on GCC/MinGW */
 #  define PANGOMM_API

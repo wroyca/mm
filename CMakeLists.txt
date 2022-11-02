@@ -52,7 +52,7 @@ link_directories (
   ${LIBADWAITA_LIBRARY_DIRS}
 )
 
-add_compile_options(/MP)
+add_compile_options(/MP /cgthreads8)
 
 # Treat mm/ as a workspace.
 #

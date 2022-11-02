@@ -7,6 +7,7 @@ add_library(mm-gio STATIC
 target_compile_definitions(mm-gio
 PUBLIC
   GIOMM_BUILD
+  GIOMM_STATIC_LIB
 )
 
 target_link_libraries(mm-gio

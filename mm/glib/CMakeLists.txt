@@ -7,4 +7,5 @@ add_library(mm-glib STATIC
 target_compile_definitions(mm-glib
 PUBLIC
   GLIBMM_BUILD
+  GLIBMM_STATIC_LIB
 )
