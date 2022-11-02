@@ -20,7 +20,7 @@ _DEFS(skeletonmm,skeleton)
 _CONFIGINCLUDE(skeletonmmconfig.h)
 _PINCLUDE(glibmm/private/object_p.h)
 
-#include <mm/glib/mm-glib.h>
+#include <mm/glib/mm-glib.hpp>
 
 namespace Skeleton
 {

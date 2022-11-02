@@ -2,12 +2,13 @@
 # and include sub-projects here.
 #
 cmake_minimum_required (VERSION 3.24 FATAL_ERROR)
-project ("MM")
+project ("mm" VERSION 1.0.0)
+set (MM_INSTALL_CONFIGDIR "${CMAKE_INSTALL_LIBDIR}/cmake/mm")
 
 # Forces CXX standard version on all subprojects.
 #
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set (CMAKE_CXX_STANDARD 20)
+set (CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Checks for all the given modules, setting a variety of result variables in
 # the calling scope.
@@ -52,11 +53,13 @@ link_directories (
   ${LIBADWAITA_LIBRARY_DIRS}
 )
 
-add_compile_options(/MP /cgthreads8)
+# Multi-process build
+#
+add_compile_options (/MP /cgthreads8)
 
 # Treat mm/ as a workspace.
 #
-include_directories (${CMAKE_SOURCE_DIR})
+include_directories (include)
 
 # Include sub-projects.
 #

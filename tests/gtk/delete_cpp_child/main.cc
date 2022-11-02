@@ -1,8 +1,8 @@
-#include <mm/gtk/application.h>
-#include <mm/gtk/box.h>
-#include <mm/gtk/button.h>
-#include <mm/gtk/label.h>
-#include <mm/gtk/window.h>
+#include <mm/gtk/application.hpp>
+#include <mm/gtk/box.hpp>
+#include <mm/gtk/button.hpp>
+#include <mm/gtk/label.hpp>
+#include <mm/gtk/window.hpp>
 
 class AppWindow
     : public Gtk::Window

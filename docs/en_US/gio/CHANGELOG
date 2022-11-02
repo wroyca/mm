@@ -821,7 +821,7 @@ Glib:
   (Kjell Ahlstedt) Bug #775348
 
 Gio:
-* Action: #include <mm/glib/variant.h>, for convenience.
+* Action: #include <mm/glib/variant.hpp>, for convenience.
   (Daniel Boles) Bug #777953
 * SimpleAction: Make set_state() public.
   (Daniel Boles) Bug #777953

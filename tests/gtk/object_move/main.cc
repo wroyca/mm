@@ -1,5 +1,5 @@
 #include <mm/gtk.h>
-#include <mm/gtk/init.h>
+#include <mm/gtk/init.hpp>
 #include <gtk/gtk.h>
 #include <iostream>
 #include <stdlib.h>

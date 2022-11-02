@@ -4,8 +4,8 @@
 // https://gitlab.gnome.org/GNOME/gtkmm/merge_requests/7
 // https://gitlab.gnome.org/GNOME/gtkmm/merge_requests/8
 
-#include <mm/gdkrgba.h>
-#include <mm/glib/mm-glib.h>
+#include <mm/gdkrgba.hpp>
+#include <mm/glib/mm-glib.hpp>
 #include <limits>
 #include <cmath>
 

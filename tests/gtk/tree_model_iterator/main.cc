@@ -1,5 +1,5 @@
 #include <mm/gtk.h>
-#include <mm/gtk/init.h>
+#include <mm/gtk/init.hpp>
 #include <iostream>
 #include <cassert>
 #include <cstdlib>
