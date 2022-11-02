@@ -1,6 +1,7 @@
 # Modular superprojects structure
 #
 
+add_subdirectory(adw)
 add_subdirectory(cairo)
 add_subdirectory(gdk)
 add_subdirectory(gio)

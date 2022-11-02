@@ -14,10 +14,11 @@ add_executable (mm-examples
 
 target_link_libraries (mm-examples
 PUBLIC
-  mm-gtk
-  mm-glib
-  mm-gio
-  mm-cairo
-  mm-pango
-  mm-gdk
+  mm::adw
+  mm::gtk
+  mm::glib
+  mm::gio
+  mm::cairo
+  mm::pango
+  mm::gdk
 )

@@ -113,7 +113,7 @@ public:
 #endif
 
   /// Provides access to the underlying C GObject.
-  auto       gobj() -> GtkWindow*       { return reinterpret_cast<GtkWindow*>(gobject_); }
+  auto gobj() -> GtkWindow* { return reinterpret_cast<GtkWindow*>(gobject_); }
 
   /// Provides access to the underlying C GObject.
   auto gobj() const -> const GtkWindow* { return reinterpret_cast<GtkWindow*>(gobject_); }
