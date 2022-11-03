@@ -36,10 +36,10 @@ namespace Glib
 
 auto
 custom_boxed_type_register(
-  const char* type_name, ValueInitFunc init_func, ValueFreeFunc free_func, ValueCopyFunc copy_func) -> GType
+  const char* type_name, const ValueInitFunc init_func, const ValueFreeFunc free_func, const ValueCopyFunc copy_func) -> GType
 {
   std::string full_name("glibmm__CustomBoxed_");
-  Glib::append_canonical_typename(full_name, type_name);
+  append_canonical_typename(full_name, type_name);
 
   // Templates of the same type _might_ be duplicated when instantiated in
   // multiple translation units -- I'm not sure whether this is true.  If the
@@ -92,7 +92,7 @@ auto
 custom_pointer_type_register(const char* type_name) -> GType
 {
   std::string full_name("glibmm__CustomPointer_");
-  Glib::append_canonical_typename(full_name, type_name);
+  append_canonical_typename(full_name, type_name);
 
   // Templates of the same type _might_ be duplicated when instantiated in
   // multiple translation units -- I'm not sure whether this is true.  If the

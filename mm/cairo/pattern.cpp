@@ -28,7 +28,7 @@ Pattern::Pattern()
 {
 }
 
-Pattern::Pattern(cairo_pattern_t* cobject, bool has_reference)
+Pattern::Pattern(cairo_pattern_t* cobject, const bool has_reference)
 : m_cobject(nullptr)
 {
   if(has_reference)
@@ -55,25 +55,25 @@ auto Pattern::unreference () const -> void
 
 auto Pattern::set_matrix (const Matrix &matrix) -> void
 {
-  cairo_pattern_set_matrix(m_cobject, (cairo_matrix_t*)&matrix);
+  cairo_pattern_set_matrix(m_cobject, &matrix);
   check_object_status_and_throw_exception(*this);
 }
 
 auto Pattern::get_matrix (Matrix &matrix) const -> void
 {
-  cairo_pattern_get_matrix(m_cobject, (cairo_matrix_t*)&matrix);
+  cairo_pattern_get_matrix(m_cobject, &matrix);
   check_object_status_and_throw_exception(*this);
 }
 
 auto Pattern::get_matrix() const -> Matrix
 {
-  Cairo::Matrix m;
-  cairo_pattern_get_matrix(m_cobject, (cairo_matrix_t*)&m);
+  Matrix m;
+  cairo_pattern_get_matrix(m_cobject, &m);
   check_object_status_and_throw_exception(*this);
   return m;
 }
 
-auto Pattern::get_type() const -> Pattern::Type
+auto Pattern::get_type() const -> Type
 {
   auto pattern_type = cairo_pattern_get_type(m_cobject);
   check_object_status_and_throw_exception(*this);
@@ -86,14 +86,14 @@ auto Pattern::set_extend (Extend extend) -> void
   check_object_status_and_throw_exception(*this);
 }
 
-auto Pattern::get_extend() const -> Pattern::Extend
+auto Pattern::get_extend() const -> Extend
 {
   const auto result = static_cast<Extend>(cairo_pattern_get_extend(m_cobject));
   check_object_status_and_throw_exception(*this);
   return result;
 }
 
-SolidPattern::SolidPattern(cairo_pattern_t* cobject, bool has_reference)
+SolidPattern::SolidPattern(cairo_pattern_t* cobject, const bool has_reference)
 : Pattern(cobject, has_reference)
 {
 }
@@ -106,18 +106,18 @@ auto SolidPattern::get_rgba (
   check_object_status_and_throw_exception(*this);
 }
 
-SolidPattern::~SolidPattern()
-{
-}
+SolidPattern::~SolidPattern() = default;
 
-auto SolidPattern::create_rgb(double red, double green, double blue) -> RefPtr<SolidPattern>
+auto SolidPattern::create_rgb(
+  const double red, const double green, const double blue) -> RefPtr<SolidPattern>
 {
-  auto cobject = cairo_pattern_create_rgb(red, green, blue);
+  const auto cobject = cairo_pattern_create_rgb(red, green, blue);
   check_status_and_throw_exception(cairo_pattern_status(cobject));
   return make_refptr_for_instance<SolidPattern>(new SolidPattern(cobject, true /* has reference */));
 }
 
-auto SolidPattern::create_rgba(double red, double green, double blue, double alpha) -> RefPtr<SolidPattern>
+auto SolidPattern::create_rgba(
+  const double red, const double green, const double blue, const double alpha) -> RefPtr<SolidPattern>
 {
   cairo_pattern_t* cobject  = cairo_pattern_create_rgba(red, green, blue, alpha);
   check_status_and_throw_exception(cairo_pattern_status(cobject));
@@ -136,7 +136,7 @@ SurfacePattern::get_surface() -> RefPtr<Surface>
 {
   cairo_surface_t* surface = nullptr;
   // we can ignore the return value since we know this is a surface pattern
-  cairo_pattern_get_surface(const_cast<cairo_pattern_t*>(m_cobject), &surface);
+  cairo_pattern_get_surface(m_cobject, &surface);
   check_object_status_and_throw_exception(*this);
   return make_refptr_for_instance<Surface>(new Surface(surface, false /* does not have reference */));
 }
@@ -152,14 +152,12 @@ auto SurfacePattern::create(const RefPtr<Surface>& surface) -> RefPtr<SurfacePat
   return make_refptr_for_instance<SurfacePattern>(new SurfacePattern(surface));
 }
 
-SurfacePattern::SurfacePattern(cairo_pattern_t* cobject, bool has_reference)
+SurfacePattern::SurfacePattern(cairo_pattern_t* cobject, const bool has_reference)
 : Pattern(cobject, has_reference)
 {
 }
 
-SurfacePattern::~SurfacePattern()
-{
-}
+SurfacePattern::~SurfacePattern() = default;
 
 auto SurfacePattern::set_filter (Filter filter) -> void
 {
@@ -167,36 +165,33 @@ auto SurfacePattern::set_filter (Filter filter) -> void
   check_object_status_and_throw_exception(*this);
 }
 
-auto SurfacePattern::get_filter() const -> SurfacePattern::Filter
+auto SurfacePattern::get_filter() const -> Filter
 {
-  auto result = static_cast<Filter>(cairo_pattern_get_filter(m_cobject));
+  const auto result = static_cast<Filter>(cairo_pattern_get_filter(m_cobject));
   check_object_status_and_throw_exception(*this);
   return result;
 }
 
 
 
-Gradient::Gradient()
-{
-}
+Gradient::Gradient() = default;
 
-Gradient::Gradient(cairo_pattern_t* cobject, bool has_reference)
+Gradient::Gradient(cairo_pattern_t* cobject, const bool has_reference)
 : Pattern(cobject, has_reference)
 {
 }
 
-Gradient::~Gradient()
-{
-}
+Gradient::~Gradient() = default;
 
-auto Gradient::add_color_stop_rgb (double offset, double red, double green, double blue) -> void
+auto Gradient::add_color_stop_rgb (
+  const double offset, const double red, const double green, const double blue) -> void
 {
   cairo_pattern_add_color_stop_rgb(m_cobject, offset, red, green, blue);
   check_object_status_and_throw_exception(*this);
 }
 
 auto Gradient::add_color_stop_rgba (
-  double offset, double red, double green, double blue, double alpha) -> void
+  const double offset, const double red, const double green, const double blue, const double alpha) -> void
 {
   cairo_pattern_add_color_stop_rgba(m_cobject, offset, red, green, blue, alpha);
   check_object_status_and_throw_exception(*this);
@@ -224,7 +219,7 @@ Gradient::get_color_stops() const -> std::vector<ColorStop>
 }
 
 
-LinearGradient::LinearGradient(double x0, double y0, double x1, double y1)
+LinearGradient::LinearGradient(const double x0, const double y0, const double x1, const double y1)
 {
   m_cobject = cairo_pattern_create_linear(x0, y0, x1, y1);
   check_object_status_and_throw_exception(*this);
@@ -241,22 +236,20 @@ auto LinearGradient::get_linear_points (
 }
 
 
-auto LinearGradient::create(double x0, double y0, double x1, double y1) -> RefPtr<LinearGradient>
+auto LinearGradient::create(
+  const double x0, const double y0, const double x1, const double y1) -> RefPtr<LinearGradient>
 {
   return make_refptr_for_instance<LinearGradient>(new LinearGradient(x0, y0, x1, y1));
 }
 
-LinearGradient::LinearGradient(cairo_pattern_t* cobject, bool has_reference)
+LinearGradient::LinearGradient(cairo_pattern_t* cobject, const bool has_reference)
 : Gradient(cobject, has_reference)
 {
 }
 
-LinearGradient::~LinearGradient()
-{
-}
+LinearGradient::~LinearGradient() = default;
 
-
-RadialGradient::RadialGradient(double cx0, double cy0, double radius0, double cx1, double cy1, double radius1)
+RadialGradient::RadialGradient(const double cx0, const double cy0, const double radius0, const double cx1, const double cy1, const double radius1)
 {
   m_cobject = cairo_pattern_create_radial(cx0, cy0, radius0, cx1, cy1, radius1);
   check_object_status_and_throw_exception(*this);
@@ -268,27 +261,24 @@ auto RadialGradient::get_radial_circles (
 {
   // ignore the return value since we know that this is a radial gradient
   // pattern
-  cairo_pattern_get_radial_circles(const_cast<cairo_pattern_t*>(m_cobject),
+  cairo_pattern_get_radial_circles(m_cobject,
                                     &x0, &y0, &r0, &x1, &y1, &r1);
   check_object_status_and_throw_exception(*this);
 }
 
 
-auto RadialGradient::create(double cx0, double cy0, double radius0, double cx1, double cy1, double radius1) -> RefPtr<RadialGradient>
+auto RadialGradient::create(
+  const double cx0, const double cy0, const double radius0, const double cx1, const double cy1, const double radius1) -> RefPtr<RadialGradient>
 {
   return make_refptr_for_instance<RadialGradient>(new RadialGradient(cx0, cy0, radius0, cx1, cy1, radius1));
 }
 
-RadialGradient::RadialGradient(cairo_pattern_t* cobject, bool has_reference)
+RadialGradient::RadialGradient(cairo_pattern_t* cobject, const bool has_reference)
 : Gradient(cobject, has_reference)
 {
 }
 
-RadialGradient::~RadialGradient()
-{
-}
-
-
+RadialGradient::~RadialGradient() = default;
 } //namespace Cairo
 
 // vim: ts=2 sw=2 et

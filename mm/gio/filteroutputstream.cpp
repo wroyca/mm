@@ -29,8 +29,8 @@ namespace Gio {
 
 FilterOutputStream::FilterOutputStream(const Glib::RefPtr<OutputStream>& base_stream)
 : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gio::OutputStream(Glib::ConstructParams(filteroutputstream_class_.init(), "base_stream",const_cast<GOutputStream*>(Glib::unwrap(base_stream)), nullptr))
+ObjectBase(nullptr),
+OutputStream(Glib::ConstructParams(filteroutputstream_class_.init(), "base_stream",Glib::unwrap(base_stream), nullptr))
 {
 }
 
@@ -44,9 +44,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GFilterOutputStream* object, bool take_copy) -> Glib::RefPtr<Gio::FilterOutputStream>
+auto wrap(GFilterOutputStream* object, const bool take_copy) -> RefPtr<Gio::FilterOutputStream>
 {
-  return Glib::make_refptr_for_instance<Gio::FilterOutputStream>( dynamic_cast<Gio::FilterOutputStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::FilterOutputStream>( dynamic_cast<Gio::FilterOutputStream*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -59,7 +59,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto FilterOutputStream_Class::init() -> const Glib::Class&
+auto FilterOutputStream_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -105,32 +105,28 @@ auto FilterOutputStream::gobj_copy() -> GFilterOutputStream*
 }
 
 FilterOutputStream::FilterOutputStream(const Glib::ConstructParams& construct_params)
-:
-  Gio::OutputStream(construct_params)
+: OutputStream(construct_params)
 {
 
 }
 
 FilterOutputStream::FilterOutputStream(GFilterOutputStream* castitem)
-:
-  Gio::OutputStream((GOutputStream*)(castitem))
+: OutputStream((GOutputStream*)castitem)
 {}
 
 
 FilterOutputStream::FilterOutputStream(FilterOutputStream&& src) noexcept
-: Gio::OutputStream(std::move(src))
+: OutputStream(std::move(src))
 {}
 
 auto FilterOutputStream::operator=(FilterOutputStream&& src) noexcept -> FilterOutputStream&
 {
-  Gio::OutputStream::operator=(std::move(src));
+  OutputStream::operator=(std::move(src));
   return *this;
 }
 
 
-FilterOutputStream::~FilterOutputStream() noexcept
-{}
-
+FilterOutputStream::~FilterOutputStream() noexcept = default;
 
 FilterOutputStream::CppClassType FilterOutputStream::filteroutputstream_class_; // initialize static member
 
@@ -164,9 +160,10 @@ auto FilterOutputStream::get_close_base_stream() const -> bool
   return g_filter_output_stream_get_close_base_stream(const_cast<GFilterOutputStream*>(gobj()));
 }
 
-auto FilterOutputStream::set_close_base_stream (bool close_base) -> void
+auto FilterOutputStream::set_close_base_stream (
+  const bool close_base) -> void
 {
-  g_filter_output_stream_set_close_base_stream(gobj(), static_cast<int>(close_base));
+  g_filter_output_stream_set_close_base_stream(gobj(), close_base);
 }
 
 
@@ -176,12 +173,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<OutputS
 
 auto FilterOutputStream::property_base_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<OutputStream> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<OutputStream> >(this, "base-stream");
+  return {this, "base-stream"};
 }
 
 auto FilterOutputStream::property_close_base_stream() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "close-base-stream");
+  return {this, "close-base-stream"};
 }
 
 

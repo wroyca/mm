@@ -55,7 +55,7 @@ auto Glib::Value<Pango::Coverage::Level>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(PangoCoverage* object, bool take_copy) -> Glib::RefPtr<Pango::Coverage>
+auto wrap(PangoCoverage* object, const bool take_copy) -> RefPtr<Pango::Coverage>
 {
   if(take_copy && object)
     pango_coverage_ref(object);
@@ -110,12 +110,14 @@ auto Coverage::gobj_copy() const -> PangoCoverage*
 }
 
 
-auto Coverage::get(int index) const -> Level
+auto Coverage::get(
+  const int index) const -> Level
 {
   return static_cast<Level>(pango_coverage_get(const_cast<PangoCoverage*>(gobj()), index));
 }
 
-auto Coverage::set (int index, Level level) -> void
+auto Coverage::set (
+  const int index, Level level) -> void
 {
   pango_coverage_set(gobj(), index, static_cast<PangoCoverageLevel>(level));
 }

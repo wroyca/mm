@@ -32,28 +32,29 @@ namespace Gtk
 Label::Label()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(label_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(label_class_.init()))
 {}
 
-Label::Label(const Glib::ustring& label, bool mnemonic)
+Label::Label(const Glib::ustring& label, const bool mnemonic)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(label_class_.init(), "label",label.c_str(),"use_underline",gboolean(mnemonic), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(label_class_.init(), "label",label.c_str(),"use_underline",gboolean(mnemonic), nullptr))
 {}
 
-Label::Label(const Glib::ustring& label, Align halign, Align valign, bool mnemonic)
+Label::Label(const Glib::ustring& label, const Align halign, const Align valign, const bool mnemonic)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(label_class_.init(), "label",label.c_str(),"use_underline",gboolean(mnemonic), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(label_class_.init(), "label",label.c_str(),"use_underline",gboolean(mnemonic), nullptr))
 {
   set_halign(halign);
   set_valign(valign);
 }
 
-auto Label::select_region (int start_offset) -> void
+auto Label::select_region (
+  const int start_offset) -> void
 {
   gtk_label_select_region(gobj(), start_offset, -1 /* See C docs */);
 }
@@ -69,15 +70,15 @@ auto Label_signal_activate_link_callback(GtkLabel* self, const gchar* p0,void* d
   using namespace Gtk;
   using SlotType = sigc::slot<bool(const Glib::ustring&)>;
 
-  auto obj = dynamic_cast<Label*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Label*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return static_cast<int>((*static_cast<SlotType*>(slot))(Glib::convert_const_gchar_ptr_to_ustring(p0)
-));
+        return (*static_cast<SlotType*>(slot))(Glib::convert_const_gchar_ptr_to_ustring(p0)
+        );
     }
     catch(...)
     {
@@ -94,7 +95,7 @@ auto Label_signal_activate_link_notify_callback(GtkLabel* self, const gchar* p0,
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
 
-  auto obj = dynamic_cast<Label*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Label*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -128,9 +129,9 @@ const Glib::SignalProxyInfo Label_signal_activate_link_info =
 namespace Glib
 {
 
-auto wrap(GtkLabel* object, bool take_copy) -> Gtk::Label*
+auto wrap(GtkLabel* object, const bool take_copy) -> Gtk::Label*
 {
-  return dynamic_cast<Gtk::Label *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::Label *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -141,7 +142,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Label_Class::init() -> const Glib::Class&
+auto Label_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -174,7 +175,7 @@ auto Label_Class::class_init_function (void *g_class, void *class_data) -> void
 
 auto Label_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new Label((GtkLabel*)(o)));
+  return manage(new Label((GtkLabel*)o));
 
 }
 
@@ -182,25 +183,23 @@ auto Label_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 Label::Label(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 Label::Label(GtkLabel* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 Label::Label(Label&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
 {}
 
 auto Label::operator=(Label&& src) noexcept -> Label&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   return *this;
 }
 
@@ -235,12 +234,12 @@ auto Label::get_text() const -> Glib::ustring
 
 auto Label::set_attributes (Pango::AttrList &attrs) -> void
 {
-  gtk_label_set_attributes(gobj(), (attrs).gobj());
+  gtk_label_set_attributes(gobj(), attrs.gobj());
 }
 
 auto Label::get_attributes() const -> Pango::AttrList
 {
-  return Pango::AttrList((gtk_label_get_attributes(const_cast<GtkLabel*>(gobj()))));
+  return Pango::AttrList(gtk_label_get_attributes(const_cast<GtkLabel*>(gobj())));
 }
 
 auto Label::set_label (const Glib::ustring &str) -> void
@@ -258,9 +257,10 @@ auto Label::set_markup (const Glib::ustring &str) -> void
   gtk_label_set_markup(gobj(), str.c_str());
 }
 
-auto Label::set_use_markup (bool setting) -> void
+auto Label::set_use_markup (
+  const bool setting) -> void
 {
-  gtk_label_set_use_markup(gobj(), static_cast<int>(setting));
+  gtk_label_set_use_markup(gobj(), setting);
 }
 
 auto Label::get_use_markup() const -> bool
@@ -268,9 +268,10 @@ auto Label::get_use_markup() const -> bool
   return gtk_label_get_use_markup(const_cast<GtkLabel*>(gobj()));
 }
 
-auto Label::set_use_underline (bool setting) -> void
+auto Label::set_use_underline (
+  const bool setting) -> void
 {
-  gtk_label_set_use_underline(gobj(), static_cast<int>(setting));
+  gtk_label_set_use_underline(gobj(), setting);
 }
 
 auto Label::get_use_underline() const -> bool
@@ -290,7 +291,7 @@ auto Label::get_mnemonic_keyval() const -> guint
 
 auto Label::set_mnemonic_widget (Widget &widget) -> void
 {
-  gtk_label_set_mnemonic_widget(gobj(), (widget).gobj());
+  gtk_label_set_mnemonic_widget(gobj(), widget.gobj());
 }
 
 auto Label::get_mnemonic_widget() -> Widget*
@@ -328,7 +329,8 @@ auto Label::get_ellipsize() const -> Pango::EllipsizeMode
   return static_cast<Pango::EllipsizeMode>(gtk_label_get_ellipsize(const_cast<GtkLabel*>(gobj())));
 }
 
-auto Label::set_width_chars (int n_chars) -> void
+auto Label::set_width_chars (
+  const int n_chars) -> void
 {
   gtk_label_set_width_chars(gobj(), n_chars);
 }
@@ -338,7 +340,8 @@ auto Label::get_width_chars() const -> int
   return gtk_label_get_width_chars(const_cast<GtkLabel*>(gobj()));
 }
 
-auto Label::set_max_width_chars (int n_chars) -> void
+auto Label::set_max_width_chars (
+  const int n_chars) -> void
 {
   gtk_label_set_max_width_chars(gobj(), n_chars);
 }
@@ -348,7 +351,8 @@ auto Label::get_max_width_chars() const -> int
   return gtk_label_get_max_width_chars(const_cast<GtkLabel*>(gobj()));
 }
 
-auto Label::set_lines (int lines) -> void
+auto Label::set_lines (
+  const int lines) -> void
 {
   gtk_label_set_lines(gobj(), lines);
 }
@@ -358,9 +362,10 @@ auto Label::get_lines() const -> int
   return gtk_label_get_lines(const_cast<GtkLabel*>(gobj()));
 }
 
-auto Label::set_wrap (bool wrap) -> void
+auto Label::set_wrap (
+  const bool wrap) -> void
 {
-  gtk_label_set_wrap(gobj(), static_cast<int>(wrap));
+  gtk_label_set_wrap(gobj(), wrap);
 }
 
 auto Label::get_wrap() const -> bool
@@ -388,9 +393,10 @@ auto Label::get_natural_wrap_mode() const -> NaturalWrapMode
   return static_cast<NaturalWrapMode>(gtk_label_get_natural_wrap_mode(const_cast<GtkLabel*>(gobj())));
 }
 
-auto Label::set_selectable (bool setting) -> void
+auto Label::set_selectable (
+  const bool setting) -> void
 {
-  gtk_label_set_selectable(gobj(), static_cast<int>(setting));
+  gtk_label_set_selectable(gobj(), setting);
 }
 
 auto Label::get_selectable() const -> bool
@@ -398,14 +404,15 @@ auto Label::get_selectable() const -> bool
   return gtk_label_get_selectable(const_cast<GtkLabel*>(gobj()));
 }
 
-auto Label::select_region (int start_offset, int end_offset) -> void
+auto Label::select_region (
+  const int start_offset, const int end_offset) -> void
 {
   gtk_label_select_region(gobj(), start_offset, end_offset);
 }
 
 auto Label::get_selection_bounds(int& start, int& end) const -> bool
 {
-  return gtk_label_get_selection_bounds(const_cast<GtkLabel*>(gobj()), &(start), &(end));
+  return gtk_label_get_selection_bounds(const_cast<GtkLabel*>(gobj()), &start, &end);
 }
 
 auto Label::get_layout() -> Glib::RefPtr<Pango::Layout>
@@ -423,12 +430,13 @@ auto Label::get_layout() const -> Glib::RefPtr<const Pango::Layout>
 
 auto Label::get_layout_offsets (int &x, int &y) const -> void
 {
-  gtk_label_get_layout_offsets(const_cast<GtkLabel*>(gobj()), &(x), &(y));
+  gtk_label_get_layout_offsets(const_cast<GtkLabel*>(gobj()), &x, &y);
 }
 
-auto Label::set_single_line_mode (bool single_line_mode) -> void
+auto Label::set_single_line_mode (
+  const bool single_line_mode) -> void
 {
-  gtk_label_set_single_line_mode(gobj(), static_cast<int>(single_line_mode));
+  gtk_label_set_single_line_mode(gobj(), single_line_mode);
 }
 
 auto Label::get_single_line_mode() const -> bool
@@ -441,7 +449,8 @@ auto Label::get_current_uri() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_label_get_current_uri(const_cast<GtkLabel*>(gobj())));
 }
 
-auto Label::set_xalign (float xalign) -> void
+auto Label::set_xalign (
+  const float xalign) -> void
 {
   gtk_label_set_xalign(gobj(), xalign);
 }
@@ -451,7 +460,8 @@ auto Label::get_xalign() const -> float
   return gtk_label_get_xalign(const_cast<GtkLabel*>(gobj()));
 }
 
-auto Label::set_yalign (float yalign) -> void
+auto Label::set_yalign (
+  const float yalign) -> void
 {
   gtk_label_set_yalign(gobj(), yalign);
 }
@@ -486,24 +496,24 @@ auto Label::set_tabs (const Pango::TabArray &tabs) -> void
 
 auto Label::get_tabs() const -> Pango::TabArray
 {
-  return Pango::TabArray((gtk_label_get_tabs(const_cast<GtkLabel*>(gobj()))), false);
+  return Pango::TabArray(gtk_label_get_tabs(const_cast<GtkLabel*>(gobj())), false);
 }
 
 
 auto Label::signal_activate_link() -> Glib::SignalProxy<bool(const Glib::ustring&)>
 {
-  return Glib::SignalProxy<bool(const Glib::ustring&) >(this, &Label_signal_activate_link_info);
+  return {this, &Label_signal_activate_link_info};
 }
 
 
 auto Label::property_label() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "label");
+  return {this, "label"};
 }
 
 auto Label::property_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "label");
+  return {this, "label"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::AttrList>::value,
@@ -512,32 +522,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::AttrList>::va
 
 auto Label::property_attributes() -> Glib::PropertyProxy< Pango::AttrList >
 {
-  return Glib::PropertyProxy< Pango::AttrList >(this, "attributes");
+  return {this, "attributes"};
 }
 
 auto Label::property_attributes() const -> Glib::PropertyProxy_ReadOnly< Pango::AttrList >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::AttrList >(this, "attributes");
+  return {this, "attributes"};
 }
 
 auto Label::property_use_markup() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "use-markup");
+  return {this, "use-markup"};
 }
 
 auto Label::property_use_markup() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "use-markup");
+  return {this, "use-markup"};
 }
 
 auto Label::property_use_underline() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "use-underline");
+  return {this, "use-underline"};
 }
 
 auto Label::property_use_underline() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "use-underline");
+  return {this, "use-underline"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Justification>::value,
@@ -546,22 +556,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Justification>::valu
 
 auto Label::property_justify() -> Glib::PropertyProxy< Justification >
 {
-  return Glib::PropertyProxy< Justification >(this, "justify");
+  return {this, "justify"};
 }
 
 auto Label::property_justify() const -> Glib::PropertyProxy_ReadOnly< Justification >
 {
-  return Glib::PropertyProxy_ReadOnly< Justification >(this, "justify");
+  return {this, "justify"};
 }
 
 auto Label::property_wrap() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "wrap");
+  return {this, "wrap"};
 }
 
 auto Label::property_wrap() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "wrap");
+  return {this, "wrap"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::WrapMode>::value,
@@ -570,12 +580,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::WrapMode>::va
 
 auto Label::property_wrap_mode() -> Glib::PropertyProxy< Pango::WrapMode >
 {
-  return Glib::PropertyProxy< Pango::WrapMode >(this, "wrap-mode");
+  return {this, "wrap-mode"};
 }
 
 auto Label::property_wrap_mode() const -> Glib::PropertyProxy_ReadOnly< Pango::WrapMode >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::WrapMode >(this, "wrap-mode");
+  return {this, "wrap-mode"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<NaturalWrapMode>::value,
@@ -584,37 +594,37 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<NaturalWrapMode>::va
 
 auto Label::property_natural_wrap_mode() -> Glib::PropertyProxy< NaturalWrapMode >
 {
-  return Glib::PropertyProxy< NaturalWrapMode >(this, "natural-wrap-mode");
+  return {this, "natural-wrap-mode"};
 }
 
 auto Label::property_natural_wrap_mode() const -> Glib::PropertyProxy_ReadOnly< NaturalWrapMode >
 {
-  return Glib::PropertyProxy_ReadOnly< NaturalWrapMode >(this, "natural-wrap-mode");
+  return {this, "natural-wrap-mode"};
 }
 
 auto Label::property_selectable() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "selectable");
+  return {this, "selectable"};
 }
 
 auto Label::property_selectable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "selectable");
+  return {this, "selectable"};
 }
 
 auto Label::property_mnemonic_keyval() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
-  return Glib::PropertyProxy_ReadOnly< guint >(this, "mnemonic-keyval");
+  return {this, "mnemonic-keyval"};
 }
 
 auto Label::property_mnemonic_widget() -> Glib::PropertyProxy< Widget* >
 {
-  return Glib::PropertyProxy< Widget* >(this, "mnemonic-widget");
+  return {this, "mnemonic-widget"};
 }
 
 auto Label::property_mnemonic_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "mnemonic-widget");
+  return {this, "mnemonic-widget"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::EllipsizeMode>::value,
@@ -623,72 +633,72 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::EllipsizeMode
 
 auto Label::property_ellipsize() -> Glib::PropertyProxy< Pango::EllipsizeMode >
 {
-  return Glib::PropertyProxy< Pango::EllipsizeMode >(this, "ellipsize");
+  return {this, "ellipsize"};
 }
 
 auto Label::property_ellipsize() const -> Glib::PropertyProxy_ReadOnly< Pango::EllipsizeMode >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::EllipsizeMode >(this, "ellipsize");
+  return {this, "ellipsize"};
 }
 
 auto Label::property_width_chars() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "width-chars");
+  return {this, "width-chars"};
 }
 
 auto Label::property_width_chars() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "width-chars");
+  return {this, "width-chars"};
 }
 
 auto Label::property_single_line_mode() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "single-line-mode");
+  return {this, "single-line-mode"};
 }
 
 auto Label::property_single_line_mode() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "single-line-mode");
+  return {this, "single-line-mode"};
 }
 
 auto Label::property_max_width_chars() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "max-width-chars");
+  return {this, "max-width-chars"};
 }
 
 auto Label::property_max_width_chars() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "max-width-chars");
+  return {this, "max-width-chars"};
 }
 
 auto Label::property_lines() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "lines");
+  return {this, "lines"};
 }
 
 auto Label::property_lines() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "lines");
+  return {this, "lines"};
 }
 
 auto Label::property_xalign() -> Glib::PropertyProxy< float >
 {
-  return Glib::PropertyProxy< float >(this, "xalign");
+  return {this, "xalign"};
 }
 
 auto Label::property_xalign() const -> Glib::PropertyProxy_ReadOnly< float >
 {
-  return Glib::PropertyProxy_ReadOnly< float >(this, "xalign");
+  return {this, "xalign"};
 }
 
 auto Label::property_yalign() -> Glib::PropertyProxy< float >
 {
-  return Glib::PropertyProxy< float >(this, "yalign");
+  return {this, "yalign"};
 }
 
 auto Label::property_yalign() const -> Glib::PropertyProxy_ReadOnly< float >
 {
-  return Glib::PropertyProxy_ReadOnly< float >(this, "yalign");
+  return {this, "yalign"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::MenuModel>>::value,
@@ -697,12 +707,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Me
 
 auto Label::property_extra_menu() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >(this, "extra-menu");
+  return {this, "extra-menu"};
 }
 
 auto Label::property_extra_menu() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >(this, "extra-menu");
+  return {this, "extra-menu"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::TabArray>::value,
@@ -711,12 +721,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::TabArray>::va
 
 auto Label::property_tabs() -> Glib::PropertyProxy< Pango::TabArray >
 {
-  return Glib::PropertyProxy< Pango::TabArray >(this, "tabs");
+  return {this, "tabs"};
 }
 
 auto Label::property_tabs() const -> Glib::PropertyProxy_ReadOnly< Pango::TabArray >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::TabArray >(this, "tabs");
+  return {this, "tabs"};
 }
 
 

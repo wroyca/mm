@@ -37,7 +37,7 @@ auto Sorter_signal_changed_callback (GtkSorter *self, GtkSorterChange p0, void *
   using namespace Gtk;
   using SlotType = sigc::slot<void(Change)>;
 
-  auto obj = dynamic_cast<Sorter*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Sorter*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -80,9 +80,9 @@ auto Glib::Value<Gtk::Sorter::Change>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkSorter* object, bool take_copy) -> Glib::RefPtr<Gtk::Sorter>
+auto wrap(GtkSorter* object, const bool take_copy) -> RefPtr<Gtk::Sorter>
 {
-  return Glib::make_refptr_for_instance<Gtk::Sorter>( dynamic_cast<Gtk::Sorter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::Sorter>( dynamic_cast<Gtk::Sorter*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -95,7 +95,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Sorter_Class::init() -> const Glib::Class&
+auto Sorter_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -127,10 +127,9 @@ auto Sorter_Class::class_init_function (void *g_class, void *class_data) -> void
 
 }
 
-auto Sorter_Class::compare_vfunc_callback(GtkSorter* self, gpointer item1, gpointer item2) -> GtkOrdering
+auto Sorter_Class::compare_vfunc_callback(GtkSorter* self, const gpointer item1, const gpointer item2) -> GtkOrdering
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -154,7 +153,7 @@ auto Sorter_Class::compare_vfunc_callback(GtkSorter* self, gpointer item1, gpoin
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -167,8 +166,7 @@ auto Sorter_Class::compare_vfunc_callback(GtkSorter* self, gpointer item1, gpoin
 }
 auto Sorter_Class::get_order_vfunc_callback(GtkSorter* self) -> GtkSorterOrder
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -192,7 +190,7 @@ auto Sorter_Class::get_order_vfunc_callback(GtkSorter* self) -> GtkSorterOrder
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -220,32 +218,28 @@ auto Sorter::gobj_copy() -> GtkSorter*
 }
 
 Sorter::Sorter(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 Sorter::Sorter(GtkSorter* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 Sorter::Sorter(Sorter&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto Sorter::operator=(Sorter&& src) noexcept -> Sorter&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-Sorter::~Sorter() noexcept
-{}
-
+Sorter::~Sorter() noexcept = default;
 
 Sorter::CppClassType Sorter::sorter_class_; // initialize static member
 
@@ -264,14 +258,15 @@ auto Sorter::get_base_type() -> GType
 Sorter::Sorter()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(sorter_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(sorter_class_.init()))
 {
 
 
 }
 
-auto Sorter::compare(gpointer item1, gpointer item2) -> Ordering
+auto Sorter::compare(
+  const gpointer item1, const gpointer item2) -> Ordering
 {
   return static_cast<Ordering>(gtk_sorter_compare(gobj(), item1, item2));
 }
@@ -289,11 +284,12 @@ auto Sorter::changed (Change change) -> void
 
 auto Sorter::signal_changed() -> Glib::SignalProxy<void(Change)>
 {
-  return Glib::SignalProxy<void(Change) >(this, &Sorter_signal_changed_info);
+  return {this, &Sorter_signal_changed_info};
 }
 
 
-auto Gtk::Sorter::compare_vfunc(gpointer item1, gpointer item2) -> Ordering
+auto Sorter::compare_vfunc(
+  const gpointer item1, const gpointer item2) -> Ordering
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -301,14 +297,14 @@ auto Gtk::Sorter::compare_vfunc(gpointer item1, gpointer item2) -> Ordering
 
   if(base && base->compare)
   {
-    Ordering retval(static_cast<Ordering>((*base->compare)(gobj(),item1,item2)));
+    const Ordering retval(static_cast<Ordering>((*base->compare)(gobj(),item1,item2)));
     return retval;
   }
 
   using RType = Ordering;
   return RType();
 }
-auto Gtk::Sorter::get_order_vfunc() -> Order
+auto Sorter::get_order_vfunc() -> Order
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -316,7 +312,7 @@ auto Gtk::Sorter::get_order_vfunc() -> Order
 
   if(base && base->get_order)
   {
-    Order retval(static_cast<Order>((*base->get_order)(gobj())));
+    const Order retval(static_cast<Order>((*base->get_order)(gobj())));
     return retval;
   }
 

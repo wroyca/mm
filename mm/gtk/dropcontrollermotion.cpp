@@ -31,12 +31,12 @@ namespace
 
 
 auto DropControllerMotion_signal_enter_callback (
-  GtkDropControllerMotion *self, gdouble p0, gdouble p1, void *data) -> void
+  GtkDropControllerMotion *self, const gdouble p0, const gdouble p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
 
-  auto obj = dynamic_cast<DropControllerMotion*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<DropControllerMotion*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -71,12 +71,12 @@ const Glib::SignalProxyInfo DropControllerMotion_signal_leave_info =
 
 
 auto DropControllerMotion_signal_motion_callback (
-  GtkDropControllerMotion *self, gdouble p0, gdouble p1, void *data) -> void
+  GtkDropControllerMotion *self, const gdouble p0, const gdouble p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
 
-  auto obj = dynamic_cast<DropControllerMotion*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<DropControllerMotion*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -108,9 +108,9 @@ const Glib::SignalProxyInfo DropControllerMotion_signal_motion_info =
 namespace Glib
 {
 
-auto wrap(GtkDropControllerMotion* object, bool take_copy) -> Glib::RefPtr<Gtk::DropControllerMotion>
+auto wrap(GtkDropControllerMotion* object, const bool take_copy) -> RefPtr<Gtk::DropControllerMotion>
 {
-  return Glib::make_refptr_for_instance<Gtk::DropControllerMotion>( dynamic_cast<Gtk::DropControllerMotion*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::DropControllerMotion>( dynamic_cast<Gtk::DropControllerMotion*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -123,7 +123,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto DropControllerMotion_Class::init() -> const Glib::Class&
+auto DropControllerMotion_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -177,7 +177,7 @@ DropControllerMotion::DropControllerMotion(const Glib::ConstructParams& construc
 
 DropControllerMotion::DropControllerMotion(GtkDropControllerMotion* castitem)
 :
-  EventController((GtkEventController*)(castitem))
+  EventController((GtkEventController*)castitem)
 {}
 
 
@@ -192,9 +192,7 @@ auto DropControllerMotion::operator=(DropControllerMotion&& src) noexcept -> Dro
 }
 
 
-DropControllerMotion::~DropControllerMotion() noexcept
-{}
-
+DropControllerMotion::~DropControllerMotion() noexcept = default;
 
 DropControllerMotion::CppClassType DropControllerMotion::dropcontrollermotion_class_; // initialize static member
 
@@ -213,7 +211,7 @@ auto DropControllerMotion::get_base_type() -> GType
 DropControllerMotion::DropControllerMotion()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   EventController(Glib::ConstructParams(dropcontrollermotion_class_.init()))
 {
 
@@ -251,25 +249,25 @@ auto DropControllerMotion::get_drop() const -> Glib::RefPtr<const Gdk::Drop>
 
 auto DropControllerMotion::signal_enter() -> Glib::SignalProxy<void(double, double)>
 {
-  return Glib::SignalProxy<void(double, double) >(this, &DropControllerMotion_signal_enter_info);
+  return {this, &DropControllerMotion_signal_enter_info};
 }
 
 
 auto DropControllerMotion::signal_leave() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &DropControllerMotion_signal_leave_info);
+  return {this, &DropControllerMotion_signal_leave_info};
 }
 
 
 auto DropControllerMotion::signal_motion() -> Glib::SignalProxy<void(double, double)>
 {
-  return Glib::SignalProxy<void(double, double) >(this, &DropControllerMotion_signal_motion_info);
+  return {this, &DropControllerMotion_signal_motion_info};
 }
 
 
 auto DropControllerMotion::property_contains_pointer() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "contains-pointer");
+  return {this, "contains-pointer"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Drop>>::value,
@@ -278,12 +276,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Dr
 
 auto DropControllerMotion::property_drop() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Drop> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Drop> >(this, "drop");
+  return {this, "drop"};
 }
 
 auto DropControllerMotion::property_is_pointer() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "is-pointer");
+  return {this, "is-pointer"};
 }
 
 

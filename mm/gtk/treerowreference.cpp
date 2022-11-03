@@ -51,7 +51,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkTreeRowReference* object, bool take_copy) -> Gtk::TreeRowReference
+auto wrap(GtkTreeRowReference* object, const bool take_copy) -> Gtk::TreeRowReference
 {
   return Gtk::TreeRowReference(object, take_copy);
 }
@@ -76,7 +76,7 @@ TreeRowReference::TreeRowReference()
 
 TreeRowReference::TreeRowReference(const TreeRowReference& other)
 :
-  gobject_ ((other.gobject_) ? gtk_tree_row_reference_copy(other.gobject_) : nullptr)
+  gobject_ (other.gobject_ ? gtk_tree_row_reference_copy(other.gobject_) : nullptr)
 {}
 
 TreeRowReference::TreeRowReference(TreeRowReference&& other) noexcept
@@ -93,12 +93,12 @@ auto TreeRowReference::operator=(TreeRowReference&& other) noexcept -> TreeRowRe
   return *this;
 }
 
-TreeRowReference::TreeRowReference(GtkTreeRowReference* gobject, bool make_a_copy)
+TreeRowReference::TreeRowReference(GtkTreeRowReference* gobject, const bool make_a_copy)
 :
   // For BoxedType wrappers, make_a_copy is true by default.  The static
   // BoxedType wrappers must always take a copy, thus make_a_copy = true
   // ensures identical behaviour if the default argument is used.
-  gobject_ ((make_a_copy && gobject) ? gtk_tree_row_reference_copy(gobject) : gobject)
+  gobject_ (make_a_copy && gobject ? gtk_tree_row_reference_copy(gobject) : gobject)
 {}
 
 auto TreeRowReference::operator=(const TreeRowReference& other) -> TreeRowReference&
@@ -127,7 +127,7 @@ auto TreeRowReference::gobj_copy() const -> GtkTreeRowReference*
 
 auto TreeRowReference::get_path() const -> TreeModel::Path
 {
-  return Gtk::TreePath(gtk_tree_row_reference_get_path(const_cast<GtkTreeRowReference*>(gobj())), false);
+  return TreePath(gtk_tree_row_reference_get_path(const_cast<GtkTreeRowReference*>(gobj())), false);
 }
 
 auto TreeRowReference::get_model() -> Glib::RefPtr<TreeModel>

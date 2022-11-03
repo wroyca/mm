@@ -35,9 +35,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkTextTag* object, bool take_copy) -> Glib::RefPtr<Gtk::TextTag>
+auto wrap(GtkTextTag* object, const bool take_copy) -> RefPtr<Gtk::TextTag>
 {
-  return Glib::make_refptr_for_instance<Gtk::TextTag>( dynamic_cast<Gtk::TextTag*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::TextTag>( dynamic_cast<Gtk::TextTag*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -50,7 +50,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto TextTag_Class::init() -> const Glib::Class&
+auto TextTag_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -96,32 +96,28 @@ auto TextTag::gobj_copy() -> GtkTextTag*
 }
 
 TextTag::TextTag(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 TextTag::TextTag(GtkTextTag* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 TextTag::TextTag(TextTag&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto TextTag::operator=(TextTag&& src) noexcept -> TextTag&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-TextTag::~TextTag() noexcept
-{}
-
+TextTag::~TextTag() noexcept = default;
 
 TextTag::CppClassType TextTag::texttag_class_; // initialize static member
 
@@ -140,8 +136,8 @@ auto TextTag::get_base_type() -> GType
 TextTag::TextTag()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(texttag_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(texttag_class_.init()))
 {
 
 
@@ -150,8 +146,8 @@ TextTag::TextTag()
 TextTag::TextTag(const Glib::ustring& name)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(texttag_class_.init(), "name", name.c_str(), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(texttag_class_.init(), "name", name.c_str(), nullptr))
 {
 
 
@@ -172,30 +168,32 @@ auto TextTag::get_priority() const -> int
   return gtk_text_tag_get_priority(const_cast<GtkTextTag*>(gobj()));
 }
 
-auto TextTag::set_priority (int priority) -> void
+auto TextTag::set_priority (
+  const int priority) -> void
 {
   gtk_text_tag_set_priority(gobj(), priority);
 }
 
-auto TextTag::tag_changed (bool size_changed) -> void
+auto TextTag::tag_changed (
+  const bool size_changed) -> void
 {
-  gtk_text_tag_changed(gobj(), static_cast<int>(size_changed));
+  gtk_text_tag_changed(gobj(), size_changed);
 }
 
 
 auto TextTag::property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name");
+  return {this, "name"};
 }
 
 auto TextTag::property_background() -> Glib::PropertyProxy_WriteOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_WriteOnly< Glib::ustring >(this, "background");
+  return {this, "background"};
 }
 
 auto TextTag::property_foreground() -> Glib::PropertyProxy_WriteOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_WriteOnly< Glib::ustring >(this, "foreground");
+  return {this, "foreground"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
@@ -204,12 +202,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
 
 auto TextTag::property_background_rgba() -> Glib::PropertyProxy< Gdk::RGBA >
 {
-  return Glib::PropertyProxy< Gdk::RGBA >(this, "background-rgba");
+  return {this, "background-rgba"};
 }
 
 auto TextTag::property_background_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >
 {
-  return Glib::PropertyProxy_ReadOnly< Gdk::RGBA >(this, "background-rgba");
+  return {this, "background-rgba"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
@@ -218,22 +216,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
 
 auto TextTag::property_foreground_rgba() -> Glib::PropertyProxy< Gdk::RGBA >
 {
-  return Glib::PropertyProxy< Gdk::RGBA >(this, "foreground-rgba");
+  return {this, "foreground-rgba"};
 }
 
 auto TextTag::property_foreground_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >
 {
-  return Glib::PropertyProxy_ReadOnly< Gdk::RGBA >(this, "foreground-rgba");
+  return {this, "foreground-rgba"};
 }
 
 auto TextTag::property_font() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "font");
+  return {this, "font"};
 }
 
 auto TextTag::property_font() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "font");
+  return {this, "font"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::FontDescription>::value,
@@ -242,22 +240,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::FontDescripti
 
 auto TextTag::property_font_desc() -> Glib::PropertyProxy< Pango::FontDescription >
 {
-  return Glib::PropertyProxy< Pango::FontDescription >(this, "font-desc");
+  return {this, "font-desc"};
 }
 
 auto TextTag::property_font_desc() const -> Glib::PropertyProxy_ReadOnly< Pango::FontDescription >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::FontDescription >(this, "font-desc");
+  return {this, "font-desc"};
 }
 
 auto TextTag::property_family() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "family");
+  return {this, "family"};
 }
 
 auto TextTag::property_family() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "family");
+  return {this, "family"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Style>::value,
@@ -266,12 +264,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Style>::value
 
 auto TextTag::property_style() -> Glib::PropertyProxy< Pango::Style >
 {
-  return Glib::PropertyProxy< Pango::Style >(this, "style");
+  return {this, "style"};
 }
 
 auto TextTag::property_style() const -> Glib::PropertyProxy_ReadOnly< Pango::Style >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::Style >(this, "style");
+  return {this, "style"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Variant>::value,
@@ -280,22 +278,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Variant>::val
 
 auto TextTag::property_variant() -> Glib::PropertyProxy< Pango::Variant >
 {
-  return Glib::PropertyProxy< Pango::Variant >(this, "variant");
+  return {this, "variant"};
 }
 
 auto TextTag::property_variant() const -> Glib::PropertyProxy_ReadOnly< Pango::Variant >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::Variant >(this, "variant");
+  return {this, "variant"};
 }
 
 auto TextTag::property_weight() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "weight");
+  return {this, "weight"};
 }
 
 auto TextTag::property_weight() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "weight");
+  return {this, "weight"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Stretch>::value,
@@ -304,82 +302,82 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Stretch>::val
 
 auto TextTag::property_stretch() -> Glib::PropertyProxy< Pango::Stretch >
 {
-  return Glib::PropertyProxy< Pango::Stretch >(this, "stretch");
+  return {this, "stretch"};
 }
 
 auto TextTag::property_stretch() const -> Glib::PropertyProxy_ReadOnly< Pango::Stretch >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::Stretch >(this, "stretch");
+  return {this, "stretch"};
 }
 
 auto TextTag::property_size() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "size");
+  return {this, "size"};
 }
 
 auto TextTag::property_size() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "size");
+  return {this, "size"};
 }
 
 auto TextTag::property_size_points() -> Glib::PropertyProxy< double >
 {
-  return Glib::PropertyProxy< double >(this, "size-points");
+  return {this, "size-points"};
 }
 
 auto TextTag::property_size_points() const -> Glib::PropertyProxy_ReadOnly< double >
 {
-  return Glib::PropertyProxy_ReadOnly< double >(this, "size-points");
+  return {this, "size-points"};
 }
 
 auto TextTag::property_scale() -> Glib::PropertyProxy< double >
 {
-  return Glib::PropertyProxy< double >(this, "scale");
+  return {this, "scale"};
 }
 
 auto TextTag::property_scale() const -> Glib::PropertyProxy_ReadOnly< double >
 {
-  return Glib::PropertyProxy_ReadOnly< double >(this, "scale");
+  return {this, "scale"};
 }
 
 auto TextTag::property_pixels_above_lines() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "pixels-above-lines");
+  return {this, "pixels-above-lines"};
 }
 
 auto TextTag::property_pixels_above_lines() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "pixels-above-lines");
+  return {this, "pixels-above-lines"};
 }
 
 auto TextTag::property_pixels_below_lines() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "pixels-below-lines");
+  return {this, "pixels-below-lines"};
 }
 
 auto TextTag::property_pixels_below_lines() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "pixels-below-lines");
+  return {this, "pixels-below-lines"};
 }
 
 auto TextTag::property_pixels_inside_wrap() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "pixels-inside-wrap");
+  return {this, "pixels-inside-wrap"};
 }
 
 auto TextTag::property_pixels_inside_wrap() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "pixels-inside-wrap");
+  return {this, "pixels-inside-wrap"};
 }
 
 auto TextTag::property_editable() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "editable");
+  return {this, "editable"};
 }
 
 auto TextTag::property_editable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "editable");
+  return {this, "editable"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<WrapMode>::value,
@@ -388,12 +386,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<WrapMode>::value,
 
 auto TextTag::property_wrap_mode() -> Glib::PropertyProxy< WrapMode >
 {
-  return Glib::PropertyProxy< WrapMode >(this, "wrap-mode");
+  return {this, "wrap-mode"};
 }
 
 auto TextTag::property_wrap_mode() const -> Glib::PropertyProxy_ReadOnly< WrapMode >
 {
-  return Glib::PropertyProxy_ReadOnly< WrapMode >(this, "wrap-mode");
+  return {this, "wrap-mode"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Justification>::value,
@@ -402,12 +400,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Justification>::valu
 
 auto TextTag::property_justification() -> Glib::PropertyProxy< Justification >
 {
-  return Glib::PropertyProxy< Justification >(this, "justification");
+  return {this, "justification"};
 }
 
 auto TextTag::property_justification() const -> Glib::PropertyProxy_ReadOnly< Justification >
 {
-  return Glib::PropertyProxy_ReadOnly< Justification >(this, "justification");
+  return {this, "justification"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<TextDirection>::value,
@@ -416,52 +414,52 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<TextDirection>::valu
 
 auto TextTag::property_direction() -> Glib::PropertyProxy< TextDirection >
 {
-  return Glib::PropertyProxy< TextDirection >(this, "direction");
+  return {this, "direction"};
 }
 
 auto TextTag::property_direction() const -> Glib::PropertyProxy_ReadOnly< TextDirection >
 {
-  return Glib::PropertyProxy_ReadOnly< TextDirection >(this, "direction");
+  return {this, "direction"};
 }
 
 auto TextTag::property_left_margin() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "left-margin");
+  return {this, "left-margin"};
 }
 
 auto TextTag::property_left_margin() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "left-margin");
+  return {this, "left-margin"};
 }
 
 auto TextTag::property_indent() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "indent");
+  return {this, "indent"};
 }
 
 auto TextTag::property_indent() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "indent");
+  return {this, "indent"};
 }
 
 auto TextTag::property_line_height() -> Glib::PropertyProxy< float >
 {
-  return Glib::PropertyProxy< float >(this, "line-height");
+  return {this, "line-height"};
 }
 
 auto TextTag::property_line_height() const -> Glib::PropertyProxy_ReadOnly< float >
 {
-  return Glib::PropertyProxy_ReadOnly< float >(this, "line-height");
+  return {this, "line-height"};
 }
 
 auto TextTag::property_strikethrough() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "strikethrough");
+  return {this, "strikethrough"};
 }
 
 auto TextTag::property_strikethrough() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "strikethrough");
+  return {this, "strikethrough"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
@@ -470,22 +468,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
 
 auto TextTag::property_strikethrough_rgba() -> Glib::PropertyProxy< Gdk::RGBA >
 {
-  return Glib::PropertyProxy< Gdk::RGBA >(this, "strikethrough-rgba");
+  return {this, "strikethrough-rgba"};
 }
 
 auto TextTag::property_strikethrough_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >
 {
-  return Glib::PropertyProxy_ReadOnly< Gdk::RGBA >(this, "strikethrough-rgba");
+  return {this, "strikethrough-rgba"};
 }
 
 auto TextTag::property_right_margin() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "right-margin");
+  return {this, "right-margin"};
 }
 
 auto TextTag::property_right_margin() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "right-margin");
+  return {this, "right-margin"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Underline>::value,
@@ -494,12 +492,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Underline>::v
 
 auto TextTag::property_underline() -> Glib::PropertyProxy< Pango::Underline >
 {
-  return Glib::PropertyProxy< Pango::Underline >(this, "underline");
+  return {this, "underline"};
 }
 
 auto TextTag::property_underline() const -> Glib::PropertyProxy_ReadOnly< Pango::Underline >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::Underline >(this, "underline");
+  return {this, "underline"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
@@ -508,12 +506,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
 
 auto TextTag::property_underline_rgba() -> Glib::PropertyProxy< Gdk::RGBA >
 {
-  return Glib::PropertyProxy< Gdk::RGBA >(this, "underline-rgba");
+  return {this, "underline-rgba"};
 }
 
 auto TextTag::property_underline_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >
 {
-  return Glib::PropertyProxy_ReadOnly< Gdk::RGBA >(this, "underline-rgba");
+  return {this, "underline-rgba"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Overline>::value,
@@ -522,12 +520,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Overline>::va
 
 auto TextTag::property_overline() -> Glib::PropertyProxy< Pango::Overline >
 {
-  return Glib::PropertyProxy< Pango::Overline >(this, "overline");
+  return {this, "overline"};
 }
 
 auto TextTag::property_overline() const -> Glib::PropertyProxy_ReadOnly< Pango::Overline >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::Overline >(this, "overline");
+  return {this, "overline"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
@@ -536,42 +534,42 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
 
 auto TextTag::property_overline_rgba() -> Glib::PropertyProxy< Gdk::RGBA >
 {
-  return Glib::PropertyProxy< Gdk::RGBA >(this, "overline-rgba");
+  return {this, "overline-rgba"};
 }
 
 auto TextTag::property_overline_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >
 {
-  return Glib::PropertyProxy_ReadOnly< Gdk::RGBA >(this, "overline-rgba");
+  return {this, "overline-rgba"};
 }
 
 auto TextTag::property_rise() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "rise");
+  return {this, "rise"};
 }
 
 auto TextTag::property_rise() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "rise");
+  return {this, "rise"};
 }
 
 auto TextTag::property_background_full_height() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "background-full-height");
+  return {this, "background-full-height"};
 }
 
 auto TextTag::property_background_full_height() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "background-full-height");
+  return {this, "background-full-height"};
 }
 
 auto TextTag::property_language() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "language");
+  return {this, "language"};
 }
 
 auto TextTag::property_language() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "language");
+  return {this, "language"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::TabArray>::value,
@@ -580,27 +578,27 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::TabArray>::va
 
 auto TextTag::property_tabs() -> Glib::PropertyProxy< Pango::TabArray >
 {
-  return Glib::PropertyProxy< Pango::TabArray >(this, "tabs");
+  return {this, "tabs"};
 }
 
 auto TextTag::property_tabs() const -> Glib::PropertyProxy_ReadOnly< Pango::TabArray >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::TabArray >(this, "tabs");
+  return {this, "tabs"};
 }
 
 auto TextTag::property_invisible() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "invisible");
+  return {this, "invisible"};
 }
 
 auto TextTag::property_invisible() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "invisible");
+  return {this, "invisible"};
 }
 
 auto TextTag::property_paragraph_background() -> Glib::PropertyProxy_WriteOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_WriteOnly< Glib::ustring >(this, "paragraph-background");
+  return {this, "paragraph-background"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
@@ -609,32 +607,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
 
 auto TextTag::property_paragraph_background_rgba() -> Glib::PropertyProxy< Gdk::RGBA >
 {
-  return Glib::PropertyProxy< Gdk::RGBA >(this, "paragraph-background-rgba");
+  return {this, "paragraph-background-rgba"};
 }
 
 auto TextTag::property_paragraph_background_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >
 {
-  return Glib::PropertyProxy_ReadOnly< Gdk::RGBA >(this, "paragraph-background-rgba");
+  return {this, "paragraph-background-rgba"};
 }
 
 auto TextTag::property_font_features() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "font-features");
+  return {this, "font-features"};
 }
 
 auto TextTag::property_font_features() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "font-features");
+  return {this, "font-features"};
 }
 
 auto TextTag::property_allow_breaks() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "allow-breaks");
+  return {this, "allow-breaks"};
 }
 
 auto TextTag::property_allow_breaks() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "allow-breaks");
+  return {this, "allow-breaks"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::ShowFlags>::value,
@@ -643,22 +641,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::ShowFlags>::v
 
 auto TextTag::property_show_spaces() -> Glib::PropertyProxy< Pango::ShowFlags >
 {
-  return Glib::PropertyProxy< Pango::ShowFlags >(this, "show-spaces");
+  return {this, "show-spaces"};
 }
 
 auto TextTag::property_show_spaces() const -> Glib::PropertyProxy_ReadOnly< Pango::ShowFlags >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::ShowFlags >(this, "show-spaces");
+  return {this, "show-spaces"};
 }
 
 auto TextTag::property_insert_hyphens() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "insert-hyphens");
+  return {this, "insert-hyphens"};
 }
 
 auto TextTag::property_insert_hyphens() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "insert-hyphens");
+  return {this, "insert-hyphens"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::TextTransform>::value,
@@ -667,462 +665,462 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::TextTransform
 
 auto TextTag::property_text_transform() -> Glib::PropertyProxy< Pango::TextTransform >
 {
-  return Glib::PropertyProxy< Pango::TextTransform >(this, "text-transform");
+  return {this, "text-transform"};
 }
 
 auto TextTag::property_text_transform() const -> Glib::PropertyProxy_ReadOnly< Pango::TextTransform >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::TextTransform >(this, "text-transform");
+  return {this, "text-transform"};
 }
 
 auto TextTag::property_word() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "word");
+  return {this, "word"};
 }
 
 auto TextTag::property_word() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "word");
+  return {this, "word"};
 }
 
 auto TextTag::property_sentence() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "sentence");
+  return {this, "sentence"};
 }
 
 auto TextTag::property_sentence() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "sentence");
+  return {this, "sentence"};
 }
 
 auto TextTag::property_accumulative_margin() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "accumulative-margin");
+  return {this, "accumulative-margin"};
 }
 
 auto TextTag::property_accumulative_margin() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "accumulative-margin");
+  return {this, "accumulative-margin"};
 }
 
 auto TextTag::property_background_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "background-set");
+  return {this, "background-set"};
 }
 
 auto TextTag::property_background_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "background-set");
+  return {this, "background-set"};
 }
 
 auto TextTag::property_foreground_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "foreground-set");
+  return {this, "foreground-set"};
 }
 
 auto TextTag::property_foreground_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "foreground-set");
+  return {this, "foreground-set"};
 }
 
 auto TextTag::property_family_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "family-set");
+  return {this, "family-set"};
 }
 
 auto TextTag::property_family_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "family-set");
+  return {this, "family-set"};
 }
 
 auto TextTag::property_style_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "style-set");
+  return {this, "style-set"};
 }
 
 auto TextTag::property_style_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "style-set");
+  return {this, "style-set"};
 }
 
 auto TextTag::property_variant_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "variant-set");
+  return {this, "variant-set"};
 }
 
 auto TextTag::property_variant_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "variant-set");
+  return {this, "variant-set"};
 }
 
 auto TextTag::property_weight_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "weight-set");
+  return {this, "weight-set"};
 }
 
 auto TextTag::property_weight_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "weight-set");
+  return {this, "weight-set"};
 }
 
 auto TextTag::property_stretch_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "stretch-set");
+  return {this, "stretch-set"};
 }
 
 auto TextTag::property_stretch_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "stretch-set");
+  return {this, "stretch-set"};
 }
 
 auto TextTag::property_size_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "size-set");
+  return {this, "size-set"};
 }
 
 auto TextTag::property_size_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "size-set");
+  return {this, "size-set"};
 }
 
 auto TextTag::property_scale_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "scale-set");
+  return {this, "scale-set"};
 }
 
 auto TextTag::property_scale_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "scale-set");
+  return {this, "scale-set"};
 }
 
 auto TextTag::property_pixels_above_lines_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "pixels-above-lines-set");
+  return {this, "pixels-above-lines-set"};
 }
 
 auto TextTag::property_pixels_above_lines_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "pixels-above-lines-set");
+  return {this, "pixels-above-lines-set"};
 }
 
 auto TextTag::property_pixels_below_lines_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "pixels-below-lines-set");
+  return {this, "pixels-below-lines-set"};
 }
 
 auto TextTag::property_pixels_below_lines_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "pixels-below-lines-set");
+  return {this, "pixels-below-lines-set"};
 }
 
 auto TextTag::property_pixels_inside_wrap_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "pixels-inside-wrap-set");
+  return {this, "pixels-inside-wrap-set"};
 }
 
 auto TextTag::property_pixels_inside_wrap_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "pixels-inside-wrap-set");
+  return {this, "pixels-inside-wrap-set"};
 }
 
 auto TextTag::property_editable_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "editable-set");
+  return {this, "editable-set"};
 }
 
 auto TextTag::property_editable_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "editable-set");
+  return {this, "editable-set"};
 }
 
 auto TextTag::property_wrap_mode_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "wrap-mode-set");
+  return {this, "wrap-mode-set"};
 }
 
 auto TextTag::property_wrap_mode_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "wrap-mode-set");
+  return {this, "wrap-mode-set"};
 }
 
 auto TextTag::property_justification_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "justification-set");
+  return {this, "justification-set"};
 }
 
 auto TextTag::property_justification_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "justification-set");
+  return {this, "justification-set"};
 }
 
 auto TextTag::property_left_margin_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "left-margin-set");
+  return {this, "left-margin-set"};
 }
 
 auto TextTag::property_left_margin_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "left-margin-set");
+  return {this, "left-margin-set"};
 }
 
 auto TextTag::property_indent_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "indent-set");
+  return {this, "indent-set"};
 }
 
 auto TextTag::property_indent_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "indent-set");
+  return {this, "indent-set"};
 }
 
 auto TextTag::property_line_height_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "line-height-set");
+  return {this, "line-height-set"};
 }
 
 auto TextTag::property_line_height_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "line-height-set");
+  return {this, "line-height-set"};
 }
 
 auto TextTag::property_strikethrough_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "strikethrough-set");
+  return {this, "strikethrough-set"};
 }
 
 auto TextTag::property_strikethrough_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "strikethrough-set");
+  return {this, "strikethrough-set"};
 }
 
 auto TextTag::property_strikethrough_rgba_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "strikethrough-rgba-set");
+  return {this, "strikethrough-rgba-set"};
 }
 
 auto TextTag::property_strikethrough_rgba_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "strikethrough-rgba-set");
+  return {this, "strikethrough-rgba-set"};
 }
 
 auto TextTag::property_right_margin_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "right-margin-set");
+  return {this, "right-margin-set"};
 }
 
 auto TextTag::property_right_margin_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "right-margin-set");
+  return {this, "right-margin-set"};
 }
 
 auto TextTag::property_underline_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "underline-set");
+  return {this, "underline-set"};
 }
 
 auto TextTag::property_underline_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "underline-set");
+  return {this, "underline-set"};
 }
 
 auto TextTag::property_underline_rgba_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "underline-rgba-set");
+  return {this, "underline-rgba-set"};
 }
 
 auto TextTag::property_underline_rgba_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "underline-rgba-set");
+  return {this, "underline-rgba-set"};
 }
 
 auto TextTag::property_overline_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "overline-set");
+  return {this, "overline-set"};
 }
 
 auto TextTag::property_overline_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "overline-set");
+  return {this, "overline-set"};
 }
 
 auto TextTag::property_overline_rgba_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "overline-rgba-set");
+  return {this, "overline-rgba-set"};
 }
 
 auto TextTag::property_overline_rgba_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "overline-rgba-set");
+  return {this, "overline-rgba-set"};
 }
 
 auto TextTag::property_rise_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "rise-set");
+  return {this, "rise-set"};
 }
 
 auto TextTag::property_rise_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "rise-set");
+  return {this, "rise-set"};
 }
 
 auto TextTag::property_background_full_height_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "background-full-height-set");
+  return {this, "background-full-height-set"};
 }
 
 auto TextTag::property_background_full_height_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "background-full-height-set");
+  return {this, "background-full-height-set"};
 }
 
 auto TextTag::property_language_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "language-set");
+  return {this, "language-set"};
 }
 
 auto TextTag::property_language_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "language-set");
+  return {this, "language-set"};
 }
 
 auto TextTag::property_tabs_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "tabs-set");
+  return {this, "tabs-set"};
 }
 
 auto TextTag::property_tabs_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "tabs-set");
+  return {this, "tabs-set"};
 }
 
 auto TextTag::property_invisible_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "invisible-set");
+  return {this, "invisible-set"};
 }
 
 auto TextTag::property_invisible_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "invisible-set");
+  return {this, "invisible-set"};
 }
 
 auto TextTag::property_paragraph_background_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "paragraph-background-set");
+  return {this, "paragraph-background-set"};
 }
 
 auto TextTag::property_paragraph_background_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "paragraph-background-set");
+  return {this, "paragraph-background-set"};
 }
 
 auto TextTag::property_fallback() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "fallback");
+  return {this, "fallback"};
 }
 
 auto TextTag::property_fallback() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "fallback");
+  return {this, "fallback"};
 }
 
 auto TextTag::property_fallback_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "fallback-set");
+  return {this, "fallback-set"};
 }
 
 auto TextTag::property_fallback_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "fallback-set");
+  return {this, "fallback-set"};
 }
 
 auto TextTag::property_letter_spacing() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "letter-spacing");
+  return {this, "letter-spacing"};
 }
 
 auto TextTag::property_letter_spacing() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "letter-spacing");
+  return {this, "letter-spacing"};
 }
 
 auto TextTag::property_letter_spacing_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "letter-spacing-set");
+  return {this, "letter-spacing-set"};
 }
 
 auto TextTag::property_letter_spacing_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "letter-spacing-set");
+  return {this, "letter-spacing-set"};
 }
 
 auto TextTag::property_font_features_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "font-features-set");
+  return {this, "font-features-set"};
 }
 
 auto TextTag::property_font_features_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "font-features-set");
+  return {this, "font-features-set"};
 }
 
 auto TextTag::property_allow_breaks_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "allow-breaks-set");
+  return {this, "allow-breaks-set"};
 }
 
 auto TextTag::property_allow_breaks_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "allow-breaks-set");
+  return {this, "allow-breaks-set"};
 }
 
 auto TextTag::property_show_spaces_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "show-spaces-set");
+  return {this, "show-spaces-set"};
 }
 
 auto TextTag::property_show_spaces_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "show-spaces-set");
+  return {this, "show-spaces-set"};
 }
 
 auto TextTag::property_insert_hyphens_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "insert-hyphens-set");
+  return {this, "insert-hyphens-set"};
 }
 
 auto TextTag::property_insert_hyphens_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "insert-hyphens-set");
+  return {this, "insert-hyphens-set"};
 }
 
 auto TextTag::property_text_transform_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "text-transform-set");
+  return {this, "text-transform-set"};
 }
 
 auto TextTag::property_text_transform_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "text-transform-set");
+  return {this, "text-transform-set"};
 }
 
 auto TextTag::property_word_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "word-set");
+  return {this, "word-set"};
 }
 
 auto TextTag::property_word_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "word-set");
+  return {this, "word-set"};
 }
 
 auto TextTag::property_sentence_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "sentence-set");
+  return {this, "sentence-set"};
 }
 
 auto TextTag::property_sentence_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "sentence-set");
+  return {this, "sentence-set"};
 }
 
 

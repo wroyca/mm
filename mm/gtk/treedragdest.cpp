@@ -36,9 +36,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkTreeDragDest* object, bool take_copy) -> Glib::RefPtr<Gtk::TreeDragDest>
+auto wrap(GtkTreeDragDest* object, const bool take_copy) -> RefPtr<Gtk::TreeDragDest>
 {
-  return Glib::make_refptr_for_instance<Gtk::TreeDragDest>( dynamic_cast<Gtk::TreeDragDest*> (Glib::wrap_auto_interface<Gtk::TreeDragDest> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::TreeDragDest>( Glib::wrap_auto_interface<Gtk::TreeDragDest> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -51,7 +51,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto TreeDragDest_Class::init() -> const Glib::Interface_Class&
+auto TreeDragDest_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -81,8 +81,7 @@ auto TreeDragDest_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto TreeDragDest_Class::drag_data_received_vfunc_callback(GtkTreeDragDest* self, GtkTreePath* dest, const GValue* value) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -97,9 +96,10 @@ auto TreeDragDest_Class::drag_data_received_vfunc_callback(GtkTreeDragDest* self
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->drag_data_received_vfunc(Gtk::TreePath(dest, true)
-, *reinterpret_cast<const Glib::ValueBase*>(value)
-));
+        return obj->drag_data_received_vfunc(
+          TreePath(dest, true)
+                                             , *reinterpret_cast<const Glib::ValueBase*>(value)
+        );
       }
       catch(...)
       {
@@ -108,7 +108,7 @@ auto TreeDragDest_Class::drag_data_received_vfunc_callback(GtkTreeDragDest* self
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -122,8 +122,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto TreeDragDest_Class::row_drop_possible_vfunc_callback(GtkTreeDragDest* self, GtkTreePath* dest_path, const GValue* value) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -138,9 +137,10 @@ auto TreeDragDest_Class::row_drop_possible_vfunc_callback(GtkTreeDragDest* self,
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->row_drop_possible_vfunc(Gtk::TreePath(dest_path, true)
-, *reinterpret_cast<const Glib::ValueBase*>(value)
-));
+        return obj->row_drop_possible_vfunc(
+          TreePath(dest_path, true)
+                                            , *reinterpret_cast<const Glib::ValueBase*>(value)
+        );
       }
       catch(...)
       {
@@ -149,7 +149,7 @@ auto TreeDragDest_Class::row_drop_possible_vfunc_callback(GtkTreeDragDest* self,
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -165,42 +165,40 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 
 auto TreeDragDest_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new TreeDragDest((GtkTreeDragDest*)(object));
+  return new TreeDragDest((GtkTreeDragDest*)object);
 }
 
 
 /* The implementation: */
 
 TreeDragDest::TreeDragDest()
-:
-  Glib::Interface(treedragdest_class_.init())
+: Interface(treedragdest_class_.init())
 {}
 
 TreeDragDest::TreeDragDest(GtkTreeDragDest* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 TreeDragDest::TreeDragDest(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 TreeDragDest::TreeDragDest(TreeDragDest&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto TreeDragDest::operator=(TreeDragDest&& src) noexcept -> TreeDragDest&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-TreeDragDest::~TreeDragDest() noexcept
-{}
+TreeDragDest::~TreeDragDest() noexcept = default;
 
 // static
-auto TreeDragDest::add_interface (GType gtype_implementer) -> void
+auto TreeDragDest::add_interface (
+  const GType gtype_implementer) -> void
 {
   treedragdest_class_.init().add_interface(gtype_implementer);
 }
@@ -221,41 +219,41 @@ auto TreeDragDest::get_base_type() -> GType
 
 auto TreeDragDest::drag_data_received(const TreeModel::Path& dest, const Glib::ValueBase& value) -> bool
 {
-  return gtk_tree_drag_dest_drag_data_received(gobj(), const_cast<GtkTreePath*>((dest).gobj()), (value).gobj());
+  return gtk_tree_drag_dest_drag_data_received(gobj(), const_cast<GtkTreePath*>(dest.gobj()), value.gobj());
 }
 
 auto TreeDragDest::row_drop_possible(const TreeModel::Path& dest_path, const Glib::ValueBase& value) const -> bool
 {
-  return gtk_tree_drag_dest_row_drop_possible(const_cast<GtkTreeDragDest*>(gobj()), const_cast<GtkTreePath*>((dest_path).gobj()), (value).gobj());
+  return gtk_tree_drag_dest_row_drop_possible(const_cast<GtkTreeDragDest*>(gobj()), const_cast<GtkTreePath*>(dest_path.gobj()), value.gobj());
 }
 
 
-auto Gtk::TreeDragDest::drag_data_received_vfunc(const TreeModel::Path& dest, const Glib::ValueBase& value) -> bool
+auto TreeDragDest::drag_data_received_vfunc(const TreeModel::Path& dest, const Glib::ValueBase& value) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->drag_data_received)
   {
-    bool retval((*base->drag_data_received)(gobj(),const_cast<GtkTreePath*>((dest).gobj()),(value).gobj()));
+    const bool retval((*base->drag_data_received)(gobj(),const_cast<GtkTreePath*>(dest.gobj()),value.gobj()));
     return retval;
   }
 
   using RType = bool;
   return RType();
 }
-auto Gtk::TreeDragDest::row_drop_possible_vfunc(const TreeModel::Path& dest, const Glib::ValueBase& value) const -> bool
+auto TreeDragDest::row_drop_possible_vfunc(const TreeModel::Path& dest, const Glib::ValueBase& value) const -> bool
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->row_drop_possible)
   {
-    bool retval((*base->row_drop_possible)(const_cast<GtkTreeDragDest*>(gobj()),const_cast<GtkTreePath*>((dest).gobj()),(value).gobj()));
+    const bool retval((*base->row_drop_possible)(const_cast<GtkTreeDragDest*>(gobj()),const_cast<GtkTreePath*>(dest.gobj()),value.gobj()));
     return retval;
   }
 

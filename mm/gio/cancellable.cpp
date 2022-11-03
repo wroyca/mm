@@ -31,16 +31,17 @@ namespace Gio
 
 extern "C" {
 
-auto delete_slot (gpointer data) -> void
+auto delete_slot (
+  const gpointer data) -> void
 {
-  Cancellable::SlotCancelledCallback* callback =
+  const Cancellable::SlotCancelledCallback* callback =
     reinterpret_cast<Cancellable::SlotCancelledCallback*>(data);
   delete callback;
 }
 
-auto slot_cancelled_proxy (GCancellable * /*cancellable*/, gpointer data) -> void
+auto slot_cancelled_proxy (GCancellable * /*cancellable*/, const gpointer data) -> void
 {
-  Cancellable::SlotCancelledCallback* callback =
+  const Cancellable::SlotCancelledCallback* callback =
     reinterpret_cast<Cancellable::SlotCancelledCallback*>(data);
   (*callback)();
 }
@@ -50,7 +51,7 @@ auto slot_cancelled_proxy (GCancellable * /*cancellable*/, gpointer data) -> voi
 auto
 Cancellable::connect(const SlotCancelledCallback& slot) -> gulong
 {
-  auto slot_copy = new SlotCancelledCallback(slot);
+  const auto slot_copy = new SlotCancelledCallback(slot);
   return g_cancellable_connect(gobj(), G_CALLBACK(slot_cancelled_proxy), slot_copy, &delete_slot);
 }
 
@@ -74,9 +75,9 @@ const Glib::SignalProxyInfo Cancellable_signal_cancelled_info =
 namespace Glib
 {
 
-auto wrap(GCancellable* object, bool take_copy) -> Glib::RefPtr<Gio::Cancellable>
+auto wrap(GCancellable* object, const bool take_copy) -> RefPtr<Gio::Cancellable>
 {
-  return Glib::make_refptr_for_instance<Gio::Cancellable>( dynamic_cast<Gio::Cancellable*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::Cancellable>( dynamic_cast<Gio::Cancellable*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -89,7 +90,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto Cancellable_Class::init() -> const Glib::Class&
+auto Cancellable_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -123,8 +124,7 @@ auto Cancellable_Class::class_init_function (void *g_class, void *class_data) ->
 
 auto Cancellable_Class::cancelled_callback (GCancellable *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -174,32 +174,28 @@ auto Cancellable::gobj_copy() -> GCancellable*
 }
 
 Cancellable::Cancellable(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 Cancellable::Cancellable(GCancellable* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 Cancellable::Cancellable(Cancellable&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto Cancellable::operator=(Cancellable&& src) noexcept -> Cancellable&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-Cancellable::~Cancellable() noexcept
-{}
-
+Cancellable::~Cancellable() noexcept = default;
 
 Cancellable::CppClassType Cancellable::cancellable_class_; // initialize static member
 
@@ -218,8 +214,8 @@ auto Cancellable::get_base_type() -> GType
 Cancellable::Cancellable()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(cancellable_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(cancellable_class_.init()))
 {
 
 
@@ -279,7 +275,8 @@ auto Cancellable::reset () -> void
   g_cancellable_reset(gobj());
 }
 
-auto Cancellable::disconnect (gulong handler_id) -> void
+auto Cancellable::disconnect (
+  const gulong handler_id) -> void
 {
   g_cancellable_disconnect(gobj(), handler_id);
 }
@@ -287,11 +284,11 @@ auto Cancellable::disconnect (gulong handler_id) -> void
 
 auto Cancellable::signal_cancelled() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Cancellable_signal_cancelled_info);
+  return {this, &Cancellable_signal_cancelled_info};
 }
 
 
-auto Gio::Cancellable::on_cancelled () -> void
+auto Cancellable::on_cancelled () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

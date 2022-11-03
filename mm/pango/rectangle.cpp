@@ -33,7 +33,7 @@ Rectangle::Rectangle()
   gobject_.width = gobject_.height = 0;
 }
 
-Rectangle::Rectangle(int x, int y, int width, int height)
+Rectangle::Rectangle(const int x, const int y, const int width, const int height)
 {
   gobject_.x = x;
   gobject_.y = y;
@@ -51,8 +51,8 @@ Rectangle::Rectangle(const PangoRectangle* src)
 
 auto Rectangle::equal(const Rectangle& rhs) const -> bool
 {
-  return (get_x() == rhs.get_x() && get_y() == rhs.get_y() &&
-          get_width() == rhs.get_width() && get_height() == rhs.get_height());
+  return get_x() == rhs.get_x() && get_y() == rhs.get_y() &&
+    get_width() == rhs.get_width() && get_height() == rhs.get_height();
 }
 
 } /* namespace Pango */

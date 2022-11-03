@@ -43,9 +43,9 @@ auto Glib::Value<Gtk::ShortcutType>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkShortcutsShortcut* object, bool take_copy) -> Gtk::ShortcutsShortcut*
+auto wrap(GtkShortcutsShortcut* object, const bool take_copy) -> Gtk::ShortcutsShortcut*
 {
-  return dynamic_cast<Gtk::ShortcutsShortcut *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::ShortcutsShortcut *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -56,7 +56,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto ShortcutsShortcut_Class::init() -> const Glib::Class&
+auto ShortcutsShortcut_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -89,7 +89,7 @@ auto ShortcutsShortcut_Class::class_init_function (void *g_class, void *class_da
 
 auto ShortcutsShortcut_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new ShortcutsShortcut((GtkShortcutsShortcut*)(o)));
+  return manage(new ShortcutsShortcut((GtkShortcutsShortcut*)o));
 
 }
 
@@ -104,7 +104,7 @@ ShortcutsShortcut::ShortcutsShortcut(const Glib::ConstructParams& construct_para
 
 ShortcutsShortcut::ShortcutsShortcut(GtkShortcutsShortcut* castitem)
 :
-  Widget((GtkWidget*)(castitem))
+  Widget((GtkWidget*)castitem)
 {
   }
 
@@ -141,7 +141,7 @@ auto ShortcutsShortcut::get_base_type() -> GType
 ShortcutsShortcut::ShortcutsShortcut()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   Widget(Glib::ConstructParams(shortcutsshortcut_class_.init()))
 {
 
@@ -151,12 +151,12 @@ ShortcutsShortcut::ShortcutsShortcut()
 
 auto ShortcutsShortcut::property_accelerator() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "accelerator");
+  return {this, "accelerator"};
 }
 
 auto ShortcutsShortcut::property_accelerator() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "accelerator");
+  return {this, "accelerator"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Icon>>::value,
@@ -165,52 +165,52 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Ic
 
 auto ShortcutsShortcut::property_icon() -> Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Gio::Icon> >(this, "icon");
+  return {this, "icon"};
 }
 
 auto ShortcutsShortcut::property_icon() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::Icon> >(this, "icon");
+  return {this, "icon"};
 }
 
 auto ShortcutsShortcut::property_icon_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "icon-set");
+  return {this, "icon-set"};
 }
 
 auto ShortcutsShortcut::property_icon_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "icon-set");
+  return {this, "icon-set"};
 }
 
 auto ShortcutsShortcut::property_title() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 auto ShortcutsShortcut::property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 auto ShortcutsShortcut::property_subtitle() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "subtitle");
+  return {this, "subtitle"};
 }
 
 auto ShortcutsShortcut::property_subtitle() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "subtitle");
+  return {this, "subtitle"};
 }
 
 auto ShortcutsShortcut::property_subtitle_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "subtitle-set");
+  return {this, "subtitle-set"};
 }
 
 auto ShortcutsShortcut::property_subtitle_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "subtitle-set");
+  return {this, "subtitle-set"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<TextDirection>::value,
@@ -219,12 +219,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<TextDirection>::valu
 
 auto ShortcutsShortcut::property_direction() -> Glib::PropertyProxy< TextDirection >
 {
-  return Glib::PropertyProxy< TextDirection >(this, "direction");
+  return {this, "direction"};
 }
 
 auto ShortcutsShortcut::property_direction() const -> Glib::PropertyProxy_ReadOnly< TextDirection >
 {
-  return Glib::PropertyProxy_ReadOnly< TextDirection >(this, "direction");
+  return {this, "direction"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<ShortcutType>::value,
@@ -233,22 +233,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<ShortcutType>::value
 
 auto ShortcutsShortcut::property_shortcut_type() -> Glib::PropertyProxy< ShortcutType >
 {
-  return Glib::PropertyProxy< ShortcutType >(this, "shortcut-type");
+  return {this, "shortcut-type"};
 }
 
 auto ShortcutsShortcut::property_shortcut_type() const -> Glib::PropertyProxy_ReadOnly< ShortcutType >
 {
-  return Glib::PropertyProxy_ReadOnly< ShortcutType >(this, "shortcut-type");
+  return {this, "shortcut-type"};
 }
 
 auto ShortcutsShortcut::property_action_name() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "action-name");
+  return {this, "action-name"};
 }
 
 auto ShortcutsShortcut::property_action_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "action-name");
+  return {this, "action-name"};
 }
 
 

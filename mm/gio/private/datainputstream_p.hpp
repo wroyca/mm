@@ -17,13 +17,13 @@ public:
   using CppObjectType = DataInputStream;
   using BaseObjectType = GDataInputStream;
   using BaseClassType = GDataInputStreamClass;
-  using CppClassParent = Gio::BufferedInputStream_Class;
+  using CppClassParent = BufferedInputStream_Class;
   using BaseClassParent = GBufferedInputStreamClass;
 
   friend class DataInputStream;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

@@ -52,8 +52,8 @@ namespace
 class ForeignIOChannel : public Glib::IOChannel
 {
 public:
-  ForeignIOChannel(GIOChannel* gobject, bool take_copy)
-  : Glib::IOChannel(gobject, take_copy), ref_count_(0)
+  ForeignIOChannel(GIOChannel* gobject, const bool take_copy)
+  : IOChannel(gobject, take_copy), ref_count_(0)
   {
   }
 
@@ -71,7 +71,7 @@ auto ForeignIOChannel::reference () const -> void
 
 auto ForeignIOChannel::unreference () const -> void
 {
-  if (!(--ref_count_))
+  if (!--ref_count_)
     delete this;
 }
 
@@ -82,7 +82,7 @@ namespace Glib
 
 /**** GLib::IOChannel ******************************************************/
 
-IOChannel::IOChannel(IOChannel&& other) noexcept : sigc::trackable(std::move(other)),
+IOChannel::IOChannel(IOChannel&& other) noexcept : trackable(std::move(other)),
                                                    gobject_(std::move(other.gobject_))
 {
   other.gobject_ = nullptr;
@@ -91,7 +91,7 @@ IOChannel::IOChannel(IOChannel&& other) noexcept : sigc::trackable(std::move(oth
 auto
 IOChannel::operator=(IOChannel&& other) noexcept -> IOChannel&
 {
-  sigc::trackable::operator=(std::move(other));
+  trackable::operator=(std::move(other));
 
   release_gobject();
 
@@ -105,7 +105,7 @@ IOChannel::operator=(IOChannel&& other) noexcept -> IOChannel&
  * See the comment at the top of this file for an explanation of the
  * problems with this approach.
  */
-IOChannel::IOChannel(GIOChannel* gobject, bool take_copy) : gobject_(gobject)
+IOChannel::IOChannel(GIOChannel* gobject, const bool take_copy) : gobject_(gobject)
 {
   g_assert(gobject != nullptr);
 
@@ -130,58 +130,62 @@ IOChannel::~IOChannel()
 }
 
 auto
-IOChannel::create_from_file(const std::string& filename, const std::string& mode) -> Glib::RefPtr<IOChannel>
+IOChannel::create_from_file(const std::string& filename, const std::string& mode) -> RefPtr<IOChannel>
 {
   GError* gerror = nullptr;
   const auto channel = g_io_channel_new_file(filename.c_str(), mode.c_str(), &gerror);
 
   if (gerror)
   {
-    Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
   }
 
-  return Glib::wrap(channel, false);
+  return wrap(channel, false);
 }
 
 auto
-IOChannel::create_from_fd(int fd) -> Glib::RefPtr<IOChannel>
+IOChannel::create_from_fd(
+  const int fd) -> RefPtr<IOChannel>
 {
-  return Glib::wrap(g_io_channel_unix_new(fd), false);
+  return wrap(g_io_channel_unix_new(fd), false);
 }
 
 #ifdef G_OS_WIN32
 
-auto IOChannel::create_from_win32_fd (int fd) -> Glib::RefPtr <IOChannel>
+auto IOChannel::create_from_win32_fd (
+  const int fd) -> RefPtr<IOChannel>
 {
-  return Glib::wrap(g_io_channel_win32_new_fd(fd), false);
+  return wrap(g_io_channel_win32_new_fd(fd), false);
 }
 
-auto IOChannel::create_from_win32_socket (int socket) -> Glib::RefPtr <IOChannel>
+auto IOChannel::create_from_win32_socket (
+  const int socket) -> RefPtr<IOChannel>
 {
-  return Glib::wrap(g_io_channel_win32_new_socket(socket), false);
+  return wrap(g_io_channel_win32_new_socket(socket), false);
 }
 
 #endif /* G_OS_WIN32 */
 
 auto
-IOChannel::write(const Glib::ustring& str) -> IOStatus
+IOChannel::write(const ustring & str) -> IOStatus
 {
   gsize bytes_written = 0;
   return write(str.data(), str.bytes(), bytes_written);
 }
 
 auto
-IOChannel::read_line(Glib::ustring& line) -> IOStatus
+IOChannel::read_line(
+  ustring & line) -> IOStatus
 {
   GError* gerror = nullptr;
   gsize bytes = 0;
   char* pch_buf = nullptr;
 
   const auto status = g_io_channel_read_line(gobj(), &pch_buf, &bytes, nullptr, &gerror);
-  auto buf = make_unique_ptr_gfree(pch_buf);
+  const auto buf = make_unique_ptr_gfree(pch_buf);
   if (gerror)
   {
-    Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
   }
 
   if (buf.get())
@@ -193,17 +197,18 @@ IOChannel::read_line(Glib::ustring& line) -> IOStatus
 }
 
 auto
-IOChannel::read_to_end(Glib::ustring& str) -> IOStatus
+IOChannel::read_to_end(
+  ustring & str) -> IOStatus
 {
   GError* gerror = nullptr;
   gsize bytes = 0;
   char* pch_buf = nullptr;
 
   const auto status = g_io_channel_read_to_end(gobj(), &pch_buf, &bytes, &gerror);
-  auto buf = make_unique_ptr_gfree(pch_buf);
+  const auto buf = make_unique_ptr_gfree(pch_buf);
   if (gerror)
   {
-    Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
   }
 
   if (buf.get())
@@ -215,9 +220,10 @@ IOChannel::read_to_end(Glib::ustring& str) -> IOStatus
 }
 
 auto
-IOChannel::read(Glib::ustring& str, gsize count) -> IOStatus
+IOChannel::read(
+  ustring & str, const gsize count) -> IOStatus
 {
-  auto buf = make_unique_ptr_gfree(g_new(char, count));
+  const auto buf = make_unique_ptr_gfree(g_new(char, count));
   GError* gerror = nullptr;
   gsize bytes = 0;
 
@@ -225,7 +231,7 @@ IOChannel::read(Glib::ustring& str, gsize count) -> IOStatus
 
   if (gerror)
   {
-    Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
   }
 
   if (buf.get())
@@ -241,11 +247,11 @@ IOChannel::set_encoding(const std::string& encoding) -> IOStatus
 {
   GError* gerror = nullptr;
 
-  const auto status = g_io_channel_set_encoding(gobj(), Glib::c_str_or_nullptr(encoding), &gerror);
+  const auto status = g_io_channel_set_encoding(gobj(), c_str_or_nullptr(encoding), &gerror);
 
   if (gerror)
   {
-    Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
   }
 
   return (IOStatus)status;
@@ -272,11 +278,12 @@ IOChannel::get_line_term() const -> std::string
   int len = 0;
   const char* const term = g_io_channel_get_line_term(gobject_, &len);
 
-  return (term) ? std::string(term, len) : std::string();
+  return term ? std::string(term, len) : std::string();
 }
 
 auto
-IOChannel::create_watch(IOCondition condition) -> Glib::RefPtr<IOSource>
+IOChannel::create_watch(
+  const IOCondition condition) -> RefPtr<IOSource>
 {
   return IOSource::create(gobj(), condition);
 }
@@ -292,7 +299,7 @@ auto IOChannel::unreference () const -> void
 }
 
 auto
-wrap(GIOChannel* gobject, bool take_copy) -> Glib::RefPtr<IOChannel>
+wrap(GIOChannel* gobject, const bool take_copy) -> RefPtr<IOChannel>
 {
   IOChannel* cpp_object = nullptr;
 
@@ -312,24 +319,22 @@ namespace
 } // anonymous namespace
 
 
-Glib::IOChannelError::IOChannelError(Glib::IOChannelError::Code error_code, const Glib::ustring& error_message)
-:
-  Glib::Error (G_IO_CHANNEL_ERROR, error_code, error_message)
+Glib::IOChannelError::IOChannelError(const Code error_code, const ustring & error_message)
+: Error(G_IO_CHANNEL_ERROR, error_code, error_message)
 {}
 
 Glib::IOChannelError::IOChannelError(GError* gobject)
-:
-  Glib::Error (gobject)
+: Error(gobject)
 {}
 
-auto Glib::IOChannelError::code() const -> Glib::IOChannelError::Code
+auto Glib::IOChannelError::code() const -> Code
 {
-  return static_cast<Code>(Glib::Error::code());
+  return static_cast<Code>(Error::code());
 }
 
 auto Glib::IOChannelError::throw_func (GError *gobject) -> void
 {
-  throw Glib::IOChannelError(gobject);
+  throw IOChannelError(gobject);
 }
 
 
@@ -340,63 +345,66 @@ namespace Glib
 auto IOChannel::read(gunichar& thechar) -> IOStatus
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<IOStatus>(g_io_channel_read_unichar(gobj(), &(thechar), &(gerror)));
+  const auto retvalue = static_cast<IOStatus>(g_io_channel_read_unichar(gobj(), &thechar, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto IOChannel::read(char* buf, gsize count, gsize& bytes_read) -> IOStatus
+auto IOChannel::read(char* buf, const gsize count, gsize& bytes_read) -> IOStatus
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<IOStatus>(g_io_channel_read_chars(gobj(), buf, count, &(bytes_read), &(gerror)));
+  const auto retvalue = static_cast<IOStatus>(g_io_channel_read_chars(gobj(), buf, count, &bytes_read, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto IOChannel::write(const char* buf, gssize count, gsize& bytes_written) -> IOStatus
+auto IOChannel::write(const char* buf, const gssize count, gsize& bytes_written) -> IOStatus
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<IOStatus>(g_io_channel_write_chars(gobj(), buf, count, &(bytes_written), &(gerror)));
+  const auto retvalue = static_cast<IOStatus>(g_io_channel_write_chars(gobj(), buf, count, &bytes_written, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto IOChannel::write(gunichar unichar) -> IOStatus
+auto IOChannel::write(
+  const gunichar unichar) -> IOStatus
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<IOStatus>(g_io_channel_write_unichar(gobj(), unichar, &(gerror)));
+  const auto retvalue = static_cast<IOStatus>(g_io_channel_write_unichar(gobj(), unichar, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto IOChannel::seek(gint64 offset, SeekType type) -> IOStatus
+auto IOChannel::seek(
+  const gint64 offset, SeekType type) -> IOStatus
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<IOStatus>(g_io_channel_seek_position(gobj(), offset, static_cast<GSeekType>(type), &(gerror)));
+  const auto retvalue = static_cast<IOStatus>(g_io_channel_seek_position(gobj(), offset, static_cast<GSeekType>(type), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto IOChannel::flush() -> IOStatus
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<IOStatus>(g_io_channel_flush(gobj(), &(gerror)));
+  const auto retvalue = static_cast<IOStatus>(g_io_channel_flush(gobj(), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto IOChannel::close(bool flush_pending) -> IOStatus
+auto IOChannel::close(
+  const bool flush_pending) -> IOStatus
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<IOStatus>(g_io_channel_shutdown(gobj(), static_cast<int>(flush_pending), &(gerror)));
+  const auto retvalue = static_cast<IOStatus>(g_io_channel_shutdown(gobj(), flush_pending, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -405,7 +413,8 @@ auto IOChannel::get_buffer_size() const -> gsize
   return g_io_channel_get_buffer_size(const_cast<GIOChannel*>(gobj()));
 }
 
-auto IOChannel::set_buffer_size (gsize size) -> void
+auto IOChannel::set_buffer_size (
+  const gsize size) -> void
 {
   g_io_channel_set_buffer_size(gobj(), size);
 }
@@ -418,15 +427,16 @@ auto IOChannel::get_flags() const -> IOFlags
 auto IOChannel::set_flags(IOFlags flags) -> IOStatus
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<IOStatus>(g_io_channel_set_flags(gobj(), static_cast<GIOFlags>(flags), &(gerror)));
+  const auto retvalue = static_cast<IOStatus>(g_io_channel_set_flags(gobj(), static_cast<GIOFlags>(flags), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto IOChannel::set_buffered (bool buffered) -> void
+auto IOChannel::set_buffered (
+  const bool buffered) -> void
 {
-  g_io_channel_set_buffered(gobj(), static_cast<int>(buffered));
+  g_io_channel_set_buffered(gobj(), buffered);
 }
 
 auto IOChannel::get_buffered() const -> bool
@@ -444,9 +454,10 @@ auto IOChannel::get_close_on_unref() const -> bool
   return g_io_channel_get_close_on_unref(const_cast<GIOChannel*>(gobj()));
 }
 
-auto IOChannel::set_close_on_unref (bool do_close) -> void
+auto IOChannel::set_close_on_unref (
+  const bool do_close) -> void
 {
-  g_io_channel_set_close_on_unref(gobj(), static_cast<int>(do_close));
+  g_io_channel_set_close_on_unref(gobj(), do_close);
 }
 
 

@@ -18,13 +18,13 @@ public:
   using CppObjectType = CellRenderer;
   using BaseObjectType = GtkCellRenderer;
   using BaseClassType = GtkCellRendererClass;
-  using CppClassParent = Gtk::Object_Class;
+  using CppClassParent = Object_Class;
   using BaseClassParent = GObjectClass;
 
   friend class CellRenderer;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

@@ -35,7 +35,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkBorder* object, bool take_copy) -> Gtk::Border
+auto wrap(GtkBorder* object, const bool take_copy) -> Gtk::Border
 {
   return Gtk::Border(object, take_copy);
 }
@@ -60,7 +60,7 @@ Border::Border()
 
 Border::Border(const Border& other)
 :
-  gobject_ ((other.gobject_) ? gtk_border_copy(other.gobject_) : nullptr)
+  gobject_ (other.gobject_ ? gtk_border_copy(other.gobject_) : nullptr)
 {}
 
 Border::Border(Border&& other) noexcept
@@ -77,12 +77,12 @@ auto Border::operator=(Border&& other) noexcept -> Border&
   return *this;
 }
 
-Border::Border(GtkBorder* gobject, bool make_a_copy)
+Border::Border(GtkBorder* gobject, const bool make_a_copy)
 :
   // For BoxedType wrappers, make_a_copy is true by default.  The static
   // BoxedType wrappers must always take a copy, thus make_a_copy = true
   // ensures identical behaviour if the default argument is used.
-  gobject_ ((make_a_copy && gobject) ? gtk_border_copy(gobject) : gobject)
+  gobject_ (make_a_copy && gobject ? gtk_border_copy(gobject) : gobject)
 {}
 
 auto Border::operator=(const Border& other) -> Border&

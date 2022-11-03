@@ -23,7 +23,7 @@
 namespace Cairo
 {
 
-ScaledFont::ScaledFont(cobject* cobj, bool has_reference)
+ScaledFont::ScaledFont(cobject* cobj, const bool has_reference)
 : m_cobject(nullptr)
 {
   if(has_reference)
@@ -58,13 +58,13 @@ auto ScaledFont::create(const RefPtr<FontFace>& font_face, const Matrix& font_ma
 
 auto ScaledFont::get_extents (FontExtents &extents) const -> void
 {
-  cairo_scaled_font_extents(m_cobject, static_cast<cairo_font_extents_t*>(&extents));
+  cairo_scaled_font_extents(m_cobject, &extents);
   check_object_status_and_throw_exception(*this);
 }
 
 auto ScaledFont::get_font_face() const -> RefPtr<FontFace>
 {
-  auto face = cairo_scaled_font_get_font_face(m_cobject);
+  const auto face = cairo_scaled_font_get_font_face(m_cobject);
   check_object_status_and_throw_exception(*this);
   return make_refptr_for_instance<FontFace>(new FontFace(face, false /* returned face doesn't have a reference */));
 }
@@ -96,8 +96,7 @@ auto ScaledFont::get_type() const -> FontType
 }
 
 auto ScaledFont::text_to_glyphs (
-  double x,
-  double y,
+  const double x, const double y,
   const std::string &utf8,
   std::vector <Glyph> &glyphs,
   std::vector <TextCluster> &clusters,
@@ -107,22 +106,22 @@ auto ScaledFont::text_to_glyphs (
   int num_clusters = -1;
   cairo_glyph_t* c_glyphs = nullptr;
   cairo_text_cluster_t* c_clusters = nullptr;
-  auto status = cairo_scaled_font_text_to_glyphs(cobj(), x, y,
-                                                           utf8.c_str(),
-                                                           utf8.size(),
-                                                           &c_glyphs,
-                                                           &num_glyphs,
-                                                           &c_clusters,
-                                                           &num_clusters,
-                                                           reinterpret_cast<cairo_text_cluster_flags_t*>(&cluster_flags));
+  const auto status = cairo_scaled_font_text_to_glyphs(cobj(), x, y,
+                                                       utf8.c_str(),
+                                                       utf8.size(),
+                                                       &c_glyphs,
+                                                       &num_glyphs,
+                                                       &c_clusters,
+                                                       &num_clusters,
+                                                       reinterpret_cast<cairo_text_cluster_flags_t*>(&cluster_flags));
   if (num_glyphs > 0 && c_glyphs) {
-    glyphs.assign(static_cast<Glyph*>(c_glyphs),
-                  static_cast<Glyph*>(c_glyphs + num_glyphs));
+    glyphs.assign(c_glyphs,
+                  c_glyphs + num_glyphs);
     cairo_glyph_free(c_glyphs);
   }
   if (num_clusters > 0 && c_clusters) {
-    clusters.assign(static_cast<TextCluster*>(c_clusters),
-                    static_cast<TextCluster*>(c_clusters + num_clusters));
+    clusters.assign(c_clusters,
+                    c_clusters + num_clusters);
     cairo_text_cluster_free(c_clusters);
   }
   check_status_and_throw_exception(status);
@@ -153,7 +152,7 @@ FtScaledFont::create(const RefPtr<FtFontFace>& font_face,
 
 auto FtScaledFont::lock_face() -> FT_Face
 {
-  auto face = cairo_ft_scaled_font_lock_face(cobj());
+  const auto face = cairo_ft_scaled_font_lock_face(cobj());
   check_object_status_and_throw_exception(*this);
   return face;
 }

@@ -33,25 +33,25 @@ namespace Gio
 static auto
 unwrap_objectbase_custom(const Glib::RefPtr<Glib::ObjectBase>& cpp_instance) -> GObject*
 {
-  return (cpp_instance ? cpp_instance->gobj() : nullptr);
+  return cpp_instance ? cpp_instance->gobj() : nullptr;
 }
 
 auto
-AsyncResult::get_source_object_base() -> Glib::RefPtr<Glib::ObjectBase>
+AsyncResult::get_source_object_base() -> Glib::RefPtr<ObjectBase>
 {
   // Glib::wrap(cobj) can't be used here. See tests/giomm_asyncresult_sourceobject
   // for a case where it would fail, and an explanation of why.
   // In short, the source object is not necessarily a Glib::Object. It may be
   // a Glib::Interface.
 
-  auto cobj = g_async_result_get_source_object(gobj());
-  auto cppobj = Glib::wrap_auto(cobj); // ObjectBase::_get_current_wrapper(cobj);
-  return Glib::make_refptr_for_instance<Glib::ObjectBase>(
+  const auto cobj = g_async_result_get_source_object(gobj());
+  const auto cppobj = Glib::wrap_auto(cobj); // ObjectBase::_get_current_wrapper(cobj);
+  return Glib::make_refptr_for_instance<ObjectBase>(
     cppobj); // g_async_result_get_source_object() gives us a ref, unusually.
 }
 
 auto
-AsyncResult::get_source_object_base() const -> Glib::RefPtr<const Glib::ObjectBase>
+AsyncResult::get_source_object_base() const -> Glib::RefPtr<const ObjectBase>
 {
   return const_cast<AsyncResult*>(this)->get_source_object_base();
 }
@@ -66,9 +66,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GAsyncResult* object, bool take_copy) -> Glib::RefPtr<Gio::AsyncResult>
+auto wrap(GAsyncResult* object, const bool take_copy) -> RefPtr<Gio::AsyncResult>
 {
-  return Glib::make_refptr_for_instance<Gio::AsyncResult>( dynamic_cast<Gio::AsyncResult*> (Glib::wrap_auto_interface<Gio::AsyncResult> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::AsyncResult>( Glib::wrap_auto_interface<Gio::AsyncResult> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -81,7 +81,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto AsyncResult_Class::init() -> const Glib::Interface_Class&
+auto AsyncResult_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -111,8 +111,7 @@ auto AsyncResult_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto AsyncResult_Class::get_source_object_vfunc_callback(GAsyncResult* self) -> GObject*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -136,7 +135,7 @@ auto AsyncResult_Class::get_source_object_vfunc_callback(GAsyncResult* self) -> 
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -148,10 +147,9 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = GObject*;
   return RType();
 }
-auto AsyncResult_Class::is_tagged_vfunc_callback(GAsyncResult* self, gpointer source_tag) -> gboolean
+auto AsyncResult_Class::is_tagged_vfunc_callback(GAsyncResult* self, const gpointer source_tag) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -166,7 +164,7 @@ auto AsyncResult_Class::is_tagged_vfunc_callback(GAsyncResult* self, gpointer so
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->is_tagged_vfunc(source_tag));
+        return obj->is_tagged_vfunc(source_tag);
       }
       catch(...)
       {
@@ -175,7 +173,7 @@ auto AsyncResult_Class::is_tagged_vfunc_callback(GAsyncResult* self, gpointer so
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -191,42 +189,40 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 
 auto AsyncResult_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new AsyncResult((GAsyncResult*)(object));
+  return new AsyncResult((GAsyncResult*)object);
 }
 
 
 /* The implementation: */
 
 AsyncResult::AsyncResult()
-:
-  Glib::Interface(asyncresult_class_.init())
+: Interface(asyncresult_class_.init())
 {}
 
 AsyncResult::AsyncResult(GAsyncResult* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 AsyncResult::AsyncResult(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 AsyncResult::AsyncResult(AsyncResult&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto AsyncResult::operator=(AsyncResult&& src) noexcept -> AsyncResult&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-AsyncResult::~AsyncResult() noexcept
-{}
+AsyncResult::~AsyncResult() noexcept = default;
 
 // static
-auto AsyncResult::add_interface (GType gtype_implementer) -> void
+auto AsyncResult::add_interface (
+  const GType gtype_implementer) -> void
 {
   asyncresult_class_.init().add_interface(gtype_implementer);
 }
@@ -245,38 +241,40 @@ auto AsyncResult::get_base_type() -> GType
 }
 
 
-auto AsyncResult::is_tagged(gpointer source_tag) const -> bool
+auto AsyncResult::is_tagged(
+  const gpointer source_tag) const -> bool
 {
   return g_async_result_is_tagged(const_cast<GAsyncResult*>(gobj()), source_tag);
 }
 
 
-auto Gio::AsyncResult::get_source_object_vfunc() -> Glib::RefPtr<Glib::ObjectBase>
+auto AsyncResult::get_source_object_vfunc() -> Glib::RefPtr<ObjectBase>
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->get_source_object)
   {
-    Glib::RefPtr<Glib::ObjectBase> retval(Glib::wrap((*base->get_source_object)(gobj())));
+    Glib::RefPtr<ObjectBase> retval(Glib::wrap((*base->get_source_object)(gobj())));
     return retval;
   }
 
-  using RType = Glib::RefPtr<Glib::ObjectBase>;
-  return RType();
+  using RType = Glib::RefPtr<ObjectBase>;
+  return {};
 }
-auto Gio::AsyncResult::is_tagged_vfunc(gpointer source_tag) -> bool
+auto AsyncResult::is_tagged_vfunc(
+  const gpointer source_tag) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->is_tagged)
   {
-    bool retval((*base->is_tagged)(gobj(),source_tag));
+    const bool retval((*base->is_tagged)(gobj(),source_tag));
     return retval;
   }
 

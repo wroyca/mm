@@ -42,9 +42,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkVolumeButton* object, bool take_copy) -> Gtk::VolumeButton*
+auto wrap(GtkVolumeButton* object, const bool take_copy) -> Gtk::VolumeButton*
 {
-  return dynamic_cast<Gtk::VolumeButton *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::VolumeButton *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -55,7 +55,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto VolumeButton_Class::init() -> const Glib::Class&
+auto VolumeButton_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -88,7 +88,7 @@ auto VolumeButton_Class::class_init_function (void *g_class, void *class_data) -
 
 auto VolumeButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new VolumeButton((GtkVolumeButton*)(o)));
+  return manage(new VolumeButton((GtkVolumeButton*)o));
 
 }
 
@@ -96,25 +96,23 @@ auto VolumeButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 VolumeButton::VolumeButton(const Glib::ConstructParams& construct_params)
-:
-  Gtk::ScaleButton(construct_params)
+: ScaleButton(construct_params)
 {
   }
 
 VolumeButton::VolumeButton(GtkVolumeButton* castitem)
-:
-  Gtk::ScaleButton((GtkScaleButton*)(castitem))
+: ScaleButton((GtkScaleButton*)castitem)
 {
   }
 
 
 VolumeButton::VolumeButton(VolumeButton&& src) noexcept
-: Gtk::ScaleButton(std::move(src))
+: ScaleButton(std::move(src))
 {}
 
 auto VolumeButton::operator=(VolumeButton&& src) noexcept -> VolumeButton&
 {
-  Gtk::ScaleButton::operator=(std::move(src));
+  ScaleButton::operator=(std::move(src));
   return *this;
 }
 
@@ -140,8 +138,8 @@ auto VolumeButton::get_base_type() -> GType
 VolumeButton::VolumeButton()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::ScaleButton(Glib::ConstructParams(volumebutton_class_.init()))
+ObjectBase(nullptr),
+ScaleButton(Glib::ConstructParams(volumebutton_class_.init()))
 {
 
 
@@ -150,12 +148,12 @@ VolumeButton::VolumeButton()
 
 auto VolumeButton::property_use_symbolic() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "use-symbolic");
+  return {this, "use-symbolic"};
 }
 
 auto VolumeButton::property_use_symbolic() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "use-symbolic");
+  return {this, "use-symbolic"};
 }
 
 

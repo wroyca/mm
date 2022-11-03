@@ -62,14 +62,16 @@ auto LayoutLine::get_pixel_logical_extents() const -> Rectangle
   return logical_rect;
 }
 
-auto LayoutLine::index_to_x(int index, bool trailing) const -> int
+auto LayoutLine::index_to_x(
+  const int index, const bool trailing) const -> int
 {
   int x_pos;
   pango_layout_line_index_to_x(const_cast<PangoLayoutLine*>(gobj()), index, trailing, &x_pos);
   return x_pos;
 }
 
-auto LayoutLine::get_x_ranges(int start_index, int end_index) const -> std::vector<std::pair<int,int> >
+auto LayoutLine::get_x_ranges(
+  const int start_index, const int end_index) const -> std::vector<std::pair<int,int> >
 {
   //TODO: This reinterpret_cast<> is scary. There should at least be a comment explaining it.
   int* ranges = nullptr;
@@ -111,7 +113,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(PangoLayoutLine* object, bool take_copy) -> Glib::RefPtr<Pango::LayoutLine>
+auto wrap(PangoLayoutLine* object, const bool take_copy) -> RefPtr<Pango::LayoutLine>
 {
   if(take_copy && object)
     pango_layout_line_ref(object);
@@ -159,24 +161,25 @@ auto LayoutLine::gobj_copy() const -> PangoLayoutLine*
 }
 
 
-auto LayoutLine::x_to_index(int x_pos, int& index, int& trailing) const -> bool
+auto LayoutLine::x_to_index(
+  const int x_pos, int& index, int& trailing) const -> bool
 {
-  return pango_layout_line_x_to_index(const_cast<PangoLayoutLine*>(gobj()), x_pos, &(index), &(trailing));
+  return pango_layout_line_x_to_index(const_cast<PangoLayoutLine*>(gobj()), x_pos, &index, &trailing);
 }
 
 auto LayoutLine::get_extents (Rectangle &ink_rect, Rectangle &logical_rect) const -> void
 {
-  pango_layout_line_get_extents(const_cast<PangoLayoutLine*>(gobj()), (ink_rect).gobj(), (logical_rect).gobj());
+  pango_layout_line_get_extents(const_cast<PangoLayoutLine*>(gobj()), ink_rect.gobj(), logical_rect.gobj());
 }
 
 auto LayoutLine::get_pixel_extents (Rectangle &ink_rect, Rectangle &logical_rect) const -> void
 {
-  pango_layout_line_get_pixel_extents(const_cast<PangoLayoutLine*>(gobj()), (ink_rect).gobj(), (logical_rect).gobj());
+  pango_layout_line_get_pixel_extents(const_cast<PangoLayoutLine*>(gobj()), ink_rect.gobj(), logical_rect.gobj());
 }
 
-auto LayoutLine::get_layout() -> Glib::RefPtr<Pango::Layout>
+auto LayoutLine::get_layout() -> Glib::RefPtr<Layout>
 {
-  Glib::RefPtr<Pango::Layout> ref_ptr(Glib::wrap(gobj()->layout));
+  Glib::RefPtr<Layout> ref_ptr(Glib::wrap(gobj()->layout));
 
   if(ref_ptr)
     ref_ptr->reference();
@@ -184,9 +187,9 @@ auto LayoutLine::get_layout() -> Glib::RefPtr<Pango::Layout>
   return ref_ptr;
 }
 
-auto LayoutLine::get_layout() const -> Glib::RefPtr<const Pango::Layout>
+auto LayoutLine::get_layout() const -> Glib::RefPtr<const Layout>
 {
-  Glib::RefPtr<const Pango::Layout> ref_ptr(Glib::wrap(gobj()->layout));
+  Glib::RefPtr<const Layout> ref_ptr(Glib::wrap(gobj()->layout));
 
   if(ref_ptr)
     ref_ptr->reference();

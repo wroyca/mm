@@ -17,13 +17,13 @@ public:
   using CppObjectType = EmojiChooser;
   using BaseObjectType = GtkEmojiChooser;
   using BaseClassType = GtkEmojiChooserClass;
-  using CppClassParent = Gtk::Popover_Class;
+  using CppClassParent = Popover_Class;
   using BaseClassParent = GtkPopoverClass;
 
   friend class EmojiChooser;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

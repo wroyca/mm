@@ -31,9 +31,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkShortcut* object, bool take_copy) -> Glib::RefPtr<Gtk::Shortcut>
+auto wrap(GtkShortcut* object, const bool take_copy) -> RefPtr<Gtk::Shortcut>
 {
-  return Glib::make_refptr_for_instance<Gtk::Shortcut>( dynamic_cast<Gtk::Shortcut*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::Shortcut>( dynamic_cast<Gtk::Shortcut*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -46,7 +46,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Shortcut_Class::init() -> const Glib::Class&
+auto Shortcut_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -86,32 +86,28 @@ auto Shortcut::gobj_copy() -> GtkShortcut*
 }
 
 Shortcut::Shortcut(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 Shortcut::Shortcut(GtkShortcut* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 Shortcut::Shortcut(Shortcut&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto Shortcut::operator=(Shortcut&& src) noexcept -> Shortcut&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-Shortcut::~Shortcut() noexcept
-{}
-
+Shortcut::~Shortcut() noexcept = default;
 
 Shortcut::CppClassType Shortcut::shortcut_class_; // initialize static member
 
@@ -130,8 +126,8 @@ auto Shortcut::get_base_type() -> GType
 Shortcut::Shortcut(const Glib::RefPtr<const ShortcutTrigger>& trigger, const Glib::RefPtr<const ShortcutAction>& action)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(shortcut_class_.init(), "trigger", const_cast<GtkShortcutTrigger*>(Glib::unwrap(trigger)), "action", const_cast<GtkShortcutAction*>(Glib::unwrap(action)), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(shortcut_class_.init(), "trigger", Glib::unwrap(trigger), "action", Glib::unwrap(action), nullptr))
 {
 
 
@@ -152,7 +148,7 @@ auto Shortcut::get_trigger() const -> Glib::RefPtr<ShortcutTrigger>
 
 auto Shortcut::set_trigger (const Glib::RefPtr <const ShortcutTrigger> &trigger) -> void
 {
-  gtk_shortcut_set_trigger(gobj(), Glib::unwrap_copy(std::const_pointer_cast<ShortcutTrigger>(trigger)));
+  gtk_shortcut_set_trigger(gobj(), unwrap_copy(std::const_pointer_cast<ShortcutTrigger>(trigger)));
 }
 
 auto Shortcut::get_action() const -> Glib::RefPtr<ShortcutAction>
@@ -165,7 +161,7 @@ auto Shortcut::get_action() const -> Glib::RefPtr<ShortcutAction>
 
 auto Shortcut::set_trigger (const Glib::RefPtr <const ShortcutAction> &action) -> void
 {
-  gtk_shortcut_set_action(gobj(), Glib::unwrap_copy(std::const_pointer_cast<ShortcutAction>(action)));
+  gtk_shortcut_set_action(gobj(), unwrap_copy(std::const_pointer_cast<ShortcutAction>(action)));
 }
 
 auto Shortcut::get_arguments() const -> Glib::VariantBase
@@ -175,7 +171,7 @@ auto Shortcut::get_arguments() const -> Glib::VariantBase
 
 auto Shortcut::set_arguments (const Glib::VariantBase &args) const -> void
 {
-  gtk_shortcut_set_arguments(const_cast<GtkShortcut*>(gobj()), const_cast<GVariant*>((args).gobj()));
+  gtk_shortcut_set_arguments(const_cast<GtkShortcut*>(gobj()), const_cast<GVariant*>(args.gobj()));
 }
 
 
@@ -185,12 +181,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Shortcu
 
 auto Shortcut::property_trigger() -> Glib::PropertyProxy< Glib::RefPtr<ShortcutTrigger> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<ShortcutTrigger> >(this, "trigger");
+  return {this, "trigger"};
 }
 
 auto Shortcut::property_trigger() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ShortcutTrigger> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ShortcutTrigger> >(this, "trigger");
+  return {this, "trigger"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<ShortcutAction>>::value,
@@ -199,12 +195,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Shortcu
 
 auto Shortcut::property_action() -> Glib::PropertyProxy< Glib::RefPtr<ShortcutAction> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<ShortcutAction> >(this, "action");
+  return {this, "action"};
 }
 
 auto Shortcut::property_action() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ShortcutAction> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ShortcutAction> >(this, "action");
+  return {this, "action"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantBase>::value,
@@ -213,12 +209,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantBase>::
 
 auto Shortcut::property_arguments() -> Glib::PropertyProxy< Glib::VariantBase >
 {
-  return Glib::PropertyProxy< Glib::VariantBase >(this, "arguments");
+  return {this, "arguments"};
 }
 
 auto Shortcut::property_arguments() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantBase >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::VariantBase >(this, "arguments");
+  return {this, "arguments"};
 }
 
 

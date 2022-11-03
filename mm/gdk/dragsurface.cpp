@@ -33,9 +33,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GdkDragSurface* object, bool take_copy) -> Glib::RefPtr<Gdk::DragSurface>
+auto wrap(GdkDragSurface* object, const bool take_copy) -> RefPtr<Gdk::DragSurface>
 {
-  return Glib::make_refptr_for_instance<Gdk::DragSurface>( dynamic_cast<Gdk::DragSurface*> (Glib::wrap_auto_interface<Gdk::DragSurface> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gdk::DragSurface>( Glib::wrap_auto_interface<Gdk::DragSurface> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -48,7 +48,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-auto DragSurface_Class::init() -> const Glib::Interface_Class&
+auto DragSurface_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -77,42 +77,40 @@ auto DragSurface_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto DragSurface_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new DragSurface((GdkDragSurface*)(object));
+  return new DragSurface((GdkDragSurface*)object);
 }
 
 
 /* The implementation: */
 
 DragSurface::DragSurface()
-:
-  Glib::Interface(dragsurface_class_.init())
+: Interface(dragsurface_class_.init())
 {}
 
 DragSurface::DragSurface(GdkDragSurface* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 DragSurface::DragSurface(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 DragSurface::DragSurface(DragSurface&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto DragSurface::operator=(DragSurface&& src) noexcept -> DragSurface&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-DragSurface::~DragSurface() noexcept
-{}
+DragSurface::~DragSurface() noexcept = default;
 
 // static
-auto DragSurface::add_interface (GType gtype_implementer) -> void
+auto DragSurface::add_interface (
+  const GType gtype_implementer) -> void
 {
   dragsurface_class_.init().add_interface(gtype_implementer);
 }
@@ -131,7 +129,8 @@ auto DragSurface::get_base_type() -> GType
 }
 
 
-auto DragSurface::present(int width, int height) -> bool
+auto DragSurface::present(
+  const int width, const int height) -> bool
 {
   return gdk_drag_surface_present(gobj(), width, height);
 }

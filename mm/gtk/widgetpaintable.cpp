@@ -43,9 +43,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkWidgetPaintable* object, bool take_copy) -> Glib::RefPtr<Gtk::WidgetPaintable>
+auto wrap(GtkWidgetPaintable* object, const bool take_copy) -> RefPtr<Gtk::WidgetPaintable>
 {
-  return Glib::make_refptr_for_instance<Gtk::WidgetPaintable>( dynamic_cast<Gtk::WidgetPaintable*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::WidgetPaintable>( dynamic_cast<Gtk::WidgetPaintable*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -58,7 +58,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto WidgetPaintable_Class::init() -> const Glib::Class&
+auto WidgetPaintable_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -98,34 +98,31 @@ auto WidgetPaintable::gobj_copy() -> GtkWidgetPaintable*
 }
 
 WidgetPaintable::WidgetPaintable(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 WidgetPaintable::WidgetPaintable(GtkWidgetPaintable* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 WidgetPaintable::WidgetPaintable(WidgetPaintable&& src) noexcept
-: Glib::Object(std::move(src))
-  , Gdk::Paintable(std::move(src))
+: Object(std::move(src))
+  ,
+  Paintable(std::move(src))
 {}
 
 auto WidgetPaintable::operator=(WidgetPaintable&& src) noexcept -> WidgetPaintable&
 {
-  Glib::Object::operator=(std::move(src));
-  Gdk::Paintable::operator=(std::move(src));
+  Object::operator=(std::move(src));
+  Paintable::operator=(std::move(src));
   return *this;
 }
 
 
-WidgetPaintable::~WidgetPaintable() noexcept
-{}
-
+WidgetPaintable::~WidgetPaintable() noexcept = default;
 
 WidgetPaintable::CppClassType WidgetPaintable::widgetpaintable_class_; // initialize static member
 
@@ -144,8 +141,8 @@ auto WidgetPaintable::get_base_type() -> GType
 WidgetPaintable::WidgetPaintable()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(widgetpaintable_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(widgetpaintable_class_.init()))
 {
 
 
@@ -154,8 +151,8 @@ WidgetPaintable::WidgetPaintable()
 WidgetPaintable::WidgetPaintable(Widget& widget)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(widgetpaintable_class_.init(), "widget", (widget).gobj(), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(widgetpaintable_class_.init(), "widget", widget.gobj(), nullptr))
 {
 
 
@@ -183,18 +180,18 @@ auto WidgetPaintable::get_widget() const -> const Widget*
 
 auto WidgetPaintable::set_widget (Widget &widget) -> void
 {
-  gtk_widget_paintable_set_widget(gobj(), (widget).gobj());
+  gtk_widget_paintable_set_widget(gobj(), widget.gobj());
 }
 
 
 auto WidgetPaintable::property_widget() -> Glib::PropertyProxy< Widget* >
 {
-  return Glib::PropertyProxy< Widget* >(this, "widget");
+  return {this, "widget"};
 }
 
 auto WidgetPaintable::property_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "widget");
+  return {this, "widget"};
 }
 
 

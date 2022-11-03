@@ -35,7 +35,7 @@ namespace
 } // anonymous namespace
 
 
-Gio::Error::Error(Gio::Error::Code error_code, const Glib::ustring& error_message)
+Gio::Error::Error(const Code error_code, const Glib::ustring& error_message)
 :
   Glib::Error (G_IO_ERROR, error_code, error_message)
 {}
@@ -45,56 +45,52 @@ Gio::Error::Error(GError* gobject)
   Glib::Error (gobject)
 {}
 
-auto Gio::Error::code() const -> Gio::Error::Code
+auto Gio::Error::code() const -> Code
 {
   return static_cast<Code>(Glib::Error::code());
 }
 
 auto Gio::Error::throw_func (GError *gobject) -> void
 {
-  throw Gio::Error(gobject);
+  throw Error(gobject);
 }
 
 
-Gio::ResolverError::ResolverError(Gio::ResolverError::Code error_code, const Glib::ustring& error_message)
-:
-  Glib::Error (G_RESOLVER_ERROR, error_code, error_message)
+Gio::ResolverError::ResolverError(const Code error_code, const Glib::ustring& error_message)
+: Error(G_RESOLVER_ERROR, error_code, error_message)
 {}
 
 Gio::ResolverError::ResolverError(GError* gobject)
-:
-  Glib::Error (gobject)
+: Error(gobject)
 {}
 
-auto Gio::ResolverError::code() const -> Gio::ResolverError::Code
+auto Gio::ResolverError::code() const -> Code
 {
-  return static_cast<Code>(Glib::Error::code());
+  return static_cast<Code>(Error::code());
 }
 
 auto Gio::ResolverError::throw_func (GError *gobject) -> void
 {
-  throw Gio::ResolverError(gobject);
+  throw ResolverError(gobject);
 }
 
 
-Gio::TlsError::TlsError(Gio::TlsError::Code error_code, const Glib::ustring& error_message)
-:
-  Glib::Error (G_TLS_ERROR, error_code, error_message)
+Gio::TlsError::TlsError(const Code error_code, const Glib::ustring& error_message)
+: Error(G_TLS_ERROR, error_code, error_message)
 {}
 
 Gio::TlsError::TlsError(GError* gobject)
-:
-  Glib::Error (gobject)
+: Error(gobject)
 {}
 
-auto Gio::TlsError::code() const -> Gio::TlsError::Code
+auto Gio::TlsError::code() const -> Code
 {
-  return static_cast<Code>(Glib::Error::code());
+  return static_cast<Code>(Error::code());
 }
 
 auto Gio::TlsError::throw_func (GError *gobject) -> void
 {
-  throw Gio::TlsError(gobject);
+  throw TlsError(gobject);
 }
 
 

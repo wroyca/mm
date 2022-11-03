@@ -32,12 +32,13 @@
 namespace Pango
 {
 
-TabArray::TabArray(int initial_size, bool positions_in_pixels)
+TabArray::TabArray(const int initial_size, const bool positions_in_pixels)
 {
-  gobject_ = pango_tab_array_new(initial_size, (gboolean)positions_in_pixels);
+  gobject_ = pango_tab_array_new(initial_size, positions_in_pixels);
 }
 
-auto TabArray::get_tab(int tab_index) const -> std::pair<TabAlign,int>
+auto TabArray::get_tab(
+  const int tab_index) const -> std::pair<TabAlign,int>
 {
   PangoTabAlign p_alignment;
   TabAlign alignment;
@@ -69,7 +70,7 @@ auto TabArray::get_tabs() const -> std::vector<std::pair<TabAlign,int>>
 
       for(int i = 0; i < size; ++i)
       {
-        pair_buffer[i].first  = (TabAlign)(pAlignments[i]);
+        pair_buffer[i].first  = (TabAlign)pAlignments[i];
         pair_buffer[i].second = pLocations[i];
       }
     }
@@ -98,7 +99,7 @@ auto Glib::Value<Pango::TabAlign>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(PangoTabArray* object, bool take_copy) -> Pango::TabArray
+auto wrap(PangoTabArray* object, const bool take_copy) -> Pango::TabArray
 {
   return Pango::TabArray(object, take_copy);
 }
@@ -123,7 +124,7 @@ TabArray::TabArray()
 
 TabArray::TabArray(const TabArray& other)
 :
-  gobject_ ((other.gobject_) ? pango_tab_array_copy(other.gobject_) : nullptr)
+  gobject_ (other.gobject_ ? pango_tab_array_copy(other.gobject_) : nullptr)
 {}
 
 TabArray::TabArray(TabArray&& other) noexcept
@@ -140,12 +141,12 @@ auto TabArray::operator=(TabArray&& other) noexcept -> TabArray&
   return *this;
 }
 
-TabArray::TabArray(PangoTabArray* gobject, bool make_a_copy)
+TabArray::TabArray(PangoTabArray* gobject, const bool make_a_copy)
 :
   // For BoxedType wrappers, make_a_copy is true by default.  The static
   // BoxedType wrappers must always take a copy, thus make_a_copy = true
   // ensures identical behaviour if the default argument is used.
-  gobject_ ((make_a_copy && gobject) ? pango_tab_array_copy(gobject) : gobject)
+  gobject_ (make_a_copy && gobject ? pango_tab_array_copy(gobject) : gobject)
 {}
 
 auto TabArray::operator=(const TabArray& other) -> TabArray&
@@ -177,12 +178,14 @@ auto TabArray::get_size() const -> int
   return pango_tab_array_get_size(const_cast<PangoTabArray*>(gobj()));
 }
 
-auto TabArray::resize (int new_size) -> void
+auto TabArray::resize (
+  const int new_size) -> void
 {
   pango_tab_array_resize(gobj(), new_size);
 }
 
-auto TabArray::set_tab (int tab_index, TabAlign alignment, int location) -> void
+auto TabArray::set_tab (
+  const int tab_index, TabAlign alignment, const int location) -> void
 {
   pango_tab_array_set_tab(gobj(), tab_index, static_cast<PangoTabAlign>(alignment), location);
 }

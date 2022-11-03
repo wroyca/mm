@@ -23,7 +23,7 @@ namespace Container_Helpers
 {
 
 auto
-create_bool_array(std::vector<bool>::const_iterator pbegin, std::size_t size) -> gboolean*
+create_bool_array(std::vector<bool>::const_iterator pbegin, const std::size_t size) -> gboolean*
 {
   gboolean* const array(static_cast<gboolean*>(g_malloc((size + 1) * sizeof(gboolean))));
   gboolean* const array_end(array + size);
@@ -43,8 +43,8 @@ create_bool_array(std::vector<bool>::const_iterator pbegin, std::size_t size) ->
 /**** Glib::ArrayHandler<bool> ************************/
 
 auto
-ArrayHandler<bool, Glib::Container_Helpers::TypeTraits<bool>>::array_to_vector(
-  const CType* array, std::size_t array_size, Glib::OwnershipType ownership) -> ArrayHandler<bool, Glib::Container_Helpers::TypeTraits<bool>>::VectorType
+ArrayHandler<bool, Container_Helpers::TypeTraits<bool>>::array_to_vector(
+  const CType* array, std::size_t array_size, const OwnershipType ownership) -> VectorType
 {
   if (array)
   {
@@ -60,22 +60,23 @@ ArrayHandler<bool, Glib::Container_Helpers::TypeTraits<bool>>::array_to_vector(
     return temp;
 #endif
   }
-  return VectorType();
+  return {};
 }
 
 auto
-ArrayHandler<bool, Glib::Container_Helpers::TypeTraits<bool>>::array_to_vector(
-  const CType* array, Glib::OwnershipType ownership) -> ArrayHandler<bool, Glib::Container_Helpers::TypeTraits<bool>>::VectorType
+ArrayHandler<bool, Container_Helpers::TypeTraits<bool>>::array_to_vector(
+  const CType* array, const OwnershipType ownership) -> VectorType
 {
-  return array_to_vector(array, Glib::Container_Helpers::compute_array_size2(array), ownership);
+  return array_to_vector(array, Container_Helpers::compute_array_size2(array), ownership);
 }
 
 auto
-ArrayHandler<bool, Glib::Container_Helpers::TypeTraits<bool>>::vector_to_array(
-  const VectorType& vector) -> ArrayHandler<bool, Glib::Container_Helpers::TypeTraits<bool>>::ArrayKeeperType
+ArrayHandler<bool, Container_Helpers::TypeTraits<bool>>::vector_to_array(
+  const VectorType& vector) -> ArrayKeeperType
 {
-  return ArrayKeeperType(Glib::Container_Helpers::create_bool_array(vector.begin(), vector.size()),
-    vector.size(), Glib::OWNERSHIP_SHALLOW);
+  return ArrayKeeperType(
+    Container_Helpers::create_bool_array(vector.begin(), vector.size()),
+    vector.size(), OWNERSHIP_SHALLOW);
 }
 
 } // namespace Glib

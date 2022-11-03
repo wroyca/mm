@@ -34,9 +34,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkColumnViewColumn* object, bool take_copy) -> Glib::RefPtr<Gtk::ColumnViewColumn>
+auto wrap(GtkColumnViewColumn* object, const bool take_copy) -> RefPtr<Gtk::ColumnViewColumn>
 {
-  return Glib::make_refptr_for_instance<Gtk::ColumnViewColumn>( dynamic_cast<Gtk::ColumnViewColumn*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::ColumnViewColumn>( dynamic_cast<Gtk::ColumnViewColumn*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -49,7 +49,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto ColumnViewColumn_Class::init() -> const Glib::Class&
+auto ColumnViewColumn_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -95,32 +95,28 @@ auto ColumnViewColumn::gobj_copy() -> GtkColumnViewColumn*
 }
 
 ColumnViewColumn::ColumnViewColumn(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 ColumnViewColumn::ColumnViewColumn(GtkColumnViewColumn* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 ColumnViewColumn::ColumnViewColumn(ColumnViewColumn&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto ColumnViewColumn::operator=(ColumnViewColumn&& src) noexcept -> ColumnViewColumn&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-ColumnViewColumn::~ColumnViewColumn() noexcept
-{}
-
+ColumnViewColumn::~ColumnViewColumn() noexcept = default;
 
 ColumnViewColumn::CppClassType ColumnViewColumn::columnviewcolumn_class_; // initialize static member
 
@@ -139,8 +135,8 @@ auto ColumnViewColumn::get_base_type() -> GType
 ColumnViewColumn::ColumnViewColumn(const Glib::ustring& title, const Glib::RefPtr<ListItemFactory>& factory)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(columnviewcolumn_class_.init(), "title", title.c_str(), "factory", Glib::unwrap(factory), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(columnviewcolumn_class_.init(), "title", title.c_str(), "factory", Glib::unwrap(factory), nullptr))
 {
 
 
@@ -207,9 +203,10 @@ auto ColumnViewColumn::get_sorter() const -> Glib::RefPtr<const Sorter>
   return const_cast<ColumnViewColumn*>(this)->get_sorter();
 }
 
-auto ColumnViewColumn::set_visible (bool visible) -> void
+auto ColumnViewColumn::set_visible (
+  const bool visible) -> void
 {
-  gtk_column_view_column_set_visible(gobj(), static_cast<int>(visible));
+  gtk_column_view_column_set_visible(gobj(), visible);
 }
 
 auto ColumnViewColumn::get_visible() const -> bool
@@ -235,7 +232,8 @@ auto ColumnViewColumn::get_header_menu() const -> Glib::RefPtr<const Gio::MenuMo
   return const_cast<ColumnViewColumn*>(this)->get_header_menu();
 }
 
-auto ColumnViewColumn::set_fixed_width (int fixed_width) -> void
+auto ColumnViewColumn::set_fixed_width (
+  const int fixed_width) -> void
 {
   gtk_column_view_column_set_fixed_width(gobj(), fixed_width);
 }
@@ -245,9 +243,10 @@ auto ColumnViewColumn::get_fixed_width() const -> int
   return gtk_column_view_column_get_fixed_width(const_cast<GtkColumnViewColumn*>(gobj()));
 }
 
-auto ColumnViewColumn::set_resizable (bool resizable) -> void
+auto ColumnViewColumn::set_resizable (
+  const bool resizable) -> void
 {
-  gtk_column_view_column_set_resizable(gobj(), static_cast<int>(resizable));
+  gtk_column_view_column_set_resizable(gobj(), resizable);
 }
 
 auto ColumnViewColumn::get_resizable() const -> bool
@@ -255,9 +254,10 @@ auto ColumnViewColumn::get_resizable() const -> bool
   return gtk_column_view_column_get_resizable(const_cast<GtkColumnViewColumn*>(gobj()));
 }
 
-auto ColumnViewColumn::set_expand (bool expand) -> void
+auto ColumnViewColumn::set_expand (
+  const bool expand) -> void
 {
-  gtk_column_view_column_set_expand(gobj(), static_cast<int>(expand));
+  gtk_column_view_column_set_expand(gobj(), expand);
 }
 
 auto ColumnViewColumn::get_expand() const -> bool
@@ -272,7 +272,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<ColumnView*>::value,
 
 auto ColumnViewColumn::property_column_view() const -> Glib::PropertyProxy_ReadOnly< ColumnView* >
 {
-  return Glib::PropertyProxy_ReadOnly< ColumnView* >(this, "column-view");
+  return {this, "column-view"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<ListItemFactory>>::value,
@@ -281,22 +281,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<ListIte
 
 auto ColumnViewColumn::property_factory() -> Glib::PropertyProxy< Glib::RefPtr<ListItemFactory> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<ListItemFactory> >(this, "factory");
+  return {this, "factory"};
 }
 
 auto ColumnViewColumn::property_factory() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListItemFactory> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListItemFactory> >(this, "factory");
+  return {this, "factory"};
 }
 
 auto ColumnViewColumn::property_title() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 auto ColumnViewColumn::property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Sorter>>::value,
@@ -305,22 +305,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Sorter>
 
 auto ColumnViewColumn::property_sorter() -> Glib::PropertyProxy< Glib::RefPtr<Sorter> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Sorter> >(this, "sorter");
+  return {this, "sorter"};
 }
 
 auto ColumnViewColumn::property_sorter() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Sorter> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Sorter> >(this, "sorter");
+  return {this, "sorter"};
 }
 
 auto ColumnViewColumn::property_visible() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "visible");
+  return {this, "visible"};
 }
 
 auto ColumnViewColumn::property_visible() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "visible");
+  return {this, "visible"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::MenuModel>>::value,
@@ -329,42 +329,42 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Me
 
 auto ColumnViewColumn::property_header_menu() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >(this, "header-menu");
+  return {this, "header-menu"};
 }
 
 auto ColumnViewColumn::property_header_menu() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >(this, "header-menu");
+  return {this, "header-menu"};
 }
 
 auto ColumnViewColumn::property_resizable() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "resizable");
+  return {this, "resizable"};
 }
 
 auto ColumnViewColumn::property_resizable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "resizable");
+  return {this, "resizable"};
 }
 
 auto ColumnViewColumn::property_expand() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "expand");
+  return {this, "expand"};
 }
 
 auto ColumnViewColumn::property_expand() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "expand");
+  return {this, "expand"};
 }
 
 auto ColumnViewColumn::property_fixed_width() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "fixed-width");
+  return {this, "fixed-width"};
 }
 
 auto ColumnViewColumn::property_fixed_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "fixed-width");
+  return {this, "fixed-width"};
 }
 
 

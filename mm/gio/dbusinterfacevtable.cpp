@@ -42,15 +42,15 @@ static auto DBusInterfaceVTable_MethodCall_giomm_callback (
   const char *object_path, const char *interface_name, const char *method_name,
   GVariant *parameters, GDBusMethodInvocation *invocation, void *user_data) -> void
 {
-  Gio::DBus::InterfaceVTable* vtable = static_cast<Gio::DBus::InterfaceVTable*>(user_data);
+  const Gio::DBus::InterfaceVTable* vtable = static_cast<Gio::DBus::InterfaceVTable*>(user_data);
 
-  Gio::DBus::InterfaceVTable::SlotInterfaceMethodCall* the_slot = vtable->get_slot_method_call();
+  const Gio::DBus::InterfaceVTable::SlotInterfaceMethodCall* the_slot = vtable->get_slot_method_call();
 
   try
   {
     // Note that we use VariantContainerBase instead of VariantBase for the
     // GVariant, because it is documented as being a tuple (list of values).
-    (*the_slot)(Glib::wrap(connection, true), (sender ? sender : ""), object_path, interface_name,
+    (*the_slot)(Glib::wrap(connection, true), sender ? sender : "", object_path, interface_name,
       method_name, Glib::VariantContainerBase(parameters, true), Glib::wrap(invocation, true));
   }
   catch (...)
@@ -64,9 +64,9 @@ DBusInterfaceVTable_GetProperty_giomm_callback(GDBusConnection* connection, cons
   const char* object_path, const char* interface_name, const char* property_name, GError** error,
   void* user_data) -> GVariant*
 {
-  Gio::DBus::InterfaceVTable* vtable = static_cast<Gio::DBus::InterfaceVTable*>(user_data);
+  const Gio::DBus::InterfaceVTable* vtable = static_cast<Gio::DBus::InterfaceVTable*>(user_data);
 
-  Gio::DBus::InterfaceVTable::SlotInterfaceGetProperty* the_slot = vtable->get_slot_get_property();
+  const Gio::DBus::InterfaceVTable::SlotInterfaceGetProperty* the_slot = vtable->get_slot_get_property();
 
   try
   {
@@ -94,14 +94,14 @@ DBusInterfaceVTable_SetProperty_giomm_callback(GDBusConnection* connection, cons
   const char* object_path, const char* interface_name, const char* property_name, GVariant* value,
   GError** error, void* user_data) -> gboolean
 {
-  Gio::DBus::InterfaceVTable* vtable = static_cast<Gio::DBus::InterfaceVTable*>(user_data);
+  const Gio::DBus::InterfaceVTable* vtable = static_cast<Gio::DBus::InterfaceVTable*>(user_data);
 
-  Gio::DBus::InterfaceVTable::SlotInterfaceSetProperty* the_slot = vtable->get_slot_set_property();
+  const Gio::DBus::InterfaceVTable::SlotInterfaceSetProperty* the_slot = vtable->get_slot_set_property();
 
   try
   {
-    return static_cast<gboolean>((*the_slot)(Glib::wrap(connection, true), sender, object_path,
-      interface_name, property_name, Glib::VariantBase(value, true)));
+    return (*the_slot)(Glib::wrap(connection, true), sender, object_path,
+                       interface_name, property_name, Glib::VariantBase(value, true));
   }
   catch (const Glib::Error& ex)
   {
@@ -172,19 +172,19 @@ InterfaceVTable::~InterfaceVTable()
 }
 
 auto
-InterfaceVTable::get_slot_method_call() const -> InterfaceVTable::SlotInterfaceMethodCall*
+InterfaceVTable::get_slot_method_call() const -> SlotInterfaceMethodCall*
 {
   return slot_method_call_;
 }
 
 auto
-InterfaceVTable::get_slot_get_property() const -> InterfaceVTable::SlotInterfaceGetProperty*
+InterfaceVTable::get_slot_get_property() const -> SlotInterfaceGetProperty*
 {
   return slot_get_property_;
 }
 
 auto
-InterfaceVTable::get_slot_set_property() const -> InterfaceVTable::SlotInterfaceSetProperty*
+InterfaceVTable::get_slot_set_property() const -> SlotInterfaceSetProperty*
 {
   return slot_set_property_;
 }

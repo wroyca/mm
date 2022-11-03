@@ -17,13 +17,13 @@ public:
   using CppObjectType = Picture;
   using BaseObjectType = GtkPicture;
   using BaseClassType = GtkPictureClass;
-  using CppClassParent = Gtk::Widget_Class;
+  using CppClassParent = Widget_Class;
   using BaseClassParent = GtkWidgetClass;
 
   friend class Picture;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

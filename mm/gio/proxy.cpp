@@ -40,7 +40,7 @@ auto Proxy::connect_async (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_proxy_connect_async(gobj(), Glib::unwrap(connection),
     const_cast<GProxyAddress*>(Glib::unwrap(proxy_address)), Glib::unwrap(cancellable),
@@ -54,7 +54,7 @@ auto Proxy::connect_async (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_proxy_connect_async(gobj(), Glib::unwrap(connection),
     const_cast<GProxyAddress*>(Glib::unwrap(proxy_address)), nullptr, &SignalProxy_async_callback,
@@ -71,9 +71,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GProxy* object, bool take_copy) -> Glib::RefPtr<Gio::Proxy>
+auto wrap(GProxy* object, const bool take_copy) -> RefPtr<Gio::Proxy>
 {
-  return Glib::make_refptr_for_instance<Gio::Proxy>( dynamic_cast<Gio::Proxy*> (Glib::wrap_auto_interface<Gio::Proxy> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::Proxy>( Glib::wrap_auto_interface<Gio::Proxy> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -86,7 +86,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto Proxy_Class::init() -> const Glib::Interface_Class&
+auto Proxy_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -115,42 +115,40 @@ auto Proxy_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto Proxy_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new Proxy((GProxy*)(object));
+  return new Proxy((GProxy*)object);
 }
 
 
 /* The implementation: */
 
 Proxy::Proxy()
-:
-  Glib::Interface(proxy_class_.init())
+: Interface(proxy_class_.init())
 {}
 
 Proxy::Proxy(GProxy* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 Proxy::Proxy(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 Proxy::Proxy(Proxy&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto Proxy::operator=(Proxy&& src) noexcept -> Proxy&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-Proxy::~Proxy() noexcept
-{}
+Proxy::~Proxy() noexcept = default;
 
 // static
-auto Proxy::add_interface (GType gtype_implementer) -> void
+auto Proxy::add_interface (
+  const GType gtype_implementer) -> void
 {
   proxy_class_.init().add_interface(gtype_implementer);
 }
@@ -177,18 +175,18 @@ auto Proxy::get_default_for_protocol(const Glib::ustring& protocol) -> Glib::Ref
 auto Proxy::connect(const Glib::RefPtr<IOStream>& connection, const Glib::RefPtr<const ProxyAddress>& proxy_address, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<IOStream>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_proxy_connect(gobj(), Glib::unwrap(connection), const_cast<GProxyAddress*>(Glib::unwrap(proxy_address)), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
+  auto retvalue = Glib::wrap(g_proxy_connect(gobj(), Glib::unwrap(connection), const_cast<GProxyAddress*>(Glib::unwrap(proxy_address)), Glib::unwrap(cancellable), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto Proxy::connect_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<IOStream>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_proxy_connect_finish(gobj(), Glib::unwrap(result), &(gerror)));
+  auto retvalue = Glib::wrap(g_proxy_connect_finish(gobj(), Glib::unwrap(result), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 

@@ -39,9 +39,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GDBusMenuModel* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::MenuModel>
+auto wrap(GDBusMenuModel* object, const bool take_copy) -> RefPtr<Gio::DBus::MenuModel>
 {
-  return Glib::make_refptr_for_instance<Gio::DBus::MenuModel>( dynamic_cast<Gio::DBus::MenuModel*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::DBus::MenuModel>( dynamic_cast<Gio::DBus::MenuModel*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -54,7 +54,7 @@ namespace Gio::DBus
 
 /* The *_Class implementation: */
 
-auto MenuModel_Class::init() -> const Glib::Class&
+auto MenuModel_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -100,32 +100,28 @@ auto MenuModel::gobj_copy() -> GDBusMenuModel*
 }
 
 MenuModel::MenuModel(const Glib::ConstructParams& construct_params)
-:
-  ::Gio::MenuModel(construct_params)
+: Gio::MenuModel(construct_params)
 {
 
 }
 
 MenuModel::MenuModel(GDBusMenuModel* castitem)
-:
-  ::Gio::MenuModel((GMenuModel*)(castitem))
+: Gio::MenuModel((GMenuModel*)castitem)
 {}
 
 
 MenuModel::MenuModel(MenuModel&& src) noexcept
-: ::Gio::MenuModel(std::move(src))
+: Gio::MenuModel(std::move(src))
 {}
 
 auto MenuModel::operator=(MenuModel&& src) noexcept -> MenuModel&
 {
-  ::Gio::MenuModel::operator=(std::move(src));
+  Gio::MenuModel::operator=(std::move(src));
   return *this;
 }
 
 
-MenuModel::~MenuModel() noexcept
-{}
-
+MenuModel::~MenuModel() noexcept = default;
 
 MenuModel::CppClassType MenuModel::menumodel_class_; // initialize static member
 
@@ -144,8 +140,8 @@ auto MenuModel::get_base_type() -> GType
 MenuModel::MenuModel()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  ::Gio::MenuModel(Glib::ConstructParams(menumodel_class_.init()))
+ObjectBase(nullptr),
+Gio::MenuModel(Glib::ConstructParams(menumodel_class_.init()))
 {
 
 

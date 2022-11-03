@@ -17,7 +17,7 @@ namespace Adw
     adw_init();
   }
 
-  auto Application::create(const Glib::ustring &application_id, Gio::Application::Flags flags) -> Glib::RefPtr<Application>
+  auto Application::create(const Glib::ustring &application_id, const Gio::Application::Flags flags) -> Glib::RefPtr<Application>
   {
     return Glib::RefPtr<Application>(new Application(application_id, flags));
   }

@@ -32,23 +32,23 @@
 namespace Gtk
 {
 
-ScaleButton::ScaleButton(double min, double max, double step, const std::vector<Glib::ustring>& icons)
+ScaleButton::ScaleButton(const double min, const double max, const double step, const std::vector<Glib::ustring>& icons)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(scalebutton_class_.init(), "icons",Glib::ArrayHandler<Glib::ustring>::vector_to_array(icons).data(),nullptr, nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(scalebutton_class_.init(), "icons",Glib::ArrayHandler<Glib::ustring>::vector_to_array(icons).data(),nullptr, nullptr))
 {
-  auto adjustment = Adjustment::create(min, min, max, step, 10 * step, 0);
+  const auto adjustment = Adjustment::create(min, min, max, step, 10 * step, 0);
   set_adjustment(adjustment);
 }
 
-ScaleButton::ScaleButton(double min, double max, double step)
+ScaleButton::ScaleButton(const double min, const double max, const double step)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(scalebutton_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(scalebutton_class_.init()))
 {
-  auto adjustment = Adjustment::create(min, min, max, step, 10 * step, 0);
+  const auto adjustment = Adjustment::create(min, min, max, step, 10 * step, 0);
   set_adjustment(adjustment);
 }
 
@@ -60,12 +60,12 @@ namespace
 
 
 auto ScaleButton_signal_value_changed_callback (
-  GtkScaleButton *self, gdouble p0, void *data) -> void
+  GtkScaleButton *self, const gdouble p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double)>;
 
-  auto obj = dynamic_cast<ScaleButton*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<ScaleButton*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -96,9 +96,9 @@ const Glib::SignalProxyInfo ScaleButton_signal_value_changed_info =
 namespace Glib
 {
 
-auto wrap(GtkScaleButton* object, bool take_copy) -> Gtk::ScaleButton*
+auto wrap(GtkScaleButton* object, const bool take_copy) -> Gtk::ScaleButton*
 {
-  return dynamic_cast<Gtk::ScaleButton *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::ScaleButton *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -109,7 +109,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto ScaleButton_Class::init() -> const Glib::Class&
+auto ScaleButton_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -142,10 +142,9 @@ auto ScaleButton_Class::class_init_function (void *g_class, void *class_data) ->
 }
 
 
-auto ScaleButton_Class::value_changed_callback (GtkScaleButton *self, gdouble p0) -> void
+auto ScaleButton_Class::value_changed_callback (GtkScaleButton *self, const gdouble p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -183,7 +182,7 @@ auto ScaleButton_Class::value_changed_callback (GtkScaleButton *self, gdouble p0
 
 auto ScaleButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new ScaleButton((GtkScaleButton*)(o)));
+  return manage(new ScaleButton((GtkScaleButton*)o));
 
 }
 
@@ -191,26 +190,24 @@ auto ScaleButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 ScaleButton::ScaleButton(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 ScaleButton::ScaleButton(GtkScaleButton* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 ScaleButton::ScaleButton(ScaleButton&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
   , Orientable(std::move(src))
 {}
 
 auto ScaleButton::operator=(ScaleButton&& src) noexcept -> ScaleButton&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   Orientable::operator=(std::move(src));
   return *this;
 }
@@ -244,7 +241,8 @@ auto ScaleButton::get_value() const -> double
   return gtk_scale_button_get_value(const_cast<GtkScaleButton*>(gobj()));
 }
 
-auto ScaleButton::set_value (double value) -> void
+auto ScaleButton::set_value (
+  const double value) -> void
 {
   gtk_scale_button_set_value(gobj(), value);
 }
@@ -269,7 +267,7 @@ auto ScaleButton::set_adjustment (const Glib::RefPtr <Adjustment> &adjustment) -
 
 auto ScaleButton::get_plus_button() -> Button*
 {
-  return Glib::wrap((GtkButton*)(gtk_scale_button_get_plus_button(gobj())));
+  return Glib::wrap((GtkButton*)gtk_scale_button_get_plus_button(gobj()));
 }
 
 auto ScaleButton::get_plus_button() const -> const Button*
@@ -279,7 +277,7 @@ auto ScaleButton::get_plus_button() const -> const Button*
 
 auto ScaleButton::get_minus_button() -> Button*
 {
-  return Glib::wrap((GtkButton*)(gtk_scale_button_get_minus_button(gobj())));
+  return Glib::wrap((GtkButton*)gtk_scale_button_get_minus_button(gobj()));
 }
 
 auto ScaleButton::get_minus_button() const -> const Button*
@@ -287,12 +285,12 @@ auto ScaleButton::get_minus_button() const -> const Button*
   return const_cast<ScaleButton*>(this)->get_minus_button();
 }
 
-auto ScaleButton::get_popup() -> Gtk::Widget*
+auto ScaleButton::get_popup() -> Widget*
 {
   return Glib::wrap(gtk_scale_button_get_popup(gobj()));
 }
 
-auto ScaleButton::get_popup() const -> const Gtk::Widget*
+auto ScaleButton::get_popup() const -> const Widget*
 {
   return Glib::wrap(gtk_scale_button_get_popup(const_cast<GtkScaleButton*>(gobj())));
 }
@@ -300,18 +298,18 @@ auto ScaleButton::get_popup() const -> const Gtk::Widget*
 
 auto ScaleButton::signal_value_changed() -> Glib::SignalProxy<void(double)>
 {
-  return Glib::SignalProxy<void(double) >(this, &ScaleButton_signal_value_changed_info);
+  return {this, &ScaleButton_signal_value_changed_info};
 }
 
 
 auto ScaleButton::property_value() -> Glib::PropertyProxy< double >
 {
-  return Glib::PropertyProxy< double >(this, "value");
+  return {this, "value"};
 }
 
 auto ScaleButton::property_value() const -> Glib::PropertyProxy_ReadOnly< double >
 {
-  return Glib::PropertyProxy_ReadOnly< double >(this, "value");
+  return {this, "value"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Adjustment>>::value,
@@ -320,12 +318,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Adjustm
 
 auto ScaleButton::property_adjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Adjustment> >(this, "adjustment");
+  return {this, "adjustment"};
 }
 
 auto ScaleButton::property_adjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >(this, "adjustment");
+  return {this, "adjustment"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<std::vector<Glib::ustring>>::value,
@@ -334,16 +332,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<std::vector<Glib::us
 
 auto ScaleButton::property_icons() -> Glib::PropertyProxy< std::vector<Glib::ustring> >
 {
-  return Glib::PropertyProxy< std::vector<Glib::ustring> >(this, "icons");
+  return {this, "icons"};
 }
 
 auto ScaleButton::property_icons() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >
 {
-  return Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >(this, "icons");
+  return {this, "icons"};
 }
 
 
-auto Gtk::ScaleButton::on_value_changed (double value) -> void
+auto ScaleButton::on_value_changed (
+  const double value) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

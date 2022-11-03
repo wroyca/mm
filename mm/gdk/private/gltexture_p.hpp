@@ -17,13 +17,13 @@ public:
   using CppObjectType = GLTexture;
   using BaseObjectType = GdkGLTexture;
   using BaseClassType = GdkGLTextureClass;
-  using CppClassParent = Gdk::Texture_Class;
+  using CppClassParent = Texture_Class;
   using BaseClassParent = GdkTextureClass;
 
   friend class GLTexture;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

@@ -67,17 +67,9 @@ namespace Pango
 {
 
 
-Color::Color(const Color& other) noexcept
-:
-  gobject_(other.gobject_)
-{
-}
+Color::Color(const Color& other) noexcept = default;
 
-auto Color::operator=(const Color& other) noexcept -> Color&
-{
-  gobject_ = other.gobject_;
-  return *this;
-}
+auto Color::operator=(const Color& other) noexcept -> Color& = default;
 
 Color::Color(Color&& other) noexcept
 :
@@ -151,7 +143,7 @@ auto Color::parse(const Glib::ustring& spec) -> bool
 
 auto Color::to_string() const -> Glib::ustring
 {
-  return Glib::convert_return_gchar_ptr_to_ustring(pango_color_to_string(const_cast<PangoColor*>(gobj())));
+  return Glib::convert_return_gchar_ptr_to_ustring(pango_color_to_string(gobj()));
 }
 
 

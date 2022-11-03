@@ -20,7 +20,7 @@
 namespace Gio
 {
 TlsServerConnectionImpl::TlsServerConnectionImpl(GTlsConnection* castitem)
-: Glib::ObjectBase(nullptr), TlsConnection(castitem)
+: ObjectBase(nullptr), TlsConnection(castitem)
 {}
 
 TlsServerConnectionImpl::TlsServerConnectionImpl(TlsServerConnectionImpl&& src) noexcept
@@ -35,7 +35,5 @@ auto TlsServerConnectionImpl::operator=(TlsServerConnectionImpl&& src) noexcept 
   return *this;
 }
 
-TlsServerConnectionImpl::~TlsServerConnectionImpl() noexcept
-{}
-
+TlsServerConnectionImpl::~TlsServerConnectionImpl() noexcept = default;
 } // namespace Gio

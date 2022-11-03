@@ -41,9 +41,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkPrintContext* object, bool take_copy) -> Glib::RefPtr<Gtk::PrintContext>
+auto wrap(GtkPrintContext* object, const bool take_copy) -> RefPtr<Gtk::PrintContext>
 {
-  return Glib::make_refptr_for_instance<Gtk::PrintContext>( dynamic_cast<Gtk::PrintContext*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::PrintContext>( dynamic_cast<Gtk::PrintContext*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -56,7 +56,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto PrintContext_Class::init() -> const Glib::Class&
+auto PrintContext_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -102,32 +102,28 @@ auto PrintContext::gobj_copy() -> GtkPrintContext*
 }
 
 PrintContext::PrintContext(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 PrintContext::PrintContext(GtkPrintContext* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 PrintContext::PrintContext(PrintContext&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto PrintContext::operator=(PrintContext&& src) noexcept -> PrintContext&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-PrintContext::~PrintContext() noexcept
-{}
-
+PrintContext::~PrintContext() noexcept = default;
 
 PrintContext::CppClassType PrintContext::printcontext_class_; // initialize static member
 
@@ -191,7 +187,7 @@ auto PrintContext::get_dpi_y() const -> double
 
 auto PrintContext::get_hard_margins(double& top, double& bottom, double& left, double& right) const -> bool
 {
-  return gtk_print_context_get_hard_margins(const_cast<GtkPrintContext*>(gobj()), &(top), &(bottom), &(left), &(right));
+  return gtk_print_context_get_hard_margins(const_cast<GtkPrintContext*>(gobj()), &top, &bottom, &left, &right);
 }
 
 auto PrintContext::get_pango_fontmap() -> Glib::RefPtr<Pango::FontMap>
@@ -224,9 +220,9 @@ auto PrintContext::create_pango_layout() -> Glib::RefPtr<Pango::Layout>
 }
 
 auto PrintContext::set_cairo_context (
-  const Cairo::RefPtr <Cairo::Context> &cr, double dpi_x, double dpi_y) -> void
+  const Cairo::RefPtr <Cairo::Context> &cr, const double dpi_x, const double dpi_y) -> void
 {
-  gtk_print_context_set_cairo_context(gobj(), ((cr) ? (cr)->cobj() : nullptr), dpi_x, dpi_y);
+  gtk_print_context_set_cairo_context(gobj(), cr ? cr->cobj() : nullptr, dpi_x, dpi_y);
 }
 
 

@@ -44,7 +44,7 @@ auto FileMonitor_signal_changed_callback (
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<File>&, const Glib::RefPtr<File>&, Event)>;
 
-  auto obj = dynamic_cast<FileMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<FileMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -77,9 +77,9 @@ const Glib::SignalProxyInfo FileMonitor_signal_changed_info =
 namespace Glib
 {
 
-auto wrap(GFileMonitor* object, bool take_copy) -> Glib::RefPtr<Gio::FileMonitor>
+auto wrap(GFileMonitor* object, const bool take_copy) -> RefPtr<Gio::FileMonitor>
 {
-  return Glib::make_refptr_for_instance<Gio::FileMonitor>( dynamic_cast<Gio::FileMonitor*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::FileMonitor>( dynamic_cast<Gio::FileMonitor*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -92,7 +92,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto FileMonitor_Class::init() -> const Glib::Class&
+auto FileMonitor_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -127,8 +127,7 @@ auto FileMonitor_Class::class_init_function (void *g_class, void *class_data) ->
 auto FileMonitor_Class::changed_callback (
   GFileMonitor *self, GFile *p0, GFile *p1, GFileMonitorEvent p2) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -181,32 +180,28 @@ auto FileMonitor::gobj_copy() -> GFileMonitor*
 }
 
 FileMonitor::FileMonitor(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 FileMonitor::FileMonitor(GFileMonitor* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 FileMonitor::FileMonitor(FileMonitor&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto FileMonitor::operator=(FileMonitor&& src) noexcept -> FileMonitor&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-FileMonitor::~FileMonitor() noexcept
-{}
-
+FileMonitor::~FileMonitor() noexcept = default;
 
 FileMonitor::CppClassType FileMonitor::filemonitor_class_; // initialize static member
 
@@ -232,7 +227,8 @@ auto FileMonitor::is_cancelled() const -> bool
   return g_file_monitor_is_cancelled(const_cast<GFileMonitor*>(gobj()));
 }
 
-auto FileMonitor::set_rate_limit (int limit_msecs) -> void
+auto FileMonitor::set_rate_limit (
+  const int limit_msecs) -> void
 {
   g_file_monitor_set_rate_limit(gobj(), limit_msecs);
 }
@@ -240,27 +236,27 @@ auto FileMonitor::set_rate_limit (int limit_msecs) -> void
 
 auto FileMonitor::signal_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<File>&, const Glib::RefPtr<File>&, Event)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<File>&, const Glib::RefPtr<File>&, Event) >(this, &FileMonitor_signal_changed_info);
+  return {this, &FileMonitor_signal_changed_info};
 }
 
 
 auto FileMonitor::property_rate_limit() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "rate-limit");
+  return {this, "rate-limit"};
 }
 
 auto FileMonitor::property_rate_limit() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "rate-limit");
+  return {this, "rate-limit"};
 }
 
 auto FileMonitor::property_cancelled() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "cancelled");
+  return {this, "cancelled"};
 }
 
 
-auto Gio::FileMonitor::on_changed (
+auto FileMonitor::on_changed (
   const Glib::RefPtr <File> &file, const Glib::RefPtr <File> &other_file, Event event_type) -> void
 {
   const auto base = static_cast<BaseClassType*>(

@@ -29,7 +29,7 @@
 namespace Glib
 {
 
-ConstructParams::ConstructParams(const Glib::Class& glibmm_class_)
+ConstructParams::ConstructParams(const Class & glibmm_class_)
 : glibmm_class(glibmm_class_), n_parameters(0), parameter_names(nullptr), parameter_values(nullptr)
 {
 }
@@ -45,7 +45,7 @@ ConstructParams::ConstructParams(const Glib::Class& glibmm_class_)
  * different from g_object_new().
  */
 ConstructParams::ConstructParams(
-  const Glib::Class& glibmm_class_, const char* first_property_name, ...)
+  const Class & glibmm_class_, const char* first_property_name, ...)
 : glibmm_class(glibmm_class_), n_parameters(0), parameter_names(nullptr), parameter_values(nullptr)
 {
   va_list var_args;
@@ -114,7 +114,7 @@ ConstructParams::~ConstructParams() noexcept
 /**** Glib::Object_Class ***************************************************/
 
 auto
-Object_Class::init() -> const Glib::Class&
+Object_Class::init() -> const Class&
 {
   if (!gtype_)
   {
@@ -168,10 +168,10 @@ Object::Object()
   GObject* const new_object = g_object_new_with_properties(object_type, 0, nullptr, nullptr);
 
   // Connect the GObject and Glib::Object instances.
-  ObjectBase::initialize(new_object);
+  initialize(new_object);
 }
 
-Object::Object(const Glib::ConstructParams& construct_params)
+Object::Object(const ConstructParams & construct_params)
 {
   GType object_type = construct_params.glibmm_class.get_type();
 
@@ -196,7 +196,7 @@ Object::Object(const Glib::ConstructParams& construct_params)
     g_object_new_with_properties(object_type, construct_params.n_parameters, construct_params.parameter_names, construct_params.parameter_values);
 
   // Connect the GObject and Glib::Object instances.
-  ObjectBase::initialize(new_object);
+  initialize(new_object);
 }
 
 Object::Object(GObject* castitem)
@@ -222,18 +222,18 @@ Object::Object(GObject* castitem)
   */
 
   // Connect the GObject and Glib::Object instances.
-  ObjectBase::initialize(castitem);
+  initialize(castitem);
 }
 
 Object::Object(Object&& src) noexcept
-  : sigc::trackable(std::move(src)), // not actually called because it's a virtual base
+  : trackable(std::move(src)), // not actually called because it's a virtual base
     ObjectBase(std::move(src)) // not actually called because it's a virtual base
 {
   // Perhaps trackable's move constructor has not been called. Do its job here.
   // (No harm is done if notify_callbacks() is called twice. The second call
   // won't do anything.)
   src.notify_callbacks();
-  ObjectBase::initialize_move(src.gobject_, &src);
+  initialize_move(src.gobject_, &src);
 }
 
 auto
@@ -280,7 +280,7 @@ auto Object::set_data (const Quark &id, void *data) -> void
   g_object_set_qdata(gobj(), id, data);
 }
 
-auto Object::set_data (const Quark &id, void *data, DestroyNotify destroy) -> void
+auto Object::set_data (const Quark &id, void *data, const DestroyNotify destroy) -> void
 {
   g_object_set_qdata_full(gobj(), id, data, destroy);
 }

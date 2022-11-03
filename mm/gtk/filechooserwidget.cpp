@@ -42,9 +42,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkFileChooserWidget* object, bool take_copy) -> Gtk::FileChooserWidget*
+auto wrap(GtkFileChooserWidget* object, const bool take_copy) -> Gtk::FileChooserWidget*
 {
-  return dynamic_cast<Gtk::FileChooserWidget *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::FileChooserWidget *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -55,7 +55,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto FileChooserWidget_Class::init() -> const Glib::Class&
+auto FileChooserWidget_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -89,7 +89,7 @@ auto FileChooserWidget_Class::class_init_function (void *g_class, void *class_da
 
 auto FileChooserWidget_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new FileChooserWidget((GtkFileChooserWidget*)(o)));
+  return manage(new FileChooserWidget((GtkFileChooserWidget*)o));
 
 }
 
@@ -97,26 +97,24 @@ auto FileChooserWidget_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 FileChooserWidget::FileChooserWidget(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 FileChooserWidget::FileChooserWidget(GtkFileChooserWidget* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 FileChooserWidget::FileChooserWidget(FileChooserWidget&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
   , FileChooser(std::move(src))
 {}
 
 auto FileChooserWidget::operator=(FileChooserWidget&& src) noexcept -> FileChooserWidget&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   FileChooser::operator=(std::move(src));
   return *this;
 }
@@ -143,18 +141,18 @@ auto FileChooserWidget::get_base_type() -> GType
 FileChooserWidget::FileChooserWidget()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(filechooserwidget_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(filechooserwidget_class_.init()))
 {
 
 
 }
 
-FileChooserWidget::FileChooserWidget(Action action)
+FileChooserWidget::FileChooserWidget(const Action action)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(filechooserwidget_class_.init(), "action", static_cast<GtkFileChooserAction>(action), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(filechooserwidget_class_.init(), "action", action, nullptr))
 {
 
 

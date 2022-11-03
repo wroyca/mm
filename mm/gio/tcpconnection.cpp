@@ -37,9 +37,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GTcpConnection* object, bool take_copy) -> Glib::RefPtr<Gio::TcpConnection>
+auto wrap(GTcpConnection* object, const bool take_copy) -> RefPtr<Gio::TcpConnection>
 {
-  return Glib::make_refptr_for_instance<Gio::TcpConnection>( dynamic_cast<Gio::TcpConnection*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::TcpConnection>( dynamic_cast<Gio::TcpConnection*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -52,7 +52,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto TcpConnection_Class::init() -> const Glib::Class&
+auto TcpConnection_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -98,32 +98,28 @@ auto TcpConnection::gobj_copy() -> GTcpConnection*
 }
 
 TcpConnection::TcpConnection(const Glib::ConstructParams& construct_params)
-:
-  Gio::SocketConnection(construct_params)
+: SocketConnection(construct_params)
 {
 
 }
 
 TcpConnection::TcpConnection(GTcpConnection* castitem)
-:
-  Gio::SocketConnection((GSocketConnection*)(castitem))
+: SocketConnection((GSocketConnection*)castitem)
 {}
 
 
 TcpConnection::TcpConnection(TcpConnection&& src) noexcept
-: Gio::SocketConnection(std::move(src))
+: SocketConnection(std::move(src))
 {}
 
 auto TcpConnection::operator=(TcpConnection&& src) noexcept -> TcpConnection&
 {
-  Gio::SocketConnection::operator=(std::move(src));
+  SocketConnection::operator=(std::move(src));
   return *this;
 }
 
 
-TcpConnection::~TcpConnection() noexcept
-{}
-
+TcpConnection::~TcpConnection() noexcept = default;
 
 TcpConnection::CppClassType TcpConnection::tcpconnection_class_; // initialize static member
 
@@ -139,9 +135,10 @@ auto TcpConnection::get_base_type() -> GType
 }
 
 
-auto TcpConnection::set_graceful_disconnect (bool graceful_disconnect) -> void
+auto TcpConnection::set_graceful_disconnect (
+  const bool graceful_disconnect) -> void
 {
-  g_tcp_connection_set_graceful_disconnect(gobj(), static_cast<int>(graceful_disconnect));
+  g_tcp_connection_set_graceful_disconnect(gobj(), graceful_disconnect);
 }
 
 auto TcpConnection::get_graceful_disconnect() const -> bool
@@ -152,12 +149,12 @@ auto TcpConnection::get_graceful_disconnect() const -> bool
 
 auto TcpConnection::property_graceful_disconnect() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "graceful-disconnect");
+  return {this, "graceful-disconnect"};
 }
 
 auto TcpConnection::property_graceful_disconnect() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "graceful-disconnect");
+  return {this, "graceful-disconnect"};
 }
 
 

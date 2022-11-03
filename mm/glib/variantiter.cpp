@@ -37,7 +37,7 @@ VariantIter::VariantIter(const VariantContainerBase& variant)
 auto
 VariantIter::next_value(VariantBase& value) -> bool
 {
-  GVariant* const g_value = g_variant_iter_next_value(gobj());
+  const GVariant* const g_value = g_variant_iter_next_value(gobj());
 
   if (g_value)
   {
@@ -58,9 +58,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GVariantIter* object, bool take_copy /* = false */) -> Glib::VariantIter
+auto wrap(GVariantIter* object, const bool take_copy /* = false */) -> VariantIter
 {
-  return Glib::VariantIter(object, take_copy);
+  return VariantIter(object, take_copy);
 }
 
 } // namespace Glib
@@ -77,10 +77,10 @@ VariantIter::VariantIter()
 
 VariantIter::VariantIter(const VariantIter& src)
 :
-  gobject_ ((src.gobject_) ? g_variant_iter_copy(src.gobject_) : nullptr)
+  gobject_ (src.gobject_ ? g_variant_iter_copy(src.gobject_) : nullptr)
 {}
 
-VariantIter::VariantIter(GVariantIter* castitem, bool make_a_copy /* = false */)
+VariantIter::VariantIter(GVariantIter* castitem, const bool make_a_copy /* = false */)
 {
   if(!make_a_copy)
   {
@@ -101,7 +101,7 @@ VariantIter::VariantIter(GVariantIter* castitem, bool make_a_copy /* = false */)
 
 auto VariantIter::operator=(const VariantIter& src) -> VariantIter&
 {
-  const auto new_gobject = (src.gobject_) ? g_variant_iter_copy(src.gobject_) : nullptr;
+  const auto new_gobject = src.gobject_ ? g_variant_iter_copy(src.gobject_) : nullptr;
 
   if(gobject_)
     g_variant_iter_free(gobject_);
@@ -144,7 +144,7 @@ auto VariantIter::gobj_copy() const -> GVariantIter*
 
 auto VariantIter::init(const VariantContainerBase& value) -> gsize
 {
-  return g_variant_iter_init(gobj(), const_cast<GVariant*>((value).gobj()));
+  return g_variant_iter_init(gobj(), const_cast<GVariant*>(value.gobj()));
 }
 
 auto VariantIter::get_n_children() const -> gsize

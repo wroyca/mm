@@ -15,7 +15,8 @@ auto Variant<bool>::variant_type() -> const VariantType&
   return type;
 }
 
-auto Variant<bool>::create(bool data) -> Variant<bool>
+auto Variant<bool>::create(
+  const bool data) -> Variant<bool>
 {
   auto result = Variant<bool>(g_variant_new_boolean(data));
   return result;
@@ -36,7 +37,8 @@ auto Variant<unsigned char>::variant_type() -> const VariantType&
   return type;
 }
 
-auto Variant<unsigned char>::create(unsigned char data) -> Variant<unsigned char>
+auto Variant<unsigned char>::create(
+  const unsigned char data) -> Variant<unsigned char>
 {
   auto result = Variant<unsigned char>(g_variant_new_byte(data));
   return result;
@@ -57,7 +59,8 @@ auto Variant<gint16>::variant_type() -> const VariantType&
   return type;
 }
 
-auto Variant<gint16>::create(gint16 data) -> Variant<gint16>
+auto Variant<gint16>::create(
+  const gint16 data) -> Variant<gint16>
 {
   auto result = Variant<gint16>(g_variant_new_int16(data));
   return result;
@@ -78,7 +81,8 @@ auto Variant<guint16>::variant_type() -> const VariantType&
   return type;
 }
 
-auto Variant<guint16>::create(guint16 data) -> Variant<guint16>
+auto Variant<guint16>::create(
+  const guint16 data) -> Variant<guint16>
 {
   auto result = Variant<guint16>(g_variant_new_uint16(data));
   return result;
@@ -99,13 +103,15 @@ auto Variant<gint32>::variant_type() -> const VariantType&
   return type;
 }
 
-auto Variant<gint32>::create(gint32 data) -> Variant<gint32>
+auto Variant<gint32>::create(
+  const gint32 data) -> Variant<gint32>
 {
   auto result = Variant<gint32>(g_variant_new_int32(data));
   return result;
 }
 
-auto Variant<gint32>::create_handle(gint32 data) -> Variant<gint32>
+auto Variant<gint32>::create_handle(
+  const gint32 data) -> Variant<gint32>
 {
   auto result = Variant<gint32>(g_variant_new_handle(data));
   return result;
@@ -129,7 +135,8 @@ auto Variant<guint32>::variant_type() -> const VariantType&
   return type;
 }
 
-auto Variant<guint32>::create(guint32 data) -> Variant<guint32>
+auto Variant<guint32>::create(
+  const guint32 data) -> Variant<guint32>
 {
   auto result = Variant<guint32>(g_variant_new_uint32(data));
   return result;
@@ -150,7 +157,8 @@ auto Variant<gint64>::variant_type() -> const VariantType&
   return type;
 }
 
-auto Variant<gint64>::create(gint64 data) -> Variant<gint64>
+auto Variant<gint64>::create(
+  const gint64 data) -> Variant<gint64>
 {
   auto result = Variant<gint64>(g_variant_new_int64(data));
   return result;
@@ -171,7 +179,8 @@ auto Variant<guint64>::variant_type() -> const VariantType&
   return type;
 }
 
-auto Variant<guint64>::create(guint64 data) -> Variant<guint64>
+auto Variant<guint64>::create(
+  const guint64 data) -> Variant<guint64>
 {
   auto result = Variant<guint64>(g_variant_new_uint64(data));
   return result;
@@ -192,7 +201,8 @@ auto Variant<double>::variant_type() -> const VariantType&
   return type;
 }
 
-auto Variant<double>::create(double data) -> Variant<double>
+auto Variant<double>::create(
+  const double data) -> Variant<double>
 {
   auto result = Variant<double>(g_variant_new_double(data));
   return result;

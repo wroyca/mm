@@ -17,13 +17,13 @@ public:
   using CppObjectType = FileIOStream;
   using BaseObjectType = GFileIOStream;
   using BaseClassType = GFileIOStreamClass;
-  using CppClassParent = Gio::IOStream_Class;
+  using CppClassParent = IOStream_Class;
   using BaseClassParent = GIOStreamClass;
 
   friend class FileIOStream;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

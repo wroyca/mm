@@ -17,13 +17,13 @@ public:
   using CppObjectType = UnixOutputStream;
   using BaseObjectType = GUnixOutputStream;
   using BaseClassType = GUnixOutputStreamClass;
-  using CppClassParent = Gio::OutputStream_Class;
+  using CppClassParent = OutputStream_Class;
   using BaseClassParent = GOutputStreamClass;
 
   friend class UnixOutputStream;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

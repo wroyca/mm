@@ -33,9 +33,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GDBusObjectProxy* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::ObjectProxy>
+auto wrap(GDBusObjectProxy* object, const bool take_copy) -> RefPtr<Gio::DBus::ObjectProxy>
 {
-  return Glib::make_refptr_for_instance<Gio::DBus::ObjectProxy>( dynamic_cast<Gio::DBus::ObjectProxy*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::DBus::ObjectProxy>( dynamic_cast<Gio::DBus::ObjectProxy*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -48,7 +48,7 @@ namespace Gio::DBus
 
 /* The *_Class implementation: */
 
-auto ObjectProxy_Class::init() -> const Glib::Class&
+auto ObjectProxy_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -63,7 +63,7 @@ auto ObjectProxy_Class::init() -> const Glib::Class&
     register_derived_type(g_dbus_object_proxy_get_type());
 
     // Add derived versions of interfaces, if the C type implements any interfaces:
-  DBus::Object::add_interface(get_type());
+    Object::add_interface(get_type());
 
   }
 
@@ -103,7 +103,7 @@ ObjectProxy::ObjectProxy(const Glib::ConstructParams& construct_params)
 
 ObjectProxy::ObjectProxy(GDBusObjectProxy* castitem)
 :
-  Glib::Object((GObject*)(castitem))
+  Glib::Object((GObject*)castitem)
 {}
 
 
@@ -120,9 +120,7 @@ auto ObjectProxy::operator=(ObjectProxy&& src) noexcept -> ObjectProxy&
 }
 
 
-ObjectProxy::~ObjectProxy() noexcept
-{}
-
+ObjectProxy::~ObjectProxy() noexcept = default;
 
 ObjectProxy::CppClassType ObjectProxy::objectproxy_class_; // initialize static member
 
@@ -141,7 +139,7 @@ auto ObjectProxy::get_base_type() -> GType
 ObjectProxy::ObjectProxy(const Glib::RefPtr<Connection>& connection, const Glib::ustring& object_path)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   Glib::Object(Glib::ConstructParams(objectproxy_class_.init(), "connection", Glib::unwrap(connection), "object_path", object_path.c_str(), nullptr))
 {
 
@@ -173,12 +171,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Connect
 
 auto ObjectProxy::property_g_connection() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Connection> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Connection> >(this, "g-connection");
+  return {this, "g-connection"};
 }
 
 auto ObjectProxy::property_g_object_path() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "g-object-path");
+  return {this, "g-object-path"};
 }
 
 

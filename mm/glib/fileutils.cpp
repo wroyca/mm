@@ -37,7 +37,7 @@ Dir::Dir(const std::string& path)
   gobject_ = g_dir_open(path.c_str(), 0, &error);
 
   if (error)
-    Glib::Error::throw_exception(error);
+    Error::throw_exception(error);
 }
 
 Dir::Dir(GDir* gobject) : gobject_(gobject)
@@ -54,7 +54,7 @@ auto
 Dir::read_name() -> std::string
 {
   const char* const name = g_dir_read_name(gobject_);
-  return Glib::convert_const_gchar_ptr_to_stdstring(name);
+  return convert_const_gchar_ptr_to_stdstring(name);
 }
 
 auto Dir::rewind () -> void
@@ -75,13 +75,13 @@ auto
 Dir::begin() -> DirIterator
 {
   g_dir_rewind(gobject_);
-  return DirIterator(gobject_, g_dir_read_name(gobject_));
+  return {gobject_, g_dir_read_name(gobject_)};
 }
 
 auto
 Dir::end() -> DirIterator
 {
-  return DirIterator(gobject_, nullptr);
+  return {gobject_, nullptr};
 }
 
 /**** Glib::DirIterator ****************************************************/
@@ -113,13 +113,13 @@ auto DirIterator::operator++ (int) -> void
 auto
 DirIterator::operator==(const DirIterator& rhs) const -> bool
 {
-  return (current_ == rhs.current_);
+  return current_ == rhs.current_;
 }
 
 auto
 DirIterator::operator!=(const DirIterator& rhs) const -> bool
 {
-  return (current_ != rhs.current_);
+  return current_ != rhs.current_;
 }
 
 auto
@@ -149,9 +149,9 @@ file_open_tmp(std::string& name_used, const std::string& prefix) -> int
   char* pch_buf_name_used = nullptr;
 
   const auto fileno = g_file_open_tmp(basename_template.c_str(), &pch_buf_name_used, &error);
-  auto buf_name_used = make_unique_ptr_gfree(pch_buf_name_used);
+  const auto buf_name_used = make_unique_ptr_gfree(pch_buf_name_used);
   if (error)
-    Glib::Error::throw_exception(error);
+    Error::throw_exception(error);
 
   name_used = buf_name_used.get();
   return fileno;
@@ -164,9 +164,9 @@ file_open_tmp(std::string& name_used) -> int
   char* pch_buf_name_used = nullptr;
 
   const auto fileno = g_file_open_tmp(nullptr, &pch_buf_name_used, &error);
-  auto buf_name_used = make_unique_ptr_gfree(pch_buf_name_used);
+  const auto buf_name_used = make_unique_ptr_gfree(pch_buf_name_used);
   if (error)
-    Glib::Error::throw_exception(error);
+    Error::throw_exception(error);
 
   name_used = buf_name_used.get();
   return fileno;
@@ -180,21 +180,21 @@ file_get_contents(const std::string& filename) -> std::string
 
   char* pch_contents = nullptr;
   g_file_get_contents(filename.c_str(), &pch_contents, &length, &error);
-  auto contents = make_unique_ptr_gfree(pch_contents);
+  const auto contents = make_unique_ptr_gfree(pch_contents);
   if (error)
-    Glib::Error::throw_exception(error);
+    Error::throw_exception(error);
 
   return std::string(contents.get(), length);
 }
 
-auto file_set_contents (const std::string &filename, const gchar *contents, gssize length) -> void
+auto file_set_contents (const std::string &filename, const gchar *contents, const gssize length) -> void
 {
   GError* error = nullptr;
 
   g_file_set_contents(filename.c_str(), contents, length, &error);
 
   if (error)
-    Glib::Error::throw_exception(error);
+    Error::throw_exception(error);
 }
 
 auto file_set_contents (const std::string &filename, const std::string &contents) -> void
@@ -209,24 +209,22 @@ namespace
 } // anonymous namespace
 
 
-Glib::FileError::FileError(Glib::FileError::Code error_code, const Glib::ustring& error_message)
-:
-  Glib::Error (G_FILE_ERROR, error_code, error_message)
+Glib::FileError::FileError(const Code error_code, const ustring & error_message)
+: Error(G_FILE_ERROR, error_code, error_message)
 {}
 
 Glib::FileError::FileError(GError* gobject)
-:
-  Glib::Error (gobject)
+: Error(gobject)
 {}
 
-auto Glib::FileError::code() const -> Glib::FileError::Code
+auto Glib::FileError::code() const -> Code
 {
-  return static_cast<Code>(Glib::Error::code());
+  return static_cast<Code>(Error::code());
 }
 
 auto Glib::FileError::throw_func (GError *gobject) -> void
 {
-  throw Glib::FileError(gobject);
+  throw FileError(gobject);
 }
 
 

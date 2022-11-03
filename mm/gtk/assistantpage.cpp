@@ -42,9 +42,9 @@ auto Glib::Value<Gtk::AssistantPage::Type>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkAssistantPage* object, bool take_copy) -> Glib::RefPtr<Gtk::AssistantPage>
+auto wrap(GtkAssistantPage* object, const bool take_copy) -> RefPtr<Gtk::AssistantPage>
 {
-  return Glib::make_refptr_for_instance<Gtk::AssistantPage>( dynamic_cast<Gtk::AssistantPage*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::AssistantPage>( dynamic_cast<Gtk::AssistantPage*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -57,7 +57,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto AssistantPage_Class::init() -> const Glib::Class&
+auto AssistantPage_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -103,32 +103,28 @@ auto AssistantPage::gobj_copy() -> GtkAssistantPage*
 }
 
 AssistantPage::AssistantPage(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 AssistantPage::AssistantPage(GtkAssistantPage* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 AssistantPage::AssistantPage(AssistantPage&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto AssistantPage::operator=(AssistantPage&& src) noexcept -> AssistantPage&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-AssistantPage::~AssistantPage() noexcept
-{}
-
+AssistantPage::~AssistantPage() noexcept = default;
 
 AssistantPage::CppClassType AssistantPage::assistantpage_class_; // initialize static member
 
@@ -161,37 +157,37 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Type>::value,
 
 auto AssistantPage::property_page_type() -> Glib::PropertyProxy< Type >
 {
-  return Glib::PropertyProxy< Type >(this, "page-type");
+  return {this, "page-type"};
 }
 
 auto AssistantPage::property_page_type() const -> Glib::PropertyProxy_ReadOnly< Type >
 {
-  return Glib::PropertyProxy_ReadOnly< Type >(this, "page-type");
+  return {this, "page-type"};
 }
 
 auto AssistantPage::property_title() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 auto AssistantPage::property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 auto AssistantPage::property_complete() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "complete");
+  return {this, "complete"};
 }
 
 auto AssistantPage::property_complete() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "complete");
+  return {this, "complete"};
 }
 
 auto AssistantPage::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 

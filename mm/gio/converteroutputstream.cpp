@@ -40,9 +40,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GConverterOutputStream* object, bool take_copy) -> Glib::RefPtr<Gio::ConverterOutputStream>
+auto wrap(GConverterOutputStream* object, const bool take_copy) -> RefPtr<Gio::ConverterOutputStream>
 {
-  return Glib::make_refptr_for_instance<Gio::ConverterOutputStream>( dynamic_cast<Gio::ConverterOutputStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::ConverterOutputStream>( dynamic_cast<Gio::ConverterOutputStream*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -55,7 +55,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto ConverterOutputStream_Class::init() -> const Glib::Class&
+auto ConverterOutputStream_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -110,7 +110,7 @@ ConverterOutputStream::ConverterOutputStream(const Glib::ConstructParams& constr
 
 ConverterOutputStream::ConverterOutputStream(GConverterOutputStream* castitem)
 :
-  FilterOutputStream((GFilterOutputStream*)(castitem))
+  FilterOutputStream((GFilterOutputStream*)castitem)
 {}
 
 
@@ -127,9 +127,7 @@ auto ConverterOutputStream::operator=(ConverterOutputStream&& src) noexcept -> C
 }
 
 
-ConverterOutputStream::~ConverterOutputStream() noexcept
-{}
-
+ConverterOutputStream::~ConverterOutputStream() noexcept = default;
 
 ConverterOutputStream::CppClassType ConverterOutputStream::converteroutputstream_class_; // initialize static member
 
@@ -148,8 +146,8 @@ auto ConverterOutputStream::get_base_type() -> GType
 ConverterOutputStream::ConverterOutputStream(const Glib::RefPtr<OutputStream>& base_stream, const Glib::RefPtr<Converter>& converter)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  FilterOutputStream(Glib::ConstructParams(converteroutputstream_class_.init(), "base_stream", const_cast<GOutputStream*>(Glib::unwrap(base_stream)), "converter", Glib::unwrap(converter), nullptr))
+ObjectBase(nullptr),
+  FilterOutputStream(Glib::ConstructParams(converteroutputstream_class_.init(), "base_stream", Glib::unwrap(base_stream), "converter", Glib::unwrap(converter), nullptr))
 {
 
 
@@ -180,7 +178,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Convert
 
 auto ConverterOutputStream::property_converter() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Converter> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Converter> >(this, "converter");
+  return {this, "converter"};
 }
 
 

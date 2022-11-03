@@ -35,9 +35,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkStyleProvider* object, bool take_copy) -> Glib::RefPtr<Gtk::StyleProvider>
+auto wrap(GtkStyleProvider* object, const bool take_copy) -> RefPtr<Gtk::StyleProvider>
 {
-  return Glib::make_refptr_for_instance<Gtk::StyleProvider>( dynamic_cast<Gtk::StyleProvider*> (Glib::wrap_auto_interface<Gtk::StyleProvider> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::StyleProvider>( Glib::wrap_auto_interface<Gtk::StyleProvider> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -50,7 +50,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto StyleProvider_Class::init() -> const Glib::Interface_Class&
+auto StyleProvider_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -79,42 +79,40 @@ auto StyleProvider_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto StyleProvider_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new StyleProvider((GtkStyleProvider*)(object));
+  return new StyleProvider((GtkStyleProvider*)object);
 }
 
 
 /* The implementation: */
 
 StyleProvider::StyleProvider()
-:
-  Glib::Interface(styleprovider_class_.init())
+: Interface(styleprovider_class_.init())
 {}
 
 StyleProvider::StyleProvider(GtkStyleProvider* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 StyleProvider::StyleProvider(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 StyleProvider::StyleProvider(StyleProvider&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto StyleProvider::operator=(StyleProvider&& src) noexcept -> StyleProvider&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-StyleProvider::~StyleProvider() noexcept
-{}
+StyleProvider::~StyleProvider() noexcept = default;
 
 // static
-auto StyleProvider::add_interface (GType gtype_implementer) -> void
+auto StyleProvider::add_interface (
+  const GType gtype_implementer) -> void
 {
   styleprovider_class_.init().add_interface(gtype_implementer);
 }

@@ -30,11 +30,11 @@
 namespace Gtk
 {
 
-CheckButton::CheckButton(const Glib::ustring& label, bool mnemonic)
+CheckButton::CheckButton(const Glib::ustring& label, const bool mnemonic)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(checkbutton_class_.init(), "label",label.c_str(),"use_underline",gboolean(mnemonic), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(checkbutton_class_.init(), "label",label.c_str(),"use_underline",gboolean(mnemonic), nullptr))
 {}
 
 auto CheckButton::unset_child () -> void
@@ -67,9 +67,9 @@ const Glib::SignalProxyInfo CheckButton_signal_toggled_info =
 namespace Glib
 {
 
-auto wrap(GtkCheckButton* object, bool take_copy) -> Gtk::CheckButton*
+auto wrap(GtkCheckButton* object, const bool take_copy) -> Gtk::CheckButton*
 {
-  return dynamic_cast<Gtk::CheckButton *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::CheckButton *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -80,7 +80,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto CheckButton_Class::init() -> const Glib::Class&
+auto CheckButton_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -115,8 +115,7 @@ auto CheckButton_Class::class_init_function (void *g_class, void *class_data) ->
 
 auto CheckButton_Class::toggled_callback (GtkCheckButton *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -153,7 +152,7 @@ auto CheckButton_Class::toggled_callback (GtkCheckButton *self) -> void
 
 auto CheckButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new CheckButton((GtkCheckButton*)(o)));
+  return manage(new CheckButton((GtkCheckButton*)o));
 
 }
 
@@ -161,26 +160,24 @@ auto CheckButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 CheckButton::CheckButton(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 CheckButton::CheckButton(GtkCheckButton* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 CheckButton::CheckButton(CheckButton&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
   , Actionable(std::move(src))
 {}
 
 auto CheckButton::operator=(CheckButton&& src) noexcept -> CheckButton&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   Actionable::operator=(std::move(src));
   return *this;
 }
@@ -207,16 +204,17 @@ auto CheckButton::get_base_type() -> GType
 CheckButton::CheckButton()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(checkbutton_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(checkbutton_class_.init()))
 {
 
 
 }
 
-auto CheckButton::set_inconsistent (bool inconsistent) -> void
+auto CheckButton::set_inconsistent (
+  const bool inconsistent) -> void
 {
-  gtk_check_button_set_inconsistent(gobj(), static_cast<int>(inconsistent));
+  gtk_check_button_set_inconsistent(gobj(), inconsistent);
 }
 
 auto CheckButton::get_inconsistent() const -> bool
@@ -224,9 +222,10 @@ auto CheckButton::get_inconsistent() const -> bool
   return gtk_check_button_get_inconsistent(const_cast<GtkCheckButton*>(gobj()));
 }
 
-auto CheckButton::set_active (bool setting) -> void
+auto CheckButton::set_active (
+  const bool setting) -> void
 {
-  gtk_check_button_set_active(gobj(), static_cast<int>(setting));
+  gtk_check_button_set_active(gobj(), setting);
 }
 
 auto CheckButton::get_active() const -> bool
@@ -244,9 +243,10 @@ auto CheckButton::get_label() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_check_button_get_label(const_cast<GtkCheckButton*>(gobj())));
 }
 
-auto CheckButton::set_use_underline (bool setting) -> void
+auto CheckButton::set_use_underline (
+  const bool setting) -> void
 {
-  gtk_check_button_set_use_underline(gobj(), static_cast<int>(setting));
+  gtk_check_button_set_use_underline(gobj(), setting);
 }
 
 auto CheckButton::get_use_underline() const -> bool
@@ -256,7 +256,7 @@ auto CheckButton::get_use_underline() const -> bool
 
 auto CheckButton::set_child (Widget &child) -> void
 {
-  gtk_check_button_set_child(gobj(), (child).gobj());
+  gtk_check_button_set_child(gobj(), child.gobj());
 }
 
 auto CheckButton::get_child() -> Widget*
@@ -271,24 +271,24 @@ auto CheckButton::get_child() const -> const Widget*
 
 auto CheckButton::set_group (CheckButton &group) -> void
 {
-  gtk_check_button_set_group(gobj(), (group).gobj());
+  gtk_check_button_set_group(gobj(), group.gobj());
 }
 
 
 auto CheckButton::signal_toggled() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &CheckButton_signal_toggled_info);
+  return {this, &CheckButton_signal_toggled_info};
 }
 
 
 auto CheckButton::property_active() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "active");
+  return {this, "active"};
 }
 
 auto CheckButton::property_active() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "active");
+  return {this, "active"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<CheckButton*>::value,
@@ -297,51 +297,51 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<CheckButton*>::value
 
 auto CheckButton::property_group() -> Glib::PropertyProxy_WriteOnly< CheckButton* >
 {
-  return Glib::PropertyProxy_WriteOnly< CheckButton* >(this, "group");
+  return {this, "group"};
 }
 
 auto CheckButton::property_label() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "label");
+  return {this, "label"};
 }
 
 auto CheckButton::property_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "label");
+  return {this, "label"};
 }
 
 auto CheckButton::property_inconsistent() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "inconsistent");
+  return {this, "inconsistent"};
 }
 
 auto CheckButton::property_inconsistent() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "inconsistent");
+  return {this, "inconsistent"};
 }
 
 auto CheckButton::property_use_underline() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "use-underline");
+  return {this, "use-underline"};
 }
 
 auto CheckButton::property_use_underline() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "use-underline");
+  return {this, "use-underline"};
 }
 
 auto CheckButton::property_child() -> Glib::PropertyProxy< Widget* >
 {
-  return Glib::PropertyProxy< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 auto CheckButton::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 
-auto Gtk::CheckButton::on_toggled () -> void
+auto CheckButton::on_toggled () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

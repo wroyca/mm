@@ -59,9 +59,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkTextChildAnchor* object, bool take_copy) -> Glib::RefPtr<Gtk::TextChildAnchor>
+auto wrap(GtkTextChildAnchor* object, const bool take_copy) -> RefPtr<Gtk::TextChildAnchor>
 {
-  return Glib::make_refptr_for_instance<Gtk::TextChildAnchor>( dynamic_cast<Gtk::TextChildAnchor*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::TextChildAnchor>( dynamic_cast<Gtk::TextChildAnchor*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -74,7 +74,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto TextChildAnchor_Class::init() -> const Glib::Class&
+auto TextChildAnchor_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -120,32 +120,28 @@ auto TextChildAnchor::gobj_copy() -> GtkTextChildAnchor*
 }
 
 TextChildAnchor::TextChildAnchor(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 TextChildAnchor::TextChildAnchor(GtkTextChildAnchor* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 TextChildAnchor::TextChildAnchor(TextChildAnchor&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto TextChildAnchor::operator=(TextChildAnchor&& src) noexcept -> TextChildAnchor&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-TextChildAnchor::~TextChildAnchor() noexcept
-{}
-
+TextChildAnchor::~TextChildAnchor() noexcept = default;
 
 TextChildAnchor::CppClassType TextChildAnchor::textchildanchor_class_; // initialize static member
 
@@ -164,8 +160,8 @@ auto TextChildAnchor::get_base_type() -> GType
 TextChildAnchor::TextChildAnchor()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(textchildanchor_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(textchildanchor_class_.init()))
 {
 
 

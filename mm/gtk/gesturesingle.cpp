@@ -33,9 +33,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkGestureSingle* object, bool take_copy) -> Glib::RefPtr<Gtk::GestureSingle>
+auto wrap(GtkGestureSingle* object, const bool take_copy) -> RefPtr<Gtk::GestureSingle>
 {
-  return Glib::make_refptr_for_instance<Gtk::GestureSingle>( dynamic_cast<Gtk::GestureSingle*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::GestureSingle>( dynamic_cast<Gtk::GestureSingle*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto GestureSingle_Class::init() -> const Glib::Class&
+auto GestureSingle_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -102,7 +102,7 @@ GestureSingle::GestureSingle(const Glib::ConstructParams& construct_params)
 
 GestureSingle::GestureSingle(GtkGestureSingle* castitem)
 :
-  Gesture((GtkGesture*)(castitem))
+  Gesture((GtkGesture*)castitem)
 {}
 
 
@@ -117,9 +117,7 @@ auto GestureSingle::operator=(GestureSingle&& src) noexcept -> GestureSingle&
 }
 
 
-GestureSingle::~GestureSingle() noexcept
-{}
-
+GestureSingle::~GestureSingle() noexcept = default;
 
 GestureSingle::CppClassType GestureSingle::gesturesingle_class_; // initialize static member
 
@@ -138,7 +136,7 @@ auto GestureSingle::get_base_type() -> GType
 GestureSingle::GestureSingle()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   Gesture(Glib::ConstructParams(gesturesingle_class_.init()))
 {
 
@@ -150,9 +148,10 @@ auto GestureSingle::get_touch_only() const -> bool
   return gtk_gesture_single_get_touch_only(const_cast<GtkGestureSingle*>(gobj()));
 }
 
-auto GestureSingle::set_touch_only (bool touch_only) -> void
+auto GestureSingle::set_touch_only (
+  const bool touch_only) -> void
 {
-  gtk_gesture_single_set_touch_only(gobj(), static_cast<int>(touch_only));
+  gtk_gesture_single_set_touch_only(gobj(), touch_only);
 }
 
 auto GestureSingle::get_exclusive() const -> bool
@@ -160,9 +159,10 @@ auto GestureSingle::get_exclusive() const -> bool
   return gtk_gesture_single_get_exclusive(const_cast<GtkGestureSingle*>(gobj()));
 }
 
-auto GestureSingle::set_exclusive (bool exclusive) const -> void
+auto GestureSingle::set_exclusive (
+  const bool exclusive) const -> void
 {
-  gtk_gesture_single_set_exclusive(const_cast<GtkGestureSingle*>(gobj()), static_cast<int>(exclusive));
+  gtk_gesture_single_set_exclusive(const_cast<GtkGestureSingle*>(gobj()), exclusive);
 }
 
 auto GestureSingle::get_button() const -> unsigned int
@@ -170,7 +170,8 @@ auto GestureSingle::get_button() const -> unsigned int
   return gtk_gesture_single_get_button(const_cast<GtkGestureSingle*>(gobj()));
 }
 
-auto GestureSingle::set_button (unsigned int button) -> void
+auto GestureSingle::set_button (
+  const unsigned int button) -> void
 {
   gtk_gesture_single_set_button(gobj(), button);
 }
@@ -193,32 +194,32 @@ auto GestureSingle::get_current_sequence() const -> const Gdk::EventSequence*
 
 auto GestureSingle::property_touch_only() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "touch-only");
+  return {this, "touch-only"};
 }
 
 auto GestureSingle::property_touch_only() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "touch-only");
+  return {this, "touch-only"};
 }
 
 auto GestureSingle::property_exclusive() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "exclusive");
+  return {this, "exclusive"};
 }
 
 auto GestureSingle::property_exclusive() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "exclusive");
+  return {this, "exclusive"};
 }
 
 auto GestureSingle::property_button() -> Glib::PropertyProxy< unsigned int >
 {
-  return Glib::PropertyProxy< unsigned int >(this, "button");
+  return {this, "button"};
 }
 
 auto GestureSingle::property_button() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
-  return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "button");
+  return {this, "button"};
 }
 
 

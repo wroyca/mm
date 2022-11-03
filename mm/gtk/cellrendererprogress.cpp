@@ -47,9 +47,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkCellRendererProgress* object, bool take_copy) -> Gtk::CellRendererProgress*
+auto wrap(GtkCellRendererProgress* object, const bool take_copy) -> Gtk::CellRendererProgress*
 {
-  return dynamic_cast<Gtk::CellRendererProgress *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::CellRendererProgress *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -60,7 +60,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto CellRendererProgress_Class::init() -> const Glib::Class&
+auto CellRendererProgress_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -94,7 +94,7 @@ auto CellRendererProgress_Class::class_init_function (void *g_class, void *class
 
 auto CellRendererProgress_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new CellRendererProgress((GtkCellRendererProgress*)(o)));
+  return manage(new CellRendererProgress((GtkCellRendererProgress*)o));
 
 }
 
@@ -102,26 +102,24 @@ auto CellRendererProgress_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 CellRendererProgress::CellRendererProgress(const Glib::ConstructParams& construct_params)
-:
-  Gtk::CellRenderer(construct_params)
+: CellRenderer(construct_params)
 {
   }
 
 CellRendererProgress::CellRendererProgress(GtkCellRendererProgress* castitem)
-:
-  Gtk::CellRenderer((GtkCellRenderer*)(castitem))
+: CellRenderer((GtkCellRenderer*)castitem)
 {
   }
 
 
 CellRendererProgress::CellRendererProgress(CellRendererProgress&& src) noexcept
-: Gtk::CellRenderer(std::move(src))
+: CellRenderer(std::move(src))
   , Orientable(std::move(src))
 {}
 
 auto CellRendererProgress::operator=(CellRendererProgress&& src) noexcept -> CellRendererProgress&
 {
-  Gtk::CellRenderer::operator=(std::move(src));
+  CellRenderer::operator=(std::move(src));
   Orientable::operator=(std::move(src));
   return *this;
 }
@@ -148,8 +146,8 @@ auto CellRendererProgress::get_base_type() -> GType
 CellRendererProgress::CellRendererProgress()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::CellRenderer(Glib::ConstructParams(cellrendererprogress_class_.init()))
+ObjectBase(nullptr),
+CellRenderer(Glib::ConstructParams(cellrendererprogress_class_.init()))
 {
 
 
@@ -158,62 +156,62 @@ CellRendererProgress::CellRendererProgress()
 
 auto CellRendererProgress::property_value() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "value");
+  return {this, "value"};
 }
 
 auto CellRendererProgress::property_value() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "value");
+  return {this, "value"};
 }
 
 auto CellRendererProgress::property_text() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "text");
+  return {this, "text"};
 }
 
 auto CellRendererProgress::property_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "text");
+  return {this, "text"};
 }
 
 auto CellRendererProgress::property_pulse() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "pulse");
+  return {this, "pulse"};
 }
 
 auto CellRendererProgress::property_pulse() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "pulse");
+  return {this, "pulse"};
 }
 
 auto CellRendererProgress::property_text_xalign() -> Glib::PropertyProxy< float >
 {
-  return Glib::PropertyProxy< float >(this, "text-xalign");
+  return {this, "text-xalign"};
 }
 
 auto CellRendererProgress::property_text_xalign() const -> Glib::PropertyProxy_ReadOnly< float >
 {
-  return Glib::PropertyProxy_ReadOnly< float >(this, "text-xalign");
+  return {this, "text-xalign"};
 }
 
 auto CellRendererProgress::property_text_yalign() -> Glib::PropertyProxy< float >
 {
-  return Glib::PropertyProxy< float >(this, "text-yalign");
+  return {this, "text-yalign"};
 }
 
 auto CellRendererProgress::property_text_yalign() const -> Glib::PropertyProxy_ReadOnly< float >
 {
-  return Glib::PropertyProxy_ReadOnly< float >(this, "text-yalign");
+  return {this, "text-yalign"};
 }
 
 auto CellRendererProgress::property_inverted() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "inverted");
+  return {this, "inverted"};
 }
 
 auto CellRendererProgress::property_inverted() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "inverted");
+  return {this, "inverted"};
 }
 
 

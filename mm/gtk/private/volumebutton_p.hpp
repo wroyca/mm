@@ -17,13 +17,13 @@ public:
   using CppObjectType = VolumeButton;
   using BaseObjectType = GtkVolumeButton;
   using BaseClassType = GtkVolumeButtonClass;
-  using CppClassParent = Gtk::ScaleButton_Class;
+  using CppClassParent = ScaleButton_Class;
   using BaseClassParent = GtkScaleButtonClass;
 
   friend class VolumeButton;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

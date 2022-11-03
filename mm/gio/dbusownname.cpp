@@ -40,10 +40,10 @@ struct OwnSlots
 extern "C" {
 
 static auto Bus_Acquired_giomm_callback (
-  GDBusConnection *connection, const gchar *name, gpointer data) -> void
+  GDBusConnection *connection, const gchar *name, const gpointer data) -> void
 {
-  auto slots = static_cast<OwnSlots*>(data);
-  auto the_slot = slots->bus_acquired_slot;
+  const auto slots = static_cast<OwnSlots*>(data);
+  const auto the_slot = slots->bus_acquired_slot;
 
   try
   {
@@ -56,10 +56,10 @@ static auto Bus_Acquired_giomm_callback (
 }
 
 static auto Bus_Name_Acquired_giomm_callback (
-  GDBusConnection *connection, const gchar *name, gpointer data) -> void
+  GDBusConnection *connection, const gchar *name, const gpointer data) -> void
 {
-  auto slots = static_cast<OwnSlots*>(data);
-  auto the_slot = slots->name_acquired_slot;
+  const auto slots = static_cast<OwnSlots*>(data);
+  const auto the_slot = slots->name_acquired_slot;
 
   try
   {
@@ -72,10 +72,10 @@ static auto Bus_Name_Acquired_giomm_callback (
 }
 
 static auto Bus_Name_Lost_giomm_callback (
-  GDBusConnection *connection, const gchar *name, gpointer data) -> void
+  GDBusConnection *connection, const gchar *name, const gpointer data) -> void
 {
-  auto slots = static_cast<OwnSlots*>(data);
-  auto the_slot = slots->name_lost_slot;
+  const auto slots = static_cast<OwnSlots*>(data);
+  const auto the_slot = slots->name_lost_slot;
 
   try
   {
@@ -89,7 +89,7 @@ static auto Bus_Name_Lost_giomm_callback (
 
 static auto Bus_Own_Name_giomm_callback_destroy (void *data) -> void
 {
-  auto slots = static_cast<OwnSlots*>(data);
+  const auto slots = static_cast<OwnSlots*>(data);
 
   if (slots->bus_acquired_slot)
     delete slots->bus_acquired_slot;
@@ -115,7 +115,7 @@ own_name(BusType bus_type, const Glib::ustring& name, const SlotBusAcquired& bus
   const SlotNameAcquired& name_acquired_slot, const SlotNameLost& name_lost_slot,
   BusNameOwnerFlags flags) -> guint
 {
-  auto slots = new OwnSlots;
+  const auto slots = new OwnSlots;
 
   // Make copies of the slots which will be deleted on destroy notification.
   slots->bus_acquired_slot = new SlotBusAcquired(bus_acquired_slot);
@@ -128,7 +128,8 @@ own_name(BusType bus_type, const Glib::ustring& name, const SlotBusAcquired& bus
     &Bus_Own_Name_giomm_callback_destroy);
 }
 
-auto unown_name (guint owner_id) -> void
+auto unown_name (
+  const guint owner_id) -> void
 {
   g_bus_unown_name(owner_id);
 }

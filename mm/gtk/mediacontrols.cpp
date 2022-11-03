@@ -34,9 +34,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkMediaControls* object, bool take_copy) -> Gtk::MediaControls*
+auto wrap(GtkMediaControls* object, const bool take_copy) -> Gtk::MediaControls*
 {
-  return dynamic_cast<Gtk::MediaControls *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::MediaControls *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -47,7 +47,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto MediaControls_Class::init() -> const Glib::Class&
+auto MediaControls_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -74,7 +74,7 @@ auto MediaControls_Class::class_init_function (void *g_class, void *class_data) 
 
 auto MediaControls_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new MediaControls((GtkMediaControls*)(o)));
+  return manage(new MediaControls((GtkMediaControls*)o));
 
 }
 
@@ -82,25 +82,23 @@ auto MediaControls_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 MediaControls::MediaControls(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 MediaControls::MediaControls(GtkMediaControls* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 MediaControls::MediaControls(MediaControls&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
 {}
 
 auto MediaControls::operator=(MediaControls&& src) noexcept -> MediaControls&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   return *this;
 }
 
@@ -126,8 +124,8 @@ auto MediaControls::get_base_type() -> GType
 MediaControls::MediaControls()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(mediacontrols_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(mediacontrols_class_.init()))
 {
 
 
@@ -136,8 +134,8 @@ MediaControls::MediaControls()
 MediaControls::MediaControls(const Glib::RefPtr<MediaStream>& media_stream)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(mediacontrols_class_.init(), "media_stream", Glib::unwrap(media_stream), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(mediacontrols_class_.init(), "media_stream", Glib::unwrap(media_stream), nullptr))
 {
 
 
@@ -168,12 +166,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<MediaSt
 
 auto MediaControls::property_media_stream() -> Glib::PropertyProxy< Glib::RefPtr<MediaStream> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<MediaStream> >(this, "media-stream");
+  return {this, "media-stream"};
 }
 
 auto MediaControls::property_media_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<MediaStream> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<MediaStream> >(this, "media-stream");
+  return {this, "media-stream"};
 }
 
 

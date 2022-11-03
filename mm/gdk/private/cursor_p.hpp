@@ -21,7 +21,7 @@ public:
   friend class Cursor;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto wrap_new (GObject *) -> Glib::ObjectBase*;

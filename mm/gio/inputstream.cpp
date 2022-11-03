@@ -32,123 +32,123 @@ namespace Gio
 {
 
 auto InputStream::read_async (
-  void *buffer, gsize count, const SlotAsyncReady &slot,
-  const Glib::RefPtr <Cancellable> &cancellable, int io_priority) -> void
+  void *buffer, const gsize count, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_input_stream_read_async(gobj(), buffer, count, io_priority, Glib::unwrap(cancellable),
     &SignalProxy_async_callback, slot_copy);
 }
 
 auto InputStream::read_async (
-  void *buffer, gsize count, const SlotAsyncReady &slot, int io_priority) -> void
+  void *buffer, const gsize count, const SlotAsyncReady &slot, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_input_stream_read_async(
     gobj(), buffer, count, io_priority, nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
 auto InputStream::read_all_async (
-  void *buffer, gsize count, const SlotAsyncReady &slot,
-  const Glib::RefPtr <Cancellable> &cancellable, int io_priority) -> void
+  void *buffer, const gsize count, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_input_stream_read_all_async(gobj(), buffer, count, io_priority, Glib::unwrap(cancellable),
     &SignalProxy_async_callback, slot_copy);
 }
 
 auto InputStream::read_all_async (
-  void *buffer, gsize count, const SlotAsyncReady &slot, int io_priority) -> void
+  void *buffer, const gsize count, const SlotAsyncReady &slot, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_input_stream_read_all_async(
     gobj(), buffer, count, io_priority, nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
 auto InputStream::read_bytes_async (
-  gsize count, const SlotAsyncReady &slot,
-  const Glib::RefPtr <Cancellable> &cancellable, int io_priority) -> void
+  const gsize count, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_input_stream_read_bytes_async(
     gobj(), count, io_priority, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
 auto InputStream::read_bytes_async (
-  gsize count, const SlotAsyncReady &slot, int io_priority) -> void
+  const gsize count, const SlotAsyncReady &slot, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_input_stream_read_bytes_async(
     gobj(), count, io_priority, nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
 auto InputStream::skip_async (
-  gsize count, const SlotAsyncReady &slot,
-  const Glib::RefPtr <Cancellable> &cancellable, int io_priority) -> void
+  const gsize count, const SlotAsyncReady &slot,
+  const Glib::RefPtr <Cancellable> &cancellable, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_input_stream_skip_async(
     gobj(), count, io_priority, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-auto InputStream::skip_async (gsize count, const SlotAsyncReady &slot, int io_priority) -> void
+auto InputStream::skip_async (
+  const gsize count, const SlotAsyncReady &slot, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_input_stream_skip_async(
     gobj(), count, io_priority, nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
 auto InputStream::close_async (
-  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
-  int io_priority) -> void
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_input_stream_close_async(
     gobj(), io_priority, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-auto InputStream::close_async (const SlotAsyncReady &slot, int io_priority) -> void
+auto InputStream::close_async (const SlotAsyncReady &slot, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_input_stream_close_async(gobj(), io_priority, nullptr, &SignalProxy_async_callback, slot_copy);
 }
@@ -163,9 +163,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GInputStream* object, bool take_copy) -> Glib::RefPtr<Gio::InputStream>
+auto wrap(GInputStream* object, const bool take_copy) -> RefPtr<Gio::InputStream>
 {
-  return Glib::make_refptr_for_instance<Gio::InputStream>( dynamic_cast<Gio::InputStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::InputStream>( dynamic_cast<Gio::InputStream*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -178,7 +178,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto InputStream_Class::init() -> const Glib::Class&
+auto InputStream_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -211,10 +211,9 @@ auto InputStream_Class::class_init_function (void *g_class, void *class_data) ->
 
 }
 
-auto InputStream_Class::read_fn_vfunc_callback(GInputStream* self, void* buffer, gsize count, GCancellable* cancellable, GError** error) -> gssize
+auto InputStream_Class::read_fn_vfunc_callback(GInputStream* self, void* buffer, const gsize count, GCancellable* cancellable, GError** error) -> gssize
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -244,7 +243,7 @@ auto InputStream_Class::read_fn_vfunc_callback(GInputStream* self, void* buffer,
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -255,10 +254,9 @@ auto InputStream_Class::read_fn_vfunc_callback(GInputStream* self, void* buffer,
   using RType = gssize;
   return RType();
 }
-auto InputStream_Class::skip_vfunc_callback(GInputStream* self, gsize count, GCancellable* cancellable, GError** error) -> gssize
+auto InputStream_Class::skip_vfunc_callback(GInputStream* self, const gsize count, GCancellable* cancellable, GError** error) -> gssize
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -288,7 +286,7 @@ auto InputStream_Class::skip_vfunc_callback(GInputStream* self, gsize count, GCa
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -301,8 +299,7 @@ auto InputStream_Class::skip_vfunc_callback(GInputStream* self, gsize count, GCa
 }
 auto InputStream_Class::close_fn_vfunc_callback(GInputStream* self, GCancellable* cancellable, GError** error) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -317,8 +314,8 @@ auto InputStream_Class::close_fn_vfunc_callback(GInputStream* self, GCancellable
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->close_vfunc(Glib::wrap(cancellable, true)
-));
+        return obj->close_vfunc(Glib::wrap(cancellable, true)
+        );
       }
       catch(Glib::Error& errormm)
       {
@@ -333,7 +330,7 @@ auto InputStream_Class::close_fn_vfunc_callback(GInputStream* self, GCancellable
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -361,32 +358,28 @@ auto InputStream::gobj_copy() -> GInputStream*
 }
 
 InputStream::InputStream(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 InputStream::InputStream(GInputStream* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 InputStream::InputStream(InputStream&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto InputStream::operator=(InputStream&& src) noexcept -> InputStream&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-InputStream::~InputStream() noexcept
-{}
-
+InputStream::~InputStream() noexcept = default;
 
 InputStream::CppClassType InputStream::inputstream_class_; // initialize static member
 
@@ -405,136 +398,139 @@ auto InputStream::get_base_type() -> GType
 InputStream::InputStream()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(inputstream_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(inputstream_class_.init()))
 {
 
 
 }
 
-auto InputStream::read(void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
+auto InputStream::read(void* buffer, const gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
-  auto retvalue = g_input_stream_read(gobj(), buffer, count, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_input_stream_read(gobj(), buffer, count, Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto InputStream::read(void* buffer, gsize count) -> gssize
+auto InputStream::read(void* buffer, const gsize count) -> gssize
 {
   GError* gerror = nullptr;
-  auto retvalue = g_input_stream_read(gobj(), buffer, count, nullptr, &(gerror));
+  const auto retvalue = g_input_stream_read(gobj(), buffer, count, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto InputStream::read_all(void* buffer, gsize count, gsize& bytes_read, const Glib::RefPtr<Cancellable>& cancellable) -> bool
+auto InputStream::read_all(void* buffer, const gsize count, gsize& bytes_read, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_input_stream_read_all(gobj(), buffer, count, &(bytes_read), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_input_stream_read_all(gobj(), buffer, count, &bytes_read, Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto InputStream::read_all(void* buffer, gsize count, gsize& bytes_read) -> bool
+auto InputStream::read_all(void* buffer, const gsize count, gsize& bytes_read) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_input_stream_read_all(gobj(), buffer, count, &(bytes_read), nullptr, &(gerror));
+  const auto retvalue = g_input_stream_read_all(gobj(), buffer, count, &bytes_read, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto InputStream::read_bytes(gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Glib::Bytes>
+auto InputStream::read_bytes(
+  const gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Glib::Bytes>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_input_stream_read_bytes(gobj(), count, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
+  auto retvalue = Glib::wrap(g_input_stream_read_bytes(gobj(), count, Glib::unwrap(cancellable), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto InputStream::read_bytes_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<Glib::Bytes>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_input_stream_read_bytes_finish(gobj(), Glib::unwrap(result), &(gerror)));
+  auto retvalue = Glib::wrap(g_input_stream_read_bytes_finish(gobj(), Glib::unwrap(result), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto InputStream::skip(gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
+auto InputStream::skip(
+  const gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
-  auto retvalue = g_input_stream_skip(gobj(), count, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_input_stream_skip(gobj(), count, Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto InputStream::skip(gsize count) -> gssize
+auto InputStream::skip(
+  const gsize count) -> gssize
 {
   GError* gerror = nullptr;
-  auto retvalue = g_input_stream_skip(gobj(), count, nullptr, &(gerror));
+  const auto retvalue = g_input_stream_skip(gobj(), count, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto InputStream::close(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_input_stream_close(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_input_stream_close(gobj(), Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto InputStream::close() -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_input_stream_close(gobj(), nullptr, &(gerror));
+  const auto retvalue = g_input_stream_close(gobj(), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto InputStream::read_finish(const Glib::RefPtr<AsyncResult>& result) -> gssize
 {
   GError* gerror = nullptr;
-  auto retvalue = g_input_stream_read_finish(gobj(), Glib::unwrap(result), &(gerror));
+  const auto retvalue = g_input_stream_read_finish(gobj(), Glib::unwrap(result), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto InputStream::read_all_finish(const Glib::RefPtr<AsyncResult>& result, gsize& bytes_read) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_input_stream_read_all_finish(gobj(), Glib::unwrap(result), &(bytes_read), &(gerror));
+  const auto retvalue = g_input_stream_read_all_finish(gobj(), Glib::unwrap(result), &bytes_read, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto InputStream::skip_finish(const Glib::RefPtr<AsyncResult>& result) -> gssize
 {
   GError* gerror = nullptr;
-  auto retvalue = g_input_stream_skip_finish(gobj(), Glib::unwrap(result), &(gerror));
+  const auto retvalue = g_input_stream_skip_finish(gobj(), Glib::unwrap(result), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto InputStream::close_finish(const Glib::RefPtr<AsyncResult>& result) -> gboolean
 {
   GError* gerror = nullptr;
-  auto retvalue = g_input_stream_close_finish(gobj(), Glib::unwrap(result), &(gerror));
+  const auto retvalue = g_input_stream_close_finish(gobj(), Glib::unwrap(result), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -551,9 +547,9 @@ auto InputStream::has_pending() const -> bool
 auto InputStream::set_pending() -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_input_stream_set_pending(gobj(), &(gerror));
+  const auto retvalue = g_input_stream_set_pending(gobj(), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -563,7 +559,7 @@ auto InputStream::clear_pending () -> void
 }
 
 
-auto Gio::InputStream::read_vfunc(void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
+auto InputStream::read_vfunc(void* buffer, const gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -572,16 +568,17 @@ auto Gio::InputStream::read_vfunc(void* buffer, gsize count, const Glib::RefPtr<
   if(base && base->read_fn)
   {
     GError* gerror = nullptr;
-    gssize retval((*base->read_fn)(gobj(),buffer,count,const_cast<GCancellable*>(Glib::unwrap(cancellable)),&(gerror)));
+    const gssize retval((*base->read_fn)(gobj(),buffer,count,Glib::unwrap(cancellable),&gerror));
     if(gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Glib::Error::throw_exception(gerror);
     return retval;
   }
 
   using RType = gssize;
   return RType();
 }
-auto Gio::InputStream::skip_vfunc(gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
+auto InputStream::skip_vfunc(
+  const gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -590,16 +587,16 @@ auto Gio::InputStream::skip_vfunc(gsize count, const Glib::RefPtr<Cancellable>& 
   if(base && base->skip)
   {
     GError* gerror = nullptr;
-    gssize retval((*base->skip)(gobj(),count,const_cast<GCancellable*>(Glib::unwrap(cancellable)),&(gerror)));
+    const gssize retval((*base->skip)(gobj(),count,Glib::unwrap(cancellable),&gerror));
     if(gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Glib::Error::throw_exception(gerror);
     return retval;
   }
 
   using RType = gssize;
   return RType();
 }
-auto Gio::InputStream::close_vfunc(const Glib::RefPtr<Cancellable>& cancellable) -> bool
+auto InputStream::close_vfunc(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -608,9 +605,9 @@ auto Gio::InputStream::close_vfunc(const Glib::RefPtr<Cancellable>& cancellable)
   if(base && base->close_fn)
   {
     GError* gerror = nullptr;
-    bool retval((*base->close_fn)(gobj(),const_cast<GCancellable*>(Glib::unwrap(cancellable)),&(gerror)));
+    const bool retval((*base->close_fn)(gobj(),Glib::unwrap(cancellable),&gerror));
     if(gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Glib::Error::throw_exception(gerror);
     return retval;
   }
 

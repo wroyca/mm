@@ -31,7 +31,7 @@ namespace Glib
 
 DateTime::operator bool() const
 {
-  return (gobject_ != nullptr);
+  return gobject_ != nullptr;
 }
 
 } // namespace Glib
@@ -44,9 +44,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GDateTime* object, bool take_copy) -> Glib::DateTime
+auto wrap(GDateTime* object, const bool take_copy) -> DateTime
 {
-  return Glib::DateTime(object, take_copy);
+  return DateTime(object, take_copy);
 }
 
 } // namespace Glib
@@ -69,7 +69,7 @@ DateTime::DateTime()
 
 DateTime::DateTime(const DateTime& other)
 :
-  gobject_ ((other.gobject_) ? g_date_time_ref(other.gobject_) : nullptr)
+  gobject_ (other.gobject_ ? g_date_time_ref(other.gobject_) : nullptr)
 {}
 
 DateTime::DateTime(DateTime&& other) noexcept
@@ -86,12 +86,12 @@ auto DateTime::operator=(DateTime&& other) noexcept -> DateTime&
   return *this;
 }
 
-DateTime::DateTime(GDateTime* gobject, bool make_a_copy)
+DateTime::DateTime(GDateTime* gobject, const bool make_a_copy)
 :
   // For BoxedType wrappers, make_a_copy is true by default.  The static
   // BoxedType wrappers must always take a copy, thus make_a_copy = true
   // ensures identical behaviour if the default argument is used.
-  gobject_ ((make_a_copy && gobject) ? g_date_time_ref(gobject) : gobject)
+  gobject_ (make_a_copy && gobject ? g_date_time_ref(gobject) : gobject)
 {}
 
 auto DateTime::operator=(const DateTime& other) -> DateTime&
@@ -120,97 +120,110 @@ auto DateTime::gobj_copy() const -> GDateTime*
 
 auto DateTime::create_now(const TimeZone& tz) -> DateTime
 {
-  return Glib::wrap(g_date_time_new_now(const_cast<GTimeZone*>(tz.gobj())));
+  return wrap(g_date_time_new_now(const_cast<GTimeZone*>(tz.gobj())));
 }
 
 auto DateTime::create_now_local() -> DateTime
 {
-  return Glib::wrap(g_date_time_new_now_local());
+  return wrap(g_date_time_new_now_local());
 }
 
 auto DateTime::create_now_utc() -> DateTime
 {
-  return Glib::wrap(g_date_time_new_now_utc());
+  return wrap(g_date_time_new_now_utc());
 }
 
-auto DateTime::create_now_local(gint64 t) -> DateTime
+auto DateTime::create_now_local(
+  const gint64 t) -> DateTime
 {
-  return Glib::wrap(g_date_time_new_from_unix_local(t));
+  return wrap(g_date_time_new_from_unix_local(t));
 }
 
-auto DateTime::create_now_utc(gint64 t) -> DateTime
+auto DateTime::create_now_utc(
+  const gint64 t) -> DateTime
 {
-  return Glib::wrap(g_date_time_new_from_unix_utc(t));
+  return wrap(g_date_time_new_from_unix_utc(t));
 }
 
-auto DateTime::create_from_iso8601(const Glib::ustring& text, const TimeZone& default_tz) -> DateTime
+auto DateTime::create_from_iso8601(const ustring & text, const TimeZone& default_tz) -> DateTime
 {
-  return Glib::wrap(g_date_time_new_from_iso8601(text.c_str(), const_cast<GTimeZone*>(default_tz.gobj())));
+  return wrap(g_date_time_new_from_iso8601(text.c_str(), const_cast<GTimeZone*>(default_tz.gobj())));
 }
 
-auto DateTime::create_from_iso8601(const Glib::ustring& text) -> DateTime
+auto DateTime::create_from_iso8601(const ustring & text) -> DateTime
 {
-  return Glib::wrap(g_date_time_new_from_iso8601(text.c_str(), nullptr));
+  return wrap(g_date_time_new_from_iso8601(text.c_str(), nullptr));
 }
 
-auto DateTime::create(const TimeZone& tz, int year, int month, int day, int hour, int minute, double seconds) -> DateTime
+auto DateTime::create(const TimeZone& tz, const int year, const int month, const int day, const int hour, const int minute, const double seconds) -> DateTime
 {
-  return Glib::wrap(g_date_time_new(const_cast<GTimeZone*>(tz.gobj()), year, month, day, hour, minute, seconds));
+  return wrap(g_date_time_new(const_cast<GTimeZone*>(tz.gobj()), year, month, day, hour, minute, seconds));
 }
 
-auto DateTime::create_local(int year, int month, int day, int hour, int minute, double seconds) -> DateTime
+auto DateTime::create_local(
+  const int year, const int month, const int day, const int hour, const int minute, const double seconds) -> DateTime
 {
-  return Glib::wrap(g_date_time_new_local(year, month, day, hour, minute, seconds));
+  return wrap(g_date_time_new_local(year, month, day, hour, minute, seconds));
 }
 
-auto DateTime::create_utc(int year, int month, int day, int hour, int minute, double seconds) -> DateTime
+auto DateTime::create_utc(
+  const int year, const int month, const int day, const int hour, const int minute, const double seconds) -> DateTime
 {
-  return Glib::wrap(g_date_time_new_utc(year, month, day, hour, minute, seconds));
+  return wrap(g_date_time_new_utc(year, month, day, hour, minute, seconds));
 }
 
-auto DateTime::add(TimeSpan timespan) const -> DateTime
+auto DateTime::add(
+  const TimeSpan timespan) const -> DateTime
 {
-  return Glib::wrap(g_date_time_add(const_cast<GDateTime*>(gobj()), timespan));
+  return wrap(g_date_time_add(const_cast<GDateTime*>(gobj()), timespan));
 }
 
-auto DateTime::add_years(int years) const -> DateTime
+auto DateTime::add_years(
+  const int years) const -> DateTime
 {
-  return Glib::wrap(g_date_time_add_years(const_cast<GDateTime*>(gobj()), years));
+  return wrap(g_date_time_add_years(const_cast<GDateTime*>(gobj()), years));
 }
 
-auto DateTime::add_months(int months) const -> DateTime
+auto DateTime::add_months(
+  const int months) const -> DateTime
 {
-  return Glib::wrap(g_date_time_add_months(const_cast<GDateTime*>(gobj()), months));
+  return wrap(g_date_time_add_months(const_cast<GDateTime*>(gobj()), months));
 }
 
-auto DateTime::add_weeks(int weeks) const -> DateTime
+auto DateTime::add_weeks(
+  const int weeks) const -> DateTime
 {
-  return Glib::wrap(g_date_time_add_weeks(const_cast<GDateTime*>(gobj()), weeks));
+  return wrap(g_date_time_add_weeks(const_cast<GDateTime*>(gobj()), weeks));
 }
 
-auto DateTime::add_days(int days) const -> DateTime
+auto DateTime::add_days(
+  const int days) const -> DateTime
 {
-  return Glib::wrap(g_date_time_add_days(const_cast<GDateTime*>(gobj()), days));
+  return wrap(g_date_time_add_days(const_cast<GDateTime*>(gobj()), days));
 }
 
-auto DateTime::add_hours(int hours) const -> DateTime
+auto DateTime::add_hours(
+  const int hours) const -> DateTime
 {
-  return Glib::wrap(g_date_time_add_hours(const_cast<GDateTime*>(gobj()), hours));
+  return wrap(g_date_time_add_hours(const_cast<GDateTime*>(gobj()), hours));
 }
 
-auto DateTime::add_minutes(int minutes) const -> DateTime
+auto DateTime::add_minutes(
+  const int minutes) const -> DateTime
 {
-  return Glib::wrap(g_date_time_add_minutes(const_cast<GDateTime*>(gobj()), minutes));
+  return wrap(g_date_time_add_minutes(const_cast<GDateTime*>(gobj()), minutes));
 }
 
-auto DateTime::add_seconds(double seconds) const -> DateTime
+auto DateTime::add_seconds(
+  const double seconds) const -> DateTime
 {
-  return Glib::wrap(g_date_time_add_seconds(const_cast<GDateTime*>(gobj()), seconds));
+  return wrap(g_date_time_add_seconds(const_cast<GDateTime*>(gobj()), seconds));
 }
 
-auto DateTime::add_full(int years, int months, int days, int hours, int minutes, double seconds) const -> DateTime
+auto DateTime::add_full(
+  const int years, const int months, const int days, const int hours, const int minutes, const double seconds) const -> DateTime
 {
-  return Glib::wrap(g_date_time_add_full(const_cast<GDateTime*>(gobj()), years, months, days, hours, minutes, seconds));
+  return wrap(g_date_time_add_full(const_cast<GDateTime*>(gobj()), years, months, days, hours, minutes, seconds));
 }
 
 auto DateTime::difference(const DateTime& other) const -> TimeSpan
@@ -220,22 +233,22 @@ auto DateTime::difference(const DateTime& other) const -> TimeSpan
 
 auto DateTime::compare(const DateTime& other) const -> int
 {
-  return g_date_time_compare(const_cast<GDateTime*>(gobj()), static_cast<gconstpointer>(other.gobj()));
+  return g_date_time_compare(gobj(), other.gobj());
 }
 
 auto DateTime::hash() const -> guint
 {
-  return g_date_time_hash(const_cast<GDateTime*>(gobj()));
+  return g_date_time_hash(gobj());
 }
 
 auto DateTime::equal(const DateTime& other) const -> bool
 {
-  return g_date_time_equal(const_cast<GDateTime*>(gobj()), static_cast<gconstpointer>(other.gobj()));
+  return g_date_time_equal(gobj(), other.gobj());
 }
 
 auto DateTime::get_ymd (int &year, int &month, int &day) const -> void
 {
-  g_date_time_get_ymd(const_cast<GDateTime*>(gobj()), &(year), &(month), &(day));
+  g_date_time_get_ymd(const_cast<GDateTime*>(gobj()), &year, &month, &day);
 }
 
 auto DateTime::get_year() const -> int
@@ -310,12 +323,12 @@ auto DateTime::get_utc_offset() const -> TimeSpan
 
 auto DateTime::get_timezone() const -> TimeZone
 {
-  return Glib::wrap(g_date_time_get_timezone(const_cast<GDateTime*>(gobj())), true);
+  return wrap(g_date_time_get_timezone(const_cast<GDateTime*>(gobj())), true);
 }
 
-auto DateTime::get_timezone_abbreviation() const -> Glib::ustring
+auto DateTime::get_timezone_abbreviation() const -> ustring
 {
-  return Glib::convert_const_gchar_ptr_to_ustring(g_date_time_get_timezone_abbreviation(const_cast<GDateTime*>(gobj())));
+  return convert_const_gchar_ptr_to_ustring(g_date_time_get_timezone_abbreviation(const_cast<GDateTime*>(gobj())));
 }
 
 auto DateTime::is_daylight_savings() const -> bool
@@ -325,27 +338,27 @@ auto DateTime::is_daylight_savings() const -> bool
 
 auto DateTime::to_timezone(const TimeZone& tz) const -> DateTime
 {
-  return Glib::wrap(g_date_time_to_timezone(const_cast<GDateTime*>(gobj()), const_cast<GTimeZone*>(tz.gobj())));
+  return wrap(g_date_time_to_timezone(const_cast<GDateTime*>(gobj()), const_cast<GTimeZone*>(tz.gobj())));
 }
 
 auto DateTime::to_local() const -> DateTime
 {
-  return Glib::wrap(g_date_time_to_local(const_cast<GDateTime*>(gobj())));
+  return wrap(g_date_time_to_local(const_cast<GDateTime*>(gobj())));
 }
 
 auto DateTime::to_utc() const -> DateTime
 {
-  return Glib::wrap(g_date_time_to_utc(const_cast<GDateTime*>(gobj())));
+  return wrap(g_date_time_to_utc(const_cast<GDateTime*>(gobj())));
 }
 
-auto DateTime::format(const Glib::ustring& format_str) const -> Glib::ustring
+auto DateTime::format(const ustring & format_str) const -> ustring
 {
-  return Glib::convert_return_gchar_ptr_to_ustring(g_date_time_format(const_cast<GDateTime*>(gobj()), format_str.c_str()));
+  return convert_return_gchar_ptr_to_ustring(g_date_time_format(const_cast<GDateTime*>(gobj()), format_str.c_str()));
 }
 
-auto DateTime::format_iso8601() const -> Glib::ustring
+auto DateTime::format_iso8601() const -> ustring
 {
-  return Glib::convert_return_gchar_ptr_to_ustring(g_date_time_format_iso8601(const_cast<GDateTime*>(gobj())));
+  return convert_return_gchar_ptr_to_ustring(g_date_time_format_iso8601(const_cast<GDateTime*>(gobj())));
 }
 
 

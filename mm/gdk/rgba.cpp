@@ -34,7 +34,7 @@ namespace Gdk
 
 RGBA::RGBA()
 {
-  GdkRGBA tmp = { 0, 0, 0, 0, };
+  const GdkRGBA tmp = { 0, 0, 0, 0, };
   gobject_ = gdk_rgba_copy(&tmp);
 }
 
@@ -44,25 +44,28 @@ RGBA::RGBA(const Glib::ustring& value)
   set(value);
 }
 
-RGBA::RGBA(float red_, float green_, float blue_, float alpha_)
+RGBA::RGBA(const float red_, const float green_, const float blue_, const float alpha_)
 {
-  GdkRGBA tmp = { red_, green_, blue_, alpha_, };
+  const GdkRGBA tmp = { red_, green_, blue_, alpha_, };
   gobject_ = gdk_rgba_copy(&tmp);
 }
 
-auto RGBA::set_grey_u (gushort value, gushort alpha) -> void
+auto RGBA::set_grey_u (
+  const gushort value, const gushort alpha) -> void
 {
-  gobject_->red = gobject_->green = gobject_->blue = (value / MULTIPLIER);
+  gobject_->red = gobject_->green = gobject_->blue = value / MULTIPLIER;
   gobject_->alpha = alpha / MULTIPLIER;
 }
 
-auto RGBA::set_grey (float g, float alpha) -> void
+auto RGBA::set_grey (
+  const float g, const float alpha) -> void
 {
   gobject_->red = gobject_->green = gobject_->blue = g;
   gobject_->alpha = alpha;
 }
 
-auto RGBA::set_rgba_u (gushort red_, gushort green_, gushort blue_, gushort alpha_) -> void
+auto RGBA::set_rgba_u (
+  const gushort red_, const gushort green_, const gushort blue_, const gushort alpha_) -> void
 {
   gobject_->red = red_ / MULTIPLIER;
   gobject_->green = green_/ MULTIPLIER;
@@ -70,7 +73,8 @@ auto RGBA::set_rgba_u (gushort red_, gushort green_, gushort blue_, gushort alph
   gobject_->alpha = alpha_/ MULTIPLIER;
 }
 
-auto RGBA::set_rgba (float red_, float green_, float blue_, float alpha_) -> void
+auto RGBA::set_rgba (
+  const float red_, const float green_, const float blue_, const float alpha_) -> void
 {
   gobject_->red = red_;
   gobject_->green = green_;
@@ -78,7 +82,7 @@ auto RGBA::set_rgba (float red_, float green_, float blue_, float alpha_) -> voi
   gobject_->alpha = alpha_;
 }
 
-auto RGBA::set_hsv (float h, float s, float v, float alpha) -> void
+auto RGBA::set_hsv (float h, const float s, const float v, const float alpha) -> void
 {
   // The HSV color space is described in a long Wikipedia article,
   // http://en.wikipedia.org/wiki/HSV_color_space
@@ -94,10 +98,10 @@ auto RGBA::set_hsv (float h, float s, float v, float alpha) -> void
   //                       = v - vs * (1 - (h - i)) = t
 
   h /= 60.0f;
-  int i = (int)h;
-  float p = v * (1 - s);
-  float q = v * (1 - s * (h - i));
-  float t = v * (1 - s * (1 - h + i));
+  const int i = (int)h;
+  const float p = v * (1 - s);
+  const float q = v * (1 - s * (h - i));
+  const float t = v * (1 - s * (1 - h + i));
 
   switch(i)
   {
@@ -121,7 +125,7 @@ auto RGBA::set_hsv (float h, float s, float v, float alpha) -> void
   }
 }
 
-auto RGBA::set_hsl (float h, float s, float l, float alpha) -> void
+auto RGBA::set_hsl (float h, const float s, const float l, const float alpha) -> void
 {
   // The HSL color space is described in a long Wikipedia article,
   // http://en.wikipedia.org/wiki/HSV_color_space
@@ -140,12 +144,12 @@ auto RGBA::set_hsl (float h, float s, float l, float alpha) -> void
     set_grey(l, alpha);
   else
   {
-    float t2 = (l < 0.5f) ? l * (1.0f + s) : l + s - l * s;
-    float t1 = 2*l-t2;
+    const float t2 = l < 0.5f ? l * (1.0f + s) : l + s - l * s;
+    const float t1 = 2*l-t2;
     h /= 360.0f;
 
     float tr = h + 1.0f/3.0f;
-    float tg = h;
+    const float tg = h;
     float tb = h - 1.0f/3.0f;
     if (tr > 1.0f) tr -= 1.0f;
     if (tb < 0.0f) tb += 1.0f;
@@ -200,42 +204,50 @@ auto RGBA::get_alpha_u() const -> gushort
   return gobject_->alpha *  MULTIPLIER;
 }
 
-auto RGBA::set_red_u (gushort value) -> void
+auto RGBA::set_red_u (
+  const gushort value) -> void
 {
   gobject_->red = value / MULTIPLIER;
 }
 
-auto RGBA::set_green_u (gushort value) -> void
+auto RGBA::set_green_u (
+  const gushort value) -> void
 {
   gobject_->green = value / MULTIPLIER;
 }
 
-auto RGBA::set_blue_u (gushort value) -> void
+auto RGBA::set_blue_u (
+  const gushort value) -> void
 {
   gobject_->blue = value / MULTIPLIER;
 }
 
-auto RGBA::set_alpha_u (gushort value) -> void
+auto RGBA::set_alpha_u (
+  const gushort value) -> void
 {
   gobject_->alpha = value / MULTIPLIER;
 }
 
-auto RGBA::set_red (float value) -> void
+auto RGBA::set_red (
+  const float value) -> void
 {
   gobject_->red = value;
 }
 
-auto RGBA::set_green (float value) -> void
+auto RGBA::set_green (
+  const float value) -> void
 {
   gobject_->green = value;
 }
 
-auto RGBA::set_blue (float value) -> void
+auto RGBA::set_blue (
+  const float value) -> void
 {
   gobject_->blue = value;
 }
 
-auto RGBA::set_alpha (float value) -> void
+auto RGBA::set_alpha (
+  const float value) -> void
 {
   gobject_->alpha = value;
 }
@@ -270,7 +282,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(GdkRGBA* object, bool take_copy) -> Gdk::RGBA
+auto wrap(GdkRGBA* object, const bool take_copy) -> Gdk::RGBA
 {
   return Gdk::RGBA(object, take_copy);
 }
@@ -291,7 +303,7 @@ auto RGBA::get_type() -> GType
 
 RGBA::RGBA(const RGBA& other)
 :
-  gobject_ ((other.gobject_) ? gdk_rgba_copy(other.gobject_) : nullptr)
+  gobject_ (other.gobject_ ? gdk_rgba_copy(other.gobject_) : nullptr)
 {}
 
 RGBA::RGBA(RGBA&& other) noexcept
@@ -308,12 +320,12 @@ auto RGBA::operator=(RGBA&& other) noexcept -> RGBA&
   return *this;
 }
 
-RGBA::RGBA(GdkRGBA* gobject, bool make_a_copy)
+RGBA::RGBA(GdkRGBA* gobject, const bool make_a_copy)
 :
   // For BoxedType wrappers, make_a_copy is true by default.  The static
   // BoxedType wrappers must always take a copy, thus make_a_copy = true
   // ensures identical behaviour if the default argument is used.
-  gobject_ ((make_a_copy && gobject) ? gdk_rgba_copy(gobject) : gobject)
+  gobject_ (make_a_copy && gobject ? gdk_rgba_copy(gobject) : gobject)
 {}
 
 auto RGBA::operator=(const RGBA& other) -> RGBA&
@@ -347,28 +359,28 @@ auto RGBA::set(const Glib::ustring& spec) -> bool
 
 auto RGBA::to_string() const -> Glib::ustring
 {
-  return Glib::convert_return_gchar_ptr_to_ustring(gdk_rgba_to_string(const_cast<GdkRGBA*>(gobj())));
+  return Glib::convert_return_gchar_ptr_to_ustring(gdk_rgba_to_string(gobj()));
 }
 
 auto RGBA::is_clear() const -> bool
 {
-  return gdk_rgba_is_clear(const_cast<GdkRGBA*>(gobj()));
+  return gdk_rgba_is_clear(gobj());
 }
 
 auto RGBA::is_opaque() const -> bool
 {
-  return gdk_rgba_is_opaque(const_cast<GdkRGBA*>(gobj()));
+  return gdk_rgba_is_opaque(gobj());
 }
 
 
 auto operator==(const RGBA& lhs, const RGBA& rhs) -> bool
 {
-  return (gdk_rgba_equal(lhs.gobj(), rhs.gobj()) != 0);
+  return gdk_rgba_equal(lhs.gobj(), rhs.gobj()) != 0;
 }
 
 auto operator!=(const RGBA& lhs, const RGBA& rhs) -> bool
 {
-  return (gdk_rgba_equal(lhs.gobj(), rhs.gobj()) == 0);
+  return gdk_rgba_equal(lhs.gobj(), rhs.gobj()) == 0;
 }
 
 

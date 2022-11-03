@@ -38,7 +38,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(PangoFontMetrics* object, bool take_copy) -> Pango::FontMetrics
+auto wrap(PangoFontMetrics* object, const bool take_copy) -> Pango::FontMetrics
 {
   return Pango::FontMetrics(object, take_copy);
 }
@@ -63,7 +63,7 @@ FontMetrics::FontMetrics()
 
 FontMetrics::FontMetrics(const FontMetrics& other)
 :
-  gobject_ ((other.gobject_) ? pango_font_metrics_ref(other.gobject_) : nullptr)
+  gobject_ (other.gobject_ ? pango_font_metrics_ref(other.gobject_) : nullptr)
 {}
 
 FontMetrics::FontMetrics(FontMetrics&& other) noexcept
@@ -80,12 +80,12 @@ auto FontMetrics::operator=(FontMetrics&& other) noexcept -> FontMetrics&
   return *this;
 }
 
-FontMetrics::FontMetrics(PangoFontMetrics* gobject, bool make_a_copy)
+FontMetrics::FontMetrics(PangoFontMetrics* gobject, const bool make_a_copy)
 :
   // For BoxedType wrappers, make_a_copy is true by default.  The static
   // BoxedType wrappers must always take a copy, thus make_a_copy = true
   // ensures identical behaviour if the default argument is used.
-  gobject_ ((make_a_copy && gobject) ? pango_font_metrics_ref(gobject) : gobject)
+  gobject_ (make_a_copy && gobject ? pango_font_metrics_ref(gobject) : gobject)
 {}
 
 auto FontMetrics::operator=(const FontMetrics& other) -> FontMetrics&

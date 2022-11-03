@@ -33,7 +33,7 @@ namespace Glib
 
 /****************** VariantBase ***********************************/
 
-VariantBase::VariantBase(GVariant* castitem, bool make_a_copy /* = false */)
+VariantBase::VariantBase(GVariant* castitem, const bool make_a_copy /* = false */)
 {
   if (castitem)
   {
@@ -52,7 +52,7 @@ VariantBase::operator bool() const
   return gobj();
 }
 
-auto VariantBase::init (const GVariant *cobject, bool take_a_reference) -> void
+auto VariantBase::init (const GVariant *cobject, const bool take_a_reference) -> void
 {
   if (gobject_)
     g_variant_unref(gobject_);
@@ -74,7 +74,7 @@ auto VariantBase::operator!=(const VariantBase& other) const -> bool
 
 auto VariantBase::get_normal_form (VariantBase &result) const -> void
 {
-  GVariant* const g_value = g_variant_get_normal_form(const_cast<GVariant*>(gobj()));
+  const GVariant* const g_value = g_variant_get_normal_form(const_cast<GVariant*>(gobj()));
 
   // The C function never returns NULL, according to its documenation,
   // so we don't need a bool return value.
@@ -83,7 +83,7 @@ auto VariantBase::get_normal_form (VariantBase &result) const -> void
 
 auto VariantBase::byteswap (VariantBase &result) const -> void
 {
-  GVariant* const g_value = g_variant_byteswap(const_cast<GVariant*>(gobj()));
+  const GVariant* const g_value = g_variant_byteswap(const_cast<GVariant*>(gobj()));
   result.init(g_value); // g_value is already referenced.
 }
 
@@ -148,7 +148,7 @@ VariantStringBase::VariantStringBase() : VariantBase()
 {
 }
 
-VariantStringBase::VariantStringBase(GVariant* castitem, bool take_a_reference)
+VariantStringBase::VariantStringBase(GVariant* castitem, const bool take_a_reference)
 : VariantBase(castitem, take_a_reference)
 {
 }
@@ -179,7 +179,7 @@ VariantContainerBase::VariantContainerBase() : VariantBase()
 {
 }
 
-VariantContainerBase::VariantContainerBase(GVariant* castitem, bool take_a_reference)
+VariantContainerBase::VariantContainerBase(GVariant* castitem, const bool take_a_reference)
 : VariantBase(castitem, take_a_reference)
 {
 }
@@ -218,12 +218,12 @@ VariantContainerBase::create_maybe(const VariantType& child_type, const VariantB
   return result;
 }
 
-auto VariantContainerBase::get_child (VariantBase &child, gsize index) const -> void
+auto VariantContainerBase::get_child (VariantBase &child, const gsize index) const -> void
 {
   if (index >= get_n_children())
     throw std::out_of_range("VariantContainerBase::get_child(): Index out of bounds.");
 
-  GVariant* const gvariant = g_variant_get_child_value(gobject_, index);
+  const GVariant* const gvariant = g_variant_get_child_value(gobject_, index);
   child.init(gvariant);
 }
 
@@ -233,7 +233,7 @@ auto
 VariantBase::cast_dynamic<VariantContainerBase>(const VariantBase& v) -> VariantContainerBase
 {
   if (!v.gobj())
-    return VariantContainerBase();
+    return {};
 
   if (v.get_type().is_container())
   {
@@ -249,7 +249,7 @@ VariantBase::cast_dynamic<VariantContainerBase>(const VariantBase& v) -> Variant
 auto
 VariantContainerBase::get_maybe(VariantBase& maybe) const -> bool
 {
-  GVariant* const g_value = g_variant_get_maybe(const_cast<GVariant*>(gobj()));
+  const GVariant* const g_value = g_variant_get_maybe(const_cast<GVariant*>(gobj()));
 
   if (g_value)
   {
@@ -287,7 +287,7 @@ Variant<VariantBase>::Variant() : VariantContainerBase()
 {
 }
 
-Variant<VariantBase>::Variant(GVariant* castitem, bool take_a_reference)
+Variant<VariantBase>::Variant(GVariant* castitem, const bool take_a_reference)
 : VariantContainerBase(castitem, take_a_reference)
 {
 }
@@ -308,68 +308,68 @@ Variant<VariantBase>::create(const VariantBase& data) -> Variant<VariantBase>
 
 auto Variant <VariantBase>::get (VariantBase &variant) const -> void
 {
-  GVariant* const gvariant = g_variant_get_variant(gobject_);
+  const GVariant* const gvariant = g_variant_get_variant(gobject_);
   variant.init(gvariant);
 }
 
 /*--------------------Variant<Glib::ustring>---------------------*/
 
-Variant<Glib::ustring>::Variant() : VariantStringBase()
+Variant<ustring>::Variant() : VariantStringBase()
 {
 }
 
-Variant<Glib::ustring>::Variant(GVariant* castitem, bool take_a_reference)
+Variant<ustring>::Variant(GVariant* castitem, const bool take_a_reference)
 : VariantStringBase(castitem, take_a_reference)
 {
 }
 
 // static
 auto
-Variant<Glib::ustring>::variant_type() -> const VariantType&
+Variant<ustring>::variant_type() -> const VariantType&
 {
   return VARIANT_TYPE_STRING;
 }
 
 auto
-Variant<Glib::ustring>::create(const Glib::ustring& data) -> Variant<Glib::ustring>
+Variant<ustring>::create(const ustring & data) -> Variant<ustring>
 {
-  auto result = Variant<Glib::ustring>(g_variant_new_string(data.c_str()));
+  auto result = Variant<ustring>(g_variant_new_string(data.c_str()));
   return result;
 }
 
 auto
-Variant<Glib::ustring>::get() const -> Glib::ustring
+Variant<ustring>::get() const -> ustring
 {
   return convert_const_gchar_ptr_to_ustring(g_variant_get_string(gobject_, nullptr));
 }
 
 /*--------------------Variant<Glib::DBusObjectPathString>---------------------*/
 
-Variant<Glib::DBusObjectPathString>::Variant() : VariantStringBase()
+Variant<DBusObjectPathString>::Variant() : VariantStringBase()
 {
 }
 
-Variant<Glib::DBusObjectPathString>::Variant(GVariant* castitem, bool take_a_reference)
+Variant<DBusObjectPathString>::Variant(GVariant* castitem, const bool take_a_reference)
 : VariantStringBase(castitem, take_a_reference)
 {
 }
 
 // static
 auto
-Variant<Glib::DBusObjectPathString>::variant_type() -> const VariantType&
+Variant<DBusObjectPathString>::variant_type() -> const VariantType&
 {
   return VARIANT_TYPE_OBJECT_PATH;
 }
 
 auto
-Variant<Glib::DBusObjectPathString>::create(const Glib::DBusObjectPathString& data) -> Variant<Glib::DBusObjectPathString>
+Variant<DBusObjectPathString>::create(const DBusObjectPathString & data) -> Variant<DBusObjectPathString>
 {
   auto result = Variant<CppType>(g_variant_new_object_path(data.c_str()));
   return result;
 }
 
 auto
-Variant<Glib::DBusObjectPathString>::get() const -> Glib::DBusObjectPathString
+Variant<DBusObjectPathString>::get() const -> DBusObjectPathString
 {
   const char* s = g_variant_get_string(gobject_, nullptr);
   return s ? CppType(s) : CppType();
@@ -377,31 +377,31 @@ Variant<Glib::DBusObjectPathString>::get() const -> Glib::DBusObjectPathString
 
 /*--------------------Variant<Glib::DBusSignatureString>---------------------*/
 
-Variant<Glib::DBusSignatureString>::Variant() : VariantStringBase()
+Variant<DBusSignatureString>::Variant() : VariantStringBase()
 {
 }
 
-Variant<Glib::DBusSignatureString>::Variant(GVariant* castitem, bool take_a_reference)
+Variant<DBusSignatureString>::Variant(GVariant* castitem, const bool take_a_reference)
 : VariantStringBase(castitem, take_a_reference)
 {
 }
 
 // static
 auto
-Variant<Glib::DBusSignatureString>::variant_type() -> const VariantType&
+Variant<DBusSignatureString>::variant_type() -> const VariantType&
 {
   return VARIANT_TYPE_SIGNATURE;
 }
 
 auto
-Variant<Glib::DBusSignatureString>::create(const Glib::DBusSignatureString& data) -> Variant<Glib::DBusSignatureString>
+Variant<DBusSignatureString>::create(const DBusSignatureString & data) -> Variant<DBusSignatureString>
 {
   auto result = Variant<CppType>(g_variant_new_signature(data.c_str()));
   return result;
 }
 
 auto
-Variant<Glib::DBusSignatureString>::get() const -> Glib::DBusSignatureString
+Variant<DBusSignatureString>::get() const -> DBusSignatureString
 {
   const char* s = g_variant_get_string(gobject_, nullptr);
   return s ? CppType(s) : CppType();
@@ -413,7 +413,7 @@ Variant<std::string>::Variant() : VariantStringBase()
 {
 }
 
-Variant<std::string>::Variant(GVariant* castitem, bool take_a_reference)
+Variant<std::string>::Variant(GVariant* castitem, const bool take_a_reference)
 : VariantStringBase(castitem, take_a_reference)
 {
 }
@@ -448,13 +448,13 @@ Variant<std::string>::get() const -> std::string
 
 /*--------------------Variant< std::vector<Glib::ustring> >---------------------*/
 
-using type_vec_ustring = std::vector<Glib::ustring>;
+using type_vec_ustring = std::vector<ustring>;
 
 Variant<type_vec_ustring>::Variant() : VariantContainerBase()
 {
 }
 
-Variant<type_vec_ustring>::Variant(GVariant* castitem, bool take_a_reference)
+Variant<type_vec_ustring>::Variant(GVariant* castitem, const bool take_a_reference)
 : VariantContainerBase(castitem, take_a_reference)
 {
 }
@@ -470,10 +470,10 @@ auto
 Variant<type_vec_ustring>::create(const type_vec_ustring& data) -> Variant<type_vec_ustring>
 {
   // Get the variant type of the elements.
-  VariantType element_variant_type = Variant<Glib::ustring>::variant_type();
+  const VariantType element_variant_type = Variant<ustring>::variant_type();
 
   // Get the variant type of the array.
-  VariantType array_variant_type = Variant<type_vec_ustring>::variant_type();
+  VariantType array_variant_type = variant_type();
 
   // Create a GVariantBuilder to build the array.
   GVariantBuilder* builder = g_variant_builder_new(array_variant_type.gobj());
@@ -492,7 +492,8 @@ Variant<type_vec_ustring>::create(const type_vec_ustring& data) -> Variant<type_
 }
 
 auto
-Variant<type_vec_ustring>::get_child(gsize index) const -> Glib::ustring
+Variant<type_vec_ustring>::get_child(
+  const gsize index) const -> ustring
 {
   if (index >= get_n_children())
     throw std::out_of_range(
@@ -500,7 +501,7 @@ Variant<type_vec_ustring>::get_child(gsize index) const -> Glib::ustring
 
   GVariant* gvariant = g_variant_get_child_value(const_cast<GVariant*>(gobj()), index);
 
-  return Glib::Variant<Glib::ustring>(gvariant).get();
+  return Glib::Variant<ustring>(gvariant).get();
 }
 
 auto
@@ -513,7 +514,7 @@ Variant<type_vec_ustring>::get() const -> type_vec_ustring
   for (gsize i = 0, n_children = get_n_children(); i < n_children; ++i)
   {
     GVariant* gvariant = g_variant_get_child_value(const_cast<GVariant*>(gobj()), i);
-    result.emplace_back(Glib::Variant<Glib::ustring>(gvariant).get());
+    result.emplace_back(Glib::Variant<ustring>(gvariant).get());
   }
 
   return result;
@@ -527,13 +528,13 @@ Variant<type_vec_ustring>::get_iter() const -> VariantIter
 
 /*--------------------Variant<std::vector<Glib::DBusObjectPathString>>---------------------*/
 
-using type_vec_opstring = std::vector<Glib::DBusObjectPathString>;
+using type_vec_opstring = std::vector<DBusObjectPathString>;
 
 Variant<type_vec_opstring>::Variant() : VariantContainerBase()
 {
 }
 
-Variant<type_vec_opstring>::Variant(GVariant* castitem, bool take_a_reference)
+Variant<type_vec_opstring>::Variant(GVariant* castitem, const bool take_a_reference)
 : VariantContainerBase(castitem, take_a_reference)
 {
 }
@@ -550,10 +551,10 @@ auto
 Variant<type_vec_opstring>::create(const type_vec_opstring& data) -> Variant<type_vec_opstring>
 {
   // Get the variant type of the elements.
-  VariantType element_variant_type = Variant<CppType>::variant_type();
+  const VariantType element_variant_type = Variant<CppType>::variant_type();
 
   // Get the variant type of the array.
-  VariantType array_variant_type = Variant<type_vec_opstring>::variant_type();
+  VariantType array_variant_type = variant_type();
 
   // Create a GVariantBuilder to build the array.
   GVariantBuilder* builder = g_variant_builder_new(array_variant_type.gobj());
@@ -572,7 +573,8 @@ Variant<type_vec_opstring>::create(const type_vec_opstring& data) -> Variant<typ
 }
 
 auto
-Variant<type_vec_opstring>::get_child(gsize index) const -> Glib::DBusObjectPathString
+Variant<type_vec_opstring>::get_child(
+  const gsize index) const -> DBusObjectPathString
 {
   if (index >= get_n_children())
     throw std::out_of_range(
@@ -607,7 +609,7 @@ Variant<type_vec_string>::Variant() : VariantContainerBase()
 {
 }
 
-Variant<type_vec_string>::Variant(GVariant* castitem, bool take_a_reference)
+Variant<type_vec_string>::Variant(GVariant* castitem, const bool take_a_reference)
 : VariantContainerBase(castitem, take_a_reference)
 {
 }
@@ -662,7 +664,8 @@ Variant<type_vec_string>::create_from_object_paths(const type_vec_string& data) 
 }
 
 auto
-Variant<type_vec_string>::get_child(gsize index) const -> std::string
+Variant<type_vec_string>::get_child(
+  const gsize index) const -> std::string
 {
   if (index >= get_n_children())
     throw std::out_of_range(
@@ -703,7 +706,7 @@ auto Value <VariantBase>::set (CppType data) -> void
   set_variant(data.gobj());
 }
 
-auto Value<VariantBase>::get() const -> Value<VariantBase>::CppType
+auto Value<VariantBase>::get() const -> CppType
 {
   return CppType(get_variant(), true);
 }
@@ -715,33 +718,31 @@ namespace
 } // anonymous namespace
 
 
-Glib::VariantParseError::VariantParseError(Glib::VariantParseError::Code error_code, const Glib::ustring& error_message)
-:
-  Glib::Error (G_VARIANT_PARSE_ERROR, error_code, error_message)
+Glib::VariantParseError::VariantParseError(const Code error_code, const ustring & error_message)
+: Error(G_VARIANT_PARSE_ERROR, error_code, error_message)
 {}
 
 Glib::VariantParseError::VariantParseError(GError* gobject)
-:
-  Glib::Error (gobject)
+: Error(gobject)
 {}
 
-auto Glib::VariantParseError::code() const -> Glib::VariantParseError::Code
+auto Glib::VariantParseError::code() const -> Code
 {
-  return static_cast<Code>(Glib::Error::code());
+  return static_cast<Code>(Error::code());
 }
 
 auto Glib::VariantParseError::throw_func (GError *gobject) -> void
 {
-  throw Glib::VariantParseError(gobject);
+  throw VariantParseError(gobject);
 }
 
 
 namespace Glib
 {
 
-auto wrap(GVariant* object, bool take_copy /* = false */) -> Glib::VariantBase
+auto wrap(GVariant* object, const bool take_copy /* = false */) -> VariantBase
 {
-  return Glib::VariantBase(object, take_copy);
+  return VariantBase(object, take_copy);
 }
 
 } // namespace Glib
@@ -758,13 +759,13 @@ VariantBase::VariantBase()
 
 VariantBase::VariantBase(const VariantBase& src)
 :
-  gobject_ ((src.gobject_) ? g_variant_ref_sink(src.gobject_) : nullptr)
+  gobject_ (src.gobject_ ? g_variant_ref_sink(src.gobject_) : nullptr)
 {}
 
 
 auto VariantBase::operator=(const VariantBase& src) -> VariantBase&
 {
-  const auto new_gobject = (src.gobject_) ? g_variant_ref_sink(src.gobject_) : nullptr;
+  const auto new_gobject = src.gobject_ ? g_variant_ref_sink(src.gobject_) : nullptr;
 
   if(gobject_)
     g_variant_unref(gobject_);
@@ -807,12 +808,12 @@ auto VariantBase::gobj_copy() const -> GVariant*
 
 auto VariantBase::get_type() const -> VariantType
 {
-  return Glib::wrap(const_cast<GVariantType*>(g_variant_get_type(const_cast<GVariant*>(gobj()))), true);
+  return wrap(const_cast<GVariantType*>(g_variant_get_type(const_cast<GVariant*>(gobj()))), true);
 }
 
 auto VariantBase::get_type_string() const -> std::string
 {
-  return Glib::convert_const_gchar_ptr_to_stdstring(g_variant_get_type_string(const_cast<GVariant*>(gobj())));
+  return convert_const_gchar_ptr_to_stdstring(g_variant_get_type_string(const_cast<GVariant*>(gobj())));
 }
 
 auto VariantBase::is_floating() const -> bool
@@ -822,7 +823,7 @@ auto VariantBase::is_floating() const -> bool
 
 auto VariantBase::is_of_type(const VariantType& type) const -> bool
 {
-  return g_variant_is_of_type(const_cast<GVariant*>(gobj()), (type).gobj());
+  return g_variant_is_of_type(const_cast<GVariant*>(gobj()), type.gobj());
 }
 
 auto VariantBase::is_container() const -> bool
@@ -845,29 +846,31 @@ auto VariantBase::get_data() const -> gconstpointer
   return g_variant_get_data(const_cast<GVariant*>(gobj()));
 }
 
-auto VariantBase::get_data_as_bytes() const -> Glib::RefPtr<const Glib::Bytes>
+auto VariantBase::get_data_as_bytes() const -> RefPtr<const Bytes>
 {
-  return Glib::wrap(g_variant_get_data_as_bytes(const_cast<GVariant*>(gobj())));
+  return wrap(g_variant_get_data_as_bytes(const_cast<GVariant*>(gobj())));
 }
 
-auto VariantBase::store (gpointer data) const -> void
+auto VariantBase::store (
+  const gpointer data) const -> void
 {
   g_variant_store(const_cast<GVariant*>(gobj()), data);
 }
 
-auto VariantBase::print(bool type_annotate) const -> Glib::ustring
+auto VariantBase::print(
+  const bool type_annotate) const -> ustring
 {
-  return Glib::convert_return_gchar_ptr_to_ustring(g_variant_print(const_cast<GVariant*>(gobj()), static_cast<int>(type_annotate)));
+  return convert_return_gchar_ptr_to_ustring(g_variant_print(const_cast<GVariant*>(gobj()), type_annotate));
 }
 
 auto VariantBase::hash() const -> guint
 {
-  return g_variant_hash(const_cast<GVariant*>(gobj()));
+  return g_variant_hash(gobj());
 }
 
 auto VariantBase::equal(const VariantBase& other) const -> bool
 {
-  return g_variant_equal(const_cast<GVariant*>(gobj()), const_cast<GVariant*>((other).gobj()));
+  return g_variant_equal(gobj(), other.gobj());
 }
 
 auto VariantBase::is_normal_form() const -> bool
@@ -875,9 +878,9 @@ auto VariantBase::is_normal_form() const -> bool
   return g_variant_is_normal_form(const_cast<GVariant*>(gobj()));
 }
 
-auto VariantBase::check_format_string(const std::string& format_string, bool copy_only) const -> bool
+auto VariantBase::check_format_string(const std::string& format_string, const bool copy_only) const -> bool
 {
-  return g_variant_check_format_string(const_cast<GVariant*>(gobj()), format_string.c_str(), static_cast<int>(copy_only));
+  return g_variant_check_format_string(const_cast<GVariant*>(gobj()), format_string.c_str(), copy_only);
 }
 
 
@@ -911,9 +914,10 @@ auto VariantContainerBase::get_n_children() const -> gsize
   return g_variant_n_children(const_cast<GVariant*>(gobj()));
 }
 
-auto VariantContainerBase::get_child(gsize index) -> VariantBase
+auto VariantContainerBase::get_child(
+  const gsize index) -> VariantBase
 {
-  return Glib::wrap(g_variant_get_child_value(gobj(), index));
+  return wrap(g_variant_get_child_value(gobj(), index));
 }
 
 
@@ -926,7 +930,7 @@ namespace Glib
 
 auto Variant<VariantBase>::get() const -> VariantBase
 {
-  return Glib::wrap(g_variant_get_variant(const_cast<GVariant*>(gobj())));
+  return wrap(g_variant_get_variant(const_cast<GVariant*>(gobj())));
 }
 
 

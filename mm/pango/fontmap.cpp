@@ -62,9 +62,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(PangoFontMap* object, bool take_copy) -> Glib::RefPtr<Pango::FontMap>
+auto wrap(PangoFontMap* object, const bool take_copy) -> RefPtr<Pango::FontMap>
 {
-  return Glib::make_refptr_for_instance<Pango::FontMap>( dynamic_cast<Pango::FontMap*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Pango::FontMap>( dynamic_cast<Pango::FontMap*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -77,7 +77,7 @@ namespace Pango
 
 /* The *_Class implementation: */
 
-auto FontMap_Class::init() -> const Glib::Class&
+auto FontMap_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -118,34 +118,31 @@ auto FontMap::gobj_copy() -> PangoFontMap*
 }
 
 FontMap::FontMap(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 FontMap::FontMap(PangoFontMap* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 FontMap::FontMap(FontMap&& src) noexcept
-: Glib::Object(std::move(src))
-  , Gio::ListModel(std::move(src))
+: Object(std::move(src))
+  ,
+  ListModel(std::move(src))
 {}
 
 auto FontMap::operator=(FontMap&& src) noexcept -> FontMap&
 {
-  Glib::Object::operator=(std::move(src));
-  Gio::ListModel::operator=(std::move(src));
+  Object::operator=(std::move(src));
+  ListModel::operator=(std::move(src));
   return *this;
 }
 
 
-FontMap::~FontMap() noexcept
-{}
-
+FontMap::~FontMap() noexcept = default;
 
 FontMap::CppClassType FontMap::fontmap_class_; // initialize static member
 
@@ -163,12 +160,12 @@ auto FontMap::get_base_type() -> GType
 
 auto FontMap::load_font(const Glib::RefPtr<Context>& context, const FontDescription& desc) const -> Glib::RefPtr<Font>
 {
-  return Glib::wrap(pango_font_map_load_font(const_cast<PangoFontMap*>(gobj()), Glib::unwrap(context), (desc).gobj()));
+  return Glib::wrap(pango_font_map_load_font(const_cast<PangoFontMap*>(gobj()), Glib::unwrap(context), desc.gobj()));
 }
 
 auto FontMap::load_fontset(const Glib::RefPtr<Context>& context, const FontDescription& desc, const Language& language) const -> Glib::RefPtr<Fontset>
 {
-  return Glib::wrap(pango_font_map_load_fontset(const_cast<PangoFontMap*>(gobj()), Glib::unwrap(context), (desc).gobj(), const_cast<PangoLanguage*>((language).gobj())));
+  return Glib::wrap(pango_font_map_load_fontset(const_cast<PangoFontMap*>(gobj()), Glib::unwrap(context), desc.gobj(), const_cast<PangoLanguage*>(language.gobj())));
 }
 
 auto FontMap::create_context() -> Glib::RefPtr<Context>

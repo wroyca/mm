@@ -29,9 +29,10 @@
 namespace Gtk::Expression_Private
 {
 
-auto watch_callback (gpointer data) -> void
+auto watch_callback (
+  const gpointer data) -> void
 {
-  auto slot = static_cast<sigc::slot<void()>*>(data);
+  const auto slot = static_cast<sigc::slot<void()>*>(data);
   (*slot)();
 }
 
@@ -61,7 +62,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkExpression* object, bool take_copy) -> Glib::RefPtr<Gtk::ExpressionBase>
+auto wrap(GtkExpression* object, const bool take_copy) -> RefPtr<Gtk::ExpressionBase>
 {
   if(take_copy && object)
     gtk_expression_ref(object);

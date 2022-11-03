@@ -17,13 +17,13 @@ public:
   using CppObjectType = ToggleButton;
   using BaseObjectType = GtkToggleButton;
   using BaseClassType = GtkToggleButtonClass;
-  using CppClassParent = Gtk::Button_Class;
+  using CppClassParent = Button_Class;
   using BaseClassParent = GtkButtonClass;
 
   friend class ToggleButton;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

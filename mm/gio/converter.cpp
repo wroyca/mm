@@ -53,9 +53,9 @@ auto Glib::Value<Gio::Converter::Flags>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GConverter* object, bool take_copy) -> Glib::RefPtr<Gio::Converter>
+auto wrap(GConverter* object, const bool take_copy) -> RefPtr<Gio::Converter>
 {
-  return Glib::make_refptr_for_instance<Gio::Converter>( dynamic_cast<Gio::Converter*> (Glib::wrap_auto_interface<Gio::Converter> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::Converter>( Glib::wrap_auto_interface<Gio::Converter> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -68,7 +68,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto Converter_Class::init() -> const Glib::Interface_Class&
+auto Converter_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -96,10 +96,9 @@ auto Converter_Class::iface_init_function (void *g_iface, void *) -> void
 
 }
 
-auto Converter_Class::convert_vfunc_callback(GConverter* self, const void* inbuf, gsize inbuf_size, void* outbuf, gsize outbuf_size, GConverterFlags flags, gsize* bytes_read, gsize* bytes_written, GError** error) -> GConverterResult
+auto Converter_Class::convert_vfunc_callback(GConverter* self, const void* inbuf, const gsize inbuf_size, void* outbuf, const gsize outbuf_size, GConverterFlags flags, gsize* bytes_read, gsize* bytes_written, GError** error) -> GConverterResult
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -115,8 +114,8 @@ auto Converter_Class::convert_vfunc_callback(GConverter* self, const void* inbuf
       {
         // Call the virtual member method, which derived classes might override.
         return static_cast<GConverterResult>(obj->convert_vfunc(inbuf, inbuf_size, outbuf, outbuf_size, static_cast<Flags>(flags)
-, *(bytes_read)
-, *(bytes_written)
+, *bytes_read
+, *bytes_written
 ));
       }
       catch(Glib::Error& errormm)
@@ -132,7 +131,7 @@ auto Converter_Class::convert_vfunc_callback(GConverter* self, const void* inbuf
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -146,8 +145,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto Converter_Class::reset_vfunc_callback (GConverter *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -172,7 +170,7 @@ auto Converter_Class::reset_vfunc_callback (GConverter *self) -> void
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -185,42 +183,40 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 
 auto Converter_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new Converter((GConverter*)(object));
+  return new Converter((GConverter*)object);
 }
 
 
 /* The implementation: */
 
 Converter::Converter()
-:
-  Glib::Interface(converter_class_.init())
+: Interface(converter_class_.init())
 {}
 
 Converter::Converter(GConverter* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 Converter::Converter(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 Converter::Converter(Converter&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto Converter::operator=(Converter&& src) noexcept -> Converter&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-Converter::~Converter() noexcept
-{}
+Converter::~Converter() noexcept = default;
 
 // static
-auto Converter::add_interface (GType gtype_implementer) -> void
+auto Converter::add_interface (
+  const GType gtype_implementer) -> void
 {
   converter_class_.init().add_interface(gtype_implementer);
 }
@@ -239,12 +235,12 @@ auto Converter::get_base_type() -> GType
 }
 
 
-auto Converter::convert(const void* inbuf, gsize inbuf_size, void* outbuf, gsize outbuf_size, Flags flags, gsize& bytes_read, gsize& bytes_written) -> Result
+auto Converter::convert(const void* inbuf, const gsize inbuf_size, void* outbuf, const gsize outbuf_size, Flags flags, gsize& bytes_read, gsize& bytes_written) -> Result
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<Result>(g_converter_convert(gobj(), inbuf, inbuf_size, outbuf, outbuf_size, static_cast<GConverterFlags>(flags), &(bytes_read), &(bytes_written), &(gerror)));
+  const auto retvalue = static_cast<Result>(g_converter_convert(gobj(), inbuf, inbuf_size, outbuf, outbuf_size, static_cast<GConverterFlags>(flags), &bytes_read, &bytes_written, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -254,30 +250,30 @@ auto Converter::reset () -> void
 }
 
 
-auto Gio::Converter::convert_vfunc(const void* inbuf, gsize inbuf_size, void* outbuf, gsize outbuf_size, Flags flags, gsize& bytes_read, gsize& bytes_written) -> Result
+auto Converter::convert_vfunc(const void* inbuf, const gsize inbuf_size, void* outbuf, const gsize outbuf_size, Flags flags, gsize& bytes_read, gsize& bytes_written) -> Result
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->convert)
   {
     GError* gerror = nullptr;
-    Result retval(static_cast<Result>((*base->convert)(gobj(),inbuf,inbuf_size,outbuf,outbuf_size,static_cast<GConverterFlags>(flags),&(bytes_read),&(bytes_written),&(gerror))));
+    const Result retval(static_cast<Result>((*base->convert)(gobj(),inbuf,inbuf_size,outbuf,outbuf_size,static_cast<GConverterFlags>(flags),&bytes_read,&bytes_written,&gerror)));
     if(gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Glib::Error::throw_exception(gerror);
     return retval;
   }
 
   using RType = Result;
   return RType();
 }
-auto Gio::Converter::reset_vfunc () -> void
+auto Converter::reset_vfunc () -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->reset)

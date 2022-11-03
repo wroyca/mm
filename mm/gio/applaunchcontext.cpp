@@ -40,9 +40,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GAppLaunchContext* object, bool take_copy) -> Glib::RefPtr<Gio::AppLaunchContext>
+auto wrap(GAppLaunchContext* object, const bool take_copy) -> RefPtr<Gio::AppLaunchContext>
 {
-  return Glib::make_refptr_for_instance<Gio::AppLaunchContext>( dynamic_cast<Gio::AppLaunchContext*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::AppLaunchContext>( dynamic_cast<Gio::AppLaunchContext*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -55,7 +55,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto AppLaunchContext_Class::init() -> const Glib::Class&
+auto AppLaunchContext_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -101,32 +101,28 @@ auto AppLaunchContext::gobj_copy() -> GAppLaunchContext*
 }
 
 AppLaunchContext::AppLaunchContext(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 AppLaunchContext::AppLaunchContext(GAppLaunchContext* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 AppLaunchContext::AppLaunchContext(AppLaunchContext&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto AppLaunchContext::operator=(AppLaunchContext&& src) noexcept -> AppLaunchContext&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-AppLaunchContext::~AppLaunchContext() noexcept
-{}
-
+AppLaunchContext::~AppLaunchContext() noexcept = default;
 
 AppLaunchContext::CppClassType AppLaunchContext::applaunchcontext_class_; // initialize static member
 
@@ -145,8 +141,8 @@ auto AppLaunchContext::get_base_type() -> GType
 AppLaunchContext::AppLaunchContext()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(applaunchcontext_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(applaunchcontext_class_.init()))
 {
 
 
@@ -172,14 +168,14 @@ auto AppLaunchContext::get_environment() const -> std::vector<Glib::ustring>
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_app_launch_context_get_environment(const_cast<GAppLaunchContext*>(gobj())), Glib::OWNERSHIP_DEEP);
 }
 
-auto AppLaunchContext::get_display(const Glib::RefPtr<AppInfo>& info, const std::vector<Glib::RefPtr<Gio::File>>& files) -> std::string
+auto AppLaunchContext::get_display(const Glib::RefPtr<AppInfo>& info, const std::vector<Glib::RefPtr<File>>& files) -> std::string
 {
-  return Glib::convert_return_gchar_ptr_to_stdstring(g_app_launch_context_get_display(gobj(), Glib::unwrap(info), Glib::ListHandler<Glib::RefPtr<Gio::File>>::vector_to_list(files).data()));
+  return Glib::convert_return_gchar_ptr_to_stdstring(g_app_launch_context_get_display(gobj(), Glib::unwrap(info), Glib::ListHandler<Glib::RefPtr<File>>::vector_to_list(files).data()));
 }
 
-auto AppLaunchContext::get_startup_notify_id(const Glib::RefPtr<AppInfo>& info, const std::vector<Glib::RefPtr<Gio::File>>& files) -> std::string
+auto AppLaunchContext::get_startup_notify_id(const Glib::RefPtr<AppInfo>& info, const std::vector<Glib::RefPtr<File>>& files) -> std::string
 {
-  return Glib::convert_return_gchar_ptr_to_stdstring(g_app_launch_context_get_startup_notify_id(gobj(), Glib::unwrap(info), Glib::ListHandler<Glib::RefPtr<Gio::File>>::vector_to_list(files).data()));
+  return Glib::convert_return_gchar_ptr_to_stdstring(g_app_launch_context_get_startup_notify_id(gobj(), Glib::unwrap(info), Glib::ListHandler<Glib::RefPtr<File>>::vector_to_list(files).data()));
 }
 
 auto AppLaunchContext::launch_failed (const std::string &startup_notify_id) -> void

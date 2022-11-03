@@ -24,7 +24,8 @@
 namespace Gtk::Accelerator
 {
 
-auto valid(guint keyval, Gdk::ModifierType modifiers) -> bool
+auto valid(
+  const guint keyval, Gdk::ModifierType modifiers) -> bool
 {
   return gtk_accelerator_valid(keyval, (GdkModifierType) modifiers);
 }
@@ -40,13 +41,15 @@ auto parse(const Glib::ustring& accelerator,
   return result;
 }
 
-auto name(guint accelerator_key, Gdk::ModifierType accelerator_mods) -> Glib::ustring
+auto name(
+  const guint accelerator_key, Gdk::ModifierType accelerator_mods) -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_accelerator_name(
     accelerator_key, static_cast<GdkModifierType>(accelerator_mods)));
 }
 
-auto get_label(guint accelerator_key, Gdk::ModifierType accelerator_mods) -> Glib::ustring
+auto get_label(
+  const guint accelerator_key, Gdk::ModifierType accelerator_mods) -> Glib::ustring
 {
   return Glib::convert_return_gchar_ptr_to_ustring(gtk_accelerator_get_label(
     accelerator_key, static_cast<GdkModifierType>(accelerator_mods)));

@@ -33,9 +33,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkListItemFactory* object, bool take_copy) -> Glib::RefPtr<Gtk::ListItemFactory>
+auto wrap(GtkListItemFactory* object, const bool take_copy) -> RefPtr<Gtk::ListItemFactory>
 {
-  return Glib::make_refptr_for_instance<Gtk::ListItemFactory>( dynamic_cast<Gtk::ListItemFactory*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::ListItemFactory>( dynamic_cast<Gtk::ListItemFactory*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto ListItemFactory_Class::init() -> const Glib::Class&
+auto ListItemFactory_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -94,32 +94,28 @@ auto ListItemFactory::gobj_copy() -> GtkListItemFactory*
 }
 
 ListItemFactory::ListItemFactory(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 ListItemFactory::ListItemFactory(GtkListItemFactory* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 ListItemFactory::ListItemFactory(ListItemFactory&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto ListItemFactory::operator=(ListItemFactory&& src) noexcept -> ListItemFactory&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-ListItemFactory::~ListItemFactory() noexcept
-{}
-
+ListItemFactory::~ListItemFactory() noexcept = default;
 
 ListItemFactory::CppClassType ListItemFactory::listitemfactory_class_; // initialize static member
 

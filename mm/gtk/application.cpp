@@ -94,14 +94,14 @@ auto Application::custom_class_init() -> const Glib::Class&
   return application_class_.init();
 }
 
-Application::Application(const Glib::ustring& application_id, Gio::Application::Flags flags)
+Application::Application(const Glib::ustring& application_id, const Gio::Application::Flags flags)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
   // GApplication complains about "" but allows nullptr, so we avoid passing "".
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   Gio::Application(Glib::ConstructParams(custom_class_init(),
-    "application_id", Glib::c_str_or_nullptr(application_id),
-    "flags", static_cast<GApplicationFlags>(flags), nullptr))
+    "application_id", c_str_or_nullptr(application_id),
+    "flags", flags, nullptr))
 {
   // gtk_init() is called by the 'startup' default signal handler when g_application_run() is called.
   // It's also called here, to make it possible for users of gtkmm to create
@@ -111,12 +111,13 @@ Application::Application(const Glib::ustring& application_id, Gio::Application::
   set_cxx_locale_to_c_locale();
 }
 
-auto Application::create(const Glib::ustring& application_id, Gio::Application::Flags flags) -> Glib::RefPtr<Application>
+auto Application::create(const Glib::ustring& application_id, const Gio::Application::Flags flags) -> Glib::RefPtr<Application>
 {
   return Glib::RefPtr<Application>( new Application(application_id, flags) );
 }
 
-auto Application::run(int argc, char** argv) -> int
+auto Application::run(
+  const int argc, char** argv) -> int
 {
   return Gio::Application::run(argc, argv);
 }
@@ -138,7 +139,7 @@ auto Application::unset_accels_for_action (const Glib::ustring &detailed_action_
 {
   //gtk_application_set_accels_for_action() can take an empty array, but not NULL.
   //See https://bugzilla.gnome.org/show_bug.cgi?id=708905#c10
-  std::vector<Glib::ustring> vec;
+  const std::vector<Glib::ustring> vec;
   set_accels_for_action(detailed_action_name, vec);
 }
 
@@ -154,7 +155,7 @@ auto Application_signal_window_added_callback (
   using namespace Gtk;
   using SlotType = sigc::slot<void(Window*)>;
 
-  auto obj = dynamic_cast<Application*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Application*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -185,7 +186,7 @@ auto Application_signal_window_removed_callback (
   using namespace Gtk;
   using SlotType = sigc::slot<void(Window*)>;
 
-  auto obj = dynamic_cast<Application*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Application*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -230,9 +231,9 @@ auto Glib::Value<Gtk::Application::InhibitFlags>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkApplication* object, bool take_copy) -> Glib::RefPtr<Gtk::Application>
+auto wrap(GtkApplication* object, const bool take_copy) -> RefPtr<Gtk::Application>
 {
-  return Glib::make_refptr_for_instance<Gtk::Application>( dynamic_cast<Gtk::Application*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::Application>( dynamic_cast<Gtk::Application*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -245,7 +246,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Application_Class::init() -> const Glib::Class&
+auto Application_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -280,8 +281,7 @@ auto Application_Class::class_init_function (void *g_class, void *class_data) ->
 
 auto Application_Class::window_added_callback (GtkApplication *self, GtkWindow *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -317,8 +317,7 @@ auto Application_Class::window_added_callback (GtkApplication *self, GtkWindow *
 }
 auto Application_Class::window_removed_callback (GtkApplication *self, GtkWindow *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -377,7 +376,7 @@ Application::Application(const Glib::ConstructParams& construct_params)
 
 Application::Application(GtkApplication* castitem)
 :
-  Gio::Application((GApplication*)(castitem))
+  Gio::Application((GApplication*)castitem)
 {}
 
 
@@ -392,9 +391,7 @@ auto Application::operator=(Application&& src) noexcept -> Application&
 }
 
 
-Application::~Application() noexcept
-{}
-
+Application::~Application() noexcept = default;
 
 Application::CppClassType Application::application_class_; // initialize static member
 
@@ -422,12 +419,12 @@ auto Application::get_windows() const -> std::vector<const Window*>
 
 auto Application::add_window (Window &window) -> void
 {
-  gtk_application_add_window(gobj(), (window).gobj());
+  gtk_application_add_window(gobj(), window.gobj());
 }
 
 auto Application::remove_window (Window &window) -> void
 {
-  gtk_application_remove_window(gobj(), (window).gobj());
+  gtk_application_remove_window(gobj(), window.gobj());
 }
 
 auto Application::get_menubar() -> Glib::RefPtr<Gio::MenuModel>
@@ -450,30 +447,33 @@ auto Application::set_menubar (const Glib::RefPtr <Gio::MenuModel> &menubar) -> 
 
 auto Application::inhibit(Window& window, InhibitFlags flags, const Glib::ustring& reason) -> guint
 {
-  return gtk_application_inhibit(gobj(), (window).gobj(), static_cast<GtkApplicationInhibitFlags>(flags), reason.c_str());
+  return gtk_application_inhibit(gobj(), window.gobj(), static_cast<GtkApplicationInhibitFlags>(flags), reason.c_str());
 }
 
-auto Application::uninhibit (guint cookie) -> void
+auto Application::uninhibit (
+  const guint cookie) -> void
 {
   gtk_application_uninhibit(gobj(), cookie);
 }
 
-auto Application::get_window_by_id(guint id) -> Window*
+auto Application::get_window_by_id(
+  const guint id) -> Window*
 {
-  auto retvalue = Glib::wrap(gtk_application_get_window_by_id(gobj(), id));
+  const auto retvalue = Glib::wrap(gtk_application_get_window_by_id(gobj(), id));
   if(retvalue)
     retvalue->reference(); //The function does not do a ref for us.
   return retvalue;
 }
 
-auto Application::get_window_by_id(guint id) const -> const Window*
+auto Application::get_window_by_id(
+  const guint id) const -> const Window*
 {
   return const_cast<Application*>(this)->get_window_by_id(id);
 }
 
 auto Application::get_active_window() -> Window*
 {
-  auto retvalue = Glib::wrap(gtk_application_get_active_window(gobj()));
+  const auto retvalue = Glib::wrap(gtk_application_get_active_window(gobj()));
   if(retvalue)
     retvalue->reference(); //The function does not do a ref for us.
   return retvalue;
@@ -521,19 +521,19 @@ auto Application::get_menu_by_id(const Glib::ustring& id) const -> Glib::RefPtr<
 
 auto Application::signal_window_added() -> Glib::SignalProxy<void(Window*)>
 {
-  return Glib::SignalProxy<void(Window*) >(this, &Application_signal_window_added_info);
+  return {this, &Application_signal_window_added_info};
 }
 
 
 auto Application::signal_window_removed() -> Glib::SignalProxy<void(Window*)>
 {
-  return Glib::SignalProxy<void(Window*) >(this, &Application_signal_window_removed_info);
+  return {this, &Application_signal_window_removed_info};
 }
 
 
 auto Application::signal_query_end() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Application_signal_query_end_info);
+  return {this, &Application_signal_query_end_info};
 }
 
 
@@ -543,27 +543,27 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Me
 
 auto Application::property_menubar() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >(this, "menubar");
+  return {this, "menubar"};
 }
 
 auto Application::property_menubar() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >(this, "menubar");
+  return {this, "menubar"};
 }
 
 auto Application::property_register_session() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "register-session");
+  return {this, "register-session"};
 }
 
 auto Application::property_register_session() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "register-session");
+  return {this, "register-session"};
 }
 
 auto Application::property_screensaver_active() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "screensaver-active");
+  return {this, "screensaver-active"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Window*>::value,
@@ -572,27 +572,27 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Window*>::value,
 
 auto Application::property_active_window() const -> Glib::PropertyProxy_ReadOnly< Window* >
 {
-  return Glib::PropertyProxy_ReadOnly< Window* >(this, "active-window");
+  return {this, "active-window"};
 }
 
 
-auto Gtk::Application::on_window_added (Window *window) -> void
+auto Application::on_window_added (Window *window) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->window_added)
-    (*base->window_added)(gobj(),(GtkWindow*)Glib::unwrap(window));
+    (*base->window_added)(gobj(),Glib::unwrap(window));
 }
-auto Gtk::Application::on_window_removed (Window *window) -> void
+auto Application::on_window_removed (Window *window) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->window_removed)
-    (*base->window_removed)(gobj(),(GtkWindow*)Glib::unwrap(window));
+    (*base->window_removed)(gobj(),Glib::unwrap(window));
 }
 
 

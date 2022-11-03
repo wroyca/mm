@@ -50,11 +50,11 @@ IConv::IConv(const std::string& to_codeset, const std::string& from_codeset)
     g_assert(gerror != nullptr);
 
     if (gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Error::throw_exception(gerror);
   }
 }
 
-IConv::IConv(GIConv gobject) : gobject_(gobject)
+IConv::IConv(const GIConv gobject) : gobject_(gobject)
 {
 }
 
@@ -92,7 +92,7 @@ IConv::convert(const std::string& str) -> std::string
     g_convert_with_iconv(str.data(), str.size(), gobject_, nullptr, &bytes_written, &gerror);
 
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 
   return std::string(make_unique_ptr_gfree(buf).get(), bytes_written);
 }
@@ -125,7 +125,7 @@ convert(const std::string& str, const std::string& to_codeset, const std::string
     nullptr, &bytes_written, &gerror);
 
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 
   return std::string(make_unique_ptr_gfree(buf).get(), bytes_written);
 }
@@ -141,29 +141,29 @@ convert_with_fallback(
     from_codeset.c_str(), nullptr, nullptr, &bytes_written, &gerror);
 
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 
   return std::string(make_unique_ptr_gfree(buf).get(), bytes_written);
 }
 
 auto
 convert_with_fallback(const std::string& str, const std::string& to_codeset,
-  const std::string& from_codeset, const Glib::ustring& fallback) -> std::string
+  const std::string& from_codeset, const ustring & fallback) -> std::string
 {
   gsize bytes_written = 0;
   GError* gerror = nullptr;
 
   char* const buf = g_convert_with_fallback(str.data(), str.size(), to_codeset.c_str(),
-    from_codeset.c_str(), const_cast<char*>(fallback.c_str()), nullptr, &bytes_written, &gerror);
+    from_codeset.c_str(), fallback.c_str(), nullptr, &bytes_written, &gerror);
 
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 
   return std::string(make_unique_ptr_gfree(buf).get(), bytes_written);
 }
 
 auto
-locale_to_utf8(const std::string& opsys_string) -> Glib::ustring
+locale_to_utf8(const std::string& opsys_string) -> ustring
 {
   gsize bytes_written = 0;
   GError* gerror = nullptr;
@@ -172,14 +172,14 @@ locale_to_utf8(const std::string& opsys_string) -> Glib::ustring
     g_locale_to_utf8(opsys_string.data(), opsys_string.size(), nullptr, &bytes_written, &gerror);
 
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 
   const auto scoped_buf = make_unique_ptr_gfree(buf);
-  return Glib::ustring(scoped_buf.get(), scoped_buf.get() + bytes_written);
+  return {scoped_buf.get(), scoped_buf.get() + bytes_written};
 }
 
 auto
-locale_from_utf8(const Glib::ustring& utf8_string) -> std::string
+locale_from_utf8(const ustring & utf8_string) -> std::string
 {
   gsize bytes_written = 0;
   GError* gerror = nullptr;
@@ -188,13 +188,13 @@ locale_from_utf8(const Glib::ustring& utf8_string) -> std::string
     g_locale_from_utf8(utf8_string.data(), utf8_string.bytes(), nullptr, &bytes_written, &gerror);
 
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 
   return std::string(make_unique_ptr_gfree(buf).get(), bytes_written);
 }
 
 auto
-filename_to_utf8(const std::string& opsys_string) -> Glib::ustring
+filename_to_utf8(const std::string& opsys_string) -> ustring
 {
   gsize bytes_written = 0;
   GError* gerror = nullptr;
@@ -203,14 +203,14 @@ filename_to_utf8(const std::string& opsys_string) -> Glib::ustring
     g_filename_to_utf8(opsys_string.data(), opsys_string.size(), nullptr, &bytes_written, &gerror);
 
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 
   const auto scoped_buf = make_unique_ptr_gfree(buf);
-  return Glib::ustring(scoped_buf.get(), scoped_buf.get() + bytes_written);
+  return {scoped_buf.get(), scoped_buf.get() + bytes_written};
 }
 
 auto
-filename_from_utf8(const Glib::ustring& utf8_string) -> std::string
+filename_from_utf8(const ustring & utf8_string) -> std::string
 {
   gsize bytes_written = 0;
   GError* gerror = nullptr;
@@ -219,13 +219,13 @@ filename_from_utf8(const Glib::ustring& utf8_string) -> std::string
     g_filename_from_utf8(utf8_string.data(), utf8_string.bytes(), nullptr, &bytes_written, &gerror);
 
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 
   return std::string(make_unique_ptr_gfree(buf).get(), bytes_written);
 }
 
 auto
-filename_from_uri(const Glib::ustring& uri, Glib::ustring& hostname) -> std::string
+filename_from_uri(const ustring & uri, ustring & hostname) -> std::string
 {
   char* hostname_buf = nullptr;
   GError* gerror = nullptr;
@@ -233,7 +233,7 @@ filename_from_uri(const Glib::ustring& uri, Glib::ustring& hostname) -> std::str
   char* const buf = g_filename_from_uri(uri.c_str(), &hostname_buf, &gerror);
 
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 
   // Let's take ownership at this point.
   const auto scoped_buf = make_unique_ptr_gfree(buf);
@@ -247,55 +247,55 @@ filename_from_uri(const Glib::ustring& uri, Glib::ustring& hostname) -> std::str
 }
 
 auto
-filename_from_uri(const Glib::ustring& uri) -> std::string
+filename_from_uri(const ustring & uri) -> std::string
 {
   GError* gerror = nullptr;
   char* const buf = g_filename_from_uri(uri.c_str(), nullptr, &gerror);
 
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 
   return std::string(make_unique_ptr_gfree(buf).get());
 }
 
 auto
-filename_to_uri(const std::string& filename, const Glib::ustring& hostname) -> Glib::ustring
+filename_to_uri(const std::string& filename, const ustring & hostname) -> ustring
 {
   GError* gerror = nullptr;
   char* const buf = g_filename_to_uri(filename.c_str(), hostname.c_str(), &gerror);
 
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 
-  return Glib::ustring(make_unique_ptr_gfree(buf).get());
+  return {make_unique_ptr_gfree(buf).get()};
 }
 
 auto
-filename_to_uri(const std::string& filename) -> Glib::ustring
+filename_to_uri(const std::string& filename) -> ustring
 {
   GError* gerror = nullptr;
   char* const buf = g_filename_to_uri(filename.c_str(), nullptr, &gerror);
 
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 
-  return Glib::ustring(make_unique_ptr_gfree(buf).get());
+  return {make_unique_ptr_gfree(buf).get()};
 }
 
 auto
-filename_display_basename(const std::string& filename) -> Glib::ustring
+filename_display_basename(const std::string& filename) -> ustring
 {
   char* const buf = g_filename_display_basename(filename.c_str());
 
-  return Glib::ustring(make_unique_ptr_gfree(buf).get());
+  return {make_unique_ptr_gfree(buf).get()};
 }
 
 auto
-filename_display_name(const std::string& filename) -> Glib::ustring
+filename_display_name(const std::string& filename) -> ustring
 {
   char* const buf = g_filename_display_name(filename.c_str());
 
-  return Glib::ustring(make_unique_ptr_gfree(buf).get());
+  return {make_unique_ptr_gfree(buf).get()};
 }
 
 } // namespace Glib
@@ -305,24 +305,22 @@ namespace
 } // anonymous namespace
 
 
-Glib::ConvertError::ConvertError(Glib::ConvertError::Code error_code, const Glib::ustring& error_message)
-:
-  Glib::Error (G_CONVERT_ERROR, error_code, error_message)
+Glib::ConvertError::ConvertError(const Code error_code, const ustring & error_message)
+: Error(G_CONVERT_ERROR, error_code, error_message)
 {}
 
 Glib::ConvertError::ConvertError(GError* gobject)
-:
-  Glib::Error (gobject)
+: Error(gobject)
 {}
 
-auto Glib::ConvertError::code() const -> Glib::ConvertError::Code
+auto Glib::ConvertError::code() const -> Code
 {
-  return static_cast<Code>(Glib::Error::code());
+  return static_cast<Code>(Error::code());
 }
 
 auto Glib::ConvertError::throw_func (GError *gobject) -> void
 {
-  throw Glib::ConvertError(gobject);
+  throw ConvertError(gobject);
 }
 
 

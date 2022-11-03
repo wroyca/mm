@@ -37,12 +37,12 @@ namespace
 {
 
 
-auto InfoBar_signal_response_callback (GtkInfoBar *self, gint p0, void *data) -> void
+auto InfoBar_signal_response_callback (GtkInfoBar *self, const gint p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(int)>;
 
-  auto obj = dynamic_cast<InfoBar*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<InfoBar*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -73,9 +73,9 @@ const Glib::SignalProxyInfo InfoBar_signal_response_info =
 namespace Glib
 {
 
-auto wrap(GtkInfoBar* object, bool take_copy) -> Gtk::InfoBar*
+auto wrap(GtkInfoBar* object, const bool take_copy) -> Gtk::InfoBar*
 {
-  return dynamic_cast<Gtk::InfoBar *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::InfoBar *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -86,7 +86,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto InfoBar_Class::init() -> const Glib::Class&
+auto InfoBar_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -119,7 +119,7 @@ auto InfoBar_Class::class_init_function (void *g_class, void *class_data) -> voi
 
 auto InfoBar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new InfoBar((GtkInfoBar*)(o)));
+  return manage(new InfoBar((GtkInfoBar*)o));
 
 }
 
@@ -127,25 +127,23 @@ auto InfoBar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 InfoBar::InfoBar(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 InfoBar::InfoBar(GtkInfoBar* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 InfoBar::InfoBar(InfoBar&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
 {}
 
 auto InfoBar::operator=(InfoBar&& src) noexcept -> InfoBar&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   return *this;
 }
 
@@ -171,49 +169,52 @@ auto InfoBar::get_base_type() -> GType
 InfoBar::InfoBar()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(infobar_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(infobar_class_.init()))
 {
 
 
 }
 
-auto InfoBar::add_action_widget (Widget &child, int response_id) -> void
+auto InfoBar::add_action_widget (Widget &child, const int response_id) -> void
 {
-  gtk_info_bar_add_action_widget(gobj(), (child).gobj(), response_id);
+  gtk_info_bar_add_action_widget(gobj(), child.gobj(), response_id);
 }
 
 auto InfoBar::remove_action_widget (Widget &widget) -> void
 {
-  gtk_info_bar_remove_action_widget(gobj(), (widget).gobj());
+  gtk_info_bar_remove_action_widget(gobj(), widget.gobj());
 }
 
-auto InfoBar::add_button(const Glib::ustring& button_text, int response_id) -> Button*
+auto InfoBar::add_button(const Glib::ustring& button_text, const int response_id) -> Button*
 {
-  return Glib::wrap((GtkButton*)(gtk_info_bar_add_button(gobj(), button_text.c_str(), response_id)));
+  return Glib::wrap((GtkButton*)gtk_info_bar_add_button(gobj(), button_text.c_str(), response_id));
 }
 
 auto InfoBar::add_child (Widget &widget) -> void
 {
-  gtk_info_bar_add_child(gobj(), (widget).gobj());
+  gtk_info_bar_add_child(gobj(), widget.gobj());
 }
 
 auto InfoBar::remove_child (Widget &widget) -> void
 {
-  gtk_info_bar_remove_child(gobj(), (widget).gobj());
+  gtk_info_bar_remove_child(gobj(), widget.gobj());
 }
 
-auto InfoBar::set_response_sensitive (int response_id, bool setting) -> void
+auto InfoBar::set_response_sensitive (
+  const int response_id, const bool setting) -> void
 {
-  gtk_info_bar_set_response_sensitive(gobj(), response_id, static_cast<int>(setting));
+  gtk_info_bar_set_response_sensitive(gobj(), response_id, setting);
 }
 
-auto InfoBar::set_default_response (int response_id) -> void
+auto InfoBar::set_default_response (
+  const int response_id) -> void
 {
   gtk_info_bar_set_default_response(gobj(), response_id);
 }
 
-auto InfoBar::response (int response_id) -> void
+auto InfoBar::response (
+  const int response_id) -> void
 {
   gtk_info_bar_response(gobj(), response_id);
 }
@@ -228,9 +229,10 @@ auto InfoBar::get_message_type() const -> MessageType
   return static_cast<MessageType>(gtk_info_bar_get_message_type(const_cast<GtkInfoBar*>(gobj())));
 }
 
-auto InfoBar::set_show_close_button (bool setting) -> void
+auto InfoBar::set_show_close_button (
+  const bool setting) -> void
 {
-  gtk_info_bar_set_show_close_button(gobj(), static_cast<int>(setting));
+  gtk_info_bar_set_show_close_button(gobj(), setting);
 }
 
 auto InfoBar::get_show_close_button() const -> bool
@@ -238,9 +240,10 @@ auto InfoBar::get_show_close_button() const -> bool
   return gtk_info_bar_get_show_close_button(const_cast<GtkInfoBar*>(gobj()));
 }
 
-auto InfoBar::set_revealed (bool revealed) -> void
+auto InfoBar::set_revealed (
+  const bool revealed) -> void
 {
-  gtk_info_bar_set_revealed(gobj(), static_cast<int>(revealed));
+  gtk_info_bar_set_revealed(gobj(), revealed);
 }
 
 auto InfoBar::get_revealed() const -> bool
@@ -251,7 +254,7 @@ auto InfoBar::get_revealed() const -> bool
 
 auto InfoBar::signal_response() -> Glib::SignalProxy<void(int)>
 {
-  return Glib::SignalProxy<void(int) >(this, &InfoBar_signal_response_info);
+  return {this, &InfoBar_signal_response_info};
 }
 
 
@@ -261,32 +264,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<MessageType>::value,
 
 auto InfoBar::property_message_type() -> Glib::PropertyProxy< MessageType >
 {
-  return Glib::PropertyProxy< MessageType >(this, "message-type");
+  return {this, "message-type"};
 }
 
 auto InfoBar::property_message_type() const -> Glib::PropertyProxy_ReadOnly< MessageType >
 {
-  return Glib::PropertyProxy_ReadOnly< MessageType >(this, "message-type");
+  return {this, "message-type"};
 }
 
 auto InfoBar::property_show_close_button() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "show-close-button");
+  return {this, "show-close-button"};
 }
 
 auto InfoBar::property_show_close_button() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "show-close-button");
+  return {this, "show-close-button"};
 }
 
 auto InfoBar::property_revealed() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "revealed");
+  return {this, "revealed"};
 }
 
 auto InfoBar::property_revealed() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "revealed");
+  return {this, "revealed"};
 }
 
 

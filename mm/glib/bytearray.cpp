@@ -29,9 +29,10 @@ namespace
 extern "C" {
 
 auto
-ByteArray_Compare_Data_Func(gconstpointer a, gconstpointer b, gpointer user_data) -> int
+ByteArray_Compare_Data_Func(
+  const gconstpointer a, const gconstpointer b, const gpointer user_data) -> int
 {
-  Glib::ByteArray::SlotCompare* slot = static_cast<Glib::ByteArray::SlotCompare*>(user_data);
+  const Glib::ByteArray::SlotCompare* slot = static_cast<Glib::ByteArray::SlotCompare*>(user_data);
 
   return (*slot)(static_cast<const guint8*>(a), static_cast<const guint8*>(b));
 }
@@ -82,13 +83,13 @@ namespace
 namespace Glib
 {
 
-auto wrap(GByteArray* object, bool take_copy) -> Glib::RefPtr<Glib::ByteArray>
+auto wrap(GByteArray* object, const bool take_copy) -> RefPtr<ByteArray>
 {
   if(take_copy && object)
     g_byte_array_ref(object);
 
   // See the comment at the top of this file, if you want to know why the cast works.
-  return Glib::make_refptr_for_instance<Glib::ByteArray>(reinterpret_cast<Glib::ByteArray*>(object));
+  return Glib::make_refptr_for_instance<ByteArray>(reinterpret_cast<ByteArray *>(object));
 }
 
 } // namespace Glib
@@ -136,46 +137,49 @@ auto ByteArray::gobj_copy() const -> GByteArray*
 }
 
 
-auto ByteArray::create() -> Glib::RefPtr<ByteArray>
+auto ByteArray::create() -> RefPtr<ByteArray>
 {
-  return Glib::wrap(g_byte_array_new());
+  return wrap(g_byte_array_new());
 }
 
-auto ByteArray::append(const guint8* data, guint len) -> Glib::RefPtr<ByteArray>
+auto ByteArray::append(const guint8* data, const guint len) -> RefPtr<ByteArray>
 {
-  auto retvalue = Glib::wrap(g_byte_array_append(gobj(), data, len));
+  auto retvalue = wrap(g_byte_array_append(gobj(), data, len));
   if(retvalue)
     retvalue->reference(); //The function does not do a ref for us.
   return retvalue;
 }
 
-auto ByteArray::prepend(const guint8* data, guint len) -> Glib::RefPtr<ByteArray>
+auto ByteArray::prepend(const guint8* data, const guint len) -> RefPtr<ByteArray>
 {
-  auto retvalue = Glib::wrap(g_byte_array_prepend(gobj(), data, len));
+  auto retvalue = wrap(g_byte_array_prepend(gobj(), data, len));
   if(retvalue)
     retvalue->reference(); //The function does not do a ref for us.
   return retvalue;
 }
 
-auto ByteArray::remove_index(guint index) -> Glib::RefPtr<ByteArray>
+auto ByteArray::remove_index(
+  const guint index) -> RefPtr<ByteArray>
 {
-  auto retvalue = Glib::wrap(g_byte_array_remove_index(gobj(), index));
+  auto retvalue = wrap(g_byte_array_remove_index(gobj(), index));
   if(retvalue)
     retvalue->reference(); //The function does not do a ref for us.
   return retvalue;
 }
 
-auto ByteArray::remove_index_fast(guint index) -> Glib::RefPtr<ByteArray>
+auto ByteArray::remove_index_fast(
+  const guint index) -> RefPtr<ByteArray>
 {
-  auto retvalue = Glib::wrap(g_byte_array_remove_index_fast(gobj(), index));
+  auto retvalue = wrap(g_byte_array_remove_index_fast(gobj(), index));
   if(retvalue)
     retvalue->reference(); //The function does not do a ref for us.
   return retvalue;
 }
 
-auto ByteArray::remove_range(guint index, guint length) -> Glib::RefPtr<ByteArray>
+auto ByteArray::remove_range(
+  const guint index, const guint length) -> RefPtr<ByteArray>
 {
-  auto retvalue = Glib::wrap(g_byte_array_remove_range(gobj(), index, length));
+  auto retvalue = wrap(g_byte_array_remove_range(gobj(), index, length));
   if(retvalue)
     retvalue->reference(); //The function does not do a ref for us.
   return retvalue;
@@ -184,14 +188,15 @@ auto ByteArray::remove_range(guint index, guint length) -> Glib::RefPtr<ByteArra
 auto ByteArray::sort (const SlotCompare &slot) -> void
 {
   // Use the original slot (not a copy).
-  auto slot_copy = const_cast<SlotCompare*>(&slot);
+  const auto slot_copy = const_cast<SlotCompare*>(&slot);
 
   g_byte_array_sort_with_data(gobj(), &ByteArray_Compare_Data_Func, slot_copy);
 }
 
-auto ByteArray::set_size(guint length) -> Glib::RefPtr<ByteArray>
+auto ByteArray::set_size(
+  const guint length) -> RefPtr<ByteArray>
 {
-  auto retvalue = Glib::wrap(g_byte_array_set_size(gobj(), length));
+  auto retvalue = wrap(g_byte_array_set_size(gobj(), length));
   if(retvalue)
     retvalue->reference(); //The function does not do a ref for us.
   return retvalue;

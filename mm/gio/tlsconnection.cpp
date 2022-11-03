@@ -57,16 +57,16 @@ auto TlsConnection_signal_accept_certificate_callback(GTlsConnection* self, GTls
   using namespace Gio;
   using SlotType = sigc::slot<bool(const Glib::RefPtr<const TlsCertificate>&, TlsCertificateFlags)>;
 
-  auto obj = dynamic_cast<TlsConnection*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<TlsConnection*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return static_cast<int>((*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
-, static_cast<TlsCertificateFlags>(p1)
-));
+        return (*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
+                                               , static_cast<TlsCertificateFlags>(p1)
+        );
     }
     catch(...)
     {
@@ -83,7 +83,7 @@ auto TlsConnection_signal_accept_certificate_notify_callback(GTlsConnection* sel
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<const TlsCertificate>&, TlsCertificateFlags)>;
 
-  auto obj = dynamic_cast<TlsConnection*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<TlsConnection*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -124,9 +124,9 @@ auto Glib::Value<Gio::TlsProtocolVersion>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GTlsConnection* object, bool take_copy) -> Glib::RefPtr<Gio::TlsConnection>
+auto wrap(GTlsConnection* object, const bool take_copy) -> RefPtr<Gio::TlsConnection>
 {
-  return Glib::make_refptr_for_instance<Gio::TlsConnection>( dynamic_cast<Gio::TlsConnection*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::TlsConnection>( dynamic_cast<Gio::TlsConnection*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -139,7 +139,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto TlsConnection_Class::init() -> const Glib::Class&
+auto TlsConnection_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -175,8 +175,7 @@ auto TlsConnection_Class::class_init_function (void *g_class, void *class_data) 
 
 auto TlsConnection_Class::handshake_vfunc_callback(GTlsConnection* self, GCancellable* cancellable, GError** error) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -191,8 +190,8 @@ auto TlsConnection_Class::handshake_vfunc_callback(GTlsConnection* self, GCancel
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->handshake_vfunc(Glib::wrap(cancellable)
-));
+        return obj->handshake_vfunc(Glib::wrap(cancellable)
+        );
       }
       catch(Glib::Error& errormm)
       {
@@ -207,7 +206,7 @@ auto TlsConnection_Class::handshake_vfunc_callback(GTlsConnection* self, GCancel
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -219,13 +218,11 @@ auto TlsConnection_Class::handshake_vfunc_callback(GTlsConnection* self, GCancel
   return RType();
 }
 auto TlsConnection_Class::handshake_async_vfunc_callback (
-  GTlsConnection *self, int io_priority, GCancellable *cancellable, GAsyncReadyCallback callback,
-  gpointer user_data) -> void
+  GTlsConnection *self, const int io_priority, GCancellable *cancellable, const GAsyncReadyCallback callback, const gpointer user_data) -> void
 {
-  const auto slot = static_cast<Gio::SlotAsyncReady*>(user_data);
+  const auto slot = static_cast<SlotAsyncReady *>(user_data);
 
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -251,7 +248,7 @@ auto TlsConnection_Class::handshake_async_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -261,8 +258,7 @@ auto TlsConnection_Class::handshake_async_vfunc_callback (
 }
 auto TlsConnection_Class::handshake_finish_vfunc_callback(GTlsConnection* self, GAsyncResult* result, GError** error) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -277,8 +273,8 @@ auto TlsConnection_Class::handshake_finish_vfunc_callback(GTlsConnection* self, 
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->handshake_finish_vfunc(Glib::wrap(result, true)
-));
+        return obj->handshake_finish_vfunc(Glib::wrap(result, true)
+        );
       }
       catch(Glib::Error& errormm)
       {
@@ -293,7 +289,7 @@ auto TlsConnection_Class::handshake_finish_vfunc_callback(GTlsConnection* self, 
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -307,8 +303,7 @@ auto TlsConnection_Class::handshake_finish_vfunc_callback(GTlsConnection* self, 
 
 auto TlsConnection_Class::accept_certificate_callback(GTlsConnection* self, GTlsCertificate* p0, GTlsCertificateFlags p1) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -323,9 +318,9 @@ auto TlsConnection_Class::accept_certificate_callback(GTlsConnection* self, GTls
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->on_accept_certificate(Glib::wrap(p0, true)
-, static_cast<TlsCertificateFlags>(p1)
-));
+        return obj->on_accept_certificate(Glib::wrap(p0, true)
+                                          , static_cast<TlsCertificateFlags>(p1)
+        );
       }
       catch(...)
       {
@@ -364,7 +359,7 @@ TlsConnection::TlsConnection(const Glib::ConstructParams& construct_params)
 
 TlsConnection::TlsConnection(GTlsConnection* castitem)
 :
-  IOStream((GIOStream*)(castitem))
+  IOStream((GIOStream*)castitem)
 {}
 
 
@@ -379,9 +374,7 @@ auto TlsConnection::operator=(TlsConnection&& src) noexcept -> TlsConnection&
 }
 
 
-TlsConnection::~TlsConnection() noexcept
-{}
-
+TlsConnection::~TlsConnection() noexcept = default;
 
 TlsConnection::CppClassType TlsConnection::tlsconnection_class_; // initialize static member
 
@@ -400,7 +393,7 @@ auto TlsConnection::get_base_type() -> GType
 TlsConnection::TlsConnection()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   IOStream(Glib::ConstructParams(tlsconnection_class_.init()))
 {
 
@@ -443,9 +436,10 @@ auto TlsConnection::get_peer_certificate_errors() const -> TlsCertificateFlags
   return static_cast<TlsCertificateFlags>(g_tls_connection_get_peer_certificate_errors(const_cast<GTlsConnection*>(gobj())));
 }
 
-auto TlsConnection::set_require_close_notify (bool require_close_notify) -> void
+auto TlsConnection::set_require_close_notify (
+  const bool require_close_notify) -> void
 {
-  g_tls_connection_set_require_close_notify(gobj(), static_cast<int>(require_close_notify));
+  g_tls_connection_set_require_close_notify(gobj(), require_close_notify);
 }
 
 auto TlsConnection::get_require_close_notify() const -> bool
@@ -486,35 +480,34 @@ auto TlsConnection::set_interaction (const Glib::RefPtr <TlsInteraction> &intera
 auto TlsConnection::handshake(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_tls_connection_handshake(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_tls_connection_handshake(gobj(), Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsConnection::handshake() -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_tls_connection_handshake(gobj(), nullptr, &(gerror));
+  const auto retvalue = g_tls_connection_handshake(gobj(), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsConnection::handshake_async (
-  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
-  int io_priority) -> void
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable, const int io_priority) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
-  g_tls_connection_handshake_async(gobj(), io_priority, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
+  g_tls_connection_handshake_async(gobj(), io_priority, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-auto TlsConnection::handshake_async (const SlotAsyncReady &slot, int io_priority) -> void
+auto TlsConnection::handshake_async (const SlotAsyncReady &slot, const int io_priority) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_tls_connection_handshake_async(gobj(), io_priority, nullptr, &SignalProxy_async_callback, slot_copy);
 }
@@ -522,9 +515,9 @@ auto TlsConnection::handshake_async (const SlotAsyncReady &slot, int io_priority
 auto TlsConnection::handshake_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_tls_connection_handshake_finish(gobj(), Glib::unwrap(result), &(gerror));
+  const auto retvalue = g_tls_connection_handshake_finish(gobj(), Glib::unwrap(result), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -546,7 +539,7 @@ auto TlsConnection::emit_accept_certificate(const Glib::RefPtr<const TlsCertific
 
 auto TlsConnection::signal_accept_certificate() -> Glib::SignalProxy<bool(const Glib::RefPtr<const TlsCertificate>&, TlsCertificateFlags)>
 {
-  return Glib::SignalProxy<bool(const Glib::RefPtr<const TlsCertificate>&, TlsCertificateFlags) >(this, &TlsConnection_signal_accept_certificate_info);
+  return {this, &TlsConnection_signal_accept_certificate_info};
 }
 
 
@@ -556,7 +549,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<IOStrea
 
 auto TlsConnection::property_base_io_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<IOStream> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<IOStream> >(this, "base-io-stream");
+  return {this, "base-io-stream"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<TlsCertificate>>::value,
@@ -565,12 +558,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<TlsCert
 
 auto TlsConnection::property_certificate() -> Glib::PropertyProxy< Glib::RefPtr<TlsCertificate> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<TlsCertificate> >(this, "certificate");
+  return {this, "certificate"};
 }
 
 auto TlsConnection::property_certificate() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsCertificate> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsCertificate> >(this, "certificate");
+  return {this, "certificate"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<TlsDatabase>>::value,
@@ -579,12 +572,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<TlsData
 
 auto TlsConnection::property_database() -> Glib::PropertyProxy< Glib::RefPtr<TlsDatabase> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<TlsDatabase> >(this, "database");
+  return {this, "database"};
 }
 
 auto TlsConnection::property_database() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsDatabase> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsDatabase> >(this, "database");
+  return {this, "database"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<TlsInteraction>>::value,
@@ -593,12 +586,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<TlsInte
 
 auto TlsConnection::property_interaction() -> Glib::PropertyProxy< Glib::RefPtr<TlsInteraction> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<TlsInteraction> >(this, "interaction");
+  return {this, "interaction"};
 }
 
 auto TlsConnection::property_interaction() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsInteraction> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsInteraction> >(this, "interaction");
+  return {this, "interaction"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<TlsCertificate>>::value,
@@ -607,7 +600,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<TlsCert
 
 auto TlsConnection::property_peer_certificate() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsCertificate> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsCertificate> >(this, "peer-certificate");
+  return {this, "peer-certificate"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<TlsCertificateFlags>::value,
@@ -616,17 +609,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<TlsCertificateFlags>
 
 auto TlsConnection::property_peer_certificate_errors() const -> Glib::PropertyProxy_ReadOnly< TlsCertificateFlags >
 {
-  return Glib::PropertyProxy_ReadOnly< TlsCertificateFlags >(this, "peer-certificate-errors");
+  return {this, "peer-certificate-errors"};
 }
 
 auto TlsConnection::property_require_close_notify() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "require-close-notify");
+  return {this, "require-close-notify"};
 }
 
 auto TlsConnection::property_require_close_notify() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "require-close-notify");
+  return {this, "require-close-notify"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<TlsProtocolVersion>::value,
@@ -635,16 +628,16 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<TlsProtocolVersion>:
 
 auto TlsConnection::property_protocol_version() const -> Glib::PropertyProxy_ReadOnly< TlsProtocolVersion >
 {
-  return Glib::PropertyProxy_ReadOnly< TlsProtocolVersion >(this, "protocol-version");
+  return {this, "protocol-version"};
 }
 
 auto TlsConnection::property_ciphersuite_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "ciphersuite-name");
+  return {this, "ciphersuite-name"};
 }
 
 
-auto Gio::TlsConnection::on_accept_certificate(const Glib::RefPtr<const TlsCertificate>& peer_cert, TlsCertificateFlags errors) -> bool
+auto TlsConnection::on_accept_certificate(const Glib::RefPtr<const TlsCertificate>& peer_cert, TlsCertificateFlags errors) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -657,7 +650,7 @@ auto Gio::TlsConnection::on_accept_certificate(const Glib::RefPtr<const TlsCerti
   return RType();
 }
 
-auto Gio::TlsConnection::handshake_vfunc(const Glib::RefPtr<Cancellable>& cancellable) -> bool
+auto TlsConnection::handshake_vfunc(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -666,21 +659,20 @@ auto Gio::TlsConnection::handshake_vfunc(const Glib::RefPtr<Cancellable>& cancel
   if(base && base->handshake)
   {
     GError* gerror = nullptr;
-    bool retval((*base->handshake)(gobj(),const_cast<GCancellable*>(Glib::unwrap(cancellable)),&(gerror)));
+    const bool retval((*base->handshake)(gobj(),Glib::unwrap(cancellable),&gerror));
     if(gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Glib::Error::throw_exception(gerror);
     return retval;
   }
 
   using RType = bool;
   return RType();
 }
-auto Gio::TlsConnection::handshake_async_vfunc (
-  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
-  int io_priority) -> void
+auto TlsConnection::handshake_async_vfunc (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable, const int io_priority) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -688,10 +680,10 @@ auto Gio::TlsConnection::handshake_async_vfunc (
 
   if(base && base->handshake_async)
   {
-    (*base->handshake_async)(gobj(),io_priority,const_cast<GCancellable*>(Glib::unwrap(cancellable)),&SignalProxy_async_callback,slot_copy);
+    (*base->handshake_async)(gobj(),io_priority,Glib::unwrap(cancellable),&SignalProxy_async_callback,slot_copy);
   }
 }
-auto Gio::TlsConnection::handshake_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> bool
+auto TlsConnection::handshake_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -700,9 +692,9 @@ auto Gio::TlsConnection::handshake_finish_vfunc(const Glib::RefPtr<AsyncResult>&
   if(base && base->handshake_finish)
   {
     GError* gerror = nullptr;
-    bool retval((*base->handshake_finish)(gobj(),Glib::unwrap(result),&(gerror)));
+    const bool retval((*base->handshake_finish)(gobj(),Glib::unwrap(result),&gerror));
     if(gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Glib::Error::throw_exception(gerror);
     return retval;
   }
 

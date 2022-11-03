@@ -43,7 +43,7 @@ auto DisplayManager_signal_display_opened_callback (
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Display>&)>;
 
-  auto obj = dynamic_cast<DisplayManager*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<DisplayManager*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -74,9 +74,9 @@ const Glib::SignalProxyInfo DisplayManager_signal_display_opened_info =
 namespace Glib
 {
 
-auto wrap(GdkDisplayManager* object, bool take_copy) -> Glib::RefPtr<Gdk::DisplayManager>
+auto wrap(GdkDisplayManager* object, const bool take_copy) -> RefPtr<Gdk::DisplayManager>
 {
-  return Glib::make_refptr_for_instance<Gdk::DisplayManager>( dynamic_cast<Gdk::DisplayManager*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gdk::DisplayManager>( dynamic_cast<Gdk::DisplayManager*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -89,7 +89,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-auto DisplayManager_Class::init() -> const Glib::Class&
+auto DisplayManager_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -135,32 +135,28 @@ auto DisplayManager::gobj_copy() -> GdkDisplayManager*
 }
 
 DisplayManager::DisplayManager(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 DisplayManager::DisplayManager(GdkDisplayManager* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 DisplayManager::DisplayManager(DisplayManager&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto DisplayManager::operator=(DisplayManager&& src) noexcept -> DisplayManager&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-DisplayManager::~DisplayManager() noexcept
-{}
-
+DisplayManager::~DisplayManager() noexcept = default;
 
 DisplayManager::CppClassType DisplayManager::displaymanager_class_; // initialize static member
 
@@ -219,7 +215,7 @@ auto DisplayManager::open_display(const Glib::ustring& name) -> Glib::RefPtr<Dis
 
 auto DisplayManager::signal_display_opened() -> Glib::SignalProxy<void(const Glib::RefPtr<Display>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<Display>&) >(this, &DisplayManager_signal_display_opened_info);
+  return {this, &DisplayManager_signal_display_opened_info};
 }
 
 
@@ -229,12 +225,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Display
 
 auto DisplayManager::property_default_display() -> Glib::PropertyProxy< Glib::RefPtr<Display> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Display> >(this, "default-display");
+  return {this, "default-display"};
 }
 
 auto DisplayManager::property_default_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >(this, "default-display");
+  return {this, "default-display"};
 }
 
 

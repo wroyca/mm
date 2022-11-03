@@ -24,12 +24,14 @@
 namespace Glib
 {
 
-auto Class::register_derived_type (GType base_type) -> void
+auto Class::register_derived_type (
+  const GType base_type) -> void
 {
   return register_derived_type(base_type, nullptr);
 }
 
-auto Class::register_derived_type (GType base_type, GTypeModule *module) -> void
+auto Class::register_derived_type (
+  const GType base_type, GTypeModule *module) -> void
 {
   if (gtype_)
     return; // already initialized
@@ -73,7 +75,7 @@ auto Class::register_derived_type (GType base_type, GTypeModule *module) -> void
     nullptr, // value_table
   };
 
-  if (!(base_query.type_name))
+  if (!base_query.type_name)
   {
     g_critical("Class::register_derived_type(): base_query.type_name is NULL.");
     return;
@@ -93,10 +95,10 @@ auto Class::register_derived_type (GType base_type, GTypeModule *module) -> void
 auto
 Class::clone_custom_type(
   const char* custom_type_name, const interface_classes_type* interface_classes,
-  const class_init_funcs_type* class_init_funcs, GInstanceInitFunc instance_init_func) const -> GType
+  const class_init_funcs_type* class_init_funcs, const GInstanceInitFunc instance_init_func) const -> GType
 {
   std::string full_name("gtkmm__CustomObject_");
-  Glib::append_canonical_typename(full_name, custom_type_name);
+  append_canonical_typename(full_name, custom_type_name);
 
   GType custom_type = g_type_from_name(full_name.c_str());
 
@@ -120,7 +122,7 @@ Class::clone_custom_type(
     const guint16 instance_size = (guint16)base_query.instance_size;
 
     // Let the wrapper's class_init_function() be the first one to call.
-    auto all_class_init_funcs = new class_init_funcs_type(
+    const auto all_class_init_funcs = new class_init_funcs_type(
       1, std::tuple<GClassInitFunc, void*>(class_init_func_, nullptr));
     if (class_init_funcs)
       all_class_init_funcs->insert(all_class_init_funcs->end(),
@@ -150,7 +152,7 @@ Class::clone_custom_type(
     // For instance, TreeModel_Class::add_interface().
     if (interface_classes)
     {
-      for (auto interface_class : *interface_classes)
+      for (const auto interface_class : *interface_classes)
       {
         if (interface_class)
         {
@@ -172,7 +174,7 @@ auto Class::custom_class_base_finalize_function (void *g_class) -> void
   const GType gtype = G_TYPE_FROM_CLASS(g_class);
 
   // Free the data related to the interface properties for the custom type, if any.
-  iface_properties_type* props =
+  const iface_properties_type* props =
     static_cast<iface_properties_type*>(g_type_get_qdata(gtype, iface_properties_quark));
 
   if (props)
@@ -198,19 +200,19 @@ auto Class::custom_class_init_function (void *g_class, void *class_data) -> void
 
   // Call the wrapper's class_init_function() to redirect
   // the vfunc and default signal handler callbacks.
-  auto init_func = std::get<GClassInitFunc>(class_init_funcs[0]);
+  const auto init_func = std::get<GClassInitFunc>(class_init_funcs[0]);
   (*init_func)(g_class, nullptr);
 
   GObjectClass* const gobject_class = static_cast<GObjectClass*>(g_class);
-  gobject_class->get_property = &Glib::custom_get_property_callback;
-  gobject_class->set_property = &Glib::custom_set_property_callback;
+  gobject_class->get_property = &custom_get_property_callback;
+  gobject_class->set_property = &custom_set_property_callback;
 
   // Call extra class init functions, if any.
   for (std::size_t i = 1; i < class_init_funcs.size(); ++i)
   {
-    if (auto extra_init_func = std::get<GClassInitFunc>(class_init_funcs[i]))
+    if (const auto extra_init_func = std::get<GClassInitFunc>(class_init_funcs[i]))
     {
-      auto extra_class_data = std::get<void*>(class_init_funcs[i]);
+      const auto extra_class_data = std::get<void*>(class_init_funcs[i]);
       (*extra_init_func)(g_class, extra_class_data);
     }
   }
@@ -222,12 +224,12 @@ auto Class::custom_class_init_function (void *g_class, void *class_data) -> void
   // Override the properties of implemented interfaces, if any.
   const GType object_type = G_TYPE_FROM_CLASS(g_class);
 
-  Class::iface_properties_type* props = static_cast<Class::iface_properties_type*>(
-    g_type_get_qdata(object_type, Class::iface_properties_quark));
+  iface_properties_type * props = static_cast<iface_properties_type *>(
+    g_type_get_qdata(object_type, iface_properties_quark));
   if (!props)
   {
-    props = new Class::iface_properties_type();
-    g_type_set_qdata(object_type, Class::iface_properties_quark, props);
+    props = new iface_properties_type();
+    g_type_set_qdata(object_type, iface_properties_quark, props);
   }
 
   guint n_interfaces = 0;

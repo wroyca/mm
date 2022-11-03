@@ -37,9 +37,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GTcpWrapperConnection* object, bool take_copy) -> Glib::RefPtr<Gio::TcpWrapperConnection>
+auto wrap(GTcpWrapperConnection* object, const bool take_copy) -> RefPtr<Gio::TcpWrapperConnection>
 {
-  return Glib::make_refptr_for_instance<Gio::TcpWrapperConnection>( dynamic_cast<Gio::TcpWrapperConnection*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::TcpWrapperConnection>( dynamic_cast<Gio::TcpWrapperConnection*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -52,7 +52,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto TcpWrapperConnection_Class::init() -> const Glib::Class&
+auto TcpWrapperConnection_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -98,32 +98,28 @@ auto TcpWrapperConnection::gobj_copy() -> GTcpWrapperConnection*
 }
 
 TcpWrapperConnection::TcpWrapperConnection(const Glib::ConstructParams& construct_params)
-:
-  Gio::TcpConnection(construct_params)
+: TcpConnection(construct_params)
 {
 
 }
 
 TcpWrapperConnection::TcpWrapperConnection(GTcpWrapperConnection* castitem)
-:
-  Gio::TcpConnection((GTcpConnection*)(castitem))
+: TcpConnection((GTcpConnection*)castitem)
 {}
 
 
 TcpWrapperConnection::TcpWrapperConnection(TcpWrapperConnection&& src) noexcept
-: Gio::TcpConnection(std::move(src))
+: TcpConnection(std::move(src))
 {}
 
 auto TcpWrapperConnection::operator=(TcpWrapperConnection&& src) noexcept -> TcpWrapperConnection&
 {
-  Gio::TcpConnection::operator=(std::move(src));
+  TcpConnection::operator=(std::move(src));
   return *this;
 }
 
 
-TcpWrapperConnection::~TcpWrapperConnection() noexcept
-{}
-
+TcpWrapperConnection::~TcpWrapperConnection() noexcept = default;
 
 TcpWrapperConnection::CppClassType TcpWrapperConnection::tcpwrapperconnection_class_; // initialize static member
 
@@ -142,8 +138,8 @@ auto TcpWrapperConnection::get_base_type() -> GType
 TcpWrapperConnection::TcpWrapperConnection(const Glib::RefPtr<IOStream>& base_io_stream, const Glib::RefPtr<Socket>& socket)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gio::TcpConnection(Glib::ConstructParams(tcpwrapperconnection_class_.init(), "base_io_stream", Glib::unwrap(base_io_stream), "socket", const_cast<GSocket*>(Glib::unwrap(socket)), nullptr))
+ObjectBase(nullptr),
+TcpConnection(Glib::ConstructParams(tcpwrapperconnection_class_.init(), "base_io_stream", Glib::unwrap(base_io_stream), "socket", Glib::unwrap(socket), nullptr))
 {
 
 
@@ -169,7 +165,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<IOStrea
 
 auto TcpWrapperConnection::property_base_io_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<IOStream> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<IOStream> >(this, "base-io-stream");
+  return {this, "base-io-stream"};
 }
 
 

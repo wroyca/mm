@@ -17,13 +17,13 @@ public:
   using CppObjectType = Assistant;
   using BaseObjectType = GtkAssistant;
   using BaseClassType = GtkAssistantClass;
-  using CppClassParent = Gtk::Window_Class;
+  using CppClassParent = Window_Class;
   using BaseClassParent = GtkWindowClass;
 
   friend class Assistant;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

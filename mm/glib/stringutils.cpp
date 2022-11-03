@@ -37,12 +37,12 @@ auto
 Glib::Ascii::strtod(const std::string& str) -> double
 {
   std::string::size_type dummy;
-  return Glib::Ascii::strtod(str, dummy, 0);
+  return Ascii::strtod(str, dummy, 0);
 }
 
 auto
 Glib::Ascii::strtod(
-  const std::string& str, std::string::size_type& end_index, std::string::size_type start_index) -> double
+  const std::string& str, std::string::size_type& end_index, const std::string::size_type start_index) -> double
 {
   if (start_index >= str.size())
   {
@@ -78,11 +78,12 @@ Glib::Ascii::strtod(
 }
 
 auto
-Glib::Ascii::dtostr(double d) -> std::string
+Glib::Ascii::dtostr(
+  const double d) -> std::string
 {
   char buf[G_ASCII_DTOSTR_BUF_SIZE];
 
-  return g_ascii_dtostr(buf, sizeof(buf), d);
+  return g_ascii_dtostr(buf, sizeof buf, d);
 }
 
 auto
@@ -107,13 +108,15 @@ Glib::strcompress(const std::string& source) -> std::string
 }
 
 auto
-Glib::strerror(int errnum) -> Glib::ustring
+Glib::strerror(
+  const int errnum) -> ustring
 {
   return g_strerror(errnum);
 }
 
 auto
-Glib::strsignal(int signum) -> Glib::ustring
+Glib::strsignal(
+  const int signum) -> ustring
 {
   return g_strsignal(signum);
 }

@@ -52,9 +52,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GMenuAttributeIter* object, bool take_copy) -> Glib::RefPtr<Gio::MenuAttributeIter>
+auto wrap(GMenuAttributeIter* object, const bool take_copy) -> RefPtr<Gio::MenuAttributeIter>
 {
-  return Glib::make_refptr_for_instance<Gio::MenuAttributeIter>( dynamic_cast<Gio::MenuAttributeIter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::MenuAttributeIter>( dynamic_cast<Gio::MenuAttributeIter*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -67,7 +67,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto MenuAttributeIter_Class::init() -> const Glib::Class&
+auto MenuAttributeIter_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -113,32 +113,28 @@ auto MenuAttributeIter::gobj_copy() -> GMenuAttributeIter*
 }
 
 MenuAttributeIter::MenuAttributeIter(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 MenuAttributeIter::MenuAttributeIter(GMenuAttributeIter* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 MenuAttributeIter::MenuAttributeIter(MenuAttributeIter&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto MenuAttributeIter::operator=(MenuAttributeIter&& src) noexcept -> MenuAttributeIter&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-MenuAttributeIter::~MenuAttributeIter() noexcept
-{}
-
+MenuAttributeIter::~MenuAttributeIter() noexcept = default;
 
 MenuAttributeIter::CppClassType MenuAttributeIter::menuattributeiter_class_; // initialize static member
 
@@ -157,8 +153,8 @@ auto MenuAttributeIter::get_base_type() -> GType
 MenuAttributeIter::MenuAttributeIter()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(menuattributeiter_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(menuattributeiter_class_.init()))
 {
 
 

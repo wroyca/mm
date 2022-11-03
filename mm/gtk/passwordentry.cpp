@@ -33,9 +33,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkPasswordEntry* object, bool take_copy) -> Gtk::PasswordEntry*
+auto wrap(GtkPasswordEntry* object, const bool take_copy) -> Gtk::PasswordEntry*
 {
-  return dynamic_cast<Gtk::PasswordEntry *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::PasswordEntry *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -46,7 +46,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto PasswordEntry_Class::init() -> const Glib::Class&
+auto PasswordEntry_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -80,7 +80,7 @@ auto PasswordEntry_Class::class_init_function (void *g_class, void *class_data) 
 
 auto PasswordEntry_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new PasswordEntry((GtkPasswordEntry*)(o)));
+  return manage(new PasswordEntry((GtkPasswordEntry*)o));
 
 }
 
@@ -88,26 +88,24 @@ auto PasswordEntry_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 PasswordEntry::PasswordEntry(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 PasswordEntry::PasswordEntry(GtkPasswordEntry* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 PasswordEntry::PasswordEntry(PasswordEntry&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
   , Editable(std::move(src))
 {}
 
 auto PasswordEntry::operator=(PasswordEntry&& src) noexcept -> PasswordEntry&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   Editable::operator=(std::move(src));
   return *this;
 }
@@ -134,16 +132,17 @@ auto PasswordEntry::get_base_type() -> GType
 PasswordEntry::PasswordEntry()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(passwordentry_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(passwordentry_class_.init()))
 {
 
 
 }
 
-auto PasswordEntry::set_show_peek_icon (bool show_peek_icon) -> void
+auto PasswordEntry::set_show_peek_icon (
+  const bool show_peek_icon) -> void
 {
-  gtk_password_entry_set_show_peek_icon(gobj(), static_cast<int>(show_peek_icon));
+  gtk_password_entry_set_show_peek_icon(gobj(), show_peek_icon);
 }
 
 auto PasswordEntry::get_show_peek_icon() const -> bool
@@ -172,32 +171,32 @@ auto PasswordEntry::get_extra_menu() const -> Glib::RefPtr<const Gio::MenuModel>
 
 auto PasswordEntry::property_placeholder_text() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "placeholder-text");
+  return {this, "placeholder-text"};
 }
 
 auto PasswordEntry::property_placeholder_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "placeholder-text");
+  return {this, "placeholder-text"};
 }
 
 auto PasswordEntry::property_activates_default() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "activates-default");
+  return {this, "activates-default"};
 }
 
 auto PasswordEntry::property_activates_default() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "activates-default");
+  return {this, "activates-default"};
 }
 
 auto PasswordEntry::property_show_peek_icon() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "show-peek-icon");
+  return {this, "show-peek-icon"};
 }
 
 auto PasswordEntry::property_show_peek_icon() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "show-peek-icon");
+  return {this, "show-peek-icon"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::MenuModel>>::value,
@@ -206,12 +205,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Me
 
 auto PasswordEntry::property_extra_menu() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >(this, "extra-menu");
+  return {this, "extra-menu"};
 }
 
 auto PasswordEntry::property_extra_menu() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >(this, "extra-menu");
+  return {this, "extra-menu"};
 }
 
 

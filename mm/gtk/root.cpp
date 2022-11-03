@@ -45,9 +45,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkRoot* object, bool take_copy) -> Glib::RefPtr<Gtk::Root>
+auto wrap(GtkRoot* object, const bool take_copy) -> RefPtr<Gtk::Root>
 {
-  return Glib::make_refptr_for_instance<Gtk::Root>( dynamic_cast<Gtk::Root*> (Glib::wrap_auto_interface<Gtk::Root> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::Root>( Glib::wrap_auto_interface<Gtk::Root> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -60,7 +60,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Root_Class::init() -> const Glib::Interface_Class&
+auto Root_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -89,42 +89,40 @@ auto Root_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto Root_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new Root((GtkRoot*)(object));
+  return new Root((GtkRoot*)object);
 }
 
 
 /* The implementation: */
 
 Root::Root()
-:
-  Glib::Interface(root_class_.init())
+: Interface(root_class_.init())
 {}
 
 Root::Root(GtkRoot* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 Root::Root(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 Root::Root(Root&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto Root::operator=(Root&& src) noexcept -> Root&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-Root::~Root() noexcept
-{}
+Root::~Root() noexcept = default;
 
 // static
-auto Root::add_interface (GType gtype_implementer) -> void
+auto Root::add_interface (
+  const GType gtype_implementer) -> void
 {
   root_class_.init().add_interface(gtype_implementer);
 }
@@ -158,7 +156,7 @@ auto Root::get_display() const -> Glib::RefPtr<const Gdk::Display>
 
 auto Root::set_focus (Widget &focus) -> void
 {
-  gtk_root_set_focus(gobj(), (focus).gobj());
+  gtk_root_set_focus(gobj(), focus.gobj());
 }
 
 auto Root::get_focus() -> Widget*

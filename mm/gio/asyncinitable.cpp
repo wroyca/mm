@@ -33,34 +33,33 @@ namespace Gio
 {
 
 auto AsyncInitable::init_async (
-  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
-  int io_priority) -> void
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_async_initable_init_async(
     gobj(), io_priority, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-auto AsyncInitable::init_async (const SlotAsyncReady &slot, int io_priority) -> void
+auto AsyncInitable::init_async (const SlotAsyncReady &slot, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_async_initable_init_async(gobj(), io_priority, nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
 auto AsyncInitable_Class::init_async_vfunc_callback (
-  GAsyncInitable *self, int io_priority,
-  GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data) -> void
+  GAsyncInitable *self, const int io_priority,
+  GCancellable *cancellable, const GAsyncReadyCallback callback, const gpointer user_data) -> void
 {
   const auto obj_base =
-    static_cast<Glib::ObjectBase*>(Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+    Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -75,7 +74,7 @@ auto AsyncInitable_Class::init_async_vfunc_callback (
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Get the slot.
-        Gio::SlotAsyncReady* the_slot = static_cast<Gio::SlotAsyncReady*>(user_data);
+        const SlotAsyncReady * the_slot = static_cast<SlotAsyncReady *>(user_data);
 
         // Call the virtual member method, which derived classes might override.
         obj->init_async_vfunc(*the_slot, Glib::wrap(cancellable, true), io_priority);
@@ -99,20 +98,19 @@ auto AsyncInitable_Class::init_async_vfunc_callback (
   if (base && base->init_async)
     (*base->init_async)(self, io_priority, cancellable, callback, user_data);
 }
-auto Gio::AsyncInitable::init_async_vfunc (
-  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
-  int io_priority) -> void
+auto AsyncInitable::init_async_vfunc (
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable, const int io_priority) -> void
 {
   const auto base = static_cast<BaseClassType*>(
     g_type_interface_peek_parent( // Get the parent interface of the interface (The original
                                   // underlying C interface).
       g_type_interface_peek(
-        G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+        G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
       ));
 
   if (base && base->init_async)
   {
-    (*base->init_async)(gobj(), io_priority, const_cast<GCancellable*>(Glib::unwrap(cancellable)),
+    (*base->init_async)(gobj(), io_priority, Glib::unwrap(cancellable),
       &SignalProxy_async_callback, const_cast<SlotAsyncReady*>(&slot));
   }
 }
@@ -121,7 +119,7 @@ AsyncInitable_Class::init_finish_vfunc_callback(
   GAsyncInitable* self, GAsyncResult* res, GError** error) -> gboolean
 {
   const auto obj_base =
-    static_cast<Glib::ObjectBase*>(Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+    Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -136,7 +134,7 @@ AsyncInitable_Class::init_finish_vfunc_callback(
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->init_finish_vfunc(Glib::wrap(res, true)));
+        return obj->init_finish_vfunc(Glib::wrap(res, true));
       }
       catch (...)
       {
@@ -159,14 +157,13 @@ AsyncInitable_Class::init_finish_vfunc_callback(
   using RType = gboolean;
   return RType();
 }
-auto
-Gio::AsyncInitable::init_finish_vfunc(const Glib::RefPtr<AsyncResult>& res) -> bool
+auto AsyncInitable::init_finish_vfunc(const Glib::RefPtr<AsyncResult>& res) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
     g_type_interface_peek_parent( // Get the parent interface of the interface (The original
                                   // underlying C interface).
       g_type_interface_peek(
-        G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+        G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
       ));
 
   if (base && base->init_finish)
@@ -176,7 +173,7 @@ Gio::AsyncInitable::init_finish_vfunc(const Glib::RefPtr<AsyncResult>& res) -> b
     bool const result = (*base->init_finish)(gobj(), Glib::unwrap(res), &gerror);
 
     if (gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Glib::Error::throw_exception(gerror);
 
     return result;
   }
@@ -195,9 +192,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GAsyncInitable* object, bool take_copy) -> Glib::RefPtr<Gio::AsyncInitable>
+auto wrap(GAsyncInitable* object, const bool take_copy) -> RefPtr<Gio::AsyncInitable>
 {
-  return Glib::make_refptr_for_instance<Gio::AsyncInitable>( dynamic_cast<Gio::AsyncInitable*> (Glib::wrap_auto_interface<Gio::AsyncInitable> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::AsyncInitable>( Glib::wrap_auto_interface<Gio::AsyncInitable> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -210,7 +207,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto AsyncInitable_Class::init() -> const Glib::Interface_Class&
+auto AsyncInitable_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -241,42 +238,40 @@ auto AsyncInitable_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto AsyncInitable_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new AsyncInitable((GAsyncInitable*)(object));
+  return new AsyncInitable((GAsyncInitable*)object);
 }
 
 
 /* The implementation: */
 
 AsyncInitable::AsyncInitable()
-:
-  Glib::Interface(asyncinitable_class_.init())
+: Interface(asyncinitable_class_.init())
 {}
 
 AsyncInitable::AsyncInitable(GAsyncInitable* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 AsyncInitable::AsyncInitable(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 AsyncInitable::AsyncInitable(AsyncInitable&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto AsyncInitable::operator=(AsyncInitable&& src) noexcept -> AsyncInitable&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-AsyncInitable::~AsyncInitable() noexcept
-{}
+AsyncInitable::~AsyncInitable() noexcept = default;
 
 // static
-auto AsyncInitable::add_interface (GType gtype_implementer) -> void
+auto AsyncInitable::add_interface (
+  const GType gtype_implementer) -> void
 {
   asyncinitable_class_.init().add_interface(gtype_implementer);
 }
@@ -298,18 +293,18 @@ auto AsyncInitable::get_base_type() -> GType
 auto AsyncInitable::init_finish(const Glib::RefPtr<AsyncResult>& res) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_async_initable_init_finish(gobj(), Glib::unwrap(res), &(gerror));
+  const auto retvalue = g_async_initable_init_finish(gobj(), Glib::unwrap(res), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto AsyncInitable::create_finish(const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Glib::Object>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_async_initable_new_finish(gobj(), Glib::unwrap(res), &(gerror)));
+  auto retvalue = Glib::wrap(g_async_initable_new_finish(gobj(), Glib::unwrap(res), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 

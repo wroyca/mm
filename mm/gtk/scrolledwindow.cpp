@@ -47,16 +47,16 @@ auto ScrolledWindow_signal_edge_overshot_callback (
   GtkScrolledWindow *self, GtkPositionType p0, void *data) -> void
 {
   using namespace Gtk;
-  using SlotType = sigc::slot<void(Gtk::PositionType)>;
+  using SlotType = sigc::slot<void(PositionType)>;
 
-  auto obj = dynamic_cast<ScrolledWindow*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<ScrolledWindow*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        (*static_cast<SlotType*>(slot))(static_cast<Gtk::PositionType>(p0)
+        (*static_cast<SlotType*>(slot))(static_cast<PositionType>(p0)
 );
     }
     catch(...)
@@ -78,16 +78,16 @@ auto ScrolledWindow_signal_edge_reached_callback (
   GtkScrolledWindow *self, GtkPositionType p0, void *data) -> void
 {
   using namespace Gtk;
-  using SlotType = sigc::slot<void(Gtk::PositionType)>;
+  using SlotType = sigc::slot<void(PositionType)>;
 
-  auto obj = dynamic_cast<ScrolledWindow*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<ScrolledWindow*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        (*static_cast<SlotType*>(slot))(static_cast<Gtk::PositionType>(p0)
+        (*static_cast<SlotType*>(slot))(static_cast<PositionType>(p0)
 );
     }
     catch(...)
@@ -111,9 +111,9 @@ const Glib::SignalProxyInfo ScrolledWindow_signal_edge_reached_info =
 namespace Glib
 {
 
-auto wrap(GtkScrolledWindow* object, bool take_copy) -> Gtk::ScrolledWindow*
+auto wrap(GtkScrolledWindow* object, const bool take_copy) -> Gtk::ScrolledWindow*
 {
-  return dynamic_cast<Gtk::ScrolledWindow *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::ScrolledWindow *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -124,7 +124,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto ScrolledWindow_Class::init() -> const Glib::Class&
+auto ScrolledWindow_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -157,7 +157,7 @@ auto ScrolledWindow_Class::class_init_function (void *g_class, void *class_data)
 
 auto ScrolledWindow_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new ScrolledWindow((GtkScrolledWindow*)(o)));
+  return manage(new ScrolledWindow((GtkScrolledWindow*)o));
 
 }
 
@@ -165,25 +165,23 @@ auto ScrolledWindow_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 ScrolledWindow::ScrolledWindow(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 ScrolledWindow::ScrolledWindow(GtkScrolledWindow* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 ScrolledWindow::ScrolledWindow(ScrolledWindow&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
 {}
 
 auto ScrolledWindow::operator=(ScrolledWindow&& src) noexcept -> ScrolledWindow&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   return *this;
 }
 
@@ -209,8 +207,8 @@ auto ScrolledWindow::get_base_type() -> GType
 ScrolledWindow::ScrolledWindow()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(scrolledwindow_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(scrolledwindow_class_.init()))
 {
 
 
@@ -260,7 +258,7 @@ auto ScrolledWindow::set_policy (PolicyType hscrollbar_policy, PolicyType vscrol
 auto ScrolledWindow::get_policy (
   PolicyType &hscrollbar_policy, PolicyType &vscrollbar_policy) const -> void
 {
-  gtk_scrolled_window_get_policy(const_cast<GtkScrolledWindow*>(gobj()), ((GtkPolicyType*) &(hscrollbar_policy)), ((GtkPolicyType*) &(vscrollbar_policy)));
+  gtk_scrolled_window_get_policy(const_cast<GtkScrolledWindow*>(gobj()), (GtkPolicyType*) &hscrollbar_policy, (GtkPolicyType*) &vscrollbar_policy);
 }
 
 auto ScrolledWindow::set_placement (CornerType window_placement) -> void
@@ -278,9 +276,10 @@ auto ScrolledWindow::get_placement() const -> CornerType
   return static_cast<CornerType>(gtk_scrolled_window_get_placement(const_cast<GtkScrolledWindow*>(gobj())));
 }
 
-auto ScrolledWindow::set_has_frame (bool has_frame) -> void
+auto ScrolledWindow::set_has_frame (
+  const bool has_frame) -> void
 {
-  gtk_scrolled_window_set_has_frame(gobj(), static_cast<int>(has_frame));
+  gtk_scrolled_window_set_has_frame(gobj(), has_frame);
 }
 
 auto ScrolledWindow::get_has_frame() const -> bool
@@ -313,7 +312,8 @@ auto ScrolledWindow::get_min_content_width() const -> int
   return gtk_scrolled_window_get_min_content_width(const_cast<GtkScrolledWindow*>(gobj()));
 }
 
-auto ScrolledWindow::set_min_content_width (int width) -> void
+auto ScrolledWindow::set_min_content_width (
+  const int width) -> void
 {
   gtk_scrolled_window_set_min_content_width(gobj(), width);
 }
@@ -323,14 +323,16 @@ auto ScrolledWindow::get_min_content_height() const -> int
   return gtk_scrolled_window_get_min_content_height(const_cast<GtkScrolledWindow*>(gobj()));
 }
 
-auto ScrolledWindow::set_min_content_height (int height) -> void
+auto ScrolledWindow::set_min_content_height (
+  const int height) -> void
 {
   gtk_scrolled_window_set_min_content_height(gobj(), height);
 }
 
-auto ScrolledWindow::set_kinetic_scrolling (bool kinetic_scrolling) -> void
+auto ScrolledWindow::set_kinetic_scrolling (
+  const bool kinetic_scrolling) -> void
 {
-  gtk_scrolled_window_set_kinetic_scrolling(gobj(), static_cast<int>(kinetic_scrolling));
+  gtk_scrolled_window_set_kinetic_scrolling(gobj(), kinetic_scrolling);
 }
 
 auto ScrolledWindow::get_kinetic_scrolling() const -> bool
@@ -338,9 +340,10 @@ auto ScrolledWindow::get_kinetic_scrolling() const -> bool
   return gtk_scrolled_window_get_kinetic_scrolling(const_cast<GtkScrolledWindow*>(gobj()));
 }
 
-auto ScrolledWindow::set_overlay_scrolling (bool overlay_scrolling) -> void
+auto ScrolledWindow::set_overlay_scrolling (
+  const bool overlay_scrolling) -> void
 {
-  gtk_scrolled_window_set_overlay_scrolling(gobj(), static_cast<int>(overlay_scrolling));
+  gtk_scrolled_window_set_overlay_scrolling(gobj(), overlay_scrolling);
 }
 
 auto ScrolledWindow::get_overlay_scrolling() const -> bool
@@ -348,7 +351,8 @@ auto ScrolledWindow::get_overlay_scrolling() const -> bool
   return gtk_scrolled_window_get_overlay_scrolling(const_cast<GtkScrolledWindow*>(gobj()));
 }
 
-auto ScrolledWindow::set_max_content_width (int width) -> void
+auto ScrolledWindow::set_max_content_width (
+  const int width) -> void
 {
   gtk_scrolled_window_set_max_content_width(gobj(), width);
 }
@@ -358,7 +362,8 @@ auto ScrolledWindow::get_max_content_width() const -> int
   return gtk_scrolled_window_get_max_content_width(const_cast<GtkScrolledWindow*>(gobj()));
 }
 
-auto ScrolledWindow::set_max_content_height (int height) -> void
+auto ScrolledWindow::set_max_content_height (
+  const int height) -> void
 {
   gtk_scrolled_window_set_max_content_height(gobj(), height);
 }
@@ -368,9 +373,10 @@ auto ScrolledWindow::get_max_content_height() const -> int
   return gtk_scrolled_window_get_max_content_height(const_cast<GtkScrolledWindow*>(gobj()));
 }
 
-auto ScrolledWindow::set_propagate_natural_width (bool propagate) -> void
+auto ScrolledWindow::set_propagate_natural_width (
+  const bool propagate) -> void
 {
-  gtk_scrolled_window_set_propagate_natural_width(gobj(), static_cast<int>(propagate));
+  gtk_scrolled_window_set_propagate_natural_width(gobj(), propagate);
 }
 
 auto ScrolledWindow::get_propagate_natural_width() const -> bool
@@ -378,9 +384,10 @@ auto ScrolledWindow::get_propagate_natural_width() const -> bool
   return gtk_scrolled_window_get_propagate_natural_width(const_cast<GtkScrolledWindow*>(gobj()));
 }
 
-auto ScrolledWindow::set_propagate_natural_height (bool propagate) -> void
+auto ScrolledWindow::set_propagate_natural_height (
+  const bool propagate) -> void
 {
-  gtk_scrolled_window_set_propagate_natural_height(gobj(), static_cast<int>(propagate));
+  gtk_scrolled_window_set_propagate_natural_height(gobj(), propagate);
 }
 
 auto ScrolledWindow::get_propagate_natural_height() const -> bool
@@ -390,7 +397,7 @@ auto ScrolledWindow::get_propagate_natural_height() const -> bool
 
 auto ScrolledWindow::set_child (Widget &child) -> void
 {
-  gtk_scrolled_window_set_child(gobj(), (child).gobj());
+  gtk_scrolled_window_set_child(gobj(), child.gobj());
 }
 
 auto ScrolledWindow::get_child() -> Widget*
@@ -404,15 +411,15 @@ auto ScrolledWindow::get_child() const -> const Widget*
 }
 
 
-auto ScrolledWindow::signal_edge_overshot() -> Glib::SignalProxy<void(Gtk::PositionType)>
+auto ScrolledWindow::signal_edge_overshot() -> Glib::SignalProxy<void(PositionType)>
 {
-  return Glib::SignalProxy<void(Gtk::PositionType) >(this, &ScrolledWindow_signal_edge_overshot_info);
+  return {this, &ScrolledWindow_signal_edge_overshot_info};
 }
 
 
-auto ScrolledWindow::signal_edge_reached() -> Glib::SignalProxy<void(Gtk::PositionType)>
+auto ScrolledWindow::signal_edge_reached() -> Glib::SignalProxy<void(PositionType)>
 {
-  return Glib::SignalProxy<void(Gtk::PositionType) >(this, &ScrolledWindow_signal_edge_reached_info);
+  return {this, &ScrolledWindow_signal_edge_reached_info};
 }
 
 
@@ -422,12 +429,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Adjustm
 
 auto ScrolledWindow::property_hadjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Adjustment> >(this, "hadjustment");
+  return {this, "hadjustment"};
 }
 
 auto ScrolledWindow::property_hadjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >(this, "hadjustment");
+  return {this, "hadjustment"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Adjustment>>::value,
@@ -436,12 +443,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Adjustm
 
 auto ScrolledWindow::property_vadjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Adjustment> >(this, "vadjustment");
+  return {this, "vadjustment"};
 }
 
 auto ScrolledWindow::property_vadjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >(this, "vadjustment");
+  return {this, "vadjustment"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<PolicyType>::value,
@@ -450,12 +457,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<PolicyType>::value,
 
 auto ScrolledWindow::property_hscrollbar_policy() -> Glib::PropertyProxy< PolicyType >
 {
-  return Glib::PropertyProxy< PolicyType >(this, "hscrollbar-policy");
+  return {this, "hscrollbar-policy"};
 }
 
 auto ScrolledWindow::property_hscrollbar_policy() const -> Glib::PropertyProxy_ReadOnly< PolicyType >
 {
-  return Glib::PropertyProxy_ReadOnly< PolicyType >(this, "hscrollbar-policy");
+  return {this, "hscrollbar-policy"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<PolicyType>::value,
@@ -464,12 +471,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<PolicyType>::value,
 
 auto ScrolledWindow::property_vscrollbar_policy() -> Glib::PropertyProxy< PolicyType >
 {
-  return Glib::PropertyProxy< PolicyType >(this, "vscrollbar-policy");
+  return {this, "vscrollbar-policy"};
 }
 
 auto ScrolledWindow::property_vscrollbar_policy() const -> Glib::PropertyProxy_ReadOnly< PolicyType >
 {
-  return Glib::PropertyProxy_ReadOnly< PolicyType >(this, "vscrollbar-policy");
+  return {this, "vscrollbar-policy"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<CornerType>::value,
@@ -478,112 +485,112 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<CornerType>::value,
 
 auto ScrolledWindow::property_window_placement() -> Glib::PropertyProxy< CornerType >
 {
-  return Glib::PropertyProxy< CornerType >(this, "window-placement");
+  return {this, "window-placement"};
 }
 
 auto ScrolledWindow::property_window_placement() const -> Glib::PropertyProxy_ReadOnly< CornerType >
 {
-  return Glib::PropertyProxy_ReadOnly< CornerType >(this, "window-placement");
+  return {this, "window-placement"};
 }
 
 auto ScrolledWindow::property_has_frame() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "has-frame");
+  return {this, "has-frame"};
 }
 
 auto ScrolledWindow::property_has_frame() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "has-frame");
+  return {this, "has-frame"};
 }
 
 auto ScrolledWindow::property_min_content_width() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "min-content-width");
+  return {this, "min-content-width"};
 }
 
 auto ScrolledWindow::property_min_content_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "min-content-width");
+  return {this, "min-content-width"};
 }
 
 auto ScrolledWindow::property_min_content_height() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "min-content-height");
+  return {this, "min-content-height"};
 }
 
 auto ScrolledWindow::property_min_content_height() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "min-content-height");
+  return {this, "min-content-height"};
 }
 
 auto ScrolledWindow::property_kinetic_scrolling() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "kinetic-scrolling");
+  return {this, "kinetic-scrolling"};
 }
 
 auto ScrolledWindow::property_kinetic_scrolling() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "kinetic-scrolling");
+  return {this, "kinetic-scrolling"};
 }
 
 auto ScrolledWindow::property_overlay_scrolling() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "overlay-scrolling");
+  return {this, "overlay-scrolling"};
 }
 
 auto ScrolledWindow::property_overlay_scrolling() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "overlay-scrolling");
+  return {this, "overlay-scrolling"};
 }
 
 auto ScrolledWindow::property_max_content_width() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "max-content-width");
+  return {this, "max-content-width"};
 }
 
 auto ScrolledWindow::property_max_content_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "max-content-width");
+  return {this, "max-content-width"};
 }
 
 auto ScrolledWindow::property_max_content_height() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "max-content-height");
+  return {this, "max-content-height"};
 }
 
 auto ScrolledWindow::property_max_content_height() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "max-content-height");
+  return {this, "max-content-height"};
 }
 
 auto ScrolledWindow::property_propagate_natural_width() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "propagate-natural-width");
+  return {this, "propagate-natural-width"};
 }
 
 auto ScrolledWindow::property_propagate_natural_width() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "propagate-natural-width");
+  return {this, "propagate-natural-width"};
 }
 
 auto ScrolledWindow::property_propagate_natural_height() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "propagate-natural-height");
+  return {this, "propagate-natural-height"};
 }
 
 auto ScrolledWindow::property_propagate_natural_height() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "propagate-natural-height");
+  return {this, "propagate-natural-height"};
 }
 
 auto ScrolledWindow::property_child() -> Glib::PropertyProxy< Widget* >
 {
-  return Glib::PropertyProxy< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 auto ScrolledWindow::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 

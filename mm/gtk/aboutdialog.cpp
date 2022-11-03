@@ -34,13 +34,13 @@ namespace Gtk
 
 // use-header-bar is construct-only. It must be set in the constructor,
 // if you don't want the default value.
-AboutDialog::AboutDialog (bool use_header_bar)
+AboutDialog::AboutDialog (const bool use_header_bar)
   :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase (nullptr),
-  Gtk::Window (
+  ObjectBase(nullptr),
+  Window(
     Glib::ConstructParams (
-      aboutdialog_class_.init(), "use-header-bar", static_cast <int> (use_header_bar), nullptr))
+      aboutdialog_class_.init(), "use-header-bar", use_header_bar, nullptr))
 {
 }
 
@@ -61,15 +61,15 @@ auto AboutDialog_signal_activate_link_callback(GtkAboutDialog* self, const gchar
   using namespace Gtk;
   using SlotType = sigc::slot<bool(const std::string&)>;
 
-  auto obj = dynamic_cast<AboutDialog*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<AboutDialog*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return static_cast<int>((*static_cast<SlotType*>(slot))(Glib::convert_const_gchar_ptr_to_stdstring(p0)
-));
+        return (*static_cast<SlotType*>(slot))(Glib::convert_const_gchar_ptr_to_stdstring(p0)
+        );
     }
     catch(...)
     {
@@ -86,7 +86,7 @@ auto AboutDialog_signal_activate_link_notify_callback(GtkAboutDialog* self, cons
   using namespace Gtk;
   using SlotType = sigc::slot<void(const std::string&)>;
 
-  auto obj = dynamic_cast<AboutDialog*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<AboutDialog*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -126,9 +126,9 @@ auto Glib::Value<Gtk::License>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkAboutDialog* object, bool take_copy) -> Gtk::AboutDialog*
+auto wrap(GtkAboutDialog* object, const bool take_copy) -> Gtk::AboutDialog*
 {
-  return dynamic_cast<Gtk::AboutDialog *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::AboutDialog *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -139,7 +139,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto AboutDialog_Class::init() -> const Glib::Class&
+auto AboutDialog_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -172,7 +172,7 @@ auto AboutDialog_Class::class_init_function (void *g_class, void *class_data) ->
 
 auto AboutDialog_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return new AboutDialog((GtkAboutDialog*)(o)); //top-level windows can not be manage()ed.
+  return new AboutDialog((GtkAboutDialog*)o); //top-level windows can not be manage()ed.
 
 }
 
@@ -180,25 +180,23 @@ auto AboutDialog_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 AboutDialog::AboutDialog(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Window(construct_params)
+: Window(construct_params)
 {
   }
 
 AboutDialog::AboutDialog(GtkAboutDialog* castitem)
-:
-  Gtk::Window((GtkWindow*)(castitem))
+: Window((GtkWindow*)castitem)
 {
   }
 
 
 AboutDialog::AboutDialog(AboutDialog&& src) noexcept
-: Gtk::Window(std::move(src))
+: Window(std::move(src))
 {}
 
 auto AboutDialog::operator=(AboutDialog&& src) noexcept -> AboutDialog&
 {
-  Gtk::Window::operator=(std::move(src));
+  Window::operator=(std::move(src));
   return *this;
 }
 
@@ -224,8 +222,8 @@ auto AboutDialog::get_base_type() -> GType
 AboutDialog::AboutDialog()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Window(Glib::ConstructParams(aboutdialog_class_.init()))
+ObjectBase(nullptr),
+Window(Glib::ConstructParams(aboutdialog_class_.init()))
 {
 
 
@@ -394,9 +392,10 @@ auto AboutDialog::get_wrap_license() const -> bool
   return gtk_about_dialog_get_wrap_license(const_cast<GtkAboutDialog*>(gobj()));
 }
 
-auto AboutDialog::set_wrap_license (bool wrap_license) -> void
+auto AboutDialog::set_wrap_license (
+  const bool wrap_license) -> void
 {
-  gtk_about_dialog_set_wrap_license(gobj(), static_cast<int>(wrap_license));
+  gtk_about_dialog_set_wrap_license(gobj(), wrap_license);
 }
 
 auto AboutDialog::add_credit_section (
@@ -408,78 +407,78 @@ auto AboutDialog::add_credit_section (
 
 auto AboutDialog::signal_activate_link() -> Glib::SignalProxy<bool(const std::string&)>
 {
-  return Glib::SignalProxy<bool(const std::string&) >(this, &AboutDialog_signal_activate_link_info);
+  return {this, &AboutDialog_signal_activate_link_info};
 }
 
 
 auto AboutDialog::property_program_name() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "program-name");
+  return {this, "program-name"};
 }
 
 auto AboutDialog::property_program_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "program-name");
+  return {this, "program-name"};
 }
 
 auto AboutDialog::property_version() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "version");
+  return {this, "version"};
 }
 
 auto AboutDialog::property_version() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "version");
+  return {this, "version"};
 }
 
 auto AboutDialog::property_copyright() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "copyright");
+  return {this, "copyright"};
 }
 
 auto AboutDialog::property_copyright() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "copyright");
+  return {this, "copyright"};
 }
 
 auto AboutDialog::property_comments() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "comments");
+  return {this, "comments"};
 }
 
 auto AboutDialog::property_comments() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "comments");
+  return {this, "comments"};
 }
 
 auto AboutDialog::property_website() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "website");
+  return {this, "website"};
 }
 
 auto AboutDialog::property_website() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "website");
+  return {this, "website"};
 }
 
 auto AboutDialog::property_website_label() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "website-label");
+  return {this, "website-label"};
 }
 
 auto AboutDialog::property_website_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "website-label");
+  return {this, "website-label"};
 }
 
 auto AboutDialog::property_license() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "license");
+  return {this, "license"};
 }
 
 auto AboutDialog::property_license() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "license");
+  return {this, "license"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<License>::value,
@@ -488,22 +487,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<License>::value,
 
 auto AboutDialog::property_license_type() -> Glib::PropertyProxy< License >
 {
-  return Glib::PropertyProxy< License >(this, "license-type");
+  return {this, "license-type"};
 }
 
 auto AboutDialog::property_license_type() const -> Glib::PropertyProxy_ReadOnly< License >
 {
-  return Glib::PropertyProxy_ReadOnly< License >(this, "license-type");
+  return {this, "license-type"};
 }
 
 auto AboutDialog::property_system_information() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "system-information");
+  return {this, "system-information"};
 }
 
 auto AboutDialog::property_system_information() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "system-information");
+  return {this, "system-information"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<std::vector<Glib::ustring>>::value,
@@ -512,12 +511,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<std::vector<Glib::us
 
 auto AboutDialog::property_authors() -> Glib::PropertyProxy< std::vector<Glib::ustring> >
 {
-  return Glib::PropertyProxy< std::vector<Glib::ustring> >(this, "authors");
+  return {this, "authors"};
 }
 
 auto AboutDialog::property_authors() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >
 {
-  return Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >(this, "authors");
+  return {this, "authors"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<std::vector<Glib::ustring>>::value,
@@ -526,12 +525,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<std::vector<Glib::us
 
 auto AboutDialog::property_documenters() -> Glib::PropertyProxy< std::vector<Glib::ustring> >
 {
-  return Glib::PropertyProxy< std::vector<Glib::ustring> >(this, "documenters");
+  return {this, "documenters"};
 }
 
 auto AboutDialog::property_documenters() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >
 {
-  return Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >(this, "documenters");
+  return {this, "documenters"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<std::vector<Glib::ustring>>::value,
@@ -540,12 +539,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<std::vector<Glib::us
 
 auto AboutDialog::property_translator_credits() -> Glib::PropertyProxy< std::vector<Glib::ustring> >
 {
-  return Glib::PropertyProxy< std::vector<Glib::ustring> >(this, "translator-credits");
+  return {this, "translator-credits"};
 }
 
 auto AboutDialog::property_translator_credits() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >
 {
-  return Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >(this, "translator-credits");
+  return {this, "translator-credits"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<std::vector<Glib::ustring>>::value,
@@ -554,12 +553,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<std::vector<Glib::us
 
 auto AboutDialog::property_artists() -> Glib::PropertyProxy< std::vector<Glib::ustring> >
 {
-  return Glib::PropertyProxy< std::vector<Glib::ustring> >(this, "artists");
+  return {this, "artists"};
 }
 
 auto AboutDialog::property_artists() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >
 {
-  return Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >(this, "artists");
+  return {this, "artists"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Paintable>>::value,
@@ -568,32 +567,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Pa
 
 auto AboutDialog::property_logo() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Gdk::Paintable> >(this, "logo");
+  return {this, "logo"};
 }
 
 auto AboutDialog::property_logo() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Paintable> >(this, "logo");
+  return {this, "logo"};
 }
 
 auto AboutDialog::property_logo_icon_name() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "logo-icon-name");
+  return {this, "logo-icon-name"};
 }
 
 auto AboutDialog::property_logo_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "logo-icon-name");
+  return {this, "logo-icon-name"};
 }
 
 auto AboutDialog::property_wrap_license() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "wrap-license");
+  return {this, "wrap-license"};
 }
 
 auto AboutDialog::property_wrap_license() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "wrap-license");
+  return {this, "wrap-license"};
 }
 
 

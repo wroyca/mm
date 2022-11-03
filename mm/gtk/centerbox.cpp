@@ -51,9 +51,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkCenterBox* object, bool take_copy) -> Gtk::CenterBox*
+auto wrap(GtkCenterBox* object, const bool take_copy) -> Gtk::CenterBox*
 {
-  return dynamic_cast<Gtk::CenterBox *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::CenterBox *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -64,7 +64,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto CenterBox_Class::init() -> const Glib::Class&
+auto CenterBox_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -98,7 +98,7 @@ auto CenterBox_Class::class_init_function (void *g_class, void *class_data) -> v
 
 auto CenterBox_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new CenterBox((GtkCenterBox*)(o)));
+  return manage(new CenterBox((GtkCenterBox*)o));
 
 }
 
@@ -113,7 +113,7 @@ CenterBox::CenterBox(const Glib::ConstructParams& construct_params)
 
 CenterBox::CenterBox(GtkCenterBox* castitem)
 :
-  Widget((GtkWidget*)(castitem))
+  Widget((GtkWidget*)castitem)
 {
   }
 
@@ -152,7 +152,7 @@ auto CenterBox::get_base_type() -> GType
 CenterBox::CenterBox()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   Widget(Glib::ConstructParams(centerbox_class_.init()))
 {
 
@@ -161,7 +161,7 @@ CenterBox::CenterBox()
 
 auto CenterBox::set_start_widget (Widget &child) -> void
 {
-  gtk_center_box_set_start_widget(gobj(), (child).gobj());
+  gtk_center_box_set_start_widget(gobj(), child.gobj());
 }
 
 auto CenterBox::get_start_widget() -> Widget*
@@ -176,7 +176,7 @@ auto CenterBox::get_start_widget() const -> const Widget*
 
 auto CenterBox::set_center_widget (Widget &child) -> void
 {
-  gtk_center_box_set_center_widget(gobj(), (child).gobj());
+  gtk_center_box_set_center_widget(gobj(), child.gobj());
 }
 
 auto CenterBox::get_center_widget() -> Widget*
@@ -191,7 +191,7 @@ auto CenterBox::get_center_widget() const -> const Widget*
 
 auto CenterBox::set_end_widget (Widget &child) -> void
 {
-  gtk_center_box_set_end_widget(gobj(), (child).gobj());
+  gtk_center_box_set_end_widget(gobj(), child.gobj());
 }
 
 auto CenterBox::get_end_widget() -> Widget*
@@ -221,12 +221,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<BaselinePosition>::v
 
 auto CenterBox::property_baseline_position() -> Glib::PropertyProxy< BaselinePosition >
 {
-  return Glib::PropertyProxy< BaselinePosition >(this, "baseline-position");
+  return {this, "baseline-position"};
 }
 
 auto CenterBox::property_baseline_position() const -> Glib::PropertyProxy_ReadOnly< BaselinePosition >
 {
-  return Glib::PropertyProxy_ReadOnly< BaselinePosition >(this, "baseline-position");
+  return {this, "baseline-position"};
 }
 
 

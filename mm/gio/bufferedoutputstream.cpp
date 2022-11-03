@@ -30,9 +30,9 @@ namespace Gio
 {
 
 auto
-BufferedOutputStream::create_sized(const Glib::RefPtr<OutputStream>& base_stream, gsize size) -> Glib::RefPtr<BufferedOutputStream>
+BufferedOutputStream::create_sized(const Glib::RefPtr<OutputStream>& base_stream, const gsize size) -> Glib::RefPtr<BufferedOutputStream>
 {
-  return Glib::make_refptr_for_instance<Gio::BufferedOutputStream>(new BufferedOutputStream(base_stream, size));
+  return Glib::make_refptr_for_instance<BufferedOutputStream>(new BufferedOutputStream(base_stream, size));
 }
 
 } // namespace Gio
@@ -45,9 +45,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GBufferedOutputStream* object, bool take_copy) -> Glib::RefPtr<Gio::BufferedOutputStream>
+auto wrap(GBufferedOutputStream* object, const bool take_copy) -> RefPtr<Gio::BufferedOutputStream>
 {
-  return Glib::make_refptr_for_instance<Gio::BufferedOutputStream>( dynamic_cast<Gio::BufferedOutputStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::BufferedOutputStream>( dynamic_cast<Gio::BufferedOutputStream*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -60,7 +60,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto BufferedOutputStream_Class::init() -> const Glib::Class&
+auto BufferedOutputStream_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -107,34 +107,30 @@ auto BufferedOutputStream::gobj_copy() -> GBufferedOutputStream*
 }
 
 BufferedOutputStream::BufferedOutputStream(const Glib::ConstructParams& construct_params)
-:
-  Gio::FilterOutputStream(construct_params)
+: FilterOutputStream(construct_params)
 {
 
 }
 
 BufferedOutputStream::BufferedOutputStream(GBufferedOutputStream* castitem)
-:
-  Gio::FilterOutputStream((GFilterOutputStream*)(castitem))
+: FilterOutputStream((GFilterOutputStream*)castitem)
 {}
 
 
 BufferedOutputStream::BufferedOutputStream(BufferedOutputStream&& src) noexcept
-: Gio::FilterOutputStream(std::move(src))
+: FilterOutputStream(std::move(src))
   , Seekable(std::move(src))
 {}
 
 auto BufferedOutputStream::operator=(BufferedOutputStream&& src) noexcept -> BufferedOutputStream&
 {
-  Gio::FilterOutputStream::operator=(std::move(src));
+  FilterOutputStream::operator=(std::move(src));
   Seekable::operator=(std::move(src));
   return *this;
 }
 
 
-BufferedOutputStream::~BufferedOutputStream() noexcept
-{}
-
+BufferedOutputStream::~BufferedOutputStream() noexcept = default;
 
 BufferedOutputStream::CppClassType BufferedOutputStream::bufferedoutputstream_class_; // initialize static member
 
@@ -153,18 +149,18 @@ auto BufferedOutputStream::get_base_type() -> GType
 BufferedOutputStream::BufferedOutputStream(const Glib::RefPtr<OutputStream>& base_stream)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gio::FilterOutputStream(Glib::ConstructParams(bufferedoutputstream_class_.init(), "base_stream", const_cast<GOutputStream*>(Glib::unwrap(base_stream)), nullptr))
+ObjectBase(nullptr),
+FilterOutputStream(Glib::ConstructParams(bufferedoutputstream_class_.init(), "base_stream", Glib::unwrap(base_stream), nullptr))
 {
 
 
 }
 
-BufferedOutputStream::BufferedOutputStream(const Glib::RefPtr<OutputStream>& base_stream, gsize buffer_size)
+BufferedOutputStream::BufferedOutputStream(const Glib::RefPtr<OutputStream>& base_stream, const gsize buffer_size)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gio::FilterOutputStream(Glib::ConstructParams(bufferedoutputstream_class_.init(), "base_stream", const_cast<GOutputStream*>(Glib::unwrap(base_stream)), "buffer_size", buffer_size, nullptr))
+ObjectBase(nullptr),
+FilterOutputStream(Glib::ConstructParams(bufferedoutputstream_class_.init(), "base_stream", Glib::unwrap(base_stream), "buffer_size", buffer_size, nullptr))
 {
 
 
@@ -180,14 +176,16 @@ auto BufferedOutputStream::get_buffer_size() const -> gsize
   return g_buffered_output_stream_get_buffer_size(const_cast<GBufferedOutputStream*>(gobj()));
 }
 
-auto BufferedOutputStream::set_buffer_size (gsize size) -> void
+auto BufferedOutputStream::set_buffer_size (
+  const gsize size) -> void
 {
   g_buffered_output_stream_set_buffer_size(gobj(), size);
 }
 
-auto BufferedOutputStream::set_auto_grow (bool auto_grow) -> void
+auto BufferedOutputStream::set_auto_grow (
+  const bool auto_grow) -> void
 {
-  g_buffered_output_stream_set_auto_grow(gobj(), static_cast<int>(auto_grow));
+  g_buffered_output_stream_set_auto_grow(gobj(), auto_grow);
 }
 
 auto BufferedOutputStream::get_auto_grow() const -> bool
@@ -198,22 +196,22 @@ auto BufferedOutputStream::get_auto_grow() const -> bool
 
 auto BufferedOutputStream::property_buffer_size() -> Glib::PropertyProxy< guint >
 {
-  return Glib::PropertyProxy< guint >(this, "buffer-size");
+  return {this, "buffer-size"};
 }
 
 auto BufferedOutputStream::property_buffer_size() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
-  return Glib::PropertyProxy_ReadOnly< guint >(this, "buffer-size");
+  return {this, "buffer-size"};
 }
 
 auto BufferedOutputStream::property_auto_grow() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "auto-grow");
+  return {this, "auto-grow"};
 }
 
 auto BufferedOutputStream::property_auto_grow() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "auto-grow");
+  return {this, "auto-grow"};
 }
 
 

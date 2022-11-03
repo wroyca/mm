@@ -33,9 +33,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GdkPopup* object, bool take_copy) -> Glib::RefPtr<Gdk::Popup>
+auto wrap(GdkPopup* object, const bool take_copy) -> RefPtr<Gdk::Popup>
 {
-  return Glib::make_refptr_for_instance<Gdk::Popup>( dynamic_cast<Gdk::Popup*> (Glib::wrap_auto_interface<Gdk::Popup> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gdk::Popup>( Glib::wrap_auto_interface<Gdk::Popup> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -48,7 +48,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-auto Popup_Class::init() -> const Glib::Interface_Class&
+auto Popup_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -77,42 +77,40 @@ auto Popup_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto Popup_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new Popup((GdkPopup*)(object));
+  return new Popup((GdkPopup*)object);
 }
 
 
 /* The implementation: */
 
 Popup::Popup()
-:
-  Glib::Interface(popup_class_.init())
+: Interface(popup_class_.init())
 {}
 
 Popup::Popup(GdkPopup* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 Popup::Popup(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 Popup::Popup(Popup&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto Popup::operator=(Popup&& src) noexcept -> Popup&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-Popup::~Popup() noexcept
-{}
+Popup::~Popup() noexcept = default;
 
 // static
-auto Popup::add_interface (GType gtype_implementer) -> void
+auto Popup::add_interface (
+  const GType gtype_implementer) -> void
 {
   popup_class_.init().add_interface(gtype_implementer);
 }
@@ -131,7 +129,8 @@ auto Popup::get_base_type() -> GType
 }
 
 
-auto Popup::present(int width, int height, const Glib::RefPtr<PopupLayout>& layout) -> bool
+auto Popup::present(
+  const int width, const int height, const Glib::RefPtr<PopupLayout>& layout) -> bool
 {
   return gdk_popup_present(gobj(), width, height, Glib::unwrap(layout));
 }
@@ -181,12 +180,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Surface
 
 auto Popup::property_parent() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >(this, "parent");
+  return {this, "parent"};
 }
 
 auto Popup::property_autohide() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "autohide");
+  return {this, "autohide"};
 }
 
 

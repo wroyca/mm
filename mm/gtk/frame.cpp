@@ -49,9 +49,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkFrame* object, bool take_copy) -> Gtk::Frame*
+auto wrap(GtkFrame* object, const bool take_copy) -> Gtk::Frame*
 {
-  return dynamic_cast<Gtk::Frame *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::Frame *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -62,7 +62,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Frame_Class::init() -> const Glib::Class&
+auto Frame_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -96,8 +96,7 @@ auto Frame_Class::class_init_function (void *g_class, void *class_data) -> void
 auto Frame_Class::compute_child_allocation_vfunc_callback (
   GtkFrame *self, GtkAllocation *allocation) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -112,7 +111,7 @@ auto Frame_Class::compute_child_allocation_vfunc_callback (
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        obj->compute_child_allocation_vfunc((Allocation&)(Glib::wrap(allocation))
+        obj->compute_child_allocation_vfunc(Glib::wrap(allocation)
 );
         return;
       }
@@ -123,7 +122,7 @@ auto Frame_Class::compute_child_allocation_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -135,7 +134,7 @@ auto Frame_Class::compute_child_allocation_vfunc_callback (
 
 auto Frame_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new Frame((GtkFrame*)(o)));
+  return manage(new Frame((GtkFrame*)o));
 
 }
 
@@ -143,25 +142,23 @@ auto Frame_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 Frame::Frame(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 Frame::Frame(GtkFrame* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 Frame::Frame(Frame&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
 {}
 
 auto Frame::operator=(Frame&& src) noexcept -> Frame&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   return *this;
 }
 
@@ -187,8 +184,8 @@ auto Frame::get_base_type() -> GType
 Frame::Frame()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(frame_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(frame_class_.init()))
 {
 
 
@@ -197,8 +194,8 @@ Frame::Frame()
 Frame::Frame(const Glib::ustring& label)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(frame_class_.init(), "label", label.c_str(), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(frame_class_.init(), "label", label.c_str(), nullptr))
 {
 
 
@@ -216,7 +213,7 @@ auto Frame::get_label() const -> Glib::ustring
 
 auto Frame::set_label_widget (Widget &label_widget) -> void
 {
-  gtk_frame_set_label_widget(gobj(), (label_widget).gobj());
+  gtk_frame_set_label_widget(gobj(), label_widget.gobj());
 }
 
 auto Frame::get_label_widget() -> Widget*
@@ -229,12 +226,14 @@ auto Frame::get_label_widget() const -> const Widget*
   return const_cast<Frame*>(this)->get_label_widget();
 }
 
-auto Frame::set_label_align (float xalign) -> void
+auto Frame::set_label_align (
+  const float xalign) -> void
 {
   gtk_frame_set_label_align(gobj(), xalign);
 }
 
-auto Frame::set_label_align (Align xalign) -> void
+auto Frame::set_label_align (
+  const Align xalign) -> void
 {
   gtk_frame_set_label_align(gobj(), _gtkmm_align_float_from_enum(xalign));
 }
@@ -246,7 +245,7 @@ auto Frame::get_label_align() const -> float
 
 auto Frame::set_child (Widget &child) -> void
 {
-  gtk_frame_set_child(gobj(), (child).gobj());
+  gtk_frame_set_child(gobj(), child.gobj());
 }
 
 auto Frame::get_child() -> Widget*
@@ -262,46 +261,46 @@ auto Frame::get_child() const -> const Widget*
 
 auto Frame::property_label() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "label");
+  return {this, "label"};
 }
 
 auto Frame::property_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "label");
+  return {this, "label"};
 }
 
 auto Frame::property_label_xalign() -> Glib::PropertyProxy< double >
 {
-  return Glib::PropertyProxy< double >(this, "label-xalign");
+  return {this, "label-xalign"};
 }
 
 auto Frame::property_label_xalign() const -> Glib::PropertyProxy_ReadOnly< double >
 {
-  return Glib::PropertyProxy_ReadOnly< double >(this, "label-xalign");
+  return {this, "label-xalign"};
 }
 
 auto Frame::property_label_widget() -> Glib::PropertyProxy< Widget* >
 {
-  return Glib::PropertyProxy< Widget* >(this, "label-widget");
+  return {this, "label-widget"};
 }
 
 auto Frame::property_label_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "label-widget");
+  return {this, "label-widget"};
 }
 
 auto Frame::property_child() -> Glib::PropertyProxy< Widget* >
 {
-  return Glib::PropertyProxy< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 auto Frame::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 
-auto Gtk::Frame::compute_child_allocation_vfunc (Allocation &allocation) -> void
+auto Frame::compute_child_allocation_vfunc (Allocation &allocation) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -309,7 +308,7 @@ auto Gtk::Frame::compute_child_allocation_vfunc (Allocation &allocation) -> void
 
   if(base && base->compute_child_allocation)
   {
-    (*base->compute_child_allocation)(gobj(),(GtkAllocation*)(allocation.gobj()));
+    (*base->compute_child_allocation)(gobj(),allocation.gobj());
   }
 }
 

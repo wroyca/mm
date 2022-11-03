@@ -31,25 +31,25 @@ namespace Gio
 
 UnixFDList::UnixFDList(const std::vector<int>&  fds)
 : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   // g_unix_fd_list_new_from_array() must be called.
   // Its parameters don't correspond to properties.
   // __CONSTRUCT() + g_unit_fd_list_append() is not an alternative.
   // g_unit_fd_list_append() duplicates the file descriptor,
   // but g_unix_fd_list_new_from_array() does not.
-  Glib::Object((GObject*)g_unix_fd_list_new_from_array(Glib::ArrayHandler<int>::vector_to_array(fds).data(), fds.size()))
+Object((GObject*)g_unix_fd_list_new_from_array(Glib::ArrayHandler<int>::vector_to_array(fds).data(), fds.size()))
 {
 }
 
-UnixFDList::UnixFDList(const std::vector<int>&  fds, int n_fds)
+UnixFDList::UnixFDList(const std::vector<int>&  fds, const int n_fds)
 : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   // g_unix_fd_list_new_from_array() must be called.
   // Its parameters don't correspond to properties.
   // __CONSTRUCT() + g_unit_fd_list_append() is not an alternative.
   // g_unit_fd_list_append() duplicates the file descriptor,
   // but g_unix_fd_list_new_from_array() does not.
-  Glib::Object((GObject*)g_unix_fd_list_new_from_array(Glib::ArrayHandler<int>::vector_to_array(fds).data(), n_fds))
+Object((GObject*)g_unix_fd_list_new_from_array(Glib::ArrayHandler<int>::vector_to_array(fds).data(), n_fds))
 {
 }
 
@@ -83,9 +83,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GUnixFDList* object, bool take_copy) -> Glib::RefPtr<Gio::UnixFDList>
+auto wrap(GUnixFDList* object, const bool take_copy) -> RefPtr<Gio::UnixFDList>
 {
-  return Glib::make_refptr_for_instance<Gio::UnixFDList>( dynamic_cast<Gio::UnixFDList*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::UnixFDList>( dynamic_cast<Gio::UnixFDList*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -98,7 +98,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto UnixFDList_Class::init() -> const Glib::Class&
+auto UnixFDList_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -144,32 +144,28 @@ auto UnixFDList::gobj_copy() -> GUnixFDList*
 }
 
 UnixFDList::UnixFDList(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 UnixFDList::UnixFDList(GUnixFDList* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 UnixFDList::UnixFDList(UnixFDList&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto UnixFDList::operator=(UnixFDList&& src) noexcept -> UnixFDList&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-UnixFDList::~UnixFDList() noexcept
-{}
-
+UnixFDList::~UnixFDList() noexcept = default;
 
 UnixFDList::CppClassType UnixFDList::unixfdlist_class_; // initialize static member
 
@@ -188,8 +184,8 @@ auto UnixFDList::get_base_type() -> GType
 UnixFDList::UnixFDList()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(unixfdlist_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(unixfdlist_class_.init()))
 {
 
 
@@ -205,7 +201,7 @@ auto UnixFDList::create(const std::vector<int>& fds) -> Glib::RefPtr<UnixFDList>
   return Glib::make_refptr_for_instance<UnixFDList>( new UnixFDList(fds) );
 }
 
-auto UnixFDList::create(const std::vector<int>& fds, int n_fds) -> Glib::RefPtr<UnixFDList>
+auto UnixFDList::create(const std::vector<int>& fds, const int n_fds) -> Glib::RefPtr<UnixFDList>
 {
   return Glib::make_refptr_for_instance<UnixFDList>( new UnixFDList(fds, n_fds) );
 }
@@ -215,21 +211,23 @@ auto UnixFDList::get_length() const -> int
   return g_unix_fd_list_get_length(const_cast<GUnixFDList*>(gobj()));
 }
 
-auto UnixFDList::get(int index) const -> int
+auto UnixFDList::get(
+  const int index) const -> int
 {
   GError* gerror = nullptr;
-  auto retvalue = g_unix_fd_list_get(const_cast<GUnixFDList*>(gobj()), index, &(gerror));
+  const auto retvalue = g_unix_fd_list_get(const_cast<GUnixFDList*>(gobj()), index, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto UnixFDList::append(int fd) -> int
+auto UnixFDList::append(
+  const int fd) -> int
 {
   GError* gerror = nullptr;
-  auto retvalue = g_unix_fd_list_append(gobj(), fd, &(gerror));
+  const auto retvalue = g_unix_fd_list_append(gobj(), fd, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 

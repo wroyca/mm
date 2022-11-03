@@ -82,9 +82,9 @@ auto Glib::Value<Gtk::Accessible::Relation>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkAccessible* object, bool take_copy) -> Glib::RefPtr<Gtk::Accessible>
+auto wrap(GtkAccessible* object, const bool take_copy) -> RefPtr<Gtk::Accessible>
 {
-  return Glib::make_refptr_for_instance<Gtk::Accessible>( dynamic_cast<Gtk::Accessible*> (Glib::wrap_auto_interface<Gtk::Accessible> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::Accessible>( Glib::wrap_auto_interface<Gtk::Accessible> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -97,7 +97,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Accessible_Class::init() -> const Glib::Interface_Class&
+auto Accessible_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -126,42 +126,40 @@ auto Accessible_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto Accessible_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new Accessible((GtkAccessible*)(object));
+  return new Accessible((GtkAccessible*)object);
 }
 
 
 /* The implementation: */
 
 Accessible::Accessible()
-:
-  Glib::Interface(accessible_class_.init())
+: Interface(accessible_class_.init())
 {}
 
 Accessible::Accessible(GtkAccessible* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 Accessible::Accessible(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 Accessible::Accessible(Accessible&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto Accessible::operator=(Accessible&& src) noexcept -> Accessible&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-Accessible::~Accessible() noexcept
-{}
+Accessible::~Accessible() noexcept = default;
 
 // static
-auto Accessible::add_interface (GType gtype_implementer) -> void
+auto Accessible::add_interface (
+  const GType gtype_implementer) -> void
 {
   accessible_class_.init().add_interface(gtype_implementer);
 }
@@ -207,12 +205,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Role>::value,
 
 auto Accessible::property_accessible_role() -> Glib::PropertyProxy< Role >
 {
-  return Glib::PropertyProxy< Role >(this, "accessible-role");
+  return {this, "accessible-role"};
 }
 
 auto Accessible::property_accessible_role() const -> Glib::PropertyProxy_ReadOnly< Role >
 {
-  return Glib::PropertyProxy_ReadOnly< Role >(this, "accessible-role");
+  return {this, "accessible-role"};
 }
 
 

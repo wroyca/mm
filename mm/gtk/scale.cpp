@@ -37,14 +37,13 @@ using std::strlen;
 namespace
 {
 
-auto SignalProxy_Scale_format_value_callback(GtkScale* /* scale */,
-  double value, gpointer user_data) -> char*
+auto SignalProxy_Scale_format_value_callback(GtkScale* /* scale */, const double value, const gpointer user_data) -> char*
 {
-  auto the_slot = static_cast<Gtk::Scale::SlotFormatValue*>(user_data);
+  const auto the_slot = static_cast<Gtk::Scale::SlotFormatValue*>(user_data);
 
   try
   {
-    return g_strdup(((*the_slot)(value)).c_str());
+    return g_strdup((*the_slot)(value).c_str());
   }
   catch (...)
   {
@@ -58,19 +57,19 @@ auto SignalProxy_Scale_format_value_callback(GtkScale* /* scale */,
 namespace Gtk
 {
 
-Scale::Scale(Orientation orientation)
+Scale::Scale(const Orientation orientation)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Range(Glib::ConstructParams(scale_class_.init(), "orientation",(GtkOrientation)(orientation), nullptr))
+ObjectBase(nullptr),
+  Range(Glib::ConstructParams(scale_class_.init(), "orientation",orientation, nullptr))
 {
 }
 
-Scale::Scale(const Glib::RefPtr<Adjustment>& adjustment, Orientation orientation)
+Scale::Scale(const Glib::RefPtr<Adjustment>& adjustment, const Orientation orientation)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Range(Glib::ConstructParams(scale_class_.init(), "adjustment",Glib::unwrap(adjustment),"orientation",(GtkOrientation)(orientation), nullptr))
+ObjectBase(nullptr),
+  Range(Glib::ConstructParams(scale_class_.init(), "adjustment",Glib::unwrap(adjustment),"orientation",orientation, nullptr))
 {
 }
 
@@ -79,7 +78,7 @@ auto Scale::set_format_value_func (const SlotFormatValue &slot) -> void
   // Create a copy of the slot object. A pointer to this will be passed
   // through the callback's data parameter. It will be deleted
   // when Glib::destroy_notify_delete<SlotFormatValue> is called.
-  auto slot_copy = new SlotFormatValue(slot);
+  const auto slot_copy = new SlotFormatValue(slot);
 
   gtk_scale_set_format_value_func(gobj(),
     &SignalProxy_Scale_format_value_callback, slot_copy,
@@ -101,9 +100,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkScale* object, bool take_copy) -> Gtk::Scale*
+auto wrap(GtkScale* object, const bool take_copy) -> Gtk::Scale*
 {
-  return dynamic_cast<Gtk::Scale *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::Scale *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -114,7 +113,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Scale_Class::init() -> const Glib::Class&
+auto Scale_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -147,7 +146,7 @@ auto Scale_Class::class_init_function (void *g_class, void *class_data) -> void
 
 auto Scale_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new Scale((GtkScale*)(o)));
+  return manage(new Scale((GtkScale*)o));
 
 }
 
@@ -155,25 +154,23 @@ auto Scale_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 Scale::Scale(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Range(construct_params)
+: Range(construct_params)
 {
   }
 
 Scale::Scale(GtkScale* castitem)
-:
-  Gtk::Range((GtkRange*)(castitem))
+: Range((GtkRange*)castitem)
 {
   }
 
 
 Scale::Scale(Scale&& src) noexcept
-: Gtk::Range(std::move(src))
+: Range(std::move(src))
 {}
 
 auto Scale::operator=(Scale&& src) noexcept -> Scale&
 {
-  Gtk::Range::operator=(std::move(src));
+  Range::operator=(std::move(src));
   return *this;
 }
 
@@ -199,14 +196,15 @@ auto Scale::get_base_type() -> GType
 Scale::Scale()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Range(Glib::ConstructParams(scale_class_.init()))
+ObjectBase(nullptr),
+Range(Glib::ConstructParams(scale_class_.init()))
 {
 
 
 }
 
-auto Scale::set_digits (int digits) -> void
+auto Scale::set_digits (
+  const int digits) -> void
 {
   gtk_scale_set_digits(gobj(), digits);
 }
@@ -216,9 +214,10 @@ auto Scale::get_digits() const -> int
   return gtk_scale_get_digits(const_cast<GtkScale*>(gobj()));
 }
 
-auto Scale::set_draw_value (bool draw_value) -> void
+auto Scale::set_draw_value (
+  const bool draw_value) -> void
 {
-  gtk_scale_set_draw_value(gobj(), static_cast<int>(draw_value));
+  gtk_scale_set_draw_value(gobj(), draw_value);
 }
 
 auto Scale::get_draw_value() const -> bool
@@ -236,9 +235,10 @@ auto Scale::get_value_pos() const -> PositionType
   return static_cast<PositionType>(gtk_scale_get_value_pos(const_cast<GtkScale*>(gobj())));
 }
 
-auto Scale::set_has_origin (bool has_origin) -> void
+auto Scale::set_has_origin (
+  const bool has_origin) -> void
 {
-  gtk_scale_set_has_origin(gobj(), static_cast<int>(has_origin));
+  gtk_scale_set_has_origin(gobj(), has_origin);
 }
 
 auto Scale::get_has_origin() const -> bool
@@ -261,10 +261,11 @@ auto Scale::get_layout() const -> Glib::RefPtr<const Pango::Layout>
 
 auto Scale::get_layout_offsets (int &x, int &y) const -> void
 {
-  gtk_scale_get_layout_offsets(const_cast<GtkScale*>(gobj()), &(x), &(y));
+  gtk_scale_get_layout_offsets(const_cast<GtkScale*>(gobj()), &x, &y);
 }
 
-auto Scale::add_mark (double value, PositionType position, const Glib::ustring &markup) -> void
+auto Scale::add_mark (
+  const double value, PositionType position, const Glib::ustring &markup) -> void
 {
   gtk_scale_add_mark(gobj(), value, static_cast<GtkPositionType>(position), markup.c_str());
 }
@@ -277,22 +278,22 @@ auto Scale::clear_marks () -> void
 
 auto Scale::property_digits() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "digits");
+  return {this, "digits"};
 }
 
 auto Scale::property_digits() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "digits");
+  return {this, "digits"};
 }
 
 auto Scale::property_draw_value() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "draw-value");
+  return {this, "draw-value"};
 }
 
 auto Scale::property_draw_value() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "draw-value");
+  return {this, "draw-value"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<PositionType>::value,
@@ -301,22 +302,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<PositionType>::value
 
 auto Scale::property_value_pos() -> Glib::PropertyProxy< PositionType >
 {
-  return Glib::PropertyProxy< PositionType >(this, "value-pos");
+  return {this, "value-pos"};
 }
 
 auto Scale::property_value_pos() const -> Glib::PropertyProxy_ReadOnly< PositionType >
 {
-  return Glib::PropertyProxy_ReadOnly< PositionType >(this, "value-pos");
+  return {this, "value-pos"};
 }
 
 auto Scale::property_has_origin() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "has-origin");
+  return {this, "has-origin"};
 }
 
 auto Scale::property_has_origin() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "has-origin");
+  return {this, "has-origin"};
 }
 
 

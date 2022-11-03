@@ -16,11 +16,11 @@ public:
   using CppObjectType = Drive;
   using BaseObjectType = GDrive;
   using BaseClassType = GDriveIface;
-  using CppClassParent = Glib::Interface_Class;
+  using CppClassParent = Interface_Class;
 
   friend class Drive;
 
-  auto init () -> const Glib::Interface_Class&;
+  auto init () -> const Interface_Class&;
 
   static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 

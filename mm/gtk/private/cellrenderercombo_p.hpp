@@ -17,13 +17,13 @@ public:
   using CppObjectType = CellRendererCombo;
   using BaseObjectType = GtkCellRendererCombo;
   using BaseClassType = GtkCellRendererComboClass;
-  using CppClassParent = Gtk::CellRendererText_Class;
+  using CppClassParent = CellRendererText_Class;
   using BaseClassParent = GtkCellRendererTextClass;
 
   friend class CellRendererCombo;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

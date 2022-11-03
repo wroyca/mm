@@ -32,18 +32,18 @@ namespace Glib::Markup
 {
 
 auto
-escape_text(const Glib::ustring& text) -> Glib::ustring
+escape_text(const ustring & text) -> ustring
 {
   const auto buf = make_unique_ptr_gfree(g_markup_escape_text(text.data(), text.bytes()));
-  return Glib::ustring(buf.get());
+  return {buf.get()};
 }
 
 /**** Glib::Markup::AttributeKeyLess ***************************************/
 
 auto
-AttributeKeyLess::operator()(const Glib::ustring& lhs, const Glib::ustring& rhs) const -> bool
+AttributeKeyLess::operator()(const ustring & lhs, const ustring & rhs) const -> bool
 {
-  return (lhs.raw() < rhs.raw());
+  return lhs.raw() < rhs.raw();
 }
 
 /**** Glib::Markup::ParserCallbacks ****************************************/
@@ -108,7 +108,7 @@ auto ParserCallbacks::start_element (
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke();
+    exception_handlers_invoke();
   }
 }
 
@@ -128,12 +128,12 @@ auto ParserCallbacks::end_element (
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke();
+    exception_handlers_invoke();
   }
 }
 
 auto ParserCallbacks::text (
-  GMarkupParseContext *context, const char *text, gsize text_len, void *user_data,
+  GMarkupParseContext *context, const char *text, const gsize text_len, void *user_data,
   GError **error) -> void
 {
   ParseContext& cpp_context = *static_cast<ParseContext*>(user_data);
@@ -141,7 +141,7 @@ auto ParserCallbacks::text (
 
   try
   {
-    cpp_context.get_parser()->on_text(cpp_context, Glib::ustring(text, text + text_len));
+    cpp_context.get_parser()->on_text(cpp_context, ustring(text, text + text_len));
   }
   catch (MarkupError& err)
   {
@@ -149,13 +149,12 @@ auto ParserCallbacks::text (
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke();
+    exception_handlers_invoke();
   }
 }
 
 auto ParserCallbacks::passthrough (
-  GMarkupParseContext *context, const char *passthrough_text,
-  gsize text_len, void *user_data, GError **error) -> void
+  GMarkupParseContext *context, const char *passthrough_text, const gsize text_len, void *user_data, GError **error) -> void
 {
   ParseContext& cpp_context = *static_cast<ParseContext*>(user_data);
   g_return_if_fail(context == cpp_context.gobj());
@@ -163,7 +162,7 @@ auto ParserCallbacks::passthrough (
   try
   {
     cpp_context.get_parser()->on_passthrough(
-      cpp_context, Glib::ustring(passthrough_text, passthrough_text + text_len));
+      cpp_context, ustring(passthrough_text, passthrough_text + text_len));
   }
   catch (MarkupError& err)
   {
@@ -171,7 +170,7 @@ auto ParserCallbacks::passthrough (
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke();
+    exception_handlers_invoke();
   }
 }
 
@@ -188,45 +187,41 @@ auto ParserCallbacks::error (GMarkupParseContext *context, GError *error, void *
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke();
+    exception_handlers_invoke();
   }
 }
 
 /**** Glib::Markup::Parser *************************************************/
 
-Parser::Parser()
-{
-}
+Parser::Parser() = default;
 
-Parser::Parser(Parser&& other) noexcept : sigc::trackable(std::move(other))
+Parser::Parser(Parser&& other) noexcept : trackable(std::move(other))
 {
 }
 
 auto
 Parser::operator=(Parser&& other) noexcept -> Parser&
 {
-  sigc::trackable::operator=(std::move(other));
+  trackable::operator=(std::move(other));
   return *this;
 }
 
-Parser::~Parser()
-{
-}
+Parser::~Parser() = default;
 
 auto Parser::on_start_element (
-  ParseContext &, const Glib::ustring &, const Parser::AttributeMap &) -> void
+  ParseContext &, const ustring &, const AttributeMap &) -> void
 {
 }
 
-auto Parser::on_end_element (ParseContext &, const Glib::ustring &) -> void
+auto Parser::on_end_element (ParseContext &, const ustring &) -> void
 {
 }
 
-auto Parser::on_text (ParseContext &, const Glib::ustring &) -> void
+auto Parser::on_text (ParseContext &, const ustring &) -> void
 {
 }
 
-auto Parser::on_passthrough (ParseContext &, const Glib::ustring &) -> void
+auto Parser::on_passthrough (ParseContext &, const ustring &) -> void
 {
 }
 
@@ -243,7 +238,7 @@ ParseContext::ParseContext(Parser& parser, ParseFlags flags)
 {
 }
 
-ParseContext::ParseContext(ParseContext&& other) noexcept : sigc::trackable(std::move(other)),
+ParseContext::ParseContext(ParseContext&& other) noexcept : trackable(std::move(other)),
                                                             parser_(std::move(other.parser_)),
                                                             gobject_(std::move(other.gobject_))
 {
@@ -252,7 +247,7 @@ ParseContext::ParseContext(ParseContext&& other) noexcept : sigc::trackable(std:
 auto
 ParseContext::operator=(ParseContext&& other) noexcept -> ParseContext&
 {
-  sigc::trackable::operator=(std::move(other));
+  trackable::operator=(std::move(other));
 
   parser_ = std::move(other.parser_);
   gobject_ = std::move(other.gobject_);
@@ -269,7 +264,7 @@ ParseContext::~ParseContext()
   g_markup_parse_context_free(gobject_);
 }
 
-auto ParseContext::parse (const Glib::ustring &text) -> void
+auto ParseContext::parse (const ustring &text) -> void
 {
   GError* error = nullptr;
   g_markup_parse_context_parse(gobject_, text.data(), text.bytes(), &error);
@@ -297,7 +292,7 @@ auto ParseContext::end_parse () -> void
 }
 
 auto
-ParseContext::get_element() const -> Glib::ustring
+ParseContext::get_element() const -> ustring
 {
   const char* const element_name = g_markup_parse_context_get_element(gobject_);
   return convert_const_gchar_ptr_to_ustring(element_name);
@@ -322,7 +317,7 @@ ParseContext::get_char_number() const -> int
 // static
 auto ParseContext::destroy_notify_callback (void *data) -> void
 {
-  ParseContext* const self = static_cast<ParseContext*>(data);
+  const ParseContext* const self = static_cast<ParseContext*>(data);
 
   // Detect premature destruction.
   g_return_if_fail(self->parser_ == nullptr);
@@ -335,24 +330,22 @@ namespace
 } // anonymous namespace
 
 
-Glib::MarkupError::MarkupError(Glib::MarkupError::Code error_code, const Glib::ustring& error_message)
-:
-  Glib::Error (G_MARKUP_ERROR, error_code, error_message)
+Glib::MarkupError::MarkupError(const Code error_code, const ustring & error_message)
+: Error(G_MARKUP_ERROR, error_code, error_message)
 {}
 
 Glib::MarkupError::MarkupError(GError* gobject)
-:
-  Glib::Error (gobject)
+: Error(gobject)
 {}
 
-auto Glib::MarkupError::code() const -> Glib::MarkupError::Code
+auto Glib::MarkupError::code() const -> Code
 {
-  return static_cast<Code>(Glib::Error::code());
+  return static_cast<Code>(Error::code());
 }
 
 auto Glib::MarkupError::throw_func (GError *gobject) -> void
 {
-  throw Glib::MarkupError(gobject);
+  throw MarkupError(gobject);
 }
 
 

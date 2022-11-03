@@ -17,13 +17,13 @@ public:
   using CppObjectType = Menu;
   using BaseObjectType = GMenu;
   using BaseClassType = GMenuClass;
-  using CppClassParent = ::Gio::MenuModel_Class;
+  using CppClassParent = MenuModel_Class;
   using BaseClassParent = GMenuModelClass;
 
   friend class Menu;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

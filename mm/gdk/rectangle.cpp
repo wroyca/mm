@@ -29,7 +29,7 @@
 namespace Gdk
 {
 
-Rectangle::Rectangle(int x, int y, int width, int height)
+Rectangle::Rectangle(const int x, const int y, const int width, const int height)
 {
   gobject_.x = x;
   gobject_.y = y;
@@ -54,21 +54,21 @@ auto Rectangle::operator==(const Rectangle& src) const -> bool
 auto Rectangle::join(const Rectangle& src2) -> Rectangle&
 {
   gdk_rectangle_union(
-      &gobject_, const_cast<GdkRectangle*>(&src2.gobject_), &gobject_);
+      &gobject_, &src2.gobject_, &gobject_);
   return *this;
 }
 
 auto Rectangle::intersect(const Rectangle& src2) -> Rectangle&
 {
   gdk_rectangle_intersect(
-      &gobject_, const_cast<GdkRectangle*>(&src2.gobject_), &gobject_);
+      &gobject_, &src2.gobject_, &gobject_);
   return *this;
 }
 
 auto Rectangle::intersect(const Rectangle& src2, bool& rectangles_intersect) -> Rectangle&
 {
   rectangles_intersect = gdk_rectangle_intersect(
-      &gobject_, const_cast<GdkRectangle*>(&src2.gobject_), &gobject_);
+      &gobject_, &src2.gobject_, &gobject_);
   return *this;
 }
 
@@ -79,7 +79,7 @@ auto Rectangle::intersects(const Rectangle& src2) const -> bool
 
 auto Rectangle::has_zero_area() const -> bool
 {
-  return (gobject_.width == 0 || gobject_.height == 0);
+  return gobject_.width == 0 || gobject_.height == 0;
 }
 
 // Freestanding functions (not Rectangle members)
@@ -132,18 +132,9 @@ auto wrap(const GdkRectangle* object) -> const Gdk::Rectangle&
 namespace Gdk
 {
 
+Rectangle::Rectangle(const Rectangle& other) noexcept = default;
 
-Rectangle::Rectangle(const Rectangle& other) noexcept
-:
-  gobject_(other.gobject_)
-{
-}
-
-auto Rectangle::operator=(const Rectangle& other) noexcept -> Rectangle&
-{
-  gobject_ = other.gobject_;
-  return *this;
-}
+auto Rectangle::operator=(const Rectangle& other) noexcept -> Rectangle& = default;
 
 Rectangle::Rectangle(Rectangle&& other) noexcept
 :
@@ -180,9 +171,10 @@ Rectangle::Rectangle(const GdkRectangle* gobject)
 }
 
 
-auto Rectangle::contains_point(int x, int y) const -> bool
+auto Rectangle::contains_point(
+  const int x, const int y) const -> bool
 {
-  return gdk_rectangle_contains_point(const_cast<GdkRectangle*>(gobj()), x, y);
+  return gdk_rectangle_contains_point(gobj(), x, y);
 }
 
 auto Rectangle::get_x() const -> int

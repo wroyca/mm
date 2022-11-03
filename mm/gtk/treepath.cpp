@@ -33,7 +33,7 @@
 namespace Gtk
 {
 
-TreePath::TreePath(GtkTreePath* gobject, bool make_a_copy)
+TreePath::TreePath(GtkTreePath* gobject, const bool make_a_copy)
 :
   // For BoxedType wrappers, make_a_copy is true by default.  The static
   // BoxedType wrappers must always take a copy, thus make_a_copy = true
@@ -41,7 +41,7 @@ TreePath::TreePath(GtkTreePath* gobject, bool make_a_copy)
   gobject_ (gobject ? (make_a_copy ? gtk_tree_path_copy(gobject) : gobject) : gtk_tree_path_new())
 {}
 
-TreePath::TreePath(TreePath::size_type n, TreePath::value_type value)
+TreePath::TreePath(size_type n, const value_type value)
 :
   gobject_(gtk_tree_path_new())
 {
@@ -81,7 +81,7 @@ auto TreePath::clear () -> void
   swap(empty_path);
 }
 
-auto TreePath::size() const -> TreePath::size_type
+auto TreePath::size() const -> size_type
 {
   return gtk_tree_path_get_depth(gobject_);
 }
@@ -93,37 +93,39 @@ TreePath::operator bool() const
 
 auto TreePath::empty() const -> bool
 {
-  return (gtk_tree_path_get_depth(gobject_) == 0);
+  return gtk_tree_path_get_depth(gobject_) == 0;
 }
 
-auto TreePath::operator[](TreePath::size_type i) -> TreePath::reference
+auto TreePath::operator[](
+  const size_type i) -> reference
 {
   int *const indices = gtk_tree_path_get_indices(gobject_);
   return indices[i];
 }
 
-auto TreePath::operator[](TreePath::size_type i) const -> TreePath::const_reference
+auto TreePath::operator[](
+  const size_type i) const -> const_reference
 {
   const int *const indices = gtk_tree_path_get_indices(gobject_);
   return indices[i];
 }
 
-auto TreePath::begin() -> TreePath::iterator
+auto TreePath::begin() -> iterator
 {
   return gtk_tree_path_get_indices(gobject_);
 }
 
-auto TreePath::end() -> TreePath::iterator
+auto TreePath::end() -> iterator
 {
   return gtk_tree_path_get_indices(gobject_) + gtk_tree_path_get_depth(gobject_);
 }
 
-auto TreePath::begin() const -> TreePath::const_iterator
+auto TreePath::begin() const -> const_iterator
 {
   return gtk_tree_path_get_indices(gobject_);
 }
 
-auto TreePath::end() const -> TreePath::const_iterator
+auto TreePath::end() const -> const_iterator
 {
   return gtk_tree_path_get_indices(gobject_) + gtk_tree_path_get_depth(gobject_);
 }
@@ -133,7 +135,7 @@ auto TreePath::get_row_drag_data(const Glib::ValueBase& value, Glib::RefPtr<cons
 {
   GtkTreeModel* src_model = nullptr;
   GtkTreePath* src_path = nullptr;
-  gboolean result = gtk_tree_get_row_drag_data(value.gobj(), &src_model, &src_path);
+  const gboolean result = gtk_tree_get_row_drag_data(value.gobj(), &src_model, &src_path);
 
   model = Glib::wrap(src_model, true /* take_copy=true */);
 
@@ -147,7 +149,7 @@ auto TreePath::get_row_drag_data(const Glib::ValueBase& value, Glib::RefPtr<cons
 auto TreePath::get_row_drag_data(const Glib::ValueBase& value, TreePath& path) -> bool
 {
   GtkTreePath* src_path = nullptr;
-  gboolean result = gtk_tree_get_row_drag_data(value.gobj(), nullptr, &src_path);
+  const gboolean result = gtk_tree_get_row_drag_data(value.gobj(), nullptr, &src_path);
 
   //gtk_tree_get_row_drag_data gives us ownership of src_path.
   path = Glib::wrap(src_path, false /* take_copy=false */);
@@ -173,7 +175,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkTreePath* object, bool take_copy) -> Gtk::TreePath
+auto wrap(GtkTreePath* object, const bool take_copy) -> Gtk::TreePath
 {
   return Gtk::TreePath(object, take_copy);
 }
@@ -198,7 +200,7 @@ TreePath::TreePath()
 
 TreePath::TreePath(const TreePath& other)
 :
-  gobject_ ((other.gobject_) ? gtk_tree_path_copy(other.gobject_) : nullptr)
+  gobject_ (other.gobject_ ? gtk_tree_path_copy(other.gobject_) : nullptr)
 {}
 
 TreePath::TreePath(TreePath&& other) noexcept
@@ -240,12 +242,14 @@ auto TreePath::gobj_copy() const -> GtkTreePath*
 }
 
 
-auto TreePath::push_back (int index) -> void
+auto TreePath::push_back (
+  const int index) -> void
 {
   gtk_tree_path_append_index(gobj(), index);
 }
 
-auto TreePath::push_front (int index) -> void
+auto TreePath::push_front (
+  const int index) -> void
 {
   gtk_tree_path_prepend_index(gobj(), index);
 }
@@ -272,12 +276,12 @@ auto TreePath::down () -> void
 
 auto TreePath::is_ancestor(const TreePath& descendant) const -> bool
 {
-  return gtk_tree_path_is_ancestor(const_cast<GtkTreePath*>(gobj()), const_cast<GtkTreePath*>((descendant).gobj()));
+  return gtk_tree_path_is_ancestor(const_cast<GtkTreePath*>(gobj()), const_cast<GtkTreePath*>(descendant.gobj()));
 }
 
 auto TreePath::is_descendant(const TreePath& ancestor) const -> bool
 {
-  return gtk_tree_path_is_descendant(const_cast<GtkTreePath*>(gobj()), const_cast<GtkTreePath*>((ancestor).gobj()));
+  return gtk_tree_path_is_descendant(const_cast<GtkTreePath*>(gobj()), const_cast<GtkTreePath*>(ancestor.gobj()));
 }
 
 auto TreePath::to_string() const -> Glib::ustring
@@ -288,32 +292,32 @@ auto TreePath::to_string() const -> Glib::ustring
 
 auto operator==(const TreePath& lhs, const TreePath& rhs) -> bool
 {
-  return (gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) == 0);
+  return gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) == 0;
 }
 
 auto operator!=(const TreePath& lhs, const TreePath& rhs) -> bool
 {
-  return (gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) != 0);
+  return gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) != 0;
 }
 
 auto operator<(const TreePath& lhs, const TreePath& rhs) -> bool
 {
-  return (gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) < 0);
+  return gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) < 0;
 }
 
 auto operator>(const TreePath& lhs, const TreePath& rhs) -> bool
 {
-  return (gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) > 0);
+  return gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) > 0;
 }
 
 auto operator<=(const TreePath& lhs, const TreePath& rhs) -> bool
 {
-  return (gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) <= 0);
+  return gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) <= 0;
 }
 
 auto operator>=(const TreePath& lhs, const TreePath& rhs) -> bool
 {
-  return (gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) >= 0);
+  return gtk_tree_path_compare(lhs.gobj(), rhs.gobj()) >= 0;
 }
 
 

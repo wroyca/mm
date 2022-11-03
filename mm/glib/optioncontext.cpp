@@ -33,11 +33,11 @@ namespace Glib
 namespace OptionContextPrivate
 {
 static auto
-SignalProxy_translate_gtk_callback(const gchar* str, gpointer data) -> const gchar*
+SignalProxy_translate_gtk_callback(const gchar* str, const gpointer data) -> const gchar*
 {
-  Glib::ustring translated_str;
-  Glib::OptionContext::SlotTranslate* the_slot =
-    static_cast<Glib::OptionContext::SlotTranslate*>(data);
+  ustring translated_str;
+  const OptionContext::SlotTranslate* the_slot =
+    static_cast<OptionContext::SlotTranslate*>(data);
 
   try
   {
@@ -45,24 +45,25 @@ SignalProxy_translate_gtk_callback(const gchar* str, gpointer data) -> const gch
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke();
+    exception_handlers_invoke();
   }
   return translated_str.c_str();
 }
 
-static auto SignalProxy_translate_gtk_callback_destroy (gpointer data) -> void
+static auto SignalProxy_translate_gtk_callback_destroy (
+  const gpointer data) -> void
 {
-  delete static_cast<Glib::OptionContext::SlotTranslate*>(data);
+  delete static_cast<OptionContext::SlotTranslate*>(data);
 }
 
 } // namespace OptionContextPrivate
 
-OptionContext::OptionContext(const Glib::ustring& parameter_string)
+OptionContext::OptionContext(const ustring & parameter_string)
 : gobject_(g_option_context_new(parameter_string.c_str())), has_ownership_(true)
 {
 }
 
-OptionContext::OptionContext(GOptionContext* castitem, bool take_ownership)
+OptionContext::OptionContext(GOptionContext* castitem, const bool take_ownership)
 : gobject_(castitem), has_ownership_(take_ownership)
 {
 }
@@ -125,7 +126,7 @@ auto OptionContext::set_translate_func (const SlotTranslate &slot) -> void
   // Create a copy of the slot. A pointer to this will be passed through the callback's data
   // parameter.
   // It will be deleted when SignalProxy_translate_gtk_callback_destroy() is called.
-  auto slot_copy = new SlotTranslate(slot);
+  const auto slot_copy = new SlotTranslate(slot);
 
   g_option_context_set_translate_func(gobj(),
     &OptionContextPrivate::SignalProxy_translate_gtk_callback, slot_copy,
@@ -133,10 +134,11 @@ auto OptionContext::set_translate_func (const SlotTranslate &slot) -> void
 }
 
 auto
-OptionContext::get_help(bool main_help) const -> Glib::ustring
+OptionContext::get_help(
+  const bool main_help) const -> ustring
 {
-  return Glib::convert_return_gchar_ptr_to_ustring(g_option_context_get_help(
-    const_cast<GOptionContext*>(gobj()), static_cast<int>(main_help), nullptr));
+  return convert_return_gchar_ptr_to_ustring(g_option_context_get_help(
+    const_cast<GOptionContext*>(gobj()), main_help, nullptr));
 }
 
 } // namespace Glib
@@ -146,24 +148,22 @@ namespace
 } // anonymous namespace
 
 
-Glib::OptionError::OptionError(Glib::OptionError::Code error_code, const Glib::ustring& error_message)
-:
-  Glib::Error (G_OPTION_ERROR, error_code, error_message)
+Glib::OptionError::OptionError(const Code error_code, const ustring & error_message)
+: Error(G_OPTION_ERROR, error_code, error_message)
 {}
 
 Glib::OptionError::OptionError(GError* gobject)
-:
-  Glib::Error (gobject)
+: Error(gobject)
 {}
 
-auto Glib::OptionError::code() const -> Glib::OptionError::Code
+auto Glib::OptionError::code() const -> Code
 {
-  return static_cast<Code>(Glib::Error::code());
+  return static_cast<Code>(Error::code());
 }
 
 auto Glib::OptionError::throw_func (GError *gobject) -> void
 {
-  throw Glib::OptionError(gobject);
+  throw OptionError(gobject);
 }
 
 
@@ -171,9 +171,10 @@ namespace Glib
 {
 
 
-auto OptionContext::set_help_enabled (bool help_enabled) -> void
+auto OptionContext::set_help_enabled (
+  const bool help_enabled) -> void
 {
-  g_option_context_set_help_enabled(gobj(), static_cast<int>(help_enabled));
+  g_option_context_set_help_enabled(gobj(), help_enabled);
 }
 
 auto OptionContext::get_help_enabled() const -> bool
@@ -181,9 +182,10 @@ auto OptionContext::get_help_enabled() const -> bool
   return g_option_context_get_help_enabled(const_cast<GOptionContext*>(gobj()));
 }
 
-auto OptionContext::set_ignore_unknown_options (bool ignore_unknown) -> void
+auto OptionContext::set_ignore_unknown_options (
+  const bool ignore_unknown) -> void
 {
-  g_option_context_set_ignore_unknown_options(gobj(), static_cast<int>(ignore_unknown));
+  g_option_context_set_ignore_unknown_options(gobj(), ignore_unknown);
 }
 
 auto OptionContext::get_ignore_unknown_options() const -> bool
@@ -191,9 +193,10 @@ auto OptionContext::get_ignore_unknown_options() const -> bool
   return g_option_context_get_ignore_unknown_options(const_cast<GOptionContext*>(gobj()));
 }
 
-auto OptionContext::set_strict_posix (bool strict_posix) -> void
+auto OptionContext::set_strict_posix (
+  const bool strict_posix) -> void
 {
-  g_option_context_set_strict_posix(gobj(), static_cast<int>(strict_posix));
+  g_option_context_set_strict_posix(gobj(), strict_posix);
 }
 
 auto OptionContext::get_strict_posix() const -> bool
@@ -204,47 +207,48 @@ auto OptionContext::get_strict_posix() const -> bool
 auto OptionContext::parse(int& argc, char**& argv) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_option_context_parse(gobj(), &(argc), &(argv), &(gerror));
+  const auto retvalue = g_option_context_parse(gobj(), &argc, &argv, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto OptionContext::parse(char**& argv) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_option_context_parse_strv(gobj(), &(argv), &(gerror));
+  const auto retvalue = g_option_context_parse_strv(gobj(), &argv, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto OptionContext::get_help(bool main_help, const OptionGroup& group) const -> Glib::ustring
+auto OptionContext::get_help(
+  const bool main_help, const OptionGroup& group) const -> ustring
 {
-  return Glib::convert_return_gchar_ptr_to_ustring(g_option_context_get_help(const_cast<GOptionContext*>(gobj()), static_cast<int>(main_help), const_cast<GOptionGroup*>((group).gobj())));
+  return convert_return_gchar_ptr_to_ustring(g_option_context_get_help(const_cast<GOptionContext*>(gobj()), main_help, const_cast<GOptionGroup*>(group.gobj())));
 }
 
-auto OptionContext::set_summary (const Glib::ustring &summary) -> void
+auto OptionContext::set_summary (const ustring &summary) -> void
 {
   g_option_context_set_summary(gobj(), summary.c_str());
 }
 
-auto OptionContext::get_summary() const -> Glib::ustring
+auto OptionContext::get_summary() const -> ustring
 {
-  return Glib::convert_const_gchar_ptr_to_ustring(g_option_context_get_summary(const_cast<GOptionContext*>(gobj())));
+  return convert_const_gchar_ptr_to_ustring(g_option_context_get_summary(const_cast<GOptionContext*>(gobj())));
 }
 
-auto OptionContext::set_description (const Glib::ustring &description) -> void
+auto OptionContext::set_description (const ustring &description) -> void
 {
   g_option_context_set_description(gobj(), description.c_str());
 }
 
-auto OptionContext::get_description() const -> Glib::ustring
+auto OptionContext::get_description() const -> ustring
 {
-  return Glib::convert_const_gchar_ptr_to_ustring(g_option_context_get_description(const_cast<GOptionContext*>(gobj())));
+  return convert_const_gchar_ptr_to_ustring(g_option_context_get_description(const_cast<GOptionContext*>(gobj())));
 }
 
-auto OptionContext::set_translation_domain (const Glib::ustring &domain) -> void
+auto OptionContext::set_translation_domain (const ustring &domain) -> void
 {
   g_option_context_set_translation_domain(gobj(), domain.c_str());
 }

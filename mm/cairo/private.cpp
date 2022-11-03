@@ -26,7 +26,8 @@ namespace Cairo
 {
 
 #ifdef CAIROMM_EXCEPTIONS_ENABLED
-auto throw_exception (ErrorStatus status) -> void
+auto throw_exception (
+  const ErrorStatus status) -> void
 {
   switch(status)
   {
@@ -47,14 +48,14 @@ auto throw_exception (ErrorStatus status) -> void
     case CAIRO_STATUS_INVALID_STRING:
     case CAIRO_STATUS_SURFACE_FINISHED:
     //No longer in API?: case CAIRO_STATUS_BAD_NESTING:
-      throw Cairo::logic_error(status);
+      throw logic_error(status);
       break;
 
     // Language binding implementation:
     case CAIRO_STATUS_NULL_POINTER:
     case CAIRO_STATUS_INVALID_PATH_DATA:
     case CAIRO_STATUS_SURFACE_TYPE_MISMATCH:
-      throw Cairo::logic_error(status);
+      throw logic_error(status);
       break;
 
     // Other
@@ -69,7 +70,7 @@ auto throw_exception (ErrorStatus status) -> void
       break;
 
     default:
-      throw Cairo::logic_error(status);
+      throw logic_error(status);
       break;
   }
 }

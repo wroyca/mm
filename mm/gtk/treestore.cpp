@@ -35,8 +35,8 @@ namespace Gtk
 TreeStore::TreeStore(const TreeModelColumnRecord& columns)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(treestore_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(treestore_class_.init()))
 {
   gtk_tree_store_set_column_types(gobj(), columns.size(), const_cast<GType*>(columns.types()));
 }
@@ -46,7 +46,7 @@ auto TreeStore::set_column_types (const TreeModelColumnRecord &columns) -> void
    gtk_tree_store_set_column_types(gobj(), columns.size(), const_cast<GType*>(columns.types()));
 }
 
-auto TreeStore::erase(const iterator& iter) -> TreeModel::iterator
+auto TreeStore::erase(const iterator& iter) -> iterator
 {
   g_assert(iter.get_gobject_if_not_end() != nullptr);
 
@@ -59,7 +59,7 @@ auto TreeStore::erase(const iterator& iter) -> TreeModel::iterator
   return next;
 }
 
-auto TreeStore::insert(const iterator& iter) -> TreeModel::iterator
+auto TreeStore::insert(const iterator& iter) -> iterator
 {
   iterator new_pos (this);
 
@@ -74,7 +74,7 @@ auto TreeStore::insert(const iterator& iter) -> TreeModel::iterator
   return new_pos;
 }
 
-auto TreeStore::insert_after(const iterator& iter) -> TreeModel::iterator
+auto TreeStore::insert_after(const iterator& iter) -> iterator
 {
   iterator new_pos (this);
 
@@ -89,14 +89,14 @@ auto TreeStore::insert_after(const iterator& iter) -> TreeModel::iterator
   return new_pos;
 }
 
-auto TreeStore::prepend() -> TreeModel::iterator
+auto TreeStore::prepend() -> iterator
 {
   iterator new_pos (this);
   gtk_tree_store_prepend(gobj(), new_pos.gobj(), nullptr);
   return new_pos;
 }
 
-auto TreeStore::prepend(const TreeNodeChildren& node) -> TreeModel::iterator
+auto TreeStore::prepend(const TreeNodeChildren& node) -> iterator
 {
   iterator new_pos (this);
 
@@ -107,14 +107,14 @@ auto TreeStore::prepend(const TreeNodeChildren& node) -> TreeModel::iterator
   return new_pos;
 }
 
-auto TreeStore::append() -> TreeModel::iterator
+auto TreeStore::append() -> iterator
 {
   iterator new_pos (this);
   gtk_tree_store_append(gobj(), new_pos.gobj(), nullptr);
   return new_pos;
 }
 
-auto TreeStore::append(const TreeNodeChildren& node) -> TreeModel::iterator
+auto TreeStore::append(const TreeNodeChildren& node) -> iterator
 {
   iterator new_pos (this);
 
@@ -136,11 +136,11 @@ auto TreeStore::reorder (const TreeNodeChildren &node, const std::vector <int> &
 {
   gtk_tree_store_reorder(gobj(),
       const_cast<GtkTreeIter*>(node.get_parent_gobject()),
-      const_cast<int*>(Glib::ArrayHandler<int>::vector_to_array(new_order).data ()));
+      Glib::ArrayHandler<int>::vector_to_array(new_order).data ());
 }
 
 auto TreeStore::set_value_impl (
-  const iterator &row, int column, const Glib::ValueBase &value) -> void
+  const iterator &row, const int column, const Glib::ValueBase &value) -> void
 {
   gtk_tree_store_set_value(
       gobj(), const_cast<GtkTreeIter*>(row.gobj()),
@@ -157,9 +157,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkTreeStore* object, bool take_copy) -> Glib::RefPtr<Gtk::TreeStore>
+auto wrap(GtkTreeStore* object, const bool take_copy) -> RefPtr<Gtk::TreeStore>
 {
-  return Glib::make_refptr_for_instance<Gtk::TreeStore>( dynamic_cast<Gtk::TreeStore*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::TreeStore>( dynamic_cast<Gtk::TreeStore*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -172,7 +172,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto TreeStore_Class::init() -> const Glib::Class&
+auto TreeStore_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -223,20 +223,18 @@ auto TreeStore::gobj_copy() -> GtkTreeStore*
 }
 
 TreeStore::TreeStore(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 TreeStore::TreeStore(GtkTreeStore* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 TreeStore::TreeStore(TreeStore&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , TreeModel(std::move(src))
   , TreeSortable(std::move(src))
   , TreeDragSource(std::move(src))
@@ -246,7 +244,7 @@ TreeStore::TreeStore(TreeStore&& src) noexcept
 
 auto TreeStore::operator=(TreeStore&& src) noexcept -> TreeStore&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   TreeModel::operator=(std::move(src));
   TreeSortable::operator=(std::move(src));
   TreeDragSource::operator=(std::move(src));
@@ -256,9 +254,7 @@ auto TreeStore::operator=(TreeStore&& src) noexcept -> TreeStore&
 }
 
 
-TreeStore::~TreeStore() noexcept
-{}
-
+TreeStore::~TreeStore() noexcept = default;
 
 TreeStore::CppClassType TreeStore::treestore_class_; // initialize static member
 
@@ -277,8 +273,8 @@ auto TreeStore::get_base_type() -> GType
 TreeStore::TreeStore()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(treestore_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(treestore_class_.init()))
 {
 
 
@@ -291,7 +287,7 @@ auto TreeStore::create(const TreeModelColumnRecord& columns) -> Glib::RefPtr<Tre
 
 auto TreeStore::iter_swap (const iterator &a, const iterator &b) -> void
 {
-  gtk_tree_store_swap(gobj(), const_cast<GtkTreeIter*>((a).gobj()), const_cast<GtkTreeIter*>((b).gobj()));
+  gtk_tree_store_swap(gobj(), const_cast<GtkTreeIter*>(a.gobj()), const_cast<GtkTreeIter*>(b.gobj()));
 }
 
 auto TreeStore::clear () -> void
@@ -301,17 +297,17 @@ auto TreeStore::clear () -> void
 
 auto TreeStore::is_ancestor(const const_iterator& iter, const const_iterator& descendant) const -> bool
 {
-  return gtk_tree_store_is_ancestor(const_cast<GtkTreeStore*>(gobj()), const_cast<GtkTreeIter*>((iter).gobj()), const_cast<GtkTreeIter*>((descendant).gobj()));
+  return gtk_tree_store_is_ancestor(const_cast<GtkTreeStore*>(gobj()), const_cast<GtkTreeIter*>(iter.gobj()), const_cast<GtkTreeIter*>(descendant.gobj()));
 }
 
 auto TreeStore::iter_depth(const const_iterator& iter) const -> int
 {
-  return gtk_tree_store_iter_depth(const_cast<GtkTreeStore*>(gobj()), const_cast<GtkTreeIter*>((iter).gobj()));
+  return gtk_tree_store_iter_depth(const_cast<GtkTreeStore*>(gobj()), const_cast<GtkTreeIter*>(iter.gobj()));
 }
 
 auto TreeStore::iter_is_valid(const const_iterator& iter) const -> bool
 {
-  return gtk_tree_store_iter_is_valid(const_cast<GtkTreeStore*>(gobj()), const_cast<GtkTreeIter*>((iter).gobj()));
+  return gtk_tree_store_iter_is_valid(const_cast<GtkTreeStore*>(gobj()), const_cast<GtkTreeIter*>(iter.gobj()));
 }
 
 

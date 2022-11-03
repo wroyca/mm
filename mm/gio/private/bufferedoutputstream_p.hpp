@@ -17,13 +17,13 @@ public:
   using CppObjectType = BufferedOutputStream;
   using BaseObjectType = GBufferedOutputStream;
   using BaseClassType = GBufferedOutputStreamClass;
-  using CppClassParent = Gio::FilterOutputStream_Class;
+  using CppClassParent = FilterOutputStream_Class;
   using BaseClassParent = GFilterOutputStreamClass;
 
   friend class BufferedOutputStream;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

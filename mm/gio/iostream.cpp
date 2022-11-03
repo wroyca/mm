@@ -32,36 +32,35 @@ namespace Gio
 {
 
 auto IOStream::close_async (
-  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
-  int io_priority) -> void
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_io_stream_close_async(
     gobj(), io_priority, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-auto IOStream::close_async (const SlotAsyncReady &slot, int io_priority) -> void
+auto IOStream::close_async (const SlotAsyncReady &slot, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_io_stream_close_async(gobj(), io_priority, nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
 auto IOStream::splice_async (
   const Glib::RefPtr <IOStream> &stream2, const SlotAsyncReady &slot,
-  const Glib::RefPtr <Cancellable> &cancellable, SpliceFlags flags, int io_priority) -> void
+  const Glib::RefPtr <Cancellable> &cancellable, SpliceFlags flags, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_io_stream_splice_async(gobj(), Glib::unwrap(stream2), static_cast<GIOStreamSpliceFlags>(flags),
     io_priority, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
@@ -69,12 +68,12 @@ auto IOStream::splice_async (
 
 auto IOStream::splice_async (
   const Glib::RefPtr <IOStream> &stream2, const SlotAsyncReady &slot,
-  SpliceFlags flags, int io_priority) -> void
+  SpliceFlags flags, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_io_stream_splice_async(gobj(), Glib::unwrap(stream2), static_cast<GIOStreamSpliceFlags>(flags),
     io_priority, nullptr, &SignalProxy_async_callback, slot_copy);
@@ -90,9 +89,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GIOStream* object, bool take_copy) -> Glib::RefPtr<Gio::IOStream>
+auto wrap(GIOStream* object, const bool take_copy) -> RefPtr<Gio::IOStream>
 {
-  return Glib::make_refptr_for_instance<Gio::IOStream>( dynamic_cast<Gio::IOStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::IOStream>( dynamic_cast<Gio::IOStream*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -105,7 +104,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto IOStream_Class::init() -> const Glib::Class&
+auto IOStream_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -151,32 +150,28 @@ auto IOStream::gobj_copy() -> GIOStream*
 }
 
 IOStream::IOStream(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 IOStream::IOStream(GIOStream* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 IOStream::IOStream(IOStream&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto IOStream::operator=(IOStream&& src) noexcept -> IOStream&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-IOStream::~IOStream() noexcept
-{}
-
+IOStream::~IOStream() noexcept = default;
 
 IOStream::CppClassType IOStream::iostream_class_; // initialize static member
 
@@ -195,9 +190,9 @@ auto IOStream::get_base_type() -> GType
 auto IOStream::splice_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_io_stream_splice_finish(Glib::unwrap(result), &(gerror));
+  const auto retvalue = g_io_stream_splice_finish(Glib::unwrap(result), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -220,27 +215,27 @@ auto IOStream::get_output_stream() -> Glib::RefPtr<OutputStream>
 auto IOStream::close(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_io_stream_close(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_io_stream_close(gobj(), Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto IOStream::close() -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_io_stream_close(gobj(), nullptr, &(gerror));
+  const auto retvalue = g_io_stream_close(gobj(), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto IOStream::close_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_io_stream_close_finish(gobj(), Glib::unwrap(result), &(gerror));
+  const auto retvalue = g_io_stream_close_finish(gobj(), Glib::unwrap(result), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -257,9 +252,9 @@ auto IOStream::has_pending() const -> bool
 auto IOStream::set_pending() -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_io_stream_set_pending(gobj(), &(gerror));
+  const auto retvalue = g_io_stream_set_pending(gobj(), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 

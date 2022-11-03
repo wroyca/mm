@@ -33,7 +33,7 @@ PadController::PadController(const Glib::RefPtr<Gio::ActionGroup>& action_group,
 :
   // gtk_pad_controller_new() sets the propagation-phase property.
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   EventController(Glib::ConstructParams(padcontroller_class_.init(), "propagation-phase",GTK_PHASE_CAPTURE,"action-group",Glib::unwrap(action_group),"pad",Glib::unwrap(pad), nullptr))
 {
 }
@@ -64,9 +64,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkPadController* object, bool take_copy) -> Glib::RefPtr<Gtk::PadController>
+auto wrap(GtkPadController* object, const bool take_copy) -> RefPtr<Gtk::PadController>
 {
-  return Glib::make_refptr_for_instance<Gtk::PadController>( dynamic_cast<Gtk::PadController*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::PadController>( dynamic_cast<Gtk::PadController*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -79,7 +79,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto PadController_Class::init() -> const Glib::Class&
+auto PadController_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -133,7 +133,7 @@ PadController::PadController(const Glib::ConstructParams& construct_params)
 
 PadController::PadController(GtkPadController* castitem)
 :
-  EventController((GtkEventController*)(castitem))
+  EventController((GtkEventController*)castitem)
 {}
 
 
@@ -148,9 +148,7 @@ auto PadController::operator=(PadController&& src) noexcept -> PadController&
 }
 
 
-PadController::~PadController() noexcept
-{}
-
+PadController::~PadController() noexcept = default;
 
 PadController::CppClassType PadController::padcontroller_class_; // initialize static member
 
@@ -172,7 +170,7 @@ auto PadController::create(const Glib::RefPtr<Gio::ActionGroup>& action_group, c
 }
 
 auto PadController::set_action (
-  PadActionType type, int index, int mode, const Glib::ustring &label,
+  PadActionType type, const int index, const int mode, const Glib::ustring &label,
   const Glib::ustring &action_name) -> void
 {
   gtk_pad_controller_set_action(gobj(), static_cast<GtkPadActionType>(type), index, mode, label.c_str(), action_name.c_str());
@@ -185,7 +183,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Ac
 
 auto PadController::property_action_group() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ActionGroup> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ActionGroup> >(this, "action-group");
+  return {this, "action-group"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Device>>::value,
@@ -194,7 +192,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::De
 
 auto PadController::property_pad() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Device> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Device> >(this, "pad");
+  return {this, "pad"};
 }
 
 

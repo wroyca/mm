@@ -51,7 +51,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(GSettingsSchemaKey* object, bool take_copy) -> Glib::RefPtr<Gio::SettingsSchemaKey>
+auto wrap(GSettingsSchemaKey* object, const bool take_copy) -> RefPtr<Gio::SettingsSchemaKey>
 {
   if(take_copy && object)
     g_settings_schema_key_ref(object);
@@ -131,7 +131,7 @@ auto SettingsSchemaKey::get_range() const -> Glib::VariantBase
 
 auto SettingsSchemaKey::range_check(const Glib::VariantBase& value) const -> bool
 {
-  return g_settings_schema_key_range_check(const_cast<GSettingsSchemaKey*>(gobj()), const_cast<GVariant*>((value).gobj()));
+  return g_settings_schema_key_range_check(const_cast<GSettingsSchemaKey*>(gobj()), const_cast<GVariant*>(value.gobj()));
 }
 
 

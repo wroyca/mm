@@ -31,7 +31,7 @@ namespace Gtk
 
 auto PageSetup::create_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file) -> Glib::RefPtr<PageSetup>
 {
-  auto result = PageSetup::create();
+  auto result = create();
 
   result->load_from_key_file(key_file);
 
@@ -40,7 +40,7 @@ auto PageSetup::create_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& ke
 
 auto PageSetup::create_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file, const Glib::ustring& group_name) -> Glib::RefPtr<PageSetup>
 {
-  auto result = PageSetup::create();
+  auto result = create();
 
   result->load_from_key_file(key_file, group_name);
 
@@ -49,7 +49,7 @@ auto PageSetup::create_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& ke
 
 auto PageSetup::create_from_file(const std::string& file_name) -> Glib::RefPtr<PageSetup>
 {
-  auto result = PageSetup::create();
+  auto result = create();
 
   result->load_from_file(file_name);
 
@@ -58,15 +58,15 @@ auto PageSetup::create_from_file(const std::string& file_name) -> Glib::RefPtr<P
 
 auto PageSetup::save_to_key_file (const Glib::RefPtr <Glib::KeyFile> &key_file) const -> void
 {
-  gtk_page_setup_to_key_file(const_cast<GtkPageSetup*>(gobj()), Glib::unwrap(key_file), nullptr);
+  gtk_page_setup_to_key_file(const_cast<GtkPageSetup*>(gobj()), unwrap(key_file), nullptr);
 }
 
 auto PageSetup::load_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file) -> bool
 {
   GError* gerror = nullptr;
-  bool retvalue = gtk_page_setup_load_key_file(gobj(), const_cast<GKeyFile*>(Glib::unwrap(key_file)), nullptr, &(gerror));
+  const bool retvalue = gtk_page_setup_load_key_file(gobj(), const_cast<GKeyFile*>(unwrap(key_file)), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 
   return retvalue;
 }
@@ -81,9 +81,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkPageSetup* object, bool take_copy) -> Glib::RefPtr<Gtk::PageSetup>
+auto wrap(GtkPageSetup* object, const bool take_copy) -> RefPtr<Gtk::PageSetup>
 {
-  return Glib::make_refptr_for_instance<Gtk::PageSetup>( dynamic_cast<Gtk::PageSetup*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::PageSetup>( dynamic_cast<Gtk::PageSetup*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -96,7 +96,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto PageSetup_Class::init() -> const Glib::Class&
+auto PageSetup_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -142,32 +142,28 @@ auto PageSetup::gobj_copy() -> GtkPageSetup*
 }
 
 PageSetup::PageSetup(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 PageSetup::PageSetup(GtkPageSetup* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 PageSetup::PageSetup(PageSetup&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto PageSetup::operator=(PageSetup&& src) noexcept -> PageSetup&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-PageSetup::~PageSetup() noexcept
-{}
-
+PageSetup::~PageSetup() noexcept = default;
 
 PageSetup::CppClassType PageSetup::pagesetup_class_; // initialize static member
 
@@ -186,8 +182,8 @@ auto PageSetup::get_base_type() -> GType
 PageSetup::PageSetup()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(pagesetup_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(pagesetup_class_.init()))
 {
 
 
@@ -206,18 +202,18 @@ auto PageSetup::copy() const -> Glib::RefPtr<PageSetup>
 auto PageSetup::load_from_file(const std::string& file_name) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = gtk_page_setup_load_file(gobj(), file_name.c_str(), &(gerror));
+  const auto retvalue = gtk_page_setup_load_file(gobj(), file_name.c_str(), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto PageSetup::load_from_key_file(const Glib::RefPtr<const Glib::KeyFile>& key_file, const Glib::ustring& group_name) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = gtk_page_setup_load_key_file(gobj(), const_cast<GKeyFile*>(Glib::unwrap(key_file)), group_name.c_str(), &(gerror));
+  const auto retvalue = gtk_page_setup_load_key_file(gobj(), const_cast<GKeyFile*>(unwrap(key_file)), group_name.c_str(), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -243,7 +239,7 @@ auto PageSetup::get_paper_size() const -> const PaperSize
 
 auto PageSetup::set_paper_size (const PaperSize &size) -> void
 {
-  gtk_page_setup_set_paper_size(gobj(), const_cast<GtkPaperSize*>((size).gobj()));
+  gtk_page_setup_set_paper_size(gobj(), const_cast<GtkPaperSize*>(size.gobj()));
 }
 
 auto PageSetup::get_top_margin(Unit unit) const -> double
@@ -251,7 +247,8 @@ auto PageSetup::get_top_margin(Unit unit) const -> double
   return gtk_page_setup_get_top_margin(const_cast<GtkPageSetup*>(gobj()), static_cast<GtkUnit>(unit));
 }
 
-auto PageSetup::set_top_margin (double margin, Unit unit) -> void
+auto PageSetup::set_top_margin (
+  const double margin, Unit unit) -> void
 {
   gtk_page_setup_set_top_margin(gobj(), margin, static_cast<GtkUnit>(unit));
 }
@@ -261,7 +258,8 @@ auto PageSetup::get_bottom_margin(Unit unit) const -> double
   return gtk_page_setup_get_bottom_margin(const_cast<GtkPageSetup*>(gobj()), static_cast<GtkUnit>(unit));
 }
 
-auto PageSetup::set_bottom_margin (double margin, Unit unit) -> void
+auto PageSetup::set_bottom_margin (
+  const double margin, Unit unit) -> void
 {
   gtk_page_setup_set_bottom_margin(gobj(), margin, static_cast<GtkUnit>(unit));
 }
@@ -271,7 +269,8 @@ auto PageSetup::get_left_margin(Unit unit) const -> double
   return gtk_page_setup_get_left_margin(const_cast<GtkPageSetup*>(gobj()), static_cast<GtkUnit>(unit));
 }
 
-auto PageSetup::set_left_margin (double margin, Unit unit) -> void
+auto PageSetup::set_left_margin (
+  const double margin, Unit unit) -> void
 {
   gtk_page_setup_set_left_margin(gobj(), margin, static_cast<GtkUnit>(unit));
 }
@@ -281,14 +280,15 @@ auto PageSetup::get_right_margin(Unit unit) const -> double
   return gtk_page_setup_get_right_margin(const_cast<GtkPageSetup*>(gobj()), static_cast<GtkUnit>(unit));
 }
 
-auto PageSetup::set_right_margin (double margin, Unit unit) -> void
+auto PageSetup::set_right_margin (
+  const double margin, Unit unit) -> void
 {
   gtk_page_setup_set_right_margin(gobj(), margin, static_cast<GtkUnit>(unit));
 }
 
 auto PageSetup::set_paper_size_and_default_margins (const PaperSize &size) -> void
 {
-  gtk_page_setup_set_paper_size_and_default_margins(gobj(), const_cast<GtkPaperSize*>((size).gobj()));
+  gtk_page_setup_set_paper_size_and_default_margins(gobj(), const_cast<GtkPaperSize*>(size.gobj()));
 }
 
 auto PageSetup::get_paper_width(Unit unit) const -> double
@@ -314,16 +314,16 @@ auto PageSetup::get_page_height(Unit unit) const -> double
 auto PageSetup::save_to_file(const std::string& file_name) const -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = gtk_page_setup_to_file(const_cast<GtkPageSetup*>(gobj()), file_name.c_str(), &(gerror));
+  const auto retvalue = gtk_page_setup_to_file(const_cast<GtkPageSetup*>(gobj()), file_name.c_str(), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto PageSetup::save_to_key_file (
   const Glib::RefPtr <Glib::KeyFile> &key_file, const Glib::ustring &group_name) const -> void
 {
-  gtk_page_setup_to_key_file(const_cast<GtkPageSetup*>(gobj()), Glib::unwrap(key_file), group_name.c_str());
+  gtk_page_setup_to_key_file(const_cast<GtkPageSetup*>(gobj()), unwrap(key_file), group_name.c_str());
 }
 
 

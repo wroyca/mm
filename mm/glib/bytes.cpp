@@ -27,10 +27,11 @@ namespace Glib
 {
 
 auto
-Bytes::create(gconstpointer data, gsize size) -> Glib::RefPtr<Glib::Bytes>
+Bytes::create(
+  const gconstpointer data, const gsize size) -> RefPtr<Bytes>
 {
   GBytes* bytes = g_bytes_new(data, size);
-  return Glib::wrap(bytes);
+  return wrap(bytes);
 }
 
 } // namespace Glib
@@ -56,13 +57,13 @@ namespace
 namespace Glib
 {
 
-auto wrap(GBytes* object, bool take_copy) -> Glib::RefPtr<Glib::Bytes>
+auto wrap(GBytes* object, const bool take_copy) -> RefPtr<Bytes>
 {
   if(take_copy && object)
     g_bytes_ref(object);
 
   // See the comment at the top of this file, if you want to know why the cast works.
-  return Glib::make_refptr_for_instance<Glib::Bytes>(reinterpret_cast<Glib::Bytes*>(object));
+  return Glib::make_refptr_for_instance<Bytes>(reinterpret_cast<Bytes *>(object));
 }
 
 } // namespace Glib
@@ -106,7 +107,7 @@ auto Bytes::gobj_copy() const -> GBytes*
 
 auto Bytes::get_data(gsize& size) const -> gconstpointer
 {
-  return g_bytes_get_data(const_cast<GBytes*>(gobj()), &(size));
+  return g_bytes_get_data(const_cast<GBytes*>(gobj()), &size);
 }
 
 auto Bytes::get_size() const -> gsize
@@ -114,17 +115,20 @@ auto Bytes::get_size() const -> gsize
   return g_bytes_get_size(const_cast<GBytes*>(gobj()));
 }
 
-auto Bytes::hash(gconstpointer bytes) -> guint
+auto Bytes::hash(
+  const gconstpointer bytes) -> guint
 {
   return g_bytes_hash(bytes);
 }
 
-auto Bytes::equal(gconstpointer bytes1, gconstpointer bytes2) -> bool
+auto Bytes::equal(
+  const gconstpointer bytes1, const gconstpointer bytes2) -> bool
 {
   return g_bytes_equal(bytes1, bytes2);
 }
 
-auto Bytes::compare(gconstpointer bytes1, gconstpointer bytes2) -> gint
+auto Bytes::compare(
+  const gconstpointer bytes1, const gconstpointer bytes2) -> gint
 {
   return g_bytes_compare(bytes1, bytes2);
 }

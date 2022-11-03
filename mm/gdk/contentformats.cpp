@@ -73,12 +73,12 @@ auto Value<RefPtr<Gdk::ContentFormats> >::value_type() -> GType
 
 auto Value <RefPtr <Gdk::ContentFormats>>::set (const CppType &data) -> void
 {
-  set_boxed(Glib::unwrap(data));
+  set_boxed(unwrap(data));
 }
 
-auto Value<RefPtr<Gdk::ContentFormats>>::get() const -> Value<RefPtr<Gdk::ContentFormats>>::CppType
+auto Value<RefPtr<Gdk::ContentFormats>>::get() const -> CppType
 {
-  return Glib::wrap(static_cast<CType>(get_boxed()), true);
+  return wrap(static_cast<CType>(get_boxed()), true);
 }
 
 } // namespace Glib
@@ -104,7 +104,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(GdkContentFormats* object, bool take_copy) -> Glib::RefPtr<Gdk::ContentFormats>
+auto wrap(GdkContentFormats* object, const bool take_copy) -> RefPtr<Gdk::ContentFormats>
 {
   if(take_copy && object)
     gdk_content_formats_ref(object);
@@ -152,7 +152,8 @@ auto ContentFormats::gobj_copy() const -> GdkContentFormats*
 }
 
 
-auto ContentFormats::create(GType type) -> Glib::RefPtr<ContentFormats>
+auto ContentFormats::create(
+  const GType type) -> Glib::RefPtr<ContentFormats>
 {
   return Glib::wrap(gdk_content_formats_new_for_gtype(type));
 }
@@ -167,29 +168,30 @@ auto ContentFormats::to_string() const -> Glib::ustring
   return Glib::convert_return_gchar_ptr_to_ustring(gdk_content_formats_to_string(const_cast<GdkContentFormats*>(gobj())));
 }
 
-auto ContentFormats::contain_gtype(GType type) const -> bool
+auto ContentFormats::contain_gtype(
+  const GType type) const -> bool
 {
-  return gdk_content_formats_contain_gtype(const_cast<GdkContentFormats*>(gobj()), type);
+  return gdk_content_formats_contain_gtype(gobj(), type);
 }
 
 auto ContentFormats::contain_mime_type(const Glib::ustring& mime_type) const -> bool
 {
-  return gdk_content_formats_contain_mime_type(const_cast<GdkContentFormats*>(gobj()), mime_type.c_str());
+  return gdk_content_formats_contain_mime_type(gobj(), mime_type.c_str());
 }
 
 auto ContentFormats::match(const Glib::RefPtr<const ContentFormats>& second) const -> bool
 {
-  return gdk_content_formats_match(const_cast<GdkContentFormats*>(gobj()), Glib::unwrap(second));
+  return gdk_content_formats_match(gobj(), Glib::unwrap(second));
 }
 
 auto ContentFormats::match_gtype(const Glib::RefPtr<const ContentFormats>& second) const -> GType
 {
-  return gdk_content_formats_match_gtype(const_cast<GdkContentFormats*>(gobj()), Glib::unwrap(second));
+  return gdk_content_formats_match_gtype(gobj(), Glib::unwrap(second));
 }
 
 auto ContentFormats::match_mime_type(const Glib::RefPtr<const ContentFormats>& second) const -> Glib::ustring
 {
-  return Glib::convert_const_gchar_ptr_to_ustring(gdk_content_formats_match_mime_type(const_cast<GdkContentFormats*>(gobj()), Glib::unwrap(second)));
+  return Glib::convert_const_gchar_ptr_to_ustring(gdk_content_formats_match_mime_type(gobj(), Glib::unwrap(second)));
 }
 
 

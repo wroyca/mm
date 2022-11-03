@@ -32,9 +32,9 @@
 
 static auto SignalProxy_CellData_gtk_callback (
   GtkCellLayout * /* cell_layout */, GtkCellRenderer * /* cell */, GtkTreeModel *tree_model,
-  GtkTreeIter *iter, gpointer data) -> void
+  GtkTreeIter *iter, const gpointer data) -> void
 {
-  auto the_slot = static_cast<Gtk::CellLayout::SlotCellData*>(data);
+  const auto the_slot = static_cast<Gtk::CellLayout::SlotCellData*>(data);
 
   try
   {
@@ -67,7 +67,7 @@ auto CellLayout::add_attribute (
   CellRenderer &cell, const Glib::ustring &attribute, const TreeModelColumnBase &column) -> void
 {
   gtk_cell_layout_add_attribute(gobj(),
-      (GtkCellRenderer*) cell.gobj(), attribute.c_str(), column.index());
+      cell.gobj(), attribute.c_str(), column.index());
 }
 
 auto CellLayout::set_cell_data_func (CellRenderer &cell, const SlotCellData &slot) -> void
@@ -75,7 +75,7 @@ auto CellLayout::set_cell_data_func (CellRenderer &cell, const SlotCellData &slo
   // Create a copy of the slot object.  A pointer to this will be passed
   // through the callback's data parameter.  It will be deleted
   // when SignalProxy_CellData_gtk_callback_destroy() is called.
-  auto slot_copy = new SlotCellData(slot);
+  const auto slot_copy = new SlotCellData(slot);
 
   gtk_cell_layout_set_cell_data_func(gobj(), cell.gobj(),
       &SignalProxy_CellData_gtk_callback, slot_copy,
@@ -84,7 +84,7 @@ auto CellLayout::set_cell_data_func (CellRenderer &cell, const SlotCellData &slo
 
 auto CellLayout::get_first_cell() -> CellRenderer*
 {
-  auto vecCellRenderers = get_cells();
+  const auto vecCellRenderers = get_cells();
   if(!vecCellRenderers.empty())
     return vecCellRenderers[0];
   else
@@ -109,9 +109,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkCellLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::CellLayout>
+auto wrap(GtkCellLayout* object, const bool take_copy) -> RefPtr<Gtk::CellLayout>
 {
-  return Glib::make_refptr_for_instance<Gtk::CellLayout>( dynamic_cast<Gtk::CellLayout*> (Glib::wrap_auto_interface<Gtk::CellLayout> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::CellLayout>( Glib::wrap_auto_interface<Gtk::CellLayout> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -124,7 +124,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto CellLayout_Class::init() -> const Glib::Interface_Class&
+auto CellLayout_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -157,10 +157,9 @@ auto CellLayout_Class::iface_init_function (void *g_iface, void *) -> void
 }
 
 auto CellLayout_Class::pack_start_vfunc_callback (
-  GtkCellLayout *self, GtkCellRenderer *cell, gboolean expand) -> void
+  GtkCellLayout *self, GtkCellRenderer *cell, const gboolean expand) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -187,7 +186,7 @@ auto CellLayout_Class::pack_start_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -197,10 +196,9 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
     (*base->pack_start)(self, cell, expand);
 }
 auto CellLayout_Class::pack_end_vfunc_callback (
-  GtkCellLayout *self, GtkCellRenderer *cell, gboolean expand) -> void
+  GtkCellLayout *self, GtkCellRenderer *cell, const gboolean expand) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -227,7 +225,7 @@ auto CellLayout_Class::pack_end_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -238,8 +236,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto CellLayout_Class::clear_vfunc_callback (GtkCellLayout *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -264,7 +261,7 @@ auto CellLayout_Class::clear_vfunc_callback (GtkCellLayout *self) -> void
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -274,10 +271,9 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
     (*base->clear)(self);
 }
 auto CellLayout_Class::add_attribute_vfunc_callback (
-  GtkCellLayout *self, GtkCellRenderer *cell, const gchar *attribute, gint column) -> void
+  GtkCellLayout *self, GtkCellRenderer *cell, const gchar *attribute, const gint column) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -305,7 +301,7 @@ auto CellLayout_Class::add_attribute_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -317,8 +313,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 auto CellLayout_Class::clear_attributes_vfunc_callback (
   GtkCellLayout *self, GtkCellRenderer *cell) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -344,7 +339,7 @@ auto CellLayout_Class::clear_attributes_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -354,10 +349,9 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
     (*base->clear_attributes)(self, cell);
 }
 auto CellLayout_Class::reorder_vfunc_callback (
-  GtkCellLayout *self, GtkCellRenderer *cell, gint position) -> void
+  GtkCellLayout *self, GtkCellRenderer *cell, const gint position) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -384,7 +378,7 @@ auto CellLayout_Class::reorder_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -397,42 +391,40 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 
 auto CellLayout_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new CellLayout((GtkCellLayout*)(object));
+  return new CellLayout((GtkCellLayout*)object);
 }
 
 
 /* The implementation: */
 
 CellLayout::CellLayout()
-:
-  Glib::Interface(celllayout_class_.init())
+: Interface(celllayout_class_.init())
 {}
 
 CellLayout::CellLayout(GtkCellLayout* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 CellLayout::CellLayout(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 CellLayout::CellLayout(CellLayout&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto CellLayout::operator=(CellLayout&& src) noexcept -> CellLayout&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-CellLayout::~CellLayout() noexcept
-{}
+CellLayout::~CellLayout() noexcept = default;
 
 // static
-auto CellLayout::add_interface (GType gtype_implementer) -> void
+auto CellLayout::add_interface (
+  const GType gtype_implementer) -> void
 {
   celllayout_class_.init().add_interface(gtype_implementer);
 }
@@ -451,14 +443,14 @@ auto CellLayout::get_base_type() -> GType
 }
 
 
-auto CellLayout::pack_start (CellRenderer &cell, bool expand) -> void
+auto CellLayout::pack_start (CellRenderer &cell, const bool expand) -> void
 {
-  gtk_cell_layout_pack_start(gobj(), (cell).gobj(), static_cast<int>(expand));
+  gtk_cell_layout_pack_start(gobj(), cell.gobj(), expand);
 }
 
-auto CellLayout::pack_end (CellRenderer &cell, bool expand) -> void
+auto CellLayout::pack_end (CellRenderer &cell, const bool expand) -> void
 {
-  gtk_cell_layout_pack_end(gobj(), (cell).gobj(), static_cast<int>(expand));
+  gtk_cell_layout_pack_end(gobj(), cell.gobj(), expand);
 }
 
 auto CellLayout::get_cells() -> std::vector<CellRenderer*>
@@ -477,19 +469,19 @@ auto CellLayout::clear () -> void
 }
 
 auto CellLayout::add_attribute (
-  CellRenderer &cell, const Glib::ustring &attribute, int column) -> void
+  CellRenderer &cell, const Glib::ustring &attribute, const int column) -> void
 {
-  gtk_cell_layout_add_attribute(gobj(), (cell).gobj(), attribute.c_str(), column);
+  gtk_cell_layout_add_attribute(gobj(), cell.gobj(), attribute.c_str(), column);
 }
 
 auto CellLayout::clear_attributes (CellRenderer &cell) -> void
 {
-  gtk_cell_layout_clear_attributes(gobj(), (cell).gobj());
+  gtk_cell_layout_clear_attributes(gobj(), cell.gobj());
 }
 
-auto CellLayout::reorder (CellRenderer &cell, int position) -> void
+auto CellLayout::reorder (CellRenderer &cell, const int position) -> void
 {
-  gtk_cell_layout_reorder(gobj(), (cell).gobj(), position);
+  gtk_cell_layout_reorder(gobj(), cell.gobj(), position);
 }
 
 auto CellLayout::get_area() -> Glib::RefPtr<CellArea>
@@ -506,35 +498,35 @@ auto CellLayout::get_area() const -> Glib::RefPtr<const CellArea>
 }
 
 
-auto Gtk::CellLayout::pack_start_vfunc (CellRenderer *cell, bool expand) -> void
+auto CellLayout::pack_start_vfunc (CellRenderer *cell, const bool expand) -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->pack_start)
   {
-    (*base->pack_start)(gobj(),(GtkCellRenderer*)Glib::unwrap(cell),static_cast<int>(expand));
+    (*base->pack_start)(gobj(),Glib::unwrap(cell),static_cast<int>(expand));
   }
 }
-auto Gtk::CellLayout::pack_end_vfunc (CellRenderer *cell, bool expand) -> void
+auto CellLayout::pack_end_vfunc (CellRenderer *cell, const bool expand) -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->pack_end)
   {
-    (*base->pack_end)(gobj(),(GtkCellRenderer*)Glib::unwrap(cell),static_cast<int>(expand));
+    (*base->pack_end)(gobj(),Glib::unwrap(cell),static_cast<int>(expand));
   }
 }
-auto Gtk::CellLayout::clear_vfunc () -> void
+auto CellLayout::clear_vfunc () -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->clear)
@@ -542,41 +534,41 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->clear)(gobj());
   }
 }
-auto Gtk::CellLayout::add_attribute_vfunc (
-  CellRenderer *cell, const Glib::ustring &attribute, int column) -> void
+auto CellLayout::add_attribute_vfunc (
+  CellRenderer *cell, const Glib::ustring &attribute, const int column) -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->add_attribute)
   {
-    (*base->add_attribute)(gobj(),(GtkCellRenderer*)Glib::unwrap(cell),attribute.c_str(),column);
+    (*base->add_attribute)(gobj(),Glib::unwrap(cell),attribute.c_str(),column);
   }
 }
-auto Gtk::CellLayout::clear_attributes_vfunc (CellRenderer *cell) -> void
+auto CellLayout::clear_attributes_vfunc (CellRenderer *cell) -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->clear_attributes)
   {
-    (*base->clear_attributes)(gobj(),(GtkCellRenderer*)Glib::unwrap(cell));
+    (*base->clear_attributes)(gobj(),Glib::unwrap(cell));
   }
 }
-auto Gtk::CellLayout::reorder_vfunc (CellRenderer *cell, int position) -> void
+auto CellLayout::reorder_vfunc (CellRenderer *cell, const int position) -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->reorder)
   {
-    (*base->reorder)(gobj(),(GtkCellRenderer*)Glib::unwrap(cell),position);
+    (*base->reorder)(gobj(),Glib::unwrap(cell),position);
   }
 }
 

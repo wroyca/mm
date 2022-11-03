@@ -41,13 +41,7 @@ FileAttributeInfo::FileAttributeInfo(const FileAttributeInfo& other)
 }
 
 auto
-FileAttributeInfo::operator=(const FileAttributeInfo& other) -> FileAttributeInfo&
-{
-  m_name = other.m_name;
-  m_type = other.m_type;
-  m_flags = other.m_flags;
-  return *this;
-}
+FileAttributeInfo::operator=(const FileAttributeInfo& other) -> FileAttributeInfo& = default;
 
 FileAttributeInfo::FileAttributeInfo(FileAttributeInfo&& other) noexcept
   : m_name(std::move(other.m_name)),
@@ -66,9 +60,7 @@ FileAttributeInfo::operator=(FileAttributeInfo&& other) noexcept -> FileAttribut
   return *this;
 }
 
-FileAttributeInfo::~FileAttributeInfo()
-{
-}
+FileAttributeInfo::~FileAttributeInfo() = default;
 
 auto
 FileAttributeInfo::get_name() const -> std::string
@@ -83,7 +75,7 @@ FileAttributeInfo::get_type() const -> FileAttributeType
 }
 
 auto
-FileAttributeInfo::get_flags() const -> FileAttributeInfo::Flags
+FileAttributeInfo::get_flags() const -> Flags
 {
   return m_flags;
 }

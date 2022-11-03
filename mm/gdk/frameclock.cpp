@@ -65,9 +65,9 @@ auto Glib::Value<Gdk::FrameClock::Phase>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GdkFrameClock* object, bool take_copy) -> Glib::RefPtr<Gdk::FrameClock>
+auto wrap(GdkFrameClock* object, const bool take_copy) -> RefPtr<Gdk::FrameClock>
 {
-  return Glib::make_refptr_for_instance<Gdk::FrameClock>( dynamic_cast<Gdk::FrameClock*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gdk::FrameClock>( dynamic_cast<Gdk::FrameClock*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -80,7 +80,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-auto FrameClock_Class::init() -> const Glib::Class&
+auto FrameClock_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -126,32 +126,28 @@ auto FrameClock::gobj_copy() -> GdkFrameClock*
 }
 
 FrameClock::FrameClock(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 FrameClock::FrameClock(GdkFrameClock* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 FrameClock::FrameClock(FrameClock&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto FrameClock::operator=(FrameClock&& src) noexcept -> FrameClock&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-FrameClock::~FrameClock() noexcept
-{}
-
+FrameClock::~FrameClock() noexcept = default;
 
 FrameClock::CppClassType FrameClock::frameclock_class_; // initialize static member
 
@@ -197,7 +193,8 @@ auto FrameClock::get_history_start() const -> gint64
   return gdk_frame_clock_get_history_start(const_cast<GdkFrameClock*>(gobj()));
 }
 
-auto FrameClock::get_timings(gint64 frame_counter) -> Glib::RefPtr<FrameTimings>
+auto FrameClock::get_timings(
+  const gint64 frame_counter) -> Glib::RefPtr<FrameTimings>
 {
   auto retvalue = Glib::wrap(gdk_frame_clock_get_timings(gobj(), frame_counter));
   if(retvalue)
@@ -205,7 +202,8 @@ auto FrameClock::get_timings(gint64 frame_counter) -> Glib::RefPtr<FrameTimings>
   return retvalue;
 }
 
-auto FrameClock::get_timings(gint64 frame_counter) const -> Glib::RefPtr<const FrameTimings>
+auto FrameClock::get_timings(
+  const gint64 frame_counter) const -> Glib::RefPtr<const FrameTimings>
 {
   return const_cast<FrameClock*>(this)->get_timings(frame_counter);
 }
@@ -224,9 +222,9 @@ auto FrameClock::get_current_timings() const -> Glib::RefPtr<const FrameTimings>
 }
 
 auto FrameClock::get_refresh_info (
-  gint64 base_time, gint64 &refresh_interval_return, gint64 &presentation_time_return) const -> void
+  const gint64 base_time, gint64 &refresh_interval_return, gint64 &presentation_time_return) const -> void
 {
-  gdk_frame_clock_get_refresh_info(const_cast<GdkFrameClock*>(gobj()), base_time, &(refresh_interval_return), &(presentation_time_return));
+  gdk_frame_clock_get_refresh_info(const_cast<GdkFrameClock*>(gobj()), base_time, &refresh_interval_return, &presentation_time_return);
 }
 
 auto FrameClock::get_fps() const -> double
@@ -237,19 +235,19 @@ auto FrameClock::get_fps() const -> double
 
 auto FrameClock::signal_update() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &FrameClock_signal_update_info);
+  return {this, &FrameClock_signal_update_info};
 }
 
 
 auto FrameClock::signal_layout() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &FrameClock_signal_layout_info);
+  return {this, &FrameClock_signal_layout_info};
 }
 
 
 auto FrameClock::signal_paint() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &FrameClock_signal_paint_info);
+  return {this, &FrameClock_signal_paint_info};
 }
 
 

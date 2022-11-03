@@ -46,10 +46,10 @@ auto wrap_register_init () -> void
   // g_type_init() is deprecated as of 2.36.
   // g_type_init();
 
-  if (!Glib::quark_)
+  if (!quark_)
   {
-    Glib::quark_ = g_quark_from_string("glibmm__Glib::quark_");
-    Glib::quark_cpp_wrapper_deleted_ =
+    quark_ = g_quark_from_string("glibmm__Glib::quark_");
+    quark_cpp_wrapper_deleted_ =
       g_quark_from_string("glibmm__Glib::quark_cpp_wrapper_deleted_");
   }
 
@@ -73,7 +73,8 @@ auto wrap_register_cleanup () -> void
 // Register the unique wrap_new() function of a new C++ wrapper type.
 // The GType argument specifies the parent C type to wrap from.
 //
-auto wrap_register (GType type, WrapNewFunction func) -> void
+auto wrap_register (
+  const GType type, WrapNewFunction func) -> void
 {
   // 0 is not a valid GType.
   // It would lead to a critical warning in g_type_set_qdata().
@@ -85,16 +86,16 @@ auto wrap_register (GType type, WrapNewFunction func) -> void
   wrap_func_table->emplace_back(func);
 
   // Store the table index in the type's static data.
-  g_type_set_qdata(type, Glib::quark_, GUINT_TO_POINTER(idx));
+  g_type_set_qdata(type, quark_, GUINT_TO_POINTER(idx));
 }
 
 static auto
-wrap_create_new_wrapper(GObject* object) -> Glib::ObjectBase*
+wrap_create_new_wrapper(GObject* object) -> ObjectBase*
 {
   g_return_val_if_fail(wrap_func_table != nullptr, nullptr);
 
   const bool gtkmm_wrapper_already_deleted =
-    (bool)g_object_get_qdata((GObject*)object, Glib::quark_cpp_wrapper_deleted_);
+    (bool)g_object_get_qdata(object, quark_cpp_wrapper_deleted_);
   if (gtkmm_wrapper_already_deleted)
   {
     g_warning("Glib::wrap_create_new_wrapper: Attempted to create a 2nd C++ wrapper for a C "
@@ -110,9 +111,9 @@ wrap_create_new_wrapper(GObject* object) -> Glib::ObjectBase*
     // Look up the wrap table index stored in the type's static data.
     // If a wrap_new() has been registered for the type then call it.
     //
-    if (const gpointer idx = g_type_get_qdata(type, Glib::quark_))
+    if (const gpointer idx = g_type_get_qdata(type, quark_))
     {
-      const Glib::WrapNewFunction func = (*wrap_func_table)[GPOINTER_TO_UINT(idx)];
+      const WrapNewFunction func = (*wrap_func_table)[GPOINTER_TO_UINT(idx)];
       return (*func)(object);
     }
   }
@@ -121,7 +122,8 @@ wrap_create_new_wrapper(GObject* object) -> Glib::ObjectBase*
 }
 
 static auto
-gtype_wraps_interface(GType implementer_type, GType interface_type) -> gboolean
+gtype_wraps_interface(
+  const GType implementer_type, const GType interface_type) -> gboolean
 {
   guint n_ifaces = 0;
   GType* ifaces = g_type_interfaces(implementer_type, &n_ifaces);
@@ -129,7 +131,7 @@ gtype_wraps_interface(GType implementer_type, GType interface_type) -> gboolean
   gboolean found = FALSE;
   while (n_ifaces-- && !found)
   {
-    found = (ifaces[n_ifaces] == interface_type);
+    found = ifaces[n_ifaces] == interface_type;
   }
 
   g_free(ifaces);
@@ -138,12 +140,12 @@ gtype_wraps_interface(GType implementer_type, GType interface_type) -> gboolean
 }
 
 auto
-wrap_create_new_wrapper_for_interface(GObject* object, GType interface_gtype) -> Glib::ObjectBase*
+wrap_create_new_wrapper_for_interface(GObject* object, const GType interface_gtype) -> ObjectBase*
 {
   g_return_val_if_fail(wrap_func_table != nullptr, nullptr);
 
   const bool gtkmm_wrapper_already_deleted =
-    (bool)g_object_get_qdata((GObject*)object, Glib::quark_cpp_wrapper_deleted_);
+    (bool)g_object_get_qdata(object, quark_cpp_wrapper_deleted_);
   if (gtkmm_wrapper_already_deleted)
   {
     g_warning("Glib::wrap_create_new_wrapper: Attempted to create a 2nd C++ wrapper for a C "
@@ -161,10 +163,10 @@ wrap_create_new_wrapper_for_interface(GObject* object, GType interface_gtype) ->
     // But only if the type implements the interface,
     // so that the C++ instance is likely to inherit from the appropriate class too.
     //
-    const gpointer idx = g_type_get_qdata(type, Glib::quark_);
+    const gpointer idx = g_type_get_qdata(type, quark_);
     if (idx && gtype_wraps_interface(type, interface_gtype))
     {
-      const Glib::WrapNewFunction func = (*wrap_func_table)[GPOINTER_TO_UINT(idx)];
+      const WrapNewFunction func = (*wrap_func_table)[GPOINTER_TO_UINT(idx)];
       return (*func)(object);
     }
   }
@@ -176,7 +178,7 @@ wrap_create_new_wrapper_for_interface(GObject* object, GType interface_gtype) ->
 // its C++ wrapper instance by looking up a wrap_new() function in a map.
 //
 auto
-wrap_auto(GObject* object, bool take_copy) -> ObjectBase*
+wrap_auto(GObject* object, const bool take_copy) -> ObjectBase*
 {
   if (!object)
     return nullptr;
@@ -207,7 +209,7 @@ wrap_auto(GObject* object, bool take_copy) -> ObjectBase*
 }
 
 auto
-wrap(GObject* object, bool take_copy /* = false */) -> Glib::RefPtr<Object>
+wrap(GObject* object, const bool take_copy /* = false */) -> RefPtr<Object>
 {
   return Glib::make_refptr_for_instance<Object>(dynamic_cast<Object*>(wrap_auto(object, take_copy)));
 }

@@ -41,7 +41,7 @@ auto glibmm_exception_warning (const GError *error) -> void
              "domain: %s\n"
              "code  : %d\n"
              "what  : %s\n",
-    g_quark_to_string(error->domain), error->code, (error->message) ? error->message : "(null)");
+    g_quark_to_string(error->domain), error->code, error->message ? error->message : "(null)");
 }
 
 auto glibmm_unexpected_exception () -> void

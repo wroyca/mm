@@ -40,9 +40,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GEmblem* object, bool take_copy) -> Glib::RefPtr<Gio::Emblem>
+auto wrap(GEmblem* object, const bool take_copy) -> RefPtr<Gio::Emblem>
 {
-  return Glib::make_refptr_for_instance<Gio::Emblem>( dynamic_cast<Gio::Emblem*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::Emblem>( dynamic_cast<Gio::Emblem*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -55,7 +55,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto Emblem_Class::init() -> const Glib::Class&
+auto Emblem_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -102,34 +102,30 @@ auto Emblem::gobj_copy() -> GEmblem*
 }
 
 Emblem::Emblem(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 Emblem::Emblem(GEmblem* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 Emblem::Emblem(Emblem&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , Icon(std::move(src))
 {}
 
 auto Emblem::operator=(Emblem&& src) noexcept -> Emblem&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   Icon::operator=(std::move(src));
   return *this;
 }
 
 
-Emblem::~Emblem() noexcept
-{}
-
+Emblem::~Emblem() noexcept = default;
 
 Emblem::CppClassType Emblem::emblem_class_; // initialize static member
 
@@ -148,18 +144,18 @@ auto Emblem::get_base_type() -> GType
 Emblem::Emblem(const Glib::RefPtr<Icon>& icon)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(emblem_class_.init(), "icon", const_cast<GIcon*>(Glib::unwrap(icon)), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(emblem_class_.init(), "icon", Glib::unwrap(icon), nullptr))
 {
 
 
 }
 
-Emblem::Emblem(const Glib::RefPtr<Icon>& icon, Origin origin)
+Emblem::Emblem(const Glib::RefPtr<Icon>& icon, const Origin origin)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(emblem_class_.init(), "icon", const_cast<GIcon*>(Glib::unwrap(icon)), "origin", static_cast<GEmblemOrigin>(origin), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(emblem_class_.init(), "icon", Glib::unwrap(icon), "origin", origin, nullptr))
 {
 
 
@@ -170,7 +166,7 @@ auto Emblem::create(const Glib::RefPtr<Icon>& icon) -> Glib::RefPtr<Emblem>
   return Glib::make_refptr_for_instance<Emblem>( new Emblem(icon) );
 }
 
-auto Emblem::create(const Glib::RefPtr<Icon>& icon, Origin origin) -> Glib::RefPtr<Emblem>
+auto Emblem::create(const Glib::RefPtr<Icon>& icon, const Origin origin) -> Glib::RefPtr<Emblem>
 {
   return Glib::make_refptr_for_instance<Emblem>( new Emblem(icon, origin) );
 }

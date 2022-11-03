@@ -44,7 +44,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(GdkPixbufFormat* object, bool take_copy) -> Gdk::PixbufFormat
+auto wrap(GdkPixbufFormat* object, const bool take_copy) -> Gdk::PixbufFormat
 {
   return Gdk::PixbufFormat(object, take_copy);
 }
@@ -65,7 +65,7 @@ auto PixbufFormat::get_type() -> GType
 
 PixbufFormat::PixbufFormat(const PixbufFormat& other)
 :
-  gobject_ ((other.gobject_) ? gdk_pixbuf_format_copy(other.gobject_) : nullptr)
+  gobject_ (other.gobject_ ? gdk_pixbuf_format_copy(other.gobject_) : nullptr)
 {}
 
 PixbufFormat::PixbufFormat(PixbufFormat&& other) noexcept
@@ -82,12 +82,12 @@ auto PixbufFormat::operator=(PixbufFormat&& other) noexcept -> PixbufFormat&
   return *this;
 }
 
-PixbufFormat::PixbufFormat(GdkPixbufFormat* gobject, bool make_a_copy)
+PixbufFormat::PixbufFormat(GdkPixbufFormat* gobject, const bool make_a_copy)
 :
   // For BoxedType wrappers, make_a_copy is true by default.  The static
   // BoxedType wrappers must always take a copy, thus make_a_copy = true
   // ensures identical behaviour if the default argument is used.
-  gobject_ ((make_a_copy && gobject) ? gdk_pixbuf_format_copy(gobject) : gobject)
+  gobject_ (make_a_copy && gobject ? gdk_pixbuf_format_copy(gobject) : gobject)
 {}
 
 auto PixbufFormat::operator=(const PixbufFormat& other) -> PixbufFormat&
@@ -154,9 +154,10 @@ auto PixbufFormat::is_disabled() const -> bool
   return gdk_pixbuf_format_is_disabled(const_cast<GdkPixbufFormat*>(gobj()));
 }
 
-auto PixbufFormat::set_disabled (bool disabled) -> void
+auto PixbufFormat::set_disabled (
+  const bool disabled) -> void
 {
-  gdk_pixbuf_format_set_disabled(gobj(), static_cast<int>(disabled));
+  gdk_pixbuf_format_set_disabled(gobj(), disabled);
 }
 
 auto PixbufFormat::get_license() const -> Glib::ustring

@@ -37,7 +37,7 @@ auto Filter_signal_changed_callback (GtkFilter *self, GtkFilterChange p0, void *
   using namespace Gtk;
   using SlotType = sigc::slot<void(Change)>;
 
-  auto obj = dynamic_cast<Filter*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Filter*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -80,9 +80,9 @@ auto Glib::Value<Gtk::Filter::Change>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::Filter>
+auto wrap(GtkFilter* object, const bool take_copy) -> RefPtr<Gtk::Filter>
 {
-  return Glib::make_refptr_for_instance<Gtk::Filter>( dynamic_cast<Gtk::Filter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::Filter>( dynamic_cast<Gtk::Filter*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -95,7 +95,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Filter_Class::init() -> const Glib::Class&
+auto Filter_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -127,10 +127,9 @@ auto Filter_Class::class_init_function (void *g_class, void *class_data) -> void
 
 }
 
-auto Filter_Class::match_vfunc_callback(GtkFilter* self, gpointer item) -> gboolean
+auto Filter_Class::match_vfunc_callback(GtkFilter* self, const gpointer item) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -145,8 +144,8 @@ auto Filter_Class::match_vfunc_callback(GtkFilter* self, gpointer item) -> gbool
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->match_vfunc(Glib::wrap(G_OBJECT(item), true)
-));
+        return obj->match_vfunc(Glib::wrap(G_OBJECT(item), true)
+        );
       }
       catch(...)
       {
@@ -155,7 +154,7 @@ auto Filter_Class::match_vfunc_callback(GtkFilter* self, gpointer item) -> gbool
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -168,8 +167,7 @@ auto Filter_Class::match_vfunc_callback(GtkFilter* self, gpointer item) -> gbool
 }
 auto Filter_Class::get_strictness_vfunc_callback(GtkFilter* self) -> GtkFilterMatch
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -193,7 +191,7 @@ auto Filter_Class::get_strictness_vfunc_callback(GtkFilter* self) -> GtkFilterMa
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -221,32 +219,28 @@ auto Filter::gobj_copy() -> GtkFilter*
 }
 
 Filter::Filter(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 Filter::Filter(GtkFilter* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 Filter::Filter(Filter&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto Filter::operator=(Filter&& src) noexcept -> Filter&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-Filter::~Filter() noexcept
-{}
-
+Filter::~Filter() noexcept = default;
 
 Filter::CppClassType Filter::filter_class_; // initialize static member
 
@@ -265,16 +259,16 @@ auto Filter::get_base_type() -> GType
 Filter::Filter()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(filter_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(filter_class_.init()))
 {
 
 
 }
 
-auto Filter::match(const Glib::RefPtr<Glib::ObjectBase>& item) -> bool
+auto Filter::match(const Glib::RefPtr<ObjectBase>& item) -> bool
 {
-  return gtk_filter_match(gobj(), (item)->gobj());
+  return gtk_filter_match(gobj(), item->gobj());
 }
 
 auto Filter::get_strictness() -> Match
@@ -290,11 +284,11 @@ auto Filter::changed (Change change) -> void
 
 auto Filter::signal_changed() -> Glib::SignalProxy<void(Change)>
 {
-  return Glib::SignalProxy<void(Change) >(this, &Filter_signal_changed_info);
+  return {this, &Filter_signal_changed_info};
 }
 
 
-auto Gtk::Filter::match_vfunc(const Glib::RefPtr<Glib::ObjectBase>& item) -> bool
+auto Filter::match_vfunc(const Glib::RefPtr<ObjectBase>& item) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -302,14 +296,14 @@ auto Gtk::Filter::match_vfunc(const Glib::RefPtr<Glib::ObjectBase>& item) -> boo
 
   if(base && base->match)
   {
-    bool retval((*base->match)(gobj(),(item)->gobj()));
+    const bool retval((*base->match)(gobj(),item->gobj()));
     return retval;
   }
 
   using RType = bool;
   return RType();
 }
-auto Gtk::Filter::get_strictness_vfunc() -> Match
+auto Filter::get_strictness_vfunc() -> Match
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -317,7 +311,7 @@ auto Gtk::Filter::get_strictness_vfunc() -> Match
 
   if(base && base->get_strictness)
   {
-    Match retval(static_cast<Match>((*base->get_strictness)(gobj())));
+    const Match retval(static_cast<Match>((*base->get_strictness)(gobj())));
     return retval;
   }
 

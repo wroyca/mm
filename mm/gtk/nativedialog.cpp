@@ -41,12 +41,12 @@ namespace
 {
 
 
-auto NativeDialog_signal_response_callback (GtkNativeDialog *self, gint p0, void *data) -> void
+auto NativeDialog_signal_response_callback (GtkNativeDialog *self, const gint p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(int)>;
 
-  auto obj = dynamic_cast<NativeDialog*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<NativeDialog*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -77,9 +77,9 @@ const Glib::SignalProxyInfo NativeDialog_signal_response_info =
 namespace Glib
 {
 
-auto wrap(GtkNativeDialog* object, bool take_copy) -> Glib::RefPtr<Gtk::NativeDialog>
+auto wrap(GtkNativeDialog* object, const bool take_copy) -> RefPtr<Gtk::NativeDialog>
 {
-  return Glib::make_refptr_for_instance<Gtk::NativeDialog>( dynamic_cast<Gtk::NativeDialog*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::NativeDialog>( dynamic_cast<Gtk::NativeDialog*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -92,7 +92,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto NativeDialog_Class::init() -> const Glib::Class&
+auto NativeDialog_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -124,10 +124,9 @@ auto NativeDialog_Class::class_init_function (void *g_class, void *class_data) -
 }
 
 
-auto NativeDialog_Class::response_callback (GtkNativeDialog *self, gint p0) -> void
+auto NativeDialog_Class::response_callback (GtkNativeDialog *self, const gint p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -178,32 +177,28 @@ auto NativeDialog::gobj_copy() -> GtkNativeDialog*
 }
 
 NativeDialog::NativeDialog(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 NativeDialog::NativeDialog(GtkNativeDialog* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 NativeDialog::NativeDialog(NativeDialog&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto NativeDialog::operator=(NativeDialog&& src) noexcept -> NativeDialog&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-NativeDialog::~NativeDialog() noexcept
-{}
-
+NativeDialog::~NativeDialog() noexcept = default;
 
 NativeDialog::CppClassType NativeDialog::nativedialog_class_; // initialize static member
 
@@ -222,8 +217,8 @@ auto NativeDialog::get_base_type() -> GType
 NativeDialog::NativeDialog()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(nativedialog_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(nativedialog_class_.init()))
 {
 
 
@@ -244,9 +239,10 @@ auto NativeDialog::get_visible() const -> bool
   return gtk_native_dialog_get_visible(const_cast<GtkNativeDialog*>(gobj()));
 }
 
-auto NativeDialog::set_modal (bool modal) -> void
+auto NativeDialog::set_modal (
+  const bool modal) -> void
 {
-  gtk_native_dialog_set_modal(gobj(), static_cast<int>(modal));
+  gtk_native_dialog_set_modal(gobj(), modal);
 }
 
 auto NativeDialog::get_modal() const -> bool
@@ -266,7 +262,7 @@ auto NativeDialog::get_title() const -> Glib::ustring
 
 auto NativeDialog::set_transient_for (Window &parent) -> void
 {
-  gtk_native_dialog_set_transient_for(gobj(), (parent).gobj());
+  gtk_native_dialog_set_transient_for(gobj(), parent.gobj());
 }
 
 auto NativeDialog::get_transient_for() -> Window*
@@ -282,38 +278,38 @@ auto NativeDialog::get_transient_for() const -> const Window*
 
 auto NativeDialog::signal_response() -> Glib::SignalProxy<void(int)>
 {
-  return Glib::SignalProxy<void(int) >(this, &NativeDialog_signal_response_info);
+  return {this, &NativeDialog_signal_response_info};
 }
 
 
 auto NativeDialog::property_title() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 auto NativeDialog::property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 auto NativeDialog::property_modal() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "modal");
+  return {this, "modal"};
 }
 
 auto NativeDialog::property_modal() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "modal");
+  return {this, "modal"};
 }
 
 auto NativeDialog::property_visible() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "visible");
+  return {this, "visible"};
 }
 
 auto NativeDialog::property_visible() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "visible");
+  return {this, "visible"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Window*>::value,
@@ -322,16 +318,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Window*>::value,
 
 auto NativeDialog::property_transient_for() -> Glib::PropertyProxy< Window* >
 {
-  return Glib::PropertyProxy< Window* >(this, "transient-for");
+  return {this, "transient-for"};
 }
 
 auto NativeDialog::property_transient_for() const -> Glib::PropertyProxy_ReadOnly< Window* >
 {
-  return Glib::PropertyProxy_ReadOnly< Window* >(this, "transient-for");
+  return {this, "transient-for"};
 }
 
 
-auto Gtk::NativeDialog::on_response (int response_id) -> void
+auto NativeDialog::on_response (
+  const int response_id) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

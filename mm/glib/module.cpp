@@ -59,7 +59,7 @@ Module::~Module()
 
 Module::operator bool() const
 {
-  return (gobject_ != nullptr);
+  return gobject_ != nullptr;
 }
 
 } // namespace Glib
@@ -85,22 +85,22 @@ auto Module::make_resident () -> void
 
 auto Module::get_last_error() -> std::string
 {
-  return Glib::convert_const_gchar_ptr_to_stdstring(g_module_error());
+  return convert_const_gchar_ptr_to_stdstring(g_module_error());
 }
 
 auto Module::get_symbol(const std::string& symbol_name, void*& symbol) const -> bool
 {
-  return g_module_symbol(const_cast<GModule*>(gobj()), symbol_name.c_str(), &(symbol));
+  return g_module_symbol(const_cast<GModule*>(gobj()), symbol_name.c_str(), &symbol);
 }
 
 auto Module::get_name() const -> std::string
 {
-  return Glib::convert_const_gchar_ptr_to_stdstring(g_module_name(const_cast<GModule*>(gobj())));
+  return convert_const_gchar_ptr_to_stdstring(g_module_name(const_cast<GModule*>(gobj())));
 }
 
 auto Module::build_path(const std::string& directory, const std::string& module_name) -> std::string
 {
-  return Glib::convert_return_gchar_ptr_to_stdstring(g_module_build_path(directory.c_str(), module_name.c_str()));
+  return convert_return_gchar_ptr_to_stdstring(g_module_build_path(directory.c_str(), module_name.c_str()));
 }
 
 

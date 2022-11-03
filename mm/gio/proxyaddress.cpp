@@ -38,9 +38,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GProxyAddress* object, bool take_copy) -> Glib::RefPtr<Gio::ProxyAddress>
+auto wrap(GProxyAddress* object, const bool take_copy) -> RefPtr<Gio::ProxyAddress>
 {
-  return Glib::make_refptr_for_instance<Gio::ProxyAddress>( dynamic_cast<Gio::ProxyAddress*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::ProxyAddress>( dynamic_cast<Gio::ProxyAddress*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -53,7 +53,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto ProxyAddress_Class::init() -> const Glib::Class&
+auto ProxyAddress_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -107,7 +107,7 @@ ProxyAddress::ProxyAddress(const Glib::ConstructParams& construct_params)
 
 ProxyAddress::ProxyAddress(GProxyAddress* castitem)
 :
-  InetSocketAddress((GInetSocketAddress*)(castitem))
+  InetSocketAddress((GInetSocketAddress*)castitem)
 {}
 
 
@@ -122,9 +122,7 @@ auto ProxyAddress::operator=(ProxyAddress&& src) noexcept -> ProxyAddress&
 }
 
 
-ProxyAddress::~ProxyAddress() noexcept
-{}
-
+ProxyAddress::~ProxyAddress() noexcept = default;
 
 ProxyAddress::CppClassType ProxyAddress::proxyaddress_class_; // initialize static member
 
@@ -140,17 +138,17 @@ auto ProxyAddress::get_base_type() -> GType
 }
 
 
-ProxyAddress::ProxyAddress(const Glib::RefPtr<InetAddress>& address, guint16 port, const Glib::ustring& protocol, const Glib::ustring& destination_hostname, guint16 destination_port, const Glib::ustring& username, const Glib::ustring& password)
+ProxyAddress::ProxyAddress(const Glib::RefPtr<InetAddress>& address, const guint16 port, const Glib::ustring& protocol, const Glib::ustring& destination_hostname, const guint16 destination_port, const Glib::ustring& username, const Glib::ustring& password)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  InetSocketAddress(Glib::ConstructParams(proxyaddress_class_.init(), "address", const_cast<GInetAddress*>(Glib::unwrap(address)), "port", port, "protocol", protocol.c_str(), "destination_hostname", destination_hostname.c_str(), "destination_port", destination_port, "username", username.c_str(), "password", password.c_str(), nullptr))
+ObjectBase(nullptr),
+  InetSocketAddress(Glib::ConstructParams(proxyaddress_class_.init(), "address", Glib::unwrap(address), "port", port, "protocol", protocol.c_str(), "destination_hostname", destination_hostname.c_str(), "destination_port", destination_port, "username", username.c_str(), "password", password.c_str(), nullptr))
 {
 
 
 }
 
-auto ProxyAddress::create(const Glib::RefPtr<InetAddress>& address, guint16 port, const Glib::ustring& protocol, const Glib::ustring& destination_hostname, guint16 destination_port, const Glib::ustring& username, const Glib::ustring& password) -> Glib::RefPtr<ProxyAddress>
+auto ProxyAddress::create(const Glib::RefPtr<InetAddress>& address, const guint16 port, const Glib::ustring& protocol, const Glib::ustring& destination_hostname, const guint16 destination_port, const Glib::ustring& username, const Glib::ustring& password) -> Glib::RefPtr<ProxyAddress>
 {
   return Glib::make_refptr_for_instance<ProxyAddress>( new ProxyAddress(address, port, protocol, destination_hostname, destination_port, username, password) );
 }
@@ -193,37 +191,37 @@ auto ProxyAddress::get_uri() const -> Glib::ustring
 
 auto ProxyAddress::property_protocol() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "protocol");
+  return {this, "protocol"};
 }
 
 auto ProxyAddress::property_destination_protocol() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "destination-protocol");
+  return {this, "destination-protocol"};
 }
 
 auto ProxyAddress::property_destination_hostname() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "destination-hostname");
+  return {this, "destination-hostname"};
 }
 
 auto ProxyAddress::property_destination_port() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
-  return Glib::PropertyProxy_ReadOnly< guint >(this, "destination-port");
+  return {this, "destination-port"};
 }
 
 auto ProxyAddress::property_username() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "username");
+  return {this, "username"};
 }
 
 auto ProxyAddress::property_password() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "password");
+  return {this, "password"};
 }
 
 auto ProxyAddress::property_uri() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "uri");
+  return {this, "uri"};
 }
 
 

@@ -29,8 +29,8 @@ namespace Gio
 {
 
 EmblemedIcon::EmblemedIcon(const Glib::RefPtr<Icon>& icon) : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(emblemedicon_class_.init(), "icon",Glib::unwrap(icon), nullptr))
+  ObjectBase(nullptr),
+  Object(Glib::ConstructParams(emblemedicon_class_.init(), "icon",Glib::unwrap(icon), nullptr))
 {
 }
 
@@ -44,9 +44,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GEmblemedIcon* object, bool take_copy) -> Glib::RefPtr<Gio::EmblemedIcon>
+auto wrap(GEmblemedIcon* object, const bool take_copy) -> RefPtr<Gio::EmblemedIcon>
 {
-  return Glib::make_refptr_for_instance<Gio::EmblemedIcon>( dynamic_cast<Gio::EmblemedIcon*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::EmblemedIcon>( dynamic_cast<Gio::EmblemedIcon*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -59,7 +59,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto EmblemedIcon_Class::init() -> const Glib::Class&
+auto EmblemedIcon_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -106,34 +106,30 @@ auto EmblemedIcon::gobj_copy() -> GEmblemedIcon*
 }
 
 EmblemedIcon::EmblemedIcon(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 EmblemedIcon::EmblemedIcon(GEmblemedIcon* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 EmblemedIcon::EmblemedIcon(EmblemedIcon&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , Icon(std::move(src))
 {}
 
 auto EmblemedIcon::operator=(EmblemedIcon&& src) noexcept -> EmblemedIcon&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   Icon::operator=(std::move(src));
   return *this;
 }
 
 
-EmblemedIcon::~EmblemedIcon() noexcept
-{}
-
+EmblemedIcon::~EmblemedIcon() noexcept = default;
 
 EmblemedIcon::CppClassType EmblemedIcon::emblemedicon_class_; // initialize static member
 
@@ -152,8 +148,8 @@ auto EmblemedIcon::get_base_type() -> GType
 EmblemedIcon::EmblemedIcon(const Glib::RefPtr<Icon>& icon, const Glib::RefPtr<Emblem>& emblem)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(emblemedicon_class_.init(), "icon", const_cast<GIcon*>(Glib::unwrap(icon)), "emblem", const_cast<GEmblem*>(Glib::unwrap(emblem)), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(emblemedicon_class_.init(), "icon", Glib::unwrap(icon), "emblem", Glib::unwrap(emblem), nullptr))
 {
 
 
@@ -191,7 +187,7 @@ auto EmblemedIcon::get_emblems() const -> std::vector<Glib::RefPtr<const Emblem>
 
 auto EmblemedIcon::add_emblem (const Glib::RefPtr <Emblem> &emblem) -> void
 {
-  g_emblemed_icon_add_emblem(gobj(), const_cast<GEmblem*>(Glib::unwrap(emblem)));
+  g_emblemed_icon_add_emblem(gobj(), Glib::unwrap(emblem));
 }
 
 auto EmblemedIcon::clear_emblems () -> void

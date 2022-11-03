@@ -31,9 +31,9 @@ namespace Glib
 
 auto
 VariantDict::lookup_value_variant(
-  const Glib::ustring& key, const VariantType& expected_type, VariantBase& value) const -> bool
+  const ustring & key, const VariantType& expected_type, VariantBase& value) const -> bool
 {
-  GVariant* const g_value = g_variant_dict_lookup_value(
+  const GVariant* const g_value = g_variant_dict_lookup_value(
     const_cast<GVariantDict*>(gobj()), key.c_str(), expected_type.gobj());
   if (!g_value)
     return false;
@@ -65,13 +65,13 @@ namespace
 namespace Glib
 {
 
-auto wrap(GVariantDict* object, bool take_copy) -> Glib::RefPtr<Glib::VariantDict>
+auto wrap(GVariantDict* object, const bool take_copy) -> RefPtr<VariantDict>
 {
   if(take_copy && object)
     g_variant_dict_ref(object);
 
   // See the comment at the top of this file, if you want to know why the cast works.
-  return Glib::make_refptr_for_instance<Glib::VariantDict>(reinterpret_cast<Glib::VariantDict*>(object));
+  return Glib::make_refptr_for_instance<VariantDict>(reinterpret_cast<VariantDict *>(object));
 }
 
 } // namespace Glib
@@ -113,27 +113,27 @@ auto VariantDict::gobj_copy() const -> GVariantDict*
 }
 
 
-auto VariantDict::create(const VariantBase& from_asv) -> Glib::RefPtr<VariantDict>
+auto VariantDict::create(const VariantBase& from_asv) -> RefPtr<VariantDict>
 {
-  return Glib::wrap(g_variant_dict_new(const_cast<GVariant*>((from_asv).gobj())));
+  return wrap(g_variant_dict_new(const_cast<GVariant*>(from_asv.gobj())));
 }
 
-auto VariantDict::create() -> Glib::RefPtr<VariantDict>
+auto VariantDict::create() -> RefPtr<VariantDict>
 {
-  return Glib::wrap(g_variant_dict_new(nullptr));
+  return wrap(g_variant_dict_new(nullptr));
 }
 
-auto VariantDict::contains(const Glib::ustring& key) const -> bool
+auto VariantDict::contains(const ustring & key) const -> bool
 {
   return g_variant_dict_contains(const_cast<GVariantDict*>(gobj()), key.c_str());
 }
 
-auto VariantDict::insert_value_variant (const Glib::ustring &key, const VariantBase &value) -> void
+auto VariantDict::insert_value_variant (const ustring &key, const VariantBase &value) -> void
 {
-  g_variant_dict_insert_value(gobj(), key.c_str(), const_cast<GVariant*>((value).gobj()));
+  g_variant_dict_insert_value(gobj(), key.c_str(), const_cast<GVariant*>(value.gobj()));
 }
 
-auto VariantDict::remove(const Glib::ustring& key) -> bool
+auto VariantDict::remove(const ustring & key) -> bool
 {
   return g_variant_dict_remove(gobj(), key.c_str());
 }

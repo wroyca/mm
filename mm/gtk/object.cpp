@@ -189,7 +189,8 @@ Object::~Object() noexcept
   _release_c_instance();
 }
 
-auto Object::disconnect_cpp_wrapper (bool prevent_creation_of_another_wrapper) -> void
+auto Object::disconnect_cpp_wrapper (
+  const bool prevent_creation_of_another_wrapper) -> void
 {
   //GTKMM_LIFECYCLE:
 
@@ -202,11 +203,11 @@ auto Object::disconnect_cpp_wrapper (bool prevent_creation_of_another_wrapper) -
   if(gobj())
   {
     //Prevent gtk vfuncs and default signal handlers from calling our instance methods:
-    g_object_steal_qdata((GObject*)gobj(), Glib::quark_); //It will no longer be possible to get the C++ instance from the C instance.
+    g_object_steal_qdata(gobj(), Glib::quark_); //It will no longer be possible to get the C++ instance from the C instance.
 
     if (prevent_creation_of_another_wrapper)
       //Allow us to prevent generation of a new C++ wrapper during destruction:
-      g_object_set_qdata((GObject*)gobj(), Glib::quark_cpp_wrapper_deleted_, (gpointer)true);
+      g_object_set_qdata(gobj(), Glib::quark_cpp_wrapper_deleted_, (gpointer)true);
 
     //Prevent C++ instance from using GTK+ object:
     gobject_ = nullptr;
@@ -319,7 +320,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Object_Class::init() -> const Glib::Class&
+auto Object_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -352,7 +353,7 @@ auto Object_Class::class_init_function (void *g_class, void *class_data) -> void
 
 auto Object_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new Object((GObject*)(o)));
+  return manage(new Object(o));
 
 }
 

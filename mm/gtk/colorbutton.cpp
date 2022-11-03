@@ -49,9 +49,9 @@ const Glib::SignalProxyInfo ColorButton_signal_color_set_info =
 namespace Glib
 {
 
-auto wrap(GtkColorButton* object, bool take_copy) -> Gtk::ColorButton*
+auto wrap(GtkColorButton* object, const bool take_copy) -> Gtk::ColorButton*
 {
-  return dynamic_cast<Gtk::ColorButton *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::ColorButton *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -62,7 +62,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto ColorButton_Class::init() -> const Glib::Class&
+auto ColorButton_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -96,7 +96,7 @@ auto ColorButton_Class::class_init_function (void *g_class, void *class_data) ->
 
 auto ColorButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new ColorButton((GtkColorButton*)(o)));
+  return manage(new ColorButton((GtkColorButton*)o));
 
 }
 
@@ -104,26 +104,24 @@ auto ColorButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 ColorButton::ColorButton(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 ColorButton::ColorButton(GtkColorButton* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 ColorButton::ColorButton(ColorButton&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
   , ColorChooser(std::move(src))
 {}
 
 auto ColorButton::operator=(ColorButton&& src) noexcept -> ColorButton&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   ColorChooser::operator=(std::move(src));
   return *this;
 }
@@ -150,8 +148,8 @@ auto ColorButton::get_base_type() -> GType
 ColorButton::ColorButton()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(colorbutton_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(colorbutton_class_.init()))
 {
 
 
@@ -160,8 +158,8 @@ ColorButton::ColorButton()
 ColorButton::ColorButton(const Gdk::RGBA& rgba)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(colorbutton_class_.init(), "rgba", (rgba).gobj(), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(colorbutton_class_.init(), "rgba", rgba.gobj(), nullptr))
 {
 
 
@@ -177,9 +175,10 @@ auto ColorButton::get_title() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_color_button_get_title(const_cast<GtkColorButton*>(gobj())));
 }
 
-auto ColorButton::set_modal (bool modal) -> void
+auto ColorButton::set_modal (
+  const bool modal) -> void
 {
-  gtk_color_button_set_modal(gobj(), static_cast<int>(modal));
+  gtk_color_button_set_modal(gobj(), modal);
 }
 
 auto ColorButton::get_modal() const -> bool
@@ -190,38 +189,38 @@ auto ColorButton::get_modal() const -> bool
 
 auto ColorButton::signal_color_set() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &ColorButton_signal_color_set_info);
+  return {this, &ColorButton_signal_color_set_info};
 }
 
 
 auto ColorButton::property_title() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 auto ColorButton::property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 auto ColorButton::property_show_editor() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "show-editor");
+  return {this, "show-editor"};
 }
 
 auto ColorButton::property_show_editor() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "show-editor");
+  return {this, "show-editor"};
 }
 
 auto ColorButton::property_modal() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "modal");
+  return {this, "modal"};
 }
 
 auto ColorButton::property_modal() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "modal");
+  return {this, "modal"};
 }
 
 

@@ -34,9 +34,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkStackPage* object, bool take_copy) -> Glib::RefPtr<Gtk::StackPage>
+auto wrap(GtkStackPage* object, const bool take_copy) -> RefPtr<Gtk::StackPage>
 {
-  return Glib::make_refptr_for_instance<Gtk::StackPage>( dynamic_cast<Gtk::StackPage*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::StackPage>( dynamic_cast<Gtk::StackPage*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -49,7 +49,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto StackPage_Class::init() -> const Glib::Class&
+auto StackPage_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -96,34 +96,30 @@ auto StackPage::gobj_copy() -> GtkStackPage*
 }
 
 StackPage::StackPage(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 StackPage::StackPage(GtkStackPage* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 StackPage::StackPage(StackPage&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , Accessible(std::move(src))
 {}
 
 auto StackPage::operator=(StackPage&& src) noexcept -> StackPage&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   Accessible::operator=(std::move(src));
   return *this;
 }
 
 
-StackPage::~StackPage() noexcept
-{}
-
+StackPage::~StackPage() noexcept = default;
 
 StackPage::CppClassType StackPage::stackpage_class_; // initialize static member
 
@@ -154,9 +150,10 @@ auto StackPage::get_visible() const -> bool
   return gtk_stack_page_get_visible(const_cast<GtkStackPage*>(gobj()));
 }
 
-auto StackPage::set_visible (bool visible) -> void
+auto StackPage::set_visible (
+  const bool visible) -> void
 {
-  gtk_stack_page_set_visible(gobj(), static_cast<int>(visible));
+  gtk_stack_page_set_visible(gobj(), visible);
 }
 
 auto StackPage::get_needs_attention() const -> bool
@@ -164,9 +161,10 @@ auto StackPage::get_needs_attention() const -> bool
   return gtk_stack_page_get_needs_attention(const_cast<GtkStackPage*>(gobj()));
 }
 
-auto StackPage::set_needs_attention (bool setting) -> void
+auto StackPage::set_needs_attention (
+  const bool setting) -> void
 {
-  gtk_stack_page_set_needs_attention(gobj(), static_cast<int>(setting));
+  gtk_stack_page_set_needs_attention(gobj(), setting);
 }
 
 auto StackPage::get_use_underline() const -> bool
@@ -174,9 +172,10 @@ auto StackPage::get_use_underline() const -> bool
   return gtk_stack_page_get_use_underline(const_cast<GtkStackPage*>(gobj()));
 }
 
-auto StackPage::set_use_underline (bool setting) -> void
+auto StackPage::set_use_underline (
+  const bool setting) -> void
 {
-  gtk_stack_page_set_use_underline(gobj(), static_cast<int>(setting));
+  gtk_stack_page_set_use_underline(gobj(), setting);
 }
 
 auto StackPage::get_name() const -> Glib::ustring
@@ -212,67 +211,67 @@ auto StackPage::set_icon_name (const Glib::ustring &setting) -> void
 
 auto StackPage::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 auto StackPage::property_name() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "name");
+  return {this, "name"};
 }
 
 auto StackPage::property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name");
+  return {this, "name"};
 }
 
 auto StackPage::property_title() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 auto StackPage::property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 auto StackPage::property_icon_name() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "icon-name");
+  return {this, "icon-name"};
 }
 
 auto StackPage::property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "icon-name");
+  return {this, "icon-name"};
 }
 
 auto StackPage::property_needs_attention() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "needs-attention");
+  return {this, "needs-attention"};
 }
 
 auto StackPage::property_needs_attention() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "needs-attention");
+  return {this, "needs-attention"};
 }
 
 auto StackPage::property_visible() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "visible");
+  return {this, "visible"};
 }
 
 auto StackPage::property_visible() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "visible");
+  return {this, "visible"};
 }
 
 auto StackPage::property_use_underline() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "use-underline");
+  return {this, "use-underline"};
 }
 
 auto StackPage::property_use_underline() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "use-underline");
+  return {this, "use-underline"};
 }
 
 

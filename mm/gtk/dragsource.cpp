@@ -29,21 +29,21 @@ namespace
 {
 
 
-auto DragSource_signal_prepare_callback(GtkDragSource* self, gdouble p0,gdouble p1,void* data) -> GdkContentProvider*
+auto DragSource_signal_prepare_callback(GtkDragSource* self, const gdouble p0, const gdouble p1,void* data) -> GdkContentProvider*
 {
   using namespace Gtk;
   using SlotType = sigc::slot<Glib::RefPtr<Gdk::ContentProvider>(double, double)>;
 
-  auto obj = dynamic_cast<DragSource*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<DragSource*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return Glib::unwrap_copy((*static_cast<SlotType*>(slot))(p0
-, p1
-));
+        return unwrap_copy((*static_cast<SlotType*>(slot))(p0
+                                                           , p1
+        ));
     }
     catch(...)
     {
@@ -55,12 +55,12 @@ auto DragSource_signal_prepare_callback(GtkDragSource* self, gdouble p0,gdouble 
   return RType();
 }
 
-auto DragSource_signal_prepare_notify_callback(GtkDragSource* self, gdouble p0,gdouble p1, void* data) -> GdkContentProvider*
+auto DragSource_signal_prepare_notify_callback(GtkDragSource* self, const gdouble p0, const gdouble p1, void* data) -> GdkContentProvider*
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
 
-  auto obj = dynamic_cast<DragSource*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<DragSource*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -94,7 +94,7 @@ auto DragSource_signal_drag_begin_callback (GtkDragSource *self, GdkDrag *p0, vo
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gdk::Drag>&)>;
 
-  auto obj = dynamic_cast<DragSource*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<DragSource*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -120,12 +120,12 @@ const Glib::SignalProxyInfo DragSource_signal_drag_begin_info =
 
 
 auto DragSource_signal_drag_end_callback (
-  GtkDragSource *self, GdkDrag *p0, gboolean p1, void *data) -> void
+  GtkDragSource *self, GdkDrag *p0, const gboolean p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gdk::Drag>&, bool)>;
 
-  auto obj = dynamic_cast<DragSource*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<DragSource*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -156,16 +156,16 @@ auto DragSource_signal_drag_cancel_callback(GtkDragSource* self, GdkDrag* p0,Gdk
   using namespace Gtk;
   using SlotType = sigc::slot<bool(const Glib::RefPtr<Gdk::Drag>&, Gdk::DragCancelReason)>;
 
-  auto obj = dynamic_cast<DragSource*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<DragSource*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return static_cast<int>((*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
-, static_cast<Gdk::DragCancelReason>(p1)
-));
+        return (*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
+                                               , static_cast<Gdk::DragCancelReason>(p1)
+        );
     }
     catch(...)
     {
@@ -182,7 +182,7 @@ auto DragSource_signal_drag_cancel_notify_callback(GtkDragSource* self, GdkDrag*
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gdk::Drag>&, Gdk::DragCancelReason)>;
 
-  auto obj = dynamic_cast<DragSource*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<DragSource*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -217,9 +217,9 @@ const Glib::SignalProxyInfo DragSource_signal_drag_cancel_info =
 namespace Glib
 {
 
-auto wrap(GtkDragSource* object, bool take_copy) -> Glib::RefPtr<Gtk::DragSource>
+auto wrap(GtkDragSource* object, const bool take_copy) -> RefPtr<Gtk::DragSource>
 {
-  return Glib::make_refptr_for_instance<Gtk::DragSource>( dynamic_cast<Gtk::DragSource*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::DragSource>( dynamic_cast<Gtk::DragSource*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -232,7 +232,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto DragSource_Class::init() -> const Glib::Class&
+auto DragSource_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -286,7 +286,7 @@ DragSource::DragSource(const Glib::ConstructParams& construct_params)
 
 DragSource::DragSource(GtkDragSource* castitem)
 :
-  GestureSingle((GtkGestureSingle*)(castitem))
+  GestureSingle((GtkGestureSingle*)castitem)
 {}
 
 
@@ -301,9 +301,7 @@ auto DragSource::operator=(DragSource&& src) noexcept -> DragSource&
 }
 
 
-DragSource::~DragSource() noexcept
-{}
-
+DragSource::~DragSource() noexcept = default;
 
 DragSource::CppClassType DragSource::dragsource_class_; // initialize static member
 
@@ -322,7 +320,7 @@ auto DragSource::get_base_type() -> GType
 DragSource::DragSource()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   GestureSingle(Glib::ConstructParams(dragsource_class_.init()))
 {
 
@@ -363,7 +361,7 @@ auto DragSource::get_actions() const -> Gdk::DragAction
 }
 
 auto DragSource::set_icon (
-  const Glib::RefPtr <const Gdk::Paintable> &paintable, int hot_x, int hot_y) -> void
+  const Glib::RefPtr <const Gdk::Paintable> &paintable, const int hot_x, const int hot_y) -> void
 {
   gtk_drag_source_set_icon(gobj(), const_cast<GdkPaintable*>(Glib::unwrap(paintable)), hot_x, hot_y);
 }
@@ -389,25 +387,25 @@ auto DragSource::get_drag() const -> Glib::RefPtr<const Gdk::Drag>
 
 auto DragSource::signal_prepare() -> Glib::SignalProxy<Glib::RefPtr<Gdk::ContentProvider>(double, double)>
 {
-  return Glib::SignalProxy<Glib::RefPtr<Gdk::ContentProvider>(double, double) >(this, &DragSource_signal_prepare_info);
+  return {this, &DragSource_signal_prepare_info};
 }
 
 
 auto DragSource::signal_drag_begin() -> Glib::SignalProxy<void(const Glib::RefPtr<Gdk::Drag>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<Gdk::Drag>&) >(this, &DragSource_signal_drag_begin_info);
+  return {this, &DragSource_signal_drag_begin_info};
 }
 
 
 auto DragSource::signal_drag_end() -> Glib::SignalProxy<void(const Glib::RefPtr<Gdk::Drag>&, bool)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<Gdk::Drag>&, bool) >(this, &DragSource_signal_drag_end_info);
+  return {this, &DragSource_signal_drag_end_info};
 }
 
 
 auto DragSource::signal_drag_cancel() -> Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drag>&, Gdk::DragCancelReason)>
 {
-  return Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drag>&, Gdk::DragCancelReason) >(this, &DragSource_signal_drag_cancel_info);
+  return {this, &DragSource_signal_drag_cancel_info};
 }
 
 
@@ -417,12 +415,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Co
 
 auto DragSource::property_content() -> Glib::PropertyProxy< Glib::RefPtr<Gdk::ContentProvider> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Gdk::ContentProvider> >(this, "content");
+  return {this, "content"};
 }
 
 auto DragSource::property_content() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::ContentProvider> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::ContentProvider> >(this, "content");
+  return {this, "content"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::DragAction>::value,
@@ -431,12 +429,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::DragAction>::va
 
 auto DragSource::property_actions() -> Glib::PropertyProxy< Gdk::DragAction >
 {
-  return Glib::PropertyProxy< Gdk::DragAction >(this, "actions");
+  return {this, "actions"};
 }
 
 auto DragSource::property_actions() const -> Glib::PropertyProxy_ReadOnly< Gdk::DragAction >
 {
-  return Glib::PropertyProxy_ReadOnly< Gdk::DragAction >(this, "actions");
+  return {this, "actions"};
 }
 
 

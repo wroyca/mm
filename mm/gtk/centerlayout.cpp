@@ -34,9 +34,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkCenterLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::CenterLayout>
+auto wrap(GtkCenterLayout* object, const bool take_copy) -> RefPtr<Gtk::CenterLayout>
 {
-  return Glib::make_refptr_for_instance<Gtk::CenterLayout>( dynamic_cast<Gtk::CenterLayout*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::CenterLayout>( dynamic_cast<Gtk::CenterLayout*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -49,7 +49,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto CenterLayout_Class::init() -> const Glib::Class&
+auto CenterLayout_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -97,7 +97,7 @@ CenterLayout::CenterLayout(const Glib::ConstructParams& construct_params)
 
 CenterLayout::CenterLayout(GtkCenterLayout* castitem)
 :
-  LayoutManager((GtkLayoutManager*)(castitem))
+  LayoutManager((GtkLayoutManager*)castitem)
 {}
 
 
@@ -112,9 +112,7 @@ auto CenterLayout::operator=(CenterLayout&& src) noexcept -> CenterLayout&
 }
 
 
-CenterLayout::~CenterLayout() noexcept
-{}
-
+CenterLayout::~CenterLayout() noexcept = default;
 
 CenterLayout::CppClassType CenterLayout::centerlayout_class_; // initialize static member
 
@@ -133,7 +131,7 @@ auto CenterLayout::get_base_type() -> GType
 CenterLayout::CenterLayout()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   LayoutManager(Glib::ConstructParams(centerlayout_class_.init()))
 {
 
@@ -167,7 +165,7 @@ auto CenterLayout::get_baseline_position() const -> BaselinePosition
 
 auto CenterLayout::set_start_widget (Widget *widget) -> void
 {
-  gtk_center_layout_set_start_widget(gobj(), (GtkWidget*)Glib::unwrap(widget));
+  gtk_center_layout_set_start_widget(gobj(), Glib::unwrap(widget));
 }
 
 auto CenterLayout::get_start_widget() -> Widget*
@@ -182,7 +180,7 @@ auto CenterLayout::get_start_widget() const -> const Widget*
 
 auto CenterLayout::set_center_widget (Widget *widget) -> void
 {
-  gtk_center_layout_set_center_widget(gobj(), (GtkWidget*)Glib::unwrap(widget));
+  gtk_center_layout_set_center_widget(gobj(), Glib::unwrap(widget));
 }
 
 auto CenterLayout::get_center_widget() -> Widget*
@@ -197,7 +195,7 @@ auto CenterLayout::get_center_widget() const -> const Widget*
 
 auto CenterLayout::set_end_widget (Widget *widget) -> void
 {
-  gtk_center_layout_set_end_widget(gobj(), (GtkWidget*)Glib::unwrap(widget));
+  gtk_center_layout_set_end_widget(gobj(), Glib::unwrap(widget));
 }
 
 auto CenterLayout::get_end_widget() -> Widget*

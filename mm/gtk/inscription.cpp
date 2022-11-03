@@ -41,9 +41,9 @@ auto Glib::Value<Gtk::Inscription::Overflow>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkInscription* object, bool take_copy) -> Gtk::Inscription*
+auto wrap(GtkInscription* object, const bool take_copy) -> Gtk::Inscription*
 {
-  return dynamic_cast<Gtk::Inscription *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::Inscription *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -54,7 +54,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Inscription_Class::init() -> const Glib::Class&
+auto Inscription_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -69,7 +69,7 @@ auto Inscription_Class::init() -> const Glib::Class&
 
 auto Inscription_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new Inscription((GtkInscription*)(o)));
+  return manage(new Inscription((GtkInscription*)o));
 
 }
 
@@ -77,25 +77,23 @@ auto Inscription_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 Inscription::Inscription(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 Inscription::Inscription(GtkInscription* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 Inscription::Inscription(Inscription&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
 {}
 
 auto Inscription::operator=(Inscription&& src) noexcept -> Inscription&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   return *this;
 }
 
@@ -121,8 +119,8 @@ auto Inscription::get_base_type() -> GType
 Inscription::Inscription()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(inscription_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(inscription_class_.init()))
 {
 
 
@@ -131,8 +129,8 @@ Inscription::Inscription()
 Inscription::Inscription(const Glib::ustring& text)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(inscription_class_.init(), "text", text.c_str(), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(inscription_class_.init(), "text", text.c_str(), nullptr))
 {
 
 
@@ -150,12 +148,12 @@ auto Inscription::set_text (const Glib::ustring &text) -> void
 
 auto Inscription::get_attributes() const -> Pango::AttrList
 {
-  return Pango::AttrList((gtk_inscription_get_attributes(const_cast<GtkInscription*>(gobj()))));
+  return Pango::AttrList(gtk_inscription_get_attributes(const_cast<GtkInscription*>(gobj())));
 }
 
 auto Inscription::set_attributes (Pango::AttrList &attrs) -> void
 {
-  gtk_inscription_set_attributes(gobj(), (attrs).gobj());
+  gtk_inscription_set_attributes(gobj(), attrs.gobj());
 }
 
 auto Inscription::set_markup (const Glib::ustring &markup) -> void
@@ -163,9 +161,9 @@ auto Inscription::set_markup (const Glib::ustring &markup) -> void
   gtk_inscription_set_markup(gobj(), markup.empty() ? nullptr : markup.c_str());
 }
 
-auto Inscription::get_text_overflow() const -> Inscription::Overflow
+auto Inscription::get_text_overflow() const -> Overflow
 {
-  return static_cast<Inscription::Overflow>(gtk_inscription_get_text_overflow(const_cast<GtkInscription*>(gobj())));
+  return static_cast<Overflow>(gtk_inscription_get_text_overflow(const_cast<GtkInscription*>(gobj())));
 }
 
 auto Inscription::set_text_overflow (Overflow overflow) -> void
@@ -188,7 +186,8 @@ auto Inscription::get_min_chars() const -> unsigned int
   return gtk_inscription_get_min_chars(const_cast<GtkInscription*>(gobj()));
 }
 
-auto Inscription::set_min_chars (unsigned int min_chars) -> void
+auto Inscription::set_min_chars (
+  const unsigned int min_chars) -> void
 {
   gtk_inscription_set_min_chars(gobj(), min_chars);
 }
@@ -198,7 +197,8 @@ auto Inscription::get_nat_chars() const -> unsigned int
   return gtk_inscription_get_nat_chars(const_cast<GtkInscription*>(gobj()));
 }
 
-auto Inscription::set_nat_chars (unsigned int nat_chars) -> void
+auto Inscription::set_nat_chars (
+  const unsigned int nat_chars) -> void
 {
   gtk_inscription_set_nat_chars(gobj(), nat_chars);
 }
@@ -208,7 +208,8 @@ auto Inscription::get_min_lines() const -> unsigned int
   return gtk_inscription_get_min_lines(const_cast<GtkInscription*>(gobj()));
 }
 
-auto Inscription::set_min_lines (unsigned int min_lines) -> void
+auto Inscription::set_min_lines (
+  const unsigned int min_lines) -> void
 {
   gtk_inscription_set_min_lines(gobj(), min_lines);
 }
@@ -218,7 +219,8 @@ auto Inscription::get_nat_lines() const -> unsigned int
   return gtk_inscription_get_nat_lines(const_cast<GtkInscription*>(gobj()));
 }
 
-auto Inscription::set_nat_lines (unsigned int nat_lines) -> void
+auto Inscription::set_nat_lines (
+  const unsigned int nat_lines) -> void
 {
   gtk_inscription_set_nat_lines(gobj(), nat_lines);
 }
@@ -228,7 +230,8 @@ auto Inscription::get_xalign() const -> float
   return gtk_inscription_get_xalign(const_cast<GtkInscription*>(gobj()));
 }
 
-auto Inscription::set_xalign (float xalign) -> void
+auto Inscription::set_xalign (
+  const float xalign) -> void
 {
   gtk_inscription_set_xalign(gobj(), xalign);
 }
@@ -238,7 +241,8 @@ auto Inscription::get_yalign() const -> float
   return gtk_inscription_get_yalign(const_cast<GtkInscription*>(gobj()));
 }
 
-auto Inscription::set_yalign (float yalign) -> void
+auto Inscription::set_yalign (
+  const float yalign) -> void
 {
   gtk_inscription_set_yalign(gobj(), yalign);
 }
@@ -250,81 +254,81 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::AttrList>::va
 
 auto Inscription::property_attributes() -> Glib::PropertyProxy< Pango::AttrList >
 {
-  return Glib::PropertyProxy< Pango::AttrList >(this, "attributes");
+  return {this, "attributes"};
 }
 
 auto Inscription::property_attributes() const -> Glib::PropertyProxy_ReadOnly< Pango::AttrList >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::AttrList >(this, "attributes");
+  return {this, "attributes"};
 }
 
 auto Inscription::property_markup() -> Glib::PropertyProxy_WriteOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_WriteOnly< Glib::ustring >(this, "markup");
+  return {this, "markup"};
 }
 
 auto Inscription::property_min_chars() -> Glib::PropertyProxy< unsigned int >
 {
-  return Glib::PropertyProxy< unsigned int >(this, "min-chars");
+  return {this, "min-chars"};
 }
 
 auto Inscription::property_min_chars() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
-  return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "min-chars");
+  return {this, "min-chars"};
 }
 
 auto Inscription::property_min_lines() -> Glib::PropertyProxy< unsigned int >
 {
-  return Glib::PropertyProxy< unsigned int >(this, "min-lines");
+  return {this, "min-lines"};
 }
 
 auto Inscription::property_min_lines() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
-  return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "min-lines");
+  return {this, "min-lines"};
 }
 
 auto Inscription::property_nat_chars() -> Glib::PropertyProxy< unsigned int >
 {
-  return Glib::PropertyProxy< unsigned int >(this, "nat-chars");
+  return {this, "nat-chars"};
 }
 
 auto Inscription::property_nat_chars() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
-  return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "nat-chars");
+  return {this, "nat-chars"};
 }
 
 auto Inscription::property_nat_lines() -> Glib::PropertyProxy< unsigned int >
 {
-  return Glib::PropertyProxy< unsigned int >(this, "nat-lines");
+  return {this, "nat-lines"};
 }
 
 auto Inscription::property_nat_lines() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
-  return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "nat-lines");
+  return {this, "nat-lines"};
 }
 
 auto Inscription::property_text() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "text");
+  return {this, "text"};
 }
 
 auto Inscription::property_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "text");
+  return {this, "text"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Inscription::Overflow>::value,
   "Type Inscription::Overflow cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-auto Inscription::property_text_overflow() -> Glib::PropertyProxy< Inscription::Overflow >
+auto Inscription::property_text_overflow() -> Glib::PropertyProxy<Overflow>
 {
-  return Glib::PropertyProxy< Inscription::Overflow >(this, "text-overflow");
+  return {this, "text-overflow"};
 }
 
-auto Inscription::property_text_overflow() const -> Glib::PropertyProxy_ReadOnly< Inscription::Overflow >
+auto Inscription::property_text_overflow() const -> Glib::PropertyProxy_ReadOnly<Overflow>
 {
-  return Glib::PropertyProxy_ReadOnly< Inscription::Overflow >(this, "text-overflow");
+  return {this, "text-overflow"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::WrapMode>::value,
@@ -333,32 +337,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::WrapMode>::va
 
 auto Inscription::property_wrap_mode() -> Glib::PropertyProxy< Pango::WrapMode >
 {
-  return Glib::PropertyProxy< Pango::WrapMode >(this, "wrap-mode");
+  return {this, "wrap-mode"};
 }
 
 auto Inscription::property_wrap_mode() const -> Glib::PropertyProxy_ReadOnly< Pango::WrapMode >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::WrapMode >(this, "wrap-mode");
+  return {this, "wrap-mode"};
 }
 
 auto Inscription::property_xalign() -> Glib::PropertyProxy< float >
 {
-  return Glib::PropertyProxy< float >(this, "xalign");
+  return {this, "xalign"};
 }
 
 auto Inscription::property_xalign() const -> Glib::PropertyProxy_ReadOnly< float >
 {
-  return Glib::PropertyProxy_ReadOnly< float >(this, "xalign");
+  return {this, "xalign"};
 }
 
 auto Inscription::property_yalign() -> Glib::PropertyProxy< float >
 {
-  return Glib::PropertyProxy< float >(this, "yalign");
+  return {this, "yalign"};
 }
 
 auto Inscription::property_yalign() const -> Glib::PropertyProxy_ReadOnly< float >
 {
-  return Glib::PropertyProxy_ReadOnly< float >(this, "yalign");
+  return {this, "yalign"};
 }
 
 

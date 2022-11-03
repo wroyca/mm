@@ -32,7 +32,7 @@ namespace Gio
 {
 
 auto
-NetworkAddress::parse(const std::string& host_and_port, guint16 default_port) -> Glib::RefPtr<NetworkAddress>
+NetworkAddress::parse(const std::string& host_and_port, const guint16 default_port) -> Glib::RefPtr<NetworkAddress>
 {
   GError* error = nullptr;
   auto* address =
@@ -53,9 +53,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GNetworkAddress* object, bool take_copy) -> Glib::RefPtr<Gio::NetworkAddress>
+auto wrap(GNetworkAddress* object, const bool take_copy) -> RefPtr<Gio::NetworkAddress>
 {
-  return Glib::make_refptr_for_instance<Gio::NetworkAddress>( dynamic_cast<Gio::NetworkAddress*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::NetworkAddress>( dynamic_cast<Gio::NetworkAddress*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -68,7 +68,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto NetworkAddress_Class::init() -> const Glib::Class&
+auto NetworkAddress_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -115,34 +115,30 @@ auto NetworkAddress::gobj_copy() -> GNetworkAddress*
 }
 
 NetworkAddress::NetworkAddress(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 NetworkAddress::NetworkAddress(GNetworkAddress* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 NetworkAddress::NetworkAddress(NetworkAddress&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , SocketConnectable(std::move(src))
 {}
 
 auto NetworkAddress::operator=(NetworkAddress&& src) noexcept -> NetworkAddress&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   SocketConnectable::operator=(std::move(src));
   return *this;
 }
 
 
-NetworkAddress::~NetworkAddress() noexcept
-{}
-
+NetworkAddress::~NetworkAddress() noexcept = default;
 
 NetworkAddress::CppClassType NetworkAddress::networkaddress_class_; // initialize static member
 
@@ -158,17 +154,17 @@ auto NetworkAddress::get_base_type() -> GType
 }
 
 
-NetworkAddress::NetworkAddress(const std::string& hostname, guint16 port)
+NetworkAddress::NetworkAddress(const std::string& hostname, const guint16 port)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(networkaddress_class_.init(), "hostname", hostname.c_str(), "port", port, nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(networkaddress_class_.init(), "hostname", hostname.c_str(), "port", port, nullptr))
 {
 
 
 }
 
-auto NetworkAddress::create(const std::string& hostname, guint16 port) -> Glib::RefPtr<NetworkAddress>
+auto NetworkAddress::create(const std::string& hostname, const guint16 port) -> Glib::RefPtr<NetworkAddress>
 {
   return Glib::make_refptr_for_instance<NetworkAddress>( new NetworkAddress(hostname, port) );
 }
@@ -191,17 +187,17 @@ auto NetworkAddress::get_scheme() const -> std::string
 
 auto NetworkAddress::property_hostname() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
-  return Glib::PropertyProxy_ReadOnly< std::string >(this, "hostname");
+  return {this, "hostname"};
 }
 
 auto NetworkAddress::property_port() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
-  return Glib::PropertyProxy_ReadOnly< guint >(this, "port");
+  return {this, "port"};
 }
 
 auto NetworkAddress::property_scheme() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
-  return Glib::PropertyProxy_ReadOnly< std::string >(this, "scheme");
+  return {this, "scheme"};
 }
 
 

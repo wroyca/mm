@@ -26,26 +26,25 @@ namespace Glib
 
 // SignalProxyBase implementation:
 
-SignalProxyBase::SignalProxyBase(Glib::ObjectBase* obj) : obj_(obj)
+SignalProxyBase::SignalProxyBase(ObjectBase * obj) : obj_(obj)
 {
 }
 
 // SignalProxyNormal implementation:
 
-SignalProxyNormal::SignalProxyNormal(Glib::ObjectBase* obj, const SignalProxyInfo* info)
+SignalProxyNormal::SignalProxyNormal(ObjectBase * obj, const SignalProxyInfo* info)
 : SignalProxyBase(obj), info_(info)
 {
 }
 
-SignalProxyNormal::~SignalProxyNormal() noexcept
-{
-}
+SignalProxyNormal::~SignalProxyNormal() noexcept = default;
 
 auto
-SignalProxyNormal::connect_impl_(bool notify, const sigc::slot_base& slot, bool after) -> sigc::slot_base&
+SignalProxyNormal::connect_impl_(
+  const bool notify, const sigc::slot_base& slot, const bool after) -> sigc::slot_base&
 {
   // create a proxy to hold our connection info
-  auto pConnectionNode = new SignalProxyConnectionNode(slot, obj_->gobj());
+  const auto pConnectionNode = new SignalProxyConnectionNode(slot, obj_->gobj());
 
   // connect it to glib
   // pConnectionNode will be passed in the data argument to the callback.
@@ -58,10 +57,11 @@ SignalProxyNormal::connect_impl_(bool notify, const sigc::slot_base& slot, bool 
 }
 
 auto
-SignalProxyNormal::connect_impl_(bool notify, sigc::slot_base&& slot, bool after) -> sigc::slot_base&
+SignalProxyNormal::connect_impl_(
+  const bool notify, sigc::slot_base&& slot, const bool after) -> sigc::slot_base&
 {
   // create a proxy to hold our connection info
-  auto pConnectionNode = new SignalProxyConnectionNode(std::move(slot), obj_->gobj());
+  const auto pConnectionNode = new SignalProxyConnectionNode(std::move(slot), obj_->gobj());
 
   // connect it to glib
   // pConnectionNode will be passed in the data argument to the callback.
@@ -82,7 +82,7 @@ auto SignalProxyNormal::emission_stop () -> void
 auto SignalProxyNormal::slot0_void_callback (GObject *self, void *data) -> void
 {
   // Do not try to call a signal on a disassociated wrapper.
-  if (Glib::ObjectBase::_get_current_wrapper(self))
+  if (ObjectBase::_get_current_wrapper(self))
   {
     try
     {
@@ -91,31 +91,30 @@ auto SignalProxyNormal::slot0_void_callback (GObject *self, void *data) -> void
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke();
+      exception_handlers_invoke();
     }
   }
 }
 
 // SignalProxyDetailedBase implementation:
 
-SignalProxyDetailedBase::SignalProxyDetailedBase(
-  Glib::ObjectBase* obj, const SignalProxyInfo* info, const Glib::ustring& detail_name)
+SignalProxyDetailedBase::SignalProxyDetailedBase(ObjectBase * obj, const SignalProxyInfo* info, const ustring & detail_name)
 : SignalProxyBase(obj),
   info_(info),
-  detailed_name_(Glib::ustring(info->signal_name) +
-                 (detail_name.empty() ? Glib::ustring() : ("::" + detail_name)))
+  detailed_name_(
+    ustring(info->signal_name) +
+                 (detail_name.empty() ? ustring() : "::" + detail_name))
 {
 }
 
-SignalProxyDetailedBase::~SignalProxyDetailedBase() noexcept
-{
-}
+SignalProxyDetailedBase::~SignalProxyDetailedBase() noexcept = default;
 
 auto
-SignalProxyDetailedBase::connect_impl_(bool notify, const sigc::slot_base& slot, bool after) -> sigc::slot_base&
+SignalProxyDetailedBase::connect_impl_(
+  const bool notify, const sigc::slot_base& slot, const bool after) -> sigc::slot_base&
 {
   // create a proxy to hold our connection info
-  auto pConnectionNode = new SignalProxyConnectionNode(slot, obj_->gobj());
+  const auto pConnectionNode = new SignalProxyConnectionNode(slot, obj_->gobj());
 
   // connect it to glib
   // pConnectionNode will be passed in the data argument to the callback.
@@ -128,10 +127,11 @@ SignalProxyDetailedBase::connect_impl_(bool notify, const sigc::slot_base& slot,
 }
 
 auto
-SignalProxyDetailedBase::connect_impl_(bool notify, sigc::slot_base&& slot, bool after) -> sigc::slot_base&
+SignalProxyDetailedBase::connect_impl_(
+  const bool notify, sigc::slot_base&& slot, const bool after) -> sigc::slot_base&
 {
   // create a proxy to hold our connection info
-  auto pConnectionNode = new SignalProxyConnectionNode(std::move(slot), obj_->gobj());
+  const auto pConnectionNode = new SignalProxyConnectionNode(std::move(slot), obj_->gobj());
 
   // connect it to glib
   // pConnectionNode will be passed in the data argument to the callback.

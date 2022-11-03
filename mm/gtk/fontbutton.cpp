@@ -52,9 +52,9 @@ const Glib::SignalProxyInfo FontButton_signal_font_set_info =
 namespace Glib
 {
 
-auto wrap(GtkFontButton* object, bool take_copy) -> Gtk::FontButton*
+auto wrap(GtkFontButton* object, const bool take_copy) -> Gtk::FontButton*
 {
-  return dynamic_cast<Gtk::FontButton *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::FontButton *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -65,7 +65,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto FontButton_Class::init() -> const Glib::Class&
+auto FontButton_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -99,7 +99,7 @@ auto FontButton_Class::class_init_function (void *g_class, void *class_data) -> 
 
 auto FontButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new FontButton((GtkFontButton*)(o)));
+  return manage(new FontButton((GtkFontButton*)o));
 
 }
 
@@ -107,26 +107,24 @@ auto FontButton_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 FontButton::FontButton(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 FontButton::FontButton(GtkFontButton* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 FontButton::FontButton(FontButton&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
   , FontChooser(std::move(src))
 {}
 
 auto FontButton::operator=(FontButton&& src) noexcept -> FontButton&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   FontChooser::operator=(std::move(src));
   return *this;
 }
@@ -153,8 +151,8 @@ auto FontButton::get_base_type() -> GType
 FontButton::FontButton()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(fontbutton_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(fontbutton_class_.init()))
 {
 
 
@@ -163,8 +161,8 @@ FontButton::FontButton()
 FontButton::FontButton(const Glib::ustring& font)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(fontbutton_class_.init(), "font", font.c_str(), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(fontbutton_class_.init(), "font", font.c_str(), nullptr))
 {
 
 
@@ -185,9 +183,10 @@ auto FontButton::get_modal() const -> bool
   return gtk_font_button_get_modal(const_cast<GtkFontButton*>(gobj()));
 }
 
-auto FontButton::set_modal (bool modal) -> void
+auto FontButton::set_modal (
+  const bool modal) -> void
 {
-  gtk_font_button_set_modal(gobj(), static_cast<int>(modal));
+  gtk_font_button_set_modal(gobj(), modal);
 }
 
 auto FontButton::get_use_font() const -> bool
@@ -195,9 +194,10 @@ auto FontButton::get_use_font() const -> bool
   return gtk_font_button_get_use_font(const_cast<GtkFontButton*>(gobj()));
 }
 
-auto FontButton::set_use_font (bool use_font) -> void
+auto FontButton::set_use_font (
+  const bool use_font) -> void
 {
-  gtk_font_button_set_use_font(gobj(), static_cast<int>(use_font));
+  gtk_font_button_set_use_font(gobj(), use_font);
 }
 
 auto FontButton::get_use_size() const -> bool
@@ -205,56 +205,57 @@ auto FontButton::get_use_size() const -> bool
   return gtk_font_button_get_use_size(const_cast<GtkFontButton*>(gobj()));
 }
 
-auto FontButton::set_use_size (bool use_size) -> void
+auto FontButton::set_use_size (
+  const bool use_size) -> void
 {
-  gtk_font_button_set_use_size(gobj(), static_cast<int>(use_size));
+  gtk_font_button_set_use_size(gobj(), use_size);
 }
 
 
 auto FontButton::signal_font_set() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &FontButton_signal_font_set_info);
+  return {this, &FontButton_signal_font_set_info};
 }
 
 
 auto FontButton::property_title() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 auto FontButton::property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 auto FontButton::property_modal() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "modal");
+  return {this, "modal"};
 }
 
 auto FontButton::property_modal() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "modal");
+  return {this, "modal"};
 }
 
 auto FontButton::property_use_font() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "use-font");
+  return {this, "use-font"};
 }
 
 auto FontButton::property_use_font() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "use-font");
+  return {this, "use-font"};
 }
 
 auto FontButton::property_use_size() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "use-size");
+  return {this, "use-size"};
 }
 
 auto FontButton::property_use_size() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "use-size");
+  return {this, "use-size"};
 }
 
 

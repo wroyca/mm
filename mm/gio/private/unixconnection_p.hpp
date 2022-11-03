@@ -17,13 +17,13 @@ public:
   using CppObjectType = UnixConnection;
   using BaseObjectType = GUnixConnection;
   using BaseClassType = GUnixConnectionClass;
-  using CppClassParent = Gio::SocketConnection_Class;
+  using CppClassParent = SocketConnection_Class;
   using BaseClassParent = GSocketConnectionClass;
 
   friend class UnixConnection;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

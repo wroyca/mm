@@ -39,18 +39,18 @@ Error::Error() : gobject_(nullptr)
 {
 }
 
-Error::Error(GQuark error_domain, int error_code, const Glib::ustring& message)
+Error::Error(const GQuark error_domain, const int error_code, const ustring & message)
 : gobject_(g_error_new_literal(error_domain, error_code, message.c_str()))
 {
 }
 
-Error::Error(GError* gobject, bool take_copy)
-: gobject_((take_copy && gobject) ? g_error_copy(gobject) : gobject)
+Error::Error(GError* gobject, const bool take_copy)
+: gobject_(take_copy && gobject ? g_error_copy(gobject) : gobject)
 {
 }
 
 Error::Error(const Error& other)
-: std::exception(other), gobject_((other.gobject_) ? g_error_copy(other.gobject_) : nullptr)
+: std::exception(other), gobject_(other.gobject_ ? g_error_copy(other.gobject_) : nullptr)
 {
 }
 
@@ -109,7 +109,8 @@ Error::what() const noexcept -> const char*
 }
 
 auto
-Error::matches(GQuark error_domain, int error_code) const -> bool
+Error::matches(
+  const GQuark error_domain, const int error_code) const -> bool
 {
   return g_error_matches(gobject_, error_domain, error_code);
 }
@@ -138,8 +139,8 @@ auto Error::register_init () -> void
   if (!throw_func_table)
   {
     throw_func_table = new ThrowFuncTable();
-    Glib::wrap_register_init();
-    Glib::wrap_init(); // make sure that at least the Glib exceptions are registered
+    wrap_register_init();
+    wrap_init(); // make sure that at least the Glib exceptions are registered
   }
 }
 
@@ -154,7 +155,8 @@ auto Error::register_cleanup () -> void
 }
 
 // static
-auto Error::register_domain (GQuark error_domain, Error::ThrowFunc throw_func) -> void
+auto Error::register_domain (
+  const GQuark error_domain, const ThrowFunc throw_func) -> void
 {
   g_assert(throw_func_table != nullptr);
 
@@ -177,11 +179,10 @@ auto Error::throw_exception (GError *gobject) -> void
   }
 
   g_warning("Glib::Error::throw_exception():\n  "
-            "unknown error domain '%s': throwing generic Glib::Error exception\n",
-    (gobject->domain) ? g_quark_to_string(gobject->domain) : "(null)");
+            "unknown error domain '%s': throwing generic Glib::Error exception\n", gobject->domain ? g_quark_to_string(gobject->domain) : "(null)");
 
   // Doesn't copy, because error-returning functions return a newly allocated GError for us.
-  throw Glib::Error(gobject);
+  throw Error(gobject);
 }
 
 // Glib::Value<Glib::Error>
@@ -195,9 +196,9 @@ auto Value <Error>::set (const CppType &data) -> void
   set_boxed(data.gobj());
 }
 
-auto Value<Error>::get() const -> Value<Error>::CppType
+auto Value<Error>::get() const -> CppType
 {
-  return Glib::Error(static_cast<CType>(get_boxed()), true);
+  return Error(static_cast<CType>(get_boxed()), true);
 }
 
 } // namespace Glib

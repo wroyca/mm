@@ -28,7 +28,8 @@ AccelKey::AccelKey()
 {
 }
 
-AccelKey::AccelKey(guint accel_key, Gdk::ModifierType accel_mods,
+AccelKey::AccelKey(
+  const guint accel_key, const Gdk::ModifierType accel_mods,
                    const Glib::ustring& accel_path)
 : key_(accel_key),
   mod_(accel_mods),
@@ -50,14 +51,7 @@ AccelKey::AccelKey(const AccelKey& src)
   path_ = src.path_;
 }
 
-auto AccelKey::operator=(const AccelKey& src) -> AccelKey&
-{
-  key_ = src.key_;
-  mod_ = src.mod_;
-  path_ = src.path_;
-
-  return *this;
-}
+auto AccelKey::operator=(const AccelKey& src) -> AccelKey& = default;
 
 auto AccelKey::get_key() const -> guint
 {
@@ -76,7 +70,7 @@ auto AccelKey::get_path() const -> Glib::ustring
 
 auto AccelKey::is_null() const -> bool
 {
-  return ( (key_ == GDK_KEY_VoidSymbol) || !(get_key() > 0) ); //both seem to be invalid.
+  return key_ == GDK_KEY_VoidSymbol || !(get_key() > 0); //both seem to be invalid.
 }
 
 auto AccelKey::get_abbrev() const -> Glib::ustring

@@ -34,9 +34,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkFileFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::FileFilter>
+auto wrap(GtkFileFilter* object, const bool take_copy) -> RefPtr<Gtk::FileFilter>
 {
-  return Glib::make_refptr_for_instance<Gtk::FileFilter>( dynamic_cast<Gtk::FileFilter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::FileFilter>( dynamic_cast<Gtk::FileFilter*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -49,7 +49,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto FileFilter_Class::init() -> const Glib::Class&
+auto FileFilter_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -96,34 +96,30 @@ auto FileFilter::gobj_copy() -> GtkFileFilter*
 }
 
 FileFilter::FileFilter(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Filter(construct_params)
+: Filter(construct_params)
 {
 
 }
 
 FileFilter::FileFilter(GtkFileFilter* castitem)
-:
-  Gtk::Filter((GtkFilter*)(castitem))
+: Filter((GtkFilter*)castitem)
 {}
 
 
 FileFilter::FileFilter(FileFilter&& src) noexcept
-: Gtk::Filter(std::move(src))
+: Filter(std::move(src))
   , Buildable(std::move(src))
 {}
 
 auto FileFilter::operator=(FileFilter&& src) noexcept -> FileFilter&
 {
-  Gtk::Filter::operator=(std::move(src));
+  Filter::operator=(std::move(src));
   Buildable::operator=(std::move(src));
   return *this;
 }
 
 
-FileFilter::~FileFilter() noexcept
-{}
-
+FileFilter::~FileFilter() noexcept = default;
 
 FileFilter::CppClassType FileFilter::filefilter_class_; // initialize static member
 
@@ -142,8 +138,8 @@ auto FileFilter::get_base_type() -> GType
 FileFilter::FileFilter()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Filter(Glib::ConstructParams(filefilter_class_.init()))
+ObjectBase(nullptr),
+Filter(Glib::ConstructParams(filefilter_class_.init()))
 {
 
 
@@ -187,12 +183,12 @@ auto FileFilter::add_pixbuf_formats () -> void
 
 auto FileFilter::property_name() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "name");
+  return {this, "name"};
 }
 
 auto FileFilter::property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name");
+  return {this, "name"};
 }
 
 

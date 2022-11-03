@@ -37,9 +37,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GSimplePermission* object, bool take_copy) -> Glib::RefPtr<Gio::SimplePermission>
+auto wrap(GSimplePermission* object, const bool take_copy) -> RefPtr<Gio::SimplePermission>
 {
-  return Glib::make_refptr_for_instance<Gio::SimplePermission>( dynamic_cast<Gio::SimplePermission*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::SimplePermission>( dynamic_cast<Gio::SimplePermission*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -52,7 +52,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto SimplePermission_Class::init() -> const Glib::Class&
+auto SimplePermission_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -98,32 +98,28 @@ auto SimplePermission::gobj_copy() -> GSimplePermission*
 }
 
 SimplePermission::SimplePermission(const Glib::ConstructParams& construct_params)
-:
-  Gio::Permission(construct_params)
+: Permission(construct_params)
 {
 
 }
 
 SimplePermission::SimplePermission(GSimplePermission* castitem)
-:
-  Gio::Permission((GPermission*)(castitem))
+: Permission((GPermission*)castitem)
 {}
 
 
 SimplePermission::SimplePermission(SimplePermission&& src) noexcept
-: Gio::Permission(std::move(src))
+: Permission(std::move(src))
 {}
 
 auto SimplePermission::operator=(SimplePermission&& src) noexcept -> SimplePermission&
 {
-  Gio::Permission::operator=(std::move(src));
+  Permission::operator=(std::move(src));
   return *this;
 }
 
 
-SimplePermission::~SimplePermission() noexcept
-{}
-
+SimplePermission::~SimplePermission() noexcept = default;
 
 SimplePermission::CppClassType SimplePermission::simplepermission_class_; // initialize static member
 
@@ -139,17 +135,18 @@ auto SimplePermission::get_base_type() -> GType
 }
 
 
-SimplePermission::SimplePermission(bool allowed)
+SimplePermission::SimplePermission(const bool allowed)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gio::Permission(Glib::ConstructParams(simplepermission_class_.init(), "allowed", static_cast<int>(allowed), nullptr))
+ObjectBase(nullptr),
+Permission(Glib::ConstructParams(simplepermission_class_.init(), "allowed", allowed, nullptr))
 {
 
 
 }
 
-auto SimplePermission::create(bool allowed) -> Glib::RefPtr<SimplePermission>
+auto SimplePermission::create(
+  const bool allowed) -> Glib::RefPtr<SimplePermission>
 {
   return Glib::make_refptr_for_instance<SimplePermission>( new SimplePermission(allowed) );
 }

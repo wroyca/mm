@@ -38,15 +38,15 @@ auto InterfaceSkeleton_signal_authorize_method_callback(GDBusInterfaceSkeleton* 
   using namespace Gio::DBus;
   using SlotType = sigc::slot<bool(const Glib::RefPtr<MethodInvocation>&)>;
 
-  auto obj = dynamic_cast<InterfaceSkeleton*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<InterfaceSkeleton*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return static_cast<int>((*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
-));
+        return (*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
+        );
     }
     catch(...)
     {
@@ -63,7 +63,7 @@ auto InterfaceSkeleton_signal_authorize_method_notify_callback(GDBusInterfaceSke
   using namespace Gio::DBus;
   using SlotType = sigc::slot<void(const Glib::RefPtr<MethodInvocation>&)>;
 
-  auto obj = dynamic_cast<InterfaceSkeleton*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<InterfaceSkeleton*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -103,9 +103,9 @@ auto Glib::Value<Gio::DBus::InterfaceSkeleton::Flags>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GDBusInterfaceSkeleton* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::InterfaceSkeleton>
+auto wrap(GDBusInterfaceSkeleton* object, const bool take_copy) -> RefPtr<Gio::DBus::InterfaceSkeleton>
 {
-  return Glib::make_refptr_for_instance<Gio::DBus::InterfaceSkeleton>( dynamic_cast<Gio::DBus::InterfaceSkeleton*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::DBus::InterfaceSkeleton>( dynamic_cast<Gio::DBus::InterfaceSkeleton*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -118,7 +118,7 @@ namespace Gio::DBus
 
 /* The *_Class implementation: */
 
-auto InterfaceSkeleton_Class::init() -> const Glib::Class&
+auto InterfaceSkeleton_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -153,8 +153,7 @@ auto InterfaceSkeleton_Class::class_init_function (void *g_class, void *class_da
 
 auto InterfaceSkeleton_Class::g_authorize_method_callback(GDBusInterfaceSkeleton* self, GDBusMethodInvocation* p0) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -169,8 +168,8 @@ auto InterfaceSkeleton_Class::g_authorize_method_callback(GDBusInterfaceSkeleton
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->on_authorize_method(Glib::wrap(p0, true)
-));
+        return obj->on_authorize_method(Glib::wrap(p0, true)
+        );
       }
       catch(...)
       {
@@ -207,34 +206,30 @@ auto InterfaceSkeleton::gobj_copy() -> GDBusInterfaceSkeleton*
 }
 
 InterfaceSkeleton::InterfaceSkeleton(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 InterfaceSkeleton::InterfaceSkeleton(GDBusInterfaceSkeleton* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 InterfaceSkeleton::InterfaceSkeleton(InterfaceSkeleton&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , Interface(std::move(src))
 {}
 
 auto InterfaceSkeleton::operator=(InterfaceSkeleton&& src) noexcept -> InterfaceSkeleton&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   Interface::operator=(std::move(src));
   return *this;
 }
 
 
-InterfaceSkeleton::~InterfaceSkeleton() noexcept
-{}
-
+InterfaceSkeleton::~InterfaceSkeleton() noexcept = default;
 
 InterfaceSkeleton::CppClassType InterfaceSkeleton::interfaceskeleton_class_; // initialize static member
 
@@ -274,9 +269,9 @@ auto InterfaceSkeleton::export_interface_skeleton (
   const Glib::RefPtr <Connection> &connection, const Glib::ustring &object_path) -> void
 {
   GError* gerror = nullptr;
-  g_dbus_interface_skeleton_export(gobj(), Glib::unwrap(connection), object_path.c_str(), &(gerror));
+  g_dbus_interface_skeleton_export(gobj(), Glib::unwrap(connection), object_path.c_str(), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
 auto InterfaceSkeleton::unexport () -> void
@@ -333,7 +328,7 @@ auto InterfaceSkeleton::set_flags (Flags flags) -> void
 
 auto InterfaceSkeleton::signal_authorize_method() -> Glib::SignalProxy<bool(const Glib::RefPtr<MethodInvocation>&)>
 {
-  return Glib::SignalProxy<bool(const Glib::RefPtr<MethodInvocation>&) >(this, &InterfaceSkeleton_signal_authorize_method_info);
+  return {this, &InterfaceSkeleton_signal_authorize_method_info};
 }
 
 
@@ -343,16 +338,16 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Flags>::value,
 
 auto InterfaceSkeleton::property_g_flags() -> Glib::PropertyProxy< Flags >
 {
-  return Glib::PropertyProxy< Flags >(this, "g-flags");
+  return {this, "g-flags"};
 }
 
 auto InterfaceSkeleton::property_g_flags() const -> Glib::PropertyProxy_ReadOnly< Flags >
 {
-  return Glib::PropertyProxy_ReadOnly< Flags >(this, "g-flags");
+  return {this, "g-flags"};
 }
 
 
-auto Gio::DBus::InterfaceSkeleton::on_authorize_method(const Glib::RefPtr<MethodInvocation>& invocation) -> bool
+auto InterfaceSkeleton::on_authorize_method(const Glib::RefPtr<MethodInvocation>& invocation) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

@@ -40,24 +40,24 @@ namespace Glib {
 
 //Declarations of the *_Class::wrap_new() methods, instead of including all the private headers:
 
-class Binding_Class { public: static auto wrap_new(GObject*) -> Glib::ObjectBase*; };
+class Binding_Class { public: static auto wrap_new(GObject*) -> ObjectBase*; };
 
 auto wrap_init () -> void
 {
   // Register Error domains in the main namespace:
-  Glib::Error::register_domain(g_convert_error_quark(), &ConvertError::throw_func);
-  Glib::Error::register_domain(g_file_error_quark(), &FileError::throw_func);
-  Glib::Error::register_domain(g_io_channel_error_quark(), &IOChannelError::throw_func);
-  Glib::Error::register_domain(g_key_file_error_quark(), &KeyFileError::throw_func);
-  Glib::Error::register_domain(g_markup_error_quark(), &MarkupError::throw_func);
-  Glib::Error::register_domain(g_option_error_quark(), &OptionError::throw_func);
-  Glib::Error::register_domain(g_regex_error_quark(), &RegexError::throw_func);
-  Glib::Error::register_domain(g_shell_error_quark(), &ShellError::throw_func);
-  Glib::Error::register_domain(g_spawn_error_quark(), &SpawnError::throw_func);
-  Glib::Error::register_domain(g_variant_parse_error_quark(), &VariantParseError::throw_func);
+  Error::register_domain(g_convert_error_quark(), &ConvertError::throw_func);
+  Error::register_domain(g_file_error_quark(), &FileError::throw_func);
+  Error::register_domain(g_io_channel_error_quark(), &IOChannelError::throw_func);
+  Error::register_domain(g_key_file_error_quark(), &KeyFileError::throw_func);
+  Error::register_domain(g_markup_error_quark(), &MarkupError::throw_func);
+  Error::register_domain(g_option_error_quark(), &OptionError::throw_func);
+  Error::register_domain(g_regex_error_quark(), &RegexError::throw_func);
+  Error::register_domain(g_shell_error_quark(), &ShellError::throw_func);
+  Error::register_domain(g_spawn_error_quark(), &SpawnError::throw_func);
+  Error::register_domain(g_variant_parse_error_quark(), &VariantParseError::throw_func);
 
   // Map gtypes to gtkmm wrapper-creation functions:
-  Glib::wrap_register(g_binding_get_type(), &Binding_Class::wrap_new);
+  wrap_register(g_binding_get_type(), &Binding_Class::wrap_new);
 
   // Register the gtkmm gtypes:
   g_type_ensure(Binding::get_type());

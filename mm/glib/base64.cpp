@@ -22,7 +22,7 @@ namespace Glib
 {
 
 auto
-Base64::encode(const std::string& source, bool break_lines) -> std::string
+Base64::encode(const std::string& source, const bool break_lines) -> std::string
 {
   /* The output buffer must be large enough to fit all the data that will be
      written to it. Due to the way base64 encodes you will need at least:
@@ -31,7 +31,7 @@ Base64::encode(const std::string& source, bool break_lines) -> std::string
      ((len / 3 + 1) * 4 + 4) / 72 + 1 bytes of extra space.
   */
   gsize length = (source.length() / 3 + 1) * 4 + 1; // + 1 for the terminating zero
-  length += ((length / 72) + 1); // in case break_lines = true
+  length += length / 72 + 1;                        // in case break_lines = true
   const auto buf = make_unique_ptr_gfree((char*)g_malloc(length));
   gint state = 0, save = 0;
   const guchar* src = reinterpret_cast<const unsigned char*>(source.data());

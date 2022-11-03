@@ -38,9 +38,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GSeekable* object, bool take_copy) -> Glib::RefPtr<Gio::Seekable>
+auto wrap(GSeekable* object, const bool take_copy) -> RefPtr<Gio::Seekable>
 {
-  return Glib::make_refptr_for_instance<Gio::Seekable>( dynamic_cast<Gio::Seekable*> (Glib::wrap_auto_interface<Gio::Seekable> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::Seekable>( Glib::wrap_auto_interface<Gio::Seekable> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -53,7 +53,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto Seekable_Class::init() -> const Glib::Interface_Class&
+auto Seekable_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -82,42 +82,40 @@ auto Seekable_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto Seekable_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new Seekable((GSeekable*)(object));
+  return new Seekable((GSeekable*)object);
 }
 
 
 /* The implementation: */
 
 Seekable::Seekable()
-:
-  Glib::Interface(seekable_class_.init())
+: Interface(seekable_class_.init())
 {}
 
 Seekable::Seekable(GSeekable* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 Seekable::Seekable(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 Seekable::Seekable(Seekable&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto Seekable::operator=(Seekable&& src) noexcept -> Seekable&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-Seekable::~Seekable() noexcept
-{}
+Seekable::~Seekable() noexcept = default;
 
 // static
-auto Seekable::add_interface (GType gtype_implementer) -> void
+auto Seekable::add_interface (
+  const GType gtype_implementer) -> void
 {
   seekable_class_.init().add_interface(gtype_implementer);
 }
@@ -146,21 +144,23 @@ auto Seekable::can_seek() const -> bool
   return g_seekable_can_seek(const_cast<GSeekable*>(gobj()));
 }
 
-auto Seekable::seek(goffset offset, Glib::SeekType type, const Glib::RefPtr<Cancellable>& cancellable) -> bool
+auto Seekable::seek(
+  const goffset offset, Glib::SeekType type, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_seekable_seek(gobj(), offset, static_cast<GSeekType>(type), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_seekable_seek(gobj(), offset, static_cast<GSeekType>(type), Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto Seekable::seek(goffset offset, Glib::SeekType type) -> bool
+auto Seekable::seek(
+  const goffset offset, Glib::SeekType type) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_seekable_seek(gobj(), offset, static_cast<GSeekType>(type), nullptr, &(gerror));
+  const auto retvalue = g_seekable_seek(gobj(), offset, static_cast<GSeekType>(type), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -169,21 +169,23 @@ auto Seekable::can_truncate() const -> bool
   return g_seekable_can_truncate(const_cast<GSeekable*>(gobj()));
 }
 
-auto Seekable::truncate(goffset offset, const Glib::RefPtr<Cancellable>& cancellable) -> bool
+auto Seekable::truncate(
+  const goffset offset, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_seekable_truncate(gobj(), offset, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_seekable_truncate(gobj(), offset, Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto Seekable::truncate(goffset offset) -> bool
+auto Seekable::truncate(
+  const goffset offset) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_seekable_truncate(gobj(), offset, nullptr, &(gerror));
+  const auto retvalue = g_seekable_truncate(gobj(), offset, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 

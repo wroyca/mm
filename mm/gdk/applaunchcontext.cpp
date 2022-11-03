@@ -40,9 +40,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GdkAppLaunchContext* object, bool take_copy) -> Glib::RefPtr<Gdk::AppLaunchContext>
+auto wrap(GdkAppLaunchContext* object, const bool take_copy) -> RefPtr<Gdk::AppLaunchContext>
 {
-  return Glib::make_refptr_for_instance<Gdk::AppLaunchContext>( dynamic_cast<Gdk::AppLaunchContext*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gdk::AppLaunchContext>( dynamic_cast<Gdk::AppLaunchContext*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -55,7 +55,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-auto AppLaunchContext_Class::init() -> const Glib::Class&
+auto AppLaunchContext_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -109,7 +109,7 @@ AppLaunchContext::AppLaunchContext(const Glib::ConstructParams& construct_params
 
 AppLaunchContext::AppLaunchContext(GdkAppLaunchContext* castitem)
 :
-  Gio::AppLaunchContext((GAppLaunchContext*)(castitem))
+  Gio::AppLaunchContext((GAppLaunchContext*)castitem)
 {}
 
 
@@ -124,9 +124,7 @@ auto AppLaunchContext::operator=(AppLaunchContext&& src) noexcept -> AppLaunchCo
 }
 
 
-AppLaunchContext::~AppLaunchContext() noexcept
-{}
-
+AppLaunchContext::~AppLaunchContext() noexcept = default;
 
 AppLaunchContext::CppClassType AppLaunchContext::applaunchcontext_class_; // initialize static member
 
@@ -145,7 +143,7 @@ auto AppLaunchContext::get_base_type() -> GType
 AppLaunchContext::AppLaunchContext()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   Gio::AppLaunchContext(Glib::ConstructParams(applaunchcontext_class_.init()))
 {
 
@@ -170,19 +168,21 @@ auto AppLaunchContext::get_display() const -> Glib::RefPtr<const Display>
   return const_cast<AppLaunchContext*>(this)->get_display();
 }
 
-auto AppLaunchContext::set_desktop (int desktop) -> void
+auto AppLaunchContext::set_desktop (
+  const int desktop) -> void
 {
   gdk_app_launch_context_set_desktop(gobj(), desktop);
 }
 
-auto AppLaunchContext::set_timestamp (guint32 timestamp) -> void
+auto AppLaunchContext::set_timestamp (
+  const guint32 timestamp) -> void
 {
   gdk_app_launch_context_set_timestamp(gobj(), timestamp);
 }
 
 auto AppLaunchContext::set_icon (const Glib::RefPtr <Gio::Icon> &icon) -> void
 {
-  gdk_app_launch_context_set_icon(gobj(), const_cast<GIcon*>(Glib::unwrap<Gio::Icon>(icon)));
+  gdk_app_launch_context_set_icon(gobj(), Glib::unwrap<Gio::Icon>(icon));
 }
 
 auto AppLaunchContext::set_icon_name (const Glib::ustring &icon_name) -> void
@@ -197,7 +197,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Display
 
 auto AppLaunchContext::property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >(this, "display");
+  return {this, "display"};
 }
 
 

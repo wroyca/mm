@@ -23,7 +23,7 @@ namespace Cairo {
 
 #ifdef CAIRO_HAS_SCRIPT_SURFACE
 
-Script::Script(cairo_device_t* cobject, bool has_reference) :
+Script::Script(cairo_device_t* cobject, const bool has_reference) :
   Device(cobject, has_reference)
 {}
 
@@ -34,8 +34,8 @@ Script::~Script()
 
 auto Script::add_from_recording_surface (const RefPtr <ScriptSurface> &recording_surface) -> void
 {
-  auto status = cairo_script_from_recording_surface(m_cobject,
-                                                           recording_surface->cobj());
+  const auto status = cairo_script_from_recording_surface(m_cobject,
+                                                          recording_surface->cobj());
   check_status_and_throw_exception(status);
 }
 
@@ -56,7 +56,7 @@ auto Script::write_comment (const std::string &comment) -> void
 
 auto Script::create(const std::string& filename) -> RefPtr<Script>
 {
-  auto cobject = cairo_script_create(filename.c_str());
+  const auto cobject = cairo_script_create(filename.c_str());
   check_status_and_throw_exception(cairo_device_status(cobject));
   return make_refptr_for_instance<Script>(new Script(cobject, true /* has reference */));
 }
@@ -66,18 +66,17 @@ static cairo_user_data_key_t USER_DATA_KEY_DEVICE_WRITE_FUNC = {0};
 static auto device_free_slot (void *data) -> void
 {
   // FIXME: duplicates free_slot in surface.cc
-  auto slot = static_cast<Surface::SlotWriteFunc*>(data);
+  const auto slot = static_cast<Surface::SlotWriteFunc*>(data);
   delete slot;
 }
 
-auto device_write_func_wrapper(void* closure, const unsigned char* data,
-                                         unsigned int length) -> cairo_status_t
+auto device_write_func_wrapper(void* closure, const unsigned char* data, const unsigned int length) -> cairo_status_t
 {
   // FIXME: duplicates free_slot in surface.cc
   if (!closure)
     return CAIRO_STATUS_WRITE_ERROR;
-  auto write_func = static_cast<Surface::SlotWriteFunc*>(closure);
-  return static_cast<cairo_status_t>((*write_func)(data, length));
+  const auto write_func = static_cast<Surface::SlotWriteFunc*>(closure);
+  return (*write_func)(data, length);
 }
 
 static auto set_write_slot (
@@ -92,9 +91,9 @@ static auto set_write_slot (
 
 auto Script::create_for_stream(const Surface::SlotWriteFunc& write_func) -> RefPtr<Script>
 {
-  auto slot_copy = new Surface::SlotWriteFunc(write_func);
-  auto cobject = cairo_script_create_for_stream(device_write_func_wrapper,
-                                                           slot_copy);
+  const auto slot_copy = new Surface::SlotWriteFunc(write_func);
+  const auto cobject = cairo_script_create_for_stream(device_write_func_wrapper,
+                                                      slot_copy);
   check_status_and_throw_exception(cairo_device_status(cobject));
   set_write_slot(cobject, slot_copy);
   return make_refptr_for_instance<Script>(new Script(cobject, true /* has reference */));

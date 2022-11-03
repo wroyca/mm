@@ -54,7 +54,8 @@ auto GlyphString::get_ink_extents(const Glib::RefPtr<const Font>& font) const ->
   return ink_rect;
 }
 
-auto GlyphString::get_ink_extents(int start, int end, const Glib::RefPtr<const Font>& font) const -> Rectangle
+auto GlyphString::get_ink_extents(
+  const int start, const int end, const Glib::RefPtr<const Font>& font) const -> Rectangle
 {
   Rectangle ink_rect;
   pango_glyph_string_extents_range(const_cast<PangoGlyphString*>(gobj()), start, end, const_cast<PangoFont*>(font->gobj()), ink_rect.gobj(), 0);
@@ -68,33 +69,34 @@ auto GlyphString::get_logical_extents(const Glib::RefPtr<const Font>& font) cons
   return logical_rect;
 }
 
-auto GlyphString::get_logical_extents(int start, int end, const Glib::RefPtr<const Font>& font) const -> Rectangle
+auto GlyphString::get_logical_extents(
+  const int start, const int end, const Glib::RefPtr<const Font>& font) const -> Rectangle
 {
   Rectangle logical_rect;
   pango_glyph_string_extents_range(const_cast<PangoGlyphString*>(gobj()), start, end, const_cast<PangoFont*>(font->gobj()), 0, logical_rect.gobj());
   return logical_rect;
 }
 
-auto GlyphString::get_logical_widths(const Glib::ustring& text, int embedding_level) const -> std::vector<int>
+auto GlyphString::get_logical_widths(const Glib::ustring& text, const int embedding_level) const -> std::vector<int>
 {
   int* logical_widths = g_new(int, text.length());
   pango_glyph_string_get_logical_widths(const_cast<PangoGlyphString*>(gobj()), text.c_str(), text.bytes(), embedding_level, logical_widths);
   return Glib::ArrayHandler<int>::array_to_vector(logical_widths, text.length(), Glib::OWNERSHIP_SHALLOW);
 }
 
-auto GlyphString::index_to_x(const Glib::ustring& text, const Analysis& analysis, int index, bool trailing) const -> int
+auto GlyphString::index_to_x(const Glib::ustring& text, const Analysis& analysis, const int index, const bool trailing) const -> int
 {
   int x_pos;
-  pango_glyph_string_index_to_x(const_cast<PangoGlyphString*>(gobj()), const_cast<gchar*>(text.c_str()), text.bytes(), const_cast<PangoAnalysis*>(analysis.gobj()), index, static_cast<int>(trailing), &x_pos);
+  pango_glyph_string_index_to_x(const_cast<PangoGlyphString*>(gobj()), text.c_str(), text.bytes(), const_cast<PangoAnalysis*>(analysis.gobj()), index, trailing, &x_pos);
   return x_pos;
 }
 
 auto GlyphString::x_to_index (
-  const Glib::ustring &text, const Analysis &analysis, int x_pos, int &index,
+  const Glib::ustring &text, const Analysis &analysis, const int x_pos, int &index,
   bool &trailing) const -> void
 {
   gboolean trailing_temp = FALSE;
-  pango_glyph_string_x_to_index(const_cast<PangoGlyphString*>(gobj()), const_cast<char*>(text.c_str()), text.bytes(), const_cast<PangoAnalysis*>(analysis.gobj()), x_pos, &index, &trailing_temp);
+  pango_glyph_string_x_to_index(const_cast<PangoGlyphString*>(gobj()), text.c_str(), text.bytes(), const_cast<PangoAnalysis*>(analysis.gobj()), x_pos, &index, &trailing_temp);
   trailing = trailing_temp;
 }
 
@@ -113,7 +115,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(PangoGlyphString* object, bool take_copy) -> Pango::GlyphString
+auto wrap(PangoGlyphString* object, const bool take_copy) -> Pango::GlyphString
 {
   return Pango::GlyphString(object, take_copy);
 }
@@ -138,7 +140,7 @@ GlyphString::GlyphString()
 
 GlyphString::GlyphString(const GlyphString& other)
 :
-  gobject_ ((other.gobject_) ? pango_glyph_string_copy(other.gobject_) : nullptr)
+  gobject_ (other.gobject_ ? pango_glyph_string_copy(other.gobject_) : nullptr)
 {}
 
 GlyphString::GlyphString(GlyphString&& other) noexcept
@@ -155,12 +157,12 @@ auto GlyphString::operator=(GlyphString&& other) noexcept -> GlyphString&
   return *this;
 }
 
-GlyphString::GlyphString(PangoGlyphString* gobject, bool make_a_copy)
+GlyphString::GlyphString(PangoGlyphString* gobject, const bool make_a_copy)
 :
   // For BoxedType wrappers, make_a_copy is true by default.  The static
   // BoxedType wrappers must always take a copy, thus make_a_copy = true
   // ensures identical behaviour if the default argument is used.
-  gobject_ ((make_a_copy && gobject) ? pango_glyph_string_copy(gobject) : gobject)
+  gobject_ (make_a_copy && gobject ? pango_glyph_string_copy(gobject) : gobject)
 {}
 
 auto GlyphString::operator=(const GlyphString& other) -> GlyphString&
@@ -187,7 +189,8 @@ auto GlyphString::gobj_copy() const -> PangoGlyphString*
 }
 
 
-auto GlyphString::set_size (int new_len) -> void
+auto GlyphString::set_size (
+  const int new_len) -> void
 {
   pango_glyph_string_set_size(gobj(), new_len);
 }
@@ -195,14 +198,14 @@ auto GlyphString::set_size (int new_len) -> void
 auto GlyphString::get_extents (
   const Glib::RefPtr <const Font> &font, Rectangle &ink_rect, Rectangle &logical_rect) const -> void
 {
-  pango_glyph_string_extents(const_cast<PangoGlyphString*>(gobj()), const_cast<PangoFont*>(Glib::unwrap<Font>(font)), (ink_rect).gobj(), (logical_rect).gobj());
+  pango_glyph_string_extents(const_cast<PangoGlyphString*>(gobj()), const_cast<PangoFont*>(Glib::unwrap<Font>(font)), ink_rect.gobj(), logical_rect.gobj());
 }
 
 auto GlyphString::get_extents (
-  int start, int end, const Glib::RefPtr <const Font> &font, Rectangle &ink_rect,
+  const int start, const int end, const Glib::RefPtr <const Font> &font, Rectangle &ink_rect,
   Rectangle &logical_rect) const -> void
 {
-  pango_glyph_string_extents_range(const_cast<PangoGlyphString*>(gobj()), start, end, const_cast<PangoFont*>(Glib::unwrap<Font>(font)), (ink_rect).gobj(), (logical_rect).gobj());
+  pango_glyph_string_extents_range(const_cast<PangoGlyphString*>(gobj()), start, end, const_cast<PangoFont*>(Glib::unwrap<Font>(font)), ink_rect.gobj(), logical_rect.gobj());
 }
 
 auto GlyphString::get_width() const -> int

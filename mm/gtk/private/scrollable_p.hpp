@@ -16,11 +16,11 @@ public:
   using CppObjectType = Scrollable;
   using BaseObjectType = GtkScrollable;
   using BaseClassType = GtkScrollableInterface;
-  using CppClassParent = Glib::Interface_Class;
+  using CppClassParent = Interface_Class;
 
   friend class Scrollable;
 
-  auto init () -> const Glib::Interface_Class&;
+  auto init () -> const Interface_Class&;
 
   static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 

@@ -32,13 +32,13 @@
 namespace Gtk
 {
 
-CellView::CellView(const Glib::ustring& text, bool use_markup)
+CellView::CellView(const Glib::ustring& text, const bool use_markup)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(cellview_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(cellview_class_.init()))
 {
-  auto cell = Gtk::manage(new Gtk::CellRendererText());
+  const auto cell = manage(new CellRendererText());
 
   if(use_markup)
   {
@@ -55,10 +55,10 @@ CellView::CellView(const Glib::ustring& text, bool use_markup)
 CellView::CellView(const Glib::RefPtr<Gdk::Texture>& texture)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(cellview_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(cellview_class_.init()))
 {
-  auto cell = Gtk::manage(new Gtk::CellRendererPixbuf());
+  const auto cell = manage(new CellRendererPixbuf());
 
   cell->property_texture() = texture;
 
@@ -81,9 +81,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkCellView* object, bool take_copy) -> Gtk::CellView*
+auto wrap(GtkCellView* object, const bool take_copy) -> Gtk::CellView*
 {
-  return dynamic_cast<Gtk::CellView *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::CellView *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -94,7 +94,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto CellView_Class::init() -> const Glib::Class&
+auto CellView_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -129,7 +129,7 @@ auto CellView_Class::class_init_function (void *g_class, void *class_data) -> vo
 
 auto CellView_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new CellView((GtkCellView*)(o)));
+  return manage(new CellView((GtkCellView*)o));
 
 }
 
@@ -137,27 +137,25 @@ auto CellView_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 CellView::CellView(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 CellView::CellView(GtkCellView* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 CellView::CellView(CellView&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
   , CellLayout(std::move(src))
   , Orientable(std::move(src))
 {}
 
 auto CellView::operator=(CellView&& src) noexcept -> CellView&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   CellLayout::operator=(std::move(src));
   Orientable::operator=(std::move(src));
   return *this;
@@ -185,8 +183,8 @@ auto CellView::get_base_type() -> GType
 CellView::CellView()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(cellview_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(cellview_class_.init()))
 {
 
 
@@ -212,12 +210,12 @@ auto CellView::get_model() const -> Glib::RefPtr<const TreeModel>
 
 auto CellView::set_displayed_row (const TreeModel::Path &path) -> void
 {
-  gtk_cell_view_set_displayed_row(gobj(), const_cast<GtkTreePath*>((path).gobj()));
+  gtk_cell_view_set_displayed_row(gobj(), const_cast<GtkTreePath*>(path.gobj()));
 }
 
 auto CellView::get_displayed_row() const -> TreeModel::Path
 {
-  return Gtk::TreePath(gtk_cell_view_get_displayed_row(const_cast<GtkCellView*>(gobj())), false);
+  return TreePath(gtk_cell_view_get_displayed_row(const_cast<GtkCellView*>(gobj())), false);
 }
 
 auto CellView::get_draw_sensitive() const -> bool
@@ -225,9 +223,10 @@ auto CellView::get_draw_sensitive() const -> bool
   return gtk_cell_view_get_draw_sensitive(const_cast<GtkCellView*>(gobj()));
 }
 
-auto CellView::set_draw_sensitive (bool draw_sensitive) -> void
+auto CellView::set_draw_sensitive (
+  const bool draw_sensitive) -> void
 {
-  gtk_cell_view_set_draw_sensitive(gobj(), static_cast<int>(draw_sensitive));
+  gtk_cell_view_set_draw_sensitive(gobj(), draw_sensitive);
 }
 
 auto CellView::get_fit_model() const -> bool
@@ -235,9 +234,10 @@ auto CellView::get_fit_model() const -> bool
   return gtk_cell_view_get_fit_model(const_cast<GtkCellView*>(gobj()));
 }
 
-auto CellView::set_fit_model (bool fit_model) -> void
+auto CellView::set_fit_model (
+  const bool fit_model) -> void
 {
-  gtk_cell_view_set_fit_model(gobj(), static_cast<int>(fit_model));
+  gtk_cell_view_set_fit_model(gobj(), fit_model);
 }
 
 
@@ -247,12 +247,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<TreeMod
 
 auto CellView::property_model() -> Glib::PropertyProxy< Glib::RefPtr<TreeModel> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<TreeModel> >(this, "model");
+  return {this, "model"};
 }
 
 auto CellView::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> >(this, "model");
+  return {this, "model"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<CellArea>>::value,
@@ -261,7 +261,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<CellAre
 
 auto CellView::property_cell_area() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellArea> >(this, "cell-area");
+  return {this, "cell-area"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<CellAreaContext>>::value,
@@ -270,27 +270,27 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<CellAre
 
 auto CellView::property_cell_area_context() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellAreaContext> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<CellAreaContext> >(this, "cell-area-context");
+  return {this, "cell-area-context"};
 }
 
 auto CellView::property_draw_sensitive() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "draw-sensitive");
+  return {this, "draw-sensitive"};
 }
 
 auto CellView::property_draw_sensitive() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "draw-sensitive");
+  return {this, "draw-sensitive"};
 }
 
 auto CellView::property_fit_model() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "fit-model");
+  return {this, "fit-model"};
 }
 
 auto CellView::property_fit_model() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "fit-model");
+  return {this, "fit-model"};
 }
 
 

@@ -22,7 +22,7 @@
 namespace Glib
 {
 
-PatternSpec::PatternSpec(const Glib::ustring& pattern)
+PatternSpec::PatternSpec(const ustring & pattern)
 : gobject_(g_pattern_spec_new(pattern.c_str()))
 {
 }
@@ -40,13 +40,13 @@ PatternSpec::~PatternSpec() noexcept
 // Its replacement, g_pattern_spec_match(), is new in glib 2.70.
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 auto
-PatternSpec::match(const Glib::ustring& str) const -> bool
+PatternSpec::match(const ustring & str) const -> bool
 {
   return g_pattern_match(gobject_, str.bytes(), str.c_str(), nullptr);
 }
 
 auto
-PatternSpec::match(const Glib::ustring& str, const Glib::ustring& str_reversed) const -> bool
+PatternSpec::match(const ustring & str, const ustring & str_reversed) const -> bool
 {
   return g_pattern_match(gobject_, str.bytes(), str.c_str(), str_reversed.c_str());
 }

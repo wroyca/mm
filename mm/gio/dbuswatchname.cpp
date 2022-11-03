@@ -39,10 +39,10 @@ struct WatchSlots
 extern "C" {
 
 static auto Bus_Name_Appeared_giomm_callback (
-  GDBusConnection *connection, const gchar *name, const char *name_owner, gpointer data) -> void
+  GDBusConnection *connection, const gchar *name, const char *name_owner, const gpointer data) -> void
 {
-  auto slots = static_cast<WatchSlots*>(data);
-  auto the_slot = slots->name_appeared_slot;
+  const auto slots = static_cast<WatchSlots*>(data);
+  const auto the_slot = slots->name_appeared_slot;
 
   try
   {
@@ -56,10 +56,10 @@ static auto Bus_Name_Appeared_giomm_callback (
 }
 
 static auto Bus_Name_Vanished_giomm_callback (
-  GDBusConnection *connection, const gchar *name, gpointer data) -> void
+  GDBusConnection *connection, const gchar *name, const gpointer data) -> void
 {
-  auto slots = static_cast<WatchSlots*>(data);
-  auto the_slot = slots->name_vanished_slot;
+  const auto slots = static_cast<WatchSlots*>(data);
+  const auto the_slot = slots->name_vanished_slot;
 
   try
   {
@@ -73,7 +73,7 @@ static auto Bus_Name_Vanished_giomm_callback (
 
 static auto Bus_Watch_Name_giomm_callback_destroy (void *data) -> void
 {
-  auto slots = static_cast<WatchSlots*>(data);
+  const auto slots = static_cast<WatchSlots*>(data);
 
   if (slots->name_appeared_slot)
     delete slots->name_appeared_slot;
@@ -95,7 +95,7 @@ auto
 watch_name(BusType bus_type, const Glib::ustring& name, const SlotNameAppeared& name_appeared_slot,
   const SlotNameVanished& name_vanished_slot, BusNameWatcherFlags flags) -> guint
 {
-  auto slots = new WatchSlots;
+  const auto slots = new WatchSlots;
 
   // Make copies of the slots which will be deleted on destroy notification.
   slots->name_appeared_slot = new SlotNameAppeared(name_appeared_slot);
@@ -111,7 +111,7 @@ watch_name(const Glib::RefPtr<Connection>& connection, const Glib::ustring& name
   const SlotNameAppeared& name_appeared_slot, const SlotNameVanished& name_vanished_slot,
   BusNameWatcherFlags flags) -> guint
 {
-  auto slots = new WatchSlots;
+  const auto slots = new WatchSlots;
 
   // Make copies of the slots which will be deleted on destroy notification.
   slots->name_appeared_slot = new SlotNameAppeared(name_appeared_slot);
@@ -122,7 +122,8 @@ watch_name(const Glib::RefPtr<Connection>& connection, const Glib::ustring& name
     &Bus_Name_Vanished_giomm_callback, slots, &Bus_Watch_Name_giomm_callback_destroy);
 }
 
-auto unwatch_name (guint watcher_id) -> void
+auto unwatch_name (
+  const guint watcher_id) -> void
 {
   g_bus_unwatch_name(watcher_id);
 }

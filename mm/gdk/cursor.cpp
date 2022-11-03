@@ -40,9 +40,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GdkCursor* object, bool take_copy) -> Glib::RefPtr<Gdk::Cursor>
+auto wrap(GdkCursor* object, const bool take_copy) -> RefPtr<Gdk::Cursor>
 {
-  return Glib::make_refptr_for_instance<Gdk::Cursor>( dynamic_cast<Gdk::Cursor*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gdk::Cursor>( dynamic_cast<Gdk::Cursor*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -55,7 +55,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-auto Cursor_Class::init() -> const Glib::Class&
+auto Cursor_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -83,32 +83,28 @@ auto Cursor::gobj_copy() -> GdkCursor*
 }
 
 Cursor::Cursor(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 Cursor::Cursor(GdkCursor* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 Cursor::Cursor(Cursor&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto Cursor::operator=(Cursor&& src) noexcept -> Cursor&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-Cursor::~Cursor() noexcept
-{}
-
+Cursor::~Cursor() noexcept = default;
 
 Cursor::CppClassType Cursor::cursor_class_; // initialize static member
 
@@ -124,7 +120,7 @@ auto Cursor::get_base_type() -> GType
 }
 
 
-auto Cursor::create(const Glib::RefPtr<const Texture>& texture, int hotspot_x, int hotspot_y, const Glib::RefPtr<Cursor>& fallback) -> Glib::RefPtr<Cursor>
+auto Cursor::create(const Glib::RefPtr<const Texture>& texture, const int hotspot_x, const int hotspot_y, const Glib::RefPtr<Cursor>& fallback) -> Glib::RefPtr<Cursor>
 {
   return Glib::wrap(gdk_cursor_new_from_texture(const_cast<GdkTexture*>(Glib::unwrap(texture)), hotspot_x, hotspot_y, Glib::unwrap(fallback)));
 }
@@ -182,22 +178,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Cursor>
 
 auto Cursor::property_fallback() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Cursor> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Cursor> >(this, "fallback");
+  return {this, "fallback"};
 }
 
 auto Cursor::property_hotspot_x() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "hotspot-x");
+  return {this, "hotspot-x"};
 }
 
 auto Cursor::property_hotspot_y() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "hotspot-y");
+  return {this, "hotspot-y"};
 }
 
 auto Cursor::property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name");
+  return {this, "name"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Texture>>::value,
@@ -206,7 +202,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Texture
 
 auto Cursor::property_texture() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Texture> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Texture> >(this, "texture");
+  return {this, "texture"};
 }
 
 

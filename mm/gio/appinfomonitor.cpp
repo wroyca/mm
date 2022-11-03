@@ -48,9 +48,9 @@ const Glib::SignalProxyInfo AppInfoMonitor_signal_changed_info =
 namespace Glib
 {
 
-auto wrap(GAppInfoMonitor* object, bool take_copy) -> Glib::RefPtr<Gio::AppInfoMonitor>
+auto wrap(GAppInfoMonitor* object, const bool take_copy) -> RefPtr<Gio::AppInfoMonitor>
 {
-  return Glib::make_refptr_for_instance<Gio::AppInfoMonitor>( dynamic_cast<Gio::AppInfoMonitor*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::AppInfoMonitor>( dynamic_cast<Gio::AppInfoMonitor*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -63,7 +63,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto AppInfoMonitor_Class::init() -> const Glib::Class&
+auto AppInfoMonitor_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -109,32 +109,28 @@ auto AppInfoMonitor::gobj_copy() -> GAppInfoMonitor*
 }
 
 AppInfoMonitor::AppInfoMonitor(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 AppInfoMonitor::AppInfoMonitor(GAppInfoMonitor* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 AppInfoMonitor::AppInfoMonitor(AppInfoMonitor&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto AppInfoMonitor::operator=(AppInfoMonitor&& src) noexcept -> AppInfoMonitor&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-AppInfoMonitor::~AppInfoMonitor() noexcept
-{}
-
+AppInfoMonitor::~AppInfoMonitor() noexcept = default;
 
 AppInfoMonitor::CppClassType AppInfoMonitor::appinfomonitor_class_; // initialize static member
 
@@ -158,7 +154,7 @@ auto AppInfoMonitor::get() -> Glib::RefPtr<AppInfoMonitor>
 
 auto AppInfoMonitor::signal_changed() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &AppInfoMonitor_signal_changed_info);
+  return {this, &AppInfoMonitor_signal_changed_info};
 }
 
 

@@ -69,7 +69,8 @@ Timer::is_active() const -> bool
   return g_timer_is_active(gobject_);
 }
 
-auto usleep (unsigned long microseconds) -> void
+auto usleep (
+  const unsigned long microseconds) -> void
 {
   g_usleep(microseconds);
 }

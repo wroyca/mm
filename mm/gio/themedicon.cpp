@@ -28,17 +28,17 @@
 namespace Gio
 {
 
-ThemedIcon::ThemedIcon(const Glib::ustring& iconname, bool use_default_fallbacks)
+ThemedIcon::ThemedIcon(const Glib::ustring& iconname, const bool use_default_fallbacks)
 : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(themedicon_class_.init(), "name",iconname.c_str(),"use-default-fallbacks",gboolean(use_default_fallbacks), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(themedicon_class_.init(), "name",iconname.c_str(),"use-default-fallbacks",gboolean(use_default_fallbacks), nullptr))
 {
 }
 
 ThemedIcon::ThemedIcon(const std::vector<Glib::ustring>& iconnames)
 : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(themedicon_class_.init(), "names",Glib::ArrayHandler<Glib::ustring>::vector_to_array(iconnames).data(), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(themedicon_class_.init(), "names",Glib::ArrayHandler<Glib::ustring>::vector_to_array(iconnames).data(), nullptr))
 {
 }
 
@@ -52,9 +52,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GThemedIcon* object, bool take_copy) -> Glib::RefPtr<Gio::ThemedIcon>
+auto wrap(GThemedIcon* object, const bool take_copy) -> RefPtr<Gio::ThemedIcon>
 {
-  return Glib::make_refptr_for_instance<Gio::ThemedIcon>( dynamic_cast<Gio::ThemedIcon*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::ThemedIcon>( dynamic_cast<Gio::ThemedIcon*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -67,7 +67,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto ThemedIcon_Class::init() -> const Glib::Class&
+auto ThemedIcon_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -114,34 +114,30 @@ auto ThemedIcon::gobj_copy() -> GThemedIcon*
 }
 
 ThemedIcon::ThemedIcon(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 ThemedIcon::ThemedIcon(GThemedIcon* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 ThemedIcon::ThemedIcon(ThemedIcon&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , Icon(std::move(src))
 {}
 
 auto ThemedIcon::operator=(ThemedIcon&& src) noexcept -> ThemedIcon&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   Icon::operator=(std::move(src));
   return *this;
 }
 
 
-ThemedIcon::~ThemedIcon() noexcept
-{}
-
+ThemedIcon::~ThemedIcon() noexcept = default;
 
 ThemedIcon::CppClassType ThemedIcon::themedicon_class_; // initialize static member
 
@@ -157,7 +153,7 @@ auto ThemedIcon::get_base_type() -> GType
 }
 
 
-auto ThemedIcon::create(const Glib::ustring& iconname, bool use_default_fallbacks) -> Glib::RefPtr<ThemedIcon>
+auto ThemedIcon::create(const Glib::ustring& iconname, const bool use_default_fallbacks) -> Glib::RefPtr<ThemedIcon>
 {
   return Glib::make_refptr_for_instance<ThemedIcon>( new ThemedIcon(iconname, use_default_fallbacks) );
 }
@@ -189,12 +185,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<std::vector<Glib::us
 
 auto ThemedIcon::property_names() const -> Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >
 {
-  return Glib::PropertyProxy_ReadOnly< std::vector<Glib::ustring> >(this, "names");
+  return {this, "names"};
 }
 
 auto ThemedIcon::property_use_default_fallbacks() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "use-default-fallbacks");
+  return {this, "use-default-fallbacks"};
 }
 
 

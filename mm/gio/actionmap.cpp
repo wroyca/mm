@@ -41,7 +41,7 @@ auto
 ActionMap::add_action(const Glib::ustring& name, const ActivateSlot& slot) -> Glib::RefPtr<SimpleAction>
 {
   auto action = add_action(name);
-  action->signal_activate().connect(sigc::hide(slot));
+  action->signal_activate().connect(hide(slot));
   return action;
 }
 
@@ -56,7 +56,7 @@ ActionMap::add_action_with_parameter(
 }
 
 auto
-ActionMap::add_action_bool(const Glib::ustring& name, bool state) -> Glib::RefPtr<SimpleAction>
+ActionMap::add_action_bool(const Glib::ustring& name, const bool state) -> Glib::RefPtr<SimpleAction>
 {
   auto action = SimpleAction::create_bool(name, state);
   add_action(action);
@@ -65,10 +65,10 @@ ActionMap::add_action_bool(const Glib::ustring& name, bool state) -> Glib::RefPt
 
 // TODO: Use a slot that takes a bool?
 auto
-ActionMap::add_action_bool(const Glib::ustring& name, const ActivateSlot& slot, bool state) -> Glib::RefPtr<SimpleAction>
+ActionMap::add_action_bool(const Glib::ustring& name, const ActivateSlot& slot, const bool state) -> Glib::RefPtr<SimpleAction>
 {
   auto action = add_action_bool(name, state);
-  action->signal_activate().connect(sigc::hide(slot));
+  action->signal_activate().connect(hide(slot));
   return action;
 }
 
@@ -87,7 +87,7 @@ namespace
 // Handle the normal activate signal, calling instead a slot that takes the specific type:
 auto on_action_radio_string (
   const Glib::VariantBase &parameter,
-  const Gio::ActionMap::ActivateWithStringParameterSlot &slot) -> void
+  const ActionMap::ActivateWithStringParameterSlot &slot) -> void
 {
   const auto variantDerived = Glib::VariantBase::cast_dynamic<Glib::Variant<Glib::ustring>>(parameter);
   const auto str = variantDerived.get();
@@ -101,7 +101,7 @@ ActionMap::add_action_radio_string(const Glib::ustring& name,
   const ActivateWithStringParameterSlot& slot, const Glib::ustring& state) -> Glib::RefPtr<SimpleAction>
 {
   auto action = add_action_radio_string(name, state);
-  action->signal_activate().connect(sigc::bind(sigc::ptr_fun(&on_action_radio_string), slot));
+  action->signal_activate().connect(bind(ptr_fun(&on_action_radio_string), slot));
   return action;
 }
 
@@ -111,7 +111,7 @@ namespace
 // Handle the normal activate signal, calling instead a slot that takes the specific type:
 auto on_action_radio_int (
   const Glib::VariantBase &parameter,
-  const Gio::ActionMap::ActivateWithIntParameterSlot &slot) -> void
+  const ActionMap::ActivateWithIntParameterSlot &slot) -> void
 {
   const auto variantDerived = Glib::VariantBase::cast_dynamic<Glib::Variant<int>>(parameter);
   const auto str = variantDerived.get();
@@ -122,7 +122,7 @@ auto on_action_radio_int (
 
 // TODO: Use a slot that takes an integer?
 auto
-ActionMap::add_action_radio_integer(const Glib::ustring& name, gint32 state) -> Glib::RefPtr<SimpleAction>
+ActionMap::add_action_radio_integer(const Glib::ustring& name, const gint32 state) -> Glib::RefPtr<SimpleAction>
 {
   auto action = SimpleAction::create_radio_integer(name, state);
   add_action(action);
@@ -131,10 +131,10 @@ ActionMap::add_action_radio_integer(const Glib::ustring& name, gint32 state) -> 
 
 auto
 ActionMap::add_action_radio_integer(
-  const Glib::ustring& name, const ActivateWithIntParameterSlot& slot, gint32 state) -> Glib::RefPtr<SimpleAction>
+  const Glib::ustring& name, const ActivateWithIntParameterSlot& slot, const gint32 state) -> Glib::RefPtr<SimpleAction>
 {
   auto action = add_action_radio_integer(name, state);
-  action->signal_activate().connect(sigc::bind(sigc::ptr_fun(&on_action_radio_int), slot));
+  action->signal_activate().connect(bind(ptr_fun(&on_action_radio_int), slot));
   return action;
 }
 
@@ -148,9 +148,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GActionMap* object, bool take_copy) -> Glib::RefPtr<Gio::ActionMap>
+auto wrap(GActionMap* object, const bool take_copy) -> RefPtr<Gio::ActionMap>
 {
-  return Glib::make_refptr_for_instance<Gio::ActionMap>( dynamic_cast<Gio::ActionMap*> (Glib::wrap_auto_interface<Gio::ActionMap> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::ActionMap>( Glib::wrap_auto_interface<Gio::ActionMap> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -163,7 +163,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto ActionMap_Class::init() -> const Glib::Interface_Class&
+auto ActionMap_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -194,8 +194,7 @@ auto ActionMap_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto ActionMap_Class::lookup_action_vfunc_callback(GActionMap* self, const gchar* action_name) -> GAction*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -220,7 +219,7 @@ auto ActionMap_Class::lookup_action_vfunc_callback(GActionMap* self, const gchar
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -234,8 +233,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto ActionMap_Class::add_action_vfunc_callback (GActionMap *self, GAction *action) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -261,7 +259,7 @@ auto ActionMap_Class::add_action_vfunc_callback (GActionMap *self, GAction *acti
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -273,8 +271,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 auto ActionMap_Class::remove_action_vfunc_callback (
   GActionMap *self, const gchar *action_name) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -300,7 +297,7 @@ auto ActionMap_Class::remove_action_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -313,42 +310,40 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 
 auto ActionMap_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new ActionMap((GActionMap*)(object));
+  return new ActionMap((GActionMap*)object);
 }
 
 
 /* The implementation: */
 
 ActionMap::ActionMap()
-:
-  Glib::Interface(actionmap_class_.init())
+: Interface(actionmap_class_.init())
 {}
 
 ActionMap::ActionMap(GActionMap* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 ActionMap::ActionMap(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 ActionMap::ActionMap(ActionMap&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto ActionMap::operator=(ActionMap&& src) noexcept -> ActionMap&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-ActionMap::~ActionMap() noexcept
-{}
+ActionMap::~ActionMap() noexcept = default;
 
 // static
-auto ActionMap::add_interface (GType gtype_implementer) -> void
+auto ActionMap::add_interface (
+  const GType gtype_implementer) -> void
 {
   actionmap_class_.init().add_interface(gtype_implementer);
 }
@@ -391,11 +386,11 @@ auto ActionMap::lookup_action(const Glib::ustring& action_name) const -> Glib::R
 }
 
 
-auto Gio::ActionMap::lookup_action_vfunc(const Glib::ustring& name) const -> Glib::RefPtr<Action>
+auto ActionMap::lookup_action_vfunc(const Glib::ustring& name) const -> Glib::RefPtr<Action>
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->lookup_action)
@@ -405,13 +400,13 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   }
 
   using RType = Glib::RefPtr<Action>;
-  return RType();
+  return {};
 }
-auto Gio::ActionMap::add_action_vfunc (const Glib::RefPtr <Action> &action) const -> void
+auto ActionMap::add_action_vfunc (const Glib::RefPtr <Action> &action) const -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->add_action)
@@ -419,11 +414,11 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
     (*base->add_action)(const_cast<GActionMap*>(gobj()),Glib::unwrap(action));
   }
 }
-auto Gio::ActionMap::remove_action_vfunc (const Glib::ustring &name) -> void
+auto ActionMap::remove_action_vfunc (const Glib::ustring &name) -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->remove_action)

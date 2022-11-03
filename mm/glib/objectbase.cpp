@@ -93,7 +93,7 @@ auto ObjectBase::initialize (GObject *castitem) -> void
   _set_current_wrapper(castitem);
 }
 
-auto ObjectBase::initialize_move (GObject *castitem, Glib::ObjectBase *previous_wrapper) -> void
+auto ObjectBase::initialize_move (GObject *castitem, ObjectBase *previous_wrapper) -> void
 {
   if (gobject_)
   {
@@ -116,7 +116,7 @@ auto ObjectBase::initialize_move (GObject *castitem, Glib::ObjectBase *previous_
 }
 
 ObjectBase::ObjectBase(ObjectBase&& src) noexcept
-  : sigc::trackable(std::move(src)), // not actually called because it's a virtual base
+  : trackable(std::move(src)), // not actually called because it's a virtual base
     gobject_(nullptr),
     custom_type_name_(src.custom_type_name_),
     cpp_destruction_in_progress_(src.cpp_destruction_in_progress_)
@@ -129,12 +129,12 @@ ObjectBase::operator=(ObjectBase&& src) noexcept -> ObjectBase&
   if (this == &src)
     return *this;
 
-  sigc::trackable::operator=(std::move(src));
+  trackable::operator=(std::move(src));
 
   if (gobject_)
   {
     // Remove the wrapper, without invoking destroy_notify_callback_():
-    g_object_steal_qdata(gobject_, Glib::quark_);
+    g_object_steal_qdata(gobject_, quark_);
     // Remove a reference, without deleting *this.
     unreference();
     gobject_ = nullptr;
@@ -212,9 +212,9 @@ auto ObjectBase::_set_current_wrapper (GObject *object) -> void
 
   if (object)
   {
-    if (!g_object_get_qdata(object, Glib::quark_))
+    if (!g_object_get_qdata(object, quark_))
     {
-      g_object_set_qdata_full(object, Glib::quark_, this, &destroy_notify_callback_);
+      g_object_set_qdata_full(object, quark_, this, &destroy_notify_callback_);
     }
     else
     {
@@ -226,7 +226,7 @@ auto ObjectBase::_set_current_wrapper (GObject *object) -> void
 }
 
 auto ObjectBase::_move_current_wrapper (
-  GObject *object, Glib::ObjectBase *previous_wrapper) noexcept -> void
+  GObject *object, ObjectBase *previous_wrapper) noexcept -> void
 {
   // See _set_current_wrapper().
   ObjectBase* current_wrapper = _get_current_wrapper(object);
@@ -239,10 +239,10 @@ auto ObjectBase::_move_current_wrapper (
   }
 
   // Remove the previous wrapper, without invoking destroy_notify_callback_():
-  g_object_steal_qdata(object, Glib::quark_);
+  g_object_steal_qdata(object, quark_);
 
   // Set the new wrapper:
-  g_object_set_qdata_full(object, Glib::quark_, this, &destroy_notify_callback_);
+  g_object_set_qdata_full(object, quark_, this, &destroy_notify_callback_);
 
   // Clear the previous wrapper:
   previous_wrapper->gobject_ = nullptr;
@@ -253,7 +253,7 @@ auto
 ObjectBase::_get_current_wrapper(GObject* object) -> ObjectBase*
 {
   if (object)
-    return static_cast<ObjectBase*>(g_object_get_qdata(object, Glib::quark_));
+    return static_cast<ObjectBase*>(g_object_get_qdata(object, quark_));
   else
     return nullptr;
 }
@@ -304,14 +304,14 @@ auto
 ObjectBase::is_anonymous_custom_() const -> bool
 {
   // Doing high-speed pointer comparison is OK here.
-  return (custom_type_name_ == anonymous_custom_type_name);
+  return custom_type_name_ == anonymous_custom_type_name;
 }
 
 auto
 ObjectBase::is_derived_() const -> bool
 {
   // gtkmmproc-generated classes initialize this to 0 by default.
-  return (custom_type_name_ != nullptr);
+  return custom_type_name_ != nullptr;
 }
 
 auto ObjectBase::set_manage () -> void
@@ -332,24 +332,24 @@ ObjectBase::_cpp_destruction_is_in_progress() const -> bool
 }
 
 auto ObjectBase::set_property_value (
-  const Glib::ustring &property_name, const Glib::ValueBase &value) -> void
+  const ustring &property_name, const ValueBase &value) -> void
 {
   g_object_set_property(gobj(), property_name.c_str(), value.gobj());
 }
 
 auto ObjectBase::get_property_value (
-  const Glib::ustring &property_name, Glib::ValueBase &value) const -> void
+  const ustring &property_name, ValueBase &value) const -> void
 {
   g_object_get_property(const_cast<GObject*>(gobj()), property_name.c_str(), value.gobj());
 }
 
 auto
 ObjectBase::connect_property_changed(
-  const Glib::ustring& property_name, const sigc::slot<void()>& slot) -> sigc::connection
+  const ustring & property_name, const sigc::slot<void()>& slot) -> sigc::connection
 {
   // Create a proxy to hold our connection info
   // This will be deleted by destroy_notify_handler.
-  auto pConnectionNode = new PropertyProxyConnectionNode(slot, gobj());
+  const auto pConnectionNode = new PropertyProxyConnectionNode(slot, gobj());
 
   // connect it to glib
   // pConnectionNode will be passed as the data argument to the callback.
@@ -358,11 +358,11 @@ ObjectBase::connect_property_changed(
 
 auto
 ObjectBase::connect_property_changed(
-  const Glib::ustring& property_name, sigc::slot<void()>&& slot) -> sigc::connection
+  const ustring & property_name, sigc::slot<void()>&& slot) -> sigc::connection
 {
   // Create a proxy to hold our connection info
   // This will be deleted by destroy_notify_handler.
-  auto pConnectionNode = new PropertyProxyConnectionNode(std::move(slot), gobj());
+  const auto pConnectionNode = new PropertyProxyConnectionNode(std::move(slot), gobj());
 
   // connect it to glib
   // pConnectionNode will be passed as the data argument to the callback.
@@ -400,7 +400,8 @@ auto ObjectBase::add_custom_class_init_function (
     std::make_tuple(class_init_func, class_data));
 }
 
-auto ObjectBase::set_custom_instance_init_function (GInstanceInitFunc instance_init_func) -> void
+auto ObjectBase::set_custom_instance_init_function (
+  const GInstanceInitFunc instance_init_func) -> void
 {
   if (!priv_pimpl_)
     priv_pimpl_ = std::make_unique<PrivImpl>();
@@ -436,7 +437,7 @@ _gobject_cppinstance_already_deleted(GObject* gobject) -> bool
 
   if (gobject)
     return (bool)g_object_get_qdata(
-      gobject, Glib::quark_cpp_wrapper_deleted_); // true means that something is odd.
+      gobject, quark_cpp_wrapper_deleted_); // true means that something is odd.
   else
     return false; // Nothing is particularly wrong.
 }

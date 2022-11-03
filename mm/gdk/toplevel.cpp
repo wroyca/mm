@@ -36,7 +36,7 @@ auto Toplevel_signal_compute_size_callback (
   using namespace Gdk;
   using SlotType = sigc::slot<void(ToplevelSize&)>;
 
-  auto obj = dynamic_cast<Toplevel*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Toplevel*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -94,9 +94,9 @@ auto Glib::Value<Gdk::Toplevel::State>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GdkToplevel* object, bool take_copy) -> Glib::RefPtr<Gdk::Toplevel>
+auto wrap(GdkToplevel* object, const bool take_copy) -> RefPtr<Gdk::Toplevel>
 {
-  return Glib::make_refptr_for_instance<Gdk::Toplevel>( dynamic_cast<Gdk::Toplevel*> (Glib::wrap_auto_interface<Gdk::Toplevel> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gdk::Toplevel>( Glib::wrap_auto_interface<Gdk::Toplevel> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -109,7 +109,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-auto Toplevel_Class::init() -> const Glib::Interface_Class&
+auto Toplevel_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -138,42 +138,40 @@ auto Toplevel_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto Toplevel_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new Toplevel((GdkToplevel*)(object));
+  return new Toplevel((GdkToplevel*)object);
 }
 
 
 /* The implementation: */
 
 Toplevel::Toplevel()
-:
-  Glib::Interface(toplevel_class_.init())
+: Interface(toplevel_class_.init())
 {}
 
 Toplevel::Toplevel(GdkToplevel* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 Toplevel::Toplevel(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 Toplevel::Toplevel(Toplevel&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto Toplevel::operator=(Toplevel&& src) noexcept -> Toplevel&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-Toplevel::~Toplevel() noexcept
-{}
+Toplevel::~Toplevel() noexcept = default;
 
 // static
-auto Toplevel::add_interface (GType gtype_implementer) -> void
+auto Toplevel::add_interface (
+  const GType gtype_implementer) -> void
 {
   toplevel_class_.init().add_interface(gtype_implementer);
 }
@@ -207,7 +205,8 @@ auto Toplevel::lower() -> bool
   return gdk_toplevel_lower(gobj());
 }
 
-auto Toplevel::focus (guint32 timestamp) -> void
+auto Toplevel::focus (
+  const guint32 timestamp) -> void
 {
   gdk_toplevel_focus(gobj(), timestamp);
 }
@@ -232,9 +231,10 @@ auto Toplevel::set_transient_for (const Glib::RefPtr <Surface> &parent) -> void
   gdk_toplevel_set_transient_for(gobj(), Glib::unwrap(parent));
 }
 
-auto Toplevel::set_modal (bool modal) -> void
+auto Toplevel::set_modal (
+  const bool modal) -> void
 {
-  gdk_toplevel_set_modal(gobj(), static_cast<int>(modal));
+  gdk_toplevel_set_modal(gobj(), modal);
 }
 
 auto Toplevel::set_icon_list (const std::vector <Glib::RefPtr <Texture>> &surfaces) -> void
@@ -247,14 +247,16 @@ auto Toplevel::show_window_menu(const Glib::RefPtr<Event>& event) -> bool
   return gdk_toplevel_show_window_menu(gobj(), Glib::unwrap(event));
 }
 
-auto Toplevel::set_decorated (bool decorated) -> void
+auto Toplevel::set_decorated (
+  const bool decorated) -> void
 {
-  gdk_toplevel_set_decorated(gobj(), static_cast<int>(decorated));
+  gdk_toplevel_set_decorated(gobj(), decorated);
 }
 
-auto Toplevel::set_deletable (bool deletable) -> void
+auto Toplevel::set_deletable (
+  const bool deletable) -> void
 {
-  gdk_toplevel_set_deletable(gobj(), static_cast<int>(deletable));
+  gdk_toplevel_set_deletable(gobj(), deletable);
 }
 
 auto Toplevel::supports_edge_constraints() const -> bool
@@ -273,14 +275,13 @@ auto Toplevel::restore_system_shortcuts () -> void
 }
 
 auto Toplevel::begin_resize (
-  SurfaceEdge edge, const Glib::RefPtr <Device> &device, int button, double x, double y,
-  guint32 timestamp) -> void
+  SurfaceEdge edge, const Glib::RefPtr <Device> &device, const int button, const double x, const double y, const guint32 timestamp) -> void
 {
   gdk_toplevel_begin_resize(gobj(), static_cast<GdkSurfaceEdge>(edge), Glib::unwrap(device), button, x, y, timestamp);
 }
 
 auto Toplevel::begin_move (
-  const Glib::RefPtr <Device> &device, int button, double x, double y, guint32 timestamp) -> void
+  const Glib::RefPtr <Device> &device, const int button, const double x, const double y, const guint32 timestamp) -> void
 {
   gdk_toplevel_begin_move(gobj(), Glib::unwrap(device), button, x, y, timestamp);
 }
@@ -288,7 +289,7 @@ auto Toplevel::begin_move (
 
 auto Toplevel::signal_compute_size() -> Glib::SignalProxy<void(ToplevelSize&)>
 {
-  return Glib::SignalProxy<void(ToplevelSize&) >(this, &Toplevel_signal_compute_size_info);
+  return {this, &Toplevel_signal_compute_size_info};
 }
 
 
@@ -298,27 +299,27 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<State>::value,
 
 auto Toplevel::property_state() const -> Glib::PropertyProxy_ReadOnly< State >
 {
-  return Glib::PropertyProxy_ReadOnly< State >(this, "state");
+  return {this, "state"};
 }
 
 auto Toplevel::property_title() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 auto Toplevel::property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 auto Toplevel::property_startup_id() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "startup-id");
+  return {this, "startup-id"};
 }
 
 auto Toplevel::property_startup_id() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "startup-id");
+  return {this, "startup-id"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Surface>>::value,
@@ -327,42 +328,42 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Surface
 
 auto Toplevel::property_transient_for() -> Glib::PropertyProxy< Glib::RefPtr<Surface> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Surface> >(this, "transient-for");
+  return {this, "transient-for"};
 }
 
 auto Toplevel::property_transient_for() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >(this, "transient-for");
+  return {this, "transient-for"};
 }
 
 auto Toplevel::property_modal() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "modal");
+  return {this, "modal"};
 }
 
 auto Toplevel::property_modal() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "modal");
+  return {this, "modal"};
 }
 
 auto Toplevel::property_decorated() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "decorated");
+  return {this, "decorated"};
 }
 
 auto Toplevel::property_decorated() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "decorated");
+  return {this, "decorated"};
 }
 
 auto Toplevel::property_deletable() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "deletable");
+  return {this, "deletable"};
 }
 
 auto Toplevel::property_deletable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "deletable");
+  return {this, "deletable"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<FullscreenMode>::value,
@@ -371,17 +372,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<FullscreenMode>::val
 
 auto Toplevel::property_fullscreen_mode() -> Glib::PropertyProxy< FullscreenMode >
 {
-  return Glib::PropertyProxy< FullscreenMode >(this, "fullscreen-mode");
+  return {this, "fullscreen-mode"};
 }
 
 auto Toplevel::property_fullscreen_mode() const -> Glib::PropertyProxy_ReadOnly< FullscreenMode >
 {
-  return Glib::PropertyProxy_ReadOnly< FullscreenMode >(this, "fullscreen-mode");
+  return {this, "fullscreen-mode"};
 }
 
 auto Toplevel::property_shortcuts_inhibited() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "shortcuts-inhibited");
+  return {this, "shortcuts-inhibited"};
 }
 
 

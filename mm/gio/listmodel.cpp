@@ -35,12 +35,12 @@ namespace
 
 
 auto ListModel_signal_items_changed_callback (
-  GListModel *self, guint p0, guint p1, guint p2, void *data) -> void
+  GListModel *self, const guint p0, const guint p1, const guint p2, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(guint, guint, guint)>;
 
-  auto obj = dynamic_cast<ListModel*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<ListModel*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -70,9 +70,9 @@ const Glib::SignalProxyInfo ListModel_signal_items_changed_info =
 namespace Glib
 {
 
-auto wrap(GListModel* object, bool take_copy) -> Glib::RefPtr<Gio::ListModel>
+auto wrap(GListModel* object, const bool take_copy) -> RefPtr<Gio::ListModel>
 {
-  return Glib::make_refptr_for_instance<Gio::ListModel>( dynamic_cast<Gio::ListModel*> (Glib::wrap_auto_interface<Gio::ListModel> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::ListModel>( Glib::wrap_auto_interface<Gio::ListModel> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -85,7 +85,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto ListModel_Class::init() -> const Glib::Interface_Class&
+auto ListModel_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -116,8 +116,7 @@ auto ListModel_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto ListModel_Class::get_item_type_vfunc_callback(GListModel* self) -> GType
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -141,7 +140,7 @@ auto ListModel_Class::get_item_type_vfunc_callback(GListModel* self) -> GType
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -155,8 +154,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto ListModel_Class::get_n_items_vfunc_callback(GListModel* self) -> guint
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -180,7 +178,7 @@ auto ListModel_Class::get_n_items_vfunc_callback(GListModel* self) -> guint
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -192,10 +190,9 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = guint;
   return RType();
 }
-auto ListModel_Class::get_item_vfunc_callback(GListModel* self, guint position) -> gpointer
+auto ListModel_Class::get_item_vfunc_callback(GListModel* self, const guint position) -> gpointer
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -219,7 +216,7 @@ auto ListModel_Class::get_item_vfunc_callback(GListModel* self, guint position) 
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -235,42 +232,40 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 
 auto ListModel_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new ListModel((GListModel*)(object));
+  return new ListModel((GListModel*)object);
 }
 
 
 /* The implementation: */
 
 ListModel::ListModel()
-:
-  Glib::Interface(listmodel_class_.init())
+: Interface(listmodel_class_.init())
 {}
 
 ListModel::ListModel(GListModel* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 ListModel::ListModel(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 ListModel::ListModel(ListModel&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto ListModel::operator=(ListModel&& src) noexcept -> ListModel&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-ListModel::~ListModel() noexcept
-{}
+ListModel::~ListModel() noexcept = default;
 
 // static
-auto ListModel::add_interface (GType gtype_implementer) -> void
+auto ListModel::add_interface (
+  const GType gtype_implementer) -> void
 {
   listmodel_class_.init().add_interface(gtype_implementer);
 }
@@ -289,7 +284,8 @@ auto ListModel::get_base_type() -> GType
 }
 
 
-auto ListModel::items_changed (guint position, guint removed, guint added) -> void
+auto ListModel::items_changed (
+  const guint position, const guint removed, const guint added) -> void
 {
   g_list_model_items_changed(gobj(), position, removed, added);
 }
@@ -304,12 +300,14 @@ auto ListModel::get_n_items() const -> guint
   return g_list_model_get_n_items(const_cast<GListModel*>(gobj()));
 }
 
-auto ListModel::get_object(guint position) -> Glib::RefPtr<Glib::ObjectBase>
+auto ListModel::get_object(
+  const guint position) -> Glib::RefPtr<ObjectBase>
 {
-  return Glib::make_refptr_for_instance<Glib::ObjectBase>(Glib::wrap_auto(g_list_model_get_object(gobj(), position)));
+  return Glib::make_refptr_for_instance<ObjectBase>(Glib::wrap_auto(g_list_model_get_object(gobj(), position)));
 }
 
-auto ListModel::get_object(guint position) const -> Glib::RefPtr<const Glib::ObjectBase>
+auto ListModel::get_object(
+  const guint position) const -> Glib::RefPtr<const ObjectBase>
 {
   return const_cast<ListModel*>(this)->get_object(position);
 }
@@ -317,52 +315,53 @@ auto ListModel::get_object(guint position) const -> Glib::RefPtr<const Glib::Obj
 
 auto ListModel::signal_items_changed() -> Glib::SignalProxy<void(guint, guint, guint)>
 {
-  return Glib::SignalProxy<void(guint, guint, guint) >(this, &ListModel_signal_items_changed_info);
+  return {this, &ListModel_signal_items_changed_info};
 }
 
 
-auto Gio::ListModel::get_item_type_vfunc() -> GType
+auto ListModel::get_item_type_vfunc() -> GType
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->get_item_type)
   {
-    GType retval((*base->get_item_type)(gobj()));
+    const GType retval((*base->get_item_type)(gobj()));
     return retval;
   }
 
   using RType = GType;
   return RType();
 }
-auto Gio::ListModel::get_n_items_vfunc() -> guint
+auto ListModel::get_n_items_vfunc() -> guint
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->get_n_items)
   {
-    guint retval((*base->get_n_items)(gobj()));
+    const guint retval((*base->get_n_items)(gobj()));
     return retval;
   }
 
   using RType = guint;
   return RType();
 }
-auto Gio::ListModel::get_item_vfunc(guint position) -> gpointer
+auto ListModel::get_item_vfunc(
+  const guint position) -> gpointer
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->get_item)
   {
-    gpointer retval((*base->get_item)(gobj(),position));
+    const gpointer retval((*base->get_item)(gobj(),position));
     return retval;
   }
 

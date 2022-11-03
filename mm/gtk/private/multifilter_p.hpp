@@ -17,13 +17,13 @@ public:
   using CppObjectType = MultiFilter;
   using BaseObjectType = GtkMultiFilter;
   using BaseClassType = GtkMultiFilterClass;
-  using CppClassParent = Gtk::Filter_Class;
+  using CppClassParent = Filter_Class;
   using BaseClassParent = GtkFilterClass;
 
   friend class MultiFilter;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;
@@ -55,13 +55,13 @@ public:
   using CppObjectType = AnyFilter;
   using BaseObjectType = GtkAnyFilter;
   using BaseClassType = GtkAnyFilterClass;
-  using CppClassParent = Gtk::MultiFilter_Class;
+  using CppClassParent = MultiFilter_Class;
   using BaseClassParent = GtkMultiFilterClass;
 
   friend class AnyFilter;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;
@@ -93,13 +93,13 @@ public:
   using CppObjectType = EveryFilter;
   using BaseObjectType = GtkEveryFilter;
   using BaseClassType = GtkEveryFilterClass;
-  using CppClassParent = Gtk::MultiFilter_Class;
+  using CppClassParent = MultiFilter_Class;
   using BaseClassParent = GtkMultiFilterClass;
 
   friend class EveryFilter;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

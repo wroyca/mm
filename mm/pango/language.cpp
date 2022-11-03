@@ -65,7 +65,7 @@ auto Language::get_string() const -> Glib::ustring
   if (gobject_)
     return pango_language_to_string(const_cast<PangoLanguage*>(gobj()));
   else
-    return Glib::ustring();
+    return {};
 }
 
 auto Language::get_scripts() const -> std::vector<Script>
@@ -92,7 +92,7 @@ auto Glib::Value<Pango::Script>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(PangoLanguage* object, bool take_copy) -> Pango::Language
+auto wrap(PangoLanguage* object, const bool take_copy) -> Pango::Language
 {
   return Pango::Language(object, take_copy);
 }
@@ -113,7 +113,7 @@ auto Language::get_type() -> GType
 
 Language::Language(const Language& other)
 :
-  gobject_ ((other.gobject_) ? _pango_language_copy(other.gobject_) : nullptr)
+  gobject_ (other.gobject_ ? _pango_language_copy(other.gobject_) : nullptr)
 {}
 
 Language::Language(Language&& other) noexcept
@@ -130,12 +130,12 @@ auto Language::operator=(Language&& other) noexcept -> Language&
   return *this;
 }
 
-Language::Language(PangoLanguage* gobject, bool make_a_copy)
+Language::Language(PangoLanguage* gobject, const bool make_a_copy)
 :
   // For BoxedType wrappers, make_a_copy is true by default.  The static
   // BoxedType wrappers must always take a copy, thus make_a_copy = true
   // ensures identical behaviour if the default argument is used.
-  gobject_ ((make_a_copy && gobject) ? _pango_language_copy(gobject) : gobject)
+  gobject_ (make_a_copy && gobject ? _pango_language_copy(gobject) : gobject)
 {}
 
 auto Language::operator=(const Language& other) -> Language&

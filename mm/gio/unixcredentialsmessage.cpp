@@ -39,9 +39,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GUnixCredentialsMessage* object, bool take_copy) -> Glib::RefPtr<Gio::UnixCredentialsMessage>
+auto wrap(GUnixCredentialsMessage* object, const bool take_copy) -> RefPtr<Gio::UnixCredentialsMessage>
 {
-  return Glib::make_refptr_for_instance<Gio::UnixCredentialsMessage>( dynamic_cast<Gio::UnixCredentialsMessage*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::UnixCredentialsMessage>( dynamic_cast<Gio::UnixCredentialsMessage*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -54,7 +54,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto UnixCredentialsMessage_Class::init() -> const Glib::Class&
+auto UnixCredentialsMessage_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -100,32 +100,28 @@ auto UnixCredentialsMessage::gobj_copy() -> GUnixCredentialsMessage*
 }
 
 UnixCredentialsMessage::UnixCredentialsMessage(const Glib::ConstructParams& construct_params)
-:
-  Gio::SocketControlMessage(construct_params)
+: SocketControlMessage(construct_params)
 {
 
 }
 
 UnixCredentialsMessage::UnixCredentialsMessage(GUnixCredentialsMessage* castitem)
-:
-  Gio::SocketControlMessage((GSocketControlMessage*)(castitem))
+: SocketControlMessage((GSocketControlMessage*)castitem)
 {}
 
 
 UnixCredentialsMessage::UnixCredentialsMessage(UnixCredentialsMessage&& src) noexcept
-: Gio::SocketControlMessage(std::move(src))
+: SocketControlMessage(std::move(src))
 {}
 
 auto UnixCredentialsMessage::operator=(UnixCredentialsMessage&& src) noexcept -> UnixCredentialsMessage&
 {
-  Gio::SocketControlMessage::operator=(std::move(src));
+  SocketControlMessage::operator=(std::move(src));
   return *this;
 }
 
 
-UnixCredentialsMessage::~UnixCredentialsMessage() noexcept
-{}
-
+UnixCredentialsMessage::~UnixCredentialsMessage() noexcept = default;
 
 UnixCredentialsMessage::CppClassType UnixCredentialsMessage::unixcredentialsmessage_class_; // initialize static member
 
@@ -144,8 +140,8 @@ auto UnixCredentialsMessage::get_base_type() -> GType
 UnixCredentialsMessage::UnixCredentialsMessage()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gio::SocketControlMessage(Glib::ConstructParams(unixcredentialsmessage_class_.init()))
+ObjectBase(nullptr),
+SocketControlMessage(Glib::ConstructParams(unixcredentialsmessage_class_.init()))
 {
 
 
@@ -154,8 +150,8 @@ UnixCredentialsMessage::UnixCredentialsMessage()
 UnixCredentialsMessage::UnixCredentialsMessage(const Glib::RefPtr<Credentials>& credentials)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gio::SocketControlMessage(Glib::ConstructParams(unixcredentialsmessage_class_.init(), "credentials", const_cast<GCredentials*>(Glib::unwrap<Gio::Credentials>(credentials)), nullptr))
+ObjectBase(nullptr),
+SocketControlMessage(Glib::ConstructParams(unixcredentialsmessage_class_.init(), "credentials", Glib::unwrap<Credentials>(credentials), nullptr))
 {
 
 
@@ -193,7 +189,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Credent
 
 auto UnixCredentialsMessage::property_credentials() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Credentials> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Credentials> >(this, "credentials");
+  return {this, "credentials"};
 }
 
 

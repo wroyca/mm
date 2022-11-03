@@ -52,9 +52,9 @@ auto Object_signal_interface_added_callback (
   GDBusObject *self, GDBusInterface *p0, void *data) -> void
 {
   using namespace Gio::DBus;
-  using SlotType = sigc::slot<void(const Glib::RefPtr<Gio::DBus::Interface>&)>;
+  using SlotType = sigc::slot<void(const Glib::RefPtr<Interface>&)>;
 
-  auto obj = dynamic_cast<Object*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Object*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -83,9 +83,9 @@ auto Object_signal_interface_removed_callback (
   GDBusObject *self, GDBusInterface *p0, void *data) -> void
 {
   using namespace Gio::DBus;
-  using SlotType = sigc::slot<void(const Glib::RefPtr<Gio::DBus::Interface>&)>;
+  using SlotType = sigc::slot<void(const Glib::RefPtr<Interface>&)>;
 
-  auto obj = dynamic_cast<Object*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Object*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -116,9 +116,9 @@ const Glib::SignalProxyInfo Object_signal_interface_removed_info =
 namespace Glib
 {
 
-auto wrap(GDBusObject* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::Object>
+auto wrap(GDBusObject* object, const bool take_copy) -> RefPtr<Gio::DBus::Object>
 {
-  return Glib::make_refptr_for_instance<Gio::DBus::Object>( dynamic_cast<Gio::DBus::Object*> (Glib::wrap_auto_interface<Gio::DBus::Object> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::DBus::Object>( Glib::wrap_auto_interface<Gio::DBus::Object> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -131,7 +131,7 @@ namespace Gio::DBus
 
 /* The *_Class implementation: */
 
-auto Object_Class::init() -> const Glib::Interface_Class&
+auto Object_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -164,8 +164,7 @@ auto Object_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto Object_Class::get_object_path_vfunc_callback(GDBusObject* self) -> const gchar*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -201,7 +200,7 @@ auto Object_Class::get_object_path_vfunc_callback(GDBusObject* self) -> const gc
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -215,8 +214,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto Object_Class::get_interfaces_vfunc_callback(GDBusObject* self) -> GList*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -231,7 +229,7 @@ auto Object_Class::get_interfaces_vfunc_callback(GDBusObject* self) -> GList*
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return g_list_copy_deep(Glib::ListHandler<Glib::RefPtr<Gio::DBus::Interface>>::vector_to_list(obj->get_interfaces_vfunc()).data(), list_copy_ref, nullptr);
+        return g_list_copy_deep(Glib::ListHandler<Glib::RefPtr<Interface>>::vector_to_list(obj->get_interfaces_vfunc()).data(), list_copy_ref, nullptr);
       }
       catch(...)
       {
@@ -240,7 +238,7 @@ auto Object_Class::get_interfaces_vfunc_callback(GDBusObject* self) -> GList*
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -254,8 +252,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto Object_Class::get_interface_vfunc_callback(GDBusObject* self, const gchar* interface_name) -> GDBusInterface*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -280,7 +277,7 @@ auto Object_Class::get_interface_vfunc_callback(GDBusObject* self, const gchar* 
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -295,8 +292,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 
 auto Object_Class::interface_added_callback (GDBusObject *self, GDBusInterface *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -333,8 +329,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto Object_Class::interface_removed_callback (GDBusObject *self, GDBusInterface *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -373,42 +368,40 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 
 auto Object_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new Object((GDBusObject*)(object));
+  return new Object((GDBusObject*)object);
 }
 
 
 /* The implementation: */
 
 Object::Object()
-:
-  Glib::Interface(object_class_.init())
+: Interface(object_class_.init())
 {}
 
 Object::Object(GDBusObject* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 Object::Object(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 Object::Object(Object&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto Object::operator=(Object&& src) noexcept -> Object&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-Object::~Object() noexcept
-{}
+Object::~Object() noexcept = default;
 
 // static
-auto Object::add_interface (GType gtype_implementer) -> void
+auto Object::add_interface (
+  const GType gtype_implementer) -> void
 {
   object_class_.init().add_interface(gtype_implementer);
 }
@@ -432,67 +425,67 @@ auto Object::get_object_path() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(g_dbus_object_get_object_path(const_cast<GDBusObject*>(gobj())));
 }
 
-auto Object::get_interfaces() -> std::vector<Glib::RefPtr<Gio::DBus::Interface>>
+auto Object::get_interfaces() -> std::vector<Glib::RefPtr<DBus::Interface>>
 {
-  return Glib::ListHandler<Glib::RefPtr<Gio::DBus::Interface>>::list_to_vector(g_dbus_object_get_interfaces(gobj()), Glib::OWNERSHIP_DEEP);
+  return Glib::ListHandler<Glib::RefPtr<DBus::Interface>>::list_to_vector(g_dbus_object_get_interfaces(gobj()), Glib::OWNERSHIP_DEEP);
 }
 
-auto Object::get_interfaces() const -> std::vector<Glib::RefPtr<const Gio::DBus::Interface>>
+auto Object::get_interfaces() const -> std::vector<Glib::RefPtr<const DBus::Interface>>
 {
-  return Glib::ListHandler<Glib::RefPtr<const Gio::DBus::Interface>>::list_to_vector(g_dbus_object_get_interfaces(const_cast<GDBusObject*>(gobj())), Glib::OWNERSHIP_DEEP);
+  return Glib::ListHandler<Glib::RefPtr<const DBus::Interface>>::list_to_vector(g_dbus_object_get_interfaces(const_cast<GDBusObject*>(gobj())), Glib::OWNERSHIP_DEEP);
 }
 
-auto Object::get_interface(const Glib::ustring& interface_name) -> Glib::RefPtr<Gio::DBus::Interface>
+auto Object::get_interface(const Glib::ustring& interface_name) -> Glib::RefPtr<DBus::Interface>
 {
   return Glib::wrap(g_dbus_object_get_interface(gobj(), interface_name.c_str()));
 }
 
-auto Object::get_interface(const Glib::ustring& interface_name) const -> Glib::RefPtr<const Gio::DBus::Interface>
+auto Object::get_interface(const Glib::ustring& interface_name) const -> Glib::RefPtr<const DBus::Interface>
 {
   return const_cast<Object*>(this)->get_interface(interface_name);
 }
 
 
-auto Object::signal_interface_added() -> Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::Interface>&)>
+auto Object::signal_interface_added() -> Glib::SignalProxy<void(const Glib::RefPtr<DBus::Interface>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::Interface>&) >(this, &Object_signal_interface_added_info);
+  return {this, &Object_signal_interface_added_info};
 }
 
 
-auto Object::signal_interface_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::Interface>&)>
+auto Object::signal_interface_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<DBus::Interface>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<Gio::DBus::Interface>&) >(this, &Object_signal_interface_removed_info);
+  return {this, &Object_signal_interface_removed_info};
 }
 
 
-auto Gio::DBus::Object::on_interface_added (
-  const Glib::RefPtr <Gio::DBus::Interface> &iface) -> void
+auto Object::on_interface_added (
+  const Glib::RefPtr <DBus::Interface> &iface) -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->interface_added)
     (*base->interface_added)(gobj(),Glib::unwrap(iface));
 }
-auto Gio::DBus::Object::on_interface_removed (
-  const Glib::RefPtr <Gio::DBus::Interface> &iface) -> void
+auto Object::on_interface_removed (
+  const Glib::RefPtr <DBus::Interface> &iface) -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->interface_removed)
     (*base->interface_removed)(gobj(),Glib::unwrap(iface));
 }
 
-auto Gio::DBus::Object::get_object_path_vfunc() const -> Glib::ustring
+auto Object::get_object_path_vfunc() const -> Glib::ustring
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->get_object_path)
@@ -502,39 +495,39 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   }
 
   using RType = Glib::ustring;
-  return RType();
+  return {};
 }
-auto Gio::DBus::Object::get_interfaces_vfunc() const -> std::vector<Glib::RefPtr<Gio::DBus::Interface>>
+auto Object::get_interfaces_vfunc() const -> std::vector<Glib::RefPtr<DBus::Interface>>
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->get_interfaces)
   {
-    std::vector<Glib::RefPtr<Gio::DBus::Interface>> retval(Glib::ListHandler<Glib::RefPtr<Gio::DBus::Interface>>::list_to_vector((*base->get_interfaces)(const_cast<GDBusObject*>(gobj())), Glib::OWNERSHIP_DEEP));
+    std::vector<Glib::RefPtr<DBus::Interface>> retval(Glib::ListHandler<Glib::RefPtr<DBus::Interface>>::list_to_vector((*base->get_interfaces)(const_cast<GDBusObject*>(gobj())), Glib::OWNERSHIP_DEEP));
     return retval;
   }
 
-  using RType = std::vector<Glib::RefPtr<Gio::DBus::Interface>>;
-  return RType();
+  using RType = std::vector<Glib::RefPtr<DBus::Interface>>;
+  return {};
 }
-auto Gio::DBus::Object::get_interface_vfunc(const Glib::ustring& interface_name) const -> Glib::RefPtr<Gio::DBus::Interface>
+auto Object::get_interface_vfunc(const Glib::ustring& interface_name) const -> Glib::RefPtr<DBus::Interface>
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->get_interface)
   {
-    Glib::RefPtr<Gio::DBus::Interface> retval(Glib::wrap((*base->get_interface)(const_cast<GDBusObject*>(gobj()),interface_name.c_str())));
+    Glib::RefPtr<DBus::Interface> retval(Glib::wrap((*base->get_interface)(const_cast<GDBusObject*>(gobj()),interface_name.c_str())));
     return retval;
   }
 
-  using RType = Glib::RefPtr<Gio::DBus::Interface>;
-  return RType();
+  using RType = Glib::RefPtr<DBus::Interface>;
+  return {};
 }
 
 

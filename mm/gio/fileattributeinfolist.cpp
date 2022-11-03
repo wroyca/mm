@@ -42,7 +42,7 @@ FileAttributeInfoList::empty() const -> bool
 auto
 FileAttributeInfoList::lookup(const std::string& name) const -> FileAttributeInfo
 {
-  auto cobject = const_cast<GFileAttributeInfoList*>(gobj());
+  const auto cobject = const_cast<GFileAttributeInfoList*>(gobj());
   const GFileAttributeInfo* cinfo = g_file_attribute_info_list_lookup(cobject, name.c_str());
 
   FileAttributeInfo info(cinfo);
@@ -72,7 +72,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(GFileAttributeInfoList* object, bool take_copy) -> Glib::RefPtr<Gio::FileAttributeInfoList>
+auto wrap(GFileAttributeInfoList* object, const bool take_copy) -> RefPtr<Gio::FileAttributeInfoList>
 {
   if(take_copy && object)
     g_file_attribute_info_list_ref(object);

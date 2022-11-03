@@ -31,7 +31,7 @@ namespace
 
 auto SignalProxy_Filter_gtk_callback(GtkListBoxRow* row, void* data) -> gboolean
 {
-  auto the_slot = static_cast<Gtk::ListBox::SlotFilter*>(data);
+  const auto the_slot = static_cast<Gtk::ListBox::SlotFilter*>(data);
 
   try
   {
@@ -51,7 +51,7 @@ auto SignalProxy_Filter_gtk_callback_destroy (void *data) -> void
 
 auto SignalProxy_Sort_gtk_callback(GtkListBoxRow* row1, GtkListBoxRow* row2, void* data) -> int
 {
-  auto the_slot = static_cast<Gtk::ListBox::SlotSort*>(data);
+  const auto the_slot = static_cast<Gtk::ListBox::SlotSort*>(data);
 
   try
   {
@@ -72,7 +72,7 @@ auto SignalProxy_Sort_gtk_callback_destroy (void *data) -> void
 auto SignalProxy_UpdateHeader_gtk_callback (
   GtkListBoxRow *row, GtkListBoxRow *before, void *data) -> void
 {
-  auto the_slot = static_cast<Gtk::ListBox::SlotUpdateHeader*>(data);
+  const auto the_slot = static_cast<Gtk::ListBox::SlotUpdateHeader*>(data);
 
   try
   {
@@ -93,7 +93,7 @@ auto SignalProxy_UpdateHeader_gtk_callback_destroy (void *data) -> void
 auto proxy_foreach_callback (GtkListBox * /* list_box */, GtkListBoxRow *row, void *data) -> void
 {
   typedef Gtk::ListBox::SlotForeach SlotType;
-  auto& slot = *static_cast<SlotType*>(data);
+  const auto& slot = *static_cast<SlotType*>(data);
 
   try
   {
@@ -107,8 +107,8 @@ auto proxy_foreach_callback (GtkListBox * /* list_box */, GtkListBoxRow *row, vo
 
 auto proxy_bind_model_create_widget_callback(void* item, void* data) -> GtkWidget*
 {
-  auto& slot = *static_cast<Gtk::ListBox::SlotCreateWidget<Glib::Object>*>(data);
-  auto cobject = static_cast<GObject*>(item);
+  const auto& slot = *static_cast<Gtk::ListBox::SlotCreateWidget<Glib::Object>*>(data);
+  const auto cobject = static_cast<GObject*>(item);
 
   try
   {
@@ -145,7 +145,7 @@ auto ListBox::set_filter_func (const SlotFilter &slot) -> void
   // Create a copy of the slot object. A pointer to this will be passed
   // through the callback's data parameter. It will be deleted
   // when SignalProxy_Filter_gtk_callback_destroy() is called.
-  auto slot_copy = new SlotFilter(slot);
+  const auto slot_copy = new SlotFilter(slot);
 
   gtk_list_box_set_filter_func(gobj(),
     &SignalProxy_Filter_gtk_callback, slot_copy,
@@ -162,7 +162,7 @@ auto ListBox::set_sort_func (const SlotSort &slot) -> void
   // Create a copy of the slot object. A pointer to this will be passed
   // through the callback's data parameter. It will be deleted
   // when SignalProxy_Sort_gtk_callback_destroy() is called.
-  auto slot_copy = new SlotSort(slot);
+  const auto slot_copy = new SlotSort(slot);
 
   gtk_list_box_set_sort_func(gobj(),
     &SignalProxy_Sort_gtk_callback, slot_copy,
@@ -179,7 +179,7 @@ auto ListBox::set_header_func (const SlotUpdateHeader &slot) -> void
   // Create a copy of the slot object. A pointer to this will be passed
   // through the callback's data parameter. It will be deleted
   // when SignalProxy_Sort_gtk_callback_destroy() is called.
-  auto slot_copy = new SlotUpdateHeader(slot);
+  const auto slot_copy = new SlotUpdateHeader(slot);
 
   gtk_list_box_set_header_func(gobj(),
     &SignalProxy_UpdateHeader_gtk_callback, slot_copy,
@@ -203,7 +203,7 @@ auto ListBox::bind_model (
 {
   // Create a copy of the slot.
   // It will be deleted by Glib::destroy_notify_delete<SlotCreateWidget>.
-  auto slot_copy = new SlotCreateWidget<Glib::Object>(slot_create_widget);
+  const auto slot_copy = new SlotCreateWidget<Glib::Object>(slot_create_widget);
 
   gtk_list_box_bind_model(gobj(), Glib::unwrap(model), &proxy_bind_model_create_widget_callback,
     slot_copy, &Glib::destroy_notify_delete<SlotCreateWidget<Glib::Object>>);
@@ -220,7 +220,7 @@ auto ListBox_signal_row_selected_callback (GtkListBox *self, GtkListBoxRow *p0, 
   using namespace Gtk;
   using SlotType = sigc::slot<void(ListBoxRow*)>;
 
-  auto obj = dynamic_cast<ListBox*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<ListBox*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -250,7 +250,7 @@ auto ListBox_signal_row_activated_callback (GtkListBox *self, GtkListBoxRow *p0,
   using namespace Gtk;
   using SlotType = sigc::slot<void(ListBoxRow*)>;
 
-  auto obj = dynamic_cast<ListBox*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<ListBox*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -289,9 +289,9 @@ const Glib::SignalProxyInfo ListBox_signal_selected_rows_changed_info =
 namespace Glib
 {
 
-auto wrap(GtkListBox* object, bool take_copy) -> Gtk::ListBox*
+auto wrap(GtkListBox* object, const bool take_copy) -> Gtk::ListBox*
 {
-  return dynamic_cast<Gtk::ListBox *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::ListBox *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -302,7 +302,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto ListBox_Class::init() -> const Glib::Class&
+auto ListBox_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -335,7 +335,7 @@ auto ListBox_Class::class_init_function (void *g_class, void *class_data) -> voi
 
 auto ListBox_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new ListBox((GtkListBox*)(o)));
+  return manage(new ListBox((GtkListBox*)o));
 
 }
 
@@ -343,25 +343,23 @@ auto ListBox_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 ListBox::ListBox(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 ListBox::ListBox(GtkListBox* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 ListBox::ListBox(ListBox&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
 {}
 
 auto ListBox::operator=(ListBox&& src) noexcept -> ListBox&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   return *this;
 }
 
@@ -387,8 +385,8 @@ auto ListBox::get_base_type() -> GType
 ListBox::ListBox()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(listbox_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(listbox_class_.init()))
 {
 
 
@@ -396,22 +394,22 @@ ListBox::ListBox()
 
 auto ListBox::prepend (Widget &child) -> void
 {
-  gtk_list_box_prepend(gobj(), (child).gobj());
+  gtk_list_box_prepend(gobj(), child.gobj());
 }
 
 auto ListBox::append (Widget &child) -> void
 {
-  gtk_list_box_append(gobj(), (child).gobj());
+  gtk_list_box_append(gobj(), child.gobj());
 }
 
-auto ListBox::insert (Widget &child, int position) -> void
+auto ListBox::insert (Widget &child, const int position) -> void
 {
-  gtk_list_box_insert(gobj(), (child).gobj(), position);
+  gtk_list_box_insert(gobj(), child.gobj(), position);
 }
 
 auto ListBox::remove (Widget &child) -> void
 {
-  gtk_list_box_remove(gobj(), (child).gobj());
+  gtk_list_box_remove(gobj(), child.gobj());
 }
 
 auto ListBox::get_selected_row() -> ListBoxRow*
@@ -424,34 +422,38 @@ auto ListBox::get_selected_row() const -> const ListBoxRow*
   return const_cast<ListBox*>(this)->get_selected_row();
 }
 
-auto ListBox::get_row_at_index(int index) -> ListBoxRow*
+auto ListBox::get_row_at_index(
+  const int index) -> ListBoxRow*
 {
   return Glib::wrap(gtk_list_box_get_row_at_index(gobj(), index));
 }
 
-auto ListBox::get_row_at_index(int index) const -> const ListBoxRow*
+auto ListBox::get_row_at_index(
+  const int index) const -> const ListBoxRow*
 {
   return const_cast<ListBox*>(this)->get_row_at_index(index);
 }
 
-auto ListBox::get_row_at_y(int y) -> ListBoxRow*
+auto ListBox::get_row_at_y(
+  const int y) -> ListBoxRow*
 {
   return Glib::wrap(gtk_list_box_get_row_at_y(gobj(), y));
 }
 
-auto ListBox::get_row_at_y(int y) const -> const ListBoxRow*
+auto ListBox::get_row_at_y(
+  const int y) const -> const ListBoxRow*
 {
   return const_cast<ListBox*>(this)->get_row_at_y(y);
 }
 
 auto ListBox::select_row (ListBoxRow &row) -> void
 {
-  gtk_list_box_select_row(gobj(), (row).gobj());
+  gtk_list_box_select_row(gobj(), row.gobj());
 }
 
 auto ListBox::set_placeholder (Widget &placeholder) -> void
 {
-  gtk_list_box_set_placeholder(gobj(), (placeholder).gobj());
+  gtk_list_box_set_placeholder(gobj(), placeholder.gobj());
 }
 
 auto ListBox::set_adjustment (const Glib::RefPtr <Adjustment> &adjustment) -> void
@@ -484,7 +486,7 @@ auto ListBox::get_selected_rows() const -> std::vector<ListBoxRow*>
 
 auto ListBox::unselect_row (ListBoxRow *row) -> void
 {
-  gtk_list_box_unselect_row(gobj(), (GtkListBoxRow*)Glib::unwrap(row));
+  gtk_list_box_unselect_row(gobj(), Glib::unwrap(row));
 }
 
 auto ListBox::select_all () -> void
@@ -522,9 +524,10 @@ auto ListBox::invalidate_headers () -> void
   gtk_list_box_invalidate_headers(gobj());
 }
 
-auto ListBox::set_activate_on_single_click (bool single) -> void
+auto ListBox::set_activate_on_single_click (
+  const bool single) -> void
 {
-  gtk_list_box_set_activate_on_single_click(gobj(), static_cast<int>(single));
+  gtk_list_box_set_activate_on_single_click(gobj(), single);
 }
 
 auto ListBox::get_activate_on_single_click() const -> bool
@@ -539,12 +542,13 @@ auto ListBox::drag_unhighlight_row () -> void
 
 auto ListBox::drag_highlight_row (ListBoxRow &row) -> void
 {
-  gtk_list_box_drag_highlight_row(gobj(), (row).gobj());
+  gtk_list_box_drag_highlight_row(gobj(), row.gobj());
 }
 
-auto ListBox::set_show_separators (bool show_separators) -> void
+auto ListBox::set_show_separators (
+  const bool show_separators) -> void
 {
-  gtk_list_box_set_show_separators(gobj(), static_cast<int>(show_separators));
+  gtk_list_box_set_show_separators(gobj(), show_separators);
 }
 
 auto ListBox::get_show_separators() const -> bool
@@ -555,19 +559,19 @@ auto ListBox::get_show_separators() const -> bool
 
 auto ListBox::signal_row_selected() -> Glib::SignalProxy<void(ListBoxRow*)>
 {
-  return Glib::SignalProxy<void(ListBoxRow*) >(this, &ListBox_signal_row_selected_info);
+  return {this, &ListBox_signal_row_selected_info};
 }
 
 
 auto ListBox::signal_row_activated() -> Glib::SignalProxy<void(ListBoxRow*)>
 {
-  return Glib::SignalProxy<void(ListBoxRow*) >(this, &ListBox_signal_row_activated_info);
+  return {this, &ListBox_signal_row_activated_info};
 }
 
 
 auto ListBox::signal_selected_rows_changed() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &ListBox_signal_selected_rows_changed_info);
+  return {this, &ListBox_signal_selected_rows_changed_info};
 }
 
 
@@ -577,42 +581,42 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<SelectionMode>::valu
 
 auto ListBox::property_selection_mode() -> Glib::PropertyProxy< SelectionMode >
 {
-  return Glib::PropertyProxy< SelectionMode >(this, "selection-mode");
+  return {this, "selection-mode"};
 }
 
 auto ListBox::property_selection_mode() const -> Glib::PropertyProxy_ReadOnly< SelectionMode >
 {
-  return Glib::PropertyProxy_ReadOnly< SelectionMode >(this, "selection-mode");
+  return {this, "selection-mode"};
 }
 
 auto ListBox::property_activate_on_single_click() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "activate-on-single-click");
+  return {this, "activate-on-single-click"};
 }
 
 auto ListBox::property_activate_on_single_click() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "activate-on-single-click");
+  return {this, "activate-on-single-click"};
 }
 
 auto ListBox::property_accept_unpaired_release() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "accept-unpaired-release");
+  return {this, "accept-unpaired-release"};
 }
 
 auto ListBox::property_accept_unpaired_release() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "accept-unpaired-release");
+  return {this, "accept-unpaired-release"};
 }
 
 auto ListBox::property_show_separators() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "show-separators");
+  return {this, "show-separators"};
 }
 
 auto ListBox::property_show_separators() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "show-separators");
+  return {this, "show-separators"};
 }
 
 

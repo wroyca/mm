@@ -31,7 +31,7 @@ namespace Gio
 {
 
 auto
-UnixSocketAddress::create(const std::string& path, Type type, int path_len) -> Glib::RefPtr<UnixSocketAddress>
+UnixSocketAddress::create(const std::string& path, Type type, const int path_len) -> Glib::RefPtr<UnixSocketAddress>
 {
   return Glib::wrap(reinterpret_cast<GUnixSocketAddress*>(g_unix_socket_address_new_with_type(
     path.c_str(), path_len, static_cast<GUnixSocketAddressType>(type))));
@@ -53,9 +53,9 @@ auto Glib::Value<Gio::UnixSocketAddress::Type>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GUnixSocketAddress* object, bool take_copy) -> Glib::RefPtr<Gio::UnixSocketAddress>
+auto wrap(GUnixSocketAddress* object, const bool take_copy) -> RefPtr<Gio::UnixSocketAddress>
 {
-  return Glib::make_refptr_for_instance<Gio::UnixSocketAddress>( dynamic_cast<Gio::UnixSocketAddress*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::UnixSocketAddress>( dynamic_cast<Gio::UnixSocketAddress*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -68,7 +68,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto UnixSocketAddress_Class::init() -> const Glib::Class&
+auto UnixSocketAddress_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -122,7 +122,7 @@ UnixSocketAddress::UnixSocketAddress(const Glib::ConstructParams& construct_para
 
 UnixSocketAddress::UnixSocketAddress(GUnixSocketAddress* castitem)
 :
-  SocketAddress((GSocketAddress*)(castitem))
+  SocketAddress((GSocketAddress*)castitem)
 {}
 
 
@@ -137,9 +137,7 @@ auto UnixSocketAddress::operator=(UnixSocketAddress&& src) noexcept -> UnixSocke
 }
 
 
-UnixSocketAddress::~UnixSocketAddress() noexcept
-{}
-
+UnixSocketAddress::~UnixSocketAddress() noexcept = default;
 
 UnixSocketAddress::CppClassType UnixSocketAddress::unixsocketaddress_class_; // initialize static member
 
@@ -158,7 +156,7 @@ auto UnixSocketAddress::get_base_type() -> GType
 UnixSocketAddress::UnixSocketAddress(const std::string& path)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   SocketAddress(Glib::ConstructParams(unixsocketaddress_class_.init(), "path", path.c_str(), nullptr))
 {
 
@@ -192,12 +190,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Type>::value,
 
 auto UnixSocketAddress::property_address_type() const -> Glib::PropertyProxy_ReadOnly< Type >
 {
-  return Glib::PropertyProxy_ReadOnly< Type >(this, "address-type");
+  return {this, "address-type"};
 }
 
 auto UnixSocketAddress::property_path() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
-  return Glib::PropertyProxy_ReadOnly< std::string >(this, "path");
+  return {this, "path"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Glib::ByteArray>>::value,
@@ -206,7 +204,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Glib::B
 
 auto UnixSocketAddress::property_path_as_array() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ByteArray> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ByteArray> >(this, "path-as-array");
+  return {this, "path-as-array"};
 }
 
 

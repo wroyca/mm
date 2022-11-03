@@ -38,7 +38,7 @@ namespace // anonymous
 {
 
 auto Application_signal_open_callback (
-  GApplication *self, GFile **files, gint n_files, const gchar *hint, void *data) -> void
+  GApplication *self, GFile **files, const gint n_files, const gchar *hint, void *data) -> void
 {
   using SlotType = sigc::slot<void(const Gio::Application::type_vec_files&, const Glib::ustring&)>;
 
@@ -48,7 +48,7 @@ auto Application_signal_open_callback (
     vec_files[i] = Glib::wrap(files[i], true);
   }
 
-  const auto hint_str = (hint ? hint : Glib::ustring());
+  const auto hint_str = hint ? hint : Glib::ustring();
 
   // Do not try to call a signal on a disassociated wrapper.
   if (Glib::ObjectBase::_get_current_wrapper((GObject*)self))
@@ -71,7 +71,7 @@ auto Application_signal_open_callback (
 }
 
 auto Application_signal_open_notify_callback (
-  GApplication *self, GFile **files, gint n_files, const gchar *hint, void *data) -> void
+  GApplication *self, GFile **files, const gint n_files, const gchar *hint, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(const Application::type_vec_files&, const Glib::ustring&)>;
@@ -82,7 +82,7 @@ auto Application_signal_open_notify_callback (
     vec_files[i] = Glib::wrap(files[i], true);
   }
 
-  const auto hint_str = (hint ? hint : Glib::ustring());
+  const auto hint_str = hint ? hint : Glib::ustring();
 
   // Do not try to call a signal on a disassociated wrapper.
   if (Glib::ObjectBase::_get_current_wrapper((GObject*)self))
@@ -121,30 +121,30 @@ class OptionArgCallbackData
 {
 public:
   explicit OptionArgCallbackData(const Gio::Application* application,
-    const Glib::ustring& long_name, gchar short_name,
+    const Glib::ustring& long_name, const gchar short_name,
     const Glib::ustring& description, const Glib::ustring& arg_description,
     const Glib::OptionGroup::SlotOptionArgString& slot)
   :
     application_(application),
     long_name_(g_strdup(long_name.c_str())), // must not be nullptr
     short_name_(short_name),
-    description_(g_strdup(Glib::c_str_or_nullptr(description))),
-    arg_description_(g_strdup(Glib::c_str_or_nullptr(arg_description))),
+    description_(g_strdup(c_str_or_nullptr(description))),
+    arg_description_(g_strdup(c_str_or_nullptr(arg_description))),
     slot_string_(new Glib::OptionGroup::SlotOptionArgString(slot)),
     slot_filename_(nullptr)
   {
   }
 
   explicit OptionArgCallbackData(const Gio::Application* application,
-    const Glib::ustring& long_name, gchar short_name,
+    const Glib::ustring& long_name, const gchar short_name,
     const Glib::ustring& description, const Glib::ustring& arg_description,
     const Glib::OptionGroup::SlotOptionArgFilename& slot)
   :
     application_(application),
     long_name_(g_strdup(long_name.c_str())), // must not be nullptr
     short_name_(short_name),
-    description_(g_strdup(Glib::c_str_or_nullptr(description))),
-    arg_description_(g_strdup(Glib::c_str_or_nullptr(arg_description))),
+    description_(g_strdup(c_str_or_nullptr(description))),
+    arg_description_(g_strdup(c_str_or_nullptr(arg_description))),
     slot_string_(nullptr),
     slot_filename_(new Glib::OptionGroup::SlotOptionArgFilename(slot))
   {
@@ -234,7 +234,7 @@ Application_option_arg_callback(
     return false;
   }
 
-  const bool has_value = (value != nullptr);
+  const bool has_value = value != nullptr;
   const OptionArgCallbackData* const option_arg = iterFind->second;
   try
   {
@@ -273,17 +273,17 @@ auto
 Application::custom_class_init() -> const Glib::Class&
 {
   Glib::init();
-  Gio::init();
+  init();
   return application_class_.init();
 }
 
-Application::Application(const Glib::ustring& application_id, Flags flags)
+Application::Application(const Glib::ustring& application_id, const Flags flags)
 : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
   // GApplication complains about "" but allows nullptr, so we avoid passing "".
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(custom_class_init(),
-    "application_id", Glib::c_str_or_nullptr(application_id),
-    "flags", static_cast<GApplicationFlags>(flags), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(custom_class_init(),
+                             "application_id", c_str_or_nullptr(application_id),
+                             "flags", flags, nullptr))
 {
 }
 
@@ -294,7 +294,7 @@ Application::~Application() noexcept
   OptionArgCallbackDataMap::iterator iter = option_arg_callback_data.begin();
   while (iter != option_arg_callback_data.end())
   {
-    OptionArgCallbackDataMap::iterator saved_iter = iter;
+    const OptionArgCallbackDataMap::iterator saved_iter = iter;
     ++iter;
     if (saved_iter->second->get_application() == this)
     {
@@ -311,10 +311,10 @@ auto Application::unset_default () -> void
 }
 
 auto Application_Class::open_callback (
-  GApplication *self, GFile **files, gint n_files, const gchar *hint) -> void
+  GApplication *self, GFile **files, const gint n_files, const gchar *hint) -> void
 {
   const auto obj_base =
-    static_cast<Glib::ObjectBase*>(Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+    Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -336,7 +336,7 @@ auto Application_Class::open_callback (
           vec_files[i] = Glib::wrap(files[i], true);
         }
 
-        const auto hint_str = (hint ? hint : Glib::ustring());
+        const auto hint_str = hint ? hint : Glib::ustring();
 
         obj->on_open(vec_files, hint_str);
         return;
@@ -358,14 +358,13 @@ auto Application_Class::open_callback (
 }
 
 auto
-Application::signal_open() -> Glib::SignalProxy<void(const Application::type_vec_files&, const Glib::ustring&)>
+Application::signal_open() -> Glib::SignalProxy<void(const type_vec_files &, const Glib::ustring&)>
 {
-  return Glib::SignalProxy<void(const Application::type_vec_files&, const Glib::ustring&)>(
-    this, &Application_signal_open_info);
+  return {this, &Application_signal_open_info};
 }
 
-auto Gio::Application::on_open (
-  const Application::type_vec_files &files, const Glib::ustring &hint) -> void
+auto Application::on_open (
+  const type_vec_files &files, const Glib::ustring &hint) -> void
 {
   const auto base = static_cast<BaseClassType*>(g_type_class_peek_parent(G_OBJECT_GET_CLASS(
     gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -386,7 +385,7 @@ auto Application::open (const type_vec_files &files, const Glib::ustring &hint) 
     hint.c_str());
 }
 
-auto Application::open (const Glib::RefPtr <Gio::File> &file, const Glib::ustring &hint) -> void
+auto Application::open (const Glib::RefPtr <File> &file, const Glib::ustring &hint) -> void
 {
   type_vec_files files(1);
   files[0] = file;
@@ -394,26 +393,25 @@ auto Application::open (const Glib::RefPtr <Gio::File> &file, const Glib::ustrin
 }
 
 auto Application::add_main_option_entry (
-  OptionType arg_type, const Glib::ustring &long_name,
-  gchar short_name, const Glib::ustring &description, const Glib::ustring &arg_description,
+  OptionType arg_type, const Glib::ustring &long_name, const gchar short_name, const Glib::ustring &description, const Glib::ustring &arg_description,
   Glib::OptionEntry::Flags flags) -> void
 {
   // g_application_add_main_option() saves copies of the strings.
   // No need to keep copies in Gio::Application.
   g_application_add_main_option(gobj(), long_name.c_str(), short_name,
     static_cast<GOptionFlags>(flags), static_cast<GOptionArg>(arg_type),
-    description.c_str(), Glib::c_str_or_nullptr(arg_description));
+    description.c_str(), c_str_or_nullptr(arg_description));
 }
 
 auto Application::add_main_option_entry (
   const Glib::OptionGroup::SlotOptionArgString &slot,
-  const Glib::ustring &long_name, gchar short_name, const Glib::ustring &description,
-  const Glib::ustring &arg_description, Glib::OptionEntry::Flags flags) -> void
+  const Glib::ustring &long_name, const gchar short_name, const Glib::ustring &description,
+  const Glib::ustring &arg_description, const Glib::OptionEntry::Flags flags) -> void
 {
   OptionArgCallbackData* callback_data = nullptr;
   {
     std::lock_guard<std::mutex> lock(option_arg_callback_data_mutex);
-    OptionArgCallbackDataMap::iterator iterFind = option_arg_callback_data.find(long_name);
+    const OptionArgCallbackDataMap::iterator iterFind = option_arg_callback_data.find(long_name);
     if (iterFind != option_arg_callback_data.end())
       return; // Ignore duplicates
 
@@ -429,13 +427,13 @@ auto Application::add_main_option_entry (
 
 auto Application::add_main_option_entry_filename (
   const Glib::OptionGroup::SlotOptionArgFilename &slot,
-  const Glib::ustring &long_name, gchar short_name, const Glib::ustring &description,
-  const Glib::ustring &arg_description, Glib::OptionEntry::Flags flags) -> void
+  const Glib::ustring &long_name, const gchar short_name, const Glib::ustring &description,
+  const Glib::ustring &arg_description, const Glib::OptionEntry::Flags flags) -> void
 {
   OptionArgCallbackData* callback_data = nullptr;
   {
     std::lock_guard<std::mutex> lock(option_arg_callback_data_mutex);
-    OptionArgCallbackDataMap::iterator iterFind = option_arg_callback_data.find(long_name);
+    const OptionArgCallbackDataMap::iterator iterFind = option_arg_callback_data.find(long_name);
     if (iterFind != option_arg_callback_data.end())
       return; // Ignore duplicates
 
@@ -450,8 +448,7 @@ auto Application::add_main_option_entry_filename (
 }
 
 auto Application::add_main_option_entry_private (
-  const gchar *long_name,
-  gchar short_name, const gchar *description,
+  const gchar *long_name, const gchar short_name, const gchar *description,
   const gchar *arg_description, Glib::OptionEntry::Flags flags) -> void
 {
   // g_application_add_main_option() can't be used for options with
@@ -528,7 +525,7 @@ auto Application_signal_command_line_callback(GApplication* self, GApplicationCo
   using namespace Gio;
   using SlotType = sigc::slot<int(const Glib::RefPtr<ApplicationCommandLine>&)>;
 
-  auto obj = dynamic_cast<Application*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Application*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -553,7 +550,7 @@ auto Application_signal_command_line_notify_callback(GApplication* self, GApplic
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<ApplicationCommandLine>&)>;
 
-  auto obj = dynamic_cast<Application*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Application*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -586,7 +583,7 @@ auto Application_signal_handle_local_options_callback(GApplication* self, GVaria
   using namespace Gio;
   using SlotType = sigc::slot<int(const Glib::RefPtr<Glib::VariantDict>&)>;
 
-  auto obj = dynamic_cast<Application*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Application*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -611,7 +608,7 @@ auto Application_signal_handle_local_options_notify_callback(GApplication* self,
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Glib::VariantDict>&)>;
 
-  auto obj = dynamic_cast<Application*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Application*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -644,14 +641,14 @@ auto Application_signal_name_lost_callback(GApplication* self, void* data) -> gb
   using namespace Gio;
   using SlotType = sigc::slot<bool()>;
 
-  auto obj = dynamic_cast<Application*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Application*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return static_cast<int>((*static_cast<SlotType*>(slot))());
+        return (*static_cast<SlotType*>(slot))();
     }
     catch(...)
     {
@@ -668,7 +665,7 @@ auto Application_signal_name_lost_notify_callback(GApplication* self,  void* dat
   using namespace Gio;
   using SlotType = sigc::slot<void()>;
 
-  auto obj = dynamic_cast<Application*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Application*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -707,9 +704,9 @@ auto Glib::Value<Gio::Application::Flags>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GApplication* object, bool take_copy) -> Glib::RefPtr<Gio::Application>
+auto wrap(GApplication* object, const bool take_copy) -> RefPtr<Gio::Application>
 {
-  return Glib::make_refptr_for_instance<Gio::Application>( dynamic_cast<Gio::Application*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::Application>( dynamic_cast<Gio::Application*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -722,7 +719,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto Application_Class::init() -> const Glib::Class&
+auto Application_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -770,8 +767,7 @@ auto Application_Class::class_init_function (void *g_class, void *class_data) ->
 
 auto Application_Class::local_command_line_vfunc_callback(GApplication* self, gchar*** arguments, int* exit_status) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -786,9 +782,9 @@ auto Application_Class::local_command_line_vfunc_callback(GApplication* self, gc
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->local_command_line_vfunc(*(arguments)
-, *(exit_status)
-));
+        return obj->local_command_line_vfunc(*arguments
+                                             , *exit_status
+        );
       }
       catch(...)
       {
@@ -797,7 +793,7 @@ auto Application_Class::local_command_line_vfunc_callback(GApplication* self, gc
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -811,8 +807,7 @@ auto Application_Class::local_command_line_vfunc_callback(GApplication* self, gc
 auto Application_Class::before_emit_vfunc_callback (
   GApplication *self, GVariant *platform_data) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -838,7 +833,7 @@ auto Application_Class::before_emit_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -849,8 +844,7 @@ auto Application_Class::before_emit_vfunc_callback (
 auto Application_Class::after_emit_vfunc_callback (
   GApplication *self, GVariant *platform_data) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -876,7 +870,7 @@ auto Application_Class::after_emit_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -886,8 +880,7 @@ auto Application_Class::after_emit_vfunc_callback (
 }
 auto Application_Class::quit_mainloop_vfunc_callback (GApplication *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -912,7 +905,7 @@ auto Application_Class::quit_mainloop_vfunc_callback (GApplication *self) -> voi
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -922,8 +915,7 @@ auto Application_Class::quit_mainloop_vfunc_callback (GApplication *self) -> voi
 }
 auto Application_Class::run_mainloop_vfunc_callback (GApplication *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -948,7 +940,7 @@ auto Application_Class::run_mainloop_vfunc_callback (GApplication *self) -> void
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -958,8 +950,7 @@ auto Application_Class::run_mainloop_vfunc_callback (GApplication *self) -> void
 }
 auto Application_Class::dbus_register_vfunc_callback(GApplication* self, GDBusConnection* connection, const gchar* object_path, GError** error) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -974,9 +965,9 @@ auto Application_Class::dbus_register_vfunc_callback(GApplication* self, GDBusCo
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->dbus_register_vfunc(Glib::wrap(connection, true)
-, Glib::convert_const_gchar_ptr_to_ustring(object_path)
-));
+        return obj->dbus_register_vfunc(Glib::wrap(connection, true)
+                                        , Glib::convert_const_gchar_ptr_to_ustring(object_path)
+        );
       }
       catch(Glib::Error& errormm)
       {
@@ -991,7 +982,7 @@ auto Application_Class::dbus_register_vfunc_callback(GApplication* self, GDBusCo
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -1005,8 +996,7 @@ auto Application_Class::dbus_register_vfunc_callback(GApplication* self, GDBusCo
 auto Application_Class::dbus_unregister_vfunc_callback (
   GApplication *self, GDBusConnection *connection, const gchar *object_path) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -1033,7 +1023,7 @@ auto Application_Class::dbus_unregister_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -1044,8 +1034,7 @@ auto Application_Class::dbus_unregister_vfunc_callback (
 
 auto Application_Class::startup_callback (GApplication *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -1080,8 +1069,7 @@ auto Application_Class::startup_callback (GApplication *self) -> void
 }
 auto Application_Class::shutdown_callback (GApplication *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -1116,8 +1104,7 @@ auto Application_Class::shutdown_callback (GApplication *self) -> void
 }
 auto Application_Class::activate_callback (GApplication *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -1152,8 +1139,7 @@ auto Application_Class::activate_callback (GApplication *self) -> void
 }
 auto Application_Class::command_line_callback(GApplication* self, GApplicationCommandLine* p0) -> gint
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -1191,8 +1177,7 @@ auto Application_Class::command_line_callback(GApplication* self, GApplicationCo
 }
 auto Application_Class::handle_local_options_callback(GApplication* self, GVariantDict* p0) -> gint
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -1230,8 +1215,7 @@ auto Application_Class::handle_local_options_callback(GApplication* self, GVaria
 }
 auto Application_Class::name_lost_callback(GApplication* self) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -1246,7 +1230,7 @@ auto Application_Class::name_lost_callback(GApplication* self) -> gboolean
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->on_name_lost());
+        return obj->on_name_lost();
       }
       catch(...)
       {
@@ -1283,27 +1267,25 @@ auto Application::gobj_copy() -> GApplication*
 }
 
 Application::Application(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 Application::Application(GApplication* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 Application::Application(Application&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , ActionGroup(std::move(src))
   , ActionMap(std::move(src))
 {}
 
 auto Application::operator=(Application&& src) noexcept -> Application&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   ActionGroup::operator=(std::move(src));
   ActionMap::operator=(std::move(src));
   return *this;
@@ -1324,7 +1306,7 @@ auto Application::get_base_type() -> GType
 }
 
 
-auto Application::create(const Glib::ustring& application_id, Flags flags) -> Glib::RefPtr<Application>
+auto Application::create(const Glib::ustring& application_id, const Flags flags) -> Glib::RefPtr<Application>
 {
   return Glib::make_refptr_for_instance<Application>( new Application(application_id, flags) );
 }
@@ -1367,7 +1349,8 @@ auto Application::get_inactivity_timeout() const -> guint
   return g_application_get_inactivity_timeout(const_cast<GApplication*>(gobj()));
 }
 
-auto Application::set_inactivity_timeout (guint inactivity_timeout) -> void
+auto Application::set_inactivity_timeout (
+  const guint inactivity_timeout) -> void
 {
   g_application_set_inactivity_timeout(gobj(), inactivity_timeout);
 }
@@ -1394,7 +1377,7 @@ auto Application::set_resource_base_path (const std::string &resource_path) -> v
 
 auto Application::add_option_group (Glib::OptionGroup &group) -> void
 {
-  g_application_add_option_group(gobj(), (group).gobj_copy());
+  g_application_add_option_group(gobj(), group.gobj_copy());
 }
 
 auto Application::set_option_context_parameter_string (
@@ -1423,21 +1406,21 @@ auto Application::is_remote() const -> bool
   return g_application_get_is_remote(const_cast<GApplication*>(gobj()));
 }
 
-auto Application::register_application(const Glib::RefPtr<Gio::Cancellable>& cancellable) -> bool
+auto Application::register_application(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_application_register(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_application_register(gobj(), Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto Application::register_application() -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_application_register(gobj(), nullptr, &(gerror));
+  const auto retvalue = g_application_register(gobj(), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -1456,7 +1439,8 @@ auto Application::activate () -> void
   g_application_activate(gobj());
 }
 
-auto Application::run(int argc, char** argv) -> int
+auto Application::run(
+  const int argc, char** argv) -> int
 {
   return g_application_run(gobj(), argc, argv);
 }
@@ -1468,7 +1452,7 @@ auto Application::quit () -> void
 
 auto Application::set_default (const Glib::RefPtr <Application> &application) -> void
 {
-  g_application_set_default(const_cast<GApplication*>(Glib::unwrap(application)));
+  g_application_set_default(Glib::unwrap(application));
 }
 
 auto Application::get_default() -> Glib::RefPtr<Application>
@@ -1498,12 +1482,12 @@ auto Application::get_is_busy() const -> bool
 auto Application::send_notification (
   const Glib::ustring &id, const Glib::RefPtr <Notification> &notification) -> void
 {
-  g_application_send_notification(gobj(), id.empty() ? nullptr : id.c_str(), const_cast<GNotification*>(Glib::unwrap(notification)));
+  g_application_send_notification(gobj(), id.empty() ? nullptr : id.c_str(), Glib::unwrap(notification));
 }
 
 auto Application::send_notification (const Glib::RefPtr <Notification> &notification) -> void
 {
-  g_application_send_notification(gobj(), nullptr, const_cast<GNotification*>(Glib::unwrap(notification)));
+  g_application_send_notification(gobj(), nullptr, Glib::unwrap(notification));
 }
 
 auto Application::withdraw_notification (const Glib::ustring &id) -> void
@@ -1514,48 +1498,48 @@ auto Application::withdraw_notification (const Glib::ustring &id) -> void
 
 auto Application::signal_startup() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Application_signal_startup_info);
+  return {this, &Application_signal_startup_info};
 }
 
 
 auto Application::signal_shutdown() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Application_signal_shutdown_info);
+  return {this, &Application_signal_shutdown_info};
 }
 
 
 auto Application::signal_activate() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Application_signal_activate_info);
+  return {this, &Application_signal_activate_info};
 }
 
 
 auto Application::signal_command_line() -> Glib::SignalProxy<int(const Glib::RefPtr<ApplicationCommandLine>&)>
 {
-  return Glib::SignalProxy<int(const Glib::RefPtr<ApplicationCommandLine>&) >(this, &Application_signal_command_line_info);
+  return {this, &Application_signal_command_line_info};
 }
 
 
 auto Application::signal_handle_local_options() -> Glib::SignalProxy<int(const Glib::RefPtr<Glib::VariantDict>&)>
 {
-  return Glib::SignalProxy<int(const Glib::RefPtr<Glib::VariantDict>&) >(this, &Application_signal_handle_local_options_info);
+  return {this, &Application_signal_handle_local_options_info};
 }
 
 
 auto Application::signal_name_lost() -> Glib::SignalProxy<bool()>
 {
-  return Glib::SignalProxy<bool() >(this, &Application_signal_name_lost_info);
+  return {this, &Application_signal_name_lost_info};
 }
 
 
 auto Application::property_application_id() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "application-id");
+  return {this, "application-id"};
 }
 
 auto Application::property_application_id() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "application-id");
+  return {this, "application-id"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Flags>::value,
@@ -1564,51 +1548,51 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Flags>::value,
 
 auto Application::property_flags() -> Glib::PropertyProxy< Flags >
 {
-  return Glib::PropertyProxy< Flags >(this, "flags");
+  return {this, "flags"};
 }
 
 auto Application::property_flags() const -> Glib::PropertyProxy_ReadOnly< Flags >
 {
-  return Glib::PropertyProxy_ReadOnly< Flags >(this, "flags");
+  return {this, "flags"};
 }
 
 auto Application::property_inactivity_timeout() -> Glib::PropertyProxy< guint >
 {
-  return Glib::PropertyProxy< guint >(this, "inactivity-timeout");
+  return {this, "inactivity-timeout"};
 }
 
 auto Application::property_inactivity_timeout() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
-  return Glib::PropertyProxy_ReadOnly< guint >(this, "inactivity-timeout");
+  return {this, "inactivity-timeout"};
 }
 
 auto Application::property_is_registered() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "is-registered");
+  return {this, "is-registered"};
 }
 
 auto Application::property_is_remote() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "is-remote");
+  return {this, "is-remote"};
 }
 
 auto Application::property_resource_base_path() -> Glib::PropertyProxy< std::string >
 {
-  return Glib::PropertyProxy< std::string >(this, "resource-base-path");
+  return {this, "resource-base-path"};
 }
 
 auto Application::property_resource_base_path() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
-  return Glib::PropertyProxy_ReadOnly< std::string >(this, "resource-base-path");
+  return {this, "resource-base-path"};
 }
 
 auto Application::property_is_busy() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "is-busy");
+  return {this, "is-busy"};
 }
 
 
-auto Gio::Application::on_startup () -> void
+auto Application::on_startup () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1617,7 +1601,7 @@ auto Gio::Application::on_startup () -> void
   if(base && base->startup)
     (*base->startup)(gobj());
 }
-auto Gio::Application::on_shutdown () -> void
+auto Application::on_shutdown () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1626,7 +1610,7 @@ auto Gio::Application::on_shutdown () -> void
   if(base && base->shutdown)
     (*base->shutdown)(gobj());
 }
-auto Gio::Application::on_activate () -> void
+auto Application::on_activate () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1635,31 +1619,31 @@ auto Gio::Application::on_activate () -> void
   if(base && base->activate)
     (*base->activate)(gobj());
 }
-auto Gio::Application::on_command_line(const Glib::RefPtr<ApplicationCommandLine>& command_line) -> int
+auto Application::on_command_line(const Glib::RefPtr<ApplicationCommandLine>& command_line) -> int
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->command_line)
-    return (*base->command_line)(gobj(),const_cast<GApplicationCommandLine*>(Glib::unwrap(command_line)));
+    return (*base->command_line)(gobj(),Glib::unwrap(command_line));
 
   using RType = int;
   return RType();
 }
-auto Gio::Application::on_handle_local_options(const Glib::RefPtr<Glib::VariantDict>& options) -> int
+auto Application::on_handle_local_options(const Glib::RefPtr<Glib::VariantDict>& options) -> int
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->handle_local_options)
-    return (*base->handle_local_options)(gobj(),Glib::unwrap(options));
+    return (*base->handle_local_options)(gobj(), unwrap(options));
 
   using RType = int;
   return RType();
 }
-auto Gio::Application::on_name_lost() -> bool
+auto Application::on_name_lost() -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1672,7 +1656,7 @@ auto Gio::Application::on_name_lost() -> bool
   return RType();
 }
 
-auto Gio::Application::local_command_line_vfunc(char**& arguments, int& exit_status) -> bool
+auto Application::local_command_line_vfunc(char**& arguments, int& exit_status) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1680,14 +1664,14 @@ auto Gio::Application::local_command_line_vfunc(char**& arguments, int& exit_sta
 
   if(base && base->local_command_line)
   {
-    bool retval((*base->local_command_line)(gobj(),&(arguments),&(exit_status)));
+    const bool retval((*base->local_command_line)(gobj(),&arguments,&exit_status));
     return retval;
   }
 
   using RType = bool;
   return RType();
 }
-auto Gio::Application::before_emit_vfunc (const Glib::VariantBase &platform_data) -> void
+auto Application::before_emit_vfunc (const Glib::VariantBase &platform_data) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1695,10 +1679,10 @@ auto Gio::Application::before_emit_vfunc (const Glib::VariantBase &platform_data
 
   if(base && base->before_emit)
   {
-    (*base->before_emit)(gobj(),const_cast<GVariant*>((platform_data).gobj()));
+    (*base->before_emit)(gobj(),const_cast<GVariant*>(platform_data.gobj()));
   }
 }
-auto Gio::Application::after_emit_vfunc (const Glib::VariantBase &platform_data) -> void
+auto Application::after_emit_vfunc (const Glib::VariantBase &platform_data) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1706,10 +1690,10 @@ auto Gio::Application::after_emit_vfunc (const Glib::VariantBase &platform_data)
 
   if(base && base->after_emit)
   {
-    (*base->after_emit)(gobj(),const_cast<GVariant*>((platform_data).gobj()));
+    (*base->after_emit)(gobj(),const_cast<GVariant*>(platform_data.gobj()));
   }
 }
-auto Gio::Application::quit_mainloop_vfunc () -> void
+auto Application::quit_mainloop_vfunc () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1720,7 +1704,7 @@ auto Gio::Application::quit_mainloop_vfunc () -> void
     (*base->quit_mainloop)(gobj());
   }
 }
-auto Gio::Application::run_mainloop_vfunc () -> void
+auto Application::run_mainloop_vfunc () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1731,7 +1715,7 @@ auto Gio::Application::run_mainloop_vfunc () -> void
     (*base->run_mainloop)(gobj());
   }
 }
-auto Gio::Application::dbus_register_vfunc(const Glib::RefPtr<DBus::Connection>& connection, const Glib::ustring& object_path) -> bool
+auto Application::dbus_register_vfunc(const Glib::RefPtr<DBus::Connection>& connection, const Glib::ustring& object_path) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1740,16 +1724,16 @@ auto Gio::Application::dbus_register_vfunc(const Glib::RefPtr<DBus::Connection>&
   if(base && base->dbus_register)
   {
     GError* gerror = nullptr;
-    bool retval((*base->dbus_register)(gobj(),Glib::unwrap(connection),object_path.c_str(),&(gerror)));
+    const bool retval((*base->dbus_register)(gobj(),Glib::unwrap(connection),object_path.c_str(),&gerror));
     if(gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Glib::Error::throw_exception(gerror);
     return retval;
   }
 
   using RType = bool;
   return RType();
 }
-auto Gio::Application::dbus_unregister_vfunc (
+auto Application::dbus_unregister_vfunc (
   const Glib::RefPtr <DBus::Connection> &connection, const Glib::ustring &object_path) -> void
 {
   const auto base = static_cast<BaseClassType*>(

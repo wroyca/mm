@@ -73,8 +73,7 @@ auto Buildable_Class::custom_tag_end_vfunc_callback (
   GtkBuildable *buildable,
   GtkBuilder *builder,
   GObject *child,
-  const char *tagname,
-  gpointer data) -> void
+  const char *tagname, const gpointer data) -> void
 {
   const auto base = static_cast<BaseClassType*>(
     g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
@@ -109,9 +108,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkBuildable* object, bool take_copy) -> Glib::RefPtr<Gtk::Buildable>
+auto wrap(GtkBuildable* object, const bool take_copy) -> RefPtr<Gtk::Buildable>
 {
-  return Glib::make_refptr_for_instance<Gtk::Buildable>( dynamic_cast<Gtk::Buildable*> (Glib::wrap_auto_interface<Gtk::Buildable> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::Buildable>( Glib::wrap_auto_interface<Gtk::Buildable> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -124,7 +123,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Buildable_Class::init() -> const Glib::Interface_Class&
+auto Buildable_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -155,42 +154,40 @@ auto Buildable_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto Buildable_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new Buildable((GtkBuildable*)(object));
+  return new Buildable((GtkBuildable*)object);
 }
 
 
 /* The implementation: */
 
 Buildable::Buildable()
-:
-  Glib::Interface(buildable_class_.init())
+: Interface(buildable_class_.init())
 {}
 
 Buildable::Buildable(GtkBuildable* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 Buildable::Buildable(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 Buildable::Buildable(Buildable&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto Buildable::operator=(Buildable&& src) noexcept -> Buildable&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-Buildable::~Buildable() noexcept
-{}
+Buildable::~Buildable() noexcept = default;
 
 // static
-auto Buildable::add_interface (GType gtype_implementer) -> void
+auto Buildable::add_interface (
+  const GType gtype_implementer) -> void
 {
   buildable_class_.init().add_interface(gtype_implementer);
 }

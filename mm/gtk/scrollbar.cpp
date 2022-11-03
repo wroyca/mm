@@ -32,11 +32,11 @@
 namespace Gtk
 {
 
-Scrollbar::Scrollbar(const Glib::RefPtr<Adjustment>& adjustment, Orientation orientation)
+Scrollbar::Scrollbar(const Glib::RefPtr<Adjustment>& adjustment, const Orientation orientation)
 :
 // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(scrollbar_class_.init(), "adjustment",Glib::unwrap(adjustment),"orientation",(GtkOrientation)orientation, nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(scrollbar_class_.init(), "adjustment",Glib::unwrap(adjustment),"orientation",orientation, nullptr))
 {
 }
 
@@ -55,9 +55,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkScrollbar* object, bool take_copy) -> Gtk::Scrollbar*
+auto wrap(GtkScrollbar* object, const bool take_copy) -> Gtk::Scrollbar*
 {
-  return dynamic_cast<Gtk::Scrollbar *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::Scrollbar *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -68,7 +68,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Scrollbar_Class::init() -> const Glib::Class&
+auto Scrollbar_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -102,7 +102,7 @@ auto Scrollbar_Class::class_init_function (void *g_class, void *class_data) -> v
 
 auto Scrollbar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new Scrollbar((GtkScrollbar*)(o)));
+  return manage(new Scrollbar((GtkScrollbar*)o));
 
 }
 
@@ -110,26 +110,24 @@ auto Scrollbar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 Scrollbar::Scrollbar(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 Scrollbar::Scrollbar(GtkScrollbar* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 Scrollbar::Scrollbar(Scrollbar&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
   , Orientable(std::move(src))
 {}
 
 auto Scrollbar::operator=(Scrollbar&& src) noexcept -> Scrollbar&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   Orientable::operator=(std::move(src));
   return *this;
 }
@@ -156,8 +154,8 @@ auto Scrollbar::get_base_type() -> GType
 Scrollbar::Scrollbar()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(scrollbar_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(scrollbar_class_.init()))
 {
 
 
@@ -188,12 +186,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Adjustm
 
 auto Scrollbar::property_adjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Adjustment> >(this, "adjustment");
+  return {this, "adjustment"};
 }
 
 auto Scrollbar::property_adjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >(this, "adjustment");
+  return {this, "adjustment"};
 }
 
 

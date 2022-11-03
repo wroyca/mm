@@ -50,7 +50,7 @@ struct UnicharToUtf8
   char buf[6];
   ustring::size_type len;
 
-  explicit UnicharToUtf8(gunichar uc) : len(g_unichar_to_utf8(uc, buf)) {}
+  explicit UnicharToUtf8(const gunichar uc) : len(g_unichar_to_utf8(uc, buf)) {}
 };
 
 // All utf8_*_offset() functions return npos if offset is out of range.
@@ -79,12 +79,12 @@ utf8_byte_offset(const char* str, ustring::size_type offset) -> ustring::size_ty
     p += utf8_skip[c];
   }
 
-  return (p - str);
+  return p - str;
 }
 
 // Second overload: stop when reaching maxlen.
 auto
-utf8_byte_offset(const char* str, ustring::size_type offset, ustring::size_type maxlen) -> ustring::size_type
+utf8_byte_offset(const char* str, ustring::size_type offset, const ustring::size_type maxlen) -> ustring::size_type
 {
   if (offset == ustring::npos)
     return ustring::npos;
@@ -101,13 +101,13 @@ utf8_byte_offset(const char* str, ustring::size_type offset, ustring::size_type 
     p += utf8_skip[static_cast<unsigned char>(*p)];
   }
 
-  return (p - str);
+  return p - str;
 }
 
 // Third overload: stop when reaching str.size().
 //
 inline auto
-utf8_byte_offset(const std::string& str, ustring::size_type offset) -> ustring::size_type
+utf8_byte_offset(const std::string& str, const ustring::size_type offset) -> ustring::size_type
 {
   return utf8_byte_offset(str.data(), offset, str.size());
 }
@@ -120,7 +120,7 @@ struct Utf8SubstrBounds
   ustring::size_type i;
   ustring::size_type n;
 
-  Utf8SubstrBounds(const std::string& str, ustring::size_type ci, ustring::size_type cn)
+  Utf8SubstrBounds(const std::string& str, const ustring::size_type ci, const ustring::size_type cn)
   : i(utf8_byte_offset(str, ci)), n(ustring::npos)
   {
     if (i != ustring::npos)
@@ -130,7 +130,7 @@ struct Utf8SubstrBounds
 
 // Converts byte offset to UTF-8 character offset.
 inline auto
-utf8_char_offset(const std::string& str, ustring::size_type offset) -> ustring::size_type
+utf8_char_offset(const std::string& str, const ustring::size_type offset) -> ustring::size_type
 {
   if (offset == ustring::npos)
     return ustring::npos;
@@ -142,8 +142,7 @@ utf8_char_offset(const std::string& str, ustring::size_type offset) -> ustring::
 // Helper to implement ustring::find_first_of() and find_first_not_of().
 // Returns the UTF-8 character offset, or ustring::npos if not found.
 auto
-utf8_find_first_of(const std::string& str, ustring::size_type offset, const char* utf8_match,
-  long utf8_match_size, bool find_not_of) -> ustring::size_type
+utf8_find_first_of(const std::string& str, ustring::size_type offset, const char* utf8_match, const long utf8_match_size, const bool find_not_of) -> ustring::size_type
 {
   const ustring::size_type byte_offset = utf8_byte_offset(str, offset);
   if (byte_offset == ustring::npos)
@@ -163,7 +162,7 @@ utf8_find_first_of(const std::string& str, ustring::size_type offset, const char
   {
     const gunichar* const pfound = std::find(match_begin, match_end, g_utf8_get_char(pstr));
 
-    if ((pfound != match_end) != find_not_of)
+    if (pfound != match_end != find_not_of)
       return offset;
 
     ++offset;
@@ -175,8 +174,7 @@ utf8_find_first_of(const std::string& str, ustring::size_type offset, const char
 // Helper to implement ustring::find_last_of() and find_last_not_of().
 // Returns the UTF-8 character offset, or ustring::npos if not found.
 auto
-utf8_find_last_of(const std::string& str, ustring::size_type offset, const char* utf8_match,
-  long utf8_match_size, bool find_not_of) -> ustring::size_type
+utf8_find_last_of(const std::string& str, const ustring::size_type offset, const char* utf8_match, const long utf8_match_size, const bool find_not_of) -> ustring::size_type
 {
   long ucs4_match_size = 0;
   const auto ucs4_match =
@@ -190,7 +188,7 @@ utf8_find_last_of(const std::string& str, ustring::size_type offset, const char*
 
   // Set pstr one byte beyond the actual start position.
   const ustring::size_type byte_offset = utf8_byte_offset(str, offset);
-  pstr += (byte_offset < str.size()) ? byte_offset + 1 : str.size();
+  pstr += byte_offset < str.size() ? byte_offset + 1 : str.size();
 
   while (pstr > str_begin)
   {
@@ -201,7 +199,7 @@ utf8_find_last_of(const std::string& str, ustring::size_type offset, const char*
 
     const gunichar* const pfound = std::find(match_begin, match_end, g_utf8_get_char(pstr));
 
-    if ((pfound != match_end) != find_not_of)
+    if (pfound != match_end != find_not_of)
       return g_utf8_pointer_to_offset(str_begin, pstr);
   }
 
@@ -286,21 +284,19 @@ ustring::ustring() : string_()
 {
 }
 
-ustring::ustring(const ustring& other) : string_(other.string_)
-{
-}
+ustring::ustring(const ustring& other) = default;
 
 ustring::ustring(ustring&& other) : string_(std::move(other.string_))
 {
 }
 
-ustring::ustring(const ustring& src, ustring::size_type i, ustring::size_type n) : string_()
+ustring::ustring(const ustring& src, const size_type i, const size_type n) : string_()
 {
   const Utf8SubstrBounds bounds(src.string_, i, n);
   string_.assign(src.string_, bounds.i, bounds.n);
 }
 
-ustring::ustring(const char* src, ustring::size_type n) : string_(src, utf8_byte_offset(src, n))
+ustring::ustring(const char* src, const size_type n) : string_(src, utf8_byte_offset(src, n))
 {
 }
 
@@ -308,7 +304,7 @@ ustring::ustring(const char* src) : string_(src)
 {
 }
 
-ustring::ustring(ustring::size_type n, gunichar uc) : string_()
+ustring::ustring(size_type n, const gunichar uc) : string_()
 {
   if (uc < 0x80)
   {
@@ -325,7 +321,7 @@ ustring::ustring(ustring::size_type n, gunichar uc) : string_()
   }
 }
 
-ustring::ustring(ustring::size_type n, char c) : string_(n, c)
+ustring::ustring(const size_type n, const char c) : string_(n, c)
 {
 }
 
@@ -337,9 +333,7 @@ ustring::ustring(std::string&& src) : string_(std::move(src))
 {
 }
 
-ustring::~ustring() noexcept
-{
-}
+ustring::~ustring() noexcept = default;
 
 auto ustring::swap (ustring &other) -> void
 {
@@ -349,11 +343,7 @@ auto ustring::swap (ustring &other) -> void
 /**** Glib::ustring::operator=() *******************************************/
 
 auto
-ustring::operator=(const ustring& other) -> ustring&
-{
-  string_ = other.string_;
-  return *this;
-}
+ustring::operator=(const ustring& other) -> ustring& = default;
 
 auto
 ustring::operator=(ustring&& other) -> ustring&
@@ -384,7 +374,8 @@ ustring::operator=(const char* src) -> ustring&
 }
 
 auto
-ustring::operator=(gunichar uc) -> ustring&
+ustring::operator=(
+  const gunichar uc) -> ustring&
 {
   const UnicharToUtf8 conv(uc);
   string_.assign(conv.buf, conv.len);
@@ -392,7 +383,8 @@ ustring::operator=(gunichar uc) -> ustring&
 }
 
 auto
-ustring::operator=(char c) -> ustring&
+ustring::operator=(
+  const char c) -> ustring&
 {
   string_ = c;
   return *this;
@@ -415,7 +407,7 @@ ustring::assign(ustring&& src) -> ustring&
 }
 
 auto
-ustring::assign(const ustring& src, ustring::size_type i, ustring::size_type n) -> ustring&
+ustring::assign(const ustring& src, const size_type i, const size_type n) -> ustring&
 {
   const Utf8SubstrBounds bounds(src.string_, i, n);
   string_.assign(src.string_, bounds.i, bounds.n);
@@ -423,7 +415,7 @@ ustring::assign(const ustring& src, ustring::size_type i, ustring::size_type n) 
 }
 
 auto
-ustring::assign(const char* src, ustring::size_type n) -> ustring&
+ustring::assign(const char* src, const size_type n) -> ustring&
 {
   string_.assign(src, utf8_byte_offset(src, n));
   return *this;
@@ -437,7 +429,8 @@ ustring::assign(const char* src) -> ustring&
 }
 
 auto
-ustring::assign(ustring::size_type n, gunichar uc) -> ustring&
+ustring::assign(
+  const size_type n, const gunichar uc) -> ustring&
 {
   ustring temp(n, uc);
   string_.swap(temp.string_);
@@ -445,7 +438,8 @@ ustring::assign(ustring::size_type n, gunichar uc) -> ustring&
 }
 
 auto
-ustring::assign(ustring::size_type n, char c) -> ustring&
+ustring::assign(
+  const size_type n, const char c) -> ustring&
 {
   string_.assign(n, c);
   return *this;
@@ -468,7 +462,8 @@ ustring::operator+=(const char* src) -> ustring&
 }
 
 auto
-ustring::operator+=(gunichar uc) -> ustring&
+ustring::operator+=(
+  const gunichar uc) -> ustring&
 {
   const UnicharToUtf8 conv(uc);
   string_.append(conv.buf, conv.len);
@@ -476,7 +471,8 @@ ustring::operator+=(gunichar uc) -> ustring&
 }
 
 auto
-ustring::operator+=(char c) -> ustring&
+ustring::operator+=(
+  const char c) -> ustring&
 {
   string_ += c;
   return *this;
@@ -484,13 +480,15 @@ ustring::operator+=(char c) -> ustring&
 
 /**** Glib::ustring::push_back() *******************************************/
 
-auto ustring::push_back (gunichar uc) -> void
+auto ustring::push_back (
+  const gunichar uc) -> void
 {
   const UnicharToUtf8 conv(uc);
   string_.append(conv.buf, conv.len);
 }
 
-auto ustring::push_back (char c) -> void
+auto ustring::push_back (
+  const char c) -> void
 {
   string_ += c;
 }
@@ -505,7 +503,7 @@ ustring::append(const ustring& src) -> ustring&
 }
 
 auto
-ustring::append(const ustring& src, ustring::size_type i, ustring::size_type n) -> ustring&
+ustring::append(const ustring& src, const size_type i, const size_type n) -> ustring&
 {
   const Utf8SubstrBounds bounds(src.string_, i, n);
   string_.append(src.string_, bounds.i, bounds.n);
@@ -513,7 +511,7 @@ ustring::append(const ustring& src, ustring::size_type i, ustring::size_type n) 
 }
 
 auto
-ustring::append(const char* src, ustring::size_type n) -> ustring&
+ustring::append(const char* src, const size_type n) -> ustring&
 {
   string_.append(src, utf8_byte_offset(src, n));
   return *this;
@@ -527,14 +525,16 @@ ustring::append(const char* src) -> ustring&
 }
 
 auto
-ustring::append(ustring::size_type n, gunichar uc) -> ustring&
+ustring::append(
+  const size_type n, const gunichar uc) -> ustring&
 {
   string_.append(ustring(n, uc).string_);
   return *this;
 }
 
 auto
-ustring::append(ustring::size_type n, char c) -> ustring&
+ustring::append(
+  const size_type n, const char c) -> ustring&
 {
   string_.append(n, c);
   return *this;
@@ -543,7 +543,8 @@ ustring::append(ustring::size_type n, char c) -> ustring&
 /**** Glib::ustring::insert() **********************************************/
 
 auto
-ustring::insert(ustring::size_type i, const ustring& src) -> ustring&
+ustring::insert(
+  const size_type i, const ustring& src) -> ustring&
 {
   string_.insert(utf8_byte_offset(string_, i), src.string_);
   return *this;
@@ -551,7 +552,7 @@ ustring::insert(ustring::size_type i, const ustring& src) -> ustring&
 
 auto
 ustring::insert(
-  ustring::size_type i, const ustring& src, ustring::size_type i2, ustring::size_type n) -> ustring&
+  const size_type i, const ustring& src, const size_type i2, const size_type n) -> ustring&
 {
   const Utf8SubstrBounds bounds2(src.string_, i2, n);
   string_.insert(utf8_byte_offset(string_, i), src.string_, bounds2.i, bounds2.n);
@@ -559,35 +560,40 @@ ustring::insert(
 }
 
 auto
-ustring::insert(ustring::size_type i, const char* src, ustring::size_type n) -> ustring&
+ustring::insert(
+  const size_type i, const char* src, const size_type n) -> ustring&
 {
   string_.insert(utf8_byte_offset(string_, i), src, utf8_byte_offset(src, n));
   return *this;
 }
 
 auto
-ustring::insert(ustring::size_type i, const char* src) -> ustring&
+ustring::insert(
+  const size_type i, const char* src) -> ustring&
 {
   string_.insert(utf8_byte_offset(string_, i), src);
   return *this;
 }
 
 auto
-ustring::insert(ustring::size_type i, ustring::size_type n, gunichar uc) -> ustring&
+ustring::insert(
+  const size_type i, const size_type n, const gunichar uc) -> ustring&
 {
   string_.insert(utf8_byte_offset(string_, i), ustring(n, uc).string_);
   return *this;
 }
 
 auto
-ustring::insert(ustring::size_type i, ustring::size_type n, char c) -> ustring&
+ustring::insert(
+  const size_type i, const size_type n, const char c) -> ustring&
 {
   string_.insert(utf8_byte_offset(string_, i), n, c);
   return *this;
 }
 
 auto
-ustring::insert(ustring::iterator p, gunichar uc) -> ustring::iterator
+ustring::insert(
+  const iterator p, const gunichar uc) -> iterator
 {
   const size_type offset = p.base() - string_.begin();
   const UnicharToUtf8 conv(uc);
@@ -596,17 +602,20 @@ ustring::insert(ustring::iterator p, gunichar uc) -> ustring::iterator
 }
 
 auto
-ustring::insert(ustring::iterator p, char c) -> ustring::iterator
+ustring::insert(
+  const iterator p, const char c) -> iterator
 {
   return iterator(string_.insert(p.base(), c));
 }
 
-auto ustring::insert (ustring::iterator p, ustring::size_type n, gunichar uc) -> void
+auto ustring::insert (
+  const iterator p, const size_type n, const gunichar uc) -> void
 {
   string_.insert(p.base() - string_.begin(), ustring(n, uc).string_);
 }
 
-auto ustring::insert (ustring::iterator p, ustring::size_type n, char c) -> void
+auto ustring::insert (
+  const iterator p, const size_type n, const char c) -> void
 {
   string_.insert(p.base(), n, c);
 }
@@ -614,7 +623,8 @@ auto ustring::insert (ustring::iterator p, ustring::size_type n, char c) -> void
 /**** Glib::ustring::replace() *********************************************/
 
 auto
-ustring::replace(ustring::size_type i, ustring::size_type n, const ustring& src) -> ustring&
+ustring::replace(
+  const size_type i, const size_type n, const ustring& src) -> ustring&
 {
   const Utf8SubstrBounds bounds(string_, i, n);
   string_.replace(bounds.i, bounds.n, src.string_);
@@ -622,8 +632,8 @@ ustring::replace(ustring::size_type i, ustring::size_type n, const ustring& src)
 }
 
 auto
-ustring::replace(ustring::size_type i, ustring::size_type n, const ustring& src,
-  ustring::size_type i2, ustring::size_type n2) -> ustring&
+ustring::replace(
+  const size_type i, const size_type n, const ustring& src, const size_type i2, const size_type n2) -> ustring&
 {
   const Utf8SubstrBounds bounds(string_, i, n);
   const Utf8SubstrBounds bounds2(src.string_, i2, n2);
@@ -632,7 +642,8 @@ ustring::replace(ustring::size_type i, ustring::size_type n, const ustring& src,
 }
 
 auto
-ustring::replace(ustring::size_type i, ustring::size_type n, const char* src, ustring::size_type n2) -> ustring&
+ustring::replace(
+  const size_type i, const size_type n, const char* src, const size_type n2) -> ustring&
 {
   const Utf8SubstrBounds bounds(string_, i, n);
   string_.replace(bounds.i, bounds.n, src, utf8_byte_offset(src, n2));
@@ -640,7 +651,8 @@ ustring::replace(ustring::size_type i, ustring::size_type n, const char* src, us
 }
 
 auto
-ustring::replace(ustring::size_type i, ustring::size_type n, const char* src) -> ustring&
+ustring::replace(
+  const size_type i, const size_type n, const char* src) -> ustring&
 {
   const Utf8SubstrBounds bounds(string_, i, n);
   string_.replace(bounds.i, bounds.n, src);
@@ -648,7 +660,8 @@ ustring::replace(ustring::size_type i, ustring::size_type n, const char* src) ->
 }
 
 auto
-ustring::replace(ustring::size_type i, ustring::size_type n, ustring::size_type n2, gunichar uc) -> ustring&
+ustring::replace(
+  const size_type i, const size_type n, const size_type n2, const gunichar uc) -> ustring&
 {
   const Utf8SubstrBounds bounds(string_, i, n);
   string_.replace(bounds.i, bounds.n, ustring(n2, uc).string_);
@@ -656,7 +669,8 @@ ustring::replace(ustring::size_type i, ustring::size_type n, ustring::size_type 
 }
 
 auto
-ustring::replace(ustring::size_type i, ustring::size_type n, ustring::size_type n2, char c) -> ustring&
+ustring::replace(
+  const size_type i, const size_type n, const size_type n2, const char c) -> ustring&
 {
   const Utf8SubstrBounds bounds(string_, i, n);
   string_.replace(bounds.i, bounds.n, n2, c);
@@ -664,7 +678,8 @@ ustring::replace(ustring::size_type i, ustring::size_type n, ustring::size_type 
 }
 
 auto
-ustring::replace(ustring::iterator pbegin, ustring::iterator pend, const ustring& src) -> ustring&
+ustring::replace(
+  const iterator pbegin, const iterator pend, const ustring& src) -> ustring&
 {
   string_.replace(pbegin.base(), pend.base(), src.string_);
   return *this;
@@ -672,14 +687,15 @@ ustring::replace(ustring::iterator pbegin, ustring::iterator pend, const ustring
 
 auto
 ustring::replace(
-  ustring::iterator pbegin, ustring::iterator pend, const char* src, ustring::size_type n) -> ustring&
+  const iterator pbegin, const iterator pend, const char* src, const size_type n) -> ustring&
 {
   string_.replace(pbegin.base(), pend.base(), src, utf8_byte_offset(src, n));
   return *this;
 }
 
 auto
-ustring::replace(ustring::iterator pbegin, ustring::iterator pend, const char* src) -> ustring&
+ustring::replace(
+  const iterator pbegin, const iterator pend, const char* src) -> ustring&
 {
   string_.replace(pbegin.base(), pend.base(), src);
   return *this;
@@ -687,14 +703,15 @@ ustring::replace(ustring::iterator pbegin, ustring::iterator pend, const char* s
 
 auto
 ustring::replace(
-  ustring::iterator pbegin, ustring::iterator pend, ustring::size_type n, gunichar uc) -> ustring&
+  const iterator pbegin, const iterator pend, const size_type n, const gunichar uc) -> ustring&
 {
   string_.replace(pbegin.base(), pend.base(), ustring(n, uc).string_);
   return *this;
 }
 
 auto
-ustring::replace(ustring::iterator pbegin, ustring::iterator pend, ustring::size_type n, char c) -> ustring&
+ustring::replace(
+  const iterator pbegin, const iterator pend, const size_type n, const char c) -> ustring&
 {
   string_.replace(pbegin.base(), pend.base(), n, c);
   return *this;
@@ -708,7 +725,8 @@ auto ustring::clear () -> void
 }
 
 auto
-ustring::erase(ustring::size_type i, ustring::size_type n) -> ustring&
+ustring::erase(
+  const size_type i, const size_type n) -> ustring&
 {
   const Utf8SubstrBounds bounds(string_, i, n);
   string_.erase(bounds.i, bounds.n);
@@ -723,16 +741,18 @@ ustring::erase() -> ustring&
 }
 
 auto
-ustring::erase(ustring::iterator p) -> ustring::iterator
+ustring::erase(
+  const iterator p) -> iterator
 {
-  ustring::iterator iter_end = p;
+  iterator iter_end = p;
   ++iter_end;
 
   return iterator(string_.erase(p.base(), iter_end.base()));
 }
 
 auto
-ustring::erase(ustring::iterator pbegin, ustring::iterator pend) -> ustring::iterator
+ustring::erase(
+  const iterator pbegin, const iterator pend) -> iterator
 {
   return iterator(string_.erase(pbegin.base(), pend.base()));
 }
@@ -740,40 +760,44 @@ ustring::erase(ustring::iterator pbegin, ustring::iterator pend) -> ustring::ite
 /**** Glib::ustring::compare() *********************************************/
 
 auto
-ustring::compare(UStringView rhs) const -> int
+ustring::compare(
+  const UStringView rhs) const -> int
 {
   return g_utf8_collate(string_.c_str(), rhs.c_str());
 }
 
 auto
-ustring::compare(ustring::size_type i, ustring::size_type n, UStringView rhs) const -> int
+ustring::compare(
+  const size_type i, const size_type n, const UStringView rhs) const -> int
 {
   return ustring(*this, i, n).compare(rhs.c_str());
 }
 
 auto
-ustring::compare(ustring::size_type i, ustring::size_type n, const ustring& rhs,
-  ustring::size_type i2, ustring::size_type n2) const -> int
+ustring::compare(
+  const size_type i, const size_type n, const ustring& rhs, const size_type i2, const size_type n2) const -> int
 {
   return ustring(*this, i, n).compare(ustring(rhs, i2, n2));
 }
 
 auto
 ustring::compare(
-  ustring::size_type i, ustring::size_type n, const char* rhs, ustring::size_type n2) const -> int
+  const size_type i, const size_type n, const char* rhs, const size_type n2) const -> int
 {
   return ustring(*this, i, n).compare(ustring(rhs, n2));
 }
 
 /**** Glib::ustring -- index access ****************************************/
 
-auto ustring::operator[](ustring::size_type i) const -> ustring::value_type
+auto ustring::operator[](
+  const size_type i) const -> value_type
 {
   return g_utf8_get_char(g_utf8_offset_to_pointer(string_.data(), i));
 }
 
 auto
-ustring::at(ustring::size_type i) const -> ustring::value_type
+ustring::at(
+  const size_type i) const -> value_type
 {
   const size_type byte_offset = utf8_byte_offset(string_, i);
 
@@ -784,61 +808,61 @@ ustring::at(ustring::size_type i) const -> ustring::value_type
 /**** Glib::ustring -- iterator access *************************************/
 
 auto
-ustring::begin() -> ustring::iterator
+ustring::begin() -> iterator
 {
   return iterator(string_.begin());
 }
 
 auto
-ustring::end() -> ustring::iterator
+ustring::end() -> iterator
 {
   return iterator(string_.end());
 }
 
 auto
-ustring::begin() const -> ustring::const_iterator
+ustring::begin() const -> const_iterator
 {
   return const_iterator(string_.begin());
 }
 
 auto
-ustring::end() const -> ustring::const_iterator
+ustring::end() const -> const_iterator
 {
   return const_iterator(string_.end());
 }
 
 auto
-ustring::rbegin() -> ustring::reverse_iterator
+ustring::rbegin() -> reverse_iterator
 {
   return reverse_iterator(iterator(string_.end()));
 }
 
 auto
-ustring::rend() -> ustring::reverse_iterator
+ustring::rend() -> reverse_iterator
 {
   return reverse_iterator(iterator(string_.begin()));
 }
 
 auto
-ustring::rbegin() const -> ustring::const_reverse_iterator
+ustring::rbegin() const -> const_reverse_iterator
 {
   return const_reverse_iterator(const_iterator(string_.end()));
 }
 
 auto
-ustring::rend() const -> ustring::const_reverse_iterator
+ustring::rend() const -> const_reverse_iterator
 {
   return const_reverse_iterator(const_iterator(string_.begin()));
 }
 
 auto
-ustring::cbegin() const -> ustring::const_iterator
+ustring::cbegin() const -> const_iterator
 {
   return const_iterator(string_.begin());
 }
 
 auto
-ustring::cend() const -> ustring::const_iterator
+ustring::cend() const -> const_iterator
 {
   return const_iterator(string_.end());
 }
@@ -846,33 +870,35 @@ ustring::cend() const -> ustring::const_iterator
 /**** Glib::ustring::find() ************************************************/
 
 auto
-ustring::find(const ustring& str, ustring::size_type i) const -> ustring::size_type
+ustring::find(const ustring& str, const size_type i) const -> size_type
 {
   return utf8_char_offset(string_, string_.find(str.string_, utf8_byte_offset(string_, i)));
 }
 
 auto
-ustring::find(const char* str, ustring::size_type i, ustring::size_type n) const -> ustring::size_type
+ustring::find(const char* str, const size_type i, const size_type n) const -> size_type
 {
   return utf8_char_offset(
     string_, string_.find(str, utf8_byte_offset(string_, i), utf8_byte_offset(str, n)));
 }
 
 auto
-ustring::find(const char* str, ustring::size_type i) const -> ustring::size_type
+ustring::find(const char* str, const size_type i) const -> size_type
 {
   return utf8_char_offset(string_, string_.find(str, utf8_byte_offset(string_, i)));
 }
 
 auto
-ustring::find(gunichar uc, ustring::size_type i) const -> ustring::size_type
+ustring::find(
+  const gunichar uc, const size_type i) const -> size_type
 {
   const UnicharToUtf8 conv(uc);
   return utf8_char_offset(string_, string_.find(conv.buf, utf8_byte_offset(string_, i), conv.len));
 }
 
 auto
-ustring::find(char c, ustring::size_type i) const -> ustring::size_type
+ustring::find(
+  const char c, const size_type i) const -> size_type
 {
   return utf8_char_offset(string_, string_.find(c, utf8_byte_offset(string_, i)));
 }
@@ -880,33 +906,35 @@ ustring::find(char c, ustring::size_type i) const -> ustring::size_type
 /**** Glib::ustring::rfind() ***********************************************/
 
 auto
-ustring::rfind(const ustring& str, ustring::size_type i) const -> ustring::size_type
+ustring::rfind(const ustring& str, const size_type i) const -> size_type
 {
   return utf8_char_offset(string_, string_.rfind(str.string_, utf8_byte_offset(string_, i)));
 }
 
 auto
-ustring::rfind(const char* str, ustring::size_type i, ustring::size_type n) const -> ustring::size_type
+ustring::rfind(const char* str, const size_type i, const size_type n) const -> size_type
 {
   return utf8_char_offset(
     string_, string_.rfind(str, utf8_byte_offset(string_, i), utf8_byte_offset(str, n)));
 }
 
 auto
-ustring::rfind(const char* str, ustring::size_type i) const -> ustring::size_type
+ustring::rfind(const char* str, const size_type i) const -> size_type
 {
   return utf8_char_offset(string_, string_.rfind(str, utf8_byte_offset(string_, i)));
 }
 
 auto
-ustring::rfind(gunichar uc, ustring::size_type i) const -> ustring::size_type
+ustring::rfind(
+  const gunichar uc, const size_type i) const -> size_type
 {
   const UnicharToUtf8 conv(uc);
   return utf8_char_offset(string_, string_.rfind(conv.buf, utf8_byte_offset(string_, i), conv.len));
 }
 
 auto
-ustring::rfind(char c, ustring::size_type i) const -> ustring::size_type
+ustring::rfind(
+  const char c, const size_type i) const -> size_type
 {
   return utf8_char_offset(string_, string_.rfind(c, utf8_byte_offset(string_, i)));
 }
@@ -914,31 +942,33 @@ ustring::rfind(char c, ustring::size_type i) const -> ustring::size_type
 /**** Glib::ustring::find_first_of() ***************************************/
 
 auto
-ustring::find_first_of(const ustring& match, ustring::size_type i) const -> ustring::size_type
+ustring::find_first_of(const ustring& match, const size_type i) const -> size_type
 {
   return utf8_find_first_of(string_, i, match.string_.data(), match.string_.size(), false);
 }
 
 auto
-ustring::find_first_of(const char* match, ustring::size_type i, ustring::size_type n) const -> ustring::size_type
+ustring::find_first_of(const char* match, const size_type i, const size_type n) const -> size_type
 {
   return utf8_find_first_of(string_, i, match, n, false);
 }
 
 auto
-ustring::find_first_of(const char* match, ustring::size_type i) const -> ustring::size_type
+ustring::find_first_of(const char* match, const size_type i) const -> size_type
 {
   return utf8_find_first_of(string_, i, match, -1, false);
 }
 
 auto
-ustring::find_first_of(gunichar uc, ustring::size_type i) const -> ustring::size_type
+ustring::find_first_of(
+  const gunichar uc, const size_type i) const -> size_type
 {
   return find(uc, i);
 }
 
 auto
-ustring::find_first_of(char c, ustring::size_type i) const -> ustring::size_type
+ustring::find_first_of(
+  const char c, const size_type i) const -> size_type
 {
   return find(c, i);
 }
@@ -946,31 +976,33 @@ ustring::find_first_of(char c, ustring::size_type i) const -> ustring::size_type
 /**** Glib::ustring::find_last_of() ****************************************/
 
 auto
-ustring::find_last_of(const ustring& match, ustring::size_type i) const -> ustring::size_type
+ustring::find_last_of(const ustring& match, const size_type i) const -> size_type
 {
   return utf8_find_last_of(string_, i, match.string_.data(), match.string_.size(), false);
 }
 
 auto
-ustring::find_last_of(const char* match, ustring::size_type i, ustring::size_type n) const -> ustring::size_type
+ustring::find_last_of(const char* match, const size_type i, const size_type n) const -> size_type
 {
   return utf8_find_last_of(string_, i, match, n, false);
 }
 
 auto
-ustring::find_last_of(const char* match, ustring::size_type i) const -> ustring::size_type
+ustring::find_last_of(const char* match, const size_type i) const -> size_type
 {
   return utf8_find_last_of(string_, i, match, -1, false);
 }
 
 auto
-ustring::find_last_of(gunichar uc, ustring::size_type i) const -> ustring::size_type
+ustring::find_last_of(
+  const gunichar uc, const size_type i) const -> size_type
 {
   return rfind(uc, i);
 }
 
 auto
-ustring::find_last_of(char c, ustring::size_type i) const -> ustring::size_type
+ustring::find_last_of(
+  const char c, const size_type i) const -> size_type
 {
   return rfind(c, i);
 }
@@ -978,19 +1010,19 @@ ustring::find_last_of(char c, ustring::size_type i) const -> ustring::size_type
 /**** Glib::ustring::find_first_not_of() ***********************************/
 
 auto
-ustring::find_first_not_of(const ustring& match, ustring::size_type i) const -> ustring::size_type
+ustring::find_first_not_of(const ustring& match, const size_type i) const -> size_type
 {
   return utf8_find_first_of(string_, i, match.string_.data(), match.string_.size(), true);
 }
 
 auto
-ustring::find_first_not_of(const char* match, ustring::size_type i, ustring::size_type n) const -> ustring::size_type
+ustring::find_first_not_of(const char* match, const size_type i, const size_type n) const -> size_type
 {
   return utf8_find_first_of(string_, i, match, n, true);
 }
 
 auto
-ustring::find_first_not_of(const char* match, ustring::size_type i) const -> ustring::size_type
+ustring::find_first_not_of(const char* match, const size_type i) const -> size_type
 {
   return utf8_find_first_of(string_, i, match, -1, true);
 }
@@ -999,7 +1031,8 @@ ustring::find_first_not_of(const char* match, ustring::size_type i) const -> ust
 // characters need their own special implementation.
 //
 auto
-ustring::find_first_not_of(gunichar uc, ustring::size_type i) const -> ustring::size_type
+ustring::find_first_not_of(
+  const gunichar uc, size_type i) const -> size_type
 {
   const size_type bi = utf8_byte_offset(string_, i);
   if (bi != npos)
@@ -1017,7 +1050,8 @@ ustring::find_first_not_of(gunichar uc, ustring::size_type i) const -> ustring::
 }
 
 auto
-ustring::find_first_not_of(char c, ustring::size_type i) const -> ustring::size_type
+ustring::find_first_not_of(
+  const char c, size_type i) const -> size_type
 {
   const size_type bi = utf8_byte_offset(string_, i);
   if (bi != npos)
@@ -1037,19 +1071,19 @@ ustring::find_first_not_of(char c, ustring::size_type i) const -> ustring::size_
 /**** Glib::ustring::find_last_not_of() ************************************/
 
 auto
-ustring::find_last_not_of(const ustring& match, ustring::size_type i) const -> ustring::size_type
+ustring::find_last_not_of(const ustring& match, const size_type i) const -> size_type
 {
   return utf8_find_last_of(string_, i, match.string_.data(), match.string_.size(), true);
 }
 
 auto
-ustring::find_last_not_of(const char* match, ustring::size_type i, ustring::size_type n) const -> ustring::size_type
+ustring::find_last_not_of(const char* match, const size_type i, const size_type n) const -> size_type
 {
   return utf8_find_last_of(string_, i, match, n, true);
 }
 
 auto
-ustring::find_last_not_of(const char* match, ustring::size_type i) const -> ustring::size_type
+ustring::find_last_not_of(const char* match, const size_type i) const -> size_type
 {
   return utf8_find_last_of(string_, i, match, -1, true);
 }
@@ -1058,7 +1092,8 @@ ustring::find_last_not_of(const char* match, ustring::size_type i) const -> ustr
 // characters need their own special implementation.
 //
 auto
-ustring::find_last_not_of(gunichar uc, ustring::size_type i) const -> ustring::size_type
+ustring::find_last_not_of(
+  const gunichar uc, const size_type i) const -> size_type
 {
   const char* const pbegin = string_.data();
   const char* const pend = pbegin + string_.size();
@@ -1074,7 +1109,8 @@ ustring::find_last_not_of(gunichar uc, ustring::size_type i) const -> ustring::s
 }
 
 auto
-ustring::find_last_not_of(char c, ustring::size_type i) const -> ustring::size_type
+ustring::find_last_not_of(
+  const char c, const size_type i) const -> size_type
 {
   const char* const pbegin = string_.data();
   const char* const pend = pbegin + string_.size();
@@ -1098,38 +1134,39 @@ ustring::empty() const -> bool
 }
 
 auto
-ustring::size() const -> ustring::size_type
+ustring::size() const -> size_type
 {
   const char* const pdata = string_.data();
   return g_utf8_pointer_to_offset(pdata, pdata + string_.size());
 }
 
 auto
-ustring::length() const -> ustring::size_type
+ustring::length() const -> size_type
 {
   const char* const pdata = string_.data();
   return g_utf8_pointer_to_offset(pdata, pdata + string_.size());
 }
 
 auto
-ustring::bytes() const -> ustring::size_type
+ustring::bytes() const -> size_type
 {
   return string_.size();
 }
 
 auto
-ustring::capacity() const -> ustring::size_type
+ustring::capacity() const -> size_type
 {
   return string_.capacity();
 }
 
 auto
-ustring::max_size() const -> ustring::size_type
+ustring::max_size() const -> size_type
 {
   return string_.max_size();
 }
 
-auto ustring::resize (ustring::size_type n, gunichar uc) -> void
+auto ustring::resize (
+  const size_type n, const gunichar uc) -> void
 {
   const size_type size_now = size();
   if (n < size_now)
@@ -1138,7 +1175,8 @@ auto ustring::resize (ustring::size_type n, gunichar uc) -> void
     append(n - size_now, uc);
 }
 
-auto ustring::resize (ustring::size_type n, char c) -> void
+auto ustring::resize (
+  const size_type n, const char c) -> void
 {
   const size_type size_now = size();
   if (n < size_now)
@@ -1147,7 +1185,8 @@ auto ustring::resize (ustring::size_type n, char c) -> void
     string_.append(n - size_now, c);
 }
 
-auto ustring::reserve (ustring::size_type n) -> void
+auto ustring::reserve (
+  const size_type n) -> void
 {
   string_.reserve(n);
 }
@@ -1170,7 +1209,7 @@ ustring::c_str() const -> const char*
 // parameters, but returns the number of copied bytes.
 //
 auto
-ustring::copy(char* dest, ustring::size_type n, ustring::size_type i) const -> ustring::size_type
+ustring::copy(char* dest, const size_type n, const size_type i) const -> size_type
 {
   const Utf8SubstrBounds bounds(string_, i, n);
   return string_.copy(dest, bounds.n, bounds.i);
@@ -1181,29 +1220,31 @@ ustring::copy(char* dest, ustring::size_type n, ustring::size_type i) const -> u
 auto
 ustring::validate() const -> bool
 {
-  return (g_utf8_validate(string_.data(), string_.size(), nullptr) != 0);
+  return g_utf8_validate(string_.data(), string_.size(), nullptr) != 0;
 }
 
 auto
-ustring::validate(ustring::iterator& first_invalid) -> bool
+ustring::validate(
+  iterator & first_invalid) -> bool
 {
   const char* const pdata = string_.data();
   const char* valid_end = pdata;
   const int is_valid = g_utf8_validate(pdata, string_.size(), &valid_end);
 
   first_invalid = iterator(string_.begin() + (valid_end - pdata));
-  return (is_valid != 0);
+  return is_valid != 0;
 }
 
 auto
-ustring::validate(ustring::const_iterator& first_invalid) const -> bool
+ustring::validate(
+  const_iterator & first_invalid) const -> bool
 {
   const char* const pdata = string_.data();
   const char* valid_end = pdata;
   const int is_valid = g_utf8_validate(pdata, string_.size(), &valid_end);
 
   first_invalid = const_iterator(string_.begin() + (valid_end - pdata));
-  return (is_valid != 0);
+  return is_valid != 0;
 }
 
 auto
@@ -1271,7 +1312,7 @@ ustring::casefold_collate_key() const -> std::string
 
 // static
 auto
-ustring::compose_private(const Glib::ustring& fmt, std::initializer_list<const ustring*> const ilist) -> ustring
+ustring::compose_private(const ustring & fmt, std::initializer_list<const ustring*> const ilist) -> ustring
 {
   std::string::size_type result_size = fmt.raw().size();
 
@@ -1305,7 +1346,7 @@ ustring::compose_private(const Glib::ustring& fmt, std::initializer_list<const u
       }
       else
       {
-        const char* const next = (stop[1] != '\0') ? g_utf8_next_char(stop + 1) : (stop + 1);
+        const char* const next = stop[1] != '\0' ? g_utf8_next_char(stop + 1) : stop + 1;
 
         // Copy invalid substitutions literally to the output.
         result.append(start, next - start);
@@ -1324,14 +1365,12 @@ ustring::compose_private(const Glib::ustring& fmt, std::initializer_list<const u
 
 /**** Glib::ustring::SequenceToString **************************************/
 
-ustring::SequenceToString<Glib::ustring::iterator, gunichar>::SequenceToString(
-  Glib::ustring::iterator pbegin, Glib::ustring::iterator pend)
+ustring::SequenceToString<ustring::iterator, gunichar>::SequenceToString(const ustring::iterator pbegin, const ustring::iterator pend)
 : std::string(pbegin.base(), pend.base())
 {
 }
 
-ustring::SequenceToString<Glib::ustring::const_iterator, gunichar>::SequenceToString(
-  Glib::ustring::const_iterator pbegin, Glib::ustring::const_iterator pend)
+ustring::SequenceToString<ustring::const_iterator, gunichar>::SequenceToString(const ustring::const_iterator pbegin, const ustring::const_iterator pend)
 : std::string(pbegin.base(), pend.base())
 {
 }
@@ -1342,9 +1381,7 @@ ustring::FormatStream::FormatStream() : stream_()
 {
 }
 
-ustring::FormatStream::~FormatStream() noexcept
-{
-}
+ustring::FormatStream::~FormatStream() noexcept = default;
 
 auto
 ustring::FormatStream::to_string() const -> ustring
@@ -1380,16 +1417,16 @@ ustring::FormatStream::to_string() const -> ustring
 
   if (error)
   {
-    Glib::Error::throw_exception(error);
+    Error::throw_exception(error);
   }
 
-  return ustring(buf.get(), buf.get() + n_bytes);
+  return {buf.get(), buf.get() + n_bytes};
 }
 
 /**** Glib::ustring -- stream I/O operators ********************************/
 
 auto
-operator>>(std::istream& is, Glib::ustring& utf8_string) -> std::istream&
+operator>>(std::istream& is, ustring & utf8_string) -> std::istream&
 {
   std::string str;
   is >> str;
@@ -1401,7 +1438,7 @@ operator>>(std::istream& is, Glib::ustring& utf8_string) -> std::istream&
 
   if (error)
   {
-    Glib::Error::throw_exception(error);
+    Error::throw_exception(error);
   }
 
   utf8_string.assign(buf.get(), buf.get() + n_bytes);
@@ -1410,14 +1447,14 @@ operator>>(std::istream& is, Glib::ustring& utf8_string) -> std::istream&
 }
 
 auto
-operator<<(std::ostream& os, const Glib::ustring& utf8_string) -> std::ostream&
+operator<<(std::ostream& os, const ustring & utf8_string) -> std::ostream&
 {
   GError* error = nullptr;
   const auto buf = make_unique_ptr_gfree(g_locale_from_utf8(
     utf8_string.raw().data(), utf8_string.raw().size(), nullptr, nullptr, &error));
   if (error)
   {
-    Glib::Error::throw_exception(error);
+    Error::throw_exception(error);
   }
 
   // This won't work if the string contains NUL characters.  Unfortunately,
@@ -1460,7 +1497,7 @@ operator>>(std::wistream& is, ustring& utf8_string) -> std::wistream&
 
   if (error)
   {
-    Glib::Error::throw_exception(error);
+    Error::throw_exception(error);
   }
 
   utf8_string.assign(buf.get(), buf.get() + n_bytes);
@@ -1488,7 +1525,7 @@ operator<<(std::wostream& os, const ustring& utf8_string) -> std::wostream&
 
   if (error)
   {
-    Glib::Error::throw_exception(error);
+    Error::throw_exception(error);
   }
 
   // This won't work if the string contains NUL characters.  Unfortunately,

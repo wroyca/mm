@@ -17,13 +17,13 @@ public:
   using CppObjectType = PrintUnixDialog;
   using BaseObjectType = GtkPrintUnixDialog;
   using BaseClassType = GtkPrintUnixDialogClass;
-  using CppClassParent = Gtk::Dialog_Class;
+  using CppClassParent = Dialog_Class;
   using BaseClassParent = GtkDialogClass;
 
   friend class PrintUnixDialog;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

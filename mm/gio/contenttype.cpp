@@ -52,7 +52,7 @@ content_type_get_mime_type(const Glib::ustring& type) -> Glib::ustring
 }
 
 auto
-content_type_get_icon(const Glib::ustring& type) -> Glib::RefPtr<Gio::Icon>
+content_type_get_icon(const Glib::ustring& type) -> Glib::RefPtr<Icon>
 {
   auto retvalue = Glib::wrap(g_content_type_get_icon(type.c_str()));
   if (retvalue)
@@ -97,7 +97,7 @@ content_type_guess(
 
 auto
 content_type_guess(
-  const std::string& filename, const guchar* data, gsize data_size, bool& result_uncertain) -> Glib::ustring
+  const std::string& filename, const guchar* data, const gsize data_size, bool& result_uncertain) -> Glib::ustring
 {
   gboolean c_result_uncertain = FALSE;
   const gchar* c_filename = filename.empty() ? nullptr : filename.c_str();

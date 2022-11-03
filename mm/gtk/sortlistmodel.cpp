@@ -33,9 +33,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkSortListModel* object, bool take_copy) -> Glib::RefPtr<Gtk::SortListModel>
+auto wrap(GtkSortListModel* object, const bool take_copy) -> RefPtr<Gtk::SortListModel>
 {
-  return Glib::make_refptr_for_instance<Gtk::SortListModel>( dynamic_cast<Gtk::SortListModel*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::SortListModel>( dynamic_cast<Gtk::SortListModel*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto SortListModel_Class::init() -> const Glib::Class&
+auto SortListModel_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -88,34 +88,31 @@ auto SortListModel::gobj_copy() -> GtkSortListModel*
 }
 
 SortListModel::SortListModel(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 SortListModel::SortListModel(GtkSortListModel* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 SortListModel::SortListModel(SortListModel&& src) noexcept
-: Glib::Object(std::move(src))
-  , Gio::ListModel(std::move(src))
+: Object(std::move(src))
+  ,
+  ListModel(std::move(src))
 {}
 
 auto SortListModel::operator=(SortListModel&& src) noexcept -> SortListModel&
 {
-  Glib::Object::operator=(std::move(src));
-  Gio::ListModel::operator=(std::move(src));
+  Object::operator=(std::move(src));
+  ListModel::operator=(std::move(src));
   return *this;
 }
 
 
-SortListModel::~SortListModel() noexcept
-{}
-
+SortListModel::~SortListModel() noexcept = default;
 
 SortListModel::CppClassType SortListModel::sortlistmodel_class_; // initialize static member
 
@@ -131,17 +128,17 @@ auto SortListModel::get_base_type() -> GType
 }
 
 
-SortListModel::SortListModel(const Glib::RefPtr<Gio::ListModel>& model, const Glib::RefPtr<Sorter>& sorter)
+SortListModel::SortListModel(const Glib::RefPtr<ListModel>& model, const Glib::RefPtr<Sorter>& sorter)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(sortlistmodel_class_.init(), "model", Glib::unwrap(model), "sorter", Glib::unwrap(sorter), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(sortlistmodel_class_.init(), "model", Glib::unwrap(model), "sorter", Glib::unwrap(sorter), nullptr))
 {
 
 
 }
 
-auto SortListModel::create(const Glib::RefPtr<Gio::ListModel>& model, const Glib::RefPtr<Sorter>& sorter) -> Glib::RefPtr<SortListModel>
+auto SortListModel::create(const Glib::RefPtr<ListModel>& model, const Glib::RefPtr<Sorter>& sorter) -> Glib::RefPtr<SortListModel>
 {
   return Glib::make_refptr_for_instance<SortListModel>( new SortListModel(model, sorter) );
 }
@@ -164,12 +161,12 @@ auto SortListModel::get_sorter() const -> Glib::RefPtr<const Sorter>
   return const_cast<SortListModel*>(this)->get_sorter();
 }
 
-auto SortListModel::set_model (const Glib::RefPtr <Gio::ListModel> &model) -> void
+auto SortListModel::set_model (const Glib::RefPtr <ListModel> &model) -> void
 {
   gtk_sort_list_model_set_model(gobj(), Glib::unwrap(model));
 }
 
-auto SortListModel::get_model() -> Glib::RefPtr<Gio::ListModel>
+auto SortListModel::get_model() -> Glib::RefPtr<ListModel>
 {
   auto retvalue = Glib::wrap(gtk_sort_list_model_get_model(gobj()));
   if(retvalue)
@@ -177,14 +174,15 @@ auto SortListModel::get_model() -> Glib::RefPtr<Gio::ListModel>
   return retvalue;
 }
 
-auto SortListModel::get_model() const -> Glib::RefPtr<const Gio::ListModel>
+auto SortListModel::get_model() const -> Glib::RefPtr<const ListModel>
 {
   return const_cast<SortListModel*>(this)->get_model();
 }
 
-auto SortListModel::set_incremental (bool incremental) -> void
+auto SortListModel::set_incremental (
+  const bool incremental) -> void
 {
-  gtk_sort_list_model_set_incremental(gobj(), static_cast<int>(incremental));
+  gtk_sort_list_model_set_incremental(gobj(), incremental);
 }
 
 auto SortListModel::get_incremental() const -> bool
@@ -200,12 +198,12 @@ auto SortListModel::get_pending() const -> guint
 
 auto SortListModel::property_incremental() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "incremental");
+  return {this, "incremental"};
 }
 
 auto SortListModel::property_incremental() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "incremental");
+  return {this, "incremental"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
@@ -214,31 +212,31 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
 
 auto SortListModel::property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >
 {
-  return Glib::PropertyProxy_ReadOnly< GType >(this, "item-type");
+  return {this, "item-type"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::ListModel>>::value,
   "Type Glib::RefPtr<Gio::ListModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-auto SortListModel::property_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> >
+auto SortListModel::property_model() -> Glib::PropertyProxy< Glib::RefPtr<ListModel> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> >(this, "model");
+  return {this, "model"};
 }
 
-auto SortListModel::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >
+auto SortListModel::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListModel> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >(this, "model");
+  return {this, "model"};
 }
 
 auto SortListModel::property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
-  return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "n-items");
+  return {this, "n-items"};
 }
 
 auto SortListModel::property_pending() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
-  return Glib::PropertyProxy_ReadOnly< guint >(this, "pending");
+  return {this, "pending"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Sorter>>::value,
@@ -247,12 +245,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Sorter>
 
 auto SortListModel::property_sorter() -> Glib::PropertyProxy< Glib::RefPtr<Sorter> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Sorter> >(this, "sorter");
+  return {this, "sorter"};
 }
 
 auto SortListModel::property_sorter() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Sorter> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Sorter> >(this, "sorter");
+  return {this, "sorter"};
 }
 
 

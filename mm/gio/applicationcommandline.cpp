@@ -49,9 +49,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GApplicationCommandLine* object, bool take_copy) -> Glib::RefPtr<Gio::ApplicationCommandLine>
+auto wrap(GApplicationCommandLine* object, const bool take_copy) -> RefPtr<Gio::ApplicationCommandLine>
 {
-  return Glib::make_refptr_for_instance<Gio::ApplicationCommandLine>( dynamic_cast<Gio::ApplicationCommandLine*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::ApplicationCommandLine>( dynamic_cast<Gio::ApplicationCommandLine*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -64,7 +64,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto ApplicationCommandLine_Class::init() -> const Glib::Class&
+auto ApplicationCommandLine_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -110,32 +110,28 @@ auto ApplicationCommandLine::gobj_copy() -> GApplicationCommandLine*
 }
 
 ApplicationCommandLine::ApplicationCommandLine(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 ApplicationCommandLine::ApplicationCommandLine(GApplicationCommandLine* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 ApplicationCommandLine::ApplicationCommandLine(ApplicationCommandLine&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto ApplicationCommandLine::operator=(ApplicationCommandLine&& src) noexcept -> ApplicationCommandLine&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-ApplicationCommandLine::~ApplicationCommandLine() noexcept
-{}
-
+ApplicationCommandLine::~ApplicationCommandLine() noexcept = default;
 
 ApplicationCommandLine::CppClassType ApplicationCommandLine::applicationcommandline_class_; // initialize static member
 
@@ -154,8 +150,8 @@ auto ApplicationCommandLine::get_base_type() -> GType
 ApplicationCommandLine::ApplicationCommandLine()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(applicationcommandline_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(applicationcommandline_class_.init()))
 {
 
 
@@ -163,7 +159,7 @@ ApplicationCommandLine::ApplicationCommandLine()
 
 auto ApplicationCommandLine::get_arguments(int& argc) const -> char**
 {
-  return g_application_command_line_get_arguments(const_cast<GApplicationCommandLine*>(gobj()), &(argc));
+  return g_application_command_line_get_arguments(const_cast<GApplicationCommandLine*>(gobj()), &argc);
 }
 
 auto ApplicationCommandLine::get_options_dict() -> Glib::RefPtr<Glib::VariantDict>
@@ -217,7 +213,8 @@ auto ApplicationCommandLine::get_platform_data() const -> Glib::Variant< std::ma
   return Glib::Variant< std::map<Glib::ustring, Glib::VariantBase> >(g_application_command_line_get_platform_data(const_cast<GApplicationCommandLine*>(gobj())));
 }
 
-auto ApplicationCommandLine::set_exit_status (int exit_status) -> void
+auto ApplicationCommandLine::set_exit_status (
+  const int exit_status) -> void
 {
   g_application_command_line_set_exit_status(gobj(), exit_status);
 }

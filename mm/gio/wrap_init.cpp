@@ -284,7 +284,7 @@ namespace DBus {
 
 auto wrap_init () -> void
 {
-  Glib::Error::register_domain(g_dbus_error_quark(), &DBus::Error::throw_func);
+  Glib::Error::register_domain(g_dbus_error_quark(), &Error::throw_func);
 
 } // wrap_init()
 
@@ -302,90 +302,90 @@ auto wrap_init () -> void
   DBus::wrap_init();
 
   // Map gtypes to gtkmm wrapper-creation functions:
-  Glib::wrap_register(g_app_info_monitor_get_type(), &AppInfoMonitor_Class::wrap_new);
-  Glib::wrap_register(g_app_launch_context_get_type(), &AppLaunchContext_Class::wrap_new);
-  Glib::wrap_register(g_application_get_type(), &Application_Class::wrap_new);
-  Glib::wrap_register(g_application_command_line_get_type(), &ApplicationCommandLine_Class::wrap_new);
-  Glib::wrap_register(g_buffered_input_stream_get_type(), &BufferedInputStream_Class::wrap_new);
-  Glib::wrap_register(g_buffered_output_stream_get_type(), &BufferedOutputStream_Class::wrap_new);
-  Glib::wrap_register(g_cancellable_get_type(), &Cancellable_Class::wrap_new);
-  Glib::wrap_register(g_charset_converter_get_type(), &CharsetConverter_Class::wrap_new);
-  Glib::wrap_register(g_converter_input_stream_get_type(), &ConverterInputStream_Class::wrap_new);
-  Glib::wrap_register(g_converter_output_stream_get_type(), &ConverterOutputStream_Class::wrap_new);
-  Glib::wrap_register(g_credentials_get_type(), &Credentials_Class::wrap_new);
-  Glib::wrap_register(g_data_input_stream_get_type(), &DataInputStream_Class::wrap_new);
-  Glib::wrap_register(g_data_output_stream_get_type(), &DataOutputStream_Class::wrap_new);
-  Glib::wrap_register(g_dbus_action_group_get_type(), &DBus::ActionGroup_Class::wrap_new);
-  Glib::wrap_register(g_dbus_auth_observer_get_type(), &DBus::AuthObserver_Class::wrap_new);
-  Glib::wrap_register(g_dbus_connection_get_type(), &DBus::Connection_Class::wrap_new);
-  Glib::wrap_register(g_dbus_interface_skeleton_get_type(), &DBus::InterfaceSkeleton_Class::wrap_new);
-  Glib::wrap_register(g_dbus_menu_model_get_type(), &DBus::MenuModel_Class::wrap_new);
-  Glib::wrap_register(g_dbus_message_get_type(), &DBus::Message_Class::wrap_new);
-  Glib::wrap_register(g_dbus_method_invocation_get_type(), &DBus::MethodInvocation_Class::wrap_new);
-  Glib::wrap_register(g_dbus_object_manager_client_get_type(), &DBus::ObjectManagerClient_Class::wrap_new);
-  Glib::wrap_register(g_dbus_object_manager_server_get_type(), &DBus::ObjectManagerServer_Class::wrap_new);
-  Glib::wrap_register(g_dbus_object_proxy_get_type(), &DBus::ObjectProxy_Class::wrap_new);
-  Glib::wrap_register(g_dbus_object_skeleton_get_type(), &DBus::ObjectSkeleton_Class::wrap_new);
-  Glib::wrap_register(g_dbus_proxy_get_type(), &DBus::Proxy_Class::wrap_new);
-  Glib::wrap_register(g_dbus_server_get_type(), &DBus::Server_Class::wrap_new);
+  wrap_register(g_app_info_monitor_get_type(), &AppInfoMonitor_Class::wrap_new);
+  wrap_register(g_app_launch_context_get_type(), &AppLaunchContext_Class::wrap_new);
+  wrap_register(g_application_get_type(), &Application_Class::wrap_new);
+  wrap_register(g_application_command_line_get_type(), &ApplicationCommandLine_Class::wrap_new);
+  wrap_register(g_buffered_input_stream_get_type(), &BufferedInputStream_Class::wrap_new);
+  wrap_register(g_buffered_output_stream_get_type(), &BufferedOutputStream_Class::wrap_new);
+  wrap_register(g_cancellable_get_type(), &Cancellable_Class::wrap_new);
+  wrap_register(g_charset_converter_get_type(), &CharsetConverter_Class::wrap_new);
+  wrap_register(g_converter_input_stream_get_type(), &ConverterInputStream_Class::wrap_new);
+  wrap_register(g_converter_output_stream_get_type(), &ConverterOutputStream_Class::wrap_new);
+  wrap_register(g_credentials_get_type(), &Credentials_Class::wrap_new);
+  wrap_register(g_data_input_stream_get_type(), &DataInputStream_Class::wrap_new);
+  wrap_register(g_data_output_stream_get_type(), &DataOutputStream_Class::wrap_new);
+  wrap_register(g_dbus_action_group_get_type(), &DBus::ActionGroup_Class::wrap_new);
+  wrap_register(g_dbus_auth_observer_get_type(), &DBus::AuthObserver_Class::wrap_new);
+  wrap_register(g_dbus_connection_get_type(), &DBus::Connection_Class::wrap_new);
+  wrap_register(g_dbus_interface_skeleton_get_type(), &DBus::InterfaceSkeleton_Class::wrap_new);
+  wrap_register(g_dbus_menu_model_get_type(), &DBus::MenuModel_Class::wrap_new);
+  wrap_register(g_dbus_message_get_type(), &DBus::Message_Class::wrap_new);
+  wrap_register(g_dbus_method_invocation_get_type(), &DBus::MethodInvocation_Class::wrap_new);
+  wrap_register(g_dbus_object_manager_client_get_type(), &DBus::ObjectManagerClient_Class::wrap_new);
+  wrap_register(g_dbus_object_manager_server_get_type(), &DBus::ObjectManagerServer_Class::wrap_new);
+  wrap_register(g_dbus_object_proxy_get_type(), &DBus::ObjectProxy_Class::wrap_new);
+  wrap_register(g_dbus_object_skeleton_get_type(), &DBus::ObjectSkeleton_Class::wrap_new);
+  wrap_register(g_dbus_proxy_get_type(), &DBus::Proxy_Class::wrap_new);
+  wrap_register(g_dbus_server_get_type(), &DBus::Server_Class::wrap_new);
 #if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
   Glib::wrap_register(g_desktop_app_info_get_type(), &DesktopAppInfo_Class::wrap_new);
 #endif // if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
-  Glib::wrap_register(g_emblem_get_type(), &Emblem_Class::wrap_new);
-  Glib::wrap_register(g_emblemed_icon_get_type(), &EmblemedIcon_Class::wrap_new);
-  Glib::wrap_register(g_file_enumerator_get_type(), &FileEnumerator_Class::wrap_new);
-  Glib::wrap_register(g_file_icon_get_type(), &FileIcon_Class::wrap_new);
-  Glib::wrap_register(g_file_info_get_type(), &FileInfo_Class::wrap_new);
-  Glib::wrap_register(g_file_input_stream_get_type(), &FileInputStream_Class::wrap_new);
-  Glib::wrap_register(g_file_io_stream_get_type(), &FileIOStream_Class::wrap_new);
-  Glib::wrap_register(g_file_monitor_get_type(), &FileMonitor_Class::wrap_new);
-  Glib::wrap_register(g_filename_completer_get_type(), &FilenameCompleter_Class::wrap_new);
-  Glib::wrap_register(g_file_output_stream_get_type(), &FileOutputStream_Class::wrap_new);
-  Glib::wrap_register(g_filter_input_stream_get_type(), &FilterInputStream_Class::wrap_new);
-  Glib::wrap_register(g_filter_output_stream_get_type(), &FilterOutputStream_Class::wrap_new);
-  Glib::wrap_register(g_inet_address_get_type(), &InetAddress_Class::wrap_new);
-  Glib::wrap_register(g_inet_socket_address_get_type(), &InetSocketAddress_Class::wrap_new);
-  Glib::wrap_register(g_input_stream_get_type(), &InputStream_Class::wrap_new);
-  Glib::wrap_register(g_io_stream_get_type(), &IOStream_Class::wrap_new);
-  Glib::wrap_register(g_list_store_get_type(), &ListStoreBase_Class::wrap_new);
-  Glib::wrap_register(g_memory_input_stream_get_type(), &MemoryInputStream_Class::wrap_new);
-  Glib::wrap_register(g_memory_output_stream_get_type(), &MemoryOutputStream_Class::wrap_new);
-  Glib::wrap_register(g_menu_get_type(), &Menu_Class::wrap_new);
-  Glib::wrap_register(g_menu_attribute_iter_get_type(), &MenuAttributeIter_Class::wrap_new);
-  Glib::wrap_register(g_menu_item_get_type(), &MenuItem_Class::wrap_new);
-  Glib::wrap_register(g_menu_link_iter_get_type(), &MenuLinkIter_Class::wrap_new);
-  Glib::wrap_register(g_menu_model_get_type(), &MenuModel_Class::wrap_new);
-  Glib::wrap_register(g_mount_operation_get_type(), &MountOperation_Class::wrap_new);
-  Glib::wrap_register(g_network_address_get_type(), &NetworkAddress_Class::wrap_new);
-  Glib::wrap_register(g_network_service_get_type(), &NetworkService_Class::wrap_new);
-  Glib::wrap_register(g_notification_get_type(), &Notification_Class::wrap_new);
-  Glib::wrap_register(g_output_stream_get_type(), &OutputStream_Class::wrap_new);
-  Glib::wrap_register(g_permission_get_type(), &Permission_Class::wrap_new);
-  Glib::wrap_register(g_property_action_get_type(), &PropertyAction_Class::wrap_new);
-  Glib::wrap_register(g_proxy_address_get_type(), &ProxyAddress_Class::wrap_new);
-  Glib::wrap_register(g_resolver_get_type(), &Resolver_Class::wrap_new);
-  Glib::wrap_register(g_settings_get_type(), &Settings_Class::wrap_new);
-  Glib::wrap_register(g_simple_action_get_type(), &SimpleAction_Class::wrap_new);
-  Glib::wrap_register(g_simple_action_group_get_type(), &SimpleActionGroup_Class::wrap_new);
-  Glib::wrap_register(g_simple_io_stream_get_type(), &SimpleIOStream_Class::wrap_new);
-  Glib::wrap_register(g_simple_permission_get_type(), &SimplePermission_Class::wrap_new);
-  Glib::wrap_register(g_socket_get_type(), &Socket_Class::wrap_new);
-  Glib::wrap_register(g_socket_address_get_type(), &SocketAddress_Class::wrap_new);
-  Glib::wrap_register(g_socket_address_enumerator_get_type(), &SocketAddressEnumerator_Class::wrap_new);
-  Glib::wrap_register(g_socket_client_get_type(), &SocketClient_Class::wrap_new);
-  Glib::wrap_register(g_socket_connection_get_type(), &SocketConnection_Class::wrap_new);
-  Glib::wrap_register(g_socket_control_message_get_type(), &SocketControlMessage_Class::wrap_new);
-  Glib::wrap_register(g_socket_listener_get_type(), &SocketListener_Class::wrap_new);
-  Glib::wrap_register(g_socket_service_get_type(), &SocketService_Class::wrap_new);
-  Glib::wrap_register(g_tcp_connection_get_type(), &TcpConnection_Class::wrap_new);
-  Glib::wrap_register(g_tcp_wrapper_connection_get_type(), &TcpWrapperConnection_Class::wrap_new);
-  Glib::wrap_register(g_themed_icon_get_type(), &ThemedIcon_Class::wrap_new);
-  Glib::wrap_register(g_threaded_socket_service_get_type(), &ThreadedSocketService_Class::wrap_new);
-  Glib::wrap_register(g_tls_certificate_get_type(), &TlsCertificate_Class::wrap_new);
-  Glib::wrap_register(g_tls_connection_get_type(), &TlsConnection_Class::wrap_new);
-  Glib::wrap_register(g_tls_database_get_type(), &TlsDatabase_Class::wrap_new);
-  Glib::wrap_register(g_tls_interaction_get_type(), &TlsInteraction_Class::wrap_new);
-  Glib::wrap_register(g_tls_password_get_type(), &TlsPassword_Class::wrap_new);
+  wrap_register(g_emblem_get_type(), &Emblem_Class::wrap_new);
+  wrap_register(g_emblemed_icon_get_type(), &EmblemedIcon_Class::wrap_new);
+  wrap_register(g_file_enumerator_get_type(), &FileEnumerator_Class::wrap_new);
+  wrap_register(g_file_icon_get_type(), &FileIcon_Class::wrap_new);
+  wrap_register(g_file_info_get_type(), &FileInfo_Class::wrap_new);
+  wrap_register(g_file_input_stream_get_type(), &FileInputStream_Class::wrap_new);
+  wrap_register(g_file_io_stream_get_type(), &FileIOStream_Class::wrap_new);
+  wrap_register(g_file_monitor_get_type(), &FileMonitor_Class::wrap_new);
+  wrap_register(g_filename_completer_get_type(), &FilenameCompleter_Class::wrap_new);
+  wrap_register(g_file_output_stream_get_type(), &FileOutputStream_Class::wrap_new);
+  wrap_register(g_filter_input_stream_get_type(), &FilterInputStream_Class::wrap_new);
+  wrap_register(g_filter_output_stream_get_type(), &FilterOutputStream_Class::wrap_new);
+  wrap_register(g_inet_address_get_type(), &InetAddress_Class::wrap_new);
+  wrap_register(g_inet_socket_address_get_type(), &InetSocketAddress_Class::wrap_new);
+  wrap_register(g_input_stream_get_type(), &InputStream_Class::wrap_new);
+  wrap_register(g_io_stream_get_type(), &IOStream_Class::wrap_new);
+  wrap_register(g_list_store_get_type(), &ListStoreBase_Class::wrap_new);
+  wrap_register(g_memory_input_stream_get_type(), &MemoryInputStream_Class::wrap_new);
+  wrap_register(g_memory_output_stream_get_type(), &MemoryOutputStream_Class::wrap_new);
+  wrap_register(g_menu_get_type(), &Menu_Class::wrap_new);
+  wrap_register(g_menu_attribute_iter_get_type(), &MenuAttributeIter_Class::wrap_new);
+  wrap_register(g_menu_item_get_type(), &MenuItem_Class::wrap_new);
+  wrap_register(g_menu_link_iter_get_type(), &MenuLinkIter_Class::wrap_new);
+  wrap_register(g_menu_model_get_type(), &MenuModel_Class::wrap_new);
+  wrap_register(g_mount_operation_get_type(), &MountOperation_Class::wrap_new);
+  wrap_register(g_network_address_get_type(), &NetworkAddress_Class::wrap_new);
+  wrap_register(g_network_service_get_type(), &NetworkService_Class::wrap_new);
+  wrap_register(g_notification_get_type(), &Notification_Class::wrap_new);
+  wrap_register(g_output_stream_get_type(), &OutputStream_Class::wrap_new);
+  wrap_register(g_permission_get_type(), &Permission_Class::wrap_new);
+  wrap_register(g_property_action_get_type(), &PropertyAction_Class::wrap_new);
+  wrap_register(g_proxy_address_get_type(), &ProxyAddress_Class::wrap_new);
+  wrap_register(g_resolver_get_type(), &Resolver_Class::wrap_new);
+  wrap_register(g_settings_get_type(), &Settings_Class::wrap_new);
+  wrap_register(g_simple_action_get_type(), &SimpleAction_Class::wrap_new);
+  wrap_register(g_simple_action_group_get_type(), &SimpleActionGroup_Class::wrap_new);
+  wrap_register(g_simple_io_stream_get_type(), &SimpleIOStream_Class::wrap_new);
+  wrap_register(g_simple_permission_get_type(), &SimplePermission_Class::wrap_new);
+  wrap_register(g_socket_get_type(), &Socket_Class::wrap_new);
+  wrap_register(g_socket_address_get_type(), &SocketAddress_Class::wrap_new);
+  wrap_register(g_socket_address_enumerator_get_type(), &SocketAddressEnumerator_Class::wrap_new);
+  wrap_register(g_socket_client_get_type(), &SocketClient_Class::wrap_new);
+  wrap_register(g_socket_connection_get_type(), &SocketConnection_Class::wrap_new);
+  wrap_register(g_socket_control_message_get_type(), &SocketControlMessage_Class::wrap_new);
+  wrap_register(g_socket_listener_get_type(), &SocketListener_Class::wrap_new);
+  wrap_register(g_socket_service_get_type(), &SocketService_Class::wrap_new);
+  wrap_register(g_tcp_connection_get_type(), &TcpConnection_Class::wrap_new);
+  wrap_register(g_tcp_wrapper_connection_get_type(), &TcpWrapperConnection_Class::wrap_new);
+  wrap_register(g_themed_icon_get_type(), &ThemedIcon_Class::wrap_new);
+  wrap_register(g_threaded_socket_service_get_type(), &ThreadedSocketService_Class::wrap_new);
+  wrap_register(g_tls_certificate_get_type(), &TlsCertificate_Class::wrap_new);
+  wrap_register(g_tls_connection_get_type(), &TlsConnection_Class::wrap_new);
+  wrap_register(g_tls_database_get_type(), &TlsDatabase_Class::wrap_new);
+  wrap_register(g_tls_interaction_get_type(), &TlsInteraction_Class::wrap_new);
+  wrap_register(g_tls_password_get_type(), &TlsPassword_Class::wrap_new);
 #ifndef G_OS_WIN32
   Glib::wrap_register(g_unix_connection_get_type(), &UnixConnection_Class::wrap_new);
 #endif // ifndef G_OS_WIN32
@@ -407,9 +407,9 @@ auto wrap_init () -> void
 #ifndef G_OS_WIN32
   Glib::wrap_register(g_unix_socket_address_get_type(), &UnixSocketAddress_Class::wrap_new);
 #endif // ifndef G_OS_WIN32
-  Glib::wrap_register(g_volume_monitor_get_type(), &VolumeMonitor_Class::wrap_new);
-  Glib::wrap_register(g_zlib_compressor_get_type(), &ZlibCompressor_Class::wrap_new);
-  Glib::wrap_register(g_zlib_decompressor_get_type(), &ZlibDecompressor_Class::wrap_new);
+  wrap_register(g_volume_monitor_get_type(), &VolumeMonitor_Class::wrap_new);
+  wrap_register(g_zlib_compressor_get_type(), &ZlibCompressor_Class::wrap_new);
+  wrap_register(g_zlib_decompressor_get_type(), &ZlibDecompressor_Class::wrap_new);
 
   // Register the gtkmm gtypes:
   g_type_ensure(AppInfoMonitor::get_type());

@@ -45,16 +45,16 @@ auto AuthObserver_signal_authorize_authenticated_peer_callback(GDBusAuthObserver
   using namespace Gio::DBus;
   using SlotType = sigc::slot<bool(const Glib::RefPtr<const IOStream>&, const Glib::RefPtr<const Credentials>&)>;
 
-  auto obj = dynamic_cast<AuthObserver*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<AuthObserver*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return static_cast<int>((*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
-, Glib::wrap(p1, true)
-));
+        return (*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
+                                               , Glib::wrap(p1, true)
+        );
     }
     catch(...)
     {
@@ -71,7 +71,7 @@ auto AuthObserver_signal_authorize_authenticated_peer_notify_callback(GDBusAuthO
   using namespace Gio::DBus;
   using SlotType = sigc::slot<void(const Glib::RefPtr<const IOStream>&, const Glib::RefPtr<const Credentials>&)>;
 
-  auto obj = dynamic_cast<AuthObserver*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<AuthObserver*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -105,15 +105,15 @@ auto AuthObserver_signal_allow_mechanism_callback(GDBusAuthObserver* self, const
   using namespace Gio::DBus;
   using SlotType = sigc::slot<bool(const std::string&)>;
 
-  auto obj = dynamic_cast<AuthObserver*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<AuthObserver*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return static_cast<int>((*static_cast<SlotType*>(slot))(Glib::convert_const_gchar_ptr_to_stdstring(p0)
-));
+        return (*static_cast<SlotType*>(slot))(Glib::convert_const_gchar_ptr_to_stdstring(p0)
+        );
     }
     catch(...)
     {
@@ -130,7 +130,7 @@ auto AuthObserver_signal_allow_mechanism_notify_callback(GDBusAuthObserver* self
   using namespace Gio::DBus;
   using SlotType = sigc::slot<void(const std::string&)>;
 
-  auto obj = dynamic_cast<AuthObserver*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<AuthObserver*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -164,9 +164,9 @@ const Glib::SignalProxyInfo AuthObserver_signal_allow_mechanism_info =
 namespace Glib
 {
 
-auto wrap(GDBusAuthObserver* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::AuthObserver>
+auto wrap(GDBusAuthObserver* object, const bool take_copy) -> RefPtr<Gio::DBus::AuthObserver>
 {
-  return Glib::make_refptr_for_instance<Gio::DBus::AuthObserver>( dynamic_cast<Gio::DBus::AuthObserver*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::DBus::AuthObserver>( dynamic_cast<Gio::DBus::AuthObserver*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -179,7 +179,7 @@ namespace Gio::DBus
 
 /* The *_Class implementation: */
 
-auto AuthObserver_Class::init() -> const Glib::Class&
+auto AuthObserver_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -225,32 +225,28 @@ auto AuthObserver::gobj_copy() -> GDBusAuthObserver*
 }
 
 AuthObserver::AuthObserver(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 AuthObserver::AuthObserver(GDBusAuthObserver* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 AuthObserver::AuthObserver(AuthObserver&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto AuthObserver::operator=(AuthObserver&& src) noexcept -> AuthObserver&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-AuthObserver::~AuthObserver() noexcept
-{}
-
+AuthObserver::~AuthObserver() noexcept = default;
 
 AuthObserver::CppClassType AuthObserver::authobserver_class_; // initialize static member
 
@@ -269,8 +265,8 @@ auto AuthObserver::get_base_type() -> GType
 AuthObserver::AuthObserver()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(authobserver_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(authobserver_class_.init()))
 {
 
 
@@ -283,7 +279,7 @@ auto AuthObserver::create() -> Glib::RefPtr<AuthObserver>
 
 auto AuthObserver::authorize_authenticated_peer(const Glib::RefPtr<const IOStream>& stream, const Glib::RefPtr<const Credentials>& credentials) -> bool
 {
-  return g_dbus_auth_observer_authorize_authenticated_peer(gobj(), const_cast<GIOStream*>(Glib::unwrap(stream)), const_cast<GCredentials*>(Glib::unwrap<Gio::Credentials>(credentials)));
+  return g_dbus_auth_observer_authorize_authenticated_peer(gobj(), const_cast<GIOStream*>(Glib::unwrap(stream)), const_cast<GCredentials*>(Glib::unwrap<Credentials>(credentials)));
 }
 
 auto AuthObserver::allow_mechanism(const std::string& mechanism) -> bool
@@ -294,13 +290,13 @@ auto AuthObserver::allow_mechanism(const std::string& mechanism) -> bool
 
 auto AuthObserver::signal_authorize_authenticated_peer() -> Glib::SignalProxy<bool(const Glib::RefPtr<const IOStream>&, const Glib::RefPtr<const Credentials>&)>
 {
-  return Glib::SignalProxy<bool(const Glib::RefPtr<const IOStream>&, const Glib::RefPtr<const Credentials>&) >(this, &AuthObserver_signal_authorize_authenticated_peer_info);
+  return {this, &AuthObserver_signal_authorize_authenticated_peer_info};
 }
 
 
 auto AuthObserver::signal_allow_mechanism() -> Glib::SignalProxy<bool(const std::string&)>
 {
-  return Glib::SignalProxy<bool(const std::string&) >(this, &AuthObserver_signal_allow_mechanism_info);
+  return {this, &AuthObserver_signal_allow_mechanism_info};
 }
 
 

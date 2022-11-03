@@ -33,9 +33,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkStringObject* object, bool take_copy) -> Glib::RefPtr<Gtk::StringObject>
+auto wrap(GtkStringObject* object, const bool take_copy) -> RefPtr<Gtk::StringObject>
 {
-  return Glib::make_refptr_for_instance<Gtk::StringObject>( dynamic_cast<Gtk::StringObject*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::StringObject>( dynamic_cast<Gtk::StringObject*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto StringObject_Class::init() -> const Glib::Class&
+auto StringObject_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -88,32 +88,28 @@ auto StringObject::gobj_copy() -> GtkStringObject*
 }
 
 StringObject::StringObject(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 StringObject::StringObject(GtkStringObject* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 StringObject::StringObject(StringObject&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto StringObject::operator=(StringObject&& src) noexcept -> StringObject&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-StringObject::~StringObject() noexcept
-{}
-
+StringObject::~StringObject() noexcept = default;
 
 StringObject::CppClassType StringObject::stringobject_class_; // initialize static member
 
@@ -142,7 +138,7 @@ auto StringObject::get_string() const -> Glib::ustring
 
 auto StringObject::property_string() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "string");
+  return {this, "string"};
 }
 
 

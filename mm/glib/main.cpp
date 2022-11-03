@@ -25,7 +25,8 @@ namespace
 {
 // Convert an interval from milliseconds to microseconds,
 // suitable for adding to Source::get_time().
-inline auto ms2us(unsigned int ms) -> gint64
+inline auto ms2us(
+  const unsigned int ms) -> gint64
 {
   return static_cast<gint64>(ms) * 1000;
 }
@@ -35,8 +36,8 @@ class SourceConnectionNode : public sigc::notifiable
 public:
   explicit inline SourceConnectionNode(const sigc::slot_base& slot);
 
-  static auto notify (sigc::notifiable *data) -> void;
-  static auto destroy_notify_callback (sigc::notifiable *data) -> void;
+  static auto notify (notifiable *data) -> void;
+  static auto destroy_notify_callback (notifiable *data) -> void;
 
   inline auto install (GSource *source) -> void;
   inline auto get_slot() -> sigc::slot_base*;
@@ -52,7 +53,8 @@ inline SourceConnectionNode::SourceConnectionNode(const sigc::slot_base& slot)
   slot_.set_parent(this, &SourceConnectionNode::notify);
 }
 
-auto SourceConnectionNode::notify (sigc::notifiable *data) -> void
+auto SourceConnectionNode::notify (
+  notifiable *data) -> void
 {
   SourceConnectionNode* const self = static_cast<SourceConnectionNode*>(data);
 
@@ -70,7 +72,8 @@ auto SourceConnectionNode::notify (sigc::notifiable *data) -> void
 }
 
 // static
-auto SourceConnectionNode::destroy_notify_callback (sigc::notifiable *data) -> void
+auto SourceConnectionNode::destroy_notify_callback (
+  notifiable *data) -> void
 {
   SourceConnectionNode* const self = static_cast<SourceConnectionNode*>(data);
 
@@ -128,7 +131,7 @@ auto SourceCallbackData::set_node (SourceConnectionNode *node_) -> void
 // static
 auto SourceCallbackData::destroy_notify_callback (void *data) -> void
 {
-  SourceCallbackData* const self = static_cast<SourceCallbackData*>(data);
+  const SourceCallbackData* const self = static_cast<SourceCallbackData*>(data);
 
   if (self->node)
     SourceConnectionNode::destroy_notify_callback(self->node);
@@ -148,8 +151,8 @@ glibmm_source_get_callback_data(GSource* source) -> SourceCallbackData*
    * that checks whether they are still active and source
    * destruction happening in other threads.
    */
-  gpointer callback_data = source->callback_data;
-  GSourceCallbackFuncs* callback_funcs = source->callback_funcs;
+  const gpointer callback_data = source->callback_data;
+  const GSourceCallbackFuncs* callback_funcs = source->callback_funcs;
 
   g_return_val_if_fail(callback_funcs != nullptr, nullptr);
 
@@ -231,7 +234,7 @@ auto glibmm_source_destroy_notify_callback (void *data) -> void
 auto
 glibmm_iosource_callback(GIOChannel*, GIOCondition condition, void* data) -> gboolean
 {
-  SourceCallbackData* const callback_data = static_cast<SourceCallbackData*>(data);
+  const SourceCallbackData* const callback_data = static_cast<SourceCallbackData*>(data);
   g_return_val_if_fail(callback_data->node != nullptr, 0);
 
   try
@@ -252,7 +255,8 @@ glibmm_iosource_callback(GIOChannel*, GIOCondition condition, void* data) -> gbo
  * of a completely unused wrapper object.
  */
 auto
-glibmm_child_watch_callback(GPid pid, gint child_status, void* data) -> gboolean
+glibmm_child_watch_callback(
+  const GPid pid, const gint child_status, void* data) -> gboolean
 {
   SourceConnectionNode* const conn_data = static_cast<SourceConnectionNode*>(data);
 
@@ -269,7 +273,7 @@ glibmm_child_watch_callback(GPid pid, gint child_status, void* data) -> gboolean
 }
 
 auto glibmm_signal_connect_once (
-  const sigc::slot <void ()> &slot, int priority, GSource *source, GMainContext *context) -> void
+  const sigc::slot <void ()> &slot, const int priority, GSource *source, GMainContext *context) -> void
 {
   SourceConnectionNode* const conn_node = new SourceConnectionNode(slot);
 
@@ -303,7 +307,7 @@ glibmm_main_context_invoke_callback(void* data) -> gboolean
 
 auto glibmm_main_context_invoke_destroy_notify_callback (void *data) -> void
 {
-  sigc::slot_base* const slot = reinterpret_cast<sigc::slot_base*>(data);
+  const sigc::slot_base* const slot = reinterpret_cast<sigc::slot_base*>(data);
   delete slot;
 }
 
@@ -321,14 +325,14 @@ PollFD::PollFD()
   gobject_.revents = 0;
 }
 
-PollFD::PollFD(PollFD::fd_t fd)
+PollFD::PollFD(const fd_t fd)
 {
   gobject_.fd = fd;
   gobject_.events = 0;
   gobject_.revents = 0;
 }
 
-PollFD::PollFD(PollFD::fd_t fd, IOCondition events)
+PollFD::PollFD(const fd_t fd, IOCondition events)
 {
   gobject_.fd = fd;
   gobject_.events = static_cast<decltype(gobject_.events)>(events);
@@ -343,7 +347,7 @@ inline SignalTimeout::SignalTimeout(GMainContext* context) : context_(context)
 
 /* Note that this is our equivalent of g_timeout_add(). */
 auto
-SignalTimeout::connect(const sigc::slot<bool()>& slot, unsigned int interval, int priority) -> sigc::connection
+SignalTimeout::connect(const sigc::slot<bool()>& slot, const unsigned int interval, const int priority) -> sigc::connection
 {
   SourceConnectionNode* const conn_node = new SourceConnectionNode(slot);
   const sigc::connection connection(*conn_node->get_slot());
@@ -365,7 +369,7 @@ SignalTimeout::connect(const sigc::slot<bool()>& slot, unsigned int interval, in
 }
 
 auto SignalTimeout::connect_once (
-  const sigc::slot <void ()> &slot, unsigned int interval, int priority) -> void
+  const sigc::slot <void ()> &slot, const unsigned int interval, const int priority) -> void
 {
   GSource* const source = g_timeout_source_new(interval);
   glibmm_signal_connect_once(slot, priority, source, context_);
@@ -373,7 +377,7 @@ auto SignalTimeout::connect_once (
 
 /* Note that this is our equivalent of g_timeout_add_seconds(). */
 auto
-SignalTimeout::connect_seconds(const sigc::slot<bool()>& slot, unsigned int interval, int priority) -> sigc::connection
+SignalTimeout::connect_seconds(const sigc::slot<bool()>& slot, const unsigned int interval, const int priority) -> sigc::connection
 {
   SourceConnectionNode* const conn_node = new SourceConnectionNode(slot);
   const sigc::connection connection(*conn_node->get_slot());
@@ -395,7 +399,7 @@ SignalTimeout::connect_seconds(const sigc::slot<bool()>& slot, unsigned int inte
 }
 
 auto SignalTimeout::connect_seconds_once (
-  const sigc::slot <void ()> &slot, unsigned int interval, int priority) -> void
+  const sigc::slot <void ()> &slot, const unsigned int interval, const int priority) -> void
 {
   GSource* const source = g_timeout_source_new_seconds(interval);
   glibmm_signal_connect_once(slot, priority, source, context_);
@@ -414,7 +418,7 @@ inline SignalIdle::SignalIdle(GMainContext* context) : context_(context)
 }
 
 auto
-SignalIdle::connect(const sigc::slot<bool()>& slot, int priority) -> sigc::connection
+SignalIdle::connect(const sigc::slot<bool()>& slot, const int priority) -> sigc::connection
 {
   SourceConnectionNode* const conn_node = new SourceConnectionNode(slot);
   const sigc::connection connection(*conn_node->get_slot());
@@ -435,7 +439,7 @@ SignalIdle::connect(const sigc::slot<bool()>& slot, int priority) -> sigc::conne
   return connection;
 }
 
-auto SignalIdle::connect_once (const sigc::slot <void ()> &slot, int priority) -> void
+auto SignalIdle::connect_once (const sigc::slot <void ()> &slot, const int priority) -> void
 {
   GSource* const source = g_idle_source_new();
   glibmm_signal_connect_once(slot, priority, source, context_);
@@ -455,7 +459,7 @@ inline SignalIO::SignalIO(GMainContext* context) : context_(context)
 
 auto
 SignalIO::connect(
-  const sigc::slot<bool(IOCondition)>& slot, PollFD::fd_t fd, IOCondition condition, int priority) -> sigc::connection
+  const sigc::slot<bool(IOCondition)>& slot, const PollFD::fd_t fd, const IOCondition condition, const int priority) -> sigc::connection
 {
   const auto source = IOSource::create(fd, condition);
 
@@ -470,8 +474,7 @@ SignalIO::connect(
 }
 
 auto
-SignalIO::connect(const sigc::slot<bool(IOCondition)>& slot, const Glib::RefPtr<IOChannel>& channel,
-  IOCondition condition, int priority) -> sigc::connection
+SignalIO::connect(const sigc::slot<bool(IOCondition)>& slot, const RefPtr<IOChannel> & channel, const IOCondition condition, const int priority) -> sigc::connection
 {
   const auto source = IOSource::create(channel, condition);
 
@@ -498,7 +501,7 @@ inline SignalChildWatch::SignalChildWatch(GMainContext* context) : context_(cont
 }
 
 auto
-SignalChildWatch::connect(const sigc::slot<void(GPid, int)>& slot, GPid pid, int priority) -> sigc::connection
+SignalChildWatch::connect(const sigc::slot<void(GPid, int)>& slot, const GPid pid, const int priority) -> sigc::connection
 {
   SourceConnectionNode* const conn_node = new SourceConnectionNode(slot);
   const sigc::connection connection(*conn_node->get_slot());
@@ -529,14 +532,14 @@ signal_child_watch() -> SignalChildWatch
 
 // static
 auto
-MainContext::create() -> Glib::RefPtr<MainContext>
+MainContext::create() -> RefPtr<MainContext>
 {
   return Glib::make_refptr_for_instance<MainContext>(reinterpret_cast<MainContext*>(g_main_context_new()));
 }
 
 // static
 auto
-MainContext::create(MainContextFlags flags) -> Glib::RefPtr<MainContext>
+MainContext::create(MainContextFlags flags) -> RefPtr<MainContext>
 {
   return Glib::make_refptr_for_instance<MainContext>(
     reinterpret_cast<MainContext*>(g_main_context_new_with_flags(static_cast<GMainContextFlags>(flags))));
@@ -544,13 +547,14 @@ MainContext::create(MainContextFlags flags) -> Glib::RefPtr<MainContext>
 
 // static
 auto
-MainContext::get_default() -> Glib::RefPtr<MainContext>
+MainContext::get_default() -> RefPtr<MainContext>
 {
-  return Glib::wrap(g_main_context_default(), true);
+  return wrap(g_main_context_default(), true);
 }
 
 auto
-MainContext::iteration(bool may_block) -> bool
+MainContext::iteration(
+  const bool may_block) -> bool
 {
   return g_main_context_iteration(gobj(), may_block);
 }
@@ -589,7 +593,8 @@ MainContext::prepare() -> bool
   return g_main_context_prepare(gobj(), nullptr);
 }
 
-auto MainContext::query (int max_priority, int &timeout, std::vector <PollFD> &fds) -> void
+auto MainContext::query (
+  const int max_priority, int &timeout, std::vector <PollFD> &fds) -> void
 {
   if (fds.empty())
     fds.resize(8); // rather bogus number, but better than 0
@@ -608,7 +613,8 @@ auto MainContext::query (int max_priority, int &timeout, std::vector <PollFD> &f
 }
 
 auto
-MainContext::check(int max_priority, std::vector<PollFD>& fds) -> bool
+MainContext::check(
+  const int max_priority, std::vector<PollFD>& fds) -> bool
 {
   if (!fds.empty())
     return g_main_context_check(
@@ -622,7 +628,8 @@ auto MainContext::dispatch () -> void
   g_main_context_dispatch(gobj());
 }
 
-auto MainContext::set_poll_func (GPollFunc poll_func) -> void
+auto MainContext::set_poll_func (
+  const GPollFunc poll_func) -> void
 {
   g_main_context_set_poll_func(gobj(), poll_func);
 }
@@ -632,7 +639,7 @@ auto MainContext::get_poll_func () -> GPollFunc
   return g_main_context_get_poll_func(gobj());
 }
 
-auto MainContext::add_poll (PollFD &fd, int priority) -> void
+auto MainContext::add_poll (PollFD &fd, const int priority) -> void
 {
   g_main_context_add_poll(gobj(), fd.gobj(), priority);
 }
@@ -654,13 +661,13 @@ auto MainContext::pop_thread_default () -> void
 
 // static
 auto
-MainContext::get_thread_default() -> Glib::RefPtr<MainContext>
+MainContext::get_thread_default() -> RefPtr<MainContext>
 {
   // g_main_context_ref_thread_default() gives us a ref.
-  return Glib::wrap(g_main_context_ref_thread_default(), false);
+  return wrap(g_main_context_ref_thread_default(), false);
 }
 
-auto MainContext::invoke (const sigc::slot <bool ()> &slot, int priority) -> void
+auto MainContext::invoke (const sigc::slot <bool ()> &slot, const int priority) -> void
 {
   // Make a copy of slot on the heap.
   sigc::slot_base* const slot_copy = new sigc::slot<bool()>(slot);
@@ -723,7 +730,7 @@ MainContext::gobj_copy() const -> GMainContext*
 }
 
 auto
-wrap(GMainContext* gobject, bool take_copy) -> Glib::RefPtr<MainContext>
+wrap(GMainContext* gobject, const bool take_copy) -> RefPtr<MainContext>
 {
   if (take_copy && gobject)
     g_main_context_ref(gobject);
@@ -734,16 +741,17 @@ wrap(GMainContext* gobject, bool take_copy) -> Glib::RefPtr<MainContext>
 /**** Glib::MainLoop *******************************************************/
 
 auto
-MainLoop::create(bool is_running) -> Glib::RefPtr<MainLoop>
+MainLoop::create(
+  const bool is_running) -> RefPtr<MainLoop>
 {
   return Glib::make_refptr_for_instance<MainLoop>(reinterpret_cast<MainLoop*>(g_main_loop_new(nullptr, is_running)));
 }
 
 auto
-MainLoop::create(const Glib::RefPtr<MainContext>& context, bool is_running) -> Glib::RefPtr<MainLoop>
+MainLoop::create(const RefPtr<MainContext> & context, const bool is_running) -> RefPtr<MainLoop>
 {
   return Glib::make_refptr_for_instance<MainLoop>(
-    reinterpret_cast<MainLoop*>(g_main_loop_new(Glib::unwrap(context), is_running)));
+    reinterpret_cast<MainLoop*>(g_main_loop_new(unwrap(context), is_running)));
 }
 
 auto MainLoop::run () -> void
@@ -763,9 +771,9 @@ MainLoop::is_running() -> bool
 }
 
 auto
-MainLoop::get_context() -> Glib::RefPtr<MainContext>
+MainLoop::get_context() -> RefPtr<MainContext>
 {
-  return Glib::wrap(g_main_loop_get_context(gobj()), true);
+  return wrap(g_main_loop_get_context(gobj()), true);
 }
 
 // static:
@@ -805,7 +813,7 @@ MainLoop::gobj_copy() const -> GMainLoop*
 }
 
 auto
-wrap(GMainLoop* gobject, bool take_copy) -> Glib::RefPtr<MainLoop>
+wrap(GMainLoop* gobject, const bool take_copy) -> RefPtr<MainLoop>
 {
   if (take_copy && gobject)
     g_main_loop_ref(gobject);
@@ -827,9 +835,9 @@ const GSourceFuncs Source::vfunc_table_ = {
 };
 
 auto
-Source::attach(const Glib::RefPtr<MainContext>& context) -> unsigned int
+Source::attach(const RefPtr<MainContext> & context) -> unsigned int
 {
-  return g_source_attach(gobject_, Glib::unwrap(context));
+  return g_source_attach(gobject_, unwrap(context));
 }
 
 auto
@@ -843,7 +851,8 @@ auto Source::destroy () -> void
   g_source_destroy(gobject_);
 }
 
-auto Source::set_priority (int priority) -> void
+auto Source::set_priority (
+  const int priority) -> void
 {
   g_source_set_priority(gobject_, priority);
 }
@@ -854,7 +863,8 @@ Source::get_priority() const -> int
   return g_source_get_priority(gobject_);
 }
 
-auto Source::set_can_recurse (bool can_recurse) -> void
+auto Source::set_can_recurse (
+  const bool can_recurse) -> void
 {
   g_source_set_can_recurse(gobject_, can_recurse);
 }
@@ -872,9 +882,9 @@ Source::get_id() const -> unsigned int
 }
 
 auto
-Source::get_context() -> Glib::RefPtr<MainContext>
+Source::get_context() -> RefPtr<MainContext>
 {
-  return Glib::wrap(g_source_get_context(gobject_), true);
+  return wrap(g_source_get_context(gobject_), true);
 }
 
 auto
@@ -910,7 +920,7 @@ Source::Source() : gobject_(g_source_new(const_cast<GSourceFuncs*>(&vfunc_table_
     &SourceCallbackData::destroy_notify_callback);
 }
 
-Source::Source(GSource* cast_item, GSourceFunc callback_func) : gobject_(cast_item)
+Source::Source(GSource* cast_item, const GSourceFunc callback_func) : gobject_(cast_item)
 {
   g_source_set_callback(gobject_, callback_func,
     new SourceCallbackData(this), // our persistent callback data object
@@ -958,12 +968,14 @@ Source::connect_generic(const sigc::slot_base& slot) -> sigc::connection
   return connection;
 }
 
-auto Source::add_poll (Glib::PollFD &poll_fd) -> void
+auto Source::add_poll (
+  PollFD &poll_fd) -> void
 {
   g_source_add_poll(gobject_, poll_fd.gobj());
 }
 
-auto Source::remove_poll (Glib::PollFD &poll_fd) -> void
+auto Source::remove_poll (
+  PollFD &poll_fd) -> void
 {
   g_source_remove_poll(gobject_, poll_fd.gobj());
 }
@@ -971,8 +983,8 @@ auto Source::remove_poll (Glib::PollFD &poll_fd) -> void
 auto
 Source::get_time() const -> gint64
 {
-  if (g_source_get_context(const_cast<GSource*>(gobject_)))
-    return g_source_get_time(const_cast<GSource*>(gobject_));
+  if (g_source_get_context(gobject_))
+    return g_source_get_time(gobject_);
   else
     return g_get_monotonic_time();
 }
@@ -981,8 +993,8 @@ inline // static
   auto
   Source::get_wrapper(GSource* source) -> Source*
 {
-  SourceCallbackData* const data = glibmm_source_get_callback_data(source);
-  return (data) ? data->wrapper : nullptr;
+  const SourceCallbackData* const data = glibmm_source_get_callback_data(source);
+  return data ? data->wrapper : nullptr;
 }
 
 // static
@@ -992,11 +1004,11 @@ Source::prepare_vfunc(GSource* source, int* timeout) -> gboolean
   try
   {
     Source* const self = get_wrapper(source);
-    return (self) ? self->prepare(*timeout) : 0;
+    return self ? self->prepare(*timeout) : 0;
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke();
+    exception_handlers_invoke();
   }
 
   return 0;
@@ -1009,11 +1021,11 @@ Source::check_vfunc(GSource* source) -> gboolean
   try
   {
     Source* const self = get_wrapper(source);
-    return (self) ? self->check() : 0;
+    return self ? self->check() : 0;
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke();
+    exception_handlers_invoke();
   }
 
   return 0;
@@ -1021,9 +1033,9 @@ Source::check_vfunc(GSource* source) -> gboolean
 
 // static
 auto
-Source::dispatch_vfunc(GSource*, GSourceFunc callback, void* user_data) -> gboolean
+Source::dispatch_vfunc(GSource*, const GSourceFunc callback, void* user_data) -> gboolean
 {
-  SourceCallbackData* const callback_data = static_cast<SourceCallbackData*>(user_data);
+  const SourceCallbackData* const callback_data = static_cast<SourceCallbackData*>(user_data);
 
   g_return_val_if_fail(callback == &glibmm_dummy_source_callback, 0);
   g_return_val_if_fail(callback_data != nullptr && callback_data->node != nullptr, 0);
@@ -1035,7 +1047,7 @@ Source::dispatch_vfunc(GSource*, GSourceFunc callback, void* user_data) -> gbool
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke();
+    exception_handlers_invoke();
   }
   return 0;
 }
@@ -1059,8 +1071,8 @@ auto Source::destroy_notify_callback2 (void *data) -> void
 
 // static
 auto
-Source::attach_signal_source(const sigc::slot_base& slot, int priority, GSource* source,
-  GMainContext* context, GSourceFunc callback_func) -> sigc::connection
+Source::attach_signal_source(const sigc::slot_base& slot, const int priority, GSource* source,
+  GMainContext* context, const GSourceFunc callback_func) -> sigc::connection
 {
   SourceConnectionNode* const conn_node = new SourceConnectionNode(slot);
   const sigc::connection connection(*conn_node->get_slot());
@@ -1090,7 +1102,7 @@ Source::get_slot_from_connection_node(void* data) -> sigc::slot_base*
 auto
 Source::get_slot_from_callback_data(void* data) -> sigc::slot_base*
 {
-  SourceCallbackData* const callback_data = static_cast<SourceCallbackData*>(data);
+  const SourceCallbackData* const callback_data = static_cast<SourceCallbackData*>(data);
   g_return_val_if_fail(callback_data->node != nullptr, nullptr);
   return callback_data->node->get_slot();
 }
@@ -1099,7 +1111,8 @@ Source::get_slot_from_callback_data(void* data) -> sigc::slot_base*
 
 // static
 auto
-TimeoutSource::create(unsigned int interval) -> Glib::RefPtr<TimeoutSource>
+TimeoutSource::create(
+  const unsigned int interval) -> RefPtr<TimeoutSource>
 {
   return Glib::make_refptr_for_instance<TimeoutSource>(new TimeoutSource(interval));
 }
@@ -1110,19 +1123,17 @@ TimeoutSource::connect(const sigc::slot<bool()>& slot) -> sigc::connection
   return connect_generic(slot);
 }
 
-TimeoutSource::TimeoutSource(unsigned int interval) : interval_(interval)
+TimeoutSource::TimeoutSource(const unsigned int interval) : interval_(interval)
 {
   expiration_ = get_time() + ms2us(interval_);
 }
 
-TimeoutSource::~TimeoutSource() noexcept
-{
-}
+TimeoutSource::~TimeoutSource() noexcept = default;
 
 auto
 TimeoutSource::prepare(int& timeout) -> bool
 {
-  gint64 remaining = expiration_ - get_time();
+  const gint64 remaining = expiration_ - get_time();
 
   if (remaining <= 0)
   {
@@ -1144,7 +1155,7 @@ TimeoutSource::prepare(int& timeout) -> bool
     }
   }
 
-  return (timeout == 0);
+  return timeout == 0;
 }
 
 auto
@@ -1168,7 +1179,7 @@ TimeoutSource::dispatch(sigc::slot_base* slot) -> bool
 
 // static
 auto
-IdleSource::create() -> Glib::RefPtr<IdleSource>
+IdleSource::create() -> RefPtr<IdleSource>
 {
   return Glib::make_refptr_for_instance<IdleSource>(new IdleSource());
 }
@@ -1184,9 +1195,7 @@ IdleSource::IdleSource()
   set_priority(PRIORITY_DEFAULT_IDLE);
 }
 
-IdleSource::~IdleSource() noexcept
-{
-}
+IdleSource::~IdleSource() noexcept = default;
 
 auto
 IdleSource::prepare(int& timeout) -> bool
@@ -1211,19 +1220,20 @@ IdleSource::dispatch(sigc::slot_base* slot) -> bool
 
 // static
 auto
-IOSource::create(PollFD::fd_t fd, IOCondition condition) -> Glib::RefPtr<IOSource>
+IOSource::create(
+  const PollFD::fd_t fd, const IOCondition condition) -> RefPtr<IOSource>
 {
   return Glib::make_refptr_for_instance<IOSource>(new IOSource(fd, condition));
 }
 
 auto
-IOSource::create(const Glib::RefPtr<IOChannel>& channel, IOCondition condition) -> Glib::RefPtr<IOSource>
+IOSource::create(const RefPtr<IOChannel> & channel, const IOCondition condition) -> RefPtr<IOSource>
 {
   return Glib::make_refptr_for_instance<IOSource>(new IOSource(channel, condition));
 }
 
 auto
-IOSource::create(GIOChannel* channel, IOCondition condition) -> Glib::RefPtr<IOSource>
+IOSource::create(GIOChannel* channel, const IOCondition condition) -> RefPtr<IOSource>
 {
   return Glib::make_refptr_for_instance<IOSource>(new IOSource(channel, condition));
 }
@@ -1234,12 +1244,12 @@ IOSource::connect(const sigc::slot<bool(IOCondition)>& slot) -> sigc::connection
   return connect_generic(slot);
 }
 
-IOSource::IOSource(PollFD::fd_t fd, IOCondition condition) : poll_fd_(fd, condition)
+IOSource::IOSource(const PollFD::fd_t fd, const IOCondition condition) : poll_fd_(fd, condition)
 {
   add_poll(poll_fd_);
 }
 
-IOSource::IOSource(const Glib::RefPtr<IOChannel>& channel, IOCondition condition)
+IOSource::IOSource(const RefPtr<IOChannel> & channel, IOCondition condition)
 : Source(g_io_create_watch(channel->gobj(), (GIOCondition)condition),
     Glib::function_pointer_cast<GSourceFunc>(&glibmm_iosource_callback))
 {
@@ -1251,13 +1261,11 @@ IOSource::IOSource(GIOChannel* channel, IOCondition condition)
 {
 }
 
-IOSource::IOSource(GSource* cast_item, GSourceFunc callback_func) : Source(cast_item, callback_func)
+IOSource::IOSource(GSource* cast_item, const GSourceFunc callback_func) : Source(cast_item, callback_func)
 {
 }
 
-IOSource::~IOSource() noexcept
-{
-}
+IOSource::~IOSource() noexcept = default;
 
 auto
 IOSource::prepare(int& timeout) -> bool

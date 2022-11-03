@@ -19,7 +19,7 @@
 namespace Gtk
 {
 
-BitsetConstIter::BitsetConstIter(const GtkBitset* bitset, bool is_end)
+BitsetConstIter::BitsetConstIter(const GtkBitset* bitset, const bool is_end)
 : gobject_(std::make_unique<GtkBitsetIter>()),
   bitset_(bitset),
   is_end_(is_end)
@@ -155,7 +155,7 @@ auto BitsetConstIter::operator--(int) -> BitsetConstIter
   return orig;
 }
 
-auto BitsetConstIter::operator*() const -> BitsetConstIter::reference
+auto BitsetConstIter::operator*() const -> reference
 {
   if (!(gobject_ && bitset_ && !is_end_))
     return 0;

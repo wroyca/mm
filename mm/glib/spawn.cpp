@@ -78,14 +78,15 @@ auto spawn_async_with_pipes (
   auto child_setup_ = child_setup;
   GError* gerror = nullptr;
 
-  g_spawn_async_with_pipes(Glib::c_str_or_nullptr(working_directory),
-    const_cast<char**>(Glib::ArrayHandler<std::string>::vector_to_array(argv).data()), const_cast<char**>(Glib::ArrayHandler<std::string>::vector_to_array(envp).data()),
-    static_cast<GSpawnFlags>(unsigned(flags)), (setup_slot) ? &child_setup_callback : nullptr,
-    (setup_slot) ? &child_setup_ : nullptr, child_pid, standard_input, standard_output,
+  g_spawn_async_with_pipes(
+    c_str_or_nullptr(working_directory),
+    const_cast<char**>(ArrayHandler<std::string>::vector_to_array(argv).data()), const_cast<char**>(ArrayHandler<std::string>::vector_to_array(envp).data()),
+    static_cast<GSpawnFlags>(unsigned(flags)), setup_slot ? &child_setup_callback : nullptr,
+    setup_slot ? &child_setup_ : nullptr, child_pid, standard_input, standard_output,
     standard_error, &gerror);
 
   if (gerror)
-    Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 }
 
 auto spawn_async_with_pipes (
@@ -98,13 +99,14 @@ auto spawn_async_with_pipes (
   auto child_setup_ = child_setup;
   GError* gerror = nullptr;
 
-  g_spawn_async_with_pipes(Glib::c_str_or_nullptr(working_directory),
-    const_cast<char**>(Glib::ArrayHandler<std::string>::vector_to_array(argv).data()), nullptr, static_cast<GSpawnFlags>(unsigned(flags)),
-    (setup_slot) ? &child_setup_callback : nullptr, (setup_slot) ? &child_setup_ : nullptr,
+  g_spawn_async_with_pipes(
+    c_str_or_nullptr(working_directory),
+    const_cast<char**>(ArrayHandler<std::string>::vector_to_array(argv).data()), nullptr, static_cast<GSpawnFlags>(unsigned(flags)),
+    setup_slot ? &child_setup_callback : nullptr, setup_slot ? &child_setup_ : nullptr,
     child_pid, standard_input, standard_output, standard_error, &gerror);
 
   if (gerror)
-    Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 }
 
 auto spawn_async (
@@ -116,13 +118,14 @@ auto spawn_async (
   auto child_setup_ = child_setup;
   GError* gerror = nullptr;
 
-  g_spawn_async(Glib::c_str_or_nullptr(working_directory), const_cast<char**>(Glib::ArrayHandler<std::string>::vector_to_array(argv).data()),
-    const_cast<char**>(Glib::ArrayHandler<std::string>::vector_to_array(envp).data()), static_cast<GSpawnFlags>(unsigned(flags)),
-    (setup_slot) ? &child_setup_callback : nullptr, (setup_slot) ? &child_setup_ : nullptr,
+  g_spawn_async(
+    c_str_or_nullptr(working_directory), const_cast<char**>(ArrayHandler<std::string>::vector_to_array(argv).data()),
+    const_cast<char**>(ArrayHandler<std::string>::vector_to_array(envp).data()), static_cast<GSpawnFlags>(unsigned(flags)),
+    setup_slot ? &child_setup_callback : nullptr, setup_slot ? &child_setup_ : nullptr,
     child_pid, &gerror);
 
   if (gerror)
-    Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 }
 
 auto spawn_async (
@@ -133,12 +136,13 @@ auto spawn_async (
   auto child_setup_ = child_setup;
   GError* gerror = nullptr;
 
-  g_spawn_async(Glib::c_str_or_nullptr(working_directory), const_cast<char**>(Glib::ArrayHandler<std::string>::vector_to_array(argv).data()), nullptr,
-    static_cast<GSpawnFlags>(unsigned(flags)), (setup_slot) ? &child_setup_callback : nullptr,
-    (setup_slot) ? &child_setup_ : nullptr, child_pid, &gerror);
+  g_spawn_async(
+    c_str_or_nullptr(working_directory), const_cast<char**>(ArrayHandler<std::string>::vector_to_array(argv).data()), nullptr,
+    static_cast<GSpawnFlags>(unsigned(flags)), setup_slot ? &child_setup_callback : nullptr,
+    setup_slot ? &child_setup_ : nullptr, child_pid, &gerror);
 
   if (gerror)
-    Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 }
 
 auto spawn_sync (
@@ -153,16 +157,17 @@ auto spawn_sync (
   GError* gerror = nullptr;
   char* pch_buf_standard_output = nullptr;
   char* pch_buf_standard_error = nullptr;
-  g_spawn_sync(Glib::c_str_or_nullptr(working_directory), const_cast<char**>(Glib::ArrayHandler<std::string>::vector_to_array(argv).data()),
-    const_cast<char**>(Glib::ArrayHandler<std::string>::vector_to_array(envp).data()), static_cast<GSpawnFlags>(unsigned(flags)),
-    (setup_slot) ? &child_setup_callback : nullptr, (setup_slot) ? &child_setup_ : nullptr,
-    (standard_output) ? &pch_buf_standard_output : nullptr,
-    (standard_error) ? &pch_buf_standard_error : nullptr, wait_status, &gerror);
-  auto buf_standard_output = make_unique_ptr_gfree(pch_buf_standard_output);
-  auto buf_standard_error = make_unique_ptr_gfree(pch_buf_standard_error);
+  g_spawn_sync(
+    c_str_or_nullptr(working_directory), const_cast<char**>(ArrayHandler<std::string>::vector_to_array(argv).data()),
+    const_cast<char**>(ArrayHandler<std::string>::vector_to_array(envp).data()), static_cast<GSpawnFlags>(unsigned(flags)),
+    setup_slot ? &child_setup_callback : nullptr, setup_slot ? &child_setup_ : nullptr,
+    standard_output ? &pch_buf_standard_output : nullptr,
+    standard_error ? &pch_buf_standard_error : nullptr, wait_status, &gerror);
+  const auto buf_standard_output = make_unique_ptr_gfree(pch_buf_standard_output);
+  const auto buf_standard_error = make_unique_ptr_gfree(pch_buf_standard_error);
 
   if (gerror)
-    Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 
   copy_output_buf(standard_output, buf_standard_output.get());
   copy_output_buf(standard_error, buf_standard_error.get());
@@ -180,15 +185,16 @@ auto spawn_sync (
   char* pch_buf_standard_error = nullptr;
   GError* gerror = nullptr;
 
-  g_spawn_sync(Glib::c_str_or_nullptr(working_directory), const_cast<char**>(Glib::ArrayHandler<std::string>::vector_to_array(argv).data()), nullptr,
-    static_cast<GSpawnFlags>(unsigned(flags)), (setup_slot) ? &child_setup_callback : nullptr,
-    (setup_slot) ? &child_setup_ : nullptr, (standard_output) ? &pch_buf_standard_output : nullptr,
-    (standard_error) ? &pch_buf_standard_error : nullptr, wait_status, &gerror);
-  auto buf_standard_output = make_unique_ptr_gfree(pch_buf_standard_output);
-  auto buf_standard_error = make_unique_ptr_gfree(pch_buf_standard_error);
+  g_spawn_sync(
+    c_str_or_nullptr(working_directory), const_cast<char**>(ArrayHandler<std::string>::vector_to_array(argv).data()), nullptr,
+    static_cast<GSpawnFlags>(unsigned(flags)), setup_slot ? &child_setup_callback : nullptr,
+    setup_slot ? &child_setup_ : nullptr, standard_output ? &pch_buf_standard_output : nullptr,
+    standard_error ? &pch_buf_standard_error : nullptr, wait_status, &gerror);
+  const auto buf_standard_output = make_unique_ptr_gfree(pch_buf_standard_output);
+  const auto buf_standard_error = make_unique_ptr_gfree(pch_buf_standard_error);
 
   if (gerror)
-    Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 
   copy_output_buf(standard_output, buf_standard_output.get());
   copy_output_buf(standard_error, buf_standard_error.get());
@@ -200,7 +206,7 @@ auto spawn_command_line_async (const std::string &command_line) -> void
   g_spawn_command_line_async(command_line.c_str(), &gerror);
 
   if (gerror)
-    Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 }
 
 auto spawn_command_line_sync (
@@ -212,19 +218,20 @@ auto spawn_command_line_sync (
   GError* gerror = nullptr;
 
   g_spawn_command_line_sync(command_line.c_str(),
-    (standard_output) ? &pch_buf_standard_output : nullptr,
-    (standard_error) ? &pch_buf_standard_error : nullptr, wait_status, &gerror);
-  auto buf_standard_output = make_unique_ptr_gfree(pch_buf_standard_output);
-  auto buf_standard_error = make_unique_ptr_gfree(pch_buf_standard_error);
+    standard_output ? &pch_buf_standard_output : nullptr,
+    standard_error ? &pch_buf_standard_error : nullptr, wait_status, &gerror);
+  const auto buf_standard_output = make_unique_ptr_gfree(pch_buf_standard_output);
+  const auto buf_standard_error = make_unique_ptr_gfree(pch_buf_standard_error);
 
   if (gerror)
-    Glib::Error::throw_exception(gerror);
+    Error::throw_exception(gerror);
 
   copy_output_buf(standard_output, buf_standard_output.get());
   copy_output_buf(standard_error, buf_standard_error.get());
 }
 
-auto spawn_close_pid (Pid pid) -> void
+auto spawn_close_pid (
+  const Pid pid) -> void
 {
   g_spawn_close_pid(pid);
 }
@@ -236,24 +243,22 @@ namespace
 } // anonymous namespace
 
 
-Glib::SpawnError::SpawnError(Glib::SpawnError::Code error_code, const Glib::ustring& error_message)
-:
-  Glib::Error (G_SPAWN_ERROR, error_code, error_message)
+Glib::SpawnError::SpawnError(const Code error_code, const ustring & error_message)
+: Error(G_SPAWN_ERROR, error_code, error_message)
 {}
 
 Glib::SpawnError::SpawnError(GError* gobject)
-:
-  Glib::Error (gobject)
+: Error(gobject)
 {}
 
-auto Glib::SpawnError::code() const -> Glib::SpawnError::Code
+auto Glib::SpawnError::code() const -> Code
 {
-  return static_cast<Code>(Glib::Error::code());
+  return static_cast<Code>(Error::code());
 }
 
 auto Glib::SpawnError::throw_func (GError *gobject) -> void
 {
-  throw Glib::SpawnError(gobject);
+  throw SpawnError(gobject);
 }
 
 

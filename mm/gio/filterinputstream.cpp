@@ -29,8 +29,8 @@ namespace Gio {
 
 FilterInputStream::FilterInputStream(const Glib::RefPtr<InputStream>& base_stream)
 : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gio::InputStream(Glib::ConstructParams(filterinputstream_class_.init(), "base_stream",const_cast<GInputStream*>(Glib::unwrap(base_stream)), nullptr))
+ObjectBase(nullptr),
+InputStream(Glib::ConstructParams(filterinputstream_class_.init(), "base_stream",Glib::unwrap(base_stream), nullptr))
 {
 }
 
@@ -44,9 +44,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GFilterInputStream* object, bool take_copy) -> Glib::RefPtr<Gio::FilterInputStream>
+auto wrap(GFilterInputStream* object, const bool take_copy) -> RefPtr<Gio::FilterInputStream>
 {
-  return Glib::make_refptr_for_instance<Gio::FilterInputStream>( dynamic_cast<Gio::FilterInputStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::FilterInputStream>( dynamic_cast<Gio::FilterInputStream*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -59,7 +59,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto FilterInputStream_Class::init() -> const Glib::Class&
+auto FilterInputStream_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -105,32 +105,28 @@ auto FilterInputStream::gobj_copy() -> GFilterInputStream*
 }
 
 FilterInputStream::FilterInputStream(const Glib::ConstructParams& construct_params)
-:
-  Gio::InputStream(construct_params)
+: InputStream(construct_params)
 {
 
 }
 
 FilterInputStream::FilterInputStream(GFilterInputStream* castitem)
-:
-  Gio::InputStream((GInputStream*)(castitem))
+: InputStream((GInputStream*)castitem)
 {}
 
 
 FilterInputStream::FilterInputStream(FilterInputStream&& src) noexcept
-: Gio::InputStream(std::move(src))
+: InputStream(std::move(src))
 {}
 
 auto FilterInputStream::operator=(FilterInputStream&& src) noexcept -> FilterInputStream&
 {
-  Gio::InputStream::operator=(std::move(src));
+  InputStream::operator=(std::move(src));
   return *this;
 }
 
 
-FilterInputStream::~FilterInputStream() noexcept
-{}
-
+FilterInputStream::~FilterInputStream() noexcept = default;
 
 FilterInputStream::CppClassType FilterInputStream::filterinputstream_class_; // initialize static member
 
@@ -164,9 +160,10 @@ auto FilterInputStream::get_close_base_stream() const -> bool
   return g_filter_input_stream_get_close_base_stream(const_cast<GFilterInputStream*>(gobj()));
 }
 
-auto FilterInputStream::set_close_base_stream (bool close_base) -> void
+auto FilterInputStream::set_close_base_stream (
+  const bool close_base) -> void
 {
-  g_filter_input_stream_set_close_base_stream(gobj(), static_cast<int>(close_base));
+  g_filter_input_stream_set_close_base_stream(gobj(), close_base);
 }
 
 
@@ -176,17 +173,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<InputSt
 
 auto FilterInputStream::property_base_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InputStream> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<InputStream> >(this, "base-stream");
+  return {this, "base-stream"};
 }
 
 auto FilterInputStream::property_close_base_stream() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "close-base-stream");
+  return {this, "close-base-stream"};
 }
 
 auto FilterInputStream::property_close_base_stream() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "close-base-stream");
+  return {this, "close-base-stream"};
 }
 
 

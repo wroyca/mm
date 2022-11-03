@@ -34,9 +34,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkSpinner* object, bool take_copy) -> Gtk::Spinner*
+auto wrap(GtkSpinner* object, const bool take_copy) -> Gtk::Spinner*
 {
-  return dynamic_cast<Gtk::Spinner *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::Spinner *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -47,7 +47,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Spinner_Class::init() -> const Glib::Class&
+auto Spinner_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -80,7 +80,7 @@ auto Spinner_Class::class_init_function (void *g_class, void *class_data) -> voi
 
 auto Spinner_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new Spinner((GtkSpinner*)(o)));
+  return manage(new Spinner((GtkSpinner*)o));
 
 }
 
@@ -88,25 +88,23 @@ auto Spinner_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 Spinner::Spinner(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 Spinner::Spinner(GtkSpinner* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 Spinner::Spinner(Spinner&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
 {}
 
 auto Spinner::operator=(Spinner&& src) noexcept -> Spinner&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   return *this;
 }
 
@@ -132,8 +130,8 @@ auto Spinner::get_base_type() -> GType
 Spinner::Spinner()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(spinner_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(spinner_class_.init()))
 {
 
 
@@ -149,9 +147,10 @@ auto Spinner::stop () -> void
   gtk_spinner_stop(gobj());
 }
 
-auto Spinner::set_spinning (bool spinning) -> void
+auto Spinner::set_spinning (
+  const bool spinning) -> void
 {
-  gtk_spinner_set_spinning(gobj(), static_cast<int>(spinning));
+  gtk_spinner_set_spinning(gobj(), spinning);
 }
 
 auto Spinner::get_spinning() const -> bool
@@ -162,12 +161,12 @@ auto Spinner::get_spinning() const -> bool
 
 auto Spinner::property_spinning() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "spinning");
+  return {this, "spinning"};
 }
 
 auto Spinner::property_spinning() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "spinning");
+  return {this, "spinning"};
 }
 
 

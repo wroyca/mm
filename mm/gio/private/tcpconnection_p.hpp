@@ -17,13 +17,13 @@ public:
   using CppObjectType = TcpConnection;
   using BaseObjectType = GTcpConnection;
   using BaseClassType = GTcpConnectionClass;
-  using CppClassParent = Gio::SocketConnection_Class;
+  using CppClassParent = SocketConnection_Class;
   using BaseClassParent = GSocketConnectionClass;
 
   friend class TcpConnection;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

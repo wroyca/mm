@@ -31,20 +31,20 @@
 namespace Gtk
 {
 
-FileChooserDialog::FileChooserDialog(Gtk::Window& parent, const Glib::ustring& title, Action action, bool use_header_bar)
+FileChooserDialog::FileChooserDialog(Window & parent, const Glib::ustring& title, const Action action, const bool use_header_bar)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Dialog(Glib::ConstructParams(filechooserdialog_class_.init(), "title",title.c_str(),"action",static_cast<GtkFileChooserAction>(action),"use-header-bar",static_cast<int>(use_header_bar), nullptr))
+ObjectBase(nullptr),
+Dialog(Glib::ConstructParams(filechooserdialog_class_.init(), "title",title.c_str(),"action",action,"use-header-bar",use_header_bar, nullptr))
 {
   set_transient_for(parent);
 }
 
-FileChooserDialog::FileChooserDialog(const Glib::ustring& title, Action action, bool use_header_bar)
+FileChooserDialog::FileChooserDialog(const Glib::ustring& title, const Action action, const bool use_header_bar)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Dialog(Glib::ConstructParams(filechooserdialog_class_.init(), "title",title.c_str(),"action",static_cast<GtkFileChooserAction>(action),"use-header-bar",static_cast<int>(use_header_bar), nullptr))
+ObjectBase(nullptr),
+Dialog(Glib::ConstructParams(filechooserdialog_class_.init(), "title",title.c_str(),"action",action,"use-header-bar",use_header_bar, nullptr))
 {
 }
 
@@ -59,9 +59,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkFileChooserDialog* object, bool take_copy) -> Gtk::FileChooserDialog*
+auto wrap(GtkFileChooserDialog* object, const bool take_copy) -> Gtk::FileChooserDialog*
 {
-  return dynamic_cast<Gtk::FileChooserDialog *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::FileChooserDialog *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -72,7 +72,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto FileChooserDialog_Class::init() -> const Glib::Class&
+auto FileChooserDialog_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -106,7 +106,7 @@ auto FileChooserDialog_Class::class_init_function (void *g_class, void *class_da
 
 auto FileChooserDialog_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return new FileChooserDialog((GtkFileChooserDialog*)(o)); //top-level windows can not be manage()ed.
+  return new FileChooserDialog((GtkFileChooserDialog*)o); //top-level windows can not be manage()ed.
 
 }
 
@@ -114,26 +114,24 @@ auto FileChooserDialog_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 FileChooserDialog::FileChooserDialog(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Dialog(construct_params)
+: Dialog(construct_params)
 {
   }
 
 FileChooserDialog::FileChooserDialog(GtkFileChooserDialog* castitem)
-:
-  Gtk::Dialog((GtkDialog*)(castitem))
+: Dialog((GtkDialog*)castitem)
 {
   }
 
 
 FileChooserDialog::FileChooserDialog(FileChooserDialog&& src) noexcept
-: Gtk::Dialog(std::move(src))
+: Dialog(std::move(src))
   , FileChooser(std::move(src))
 {}
 
 auto FileChooserDialog::operator=(FileChooserDialog&& src) noexcept -> FileChooserDialog&
 {
-  Gtk::Dialog::operator=(std::move(src));
+  Dialog::operator=(std::move(src));
   FileChooser::operator=(std::move(src));
   return *this;
 }

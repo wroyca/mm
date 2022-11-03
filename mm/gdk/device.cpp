@@ -116,7 +116,7 @@ auto Device_signal_tool_changed_callback (GdkDevice *self, GdkDeviceTool *p0, vo
   using namespace Gdk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<DeviceTool>&)>;
 
-  auto obj = dynamic_cast<Device*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Device*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -153,9 +153,9 @@ auto Glib::Value<Gdk::InputSource>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GdkDevice* object, bool take_copy) -> Glib::RefPtr<Gdk::Device>
+auto wrap(GdkDevice* object, const bool take_copy) -> RefPtr<Gdk::Device>
 {
-  return Glib::make_refptr_for_instance<Gdk::Device>( dynamic_cast<Gdk::Device*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gdk::Device>( dynamic_cast<Gdk::Device*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -168,7 +168,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-auto Device_Class::init() -> const Glib::Class&
+auto Device_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -208,32 +208,28 @@ auto Device::gobj_copy() -> GdkDevice*
 }
 
 Device::Device(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 Device::Device(GdkDevice* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 Device::Device(Device&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto Device::operator=(Device&& src) noexcept -> Device&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-Device::~Device() noexcept
-{}
-
+Device::~Device() noexcept = default;
 
 Device::CppClassType Device::device_class_; // initialize static member
 
@@ -252,8 +248,8 @@ auto Device::get_base_type() -> GType
 Device::Device()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(device_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(device_class_.init()))
 {
 
 
@@ -289,7 +285,7 @@ auto Device::get_display() const -> Glib::RefPtr<const Display>
 
 auto Device::get_surface_at_position(double& win_x, double& win_y) -> Glib::RefPtr<Surface>
 {
-  auto retvalue = Glib::wrap(gdk_device_get_surface_at_position(gobj(), &(win_x), &(win_y)));
+  auto retvalue = Glib::wrap(gdk_device_get_surface_at_position(gobj(), &win_x, &win_y));
   if(retvalue)
     retvalue->reference(); //The function does not do a ref for us.
   return retvalue;
@@ -366,13 +362,13 @@ auto Device::get_timestamp() const -> guint32
 
 auto Device::signal_changed() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Device_signal_changed_info);
+  return {this, &Device_signal_changed_info};
 }
 
 
 auto Device::signal_tool_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<DeviceTool>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<DeviceTool>&) >(this, &Device_signal_tool_changed_info);
+  return {this, &Device_signal_tool_changed_info};
 }
 
 
@@ -382,12 +378,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Display
 
 auto Device::property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >(this, "display");
+  return {this, "display"};
 }
 
 auto Device::property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name");
+  return {this, "name"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<InputSource>::value,
@@ -396,27 +392,27 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<InputSource>::value,
 
 auto Device::property_source() const -> Glib::PropertyProxy_ReadOnly< InputSource >
 {
-  return Glib::PropertyProxy_ReadOnly< InputSource >(this, "source");
+  return {this, "source"};
 }
 
 auto Device::property_has_cursor() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "has-cursor");
+  return {this, "has-cursor"};
 }
 
 auto Device::property_n_axes() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
-  return Glib::PropertyProxy_ReadOnly< guint >(this, "n-axes");
+  return {this, "n-axes"};
 }
 
 auto Device::property_vendor_id() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "vendor-id");
+  return {this, "vendor-id"};
 }
 
 auto Device::property_product_id() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "product-id");
+  return {this, "product-id"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Seat>>::value,
@@ -425,17 +421,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Seat>>:
 
 auto Device::property_seat() -> Glib::PropertyProxy< Glib::RefPtr<Seat> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Seat> >(this, "seat");
+  return {this, "seat"};
 }
 
 auto Device::property_seat() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Seat> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Seat> >(this, "seat");
+  return {this, "seat"};
 }
 
 auto Device::property_num_touches() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
-  return Glib::PropertyProxy_ReadOnly< guint >(this, "num-touches");
+  return {this, "num-touches"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<DeviceTool>>::value,
@@ -444,7 +440,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<DeviceT
 
 auto Device::property_tool() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<DeviceTool> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<DeviceTool> >(this, "tool");
+  return {this, "tool"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Direction>::value,
@@ -453,27 +449,27 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Direction>::v
 
 auto Device::property_direction() const -> Glib::PropertyProxy_ReadOnly< Pango::Direction >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::Direction >(this, "direction");
+  return {this, "direction"};
 }
 
 auto Device::property_has_bidi_layouts() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "has-bidi-layouts");
+  return {this, "has-bidi-layouts"};
 }
 
 auto Device::property_caps_lock_state() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "caps-lock-state");
+  return {this, "caps-lock-state"};
 }
 
 auto Device::property_num_lock_state() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "num-lock-state");
+  return {this, "num-lock-state"};
 }
 
 auto Device::property_scroll_lock_state() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "scroll-lock-state");
+  return {this, "scroll-lock-state"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<ModifierType>::value,
@@ -482,7 +478,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<ModifierType>::value
 
 auto Device::property_modifier_state() const -> Glib::PropertyProxy_ReadOnly< ModifierType >
 {
-  return Glib::PropertyProxy_ReadOnly< ModifierType >(this, "modifier-state");
+  return {this, "modifier-state"};
 }
 
 

@@ -51,7 +51,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(GSettingsSchema* object, bool take_copy) -> Glib::RefPtr<Gio::SettingsSchema>
+auto wrap(GSettingsSchema* object, const bool take_copy) -> RefPtr<Gio::SettingsSchema>
 {
   if(take_copy && object)
     g_settings_schema_ref(object);

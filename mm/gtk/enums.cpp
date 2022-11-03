@@ -31,7 +31,8 @@
 namespace Gtk
 {
 
-auto _gtkmm_align_float_from_enum(Align value) -> float
+auto _gtkmm_align_float_from_enum(
+  const Align value) -> float
 {
   //Choose the float alignment value appropriate for this human-readable enum value:
   switch(value)

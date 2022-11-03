@@ -35,9 +35,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GTlsCertificate* object, bool take_copy) -> Glib::RefPtr<Gio::TlsCertificate>
+auto wrap(GTlsCertificate* object, const bool take_copy) -> RefPtr<Gio::TlsCertificate>
 {
-  return Glib::make_refptr_for_instance<Gio::TlsCertificate>( dynamic_cast<Gio::TlsCertificate*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::TlsCertificate>( dynamic_cast<Gio::TlsCertificate*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -50,7 +50,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto TlsCertificate_Class::init() -> const Glib::Class&
+auto TlsCertificate_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -83,8 +83,7 @@ auto TlsCertificate_Class::class_init_function (void *g_class, void *class_data)
 
 auto TlsCertificate_Class::verify_vfunc_callback(GTlsCertificate* self, GSocketConnectable* identity, GTlsCertificate* trusted_ca) -> GTlsCertificateFlags
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -110,7 +109,7 @@ auto TlsCertificate_Class::verify_vfunc_callback(GTlsCertificate* self, GSocketC
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -138,32 +137,28 @@ auto TlsCertificate::gobj_copy() -> GTlsCertificate*
 }
 
 TlsCertificate::TlsCertificate(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 TlsCertificate::TlsCertificate(GTlsCertificate* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 TlsCertificate::TlsCertificate(TlsCertificate&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto TlsCertificate::operator=(TlsCertificate&& src) noexcept -> TlsCertificate&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-TlsCertificate::~TlsCertificate() noexcept
-{}
-
+TlsCertificate::~TlsCertificate() noexcept = default;
 
 TlsCertificate::CppClassType TlsCertificate::tlscertificate_class_; // initialize static member
 
@@ -179,11 +174,11 @@ auto TlsCertificate::get_base_type() -> GType
 }
 
 
-TlsCertificate::TlsCertificate(const std::string& data, gssize length)
+TlsCertificate::TlsCertificate(const std::string& data, const gssize length)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(tlscertificate_class_.init(), "data", data.c_str(), "length", length, nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(tlscertificate_class_.init(), "data", data.c_str(), "length", length, nullptr))
 {
 
 
@@ -192,8 +187,8 @@ TlsCertificate::TlsCertificate(const std::string& data, gssize length)
 TlsCertificate::TlsCertificate(const std::string& file)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(tlscertificate_class_.init(), "file", file.c_str(), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(tlscertificate_class_.init(), "file", file.c_str(), nullptr))
 {
 
 
@@ -202,46 +197,46 @@ TlsCertificate::TlsCertificate(const std::string& file)
 TlsCertificate::TlsCertificate(const std::string& cert_file, const std::string& key_file)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(tlscertificate_class_.init(), "cert_file", cert_file.c_str(), "key_file", key_file.c_str(), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(tlscertificate_class_.init(), "cert_file", cert_file.c_str(), "key_file", key_file.c_str(), nullptr))
 {
 
 
 }
 
-auto TlsCertificate::create_from_pem(const std::string& data, gssize length) -> Glib::RefPtr<TlsCertificate>
+auto TlsCertificate::create_from_pem(const std::string& data, const gssize length) -> Glib::RefPtr<TlsCertificate>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_tls_certificate_new_from_pem(data.c_str(), length, &(gerror)));
+  auto retvalue = Glib::wrap(g_tls_certificate_new_from_pem(data.c_str(), length, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsCertificate::create(const std::string& file) -> Glib::RefPtr<TlsCertificate>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_tls_certificate_new_from_file(file.c_str(), &(gerror)));
+  auto retvalue = Glib::wrap(g_tls_certificate_new_from_file(file.c_str(), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsCertificate::create(const std::string& cert_file, const std::string& key_file) -> Glib::RefPtr<TlsCertificate>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_tls_certificate_new_from_files(cert_file.c_str(), key_file.c_str(), &(gerror)));
+  auto retvalue = Glib::wrap(g_tls_certificate_new_from_files(cert_file.c_str(), key_file.c_str(), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsCertificate::create_list_from_file(const std::string& file) -> std::vector< Glib::RefPtr<TlsCertificate> >
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::ListHandler< Glib::RefPtr<TlsCertificate> >::list_to_vector(g_tls_certificate_list_new_from_file(file.c_str(), &(gerror)), Glib::OWNERSHIP_DEEP);
+  auto retvalue = Glib::ListHandler< Glib::RefPtr<TlsCertificate> >::list_to_vector(g_tls_certificate_list_new_from_file(file.c_str(), &gerror), Glib::OWNERSHIP_DEEP);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -310,12 +305,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Glib::B
 
 auto TlsCertificate::property_certificate() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ByteArray> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ByteArray> >(this, "certificate");
+  return {this, "certificate"};
 }
 
 auto TlsCertificate::property_certificate_pem() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
-  return Glib::PropertyProxy_ReadOnly< std::string >(this, "certificate-pem");
+  return {this, "certificate-pem"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Glib::ByteArray>>::value,
@@ -324,12 +319,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Glib::B
 
 auto TlsCertificate::property_private_key() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ByteArray> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ByteArray> >(this, "private-key");
+  return {this, "private-key"};
 }
 
 auto TlsCertificate::property_private_key_pem() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
-  return Glib::PropertyProxy_ReadOnly< std::string >(this, "private-key-pem");
+  return {this, "private-key-pem"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<TlsCertificate>>::value,
@@ -338,17 +333,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<TlsCert
 
 auto TlsCertificate::property_issuer() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsCertificate> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TlsCertificate> >(this, "issuer");
+  return {this, "issuer"};
 }
 
 auto TlsCertificate::property_pkcs11_uri() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
-  return Glib::PropertyProxy_ReadOnly< std::string >(this, "pkcs11-uri");
+  return {this, "pkcs11-uri"};
 }
 
 auto TlsCertificate::property_private_key_pkcs11_uri() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
-  return Glib::PropertyProxy_ReadOnly< std::string >(this, "private-key-pkcs11-uri");
+  return {this, "private-key-pkcs11-uri"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::DateTime>::value,
@@ -357,7 +352,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::DateTime>::val
 
 auto TlsCertificate::property_not_valid_before() const -> Glib::PropertyProxy_ReadOnly< Glib::DateTime >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::DateTime >(this, "not-valid-before");
+  return {this, "not-valid-before"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::DateTime>::value,
@@ -366,21 +361,21 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::DateTime>::val
 
 auto TlsCertificate::property_not_valid_after() const -> Glib::PropertyProxy_ReadOnly< Glib::DateTime >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::DateTime >(this, "not-valid-after");
+  return {this, "not-valid-after"};
 }
 
 auto TlsCertificate::property_subject_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "subject-name");
+  return {this, "subject-name"};
 }
 
 auto TlsCertificate::property_issuer_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "issuer-name");
+  return {this, "issuer-name"};
 }
 
 
-auto Gio::TlsCertificate::verify_vfunc(const Glib::RefPtr<const SocketConnectable>& identity, const Glib::RefPtr<const TlsCertificate>& trusted_ca) const -> TlsCertificateFlags
+auto TlsCertificate::verify_vfunc(const Glib::RefPtr<const SocketConnectable>& identity, const Glib::RefPtr<const TlsCertificate>& trusted_ca) const -> TlsCertificateFlags
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -388,7 +383,7 @@ auto Gio::TlsCertificate::verify_vfunc(const Glib::RefPtr<const SocketConnectabl
 
   if(base && base->verify)
   {
-    TlsCertificateFlags retval(static_cast<TlsCertificateFlags>((*base->verify)(const_cast<GTlsCertificate*>(gobj()),const_cast<GSocketConnectable*>(Glib::unwrap(identity)),const_cast<GTlsCertificate*>(Glib::unwrap(trusted_ca)))));
+    const TlsCertificateFlags retval(static_cast<TlsCertificateFlags>((*base->verify)(const_cast<GTlsCertificate*>(gobj()),const_cast<GSocketConnectable*>(Glib::unwrap(identity)),const_cast<GTlsCertificate*>(Glib::unwrap(trusted_ca)))));
     return retval;
   }
 

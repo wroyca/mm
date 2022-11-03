@@ -43,9 +43,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GAction* object, bool take_copy) -> Glib::RefPtr<Gio::Action>
+auto wrap(GAction* object, const bool take_copy) -> RefPtr<Gio::Action>
 {
-  return Glib::make_refptr_for_instance<Gio::Action>( dynamic_cast<Gio::Action*> (Glib::wrap_auto_interface<Gio::Action> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::Action>( Glib::wrap_auto_interface<Gio::Action> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -58,7 +58,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto Action_Class::init() -> const Glib::Interface_Class&
+auto Action_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -94,8 +94,7 @@ auto Action_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto Action_Class::get_name_vfunc_callback(GAction* self) -> const gchar*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -131,7 +130,7 @@ auto Action_Class::get_name_vfunc_callback(GAction* self) -> const gchar*
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -145,8 +144,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto Action_Class::get_parameter_type_vfunc_callback(GAction* self) -> const GVariantType*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -182,7 +180,7 @@ auto Action_Class::get_parameter_type_vfunc_callback(GAction* self) -> const GVa
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -196,8 +194,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto Action_Class::get_state_type_vfunc_callback(GAction* self) -> const GVariantType*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -233,7 +230,7 @@ auto Action_Class::get_state_type_vfunc_callback(GAction* self) -> const GVarian
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -247,8 +244,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto Action_Class::get_state_hint_vfunc_callback(GAction* self) -> GVariant*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -263,7 +259,7 @@ auto Action_Class::get_state_hint_vfunc_callback(GAction* self) -> GVariant*
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return Glib::unwrap_copy(obj->get_state_hint_vfunc());
+        return unwrap_copy(obj->get_state_hint_vfunc());
       }
       catch(...)
       {
@@ -272,7 +268,7 @@ auto Action_Class::get_state_hint_vfunc_callback(GAction* self) -> GVariant*
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -286,8 +282,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto Action_Class::get_enabled_vfunc_callback(GAction* self) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -302,7 +297,7 @@ auto Action_Class::get_enabled_vfunc_callback(GAction* self) -> gboolean
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->get_enabled_vfunc());
+        return obj->get_enabled_vfunc();
       }
       catch(...)
       {
@@ -311,7 +306,7 @@ auto Action_Class::get_enabled_vfunc_callback(GAction* self) -> gboolean
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -325,8 +320,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto Action_Class::get_state_vfunc_callback(GAction* self) -> GVariant*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -341,7 +335,7 @@ auto Action_Class::get_state_vfunc_callback(GAction* self) -> GVariant*
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return Glib::unwrap_copy(obj->get_state_vfunc());
+        return unwrap_copy(obj->get_state_vfunc());
       }
       catch(...)
       {
@@ -350,7 +344,7 @@ auto Action_Class::get_state_vfunc_callback(GAction* self) -> GVariant*
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -364,8 +358,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto Action_Class::change_state_vfunc_callback (GAction *self, GVariant *value) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -391,7 +384,7 @@ auto Action_Class::change_state_vfunc_callback (GAction *self, GVariant *value) 
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -402,8 +395,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto Action_Class::activate_vfunc_callback (GAction *self, GVariant *parameter) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -429,7 +421,7 @@ auto Action_Class::activate_vfunc_callback (GAction *self, GVariant *parameter) 
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -442,42 +434,40 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 
 auto Action_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new Action((GAction*)(object));
+  return new Action((GAction*)object);
 }
 
 
 /* The implementation: */
 
 Action::Action()
-:
-  Glib::Interface(action_class_.init())
+: Interface(action_class_.init())
 {}
 
 Action::Action(GAction* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 Action::Action(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 Action::Action(Action&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto Action::operator=(Action&& src) noexcept -> Action&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-Action::~Action() noexcept
-{}
+Action::~Action() noexcept = default;
 
 // static
-auto Action::add_interface (GType gtype_implementer) -> void
+auto Action::add_interface (
+  const GType gtype_implementer) -> void
 {
   action_class_.init().add_interface(gtype_implementer);
 }
@@ -523,7 +513,7 @@ auto Action::get_enabled() const -> bool
 
 auto Action::change_state_variant (const Glib::VariantBase &value) -> void
 {
-  g_action_change_state(gobj(), const_cast<GVariant*>((value).gobj()));
+  g_action_change_state(gobj(), const_cast<GVariant*>(value.gobj()));
 }
 
 auto Action::get_state_variant() const -> Glib::VariantBase
@@ -533,7 +523,7 @@ auto Action::get_state_variant() const -> Glib::VariantBase
 
 auto Action::activate_variant (const Glib::VariantBase &parameter) -> void
 {
-  g_action_activate(gobj(), const_cast<GVariant*>((parameter).gobj()));
+  g_action_activate(gobj(), const_cast<GVariant*>(parameter.gobj()));
 }
 
 auto Action::name_is_valid(const Glib::ustring& action_name) -> bool
@@ -548,27 +538,27 @@ auto Action::parse_detailed_name_variant (
   GError* gerror = nullptr;
   gchar* g_action_name = nullptr;
   GVariant* g_target_value = nullptr;
-  g_action_parse_detailed_name(detailed_name.c_str(), &g_action_name, &g_target_value, &(gerror));
+  g_action_parse_detailed_name(detailed_name.c_str(), &g_action_name, &g_target_value, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 action_name = Glib::convert_return_gchar_ptr_to_ustring(g_action_name);
   target_value = Glib::wrap(g_target_value);
 }
 
 auto Action::print_detailed_name_variant(const Glib::ustring& action_name, const Glib::VariantBase& target_value) -> Glib::ustring
 {
-  return Glib::convert_return_gchar_ptr_to_ustring(g_action_print_detailed_name(action_name.c_str(), const_cast<GVariant*>((target_value).gobj())));
+  return Glib::convert_return_gchar_ptr_to_ustring(g_action_print_detailed_name(action_name.c_str(), const_cast<GVariant*>(target_value.gobj())));
 }
 
 
 auto Action::property_enabled() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "enabled");
+  return {this, "enabled"};
 }
 
 auto Action::property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name");
+  return {this, "name"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantType>::value,
@@ -577,7 +567,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantType>::
 
 auto Action::property_parameter_type() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantType >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::VariantType >(this, "parameter-type");
+  return {this, "parameter-type"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantBase>::value,
@@ -586,7 +576,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantBase>::
 
 auto Action::property_state() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantBase >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::VariantBase >(this, "state");
+  return {this, "state"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantType>::value,
@@ -595,15 +585,15 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantType>::
 
 auto Action::property_state_type() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantType >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::VariantType >(this, "state-type");
+  return {this, "state-type"};
 }
 
 
-auto Gio::Action::get_name_vfunc() const -> Glib::ustring
+auto Action::get_name_vfunc() const -> Glib::ustring
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->get_name)
@@ -613,13 +603,13 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   }
 
   using RType = Glib::ustring;
-  return RType();
+  return {};
 }
-auto Gio::Action::get_parameter_type_vfunc() const -> Glib::VariantType
+auto Action::get_parameter_type_vfunc() const -> Glib::VariantType
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->get_parameter_type)
@@ -629,13 +619,13 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   }
 
   using RType = Glib::VariantType;
-  return RType();
+  return {};
 }
-auto Gio::Action::get_state_type_vfunc() const -> Glib::VariantType
+auto Action::get_state_type_vfunc() const -> Glib::VariantType
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->get_state_type)
@@ -645,13 +635,13 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   }
 
   using RType = Glib::VariantType;
-  return RType();
+  return {};
 }
-auto Gio::Action::get_state_hint_vfunc() const -> Glib::VariantBase
+auto Action::get_state_hint_vfunc() const -> Glib::VariantBase
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->get_state_hint)
@@ -661,29 +651,29 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   }
 
   using RType = Glib::VariantBase;
-  return RType();
+  return {};
 }
-auto Gio::Action::get_enabled_vfunc() const -> bool
+auto Action::get_enabled_vfunc() const -> bool
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->get_enabled)
   {
-    bool retval((*base->get_enabled)(const_cast<GAction*>(gobj())));
+    const bool retval((*base->get_enabled)(const_cast<GAction*>(gobj())));
     return retval;
   }
 
   using RType = bool;
   return RType();
 }
-auto Gio::Action::get_state_vfunc() const -> Glib::VariantBase
+auto Action::get_state_vfunc() const -> Glib::VariantBase
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->get_state)
@@ -693,30 +683,30 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) /
   }
 
   using RType = Glib::VariantBase;
-  return RType();
+  return {};
 }
-auto Gio::Action::change_state_vfunc (const Glib::VariantBase &value) -> void
+auto Action::change_state_vfunc (const Glib::VariantBase &value) -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->change_state)
   {
-    (*base->change_state)(gobj(),const_cast<GVariant*>((value).gobj()));
+    (*base->change_state)(gobj(),const_cast<GVariant*>(value.gobj()));
   }
 }
-auto Gio::Action::activate_vfunc (const Glib::VariantBase &parameter) -> void
+auto Action::activate_vfunc (const Glib::VariantBase &parameter) -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->activate)
   {
-    (*base->activate)(gobj(),const_cast<GVariant*>((parameter).gobj()));
+    (*base->activate)(gobj(),const_cast<GVariant*>(parameter.gobj()));
   }
 }
 

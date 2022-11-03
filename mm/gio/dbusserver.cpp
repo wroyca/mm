@@ -35,65 +35,63 @@ namespace Gio::DBus
 {
 
 Server::Server(const std::string& address, const std::string& guid,
-  const Glib::RefPtr<AuthObserver>& observer, const Glib::RefPtr<Cancellable>& cancellable,
-  Flags flags)
+  const Glib::RefPtr<AuthObserver>& observer, const Glib::RefPtr<Cancellable>& cancellable, const Flags flags)
 : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(server_class_.init(), "address",Glib::c_str_or_nullptr(address),"flags",static_cast<GDBusServerFlags>(flags),"guid",Glib::c_str_or_nullptr(guid),"authentication-observer",Glib::unwrap(observer), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(server_class_.init(), "address",Glib::c_str_or_nullptr(address),"flags",flags,"guid",Glib::c_str_or_nullptr(guid),"authentication-observer",Glib::unwrap(observer), nullptr))
 {
   init(cancellable);
 }
 
 Server::Server(const std::string& address, const std::string& guid,
-  const Glib::RefPtr<Cancellable>& cancellable, Flags flags)
+  const Glib::RefPtr<Cancellable>& cancellable, const Flags flags)
 : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(server_class_.init(), "address",Glib::c_str_or_nullptr(address),"flags",static_cast<GDBusServerFlags>(flags),"guid",Glib::c_str_or_nullptr(guid),"authentication-observer",static_cast<GDBusAuthObserver*>(nullptr), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(server_class_.init(), "address",Glib::c_str_or_nullptr(address),"flags",flags,"guid",Glib::c_str_or_nullptr(guid),"authentication-observer",nullptr, nullptr))
 {
   init(cancellable);
 }
 
 Server::Server(const std::string& address, const std::string& guid,
-  const Glib::RefPtr<AuthObserver>& observer, Flags flags)
+  const Glib::RefPtr<AuthObserver>& observer, const Flags flags)
 : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(server_class_.init(), "address",Glib::c_str_or_nullptr(address),"flags",static_cast<GDBusServerFlags>(flags),"guid",Glib::c_str_or_nullptr(guid),"authentication-observer",Glib::unwrap(observer), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(server_class_.init(), "address",Glib::c_str_or_nullptr(address),"flags",flags,"guid",Glib::c_str_or_nullptr(guid),"authentication-observer",Glib::unwrap(observer), nullptr))
 {
   init();
 }
 
-Server::Server(const std::string& address, const std::string& guid, Flags flags)
+Server::Server(const std::string& address, const std::string& guid, const Flags flags)
 : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(server_class_.init(), "address",Glib::c_str_or_nullptr(address),"flags",static_cast<GDBusServerFlags>(flags),"guid",Glib::c_str_or_nullptr(guid),"authentication-observer",static_cast<GDBusAuthObserver*>(nullptr), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(server_class_.init(), "address",Glib::c_str_or_nullptr(address),"flags",flags,"guid",Glib::c_str_or_nullptr(guid),"authentication-observer",nullptr, nullptr))
 {
   init();
 }
 
 auto
 Server::create_sync(const std::string& address, const std::string& guid,
-  const Glib::RefPtr<AuthObserver>& observer, const Glib::RefPtr<Cancellable>& cancellable,
-  Flags flags) -> Glib::RefPtr<Server>
+  const Glib::RefPtr<AuthObserver>& observer, const Glib::RefPtr<Cancellable>& cancellable, const Flags flags) -> Glib::RefPtr<Server>
 {
   return Glib::make_refptr_for_instance<Server>(new Server(address, guid, observer, cancellable, flags));
 }
 
 auto
 Server::create_sync(const std::string& address, const std::string& guid,
-  const Glib::RefPtr<Cancellable>& cancellable, Flags flags) -> Glib::RefPtr<Server>
+  const Glib::RefPtr<Cancellable>& cancellable, const Flags flags) -> Glib::RefPtr<Server>
 {
   return Glib::make_refptr_for_instance<Server>(new Server(address, guid, cancellable, flags));
 }
 
 auto
 Server::create_sync(const std::string& address, const std::string& guid,
-  const Glib::RefPtr<AuthObserver>& observer, Flags flags) -> Glib::RefPtr<Server>
+  const Glib::RefPtr<AuthObserver>& observer, const Flags flags) -> Glib::RefPtr<Server>
 {
   return Glib::make_refptr_for_instance<Server>(new Server(address, guid, observer, flags));
 }
 
 auto
-Server::create_sync(const std::string& address, const std::string& guid, Flags flags) -> Glib::RefPtr<Server>
+Server::create_sync(const std::string& address, const std::string& guid, const Flags flags) -> Glib::RefPtr<Server>
 {
   return Glib::make_refptr_for_instance<Server>(new Server(address, guid, flags));
 }
@@ -109,15 +107,15 @@ auto Server_signal_new_connection_callback(GDBusServer* self, GDBusConnection* p
   using namespace Gio::DBus;
   using SlotType = sigc::slot<bool(const Glib::RefPtr<Connection>&)>;
 
-  auto obj = dynamic_cast<Server*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Server*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return static_cast<int>((*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
-));
+        return (*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
+        );
     }
     catch(...)
     {
@@ -134,7 +132,7 @@ auto Server_signal_new_connection_notify_callback(GDBusServer* self, GDBusConnec
   using namespace Gio::DBus;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Connection>&)>;
 
-  auto obj = dynamic_cast<Server*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Server*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -174,9 +172,9 @@ auto Glib::Value<Gio::DBus::Server::Flags>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GDBusServer* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::Server>
+auto wrap(GDBusServer* object, const bool take_copy) -> RefPtr<Gio::DBus::Server>
 {
-  return Glib::make_refptr_for_instance<Gio::DBus::Server>( dynamic_cast<Gio::DBus::Server*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::DBus::Server>( dynamic_cast<Gio::DBus::Server*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -189,7 +187,7 @@ namespace Gio::DBus
 
 /* The *_Class implementation: */
 
-auto Server_Class::init() -> const Glib::Class&
+auto Server_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -236,34 +234,30 @@ auto Server::gobj_copy() -> GDBusServer*
 }
 
 Server::Server(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 Server::Server(GDBusServer* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 Server::Server(Server&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , Initable(std::move(src))
 {}
 
 auto Server::operator=(Server&& src) noexcept -> Server&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   Initable::operator=(std::move(src));
   return *this;
 }
 
 
-Server::~Server() noexcept
-{}
-
+Server::~Server() noexcept = default;
 
 Server::CppClassType Server::server_class_; // initialize static member
 
@@ -312,18 +306,18 @@ auto Server::get_client_address() const -> std::string
 
 auto Server::signal_new_connection() -> Glib::SignalProxy<bool(const Glib::RefPtr<Connection>&)>
 {
-  return Glib::SignalProxy<bool(const Glib::RefPtr<Connection>&) >(this, &Server_signal_new_connection_info);
+  return {this, &Server_signal_new_connection_info};
 }
 
 
 auto Server::property_active() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "active");
+  return {this, "active"};
 }
 
 auto Server::property_address() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
-  return Glib::PropertyProxy_ReadOnly< std::string >(this, "address");
+  return {this, "address"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<AuthObserver>>::value,
@@ -332,12 +326,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<AuthObs
 
 auto Server::property_authentication_observer() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<AuthObserver> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<AuthObserver> >(this, "authentication-observer");
+  return {this, "authentication-observer"};
 }
 
 auto Server::property_client_address() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
-  return Glib::PropertyProxy_ReadOnly< std::string >(this, "client-address");
+  return {this, "client-address"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Flags>::value,
@@ -346,12 +340,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Flags>::value,
 
 auto Server::property_flags() const -> Glib::PropertyProxy_ReadOnly< Flags >
 {
-  return Glib::PropertyProxy_ReadOnly< Flags >(this, "flags");
+  return {this, "flags"};
 }
 
 auto Server::property_guid() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
-  return Glib::PropertyProxy_ReadOnly< std::string >(this, "guid");
+  return {this, "guid"};
 }
 
 

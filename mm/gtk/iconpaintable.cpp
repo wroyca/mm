@@ -34,9 +34,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkIconPaintable* object, bool take_copy) -> Glib::RefPtr<Gtk::IconPaintable>
+auto wrap(GtkIconPaintable* object, const bool take_copy) -> RefPtr<Gtk::IconPaintable>
 {
-  return Glib::make_refptr_for_instance<Gtk::IconPaintable>( dynamic_cast<Gtk::IconPaintable*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::IconPaintable>( dynamic_cast<Gtk::IconPaintable*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -49,7 +49,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto IconPaintable_Class::init() -> const Glib::Class&
+auto IconPaintable_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -96,34 +96,31 @@ auto IconPaintable::gobj_copy() -> GtkIconPaintable*
 }
 
 IconPaintable::IconPaintable(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 IconPaintable::IconPaintable(GtkIconPaintable* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 IconPaintable::IconPaintable(IconPaintable&& src) noexcept
-: Glib::Object(std::move(src))
-  , Gdk::Paintable(std::move(src))
+: Object(std::move(src))
+  ,
+  Paintable(std::move(src))
 {}
 
 auto IconPaintable::operator=(IconPaintable&& src) noexcept -> IconPaintable&
 {
-  Glib::Object::operator=(std::move(src));
-  Gdk::Paintable::operator=(std::move(src));
+  Object::operator=(std::move(src));
+  Paintable::operator=(std::move(src));
   return *this;
 }
 
 
-IconPaintable::~IconPaintable() noexcept
-{}
-
+IconPaintable::~IconPaintable() noexcept = default;
 
 IconPaintable::CppClassType IconPaintable::iconpaintable_class_; // initialize static member
 
@@ -139,9 +136,9 @@ auto IconPaintable::get_base_type() -> GType
 }
 
 
-auto IconPaintable::create(const Glib::RefPtr<Gio::File>& file, int size, int scale) -> Glib::RefPtr<IconPaintable>
+auto IconPaintable::create(const Glib::RefPtr<Gio::File>& file, const int size, const int scale) -> Glib::RefPtr<IconPaintable>
 {
-  return Glib::wrap(gtk_icon_paintable_new_for_file(const_cast<GFile*>(Glib::unwrap<Gio::File>(file)), size, scale));
+  return Glib::wrap(gtk_icon_paintable_new_for_file(Glib::unwrap<Gio::File>(file), size, scale));
 }
 
 auto IconPaintable::get_file() const -> Glib::RefPtr<Gio::File>
@@ -166,17 +163,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Fi
 
 auto IconPaintable::property_file() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >(this, "file");
+  return {this, "file"};
 }
 
 auto IconPaintable::property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "icon-name");
+  return {this, "icon-name"};
 }
 
 auto IconPaintable::property_is_symbolic() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "is-symbolic");
+  return {this, "is-symbolic"};
 }
 
 

@@ -36,7 +36,7 @@ auto init_gtkmm_internals () -> void
     // Populate the map of GTypes to C++ wrap_new() functions.
     Pango::wrap_init();
     Gdk::wrap_init();
-    Gtk::wrap_init();
+    wrap_init();
 
     init_done = true;
   }

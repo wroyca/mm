@@ -32,15 +32,15 @@ namespace Gtk
 AppChooserDialog::AppChooserDialog(const Glib::ustring& content_type)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   Dialog(Glib::ConstructParams(appchooserdialog_class_.init(), "content_type",content_type.c_str(), nullptr))
 {
 }
 
-AppChooserDialog::AppChooserDialog(const Glib::ustring& content_type, Gtk::Window& parent)
+AppChooserDialog::AppChooserDialog(const Glib::ustring& content_type, Window & parent)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   Dialog(Glib::ConstructParams(appchooserdialog_class_.init(), "content_type",content_type.c_str(), nullptr))
 {
   set_transient_for(parent);
@@ -49,15 +49,15 @@ AppChooserDialog::AppChooserDialog(const Glib::ustring& content_type, Gtk::Windo
 AppChooserDialog::AppChooserDialog(const Glib::RefPtr<Gio::File>& file)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   Dialog(Glib::ConstructParams(appchooserdialog_class_.init(), "gfile",Glib::unwrap(file), nullptr))
 {
 }
 
-AppChooserDialog::AppChooserDialog(const Glib::RefPtr<Gio::File>& file, Gtk::Window& parent)
+AppChooserDialog::AppChooserDialog(const Glib::RefPtr<Gio::File>& file, Window & parent)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   Dialog(Glib::ConstructParams(appchooserdialog_class_.init(), "gfile",Glib::unwrap(file), nullptr))
 {
   set_transient_for(parent);
@@ -74,9 +74,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkAppChooserDialog* object, bool take_copy) -> Gtk::AppChooserDialog*
+auto wrap(GtkAppChooserDialog* object, const bool take_copy) -> Gtk::AppChooserDialog*
 {
-  return dynamic_cast<Gtk::AppChooserDialog *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::AppChooserDialog *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -87,7 +87,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto AppChooserDialog_Class::init() -> const Glib::Class&
+auto AppChooserDialog_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -121,7 +121,7 @@ auto AppChooserDialog_Class::class_init_function (void *g_class, void *class_dat
 
 auto AppChooserDialog_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return new AppChooserDialog((GtkAppChooserDialog*)(o)); //top-level windows can not be manage()ed.
+  return new AppChooserDialog((GtkAppChooserDialog*)o); //top-level windows can not be manage()ed.
 
 }
 
@@ -136,7 +136,7 @@ AppChooserDialog::AppChooserDialog(const Glib::ConstructParams& construct_params
 
 AppChooserDialog::AppChooserDialog(GtkAppChooserDialog* castitem)
 :
-  Dialog((GtkDialog*)(castitem))
+  Dialog((GtkDialog*)castitem)
 {
   }
 
@@ -199,17 +199,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Fi
 
 auto AppChooserDialog::property_gfile() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >(this, "gfile");
+  return {this, "gfile"};
 }
 
 auto AppChooserDialog::property_heading() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "heading");
+  return {this, "heading"};
 }
 
 auto AppChooserDialog::property_heading() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "heading");
+  return {this, "heading"};
 }
 
 

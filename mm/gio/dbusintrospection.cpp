@@ -37,7 +37,7 @@ NodeInfo::lookup_interface() -> Glib::RefPtr<InterfaceInfo>
 {
   Glib::RefPtr<InterfaceInfo> retvalue;
 
-  if (!gobj() || !(gobj()->interfaces))
+  if (!gobj() || !gobj()->interfaces)
     return retvalue;
 
   retvalue = Glib::wrap(gobj()->interfaces[0]);
@@ -77,7 +77,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(GDBusAnnotationInfo* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::AnnotationInfo>
+auto wrap(GDBusAnnotationInfo* object, const bool take_copy) -> RefPtr<Gio::DBus::AnnotationInfo>
 {
   if(take_copy && object)
     g_dbus_annotation_info_ref(object);
@@ -150,7 +150,7 @@ auto AnnotationInfo::info_lookup(const std::vector<Glib::RefPtr<AnnotationInfo>>
 namespace Glib
 {
 
-auto wrap(GDBusArgInfo* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::ArgInfo>
+auto wrap(GDBusArgInfo* object, const bool take_copy) -> RefPtr<Gio::DBus::ArgInfo>
 {
   if(take_copy && object)
     g_dbus_arg_info_ref(object);
@@ -217,7 +217,7 @@ auto ArgInfo::gobj_copy() const -> GDBusArgInfo*
 namespace Glib
 {
 
-auto wrap(GDBusMethodInfo* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::MethodInfo>
+auto wrap(GDBusMethodInfo* object, const bool take_copy) -> RefPtr<Gio::DBus::MethodInfo>
 {
   if(take_copy && object)
     g_dbus_method_info_ref(object);
@@ -284,7 +284,7 @@ auto MethodInfo::gobj_copy() const -> GDBusMethodInfo*
 namespace Glib
 {
 
-auto wrap(GDBusSignalInfo* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::SignalInfo>
+auto wrap(GDBusSignalInfo* object, const bool take_copy) -> RefPtr<Gio::DBus::SignalInfo>
 {
   if(take_copy && object)
     g_dbus_signal_info_ref(object);
@@ -351,7 +351,7 @@ auto SignalInfo::gobj_copy() const -> GDBusSignalInfo*
 namespace Glib
 {
 
-auto wrap(GDBusPropertyInfo* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::PropertyInfo>
+auto wrap(GDBusPropertyInfo* object, const bool take_copy) -> RefPtr<Gio::DBus::PropertyInfo>
 {
   if(take_copy && object)
     g_dbus_property_info_ref(object);
@@ -418,7 +418,7 @@ auto PropertyInfo::gobj_copy() const -> GDBusPropertyInfo*
 namespace Glib
 {
 
-auto wrap(GDBusInterfaceInfo* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::InterfaceInfo>
+auto wrap(GDBusInterfaceInfo* object, const bool take_copy) -> RefPtr<Gio::DBus::InterfaceInfo>
 {
   if(take_copy && object)
     g_dbus_interface_info_ref(object);
@@ -540,7 +540,7 @@ auto InterfaceInfo::cache_release () -> void
 namespace Glib
 {
 
-auto wrap(GDBusNodeInfo* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::NodeInfo>
+auto wrap(GDBusNodeInfo* object, const bool take_copy) -> RefPtr<Gio::DBus::NodeInfo>
 {
   if(take_copy && object)
     g_dbus_node_info_ref(object);
@@ -590,9 +590,9 @@ auto NodeInfo::gobj_copy() const -> GDBusNodeInfo*
 auto NodeInfo::create_for_xml(const Glib::ustring& xml_data) -> Glib::RefPtr<NodeInfo>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_dbus_node_info_new_for_xml(xml_data.c_str(), &(gerror)));
+  auto retvalue = Glib::wrap(g_dbus_node_info_new_for_xml(xml_data.c_str(), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 

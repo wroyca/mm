@@ -39,7 +39,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(GSrvTarget* object, bool take_copy) -> Gio::SrvTarget
+auto wrap(GSrvTarget* object, const bool take_copy) -> Gio::SrvTarget
 {
   return Gio::SrvTarget(object, take_copy);
 }
@@ -64,7 +64,7 @@ SrvTarget::SrvTarget()
 
 SrvTarget::SrvTarget(const SrvTarget& other)
 :
-  gobject_ ((other.gobject_) ? g_srv_target_copy(other.gobject_) : nullptr)
+  gobject_ (other.gobject_ ? g_srv_target_copy(other.gobject_) : nullptr)
 {}
 
 SrvTarget::SrvTarget(SrvTarget&& other) noexcept
@@ -81,12 +81,12 @@ auto SrvTarget::operator=(SrvTarget&& other) noexcept -> SrvTarget&
   return *this;
 }
 
-SrvTarget::SrvTarget(GSrvTarget* gobject, bool make_a_copy)
+SrvTarget::SrvTarget(GSrvTarget* gobject, const bool make_a_copy)
 :
   // For BoxedType wrappers, make_a_copy is true by default.  The static
   // BoxedType wrappers must always take a copy, thus make_a_copy = true
   // ensures identical behaviour if the default argument is used.
-  gobject_ ((make_a_copy && gobject) ? g_srv_target_copy(gobject) : gobject)
+  gobject_ (make_a_copy && gobject ? g_srv_target_copy(gobject) : gobject)
 {}
 
 auto SrvTarget::operator=(const SrvTarget& other) -> SrvTarget&

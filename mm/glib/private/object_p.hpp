@@ -8,7 +8,7 @@
 namespace Glib
 {
 
-class GLIBMM_API Object_Class : public Glib::Class
+class GLIBMM_API Object_Class : public Class
 {
 public:
   using CppObjectType = Object;
@@ -17,9 +17,9 @@ public:
 
   static auto class_init_function (void *g_class, void *class_data) -> void;
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
-  static auto wrap_new (GObject *) -> Glib::Object*;
+  static auto wrap_new (GObject *) -> Object*;
 };
 
 } // namespace Glib

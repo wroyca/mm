@@ -60,24 +60,22 @@ auto Glib::Value<Gdk::GLAPI>::value_type() -> GType
 #endif // GDKMM_DISABLE_DEPRECATED
 
 
-Gdk::GLError::GLError(Gdk::GLError::Code error_code, const Glib::ustring& error_message)
-:
-  Glib::Error (GDK_GL_ERROR, error_code, error_message)
+Gdk::GLError::GLError(const Code error_code, const Glib::ustring& error_message)
+: Error(GDK_GL_ERROR, error_code, error_message)
 {}
 
 Gdk::GLError::GLError(GError* gobject)
-:
-  Glib::Error (gobject)
+: Error(gobject)
 {}
 
-auto Gdk::GLError::code() const -> Gdk::GLError::Code
+auto Gdk::GLError::code() const -> Code
 {
-  return static_cast<Code>(Glib::Error::code());
+  return static_cast<Code>(Error::code());
 }
 
 auto Gdk::GLError::throw_func (GError *gobject) -> void
 {
-  throw Gdk::GLError(gobject);
+  throw GLError(gobject);
 }
 
 // static
@@ -90,9 +88,9 @@ auto Glib::Value<Gdk::GLError::Code>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GdkGLContext* object, bool take_copy) -> Glib::RefPtr<Gdk::GLContext>
+auto wrap(GdkGLContext* object, const bool take_copy) -> RefPtr<Gdk::GLContext>
 {
-  return Glib::make_refptr_for_instance<Gdk::GLContext>( dynamic_cast<Gdk::GLContext*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gdk::GLContext>( dynamic_cast<Gdk::GLContext*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -105,7 +103,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-auto GLContext_Class::init() -> const Glib::Class&
+auto GLContext_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -151,32 +149,28 @@ auto GLContext::gobj_copy() -> GdkGLContext*
 }
 
 GLContext::GLContext(const Glib::ConstructParams& construct_params)
-:
-  Gdk::DrawContext(construct_params)
+: DrawContext(construct_params)
 {
 
 }
 
 GLContext::GLContext(GdkGLContext* castitem)
-:
-  Gdk::DrawContext((GdkDrawContext*)(castitem))
+: DrawContext((GdkDrawContext*)castitem)
 {}
 
 
 GLContext::GLContext(GLContext&& src) noexcept
-: Gdk::DrawContext(std::move(src))
+: DrawContext(std::move(src))
 {}
 
 auto GLContext::operator=(GLContext&& src) noexcept -> GLContext&
 {
-  Gdk::DrawContext::operator=(std::move(src));
+  DrawContext::operator=(std::move(src));
   return *this;
 }
 
 
-GLContext::~GLContext() noexcept
-{}
-
+GLContext::~GLContext() noexcept = default;
 
 GLContext::CppClassType GLContext::glcontext_class_; // initialize static member
 
@@ -195,8 +189,8 @@ auto GLContext::get_base_type() -> GType
 GLContext::GLContext()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gdk::DrawContext(Glib::ConstructParams(glcontext_class_.init()))
+ObjectBase(nullptr),
+DrawContext(Glib::ConstructParams(glcontext_class_.init()))
 {
 
 
@@ -251,7 +245,7 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 
 auto GLContext::get_version (int &major, int &minor) const -> void
 {
-  gdk_gl_context_get_version(const_cast<GdkGLContext*>(gobj()), &(major), &(minor));
+  gdk_gl_context_get_version(const_cast<GdkGLContext*>(gobj()), &major, &minor);
 }
 
 auto GLContext::is_legacy() const -> bool
@@ -261,15 +255,16 @@ auto GLContext::is_legacy() const -> bool
 
 auto GLContext::is_shared(const Glib::RefPtr<const GLContext>& other) const -> bool
 {
-  return gdk_gl_context_is_shared(const_cast<GdkGLContext*>(gobj()), const_cast<GdkGLContext*>(Glib::unwrap<Gdk::GLContext>(other)));
+  return gdk_gl_context_is_shared(const_cast<GdkGLContext*>(gobj()), const_cast<GdkGLContext*>(Glib::unwrap<GLContext>(other)));
 }
 
 auto GLContext::get_required_version (int &major, int &minor) const -> void
 {
-  gdk_gl_context_get_required_version(const_cast<GdkGLContext*>(gobj()), &(major), &(minor));
+  gdk_gl_context_get_required_version(const_cast<GdkGLContext*>(gobj()), &major, &minor);
 }
 
-auto GLContext::set_required_version (int major, int minor) -> void
+auto GLContext::set_required_version (
+  const int major, const int minor) -> void
 {
   gdk_gl_context_set_required_version(gobj(), major, minor);
 }
@@ -279,9 +274,10 @@ auto GLContext::get_debug_enabled() const -> bool
   return gdk_gl_context_get_debug_enabled(const_cast<GdkGLContext*>(gobj()));
 }
 
-auto GLContext::set_debug_enabled (bool enabled) -> void
+auto GLContext::set_debug_enabled (
+  const bool enabled) -> void
 {
-  gdk_gl_context_set_debug_enabled(gobj(), static_cast<int>(enabled));
+  gdk_gl_context_set_debug_enabled(gobj(), enabled);
 }
 
 auto GLContext::get_forward_compatible() const -> bool
@@ -289,9 +285,10 @@ auto GLContext::get_forward_compatible() const -> bool
   return gdk_gl_context_get_forward_compatible(const_cast<GdkGLContext*>(gobj()));
 }
 
-auto GLContext::set_forward_compatible (bool compatible) -> void
+auto GLContext::set_forward_compatible (
+  const bool compatible) -> void
 {
-  gdk_gl_context_set_forward_compatible(gobj(), static_cast<int>(compatible));
+  gdk_gl_context_set_forward_compatible(gobj(), compatible);
 }
 
 #ifndef GDKMM_DISABLE_DEPRECATED
@@ -338,9 +335,10 @@ auto GLContext::get_api2() const -> GLApi
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-auto GLContext::set_use_es (bool use_es) -> void
+auto GLContext::set_use_es (
+  const bool use_es) -> void
 {
-  gdk_gl_context_set_use_es(gobj(), static_cast<int>(use_es));
+  gdk_gl_context_set_use_es(gobj(), use_es);
 }
 G_GNUC_END_IGNORE_DEPRECATIONS
 #endif // GDKMM_DISABLE_DEPRECATED
@@ -353,9 +351,9 @@ auto GLContext::get_use_es() const -> bool
 auto GLContext::realize() -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = gdk_gl_context_realize(gobj(), &(gerror));
+  const auto retvalue = gdk_gl_context_realize(gobj(), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -387,7 +385,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<GLConte
 
 auto GLContext::property_shared_context() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<GLContext> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<GLContext> >(this, "shared-context");
+  return {this, "shared-context"};
 }
 #endif // GDKMM_DISABLE_DEPRECATED
 
@@ -400,7 +398,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<GLAPI>::value,
 
 auto GLContext::property_allowed_apis() -> Glib::PropertyProxy< GLAPI >
 {
-  return Glib::PropertyProxy< GLAPI >(this, "allowed-apis");
+  return {this, "allowed-apis"};
 }
 #endif // GDKMM_DISABLE_DEPRECATED
 
@@ -409,7 +407,7 @@ auto GLContext::property_allowed_apis() -> Glib::PropertyProxy< GLAPI >
 
 auto GLContext::property_allowed_apis() const -> Glib::PropertyProxy_ReadOnly< GLAPI >
 {
-  return Glib::PropertyProxy_ReadOnly< GLAPI >(this, "allowed-apis");
+  return {this, "allowed-apis"};
 }
 #endif // GDKMM_DISABLE_DEPRECATED
 
@@ -422,7 +420,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<GLAPI>::value,
 
 auto GLContext::property_api() const -> Glib::PropertyProxy_ReadOnly< GLAPI >
 {
-  return Glib::PropertyProxy_ReadOnly< GLAPI >(this, "api");
+  return {this, "api"};
 }
 #endif // GDKMM_DISABLE_DEPRECATED
 

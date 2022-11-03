@@ -42,7 +42,7 @@ auto Drag_signal_cancel_callback (GdkDrag *self, GdkDragCancelReason p0, void *d
   using namespace Gdk;
   using SlotType = sigc::slot<void(DragCancelReason)>;
 
-  auto obj = dynamic_cast<Drag*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Drag*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -95,9 +95,9 @@ auto Glib::Value<Gdk::DragCancelReason>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GdkDrag* object, bool take_copy) -> Glib::RefPtr<Gdk::Drag>
+auto wrap(GdkDrag* object, const bool take_copy) -> RefPtr<Gdk::Drag>
 {
-  return Glib::make_refptr_for_instance<Gdk::Drag>( dynamic_cast<Gdk::Drag*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gdk::Drag>( dynamic_cast<Gdk::Drag*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -110,7 +110,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-auto Drag_Class::init() -> const Glib::Class&
+auto Drag_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -156,32 +156,28 @@ auto Drag::gobj_copy() -> GdkDrag*
 }
 
 Drag::Drag(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 Drag::Drag(GdkDrag* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 Drag::Drag(Drag&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto Drag::operator=(Drag&& src) noexcept -> Drag&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-Drag::~Drag() noexcept
-{}
-
+Drag::~Drag() noexcept = default;
 
 Drag::CppClassType Drag::drag_class_; // initialize static member
 
@@ -251,9 +247,10 @@ auto Drag::action_is_unique(DragAction action) -> bool
   return gdk_drag_action_is_unique(static_cast<GdkDragAction>(action));
 }
 
-auto Drag::drag_drop_done (bool success) -> void
+auto Drag::drag_drop_done (
+  const bool success) -> void
 {
-  gdk_drag_drop_done(gobj(), static_cast<int>(success));
+  gdk_drag_drop_done(gobj(), success);
 }
 
 auto Drag::get_drag_surface() -> Glib::RefPtr<Surface>
@@ -269,7 +266,8 @@ auto Drag::get_drag_surface() const -> Glib::RefPtr<const Surface>
   return const_cast<Drag*>(this)->get_drag_surface();
 }
 
-auto Drag::set_hotspot (int hot_x, int hot_y) -> void
+auto Drag::set_hotspot (
+  const int hot_x, const int hot_y) -> void
 {
   gdk_drag_set_hotspot(gobj(), hot_x, hot_y);
 }
@@ -303,19 +301,19 @@ auto Drag::get_surface() const -> Glib::RefPtr<const Surface>
 
 auto Drag::signal_cancel() -> Glib::SignalProxy<void(DragCancelReason)>
 {
-  return Glib::SignalProxy<void(DragCancelReason) >(this, &Drag_signal_cancel_info);
+  return {this, &Drag_signal_cancel_info};
 }
 
 
 auto Drag::signal_drop_performed() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Drag_signal_drop_performed_info);
+  return {this, &Drag_signal_drop_performed_info};
 }
 
 
 auto Drag::signal_dnd_finished() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Drag_signal_dnd_finished_info);
+  return {this, &Drag_signal_dnd_finished_info};
 }
 
 
@@ -325,7 +323,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Content
 
 auto Drag::property_content() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentProvider> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentProvider> >(this, "content");
+  return {this, "content"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Device>>::value,
@@ -334,7 +332,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Device>
 
 auto Drag::property_device() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Device> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Device> >(this, "device");
+  return {this, "device"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Display>>::value,
@@ -343,7 +341,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Display
 
 auto Drag::property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >(this, "display");
+  return {this, "display"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<ContentFormats>>::value,
@@ -352,7 +350,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Content
 
 auto Drag::property_formats() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> >(this, "formats");
+  return {this, "formats"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<DragAction>::value,
@@ -361,12 +359,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<DragAction>::value,
 
 auto Drag::property_selected_action() -> Glib::PropertyProxy< DragAction >
 {
-  return Glib::PropertyProxy< DragAction >(this, "selected-action");
+  return {this, "selected-action"};
 }
 
 auto Drag::property_selected_action() const -> Glib::PropertyProxy_ReadOnly< DragAction >
 {
-  return Glib::PropertyProxy_ReadOnly< DragAction >(this, "selected-action");
+  return {this, "selected-action"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<DragAction>::value,
@@ -375,12 +373,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<DragAction>::value,
 
 auto Drag::property_actions() -> Glib::PropertyProxy< DragAction >
 {
-  return Glib::PropertyProxy< DragAction >(this, "actions");
+  return {this, "actions"};
 }
 
 auto Drag::property_actions() const -> Glib::PropertyProxy_ReadOnly< DragAction >
 {
-  return Glib::PropertyProxy_ReadOnly< DragAction >(this, "actions");
+  return {this, "actions"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Surface>>::value,
@@ -389,7 +387,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Surface
 
 auto Drag::property_surface() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >(this, "surface");
+  return {this, "surface"};
 }
 
 

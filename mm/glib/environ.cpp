@@ -32,27 +32,30 @@ Environ::Environ(const std::vector<std::string>& env_vec)
   envp.get()[env_vec.size()] = nullptr;
 }
 
-auto Environ::get(StdStringView variable) const -> std::optional<std::string>
+auto Environ::get(
+  const StdStringView variable) const -> std::optional<std::string>
 {
   const char* value = g_environ_getenv(envp.get(), variable.c_str());
   if (value)
     return std::optional<std::string>(std::in_place, value);
-  return std::optional<std::string>();
+  return {};
 }
 
-auto Environ::set (StdStringView variable, StdStringView value, bool overwrite) -> void
+auto Environ::set (
+  const StdStringView variable, const StdStringView value, const bool overwrite) -> void
 {
   envp.reset(g_environ_setenv(envp.release(), variable.c_str(), value.c_str(), overwrite));
 }
 
-auto Environ::unset (StdStringView variable) -> void
+auto Environ::unset (
+  const StdStringView variable) -> void
 {
   envp.reset(g_environ_unsetenv(envp.release(), variable.c_str()));
 }
 
 auto Environ::to_vector() const -> std::vector<std::string>
 {
-  return Glib::ArrayHandler<std::string>::array_to_vector(envp.get(), Glib::OWNERSHIP_NONE);
+  return ArrayHandler<std::string>::array_to_vector(envp.get(), OWNERSHIP_NONE);
 }
 
 } // namespace Glib

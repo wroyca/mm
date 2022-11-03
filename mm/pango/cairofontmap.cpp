@@ -35,9 +35,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(PangoCairoFontMap* object, bool take_copy) -> Glib::RefPtr<Pango::CairoFontMap>
+auto wrap(PangoCairoFontMap* object, const bool take_copy) -> RefPtr<Pango::CairoFontMap>
 {
-  return Glib::make_refptr_for_instance<Pango::CairoFontMap>( dynamic_cast<Pango::CairoFontMap*> (Glib::wrap_auto_interface<Pango::CairoFontMap> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Pango::CairoFontMap>( Glib::wrap_auto_interface<Pango::CairoFontMap> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -50,7 +50,7 @@ namespace Pango
 
 /* The *_Class implementation: */
 
-auto CairoFontMap_Class::init() -> const Glib::Interface_Class&
+auto CairoFontMap_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -79,42 +79,40 @@ auto CairoFontMap_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto CairoFontMap_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new CairoFontMap((PangoCairoFontMap*)(object));
+  return new CairoFontMap((PangoCairoFontMap*)object);
 }
 
 
 /* The implementation: */
 
 CairoFontMap::CairoFontMap()
-:
-  Glib::Interface(cairofontmap_class_.init())
+: Interface(cairofontmap_class_.init())
 {}
 
 CairoFontMap::CairoFontMap(PangoCairoFontMap* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 CairoFontMap::CairoFontMap(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 CairoFontMap::CairoFontMap(CairoFontMap&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto CairoFontMap::operator=(CairoFontMap&& src) noexcept -> CairoFontMap&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-CairoFontMap::~CairoFontMap() noexcept
-{}
+CairoFontMap::~CairoFontMap() noexcept = default;
 
 // static
-auto CairoFontMap::add_interface (GType gtype_implementer) -> void
+auto CairoFontMap::add_interface (
+  const GType gtype_implementer) -> void
 {
   cairofontmap_class_.init().add_interface(gtype_implementer);
 }
@@ -152,7 +150,8 @@ auto CairoFontMap::get_font_type() const -> Cairo::FontType
   return static_cast<Cairo::FontType>(pango_cairo_font_map_get_font_type(const_cast<PangoCairoFontMap*>(gobj())));
 }
 
-auto CairoFontMap::set_resolution (double dpi) -> void
+auto CairoFontMap::set_resolution (
+  const double dpi) -> void
 {
   pango_cairo_font_map_set_resolution(gobj(), dpi);
 }

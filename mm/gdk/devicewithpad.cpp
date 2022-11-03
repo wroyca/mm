@@ -37,9 +37,7 @@ auto DeviceWithPad::operator=(DeviceWithPad&& src) noexcept -> DeviceWithPad&
   return *this;
 }
 
-DeviceWithPad::~DeviceWithPad() noexcept
-{}
-
+DeviceWithPad::~DeviceWithPad() noexcept = default;
 } // namespace Gdk
 
 

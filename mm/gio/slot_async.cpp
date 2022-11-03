@@ -23,7 +23,7 @@ namespace Gio
 
 auto SignalProxy_async_callback (GObject *, GAsyncResult *res, void *data) -> void
 {
-  Gio::SlotAsyncReady* the_slot = static_cast<Gio::SlotAsyncReady*>(data);
+  const SlotAsyncReady * the_slot = static_cast<SlotAsyncReady *>(data);
 
   try
   {

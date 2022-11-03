@@ -17,13 +17,13 @@ public:
   using CppObjectType = ListBase;
   using BaseObjectType = GtkListBase;
   using BaseClassType = GtkListBaseClass;
-  using CppClassParent = Gtk::Widget_Class;
+  using CppClassParent = Widget_Class;
   using BaseClassParent = GtkWidgetClass;
 
   friend class ListBase;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

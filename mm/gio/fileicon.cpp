@@ -33,9 +33,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GFileIcon* object, bool take_copy) -> Glib::RefPtr<Gio::FileIcon>
+auto wrap(GFileIcon* object, const bool take_copy) -> RefPtr<Gio::FileIcon>
 {
-  return Glib::make_refptr_for_instance<Gio::FileIcon>( dynamic_cast<Gio::FileIcon*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::FileIcon>( dynamic_cast<Gio::FileIcon*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -48,7 +48,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto FileIcon_Class::init() -> const Glib::Class&
+auto FileIcon_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -96,36 +96,32 @@ auto FileIcon::gobj_copy() -> GFileIcon*
 }
 
 FileIcon::FileIcon(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 FileIcon::FileIcon(GFileIcon* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 FileIcon::FileIcon(FileIcon&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , Icon(std::move(src))
   , LoadableIcon(std::move(src))
 {}
 
 auto FileIcon::operator=(FileIcon&& src) noexcept -> FileIcon&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   Icon::operator=(std::move(src));
   LoadableIcon::operator=(std::move(src));
   return *this;
 }
 
 
-FileIcon::~FileIcon() noexcept
-{}
-
+FileIcon::~FileIcon() noexcept = default;
 
 FileIcon::CppClassType FileIcon::fileicon_class_; // initialize static member
 
@@ -144,8 +140,8 @@ auto FileIcon::get_base_type() -> GType
 FileIcon::FileIcon()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(fileicon_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(fileicon_class_.init()))
 {
 
 
@@ -176,7 +172,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<File>>:
 
 auto FileIcon::property_file() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<File> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<File> >(this, "file");
+  return {this, "file"};
 }
 
 

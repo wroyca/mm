@@ -59,12 +59,12 @@ namespace
 
 
 auto MenuModel_signal_items_changed_callback (
-  GMenuModel *self, gint p0, gint p1, gint p2, void *data) -> void
+  GMenuModel *self, const gint p0, const gint p1, const gint p2, void *data) -> void
 {
   using namespace Gio;
   using SlotType = sigc::slot<void(int, int, int)>;
 
-  auto obj = dynamic_cast<MenuModel*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<MenuModel*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -97,9 +97,9 @@ const Glib::SignalProxyInfo MenuModel_signal_items_changed_info =
 namespace Glib
 {
 
-auto wrap(GMenuModel* object, bool take_copy) -> Glib::RefPtr<Gio::MenuModel>
+auto wrap(GMenuModel* object, const bool take_copy) -> RefPtr<Gio::MenuModel>
 {
-  return Glib::make_refptr_for_instance<Gio::MenuModel>( dynamic_cast<Gio::MenuModel*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::MenuModel>( dynamic_cast<Gio::MenuModel*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -112,7 +112,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto MenuModel_Class::init() -> const Glib::Class&
+auto MenuModel_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -158,32 +158,28 @@ auto MenuModel::gobj_copy() -> GMenuModel*
 }
 
 MenuModel::MenuModel(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 MenuModel::MenuModel(GMenuModel* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 MenuModel::MenuModel(MenuModel&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto MenuModel::operator=(MenuModel&& src) noexcept -> MenuModel&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-MenuModel::~MenuModel() noexcept
-{}
-
+MenuModel::~MenuModel() noexcept = default;
 
 MenuModel::CppClassType MenuModel::menumodel_class_; // initialize static member
 
@@ -202,24 +198,27 @@ auto MenuModel::get_base_type() -> GType
 MenuModel::MenuModel()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(menumodel_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(menumodel_class_.init()))
 {
 
 
 }
 
-auto MenuModel::get_item_attribute(int item_index, Attribute attribute, const Glib::VariantType& expected_type) const -> Glib::VariantBase
+auto MenuModel::get_item_attribute(
+  const int item_index, const Attribute attribute, const Glib::VariantType& expected_type) const -> Glib::VariantBase
 {
-  return Glib::wrap(g_menu_model_get_item_attribute_value(const_cast<GMenuModel*>(gobj()), item_index, giomm_get_menu_attribute(attribute), (expected_type).gobj()), false);
+  return Glib::wrap(g_menu_model_get_item_attribute_value(const_cast<GMenuModel*>(gobj()), item_index, giomm_get_menu_attribute(attribute), expected_type.gobj()), false);
 }
 
-auto MenuModel::get_item_link(int item_index, Link link) -> Glib::RefPtr<MenuModel>
+auto MenuModel::get_item_link(
+  const int item_index, const Link link) -> Glib::RefPtr<MenuModel>
 {
   return Glib::wrap(g_menu_model_get_item_link(gobj(), item_index, giomm_get_menu_link(link)));
 }
 
-auto MenuModel::get_item_link(int item_index, Link link) const -> Glib::RefPtr<const MenuModel>
+auto MenuModel::get_item_link(
+  const int item_index, const Link link) const -> Glib::RefPtr<const MenuModel>
 {
   return const_cast<MenuModel*>(this)->get_item_link(item_index, link);
 }
@@ -234,27 +233,32 @@ auto MenuModel::get_n_items() const -> int
   return g_menu_model_get_n_items(const_cast<GMenuModel*>(gobj()));
 }
 
-auto MenuModel::iterate_item_attributes(int item_index) -> Glib::RefPtr<MenuAttributeIter>
+auto MenuModel::iterate_item_attributes(
+  const int item_index) -> Glib::RefPtr<MenuAttributeIter>
 {
   return Glib::wrap(g_menu_model_iterate_item_attributes(gobj(), item_index));
 }
 
-auto MenuModel::iterate_item_attributes(int item_index) const -> Glib::RefPtr<const MenuAttributeIter>
+auto MenuModel::iterate_item_attributes(
+  const int item_index) const -> Glib::RefPtr<const MenuAttributeIter>
 {
   return const_cast<MenuModel*>(this)->iterate_item_attributes(item_index);
 }
 
-auto MenuModel::iterate_item_links(int item_index) -> Glib::RefPtr<MenuLinkIter>
+auto MenuModel::iterate_item_links(
+  const int item_index) -> Glib::RefPtr<MenuLinkIter>
 {
   return Glib::wrap(g_menu_model_iterate_item_links(gobj(), item_index));
 }
 
-auto MenuModel::iterate_item_links(int item_index) const -> Glib::RefPtr<const MenuLinkIter>
+auto MenuModel::iterate_item_links(
+  const int item_index) const -> Glib::RefPtr<const MenuLinkIter>
 {
   return const_cast<MenuModel*>(this)->iterate_item_links(item_index);
 }
 
-auto MenuModel::items_changed (int position, int removed, int added) -> void
+auto MenuModel::items_changed (
+  const int position, const int removed, const int added) -> void
 {
   g_menu_model_items_changed(gobj(), position, removed, added);
 }
@@ -262,7 +266,7 @@ auto MenuModel::items_changed (int position, int removed, int added) -> void
 
 auto MenuModel::signal_items_changed() -> Glib::SignalProxy<void(int, int, int)>
 {
-  return Glib::SignalProxy<void(int, int, int) >(this, &MenuModel_signal_items_changed_info);
+  return {this, &MenuModel_signal_items_changed_info};
 }
 
 

@@ -28,9 +28,9 @@
 
 namespace
 {
-auto SlotShortcut_callback(GtkWidget* widget, GVariant* args, gpointer user_data) -> gboolean
+auto SlotShortcut_callback(GtkWidget* widget, GVariant* args, const gpointer user_data) -> gboolean
 {
-  auto the_slot = static_cast<Gtk::CallbackAction::SlotShortcut*>(user_data);
+  const auto the_slot = static_cast<Gtk::CallbackAction::SlotShortcut*>(user_data);
 
   try
   {
@@ -51,7 +51,7 @@ namespace Gtk
 CallbackAction::CallbackAction(const SlotShortcut& slot)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   // Create a copy of the slot object. A pointer to this will be passed
   // through the callback's user_data parameter. It will be deleted
   // when Glib::destroy_notify_delete<SlotShortcut>() is called.
@@ -76,9 +76,9 @@ auto Glib::Value<Gtk::ShortcutAction::Flags>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkShortcutAction* object, bool take_copy) -> Glib::RefPtr<Gtk::ShortcutAction>
+auto wrap(GtkShortcutAction* object, const bool take_copy) -> RefPtr<Gtk::ShortcutAction>
 {
-  return Glib::make_refptr_for_instance<Gtk::ShortcutAction>( dynamic_cast<Gtk::ShortcutAction*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::ShortcutAction>( dynamic_cast<Gtk::ShortcutAction*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -91,7 +91,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto ShortcutAction_Class::init() -> const Glib::Class&
+auto ShortcutAction_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -131,32 +131,28 @@ auto ShortcutAction::gobj_copy() -> GtkShortcutAction*
 }
 
 ShortcutAction::ShortcutAction(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 ShortcutAction::ShortcutAction(GtkShortcutAction* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 ShortcutAction::ShortcutAction(ShortcutAction&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto ShortcutAction::operator=(ShortcutAction&& src) noexcept -> ShortcutAction&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-ShortcutAction::~ShortcutAction() noexcept
-{}
-
+ShortcutAction::~ShortcutAction() noexcept = default;
 
 ShortcutAction::CppClassType ShortcutAction::shortcutaction_class_; // initialize static member
 
@@ -175,8 +171,8 @@ auto ShortcutAction::get_base_type() -> GType
 ShortcutAction::ShortcutAction()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(shortcutaction_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(shortcutaction_class_.init()))
 {
 
 
@@ -194,7 +190,7 @@ auto ShortcutAction::to_string() const -> Glib::ustring
 
 auto ShortcutAction::activate(Widget& widget, Flags flags, const Glib::VariantBase& args) -> bool
 {
-  return gtk_shortcut_action_activate(gobj(), static_cast<GtkShortcutActionFlags>(flags), (widget).gobj(), const_cast<GVariant*>((args).gobj()));
+  return gtk_shortcut_action_activate(gobj(), static_cast<GtkShortcutActionFlags>(flags), widget.gobj(), const_cast<GVariant*>(args.gobj()));
 }
 
 
@@ -204,9 +200,9 @@ auto ShortcutAction::activate(Widget& widget, Flags flags, const Glib::VariantBa
 namespace Glib
 {
 
-auto wrap(GtkNothingAction* object, bool take_copy) -> Glib::RefPtr<Gtk::NothingAction>
+auto wrap(GtkNothingAction* object, const bool take_copy) -> RefPtr<Gtk::NothingAction>
 {
-  return Glib::make_refptr_for_instance<Gtk::NothingAction>( dynamic_cast<Gtk::NothingAction*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::NothingAction>( dynamic_cast<Gtk::NothingAction*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -219,7 +215,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto NothingAction_Class::init() -> const Glib::Class&
+auto NothingAction_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -267,7 +263,7 @@ NothingAction::NothingAction(const Glib::ConstructParams& construct_params)
 
 NothingAction::NothingAction(GtkNothingAction* castitem)
 :
-  ShortcutAction((GtkShortcutAction*)(castitem))
+  ShortcutAction((GtkShortcutAction*)castitem)
 {}
 
 
@@ -282,9 +278,7 @@ auto NothingAction::operator=(NothingAction&& src) noexcept -> NothingAction&
 }
 
 
-NothingAction::~NothingAction() noexcept
-{}
-
+NothingAction::~NothingAction() noexcept = default;
 
 NothingAction::CppClassType NothingAction::nothingaction_class_; // initialize static member
 
@@ -302,7 +296,7 @@ auto NothingAction::get_base_type() -> GType
 NothingAction::NothingAction()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   ShortcutAction(Glib::ConstructParams(nothingaction_class_.init()))
 {
 
@@ -325,9 +319,9 @@ auto NothingAction::get() -> Glib::RefPtr<NothingAction>
 namespace Glib
 {
 
-auto wrap(GtkCallbackAction* object, bool take_copy) -> Glib::RefPtr<Gtk::CallbackAction>
+auto wrap(GtkCallbackAction* object, const bool take_copy) -> RefPtr<Gtk::CallbackAction>
 {
-  return Glib::make_refptr_for_instance<Gtk::CallbackAction>( dynamic_cast<Gtk::CallbackAction*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::CallbackAction>( dynamic_cast<Gtk::CallbackAction*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -340,7 +334,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto CallbackAction_Class::init() -> const Glib::Class&
+auto CallbackAction_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -388,7 +382,7 @@ CallbackAction::CallbackAction(const Glib::ConstructParams& construct_params)
 
 CallbackAction::CallbackAction(GtkCallbackAction* castitem)
 :
-  ShortcutAction((GtkShortcutAction*)(castitem))
+  ShortcutAction((GtkShortcutAction*)castitem)
 {}
 
 
@@ -403,9 +397,7 @@ auto CallbackAction::operator=(CallbackAction&& src) noexcept -> CallbackAction&
 }
 
 
-CallbackAction::~CallbackAction() noexcept
-{}
-
+CallbackAction::~CallbackAction() noexcept = default;
 
 CallbackAction::CppClassType CallbackAction::callbackaction_class_; // initialize static member
 
@@ -432,9 +424,9 @@ auto CallbackAction::create(const SlotShortcut& slot) -> Glib::RefPtr<CallbackAc
 namespace Glib
 {
 
-auto wrap(GtkMnemonicAction* object, bool take_copy) -> Glib::RefPtr<Gtk::MnemonicAction>
+auto wrap(GtkMnemonicAction* object, const bool take_copy) -> RefPtr<Gtk::MnemonicAction>
 {
-  return Glib::make_refptr_for_instance<Gtk::MnemonicAction>( dynamic_cast<Gtk::MnemonicAction*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::MnemonicAction>( dynamic_cast<Gtk::MnemonicAction*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -447,7 +439,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto MnemonicAction_Class::init() -> const Glib::Class&
+auto MnemonicAction_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -495,7 +487,7 @@ MnemonicAction::MnemonicAction(const Glib::ConstructParams& construct_params)
 
 MnemonicAction::MnemonicAction(GtkMnemonicAction* castitem)
 :
-  ShortcutAction((GtkShortcutAction*)(castitem))
+  ShortcutAction((GtkShortcutAction*)castitem)
 {}
 
 
@@ -510,9 +502,7 @@ auto MnemonicAction::operator=(MnemonicAction&& src) noexcept -> MnemonicAction&
 }
 
 
-MnemonicAction::~MnemonicAction() noexcept
-{}
-
+MnemonicAction::~MnemonicAction() noexcept = default;
 
 MnemonicAction::CppClassType MnemonicAction::mnemonicaction_class_; // initialize static member
 
@@ -530,7 +520,7 @@ auto MnemonicAction::get_base_type() -> GType
 MnemonicAction::MnemonicAction()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   ShortcutAction(Glib::ConstructParams(mnemonicaction_class_.init()))
 {
 
@@ -553,9 +543,9 @@ auto MnemonicAction::get() -> Glib::RefPtr<MnemonicAction>
 namespace Glib
 {
 
-auto wrap(GtkActivateAction* object, bool take_copy) -> Glib::RefPtr<Gtk::ActivateAction>
+auto wrap(GtkActivateAction* object, const bool take_copy) -> RefPtr<Gtk::ActivateAction>
 {
-  return Glib::make_refptr_for_instance<Gtk::ActivateAction>( dynamic_cast<Gtk::ActivateAction*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::ActivateAction>( dynamic_cast<Gtk::ActivateAction*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -568,7 +558,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto ActivateAction_Class::init() -> const Glib::Class&
+auto ActivateAction_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -616,7 +606,7 @@ ActivateAction::ActivateAction(const Glib::ConstructParams& construct_params)
 
 ActivateAction::ActivateAction(GtkActivateAction* castitem)
 :
-  ShortcutAction((GtkShortcutAction*)(castitem))
+  ShortcutAction((GtkShortcutAction*)castitem)
 {}
 
 
@@ -631,9 +621,7 @@ auto ActivateAction::operator=(ActivateAction&& src) noexcept -> ActivateAction&
 }
 
 
-ActivateAction::~ActivateAction() noexcept
-{}
-
+ActivateAction::~ActivateAction() noexcept = default;
 
 ActivateAction::CppClassType ActivateAction::activateaction_class_; // initialize static member
 
@@ -651,7 +639,7 @@ auto ActivateAction::get_base_type() -> GType
 ActivateAction::ActivateAction()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   ShortcutAction(Glib::ConstructParams(activateaction_class_.init()))
 {
 
@@ -674,9 +662,9 @@ auto ActivateAction::get() -> Glib::RefPtr<ActivateAction>
 namespace Glib
 {
 
-auto wrap(GtkSignalAction* object, bool take_copy) -> Glib::RefPtr<Gtk::SignalAction>
+auto wrap(GtkSignalAction* object, const bool take_copy) -> RefPtr<Gtk::SignalAction>
 {
-  return Glib::make_refptr_for_instance<Gtk::SignalAction>( dynamic_cast<Gtk::SignalAction*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::SignalAction>( dynamic_cast<Gtk::SignalAction*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -689,7 +677,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto SignalAction_Class::init() -> const Glib::Class&
+auto SignalAction_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -737,7 +725,7 @@ SignalAction::SignalAction(const Glib::ConstructParams& construct_params)
 
 SignalAction::SignalAction(GtkSignalAction* castitem)
 :
-  ShortcutAction((GtkShortcutAction*)(castitem))
+  ShortcutAction((GtkShortcutAction*)castitem)
 {}
 
 
@@ -752,9 +740,7 @@ auto SignalAction::operator=(SignalAction&& src) noexcept -> SignalAction&
 }
 
 
-SignalAction::~SignalAction() noexcept
-{}
-
+SignalAction::~SignalAction() noexcept = default;
 
 SignalAction::CppClassType SignalAction::signalaction_class_; // initialize static member
 
@@ -772,7 +758,7 @@ auto SignalAction::get_base_type() -> GType
 SignalAction::SignalAction(const Glib::ustring& signal_name)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   ShortcutAction(Glib::ConstructParams(signalaction_class_.init(), "signal_name", signal_name.c_str(), nullptr))
 {
 
@@ -792,7 +778,7 @@ auto SignalAction::get_signal_name() const -> Glib::ustring
 
 auto SignalAction::property_signal_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "signal-name");
+  return {this, "signal-name"};
 }
 
 
@@ -802,9 +788,9 @@ auto SignalAction::property_signal_name() const -> Glib::PropertyProxy_ReadOnly<
 namespace Glib
 {
 
-auto wrap(GtkNamedAction* object, bool take_copy) -> Glib::RefPtr<Gtk::NamedAction>
+auto wrap(GtkNamedAction* object, const bool take_copy) -> RefPtr<Gtk::NamedAction>
 {
-  return Glib::make_refptr_for_instance<Gtk::NamedAction>( dynamic_cast<Gtk::NamedAction*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::NamedAction>( dynamic_cast<Gtk::NamedAction*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -817,7 +803,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto NamedAction_Class::init() -> const Glib::Class&
+auto NamedAction_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -865,7 +851,7 @@ NamedAction::NamedAction(const Glib::ConstructParams& construct_params)
 
 NamedAction::NamedAction(GtkNamedAction* castitem)
 :
-  ShortcutAction((GtkShortcutAction*)(castitem))
+  ShortcutAction((GtkShortcutAction*)castitem)
 {}
 
 
@@ -880,9 +866,7 @@ auto NamedAction::operator=(NamedAction&& src) noexcept -> NamedAction&
 }
 
 
-NamedAction::~NamedAction() noexcept
-{}
-
+NamedAction::~NamedAction() noexcept = default;
 
 NamedAction::CppClassType NamedAction::namedaction_class_; // initialize static member
 
@@ -900,7 +884,7 @@ auto NamedAction::get_base_type() -> GType
 NamedAction::NamedAction(const Glib::ustring& action_name)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   ShortcutAction(Glib::ConstructParams(namedaction_class_.init(), "action_name", action_name.c_str(), nullptr))
 {
 
@@ -920,7 +904,7 @@ auto NamedAction::get_action_name() const -> Glib::ustring
 
 auto NamedAction::property_action_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "action-name");
+  return {this, "action-name"};
 }
 
 

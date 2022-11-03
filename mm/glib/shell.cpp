@@ -40,9 +40,9 @@ shell_parse_argv(const std::string& command_line) -> std::vector<std::string>
   g_shell_parse_argv(command_line.c_str(), &argc, &argv, &error);
 
   if (error)
-    Glib::Error::throw_exception(error);
+    Error::throw_exception(error);
 
-  return Glib::ArrayHandler<std::string>::array_to_vector(argv, argc, Glib::OWNERSHIP_DEEP);
+  return ArrayHandler<std::string>::array_to_vector(argv, argc, OWNERSHIP_DEEP);
 }
 
 auto
@@ -59,7 +59,7 @@ shell_unquote(const std::string& quoted_string) -> std::string
   char* const buf = g_shell_unquote(quoted_string.c_str(), &error);
 
   if (error)
-    Glib::Error::throw_exception(error);
+    Error::throw_exception(error);
 
   return std::string(make_unique_ptr_gfree(buf).get());
 }
@@ -71,24 +71,22 @@ namespace
 } // anonymous namespace
 
 
-Glib::ShellError::ShellError(Glib::ShellError::Code error_code, const Glib::ustring& error_message)
-:
-  Glib::Error (G_SHELL_ERROR, error_code, error_message)
+Glib::ShellError::ShellError(const Code error_code, const ustring & error_message)
+: Error(G_SHELL_ERROR, error_code, error_message)
 {}
 
 Glib::ShellError::ShellError(GError* gobject)
-:
-  Glib::Error (gobject)
+: Error(gobject)
 {}
 
-auto Glib::ShellError::code() const -> Glib::ShellError::Code
+auto Glib::ShellError::code() const -> Code
 {
-  return static_cast<Code>(Glib::Error::code());
+  return static_cast<Code>(Error::code());
 }
 
 auto Glib::ShellError::throw_func (GError *gobject) -> void
 {
-  throw Glib::ShellError(gobject);
+  throw ShellError(gobject);
 }
 
 

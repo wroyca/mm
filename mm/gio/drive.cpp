@@ -41,7 +41,7 @@ auto Drive::eject (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_drive_eject_with_operation(gobj(), static_cast<GMountUnmountFlags>(flags),
     nullptr, // mount_operation
@@ -53,7 +53,7 @@ auto Drive::eject (const SlotAsyncReady &slot, Mount::UnmountFlags flags) -> voi
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_drive_eject_with_operation(gobj(), static_cast<GMountUnmountFlags>(flags),
     nullptr, // mount_operation
@@ -68,7 +68,7 @@ auto Drive::eject (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_drive_eject_with_operation(gobj(), static_cast<GMountUnmountFlags>(flags),
     Glib::unwrap(mount_operation), Glib::unwrap(cancellable), &SignalProxy_async_callback,
@@ -82,7 +82,7 @@ auto Drive::eject (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_drive_eject_with_operation(gobj(), static_cast<GMountUnmountFlags>(flags),
     Glib::unwrap(mount_operation),
@@ -115,7 +115,7 @@ auto Drive::poll_for_media (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_drive_poll_for_media(gobj(), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
@@ -125,7 +125,7 @@ auto Drive::poll_for_media (const SlotAsyncReady &slot) -> void
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_drive_poll_for_media(gobj(),
     nullptr, // cancellable
@@ -147,7 +147,7 @@ auto Drive::stop (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_drive_stop(gobj(), static_cast<GMountUnmountFlags>(flags), Glib::unwrap(mount_operation),
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
@@ -160,7 +160,7 @@ auto Drive::stop (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_drive_stop(gobj(), static_cast<GMountUnmountFlags>(flags), Glib::unwrap(mount_operation),
     nullptr, &SignalProxy_async_callback, slot_copy);
@@ -174,7 +174,7 @@ auto Drive::start (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_drive_start(gobj(), static_cast<GDriveStartFlags>(flags), Glib::unwrap(mount_operation),
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
@@ -187,7 +187,7 @@ auto Drive::start (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_drive_start(gobj(), static_cast<GDriveStartFlags>(flags), Glib::unwrap(mount_operation),
     nullptr, &SignalProxy_async_callback, slot_copy);
@@ -249,9 +249,9 @@ auto Glib::Value<Gio::Drive::StartStopType>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GDrive* object, bool take_copy) -> Glib::RefPtr<Gio::Drive>
+auto wrap(GDrive* object, const bool take_copy) -> RefPtr<Gio::Drive>
 {
-  return Glib::make_refptr_for_instance<Gio::Drive>( dynamic_cast<Gio::Drive*> (Glib::wrap_auto_interface<Gio::Drive> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::Drive>( Glib::wrap_auto_interface<Gio::Drive> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -264,7 +264,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto Drive_Class::init() -> const Glib::Interface_Class&
+auto Drive_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -297,8 +297,7 @@ auto Drive_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto Drive_Class::changed_callback (GDrive *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -334,8 +333,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto Drive_Class::disconnected_callback (GDrive *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -371,8 +369,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto Drive_Class::eject_button_callback (GDrive *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -408,8 +405,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto Drive_Class::stop_button_callback (GDrive *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -447,42 +443,40 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 
 auto Drive_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new Drive((GDrive*)(object));
+  return new Drive((GDrive*)object);
 }
 
 
 /* The implementation: */
 
 Drive::Drive()
-:
-  Glib::Interface(drive_class_.init())
+: Interface(drive_class_.init())
 {}
 
 Drive::Drive(GDrive* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 Drive::Drive(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 Drive::Drive(Drive&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto Drive::operator=(Drive&& src) noexcept -> Drive&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-Drive::~Drive() noexcept
-{}
+Drive::~Drive() noexcept = default;
 
 // static
-auto Drive::add_interface (GType gtype_implementer) -> void
+auto Drive::add_interface (
+  const GType gtype_implementer) -> void
 {
   drive_class_.init().add_interface(gtype_implementer);
 }
@@ -575,18 +569,18 @@ auto Drive::can_eject() const -> bool
 auto Drive::eject_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_drive_eject_with_operation_finish(gobj(), Glib::unwrap(result), &(gerror));
+  const auto retvalue = g_drive_eject_with_operation_finish(gobj(), Glib::unwrap(result), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto Drive::poll_for_media_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_drive_poll_for_media_finish(gobj(), Glib::unwrap(result), &(gerror));
+  const auto retvalue = g_drive_poll_for_media_finish(gobj(), Glib::unwrap(result), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -603,9 +597,9 @@ auto Drive::enumerate_identifiers() const -> std::vector<Glib::ustring>
 auto Drive::start_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_drive_start_finish(gobj(), Glib::unwrap(result), &(gerror));
+  const auto retvalue = g_drive_start_finish(gobj(), Glib::unwrap(result), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -622,9 +616,9 @@ auto Drive::can_start_degraded() const -> bool
 auto Drive::stop_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_drive_stop_finish(gobj(), Glib::unwrap(result), &(gerror));
+  const auto retvalue = g_drive_stop_finish(gobj(), Glib::unwrap(result), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -646,63 +640,63 @@ auto Drive::get_sort_key() const -> Glib::ustring
 
 auto Drive::signal_changed() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Drive_signal_changed_info);
+  return {this, &Drive_signal_changed_info};
 }
 
 
 auto Drive::signal_disconnected() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Drive_signal_disconnected_info);
+  return {this, &Drive_signal_disconnected_info};
 }
 
 
 auto Drive::signal_eject_button() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Drive_signal_eject_button_info);
+  return {this, &Drive_signal_eject_button_info};
 }
 
 
 auto Drive::signal_stop_button() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Drive_signal_stop_button_info);
+  return {this, &Drive_signal_stop_button_info};
 }
 
 
-auto Gio::Drive::on_changed () -> void
+auto Drive::on_changed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->changed)
     (*base->changed)(gobj());
 }
-auto Gio::Drive::on_disconnected () -> void
+auto Drive::on_disconnected () -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->disconnected)
     (*base->disconnected)(gobj());
 }
-auto Gio::Drive::on_eject_button () -> void
+auto Drive::on_eject_button () -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->eject_button)
     (*base->eject_button)(gobj());
 }
-auto Gio::Drive::on_stop_button () -> void
+auto Drive::on_stop_button () -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->stop_button)

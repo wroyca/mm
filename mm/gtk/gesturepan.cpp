@@ -30,12 +30,12 @@ namespace
 
 
 auto GesturePan_signal_pan_callback (
-  GtkGesturePan *self, GtkPanDirection p0, gdouble p1, void *data) -> void
+  GtkGesturePan *self, GtkPanDirection p0, const gdouble p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(PanDirection, double)>;
 
-  auto obj = dynamic_cast<GesturePan*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<GesturePan*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -73,9 +73,9 @@ auto Glib::Value<Gtk::PanDirection>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkGesturePan* object, bool take_copy) -> Glib::RefPtr<Gtk::GesturePan>
+auto wrap(GtkGesturePan* object, const bool take_copy) -> RefPtr<Gtk::GesturePan>
 {
-  return Glib::make_refptr_for_instance<Gtk::GesturePan>( dynamic_cast<Gtk::GesturePan*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::GesturePan>( dynamic_cast<Gtk::GesturePan*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -88,7 +88,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto GesturePan_Class::init() -> const Glib::Class&
+auto GesturePan_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -142,7 +142,7 @@ GesturePan::GesturePan(const Glib::ConstructParams& construct_params)
 
 GesturePan::GesturePan(GtkGesturePan* castitem)
 :
-  GestureDrag((GtkGestureDrag*)(castitem))
+  GestureDrag((GtkGestureDrag*)castitem)
 {}
 
 
@@ -157,9 +157,7 @@ auto GesturePan::operator=(GesturePan&& src) noexcept -> GesturePan&
 }
 
 
-GesturePan::~GesturePan() noexcept
-{}
-
+GesturePan::~GesturePan() noexcept = default;
 
 GesturePan::CppClassType GesturePan::gesturepan_class_; // initialize static member
 
@@ -178,24 +176,25 @@ auto GesturePan::get_base_type() -> GType
 GesturePan::GesturePan()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   GestureDrag(Glib::ConstructParams(gesturepan_class_.init()))
 {
 
 
 }
 
-GesturePan::GesturePan(Orientation orientation)
+GesturePan::GesturePan(const Orientation orientation)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  GestureDrag(Glib::ConstructParams(gesturepan_class_.init(), "orientation", static_cast<GtkOrientation>(orientation), nullptr))
+ObjectBase(nullptr),
+  GestureDrag(Glib::ConstructParams(gesturepan_class_.init(), "orientation", orientation, nullptr))
 {
 
 
 }
 
-auto GesturePan::create(Orientation orientation) -> Glib::RefPtr<GesturePan>
+auto GesturePan::create(
+  const Orientation orientation) -> Glib::RefPtr<GesturePan>
 {
   return Glib::make_refptr_for_instance<GesturePan>( new GesturePan(orientation) );
 }
@@ -213,7 +212,7 @@ auto GesturePan::set_orientation (Orientation orientation) -> void
 
 auto GesturePan::signal_pan() -> Glib::SignalProxy<void(PanDirection, double)>
 {
-  return Glib::SignalProxy<void(PanDirection, double) >(this, &GesturePan_signal_pan_info);
+  return {this, &GesturePan_signal_pan_info};
 }
 
 
@@ -223,12 +222,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Orientation>::value,
 
 auto GesturePan::property_orientation() -> Glib::PropertyProxy< Orientation >
 {
-  return Glib::PropertyProxy< Orientation >(this, "orientation");
+  return {this, "orientation"};
 }
 
 auto GesturePan::property_orientation() const -> Glib::PropertyProxy_ReadOnly< Orientation >
 {
-  return Glib::PropertyProxy_ReadOnly< Orientation >(this, "orientation");
+  return {this, "orientation"};
 }
 
 

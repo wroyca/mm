@@ -31,7 +31,8 @@ ValueBase::ValueBase()
   std::memset(&gobject_, 0, sizeof(GValue));
 }
 
-auto ValueBase::init (GType type) -> void
+auto ValueBase::init (
+  const GType type) -> void
 {
   g_value_init(&gobject_, type);
 }
@@ -90,8 +91,8 @@ ValueBase_Boxed::get_boxed() const -> void*
   return g_value_get_boxed(&gobject_);
 }
 
-auto ValueBase_Boxed::create_param_spec(const Glib::ustring& name,
-  const Glib::ustring& nick, const Glib::ustring& blurb, Glib::ParamFlags flags) const -> GParamSpec*
+auto ValueBase_Boxed::create_param_spec(const ustring & name,
+  const ustring & nick, const ustring & blurb, ParamFlags flags) const -> GParamSpec*
 {
   return g_param_spec_boxed(
       name.c_str(), c_str_or_nullptr(nick), c_str_or_nullptr(blurb),
@@ -107,28 +108,29 @@ ValueBase_Object::value_type() -> GType
   return G_TYPE_OBJECT;
 }
 
-auto ValueBase_Object::set_object (Glib::ObjectBase *data) -> void
+auto ValueBase_Object::set_object (
+  ObjectBase *data) -> void
 {
-  g_value_set_object(&gobject_, (data) ? data->gobj() : nullptr);
+  g_value_set_object(&gobject_, data ? data->gobj() : nullptr);
 }
 
 auto
-ValueBase_Object::get_object() const -> Glib::ObjectBase*
-{
-  GObject* const data = static_cast<GObject*>(g_value_get_object(&gobject_));
-  return Glib::wrap_auto(data, false);
-}
-
-auto
-ValueBase_Object::get_object_copy() const -> Glib::RefPtr<Glib::ObjectBase>
+ValueBase_Object::get_object() const -> ObjectBase*
 {
   GObject* const data = static_cast<GObject*>(g_value_get_object(&gobject_));
-  return Glib::make_refptr_for_instance<Glib::ObjectBase>(Glib::wrap_auto(data, true));
+  return wrap_auto(data, false);
 }
 
 auto
-ValueBase_Object::create_param_spec(const Glib::ustring& name,
-  const Glib::ustring& nick, const Glib::ustring& blurb, Glib::ParamFlags flags) const -> GParamSpec*
+ValueBase_Object::get_object_copy() const -> RefPtr<ObjectBase>
+{
+  GObject* const data = static_cast<GObject*>(g_value_get_object(&gobject_));
+  return Glib::make_refptr_for_instance<ObjectBase>(wrap_auto(data, true));
+}
+
+auto
+ValueBase_Object::create_param_spec(const ustring & name,
+  const ustring & nick, const ustring & blurb, ParamFlags flags) const -> GParamSpec*
 {
   // Glib::Value_Pointer<> derives from Glib::ValueBase_Object, because
   // we don't know beforehand whether a certain type is derived from
@@ -159,7 +161,8 @@ ValueBase_Enum::value_type() -> GType
   return G_TYPE_ENUM;
 }
 
-auto ValueBase_Enum::set_enum (int data) -> void
+auto ValueBase_Enum::set_enum (
+  const int data) -> void
 {
   g_value_set_enum(&gobject_, data);
 }
@@ -171,8 +174,8 @@ ValueBase_Enum::get_enum() const -> int
 }
 
 auto
-ValueBase_Enum::create_param_spec(const Glib::ustring& name,
-  const Glib::ustring& nick, const Glib::ustring& blurb, Glib::ParamFlags flags) const -> GParamSpec*
+ValueBase_Enum::create_param_spec(const ustring & name,
+  const ustring & nick, const ustring & blurb, ParamFlags flags) const -> GParamSpec*
 {
   return g_param_spec_enum(
       name.c_str(), c_str_or_nullptr(nick), c_str_or_nullptr(blurb), G_VALUE_TYPE(&gobject_),
@@ -188,7 +191,8 @@ ValueBase_Flags::value_type() -> GType
   return G_TYPE_FLAGS;
 }
 
-auto ValueBase_Flags::set_flags (unsigned int data) -> void
+auto ValueBase_Flags::set_flags (
+  const unsigned int data) -> void
 {
   g_value_set_flags(&gobject_, data);
 }
@@ -199,8 +203,8 @@ ValueBase_Flags::get_flags() const -> unsigned int
   return g_value_get_flags(&gobject_);
 }
 
-auto ValueBase_Flags::create_param_spec(const Glib::ustring& name,
-  const Glib::ustring& nick, const Glib::ustring& blurb, Glib::ParamFlags flags) const -> GParamSpec*
+auto ValueBase_Flags::create_param_spec(const ustring & name,
+  const ustring & nick, const ustring & blurb, ParamFlags flags) const -> GParamSpec*
 {
   return g_param_spec_flags(name.c_str(), c_str_or_nullptr(nick), c_str_or_nullptr(blurb),
       G_VALUE_TYPE(&gobject_), g_value_get_flags(&gobject_), static_cast<GParamFlags>(flags));
@@ -230,8 +234,8 @@ ValueBase_String::get_cstring() const -> const char*
 }
 
 auto
-ValueBase_String::create_param_spec(const Glib::ustring& name,
-  const Glib::ustring& nick, const Glib::ustring& blurb, Glib::ParamFlags flags) const -> GParamSpec*
+ValueBase_String::create_param_spec(const ustring & name,
+  const ustring & nick, const ustring & blurb, ParamFlags flags) const -> GParamSpec*
 {
   return g_param_spec_string(name.c_str(), c_str_or_nullptr(nick), c_str_or_nullptr(blurb),
       get_cstring(), static_cast<GParamFlags>(flags));
@@ -255,8 +259,8 @@ auto ValueBase_Variant::get_variant() const -> GVariant*
   return g_value_get_variant(&gobject_);
 }
 
-auto ValueBase_Variant::create_param_spec(const Glib::ustring& name,
-  const Glib::ustring& nick, const Glib::ustring& blurb, Glib::ParamFlags flags) const -> GParamSpec*
+auto ValueBase_Variant::create_param_spec(const ustring & name,
+  const ustring & nick, const ustring & blurb, ParamFlags flags) const -> GParamSpec*
 {
   GVariant* gvariant = g_value_get_variant(&gobject_);
   const GVariantType* gvariant_type = gvariant ? g_variant_get_type(gvariant) : G_VARIANT_TYPE_ANY;
@@ -275,7 +279,7 @@ auto Value <std::string>::set (const std::string &data) -> void
 
 /**** Glib::Value<Glib::ustring> *******************************************/
 
-auto Value <Glib::ustring>::set (const Glib::ustring &data) -> void
+auto Value <ustring>::set (const ustring &data) -> void
 {
   g_value_set_string(&gobject_, data.c_str());
 }
@@ -290,32 +294,32 @@ auto Value<std::vector<std::string>>::value_type() -> GType
 
 auto Value <std::vector <std::string>>::set (const CppType &data) -> void
 {
-  set_boxed(Glib::ArrayHandler<std::string>::vector_to_array(data).data());
+  set_boxed(ArrayHandler<std::string>::vector_to_array(data).data());
 }
 
 auto Value<std::vector<std::string>>::get() const -> std::vector<std::string>
 {
-  return Glib::ArrayHandler<std::string>::array_to_vector(
-    static_cast<const char* const*>(get_boxed()), Glib::OWNERSHIP_NONE);
+  return ArrayHandler<std::string>::array_to_vector(
+    static_cast<const char* const*>(get_boxed()), OWNERSHIP_NONE);
 }
 
 /**** Glib::Value<std::vector<Glib::ustring>> ********************************/
 
 // static
-auto Value<std::vector<Glib::ustring>>::value_type() -> GType
+auto Value<std::vector<ustring>>::value_type() -> GType
 {
   return G_TYPE_STRV;
 }
 
-auto Value <std::vector <Glib::ustring>>::set (const CppType &data) -> void
+auto Value <std::vector <ustring>>::set (const CppType &data) -> void
 {
-  set_boxed(Glib::ArrayHandler<Glib::ustring>::vector_to_array(data).data());
+  set_boxed(ArrayHandler<ustring>::vector_to_array(data).data());
 }
 
-auto Value<std::vector<Glib::ustring>>::get() const -> std::vector<Glib::ustring>
+auto Value<std::vector<ustring>>::get() const -> std::vector<ustring>
 {
-  return Glib::ArrayHandler<Glib::ustring>::array_to_vector(
-    static_cast<const char* const*>(get_boxed()), Glib::OWNERSHIP_NONE);
+  return ArrayHandler<ustring>::array_to_vector(
+    static_cast<const char* const*>(get_boxed()), OWNERSHIP_NONE);
 }
 
 } // namespace Glib

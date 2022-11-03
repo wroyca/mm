@@ -39,9 +39,9 @@ auto Glib::Value<Gdk::DevicePad::Feature>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GdkDevicePad* object, bool take_copy) -> Glib::RefPtr<Gdk::DevicePad>
+auto wrap(GdkDevicePad* object, const bool take_copy) -> RefPtr<Gdk::DevicePad>
 {
-  return Glib::make_refptr_for_instance<Gdk::DevicePad>( dynamic_cast<Gdk::DevicePad*> (Glib::wrap_auto_interface<Gdk::DevicePad> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gdk::DevicePad>( Glib::wrap_auto_interface<Gdk::DevicePad> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -54,7 +54,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-auto DevicePad_Class::init() -> const Glib::Interface_Class&
+auto DevicePad_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -83,42 +83,40 @@ auto DevicePad_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto DevicePad_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new DevicePad((GdkDevicePad*)(object));
+  return new DevicePad((GdkDevicePad*)object);
 }
 
 
 /* The implementation: */
 
 DevicePad::DevicePad()
-:
-  Glib::Interface(devicepad_class_.init())
+: Interface(devicepad_class_.init())
 {}
 
 DevicePad::DevicePad(GdkDevicePad* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 DevicePad::DevicePad(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 DevicePad::DevicePad(DevicePad&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto DevicePad::operator=(DevicePad&& src) noexcept -> DevicePad&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-DevicePad::~DevicePad() noexcept
-{}
+DevicePad::~DevicePad() noexcept = default;
 
 // static
-auto DevicePad::add_interface (GType gtype_implementer) -> void
+auto DevicePad::add_interface (
+  const GType gtype_implementer) -> void
 {
   devicepad_class_.init().add_interface(gtype_implementer);
 }
@@ -142,7 +140,8 @@ auto DevicePad::get_n_groups() const -> int
   return gdk_device_pad_get_n_groups(const_cast<GdkDevicePad*>(gobj()));
 }
 
-auto DevicePad::get_group_n_modes(int group_idx) const -> int
+auto DevicePad::get_group_n_modes(
+  const int group_idx) const -> int
 {
   return gdk_device_pad_get_group_n_modes(const_cast<GdkDevicePad*>(gobj()), group_idx);
 }
@@ -152,7 +151,7 @@ auto DevicePad::get_n_features(Feature feature) const -> int
   return gdk_device_pad_get_n_features(const_cast<GdkDevicePad*>(gobj()), static_cast<GdkDevicePadFeature>(feature));
 }
 
-auto DevicePad::get_feature_group(Feature feature, int feature_idx) const -> int
+auto DevicePad::get_feature_group(Feature feature, const int feature_idx) const -> int
 {
   return gdk_device_pad_get_feature_group(const_cast<GdkDevicePad*>(gobj()), static_cast<GdkDevicePadFeature>(feature), feature_idx);
 }

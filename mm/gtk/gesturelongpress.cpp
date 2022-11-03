@@ -30,12 +30,12 @@ namespace
 
 
 auto GestureLongPress_signal_pressed_callback (
-  GtkGestureLongPress *self, gdouble p0, gdouble p1, void *data) -> void
+  GtkGestureLongPress *self, const gdouble p0, const gdouble p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
 
-  auto obj = dynamic_cast<GestureLongPress*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<GestureLongPress*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -75,9 +75,9 @@ const Glib::SignalProxyInfo GestureLongPress_signal_cancelled_info =
 namespace Glib
 {
 
-auto wrap(GtkGestureLongPress* object, bool take_copy) -> Glib::RefPtr<Gtk::GestureLongPress>
+auto wrap(GtkGestureLongPress* object, const bool take_copy) -> RefPtr<Gtk::GestureLongPress>
 {
-  return Glib::make_refptr_for_instance<Gtk::GestureLongPress>( dynamic_cast<Gtk::GestureLongPress*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::GestureLongPress>( dynamic_cast<Gtk::GestureLongPress*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -90,7 +90,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto GestureLongPress_Class::init() -> const Glib::Class&
+auto GestureLongPress_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -144,7 +144,7 @@ GestureLongPress::GestureLongPress(const Glib::ConstructParams& construct_params
 
 GestureLongPress::GestureLongPress(GtkGestureLongPress* castitem)
 :
-  GestureSingle((GtkGestureSingle*)(castitem))
+  GestureSingle((GtkGestureSingle*)castitem)
 {}
 
 
@@ -159,9 +159,7 @@ auto GestureLongPress::operator=(GestureLongPress&& src) noexcept -> GestureLong
 }
 
 
-GestureLongPress::~GestureLongPress() noexcept
-{}
-
+GestureLongPress::~GestureLongPress() noexcept = default;
 
 GestureLongPress::CppClassType GestureLongPress::gesturelongpress_class_; // initialize static member
 
@@ -180,7 +178,7 @@ auto GestureLongPress::get_base_type() -> GType
 GestureLongPress::GestureLongPress()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   GestureSingle(Glib::ConstructParams(gesturelongpress_class_.init()))
 {
 
@@ -192,7 +190,8 @@ auto GestureLongPress::create() -> Glib::RefPtr<GestureLongPress>
   return Glib::make_refptr_for_instance<GestureLongPress>( new GestureLongPress() );
 }
 
-auto GestureLongPress::set_delay_factor (double delay_factor) -> void
+auto GestureLongPress::set_delay_factor (
+  const double delay_factor) -> void
 {
   gtk_gesture_long_press_set_delay_factor(gobj(), delay_factor);
 }
@@ -205,24 +204,24 @@ auto GestureLongPress::get_delay_factor() const -> double
 
 auto GestureLongPress::signal_pressed() -> Glib::SignalProxy<void(double, double)>
 {
-  return Glib::SignalProxy<void(double, double) >(this, &GestureLongPress_signal_pressed_info);
+  return {this, &GestureLongPress_signal_pressed_info};
 }
 
 
 auto GestureLongPress::signal_cancelled() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &GestureLongPress_signal_cancelled_info);
+  return {this, &GestureLongPress_signal_cancelled_info};
 }
 
 
 auto GestureLongPress::property_delay_factor() -> Glib::PropertyProxy< double >
 {
-  return Glib::PropertyProxy< double >(this, "delay-factor");
+  return {this, "delay-factor"};
 }
 
 auto GestureLongPress::property_delay_factor() const -> Glib::PropertyProxy_ReadOnly< double >
 {
-  return Glib::PropertyProxy_ReadOnly< double >(this, "delay-factor");
+  return {this, "delay-factor"};
 }
 
 

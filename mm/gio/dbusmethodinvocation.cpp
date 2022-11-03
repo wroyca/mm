@@ -42,9 +42,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GDBusMethodInvocation* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::MethodInvocation>
+auto wrap(GDBusMethodInvocation* object, const bool take_copy) -> RefPtr<Gio::DBus::MethodInvocation>
 {
-  return Glib::make_refptr_for_instance<Gio::DBus::MethodInvocation>( dynamic_cast<Gio::DBus::MethodInvocation*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::DBus::MethodInvocation>( dynamic_cast<Gio::DBus::MethodInvocation*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -57,7 +57,7 @@ namespace Gio::DBus
 
 /* The *_Class implementation: */
 
-auto MethodInvocation_Class::init() -> const Glib::Class&
+auto MethodInvocation_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -103,32 +103,28 @@ auto MethodInvocation::gobj_copy() -> GDBusMethodInvocation*
 }
 
 MethodInvocation::MethodInvocation(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 MethodInvocation::MethodInvocation(GDBusMethodInvocation* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 MethodInvocation::MethodInvocation(MethodInvocation&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto MethodInvocation::operator=(MethodInvocation&& src) noexcept -> MethodInvocation&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-MethodInvocation::~MethodInvocation() noexcept
-{}
-
+MethodInvocation::~MethodInvocation() noexcept = default;
 
 MethodInvocation::CppClassType MethodInvocation::methodinvocation_class_; // initialize static member
 
@@ -205,7 +201,7 @@ auto MethodInvocation::get_parameters() const -> Glib::VariantContainerBase
 
 auto MethodInvocation::return_value (const Glib::VariantContainerBase &parameters) -> void
 {
-  g_dbus_method_invocation_return_value(gobj(), const_cast<GVariant*>((parameters).gobj()));
+  g_dbus_method_invocation_return_value(gobj(), const_cast<GVariant*>(parameters.gobj()));
 }
 
 #ifdef G_OS_UNIX
@@ -216,7 +212,7 @@ void MethodInvocation::return_value(const Glib::VariantContainerBase& parameters
 #endif // G_OS_UNIX
 
 auto MethodInvocation::return_error (
-  const Glib::ustring &domain, int code, const Glib::ustring &message) -> void
+  const Glib::ustring &domain, const int code, const Glib::ustring &message) -> void
 {
   g_dbus_method_invocation_return_error_literal(gobj(), Glib::QueryQuark(domain).id(), code, message.c_str());
 }

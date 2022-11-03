@@ -38,22 +38,23 @@ namespace Gio
 Socket::Socket(SocketFamily family, Type type, Protocol protocol,
   const Glib::RefPtr<Cancellable>& cancellable)
 : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(socket_class_.init(), "family",int(family),"type",int(type),"protocol",int(protocol), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(socket_class_.init(), "family",int(family),"type",int(type),"protocol",int(protocol), nullptr))
 {
   init(cancellable);
 }
 
-Socket::Socket(int fd, const Glib::RefPtr<Cancellable>& cancellable) : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(socket_class_.init(), "fd",fd, nullptr))
+Socket::Socket(const int fd, const Glib::RefPtr<Cancellable>& cancellable) : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
+  ObjectBase(nullptr),
+  Object(Glib::ConstructParams(socket_class_.init(), "fd",fd, nullptr))
 {
   init(cancellable);
 }
 
 // static
 auto
-Socket::create(SocketFamily family, Type type, Protocol protocol,
+Socket::create(
+  const SocketFamily family, const Type type, const Protocol protocol,
   const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Socket>
 {
   return Glib::make_refptr_for_instance<Socket>(new Socket(family, type, protocol, cancellable));
@@ -61,21 +62,22 @@ Socket::create(SocketFamily family, Type type, Protocol protocol,
 
 // static
 auto
-Socket::create_from_fd(int fd, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Socket>
+Socket::create_from_fd(
+  const int fd, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Socket>
 {
   return Glib::make_refptr_for_instance<Socket>(new Socket(fd, cancellable));
 }
 
 auto
-Socket::receive_from(Glib::RefPtr<SocketAddress>& address, char* buffer, gsize size,
+Socket::receive_from(Glib::RefPtr<SocketAddress>& address, char* buffer, const gsize size,
   const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
   GSocketAddress* caddr = nullptr;
-  auto retvalue = g_socket_receive_from(
-    gobj(), &caddr, buffer, size, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_socket_receive_from(
+    gobj(), &caddr, buffer, size, Glib::unwrap(cancellable), &gerror);
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 
   if (caddr)
     address = Glib::wrap(caddr);
@@ -84,13 +86,13 @@ Socket::receive_from(Glib::RefPtr<SocketAddress>& address, char* buffer, gsize s
 }
 
 auto
-Socket::receive_from(Glib::RefPtr<SocketAddress>& address, char* buffer, gsize size) -> gssize
+Socket::receive_from(Glib::RefPtr<SocketAddress>& address, char* buffer, const gsize size) -> gssize
 {
   GError* gerror = nullptr;
   GSocketAddress* caddr = nullptr;
-  auto retvalue = g_socket_receive_from(gobj(), &caddr, buffer, size, nullptr, &(gerror));
+  const auto retvalue = g_socket_receive_from(gobj(), &caddr, buffer, size, nullptr, &gerror);
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 
   if (caddr)
     address = Glib::wrap(caddr);
@@ -100,32 +102,33 @@ Socket::receive_from(Glib::RefPtr<SocketAddress>& address, char* buffer, gsize s
 
 auto
 Socket::receive_with_blocking(
-  gchar* buffer, gsize size, bool blocking, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
+  gchar* buffer, const gsize size, const bool blocking, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
   const auto retvalue = g_socket_receive_with_blocking(
-    gobj(), buffer, size, blocking, Glib::unwrap(cancellable), &(gerror));
+    gobj(), buffer, size, blocking, Glib::unwrap(cancellable), &gerror);
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 
   return retvalue;
 }
 
 auto
 Socket::send_with_blocking(
-  gchar* buffer, gsize size, bool blocking, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
+  gchar* buffer, const gsize size, const bool blocking, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
   const auto retvalue = g_socket_send_with_blocking(
-    gobj(), buffer, size, blocking, Glib::unwrap(cancellable), &(gerror));
+    gobj(), buffer, size, blocking, Glib::unwrap(cancellable), &gerror);
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 
   return retvalue;
 }
 
 auto
-Socket::create_source(Glib::IOCondition condition, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketSource>
+Socket::create_source(
+  const Glib::IOCondition condition, const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketSource>
 {
   return SocketSource::create(gobj(), condition, cancellable);
 }
@@ -158,9 +161,9 @@ auto Glib::Value<Gio::Socket::MsgFlags>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GSocket* object, bool take_copy) -> Glib::RefPtr<Gio::Socket>
+auto wrap(GSocket* object, const bool take_copy) -> RefPtr<Gio::Socket>
 {
-  return Glib::make_refptr_for_instance<Gio::Socket>( dynamic_cast<Gio::Socket*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::Socket>( dynamic_cast<Gio::Socket*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -173,7 +176,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto Socket_Class::init() -> const Glib::Class&
+auto Socket_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -220,34 +223,30 @@ auto Socket::gobj_copy() -> GSocket*
 }
 
 Socket::Socket(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 Socket::Socket(GSocket* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 Socket::Socket(Socket&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , Initable(std::move(src))
 {}
 
 auto Socket::operator=(Socket&& src) noexcept -> Socket&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   Initable::operator=(std::move(src));
   return *this;
 }
 
 
-Socket::~Socket() noexcept
-{}
-
+Socket::~Socket() noexcept = default;
 
 Socket::CppClassType Socket::socket_class_; // initialize static member
 
@@ -263,37 +262,37 @@ auto Socket::get_base_type() -> GType
 }
 
 
-auto Socket::bind (const Glib::RefPtr <SocketAddress> &address, bool allow_reuse) -> void
+auto Socket::bind (const Glib::RefPtr <SocketAddress> &address, const bool allow_reuse) -> void
 {
   GError* gerror = nullptr;
-  g_socket_bind(gobj(), const_cast<GSocketAddress*>(Glib::unwrap(address)), static_cast<int>(allow_reuse), &(gerror));
+  g_socket_bind(gobj(), Glib::unwrap(address), allow_reuse, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
 auto Socket::listen () -> void
 {
   GError* gerror = nullptr;
-  g_socket_listen(gobj(), &(gerror));
+  g_socket_listen(gobj(), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
 auto Socket::accept(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Socket>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_socket_accept(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
+  auto retvalue = Glib::wrap(g_socket_accept(gobj(), Glib::unwrap(cancellable), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto Socket::accept() -> Glib::RefPtr<Socket>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_socket_accept(gobj(), nullptr, &(gerror)));
+  auto retvalue = Glib::wrap(g_socket_accept(gobj(), nullptr, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -302,87 +301,87 @@ auto Socket::connect (
   const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   GError* gerror = nullptr;
-  g_socket_connect(gobj(), const_cast<GSocketAddress*>(Glib::unwrap(address)), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  g_socket_connect(gobj(), Glib::unwrap(address), Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
 auto Socket::connect (const Glib::RefPtr <SocketAddress> &address) -> void
 {
   GError* gerror = nullptr;
-  g_socket_connect(gobj(), const_cast<GSocketAddress*>(Glib::unwrap(address)), nullptr, &(gerror));
+  g_socket_connect(gobj(), Glib::unwrap(address), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
 auto Socket::check_connect_result () -> void
 {
   GError* gerror = nullptr;
-  g_socket_check_connect_result(gobj(), &(gerror));
+  g_socket_check_connect_result(gobj(), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
-auto Socket::receive(char* buffer, gsize size, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
+auto Socket::receive(char* buffer, const gsize size, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
-  auto retvalue = g_socket_receive(gobj(), buffer, size, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_socket_receive(gobj(), buffer, size, Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto Socket::receive(char* buffer, gsize size) -> gssize
+auto Socket::receive(char* buffer, const gsize size) -> gssize
 {
   GError* gerror = nullptr;
-  auto retvalue = g_socket_receive(gobj(), buffer, size, nullptr, &(gerror));
+  const auto retvalue = g_socket_receive(gobj(), buffer, size, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto Socket::send(const gchar* buffer, gsize size, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
+auto Socket::send(const gchar* buffer, const gsize size, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
-  auto retvalue = g_socket_send(gobj(), buffer, size, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_socket_send(gobj(), buffer, size, Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto Socket::send(const gchar* buffer, gsize size) -> gssize
+auto Socket::send(const gchar* buffer, const gsize size) -> gssize
 {
   GError* gerror = nullptr;
-  auto retvalue = g_socket_send(gobj(), buffer, size, nullptr, &(gerror));
+  const auto retvalue = g_socket_send(gobj(), buffer, size, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto Socket::send_to(const Glib::RefPtr<SocketAddress>& address, const char* buffer, gsize size, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
+auto Socket::send_to(const Glib::RefPtr<SocketAddress>& address, const char* buffer, const gsize size, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
-  auto retvalue = g_socket_send_to(gobj(), const_cast<GSocketAddress*>(Glib::unwrap(address)), buffer, size, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_socket_send_to(gobj(), Glib::unwrap(address), buffer, size, Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto Socket::send_to(const Glib::RefPtr<SocketAddress>& address, const char* buffer, gsize size) -> gssize
+auto Socket::send_to(const Glib::RefPtr<SocketAddress>& address, const char* buffer, const gsize size) -> gssize
 {
   GError* gerror = nullptr;
-  auto retvalue = g_socket_send_to(gobj(), const_cast<GSocketAddress*>(Glib::unwrap(address)), buffer, size, nullptr, &(gerror));
+  const auto retvalue = g_socket_send_to(gobj(), Glib::unwrap(address), buffer, size, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto Socket::close () -> void
 {
   GError* gerror = nullptr;
-  g_socket_close(gobj(), &(gerror));
+  g_socket_close(gobj(), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
 auto Socket::is_closed() -> bool
@@ -390,12 +389,13 @@ auto Socket::is_closed() -> bool
   return g_socket_is_closed(gobj());
 }
 
-auto Socket::shutdown (bool shutdown_read, bool shutdown_write) -> void
+auto Socket::shutdown (
+  const bool shutdown_read, const bool shutdown_write) -> void
 {
   GError* gerror = nullptr;
-  g_socket_shutdown(gobj(), static_cast<int>(shutdown_read), static_cast<int>(shutdown_write), &(gerror));
+  g_socket_shutdown(gobj(), shutdown_read, shutdown_write, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
 auto Socket::is_connected() -> bool
@@ -417,38 +417,39 @@ auto Socket::condition_wait (
   Glib::IOCondition condition, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   GError* gerror = nullptr;
-  g_socket_condition_wait(gobj(), static_cast<GIOCondition>(condition), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  g_socket_condition_wait(gobj(), static_cast<GIOCondition>(condition), Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
 auto Socket::condition_wait (Glib::IOCondition condition) -> void
 {
   GError* gerror = nullptr;
-  g_socket_condition_wait(gobj(), static_cast<GIOCondition>(condition), nullptr, &(gerror));
+  g_socket_condition_wait(gobj(), static_cast<GIOCondition>(condition), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
 auto Socket::condition_timed_wait (
-  Glib::IOCondition condition, gint64 timeout,
+  Glib::IOCondition condition, const gint64 timeout,
   const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   GError* gerror = nullptr;
-  g_socket_condition_timed_wait(gobj(), static_cast<GIOCondition>(condition), timeout, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  g_socket_condition_timed_wait(gobj(), static_cast<GIOCondition>(condition), timeout, Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
-auto Socket::condition_timed_wait (Glib::IOCondition condition, gint64 timeout) -> void
+auto Socket::condition_timed_wait (Glib::IOCondition condition, const gint64 timeout) -> void
 {
   GError* gerror = nullptr;
-  g_socket_condition_timed_wait(gobj(), static_cast<GIOCondition>(condition), timeout, nullptr, &(gerror));
+  g_socket_condition_timed_wait(gobj(), static_cast<GIOCondition>(condition), timeout, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
-auto Socket::set_listen_backlog (int backlog) -> void
+auto Socket::set_listen_backlog (
+  const int backlog) -> void
 {
   g_socket_set_listen_backlog(gobj(), backlog);
 }
@@ -458,9 +459,10 @@ auto Socket::get_listen_backlog() const -> int
   return g_socket_get_listen_backlog(const_cast<GSocket*>(gobj()));
 }
 
-auto Socket::set_blocking (bool blocking) -> void
+auto Socket::set_blocking (
+  const bool blocking) -> void
 {
-  g_socket_set_blocking(gobj(), static_cast<int>(blocking));
+  g_socket_set_blocking(gobj(), blocking);
 }
 
 auto Socket::get_blocking() const -> bool
@@ -468,9 +470,10 @@ auto Socket::get_blocking() const -> bool
   return g_socket_get_blocking(const_cast<GSocket*>(gobj()));
 }
 
-auto Socket::set_keepalive (bool keepalive) -> void
+auto Socket::set_keepalive (
+  const bool keepalive) -> void
 {
-  g_socket_set_keepalive(gobj(), static_cast<int>(keepalive));
+  g_socket_set_keepalive(gobj(), keepalive);
 }
 
 auto Socket::get_keepalive() const -> bool
@@ -491,18 +494,18 @@ auto Socket::get_fd() const -> int
 auto Socket::get_local_address() const -> Glib::RefPtr<SocketAddress>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_socket_get_local_address(const_cast<GSocket*>(gobj()), &(gerror)));
+  auto retvalue = Glib::wrap(g_socket_get_local_address(const_cast<GSocket*>(gobj()), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto Socket::get_remote_address() const -> Glib::RefPtr<SocketAddress>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_socket_get_remote_address(const_cast<GSocket*>(gobj()), &(gerror)));
+  auto retvalue = Glib::wrap(g_socket_get_remote_address(const_cast<GSocket*>(gobj()), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -524,18 +527,18 @@ auto Socket::speaks_ipv4() const -> bool
 auto Socket::get_credentials() -> Glib::RefPtr<Credentials>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_socket_get_credentials(gobj(), &(gerror)));
+  auto retvalue = Glib::wrap(g_socket_get_credentials(gobj(), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto Socket::get_credentials() const -> Glib::RefPtr<const Credentials>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_socket_get_credentials(const_cast<GSocket*>(gobj()), &(gerror)));
+  auto retvalue = Glib::wrap(g_socket_get_credentials(const_cast<GSocket*>(gobj()), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -544,26 +547,29 @@ auto Socket::get_timeout() const -> guint
   return g_socket_get_timeout(const_cast<GSocket*>(gobj()));
 }
 
-auto Socket::set_timeout (guint timeout) -> void
+auto Socket::set_timeout (
+  const guint timeout) -> void
 {
   g_socket_set_timeout(gobj(), timeout);
 }
 
-auto Socket::get_option(int level, int optname, int& value) const -> bool
+auto Socket::get_option(
+  const int level, const int optname, int& value) const -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_socket_get_option(const_cast<GSocket*>(gobj()), level, optname, &(value), &(gerror));
+  const auto retvalue = g_socket_get_option(const_cast<GSocket*>(gobj()), level, optname, &value, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto Socket::set_option(int level, int optname, int value) -> bool
+auto Socket::set_option(
+  const int level, const int optname, const int value) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_socket_set_option(gobj(), level, optname, value, &(gerror));
+  const auto retvalue = g_socket_set_option(gobj(), level, optname, value, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -572,7 +578,8 @@ auto Socket::get_ttl() const -> guint
   return g_socket_get_ttl(const_cast<GSocket*>(gobj()));
 }
 
-auto Socket::set_ttl (guint ttl) -> void
+auto Socket::set_ttl (
+  const guint ttl) -> void
 {
   g_socket_set_ttl(gobj(), ttl);
 }
@@ -582,9 +589,10 @@ auto Socket::get_broadcast() const -> bool
   return g_socket_get_broadcast(const_cast<GSocket*>(gobj()));
 }
 
-auto Socket::set_broadcast (bool broadcast) -> void
+auto Socket::set_broadcast (
+  const bool broadcast) -> void
 {
-  g_socket_set_broadcast(gobj(), static_cast<int>(broadcast));
+  g_socket_set_broadcast(gobj(), broadcast);
 }
 
 auto Socket::get_multicast_loopback() const -> bool
@@ -592,9 +600,10 @@ auto Socket::get_multicast_loopback() const -> bool
   return g_socket_get_multicast_loopback(const_cast<GSocket*>(gobj()));
 }
 
-auto Socket::set_multicast_loopback (bool loopback) -> void
+auto Socket::set_multicast_loopback (
+  const bool loopback) -> void
 {
-  g_socket_set_multicast_loopback(gobj(), static_cast<int>(loopback));
+  g_socket_set_multicast_loopback(gobj(), loopback);
 }
 
 auto Socket::get_multicast_ttl() const -> guint
@@ -602,56 +611,57 @@ auto Socket::get_multicast_ttl() const -> guint
   return g_socket_get_multicast_ttl(const_cast<GSocket*>(gobj()));
 }
 
-auto Socket::set_multicast_ttl (guint ttl) -> void
+auto Socket::set_multicast_ttl (
+  const guint ttl) -> void
 {
   g_socket_set_multicast_ttl(gobj(), ttl);
 }
 
-auto Socket::join_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific, const std::string& iface) -> bool
+auto Socket::join_multicast_group(const Glib::RefPtr<InetAddress>& group, const bool source_specific, const std::string& iface) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_socket_join_multicast_group(gobj(), const_cast<GInetAddress*>(Glib::unwrap(group)), static_cast<int>(source_specific), iface.empty() ? nullptr : iface.c_str(), &(gerror));
+  const auto retvalue = g_socket_join_multicast_group(gobj(), Glib::unwrap(group), source_specific, iface.empty() ? nullptr : iface.c_str(), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto Socket::join_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific) -> bool
+auto Socket::join_multicast_group(const Glib::RefPtr<InetAddress>& group, const bool source_specific) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_socket_join_multicast_group(gobj(), const_cast<GInetAddress*>(Glib::unwrap(group)), static_cast<int>(source_specific), nullptr, &(gerror));
+  const auto retvalue = g_socket_join_multicast_group(gobj(), Glib::unwrap(group), source_specific, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto Socket::leave_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific, const std::string& iface) -> bool
+auto Socket::leave_multicast_group(const Glib::RefPtr<InetAddress>& group, const bool source_specific, const std::string& iface) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_socket_leave_multicast_group(gobj(), const_cast<GInetAddress*>(Glib::unwrap(group)), static_cast<int>(source_specific), iface.empty() ? nullptr : iface.c_str(), &(gerror));
+  const auto retvalue = g_socket_leave_multicast_group(gobj(), Glib::unwrap(group), source_specific, iface.empty() ? nullptr : iface.c_str(), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto Socket::leave_multicast_group(const Glib::RefPtr<InetAddress>& group, bool source_specific) -> bool
+auto Socket::leave_multicast_group(const Glib::RefPtr<InetAddress>& group, const bool source_specific) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_socket_leave_multicast_group(gobj(), const_cast<GInetAddress*>(Glib::unwrap(group)), static_cast<int>(source_specific), nullptr, &(gerror));
+  const auto retvalue = g_socket_leave_multicast_group(gobj(), Glib::unwrap(group), source_specific, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 
 auto Socket::property_blocking() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "blocking");
+  return {this, "blocking"};
 }
 
 auto Socket::property_blocking() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "blocking");
+  return {this, "blocking"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<SocketFamily>::value,
@@ -660,32 +670,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<SocketFamily>::value
 
 auto Socket::property_family() const -> Glib::PropertyProxy_ReadOnly< SocketFamily >
 {
-  return Glib::PropertyProxy_ReadOnly< SocketFamily >(this, "family");
+  return {this, "family"};
 }
 
 auto Socket::property_fd() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "fd");
+  return {this, "fd"};
 }
 
 auto Socket::property_keepalive() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "keepalive");
+  return {this, "keepalive"};
 }
 
 auto Socket::property_keepalive() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "keepalive");
+  return {this, "keepalive"};
 }
 
 auto Socket::property_listen_backlog() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "listen-backlog");
+  return {this, "listen-backlog"};
 }
 
 auto Socket::property_listen_backlog() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "listen-backlog");
+  return {this, "listen-backlog"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<SocketAddress>>::value,
@@ -694,7 +704,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<SocketA
 
 auto Socket::property_local_address() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> >(this, "local-address");
+  return {this, "local-address"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<SocketAddress>>::value,
@@ -703,17 +713,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<SocketA
 
 auto Socket::property_remote_address() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SocketAddress> >(this, "remote-address");
+  return {this, "remote-address"};
 }
 
 auto Socket::property_timeout() -> Glib::PropertyProxy< guint >
 {
-  return Glib::PropertyProxy< guint >(this, "timeout");
+  return {this, "timeout"};
 }
 
 auto Socket::property_timeout() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
-  return Glib::PropertyProxy_ReadOnly< guint >(this, "timeout");
+  return {this, "timeout"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Protocol>::value,
@@ -722,17 +732,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Protocol>::value,
 
 auto Socket::property_protocol() const -> Glib::PropertyProxy_ReadOnly< Protocol >
 {
-  return Glib::PropertyProxy_ReadOnly< Protocol >(this, "protocol");
+  return {this, "protocol"};
 }
 
 auto Socket::property_broadcast() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "broadcast");
+  return {this, "broadcast"};
 }
 
 auto Socket::property_broadcast() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "broadcast");
+  return {this, "broadcast"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Type>::value,
@@ -741,37 +751,37 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Type>::value,
 
 auto Socket::property_type() const -> Glib::PropertyProxy_ReadOnly< Type >
 {
-  return Glib::PropertyProxy_ReadOnly< Type >(this, "type");
+  return {this, "type"};
 }
 
 auto Socket::property_ttl() -> Glib::PropertyProxy< guint >
 {
-  return Glib::PropertyProxy< guint >(this, "ttl");
+  return {this, "ttl"};
 }
 
 auto Socket::property_ttl() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
-  return Glib::PropertyProxy_ReadOnly< guint >(this, "ttl");
+  return {this, "ttl"};
 }
 
 auto Socket::property_multicast_loopback() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "multicast-loopback");
+  return {this, "multicast-loopback"};
 }
 
 auto Socket::property_multicast_loopback() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "multicast-loopback");
+  return {this, "multicast-loopback"};
 }
 
 auto Socket::property_multicast_ttl() -> Glib::PropertyProxy< guint >
 {
-  return Glib::PropertyProxy< guint >(this, "multicast-ttl");
+  return {this, "multicast-ttl"};
 }
 
 auto Socket::property_multicast_ttl() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
-  return Glib::PropertyProxy_ReadOnly< guint >(this, "multicast-ttl");
+  return {this, "multicast-ttl"};
 }
 
 

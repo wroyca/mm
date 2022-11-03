@@ -35,9 +35,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkLayoutChild* object, bool take_copy) -> Glib::RefPtr<Gtk::LayoutChild>
+auto wrap(GtkLayoutChild* object, const bool take_copy) -> RefPtr<Gtk::LayoutChild>
 {
-  return Glib::make_refptr_for_instance<Gtk::LayoutChild>( dynamic_cast<Gtk::LayoutChild*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::LayoutChild>( dynamic_cast<Gtk::LayoutChild*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -50,7 +50,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto LayoutChild_Class::init() -> const Glib::Class&
+auto LayoutChild_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -96,32 +96,28 @@ auto LayoutChild::gobj_copy() -> GtkLayoutChild*
 }
 
 LayoutChild::LayoutChild(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 LayoutChild::LayoutChild(GtkLayoutChild* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 LayoutChild::LayoutChild(LayoutChild&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto LayoutChild::operator=(LayoutChild&& src) noexcept -> LayoutChild&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-LayoutChild::~LayoutChild() noexcept
-{}
-
+LayoutChild::~LayoutChild() noexcept = default;
 
 LayoutChild::CppClassType LayoutChild::layoutchild_class_; // initialize static member
 
@@ -140,8 +136,8 @@ auto LayoutChild::get_base_type() -> GType
 LayoutChild::LayoutChild()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(layoutchild_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(layoutchild_class_.init()))
 {
 
 
@@ -177,12 +173,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<LayoutM
 
 auto LayoutChild::property_layout_manager() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<LayoutManager> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<LayoutManager> >(this, "layout-manager");
+  return {this, "layout-manager"};
 }
 
 auto LayoutChild::property_child_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child-widget");
+  return {this, "child-widget"};
 }
 
 

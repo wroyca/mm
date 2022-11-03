@@ -30,12 +30,12 @@ namespace
 
 
 auto GestureRotate_signal_angle_changed_callback (
-  GtkGestureRotate *self, gdouble p0, gdouble p1, void *data) -> void
+  GtkGestureRotate *self, const gdouble p0, const gdouble p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
 
-  auto obj = dynamic_cast<GestureRotate*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<GestureRotate*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -67,9 +67,9 @@ const Glib::SignalProxyInfo GestureRotate_signal_angle_changed_info =
 namespace Glib
 {
 
-auto wrap(GtkGestureRotate* object, bool take_copy) -> Glib::RefPtr<Gtk::GestureRotate>
+auto wrap(GtkGestureRotate* object, const bool take_copy) -> RefPtr<Gtk::GestureRotate>
 {
-  return Glib::make_refptr_for_instance<Gtk::GestureRotate>( dynamic_cast<Gtk::GestureRotate*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::GestureRotate>( dynamic_cast<Gtk::GestureRotate*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -82,7 +82,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto GestureRotate_Class::init() -> const Glib::Class&
+auto GestureRotate_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -136,7 +136,7 @@ GestureRotate::GestureRotate(const Glib::ConstructParams& construct_params)
 
 GestureRotate::GestureRotate(GtkGestureRotate* castitem)
 :
-  Gesture((GtkGesture*)(castitem))
+  Gesture((GtkGesture*)castitem)
 {}
 
 
@@ -151,9 +151,7 @@ auto GestureRotate::operator=(GestureRotate&& src) noexcept -> GestureRotate&
 }
 
 
-GestureRotate::~GestureRotate() noexcept
-{}
-
+GestureRotate::~GestureRotate() noexcept = default;
 
 GestureRotate::CppClassType GestureRotate::gesturerotate_class_; // initialize static member
 
@@ -172,7 +170,7 @@ auto GestureRotate::get_base_type() -> GType
 GestureRotate::GestureRotate()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   Gesture(Glib::ConstructParams(gesturerotate_class_.init()))
 {
 
@@ -192,7 +190,7 @@ auto GestureRotate::get_angle_delta() const -> double
 
 auto GestureRotate::signal_angle_changed() -> Glib::SignalProxy<void(double, double)>
 {
-  return Glib::SignalProxy<void(double, double) >(this, &GestureRotate_signal_angle_changed_info);
+  return {this, &GestureRotate_signal_angle_changed_info};
 }
 
 

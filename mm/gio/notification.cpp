@@ -31,8 +31,8 @@ namespace Gio
 {
 
 Notification::Notification(const Glib::ustring& title) : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(notification_class_.init()))
+  ObjectBase(nullptr),
+  Object(Glib::ConstructParams(notification_class_.init()))
 {
   // The title is compulsory. Don't skip it, if it's empty.
   set_title(title);
@@ -54,9 +54,9 @@ auto Glib::Value<Gio::Notification::Priority>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GNotification* object, bool take_copy) -> Glib::RefPtr<Gio::Notification>
+auto wrap(GNotification* object, const bool take_copy) -> RefPtr<Gio::Notification>
 {
-  return Glib::make_refptr_for_instance<Gio::Notification>( dynamic_cast<Gio::Notification*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::Notification>( dynamic_cast<Gio::Notification*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -69,7 +69,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto Notification_Class::init() -> const Glib::Class&
+auto Notification_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -115,32 +115,28 @@ auto Notification::gobj_copy() -> GNotification*
 }
 
 Notification::Notification(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 Notification::Notification(GNotification* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 Notification::Notification(Notification&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto Notification::operator=(Notification&& src) noexcept -> Notification&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-Notification::~Notification() noexcept
-{}
-
+Notification::~Notification() noexcept = default;
 
 Notification::CppClassType Notification::notification_class_; // initialize static member
 
@@ -173,7 +169,7 @@ auto Notification::set_body (const Glib::ustring &body) -> void
 
 auto Notification::set_icon (const Glib::RefPtr <Icon> &icon) -> void
 {
-  g_notification_set_icon(gobj(), const_cast<GIcon*>(Glib::unwrap(icon)));
+  g_notification_set_icon(gobj(), Glib::unwrap(icon));
 }
 
 auto Notification::set_priority (Priority priority) -> void
@@ -195,7 +191,7 @@ auto Notification::add_button (
 auto Notification::add_button_variant (
   const Glib::ustring &label, const Glib::ustring &action, const Glib::VariantBase &target) -> void
 {
-  g_notification_add_button_with_target_value(gobj(), label.c_str(), action.c_str(), const_cast<GVariant*>((target).gobj()));
+  g_notification_add_button_with_target_value(gobj(), label.c_str(), action.c_str(), const_cast<GVariant*>(target.gobj()));
 }
 
 auto Notification::set_default_action (const Glib::ustring &detailed_action) -> void
@@ -206,7 +202,7 @@ auto Notification::set_default_action (const Glib::ustring &detailed_action) -> 
 auto Notification::set_default_action_variant (
   const Glib::ustring &action, const Glib::VariantBase &target) -> void
 {
-  g_notification_set_default_action_and_target_value(gobj(), action.c_str(), const_cast<GVariant*>((target).gobj()));
+  g_notification_set_default_action_and_target_value(gobj(), action.c_str(), const_cast<GVariant*>(target.gobj()));
 }
 
 

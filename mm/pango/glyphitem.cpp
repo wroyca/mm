@@ -36,7 +36,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(PangoGlyphItem* object, bool take_copy) -> Pango::GlyphItem
+auto wrap(PangoGlyphItem* object, const bool take_copy) -> Pango::GlyphItem
 {
   return Pango::GlyphItem(object, take_copy);
 }
@@ -61,7 +61,7 @@ GlyphItem::GlyphItem()
 
 GlyphItem::GlyphItem(const GlyphItem& other)
 :
-  gobject_ ((other.gobject_) ? pango_glyph_item_copy(other.gobject_) : nullptr)
+  gobject_ (other.gobject_ ? pango_glyph_item_copy(other.gobject_) : nullptr)
 {}
 
 GlyphItem::GlyphItem(GlyphItem&& other) noexcept
@@ -78,12 +78,12 @@ auto GlyphItem::operator=(GlyphItem&& other) noexcept -> GlyphItem&
   return *this;
 }
 
-GlyphItem::GlyphItem(PangoGlyphItem* gobject, bool make_a_copy)
+GlyphItem::GlyphItem(PangoGlyphItem* gobject, const bool make_a_copy)
 :
   // For BoxedType wrappers, make_a_copy is true by default.  The static
   // BoxedType wrappers must always take a copy, thus make_a_copy = true
   // ensures identical behaviour if the default argument is used.
-  gobject_ ((make_a_copy && gobject) ? pango_glyph_item_copy(gobject) : gobject)
+  gobject_ (make_a_copy && gobject ? pango_glyph_item_copy(gobject) : gobject)
 {}
 
 auto GlyphItem::operator=(const GlyphItem& other) -> GlyphItem&
@@ -110,25 +110,25 @@ auto GlyphItem::gobj_copy() const -> PangoGlyphItem*
 }
 
 
-auto GlyphItem::split(const Glib::ustring& text, int split_index) -> GlyphItem
+auto GlyphItem::split(const Glib::ustring& text, const int split_index) -> GlyphItem
 {
   return Glib::wrap(pango_glyph_item_split(gobj(), text.c_str(), split_index));
 }
 
 auto GlyphItem::letter_space (
-  const Glib::ustring &text, const LogAttr &log_attrs, int letter_spacing) -> void
+  const Glib::ustring &text, const LogAttr &log_attrs, const int letter_spacing) -> void
 {
-  pango_glyph_item_letter_space(gobj(), text.c_str(), &(const_cast<LogAttr&>(log_attrs)), letter_spacing);
+  pango_glyph_item_letter_space(gobj(), text.c_str(), &const_cast<LogAttr&>(log_attrs), letter_spacing);
 }
 
 auto GlyphItem::get_item() const -> Item
 {
-  return Item((gobj()->item));
+  return Item(gobj()->item);
 }
 
 auto GlyphItem::get_glyphs() const -> GlyphString
 {
-  return GlyphString((gobj()->glyphs));
+  return GlyphString(gobj()->glyphs);
 }
 
 

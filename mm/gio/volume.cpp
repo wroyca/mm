@@ -40,7 +40,7 @@ auto Volume::mount (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_volume_mount(gobj(), static_cast<GMountMountFlags>(flags), Glib::unwrap(mount_operation),
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
@@ -53,7 +53,7 @@ auto Volume::mount (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_volume_mount(gobj(), static_cast<GMountMountFlags>(flags), Glib::unwrap(mount_operation),
     nullptr, // cancellable
@@ -82,7 +82,7 @@ auto Volume::eject (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_volume_eject_with_operation(gobj(), static_cast<GMountUnmountFlags>(flags),
     nullptr, // mount_operation
@@ -94,7 +94,7 @@ auto Volume::eject (const SlotAsyncReady &slot, Mount::UnmountFlags flags) -> vo
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_volume_eject_with_operation(gobj(), static_cast<GMountUnmountFlags>(flags),
     nullptr, // mount_operation
@@ -118,7 +118,7 @@ auto Volume::eject (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_volume_eject_with_operation(gobj(), static_cast<GMountUnmountFlags>(flags),
     Glib::unwrap(mount_operation), Glib::unwrap(cancellable), &SignalProxy_async_callback,
@@ -132,7 +132,7 @@ auto Volume::eject (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_volume_eject_with_operation(gobj(), static_cast<GMountUnmountFlags>(flags),
     Glib::unwrap(mount_operation),
@@ -178,9 +178,9 @@ const Glib::SignalProxyInfo Volume_signal_removed_info =
 namespace Glib
 {
 
-auto wrap(GVolume* object, bool take_copy) -> Glib::RefPtr<Gio::Volume>
+auto wrap(GVolume* object, const bool take_copy) -> RefPtr<Gio::Volume>
 {
-  return Glib::make_refptr_for_instance<Gio::Volume>( dynamic_cast<Gio::Volume*> (Glib::wrap_auto_interface<Gio::Volume> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::Volume>( Glib::wrap_auto_interface<Gio::Volume> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -193,7 +193,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto Volume_Class::init() -> const Glib::Interface_Class&
+auto Volume_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -224,8 +224,7 @@ auto Volume_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto Volume_Class::changed_callback (GVolume *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -261,8 +260,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto Volume_Class::removed_callback (GVolume *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -300,42 +298,40 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 
 auto Volume_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new Volume((GVolume*)(object));
+  return new Volume((GVolume*)object);
 }
 
 
 /* The implementation: */
 
 Volume::Volume()
-:
-  Glib::Interface(volume_class_.init())
+: Interface(volume_class_.init())
 {}
 
 Volume::Volume(GVolume* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 Volume::Volume(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 Volume::Volume(Volume&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto Volume::operator=(Volume&& src) noexcept -> Volume&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-Volume::~Volume() noexcept
-{}
+Volume::~Volume() noexcept = default;
 
 // static
-auto Volume::add_interface (GType gtype_implementer) -> void
+auto Volume::add_interface (
+  const GType gtype_implementer) -> void
 {
   volume_class_.init().add_interface(gtype_implementer);
 }
@@ -434,18 +430,18 @@ auto Volume::should_automount() const -> bool
 auto Volume::mount_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_volume_mount_finish(gobj(), Glib::unwrap(result), &(gerror));
+  const auto retvalue = g_volume_mount_finish(gobj(), Glib::unwrap(result), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto Volume::eject_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_volume_eject_with_operation_finish(gobj(), Glib::unwrap(result), &(gerror));
+  const auto retvalue = g_volume_eject_with_operation_finish(gobj(), Glib::unwrap(result), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -477,31 +473,31 @@ auto Volume::sort_key() -> Glib::ustring
 
 auto Volume::signal_changed() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Volume_signal_changed_info);
+  return {this, &Volume_signal_changed_info};
 }
 
 
 auto Volume::signal_removed() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Volume_signal_removed_info);
+  return {this, &Volume_signal_removed_info};
 }
 
 
-auto Gio::Volume::on_changed () -> void
+auto Volume::on_changed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->changed)
     (*base->changed)(gobj());
 }
-auto Gio::Volume::on_removed () -> void
+auto Volume::on_removed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->removed)

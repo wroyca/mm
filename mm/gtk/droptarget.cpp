@@ -61,15 +61,15 @@ auto DropTarget_signal_accept_callback(GtkDropTarget* self, GdkDrop* p0,void* da
   using namespace Gtk;
   using SlotType = sigc::slot<bool(const Glib::RefPtr<Gdk::Drop>&)>;
 
-  auto obj = dynamic_cast<DropTarget*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<DropTarget*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return static_cast<int>((*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
-));
+        return (*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
+        );
     }
     catch(...)
     {
@@ -86,7 +86,7 @@ auto DropTarget_signal_accept_notify_callback(GtkDropTarget* self, GdkDrop* p0, 
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gdk::Drop>&)>;
 
-  auto obj = dynamic_cast<DropTarget*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<DropTarget*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -114,12 +114,12 @@ const Glib::SignalProxyInfo DropTarget_signal_accept_info =
 };
 
 
-auto DropTarget_signal_enter_callback(GtkDropTarget* self, gdouble p0,gdouble p1,void* data) -> GdkDragAction
+auto DropTarget_signal_enter_callback(GtkDropTarget* self, const gdouble p0, const gdouble p1,void* data) -> GdkDragAction
 {
   using namespace Gtk;
   using SlotType = sigc::slot<Gdk::DragAction(double, double)>;
 
-  auto obj = dynamic_cast<DropTarget*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<DropTarget*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -140,12 +140,12 @@ auto DropTarget_signal_enter_callback(GtkDropTarget* self, gdouble p0,gdouble p1
   return RType();
 }
 
-auto DropTarget_signal_enter_notify_callback(GtkDropTarget* self, gdouble p0,gdouble p1, void* data) -> GdkDragAction
+auto DropTarget_signal_enter_notify_callback(GtkDropTarget* self, const gdouble p0, const gdouble p1, void* data) -> GdkDragAction
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
 
-  auto obj = dynamic_cast<DropTarget*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<DropTarget*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -174,12 +174,12 @@ const Glib::SignalProxyInfo DropTarget_signal_enter_info =
 };
 
 
-auto DropTarget_signal_motion_callback(GtkDropTarget* self, gdouble p0,gdouble p1,void* data) -> GdkDragAction
+auto DropTarget_signal_motion_callback(GtkDropTarget* self, const gdouble p0, const gdouble p1,void* data) -> GdkDragAction
 {
   using namespace Gtk;
   using SlotType = sigc::slot<Gdk::DragAction(double, double)>;
 
-  auto obj = dynamic_cast<DropTarget*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<DropTarget*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -200,12 +200,12 @@ auto DropTarget_signal_motion_callback(GtkDropTarget* self, gdouble p0,gdouble p
   return RType();
 }
 
-auto DropTarget_signal_motion_notify_callback(GtkDropTarget* self, gdouble p0,gdouble p1, void* data) -> GdkDragAction
+auto DropTarget_signal_motion_notify_callback(GtkDropTarget* self, const gdouble p0, const gdouble p1, void* data) -> GdkDragAction
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double)>;
 
-  auto obj = dynamic_cast<DropTarget*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<DropTarget*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -242,22 +242,22 @@ const Glib::SignalProxyInfo DropTarget_signal_leave_info =
 };
 
 
-auto DropTarget_signal_drop_callback(GtkDropTarget* self, const GValue* p0,gdouble p1,gdouble p2,void* data) -> gboolean
+auto DropTarget_signal_drop_callback(GtkDropTarget* self, const GValue* p0, const gdouble p1, const gdouble p2,void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<bool(const Glib::ValueBase&, double, double)>;
 
-  auto obj = dynamic_cast<DropTarget*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<DropTarget*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return static_cast<int>((*static_cast<SlotType*>(slot))(*reinterpret_cast<const Glib::ValueBase*>(p0)
-, p1
-, p2
-));
+        return (*static_cast<SlotType*>(slot))(*reinterpret_cast<const Glib::ValueBase*>(p0)
+                                               , p1
+                                               , p2
+        );
     }
     catch(...)
     {
@@ -269,12 +269,12 @@ auto DropTarget_signal_drop_callback(GtkDropTarget* self, const GValue* p0,gdoub
   return RType();
 }
 
-auto DropTarget_signal_drop_notify_callback(GtkDropTarget* self, const GValue* p0,gdouble p1,gdouble p2, void* data) -> gboolean
+auto DropTarget_signal_drop_notify_callback(GtkDropTarget* self, const GValue* p0, const gdouble p1, const gdouble p2, void* data) -> gboolean
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ValueBase&, double, double)>;
 
-  auto obj = dynamic_cast<DropTarget*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<DropTarget*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -310,9 +310,9 @@ const Glib::SignalProxyInfo DropTarget_signal_drop_info =
 namespace Glib
 {
 
-auto wrap(GtkDropTarget* object, bool take_copy) -> Glib::RefPtr<Gtk::DropTarget>
+auto wrap(GtkDropTarget* object, const bool take_copy) -> RefPtr<Gtk::DropTarget>
 {
-  return Glib::make_refptr_for_instance<Gtk::DropTarget>( dynamic_cast<Gtk::DropTarget*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::DropTarget>( dynamic_cast<Gtk::DropTarget*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -325,7 +325,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto DropTarget_Class::init() -> const Glib::Class&
+auto DropTarget_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -379,7 +379,7 @@ DropTarget::DropTarget(const Glib::ConstructParams& construct_params)
 
 DropTarget::DropTarget(GtkDropTarget* castitem)
 :
-  EventController((GtkEventController*)(castitem))
+  EventController((GtkEventController*)castitem)
 {}
 
 
@@ -394,9 +394,7 @@ auto DropTarget::operator=(DropTarget&& src) noexcept -> DropTarget&
 }
 
 
-DropTarget::~DropTarget() noexcept
-{}
-
+DropTarget::~DropTarget() noexcept = default;
 
 DropTarget::CppClassType DropTarget::droptarget_class_; // initialize static member
 
@@ -412,7 +410,8 @@ auto DropTarget::get_base_type() -> GType
 }
 
 
-auto DropTarget::create(GType type, Gdk::DragAction actions) -> Glib::RefPtr<DropTarget>
+auto DropTarget::create(
+  const GType type, Gdk::DragAction actions) -> Glib::RefPtr<DropTarget>
 {
   return Glib::wrap(gtk_drop_target_new(type, static_cast<GdkDragAction>(actions)));
 }
@@ -440,9 +439,10 @@ auto DropTarget::get_actions() const -> Gdk::DragAction
   return static_cast<Gdk::DragAction>(gtk_drop_target_get_actions(const_cast<GtkDropTarget*>(gobj())));
 }
 
-auto DropTarget::set_preload (bool preload) -> void
+auto DropTarget::set_preload (
+  const bool preload) -> void
 {
-  gtk_drop_target_set_preload(gobj(), static_cast<int>(preload));
+  gtk_drop_target_set_preload(gobj(), preload);
 }
 
 auto DropTarget::get_preload() const -> bool
@@ -492,31 +492,31 @@ auto DropTarget::reject () -> void
 
 auto DropTarget::signal_accept() -> Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drop>&)>
 {
-  return Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::Drop>&) >(this, &DropTarget_signal_accept_info);
+  return {this, &DropTarget_signal_accept_info};
 }
 
 
 auto DropTarget::signal_enter() -> Glib::SignalProxy<Gdk::DragAction(double, double)>
 {
-  return Glib::SignalProxy<Gdk::DragAction(double, double) >(this, &DropTarget_signal_enter_info);
+  return {this, &DropTarget_signal_enter_info};
 }
 
 
 auto DropTarget::signal_motion() -> Glib::SignalProxy<Gdk::DragAction(double, double)>
 {
-  return Glib::SignalProxy<Gdk::DragAction(double, double) >(this, &DropTarget_signal_motion_info);
+  return {this, &DropTarget_signal_motion_info};
 }
 
 
 auto DropTarget::signal_leave() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &DropTarget_signal_leave_info);
+  return {this, &DropTarget_signal_leave_info};
 }
 
 
 auto DropTarget::signal_drop() -> Glib::SignalProxy<bool(const Glib::ValueBase&, double, double)>
 {
-  return Glib::SignalProxy<bool(const Glib::ValueBase&, double, double) >(this, &DropTarget_signal_drop_info);
+  return {this, &DropTarget_signal_drop_info};
 }
 
 
@@ -526,12 +526,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::DragAction>::va
 
 auto DropTarget::property_actions() -> Glib::PropertyProxy< Gdk::DragAction >
 {
-  return Glib::PropertyProxy< Gdk::DragAction >(this, "actions");
+  return {this, "actions"};
 }
 
 auto DropTarget::property_actions() const -> Glib::PropertyProxy_ReadOnly< Gdk::DragAction >
 {
-  return Glib::PropertyProxy_ReadOnly< Gdk::DragAction >(this, "actions");
+  return {this, "actions"};
 }
 
 #ifndef GTKMM_DISABLE_DEPRECATED
@@ -542,7 +542,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Dr
 
 auto DropTarget::property_drop() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Drop> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Drop> >(this, "drop");
+  return {this, "drop"};
 }
 #endif // GTKMM_DISABLE_DEPRECATED
 
@@ -553,7 +553,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Dr
 
 auto DropTarget::property_current_drop() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Drop> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::Drop> >(this, "current-drop");
+  return {this, "current-drop"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::ContentFormats>>::value,
@@ -562,17 +562,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::Co
 
 auto DropTarget::property_formats() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::ContentFormats> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::ContentFormats> >(this, "formats");
+  return {this, "formats"};
 }
 
 auto DropTarget::property_preload() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "preload");
+  return {this, "preload"};
 }
 
 auto DropTarget::property_preload() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "preload");
+  return {this, "preload"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<GValue*>::value,
@@ -581,7 +581,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<GValue*>::value,
 
 auto DropTarget::property_value() const -> Glib::PropertyProxy_ReadOnly< GValue* >
 {
-  return Glib::PropertyProxy_ReadOnly< GValue* >(this, "value");
+  return {this, "value"};
 }
 
 

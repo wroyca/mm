@@ -52,9 +52,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GMenuLinkIter* object, bool take_copy) -> Glib::RefPtr<Gio::MenuLinkIter>
+auto wrap(GMenuLinkIter* object, const bool take_copy) -> RefPtr<Gio::MenuLinkIter>
 {
-  return Glib::make_refptr_for_instance<Gio::MenuLinkIter>( dynamic_cast<Gio::MenuLinkIter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::MenuLinkIter>( dynamic_cast<Gio::MenuLinkIter*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -67,7 +67,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto MenuLinkIter_Class::init() -> const Glib::Class&
+auto MenuLinkIter_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -113,32 +113,28 @@ auto MenuLinkIter::gobj_copy() -> GMenuLinkIter*
 }
 
 MenuLinkIter::MenuLinkIter(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 MenuLinkIter::MenuLinkIter(GMenuLinkIter* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 MenuLinkIter::MenuLinkIter(MenuLinkIter&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto MenuLinkIter::operator=(MenuLinkIter&& src) noexcept -> MenuLinkIter&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-MenuLinkIter::~MenuLinkIter() noexcept
-{}
-
+MenuLinkIter::~MenuLinkIter() noexcept = default;
 
 MenuLinkIter::CppClassType MenuLinkIter::menulinkiter_class_; // initialize static member
 
@@ -157,8 +153,8 @@ auto MenuLinkIter::get_base_type() -> GType
 MenuLinkIter::MenuLinkIter()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(menulinkiter_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(menulinkiter_class_.init()))
 {
 
 

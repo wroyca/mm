@@ -31,8 +31,7 @@
 namespace Pango
 {
 
-Analysis::Analysis()
-{}
+Analysis::Analysis() = default;
 
 Analysis::Analysis(const PangoAnalysis* src)
 :
@@ -48,10 +47,10 @@ auto Analysis::get_extra_attrs() const -> std::vector<Attribute>
 
 Item::Item(const Item& src)
 :
-  gobject_ ((src.gobject_) ? pango_item_copy(src.gobject_) : nullptr)
+  gobject_ (src.gobject_ ? pango_item_copy(src.gobject_) : nullptr)
 {}
 
-Item::Item(PangoItem* castitem, bool make_a_copy)
+Item::Item(PangoItem* castitem, const bool make_a_copy)
 {
   // For BoxedType wrappers, make_a_copy is true by default.  The static
   // BoxedType wrappers must always take a copy, thus make_a_copy = true
@@ -73,7 +72,7 @@ Item::Item(PangoItem* castitem, bool make_a_copy)
 
 auto Item::operator=(const Item& src) -> Item&
 {
-  auto* const new_gobject = (src.gobject_) ? pango_item_copy(src.gobject_) : nullptr;
+  auto* const new_gobject = src.gobject_ ? pango_item_copy(src.gobject_) : nullptr;
 
   if(gobject_)
     pango_item_free(gobject_);
@@ -101,16 +100,16 @@ auto Item::get_analysis() const -> Analysis
 auto Item::get_segment(const Glib::ustring& text) const -> Glib::ustring
 {
   const char *const start = text.data() + gobj()->offset;
-  return Glib::ustring(start, start + gobj()->length);
+  return {start, start + gobj()->length};
 }
 
-auto Item::shape(const Glib::ustring& text) const -> Pango::GlyphString
+auto Item::shape(const Glib::ustring& text) const -> GlyphString
 {
   return GlyphString(text, get_analysis());
 }
 
 auto Item::shape(const Glib::ustring& item_text,
-  const Glib::ustring& paragraph_text, ShapeFlags flags) const -> Pango::GlyphString
+  const Glib::ustring& paragraph_text, const ShapeFlags flags) const -> GlyphString
 {
   return GlyphString(item_text, paragraph_text, get_analysis(), flags);
 }
@@ -131,7 +130,7 @@ auto wrap(const PangoAnalysis* object) -> const Pango::Analysis&
   return *reinterpret_cast<const Pango::Analysis*>(object);
 }
 
-auto wrap(PangoItem* object, bool take_copy) -> Pango::Item
+auto wrap(PangoItem* object, const bool take_copy) -> Pango::Item
 {
   return Pango::Item(object, take_copy);
 }
@@ -191,9 +190,10 @@ namespace Pango
 {
 
 
-auto Item::split(int split_index, int split_offset) -> Item
+auto Item::split(
+  const int split_index, const int split_offset) -> Item
 {
-  return Item((pango_item_split(gobj(), split_index, split_offset)));
+  return Item(pango_item_split(gobj(), split_index, split_offset));
 }
 
 auto Item::get_offset() const -> int

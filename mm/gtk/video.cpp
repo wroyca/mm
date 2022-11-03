@@ -30,8 +30,8 @@ namespace Gtk
 
 Video::Video(const std::string& filename)
 : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(video_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(video_class_.init()))
 {
   gtk_video_set_filename(gobj(), Glib::c_str_or_nullptr(filename));
 }
@@ -46,9 +46,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkVideo* object, bool take_copy) -> Gtk::Video*
+auto wrap(GtkVideo* object, const bool take_copy) -> Gtk::Video*
 {
-  return dynamic_cast<Gtk::Video *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::Video *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -59,7 +59,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Video_Class::init() -> const Glib::Class&
+auto Video_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -86,7 +86,7 @@ auto Video_Class::class_init_function (void *g_class, void *class_data) -> void
 
 auto Video_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new Video((GtkVideo*)(o)));
+  return manage(new Video((GtkVideo*)o));
 
 }
 
@@ -94,25 +94,23 @@ auto Video_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 Video::Video(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 Video::Video(GtkVideo* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 Video::Video(Video&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
 {}
 
 auto Video::operator=(Video&& src) noexcept -> Video&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   return *this;
 }
 
@@ -138,8 +136,8 @@ auto Video::get_base_type() -> GType
 Video::Video()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(video_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(video_class_.init()))
 {
 
 
@@ -148,8 +146,8 @@ Video::Video()
 Video::Video(const Glib::RefPtr<MediaStream>& media_stream)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(video_class_.init(), "media_stream", Glib::unwrap(media_stream), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(video_class_.init(), "media_stream", Glib::unwrap(media_stream), nullptr))
 {
 
 
@@ -158,8 +156,8 @@ Video::Video(const Glib::RefPtr<MediaStream>& media_stream)
 Video::Video(const Glib::RefPtr<Gio::File>& file)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(video_class_.init(), "file", const_cast<GFile*>(Glib::unwrap<Gio::File>(file)), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(video_class_.init(), "file", Glib::unwrap<Gio::File>(file), nullptr))
 {
 
 
@@ -216,9 +214,10 @@ auto Video::get_autoplay() const -> bool
   return gtk_video_get_autoplay(const_cast<GtkVideo*>(gobj()));
 }
 
-auto Video::set_autoplay (bool autoplay) -> void
+auto Video::set_autoplay (
+  const bool autoplay) -> void
 {
-  gtk_video_set_autoplay(gobj(), static_cast<int>(autoplay));
+  gtk_video_set_autoplay(gobj(), autoplay);
 }
 
 auto Video::get_loop() const -> bool
@@ -226,9 +225,10 @@ auto Video::get_loop() const -> bool
   return gtk_video_get_loop(const_cast<GtkVideo*>(gobj()));
 }
 
-auto Video::set_loop (bool loop) -> void
+auto Video::set_loop (
+  const bool loop) -> void
 {
-  gtk_video_set_loop(gobj(), static_cast<int>(loop));
+  gtk_video_set_loop(gobj(), loop);
 }
 
 
@@ -238,12 +238,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<MediaSt
 
 auto Video::property_media_stream() -> Glib::PropertyProxy< Glib::RefPtr<MediaStream> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<MediaStream> >(this, "media-stream");
+  return {this, "media-stream"};
 }
 
 auto Video::property_media_stream() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<MediaStream> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<MediaStream> >(this, "media-stream");
+  return {this, "media-stream"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::File>>::value,
@@ -252,32 +252,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Fi
 
 auto Video::property_file() -> Glib::PropertyProxy< Glib::RefPtr<Gio::File> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Gio::File> >(this, "file");
+  return {this, "file"};
 }
 
 auto Video::property_file() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >(this, "file");
+  return {this, "file"};
 }
 
 auto Video::property_autoplay() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "autoplay");
+  return {this, "autoplay"};
 }
 
 auto Video::property_autoplay() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "autoplay");
+  return {this, "autoplay"};
 }
 
 auto Video::property_loop() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "loop");
+  return {this, "loop"};
 }
 
 auto Video::property_loop() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "loop");
+  return {this, "loop"};
 }
 
 

@@ -33,7 +33,8 @@ auto generate_cellrenderer< Glib::RefPtr<Gdk::Pixbuf> >(bool /*editable*/) -> Ce
 }
 
 template<>
-auto generate_cellrenderer<bool>(bool editable) -> CellRenderer*
+auto generate_cellrenderer<bool>(
+  const bool editable) -> CellRenderer*
 {
   CellRendererToggle* pCellRenderer = new CellRendererToggle();
 
@@ -44,7 +45,8 @@ auto generate_cellrenderer<bool>(bool editable) -> CellRenderer*
 }
 
 template<>
-auto generate_cellrenderer<AccelKey>(bool editable) -> CellRenderer*
+auto generate_cellrenderer<AccelKey>(
+  const bool editable) -> CellRenderer*
 {
   CellRendererAccel* pCellRenderer = new CellRendererAccel();
 

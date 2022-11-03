@@ -17,13 +17,13 @@ public:
   using CppObjectType = LinkButton;
   using BaseObjectType = GtkLinkButton;
   using BaseClassType = GtkLinkButtonClass;
-  using CppClassParent = Gtk::Button_Class;
+  using CppClassParent = Button_Class;
   using BaseClassParent = GtkButtonClass;
 
   friend class LinkButton;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

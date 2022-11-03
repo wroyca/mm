@@ -16,11 +16,11 @@ public:
   using CppObjectType = TreeDragSource;
   using BaseObjectType = GtkTreeDragSource;
   using BaseClassType = GtkTreeDragSourceIface;
-  using CppClassParent = Glib::Interface_Class;
+  using CppClassParent = Interface_Class;
 
   friend class TreeDragSource;
 
-  auto init () -> const Glib::Interface_Class&;
+  auto init () -> const Interface_Class&;
 
   static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 

@@ -47,9 +47,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkHeaderBar* object, bool take_copy) -> Gtk::HeaderBar*
+auto wrap(GtkHeaderBar* object, const bool take_copy) -> Gtk::HeaderBar*
 {
-  return dynamic_cast<Gtk::HeaderBar *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::HeaderBar *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -60,7 +60,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto HeaderBar_Class::init() -> const Glib::Class&
+auto HeaderBar_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -93,7 +93,7 @@ auto HeaderBar_Class::class_init_function (void *g_class, void *class_data) -> v
 
 auto HeaderBar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new HeaderBar((GtkHeaderBar*)(o)));
+  return manage(new HeaderBar((GtkHeaderBar*)o));
 
 }
 
@@ -101,25 +101,23 @@ auto HeaderBar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 HeaderBar::HeaderBar(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 HeaderBar::HeaderBar(GtkHeaderBar* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 HeaderBar::HeaderBar(HeaderBar&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
 {}
 
 auto HeaderBar::operator=(HeaderBar&& src) noexcept -> HeaderBar&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   return *this;
 }
 
@@ -145,16 +143,17 @@ auto HeaderBar::get_base_type() -> GType
 HeaderBar::HeaderBar()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(headerbar_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(headerbar_class_.init()))
 {
 
 
 }
 
-auto HeaderBar::set_title_widget (Gtk::Widget &title_widget) -> void
+auto HeaderBar::set_title_widget (
+  Widget &title_widget) -> void
 {
-  gtk_header_bar_set_title_widget(gobj(), (title_widget).gobj());
+  gtk_header_bar_set_title_widget(gobj(), title_widget.gobj());
 }
 
 auto HeaderBar::get_title_widget() -> Widget*
@@ -167,24 +166,28 @@ auto HeaderBar::get_title_widget() const -> const Widget*
   return const_cast<HeaderBar*>(this)->get_title_widget();
 }
 
-auto HeaderBar::pack_start (Gtk::Widget &child) -> void
+auto HeaderBar::pack_start (
+  Widget &child) -> void
 {
-  gtk_header_bar_pack_start(gobj(), (child).gobj());
+  gtk_header_bar_pack_start(gobj(), child.gobj());
 }
 
-auto HeaderBar::pack_end (Gtk::Widget &child) -> void
+auto HeaderBar::pack_end (
+  Widget &child) -> void
 {
-  gtk_header_bar_pack_end(gobj(), (child).gobj());
+  gtk_header_bar_pack_end(gobj(), child.gobj());
 }
 
-auto HeaderBar::remove (Gtk::Widget &child) -> void
+auto HeaderBar::remove (
+  Widget &child) -> void
 {
-  gtk_header_bar_remove(gobj(), (child).gobj());
+  gtk_header_bar_remove(gobj(), child.gobj());
 }
 
-auto HeaderBar::set_show_title_buttons (bool setting) -> void
+auto HeaderBar::set_show_title_buttons (
+  const bool setting) -> void
 {
-  gtk_header_bar_set_show_title_buttons(gobj(), static_cast<int>(setting));
+  gtk_header_bar_set_show_title_buttons(gobj(), setting);
 }
 
 auto HeaderBar::get_show_title_buttons() const -> bool
@@ -203,34 +206,34 @@ auto HeaderBar::get_decoration_layout() const -> Glib::ustring
 }
 
 
-auto HeaderBar::property_title_widget() -> Glib::PropertyProxy< Gtk::Widget* >
+auto HeaderBar::property_title_widget() -> Glib::PropertyProxy<Widget * >
 {
-  return Glib::PropertyProxy< Gtk::Widget* >(this, "title-widget");
+  return {this, "title-widget"};
 }
 
-auto HeaderBar::property_title_widget() const -> Glib::PropertyProxy_ReadOnly< Gtk::Widget* >
+auto HeaderBar::property_title_widget() const -> Glib::PropertyProxy_ReadOnly<Widget * >
 {
-  return Glib::PropertyProxy_ReadOnly< Gtk::Widget* >(this, "title-widget");
+  return {this, "title-widget"};
 }
 
 auto HeaderBar::property_show_title_buttons() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "show-title-buttons");
+  return {this, "show-title-buttons"};
 }
 
 auto HeaderBar::property_show_title_buttons() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "show-title-buttons");
+  return {this, "show-title-buttons"};
 }
 
 auto HeaderBar::property_decoration_layout() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "decoration-layout");
+  return {this, "decoration-layout"};
 }
 
 auto HeaderBar::property_decoration_layout() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "decoration-layout");
+  return {this, "decoration-layout"};
 }
 
 

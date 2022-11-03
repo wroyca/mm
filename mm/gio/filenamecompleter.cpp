@@ -50,9 +50,9 @@ const Glib::SignalProxyInfo FilenameCompleter_signal_got_completion_data_info =
 namespace Glib
 {
 
-auto wrap(GFilenameCompleter* object, bool take_copy) -> Glib::RefPtr<Gio::FilenameCompleter>
+auto wrap(GFilenameCompleter* object, const bool take_copy) -> RefPtr<Gio::FilenameCompleter>
 {
-  return Glib::make_refptr_for_instance<Gio::FilenameCompleter>( dynamic_cast<Gio::FilenameCompleter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::FilenameCompleter>( dynamic_cast<Gio::FilenameCompleter*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -65,7 +65,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto FilenameCompleter_Class::init() -> const Glib::Class&
+auto FilenameCompleter_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -99,8 +99,7 @@ auto FilenameCompleter_Class::class_init_function (void *g_class, void *class_da
 
 auto FilenameCompleter_Class::got_completion_data_callback (GFilenameCompleter *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -150,32 +149,28 @@ auto FilenameCompleter::gobj_copy() -> GFilenameCompleter*
 }
 
 FilenameCompleter::FilenameCompleter(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 FilenameCompleter::FilenameCompleter(GFilenameCompleter* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 FilenameCompleter::FilenameCompleter(FilenameCompleter&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto FilenameCompleter::operator=(FilenameCompleter&& src) noexcept -> FilenameCompleter&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-FilenameCompleter::~FilenameCompleter() noexcept
-{}
-
+FilenameCompleter::~FilenameCompleter() noexcept = default;
 
 FilenameCompleter::CppClassType FilenameCompleter::filenamecompleter_class_; // initialize static member
 
@@ -194,8 +189,8 @@ auto FilenameCompleter::get_base_type() -> GType
 FilenameCompleter::FilenameCompleter()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(filenamecompleter_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(filenamecompleter_class_.init()))
 {
 
 
@@ -216,19 +211,20 @@ auto FilenameCompleter::get_completions(const std::string& initial_text) const -
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_filename_completer_get_completions(const_cast<GFilenameCompleter*>(gobj()), initial_text.c_str()), Glib::OWNERSHIP_DEEP);
 }
 
-auto FilenameCompleter::set_dirs_only (bool dirs_only) -> void
+auto FilenameCompleter::set_dirs_only (
+  const bool dirs_only) -> void
 {
-  g_filename_completer_set_dirs_only(gobj(), static_cast<int>(dirs_only));
+  g_filename_completer_set_dirs_only(gobj(), dirs_only);
 }
 
 
 auto FilenameCompleter::signal_got_completion_data() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &FilenameCompleter_signal_got_completion_data_info);
+  return {this, &FilenameCompleter_signal_got_completion_data_info};
 }
 
 
-auto Gio::FilenameCompleter::on_got_completion_data () -> void
+auto FilenameCompleter::on_got_completion_data () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

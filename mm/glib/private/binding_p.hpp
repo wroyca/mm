@@ -10,25 +10,25 @@
 namespace Glib
 {
 
-class GLIBMM_API Binding_Class : public Glib::Class
+class GLIBMM_API Binding_Class : public Class
 {
 public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   using CppObjectType = Binding;
   using BaseObjectType = GBinding;
   using BaseClassType = GBindingClass;
-  using CppClassParent = Glib::Object_Class;
+  using CppClassParent = Object_Class;
   using BaseClassParent = GObjectClass;
 
   friend class Binding;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;
 
-  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
+  static auto wrap_new (GObject *) -> ObjectBase*;
 
 protected:
 

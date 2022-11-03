@@ -17,11 +17,11 @@ public:
   using CppObjectType = DragSurface;
   using BaseObjectType = GdkDragSurface;
   using BaseClassType = GdkDragSurfaceInterface;
-  using CppClassParent = Glib::Interface_Class;
+  using CppClassParent = Interface_Class;
 
   friend class DragSurface;
 
-  auto init () -> const Glib::Interface_Class&;
+  auto init () -> const Interface_Class&;
 
   static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 

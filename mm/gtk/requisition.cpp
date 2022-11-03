@@ -28,7 +28,7 @@
 namespace Gtk
 {
 
-Requisition::Requisition(int width, int height)
+Requisition::Requisition(const int width, const int height)
 {
   gobject_.width  = width;
   gobject_.height = height;
@@ -61,17 +61,9 @@ namespace Gtk
 {
 
 
-Requisition::Requisition(const Requisition& other) noexcept
-:
-  gobject_(other.gobject_)
-{
-}
+Requisition::Requisition(const Requisition& other) noexcept = default;
 
-auto Requisition::operator=(const Requisition& other) noexcept -> Requisition&
-{
-  gobject_ = other.gobject_;
-  return *this;
-}
+auto Requisition::operator=(const Requisition& other) noexcept -> Requisition& = default;
 
 Requisition::Requisition(Requisition&& other) noexcept
 :

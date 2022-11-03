@@ -36,8 +36,8 @@ CssLocation::CssLocation(const GtkCssLocation* location)
 {
 }
 
-CssLocation::CssLocation(std::size_t bytes, std::size_t chars,
-  std::size_t lines, std::size_t line_bytes, std::size_t line_chars)
+CssLocation::CssLocation(
+  const std::size_t bytes, const std::size_t chars, const std::size_t lines, const std::size_t line_bytes, const std::size_t line_chars)
 {
   gobject_.bytes = bytes;
   gobject_.chars = chars;
@@ -53,7 +53,7 @@ namespace Glib
 
 auto wrap(const GtkCssLocation* object) -> Gtk::CssLocation
 {
-  return Gtk::CssLocation(object);
+  return {object};
 }
 
 } // namespace Glib

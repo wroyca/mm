@@ -17,13 +17,13 @@ public:
   using CppObjectType = FileFilter;
   using BaseObjectType = GtkFileFilter;
   using BaseClassType = GtkFileFilterClass;
-  using CppClassParent = Gtk::Filter_Class;
+  using CppClassParent = Filter_Class;
   using BaseClassParent = GtkFilterClass;
 
   friend class FileFilter;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

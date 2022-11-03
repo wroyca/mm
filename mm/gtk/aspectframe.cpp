@@ -45,9 +45,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkAspectFrame* object, bool take_copy) -> Gtk::AspectFrame*
+auto wrap(GtkAspectFrame* object, const bool take_copy) -> Gtk::AspectFrame*
 {
-  return dynamic_cast<Gtk::AspectFrame *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::AspectFrame *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -58,7 +58,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto AspectFrame_Class::init() -> const Glib::Class&
+auto AspectFrame_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -91,7 +91,7 @@ auto AspectFrame_Class::class_init_function (void *g_class, void *class_data) ->
 
 auto AspectFrame_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new AspectFrame((GtkAspectFrame*)(o)));
+  return manage(new AspectFrame((GtkAspectFrame*)o));
 
 }
 
@@ -99,25 +99,23 @@ auto AspectFrame_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 AspectFrame::AspectFrame(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 AspectFrame::AspectFrame(GtkAspectFrame* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 AspectFrame::AspectFrame(AspectFrame&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
 {}
 
 auto AspectFrame::operator=(AspectFrame&& src) noexcept -> AspectFrame&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   return *this;
 }
 
@@ -140,32 +138,34 @@ auto AspectFrame::get_base_type() -> GType
 }
 
 
-AspectFrame::AspectFrame(Align xalign, Align yalign, float ratio, bool obey_child)
+AspectFrame::AspectFrame(const Align xalign, const Align yalign, const float ratio, const bool obey_child)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(aspectframe_class_.init(), "xalign", _gtkmm_align_float_from_enum(xalign), "yalign", _gtkmm_align_float_from_enum(yalign), "ratio", ratio, "obey_child", static_cast<int>(obey_child), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(aspectframe_class_.init(), "xalign", _gtkmm_align_float_from_enum(xalign), "yalign", _gtkmm_align_float_from_enum(yalign), "ratio", ratio, "obey_child", obey_child, nullptr))
 {
 
 
 }
 
-AspectFrame::AspectFrame(float xalign, float yalign, float ratio, bool obey_child)
+AspectFrame::AspectFrame(const float xalign, const float yalign, const float ratio, const bool obey_child)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(aspectframe_class_.init(), "xalign", xalign, "yalign", yalign, "ratio", ratio, "obey_child", static_cast<int>(obey_child), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(aspectframe_class_.init(), "xalign", xalign, "yalign", yalign, "ratio", ratio, "obey_child", obey_child, nullptr))
 {
 
 
 }
 
-auto AspectFrame::set_xalign (Align xalign) -> void
+auto AspectFrame::set_xalign (
+  const Align xalign) -> void
 {
   gtk_aspect_frame_set_xalign(gobj(), _gtkmm_align_float_from_enum(xalign));
 }
 
-auto AspectFrame::set_xalign (float xalign) -> void
+auto AspectFrame::set_xalign (
+  const float xalign) -> void
 {
   gtk_aspect_frame_set_xalign(gobj(), xalign);
 }
@@ -175,12 +175,14 @@ auto AspectFrame::get_xalign() const -> float
   return gtk_aspect_frame_get_xalign(const_cast<GtkAspectFrame*>(gobj()));
 }
 
-auto AspectFrame::set_yalign (Align yalign) -> void
+auto AspectFrame::set_yalign (
+  const Align yalign) -> void
 {
   gtk_aspect_frame_set_yalign(gobj(), _gtkmm_align_float_from_enum(yalign));
 }
 
-auto AspectFrame::set_yalign (float yalign) -> void
+auto AspectFrame::set_yalign (
+  const float yalign) -> void
 {
   gtk_aspect_frame_set_yalign(gobj(), yalign);
 }
@@ -190,7 +192,8 @@ auto AspectFrame::get_yalign() const -> float
   return gtk_aspect_frame_get_yalign(const_cast<GtkAspectFrame*>(gobj()));
 }
 
-auto AspectFrame::set_ratio (float ratio) -> void
+auto AspectFrame::set_ratio (
+  const float ratio) -> void
 {
   gtk_aspect_frame_set_ratio(gobj(), ratio);
 }
@@ -200,9 +203,10 @@ auto AspectFrame::get_ratio() const -> float
   return gtk_aspect_frame_get_ratio(const_cast<GtkAspectFrame*>(gobj()));
 }
 
-auto AspectFrame::set_obey_child (bool obey_child) -> void
+auto AspectFrame::set_obey_child (
+  const bool obey_child) -> void
 {
-  gtk_aspect_frame_set_obey_child(gobj(), static_cast<int>(obey_child));
+  gtk_aspect_frame_set_obey_child(gobj(), obey_child);
 }
 
 auto AspectFrame::get_obey_child() const -> bool
@@ -212,7 +216,7 @@ auto AspectFrame::get_obey_child() const -> bool
 
 auto AspectFrame::set_child (Widget &child) -> void
 {
-  gtk_aspect_frame_set_child(gobj(), (child).gobj());
+  gtk_aspect_frame_set_child(gobj(), child.gobj());
 }
 
 auto AspectFrame::get_child() -> Widget*
@@ -228,52 +232,52 @@ auto AspectFrame::get_child() const -> const Widget*
 
 auto AspectFrame::property_xalign() -> Glib::PropertyProxy< float >
 {
-  return Glib::PropertyProxy< float >(this, "xalign");
+  return {this, "xalign"};
 }
 
 auto AspectFrame::property_xalign() const -> Glib::PropertyProxy_ReadOnly< float >
 {
-  return Glib::PropertyProxy_ReadOnly< float >(this, "xalign");
+  return {this, "xalign"};
 }
 
 auto AspectFrame::property_yalign() -> Glib::PropertyProxy< float >
 {
-  return Glib::PropertyProxy< float >(this, "yalign");
+  return {this, "yalign"};
 }
 
 auto AspectFrame::property_yalign() const -> Glib::PropertyProxy_ReadOnly< float >
 {
-  return Glib::PropertyProxy_ReadOnly< float >(this, "yalign");
+  return {this, "yalign"};
 }
 
 auto AspectFrame::property_ratio() -> Glib::PropertyProxy< float >
 {
-  return Glib::PropertyProxy< float >(this, "ratio");
+  return {this, "ratio"};
 }
 
 auto AspectFrame::property_ratio() const -> Glib::PropertyProxy_ReadOnly< float >
 {
-  return Glib::PropertyProxy_ReadOnly< float >(this, "ratio");
+  return {this, "ratio"};
 }
 
 auto AspectFrame::property_obey_child() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "obey-child");
+  return {this, "obey-child"};
 }
 
 auto AspectFrame::property_obey_child() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "obey-child");
+  return {this, "obey-child"};
 }
 
 auto AspectFrame::property_child() -> Glib::PropertyProxy< Widget* >
 {
-  return Glib::PropertyProxy< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 auto AspectFrame::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 

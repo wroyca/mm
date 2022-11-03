@@ -34,9 +34,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkBoxLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::BoxLayout>
+auto wrap(GtkBoxLayout* object, const bool take_copy) -> RefPtr<Gtk::BoxLayout>
 {
-  return Glib::make_refptr_for_instance<Gtk::BoxLayout>( dynamic_cast<Gtk::BoxLayout*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::BoxLayout>( dynamic_cast<Gtk::BoxLayout*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -49,7 +49,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto BoxLayout_Class::init() -> const Glib::Class&
+auto BoxLayout_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -97,7 +97,7 @@ BoxLayout::BoxLayout(const Glib::ConstructParams& construct_params)
 
 BoxLayout::BoxLayout(GtkBoxLayout* castitem)
 :
-  LayoutManager((GtkLayoutManager*)(castitem))
+  LayoutManager((GtkLayoutManager*)castitem)
 {}
 
 
@@ -114,9 +114,7 @@ auto BoxLayout::operator=(BoxLayout&& src) noexcept -> BoxLayout&
 }
 
 
-BoxLayout::~BoxLayout() noexcept
-{}
-
+BoxLayout::~BoxLayout() noexcept = default;
 
 BoxLayout::CppClassType BoxLayout::boxlayout_class_; // initialize static member
 
@@ -132,24 +130,26 @@ auto BoxLayout::get_base_type() -> GType
 }
 
 
-BoxLayout::BoxLayout(Orientation orientation)
+BoxLayout::BoxLayout(const Orientation orientation)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  LayoutManager(Glib::ConstructParams(boxlayout_class_.init(), "orientation", static_cast<GtkOrientation>(orientation), nullptr))
+ObjectBase(nullptr),
+  LayoutManager(Glib::ConstructParams(boxlayout_class_.init(), "orientation", orientation, nullptr))
 {
 
 
 }
 
-auto BoxLayout::create(Orientation orientation) -> Glib::RefPtr<BoxLayout>
+auto BoxLayout::create(
+  const Orientation orientation) -> Glib::RefPtr<BoxLayout>
 {
   return Glib::make_refptr_for_instance<BoxLayout>( new BoxLayout(orientation) );
 }
 
-auto BoxLayout::set_homogeneous (bool homogeneous) -> void
+auto BoxLayout::set_homogeneous (
+  const bool homogeneous) -> void
 {
-  gtk_box_layout_set_homogeneous(gobj(), static_cast<int>(homogeneous));
+  gtk_box_layout_set_homogeneous(gobj(), homogeneous);
 }
 
 auto BoxLayout::get_homogeneous() const -> bool
@@ -157,7 +157,8 @@ auto BoxLayout::get_homogeneous() const -> bool
   return gtk_box_layout_get_homogeneous(const_cast<GtkBoxLayout*>(gobj()));
 }
 
-auto BoxLayout::set_spacing (guint spacing) -> void
+auto BoxLayout::set_spacing (
+  const guint spacing) -> void
 {
   gtk_box_layout_set_spacing(gobj(), spacing);
 }
@@ -180,22 +181,22 @@ auto BoxLayout::get_baseline_position() const -> BaselinePosition
 
 auto BoxLayout::property_homogeneous() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "homogeneous");
+  return {this, "homogeneous"};
 }
 
 auto BoxLayout::property_homogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "homogeneous");
+  return {this, "homogeneous"};
 }
 
 auto BoxLayout::property_spacing() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "spacing");
+  return {this, "spacing"};
 }
 
 auto BoxLayout::property_spacing() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "spacing");
+  return {this, "spacing"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<BaselinePosition>::value,
@@ -204,12 +205,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<BaselinePosition>::v
 
 auto BoxLayout::property_baseline_position() -> Glib::PropertyProxy< BaselinePosition >
 {
-  return Glib::PropertyProxy< BaselinePosition >(this, "baseline-position");
+  return {this, "baseline-position"};
 }
 
 auto BoxLayout::property_baseline_position() const -> Glib::PropertyProxy_ReadOnly< BaselinePosition >
 {
-  return Glib::PropertyProxy_ReadOnly< BaselinePosition >(this, "baseline-position");
+  return {this, "baseline-position"};
 }
 
 

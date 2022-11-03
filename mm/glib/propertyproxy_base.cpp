@@ -40,7 +40,7 @@ PropertyProxyConnectionNode::PropertyProxyConnectionNode(sigc::slot_base&& slot,
 }
 
 static auto
-get_detailed_signal_name(const Glib::ustring& signal_name, const Glib::ustring& detail) -> Glib::ustring
+get_detailed_signal_name(const ustring & signal_name, const ustring & detail) -> ustring
 {
   if (detail.empty())
     return signal_name;
@@ -49,20 +49,20 @@ get_detailed_signal_name(const Glib::ustring& signal_name, const Glib::ustring& 
 }
 
 auto
-PropertyProxyConnectionNode::connect_changed(const Glib::ustring& property_name) -> sigc::connection
+PropertyProxyConnectionNode::connect_changed(const ustring & property_name) -> sigc::connection
 {
   // connect it to glib
   // 'this' will be passed as the data argument to the callback.
-  const Glib::ustring notify_signal_name = get_detailed_signal_name("notify", property_name);
+  const ustring notify_signal_name = get_detailed_signal_name("notify", property_name);
   connection_id_ = g_signal_connect_data(object_, notify_signal_name.c_str(),
-    (GCallback)(&PropertyProxyConnectionNode::callback), this,
+    (GCallback)&PropertyProxyConnectionNode::callback, this,
     &PropertyProxyConnectionNode::destroy_notify_handler, G_CONNECT_AFTER);
 
   return sigc::connection(slot_);
 }
 
 auto PropertyProxyConnectionNode::callback (
-  GObject *, GParamSpec *pspec, gpointer data) -> void // static
+  GObject *, GParamSpec *pspec, const gpointer data) -> void // static
 {
   if (pspec && data)
   {
@@ -73,21 +73,19 @@ auto PropertyProxyConnectionNode::callback (
 
 // SignalProxyProperty implementation:
 
-SignalProxyProperty::SignalProxyProperty(Glib::ObjectBase* obj, const gchar* property_name)
+SignalProxyProperty::SignalProxyProperty(ObjectBase * obj, const gchar* property_name)
 : SignalProxyBase(obj), property_name_(property_name)
 {
 }
 
-SignalProxyProperty::~SignalProxyProperty() noexcept
-{
-}
+SignalProxyProperty::~SignalProxyProperty() noexcept = default;
 
 auto
 SignalProxyProperty::connect(const SlotType& slot) -> sigc::connection
 {
   // Create a proxy to hold our connection info
   // This will be deleted by destroy_notify_handler.
-  auto pConnectionNode = new PropertyProxyConnectionNode(slot, obj_->gobj());
+  const auto pConnectionNode = new PropertyProxyConnectionNode(slot, obj_->gobj());
 
   // connect it to glib
   // pConnectionNode will be passed as the data argument to the callback.
@@ -99,7 +97,7 @@ SignalProxyProperty::connect(SlotType&& slot) -> sigc::connection
 {
   // Create a proxy to hold our connection info
   // This will be deleted by destroy_notify_handler.
-  auto pConnectionNode = new PropertyProxyConnectionNode(std::move(slot), obj_->gobj());
+  const auto pConnectionNode = new PropertyProxyConnectionNode(std::move(slot), obj_->gobj());
 
   // connect it to glib
   // pConnectionNode will be passed as the data argument to the callback.
@@ -113,23 +111,21 @@ PropertyProxy_Base::PropertyProxy_Base(ObjectBase* obj, const char* property_nam
 {
 }
 
-PropertyProxy_Base::PropertyProxy_Base(const PropertyProxy_Base& other)
-: obj_(other.obj_), property_name_(other.property_name_)
-{
-}
+PropertyProxy_Base::PropertyProxy_Base(const PropertyProxy_Base& other) = default;
 
 auto
 PropertyProxy_Base::signal_changed() -> SignalProxyProperty
 {
-  return SignalProxyProperty(obj_, property_name_);
+  return {obj_, property_name_};
 }
 
-auto PropertyProxy_Base::set_property_ (const Glib::ValueBase &value) -> void
+auto PropertyProxy_Base::set_property_ (const ValueBase &value) -> void
 {
   g_object_set_property(obj_->gobj(), property_name_, value.gobj());
 }
 
-auto PropertyProxy_Base::get_property_ (Glib::ValueBase &value) const -> void
+auto PropertyProxy_Base::get_property_ (
+  ValueBase &value) const -> void
 {
   g_object_get_property(obj_->gobj(), property_name_, value.gobj());
 }
@@ -142,7 +138,7 @@ auto PropertyProxy_Base::reset_property_ () -> void
 
   g_return_if_fail(pParamSpec != nullptr);
 
-  Glib::ValueBase value;
+  ValueBase value;
   value.init(G_PARAM_SPEC_VALUE_TYPE(pParamSpec));
 
   // An explicit reset is not needed, because ValueBase:init()

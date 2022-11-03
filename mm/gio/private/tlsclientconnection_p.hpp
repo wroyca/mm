@@ -17,11 +17,11 @@ public:
   using CppObjectType = TlsClientConnection;
   using BaseObjectType = GTlsClientConnection;
   using BaseClassType = GTlsClientConnectionInterface;
-  using CppClassParent = Glib::Interface_Class;
+  using CppClassParent = Interface_Class;
 
   friend class TlsClientConnection;
 
-  auto init () -> const Glib::Interface_Class&;
+  auto init () -> const Interface_Class&;
 
   static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 

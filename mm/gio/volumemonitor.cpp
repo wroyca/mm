@@ -41,7 +41,7 @@ auto VolumeMonitor_signal_volume_added_callback (
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Volume>&)>;
 
-  auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -72,7 +72,7 @@ auto VolumeMonitor_signal_volume_removed_callback (
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Volume>&)>;
 
-  auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -103,7 +103,7 @@ auto VolumeMonitor_signal_volume_changed_callback (
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Volume>&)>;
 
-  auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -134,7 +134,7 @@ auto VolumeMonitor_signal_mount_added_callback (
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Mount>&)>;
 
-  auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -165,7 +165,7 @@ auto VolumeMonitor_signal_mount_removed_callback (
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Mount>&)>;
 
-  auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -196,7 +196,7 @@ auto VolumeMonitor_signal_mount_pre_unmount_callback (
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Mount>&)>;
 
-  auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -227,7 +227,7 @@ auto VolumeMonitor_signal_mount_changed_callback (
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Mount>&)>;
 
-  auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -258,7 +258,7 @@ auto VolumeMonitor_signal_drive_connected_callback (
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Drive>&)>;
 
-  auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -289,7 +289,7 @@ auto VolumeMonitor_signal_drive_disconnected_callback (
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Drive>&)>;
 
-  auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -320,7 +320,7 @@ auto VolumeMonitor_signal_drive_changed_callback (
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Drive>&)>;
 
-  auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -351,7 +351,7 @@ auto VolumeMonitor_signal_drive_eject_button_callback (
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Drive>&)>;
 
-  auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -382,7 +382,7 @@ auto VolumeMonitor_signal_drive_stop_button_callback (
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Drive>&)>;
 
-  auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<VolumeMonitor*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -413,9 +413,9 @@ const Glib::SignalProxyInfo VolumeMonitor_signal_drive_stop_button_info =
 namespace Glib
 {
 
-auto wrap(GVolumeMonitor* object, bool take_copy) -> Glib::RefPtr<Gio::VolumeMonitor>
+auto wrap(GVolumeMonitor* object, const bool take_copy) -> RefPtr<Gio::VolumeMonitor>
 {
-  return Glib::make_refptr_for_instance<Gio::VolumeMonitor>( dynamic_cast<Gio::VolumeMonitor*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::VolumeMonitor>( dynamic_cast<Gio::VolumeMonitor*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -428,7 +428,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto VolumeMonitor_Class::init() -> const Glib::Class&
+auto VolumeMonitor_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -473,8 +473,7 @@ auto VolumeMonitor_Class::class_init_function (void *g_class, void *class_data) 
 
 auto VolumeMonitor_Class::volume_added_callback (GVolumeMonitor *self, GVolume *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -510,8 +509,7 @@ auto VolumeMonitor_Class::volume_added_callback (GVolumeMonitor *self, GVolume *
 }
 auto VolumeMonitor_Class::volume_removed_callback (GVolumeMonitor *self, GVolume *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -547,8 +545,7 @@ auto VolumeMonitor_Class::volume_removed_callback (GVolumeMonitor *self, GVolume
 }
 auto VolumeMonitor_Class::volume_changed_callback (GVolumeMonitor *self, GVolume *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -584,8 +581,7 @@ auto VolumeMonitor_Class::volume_changed_callback (GVolumeMonitor *self, GVolume
 }
 auto VolumeMonitor_Class::mount_added_callback (GVolumeMonitor *self, GMount *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -621,8 +617,7 @@ auto VolumeMonitor_Class::mount_added_callback (GVolumeMonitor *self, GMount *p0
 }
 auto VolumeMonitor_Class::mount_removed_callback (GVolumeMonitor *self, GMount *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -658,8 +653,7 @@ auto VolumeMonitor_Class::mount_removed_callback (GVolumeMonitor *self, GMount *
 }
 auto VolumeMonitor_Class::mount_pre_unmount_callback (GVolumeMonitor *self, GMount *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -695,8 +689,7 @@ auto VolumeMonitor_Class::mount_pre_unmount_callback (GVolumeMonitor *self, GMou
 }
 auto VolumeMonitor_Class::mount_changed_callback (GVolumeMonitor *self, GMount *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -732,8 +725,7 @@ auto VolumeMonitor_Class::mount_changed_callback (GVolumeMonitor *self, GMount *
 }
 auto VolumeMonitor_Class::drive_connected_callback (GVolumeMonitor *self, GDrive *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -769,8 +761,7 @@ auto VolumeMonitor_Class::drive_connected_callback (GVolumeMonitor *self, GDrive
 }
 auto VolumeMonitor_Class::drive_disconnected_callback (GVolumeMonitor *self, GDrive *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -806,8 +797,7 @@ auto VolumeMonitor_Class::drive_disconnected_callback (GVolumeMonitor *self, GDr
 }
 auto VolumeMonitor_Class::drive_changed_callback (GVolumeMonitor *self, GDrive *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -843,8 +833,7 @@ auto VolumeMonitor_Class::drive_changed_callback (GVolumeMonitor *self, GDrive *
 }
 auto VolumeMonitor_Class::drive_eject_button_callback (GVolumeMonitor *self, GDrive *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -880,8 +869,7 @@ auto VolumeMonitor_Class::drive_eject_button_callback (GVolumeMonitor *self, GDr
 }
 auto VolumeMonitor_Class::drive_stop_button_callback (GVolumeMonitor *self, GDrive *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -932,32 +920,28 @@ auto VolumeMonitor::gobj_copy() -> GVolumeMonitor*
 }
 
 VolumeMonitor::VolumeMonitor(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 VolumeMonitor::VolumeMonitor(GVolumeMonitor* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 VolumeMonitor::VolumeMonitor(VolumeMonitor&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto VolumeMonitor::operator=(VolumeMonitor&& src) noexcept -> VolumeMonitor&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-VolumeMonitor::~VolumeMonitor() noexcept
-{}
-
+VolumeMonitor::~VolumeMonitor() noexcept = default;
 
 VolumeMonitor::CppClassType VolumeMonitor::volumemonitor_class_; // initialize static member
 
@@ -1012,183 +996,183 @@ auto VolumeMonitor::get_mount_for_uuid(const std::string& uuid) -> Glib::RefPtr<
 
 auto VolumeMonitor::signal_volume_added() -> Glib::SignalProxy<void(const Glib::RefPtr<Volume>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<Volume>&) >(this, &VolumeMonitor_signal_volume_added_info);
+  return {this, &VolumeMonitor_signal_volume_added_info};
 }
 
 
 auto VolumeMonitor::signal_volume_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<Volume>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<Volume>&) >(this, &VolumeMonitor_signal_volume_removed_info);
+  return {this, &VolumeMonitor_signal_volume_removed_info};
 }
 
 
 auto VolumeMonitor::signal_volume_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<Volume>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<Volume>&) >(this, &VolumeMonitor_signal_volume_changed_info);
+  return {this, &VolumeMonitor_signal_volume_changed_info};
 }
 
 
 auto VolumeMonitor::signal_mount_added() -> Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<Mount>&) >(this, &VolumeMonitor_signal_mount_added_info);
+  return {this, &VolumeMonitor_signal_mount_added_info};
 }
 
 
 auto VolumeMonitor::signal_mount_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<Mount>&) >(this, &VolumeMonitor_signal_mount_removed_info);
+  return {this, &VolumeMonitor_signal_mount_removed_info};
 }
 
 
 auto VolumeMonitor::signal_mount_pre_unmount() -> Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<Mount>&) >(this, &VolumeMonitor_signal_mount_pre_unmount_info);
+  return {this, &VolumeMonitor_signal_mount_pre_unmount_info};
 }
 
 
 auto VolumeMonitor::signal_mount_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<Mount>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<Mount>&) >(this, &VolumeMonitor_signal_mount_changed_info);
+  return {this, &VolumeMonitor_signal_mount_changed_info};
 }
 
 
 auto VolumeMonitor::signal_drive_connected() -> Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<Drive>&) >(this, &VolumeMonitor_signal_drive_connected_info);
+  return {this, &VolumeMonitor_signal_drive_connected_info};
 }
 
 
 auto VolumeMonitor::signal_drive_disconnected() -> Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<Drive>&) >(this, &VolumeMonitor_signal_drive_disconnected_info);
+  return {this, &VolumeMonitor_signal_drive_disconnected_info};
 }
 
 
 auto VolumeMonitor::signal_drive_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<Drive>&) >(this, &VolumeMonitor_signal_drive_changed_info);
+  return {this, &VolumeMonitor_signal_drive_changed_info};
 }
 
 
 auto VolumeMonitor::signal_drive_eject_button() -> Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<Drive>&) >(this, &VolumeMonitor_signal_drive_eject_button_info);
+  return {this, &VolumeMonitor_signal_drive_eject_button_info};
 }
 
 
 auto VolumeMonitor::signal_drive_stop_button() -> Glib::SignalProxy<void(const Glib::RefPtr<Drive>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<Drive>&) >(this, &VolumeMonitor_signal_drive_stop_button_info);
+  return {this, &VolumeMonitor_signal_drive_stop_button_info};
 }
 
 
-auto Gio::VolumeMonitor::on_volume_added (const Glib::RefPtr <Volume> &volume) -> void
+auto VolumeMonitor::on_volume_added (const Glib::RefPtr <Volume> &volume) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->volume_added)
-    (*base->volume_added)(gobj(),const_cast<GVolume*>(Glib::unwrap(volume)));
+    (*base->volume_added)(gobj(),Glib::unwrap(volume));
 }
-auto Gio::VolumeMonitor::on_volume_removed (const Glib::RefPtr <Volume> &volume) -> void
+auto VolumeMonitor::on_volume_removed (const Glib::RefPtr <Volume> &volume) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->volume_removed)
-    (*base->volume_removed)(gobj(),const_cast<GVolume*>(Glib::unwrap(volume)));
+    (*base->volume_removed)(gobj(),Glib::unwrap(volume));
 }
-auto Gio::VolumeMonitor::on_volume_changed (const Glib::RefPtr <Volume> &volume) -> void
+auto VolumeMonitor::on_volume_changed (const Glib::RefPtr <Volume> &volume) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->volume_changed)
-    (*base->volume_changed)(gobj(),const_cast<GVolume*>(Glib::unwrap(volume)));
+    (*base->volume_changed)(gobj(),Glib::unwrap(volume));
 }
-auto Gio::VolumeMonitor::on_mount_added (const Glib::RefPtr <Mount> &mount) -> void
+auto VolumeMonitor::on_mount_added (const Glib::RefPtr <Mount> &mount) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->mount_added)
-    (*base->mount_added)(gobj(),const_cast<GMount*>(Glib::unwrap(mount)));
+    (*base->mount_added)(gobj(),Glib::unwrap(mount));
 }
-auto Gio::VolumeMonitor::on_mount_removed (const Glib::RefPtr <Mount> &mount) -> void
+auto VolumeMonitor::on_mount_removed (const Glib::RefPtr <Mount> &mount) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->mount_removed)
-    (*base->mount_removed)(gobj(),const_cast<GMount*>(Glib::unwrap(mount)));
+    (*base->mount_removed)(gobj(),Glib::unwrap(mount));
 }
-auto Gio::VolumeMonitor::on_mount_pre_unmount (const Glib::RefPtr <Mount> &mount) -> void
+auto VolumeMonitor::on_mount_pre_unmount (const Glib::RefPtr <Mount> &mount) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->mount_pre_unmount)
-    (*base->mount_pre_unmount)(gobj(),const_cast<GMount*>(Glib::unwrap(mount)));
+    (*base->mount_pre_unmount)(gobj(),Glib::unwrap(mount));
 }
-auto Gio::VolumeMonitor::on_mount_changed (const Glib::RefPtr <Mount> &mount) -> void
+auto VolumeMonitor::on_mount_changed (const Glib::RefPtr <Mount> &mount) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->mount_changed)
-    (*base->mount_changed)(gobj(),const_cast<GMount*>(Glib::unwrap(mount)));
+    (*base->mount_changed)(gobj(),Glib::unwrap(mount));
 }
-auto Gio::VolumeMonitor::on_drive_connected (const Glib::RefPtr <Drive> &drive) -> void
+auto VolumeMonitor::on_drive_connected (const Glib::RefPtr <Drive> &drive) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->drive_connected)
-    (*base->drive_connected)(gobj(),const_cast<GDrive*>(Glib::unwrap(drive)));
+    (*base->drive_connected)(gobj(),Glib::unwrap(drive));
 }
-auto Gio::VolumeMonitor::on_drive_disconnected (const Glib::RefPtr <Drive> &drive) -> void
+auto VolumeMonitor::on_drive_disconnected (const Glib::RefPtr <Drive> &drive) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->drive_disconnected)
-    (*base->drive_disconnected)(gobj(),const_cast<GDrive*>(Glib::unwrap(drive)));
+    (*base->drive_disconnected)(gobj(),Glib::unwrap(drive));
 }
-auto Gio::VolumeMonitor::on_drive_changed (const Glib::RefPtr <Drive> &drive) -> void
+auto VolumeMonitor::on_drive_changed (const Glib::RefPtr <Drive> &drive) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->drive_changed)
-    (*base->drive_changed)(gobj(),const_cast<GDrive*>(Glib::unwrap(drive)));
+    (*base->drive_changed)(gobj(),Glib::unwrap(drive));
 }
-auto Gio::VolumeMonitor::on_drive_eject_button (const Glib::RefPtr <Drive> &drive) -> void
+auto VolumeMonitor::on_drive_eject_button (const Glib::RefPtr <Drive> &drive) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->drive_eject_button)
-    (*base->drive_eject_button)(gobj(),const_cast<GDrive*>(Glib::unwrap(drive)));
+    (*base->drive_eject_button)(gobj(),Glib::unwrap(drive));
 }
-auto Gio::VolumeMonitor::on_drive_stop_button (const Glib::RefPtr <Drive> &drive) -> void
+auto VolumeMonitor::on_drive_stop_button (const Glib::RefPtr <Drive> &drive) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->drive_stop_button)
-    (*base->drive_stop_button)(gobj(),const_cast<GDrive*>(Glib::unwrap(drive)));
+    (*base->drive_stop_button)(gobj(),Glib::unwrap(drive));
 }
 
 

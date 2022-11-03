@@ -31,7 +31,7 @@ Path::Path()
 }
 */
 
-Path::Path(cairo_path_t* cobject, bool take_ownership)
+Path::Path(cairo_path_t* cobject, const bool take_ownership)
 : m_cobject(nullptr)
 {
   if(take_ownership)

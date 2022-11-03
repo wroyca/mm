@@ -29,9 +29,9 @@
 #include <gtk/gtk.h>
 
 
-static auto SignalProxy_ForEach_gtk_callback (GtkTextTag *texttag, gpointer data) -> void
+static auto SignalProxy_ForEach_gtk_callback (GtkTextTag *texttag, const gpointer data) -> void
 {
-  auto the_slot = static_cast<Gtk::TextTagTable::SlotForEach*>(data);
+  const auto the_slot = static_cast<Gtk::TextTagTable::SlotForEach*>(data);
   if(the_slot)
   {
     //Use Slot::operator():
@@ -57,12 +57,12 @@ namespace
 
 
 auto TextTagTable_signal_tag_changed_callback (
-  GtkTextTagTable *self, GtkTextTag *p0, gboolean p1, void *data) -> void
+  GtkTextTagTable *self, GtkTextTag *p0, const gboolean p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<TextTag>&, bool)>;
 
-  auto obj = dynamic_cast<TextTagTable*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<TextTagTable*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -94,7 +94,7 @@ auto TextTagTable_signal_tag_added_callback (
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<TextTag>&)>;
 
-  auto obj = dynamic_cast<TextTagTable*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<TextTagTable*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -125,7 +125,7 @@ auto TextTagTable_signal_tag_removed_callback (
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<TextTag>&)>;
 
-  auto obj = dynamic_cast<TextTagTable*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<TextTagTable*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -156,9 +156,9 @@ const Glib::SignalProxyInfo TextTagTable_signal_tag_removed_info =
 namespace Glib
 {
 
-auto wrap(GtkTextTagTable* object, bool take_copy) -> Glib::RefPtr<Gtk::TextTagTable>
+auto wrap(GtkTextTagTable* object, const bool take_copy) -> RefPtr<Gtk::TextTagTable>
 {
-  return Glib::make_refptr_for_instance<Gtk::TextTagTable>( dynamic_cast<Gtk::TextTagTable*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::TextTagTable>( dynamic_cast<Gtk::TextTagTable*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -171,7 +171,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto TextTagTable_Class::init() -> const Glib::Class&
+auto TextTagTable_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -218,34 +218,30 @@ auto TextTagTable::gobj_copy() -> GtkTextTagTable*
 }
 
 TextTagTable::TextTagTable(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 TextTagTable::TextTagTable(GtkTextTagTable* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 TextTagTable::TextTagTable(TextTagTable&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , Buildable(std::move(src))
 {}
 
 auto TextTagTable::operator=(TextTagTable&& src) noexcept -> TextTagTable&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   Buildable::operator=(std::move(src));
   return *this;
 }
 
 
-TextTagTable::~TextTagTable() noexcept
-{}
-
+TextTagTable::~TextTagTable() noexcept = default;
 
 TextTagTable::CppClassType TextTagTable::texttagtable_class_; // initialize static member
 
@@ -264,8 +260,8 @@ auto TextTagTable::get_base_type() -> GType
 TextTagTable::TextTagTable()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(texttagtable_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(texttagtable_class_.init()))
 {
 
 
@@ -307,19 +303,19 @@ auto TextTagTable::get_size() const -> int
 
 auto TextTagTable::signal_tag_changed() -> Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&, bool)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&, bool) >(this, &TextTagTable_signal_tag_changed_info);
+  return {this, &TextTagTable_signal_tag_changed_info};
 }
 
 
 auto TextTagTable::signal_tag_added() -> Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&) >(this, &TextTagTable_signal_tag_added_info);
+  return {this, &TextTagTable_signal_tag_added_info};
 }
 
 
 auto TextTagTable::signal_tag_removed() -> Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<TextTag>&) >(this, &TextTagTable_signal_tag_removed_info);
+  return {this, &TextTagTable_signal_tag_removed_info};
 }
 
 

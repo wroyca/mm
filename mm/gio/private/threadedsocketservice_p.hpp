@@ -17,13 +17,13 @@ public:
   using CppObjectType = ThreadedSocketService;
   using BaseObjectType = GThreadedSocketService;
   using BaseClassType = GThreadedSocketServiceClass;
-  using CppClassParent = Gio::SocketService_Class;
+  using CppClassParent = SocketService_Class;
   using BaseClassParent = GSocketServiceClass;
 
   friend class ThreadedSocketService;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

@@ -41,13 +41,13 @@ static auto
 DBusSubtreeVTable_Enumerate_giomm_callback(
   GDBusConnection* connection, const char* sender, const char* object_path, void* user_data) -> char**
 {
-  Gio::DBus::SubtreeVTable* vtable = static_cast<Gio::DBus::SubtreeVTable*>(user_data);
+  const Gio::DBus::SubtreeVTable* vtable = static_cast<Gio::DBus::SubtreeVTable*>(user_data);
 
-  Gio::DBus::SubtreeVTable::SlotSubtreeEnumerate* the_slot = vtable->get_slot_enumerate();
+  const Gio::DBus::SubtreeVTable::SlotSubtreeEnumerate* the_slot = vtable->get_slot_enumerate();
 
   try
   {
-    auto result = (*the_slot)(Glib::wrap(connection, true), sender, object_path);
+    const auto result = (*the_slot)(Glib::wrap(connection, true), sender, object_path);
 
     // This will be freed by the caller.
     char** ret = g_new(char*, result.size());
@@ -71,13 +71,13 @@ static auto
 DBusSubtreeVTable_Introspect_giomm_callback(GDBusConnection* connection, const char* sender,
   const char* object_path, const char* node, void* user_data) -> GDBusInterfaceInfo**
 {
-  Gio::DBus::SubtreeVTable* vtable = static_cast<Gio::DBus::SubtreeVTable*>(user_data);
+  const Gio::DBus::SubtreeVTable* vtable = static_cast<Gio::DBus::SubtreeVTable*>(user_data);
 
-  Gio::DBus::SubtreeVTable::SlotSubtreeIntrospect* the_slot = vtable->get_slot_introspect();
+  const Gio::DBus::SubtreeVTable::SlotSubtreeIntrospect* the_slot = vtable->get_slot_introspect();
 
   try
   {
-    auto result = (*the_slot)(Glib::wrap(connection, true), sender, object_path, node);
+    const auto result = (*the_slot)(Glib::wrap(connection, true), sender, object_path, node);
 
     // This will be freed by the caller, along with unreferencing its members.
     GDBusInterfaceInfo** info = g_new(GDBusInterfaceInfo*, result.size());
@@ -85,7 +85,7 @@ DBusSubtreeVTable_Introspect_giomm_callback(GDBusConnection* connection, const c
     for (std::vector<Glib::RefPtr<Gio::DBus::InterfaceInfo>>::size_type i = 0; i < result.size();
          i++)
     {
-      info[i] = static_cast<GDBusInterfaceInfo*>(g_object_ref(result[i]->gobj()));
+      info[i] = g_object_ref(result[i]->gobj());
     }
 
     return info;
@@ -103,14 +103,14 @@ DBusSubtreeVTable_Dispatch_giomm_callback(GDBusConnection* connection, const cha
   const char* object_path, const char* interface_name, const char* node, void** out_user_data,
   void* user_data) -> const GDBusInterfaceVTable*
 {
-  Gio::DBus::SubtreeVTable* vtable_subtree = static_cast<Gio::DBus::SubtreeVTable*>(user_data);
+  const Gio::DBus::SubtreeVTable* vtable_subtree = static_cast<Gio::DBus::SubtreeVTable*>(user_data);
 
-  Gio::DBus::SubtreeVTable::SlotSubtreeDispatch* the_slot = vtable_subtree->get_slot_dispatch();
+  const Gio::DBus::SubtreeVTable::SlotSubtreeDispatch* the_slot = vtable_subtree->get_slot_dispatch();
 
   try
   {
     const Gio::DBus::InterfaceVTable* vtable_iface = (*the_slot)(
-      Glib::wrap(connection, true), sender, object_path, interface_name, (node ? node : ""));
+      Glib::wrap(connection, true), sender, object_path, interface_name, node ? node : "");
 
     *out_user_data = const_cast<Gio::DBus::InterfaceVTable*>(vtable_iface);
 
@@ -179,19 +179,19 @@ SubtreeVTable::~SubtreeVTable()
 }
 
 auto
-SubtreeVTable::get_slot_enumerate() const -> SubtreeVTable::SlotSubtreeEnumerate*
+SubtreeVTable::get_slot_enumerate() const -> SlotSubtreeEnumerate*
 {
   return slot_enumerate_;
 }
 
 auto
-SubtreeVTable::get_slot_introspect() const -> SubtreeVTable::SlotSubtreeIntrospect*
+SubtreeVTable::get_slot_introspect() const -> SlotSubtreeIntrospect*
 {
   return slot_introspect_;
 }
 
 auto
-SubtreeVTable::get_slot_dispatch() const -> SubtreeVTable::SlotSubtreeDispatch*
+SubtreeVTable::get_slot_dispatch() const -> SlotSubtreeDispatch*
 {
   return slot_dispatch_;
 }

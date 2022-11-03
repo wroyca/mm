@@ -37,9 +37,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GSocketConnectable* object, bool take_copy) -> Glib::RefPtr<Gio::SocketConnectable>
+auto wrap(GSocketConnectable* object, const bool take_copy) -> RefPtr<Gio::SocketConnectable>
 {
-  return Glib::make_refptr_for_instance<Gio::SocketConnectable>( dynamic_cast<Gio::SocketConnectable*> (Glib::wrap_auto_interface<Gio::SocketConnectable> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::SocketConnectable>( Glib::wrap_auto_interface<Gio::SocketConnectable> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -52,7 +52,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto SocketConnectable_Class::init() -> const Glib::Interface_Class&
+auto SocketConnectable_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -81,42 +81,40 @@ auto SocketConnectable_Class::iface_init_function (void *g_iface, void *) -> voi
 
 auto SocketConnectable_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new SocketConnectable((GSocketConnectable*)(object));
+  return new SocketConnectable((GSocketConnectable*)object);
 }
 
 
 /* The implementation: */
 
 SocketConnectable::SocketConnectable()
-:
-  Glib::Interface(socketconnectable_class_.init())
+: Interface(socketconnectable_class_.init())
 {}
 
 SocketConnectable::SocketConnectable(GSocketConnectable* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 SocketConnectable::SocketConnectable(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 SocketConnectable::SocketConnectable(SocketConnectable&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto SocketConnectable::operator=(SocketConnectable&& src) noexcept -> SocketConnectable&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-SocketConnectable::~SocketConnectable() noexcept
-{}
+SocketConnectable::~SocketConnectable() noexcept = default;
 
 // static
-auto SocketConnectable::add_interface (GType gtype_implementer) -> void
+auto SocketConnectable::add_interface (
+  const GType gtype_implementer) -> void
 {
   socketconnectable_class_.init().add_interface(gtype_implementer);
 }

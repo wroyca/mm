@@ -29,12 +29,12 @@ namespace
 {
 
 
-auto ListView_signal_activate_callback (GtkListView *self, guint p0, void *data) -> void
+auto ListView_signal_activate_callback (GtkListView *self, const guint p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint)>;
 
-  auto obj = dynamic_cast<ListView*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<ListView*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -64,9 +64,9 @@ const Glib::SignalProxyInfo ListView_signal_activate_info =
 namespace Glib
 {
 
-auto wrap(GtkListView* object, bool take_copy) -> Gtk::ListView*
+auto wrap(GtkListView* object, const bool take_copy) -> Gtk::ListView*
 {
-  return dynamic_cast<Gtk::ListView *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::ListView *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -77,7 +77,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto ListView_Class::init() -> const Glib::Class&
+auto ListView_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -110,7 +110,7 @@ auto ListView_Class::class_init_function (void *g_class, void *class_data) -> vo
 
 auto ListView_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new ListView((GtkListView*)(o)));
+  return manage(new ListView((GtkListView*)o));
 
 }
 
@@ -125,7 +125,7 @@ ListView::ListView(const Glib::ConstructParams& construct_params)
 
 ListView::ListView(GtkListView* castitem)
 :
-  ListBase((GtkListBase*)(castitem))
+  ListBase((GtkListBase*)castitem)
 {
   }
 
@@ -162,7 +162,7 @@ auto ListView::get_base_type() -> GType
 ListView::ListView(const Glib::RefPtr<SelectionModel>& model, const Glib::RefPtr<ListItemFactory>& factory)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   ListBase(Glib::ConstructParams(listview_class_.init(), "model", Glib::unwrap(model), "factory", Glib::unwrap(factory), nullptr))
 {
 
@@ -205,9 +205,10 @@ auto ListView::get_factory() const -> Glib::RefPtr<const ListItemFactory>
   return const_cast<ListView*>(this)->get_factory();
 }
 
-auto ListView::set_show_separators (bool show_separators) -> void
+auto ListView::set_show_separators (
+  const bool show_separators) -> void
 {
-  gtk_list_view_set_show_separators(gobj(), static_cast<int>(show_separators));
+  gtk_list_view_set_show_separators(gobj(), show_separators);
 }
 
 auto ListView::get_show_separators() const -> bool
@@ -215,9 +216,10 @@ auto ListView::get_show_separators() const -> bool
   return gtk_list_view_get_show_separators(const_cast<GtkListView*>(gobj()));
 }
 
-auto ListView::set_single_click_activate (bool single_click_activate) -> void
+auto ListView::set_single_click_activate (
+  const bool single_click_activate) -> void
 {
-  gtk_list_view_set_single_click_activate(gobj(), static_cast<int>(single_click_activate));
+  gtk_list_view_set_single_click_activate(gobj(), single_click_activate);
 }
 
 auto ListView::get_single_click_activate() const -> bool
@@ -225,9 +227,10 @@ auto ListView::get_single_click_activate() const -> bool
   return gtk_list_view_get_single_click_activate(const_cast<GtkListView*>(gobj()));
 }
 
-auto ListView::set_enable_rubberband (bool enable_rubberband) -> void
+auto ListView::set_enable_rubberband (
+  const bool enable_rubberband) -> void
 {
-  gtk_list_view_set_enable_rubberband(gobj(), static_cast<int>(enable_rubberband));
+  gtk_list_view_set_enable_rubberband(gobj(), enable_rubberband);
 }
 
 auto ListView::get_enable_rubberband() const -> bool
@@ -238,7 +241,7 @@ auto ListView::get_enable_rubberband() const -> bool
 
 auto ListView::signal_activate() -> Glib::SignalProxy<void(guint)>
 {
-  return Glib::SignalProxy<void(guint) >(this, &ListView_signal_activate_info);
+  return {this, &ListView_signal_activate_info};
 }
 
 
@@ -248,12 +251,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<ListIte
 
 auto ListView::property_factory() -> Glib::PropertyProxy< Glib::RefPtr<ListItemFactory> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<ListItemFactory> >(this, "factory");
+  return {this, "factory"};
 }
 
 auto ListView::property_factory() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListItemFactory> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListItemFactory> >(this, "factory");
+  return {this, "factory"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<SelectionModel>>::value,
@@ -262,42 +265,42 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Selecti
 
 auto ListView::property_model() -> Glib::PropertyProxy< Glib::RefPtr<SelectionModel> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<SelectionModel> >(this, "model");
+  return {this, "model"};
 }
 
 auto ListView::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> >(this, "model");
+  return {this, "model"};
 }
 
 auto ListView::property_show_separators() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "show-separators");
+  return {this, "show-separators"};
 }
 
 auto ListView::property_show_separators() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "show-separators");
+  return {this, "show-separators"};
 }
 
 auto ListView::property_single_click_activate() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "single-click-activate");
+  return {this, "single-click-activate"};
 }
 
 auto ListView::property_single_click_activate() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "single-click-activate");
+  return {this, "single-click-activate"};
 }
 
 auto ListView::property_enable_rubberband() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "enable-rubberband");
+  return {this, "enable-rubberband"};
 }
 
 auto ListView::property_enable_rubberband() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "enable-rubberband");
+  return {this, "enable-rubberband"};
 }
 
 

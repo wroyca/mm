@@ -49,9 +49,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(PangoFontFace* object, bool take_copy) -> Glib::RefPtr<Pango::FontFace>
+auto wrap(PangoFontFace* object, const bool take_copy) -> RefPtr<Pango::FontFace>
 {
-  return Glib::make_refptr_for_instance<Pango::FontFace>( dynamic_cast<Pango::FontFace*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Pango::FontFace>( dynamic_cast<Pango::FontFace*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -64,7 +64,7 @@ namespace Pango
 
 /* The *_Class implementation: */
 
-auto FontFace_Class::init() -> const Glib::Class&
+auto FontFace_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -110,32 +110,28 @@ auto FontFace::gobj_copy() -> PangoFontFace*
 }
 
 FontFace::FontFace(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 FontFace::FontFace(PangoFontFace* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 FontFace::FontFace(FontFace&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto FontFace::operator=(FontFace&& src) noexcept -> FontFace&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-FontFace::~FontFace() noexcept
-{}
-
+FontFace::~FontFace() noexcept = default;
 
 FontFace::CppClassType FontFace::fontface_class_; // initialize static member
 
@@ -153,7 +149,7 @@ auto FontFace::get_base_type() -> GType
 
 auto FontFace::describe() const -> FontDescription
 {
-  return FontDescription((pango_font_face_describe(const_cast<PangoFontFace*>(gobj()))));
+  return FontDescription(pango_font_face_describe(const_cast<PangoFontFace*>(gobj())));
 }
 
 auto FontFace::get_name() const -> Glib::ustring

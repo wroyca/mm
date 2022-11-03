@@ -39,9 +39,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GSimpleActionGroup* object, bool take_copy) -> Glib::RefPtr<Gio::SimpleActionGroup>
+auto wrap(GSimpleActionGroup* object, const bool take_copy) -> RefPtr<Gio::SimpleActionGroup>
 {
-  return Glib::make_refptr_for_instance<Gio::SimpleActionGroup>( dynamic_cast<Gio::SimpleActionGroup*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::SimpleActionGroup>( dynamic_cast<Gio::SimpleActionGroup*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -54,7 +54,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto SimpleActionGroup_Class::init() -> const Glib::Class&
+auto SimpleActionGroup_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -102,36 +102,32 @@ auto SimpleActionGroup::gobj_copy() -> GSimpleActionGroup*
 }
 
 SimpleActionGroup::SimpleActionGroup(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 SimpleActionGroup::SimpleActionGroup(GSimpleActionGroup* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 SimpleActionGroup::SimpleActionGroup(SimpleActionGroup&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , ActionGroup(std::move(src))
   , ActionMap(std::move(src))
 {}
 
 auto SimpleActionGroup::operator=(SimpleActionGroup&& src) noexcept -> SimpleActionGroup&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   ActionGroup::operator=(std::move(src));
   ActionMap::operator=(std::move(src));
   return *this;
 }
 
 
-SimpleActionGroup::~SimpleActionGroup() noexcept
-{}
-
+SimpleActionGroup::~SimpleActionGroup() noexcept = default;
 
 SimpleActionGroup::CppClassType SimpleActionGroup::simpleactiongroup_class_; // initialize static member
 
@@ -150,8 +146,8 @@ auto SimpleActionGroup::get_base_type() -> GType
 SimpleActionGroup::SimpleActionGroup()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(simpleactiongroup_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(simpleactiongroup_class_.init()))
 {
 
 

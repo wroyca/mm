@@ -70,7 +70,7 @@ VariantType::create_tuple(const std::vector<VariantType>& items) -> VariantType
     var_array[i] = const_cast<GVariantType*>(items[i].gobj());
   }
 
-  auto result = Glib::wrap(g_variant_type_new_tuple(var_array, items.size()));
+  auto result = wrap(g_variant_type_new_tuple(var_array, items.size()));
   delete[] var_array;
   return result;
 }
@@ -158,9 +158,9 @@ auto Value <VariantType>::set (const CppType &data) -> void
   set_boxed(data.gobj());
 }
 
-auto Value<VariantType>::get() const -> Value<VariantType>::CppType
+auto Value<VariantType>::get() const -> CppType
 {
-  return Glib::wrap(static_cast<CType>(get_boxed()), true);
+  return wrap(static_cast<CType>(get_boxed()), true);
 }
 
 } // namespace GLib
@@ -173,9 +173,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GVariantType* object, bool take_copy /* = false */) -> Glib::VariantType
+auto wrap(GVariantType* object, const bool take_copy /* = false */) -> VariantType
 {
-  return Glib::VariantType(object, take_copy);
+  return VariantType(object, take_copy);
 }
 
 } // namespace Glib
@@ -192,10 +192,10 @@ VariantType::VariantType()
 
 VariantType::VariantType(const VariantType& src)
 :
-  gobject_ ((src.gobject_) ? g_variant_type_copy(src.gobject_) : nullptr)
+  gobject_ (src.gobject_ ? g_variant_type_copy(src.gobject_) : nullptr)
 {}
 
-VariantType::VariantType(GVariantType* castitem, bool make_a_copy /* = false */)
+VariantType::VariantType(GVariantType* castitem, const bool make_a_copy /* = false */)
 {
   if(!make_a_copy)
   {
@@ -216,7 +216,7 @@ VariantType::VariantType(GVariantType* castitem, bool make_a_copy /* = false */)
 
 auto VariantType::operator=(const VariantType& src) -> VariantType&
 {
-  const auto new_gobject = (src.gobject_) ? g_variant_type_copy(src.gobject_) : nullptr;
+  const auto new_gobject = src.gobject_ ? g_variant_type_copy(src.gobject_) : nullptr;
 
   if(gobject_)
     g_variant_type_free(gobject_);
@@ -259,97 +259,97 @@ auto VariantType::gobj_copy() const -> GVariantType*
 
 auto VariantType::create_array(const VariantType& element) -> VariantType
 {
-  return Glib::wrap(g_variant_type_new_array((element).gobj()));
+  return wrap(g_variant_type_new_array(element.gobj()));
 }
 
 auto VariantType::create_maybe(const VariantType& element) -> VariantType
 {
-  return Glib::wrap(g_variant_type_new_maybe((element).gobj()));
+  return wrap(g_variant_type_new_maybe(element.gobj()));
 }
 
 auto VariantType::create_dict_entry(const VariantType& key, const VariantType& value) -> VariantType
 {
-  return Glib::wrap(g_variant_type_new_dict_entry((key).gobj(), (value).gobj()));
+  return wrap(g_variant_type_new_dict_entry(key.gobj(), value.gobj()));
 }
 
 auto VariantType::get_string_length() const -> gsize
 {
-  return g_variant_type_get_string_length(const_cast<GVariantType*>(gobj()));
+  return g_variant_type_get_string_length(gobj());
 }
 
 auto VariantType::is_definite() const -> bool
 {
-  return g_variant_type_is_definite(const_cast<GVariantType*>(gobj()));
+  return g_variant_type_is_definite(gobj());
 }
 
 auto VariantType::is_container() const -> bool
 {
-  return g_variant_type_is_container(const_cast<GVariantType*>(gobj()));
+  return g_variant_type_is_container(gobj());
 }
 
 auto VariantType::is_basic() const -> bool
 {
-  return g_variant_type_is_basic(const_cast<GVariantType*>(gobj()));
+  return g_variant_type_is_basic(gobj());
 }
 
 auto VariantType::is_maybe() const -> bool
 {
-  return g_variant_type_is_maybe(const_cast<GVariantType*>(gobj()));
+  return g_variant_type_is_maybe(gobj());
 }
 
 auto VariantType::is_array() const -> bool
 {
-  return g_variant_type_is_array(const_cast<GVariantType*>(gobj()));
+  return g_variant_type_is_array(gobj());
 }
 
 auto VariantType::is_tuple() const -> bool
 {
-  return g_variant_type_is_tuple(const_cast<GVariantType*>(gobj()));
+  return g_variant_type_is_tuple(gobj());
 }
 
 auto VariantType::is_dict_entry() const -> bool
 {
-  return g_variant_type_is_dict_entry(const_cast<GVariantType*>(gobj()));
+  return g_variant_type_is_dict_entry(gobj());
 }
 
 auto VariantType::is_variant() const -> bool
 {
-  return g_variant_type_is_variant(const_cast<GVariantType*>(gobj()));
+  return g_variant_type_is_variant(gobj());
 }
 
 auto VariantType::hash() const -> guint
 {
-  return g_variant_type_hash(const_cast<GVariantType*>(gobj()));
+  return g_variant_type_hash(gobj());
 }
 
 auto VariantType::equal(const VariantType& other) const -> bool
 {
-  return g_variant_type_equal(const_cast<GVariantType*>(gobj()), const_cast<GVariantType*>((other).gobj()));
+  return g_variant_type_equal(gobj(), other.gobj());
 }
 
 auto VariantType::is_subtype_of(const VariantType& supertype) const -> bool
 {
-  return g_variant_type_is_subtype_of(const_cast<GVariantType*>(gobj()), (supertype).gobj());
+  return g_variant_type_is_subtype_of(gobj(), supertype.gobj());
 }
 
 auto VariantType::element() const -> VariantType
 {
-  return Glib::wrap(const_cast<GVariantType*>(g_variant_type_element(const_cast<GVariantType*>(gobj()))), true);
+  return wrap(const_cast<GVariantType*>(g_variant_type_element(gobj())), true);
 }
 
 auto VariantType::n_items() const -> gsize
 {
-  return g_variant_type_n_items(const_cast<GVariantType*>(gobj()));
+  return g_variant_type_n_items(gobj());
 }
 
 auto VariantType::key() const -> VariantType
 {
-  return Glib::wrap(const_cast<GVariantType*>(g_variant_type_key(const_cast<GVariantType*>(gobj()))), true);
+  return wrap(const_cast<GVariantType*>(g_variant_type_key(gobj())), true);
 }
 
 auto VariantType::value() const -> VariantType
 {
-  return Glib::wrap(const_cast<GVariantType*>(g_variant_type_value(const_cast<GVariantType*>(gobj()))), true);
+  return wrap(const_cast<GVariantType*>(g_variant_type_value(gobj())), true);
 }
 
 

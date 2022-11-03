@@ -24,18 +24,17 @@ namespace Cairo
 
 inline static auto string_or_empty(const char* text) -> const char*
 {
-  return (text ? text : "");
+  return text ? text : "";
 }
 
 //TODO: Is it wise to assume that the string is ASCII, as expected by std::logic_error?
-logic_error::logic_error(ErrorStatus status)
-: std::logic_error( string_or_empty(cairo_status_to_string((cairo_status_t)status)) ),
+logic_error::logic_error(const ErrorStatus status)
+: std::logic_error( string_or_empty(cairo_status_to_string(status)) ),
   m_status(status)
 {
 }
 
-logic_error::~logic_error() noexcept
-{}
+logic_error::~logic_error() noexcept = default;
 
 auto logic_error::get_status_code() const -> ErrorStatus
 {

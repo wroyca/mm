@@ -17,13 +17,13 @@ public:
   using CppObjectType = StringSorter;
   using BaseObjectType = GtkStringSorter;
   using BaseClassType = GtkStringSorterClass;
-  using CppClassParent = Gtk::Sorter_Class;
+  using CppClassParent = Sorter_Class;
   using BaseClassParent = GtkSorterClass;
 
   friend class StringSorter;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

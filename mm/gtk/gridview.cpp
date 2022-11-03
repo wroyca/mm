@@ -29,12 +29,12 @@ namespace
 {
 
 
-auto GridView_signal_activate_callback (GtkGridView *self, guint p0, void *data) -> void
+auto GridView_signal_activate_callback (GtkGridView *self, const guint p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint)>;
 
-  auto obj = dynamic_cast<GridView*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<GridView*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -64,9 +64,9 @@ const Glib::SignalProxyInfo GridView_signal_activate_info =
 namespace Glib
 {
 
-auto wrap(GtkGridView* object, bool take_copy) -> Gtk::GridView*
+auto wrap(GtkGridView* object, const bool take_copy) -> Gtk::GridView*
 {
-  return dynamic_cast<Gtk::GridView *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::GridView *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -77,7 +77,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto GridView_Class::init() -> const Glib::Class&
+auto GridView_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -110,7 +110,7 @@ auto GridView_Class::class_init_function (void *g_class, void *class_data) -> vo
 
 auto GridView_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new GridView((GtkGridView*)(o)));
+  return manage(new GridView((GtkGridView*)o));
 
 }
 
@@ -125,7 +125,7 @@ GridView::GridView(const Glib::ConstructParams& construct_params)
 
 GridView::GridView(GtkGridView* castitem)
 :
-  ListBase((GtkListBase*)(castitem))
+  ListBase((GtkListBase*)castitem)
 {
   }
 
@@ -162,7 +162,7 @@ auto GridView::get_base_type() -> GType
 GridView::GridView(const Glib::RefPtr<SelectionModel>& model, const Glib::RefPtr<ListItemFactory>& factory)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   ListBase(Glib::ConstructParams(gridview_class_.init(), "model", Glib::unwrap(model), "factory", Glib::unwrap(factory), nullptr))
 {
 
@@ -210,7 +210,8 @@ auto GridView::get_min_columns() const -> guint
   return gtk_grid_view_get_min_columns(const_cast<GtkGridView*>(gobj()));
 }
 
-auto GridView::set_min_columns (guint min_columns) -> void
+auto GridView::set_min_columns (
+  const guint min_columns) -> void
 {
   gtk_grid_view_set_min_columns(gobj(), min_columns);
 }
@@ -220,14 +221,16 @@ auto GridView::get_max_columns() const -> guint
   return gtk_grid_view_get_max_columns(const_cast<GtkGridView*>(gobj()));
 }
 
-auto GridView::set_max_columns (guint max_columns) -> void
+auto GridView::set_max_columns (
+  const guint max_columns) -> void
 {
   gtk_grid_view_set_max_columns(gobj(), max_columns);
 }
 
-auto GridView::set_enable_rubberband (bool enable_rubberband) -> void
+auto GridView::set_enable_rubberband (
+  const bool enable_rubberband) -> void
 {
-  gtk_grid_view_set_enable_rubberband(gobj(), static_cast<int>(enable_rubberband));
+  gtk_grid_view_set_enable_rubberband(gobj(), enable_rubberband);
 }
 
 auto GridView::get_enable_rubberband() const -> bool
@@ -235,9 +238,10 @@ auto GridView::get_enable_rubberband() const -> bool
   return gtk_grid_view_get_enable_rubberband(const_cast<GtkGridView*>(gobj()));
 }
 
-auto GridView::set_single_click_activate (bool single_click_activate) -> void
+auto GridView::set_single_click_activate (
+  const bool single_click_activate) -> void
 {
-  gtk_grid_view_set_single_click_activate(gobj(), static_cast<int>(single_click_activate));
+  gtk_grid_view_set_single_click_activate(gobj(), single_click_activate);
 }
 
 auto GridView::get_single_click_activate() const -> bool
@@ -248,7 +252,7 @@ auto GridView::get_single_click_activate() const -> bool
 
 auto GridView::signal_activate() -> Glib::SignalProxy<void(guint)>
 {
-  return Glib::SignalProxy<void(guint) >(this, &GridView_signal_activate_info);
+  return {this, &GridView_signal_activate_info};
 }
 
 
@@ -258,32 +262,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<ListIte
 
 auto GridView::property_factory() -> Glib::PropertyProxy< Glib::RefPtr<ListItemFactory> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<ListItemFactory> >(this, "factory");
+  return {this, "factory"};
 }
 
 auto GridView::property_factory() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListItemFactory> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListItemFactory> >(this, "factory");
+  return {this, "factory"};
 }
 
 auto GridView::property_max_columns() -> Glib::PropertyProxy< guint >
 {
-  return Glib::PropertyProxy< guint >(this, "max-columns");
+  return {this, "max-columns"};
 }
 
 auto GridView::property_max_columns() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
-  return Glib::PropertyProxy_ReadOnly< guint >(this, "max-columns");
+  return {this, "max-columns"};
 }
 
 auto GridView::property_min_columns() -> Glib::PropertyProxy< guint >
 {
-  return Glib::PropertyProxy< guint >(this, "min-columns");
+  return {this, "min-columns"};
 }
 
 auto GridView::property_min_columns() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
-  return Glib::PropertyProxy_ReadOnly< guint >(this, "min-columns");
+  return {this, "min-columns"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<SelectionModel>>::value,
@@ -292,32 +296,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Selecti
 
 auto GridView::property_model() -> Glib::PropertyProxy< Glib::RefPtr<SelectionModel> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<SelectionModel> >(this, "model");
+  return {this, "model"};
 }
 
 auto GridView::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> >(this, "model");
+  return {this, "model"};
 }
 
 auto GridView::property_single_click_activate() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "single-click-activate");
+  return {this, "single-click-activate"};
 }
 
 auto GridView::property_single_click_activate() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "single-click-activate");
+  return {this, "single-click-activate"};
 }
 
 auto GridView::property_enable_rubberband() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "enable-rubberband");
+  return {this, "enable-rubberband"};
 }
 
 auto GridView::property_enable_rubberband() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "enable-rubberband");
+  return {this, "enable-rubberband"};
 }
 
 

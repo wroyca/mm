@@ -32,7 +32,7 @@ const cairo_user_data_key_t USER_DATA_KEY_DEFAULT_TEXT_TO_GLYPHS =  {0};
 namespace Cairo
 {
 
-FontFace::FontFace(cairo_font_face_t* cobject, bool has_reference)
+FontFace::FontFace(cairo_font_face_t* cobject, const bool has_reference)
 : m_cobject(nullptr)
 {
   if(has_reference)
@@ -81,7 +81,7 @@ auto FontFace::get_type() const -> FontType
 
 // 'Toy' fonts
 auto
-ToyFontFace::create(const std::string& family, Slant slant, Weight weight) -> RefPtr<ToyFontFace>
+ToyFontFace::create(const std::string& family, const Slant slant, const Weight weight) -> RefPtr<ToyFontFace>
 {
   return make_refptr_for_instance<ToyFontFace>(new ToyFontFace(family, slant, weight));
 }
@@ -100,12 +100,12 @@ auto ToyFontFace::get_family() const -> std::string
   return std::string(cairo_toy_font_face_get_family(m_cobject));
 }
 
-auto ToyFontFace::get_slant() const -> ToyFontFace::Slant
+auto ToyFontFace::get_slant() const -> Slant
 {
   return Slant(cairo_toy_font_face_get_slant(m_cobject));
 }
 
-auto ToyFontFace::get_weight() const -> ToyFontFace::Weight
+auto ToyFontFace::get_weight() const -> Weight
 {
   return Weight(cairo_toy_font_face_get_weight(m_cobject));
 }
@@ -131,9 +131,9 @@ UserFontFace::init_cb(cairo_scaled_font_t* scaled_font,
                       cairo_t *cr,
                       cairo_font_extents_t* metrics) -> cairo_status_t
 {
-  auto face = cairo_scaled_font_get_font_face(scaled_font);
+  const auto face = cairo_scaled_font_get_font_face(scaled_font);
   // we've stored a pointer to the wrapper object in the C object's user_data
-  auto instance =
+  const auto instance =
     static_cast<UserFontFace*>(cairo_font_face_get_user_data(face,
                                                              &user_font_key));
 
@@ -143,7 +143,7 @@ UserFontFace::init_cb(cairo_scaled_font_t* scaled_font,
     {
       return instance->init(make_refptr_for_instance<ScaledFont>(new ScaledFont(scaled_font)),
                             make_refptr_for_instance<Context>(new Context(cr)),
-                            static_cast<FontExtents&>(*metrics));
+                            *metrics);
     }
     catch(const std::exception& ex)
     {
@@ -175,13 +175,12 @@ UserFontFace::init(const RefPtr<ScaledFont>& /*scaled_font*/,
 }
 
 auto
-UserFontFace::unicode_to_glyph_cb(cairo_scaled_font_t *scaled_font,
-                                  unsigned long        unicode,
+UserFontFace::unicode_to_glyph_cb(cairo_scaled_font_t *scaled_font, const unsigned long        unicode,
                                   unsigned long       *glyph) -> cairo_status_t
 {
-  auto face = cairo_scaled_font_get_font_face(scaled_font);
+  const auto face = cairo_scaled_font_get_font_face(scaled_font);
   // we've stored a pointer to the wrapper object in the C object's user_data
-  auto instance =
+  const auto instance =
     static_cast<UserFontFace*>(cairo_font_face_get_user_data(face,
                                                              &user_font_key));
   if(instance)
@@ -206,8 +205,7 @@ UserFontFace::unicode_to_glyph_cb(cairo_scaled_font_t *scaled_font,
 }
 
 auto
-UserFontFace::unicode_to_glyph(const RefPtr<ScaledFont>& /*scaled_font*/,
-                               unsigned long unicode,
+UserFontFace::unicode_to_glyph(const RefPtr<ScaledFont>& /*scaled_font*/, const unsigned long unicode,
                                unsigned long& glyph) -> ErrorStatus
 {
   // fallback behavior is just to map 1:1
@@ -217,17 +215,16 @@ UserFontFace::unicode_to_glyph(const RefPtr<ScaledFont>& /*scaled_font*/,
 
 auto
 UserFontFace::text_to_glyphs_cb(cairo_scaled_font_t *scaled_font,
-                                const char *utf8,
-                                int utf8_len,
+                                const char *utf8, const int utf8_len,
                                 cairo_glyph_t **glyphs,
                                 int *num_glyphs,
                                 cairo_text_cluster_t **clusters,
                                 int *num_clusters,
                                 cairo_text_cluster_flags_t *cluster_flags) -> cairo_status_t
 {
-  auto face = cairo_scaled_font_get_font_face(scaled_font);
+  const auto face = cairo_scaled_font_get_font_face(scaled_font);
   // we've stored a pointer to the wrapper object in the C object's user_data
-  auto instance =
+  const auto instance =
     static_cast<UserFontFace*>(cairo_font_face_get_user_data(face,
                                                              &user_font_key));
 
@@ -240,7 +237,7 @@ UserFontFace::text_to_glyphs_cb(cairo_scaled_font_t *scaled_font,
       const std::string utf8_str(utf8, utf8 + utf8_len);
       auto local_flags = static_cast<TextClusterFlags>(0);
 
-      auto status =
+      const auto status =
         instance->text_to_glyphs(make_refptr_for_instance<ScaledFont>(new
                                                     ScaledFont(scaled_font)),
                                  utf8_str, glyph_v, cluster_v, local_flags);
@@ -320,14 +317,13 @@ UserFontFace::text_to_glyphs(const RefPtr<ScaledFont>& /*scaled_font*/,
 }
 
 auto
-UserFontFace::render_glyph_cb(cairo_scaled_font_t  *scaled_font,
-                              unsigned long         glyph,
+UserFontFace::render_glyph_cb(cairo_scaled_font_t  *scaled_font, const unsigned long         glyph,
                               cairo_t              *cr,
                               cairo_text_extents_t *metrics) -> cairo_status_t
 {
-  auto face = cairo_scaled_font_get_font_face(scaled_font);
+  const auto face = cairo_scaled_font_get_font_face(scaled_font);
   // we've stored a pointer to the wrapper object in the C object's user_data
-  auto instance =
+  const auto instance =
     static_cast<UserFontFace*>(cairo_font_face_get_user_data(face,
                                                              &user_font_key));
   if(instance)
@@ -336,7 +332,7 @@ UserFontFace::render_glyph_cb(cairo_scaled_font_t  *scaled_font,
     {
       return instance->render_glyph(make_refptr_for_instance<ScaledFont>(new ScaledFont(scaled_font)),
                                     glyph, make_refptr_for_instance<Context>(new Context(cr)),
-                                    static_cast<TextExtents&>(*metrics));
+                                    *metrics);
     }
     catch(const std::exception& ex)
     {
@@ -370,19 +366,18 @@ UserFontFace::UserFontFace()
   cairo_user_font_face_set_text_to_glyphs_func(cobj(), text_to_glyphs_cb);
 }
 
-UserFontFace::~UserFontFace()
-{
-}
+UserFontFace::~UserFontFace() = default;
 
 #ifdef CAIRO_HAS_FT_FONT
 
 auto
-FtFontFace::create(FT_Face face, int load_flags) -> RefPtr<FtFontFace>
+FtFontFace::create(
+  const FT_Face face, const int load_flags) -> RefPtr<FtFontFace>
 {
   return make_refptr_for_instance<FtFontFace>(new FtFontFace(face, load_flags));
 }
 
-FtFontFace::FtFontFace(FT_Face face, int load_flags) :
+FtFontFace::FtFontFace(const FT_Face face, const int load_flags) :
   FontFace(cairo_ft_font_face_create_for_ft_face (face, load_flags),
            true /* has reference*/)
 {
@@ -404,12 +399,14 @@ FtFontFace::FtFontFace(FcPattern* pattern) :
 }
 #endif // CAIRO_HAS_FC_FONT
 
-auto FtFontFace::set_synthesize (FtSynthesize synth_flags) -> void
+auto FtFontFace::set_synthesize (
+  const FtSynthesize synth_flags) -> void
 {
   cairo_ft_font_face_set_synthesize(m_cobject, synth_flags);
 }
 
-auto FtFontFace::unset_synthesize (FtSynthesize synth_flags) -> void
+auto FtFontFace::unset_synthesize (
+  const FtSynthesize synth_flags) -> void
 {
   cairo_ft_font_face_unset_synthesize(m_cobject, synth_flags);
 }

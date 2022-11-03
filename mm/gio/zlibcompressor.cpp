@@ -45,9 +45,9 @@ auto Glib::Value<Gio::ZlibCompressorFormat>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GZlibCompressor* object, bool take_copy) -> Glib::RefPtr<Gio::ZlibCompressor>
+auto wrap(GZlibCompressor* object, const bool take_copy) -> RefPtr<Gio::ZlibCompressor>
 {
-  return Glib::make_refptr_for_instance<Gio::ZlibCompressor>( dynamic_cast<Gio::ZlibCompressor*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::ZlibCompressor>( dynamic_cast<Gio::ZlibCompressor*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -60,7 +60,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto ZlibCompressor_Class::init() -> const Glib::Class&
+auto ZlibCompressor_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -107,34 +107,30 @@ auto ZlibCompressor::gobj_copy() -> GZlibCompressor*
 }
 
 ZlibCompressor::ZlibCompressor(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 ZlibCompressor::ZlibCompressor(GZlibCompressor* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 ZlibCompressor::ZlibCompressor(ZlibCompressor&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , Converter(std::move(src))
 {}
 
 auto ZlibCompressor::operator=(ZlibCompressor&& src) noexcept -> ZlibCompressor&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   Converter::operator=(std::move(src));
   return *this;
 }
 
 
-ZlibCompressor::~ZlibCompressor() noexcept
-{}
-
+ZlibCompressor::~ZlibCompressor() noexcept = default;
 
 ZlibCompressor::CppClassType ZlibCompressor::zlibcompressor_class_; // initialize static member
 
@@ -150,17 +146,18 @@ auto ZlibCompressor::get_base_type() -> GType
 }
 
 
-ZlibCompressor::ZlibCompressor(ZlibCompressorFormat format, int level)
+ZlibCompressor::ZlibCompressor(const ZlibCompressorFormat format, const int level)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(zlibcompressor_class_.init(), "format", static_cast<GZlibCompressorFormat>(format), "level", level, nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(zlibcompressor_class_.init(), "format", format, "level", level, nullptr))
 {
 
 
 }
 
-auto ZlibCompressor::create(ZlibCompressorFormat format, int level) -> Glib::RefPtr<ZlibCompressor>
+auto ZlibCompressor::create(
+  const ZlibCompressorFormat format, const int level) -> Glib::RefPtr<ZlibCompressor>
 {
   return Glib::make_refptr_for_instance<ZlibCompressor>( new ZlibCompressor(format, level) );
 }
@@ -187,12 +184,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<FileInf
 
 auto ZlibCompressor::property_file_info() -> Glib::PropertyProxy< Glib::RefPtr<FileInfo> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<FileInfo> >(this, "file-info");
+  return {this, "file-info"};
 }
 
 auto ZlibCompressor::property_file_info() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<FileInfo> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<FileInfo> >(this, "file-info");
+  return {this, "file-info"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<ZlibCompressorFormat>::value,
@@ -201,12 +198,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<ZlibCompressorFormat
 
 auto ZlibCompressor::property_format() const -> Glib::PropertyProxy_ReadOnly< ZlibCompressorFormat >
 {
-  return Glib::PropertyProxy_ReadOnly< ZlibCompressorFormat >(this, "format");
+  return {this, "format"};
 }
 
 auto ZlibCompressor::property_level() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "level");
+  return {this, "level"};
 }
 
 

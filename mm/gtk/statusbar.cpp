@@ -30,12 +30,13 @@
 namespace Gtk
 {
 
-auto Statusbar::push(const Glib::ustring& text, guint context_id /* = 0 */) -> guint
+auto Statusbar::push(const Glib::ustring& text, const guint context_id /* = 0 */) -> guint
 {
   return gtk_statusbar_push(gobj(), context_id, text.c_str());
 }
 
-auto Statusbar::remove_message (guint message_id, guint context_id /* = 0 */) -> void
+auto Statusbar::remove_message (
+  const guint message_id, const guint context_id /* = 0 */) -> void
 {
   return gtk_statusbar_remove(gobj(), context_id, message_id);
 }
@@ -48,12 +49,12 @@ namespace
 
 
 auto Statusbar_signal_text_pushed_callback (
-  GtkStatusbar *self, guint p0, const gchar *p1, void *data) -> void
+  GtkStatusbar *self, const guint p0, const gchar *p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint, const Glib::ustring&)>;
 
-  auto obj = dynamic_cast<Statusbar*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Statusbar*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -79,12 +80,12 @@ const Glib::SignalProxyInfo Statusbar_signal_text_pushed_info =
 
 
 auto Statusbar_signal_text_popped_callback (
-  GtkStatusbar *self, guint p0, const gchar *p1, void *data) -> void
+  GtkStatusbar *self, const guint p0, const gchar *p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint, const Glib::ustring&)>;
 
-  auto obj = dynamic_cast<Statusbar*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<Statusbar*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -115,9 +116,9 @@ const Glib::SignalProxyInfo Statusbar_signal_text_popped_info =
 namespace Glib
 {
 
-auto wrap(GtkStatusbar* object, bool take_copy) -> Gtk::Statusbar*
+auto wrap(GtkStatusbar* object, const bool take_copy) -> Gtk::Statusbar*
 {
-  return dynamic_cast<Gtk::Statusbar *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::Statusbar *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -128,7 +129,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Statusbar_Class::init() -> const Glib::Class&
+auto Statusbar_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -161,7 +162,7 @@ auto Statusbar_Class::class_init_function (void *g_class, void *class_data) -> v
 
 auto Statusbar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new Statusbar((GtkStatusbar*)(o)));
+  return manage(new Statusbar((GtkStatusbar*)o));
 
 }
 
@@ -169,25 +170,23 @@ auto Statusbar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 Statusbar::Statusbar(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 Statusbar::Statusbar(GtkStatusbar* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 Statusbar::Statusbar(Statusbar&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
 {}
 
 auto Statusbar::operator=(Statusbar&& src) noexcept -> Statusbar&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   return *this;
 }
 
@@ -213,8 +212,8 @@ auto Statusbar::get_base_type() -> GType
 Statusbar::Statusbar()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(statusbar_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(statusbar_class_.init()))
 {
 
 
@@ -225,12 +224,14 @@ auto Statusbar::get_context_id(const Glib::ustring& context_description) -> guin
   return gtk_statusbar_get_context_id(gobj(), context_description.c_str());
 }
 
-auto Statusbar::pop (guint context_id) -> void
+auto Statusbar::pop (
+  const guint context_id) -> void
 {
   gtk_statusbar_pop(gobj(), context_id);
 }
 
-auto Statusbar::remove_all_messages (guint context_id) -> void
+auto Statusbar::remove_all_messages (
+  const guint context_id) -> void
 {
   gtk_statusbar_remove_all(gobj(), context_id);
 }
@@ -238,13 +239,13 @@ auto Statusbar::remove_all_messages (guint context_id) -> void
 
 auto Statusbar::signal_text_pushed() -> Glib::SignalProxy<void(guint, const Glib::ustring&)>
 {
-  return Glib::SignalProxy<void(guint, const Glib::ustring&) >(this, &Statusbar_signal_text_pushed_info);
+  return {this, &Statusbar_signal_text_pushed_info};
 }
 
 
 auto Statusbar::signal_text_popped() -> Glib::SignalProxy<void(guint, const Glib::ustring&)>
 {
-  return Glib::SignalProxy<void(guint, const Glib::ustring&) >(this, &Statusbar_signal_text_popped_info);
+  return {this, &Statusbar_signal_text_popped_info};
 }
 
 

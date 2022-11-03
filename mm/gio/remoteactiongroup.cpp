@@ -36,9 +36,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GRemoteActionGroup* object, bool take_copy) -> Glib::RefPtr<Gio::RemoteActionGroup>
+auto wrap(GRemoteActionGroup* object, const bool take_copy) -> RefPtr<Gio::RemoteActionGroup>
 {
-  return Glib::make_refptr_for_instance<Gio::RemoteActionGroup>( dynamic_cast<Gio::RemoteActionGroup*> (Glib::wrap_auto_interface<Gio::RemoteActionGroup> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::RemoteActionGroup>( Glib::wrap_auto_interface<Gio::RemoteActionGroup> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -51,7 +51,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto RemoteActionGroup_Class::init() -> const Glib::Interface_Class&
+auto RemoteActionGroup_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -83,8 +83,7 @@ auto RemoteActionGroup_Class::activate_action_full_vfunc_callback (
   GRemoteActionGroup *self, const gchar *action_name, GVariant *parameter,
   GVariant *platform_data) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -112,7 +111,7 @@ auto RemoteActionGroup_Class::activate_action_full_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -125,8 +124,7 @@ auto RemoteActionGroup_Class::change_action_state_full_vfunc_callback (
   GRemoteActionGroup *self, const gchar *action_name, GVariant *value,
   GVariant *platform_data) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -154,7 +152,7 @@ auto RemoteActionGroup_Class::change_action_state_full_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -167,42 +165,40 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 
 auto RemoteActionGroup_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new RemoteActionGroup((GRemoteActionGroup*)(object));
+  return new RemoteActionGroup((GRemoteActionGroup*)object);
 }
 
 
 /* The implementation: */
 
 RemoteActionGroup::RemoteActionGroup()
-:
-  Glib::Interface(remoteactiongroup_class_.init())
+: Interface(remoteactiongroup_class_.init())
 {}
 
 RemoteActionGroup::RemoteActionGroup(GRemoteActionGroup* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 RemoteActionGroup::RemoteActionGroup(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 RemoteActionGroup::RemoteActionGroup(RemoteActionGroup&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto RemoteActionGroup::operator=(RemoteActionGroup&& src) noexcept -> RemoteActionGroup&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-RemoteActionGroup::~RemoteActionGroup() noexcept
-{}
+RemoteActionGroup::~RemoteActionGroup() noexcept = default;
 
 // static
-auto RemoteActionGroup::add_interface (GType gtype_implementer) -> void
+auto RemoteActionGroup::add_interface (
+  const GType gtype_implementer) -> void
 {
   remoteactiongroup_class_.init().add_interface(gtype_implementer);
 }
@@ -225,43 +221,43 @@ auto RemoteActionGroup::activate_action (
   const Glib::ustring &action_name, const Glib::VariantBase &parameter,
   const Glib::VariantBase &platform_data) -> void
 {
-  g_remote_action_group_activate_action_full(gobj(), action_name.c_str(), const_cast<GVariant*>((parameter).gobj()), const_cast<GVariant*>((platform_data).gobj()));
+  g_remote_action_group_activate_action_full(gobj(), action_name.c_str(), const_cast<GVariant*>(parameter.gobj()), const_cast<GVariant*>(platform_data.gobj()));
 }
 
 auto RemoteActionGroup::change_action_state (
   const Glib::ustring &action_name, const Glib::VariantBase &value,
   const Glib::VariantBase &platform_data) -> void
 {
-  g_remote_action_group_change_action_state_full(gobj(), action_name.c_str(), const_cast<GVariant*>((value).gobj()), const_cast<GVariant*>((platform_data).gobj()));
+  g_remote_action_group_change_action_state_full(gobj(), action_name.c_str(), const_cast<GVariant*>(value.gobj()), const_cast<GVariant*>(platform_data.gobj()));
 }
 
 
-auto Gio::RemoteActionGroup::activate_action_full_vfunc (
+auto RemoteActionGroup::activate_action_full_vfunc (
   const Glib::ustring &action_name, const Glib::VariantBase &parameter,
   const Glib::VariantBase &platform_data) -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->activate_action_full)
   {
-    (*base->activate_action_full)(gobj(),action_name.c_str(),const_cast<GVariant*>((parameter).gobj()),const_cast<GVariant*>((platform_data).gobj()));
+    (*base->activate_action_full)(gobj(),action_name.c_str(),const_cast<GVariant*>(parameter.gobj()),const_cast<GVariant*>(platform_data.gobj()));
   }
 }
-auto Gio::RemoteActionGroup::change_action_state_full_vfunc (
+auto RemoteActionGroup::change_action_state_full_vfunc (
   const Glib::ustring &action_name, const Glib::VariantBase &value,
   const Glib::VariantBase &platform_data) -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->change_action_state_full)
   {
-    (*base->change_action_state_full)(gobj(),action_name.c_str(),const_cast<GVariant*>((value).gobj()),const_cast<GVariant*>((platform_data).gobj()));
+    (*base->change_action_state_full)(gobj(),action_name.c_str(),const_cast<GVariant*>(value.gobj()),const_cast<GVariant*>(platform_data.gobj()));
   }
 }
 

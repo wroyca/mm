@@ -29,8 +29,8 @@ namespace Gio
 {
 
 MenuItem::MenuItem(const Glib::ustring& label, const Glib::ustring& detailed_action) : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(menuitem_class_.init()))
+  ObjectBase(nullptr),
+  Object(Glib::ConstructParams(menuitem_class_.init()))
 {
   if (!label.empty())
     set_label(label);
@@ -41,8 +41,8 @@ MenuItem::MenuItem(const Glib::ustring& label, const Glib::ustring& detailed_act
 
 MenuItem::MenuItem(const Glib::ustring& label, const Glib::RefPtr<MenuModel>& submenu)
 : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(menuitem_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(menuitem_class_.init()))
 {
   if (!label.empty())
     set_label(label);
@@ -51,8 +51,8 @@ MenuItem::MenuItem(const Glib::ustring& label, const Glib::RefPtr<MenuModel>& su
 }
 
 MenuItem::MenuItem(const Glib::RefPtr<MenuModel>& submenu) : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(menuitem_class_.init()))
+  ObjectBase(nullptr),
+  Object(Glib::ConstructParams(menuitem_class_.init()))
 {
   set_submenu(submenu);
 }
@@ -90,9 +90,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GMenuItem* object, bool take_copy) -> Glib::RefPtr<Gio::MenuItem>
+auto wrap(GMenuItem* object, const bool take_copy) -> RefPtr<Gio::MenuItem>
 {
-  return Glib::make_refptr_for_instance<Gio::MenuItem>( dynamic_cast<Gio::MenuItem*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::MenuItem>( dynamic_cast<Gio::MenuItem*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -105,7 +105,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto MenuItem_Class::init() -> const Glib::Class&
+auto MenuItem_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -151,32 +151,28 @@ auto MenuItem::gobj_copy() -> GMenuItem*
 }
 
 MenuItem::MenuItem(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 MenuItem::MenuItem(GMenuItem* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 MenuItem::MenuItem(MenuItem&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto MenuItem::operator=(MenuItem&& src) noexcept -> MenuItem&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-MenuItem::~MenuItem() noexcept
-{}
-
+MenuItem::~MenuItem() noexcept = default;
 
 MenuItem::CppClassType MenuItem::menuitem_class_; // initialize static member
 
@@ -210,7 +206,7 @@ auto MenuItem::create(const Glib::RefPtr<MenuModel>& submenu) -> Glib::RefPtr<Me
 auto MenuItem::set_attribute_value (
   const Glib::ustring &attribute, const Glib::VariantBase &value) -> void
 {
-  g_menu_item_set_attribute_value(gobj(), attribute.c_str(), const_cast<GVariant*>((value).gobj()));
+  g_menu_item_set_attribute_value(gobj(), attribute.c_str(), const_cast<GVariant*>(value.gobj()));
 }
 
 auto MenuItem::get_link(const Glib::ustring& link) -> Glib::RefPtr<MenuModel>
@@ -225,7 +221,7 @@ auto MenuItem::get_link(const Glib::ustring& link) const -> Glib::RefPtr<const M
 
 auto MenuItem::set_link (const Glib::ustring &link, const Glib::RefPtr <MenuModel> &model) -> void
 {
-  g_menu_item_set_link(gobj(), link.c_str(), const_cast<GMenuModel*>(Glib::unwrap(model)));
+  g_menu_item_set_link(gobj(), link.c_str(), Glib::unwrap(model));
 }
 
 auto MenuItem::set_label (const Glib::ustring &label) -> void
@@ -235,17 +231,17 @@ auto MenuItem::set_label (const Glib::ustring &label) -> void
 
 auto MenuItem::set_submenu (const Glib::RefPtr <MenuModel> &submenu) -> void
 {
-  g_menu_item_set_submenu(gobj(), const_cast<GMenuModel*>(Glib::unwrap(submenu)));
+  g_menu_item_set_submenu(gobj(), Glib::unwrap(submenu));
 }
 
 auto MenuItem::set_section (const Glib::RefPtr <MenuModel> &section) -> void
 {
-  g_menu_item_set_section(gobj(), const_cast<GMenuModel*>(Glib::unwrap(section)));
+  g_menu_item_set_section(gobj(), Glib::unwrap(section));
 }
 
 auto MenuItem::get_attribute_value(const Glib::ustring& attribute, const Glib::VariantType& expected_type) const -> Glib::VariantBase
 {
-  return Glib::wrap(g_menu_item_get_attribute_value(const_cast<GMenuItem*>(gobj()), attribute.c_str(), (expected_type).gobj()), false);
+  return Glib::wrap(g_menu_item_get_attribute_value(const_cast<GMenuItem*>(gobj()), attribute.c_str(), expected_type.gobj()), false);
 }
 
 auto MenuItem::get_attribute_value(const Glib::ustring& attribute) const -> Glib::VariantBase
@@ -256,7 +252,7 @@ auto MenuItem::get_attribute_value(const Glib::ustring& attribute) const -> Glib
 auto MenuItem::set_action_and_target (
   const Glib::ustring &action, const Glib::VariantBase &target_value) -> void
 {
-  g_menu_item_set_action_and_target_value(gobj(), action.c_str(), const_cast<GVariant*>((target_value).gobj()));
+  g_menu_item_set_action_and_target_value(gobj(), action.c_str(), const_cast<GVariant*>(target_value.gobj()));
 }
 
 auto MenuItem::set_detailed_action (const Glib::ustring &detailed_action) -> void
@@ -266,7 +262,7 @@ auto MenuItem::set_detailed_action (const Glib::ustring &detailed_action) -> voi
 
 auto MenuItem::set_icon (const Glib::RefPtr <Icon> &icon) -> void
 {
-  g_menu_item_set_icon(gobj(), const_cast<GIcon*>(Glib::unwrap(icon)));
+  g_menu_item_set_icon(gobj(), Glib::unwrap(icon));
 }
 
 

@@ -45,13 +45,13 @@ namespace
 
 
 auto CellRendererAccel_signal_accel_edited_callback (
-  GtkCellRendererAccel *self, const gchar *p0, guint p1, GdkModifierType p2, guint p3,
+  GtkCellRendererAccel *self, const gchar *p0, const guint p1, GdkModifierType p2, const guint p3,
   void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&, guint, Gdk::ModifierType, guint)>;
 
-  auto obj = dynamic_cast<CellRendererAccel*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<CellRendererAccel*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -83,7 +83,7 @@ auto CellRendererAccel_signal_accel_cleared_callback (
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
 
-  auto obj = dynamic_cast<CellRendererAccel*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<CellRendererAccel*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -120,9 +120,9 @@ auto Glib::Value<Gtk::CellRendererAccel::Mode>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkCellRendererAccel* object, bool take_copy) -> Gtk::CellRendererAccel*
+auto wrap(GtkCellRendererAccel* object, const bool take_copy) -> Gtk::CellRendererAccel*
 {
-  return dynamic_cast<Gtk::CellRendererAccel *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::CellRendererAccel *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -133,7 +133,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto CellRendererAccel_Class::init() -> const Glib::Class&
+auto CellRendererAccel_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -166,7 +166,7 @@ auto CellRendererAccel_Class::class_init_function (void *g_class, void *class_da
 
 auto CellRendererAccel_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new CellRendererAccel((GtkCellRendererAccel*)(o)));
+  return manage(new CellRendererAccel((GtkCellRendererAccel*)o));
 
 }
 
@@ -174,25 +174,23 @@ auto CellRendererAccel_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 CellRendererAccel::CellRendererAccel(const Glib::ConstructParams& construct_params)
-:
-  Gtk::CellRendererText(construct_params)
+: CellRendererText(construct_params)
 {
   }
 
 CellRendererAccel::CellRendererAccel(GtkCellRendererAccel* castitem)
-:
-  Gtk::CellRendererText((GtkCellRendererText*)(castitem))
+: CellRendererText((GtkCellRendererText*)castitem)
 {
   }
 
 
 CellRendererAccel::CellRendererAccel(CellRendererAccel&& src) noexcept
-: Gtk::CellRendererText(std::move(src))
+: CellRendererText(std::move(src))
 {}
 
 auto CellRendererAccel::operator=(CellRendererAccel&& src) noexcept -> CellRendererAccel&
 {
-  Gtk::CellRendererText::operator=(std::move(src));
+  CellRendererText::operator=(std::move(src));
   return *this;
 }
 
@@ -218,8 +216,8 @@ auto CellRendererAccel::get_base_type() -> GType
 CellRendererAccel::CellRendererAccel()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::CellRendererText(Glib::ConstructParams(cellrendereraccel_class_.init()))
+ObjectBase(nullptr),
+CellRendererText(Glib::ConstructParams(cellrendereraccel_class_.init()))
 {
 
 
@@ -228,24 +226,24 @@ CellRendererAccel::CellRendererAccel()
 
 auto CellRendererAccel::signal_accel_edited() -> Glib::SignalProxy<void(const Glib::ustring&, guint, Gdk::ModifierType, guint)>
 {
-  return Glib::SignalProxy<void(const Glib::ustring&, guint, Gdk::ModifierType, guint) >(this, &CellRendererAccel_signal_accel_edited_info);
+  return {this, &CellRendererAccel_signal_accel_edited_info};
 }
 
 
 auto CellRendererAccel::signal_accel_cleared() -> Glib::SignalProxy<void(const Glib::ustring&)>
 {
-  return Glib::SignalProxy<void(const Glib::ustring&) >(this, &CellRendererAccel_signal_accel_cleared_info);
+  return {this, &CellRendererAccel_signal_accel_cleared_info};
 }
 
 
 auto CellRendererAccel::property_accel_key() -> Glib::PropertyProxy< guint >
 {
-  return Glib::PropertyProxy< guint >(this, "accel-key");
+  return {this, "accel-key"};
 }
 
 auto CellRendererAccel::property_accel_key() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
-  return Glib::PropertyProxy_ReadOnly< guint >(this, "accel-key");
+  return {this, "accel-key"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::ModifierType>::value,
@@ -254,22 +252,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::ModifierType>::
 
 auto CellRendererAccel::property_accel_mods() -> Glib::PropertyProxy< Gdk::ModifierType >
 {
-  return Glib::PropertyProxy< Gdk::ModifierType >(this, "accel-mods");
+  return {this, "accel-mods"};
 }
 
 auto CellRendererAccel::property_accel_mods() const -> Glib::PropertyProxy_ReadOnly< Gdk::ModifierType >
 {
-  return Glib::PropertyProxy_ReadOnly< Gdk::ModifierType >(this, "accel-mods");
+  return {this, "accel-mods"};
 }
 
 auto CellRendererAccel::property_keycode() -> Glib::PropertyProxy< guint >
 {
-  return Glib::PropertyProxy< guint >(this, "keycode");
+  return {this, "keycode"};
 }
 
 auto CellRendererAccel::property_keycode() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
-  return Glib::PropertyProxy_ReadOnly< guint >(this, "keycode");
+  return {this, "keycode"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Mode>::value,
@@ -278,12 +276,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Mode>::value,
 
 auto CellRendererAccel::property_accel_mode() -> Glib::PropertyProxy< Mode >
 {
-  return Glib::PropertyProxy< Mode >(this, "accel-mode");
+  return {this, "accel-mode"};
 }
 
 auto CellRendererAccel::property_accel_mode() const -> Glib::PropertyProxy_ReadOnly< Mode >
 {
-  return Glib::PropertyProxy_ReadOnly< Mode >(this, "accel-mode");
+  return {this, "accel-mode"};
 }
 
 

@@ -48,9 +48,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkListBoxRow* object, bool take_copy) -> Gtk::ListBoxRow*
+auto wrap(GtkListBoxRow* object, const bool take_copy) -> Gtk::ListBoxRow*
 {
-  return dynamic_cast<Gtk::ListBoxRow *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::ListBoxRow *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -61,7 +61,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto ListBoxRow_Class::init() -> const Glib::Class&
+auto ListBoxRow_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -95,7 +95,7 @@ auto ListBoxRow_Class::class_init_function (void *g_class, void *class_data) -> 
 
 auto ListBoxRow_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new ListBoxRow((GtkListBoxRow*)(o)));
+  return manage(new ListBoxRow((GtkListBoxRow*)o));
 
 }
 
@@ -103,26 +103,24 @@ auto ListBoxRow_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 ListBoxRow::ListBoxRow(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 ListBoxRow::ListBoxRow(GtkListBoxRow* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 ListBoxRow::ListBoxRow(ListBoxRow&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
   , Actionable(std::move(src))
 {}
 
 auto ListBoxRow::operator=(ListBoxRow&& src) noexcept -> ListBoxRow&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   Actionable::operator=(std::move(src));
   return *this;
 }
@@ -149,8 +147,8 @@ auto ListBoxRow::get_base_type() -> GType
 ListBoxRow::ListBoxRow()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(listboxrow_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(listboxrow_class_.init()))
 {
 
 
@@ -158,7 +156,7 @@ ListBoxRow::ListBoxRow()
 
 auto ListBoxRow::set_child (Widget &child) -> void
 {
-  gtk_list_box_row_set_child(gobj(), (child).gobj());
+  gtk_list_box_row_set_child(gobj(), child.gobj());
 }
 
 auto ListBoxRow::get_child() -> Widget*
@@ -173,7 +171,7 @@ auto ListBoxRow::get_child() const -> const Widget*
 
 auto ListBoxRow::set_header (Widget &header) -> void
 {
-  gtk_list_box_row_set_header(gobj(), (header).gobj());
+  gtk_list_box_row_set_header(gobj(), header.gobj());
 }
 
 auto ListBoxRow::get_header() -> Widget*
@@ -201,9 +199,10 @@ auto ListBoxRow::is_selected() const -> bool
   return gtk_list_box_row_is_selected(const_cast<GtkListBoxRow*>(gobj()));
 }
 
-auto ListBoxRow::set_selectable (bool selectable) -> void
+auto ListBoxRow::set_selectable (
+  const bool selectable) -> void
 {
-  gtk_list_box_row_set_selectable(gobj(), static_cast<int>(selectable));
+  gtk_list_box_row_set_selectable(gobj(), selectable);
 }
 
 auto ListBoxRow::get_selectable() const -> bool
@@ -211,9 +210,10 @@ auto ListBoxRow::get_selectable() const -> bool
   return gtk_list_box_row_get_selectable(const_cast<GtkListBoxRow*>(gobj()));
 }
 
-auto ListBoxRow::set_activatable (bool activatable) -> void
+auto ListBoxRow::set_activatable (
+  const bool activatable) -> void
 {
-  gtk_list_box_row_set_activatable(gobj(), static_cast<int>(activatable));
+  gtk_list_box_row_set_activatable(gobj(), activatable);
 }
 
 auto ListBoxRow::get_activatable() const -> bool
@@ -224,32 +224,32 @@ auto ListBoxRow::get_activatable() const -> bool
 
 auto ListBoxRow::property_selectable() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "selectable");
+  return {this, "selectable"};
 }
 
 auto ListBoxRow::property_selectable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "selectable");
+  return {this, "selectable"};
 }
 
 auto ListBoxRow::property_activatable() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "activatable");
+  return {this, "activatable"};
 }
 
 auto ListBoxRow::property_activatable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "activatable");
+  return {this, "activatable"};
 }
 
 auto ListBoxRow::property_child() -> Glib::PropertyProxy< Widget* >
 {
-  return Glib::PropertyProxy< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 auto ListBoxRow::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 

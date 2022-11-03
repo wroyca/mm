@@ -38,9 +38,9 @@ ProxyResolver::lookup(const Glib::ustring& uri) -> std::vector<Glib::ustring>
 {
   GError* gerror = nullptr;
   auto retvalue = Glib::ArrayHandler<Glib::ustring>::array_to_vector(
-    g_proxy_resolver_lookup(gobj(), uri.c_str(), nullptr, &(gerror)), Glib::OWNERSHIP_DEEP);
+    g_proxy_resolver_lookup(gobj(), uri.c_str(), nullptr, &gerror), Glib::OWNERSHIP_DEEP);
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 
   return retvalue;
 }
@@ -52,7 +52,7 @@ auto ProxyResolver::lookup_async (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_proxy_resolver_lookup_async(
     gobj(), uri.c_str(), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
@@ -63,7 +63,7 @@ auto ProxyResolver::lookup_async (const Glib::ustring &uri, const SlotAsyncReady
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_proxy_resolver_lookup_async(
     gobj(), uri.c_str(), nullptr, &SignalProxy_async_callback, slot_copy);
@@ -79,9 +79,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GProxyResolver* object, bool take_copy) -> Glib::RefPtr<Gio::ProxyResolver>
+auto wrap(GProxyResolver* object, const bool take_copy) -> RefPtr<Gio::ProxyResolver>
 {
-  return Glib::make_refptr_for_instance<Gio::ProxyResolver>( dynamic_cast<Gio::ProxyResolver*> (Glib::wrap_auto_interface<Gio::ProxyResolver> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::ProxyResolver>( Glib::wrap_auto_interface<Gio::ProxyResolver> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -94,7 +94,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto ProxyResolver_Class::init() -> const Glib::Interface_Class&
+auto ProxyResolver_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -123,42 +123,40 @@ auto ProxyResolver_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto ProxyResolver_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new ProxyResolver((GProxyResolver*)(object));
+  return new ProxyResolver((GProxyResolver*)object);
 }
 
 
 /* The implementation: */
 
 ProxyResolver::ProxyResolver()
-:
-  Glib::Interface(proxyresolver_class_.init())
+: Interface(proxyresolver_class_.init())
 {}
 
 ProxyResolver::ProxyResolver(GProxyResolver* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 ProxyResolver::ProxyResolver(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 ProxyResolver::ProxyResolver(ProxyResolver&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto ProxyResolver::operator=(ProxyResolver&& src) noexcept -> ProxyResolver&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-ProxyResolver::~ProxyResolver() noexcept
-{}
+ProxyResolver::~ProxyResolver() noexcept = default;
 
 // static
-auto ProxyResolver::add_interface (GType gtype_implementer) -> void
+auto ProxyResolver::add_interface (
+  const GType gtype_implementer) -> void
 {
   proxyresolver_class_.init().add_interface(gtype_implementer);
 }
@@ -190,18 +188,18 @@ auto ProxyResolver::is_supported() const -> bool
 auto ProxyResolver::lookup(const Glib::ustring& uri, const Glib::RefPtr<Cancellable>& cancellable) -> std::vector<Glib::ustring>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_proxy_resolver_lookup(gobj(), uri.c_str(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)), Glib::OWNERSHIP_DEEP);
+  auto retvalue = Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_proxy_resolver_lookup(gobj(), uri.c_str(), Glib::unwrap(cancellable), &gerror), Glib::OWNERSHIP_DEEP);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto ProxyResolver::lookup_finish(const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::ustring>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_proxy_resolver_lookup_finish(gobj(), Glib::unwrap(result), &(gerror)), Glib::OWNERSHIP_DEEP);
+  auto retvalue = Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_proxy_resolver_lookup_finish(gobj(), Glib::unwrap(result), &gerror), Glib::OWNERSHIP_DEEP);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 

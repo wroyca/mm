@@ -22,7 +22,8 @@ namespace Glib
 
 /**** Glib::Interface_Class ************************************************/
 
-auto Interface_Class::add_interface (GType instance_type) const -> void
+auto Interface_Class::add_interface (
+  const GType instance_type) const -> void
 {
 #if GLIB_CHECK_VERSION(2,70,0)
   // If instance_type is a final type, it has not been registered by
@@ -111,15 +112,13 @@ Interface::Interface(const Interface_Class& interface_class)
 Interface::Interface(GObject* castitem)
 {
   // Connect GObject and wrapper instances.
-  ObjectBase::initialize(castitem);
+  initialize(castitem);
 }
 
-Interface::Interface()
-{
-}
+Interface::Interface() = default;
 
 Interface::Interface(Interface&& src) noexcept
-  : sigc::trackable(std::move(src)), // not actually called because it's a virtual base
+  : trackable(std::move(src)), // not actually called because it's a virtual base
     ObjectBase(std::move(src)) // not actually called because it's a virtual base
 {
   // We don't call initialize_move() because we
@@ -142,9 +141,7 @@ Interface::operator=(Interface&& /* src */) noexcept -> Interface&
   return *this;
 }
 
-Interface::~Interface() noexcept
-{
-}
+Interface::~Interface() noexcept = default;
 
 auto
 Interface::get_type() -> GType
@@ -159,7 +156,7 @@ Interface::get_base_type() -> GType
 }
 
 auto
-wrap_interface(GObject* object, bool take_copy) -> RefPtr<ObjectBase>
+wrap_interface(GObject* object, const bool take_copy) -> RefPtr<ObjectBase>
 {
   return Glib::make_refptr_for_instance<ObjectBase>(wrap_auto(object, take_copy));
 }

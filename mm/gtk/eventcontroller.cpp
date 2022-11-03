@@ -45,9 +45,9 @@ auto Glib::Value<Gtk::PropagationLimit>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkEventController* object, bool take_copy) -> Glib::RefPtr<Gtk::EventController>
+auto wrap(GtkEventController* object, const bool take_copy) -> RefPtr<Gtk::EventController>
 {
-  return Glib::make_refptr_for_instance<Gtk::EventController>( dynamic_cast<Gtk::EventController*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::EventController>( dynamic_cast<Gtk::EventController*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -60,7 +60,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto EventController_Class::init() -> const Glib::Class&
+auto EventController_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -106,32 +106,28 @@ auto EventController::gobj_copy() -> GtkEventController*
 }
 
 EventController::EventController(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 EventController::EventController(GtkEventController* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 EventController::EventController(EventController&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto EventController::operator=(EventController&& src) noexcept -> EventController&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-EventController::~EventController() noexcept
-{}
-
+EventController::~EventController() noexcept = default;
 
 EventController::CppClassType EventController::eventcontroller_class_; // initialize static member
 
@@ -150,8 +146,8 @@ auto EventController::get_base_type() -> GType
 EventController::EventController()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(eventcontroller_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(eventcontroller_class_.init()))
 {
 
 
@@ -236,7 +232,7 @@ auto EventController::get_current_event_state() const -> Gdk::ModifierType
 
 auto EventController::property_widget() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "widget");
+  return {this, "widget"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<PropagationPhase>::value,
@@ -245,12 +241,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<PropagationPhase>::v
 
 auto EventController::property_propagation_phase() -> Glib::PropertyProxy< PropagationPhase >
 {
-  return Glib::PropertyProxy< PropagationPhase >(this, "propagation-phase");
+  return {this, "propagation-phase"};
 }
 
 auto EventController::property_propagation_phase() const -> Glib::PropertyProxy_ReadOnly< PropagationPhase >
 {
-  return Glib::PropertyProxy_ReadOnly< PropagationPhase >(this, "propagation-phase");
+  return {this, "propagation-phase"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<PropagationLimit>::value,
@@ -259,22 +255,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<PropagationLimit>::v
 
 auto EventController::property_propagation_limit() -> Glib::PropertyProxy< PropagationLimit >
 {
-  return Glib::PropertyProxy< PropagationLimit >(this, "propagation-limit");
+  return {this, "propagation-limit"};
 }
 
 auto EventController::property_propagation_limit() const -> Glib::PropertyProxy_ReadOnly< PropagationLimit >
 {
-  return Glib::PropertyProxy_ReadOnly< PropagationLimit >(this, "propagation-limit");
+  return {this, "propagation-limit"};
 }
 
 auto EventController::property_name() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "name");
+  return {this, "name"};
 }
 
 auto EventController::property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name");
+  return {this, "name"};
 }
 
 

@@ -49,7 +49,7 @@ PaperSize::PaperSize(const Glib::ustring& name)
   gobject_(gtk_paper_size_new(name.c_str()))
 {}
 
-PaperSize::PaperSize(const Glib::ustring& ppd_name, const Glib::ustring& ppd_display_name, double width, double height)
+PaperSize::PaperSize(const Glib::ustring& ppd_name, const Glib::ustring& ppd_display_name, const double width, const double height)
 :
   gobject_(gtk_paper_size_new_from_ppd(ppd_name.c_str(),
                                        ppd_display_name.c_str(),
@@ -57,7 +57,7 @@ PaperSize::PaperSize(const Glib::ustring& ppd_name, const Glib::ustring& ppd_dis
                                        height))
 {}
 
-PaperSize::PaperSize(const Glib::ustring& name, const Glib::ustring& display_name, double width, double height, Unit unit)
+PaperSize::PaperSize(const Glib::ustring& name, const Glib::ustring& display_name, const double width, const double height, Unit unit)
 :
   gobject_(gtk_paper_size_new_custom(name.c_str(),
                                      display_name.c_str(),
@@ -69,8 +69,7 @@ PaperSize::PaperSize(const Glib::ustring& name, const Glib::ustring& display_nam
 PaperSize::PaperSize(const Glib::RefPtr<const Glib::KeyFile>& key_file, const Glib::ustring& group_name)
 {
   GError* gerror = nullptr;
-  gobject_ = gtk_paper_size_new_from_key_file(const_cast<GKeyFile*>(Glib::unwrap(key_file)),
-    Glib::c_str_or_nullptr(group_name), &gerror);
+  gobject_ = gtk_paper_size_new_from_key_file(const_cast<GKeyFile*>(unwrap(key_file)), c_str_or_nullptr(group_name), &gerror);
 
   if (gerror)
     Glib::Error::throw_exception(gerror);
@@ -78,8 +77,8 @@ PaperSize::PaperSize(const Glib::RefPtr<const Glib::KeyFile>& key_file, const Gl
 
 auto PaperSize::equal(const PaperSize& other) const -> bool
 {
-  return (static_cast<bool>(gtk_paper_size_is_equal(const_cast<GtkPaperSize*>(this->gobj()),
-                                                    const_cast<GtkPaperSize*>(other.gobj()))));
+  return static_cast<bool>(gtk_paper_size_is_equal(const_cast<GtkPaperSize*>(this->gobj()),
+                                                   const_cast<GtkPaperSize*>(other.gobj())));
 }
 
 PaperSize::operator bool() const
@@ -89,11 +88,12 @@ PaperSize::operator bool() const
 
 auto PaperSize::save_to_key_file (const Glib::RefPtr <Glib::KeyFile> &key_file) -> void
 {
-  gtk_paper_size_to_key_file( gobj(), Glib::unwrap(key_file), nullptr);
+  gtk_paper_size_to_key_file( gobj(), unwrap(key_file), nullptr);
 }
 
 // static
-auto PaperSizeTraits::release_c_type (CType ptr) -> void
+auto PaperSizeTraits::release_c_type (
+  const CType ptr) -> void
 {
   gtk_paper_size_free(const_cast<CTypeNonConst>(ptr));
 }
@@ -114,7 +114,7 @@ auto Glib::Value<Gtk::Unit>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkPaperSize* object, bool take_copy) -> Gtk::PaperSize
+auto wrap(GtkPaperSize* object, const bool take_copy) -> Gtk::PaperSize
 {
   return Gtk::PaperSize(object, take_copy);
 }
@@ -139,7 +139,7 @@ PaperSize::PaperSize()
 
 PaperSize::PaperSize(const PaperSize& other)
 :
-  gobject_ ((other.gobject_) ? gtk_paper_size_copy(other.gobject_) : nullptr)
+  gobject_ (other.gobject_ ? gtk_paper_size_copy(other.gobject_) : nullptr)
 {}
 
 PaperSize::PaperSize(PaperSize&& other) noexcept
@@ -156,12 +156,12 @@ auto PaperSize::operator=(PaperSize&& other) noexcept -> PaperSize&
   return *this;
 }
 
-PaperSize::PaperSize(GtkPaperSize* gobject, bool make_a_copy)
+PaperSize::PaperSize(GtkPaperSize* gobject, const bool make_a_copy)
 :
   // For BoxedType wrappers, make_a_copy is true by default.  The static
   // BoxedType wrappers must always take a copy, thus make_a_copy = true
   // ensures identical behaviour if the default argument is used.
-  gobject_ ((make_a_copy && gobject) ? gtk_paper_size_copy(gobject) : gobject)
+  gobject_ (make_a_copy && gobject ? gtk_paper_size_copy(gobject) : gobject)
 {}
 
 auto PaperSize::operator=(const PaperSize& other) -> PaperSize&
@@ -188,9 +188,10 @@ auto PaperSize::gobj_copy() const -> GtkPaperSize*
 }
 
 
-auto PaperSize::get_paper_sizes(bool include_custom) -> std::vector<PaperSize>
+auto PaperSize::get_paper_sizes(
+  const bool include_custom) -> std::vector<PaperSize>
 {
-  return Glib::ListHandler<PaperSize, PaperSizeTraits>::list_to_vector(gtk_paper_size_get_paper_sizes(static_cast<int>(include_custom)), Glib::OWNERSHIP_DEEP);
+  return Glib::ListHandler<PaperSize, PaperSizeTraits>::list_to_vector(gtk_paper_size_get_paper_sizes(include_custom), Glib::OWNERSHIP_DEEP);
 }
 
 auto PaperSize::get_name() const -> Glib::ustring
@@ -228,7 +229,8 @@ auto PaperSize::is_ipp() const -> bool
   return gtk_paper_size_is_ipp(const_cast<GtkPaperSize*>(gobj()));
 }
 
-auto PaperSize::set_size (double width, double height, Unit unit) -> void
+auto PaperSize::set_size (
+  const double width, const double height, Unit unit) -> void
 {
   gtk_paper_size_set_size(gobj(), width, height, static_cast<GtkUnit>(unit));
 }
@@ -261,7 +263,7 @@ auto PaperSize::get_default() -> Glib::ustring
 auto PaperSize::save_to_key_file (
   const Glib::RefPtr <Glib::KeyFile> &key_file, const Glib::ustring &group_name) -> void
 {
-  gtk_paper_size_to_key_file(gobj(), Glib::unwrap(key_file), group_name.c_str());
+  gtk_paper_size_to_key_file(gobj(), unwrap(key_file), group_name.c_str());
 }
 
 

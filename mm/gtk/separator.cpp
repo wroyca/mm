@@ -35,9 +35,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkSeparator* object, bool take_copy) -> Gtk::Separator*
+auto wrap(GtkSeparator* object, const bool take_copy) -> Gtk::Separator*
 {
-  return dynamic_cast<Gtk::Separator *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::Separator *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Separator_Class::init() -> const Glib::Class&
+auto Separator_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -82,7 +82,7 @@ auto Separator_Class::class_init_function (void *g_class, void *class_data) -> v
 
 auto Separator_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new Separator((GtkSeparator*)(o)));
+  return manage(new Separator((GtkSeparator*)o));
 
 }
 
@@ -90,26 +90,24 @@ auto Separator_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 Separator::Separator(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 Separator::Separator(GtkSeparator* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 Separator::Separator(Separator&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
   , Orientable(std::move(src))
 {}
 
 auto Separator::operator=(Separator&& src) noexcept -> Separator&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   Orientable::operator=(std::move(src));
   return *this;
 }
@@ -133,11 +131,11 @@ auto Separator::get_base_type() -> GType
 }
 
 
-Separator::Separator(Orientation orientation)
+Separator::Separator(const Orientation orientation)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(separator_class_.init(), "orientation", static_cast<GtkOrientation>(orientation), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(separator_class_.init(), "orientation", orientation, nullptr))
 {
 
 

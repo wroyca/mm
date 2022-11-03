@@ -34,9 +34,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkGridLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::GridLayout>
+auto wrap(GtkGridLayout* object, const bool take_copy) -> RefPtr<Gtk::GridLayout>
 {
-  return Glib::make_refptr_for_instance<Gtk::GridLayout>( dynamic_cast<Gtk::GridLayout*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::GridLayout>( dynamic_cast<Gtk::GridLayout*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -49,7 +49,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto GridLayout_Class::init() -> const Glib::Class&
+auto GridLayout_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -97,7 +97,7 @@ GridLayout::GridLayout(const Glib::ConstructParams& construct_params)
 
 GridLayout::GridLayout(GtkGridLayout* castitem)
 :
-  LayoutManager((GtkLayoutManager*)(castitem))
+  LayoutManager((GtkLayoutManager*)castitem)
 {}
 
 
@@ -112,9 +112,7 @@ auto GridLayout::operator=(GridLayout&& src) noexcept -> GridLayout&
 }
 
 
-GridLayout::~GridLayout() noexcept
-{}
-
+GridLayout::~GridLayout() noexcept = default;
 
 GridLayout::CppClassType GridLayout::gridlayout_class_; // initialize static member
 
@@ -133,7 +131,7 @@ auto GridLayout::get_base_type() -> GType
 GridLayout::GridLayout()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   LayoutManager(Glib::ConstructParams(gridlayout_class_.init()))
 {
 
@@ -145,9 +143,10 @@ auto GridLayout::create() -> Glib::RefPtr<GridLayout>
   return Glib::make_refptr_for_instance<GridLayout>( new GridLayout() );
 }
 
-auto GridLayout::set_row_homogeneous (bool homogeneous) -> void
+auto GridLayout::set_row_homogeneous (
+  const bool homogeneous) -> void
 {
-  gtk_grid_layout_set_row_homogeneous(gobj(), static_cast<int>(homogeneous));
+  gtk_grid_layout_set_row_homogeneous(gobj(), homogeneous);
 }
 
 auto GridLayout::get_row_homogeneous() const -> bool
@@ -155,7 +154,8 @@ auto GridLayout::get_row_homogeneous() const -> bool
   return gtk_grid_layout_get_row_homogeneous(const_cast<GtkGridLayout*>(gobj()));
 }
 
-auto GridLayout::set_row_spacing (guint spacing) -> void
+auto GridLayout::set_row_spacing (
+  const guint spacing) -> void
 {
   gtk_grid_layout_set_row_spacing(gobj(), spacing);
 }
@@ -165,9 +165,10 @@ auto GridLayout::get_row_spacing() const -> guint
   return gtk_grid_layout_get_row_spacing(const_cast<GtkGridLayout*>(gobj()));
 }
 
-auto GridLayout::set_column_homogeneous (bool homogeneous) -> void
+auto GridLayout::set_column_homogeneous (
+  const bool homogeneous) -> void
 {
-  gtk_grid_layout_set_column_homogeneous(gobj(), static_cast<int>(homogeneous));
+  gtk_grid_layout_set_column_homogeneous(gobj(), homogeneous);
 }
 
 auto GridLayout::get_column_homogeneous() const -> bool
@@ -175,7 +176,8 @@ auto GridLayout::get_column_homogeneous() const -> bool
   return gtk_grid_layout_get_column_homogeneous(const_cast<GtkGridLayout*>(gobj()));
 }
 
-auto GridLayout::set_column_spacing (guint spacing) -> void
+auto GridLayout::set_column_spacing (
+  const guint spacing) -> void
 {
   gtk_grid_layout_set_column_spacing(gobj(), spacing);
 }
@@ -185,17 +187,20 @@ auto GridLayout::get_column_spacing() const -> guint
   return gtk_grid_layout_get_column_spacing(const_cast<GtkGridLayout*>(gobj()));
 }
 
-auto GridLayout::set_row_baseline_position (int row, BaselinePosition pos) -> void
+auto GridLayout::set_row_baseline_position (
+  const int row, BaselinePosition pos) -> void
 {
   gtk_grid_layout_set_row_baseline_position(gobj(), row, static_cast<GtkBaselinePosition>(pos));
 }
 
-auto GridLayout::get_row_baseline_position(int row) const -> BaselinePosition
+auto GridLayout::get_row_baseline_position(
+  const int row) const -> BaselinePosition
 {
   return static_cast<BaselinePosition>(gtk_grid_layout_get_row_baseline_position(const_cast<GtkGridLayout*>(gobj()), row));
 }
 
-auto GridLayout::set_baseline_row (int row) -> void
+auto GridLayout::set_baseline_row (
+  const int row) -> void
 {
   gtk_grid_layout_set_baseline_row(gobj(), row);
 }
@@ -208,52 +213,52 @@ auto GridLayout::get_baseline_row() const -> int
 
 auto GridLayout::property_row_spacing() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "row-spacing");
+  return {this, "row-spacing"};
 }
 
 auto GridLayout::property_row_spacing() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "row-spacing");
+  return {this, "row-spacing"};
 }
 
 auto GridLayout::property_column_spacing() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "column-spacing");
+  return {this, "column-spacing"};
 }
 
 auto GridLayout::property_column_spacing() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "column-spacing");
+  return {this, "column-spacing"};
 }
 
 auto GridLayout::property_row_homogeneous() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "row-homogeneous");
+  return {this, "row-homogeneous"};
 }
 
 auto GridLayout::property_row_homogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "row-homogeneous");
+  return {this, "row-homogeneous"};
 }
 
 auto GridLayout::property_column_homogeneous() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "column-homogeneous");
+  return {this, "column-homogeneous"};
 }
 
 auto GridLayout::property_column_homogeneous() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "column-homogeneous");
+  return {this, "column-homogeneous"};
 }
 
 auto GridLayout::property_baseline_row() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "baseline-row");
+  return {this, "baseline-row"};
 }
 
 auto GridLayout::property_baseline_row() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "baseline-row");
+  return {this, "baseline-row"};
 }
 
 

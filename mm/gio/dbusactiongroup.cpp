@@ -39,9 +39,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GDBusActionGroup* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::ActionGroup>
+auto wrap(GDBusActionGroup* object, const bool take_copy) -> RefPtr<Gio::DBus::ActionGroup>
 {
-  return Glib::make_refptr_for_instance<Gio::DBus::ActionGroup>( dynamic_cast<Gio::DBus::ActionGroup*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::DBus::ActionGroup>( dynamic_cast<Gio::DBus::ActionGroup*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -54,7 +54,7 @@ namespace Gio::DBus
 
 /* The *_Class implementation: */
 
-auto ActionGroup_Class::init() -> const Glib::Class&
+auto ActionGroup_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -70,7 +70,7 @@ auto ActionGroup_Class::init() -> const Glib::Class&
 
     // Add derived versions of interfaces, if the C type implements any interfaces:
   Gio::ActionGroup::add_interface(get_type());
-  Gio::RemoteActionGroup::add_interface(get_type());
+    RemoteActionGroup::add_interface(get_type());
 
   }
 
@@ -102,36 +102,33 @@ auto ActionGroup::gobj_copy() -> GDBusActionGroup*
 }
 
 ActionGroup::ActionGroup(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 ActionGroup::ActionGroup(GDBusActionGroup* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 ActionGroup::ActionGroup(ActionGroup&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , Gio::ActionGroup(std::move(src))
-  , Gio::RemoteActionGroup(std::move(src))
+  ,
+  RemoteActionGroup(std::move(src))
 {}
 
 auto ActionGroup::operator=(ActionGroup&& src) noexcept -> ActionGroup&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   Gio::ActionGroup::operator=(std::move(src));
-  Gio::RemoteActionGroup::operator=(std::move(src));
+  RemoteActionGroup::operator=(std::move(src));
   return *this;
 }
 
 
-ActionGroup::~ActionGroup() noexcept
-{}
-
+ActionGroup::~ActionGroup() noexcept = default;
 
 ActionGroup::CppClassType ActionGroup::actiongroup_class_; // initialize static member
 
@@ -150,8 +147,8 @@ auto ActionGroup::get_base_type() -> GType
 ActionGroup::ActionGroup()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(actiongroup_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(actiongroup_class_.init()))
 {
 
 

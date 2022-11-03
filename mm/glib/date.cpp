@@ -40,13 +40,13 @@ Date::Date()
   g_date_clear(&gobject_, 1);
 }
 
-Date::Date(Date::Day day, Date::Month month, Date::Year year)
+Date::Date(const Day day, Month month, const Year year)
 {
   g_date_clear(&gobject_, 1);
   g_date_set_dmy(&gobject_, day, (GDateMonth)month, year);
 }
 
-Date::Date(guint32 julian_day)
+Date::Date(const guint32 julian_day)
 {
   g_date_clear(&gobject_, 1);
   g_date_set_julian(&gobject_, julian_day);
@@ -77,12 +77,13 @@ auto Date::clear () -> void
   g_date_clear(&gobject_, 1);
 }
 
-auto Date::set_parse (const Glib::ustring &str) -> void
+auto Date::set_parse (const ustring &str) -> void
 {
   g_date_set_parse(&gobject_, str.c_str());
 }
 
-auto Date::set_time (std::time_t timet) -> void
+auto Date::set_time (
+  const std::time_t timet) -> void
 {
   g_date_set_time_t(&gobject_, timet);
 }
@@ -93,33 +94,39 @@ auto Date::set_time_current () -> void
   g_date_set_time_t(&gobject_, time(nullptr));
 }
 
-auto Date::set_month (Date::Month month) -> void
+auto Date::set_month (
+  Month month) -> void
 {
   g_date_set_month(&gobject_, (GDateMonth)month);
 }
 
-auto Date::set_day (Date::Day day) -> void
+auto Date::set_day (
+  const Day day) -> void
 {
   g_date_set_day(&gobject_, day);
 }
 
-auto Date::set_year (Date::Year year) -> void
+auto Date::set_year (
+  const Year year) -> void
 {
   g_date_set_year(&gobject_, year);
 }
 
-auto Date::set_dmy (Date::Day day, Date::Month month, Date::Year year) -> void
+auto Date::set_dmy (
+  const Day day, Month month, const Year year) -> void
 {
   g_date_set_dmy(&gobject_, day, (GDateMonth)month, year);
 }
 
-auto Date::set_julian (guint32 julian_day) -> void
+auto Date::set_julian (
+  const guint32 julian_day) -> void
 {
   g_date_set_julian(&gobject_, julian_day);
 }
 
 auto
-Date::add_days(int n_days) -> Date&
+Date::add_days(
+  const int n_days) -> Date&
 {
   if (n_days >= 0)
     g_date_add_days(&gobject_, n_days);
@@ -129,7 +136,8 @@ Date::add_days(int n_days) -> Date&
 }
 
 auto
-Date::subtract_days(int n_days) -> Date&
+Date::subtract_days(
+  const int n_days) -> Date&
 {
   if (n_days >= 0)
     g_date_subtract_days(&gobject_, n_days);
@@ -139,7 +147,8 @@ Date::subtract_days(int n_days) -> Date&
 }
 
 auto
-Date::add_months(int n_months) -> Date&
+Date::add_months(
+  const int n_months) -> Date&
 {
   if (n_months >= 0)
     g_date_add_months(&gobject_, n_months);
@@ -149,7 +158,8 @@ Date::add_months(int n_months) -> Date&
 }
 
 auto
-Date::subtract_months(int n_months) -> Date&
+Date::subtract_months(
+  const int n_months) -> Date&
 {
   if (n_months >= 0)
     g_date_subtract_months(&gobject_, n_months);
@@ -159,7 +169,8 @@ Date::subtract_months(int n_months) -> Date&
 }
 
 auto
-Date::add_years(int n_years) -> Date&
+Date::add_years(
+  const int n_years) -> Date&
 {
   if (n_years >= 0)
     g_date_add_years(&gobject_, n_years);
@@ -169,7 +180,8 @@ Date::add_years(int n_years) -> Date&
 }
 
 auto
-Date::subtract_years(int n_years) -> Date&
+Date::subtract_years(
+  const int n_years) -> Date&
 {
   if (n_years >= 0)
     g_date_subtract_years(&gobject_, n_years);
@@ -217,9 +229,9 @@ auto Date::order (Date &other) -> void
 }
 
 auto
-Date::get_weekday() const -> Date::Weekday
+Date::get_weekday() const -> Weekday
 {
-  return (Date::Weekday)g_date_get_weekday(&gobject_);
+  return (Weekday)g_date_get_weekday(&gobject_);
 }
 
 auto Date::get_weekday_as_int() const -> int
@@ -228,9 +240,9 @@ auto Date::get_weekday_as_int() const -> int
 }
 
 auto
-Date::get_month() const -> Date::Month
+Date::get_month() const -> Month
 {
-  return (Date::Month)g_date_get_month(&gobject_);
+  return (Month)g_date_get_month(&gobject_);
 }
 
 auto Date::get_month_as_int() const -> int
@@ -239,13 +251,13 @@ auto Date::get_month_as_int() const -> int
 }
 
 auto
-Date::get_year() const -> Date::Year
+Date::get_year() const -> Year
 {
   return g_date_get_year(&gobject_);
 }
 
 auto
-Date::get_day() const -> Date::Day
+Date::get_day() const -> Day
 {
   return g_date_get_day(&gobject_);
 }
@@ -294,34 +306,38 @@ Date::is_last_of_month() const -> bool
 
 // static
 auto
-Date::get_days_in_month(Date::Month month, Date::Year year) -> guint8
+Date::get_days_in_month(
+  Month month, const Year year) -> guint8
 {
   return g_date_get_days_in_month((GDateMonth)month, year);
 }
 
 // static
 auto
-Date::get_monday_weeks_in_year(Date::Year year) -> guint8
+Date::get_monday_weeks_in_year(
+  const Year year) -> guint8
 {
   return g_date_get_monday_weeks_in_year(year);
 }
 
 // static
 auto
-Date::get_sunday_weeks_in_year(Date::Year year) -> guint8
+Date::get_sunday_weeks_in_year(
+  const Year year) -> guint8
 {
   return g_date_get_sunday_weeks_in_year(year);
 }
 
 // static
 auto
-Date::is_leap_year(Date::Year year) -> bool
+Date::is_leap_year(
+  const Year year) -> bool
 {
   return g_date_is_leap_year(year);
 }
 
 auto
-Date::format_string(const Glib::ustring& format) const -> Glib::ustring
+Date::format_string(const ustring & format) const -> ustring
 {
   struct tm tm_data;
   g_date_to_struct_tm(&gobject_, &tm_data);
@@ -349,7 +365,7 @@ Date::format_string(const Glib::ustring& format) const -> Glib::ustring
   // This error is quite unlikely (unless strftime is buggy).
   g_warning("Glib::Date::format_string(): maximum size of strftime buffer exceeded, giving up");
 
-  return Glib::ustring();
+  return {};
 }
 
 auto Date::to_struct_tm (struct tm &dest) const -> void
@@ -365,42 +381,48 @@ Date::valid() const -> bool
 
 // static
 auto
-Date::valid_day(Date::Day day) -> bool
+Date::valid_day(
+  const Day day) -> bool
 {
   return g_date_valid_day(day);
 }
 
 // static
 auto
-Date::valid_month(Date::Month month) -> bool
+Date::valid_month(
+  Month month) -> bool
 {
   return g_date_valid_month((GDateMonth)month);
 }
 
 // static
 auto
-Date::valid_year(Date::Year year) -> bool
+Date::valid_year(
+  const Year year) -> bool
 {
   return g_date_valid_year(year);
 }
 
 // static
 auto
-Date::valid_weekday(Date::Weekday weekday) -> bool
+Date::valid_weekday(
+  Weekday weekday) -> bool
 {
   return g_date_valid_weekday((GDateWeekday)weekday);
 }
 
 // static
 auto
-Date::valid_julian(guint32 julian_day) -> bool
+Date::valid_julian(
+  const guint32 julian_day) -> bool
 {
   return g_date_valid_julian(julian_day);
 }
 
 // static
 auto
-Date::valid_dmy(Date::Day day, Date::Month month, Date::Year year) -> bool
+Date::valid_dmy(
+  const Day day, Month month, const Year year) -> bool
 {
   return g_date_valid_dmy(day, (GDateMonth)month, year);
 }

@@ -24,7 +24,7 @@ namespace Cairo
 
 #ifdef CAIRO_HAS_WIN32_SURFACE
 
-Win32Surface::Win32Surface(cairo_surface_t* cobject, bool has_reference) :
+Win32Surface::Win32Surface(cairo_surface_t* cobject, const bool has_reference) :
     Surface(cobject, has_reference)
 {}
 
@@ -46,30 +46,31 @@ auto Win32Surface::get_image () -> RefPtr <ImageSurface>
   return surface;
 }
 
-auto Win32Surface::create (HDC hdc) -> RefPtr <Win32Surface>
+auto Win32Surface::create (
+  const HDC hdc) -> RefPtr <Win32Surface>
 {
-  auto cobject = cairo_win32_surface_create(hdc);
+  const auto cobject = cairo_win32_surface_create(hdc);
   check_status_and_throw_exception(cairo_surface_status(cobject));
   return make_refptr_for_instance<Win32Surface>(new Win32Surface(cobject, true /* has reference */));
 }
 
-auto Win32Surface::create_with_dib (Format format, int width, int height) -> RefPtr <Win32Surface>
+auto Win32Surface::create_with_dib (Format format, const int width, const int height) -> RefPtr <Win32Surface>
 {
-  auto cobject = cairo_win32_surface_create_with_dib((cairo_format_t)format, width, height);
+  const auto cobject = cairo_win32_surface_create_with_dib((cairo_format_t)format, width, height);
   check_status_and_throw_exception(cairo_surface_status(cobject));
   return make_refptr_for_instance<Win32Surface>(new Win32Surface(cobject, true /* has reference */));
 }
 
 auto Win32Surface::create_with_ddb (
-  HDC hdc, Format format, int width, int height) -> RefPtr <Win32Surface>
+  const HDC hdc, Format format, const int width, const int height) -> RefPtr <Win32Surface>
 {
-  auto cobject =
+  const auto cobject =
     cairo_win32_surface_create_with_ddb(hdc, (cairo_format_t)format, width, height);
   check_status_and_throw_exception(cairo_surface_status(cobject));
   return make_refptr_for_instance<Win32Surface>(new Win32Surface(cobject, true /* has reference */));
 }
 
-Win32PrintingSurface::Win32PrintingSurface(cairo_surface_t* cobject, bool has_reference)
+Win32PrintingSurface::Win32PrintingSurface(cairo_surface_t* cobject, const bool has_reference)
     : Surface(cobject, has_reference)
 {
 }
@@ -79,9 +80,10 @@ Win32PrintingSurface::~Win32PrintingSurface()
   // surface is destroyed in base class
 }
 
-auto Win32PrintingSurface::create (HDC hdc) -> RefPtr <Win32PrintingSurface>
+auto Win32PrintingSurface::create (
+  const HDC hdc) -> RefPtr <Win32PrintingSurface>
 {
-  auto cobject = cairo_win32_surface_create(hdc);
+  const auto cobject = cairo_win32_surface_create(hdc);
   check_status_and_throw_exception(cairo_surface_status(cobject));
   return make_refptr_for_instance<Win32PrintingSurface>(new Win32PrintingSurface(cobject, true /* has reference */));
 }

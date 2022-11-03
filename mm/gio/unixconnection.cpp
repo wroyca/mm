@@ -33,7 +33,7 @@ namespace Gio
 auto UnixConnection::receive_credentials_async (
   const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_unix_connection_receive_credentials_async(
     gobj(), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
@@ -41,7 +41,7 @@ auto UnixConnection::receive_credentials_async (
 
 auto UnixConnection::receive_credentials_async (const SlotAsyncReady &slot) -> void
 {
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_unix_connection_receive_credentials_async(
     gobj(), nullptr, &SignalProxy_async_callback, slot_copy);
@@ -50,7 +50,7 @@ auto UnixConnection::receive_credentials_async (const SlotAsyncReady &slot) -> v
 auto UnixConnection::send_credentials_async (
   const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_unix_connection_send_credentials_async(
     gobj(), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
@@ -59,7 +59,7 @@ auto UnixConnection::send_credentials_async (
 auto UnixConnection::send_credentials_async (const SlotAsyncReady &slot) -> void
 
 {
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_unix_connection_send_credentials_async(gobj(), nullptr, &SignalProxy_async_callback, slot_copy);
 }
@@ -74,9 +74,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GUnixConnection* object, bool take_copy) -> Glib::RefPtr<Gio::UnixConnection>
+auto wrap(GUnixConnection* object, const bool take_copy) -> RefPtr<Gio::UnixConnection>
 {
-  return Glib::make_refptr_for_instance<Gio::UnixConnection>( dynamic_cast<Gio::UnixConnection*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::UnixConnection>( dynamic_cast<Gio::UnixConnection*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -89,7 +89,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto UnixConnection_Class::init() -> const Glib::Class&
+auto UnixConnection_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -135,32 +135,28 @@ auto UnixConnection::gobj_copy() -> GUnixConnection*
 }
 
 UnixConnection::UnixConnection(const Glib::ConstructParams& construct_params)
-:
-  Gio::SocketConnection(construct_params)
+: SocketConnection(construct_params)
 {
 
 }
 
 UnixConnection::UnixConnection(GUnixConnection* castitem)
-:
-  Gio::SocketConnection((GSocketConnection*)(castitem))
+: SocketConnection((GSocketConnection*)castitem)
 {}
 
 
 UnixConnection::UnixConnection(UnixConnection&& src) noexcept
-: Gio::SocketConnection(std::move(src))
+: SocketConnection(std::move(src))
 {}
 
 auto UnixConnection::operator=(UnixConnection&& src) noexcept -> UnixConnection&
 {
-  Gio::SocketConnection::operator=(std::move(src));
+  SocketConnection::operator=(std::move(src));
   return *this;
 }
 
 
-UnixConnection::~UnixConnection() noexcept
-{}
-
+UnixConnection::~UnixConnection() noexcept = default;
 
 UnixConnection::CppClassType UnixConnection::unixconnection_class_; // initialize static member
 
@@ -176,57 +172,59 @@ auto UnixConnection::get_base_type() -> GType
 }
 
 
-auto UnixConnection::send_fd(int fd, const Glib::RefPtr<Cancellable>& cancellable) -> bool
+auto UnixConnection::send_fd(
+  const int fd, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_unix_connection_send_fd(gobj(), fd, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_unix_connection_send_fd(gobj(), fd, Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto UnixConnection::send_fd(int fd) -> bool
+auto UnixConnection::send_fd(
+  const int fd) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_unix_connection_send_fd(gobj(), fd, nullptr, &(gerror));
+  const auto retvalue = g_unix_connection_send_fd(gobj(), fd, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto UnixConnection::receive_fd(const Glib::RefPtr<Cancellable>& cancellable) -> int
 {
   GError* gerror = nullptr;
-  auto retvalue = g_unix_connection_receive_fd(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_unix_connection_receive_fd(gobj(), Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto UnixConnection::receive_fd() -> int
 {
   GError* gerror = nullptr;
-  auto retvalue = g_unix_connection_receive_fd(gobj(), nullptr, &(gerror));
+  const auto retvalue = g_unix_connection_receive_fd(gobj(), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto UnixConnection::receive_credentials(const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Credentials>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_unix_connection_receive_credentials(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
+  auto retvalue = Glib::wrap(g_unix_connection_receive_credentials(gobj(), Glib::unwrap(cancellable), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto UnixConnection::receive_credentials() -> Glib::RefPtr<Credentials>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_unix_connection_receive_credentials(gobj(), nullptr, &(gerror)));
+  auto retvalue = Glib::wrap(g_unix_connection_receive_credentials(gobj(), nullptr, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -243,36 +241,36 @@ auto UnixConnection::receive_credentials() const -> Glib::RefPtr<const Credentia
 auto UnixConnection::receive_credentials_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<Credentials>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_unix_connection_receive_credentials_finish(gobj(), Glib::unwrap(result), &(gerror)));
+  auto retvalue = Glib::wrap(g_unix_connection_receive_credentials_finish(gobj(), Glib::unwrap(result), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto UnixConnection::send_credentials(const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_unix_connection_send_credentials(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_unix_connection_send_credentials(gobj(), Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto UnixConnection::send_credentials() -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_unix_connection_send_credentials(gobj(), nullptr, &(gerror));
+  const auto retvalue = g_unix_connection_send_credentials(gobj(), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto UnixConnection::send_credentials_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_unix_connection_send_credentials_finish(gobj(), Glib::unwrap(result), &(gerror));
+  const auto retvalue = g_unix_connection_send_credentials_finish(gobj(), Glib::unwrap(result), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 

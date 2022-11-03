@@ -34,9 +34,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkCellRendererSpinner* object, bool take_copy) -> Gtk::CellRendererSpinner*
+auto wrap(GtkCellRendererSpinner* object, const bool take_copy) -> Gtk::CellRendererSpinner*
 {
-  return dynamic_cast<Gtk::CellRendererSpinner *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::CellRendererSpinner *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -47,7 +47,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto CellRendererSpinner_Class::init() -> const Glib::Class&
+auto CellRendererSpinner_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -80,7 +80,7 @@ auto CellRendererSpinner_Class::class_init_function (void *g_class, void *class_
 
 auto CellRendererSpinner_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new CellRendererSpinner((GtkCellRendererSpinner*)(o)));
+  return manage(new CellRendererSpinner((GtkCellRendererSpinner*)o));
 
 }
 
@@ -88,25 +88,23 @@ auto CellRendererSpinner_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 CellRendererSpinner::CellRendererSpinner(const Glib::ConstructParams& construct_params)
-:
-  Gtk::CellRenderer(construct_params)
+: CellRenderer(construct_params)
 {
   }
 
 CellRendererSpinner::CellRendererSpinner(GtkCellRendererSpinner* castitem)
-:
-  Gtk::CellRenderer((GtkCellRenderer*)(castitem))
+: CellRenderer((GtkCellRenderer*)castitem)
 {
   }
 
 
 CellRendererSpinner::CellRendererSpinner(CellRendererSpinner&& src) noexcept
-: Gtk::CellRenderer(std::move(src))
+: CellRenderer(std::move(src))
 {}
 
 auto CellRendererSpinner::operator=(CellRendererSpinner&& src) noexcept -> CellRendererSpinner&
 {
-  Gtk::CellRenderer::operator=(std::move(src));
+  CellRenderer::operator=(std::move(src));
   return *this;
 }
 
@@ -132,8 +130,8 @@ auto CellRendererSpinner::get_base_type() -> GType
 CellRendererSpinner::CellRendererSpinner()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::CellRenderer(Glib::ConstructParams(cellrendererspinner_class_.init()))
+ObjectBase(nullptr),
+CellRenderer(Glib::ConstructParams(cellrendererspinner_class_.init()))
 {
 
 
@@ -142,36 +140,36 @@ CellRendererSpinner::CellRendererSpinner()
 
 auto CellRendererSpinner::property_active() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "active");
+  return {this, "active"};
 }
 
 auto CellRendererSpinner::property_active() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "active");
+  return {this, "active"};
 }
 
 auto CellRendererSpinner::property_pulse() -> Glib::PropertyProxy< guint >
 {
-  return Glib::PropertyProxy< guint >(this, "pulse");
+  return {this, "pulse"};
 }
 
 auto CellRendererSpinner::property_pulse() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
-  return Glib::PropertyProxy_ReadOnly< guint >(this, "pulse");
+  return {this, "pulse"};
 }
 
-static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gtk::IconSize>::value,
+static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<IconSize>::value,
   "Type Gtk::IconSize cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-auto CellRendererSpinner::property_size() -> Glib::PropertyProxy< Gtk::IconSize >
+auto CellRendererSpinner::property_size() -> Glib::PropertyProxy<IconSize>
 {
-  return Glib::PropertyProxy< Gtk::IconSize >(this, "size");
+  return {this, "size"};
 }
 
-auto CellRendererSpinner::property_size() const -> Glib::PropertyProxy_ReadOnly< Gtk::IconSize >
+auto CellRendererSpinner::property_size() const -> Glib::PropertyProxy_ReadOnly<IconSize>
 {
-  return Glib::PropertyProxy_ReadOnly< Gtk::IconSize >(this, "size");
+  return {this, "size"};
 }
 
 

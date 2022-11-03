@@ -28,7 +28,7 @@ auto init () -> void
   if (!s_init)
   {
     Glib::init();
-    Gio::wrap_init();
+    wrap_init();
     s_init = true;
   }
 }

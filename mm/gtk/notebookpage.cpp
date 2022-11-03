@@ -34,9 +34,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkNotebookPage* object, bool take_copy) -> Glib::RefPtr<Gtk::NotebookPage>
+auto wrap(GtkNotebookPage* object, const bool take_copy) -> RefPtr<Gtk::NotebookPage>
 {
-  return Glib::make_refptr_for_instance<Gtk::NotebookPage>( dynamic_cast<Gtk::NotebookPage*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::NotebookPage>( dynamic_cast<Gtk::NotebookPage*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -49,7 +49,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto NotebookPage_Class::init() -> const Glib::Class&
+auto NotebookPage_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -95,32 +95,28 @@ auto NotebookPage::gobj_copy() -> GtkNotebookPage*
 }
 
 NotebookPage::NotebookPage(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 NotebookPage::NotebookPage(GtkNotebookPage* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 NotebookPage::NotebookPage(NotebookPage&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto NotebookPage::operator=(NotebookPage&& src) noexcept -> NotebookPage&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-NotebookPage::~NotebookPage() noexcept
-{}
-
+NotebookPage::~NotebookPage() noexcept = default;
 
 NotebookPage::CppClassType NotebookPage::notebookpage_class_; // initialize static member
 
@@ -149,87 +145,87 @@ auto NotebookPage::get_child() const -> const Widget*
 
 auto NotebookPage::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 auto NotebookPage::property_tab() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "tab");
+  return {this, "tab"};
 }
 
 auto NotebookPage::property_menu() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "menu");
+  return {this, "menu"};
 }
 
 auto NotebookPage::property_tab_label() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "tab-label");
+  return {this, "tab-label"};
 }
 
 auto NotebookPage::property_tab_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "tab-label");
+  return {this, "tab-label"};
 }
 
 auto NotebookPage::property_menu_label() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "menu-label");
+  return {this, "menu-label"};
 }
 
 auto NotebookPage::property_menu_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "menu-label");
+  return {this, "menu-label"};
 }
 
 auto NotebookPage::property_position() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "position");
+  return {this, "position"};
 }
 
 auto NotebookPage::property_position() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "position");
+  return {this, "position"};
 }
 
 auto NotebookPage::property_tab_expand() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "tab-expand");
+  return {this, "tab-expand"};
 }
 
 auto NotebookPage::property_tab_expand() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "tab-expand");
+  return {this, "tab-expand"};
 }
 
 auto NotebookPage::property_tab_fill() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "tab-fill");
+  return {this, "tab-fill"};
 }
 
 auto NotebookPage::property_tab_fill() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "tab-fill");
+  return {this, "tab-fill"};
 }
 
 auto NotebookPage::property_reorderable() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "reorderable");
+  return {this, "reorderable"};
 }
 
 auto NotebookPage::property_reorderable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "reorderable");
+  return {this, "reorderable"};
 }
 
 auto NotebookPage::property_detachable() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "detachable");
+  return {this, "detachable"};
 }
 
 auto NotebookPage::property_detachable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "detachable");
+  return {this, "detachable"};
 }
 
 

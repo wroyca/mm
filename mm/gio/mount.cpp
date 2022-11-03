@@ -40,7 +40,7 @@ auto Mount::unmount (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_mount_unmount_with_operation(gobj(), GMountUnmountFlags(flags),
     nullptr, // mount_operation
@@ -52,7 +52,7 @@ auto Mount::unmount (const SlotAsyncReady &slot, UnmountFlags flags) -> void
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_mount_unmount_with_operation(gobj(), GMountUnmountFlags(flags),
     nullptr, // mount_operation
@@ -76,7 +76,7 @@ auto Mount::unmount (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_mount_unmount_with_operation(gobj(), GMountUnmountFlags(flags), Glib::unwrap(mount_operation),
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
@@ -89,7 +89,7 @@ auto Mount::unmount (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_mount_unmount_with_operation(gobj(), GMountUnmountFlags(flags), Glib::unwrap(mount_operation),
     nullptr, // cancellable
@@ -112,7 +112,7 @@ auto Mount::remount (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_mount_remount(gobj(), static_cast<GMountMountFlags>(flags), Glib::unwrap(operation),
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
@@ -125,7 +125,7 @@ auto Mount::remount (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_mount_remount(gobj(), static_cast<GMountMountFlags>(flags), Glib::unwrap(operation), nullptr,
     &SignalProxy_async_callback, slot_copy);
@@ -149,7 +149,7 @@ auto Mount::eject (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_mount_eject_with_operation(gobj(), GMountUnmountFlags(flags),
     nullptr, // mount_operation
@@ -161,7 +161,7 @@ auto Mount::eject (const SlotAsyncReady &slot, UnmountFlags flags) -> void
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_mount_eject_with_operation(gobj(), GMountUnmountFlags(flags),
     nullptr, // mount_operation
@@ -185,7 +185,7 @@ auto Mount::eject (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_mount_eject_with_operation(gobj(), GMountUnmountFlags(flags), Glib::unwrap(mount_operation),
     Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
@@ -198,7 +198,7 @@ auto Mount::eject (
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_mount_eject_with_operation(gobj(), GMountUnmountFlags(flags), Glib::unwrap(mount_operation),
     nullptr, // cancellable
@@ -214,48 +214,49 @@ auto Mount::eject (const Glib::RefPtr <MountOperation> &mount_operation, Unmount
 }
 
 auto Mount::guess_content_type (
-  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
-  bool force_rescan) -> void
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable, const bool force_rescan) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_mount_guess_content_type(
     gobj(), force_rescan, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
-auto Mount::guess_content_type (const SlotAsyncReady &slot, bool force_rescan) -> void
+auto Mount::guess_content_type (const SlotAsyncReady &slot, const bool force_rescan) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_mount_guess_content_type(gobj(), force_rescan, nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
-auto Mount::guess_content_type (bool force_rescan) -> void
+auto Mount::guess_content_type (
+  const bool force_rescan) -> void
 {
   g_mount_guess_content_type(gobj(), force_rescan, nullptr, nullptr, nullptr);
 }
 
 auto Mount::guess_content_type_sync (
-  const Glib::RefPtr <Cancellable> &cancellable, bool force_rescan) -> void
+  const Glib::RefPtr <Cancellable> &cancellable, const bool force_rescan) -> void
 {
   GError* gerror = nullptr;
   g_mount_guess_content_type_sync(gobj(), force_rescan, Glib::unwrap(cancellable), &gerror);
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
-auto Mount::guess_content_type_sync (bool force_rescan) -> void
+auto Mount::guess_content_type_sync (
+  const bool force_rescan) -> void
 {
   GError* gerror = nullptr;
   g_mount_guess_content_type_sync(gobj(), force_rescan, nullptr, &gerror);
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
 } // namespace Gio
@@ -294,9 +295,9 @@ const Glib::SignalProxyInfo Mount_signal_pre_unmount_info =
 namespace Glib
 {
 
-auto wrap(GMount* object, bool take_copy) -> Glib::RefPtr<Gio::Mount>
+auto wrap(GMount* object, const bool take_copy) -> RefPtr<Gio::Mount>
 {
-  return Glib::make_refptr_for_instance<Gio::Mount>( dynamic_cast<Gio::Mount*> (Glib::wrap_auto_interface<Gio::Mount> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::Mount>( Glib::wrap_auto_interface<Gio::Mount> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -309,7 +310,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto Mount_Class::init() -> const Glib::Interface_Class&
+auto Mount_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -341,8 +342,7 @@ auto Mount_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto Mount_Class::changed_callback (GMount *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -378,8 +378,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto Mount_Class::unmounted_callback (GMount *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -415,8 +414,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto Mount_Class::pre_unmount_callback (GMount *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -454,42 +452,40 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 
 auto Mount_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new Mount((GMount*)(object));
+  return new Mount((GMount*)object);
 }
 
 
 /* The implementation: */
 
 Mount::Mount()
-:
-  Glib::Interface(mount_class_.init())
+: Interface(mount_class_.init())
 {}
 
 Mount::Mount(GMount* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 Mount::Mount(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 Mount::Mount(Mount&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto Mount::operator=(Mount&& src) noexcept -> Mount&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-Mount::~Mount() noexcept
-{}
+Mount::~Mount() noexcept = default;
 
 // static
-auto Mount::add_interface (GType gtype_implementer) -> void
+auto Mount::add_interface (
+  const GType gtype_implementer) -> void
 {
   mount_class_.init().add_interface(gtype_implementer);
 }
@@ -596,36 +592,36 @@ auto Mount::can_eject() const -> bool
 auto Mount::unmount_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_mount_unmount_with_operation_finish(gobj(), Glib::unwrap(result), &(gerror));
+  const auto retvalue = g_mount_unmount_with_operation_finish(gobj(), Glib::unwrap(result), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto Mount::remount_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_mount_remount_finish(gobj(), Glib::unwrap(result), &(gerror));
+  const auto retvalue = g_mount_remount_finish(gobj(), Glib::unwrap(result), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto Mount::eject_finish(const Glib::RefPtr<AsyncResult>& result) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_mount_eject_with_operation_finish(gobj(), Glib::unwrap(result), &(gerror));
+  const auto retvalue = g_mount_eject_with_operation_finish(gobj(), Glib::unwrap(result), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto Mount::guess_content_type_finish(const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::ustring>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_mount_guess_content_type_finish(gobj(), Glib::unwrap(result), &(gerror)), Glib::OWNERSHIP_DEEP);
+  auto retvalue = Glib::ArrayHandler<Glib::ustring>::array_to_vector(g_mount_guess_content_type_finish(gobj(), Glib::unwrap(result), &gerror), Glib::OWNERSHIP_DEEP);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -657,47 +653,47 @@ auto Mount::get_sort_key() const -> Glib::ustring
 
 auto Mount::signal_changed() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Mount_signal_changed_info);
+  return {this, &Mount_signal_changed_info};
 }
 
 
 auto Mount::signal_unmounted() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Mount_signal_unmounted_info);
+  return {this, &Mount_signal_unmounted_info};
 }
 
 
 auto Mount::signal_pre_unmount() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Mount_signal_pre_unmount_info);
+  return {this, &Mount_signal_pre_unmount_info};
 }
 
 
-auto Gio::Mount::on_changed () -> void
+auto Mount::on_changed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->changed)
     (*base->changed)(gobj());
 }
-auto Gio::Mount::on_unmounted () -> void
+auto Mount::on_unmounted () -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->unmounted)
     (*base->unmounted)(gobj());
 }
-auto Gio::Mount::on_pre_unmount () -> void
+auto Mount::on_pre_unmount () -> void
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->pre_unmount)

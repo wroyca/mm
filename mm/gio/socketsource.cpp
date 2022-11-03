@@ -41,14 +41,14 @@ giomm_generic_socket_callback(sigc::slot_base* slot, GIOCondition condition) -> 
 }
 
 auto
-giomm_signalsocket_callback(GSocket*, GIOCondition condition, void* user_data) -> gboolean
+giomm_signalsocket_callback(GSocket*, const GIOCondition condition, void* user_data) -> gboolean
 {
   sigc::slot_base* const slot = Glib::Source::get_slot_from_connection_node(user_data);
   return giomm_generic_socket_callback(slot, condition);
 }
 
 auto
-giomm_socketsource_callback(GSocket*, GIOCondition condition, void* user_data) -> gboolean
+giomm_socketsource_callback(GSocket*, const GIOCondition condition, void* user_data) -> gboolean
 {
   sigc::slot_base* const slot = Glib::Source::get_slot_from_callback_data(user_data);
   return giomm_generic_socket_callback(slot, condition);
@@ -68,7 +68,7 @@ inline SignalSocket::SignalSocket(GMainContext* context) : context_(context)
 auto
 SignalSocket::connect(const sigc::slot<bool(Glib::IOCondition)>& slot,
   const Glib::RefPtr<Socket>& socket, Glib::IOCondition condition,
-  const Glib::RefPtr<Cancellable>& cancellable, int priority) -> sigc::connection
+  const Glib::RefPtr<Cancellable>& cancellable, const int priority) -> sigc::connection
 {
   GSource* const source =
     g_socket_create_source(socket->gobj(), (GIOCondition)condition, Glib::unwrap(cancellable));
@@ -80,14 +80,14 @@ SignalSocket::connect(const sigc::slot<bool(Glib::IOCondition)>& slot,
 auto
 signal_socket(const Glib::RefPtr<Glib::MainContext>& context) -> SignalSocket
 {
-  return SignalSocket(Glib::unwrap(context)); // 0 means default context
+  return SignalSocket(unwrap(context)); // 0 means default context
 }
 
 /**** Glib::SocketSource *******************************************************/
 
 // static
 auto
-SocketSource::create(const Glib::RefPtr<Socket>& socket, Glib::IOCondition condition,
+SocketSource::create(const Glib::RefPtr<Socket>& socket, const Glib::IOCondition condition,
   const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketSource>
 {
   return Glib::make_refptr_for_instance<SocketSource>(new SocketSource(socket, condition, cancellable));
@@ -95,7 +95,7 @@ SocketSource::create(const Glib::RefPtr<Socket>& socket, Glib::IOCondition condi
 
 // static
 auto
-SocketSource::create(GSocket* socket, Glib::IOCondition condition,
+SocketSource::create(GSocket* socket, const Glib::IOCondition condition,
   const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketSource>
 {
   return Glib::make_refptr_for_instance<SocketSource>(new SocketSource(socket, condition, cancellable));
@@ -117,8 +117,5 @@ SocketSource::SocketSource(GSocket* socket, Glib::IOCondition condition,
 {
 }
 
-SocketSource::~SocketSource() noexcept
-{
-}
-
+SocketSource::~SocketSource() noexcept = default;
 } // namespace Gio

@@ -111,7 +111,7 @@ auto GlyphInfo::get_glyph() const -> Glyph
 
 auto GlyphInfo::get_geometry() const -> GlyphGeometry
 {
-  return GlyphGeometry(&(gobj()->geometry));
+  return GlyphGeometry(&gobj()->geometry);
 }
 
 auto GlyphInfo::get_attr() const -> GlyphVisAttr

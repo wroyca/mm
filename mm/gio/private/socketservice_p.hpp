@@ -17,13 +17,13 @@ public:
   using CppObjectType = SocketService;
   using BaseObjectType = GSocketService;
   using BaseClassType = GSocketServiceClass;
-  using CppClassParent = Gio::SocketListener_Class;
+  using CppClassParent = SocketListener_Class;
   using BaseClassParent = GSocketListenerClass;
 
   friend class SocketService;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

@@ -21,11 +21,9 @@
 namespace Cairo
 {
 
-Matrix::Matrix()
-{
-}
+Matrix::Matrix() = default;
 
-Matrix::Matrix(double xx, double yx, double xy, double yy, double x0, double y0)
+Matrix::Matrix(const double xx, const double yx, const double xy, const double yy, const double x0, const double y0)
 {
   cairo_matrix_init(this, xx, yx, xy, yy, x0, y0);
 }
@@ -37,45 +35,51 @@ auto identity_matrix() -> Matrix
   return m;
 }
 
-auto translation_matrix(double tx, double ty) -> Matrix
+auto translation_matrix(
+  const double tx, const double ty) -> Matrix
 {
   Matrix m;
   cairo_matrix_init_translate(&m, tx, ty);
   return m;
 }
 
-auto scaling_matrix(double sx, double sy) -> Matrix
+auto scaling_matrix(
+  const double sx, const double sy) -> Matrix
 {
   Matrix m;
   cairo_matrix_init_scale(&m, sx, sy);
   return m;
 }
 
-auto rotation_matrix(double radians) -> Matrix
+auto rotation_matrix(
+  const double radians) -> Matrix
 {
   Matrix m;
   cairo_matrix_init_rotate(&m, radians);
   return m;
 }
 
-auto Matrix::translate (double tx, double ty) -> void
+auto Matrix::translate (
+  const double tx, const double ty) -> void
 {
   cairo_matrix_translate(this, tx, ty);
 }
 
-auto Matrix::scale (double sx, double sy) -> void
+auto Matrix::scale (
+  const double sx, const double sy) -> void
 {
   cairo_matrix_scale(this, sx, sy);
 }
 
-auto Matrix::rotate (double radians) -> void
+auto Matrix::rotate (
+  const double radians) -> void
 {
   cairo_matrix_rotate(this, radians);
 }
 
 auto Matrix::invert () -> void
 {
-  auto status = cairo_matrix_invert(this);
+  const auto status = cairo_matrix_invert(this);
   check_status_and_throw_exception(status);
 }
 

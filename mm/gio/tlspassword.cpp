@@ -41,9 +41,9 @@ auto Glib::Value<Gio::TlsPassword::Flags>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GTlsPassword* object, bool take_copy) -> Glib::RefPtr<Gio::TlsPassword>
+auto wrap(GTlsPassword* object, const bool take_copy) -> RefPtr<Gio::TlsPassword>
 {
-  return Glib::make_refptr_for_instance<Gio::TlsPassword>( dynamic_cast<Gio::TlsPassword*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::TlsPassword>( dynamic_cast<Gio::TlsPassword*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -56,7 +56,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto TlsPassword_Class::init() -> const Glib::Class&
+auto TlsPassword_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -90,8 +90,7 @@ auto TlsPassword_Class::class_init_function (void *g_class, void *class_data) ->
 
 auto TlsPassword_Class::get_value_vfunc_callback(GTlsPassword* self, gsize* length) -> const guchar*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -106,7 +105,7 @@ auto TlsPassword_Class::get_value_vfunc_callback(GTlsPassword* self, gsize* leng
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return obj->get_value_vfunc(*(length)
+        return obj->get_value_vfunc(*length
 );
       }
       catch(...)
@@ -116,7 +115,7 @@ auto TlsPassword_Class::get_value_vfunc_callback(GTlsPassword* self, gsize* leng
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -129,8 +128,7 @@ auto TlsPassword_Class::get_value_vfunc_callback(GTlsPassword* self, gsize* leng
 }
 auto TlsPassword_Class::get_default_warning_vfunc_callback(GTlsPassword* self) -> const gchar*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -166,7 +164,7 @@ auto TlsPassword_Class::get_default_warning_vfunc_callback(GTlsPassword* self) -
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -194,32 +192,28 @@ auto TlsPassword::gobj_copy() -> GTlsPassword*
 }
 
 TlsPassword::TlsPassword(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 TlsPassword::TlsPassword(GTlsPassword* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 TlsPassword::TlsPassword(TlsPassword&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto TlsPassword::operator=(TlsPassword&& src) noexcept -> TlsPassword&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-TlsPassword::~TlsPassword() noexcept
-{}
-
+TlsPassword::~TlsPassword() noexcept = default;
 
 TlsPassword::CppClassType TlsPassword::tlspassword_class_; // initialize static member
 
@@ -235,24 +229,24 @@ auto TlsPassword::get_base_type() -> GType
 }
 
 
-TlsPassword::TlsPassword(const Glib::ustring& description, Flags flags)
+TlsPassword::TlsPassword(const Glib::ustring& description, const Flags flags)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(tlspassword_class_.init(), "flags", static_cast<GTlsPasswordFlags>(flags), "description", description.c_str(), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(tlspassword_class_.init(), "flags", flags, "description", description.c_str(), nullptr))
 {
 
 
 }
 
-auto TlsPassword::create(const Glib::ustring& description, Flags flags) -> Glib::RefPtr<TlsPassword>
+auto TlsPassword::create(const Glib::ustring& description, const Flags flags) -> Glib::RefPtr<TlsPassword>
 {
   return Glib::make_refptr_for_instance<TlsPassword>( new TlsPassword(description, flags) );
 }
 
 auto TlsPassword::get_value(gsize& length) const -> const guchar*
 {
-  return g_tls_password_get_value(const_cast<GTlsPassword*>(gobj()), &(length));
+  return g_tls_password_get_value(const_cast<GTlsPassword*>(gobj()), &length);
 }
 
 auto TlsPassword::get_value() const -> const guchar*
@@ -260,7 +254,7 @@ auto TlsPassword::get_value() const -> const guchar*
   return g_tls_password_get_value(const_cast<GTlsPassword*>(gobj()), nullptr);
 }
 
-auto TlsPassword::set_value (const guchar *value, gssize length) -> void
+auto TlsPassword::set_value (const guchar *value, const gssize length) -> void
 {
   g_tls_password_set_value(gobj(), value, length);
 }
@@ -298,12 +292,12 @@ auto TlsPassword::set_warning (const Glib::ustring &warning) -> void
 
 auto TlsPassword::property_description() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "description");
+  return {this, "description"};
 }
 
 auto TlsPassword::property_description() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "description");
+  return {this, "description"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Flags>::value,
@@ -312,26 +306,26 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Flags>::value,
 
 auto TlsPassword::property_flags() -> Glib::PropertyProxy< Flags >
 {
-  return Glib::PropertyProxy< Flags >(this, "flags");
+  return {this, "flags"};
 }
 
 auto TlsPassword::property_flags() const -> Glib::PropertyProxy_ReadOnly< Flags >
 {
-  return Glib::PropertyProxy_ReadOnly< Flags >(this, "flags");
+  return {this, "flags"};
 }
 
 auto TlsPassword::property_warning() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "warning");
+  return {this, "warning"};
 }
 
 auto TlsPassword::property_warning() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "warning");
+  return {this, "warning"};
 }
 
 
-auto Gio::TlsPassword::get_value_vfunc(gsize& length) const -> const guchar*
+auto TlsPassword::get_value_vfunc(gsize& length) const -> const guchar*
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -339,14 +333,14 @@ auto Gio::TlsPassword::get_value_vfunc(gsize& length) const -> const guchar*
 
   if(base && base->get_value)
   {
-    const guchar* retval((*base->get_value)(const_cast<GTlsPassword*>(gobj()),&(length)));
+    const guchar* retval((*base->get_value)(const_cast<GTlsPassword*>(gobj()),&length));
     return retval;
   }
 
   using RType = const guchar*;
   return RType();
 }
-auto Gio::TlsPassword::get_default_warning_vfunc() const -> Glib::ustring
+auto TlsPassword::get_default_warning_vfunc() const -> Glib::ustring
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -359,7 +353,7 @@ auto Gio::TlsPassword::get_default_warning_vfunc() const -> Glib::ustring
   }
 
   using RType = Glib::ustring;
-  return RType();
+  return {};
 }
 
 

@@ -38,8 +38,7 @@ namespace Gtk
 // to the original GtkBorder after the call to the C++ vfunc.
 auto Scrollable_Class::get_border_vfunc_callback(GtkScrollable* self, GtkBorder* border) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -55,7 +54,7 @@ auto Scrollable_Class::get_border_vfunc_callback(GtkScrollable* self, GtkBorder*
       {
         // Call the virtual member method, which derived classes might override.
         Border border_copy(border, true);
-        auto result = obj->get_border_vfunc(border_copy);
+        const auto result = obj->get_border_vfunc(border_copy);
         if (border)
           *border = *border_copy.gobj();
         return result;
@@ -67,7 +66,7 @@ auto Scrollable_Class::get_border_vfunc_callback(GtkScrollable* self, GtkBorder*
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -106,9 +105,9 @@ auto Glib::Value<Gtk::Scrollable::Policy>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkScrollable* object, bool take_copy) -> Glib::RefPtr<Gtk::Scrollable>
+auto wrap(GtkScrollable* object, const bool take_copy) -> RefPtr<Gtk::Scrollable>
 {
-  return Glib::make_refptr_for_instance<Gtk::Scrollable>( dynamic_cast<Gtk::Scrollable*> (Glib::wrap_auto_interface<Gtk::Scrollable> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::Scrollable>( Glib::wrap_auto_interface<Gtk::Scrollable> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -121,7 +120,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Scrollable_Class::init() -> const Glib::Interface_Class&
+auto Scrollable_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -151,42 +150,40 @@ auto Scrollable_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto Scrollable_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new Scrollable((GtkScrollable*)(object));
+  return new Scrollable((GtkScrollable*)object);
 }
 
 
 /* The implementation: */
 
 Scrollable::Scrollable()
-:
-  Glib::Interface(scrollable_class_.init())
+: Interface(scrollable_class_.init())
 {}
 
 Scrollable::Scrollable(GtkScrollable* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 Scrollable::Scrollable(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 Scrollable::Scrollable(Scrollable&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto Scrollable::operator=(Scrollable&& src) noexcept -> Scrollable&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-Scrollable::~Scrollable() noexcept
-{}
+Scrollable::~Scrollable() noexcept = default;
 
 // static
-auto Scrollable::add_interface (GType gtype_implementer) -> void
+auto Scrollable::add_interface (
+  const GType gtype_implementer) -> void
 {
   scrollable_class_.init().add_interface(gtype_implementer);
 }
@@ -266,7 +263,7 @@ auto Scrollable::set_vscroll_policy (Policy policy) -> void
 
 auto Scrollable::get_border(Border& border) const -> bool
 {
-  return gtk_scrollable_get_border(const_cast<GtkScrollable*>(gobj()), (border).gobj());
+  return gtk_scrollable_get_border(const_cast<GtkScrollable*>(gobj()), border.gobj());
 }
 
 
@@ -276,12 +273,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Adjustm
 
 auto Scrollable::property_hadjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Adjustment> >(this, "hadjustment");
+  return {this, "hadjustment"};
 }
 
 auto Scrollable::property_hadjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >(this, "hadjustment");
+  return {this, "hadjustment"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Adjustment>>::value,
@@ -290,12 +287,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Adjustm
 
 auto Scrollable::property_vadjustment() -> Glib::PropertyProxy< Glib::RefPtr<Adjustment> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Adjustment> >(this, "vadjustment");
+  return {this, "vadjustment"};
 }
 
 auto Scrollable::property_vadjustment() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Adjustment> >(this, "vadjustment");
+  return {this, "vadjustment"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Policy>::value,
@@ -304,12 +301,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Policy>::value,
 
 auto Scrollable::property_hscroll_policy() -> Glib::PropertyProxy< Policy >
 {
-  return Glib::PropertyProxy< Policy >(this, "hscroll-policy");
+  return {this, "hscroll-policy"};
 }
 
 auto Scrollable::property_hscroll_policy() const -> Glib::PropertyProxy_ReadOnly< Policy >
 {
-  return Glib::PropertyProxy_ReadOnly< Policy >(this, "hscroll-policy");
+  return {this, "hscroll-policy"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Policy>::value,
@@ -318,25 +315,25 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Policy>::value,
 
 auto Scrollable::property_vscroll_policy() -> Glib::PropertyProxy< Policy >
 {
-  return Glib::PropertyProxy< Policy >(this, "vscroll-policy");
+  return {this, "vscroll-policy"};
 }
 
 auto Scrollable::property_vscroll_policy() const -> Glib::PropertyProxy_ReadOnly< Policy >
 {
-  return Glib::PropertyProxy_ReadOnly< Policy >(this, "vscroll-policy");
+  return {this, "vscroll-policy"};
 }
 
 
-auto Gtk::Scrollable::get_border_vfunc(Border& border) const -> bool
+auto Scrollable::get_border_vfunc(Border& border) const -> bool
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->get_border)
   {
-    bool retval((*base->get_border)(const_cast<GtkScrollable*>(gobj()),(border).gobj()));
+    const bool retval((*base->get_border)(const_cast<GtkScrollable*>(gobj()),border.gobj()));
     return retval;
   }
 

@@ -28,7 +28,8 @@ namespace
 
 namespace Glib
 {
-auto set_init_to_users_preferred_locale (bool state) -> void
+auto set_init_to_users_preferred_locale (
+  const bool state) -> void
 {
   init_to_users_preferred_locale = state;
 }
@@ -74,7 +75,7 @@ auto init () -> void
   }
 
   // Also calls Glib::wrap_register_init() and Glib::wrap_init().
-  Glib::Error::register_init();
+  Error::register_init();
 
   is_initialized = true;
 }

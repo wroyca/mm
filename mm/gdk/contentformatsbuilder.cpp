@@ -44,7 +44,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(GdkContentFormatsBuilder* object, bool take_copy) -> Glib::RefPtr<Gdk::ContentFormatsBuilder>
+auto wrap(GdkContentFormatsBuilder* object, const bool take_copy) -> RefPtr<Gdk::ContentFormatsBuilder>
 {
   if(take_copy && object)
     gdk_content_formats_builder_ref(object);
@@ -107,7 +107,8 @@ auto ContentFormatsBuilder::add_mime_type (const Glib::ustring &mime_type) -> vo
   gdk_content_formats_builder_add_mime_type(gobj(), mime_type.c_str());
 }
 
-auto ContentFormatsBuilder::add_gtype (GType gtype) -> void
+auto ContentFormatsBuilder::add_gtype (
+  const GType gtype) -> void
 {
   gdk_content_formats_builder_add_gtype(gobj(), gtype);
 }

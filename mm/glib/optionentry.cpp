@@ -118,15 +118,15 @@ namespace Glib
 {
 
 
-auto OptionEntry::get_long_name() const -> Glib::ustring
+auto OptionEntry::get_long_name() const -> ustring
 {
-  return Glib::convert_const_gchar_ptr_to_ustring(gobj()->long_name);
+  return convert_const_gchar_ptr_to_ustring(gobj()->long_name);
 }
 
-auto OptionEntry::set_long_name (const Glib::ustring &value) -> void
+auto OptionEntry::set_long_name (const ustring &value) -> void
 {
   g_free((char*)gobj()->long_name); // Cast away const, if any
-  gobj()->long_name = g_strdup((value).c_str());
+  gobj()->long_name = g_strdup(value.c_str());
 }
 
 auto OptionEntry::get_short_name() const -> gchar
@@ -149,26 +149,26 @@ auto OptionEntry::set_flags (const Flags &value) -> void
   gobj()->flags = static_cast<int>(value);
 }
 
-auto OptionEntry::get_description() const -> Glib::ustring
+auto OptionEntry::get_description() const -> ustring
 {
-  return Glib::convert_const_gchar_ptr_to_ustring(gobj()->description);
+  return convert_const_gchar_ptr_to_ustring(gobj()->description);
 }
 
-auto OptionEntry::set_description (const Glib::ustring &value) -> void
+auto OptionEntry::set_description (const ustring &value) -> void
 {
   g_free((char*)gobj()->description); // Cast away const, if any
-  gobj()->description = g_strdup(Glib::c_str_or_nullptr(value));
+  gobj()->description = g_strdup(c_str_or_nullptr(value));
 }
 
-auto OptionEntry::get_arg_description() const -> Glib::ustring
+auto OptionEntry::get_arg_description() const -> ustring
 {
-  return Glib::convert_const_gchar_ptr_to_ustring(gobj()->arg_description);
+  return convert_const_gchar_ptr_to_ustring(gobj()->arg_description);
 }
 
-auto OptionEntry::set_arg_description (const Glib::ustring &value) -> void
+auto OptionEntry::set_arg_description (const ustring &value) -> void
 {
   g_free((char*)gobj()->arg_description); // Cast away const, if any
-  gobj()->arg_description = g_strdup(Glib::c_str_or_nullptr(value));
+  gobj()->arg_description = g_strdup(c_str_or_nullptr(value));
 }
 
 

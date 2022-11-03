@@ -31,15 +31,15 @@
 namespace Gtk
 {
 
-Button::Button(const Glib::ustring& label, bool mnemonic)
+Button::Button(const Glib::ustring& label, const bool mnemonic)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(button_class_.init(), "label",label.c_str(),"use_underline",gboolean(mnemonic), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(button_class_.init(), "label",label.c_str(),"use_underline",gboolean(mnemonic), nullptr))
 {}
 
 auto Button::set_image_from_icon_name (
-  const Glib::ustring &icon_name, IconSize size, bool use_fallback) -> void
+  const Glib::ustring &icon_name, const IconSize size, const bool use_fallback) -> void
 {
   // It would be possible to create a Gtk::Image and add it with Container::add()
   // instead of calling set_icon_name(), but only set_icon_name() sets style classes
@@ -49,7 +49,7 @@ auto Button::set_image_from_icon_name (
   if (size == IconSize::INHERIT && !use_fallback)
     return;
 
-  auto image = dynamic_cast<Image*>(get_child());
+  const auto image = dynamic_cast<Image*>(get_child());
   if (image)
   {
     image->set_from_icon_name(icon_name);
@@ -83,9 +83,9 @@ const Glib::SignalProxyInfo Button_signal_clicked_info =
 namespace Glib
 {
 
-auto wrap(GtkButton* object, bool take_copy) -> Gtk::Button*
+auto wrap(GtkButton* object, const bool take_copy) -> Gtk::Button*
 {
-  return dynamic_cast<Gtk::Button *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::Button *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -96,7 +96,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Button_Class::init() -> const Glib::Class&
+auto Button_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -131,8 +131,7 @@ auto Button_Class::class_init_function (void *g_class, void *class_data) -> void
 
 auto Button_Class::clicked_callback (GtkButton *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -169,7 +168,7 @@ auto Button_Class::clicked_callback (GtkButton *self) -> void
 
 auto Button_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new Button((GtkButton*)(o)));
+  return manage(new Button((GtkButton*)o));
 
 }
 
@@ -177,26 +176,24 @@ auto Button_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 Button::Button(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 Button::Button(GtkButton* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 Button::Button(Button&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
   , Actionable(std::move(src))
 {}
 
 auto Button::operator=(Button&& src) noexcept -> Button&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   Actionable::operator=(std::move(src));
   return *this;
 }
@@ -223,16 +220,17 @@ auto Button::get_base_type() -> GType
 Button::Button()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(button_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(button_class_.init()))
 {
 
 
 }
 
-auto Button::set_has_frame (bool has_frame) -> void
+auto Button::set_has_frame (
+  const bool has_frame) -> void
 {
-  gtk_button_set_has_frame(gobj(), static_cast<int>(has_frame));
+  gtk_button_set_has_frame(gobj(), has_frame);
 }
 
 auto Button::get_has_frame() const -> bool
@@ -250,9 +248,10 @@ auto Button::get_label() const -> Glib::ustring
   return Glib::convert_const_gchar_ptr_to_ustring(gtk_button_get_label(const_cast<GtkButton*>(gobj())));
 }
 
-auto Button::set_use_underline (bool use_underline) -> void
+auto Button::set_use_underline (
+  const bool use_underline) -> void
 {
-  gtk_button_set_use_underline(gobj(), static_cast<int>(use_underline));
+  gtk_button_set_use_underline(gobj(), use_underline);
 }
 
 auto Button::get_use_underline() const -> bool
@@ -272,7 +271,7 @@ auto Button::get_icon_name() const -> Glib::ustring
 
 auto Button::set_child (Widget &child) -> void
 {
-  gtk_button_set_child(gobj(), (child).gobj());
+  gtk_button_set_child(gobj(), child.gobj());
 }
 
 auto Button::get_child() -> Widget*
@@ -288,62 +287,62 @@ auto Button::get_child() const -> const Widget*
 
 auto Button::signal_clicked() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Button_signal_clicked_info);
+  return {this, &Button_signal_clicked_info};
 }
 
 
 auto Button::property_label() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "label");
+  return {this, "label"};
 }
 
 auto Button::property_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "label");
+  return {this, "label"};
 }
 
 auto Button::property_has_frame() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "has-frame");
+  return {this, "has-frame"};
 }
 
 auto Button::property_has_frame() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "has-frame");
+  return {this, "has-frame"};
 }
 
 auto Button::property_use_underline() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "use-underline");
+  return {this, "use-underline"};
 }
 
 auto Button::property_use_underline() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "use-underline");
+  return {this, "use-underline"};
 }
 
 auto Button::property_icon_name() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "icon-name");
+  return {this, "icon-name"};
 }
 
 auto Button::property_icon_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "icon-name");
+  return {this, "icon-name"};
 }
 
 auto Button::property_child() -> Glib::PropertyProxy< Widget* >
 {
-  return Glib::PropertyProxy< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 auto Button::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 
-auto Gtk::Button::on_clicked () -> void
+auto Button::on_clicked () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

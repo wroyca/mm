@@ -34,9 +34,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkAppChooser* object, bool take_copy) -> Glib::RefPtr<Gtk::AppChooser>
+auto wrap(GtkAppChooser* object, const bool take_copy) -> RefPtr<Gtk::AppChooser>
 {
-  return Glib::make_refptr_for_instance<Gtk::AppChooser>( dynamic_cast<Gtk::AppChooser*> (Glib::wrap_auto_interface<Gtk::AppChooser> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::AppChooser>( Glib::wrap_auto_interface<Gtk::AppChooser> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -49,7 +49,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto AppChooser_Class::init() -> const Glib::Interface_Class&
+auto AppChooser_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -78,42 +78,40 @@ auto AppChooser_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto AppChooser_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new AppChooser((GtkAppChooser*)(object));
+  return new AppChooser((GtkAppChooser*)object);
 }
 
 
 /* The implementation: */
 
 AppChooser::AppChooser()
-:
-  Glib::Interface(appchooser_class_.init())
+: Interface(appchooser_class_.init())
 {}
 
 AppChooser::AppChooser(GtkAppChooser* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 AppChooser::AppChooser(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 AppChooser::AppChooser(AppChooser&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto AppChooser::operator=(AppChooser&& src) noexcept -> AppChooser&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-AppChooser::~AppChooser() noexcept
-{}
+AppChooser::~AppChooser() noexcept = default;
 
 // static
-auto AppChooser::add_interface (GType gtype_implementer) -> void
+auto AppChooser::add_interface (
+  const GType gtype_implementer) -> void
 {
   appchooser_class_.init().add_interface(gtype_implementer);
 }
@@ -158,7 +156,7 @@ auto AppChooser::refresh () -> void
 
 auto AppChooser::property_content_type() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "content-type");
+  return {this, "content-type"};
 }
 
 

@@ -68,14 +68,14 @@ auto wrap_init () -> void
   // Register Error domains in the main namespace:
 
   // Map gtypes to gtkmm wrapper-creation functions:
-  Glib::wrap_register(pango_context_get_type(), &Context_Class::wrap_new);
-  Glib::wrap_register(pango_font_get_type(), &Font_Class::wrap_new);
-  Glib::wrap_register(pango_font_face_get_type(), &FontFace_Class::wrap_new);
-  Glib::wrap_register(pango_font_family_get_type(), &FontFamily_Class::wrap_new);
-  Glib::wrap_register(pango_font_map_get_type(), &FontMap_Class::wrap_new);
-  Glib::wrap_register(pango_fontset_get_type(), &Fontset_Class::wrap_new);
-  Glib::wrap_register(pango_layout_get_type(), &Layout_Class::wrap_new);
-  Glib::wrap_register(pango_renderer_get_type(), &Renderer_Class::wrap_new);
+  wrap_register(pango_context_get_type(), &Context_Class::wrap_new);
+  wrap_register(pango_font_get_type(), &Font_Class::wrap_new);
+  wrap_register(pango_font_face_get_type(), &FontFace_Class::wrap_new);
+  wrap_register(pango_font_family_get_type(), &FontFamily_Class::wrap_new);
+  wrap_register(pango_font_map_get_type(), &FontMap_Class::wrap_new);
+  wrap_register(pango_fontset_get_type(), &Fontset_Class::wrap_new);
+  wrap_register(pango_layout_get_type(), &Layout_Class::wrap_new);
+  wrap_register(pango_renderer_get_type(), &Renderer_Class::wrap_new);
 
   // Register the gtkmm gtypes:
   g_type_ensure(Context::get_type());

@@ -35,7 +35,7 @@ auto SignalListItemFactory_signal_setup_callback (
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<ListItem>&)>;
 
-  auto obj = dynamic_cast<SignalListItemFactory*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<SignalListItemFactory*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -66,7 +66,7 @@ auto SignalListItemFactory_signal_bind_callback (
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<ListItem>&)>;
 
-  auto obj = dynamic_cast<SignalListItemFactory*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<SignalListItemFactory*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -97,7 +97,7 @@ auto SignalListItemFactory_signal_unbind_callback (
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<ListItem>&)>;
 
-  auto obj = dynamic_cast<SignalListItemFactory*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<SignalListItemFactory*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -128,7 +128,7 @@ auto SignalListItemFactory_signal_teardown_callback (
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<ListItem>&)>;
 
-  auto obj = dynamic_cast<SignalListItemFactory*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<SignalListItemFactory*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -159,9 +159,9 @@ const Glib::SignalProxyInfo SignalListItemFactory_signal_teardown_info =
 namespace Glib
 {
 
-auto wrap(GtkSignalListItemFactory* object, bool take_copy) -> Glib::RefPtr<Gtk::SignalListItemFactory>
+auto wrap(GtkSignalListItemFactory* object, const bool take_copy) -> RefPtr<Gtk::SignalListItemFactory>
 {
-  return Glib::make_refptr_for_instance<Gtk::SignalListItemFactory>( dynamic_cast<Gtk::SignalListItemFactory*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::SignalListItemFactory>( dynamic_cast<Gtk::SignalListItemFactory*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -174,7 +174,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto SignalListItemFactory_Class::init() -> const Glib::Class&
+auto SignalListItemFactory_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -220,32 +220,28 @@ auto SignalListItemFactory::gobj_copy() -> GtkSignalListItemFactory*
 }
 
 SignalListItemFactory::SignalListItemFactory(const Glib::ConstructParams& construct_params)
-:
-  Gtk::ListItemFactory(construct_params)
+: ListItemFactory(construct_params)
 {
 
 }
 
 SignalListItemFactory::SignalListItemFactory(GtkSignalListItemFactory* castitem)
-:
-  Gtk::ListItemFactory((GtkListItemFactory*)(castitem))
+: ListItemFactory((GtkListItemFactory*)castitem)
 {}
 
 
 SignalListItemFactory::SignalListItemFactory(SignalListItemFactory&& src) noexcept
-: Gtk::ListItemFactory(std::move(src))
+: ListItemFactory(std::move(src))
 {}
 
 auto SignalListItemFactory::operator=(SignalListItemFactory&& src) noexcept -> SignalListItemFactory&
 {
-  Gtk::ListItemFactory::operator=(std::move(src));
+  ListItemFactory::operator=(std::move(src));
   return *this;
 }
 
 
-SignalListItemFactory::~SignalListItemFactory() noexcept
-{}
-
+SignalListItemFactory::~SignalListItemFactory() noexcept = default;
 
 SignalListItemFactory::CppClassType SignalListItemFactory::signallistitemfactory_class_; // initialize static member
 
@@ -264,8 +260,8 @@ auto SignalListItemFactory::get_base_type() -> GType
 SignalListItemFactory::SignalListItemFactory()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::ListItemFactory(Glib::ConstructParams(signallistitemfactory_class_.init()))
+ObjectBase(nullptr),
+ListItemFactory(Glib::ConstructParams(signallistitemfactory_class_.init()))
 {
 
 
@@ -279,25 +275,25 @@ auto SignalListItemFactory::create() -> Glib::RefPtr<SignalListItemFactory>
 
 auto SignalListItemFactory::signal_setup() -> Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&) >(this, &SignalListItemFactory_signal_setup_info);
+  return {this, &SignalListItemFactory_signal_setup_info};
 }
 
 
 auto SignalListItemFactory::signal_bind() -> Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&) >(this, &SignalListItemFactory_signal_bind_info);
+  return {this, &SignalListItemFactory_signal_bind_info};
 }
 
 
 auto SignalListItemFactory::signal_unbind() -> Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&) >(this, &SignalListItemFactory_signal_unbind_info);
+  return {this, &SignalListItemFactory_signal_unbind_info};
 }
 
 
 auto SignalListItemFactory::signal_teardown() -> Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<ListItem>&) >(this, &SignalListItemFactory_signal_teardown_info);
+  return {this, &SignalListItemFactory_signal_teardown_info};
 }
 
 

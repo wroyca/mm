@@ -40,7 +40,7 @@ AttrIter::AttrIter(const AttrIter& src)
   gobject_(src.gobject_ ? pango_attr_iterator_copy(src.gobject_) : nullptr)
 {}
 
-AttrIter::AttrIter(PangoAttrIterator* castitem, bool take_copy)
+AttrIter::AttrIter(PangoAttrIterator* castitem, const bool take_copy)
 {
   if(take_copy)
   {
@@ -63,7 +63,7 @@ AttrIter::~AttrIter()
 
 auto AttrIter::operator=(const AttrIter& src) -> AttrIter&
 {
-  auto* const new_gobject = (src.gobject_ ? pango_attr_iterator_copy(src.gobject_) : nullptr);
+  auto* const new_gobject = src.gobject_ ? pango_attr_iterator_copy(src.gobject_) : nullptr;
 
   if(gobject_)
      pango_attr_iterator_destroy(gobject_);
@@ -92,7 +92,7 @@ auto AttrIter::operator++(int) -> const AttrIter
  */
 AttrIter::operator bool() const
 {
-  return (gobject_ != nullptr);
+  return gobject_ != nullptr;
 }
 
 auto AttrIter::next() -> bool
@@ -142,7 +142,7 @@ auto AttrIter::get_extra_attrs() const -> std::vector<Attribute>
 
 auto AttrIter::get_attrs() const -> std::vector<Attribute>
 {
-  auto attrs = pango_attr_iterator_get_attrs( const_cast<PangoAttrIterator*>(gobj()) );
+  const auto attrs = pango_attr_iterator_get_attrs( const_cast<PangoAttrIterator*>(gobj()) );
   return SListHandler_Attribute::slist_to_vector(attrs, Glib::OWNERSHIP_DEEP);
 }
 
@@ -153,7 +153,7 @@ auto AttrIter::get_attrs() const -> std::vector<Attribute>
 namespace Glib
 {
 
-auto wrap(PangoAttrIterator* object, bool take_copy) -> Pango::AttrIter
+auto wrap(PangoAttrIterator* object, const bool take_copy) -> Pango::AttrIter
 {
   return Pango::AttrIter(object, take_copy);
 }
@@ -172,12 +172,12 @@ namespace Pango
 
 auto AttrIter::get_range (int &start, int &end) const -> void
 {
-  pango_attr_iterator_range(const_cast<PangoAttrIterator*>(gobj()), &(start), &(end));
+  pango_attr_iterator_range(const_cast<PangoAttrIterator*>(gobj()), &start, &end);
 }
 
 auto AttrIter::get_attribute(AttrType type) const -> Attribute
 {
-  return Attribute((pango_attr_iterator_get(const_cast<PangoAttrIterator*>(gobj()), static_cast<PangoAttrType>(type))));
+  return Attribute(pango_attr_iterator_get(const_cast<PangoAttrIterator*>(gobj()), static_cast<PangoAttrType>(type)));
 }
 
 

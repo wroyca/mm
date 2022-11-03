@@ -33,9 +33,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkDirectoryList* object, bool take_copy) -> Glib::RefPtr<Gtk::DirectoryList>
+auto wrap(GtkDirectoryList* object, const bool take_copy) -> RefPtr<Gtk::DirectoryList>
 {
-  return Glib::make_refptr_for_instance<Gtk::DirectoryList>( dynamic_cast<Gtk::DirectoryList*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::DirectoryList>( dynamic_cast<Gtk::DirectoryList*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto DirectoryList_Class::init() -> const Glib::Class&
+auto DirectoryList_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -88,34 +88,31 @@ auto DirectoryList::gobj_copy() -> GtkDirectoryList*
 }
 
 DirectoryList::DirectoryList(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 DirectoryList::DirectoryList(GtkDirectoryList* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 DirectoryList::DirectoryList(DirectoryList&& src) noexcept
-: Glib::Object(std::move(src))
-  , Gio::ListModel(std::move(src))
+: Object(std::move(src))
+  ,
+  ListModel(std::move(src))
 {}
 
 auto DirectoryList::operator=(DirectoryList&& src) noexcept -> DirectoryList&
 {
-  Glib::Object::operator=(std::move(src));
-  Gio::ListModel::operator=(std::move(src));
+  Object::operator=(std::move(src));
+  ListModel::operator=(std::move(src));
   return *this;
 }
 
 
-DirectoryList::~DirectoryList() noexcept
-{}
-
+DirectoryList::~DirectoryList() noexcept = default;
 
 DirectoryList::CppClassType DirectoryList::directorylist_class_; // initialize static member
 
@@ -134,8 +131,8 @@ auto DirectoryList::get_base_type() -> GType
 DirectoryList::DirectoryList(const std::string& attributes, const Glib::RefPtr<Gio::File>& file)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(directorylist_class_.init(), "attributes", attributes.c_str(), "file", const_cast<GFile*>(Glib::unwrap<Gio::File>(file)), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(directorylist_class_.init(), "attributes", attributes.c_str(), "file", Glib::unwrap<Gio::File>(file), nullptr))
 {
 
 
@@ -148,7 +145,7 @@ auto DirectoryList::create(const std::string& attributes, const Glib::RefPtr<Gio
 
 auto DirectoryList::set_file (const Glib::RefPtr <Gio::File> &file) -> void
 {
-  gtk_directory_list_set_file(gobj(), const_cast<GFile*>(Glib::unwrap<Gio::File>(file)));
+  gtk_directory_list_set_file(gobj(), Glib::unwrap<Gio::File>(file));
 }
 
 auto DirectoryList::get_file() -> Glib::RefPtr<Gio::File>
@@ -174,7 +171,8 @@ auto DirectoryList::get_attributes() const -> std::string
   return Glib::convert_const_gchar_ptr_to_stdstring(gtk_directory_list_get_attributes(const_cast<GtkDirectoryList*>(gobj())));
 }
 
-auto DirectoryList::set_io_priority (int io_priority) -> void
+auto DirectoryList::set_io_priority (
+  const int io_priority) -> void
 {
   gtk_directory_list_set_io_priority(gobj(), io_priority);
 }
@@ -194,9 +192,10 @@ auto DirectoryList::get_error() const -> Glib::Error
   return Glib::Error(const_cast<GError*>(gtk_directory_list_get_error(const_cast<GtkDirectoryList*>(gobj()))), true);
 }
 
-auto DirectoryList::set_monitored (bool monitored) -> void
+auto DirectoryList::set_monitored (
+  const bool monitored) -> void
 {
-  gtk_directory_list_set_monitored(gobj(), static_cast<int>(monitored));
+  gtk_directory_list_set_monitored(gobj(), monitored);
 }
 
 auto DirectoryList::get_monitored() const -> bool
@@ -207,12 +206,12 @@ auto DirectoryList::get_monitored() const -> bool
 
 auto DirectoryList::property_attributes() -> Glib::PropertyProxy< std::string >
 {
-  return Glib::PropertyProxy< std::string >(this, "attributes");
+  return {this, "attributes"};
 }
 
 auto DirectoryList::property_attributes() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
-  return Glib::PropertyProxy_ReadOnly< std::string >(this, "attributes");
+  return {this, "attributes"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::Error>::value,
@@ -221,7 +220,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::Error>::value,
 
 auto DirectoryList::property_error() const -> Glib::PropertyProxy_ReadOnly< Glib::Error >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::Error >(this, "error");
+  return {this, "error"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::File>>::value,
@@ -230,22 +229,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Fi
 
 auto DirectoryList::property_file() -> Glib::PropertyProxy< Glib::RefPtr<Gio::File> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Gio::File> >(this, "file");
+  return {this, "file"};
 }
 
 auto DirectoryList::property_file() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::File> >(this, "file");
+  return {this, "file"};
 }
 
 auto DirectoryList::property_io_priority() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "io-priority");
+  return {this, "io-priority"};
 }
 
 auto DirectoryList::property_io_priority() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "io-priority");
+  return {this, "io-priority"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
@@ -254,27 +253,27 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
 
 auto DirectoryList::property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >
 {
-  return Glib::PropertyProxy_ReadOnly< GType >(this, "item-type");
+  return {this, "item-type"};
 }
 
 auto DirectoryList::property_loading() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "loading");
+  return {this, "loading"};
 }
 
 auto DirectoryList::property_monitored() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "monitored");
+  return {this, "monitored"};
 }
 
 auto DirectoryList::property_monitored() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "monitored");
+  return {this, "monitored"};
 }
 
 auto DirectoryList::property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
-  return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "n-items");
+  return {this, "n-items"};
 }
 
 

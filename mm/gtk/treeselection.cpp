@@ -36,7 +36,7 @@ auto proxy_foreach_selection_iter_callback (
   GtkTreeModel *model, GtkTreePath *, GtkTreeIter *iter, void *data) -> void
 {
   typedef Gtk::TreeSelection::SlotForeachIter SlotType;
-  auto& slot = *static_cast<SlotType*>(data);
+  const auto& slot = *static_cast<SlotType*>(data);
 
   try
   {
@@ -52,7 +52,7 @@ auto proxy_foreach_selection_path_callback (
   GtkTreeModel *, GtkTreePath *path, GtkTreeIter *, void *data) -> void
 {
   typedef Gtk::TreeSelection::SlotForeachPath SlotType;
-  auto& slot = *static_cast<SlotType*>(data);
+  const auto& slot = *static_cast<SlotType*>(data);
 
   try
   {
@@ -69,7 +69,7 @@ auto proxy_foreach_selection_path_and_iter_callback (
   GtkTreeIter *iter, void *data) -> void
 {
   typedef Gtk::TreeSelection::SlotForeachPathAndIter SlotType;
-  auto& slot = *static_cast<SlotType*>(data);
+  const auto& slot = *static_cast<SlotType*>(data);
 
   try
   {
@@ -82,8 +82,7 @@ auto proxy_foreach_selection_path_and_iter_callback (
 }
 
 
-auto SignalProxy_Select_gtk_callback(GtkTreeSelection*, GtkTreeModel* model, GtkTreePath* path,
-                                          gboolean path_currently_selected, void* data) -> gboolean
+auto SignalProxy_Select_gtk_callback(GtkTreeSelection*, GtkTreeModel* model, GtkTreePath* path, const gboolean path_currently_selected, void* data) -> gboolean
 {
   const auto the_slot = static_cast<Gtk::TreeSelection::SlotSelect*>(data);
 
@@ -117,7 +116,7 @@ auto TreeSelection::set_select_function (const SlotSelect &slot) -> void
   // Create a copy of the slot.  A pointer to this will be passed
   // through the callback's data parameter.  It will be deleted
   // when SignalProxy_Select_gtk_callback_destroy() is called.
-  auto slot_copy = new SlotSelect(slot);
+  const auto slot_copy = new SlotSelect(slot);
 
   gtk_tree_selection_set_select_function(gobj(),
       &SignalProxy_Select_gtk_callback, slot_copy,
@@ -210,7 +209,7 @@ auto TreeSelection::get_selected_rows(Glib::RefPtr<TreeModel>& model) -> std::ve
   GtkTreeModel* model_gobject = nullptr;
 
   const std::vector<TreeModel::Path> result (Glib::ListHandler<TreeModel::Path, TreePathTraits>::list_to_vector(gtk_tree_selection_get_selected_rows(
-      const_cast<GtkTreeSelection*>(gobj()), &model_gobject), Glib::OWNERSHIP_DEEP));
+      gobj(), &model_gobject), Glib::OWNERSHIP_DEEP));
 
   model = Glib::wrap(model_gobject, true);
   return result;
@@ -236,9 +235,9 @@ const Glib::SignalProxyInfo TreeSelection_signal_changed_info =
 namespace Glib
 {
 
-auto wrap(GtkTreeSelection* object, bool take_copy) -> Glib::RefPtr<Gtk::TreeSelection>
+auto wrap(GtkTreeSelection* object, const bool take_copy) -> RefPtr<Gtk::TreeSelection>
 {
-  return Glib::make_refptr_for_instance<Gtk::TreeSelection>( dynamic_cast<Gtk::TreeSelection*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::TreeSelection>( dynamic_cast<Gtk::TreeSelection*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -251,7 +250,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto TreeSelection_Class::init() -> const Glib::Class&
+auto TreeSelection_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -297,32 +296,28 @@ auto TreeSelection::gobj_copy() -> GtkTreeSelection*
 }
 
 TreeSelection::TreeSelection(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 TreeSelection::TreeSelection(GtkTreeSelection* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 TreeSelection::TreeSelection(TreeSelection&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto TreeSelection::operator=(TreeSelection&& src) noexcept -> TreeSelection&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-TreeSelection::~TreeSelection() noexcept
-{}
-
+TreeSelection::~TreeSelection() noexcept = default;
 
 TreeSelection::CppClassType TreeSelection::treeselection_class_; // initialize static member
 
@@ -365,44 +360,44 @@ auto TreeSelection::count_selected_rows() const -> int
 
 auto TreeSelection::select (const TreeModel::Path &path) -> void
 {
-  gtk_tree_selection_select_path(gobj(), const_cast<GtkTreePath*>((path).gobj()));
+  gtk_tree_selection_select_path(gobj(), const_cast<GtkTreePath*>(path.gobj()));
 }
 
 auto TreeSelection::select (
   const TreeModel::Path &start_path, const TreeModel::Path &end_path) -> void
 {
-  gtk_tree_selection_select_range(gobj(), const_cast<GtkTreePath*>((start_path).gobj()), const_cast<GtkTreePath*>((end_path).gobj()));
+  gtk_tree_selection_select_range(gobj(), const_cast<GtkTreePath*>(start_path.gobj()), const_cast<GtkTreePath*>(end_path.gobj()));
 }
 
 auto TreeSelection::select (const TreeModel::const_iterator &iter) -> void
 {
-  gtk_tree_selection_select_iter(gobj(), const_cast<GtkTreeIter*>((iter).gobj()));
+  gtk_tree_selection_select_iter(gobj(), const_cast<GtkTreeIter*>(iter.gobj()));
 }
 
 auto TreeSelection::unselect (const TreeModel::Path &path) -> void
 {
-  gtk_tree_selection_unselect_path(gobj(), const_cast<GtkTreePath*>((path).gobj()));
+  gtk_tree_selection_unselect_path(gobj(), const_cast<GtkTreePath*>(path.gobj()));
 }
 
 auto TreeSelection::unselect (
   const TreeModel::Path &start_path, const TreeModel::Path &end_path) -> void
 {
-  gtk_tree_selection_unselect_range(gobj(), const_cast<GtkTreePath*>((start_path).gobj()), const_cast<GtkTreePath*>((end_path).gobj()));
+  gtk_tree_selection_unselect_range(gobj(), const_cast<GtkTreePath*>(start_path.gobj()), const_cast<GtkTreePath*>(end_path.gobj()));
 }
 
 auto TreeSelection::unselect (const TreeModel::const_iterator &iter) -> void
 {
-  gtk_tree_selection_unselect_iter(gobj(), const_cast<GtkTreeIter*>((iter).gobj()));
+  gtk_tree_selection_unselect_iter(gobj(), const_cast<GtkTreeIter*>(iter.gobj()));
 }
 
 auto TreeSelection::is_selected(const TreeModel::Path& path) const -> bool
 {
-  return gtk_tree_selection_path_is_selected(const_cast<GtkTreeSelection*>(gobj()), const_cast<GtkTreePath*>((path).gobj()));
+  return gtk_tree_selection_path_is_selected(const_cast<GtkTreeSelection*>(gobj()), const_cast<GtkTreePath*>(path.gobj()));
 }
 
 auto TreeSelection::is_selected(const TreeModel::const_iterator& iter) const -> bool
 {
-  return gtk_tree_selection_iter_is_selected(const_cast<GtkTreeSelection*>(gobj()), const_cast<GtkTreeIter*>((iter).gobj()));
+  return gtk_tree_selection_iter_is_selected(const_cast<GtkTreeSelection*>(gobj()), const_cast<GtkTreeIter*>(iter.gobj()));
 }
 
 auto TreeSelection::select_all () -> void
@@ -418,7 +413,7 @@ auto TreeSelection::unselect_all () -> void
 
 auto TreeSelection::signal_changed() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &TreeSelection_signal_changed_info);
+  return {this, &TreeSelection_signal_changed_info};
 }
 
 
@@ -428,12 +423,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<SelectionMode>::valu
 
 auto TreeSelection::property_mode() -> Glib::PropertyProxy< SelectionMode >
 {
-  return Glib::PropertyProxy< SelectionMode >(this, "mode");
+  return {this, "mode"};
 }
 
 auto TreeSelection::property_mode() const -> Glib::PropertyProxy_ReadOnly< SelectionMode >
 {
-  return Glib::PropertyProxy_ReadOnly< SelectionMode >(this, "mode");
+  return {this, "mode"};
 }
 
 

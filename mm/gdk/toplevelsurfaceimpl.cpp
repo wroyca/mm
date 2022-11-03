@@ -20,7 +20,7 @@
 namespace Gdk
 {
 ToplevelSurfaceImpl::ToplevelSurfaceImpl(GdkSurface* castitem)
-: Glib::ObjectBase(nullptr), Surface(castitem)
+: ObjectBase(nullptr), Surface(castitem)
 {}
 
 ToplevelSurfaceImpl::ToplevelSurfaceImpl(ToplevelSurfaceImpl&& src) noexcept
@@ -35,7 +35,5 @@ auto ToplevelSurfaceImpl::operator=(ToplevelSurfaceImpl&& src) noexcept -> Tople
   return *this;
 }
 
-ToplevelSurfaceImpl::~ToplevelSurfaceImpl() noexcept
-{}
-
+ToplevelSurfaceImpl::~ToplevelSurfaceImpl() noexcept = default;
 } // namespace Gdk

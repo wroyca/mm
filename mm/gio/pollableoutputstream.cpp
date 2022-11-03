@@ -39,9 +39,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GPollableOutputStream* object, bool take_copy) -> Glib::RefPtr<Gio::PollableOutputStream>
+auto wrap(GPollableOutputStream* object, const bool take_copy) -> RefPtr<Gio::PollableOutputStream>
 {
-  return Glib::make_refptr_for_instance<Gio::PollableOutputStream>( dynamic_cast<Gio::PollableOutputStream*> (Glib::wrap_auto_interface<Gio::PollableOutputStream> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::PollableOutputStream>( Glib::wrap_auto_interface<Gio::PollableOutputStream> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -54,7 +54,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto PollableOutputStream_Class::init() -> const Glib::Interface_Class&
+auto PollableOutputStream_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -85,8 +85,7 @@ auto PollableOutputStream_Class::iface_init_function (void *g_iface, void *) -> 
 
 auto PollableOutputStream_Class::can_poll_vfunc_callback(GPollableOutputStream* self) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -101,7 +100,7 @@ auto PollableOutputStream_Class::can_poll_vfunc_callback(GPollableOutputStream* 
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->can_poll_vfunc());
+        return obj->can_poll_vfunc();
       }
       catch(...)
       {
@@ -110,7 +109,7 @@ auto PollableOutputStream_Class::can_poll_vfunc_callback(GPollableOutputStream* 
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -124,8 +123,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 }
 auto PollableOutputStream_Class::is_writable_vfunc_callback(GPollableOutputStream* self) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -140,7 +138,7 @@ auto PollableOutputStream_Class::is_writable_vfunc_callback(GPollableOutputStrea
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->is_writable_vfunc());
+        return obj->is_writable_vfunc();
       }
       catch(...)
       {
@@ -149,7 +147,7 @@ auto PollableOutputStream_Class::is_writable_vfunc_callback(GPollableOutputStrea
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -161,10 +159,9 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   using RType = gboolean;
   return RType();
 }
-auto PollableOutputStream_Class::write_nonblocking_vfunc_callback(GPollableOutputStream* self, const void* buffer, gsize count, GError** error) -> gssize
+auto PollableOutputStream_Class::write_nonblocking_vfunc_callback(GPollableOutputStream* self, const void* buffer, const gsize count, GError** error) -> gssize
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -193,7 +190,7 @@ auto PollableOutputStream_Class::write_nonblocking_vfunc_callback(GPollableOutpu
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )  );
@@ -209,42 +206,40 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
 
 auto PollableOutputStream_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new PollableOutputStream((GPollableOutputStream*)(object));
+  return new PollableOutputStream((GPollableOutputStream*)object);
 }
 
 
 /* The implementation: */
 
 PollableOutputStream::PollableOutputStream()
-:
-  Glib::Interface(pollableoutputstream_class_.init())
+: Interface(pollableoutputstream_class_.init())
 {}
 
 PollableOutputStream::PollableOutputStream(GPollableOutputStream* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 PollableOutputStream::PollableOutputStream(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 PollableOutputStream::PollableOutputStream(PollableOutputStream&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto PollableOutputStream::operator=(PollableOutputStream&& src) noexcept -> PollableOutputStream&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-PollableOutputStream::~PollableOutputStream() noexcept
-{}
+PollableOutputStream::~PollableOutputStream() noexcept = default;
 
 // static
-auto PollableOutputStream::add_interface (GType gtype_implementer) -> void
+auto PollableOutputStream::add_interface (
+  const GType gtype_implementer) -> void
 {
   pollableoutputstream_class_.init().add_interface(gtype_implementer);
 }
@@ -273,70 +268,70 @@ auto PollableOutputStream::is_writable() const -> bool
   return g_pollable_output_stream_is_writable(const_cast<GPollableOutputStream*>(gobj()));
 }
 
-auto PollableOutputStream::write_nonblocking(const void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
+auto PollableOutputStream::write_nonblocking(const void* buffer, const gsize count, const Glib::RefPtr<Cancellable>& cancellable) -> gssize
 {
   GError* gerror = nullptr;
-  auto retvalue = g_pollable_output_stream_write_nonblocking(gobj(), buffer, count, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_pollable_output_stream_write_nonblocking(gobj(), buffer, count, Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto PollableOutputStream::write_nonblocking(const void* buffer, gsize count) -> gssize
+auto PollableOutputStream::write_nonblocking(const void* buffer, const gsize count) -> gssize
 {
   GError* gerror = nullptr;
-  auto retvalue = g_pollable_output_stream_write_nonblocking(gobj(), buffer, count, nullptr, &(gerror));
+  const auto retvalue = g_pollable_output_stream_write_nonblocking(gobj(), buffer, count, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 
-auto Gio::PollableOutputStream::can_poll_vfunc() const -> bool
+auto PollableOutputStream::can_poll_vfunc() const -> bool
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->can_poll)
   {
-    bool retval((*base->can_poll)(const_cast<GPollableOutputStream*>(gobj())));
+    const bool retval((*base->can_poll)(const_cast<GPollableOutputStream*>(gobj())));
     return retval;
   }
 
   using RType = bool;
   return RType();
 }
-auto Gio::PollableOutputStream::is_writable_vfunc() const -> bool
+auto PollableOutputStream::is_writable_vfunc() const -> bool
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->is_writable)
   {
-    bool retval((*base->is_writable)(const_cast<GPollableOutputStream*>(gobj())));
+    const bool retval((*base->is_writable)(const_cast<GPollableOutputStream*>(gobj())));
     return retval;
   }
 
   using RType = bool;
   return RType();
 }
-auto Gio::PollableOutputStream::write_nonblocking_vfunc(const void* buffer, gsize count) -> gssize
+auto PollableOutputStream::write_nonblocking_vfunc(const void* buffer, const gsize count) -> gssize
 {
   const auto base = static_cast<BaseClassType*>(
-      g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
-g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+      g_type_interface_peek_parent(                             // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), get_type()) // Get the interface.
 )  );
 
   if(base && base->write_nonblocking)
   {
     GError* gerror = nullptr;
-    gssize retval((*base->write_nonblocking)(gobj(),buffer,count,&(gerror)));
+    const gssize retval((*base->write_nonblocking)(gobj(),buffer,count,&gerror));
     if(gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Glib::Error::throw_exception(gerror);
     return retval;
   }
 

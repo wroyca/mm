@@ -33,18 +33,18 @@
 namespace Gtk
 {
 
-ComboBox::ComboBox(bool has_entry)
+ComboBox::ComboBox(const bool has_entry)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(combobox_class_.init(), "has-entry",gboolean(has_entry), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(combobox_class_.init(), "has-entry",gboolean(has_entry), nullptr))
 {}
 
-ComboBox::ComboBox(const Glib::RefPtr<TreeModel>& model, bool has_entry)
+ComboBox::ComboBox(const Glib::RefPtr<TreeModel>& model, const bool has_entry)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(combobox_class_.init(), "model",Glib::unwrap(model),"has-entry",gboolean(has_entry), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(combobox_class_.init(), "model",Glib::unwrap(model),"has-entry",gboolean(has_entry), nullptr))
 {}
 
 auto ComboBox::unset_active () -> void
@@ -54,9 +54,9 @@ auto ComboBox::unset_active () -> void
 
 auto ComboBox::get_active() -> TreeModel::iterator
 {
-  Gtk::TreeModel::iterator iter;
+  TreeModel::iterator iter;
 
-  auto model = get_model();
+  const auto model = get_model();
   if(model)
   {
     gtk_combo_box_get_active_iter(gobj(), iter.gobj());
@@ -70,7 +70,7 @@ auto ComboBox::get_active() -> TreeModel::iterator
 
 auto ComboBox::get_active() const -> TreeModel::const_iterator
 {
-  Gtk::TreeModel::const_iterator iter;
+  TreeModel::const_iterator iter;
 
   const auto model = get_model();
   if(model)
@@ -95,7 +95,7 @@ auto ComboBox::set_row_separator_func (const SlotRowSeparator &slot) -> void
 {
   //Create a copy of the slot. A pointer to this will be passed through the callback's data parameter.
   //It will be deleted when SignalProxy_RowSeparator_gtk_callback_destroy() is called.
-  auto slot_copy = new SlotRowSeparator(slot);
+  const auto slot_copy = new SlotRowSeparator(slot);
 
   gtk_combo_box_set_row_separator_func(gobj(),
       &TreeView_Private::SignalProxy_RowSeparator_gtk_callback, slot_copy,
@@ -114,19 +114,19 @@ auto ComboBox::unset_child () -> void
 
 auto ComboBox::get_entry() -> Entry*
 {
-  return dynamic_cast<Gtk::Entry*>(get_child());
+  return dynamic_cast<Entry *>(get_child());
 }
 
 auto ComboBox::get_entry() const -> const Entry*
 {
-  return dynamic_cast<const Gtk::Entry*>(get_child());
+  return dynamic_cast<const Entry *>(get_child());
 }
 
 auto ComboBox::get_entry_text() const -> Glib::ustring
 {
   const auto entry = get_entry();
   if(!entry)
-    return Glib::ustring();
+    return {};
   else
     return entry->get_text();
 }
@@ -150,14 +150,15 @@ auto ComboBox_signal_format_entry_text_callback(GtkComboBox* self, const gchar* 
   using namespace Gtk;
   using SlotType = sigc::slot<Glib::ustring(const TreeModel::Path&)>;
 
-  auto obj = dynamic_cast<ComboBox*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<ComboBox*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return g_strdup(Glib::c_str_or_nullptr((*static_cast<SlotType*>(slot))(TreeModel::Path(p0)
+        return g_strdup(
+          c_str_or_nullptr((*static_cast<SlotType*>(slot))(TreeModel::Path(p0)
 )));
     }
     catch(...)
@@ -175,7 +176,7 @@ auto ComboBox_signal_format_entry_text_notify_callback(GtkComboBox* self, const 
   using namespace Gtk;
   using SlotType = sigc::slot<void(const TreeModel::Path&)>;
 
-  auto obj = dynamic_cast<ComboBox*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<ComboBox*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -209,9 +210,9 @@ const Glib::SignalProxyInfo ComboBox_signal_format_entry_text_info =
 namespace Glib
 {
 
-auto wrap(GtkComboBox* object, bool take_copy) -> Gtk::ComboBox*
+auto wrap(GtkComboBox* object, const bool take_copy) -> Gtk::ComboBox*
 {
-  return dynamic_cast<Gtk::ComboBox *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::ComboBox *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -222,7 +223,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto ComboBox_Class::init() -> const Glib::Class&
+auto ComboBox_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -259,8 +260,7 @@ auto ComboBox_Class::class_init_function (void *g_class, void *class_data) -> vo
 
 auto ComboBox_Class::changed_callback (GtkComboBox *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -295,8 +295,7 @@ auto ComboBox_Class::changed_callback (GtkComboBox *self) -> void
 }
 auto ComboBox_Class::format_entry_text_callback(GtkComboBox* self, const gchar* p0) -> gchar*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -311,7 +310,8 @@ auto ComboBox_Class::format_entry_text_callback(GtkComboBox* self, const gchar* 
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return g_strdup(Glib::c_str_or_nullptr(obj->on_format_entry_text(TreeModel::Path(p0)
+        return g_strdup(
+          c_str_or_nullptr(obj->on_format_entry_text(TreeModel::Path(p0)
 )));
       }
       catch(...)
@@ -336,7 +336,7 @@ auto ComboBox_Class::format_entry_text_callback(GtkComboBox* self, const gchar* 
 
 auto ComboBox_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new ComboBox((GtkComboBox*)(o)));
+  return manage(new ComboBox((GtkComboBox*)o));
 
 }
 
@@ -344,27 +344,25 @@ auto ComboBox_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 ComboBox::ComboBox(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 ComboBox::ComboBox(GtkComboBox* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 ComboBox::ComboBox(ComboBox&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
   , CellLayout(std::move(src))
   , CellEditable(std::move(src))
 {}
 
 auto ComboBox::operator=(ComboBox&& src) noexcept -> ComboBox&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   CellLayout::operator=(std::move(src));
   CellEditable::operator=(std::move(src));
   return *this;
@@ -394,14 +392,15 @@ auto ComboBox::get_active_row_number() const -> int
   return gtk_combo_box_get_active(const_cast<GtkComboBox*>(gobj()));
 }
 
-auto ComboBox::set_active (int index) -> void
+auto ComboBox::set_active (
+  const int index) -> void
 {
   gtk_combo_box_set_active(gobj(), index);
 }
 
 auto ComboBox::set_active (const TreeModel::const_iterator &iter) -> void
 {
-  gtk_combo_box_set_active_iter(gobj(), const_cast<GtkTreeIter*>((iter).gobj()));
+  gtk_combo_box_set_active_iter(gobj(), const_cast<GtkTreeIter*>(iter.gobj()));
 }
 
 auto ComboBox::get_model() -> Glib::RefPtr<TreeModel>
@@ -439,10 +438,11 @@ auto ComboBox::get_has_entry() const -> bool
 
 auto ComboBox::set_entry_text_column (const TreeModelColumnBase &text_column) const -> void
 {
-  gtk_combo_box_set_entry_text_column(const_cast<GtkComboBox*>(gobj()), (text_column).index());
+  gtk_combo_box_set_entry_text_column(const_cast<GtkComboBox*>(gobj()), text_column.index());
 }
 
-auto ComboBox::set_entry_text_column (int text_column) -> void
+auto ComboBox::set_entry_text_column (
+  const int text_column) -> void
 {
   gtk_combo_box_set_entry_text_column(gobj(), text_column);
 }
@@ -452,9 +452,10 @@ auto ComboBox::get_entry_text_column() const -> int
   return gtk_combo_box_get_entry_text_column(const_cast<GtkComboBox*>(gobj()));
 }
 
-auto ComboBox::set_popup_fixed_width (bool fixed) -> void
+auto ComboBox::set_popup_fixed_width (
+  const bool fixed) -> void
 {
-  gtk_combo_box_set_popup_fixed_width(gobj(), static_cast<int>(fixed));
+  gtk_combo_box_set_popup_fixed_width(gobj(), fixed);
 }
 
 auto ComboBox::get_popup_fixed_width() const -> bool
@@ -482,7 +483,8 @@ auto ComboBox::get_id_column() const -> int
   return gtk_combo_box_get_id_column(const_cast<GtkComboBox*>(gobj()));
 }
 
-auto ComboBox::set_id_column (int id_column) -> void
+auto ComboBox::set_id_column (
+  const int id_column) -> void
 {
   gtk_combo_box_set_id_column(gobj(), id_column);
 }
@@ -499,7 +501,7 @@ auto ComboBox::set_active_id(const Glib::ustring& active_id) -> bool
 
 auto ComboBox::set_child (Widget &child) -> void
 {
-  gtk_combo_box_set_child(gobj(), (child).gobj());
+  gtk_combo_box_set_child(gobj(), child.gobj());
 }
 
 auto ComboBox::get_child() -> Widget*
@@ -515,13 +517,13 @@ auto ComboBox::get_child() const -> const Widget*
 
 auto ComboBox::signal_changed() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &ComboBox_signal_changed_info);
+  return {this, &ComboBox_signal_changed_info};
 }
 
 
 auto ComboBox::signal_format_entry_text() -> Glib::SignalProxy<Glib::ustring(const TreeModel::Path&)>
 {
-  return Glib::SignalProxy<Glib::ustring(const TreeModel::Path&) >(this, &ComboBox_signal_format_entry_text_info);
+  return {this, &ComboBox_signal_format_entry_text_info};
 }
 
 
@@ -531,37 +533,37 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<TreeMod
 
 auto ComboBox::property_model() -> Glib::PropertyProxy< Glib::RefPtr<TreeModel> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<TreeModel> >(this, "model");
+  return {this, "model"};
 }
 
 auto ComboBox::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<TreeModel> >(this, "model");
+  return {this, "model"};
 }
 
 auto ComboBox::property_active() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "active");
+  return {this, "active"};
 }
 
 auto ComboBox::property_active() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "active");
+  return {this, "active"};
 }
 
 auto ComboBox::property_has_frame() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "has-frame");
+  return {this, "has-frame"};
 }
 
 auto ComboBox::property_has_frame() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "has-frame");
+  return {this, "has-frame"};
 }
 
 auto ComboBox::property_popup_shown() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "popup-shown");
+  return {this, "popup-shown"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<SensitivityType>::value,
@@ -570,71 +572,71 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<SensitivityType>::va
 
 auto ComboBox::property_button_sensitivity() -> Glib::PropertyProxy< SensitivityType >
 {
-  return Glib::PropertyProxy< SensitivityType >(this, "button-sensitivity");
+  return {this, "button-sensitivity"};
 }
 
 auto ComboBox::property_button_sensitivity() const -> Glib::PropertyProxy_ReadOnly< SensitivityType >
 {
-  return Glib::PropertyProxy_ReadOnly< SensitivityType >(this, "button-sensitivity");
+  return {this, "button-sensitivity"};
 }
 
 auto ComboBox::property_popup_fixed_width() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "popup-fixed-width");
+  return {this, "popup-fixed-width"};
 }
 
 auto ComboBox::property_popup_fixed_width() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "popup-fixed-width");
+  return {this, "popup-fixed-width"};
 }
 
 auto ComboBox::property_has_entry() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "has-entry");
+  return {this, "has-entry"};
 }
 
 auto ComboBox::property_entry_text_column() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "entry-text-column");
+  return {this, "entry-text-column"};
 }
 
 auto ComboBox::property_entry_text_column() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "entry-text-column");
+  return {this, "entry-text-column"};
 }
 
 auto ComboBox::property_id_column() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "id-column");
+  return {this, "id-column"};
 }
 
 auto ComboBox::property_id_column() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "id-column");
+  return {this, "id-column"};
 }
 
 auto ComboBox::property_active_id() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "active-id");
+  return {this, "active-id"};
 }
 
 auto ComboBox::property_active_id() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "active-id");
+  return {this, "active-id"};
 }
 
 auto ComboBox::property_child() -> Glib::PropertyProxy< Widget* >
 {
-  return Glib::PropertyProxy< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 auto ComboBox::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 
-auto Gtk::ComboBox::on_changed () -> void
+auto ComboBox::on_changed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -643,17 +645,17 @@ auto Gtk::ComboBox::on_changed () -> void
   if(base && base->changed)
     (*base->changed)(gobj());
 }
-auto Gtk::ComboBox::on_format_entry_text(const TreeModel::Path& path) -> Glib::ustring
+auto ComboBox::on_format_entry_text(const TreeModel::Path& path) -> Glib::ustring
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->format_entry_text)
-    return Glib::convert_return_gchar_ptr_to_ustring((*base->format_entry_text)(gobj(),(path).to_string().c_str()));
+    return Glib::convert_return_gchar_ptr_to_ustring((*base->format_entry_text)(gobj(),path.to_string().c_str()));
 
   using RType = Glib::ustring;
-  return RType();
+  return {};
 }
 
 

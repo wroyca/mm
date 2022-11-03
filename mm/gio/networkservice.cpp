@@ -39,9 +39,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GNetworkService* object, bool take_copy) -> Glib::RefPtr<Gio::NetworkService>
+auto wrap(GNetworkService* object, const bool take_copy) -> RefPtr<Gio::NetworkService>
 {
-  return Glib::make_refptr_for_instance<Gio::NetworkService>( dynamic_cast<Gio::NetworkService*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::NetworkService>( dynamic_cast<Gio::NetworkService*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -54,7 +54,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto NetworkService_Class::init() -> const Glib::Class&
+auto NetworkService_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -101,34 +101,30 @@ auto NetworkService::gobj_copy() -> GNetworkService*
 }
 
 NetworkService::NetworkService(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 NetworkService::NetworkService(GNetworkService* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 NetworkService::NetworkService(NetworkService&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , SocketConnectable(std::move(src))
 {}
 
 auto NetworkService::operator=(NetworkService&& src) noexcept -> NetworkService&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   SocketConnectable::operator=(std::move(src));
   return *this;
 }
 
 
-NetworkService::~NetworkService() noexcept
-{}
-
+NetworkService::~NetworkService() noexcept = default;
 
 NetworkService::CppClassType NetworkService::networkservice_class_; // initialize static member
 
@@ -147,8 +143,8 @@ auto NetworkService::get_base_type() -> GType
 NetworkService::NetworkService(const Glib::ustring& service, const Glib::ustring& protocol, const Glib::ustring& domain)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(networkservice_class_.init(), "service", service.c_str(), "protocol", protocol.c_str(), "domain", domain.c_str(), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(networkservice_class_.init(), "service", service.c_str(), "protocol", protocol.c_str(), "domain", domain.c_str(), nullptr))
 {
 
 
@@ -187,27 +183,27 @@ auto NetworkService::set_scheme (const Glib::ustring &scheme) -> void
 
 auto NetworkService::property_domain() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "domain");
+  return {this, "domain"};
 }
 
 auto NetworkService::property_protocol() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "protocol");
+  return {this, "protocol"};
 }
 
 auto NetworkService::property_scheme() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "scheme");
+  return {this, "scheme"};
 }
 
 auto NetworkService::property_scheme() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "scheme");
+  return {this, "scheme"};
 }
 
 auto NetworkService::property_service() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "service");
+  return {this, "service"};
 }
 
 

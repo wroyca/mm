@@ -31,13 +31,13 @@ using Result = Gtk::PrintOperation::Result;
 // This Signal Proxy allows the C++ coder to specify a sigc::slot instead of a static function.
 
 static auto SignalProxy_PrintSetupDone_gtk_callback (
-  GtkPageSetup *page_setup, gpointer data) -> void
+  GtkPageSetup *page_setup, const gpointer data) -> void
 {
   const auto the_slot = static_cast<Gtk::SlotPrintSetupDone*>(data);
 
   try
   {
-    auto ps = Glib::wrap(page_setup);
+    const auto ps = Glib::wrap(page_setup);
     (*the_slot)(ps);
   }
   catch (...)
@@ -52,16 +52,16 @@ namespace Gtk
 {
 
 auto
-PrintOperation::run(Action action) -> PrintOperation::Result
+PrintOperation::run(Action action) -> Result
 {
   GError* gerror = nullptr;
-  Result res =
+  const Result res =
     (Result)gtk_print_operation_run(this->gobj(), (GtkPrintOperationAction)action, nullptr, &gerror);
 
-  if (res == PrintOperation::Result::ERROR)
+  if (res == Result::ERROR)
   {
     gtk_print_operation_get_error(this->gobj(), &gerror);
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   }
 
   return res;
@@ -106,7 +106,7 @@ auto run_page_setup_dialog_async (
   const Glib::RefPtr <const PrintSettings> &print_settings,
   const SlotPrintSetupDone &slot) -> void
 {
-  auto slot_copy = new SlotPrintSetupDone(slot);
+  const auto slot_copy = new SlotPrintSetupDone(slot);
 
   // Specify the exact type with template specialization, to avoid possible
   // ambiguities between the const and non-const versions of unwrap() reported
@@ -125,7 +125,7 @@ auto run_page_setup_dialog_async (
   const Glib::RefPtr <const PrintSettings> &print_settings,
   const SlotPrintSetupDone &slot) -> void
 {
-  auto slot_copy = new SlotPrintSetupDone(slot);
+  const auto slot_copy = new SlotPrintSetupDone(slot);
 
   // Specify the exact type with template specialization, to avoid possible
   // ambiguities between the const and non-const versions of unwrap() reported
@@ -151,7 +151,7 @@ auto PrintOperation_signal_done_callback (
   using namespace Gtk;
   using SlotType = sigc::slot<void(Result)>;
 
-  auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -182,7 +182,7 @@ auto PrintOperation_signal_begin_print_callback (
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<PrintContext>&)>;
 
-  auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -212,15 +212,15 @@ auto PrintOperation_signal_paginate_callback(GtkPrintOperation* self, GtkPrintCo
   using namespace Gtk;
   using SlotType = sigc::slot<bool(const Glib::RefPtr<PrintContext>&)>;
 
-  auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return static_cast<int>((*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
-));
+        return (*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
+        );
     }
     catch(...)
     {
@@ -237,7 +237,7 @@ auto PrintOperation_signal_paginate_notify_callback(GtkPrintOperation* self, Gtk
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<PrintContext>&)>;
 
-  auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -266,12 +266,12 @@ const Glib::SignalProxyInfo PrintOperation_signal_paginate_info =
 
 
 auto PrintOperation_signal_request_page_setup_callback (
-  GtkPrintOperation *self, GtkPrintContext *p0, gint p1, GtkPageSetup *p2, void *data) -> void
+  GtkPrintOperation *self, GtkPrintContext *p0, const gint p1, GtkPageSetup *p2, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<PrintContext>&, int, const Glib::RefPtr<PageSetup>&)>;
 
-  auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -299,12 +299,12 @@ const Glib::SignalProxyInfo PrintOperation_signal_request_page_setup_info =
 
 
 auto PrintOperation_signal_draw_page_callback (
-  GtkPrintOperation *self, GtkPrintContext *p0, gint p1, void *data) -> void
+  GtkPrintOperation *self, GtkPrintContext *p0, const gint p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<PrintContext>&, int)>;
 
-  auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -336,7 +336,7 @@ auto PrintOperation_signal_end_print_callback (
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<PrintContext>&)>;
 
-  auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -374,14 +374,14 @@ auto PrintOperation_signal_create_custom_widget_callback(GtkPrintOperation* self
   using namespace Gtk;
   using SlotType = sigc::slot<Widget*()>;
 
-  auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return (GtkWidget*)Glib::unwrap((*static_cast<SlotType*>(slot))());
+        return Glib::unwrap((*static_cast<SlotType*>(slot))());
     }
     catch(...)
     {
@@ -398,7 +398,7 @@ auto PrintOperation_signal_create_custom_widget_notify_callback(GtkPrintOperatio
   using namespace Gtk;
   using SlotType = sigc::slot<void()>;
 
-  auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -431,7 +431,7 @@ auto PrintOperation_signal_custom_widget_apply_callback (
   using namespace Gtk;
   using SlotType = sigc::slot<void(Widget*)>;
 
-  auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -461,17 +461,17 @@ auto PrintOperation_signal_preview_callback(GtkPrintOperation* self, GtkPrintOpe
   using namespace Gtk;
   using SlotType = sigc::slot<bool(const Glib::RefPtr<PrintOperationPreview>&, const Glib::RefPtr<PrintContext>&, Window*)>;
 
-  auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return static_cast<int>((*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
-, Glib::wrap(p1, true)
-, Glib::wrap(p2)
-));
+        return (*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
+                                               , Glib::wrap(p1, true)
+                                               , Glib::wrap(p2)
+        );
     }
     catch(...)
     {
@@ -488,7 +488,7 @@ auto PrintOperation_signal_preview_notify_callback(GtkPrintOperation* self, GtkP
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<PrintOperationPreview>&, const Glib::RefPtr<PrintContext>&, Window*)>;
 
-  auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -525,7 +525,7 @@ auto PrintOperation_signal_update_custom_widget_callback (
   using namespace Gtk;
   using SlotType = sigc::slot<void(Widget*, const Glib::RefPtr<PageSetup>&, const Glib::RefPtr<PrintSettings>&)>;
 
-  auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<PrintOperation*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -561,24 +561,22 @@ auto Glib::Value<Gtk::PrintStatus>::value_type() -> GType
 }
 
 
-Gtk::PrintError::PrintError(Gtk::PrintError::Code error_code, const Glib::ustring& error_message)
-:
-  Glib::Error (GTK_PRINT_ERROR, error_code, error_message)
+Gtk::PrintError::PrintError(const Code error_code, const Glib::ustring& error_message)
+: Error(GTK_PRINT_ERROR, error_code, error_message)
 {}
 
 Gtk::PrintError::PrintError(GError* gobject)
-:
-  Glib::Error (gobject)
+: Error(gobject)
 {}
 
-auto Gtk::PrintError::code() const -> Gtk::PrintError::Code
+auto Gtk::PrintError::code() const -> Code
 {
-  return static_cast<Code>(Glib::Error::code());
+  return static_cast<Code>(Error::code());
 }
 
 auto Gtk::PrintError::throw_func (GError *gobject) -> void
 {
-  throw Gtk::PrintError(gobject);
+  throw PrintError(gobject);
 }
 
 // static
@@ -603,9 +601,9 @@ auto Glib::Value<Gtk::PrintOperation::Action>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkPrintOperation* object, bool take_copy) -> Glib::RefPtr<Gtk::PrintOperation>
+auto wrap(GtkPrintOperation* object, const bool take_copy) -> RefPtr<Gtk::PrintOperation>
 {
-  return Glib::make_refptr_for_instance<Gtk::PrintOperation>( dynamic_cast<Gtk::PrintOperation*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::PrintOperation>( dynamic_cast<Gtk::PrintOperation*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -618,7 +616,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto PrintOperation_Class::init() -> const Glib::Class&
+auto PrintOperation_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -664,8 +662,7 @@ auto PrintOperation_Class::class_init_function (void *g_class, void *class_data)
 auto PrintOperation_Class::done_callback (
   GtkPrintOperation *self, GtkPrintOperationResult p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -702,8 +699,7 @@ auto PrintOperation_Class::done_callback (
 auto PrintOperation_Class::begin_print_callback (
   GtkPrintOperation *self, GtkPrintContext *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -739,8 +735,7 @@ auto PrintOperation_Class::begin_print_callback (
 }
 auto PrintOperation_Class::paginate_callback(GtkPrintOperation* self, GtkPrintContext* p0) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -755,8 +750,8 @@ auto PrintOperation_Class::paginate_callback(GtkPrintOperation* self, GtkPrintCo
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->on_paginate(Glib::wrap(p0, true)
-));
+        return obj->on_paginate(Glib::wrap(p0, true)
+        );
       }
       catch(...)
       {
@@ -777,10 +772,9 @@ auto PrintOperation_Class::paginate_callback(GtkPrintOperation* self, GtkPrintCo
   return RType();
 }
 auto PrintOperation_Class::request_page_setup_callback (
-  GtkPrintOperation *self, GtkPrintContext *p0, gint p1, GtkPageSetup *p2) -> void
+  GtkPrintOperation *self, GtkPrintContext *p0, const gint p1, GtkPageSetup *p2) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -817,10 +811,9 @@ auto PrintOperation_Class::request_page_setup_callback (
     (*base->request_page_setup)(self, p0, p1, p2);
 }
 auto PrintOperation_Class::draw_page_callback (
-  GtkPrintOperation *self, GtkPrintContext *p0, gint p1) -> void
+  GtkPrintOperation *self, GtkPrintContext *p0, const gint p1) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -857,8 +850,7 @@ auto PrintOperation_Class::draw_page_callback (
 }
 auto PrintOperation_Class::end_print_callback (GtkPrintOperation *self, GtkPrintContext *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -894,8 +886,7 @@ auto PrintOperation_Class::end_print_callback (GtkPrintOperation *self, GtkPrint
 }
 auto PrintOperation_Class::status_changed_callback (GtkPrintOperation *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -930,8 +921,7 @@ auto PrintOperation_Class::status_changed_callback (GtkPrintOperation *self) -> 
 }
 auto PrintOperation_Class::create_custom_widget_callback(GtkPrintOperation* self) -> GtkWidget*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -946,7 +936,7 @@ auto PrintOperation_Class::create_custom_widget_callback(GtkPrintOperation* self
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return (GtkWidget*)Glib::unwrap(obj->on_create_custom_widget());
+        return Glib::unwrap(obj->on_create_custom_widget());
       }
       catch(...)
       {
@@ -969,8 +959,7 @@ auto PrintOperation_Class::create_custom_widget_callback(GtkPrintOperation* self
 auto PrintOperation_Class::custom_widget_apply_callback (
   GtkPrintOperation *self, GtkWidget *p0) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -1006,8 +995,7 @@ auto PrintOperation_Class::custom_widget_apply_callback (
 }
 auto PrintOperation_Class::preview_callback(GtkPrintOperation* self, GtkPrintOperationPreview* p0, GtkPrintContext* p1, GtkWindow* p2) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -1022,10 +1010,10 @@ auto PrintOperation_Class::preview_callback(GtkPrintOperation* self, GtkPrintOpe
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->on_preview(Glib::wrap(p0, true)
-, Glib::wrap(p1, true)
-, Glib::wrap(p2)
-));
+        return obj->on_preview(Glib::wrap(p0, true)
+                               , Glib::wrap(p1, true)
+                               , Glib::wrap(p2)
+        );
       }
       catch(...)
       {
@@ -1048,8 +1036,7 @@ auto PrintOperation_Class::preview_callback(GtkPrintOperation* self, GtkPrintOpe
 auto PrintOperation_Class::update_custom_widget_callback (
   GtkPrintOperation *self, GtkWidget *p0, GtkPageSetup *p1, GtkPrintSettings *p2) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -1102,34 +1089,30 @@ auto PrintOperation::gobj_copy() -> GtkPrintOperation*
 }
 
 PrintOperation::PrintOperation(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 PrintOperation::PrintOperation(GtkPrintOperation* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 PrintOperation::PrintOperation(PrintOperation&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , PrintOperationPreview(std::move(src))
 {}
 
 auto PrintOperation::operator=(PrintOperation&& src) noexcept -> PrintOperation&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   PrintOperationPreview::operator=(std::move(src));
   return *this;
 }
 
 
-PrintOperation::~PrintOperation() noexcept
-{}
-
+PrintOperation::~PrintOperation() noexcept = default;
 
 PrintOperation::CppClassType PrintOperation::printoperation_class_; // initialize static member
 
@@ -1148,8 +1131,8 @@ auto PrintOperation::get_base_type() -> GType
 PrintOperation::PrintOperation()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(printoperation_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(printoperation_class_.init()))
 {
 
 
@@ -1202,19 +1185,22 @@ auto PrintOperation::set_job_name (const Glib::ustring &job_name) -> void
   gtk_print_operation_set_job_name(gobj(), job_name.c_str());
 }
 
-auto PrintOperation::set_n_pages (int n_pages) -> void
+auto PrintOperation::set_n_pages (
+  const int n_pages) -> void
 {
   gtk_print_operation_set_n_pages(gobj(), n_pages);
 }
 
-auto PrintOperation::set_current_page (int current_page) -> void
+auto PrintOperation::set_current_page (
+  const int current_page) -> void
 {
   gtk_print_operation_set_current_page(gobj(), current_page);
 }
 
-auto PrintOperation::set_use_full_page (bool use_full_page) -> void
+auto PrintOperation::set_use_full_page (
+  const bool use_full_page) -> void
 {
-  gtk_print_operation_set_use_full_page(gobj(), static_cast<int>(use_full_page));
+  gtk_print_operation_set_use_full_page(gobj(), use_full_page);
 }
 
 auto PrintOperation::set_unit (Unit unit) -> void
@@ -1227,19 +1213,22 @@ auto PrintOperation::set_export_filename (const std::string &filename) -> void
   gtk_print_operation_set_export_filename(gobj(), filename.c_str());
 }
 
-auto PrintOperation::set_track_print_status (bool track_status) -> void
+auto PrintOperation::set_track_print_status (
+  const bool track_status) -> void
 {
-  gtk_print_operation_set_track_print_status(gobj(), static_cast<int>(track_status));
+  gtk_print_operation_set_track_print_status(gobj(), track_status);
 }
 
-auto PrintOperation::set_show_progress (bool show_progress) -> void
+auto PrintOperation::set_show_progress (
+  const bool show_progress) -> void
 {
-  gtk_print_operation_set_show_progress(gobj(), static_cast<int>(show_progress));
+  gtk_print_operation_set_show_progress(gobj(), show_progress);
 }
 
-auto PrintOperation::set_allow_async (bool allow_async) -> void
+auto PrintOperation::set_allow_async (
+  const bool allow_async) -> void
 {
-  gtk_print_operation_set_allow_async(gobj(), static_cast<int>(allow_async));
+  gtk_print_operation_set_allow_async(gobj(), allow_async);
 }
 
 auto PrintOperation::set_custom_tab_label (const Glib::ustring &label) -> void
@@ -1250,9 +1239,9 @@ auto PrintOperation::set_custom_tab_label (const Glib::ustring &label) -> void
 auto PrintOperation::run(Action action, Window& parent) -> Result
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<Result>(gtk_print_operation_run(gobj(), static_cast<GtkPrintOperationAction>(action), (parent).gobj(), &(gerror)));
+  const auto retvalue = static_cast<Result>(gtk_print_operation_run(gobj(), static_cast<GtkPrintOperationAction>(action), parent.gobj(), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -1286,9 +1275,10 @@ auto PrintOperation::set_defer_drawing () -> void
   gtk_print_operation_set_defer_drawing(gobj());
 }
 
-auto PrintOperation::set_support_selection (bool support_selection) -> void
+auto PrintOperation::set_support_selection (
+  const bool support_selection) -> void
 {
-  gtk_print_operation_set_support_selection(gobj(), static_cast<int>(support_selection));
+  gtk_print_operation_set_support_selection(gobj(), support_selection);
 }
 
 auto PrintOperation::get_support_selection() const -> bool
@@ -1296,9 +1286,10 @@ auto PrintOperation::get_support_selection() const -> bool
   return gtk_print_operation_get_support_selection(const_cast<GtkPrintOperation*>(gobj()));
 }
 
-auto PrintOperation::set_has_selection (bool has_selection) -> void
+auto PrintOperation::set_has_selection (
+  const bool has_selection) -> void
 {
-  gtk_print_operation_set_has_selection(gobj(), static_cast<int>(has_selection));
+  gtk_print_operation_set_has_selection(gobj(), has_selection);
 }
 
 auto PrintOperation::get_has_selection() const -> bool
@@ -1306,9 +1297,10 @@ auto PrintOperation::get_has_selection() const -> bool
   return gtk_print_operation_get_has_selection(const_cast<GtkPrintOperation*>(gobj()));
 }
 
-auto PrintOperation::set_embed_page_setup (bool embed) -> void
+auto PrintOperation::set_embed_page_setup (
+  const bool embed) -> void
 {
-  gtk_print_operation_set_embed_page_setup(gobj(), static_cast<int>(embed));
+  gtk_print_operation_set_embed_page_setup(gobj(), embed);
 }
 
 auto PrintOperation::get_embed_page_setup() const -> bool
@@ -1324,67 +1316,67 @@ auto PrintOperation::get_n_pages_to_print() const -> int
 
 auto PrintOperation::signal_done() -> Glib::SignalProxy<void(Result)>
 {
-  return Glib::SignalProxy<void(Result) >(this, &PrintOperation_signal_done_info);
+  return {this, &PrintOperation_signal_done_info};
 }
 
 
 auto PrintOperation::signal_begin_print() -> Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&) >(this, &PrintOperation_signal_begin_print_info);
+  return {this, &PrintOperation_signal_begin_print_info};
 }
 
 
 auto PrintOperation::signal_paginate() -> Glib::SignalProxy<bool(const Glib::RefPtr<PrintContext>&)>
 {
-  return Glib::SignalProxy<bool(const Glib::RefPtr<PrintContext>&) >(this, &PrintOperation_signal_paginate_info);
+  return {this, &PrintOperation_signal_paginate_info};
 }
 
 
 auto PrintOperation::signal_request_page_setup() -> Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&, int, const Glib::RefPtr<PageSetup>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&, int, const Glib::RefPtr<PageSetup>&) >(this, &PrintOperation_signal_request_page_setup_info);
+  return {this, &PrintOperation_signal_request_page_setup_info};
 }
 
 
 auto PrintOperation::signal_draw_page() -> Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&, int)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&, int) >(this, &PrintOperation_signal_draw_page_info);
+  return {this, &PrintOperation_signal_draw_page_info};
 }
 
 
 auto PrintOperation::signal_end_print() -> Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&)>
 {
-  return Glib::SignalProxy<void(const Glib::RefPtr<PrintContext>&) >(this, &PrintOperation_signal_end_print_info);
+  return {this, &PrintOperation_signal_end_print_info};
 }
 
 
 auto PrintOperation::signal_status_changed() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &PrintOperation_signal_status_changed_info);
+  return {this, &PrintOperation_signal_status_changed_info};
 }
 
 
 auto PrintOperation::signal_create_custom_widget() -> Glib::SignalProxy<Widget*()>
 {
-  return Glib::SignalProxy<Widget*() >(this, &PrintOperation_signal_create_custom_widget_info);
+  return {this, &PrintOperation_signal_create_custom_widget_info};
 }
 
 
 auto PrintOperation::signal_custom_widget_apply() -> Glib::SignalProxy<void(Widget*)>
 {
-  return Glib::SignalProxy<void(Widget*) >(this, &PrintOperation_signal_custom_widget_apply_info);
+  return {this, &PrintOperation_signal_custom_widget_apply_info};
 }
 
 
 auto PrintOperation::signal_preview() -> Glib::SignalProxy<bool(const Glib::RefPtr<PrintOperationPreview>&, const Glib::RefPtr<PrintContext>&, Window*)>
 {
-  return Glib::SignalProxy<bool(const Glib::RefPtr<PrintOperationPreview>&, const Glib::RefPtr<PrintContext>&, Window*) >(this, &PrintOperation_signal_preview_info);
+  return {this, &PrintOperation_signal_preview_info};
 }
 
 
 auto PrintOperation::signal_update_custom_widget() -> Glib::SignalProxy<void(Widget*, const Glib::RefPtr<PageSetup>&, const Glib::RefPtr<PrintSettings>&)>
 {
-  return Glib::SignalProxy<void(Widget*, const Glib::RefPtr<PageSetup>&, const Glib::RefPtr<PrintSettings>&) >(this, &PrintOperation_signal_update_custom_widget_info);
+  return {this, &PrintOperation_signal_update_custom_widget_info};
 }
 
 
@@ -1394,12 +1386,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<PageSet
 
 auto PrintOperation::property_default_page_setup() -> Glib::PropertyProxy< Glib::RefPtr<PageSetup> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<PageSetup> >(this, "default-page-setup");
+  return {this, "default-page-setup"};
 }
 
 auto PrintOperation::property_default_page_setup() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PageSetup> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PageSetup> >(this, "default-page-setup");
+  return {this, "default-page-setup"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<PrintSettings>>::value,
@@ -1408,62 +1400,62 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<PrintSe
 
 auto PrintOperation::property_print_settings() -> Glib::PropertyProxy< Glib::RefPtr<PrintSettings> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<PrintSettings> >(this, "print-settings");
+  return {this, "print-settings"};
 }
 
 auto PrintOperation::property_print_settings() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PrintSettings> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<PrintSettings> >(this, "print-settings");
+  return {this, "print-settings"};
 }
 
 auto PrintOperation::property_job_name() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "job-name");
+  return {this, "job-name"};
 }
 
 auto PrintOperation::property_job_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "job-name");
+  return {this, "job-name"};
 }
 
 auto PrintOperation::property_n_pages() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "n-pages");
+  return {this, "n-pages"};
 }
 
 auto PrintOperation::property_n_pages() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "n-pages");
+  return {this, "n-pages"};
 }
 
 auto PrintOperation::property_current_page() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "current-page");
+  return {this, "current-page"};
 }
 
 auto PrintOperation::property_current_page() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "current-page");
+  return {this, "current-page"};
 }
 
 auto PrintOperation::property_use_full_page() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "use-full-page");
+  return {this, "use-full-page"};
 }
 
 auto PrintOperation::property_use_full_page() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "use-full-page");
+  return {this, "use-full-page"};
 }
 
 auto PrintOperation::property_track_print_status() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "track-print-status");
+  return {this, "track-print-status"};
 }
 
 auto PrintOperation::property_track_print_status() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "track-print-status");
+  return {this, "track-print-status"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Unit>::value,
@@ -1472,42 +1464,42 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Unit>::value,
 
 auto PrintOperation::property_unit() -> Glib::PropertyProxy< Unit >
 {
-  return Glib::PropertyProxy< Unit >(this, "unit");
+  return {this, "unit"};
 }
 
 auto PrintOperation::property_unit() const -> Glib::PropertyProxy_ReadOnly< Unit >
 {
-  return Glib::PropertyProxy_ReadOnly< Unit >(this, "unit");
+  return {this, "unit"};
 }
 
 auto PrintOperation::property_show_progress() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "show-progress");
+  return {this, "show-progress"};
 }
 
 auto PrintOperation::property_show_progress() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "show-progress");
+  return {this, "show-progress"};
 }
 
 auto PrintOperation::property_allow_async() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "allow-async");
+  return {this, "allow-async"};
 }
 
 auto PrintOperation::property_allow_async() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "allow-async");
+  return {this, "allow-async"};
 }
 
 auto PrintOperation::property_export_filename() -> Glib::PropertyProxy< std::string >
 {
-  return Glib::PropertyProxy< std::string >(this, "export-filename");
+  return {this, "export-filename"};
 }
 
 auto PrintOperation::property_export_filename() const -> Glib::PropertyProxy_ReadOnly< std::string >
 {
-  return Glib::PropertyProxy_ReadOnly< std::string >(this, "export-filename");
+  return {this, "export-filename"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<PrintStatus>::value,
@@ -1516,61 +1508,61 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<PrintStatus>::value,
 
 auto PrintOperation::property_status() const -> Glib::PropertyProxy_ReadOnly< PrintStatus >
 {
-  return Glib::PropertyProxy_ReadOnly< PrintStatus >(this, "status");
+  return {this, "status"};
 }
 
 auto PrintOperation::property_status_string() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "status-string");
+  return {this, "status-string"};
 }
 
 auto PrintOperation::property_custom_tab_label() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "custom-tab-label");
+  return {this, "custom-tab-label"};
 }
 
 auto PrintOperation::property_custom_tab_label() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "custom-tab-label");
+  return {this, "custom-tab-label"};
 }
 
 auto PrintOperation::property_support_selection() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "support-selection");
+  return {this, "support-selection"};
 }
 
 auto PrintOperation::property_support_selection() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "support-selection");
+  return {this, "support-selection"};
 }
 
 auto PrintOperation::property_has_selection() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "has-selection");
+  return {this, "has-selection"};
 }
 
 auto PrintOperation::property_has_selection() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "has-selection");
+  return {this, "has-selection"};
 }
 
 auto PrintOperation::property_embed_page_setup() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "embed-page-setup");
+  return {this, "embed-page-setup"};
 }
 
 auto PrintOperation::property_embed_page_setup() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "embed-page-setup");
+  return {this, "embed-page-setup"};
 }
 
 auto PrintOperation::property_n_pages_to_print() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "n-pages-to-print");
+  return {this, "n-pages-to-print"};
 }
 
 
-auto Gtk::PrintOperation::on_done (Result result) -> void
+auto PrintOperation::on_done (Result result) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1579,7 +1571,7 @@ auto Gtk::PrintOperation::on_done (Result result) -> void
   if(base && base->done)
     (*base->done)(gobj(),static_cast<GtkPrintOperationResult>(result));
 }
-auto Gtk::PrintOperation::on_begin_print (const Glib::RefPtr <PrintContext> &context) -> void
+auto PrintOperation::on_begin_print (const Glib::RefPtr <PrintContext> &context) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1588,7 +1580,7 @@ auto Gtk::PrintOperation::on_begin_print (const Glib::RefPtr <PrintContext> &con
   if(base && base->begin_print)
     (*base->begin_print)(gobj(),Glib::unwrap(context));
 }
-auto Gtk::PrintOperation::on_paginate(const Glib::RefPtr<PrintContext>& context) -> bool
+auto PrintOperation::on_paginate(const Glib::RefPtr<PrintContext>& context) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1600,8 +1592,8 @@ auto Gtk::PrintOperation::on_paginate(const Glib::RefPtr<PrintContext>& context)
   using RType = bool;
   return RType();
 }
-auto Gtk::PrintOperation::on_request_page_setup (
-  const Glib::RefPtr <PrintContext> &context, int page_no,
+auto PrintOperation::on_request_page_setup (
+  const Glib::RefPtr <PrintContext> &context, const int page_no,
   const Glib::RefPtr <PageSetup> &setup) -> void
 {
   const auto base = static_cast<BaseClassType*>(
@@ -1611,8 +1603,8 @@ auto Gtk::PrintOperation::on_request_page_setup (
   if(base && base->request_page_setup)
     (*base->request_page_setup)(gobj(),Glib::unwrap(context),page_no,Glib::unwrap(setup));
 }
-auto Gtk::PrintOperation::on_draw_page (
-  const Glib::RefPtr <PrintContext> &context, int page_nr) -> void
+auto PrintOperation::on_draw_page (
+  const Glib::RefPtr <PrintContext> &context, const int page_nr) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1621,7 +1613,7 @@ auto Gtk::PrintOperation::on_draw_page (
   if(base && base->draw_page)
     (*base->draw_page)(gobj(),Glib::unwrap(context),page_nr);
 }
-auto Gtk::PrintOperation::on_end_print (const Glib::RefPtr <PrintContext> &context) -> void
+auto PrintOperation::on_end_print (const Glib::RefPtr <PrintContext> &context) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1630,7 +1622,7 @@ auto Gtk::PrintOperation::on_end_print (const Glib::RefPtr <PrintContext> &conte
   if(base && base->end_print)
     (*base->end_print)(gobj(),Glib::unwrap(context));
 }
-auto Gtk::PrintOperation::on_status_changed () -> void
+auto PrintOperation::on_status_changed () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1639,7 +1631,7 @@ auto Gtk::PrintOperation::on_status_changed () -> void
   if(base && base->status_changed)
     (*base->status_changed)(gobj());
 }
-auto Gtk::PrintOperation::on_create_custom_widget() -> Widget*
+auto PrintOperation::on_create_custom_widget() -> Widget*
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1651,28 +1643,28 @@ auto Gtk::PrintOperation::on_create_custom_widget() -> Widget*
   using RType = Widget*;
   return RType();
 }
-auto Gtk::PrintOperation::on_custom_widget_apply (Widget *widget) -> void
+auto PrintOperation::on_custom_widget_apply (Widget *widget) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->custom_widget_apply)
-    (*base->custom_widget_apply)(gobj(),(GtkWidget*)Glib::unwrap(widget));
+    (*base->custom_widget_apply)(gobj(),Glib::unwrap(widget));
 }
-auto Gtk::PrintOperation::on_preview(const Glib::RefPtr<PrintOperationPreview>& preview, const Glib::RefPtr<PrintContext>& context, Window* parent) -> bool
+auto PrintOperation::on_preview(const Glib::RefPtr<PrintOperationPreview>& preview, const Glib::RefPtr<PrintContext>& context, Window* parent) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
   );
 
   if(base && base->preview)
-    return (*base->preview)(gobj(),(Glib::unwrap(preview)),Glib::unwrap(context),Glib::unwrap(parent));
+    return (*base->preview)(gobj(),Glib::unwrap(preview),Glib::unwrap(context),Glib::unwrap(parent));
 
   using RType = bool;
   return RType();
 }
-auto Gtk::PrintOperation::on_update_custom_widget (
+auto PrintOperation::on_update_custom_widget (
   Widget *widget, const Glib::RefPtr <PageSetup> &setup,
   const Glib::RefPtr <PrintSettings> &settings) -> void
 {
@@ -1681,7 +1673,7 @@ auto Gtk::PrintOperation::on_update_custom_widget (
   );
 
   if(base && base->update_custom_widget)
-    (*base->update_custom_widget)(gobj(),(GtkWidget*)Glib::unwrap(widget),Glib::unwrap(setup),Glib::unwrap(settings));
+    (*base->update_custom_widget)(gobj(),Glib::unwrap(widget),Glib::unwrap(setup),Glib::unwrap(settings));
 }
 
 

@@ -77,11 +77,11 @@ extern "C" {
 
 static auto
 g_callback_pre_parse(
-  GOptionContext* context, GOptionGroup* /* group */, gpointer data, GError** error) -> gboolean
+  GOptionContext* context, GOptionGroup* /* group */, const gpointer data, GError** error) -> gboolean
 {
   OptionContext cppContext(context, false /* take_ownership */);
 
-  auto option_group = static_cast<OptionGroup*>(data);
+  const auto option_group = static_cast<OptionGroup*>(data);
   if (!option_group)
   {
     OptionError(OptionError::FAILED, "Glib::OptionGroup: g_callback_pre_parse(): "
@@ -94,26 +94,26 @@ g_callback_pre_parse(
   {
     return option_group->on_pre_parse(cppContext);
   }
-  catch (Glib::Error& err)
+  catch (Error & err)
   {
     err.propagate(error);
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke();
+    exception_handlers_invoke();
   }
   return false;
 }
 
 static auto g_callback_error (
-  GOptionContext *context, GOptionGroup * /* group */, gpointer data, GError **error) -> void
+  GOptionContext *context, GOptionGroup * /* group */, const gpointer data, GError **error) -> void
 {
   // GError** error is input data containing information on an error that
   // has occurred before this function is called.
 
   OptionContext cppContext(context, false /* take_ownership */);
 
-  auto option_group = static_cast<OptionGroup*>(data);
+  const auto option_group = static_cast<OptionGroup*>(data);
   if (option_group && error && *error)
   {
     try
@@ -128,18 +128,18 @@ static auto g_callback_error (
 }
 
 auto
-OptionGroup_Translate_glibmm_callback(const gchar* string, gpointer data) -> const gchar*
+OptionGroup_Translate_glibmm_callback(const gchar* string, const gpointer data) -> const gchar*
 {
-  Glib::OptionGroup::SlotTranslate* the_slot = static_cast<Glib::OptionGroup::SlotTranslate*>(data);
+  const OptionGroup::SlotTranslate* the_slot = static_cast<OptionGroup::SlotTranslate*>(data);
 
   try
   {
     // The C docs says that the char* belongs to Glib.
-    return g_strdup((*the_slot)(Glib::ustring(string)).c_str());
+    return g_strdup((*the_slot)(ustring(string)).c_str());
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke();
+    exception_handlers_invoke();
   }
 
   return nullptr;
@@ -147,7 +147,7 @@ OptionGroup_Translate_glibmm_callback(const gchar* string, gpointer data) -> con
 
 static auto OptionGroup_Translate_glibmm_callback_destroy (void *data) -> void
 {
-  delete static_cast<Glib::OptionGroup::SlotTranslate*>(data);
+  delete static_cast<OptionGroup::SlotTranslate*>(data);
 }
 
 } /* extern "C" */
@@ -157,7 +157,7 @@ static auto OptionGroup_Translate_glibmm_callback_destroy (void *data) -> void
 // static
 auto
 OptionGroup::post_parse_callback(
-  GOptionContext* context, GOptionGroup* /* group */, gpointer data, GError** error) -> gboolean
+  GOptionContext* context, GOptionGroup* /* group */, const gpointer data, GError** error) -> gboolean
 {
   OptionContext cppContext(context, false /* take_ownership */);
 
@@ -182,13 +182,13 @@ OptionGroup::post_parse_callback(
   {
     return option_group->on_post_parse(cppContext);
   }
-  catch (Glib::Error& err)
+  catch (Error & err)
   {
     err.propagate(error);
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke();
+    exception_handlers_invoke();
   }
   return false;
 }
@@ -196,9 +196,9 @@ OptionGroup::post_parse_callback(
 // static
 auto
 OptionGroup::option_arg_callback(
-  const gchar* option_name, const gchar* value, gpointer data, GError** error) -> gboolean
+  const gchar* option_name, const gchar* value, const gpointer data, GError** error) -> gboolean
 {
-  const Glib::ustring cpp_option_name(option_name);
+  const ustring cpp_option_name(option_name);
   const OptionGroup* const option_group = static_cast<const OptionGroup*>(data);
   if (!option_group)
   {
@@ -211,11 +211,11 @@ OptionGroup::option_arg_callback(
 
   // option_name is either a single dash followed by a single letter (for a
   // short name) or two dashes followed by a long option name.
-  OptionGroup::type_map_entries::const_iterator iterFind = option_group->map_entries_.end();
+  type_map_entries::const_iterator iterFind = option_group->map_entries_.end();
   if (option_name[1] == '-')
   {
     // Long option name.
-    const auto long_option_name = Glib::ustring(option_name + 2);
+    const auto long_option_name = ustring(option_name + 2);
     iterFind = option_group->map_entries_.find(long_option_name);
   }
   else
@@ -250,7 +250,7 @@ OptionGroup::option_arg_callback(
     return false;
   }
 
-  const bool has_value = (value != nullptr);
+  const bool has_value = value != nullptr;
   const OptionArgCallback* const option_arg =
     static_cast<const OptionArgCallback*>(cppOptionEntry.cpparg_);
   try
@@ -264,23 +264,23 @@ OptionGroup::option_arg_callback(
     else
     {
       const auto the_slot = option_arg->get_slot_string();
-      const Glib::ustring cpp_value(value ? value : "");
+      const ustring cpp_value(value ? value : "");
       return (*the_slot)(cpp_option_name, cpp_value, has_value);
     }
   }
-  catch (Glib::Error& err)
+  catch (Error & err)
   {
     err.propagate(error);
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke();
+    exception_handlers_invoke();
   }
   return false;
 }
 
-OptionGroup::OptionGroup(const Glib::ustring& name, const Glib::ustring& description,
-  const Glib::ustring& help_description)
+OptionGroup::OptionGroup(const ustring & name, const ustring & description,
+  const ustring & help_description)
 : gobject_(g_option_group_new(name.c_str(), description.c_str(), help_description.c_str(),
     this /* user_data */, nullptr /* destroy_func */))
 {
@@ -331,7 +331,7 @@ auto OptionGroup::add_entry (const OptionEntry &entry) -> void
 
   // Create a temporary array, just so we can give the correct thing to g_option_group_add_entries:
   GOptionEntry array[2];
-  array[0] = *(entry.gobj()); // Copy contents.
+  array[0] = *entry.gobj(); // Copy contents.
   std::memset(&array[1], 0, sizeof(GOptionEntry));
 
   g_option_group_add_entries(gobj(), array);
@@ -354,7 +354,7 @@ auto OptionGroup::add_entry (const OptionEntry &entry, double &arg) -> void
   add_entry_with_wrapper(entry, G_OPTION_ARG_DOUBLE, &arg);
 }
 
-auto OptionGroup::add_entry (const OptionEntry &entry, Glib::ustring &arg) -> void
+auto OptionGroup::add_entry (const OptionEntry &entry, ustring &arg) -> void
 {
   add_entry_with_wrapper(entry, G_OPTION_ARG_STRING, &arg);
 }
@@ -400,10 +400,10 @@ auto OptionGroup::add_entry_filename (
 }
 
 auto OptionGroup::add_entry_with_wrapper (
-  const OptionEntry &entry, GOptionArg arg_type, void *cpp_arg) -> void
+  const OptionEntry &entry, const GOptionArg arg_type, void *cpp_arg) -> void
 {
   const auto name = entry.get_long_name();
-  type_map_entries::iterator iterFind = map_entries_.find(name);
+  const type_map_entries::iterator iterFind = map_entries_.find(name);
   if (iterFind == map_entries_.end()) // If we have not added this entry already
   {
     CppOptionEntry cppEntry;
@@ -448,13 +448,13 @@ auto OptionGroup::add_entry_with_wrapper (
     // Remember the C++/C mapping so that we can use it later:
     map_entries_[name] = cppEntry;
 
-    add_entry(*(cppEntry.entry_));
+    add_entry(*cppEntry.entry_);
   }
   else if (arg_type == G_OPTION_ARG_CALLBACK)
   {
     // Delete the OptionArgCallback instance that was allocated by add_entry()
     // or add_entry_filename().
-    auto option_arg = static_cast<OptionArgCallback*>(cpp_arg);
+    const auto option_arg = static_cast<OptionArgCallback*>(cpp_arg);
     delete option_arg;
   }
 }
@@ -480,7 +480,7 @@ auto OptionGroup::set_translate_func (const SlotTranslate &slot) -> void
   // Create a copy of the slot. A pointer to this will be passed through the
   // callback's data parameter.  It will be deleted when
   // OptionGroup_Translate_glibmm_callback_destroy() is called.
-  auto slot_copy = new SlotTranslate(slot);
+  const auto slot_copy = new SlotTranslate(slot);
   g_option_group_set_translate_func(gobj(), &OptionGroup_Translate_glibmm_callback, slot_copy,
     &OptionGroup_Translate_glibmm_callback_destroy);
 }
@@ -644,14 +644,14 @@ auto OptionGroup::CppOptionEntry::release_c_arg () -> void
     }
     case G_OPTION_ARG_INT:
     {
-      int* typed_arg = static_cast<int*>(carg_);
+      const int* typed_arg = static_cast<int*>(carg_);
       delete typed_arg;
 
       break;
     }
     case G_OPTION_ARG_DOUBLE:
     {
-      double* typed_arg = static_cast<double*>(carg_);
+      const double* typed_arg = static_cast<double*>(carg_);
       delete typed_arg;
 
       break;
@@ -668,7 +668,7 @@ auto OptionGroup::CppOptionEntry::release_c_arg () -> void
     }
     case G_OPTION_ARG_NONE: // Actually a boolean.
     {
-      gboolean* typed_arg = static_cast<gboolean*>(carg_);
+      const gboolean* typed_arg = static_cast<gboolean*>(carg_);
       delete typed_arg;
 
       break;
@@ -677,7 +677,7 @@ auto OptionGroup::CppOptionEntry::release_c_arg () -> void
     {
       // Delete the OptionArgCallback instance that was allocated by add_entry()
       // or add_entry_filename().
-      auto option_arg = static_cast<OptionArgCallback*>(cpparg_);
+      const auto option_arg = static_cast<OptionArgCallback*>(cpparg_);
       delete option_arg;
       cpparg_ = nullptr;
 
@@ -706,7 +706,7 @@ auto OptionGroup::CppOptionEntry::convert_c_to_cpp () -> void
   case G_OPTION_ARG_STRING:
   {
     char** typed_arg = static_cast<char**>(carg_);
-    auto typed_cpp_arg = static_cast<Glib::ustring*>(cpparg_);
+    const auto typed_cpp_arg = static_cast<ustring *>(cpparg_);
     if (typed_arg && *typed_arg && typed_cpp_arg)
     {
       *typed_cpp_arg = *typed_arg;
@@ -716,7 +716,7 @@ auto OptionGroup::CppOptionEntry::convert_c_to_cpp () -> void
   case G_OPTION_ARG_FILENAME:
   {
     char** typed_arg = static_cast<char**>(carg_);
-    auto typed_cpp_arg = static_cast<std::string*>(cpparg_);
+    const auto typed_cpp_arg = static_cast<std::string*>(cpparg_);
     if (typed_arg && *typed_arg && typed_cpp_arg)
     {
       *typed_cpp_arg = *typed_arg;
@@ -725,18 +725,18 @@ auto OptionGroup::CppOptionEntry::convert_c_to_cpp () -> void
   }
   case G_OPTION_ARG_INT:
   {
-    *((int*)cpparg_) = *(static_cast<int*>(carg_));
+    *(int*)cpparg_ = *static_cast<int*>(carg_);
     break;
   }
   case G_OPTION_ARG_DOUBLE:
   {
-    *((double*)cpparg_) = *(static_cast<double*>(carg_));
+    *(double*)cpparg_ = *static_cast<double*>(carg_);
     break;
   }
   case G_OPTION_ARG_STRING_ARRAY:
   {
     char*** typed_arg = static_cast<char***>(carg_);
-    auto typed_cpp_arg = static_cast<vecustrings*>(cpparg_);
+    const auto typed_cpp_arg = static_cast<vecustrings*>(cpparg_);
     if (typed_arg && *typed_arg && typed_cpp_arg)
     {
       typed_cpp_arg->clear();
@@ -777,7 +777,7 @@ auto OptionGroup::CppOptionEntry::convert_c_to_cpp () -> void
   case G_OPTION_ARG_FILENAME_ARRAY:
   {
     char*** typed_arg = static_cast<char***>(carg_);
-    auto typed_cpp_arg = static_cast<vecstrings*>(cpparg_);
+    const auto typed_cpp_arg = static_cast<vecstrings*>(cpparg_);
     if (typed_arg && *typed_arg && typed_cpp_arg)
     {
       typed_cpp_arg->clear();
@@ -795,7 +795,7 @@ auto OptionGroup::CppOptionEntry::convert_c_to_cpp () -> void
   }
   case G_OPTION_ARG_NONE: // Actually a boolean.
   {
-    *(static_cast<bool*>(cpparg_)) = *(static_cast<gboolean*>(carg_));
+    *static_cast<bool*>(cpparg_) = *static_cast<gboolean*>(carg_);
     break;
   }
   case G_OPTION_ARG_CALLBACK:
@@ -828,7 +828,7 @@ namespace Glib
 {
 
 
-auto OptionGroup::set_translation_domain (const Glib::ustring &domain) -> void
+auto OptionGroup::set_translation_domain (const ustring &domain) -> void
 {
   g_option_group_set_translation_domain(gobj(), domain.c_str());
 }

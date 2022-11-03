@@ -53,9 +53,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(PangoFontFamily* object, bool take_copy) -> Glib::RefPtr<Pango::FontFamily>
+auto wrap(PangoFontFamily* object, const bool take_copy) -> RefPtr<Pango::FontFamily>
 {
-  return Glib::make_refptr_for_instance<Pango::FontFamily>( dynamic_cast<Pango::FontFamily*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Pango::FontFamily>( dynamic_cast<Pango::FontFamily*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -68,7 +68,7 @@ namespace Pango
 
 /* The *_Class implementation: */
 
-auto FontFamily_Class::init() -> const Glib::Class&
+auto FontFamily_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -115,34 +115,31 @@ auto FontFamily::gobj_copy() -> PangoFontFamily*
 }
 
 FontFamily::FontFamily(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 FontFamily::FontFamily(PangoFontFamily* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 FontFamily::FontFamily(FontFamily&& src) noexcept
-: Glib::Object(std::move(src))
-  , Gio::ListModel(std::move(src))
+: Object(std::move(src))
+  ,
+  ListModel(std::move(src))
 {}
 
 auto FontFamily::operator=(FontFamily&& src) noexcept -> FontFamily&
 {
-  Glib::Object::operator=(std::move(src));
-  Gio::ListModel::operator=(std::move(src));
+  Object::operator=(std::move(src));
+  ListModel::operator=(std::move(src));
   return *this;
 }
 
 
-FontFamily::~FontFamily() noexcept
-{}
-
+FontFamily::~FontFamily() noexcept = default;
 
 FontFamily::CppClassType FontFamily::fontfamily_class_; // initialize static member
 

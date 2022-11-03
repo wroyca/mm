@@ -40,9 +40,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkFixed* object, bool take_copy) -> Gtk::Fixed*
+auto wrap(GtkFixed* object, const bool take_copy) -> Gtk::Fixed*
 {
-  return dynamic_cast<Gtk::Fixed *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::Fixed *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -53,7 +53,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Fixed_Class::init() -> const Glib::Class&
+auto Fixed_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -86,7 +86,7 @@ auto Fixed_Class::class_init_function (void *g_class, void *class_data) -> void
 
 auto Fixed_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new Fixed((GtkFixed*)(o)));
+  return manage(new Fixed((GtkFixed*)o));
 
 }
 
@@ -94,25 +94,23 @@ auto Fixed_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 Fixed::Fixed(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 Fixed::Fixed(GtkFixed* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 Fixed::Fixed(Fixed&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
 {}
 
 auto Fixed::operator=(Fixed&& src) noexcept -> Fixed&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   return *this;
 }
 
@@ -138,31 +136,31 @@ auto Fixed::get_base_type() -> GType
 Fixed::Fixed()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(fixed_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(fixed_class_.init()))
 {
 
 
 }
 
-auto Fixed::put (Widget &widget, double x, double y) -> void
+auto Fixed::put (Widget &widget, const double x, const double y) -> void
 {
-  gtk_fixed_put(gobj(), (widget).gobj(), x, y);
+  gtk_fixed_put(gobj(), widget.gobj(), x, y);
 }
 
 auto Fixed::remove (Widget &widget) -> void
 {
-  gtk_fixed_remove(gobj(), (widget).gobj());
+  gtk_fixed_remove(gobj(), widget.gobj());
 }
 
-auto Fixed::move (Widget &widget, double x, double y) -> void
+auto Fixed::move (Widget &widget, const double x, const double y) -> void
 {
-  gtk_fixed_move(gobj(), (widget).gobj(), x, y);
+  gtk_fixed_move(gobj(), widget.gobj(), x, y);
 }
 
 auto Fixed::get_child_position (Widget &widget, double &x, double &y) const -> void
 {
-  gtk_fixed_get_child_position(const_cast<GtkFixed*>(gobj()), (widget).gobj(), &(x), &(y));
+  gtk_fixed_get_child_position(const_cast<GtkFixed*>(gobj()), widget.gobj(), &x, &y);
 }
 
 

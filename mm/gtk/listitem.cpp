@@ -43,9 +43,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkListItem* object, bool take_copy) -> Glib::RefPtr<Gtk::ListItem>
+auto wrap(GtkListItem* object, const bool take_copy) -> RefPtr<Gtk::ListItem>
 {
-  return Glib::make_refptr_for_instance<Gtk::ListItem>( dynamic_cast<Gtk::ListItem*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::ListItem>( dynamic_cast<Gtk::ListItem*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -58,7 +58,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto ListItem_Class::init() -> const Glib::Class&
+auto ListItem_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -104,32 +104,28 @@ auto ListItem::gobj_copy() -> GtkListItem*
 }
 
 ListItem::ListItem(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 ListItem::ListItem(GtkListItem* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 ListItem::ListItem(ListItem&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto ListItem::operator=(ListItem&& src) noexcept -> ListItem&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-ListItem::~ListItem() noexcept
-{}
-
+ListItem::~ListItem() noexcept = default;
 
 ListItem::CppClassType ListItem::listitem_class_; // initialize static member
 
@@ -145,15 +141,15 @@ auto ListItem::get_base_type() -> GType
 }
 
 
-auto ListItem::get_item() -> Glib::RefPtr<Glib::ObjectBase>
+auto ListItem::get_item() -> Glib::RefPtr<ObjectBase>
 {
-  auto retvalue = Glib::make_refptr_for_instance<Glib::ObjectBase>(Glib::wrap_auto(G_OBJECT(gtk_list_item_get_item(gobj()))));
+  auto retvalue = Glib::make_refptr_for_instance<ObjectBase>(Glib::wrap_auto(G_OBJECT(gtk_list_item_get_item(gobj()))));
   if(retvalue)
     retvalue->reference(); //The function does not do a ref for us.
   return retvalue;
 }
 
-auto ListItem::get_item() const -> Glib::RefPtr<const Glib::ObjectBase>
+auto ListItem::get_item() const -> Glib::RefPtr<const ObjectBase>
 {
   return const_cast<ListItem*>(this)->get_item();
 }
@@ -173,9 +169,10 @@ auto ListItem::get_selectable() const -> bool
   return gtk_list_item_get_selectable(const_cast<GtkListItem*>(gobj()));
 }
 
-auto ListItem::set_selectable (bool selectable) -> void
+auto ListItem::set_selectable (
+  const bool selectable) -> void
 {
-  gtk_list_item_set_selectable(gobj(), static_cast<int>(selectable));
+  gtk_list_item_set_selectable(gobj(), selectable);
 }
 
 auto ListItem::get_activatable() const -> bool
@@ -183,14 +180,15 @@ auto ListItem::get_activatable() const -> bool
   return gtk_list_item_get_activatable(const_cast<GtkListItem*>(gobj()));
 }
 
-auto ListItem::set_activatable (bool activatable) -> void
+auto ListItem::set_activatable (
+  const bool activatable) -> void
 {
-  gtk_list_item_set_activatable(gobj(), static_cast<int>(activatable));
+  gtk_list_item_set_activatable(gobj(), activatable);
 }
 
 auto ListItem::set_child (Widget &child) -> void
 {
-  gtk_list_item_set_child(gobj(), (child).gobj());
+  gtk_list_item_set_child(gobj(), child.gobj());
 }
 
 auto ListItem::get_child() -> Widget*
@@ -206,51 +204,51 @@ auto ListItem::get_child() const -> const Widget*
 
 auto ListItem::property_activatable() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "activatable");
+  return {this, "activatable"};
 }
 
 auto ListItem::property_activatable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "activatable");
+  return {this, "activatable"};
 }
 
 auto ListItem::property_child() -> Glib::PropertyProxy< Widget* >
 {
-  return Glib::PropertyProxy< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 auto ListItem::property_child() const -> Glib::PropertyProxy_ReadOnly< Widget* >
 {
-  return Glib::PropertyProxy_ReadOnly< Widget* >(this, "child");
+  return {this, "child"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Glib::ObjectBase>>::value,
   "Type Glib::RefPtr<Glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-auto ListItem::property_item() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> >
+auto ListItem::property_item() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ObjectBase> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Glib::ObjectBase> >(this, "item");
+  return {this, "item"};
 }
 
 auto ListItem::property_position() const -> Glib::PropertyProxy_ReadOnly< guint >
 {
-  return Glib::PropertyProxy_ReadOnly< guint >(this, "position");
+  return {this, "position"};
 }
 
 auto ListItem::property_selectable() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "selectable");
+  return {this, "selectable"};
 }
 
 auto ListItem::property_selectable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "selectable");
+  return {this, "selectable"};
 }
 
 auto ListItem::property_selected() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "selected");
+  return {this, "selected"};
 }
 
 

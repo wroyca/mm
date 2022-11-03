@@ -52,8 +52,7 @@ auto CellRenderer::_property_renderable() -> Glib::PropertyProxy_Base
 auto CellRenderer_Class::get_preferred_width_vfunc_callback (
   GtkCellRenderer *self, GtkWidget *widget, int *minimum_width, int *natural_width) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -71,8 +70,8 @@ auto CellRenderer_Class::get_preferred_width_vfunc_callback (
         int min_width = 0;
         int nat_width = 0;
         obj->get_preferred_width_vfunc(*Glib::wrap(widget),
-             (minimum_width ? *minimum_width : min_width),
-             (natural_width ? *natural_width : nat_width));
+             minimum_width ? *minimum_width : min_width,
+             natural_width ? *natural_width : nat_width);
         return;
       }
       catch(...)
@@ -92,11 +91,10 @@ auto CellRenderer_Class::get_preferred_width_vfunc_callback (
 }
 
 auto CellRenderer_Class::get_preferred_height_for_width_vfunc_callback (
-  GtkCellRenderer *self, GtkWidget *widget, int width, int *minimum_height,
+  GtkCellRenderer *self, GtkWidget *widget, const int width, int *minimum_height,
   int *natural_height) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -114,8 +112,8 @@ auto CellRenderer_Class::get_preferred_height_for_width_vfunc_callback (
         int min_height = 0;
         int nat_height = 0;
         obj->get_preferred_height_for_width_vfunc(*Glib::wrap(widget), width,
-             (minimum_height ? *minimum_height : min_height),
-             (natural_height ? *natural_height : nat_height));
+             minimum_height ? *minimum_height : min_height,
+             natural_height ? *natural_height : nat_height);
         return;
       }
       catch(...)
@@ -137,8 +135,7 @@ auto CellRenderer_Class::get_preferred_height_for_width_vfunc_callback (
 auto CellRenderer_Class::get_preferred_height_vfunc_callback (
   GtkCellRenderer *self, GtkWidget *widget, int *minimum_height, int *natural_height) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -156,8 +153,8 @@ auto CellRenderer_Class::get_preferred_height_vfunc_callback (
         int min_height = 0;
         int nat_height = 0;
         obj->get_preferred_height_vfunc(*Glib::wrap(widget),
-             (minimum_height ? *minimum_height : min_height),
-             (natural_height ? *natural_height : nat_height));
+             minimum_height ? *minimum_height : min_height,
+             natural_height ? *natural_height : nat_height);
         return;
       }
       catch(...)
@@ -177,11 +174,10 @@ auto CellRenderer_Class::get_preferred_height_vfunc_callback (
 }
 
 auto CellRenderer_Class::get_preferred_width_for_height_vfunc_callback (
-  GtkCellRenderer *self, GtkWidget *widget, int height, int *minimum_width,
+  GtkCellRenderer *self, GtkWidget *widget, const int height, int *minimum_width,
   int *natural_width) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -199,8 +195,8 @@ auto CellRenderer_Class::get_preferred_width_for_height_vfunc_callback (
         int min_width = 0;
         int nat_width = 0;
         obj->get_preferred_width_for_height_vfunc(*Glib::wrap(widget), height,
-             (minimum_width ? *minimum_width : min_width),
-             (natural_width ? *natural_width : nat_width));
+             minimum_width ? *minimum_width : min_width,
+             natural_width ? *natural_width : nat_width);
         return;
       }
       catch(...)
@@ -239,14 +235,14 @@ auto CellRenderer_signal_editing_started_callback (
   using namespace Gtk;
   using SlotType = sigc::slot<void(CellEditable*, const Glib::ustring&)>;
 
-  auto obj = dynamic_cast<CellRenderer*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<CellRenderer*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        (*static_cast<SlotType*>(slot))(dynamic_cast<CellEditable*>(Glib::wrap_auto((GObject*)(p0), false))
+        (*static_cast<SlotType*>(slot))(dynamic_cast<CellEditable*>(Glib::wrap_auto((GObject*)p0, false))
 , Glib::convert_const_gchar_ptr_to_ustring(p1)
 );
     }
@@ -283,9 +279,9 @@ auto Glib::Value<Gtk::CellRendererMode>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkCellRenderer* object, bool take_copy) -> Gtk::CellRenderer*
+auto wrap(GtkCellRenderer* object, const bool take_copy) -> Gtk::CellRenderer*
 {
-  return dynamic_cast<Gtk::CellRenderer *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::CellRenderer *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -296,7 +292,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto CellRenderer_Class::init() -> const Glib::Class&
+auto CellRenderer_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -338,8 +334,7 @@ auto CellRenderer_Class::class_init_function (void *g_class, void *class_data) -
 
 auto CellRenderer_Class::get_request_mode_vfunc_callback(GtkCellRenderer* self) -> GtkSizeRequestMode
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -363,7 +358,7 @@ auto CellRenderer_Class::get_request_mode_vfunc_callback(GtkCellRenderer* self) 
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -379,8 +374,7 @@ auto CellRenderer_Class::snapshot_vfunc_callback (
   const GdkRectangle *background_area, const GdkRectangle *cell_area,
   GtkCellRendererState flags) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -410,7 +404,7 @@ auto CellRenderer_Class::snapshot_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -420,8 +414,7 @@ auto CellRenderer_Class::snapshot_vfunc_callback (
 }
 auto CellRenderer_Class::activate_vfunc_callback(GtkCellRenderer* self, GdkEvent* event, GtkWidget* widget, const gchar* path, const GdkRectangle* background_area, const GdkRectangle* cell_area, GtkCellRendererState flags) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -436,13 +429,13 @@ auto CellRenderer_Class::activate_vfunc_callback(GtkCellRenderer* self, GdkEvent
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->activate_vfunc(Glib::wrap(event, true)
-, *Glib::wrap(widget)
-, Glib::convert_const_gchar_ptr_to_ustring(path)
-, Glib::wrap(background_area)
-, Glib::wrap(cell_area)
-, static_cast<CellRendererState>(flags)
-));
+        return obj->activate_vfunc(Glib::wrap(event, true)
+                                   , *Glib::wrap(widget)
+                                   , Glib::convert_const_gchar_ptr_to_ustring(path)
+                                   , Glib::wrap(background_area)
+                                   , Glib::wrap(cell_area)
+                                   , static_cast<CellRendererState>(flags)
+        );
       }
       catch(...)
       {
@@ -451,7 +444,7 @@ auto CellRenderer_Class::activate_vfunc_callback(GtkCellRenderer* self, GdkEvent
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -464,8 +457,7 @@ auto CellRenderer_Class::activate_vfunc_callback(GtkCellRenderer* self, GdkEvent
 }
 auto CellRenderer_Class::start_editing_vfunc_callback(GtkCellRenderer* self, GdkEvent* event, GtkWidget* widget, const gchar* path, const GdkRectangle* background_area, const GdkRectangle* cell_area, GtkCellRendererState flags) -> GtkCellEditable*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -495,7 +487,7 @@ auto CellRenderer_Class::start_editing_vfunc_callback(GtkCellRenderer* self, Gdk
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -509,8 +501,7 @@ auto CellRenderer_Class::start_editing_vfunc_callback(GtkCellRenderer* self, Gdk
 
 auto CellRenderer_Class::editing_canceled_callback (GtkCellRenderer *self) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -546,8 +537,7 @@ auto CellRenderer_Class::editing_canceled_callback (GtkCellRenderer *self) -> vo
 auto CellRenderer_Class::editing_started_callback (
   GtkCellRenderer *self, GtkCellEditable *p0, const gchar *p1) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -562,7 +552,7 @@ auto CellRenderer_Class::editing_started_callback (
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        obj->on_editing_started(dynamic_cast<CellEditable*>(Glib::wrap_auto((GObject*)(p0), false))
+        obj->on_editing_started(dynamic_cast<CellEditable*>(Glib::wrap_auto((GObject*)p0, false))
 , Glib::convert_const_gchar_ptr_to_ustring(p1)
 );
         return;
@@ -586,7 +576,7 @@ auto CellRenderer_Class::editing_started_callback (
 
 auto CellRenderer_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new CellRenderer((GtkCellRenderer*)(o)));
+  return manage(new CellRenderer((GtkCellRenderer*)o));
 
 }
 
@@ -594,25 +584,23 @@ auto CellRenderer_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 CellRenderer::CellRenderer(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Object(construct_params)
+: Object(construct_params)
 {
   }
 
 CellRenderer::CellRenderer(GtkCellRenderer* castitem)
-:
-  Gtk::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {
   }
 
 
 CellRenderer::CellRenderer(CellRenderer&& src) noexcept
-: Gtk::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto CellRenderer::operator=(CellRenderer&& src) noexcept -> CellRenderer&
 {
-  Gtk::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
@@ -643,84 +631,88 @@ auto CellRenderer::get_request_mode() const -> SizeRequestMode
 auto CellRenderer::get_preferred_width (
   Widget &widget, int &minimum_width, int &natural_width) const -> void
 {
-  gtk_cell_renderer_get_preferred_width(const_cast<GtkCellRenderer*>(gobj()), (widget).gobj(), &(minimum_width), &(natural_width));
+  gtk_cell_renderer_get_preferred_width(const_cast<GtkCellRenderer*>(gobj()), widget.gobj(), &minimum_width, &natural_width);
 }
 
 auto CellRenderer::get_preferred_height_for_width (
-  Widget &widget, int width, int &minimum_height, int &natural_height) const -> void
+  Widget &widget, const int width, int &minimum_height, int &natural_height) const -> void
 {
-  gtk_cell_renderer_get_preferred_height_for_width(const_cast<GtkCellRenderer*>(gobj()), (widget).gobj(), width, &(minimum_height), &(natural_height));
+  gtk_cell_renderer_get_preferred_height_for_width(const_cast<GtkCellRenderer*>(gobj()), widget.gobj(), width, &minimum_height, &natural_height);
 }
 
 auto CellRenderer::get_preferred_height (
   Widget &widget, int &minimum_height, int &natural_height) const -> void
 {
-  gtk_cell_renderer_get_preferred_height(const_cast<GtkCellRenderer*>(gobj()), (widget).gobj(), &(minimum_height), &(natural_height));
+  gtk_cell_renderer_get_preferred_height(const_cast<GtkCellRenderer*>(gobj()), widget.gobj(), &minimum_height, &natural_height);
 }
 
 auto CellRenderer::get_preferred_width_for_height (
-  Widget &widget, int height, int &minimum_width, int &natural_width) const -> void
+  Widget &widget, const int height, int &minimum_width, int &natural_width) const -> void
 {
-  gtk_cell_renderer_get_preferred_width_for_height(const_cast<GtkCellRenderer*>(gobj()), (widget).gobj(), height, &(minimum_width), &(natural_width));
+  gtk_cell_renderer_get_preferred_width_for_height(const_cast<GtkCellRenderer*>(gobj()), widget.gobj(), height, &minimum_width, &natural_width);
 }
 
 auto CellRenderer::get_preferred_size (
   Widget &widget, Requisition &minimum_size, Requisition &natural_size) const -> void
 {
-  gtk_cell_renderer_get_preferred_size(const_cast<GtkCellRenderer*>(gobj()), (widget).gobj(), (minimum_size).gobj(), (natural_size).gobj());
+  gtk_cell_renderer_get_preferred_size(const_cast<GtkCellRenderer*>(gobj()), widget.gobj(), minimum_size.gobj(), natural_size.gobj());
 }
 
 auto CellRenderer::snapshot (
-  const Glib::RefPtr <Gtk::Snapshot> &snapshot, Widget &widget,
+  const Glib::RefPtr <Snapshot> &snapshot, Widget &widget,
   const Gdk::Rectangle &background_area, const Gdk::Rectangle &cell_area,
   CellRendererState flags) -> void
 {
-  gtk_cell_renderer_snapshot(gobj(), Glib::unwrap(snapshot), (widget).gobj(), (background_area).gobj(), (cell_area).gobj(), static_cast<GtkCellRendererState>(flags));
+  gtk_cell_renderer_snapshot(gobj(), Glib::unwrap(snapshot), widget.gobj(), background_area.gobj(), cell_area.gobj(), static_cast<GtkCellRendererState>(flags));
 }
 
 auto CellRenderer::activate(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags) -> bool
 {
-  return gtk_cell_renderer_activate(gobj(), const_cast<GdkEvent*>(Glib::unwrap(event)), (widget).gobj(), path.c_str(), (background_area).gobj(), (cell_area).gobj(), static_cast<GtkCellRendererState>(flags));
+  return gtk_cell_renderer_activate(gobj(), const_cast<GdkEvent*>(Glib::unwrap(event)), widget.gobj(), path.c_str(), background_area.gobj(), cell_area.gobj(), static_cast<GtkCellRendererState>(flags));
 }
 
 auto CellRenderer::start_editing(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags) -> CellEditable*
 {
-  return dynamic_cast<CellEditable*>(Glib::wrap_auto((GObject*)(gtk_cell_renderer_start_editing(gobj(), const_cast<GdkEvent*>(Glib::unwrap(event)), (widget).gobj(), path.c_str(), (background_area).gobj(), (cell_area).gobj(), static_cast<GtkCellRendererState>(flags))), false));
+  return dynamic_cast<CellEditable*>(Glib::wrap_auto((GObject*)gtk_cell_renderer_start_editing(gobj(), const_cast<GdkEvent*>(Glib::unwrap(event)), widget.gobj(), path.c_str(), background_area.gobj(), cell_area.gobj(), static_cast<GtkCellRendererState>(flags)), false));
 }
 
-auto CellRenderer::set_fixed_size (int width, int height) -> void
+auto CellRenderer::set_fixed_size (
+  const int width, const int height) -> void
 {
   gtk_cell_renderer_set_fixed_size(gobj(), width, height);
 }
 
 auto CellRenderer::get_fixed_size (int &width, int &height) const -> void
 {
-  gtk_cell_renderer_get_fixed_size(const_cast<GtkCellRenderer*>(gobj()), &(width), &(height));
+  gtk_cell_renderer_get_fixed_size(const_cast<GtkCellRenderer*>(gobj()), &width, &height);
 }
 
-auto CellRenderer::set_alignment (float xalign, float yalign) -> void
+auto CellRenderer::set_alignment (
+  const float xalign, const float yalign) -> void
 {
   gtk_cell_renderer_set_alignment(gobj(), xalign, yalign);
 }
 
 auto CellRenderer::get_alignment (float &xalign, float &yalign) const -> void
 {
-  gtk_cell_renderer_get_alignment(const_cast<GtkCellRenderer*>(gobj()), &(xalign), &(yalign));
+  gtk_cell_renderer_get_alignment(const_cast<GtkCellRenderer*>(gobj()), &xalign, &yalign);
 }
 
-auto CellRenderer::set_padding (int xpad, int ypad) -> void
+auto CellRenderer::set_padding (
+  const int xpad, const int ypad) -> void
 {
   gtk_cell_renderer_set_padding(gobj(), xpad, ypad);
 }
 
 auto CellRenderer::get_padding (int &xpad, int &ypad) const -> void
 {
-  gtk_cell_renderer_get_padding(const_cast<GtkCellRenderer*>(gobj()), &(xpad), &(ypad));
+  gtk_cell_renderer_get_padding(const_cast<GtkCellRenderer*>(gobj()), &xpad, &ypad);
 }
 
-auto CellRenderer::set_visible (bool visible) -> void
+auto CellRenderer::set_visible (
+  const bool visible) -> void
 {
-  gtk_cell_renderer_set_visible(gobj(), static_cast<int>(visible));
+  gtk_cell_renderer_set_visible(gobj(), visible);
 }
 
 auto CellRenderer::get_visible() const -> bool
@@ -728,9 +720,10 @@ auto CellRenderer::get_visible() const -> bool
   return gtk_cell_renderer_get_visible(const_cast<GtkCellRenderer*>(gobj()));
 }
 
-auto CellRenderer::set_sensitive (bool sensitive) -> void
+auto CellRenderer::set_sensitive (
+  const bool sensitive) -> void
 {
-  gtk_cell_renderer_set_sensitive(gobj(), static_cast<int>(sensitive));
+  gtk_cell_renderer_set_sensitive(gobj(), sensitive);
 }
 
 auto CellRenderer::get_sensitive() const -> bool
@@ -743,9 +736,10 @@ auto CellRenderer::is_activatable() const -> bool
   return gtk_cell_renderer_is_activatable(const_cast<GtkCellRenderer*>(gobj()));
 }
 
-auto CellRenderer::set_is_expander (bool is_expander) -> void
+auto CellRenderer::set_is_expander (
+  const bool is_expander) -> void
 {
-  gtk_cell_renderer_set_is_expander(gobj(), static_cast<int>(is_expander));
+  gtk_cell_renderer_set_is_expander(gobj(), is_expander);
 }
 
 auto CellRenderer::get_is_expander() const -> bool
@@ -753,9 +747,10 @@ auto CellRenderer::get_is_expander() const -> bool
   return gtk_cell_renderer_get_is_expander(const_cast<GtkCellRenderer*>(gobj()));
 }
 
-auto CellRenderer::set_is_expanded (bool is_expanded) -> void
+auto CellRenderer::set_is_expanded (
+  const bool is_expanded) -> void
 {
-  gtk_cell_renderer_set_is_expanded(gobj(), static_cast<int>(is_expanded));
+  gtk_cell_renderer_set_is_expanded(gobj(), is_expanded);
 }
 
 auto CellRenderer::get_is_expanded() const -> bool
@@ -763,14 +758,15 @@ auto CellRenderer::get_is_expanded() const -> bool
   return gtk_cell_renderer_get_is_expanded(const_cast<GtkCellRenderer*>(gobj()));
 }
 
-auto CellRenderer::stop_editing (bool canceled) -> void
+auto CellRenderer::stop_editing (
+  const bool canceled) -> void
 {
-  gtk_cell_renderer_stop_editing(gobj(), static_cast<int>(canceled));
+  gtk_cell_renderer_stop_editing(gobj(), canceled);
 }
 
 auto CellRenderer::get_state(Widget& widget, CellRendererState cell_state) const -> StateFlags
 {
-  return static_cast<StateFlags>(gtk_cell_renderer_get_state(const_cast<GtkCellRenderer*>(gobj()), (widget).gobj(), static_cast<GtkCellRendererState>(cell_state)));
+  return static_cast<StateFlags>(gtk_cell_renderer_get_state(const_cast<GtkCellRenderer*>(gobj()), widget.gobj(), static_cast<GtkCellRendererState>(cell_state)));
 }
 
 auto CellRenderer::get_state(CellRendererState cell_state) const -> StateFlags
@@ -781,8 +777,8 @@ auto CellRenderer::get_state(CellRendererState cell_state) const -> StateFlags
 CellRenderer::CellRenderer()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Object(Glib::ConstructParams(cellrenderer_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(cellrenderer_class_.init()))
 {
 
 
@@ -791,13 +787,13 @@ CellRenderer::CellRenderer()
 
 auto CellRenderer::signal_editing_canceled() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &CellRenderer_signal_editing_canceled_info);
+  return {this, &CellRenderer_signal_editing_canceled_info};
 }
 
 
 auto CellRenderer::signal_editing_started() -> Glib::SignalProxy<void(CellEditable*, const Glib::ustring&)>
 {
-  return Glib::SignalProxy<void(CellEditable*, const Glib::ustring&) >(this, &CellRenderer_signal_editing_started_info);
+  return {this, &CellRenderer_signal_editing_started_info};
 }
 
 
@@ -807,117 +803,117 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<CellRendererMode>::v
 
 auto CellRenderer::property_mode() -> Glib::PropertyProxy< CellRendererMode >
 {
-  return Glib::PropertyProxy< CellRendererMode >(this, "mode");
+  return {this, "mode"};
 }
 
 auto CellRenderer::property_mode() const -> Glib::PropertyProxy_ReadOnly< CellRendererMode >
 {
-  return Glib::PropertyProxy_ReadOnly< CellRendererMode >(this, "mode");
+  return {this, "mode"};
 }
 
 auto CellRenderer::property_visible() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "visible");
+  return {this, "visible"};
 }
 
 auto CellRenderer::property_visible() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "visible");
+  return {this, "visible"};
 }
 
 auto CellRenderer::property_sensitive() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "sensitive");
+  return {this, "sensitive"};
 }
 
 auto CellRenderer::property_sensitive() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "sensitive");
+  return {this, "sensitive"};
 }
 
 auto CellRenderer::property_xalign() -> Glib::PropertyProxy< float >
 {
-  return Glib::PropertyProxy< float >(this, "xalign");
+  return {this, "xalign"};
 }
 
 auto CellRenderer::property_xalign() const -> Glib::PropertyProxy_ReadOnly< float >
 {
-  return Glib::PropertyProxy_ReadOnly< float >(this, "xalign");
+  return {this, "xalign"};
 }
 
 auto CellRenderer::property_yalign() -> Glib::PropertyProxy< float >
 {
-  return Glib::PropertyProxy< float >(this, "yalign");
+  return {this, "yalign"};
 }
 
 auto CellRenderer::property_yalign() const -> Glib::PropertyProxy_ReadOnly< float >
 {
-  return Glib::PropertyProxy_ReadOnly< float >(this, "yalign");
+  return {this, "yalign"};
 }
 
 auto CellRenderer::property_xpad() -> Glib::PropertyProxy< unsigned int >
 {
-  return Glib::PropertyProxy< unsigned int >(this, "xpad");
+  return {this, "xpad"};
 }
 
 auto CellRenderer::property_xpad() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
-  return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "xpad");
+  return {this, "xpad"};
 }
 
 auto CellRenderer::property_ypad() -> Glib::PropertyProxy< unsigned int >
 {
-  return Glib::PropertyProxy< unsigned int >(this, "ypad");
+  return {this, "ypad"};
 }
 
 auto CellRenderer::property_ypad() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
-  return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "ypad");
+  return {this, "ypad"};
 }
 
 auto CellRenderer::property_width() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "width");
+  return {this, "width"};
 }
 
 auto CellRenderer::property_width() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "width");
+  return {this, "width"};
 }
 
 auto CellRenderer::property_height() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "height");
+  return {this, "height"};
 }
 
 auto CellRenderer::property_height() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "height");
+  return {this, "height"};
 }
 
 auto CellRenderer::property_is_expander() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "is-expander");
+  return {this, "is-expander"};
 }
 
 auto CellRenderer::property_is_expander() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "is-expander");
+  return {this, "is-expander"};
 }
 
 auto CellRenderer::property_is_expanded() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "is-expanded");
+  return {this, "is-expanded"};
 }
 
 auto CellRenderer::property_is_expanded() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "is-expanded");
+  return {this, "is-expanded"};
 }
 
 auto CellRenderer::property_cell_background() -> Glib::PropertyProxy_WriteOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_WriteOnly< Glib::ustring >(this, "cell-background");
+  return {this, "cell-background"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
@@ -926,31 +922,31 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
 
 auto CellRenderer::property_cell_background_rgba() -> Glib::PropertyProxy< Gdk::RGBA >
 {
-  return Glib::PropertyProxy< Gdk::RGBA >(this, "cell-background-rgba");
+  return {this, "cell-background-rgba"};
 }
 
 auto CellRenderer::property_cell_background_rgba() const -> Glib::PropertyProxy_ReadOnly< Gdk::RGBA >
 {
-  return Glib::PropertyProxy_ReadOnly< Gdk::RGBA >(this, "cell-background-rgba");
+  return {this, "cell-background-rgba"};
 }
 
 auto CellRenderer::property_cell_background_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "cell-background-set");
+  return {this, "cell-background-set"};
 }
 
 auto CellRenderer::property_cell_background_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "cell-background-set");
+  return {this, "cell-background-set"};
 }
 
 auto CellRenderer::property_editing() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "editing");
+  return {this, "editing"};
 }
 
 
-auto Gtk::CellRenderer::on_editing_canceled () -> void
+auto CellRenderer::on_editing_canceled () -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -959,7 +955,7 @@ auto Gtk::CellRenderer::on_editing_canceled () -> void
   if(base && base->editing_canceled)
     (*base->editing_canceled)(gobj());
 }
-auto Gtk::CellRenderer::on_editing_started (
+auto CellRenderer::on_editing_started (
   CellEditable *editable, const Glib::ustring &path) -> void
 {
   const auto base = static_cast<BaseClassType*>(
@@ -970,7 +966,7 @@ auto Gtk::CellRenderer::on_editing_started (
     (*base->editing_started)(gobj(),Glib::unwrap(editable),path.c_str());
 }
 
-auto Gtk::CellRenderer::get_request_mode_vfunc() const -> SizeRequestMode
+auto CellRenderer::get_request_mode_vfunc() const -> SizeRequestMode
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -978,14 +974,14 @@ auto Gtk::CellRenderer::get_request_mode_vfunc() const -> SizeRequestMode
 
   if(base && base->get_request_mode)
   {
-    SizeRequestMode retval(static_cast<SizeRequestMode>((*base->get_request_mode)(const_cast<GtkCellRenderer*>(gobj()))));
+    const SizeRequestMode retval(static_cast<SizeRequestMode>((*base->get_request_mode)(const_cast<GtkCellRenderer*>(gobj()))));
     return retval;
   }
 
   using RType = SizeRequestMode;
   return RType();
 }
-auto Gtk::CellRenderer::get_preferred_width_vfunc (
+auto CellRenderer::get_preferred_width_vfunc (
   Widget &widget, int &minimum_width, int &natural_width) const -> void
 {
   const auto base = static_cast<BaseClassType*>(
@@ -994,11 +990,11 @@ auto Gtk::CellRenderer::get_preferred_width_vfunc (
 
   if(base && base->get_preferred_width)
   {
-    (*base->get_preferred_width)(const_cast<GtkCellRenderer*>(gobj()),(widget).gobj(),&(minimum_width),&(natural_width));
+    (*base->get_preferred_width)(const_cast<GtkCellRenderer*>(gobj()),widget.gobj(),&minimum_width,&natural_width);
   }
 }
-auto Gtk::CellRenderer::get_preferred_height_for_width_vfunc (
-  Widget &widget, int width, int &minimum_height, int &natural_height) const -> void
+auto CellRenderer::get_preferred_height_for_width_vfunc (
+  Widget &widget, const int width, int &minimum_height, int &natural_height) const -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1006,10 +1002,10 @@ auto Gtk::CellRenderer::get_preferred_height_for_width_vfunc (
 
   if(base && base->get_preferred_height_for_width)
   {
-    (*base->get_preferred_height_for_width)(const_cast<GtkCellRenderer*>(gobj()),(widget).gobj(),width,&(minimum_height),&(natural_height));
+    (*base->get_preferred_height_for_width)(const_cast<GtkCellRenderer*>(gobj()),widget.gobj(),width,&minimum_height,&natural_height);
   }
 }
-auto Gtk::CellRenderer::get_preferred_height_vfunc (
+auto CellRenderer::get_preferred_height_vfunc (
   Widget &widget, int &minimum_height, int &natural_height) const -> void
 {
   const auto base = static_cast<BaseClassType*>(
@@ -1018,11 +1014,11 @@ auto Gtk::CellRenderer::get_preferred_height_vfunc (
 
   if(base && base->get_preferred_height)
   {
-    (*base->get_preferred_height)(const_cast<GtkCellRenderer*>(gobj()),(widget).gobj(),&(minimum_height),&(natural_height));
+    (*base->get_preferred_height)(const_cast<GtkCellRenderer*>(gobj()),widget.gobj(),&minimum_height,&natural_height);
   }
 }
-auto Gtk::CellRenderer::get_preferred_width_for_height_vfunc (
-  Widget &widget, int height, int &minimum_width, int &natural_width) const -> void
+auto CellRenderer::get_preferred_width_for_height_vfunc (
+  Widget &widget, const int height, int &minimum_width, int &natural_width) const -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1030,11 +1026,11 @@ auto Gtk::CellRenderer::get_preferred_width_for_height_vfunc (
 
   if(base && base->get_preferred_width_for_height)
   {
-    (*base->get_preferred_width_for_height)(const_cast<GtkCellRenderer*>(gobj()),(widget).gobj(),height,&(minimum_width),&(natural_width));
+    (*base->get_preferred_width_for_height)(const_cast<GtkCellRenderer*>(gobj()),widget.gobj(),height,&minimum_width,&natural_width);
   }
 }
-auto Gtk::CellRenderer::snapshot_vfunc (
-  const Glib::RefPtr <Gtk::Snapshot> &snapshot, Widget &widget,
+auto CellRenderer::snapshot_vfunc (
+  const Glib::RefPtr <Snapshot> &snapshot, Widget &widget,
   const Gdk::Rectangle &background_area, const Gdk::Rectangle &cell_area,
   CellRendererState flags) -> void
 {
@@ -1044,10 +1040,10 @@ auto Gtk::CellRenderer::snapshot_vfunc (
 
   if(base && base->snapshot)
   {
-    (*base->snapshot)(gobj(),Glib::unwrap(snapshot),(widget).gobj(),(background_area).gobj(),(cell_area).gobj(),static_cast<GtkCellRendererState>(flags));
+    (*base->snapshot)(gobj(),Glib::unwrap(snapshot),widget.gobj(),background_area.gobj(),cell_area.gobj(),static_cast<GtkCellRendererState>(flags));
   }
 }
-auto Gtk::CellRenderer::activate_vfunc(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags) -> bool
+auto CellRenderer::activate_vfunc(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1055,14 +1051,14 @@ auto Gtk::CellRenderer::activate_vfunc(const Glib::RefPtr<const Gdk::Event>& eve
 
   if(base && base->activate)
   {
-    bool retval((*base->activate)(gobj(),const_cast<GdkEvent*>(Glib::unwrap(event)),(widget).gobj(),path.c_str(),(background_area).gobj(),(cell_area).gobj(),static_cast<GtkCellRendererState>(flags)));
+    const bool retval((*base->activate)(gobj(),const_cast<GdkEvent*>(Glib::unwrap(event)),widget.gobj(),path.c_str(),background_area.gobj(),cell_area.gobj(),static_cast<GtkCellRendererState>(flags)));
     return retval;
   }
 
   using RType = bool;
   return RType();
 }
-auto Gtk::CellRenderer::start_editing_vfunc(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags) -> CellEditable*
+auto CellRenderer::start_editing_vfunc(const Glib::RefPtr<const Gdk::Event>& event, Widget& widget, const Glib::ustring& path, const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area, CellRendererState flags) -> CellEditable*
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1070,7 +1066,7 @@ auto Gtk::CellRenderer::start_editing_vfunc(const Glib::RefPtr<const Gdk::Event>
 
   if(base && base->start_editing)
   {
-    CellEditable* retval(dynamic_cast<CellEditable*>(Glib::wrap_auto((GObject*)((*base->start_editing)(gobj(),const_cast<GdkEvent*>(Glib::unwrap(event)),(widget).gobj(),path.c_str(),(background_area).gobj(),(cell_area).gobj(),static_cast<GtkCellRendererState>(flags))), false)));
+    CellEditable* retval(dynamic_cast<CellEditable*>(Glib::wrap_auto((GObject*)(*base->start_editing)(gobj(),const_cast<GdkEvent*>(Glib::unwrap(event)),widget.gobj(),path.c_str(),background_area.gobj(),cell_area.gobj(),static_cast<GtkCellRendererState>(flags)), false)));
     return retval;
   }
 

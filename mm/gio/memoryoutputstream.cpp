@@ -32,8 +32,8 @@ namespace Gio
 // Equivalent to g_memory_output_stream_new_resizable().
 MemoryOutputStream::MemoryOutputStream()
 : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gio::OutputStream(Glib::ConstructParams(memoryoutputstream_class_.init(), "data",nullptr,"size",0,"realloc-function",g_realloc,"destroy-function",g_free, nullptr))
+ObjectBase(nullptr),
+OutputStream(Glib::ConstructParams(memoryoutputstream_class_.init(), "data",nullptr,"size",0,"realloc-function",g_realloc,"destroy-function",g_free, nullptr))
 {
 }
 
@@ -47,9 +47,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GMemoryOutputStream* object, bool take_copy) -> Glib::RefPtr<Gio::MemoryOutputStream>
+auto wrap(GMemoryOutputStream* object, const bool take_copy) -> RefPtr<Gio::MemoryOutputStream>
 {
-  return Glib::make_refptr_for_instance<Gio::MemoryOutputStream>( dynamic_cast<Gio::MemoryOutputStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::MemoryOutputStream>( dynamic_cast<Gio::MemoryOutputStream*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -62,7 +62,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto MemoryOutputStream_Class::init() -> const Glib::Class&
+auto MemoryOutputStream_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -110,36 +110,32 @@ auto MemoryOutputStream::gobj_copy() -> GMemoryOutputStream*
 }
 
 MemoryOutputStream::MemoryOutputStream(const Glib::ConstructParams& construct_params)
-:
-  Gio::OutputStream(construct_params)
+: OutputStream(construct_params)
 {
 
 }
 
 MemoryOutputStream::MemoryOutputStream(GMemoryOutputStream* castitem)
-:
-  Gio::OutputStream((GOutputStream*)(castitem))
+: OutputStream((GOutputStream*)castitem)
 {}
 
 
 MemoryOutputStream::MemoryOutputStream(MemoryOutputStream&& src) noexcept
-: Gio::OutputStream(std::move(src))
+: OutputStream(std::move(src))
   , Seekable(std::move(src))
   , PollableOutputStream(std::move(src))
 {}
 
 auto MemoryOutputStream::operator=(MemoryOutputStream&& src) noexcept -> MemoryOutputStream&
 {
-  Gio::OutputStream::operator=(std::move(src));
+  OutputStream::operator=(std::move(src));
   Seekable::operator=(std::move(src));
   PollableOutputStream::operator=(std::move(src));
   return *this;
 }
 
 
-MemoryOutputStream::~MemoryOutputStream() noexcept
-{}
-
+MemoryOutputStream::~MemoryOutputStream() noexcept = default;
 
 MemoryOutputStream::CppClassType MemoryOutputStream::memoryoutputstream_class_; // initialize static member
 
@@ -155,11 +151,11 @@ auto MemoryOutputStream::get_base_type() -> GType
 }
 
 
-MemoryOutputStream::MemoryOutputStream(void* data, gsize size, GReallocFunc realloc_function, GDestroyNotify destroy_function)
+MemoryOutputStream::MemoryOutputStream(void* data, const gsize size, const GReallocFunc realloc_function, const GDestroyNotify destroy_function)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gio::OutputStream(Glib::ConstructParams(memoryoutputstream_class_.init(), "data", data, "size", size, "realloc_function", realloc_function, "destroy_function", destroy_function, nullptr))
+ObjectBase(nullptr),
+OutputStream(Glib::ConstructParams(memoryoutputstream_class_.init(), "data", data, "size", size, "realloc_function", realloc_function, "destroy_function", destroy_function, nullptr))
 {
 
 
@@ -170,7 +166,7 @@ auto MemoryOutputStream::create() -> Glib::RefPtr<MemoryOutputStream>
   return Glib::make_refptr_for_instance<MemoryOutputStream>( new MemoryOutputStream() );
 }
 
-auto MemoryOutputStream::create(void* data, gsize size, GReallocFunc realloc_function, GDestroyNotify destroy_function) -> Glib::RefPtr<MemoryOutputStream>
+auto MemoryOutputStream::create(void* data, const gsize size, const GReallocFunc realloc_function, const GDestroyNotify destroy_function) -> Glib::RefPtr<MemoryOutputStream>
 {
   return Glib::make_refptr_for_instance<MemoryOutputStream>( new MemoryOutputStream(data, size, realloc_function, destroy_function) );
 }
@@ -212,7 +208,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<void*>::value,
 
 auto MemoryOutputStream::property_data() const -> Glib::PropertyProxy_ReadOnly< void* >
 {
-  return Glib::PropertyProxy_ReadOnly< void* >(this, "data");
+  return {this, "data"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<gulong>::value,
@@ -221,7 +217,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<gulong>::value,
 
 auto MemoryOutputStream::property_data_size() const -> Glib::PropertyProxy_ReadOnly< gulong >
 {
-  return Glib::PropertyProxy_ReadOnly< gulong >(this, "data-size");
+  return {this, "data-size"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<gulong>::value,
@@ -230,7 +226,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<gulong>::value,
 
 auto MemoryOutputStream::property_size() const -> Glib::PropertyProxy_ReadOnly< gulong >
 {
-  return Glib::PropertyProxy_ReadOnly< gulong >(this, "size");
+  return {this, "size"};
 }
 
 

@@ -144,7 +144,7 @@ public:
   sigc::signal<void()> signal_;
   DispatchNotifier*  notifier_;
 
-  explicit Impl(const Glib::RefPtr<MainContext>& context);
+  explicit Impl(const RefPtr<MainContext> & context);
 
   // noncopyable
   Impl(const Impl&) = delete;
@@ -160,7 +160,7 @@ public:
   DispatchNotifier(const DispatchNotifier&) = delete;
   auto operator=(const DispatchNotifier&) -> DispatchNotifier& = delete;
 
-  static auto reference_instance(const Glib::RefPtr<MainContext>& context) -> DispatchNotifier*;
+  static auto reference_instance(const RefPtr<MainContext> & context) -> DispatchNotifier*;
   static auto unreference_instance (
     DispatchNotifier *notifier, Dispatcher::Impl *dispatcher_impl) -> void;
 
@@ -169,7 +169,7 @@ public:
 protected:
   // Only used by reference_instance().  Should be private, but that triggers
   // a silly gcc warning even though DispatchNotifier has static methods.
-  explicit DispatchNotifier(const Glib::RefPtr<MainContext>& context);
+  explicit DispatchNotifier(const RefPtr<MainContext> & context);
 
 private:
   static thread_local DispatchNotifier* thread_specific_instance_;
@@ -177,7 +177,7 @@ private:
   using UniqueImplPtr = std::unique_ptr<Dispatcher::Impl>;
   std::forward_list<UniqueImplPtr> orphaned_dispatcher_impl_;
   long ref_count_;
-  Glib::RefPtr<MainContext> context_;
+  RefPtr<MainContext> context_;
 #ifdef G_OS_WIN32
   std::mutex mutex_;
   std::list<DispatchNotifyData> notify_queue_;
@@ -188,7 +188,7 @@ private:
 #endif
 
   auto create_pipe () -> void;
-  auto pipe_io_handler(Glib::IOCondition condition) -> bool;
+  auto pipe_io_handler(IOCondition condition) -> bool;
   auto pipe_is_empty() -> bool;
 };
 
@@ -196,7 +196,7 @@ private:
 
 thread_local DispatchNotifier* DispatchNotifier::thread_specific_instance_ = nullptr;
 
-DispatchNotifier::DispatchNotifier(const Glib::RefPtr<MainContext>& context)
+DispatchNotifier::DispatchNotifier(const RefPtr<MainContext> & context)
 : orphaned_dispatcher_impl_(),
   ref_count_(0),
   context_(context),
@@ -223,14 +223,14 @@ DispatchNotifier::DispatchNotifier(const Glib::RefPtr<MainContext>& context)
     //   sigc::mem_fun(*this, &DispatchNotifier::pipe_io_handler), fd, Glib::IOCondition::IO_IN);
     // except for source->set_can_recurse(true).
 
-    const auto source = IOSource::create(fd, Glib::IOCondition::IO_IN);
+    const auto source = IOSource::create(fd, IOCondition::IO_IN);
 
     // If the signal emission in pipe_io_handler() starts a new main loop,
     // the event source shall not be blocked while that loop runs. (E.g. while
     // a connected slot function shows a modal dialog box.)
     source->set_can_recurse(true);
 
-    source->connect(sigc::mem_fun(*this, &DispatchNotifier::pipe_io_handler));
+    source->connect(mem_fun(*this, &DispatchNotifier::pipe_io_handler));
     g_source_attach(source->gobj(), context_->gobj());
   }
   catch (...)
@@ -266,7 +266,7 @@ auto DispatchNotifier::create_pipe () -> void
     GError* const error = g_error_new(G_FILE_ERROR, G_FILE_ERROR_FAILED,
       "Failed to create event for inter-thread communication: %s",
       g_win32_error_message(GetLastError()));
-    throw Glib::FileError(error);
+    throw FileError(error);
   }
 
   fd_receiver_ = event;
@@ -293,7 +293,7 @@ auto DispatchNotifier::create_pipe () -> void
 
 // static
 auto DispatchNotifier::reference_instance(
-  const Glib::RefPtr<MainContext>& context) -> DispatchNotifier*
+  const RefPtr<MainContext> & context) -> DispatchNotifier*
 {
   DispatchNotifier* instance = thread_specific_instance_;
 
@@ -408,7 +408,8 @@ DispatchNotifier::pipe_is_empty() -> bool
 #endif
 }
 
-auto DispatchNotifier::pipe_io_handler(Glib::IOCondition) -> bool
+auto DispatchNotifier::pipe_io_handler(
+  IOCondition) -> bool
 {
   DispatchNotifyData data;
 
@@ -471,7 +472,7 @@ auto DispatchNotifier::pipe_io_handler(Glib::IOCondition) -> bool
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke();
+    exception_handlers_invoke();
   }
 
   if (!orphaned_dispatcher_impl_.empty() && pipe_is_empty())
@@ -482,19 +483,19 @@ auto DispatchNotifier::pipe_io_handler(Glib::IOCondition) -> bool
 
 /**** Glib::Dispatcher and Glib::Dispatcher::Impl **************************/
 
-Dispatcher::Impl::Impl(const Glib::RefPtr<MainContext>& context)
+Dispatcher::Impl::Impl(const RefPtr<MainContext> & context)
 : signal_(),
   notifier_(DispatchNotifier::reference_instance(context))
 {
 }
 
 Dispatcher::Dispatcher()
-: impl_(new Dispatcher::Impl(MainContext::get_default()))
+: impl_(new Impl(MainContext::get_default()))
 {}
 
 
-Dispatcher::Dispatcher(const Glib::RefPtr<MainContext>& context)
-: impl_(new Dispatcher::Impl(context))
+Dispatcher::Dispatcher(const RefPtr<MainContext> & context)
+: impl_(new Impl(context))
 {
 }
 

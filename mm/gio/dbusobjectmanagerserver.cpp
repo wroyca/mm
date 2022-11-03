@@ -33,9 +33,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GDBusObjectManagerServer* object, bool take_copy) -> Glib::RefPtr<Gio::DBus::ObjectManagerServer>
+auto wrap(GDBusObjectManagerServer* object, const bool take_copy) -> RefPtr<Gio::DBus::ObjectManagerServer>
 {
-  return Glib::make_refptr_for_instance<Gio::DBus::ObjectManagerServer>( dynamic_cast<Gio::DBus::ObjectManagerServer*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::DBus::ObjectManagerServer>( dynamic_cast<Gio::DBus::ObjectManagerServer*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -48,7 +48,7 @@ namespace Gio::DBus
 
 /* The *_Class implementation: */
 
-auto ObjectManagerServer_Class::init() -> const Glib::Class&
+auto ObjectManagerServer_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -63,7 +63,7 @@ auto ObjectManagerServer_Class::init() -> const Glib::Class&
     register_derived_type(g_dbus_object_manager_server_get_type());
 
     // Add derived versions of interfaces, if the C type implements any interfaces:
-  DBus::ObjectManager::add_interface(get_type());
+    ObjectManager::add_interface(get_type());
 
   }
 
@@ -95,34 +95,31 @@ auto ObjectManagerServer::gobj_copy() -> GDBusObjectManagerServer*
 }
 
 ObjectManagerServer::ObjectManagerServer(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 ObjectManagerServer::ObjectManagerServer(GDBusObjectManagerServer* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 ObjectManagerServer::ObjectManagerServer(ObjectManagerServer&& src) noexcept
-: Glib::Object(std::move(src))
-  , DBus::ObjectManager(std::move(src))
+: Object(std::move(src))
+  ,
+  ObjectManager(std::move(src))
 {}
 
 auto ObjectManagerServer::operator=(ObjectManagerServer&& src) noexcept -> ObjectManagerServer&
 {
-  Glib::Object::operator=(std::move(src));
-  DBus::ObjectManager::operator=(std::move(src));
+  Object::operator=(std::move(src));
+  ObjectManager::operator=(std::move(src));
   return *this;
 }
 
 
-ObjectManagerServer::~ObjectManagerServer() noexcept
-{}
-
+ObjectManagerServer::~ObjectManagerServer() noexcept = default;
 
 ObjectManagerServer::CppClassType ObjectManagerServer::objectmanagerserver_class_; // initialize static member
 
@@ -141,8 +138,8 @@ auto ObjectManagerServer::get_base_type() -> GType
 ObjectManagerServer::ObjectManagerServer(const Glib::ustring& object_path)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(objectmanagerserver_class_.init(), "object_path", object_path.c_str(), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(objectmanagerserver_class_.init(), "object_path", object_path.c_str(), nullptr))
 {
 
 
@@ -169,18 +166,18 @@ auto ObjectManagerServer::set_connection (const Glib::RefPtr <Connection> &conne
 }
 
 auto ObjectManagerServer::export_object (
-  const Glib::RefPtr <Gio::DBus::ObjectSkeleton> &object) -> void
+  const Glib::RefPtr <ObjectSkeleton> &object) -> void
 {
   g_dbus_object_manager_server_export(gobj(), Glib::unwrap(object));
 }
 
 auto ObjectManagerServer::export_uniquely (
-  const Glib::RefPtr <Gio::DBus::ObjectSkeleton> &object) -> void
+  const Glib::RefPtr <ObjectSkeleton> &object) -> void
 {
   g_dbus_object_manager_server_export_uniquely(gobj(), Glib::unwrap(object));
 }
 
-auto ObjectManagerServer::is_exported(const Glib::RefPtr<Gio::DBus::ObjectSkeleton>& object) const -> bool
+auto ObjectManagerServer::is_exported(const Glib::RefPtr<ObjectSkeleton>& object) const -> bool
 {
   return g_dbus_object_manager_server_is_exported(const_cast<GDBusObjectManagerServer*>(gobj()), Glib::unwrap(object));
 }
@@ -197,17 +194,17 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Connect
 
 auto ObjectManagerServer::property_connection() -> Glib::PropertyProxy< Glib::RefPtr<Connection> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Connection> >(this, "connection");
+  return {this, "connection"};
 }
 
 auto ObjectManagerServer::property_connection() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Connection> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Connection> >(this, "connection");
+  return {this, "connection"};
 }
 
 auto ObjectManagerServer::property_object_path() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "object-path");
+  return {this, "object-path"};
 }
 
 

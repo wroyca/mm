@@ -54,7 +54,7 @@ auto RecentInfo::get_application_info(const Glib::ustring& app_name, std::string
   else
     app_exec.erase();
 
-  return (found != 0);
+  return found != 0;
 }
 
 auto RecentInfo::get_groups() const -> std::vector<Glib::ustring>
@@ -65,7 +65,7 @@ auto RecentInfo::get_groups() const -> std::vector<Glib::ustring>
   return Glib::ArrayHandler<Glib::ustring>::array_to_vector(groups, length, Glib::OWNERSHIP_DEEP);
 }
 
-auto RecentInfoTraits::to_cpp_type(const CType& obj) -> RecentInfoTraits::CppType
+auto RecentInfoTraits::to_cpp_type(const CType& obj) -> CppType
 {
   return Glib::wrap(const_cast<CTypeNonConst>(obj), true);
 }
@@ -82,12 +82,12 @@ auto Value<RefPtr<Gtk::RecentInfo> >::value_type() -> GType
 
 auto Value <RefPtr <Gtk::RecentInfo>>::set (const CppType &data) -> void
 {
-  set_boxed(Glib::unwrap(data));
+  set_boxed(unwrap(data));
 }
 
-auto Value<RefPtr<Gtk::RecentInfo> >::get() const -> Value<RefPtr<Gtk::RecentInfo> >::CppType
+auto Value<RefPtr<Gtk::RecentInfo> >::get() const -> CppType
 {
-  return Glib::wrap(static_cast<CType>(get_boxed()), true);
+  return wrap(static_cast<CType>(get_boxed()), true);
 }
 
 } // namespace Glib
@@ -113,7 +113,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkRecentInfo* object, bool take_copy) -> Glib::RefPtr<Gtk::RecentInfo>
+auto wrap(GtkRecentInfo* object, const bool take_copy) -> RefPtr<Gtk::RecentInfo>
 {
   if(take_copy && object)
     gtk_recent_info_ref(object);
@@ -204,9 +204,9 @@ auto RecentInfo::get_private_hint() const -> bool
 auto RecentInfo::create_app_info(const Glib::ustring& app_name) -> Glib::RefPtr<Gio::AppInfo>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(gtk_recent_info_create_app_info(gobj(), app_name.c_str(), &(gerror)));
+  auto retvalue = Glib::wrap(gtk_recent_info_create_app_info(gobj(), app_name.c_str(), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -265,7 +265,7 @@ auto RecentInfo::exists() const -> bool
 
 auto RecentInfo::equal(const Glib::RefPtr<const RecentInfo>& info_b) const -> bool
 {
-  return gtk_recent_info_match(const_cast<GtkRecentInfo*>(gobj()), const_cast<GtkRecentInfo*>(Glib::unwrap<Gtk::RecentInfo>(info_b)));
+  return gtk_recent_info_match(const_cast<GtkRecentInfo*>(gobj()), const_cast<GtkRecentInfo*>(Glib::unwrap<RecentInfo>(info_b)));
 }
 
 

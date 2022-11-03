@@ -33,9 +33,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkMultiFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::MultiFilter>
+auto wrap(GtkMultiFilter* object, const bool take_copy) -> RefPtr<Gtk::MultiFilter>
 {
-  return Glib::make_refptr_for_instance<Gtk::MultiFilter>( dynamic_cast<Gtk::MultiFilter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::MultiFilter>( dynamic_cast<Gtk::MultiFilter*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto MultiFilter_Class::init() -> const Glib::Class&
+auto MultiFilter_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -88,36 +88,33 @@ auto MultiFilter::gobj_copy() -> GtkMultiFilter*
 }
 
 MultiFilter::MultiFilter(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Filter(construct_params)
+: Filter(construct_params)
 {
 
 }
 
 MultiFilter::MultiFilter(GtkMultiFilter* castitem)
-:
-  Gtk::Filter((GtkFilter*)(castitem))
+: Filter((GtkFilter*)castitem)
 {}
 
 
 MultiFilter::MultiFilter(MultiFilter&& src) noexcept
-: Gtk::Filter(std::move(src))
-  , Gio::ListModel(std::move(src))
+: Filter(std::move(src))
+  ,
+  ListModel(std::move(src))
   , Buildable(std::move(src))
 {}
 
 auto MultiFilter::operator=(MultiFilter&& src) noexcept -> MultiFilter&
 {
-  Gtk::Filter::operator=(std::move(src));
-  Gio::ListModel::operator=(std::move(src));
+  Filter::operator=(std::move(src));
+  ListModel::operator=(std::move(src));
   Buildable::operator=(std::move(src));
   return *this;
 }
 
 
-MultiFilter::~MultiFilter() noexcept
-{}
-
+MultiFilter::~MultiFilter() noexcept = default;
 
 MultiFilter::CppClassType MultiFilter::multifilter_class_; // initialize static member
 
@@ -136,8 +133,8 @@ auto MultiFilter::get_base_type() -> GType
 MultiFilter::MultiFilter()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Filter(Glib::ConstructParams(multifilter_class_.init()))
+ObjectBase(nullptr),
+Filter(Glib::ConstructParams(multifilter_class_.init()))
 {
 
 
@@ -145,10 +142,11 @@ MultiFilter::MultiFilter()
 
 auto MultiFilter::append (const Glib::RefPtr <Filter> &filter) -> void
 {
-  gtk_multi_filter_append(gobj(), Glib::unwrap_copy(filter));
+  gtk_multi_filter_append(gobj(), unwrap_copy(filter));
 }
 
-auto MultiFilter::remove (guint position) -> void
+auto MultiFilter::remove (
+  const guint position) -> void
 {
   gtk_multi_filter_remove(gobj(), position);
 }
@@ -160,12 +158,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
 
 auto MultiFilter::property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >
 {
-  return Glib::PropertyProxy_ReadOnly< GType >(this, "item-type");
+  return {this, "item-type"};
 }
 
 auto MultiFilter::property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
-  return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "n-items");
+  return {this, "n-items"};
 }
 
 
@@ -175,9 +173,9 @@ auto MultiFilter::property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsi
 namespace Glib
 {
 
-auto wrap(GtkAnyFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::AnyFilter>
+auto wrap(GtkAnyFilter* object, const bool take_copy) -> RefPtr<Gtk::AnyFilter>
 {
-  return Glib::make_refptr_for_instance<Gtk::AnyFilter>( dynamic_cast<Gtk::AnyFilter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::AnyFilter>( dynamic_cast<Gtk::AnyFilter*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -190,7 +188,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto AnyFilter_Class::init() -> const Glib::Class&
+auto AnyFilter_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -230,32 +228,28 @@ auto AnyFilter::gobj_copy() -> GtkAnyFilter*
 }
 
 AnyFilter::AnyFilter(const Glib::ConstructParams& construct_params)
-:
-  Gtk::MultiFilter(construct_params)
+: MultiFilter(construct_params)
 {
 
 }
 
 AnyFilter::AnyFilter(GtkAnyFilter* castitem)
-:
-  Gtk::MultiFilter((GtkMultiFilter*)(castitem))
+: MultiFilter((GtkMultiFilter*)castitem)
 {}
 
 
 AnyFilter::AnyFilter(AnyFilter&& src) noexcept
-: Gtk::MultiFilter(std::move(src))
+: MultiFilter(std::move(src))
 {}
 
 auto AnyFilter::operator=(AnyFilter&& src) noexcept -> AnyFilter&
 {
-  Gtk::MultiFilter::operator=(std::move(src));
+  MultiFilter::operator=(std::move(src));
   return *this;
 }
 
 
-AnyFilter::~AnyFilter() noexcept
-{}
-
+AnyFilter::~AnyFilter() noexcept = default;
 
 AnyFilter::CppClassType AnyFilter::anyfilter_class_; // initialize static member
 
@@ -273,8 +267,8 @@ auto AnyFilter::get_base_type() -> GType
 AnyFilter::AnyFilter()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::MultiFilter(Glib::ConstructParams(anyfilter_class_.init()))
+ObjectBase(nullptr),
+MultiFilter(Glib::ConstructParams(anyfilter_class_.init()))
 {
 
 
@@ -292,9 +286,9 @@ auto AnyFilter::create() -> Glib::RefPtr<AnyFilter>
 namespace Glib
 {
 
-auto wrap(GtkEveryFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::EveryFilter>
+auto wrap(GtkEveryFilter* object, const bool take_copy) -> RefPtr<Gtk::EveryFilter>
 {
-  return Glib::make_refptr_for_instance<Gtk::EveryFilter>( dynamic_cast<Gtk::EveryFilter*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::EveryFilter>( dynamic_cast<Gtk::EveryFilter*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -307,7 +301,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto EveryFilter_Class::init() -> const Glib::Class&
+auto EveryFilter_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -347,32 +341,28 @@ auto EveryFilter::gobj_copy() -> GtkEveryFilter*
 }
 
 EveryFilter::EveryFilter(const Glib::ConstructParams& construct_params)
-:
-  Gtk::MultiFilter(construct_params)
+: MultiFilter(construct_params)
 {
 
 }
 
 EveryFilter::EveryFilter(GtkEveryFilter* castitem)
-:
-  Gtk::MultiFilter((GtkMultiFilter*)(castitem))
+: MultiFilter((GtkMultiFilter*)castitem)
 {}
 
 
 EveryFilter::EveryFilter(EveryFilter&& src) noexcept
-: Gtk::MultiFilter(std::move(src))
+: MultiFilter(std::move(src))
 {}
 
 auto EveryFilter::operator=(EveryFilter&& src) noexcept -> EveryFilter&
 {
-  Gtk::MultiFilter::operator=(std::move(src));
+  MultiFilter::operator=(std::move(src));
   return *this;
 }
 
 
-EveryFilter::~EveryFilter() noexcept
-{}
-
+EveryFilter::~EveryFilter() noexcept = default;
 
 EveryFilter::CppClassType EveryFilter::everyfilter_class_; // initialize static member
 
@@ -390,8 +380,8 @@ auto EveryFilter::get_base_type() -> GType
 EveryFilter::EveryFilter()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::MultiFilter(Glib::ConstructParams(everyfilter_class_.init()))
+ObjectBase(nullptr),
+MultiFilter(Glib::ConstructParams(everyfilter_class_.init()))
 {
 
 

@@ -31,10 +31,10 @@ namespace Pango
 
 using SListHandler_Attribute = Glib::SListHandler<Attribute, AttributeTraits>;
 
-AttrList::AttrList(const Glib::ustring& markup_text, gunichar accel_marker)
+AttrList::AttrList(const Glib::ustring& markup_text, const gunichar accel_marker)
 {
-  gboolean bTest = pango_parse_markup(markup_text.c_str(), -1 /* means null-terminated */, accel_marker,
-                   	                  &gobject_, 0, 0, 0);
+  const gboolean bTest = pango_parse_markup(markup_text.c_str(), -1 /* means null-terminated */, accel_marker,
+                                            &gobject_, 0, 0, 0);
   if(bTest == FALSE)
     gobject_ = nullptr;
 }
@@ -44,15 +44,15 @@ AttrList::operator bool() const
   return gobj() != nullptr;
 }
 
-AttrList::AttrList(const Glib::ustring& markup_text, gunichar accel_marker, Glib::ustring& text, gunichar& accel_char)
+AttrList::AttrList(const Glib::ustring& markup_text, const gunichar accel_marker, Glib::ustring& text, gunichar& accel_char)
 {
   //initialize output parameters:
   text.erase();
   accel_char = 0;
 
   gchar* pchText = nullptr;
-  gboolean bTest = pango_parse_markup(markup_text.c_str(), -1 /* means null-terminated */, accel_marker,
-                   	                  &gobject_, &pchText, &accel_char, 0);
+  const gboolean bTest = pango_parse_markup(markup_text.c_str(), -1 /* means null-terminated */, accel_marker,
+                                            &gobject_, &pchText, &accel_char, 0);
   if(bTest == FALSE)
   {
     gobject_ = nullptr;
@@ -89,7 +89,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(PangoAttrList* object, bool take_copy) -> Pango::AttrList
+auto wrap(PangoAttrList* object, const bool take_copy) -> Pango::AttrList
 {
   return Pango::AttrList(object, take_copy);
 }
@@ -114,7 +114,7 @@ AttrList::AttrList()
 
 AttrList::AttrList(const AttrList& other)
 :
-  gobject_ ((other.gobject_) ? pango_attr_list_copy(other.gobject_) : nullptr)
+  gobject_ (other.gobject_ ? pango_attr_list_copy(other.gobject_) : nullptr)
 {}
 
 AttrList::AttrList(AttrList&& other) noexcept
@@ -131,12 +131,12 @@ auto AttrList::operator=(AttrList&& other) noexcept -> AttrList&
   return *this;
 }
 
-AttrList::AttrList(PangoAttrList* gobject, bool make_a_copy)
+AttrList::AttrList(PangoAttrList* gobject, const bool make_a_copy)
 :
   // For BoxedType wrappers, make_a_copy is true by default.  The static
   // BoxedType wrappers must always take a copy, thus make_a_copy = true
   // ensures identical behaviour if the default argument is used.
-  gobject_ ((make_a_copy && gobject) ? pango_attr_list_copy(gobject) : gobject)
+  gobject_ (make_a_copy && gobject ? pango_attr_list_copy(gobject) : gobject)
 {}
 
 auto AttrList::operator=(const AttrList& other) -> AttrList&
@@ -163,12 +163,13 @@ auto AttrList::gobj_copy() const -> PangoAttrList*
 }
 
 
-auto AttrList::splice (AttrList &other, int pos, int len) -> void
+auto AttrList::splice (AttrList &other, const int pos, const int len) -> void
 {
-  pango_attr_list_splice(gobj(), (other).gobj(), pos, len);
+  pango_attr_list_splice(gobj(), other.gobj(), pos, len);
 }
 
-auto AttrList::update (int pos, int remove, int add) -> void
+auto AttrList::update (
+  const int pos, const int remove, const int add) -> void
 {
   pango_attr_list_update(gobj(), pos, remove, add);
 }
@@ -180,7 +181,7 @@ auto AttrList::get_attributes() const -> std::vector<Attribute>
 
 auto AttrList::equal(const AttrList& other_list) const -> bool
 {
-  return pango_attr_list_equal(const_cast<PangoAttrList*>(gobj()), const_cast<PangoAttrList*>((other_list).gobj()));
+  return pango_attr_list_equal(const_cast<PangoAttrList*>(gobj()), const_cast<PangoAttrList*>(other_list.gobj()));
 }
 
 auto AttrList::to_string() const -> Glib::ustring
@@ -195,7 +196,7 @@ auto AttrList::from_string(const Glib::ustring& text) -> AttrList
 
 auto AttrList::get_iter() -> AttrIter
 {
-  return Glib::wrap((pango_attr_list_get_iterator(gobj())));
+  return Glib::wrap(pango_attr_list_get_iterator(gobj()));
 }
 
 

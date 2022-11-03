@@ -16,11 +16,11 @@ public:
   using CppObjectType = Editable;
   using BaseObjectType = GtkEditable;
   using BaseClassType = GtkEditableInterface;
-  using CppClassParent = Glib::Interface_Class;
+  using CppClassParent = Interface_Class;
 
   friend class Editable;
 
-  auto init () -> const Glib::Interface_Class&;
+  auto init () -> const Interface_Class&;
 
   static auto iface_init_function (void *g_iface, void *iface_data) -> void;
 

@@ -50,9 +50,9 @@ auto Glib::Value<Gdk::SubpixelLayout>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GdkMonitor* object, bool take_copy) -> Glib::RefPtr<Gdk::Monitor>
+auto wrap(GdkMonitor* object, const bool take_copy) -> RefPtr<Gdk::Monitor>
 {
-  return Glib::make_refptr_for_instance<Gdk::Monitor>( dynamic_cast<Gdk::Monitor*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gdk::Monitor>( dynamic_cast<Gdk::Monitor*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -65,7 +65,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-auto Monitor_Class::init() -> const Glib::Class&
+auto Monitor_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -111,32 +111,28 @@ auto Monitor::gobj_copy() -> GdkMonitor*
 }
 
 Monitor::Monitor(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 Monitor::Monitor(GdkMonitor* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 Monitor::Monitor(Monitor&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto Monitor::operator=(Monitor&& src) noexcept -> Monitor&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-Monitor::~Monitor() noexcept
-{}
-
+Monitor::~Monitor() noexcept = default;
 
 Monitor::CppClassType Monitor::monitor_class_; // initialize static member
 
@@ -155,8 +151,8 @@ auto Monitor::get_base_type() -> GType
 Monitor::Monitor()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(monitor_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(monitor_class_.init()))
 {
 
 
@@ -177,7 +173,7 @@ auto Monitor::get_display() const -> Glib::RefPtr<const Display>
 
 auto Monitor::get_geometry (Rectangle &geometry) const -> void
 {
-  gdk_monitor_get_geometry(const_cast<GdkMonitor*>(gobj()), (geometry).gobj());
+  gdk_monitor_get_geometry(const_cast<GdkMonitor*>(gobj()), geometry.gobj());
 }
 
 auto Monitor::get_width_mm() const -> int
@@ -228,7 +224,7 @@ auto Monitor::is_valid() const -> bool
 
 auto Monitor::signal_invalidate() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &Monitor_signal_invalidate_info);
+  return {this, &Monitor_signal_invalidate_info};
 }
 
 
@@ -238,51 +234,51 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Display
 
 auto Monitor::property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >(this, "display");
+  return {this, "display"};
 }
 
 auto Monitor::property_manufacturer() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "manufacturer");
+  return {this, "manufacturer"};
 }
 
 auto Monitor::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "model");
+  return {this, "model"};
 }
 
 auto Monitor::property_connector() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "connector");
+  return {this, "connector"};
 }
 
 auto Monitor::property_scale_factor() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "scale-factor");
+  return {this, "scale-factor"};
 }
 
-static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::Rectangle>::value,
+static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Rectangle>::value,
   "Type Gdk::Rectangle cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-auto Monitor::property_geometry() const -> Glib::PropertyProxy_ReadOnly< Gdk::Rectangle >
+auto Monitor::property_geometry() const -> Glib::PropertyProxy_ReadOnly<Rectangle>
 {
-  return Glib::PropertyProxy_ReadOnly< Gdk::Rectangle >(this, "geometry");
+  return {this, "geometry"};
 }
 
 auto Monitor::property_width_mm() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "width-mm");
+  return {this, "width-mm"};
 }
 
 auto Monitor::property_height_mm() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "height-mm");
+  return {this, "height-mm"};
 }
 
 auto Monitor::property_refresh_rate() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "refresh-rate");
+  return {this, "refresh-rate"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<SubpixelLayout>::value,
@@ -291,12 +287,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<SubpixelLayout>::val
 
 auto Monitor::property_subpixel_layout() const -> Glib::PropertyProxy_ReadOnly< SubpixelLayout >
 {
-  return Glib::PropertyProxy_ReadOnly< SubpixelLayout >(this, "subpixel-layout");
+  return {this, "subpixel-layout"};
 }
 
 auto Monitor::property_valid() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "valid");
+  return {this, "valid"};
 }
 
 

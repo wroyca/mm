@@ -17,13 +17,13 @@ public:
   using CppObjectType = BoolFilter;
   using BaseObjectType = GtkBoolFilter;
   using BaseClassType = GtkBoolFilterClass;
-  using CppClassParent = Gtk::Filter_Class;
+  using CppClassParent = Filter_Class;
   using BaseClassParent = GtkFilterClass;
 
   friend class BoolFilter;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

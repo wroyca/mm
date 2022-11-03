@@ -34,9 +34,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkBinLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::BinLayout>
+auto wrap(GtkBinLayout* object, const bool take_copy) -> RefPtr<Gtk::BinLayout>
 {
-  return Glib::make_refptr_for_instance<Gtk::BinLayout>( dynamic_cast<Gtk::BinLayout*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::BinLayout>( dynamic_cast<Gtk::BinLayout*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -49,7 +49,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto BinLayout_Class::init() -> const Glib::Class&
+auto BinLayout_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -97,7 +97,7 @@ BinLayout::BinLayout(const Glib::ConstructParams& construct_params)
 
 BinLayout::BinLayout(GtkBinLayout* castitem)
 :
-  LayoutManager((GtkLayoutManager*)(castitem))
+  LayoutManager((GtkLayoutManager*)castitem)
 {}
 
 
@@ -112,9 +112,7 @@ auto BinLayout::operator=(BinLayout&& src) noexcept -> BinLayout&
 }
 
 
-BinLayout::~BinLayout() noexcept
-{}
-
+BinLayout::~BinLayout() noexcept = default;
 
 BinLayout::CppClassType BinLayout::binlayout_class_; // initialize static member
 
@@ -133,7 +131,7 @@ auto BinLayout::get_base_type() -> GType
 BinLayout::BinLayout()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   LayoutManager(Glib::ConstructParams(binlayout_class_.init()))
 {
 

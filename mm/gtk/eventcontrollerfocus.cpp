@@ -52,9 +52,9 @@ const Glib::SignalProxyInfo EventControllerFocus_signal_leave_info =
 namespace Glib
 {
 
-auto wrap(GtkEventControllerFocus* object, bool take_copy) -> Glib::RefPtr<Gtk::EventControllerFocus>
+auto wrap(GtkEventControllerFocus* object, const bool take_copy) -> RefPtr<Gtk::EventControllerFocus>
 {
-  return Glib::make_refptr_for_instance<Gtk::EventControllerFocus>( dynamic_cast<Gtk::EventControllerFocus*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::EventControllerFocus>( dynamic_cast<Gtk::EventControllerFocus*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -67,7 +67,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto EventControllerFocus_Class::init() -> const Glib::Class&
+auto EventControllerFocus_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -121,7 +121,7 @@ EventControllerFocus::EventControllerFocus(const Glib::ConstructParams& construc
 
 EventControllerFocus::EventControllerFocus(GtkEventControllerFocus* castitem)
 :
-  EventController((GtkEventController*)(castitem))
+  EventController((GtkEventController*)castitem)
 {}
 
 
@@ -136,9 +136,7 @@ auto EventControllerFocus::operator=(EventControllerFocus&& src) noexcept -> Eve
 }
 
 
-EventControllerFocus::~EventControllerFocus() noexcept
-{}
-
+EventControllerFocus::~EventControllerFocus() noexcept = default;
 
 EventControllerFocus::CppClassType EventControllerFocus::eventcontrollerfocus_class_; // initialize static member
 
@@ -157,7 +155,7 @@ auto EventControllerFocus::get_base_type() -> GType
 EventControllerFocus::EventControllerFocus()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   EventController(Glib::ConstructParams(eventcontrollerfocus_class_.init()))
 {
 
@@ -182,24 +180,24 @@ auto EventControllerFocus::is_focus() const -> bool
 
 auto EventControllerFocus::signal_enter() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &EventControllerFocus_signal_enter_info);
+  return {this, &EventControllerFocus_signal_enter_info};
 }
 
 
 auto EventControllerFocus::signal_leave() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &EventControllerFocus_signal_leave_info);
+  return {this, &EventControllerFocus_signal_leave_info};
 }
 
 
 auto EventControllerFocus::property_is_focus() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "is-focus");
+  return {this, "is-focus"};
 }
 
 auto EventControllerFocus::property_contains_focus() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "contains-focus");
+  return {this, "contains-focus"};
 }
 
 

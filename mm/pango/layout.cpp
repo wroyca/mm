@@ -39,9 +39,9 @@ struct LayoutLineTraits
   typedef PangoLayoutLine *         CTypeNonConst;
 
   static auto   to_c_type      (const CppType& ptr) -> CType { return Glib::unwrap(ptr);     }
-  static auto   to_c_type      (CType          ptr) -> CType { return ptr;                   }
-  static auto to_cpp_type    (CType          ptr) -> CppType { return Glib::wrap(ptr, true); }
-  static auto release_c_type (CType ptr) -> void { pango_layout_line_unref(ptr); }
+  static auto   to_c_type      (const CType          ptr) -> CType { return ptr;                   }
+  static auto to_cpp_type    (const CType          ptr) -> CppType { return Glib::wrap(ptr, true); }
+  static auto release_c_type (const CType ptr) -> void { pango_layout_line_unref(ptr); }
 };
 
 using SListHandler_LayoutLine = Glib::SListHandler<Glib::RefPtr<LayoutLine>, LayoutLineTraits>;
@@ -50,8 +50,7 @@ using SListHandler_ConstLayoutLine = Glib::SListHandler<Glib::RefPtr<const Layou
 } // anonymous namespace
 
 Layout::Layout(const Glib::RefPtr<Context>& context)
-:
-  Glib::Object(G_OBJECT(pango_layout_new(context->gobj())))
+: Object(G_OBJECT(pango_layout_new(context->gobj())))
 {}
 
 auto Layout::create(const Cairo::RefPtr<Cairo::Context>& context) -> Glib::RefPtr<Layout>
@@ -75,7 +74,7 @@ auto Layout::set_markup (const Glib::ustring &markup) -> void
 }
 
 auto Layout::set_markup (
-  const Glib::ustring &markup, gunichar accel_marker, gunichar &accel_char) -> void
+  const Glib::ustring &markup, const gunichar accel_marker, gunichar &accel_char) -> void
 {
   return pango_layout_set_markup_with_accel(gobj(), markup.c_str(), markup.bytes(), accel_marker, &accel_char);
 }
@@ -88,21 +87,24 @@ auto Layout::get_log_attrs() const -> std::vector<PangoLogAttr>
   return Glib::ArrayHandler<PangoLogAttr>::array_to_vector(pAttrs, n_attrs, Glib::OWNERSHIP_NONE);
 }
 
-auto Layout::index_to_pos(int index) const -> Rectangle
+auto Layout::index_to_pos(
+  const int index) const -> Rectangle
 {
   Rectangle pos;
   pango_layout_index_to_pos(const_cast<PangoLayout*>(gobj()), index, pos.gobj());
   return pos;
 }
 
-auto Layout::get_cursor_strong_pos(int index) const -> Rectangle
+auto Layout::get_cursor_strong_pos(
+  const int index) const -> Rectangle
 {
   Rectangle strong_pos;
   pango_layout_get_cursor_pos(const_cast<PangoLayout*>(gobj()), index, strong_pos.gobj(), 0);
   return strong_pos;
 }
 
-auto Layout::get_cursor_weak_pos(int index) const -> Rectangle
+auto Layout::get_cursor_weak_pos(
+  const int index) const -> Rectangle
 {
   Rectangle weak_pos;
   pango_layout_get_cursor_pos(const_cast<PangoLayout*>(gobj()), index, 0, weak_pos.gobj());
@@ -186,9 +188,9 @@ auto Glib::Value<Pango::EllipsizeMode>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(PangoLayout* object, bool take_copy) -> Glib::RefPtr<Pango::Layout>
+auto wrap(PangoLayout* object, const bool take_copy) -> RefPtr<Pango::Layout>
 {
-  return Glib::make_refptr_for_instance<Pango::Layout>( dynamic_cast<Pango::Layout*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Pango::Layout>( dynamic_cast<Pango::Layout*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -201,7 +203,7 @@ namespace Pango
 
 /* The *_Class implementation: */
 
-auto Layout_Class::init() -> const Glib::Class&
+auto Layout_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -247,32 +249,28 @@ auto Layout::gobj_copy() -> PangoLayout*
 }
 
 Layout::Layout(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 Layout::Layout(PangoLayout* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 Layout::Layout(Layout&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto Layout::operator=(Layout&& src) noexcept -> Layout&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-Layout::~Layout() noexcept
-{}
-
+Layout::~Layout() noexcept = default;
 
 Layout::CppClassType Layout::layout_class_; // initialize static member
 
@@ -308,12 +306,12 @@ auto Layout::get_context() const -> Glib::RefPtr<Context>
 
 auto Layout::set_attributes (AttrList &attrs) -> void
 {
-  pango_layout_set_attributes(gobj(), (attrs).gobj());
+  pango_layout_set_attributes(gobj(), attrs.gobj());
 }
 
 auto Layout::get_attributes() const -> AttrList
 {
-  return AttrList((pango_layout_get_attributes(const_cast<PangoLayout*>(gobj()))));
+  return AttrList(pango_layout_get_attributes(const_cast<PangoLayout*>(gobj())));
 }
 
 auto Layout::get_text() const -> Glib::ustring
@@ -328,7 +326,7 @@ auto Layout::get_character_count() const -> int
 
 auto Layout::set_font_description (const FontDescription &desc) -> void
 {
-  pango_layout_set_font_description(gobj(), (desc).gobj());
+  pango_layout_set_font_description(gobj(), desc.gobj());
 }
 
 auto Layout::get_font_description() const -> FontDescription
@@ -336,7 +334,8 @@ auto Layout::get_font_description() const -> FontDescription
   return FontDescription(const_cast<PangoFontDescription*>(pango_layout_get_font_description(const_cast<PangoLayout*>(gobj()))));
 }
 
-auto Layout::set_width (int width) -> void
+auto Layout::set_width (
+  const int width) -> void
 {
   pango_layout_set_width(gobj(), width);
 }
@@ -346,7 +345,8 @@ auto Layout::get_width() const -> int
   return pango_layout_get_width(const_cast<PangoLayout*>(gobj()));
 }
 
-auto Layout::set_height (int height) -> void
+auto Layout::set_height (
+  const int height) -> void
 {
   pango_layout_set_height(gobj(), height);
 }
@@ -371,7 +371,8 @@ auto Layout::is_wrapped() const -> bool
   return pango_layout_is_wrapped(const_cast<PangoLayout*>(gobj()));
 }
 
-auto Layout::set_indent (int indent) -> void
+auto Layout::set_indent (
+  const int indent) -> void
 {
   pango_layout_set_indent(gobj(), indent);
 }
@@ -381,7 +382,8 @@ auto Layout::get_indent() const -> int
   return pango_layout_get_indent(const_cast<PangoLayout*>(gobj()));
 }
 
-auto Layout::set_spacing (int spacing) -> void
+auto Layout::set_spacing (
+  const int spacing) -> void
 {
   pango_layout_set_spacing(gobj(), spacing);
 }
@@ -391,7 +393,8 @@ auto Layout::get_spacing() const -> int
   return pango_layout_get_spacing(const_cast<PangoLayout*>(gobj()));
 }
 
-auto Layout::set_line_spacing (float factor) -> void
+auto Layout::set_line_spacing (
+  const float factor) -> void
 {
   pango_layout_set_line_spacing(gobj(), factor);
 }
@@ -401,9 +404,10 @@ auto Layout::get_line_spacing() const -> float
   return pango_layout_get_line_spacing(const_cast<PangoLayout*>(gobj()));
 }
 
-auto Layout::set_justify (bool justify) -> void
+auto Layout::set_justify (
+  const bool justify) -> void
 {
-  pango_layout_set_justify(gobj(), static_cast<int>(justify));
+  pango_layout_set_justify(gobj(), justify);
 }
 
 auto Layout::get_justify() const -> bool
@@ -416,9 +420,10 @@ auto Layout::get_auto_dir() const -> bool
   return pango_layout_get_auto_dir(const_cast<PangoLayout*>(gobj()));
 }
 
-auto Layout::set_auto_dir (bool auto_dir) -> void
+auto Layout::set_auto_dir (
+  const bool auto_dir) -> void
 {
-  pango_layout_set_auto_dir(gobj(), static_cast<int>(auto_dir));
+  pango_layout_set_auto_dir(gobj(), auto_dir);
 }
 
 auto Layout::set_alignment (Alignment alignment) -> void
@@ -433,17 +438,18 @@ auto Layout::get_alignment() const -> Alignment
 
 auto Layout::set_tabs (TabArray &tabs) -> void
 {
-  pango_layout_set_tabs(gobj(), (tabs).gobj());
+  pango_layout_set_tabs(gobj(), tabs.gobj());
 }
 
 auto Layout::get_tabs() const -> TabArray
 {
-  return TabArray((pango_layout_get_tabs(const_cast<PangoLayout*>(gobj()))));
+  return TabArray(pango_layout_get_tabs(const_cast<PangoLayout*>(gobj())));
 }
 
-auto Layout::set_single_paragraph_mode (bool setting) -> void
+auto Layout::set_single_paragraph_mode (
+  const bool setting) -> void
 {
-  pango_layout_set_single_paragraph_mode(gobj(), static_cast<int>(setting));
+  pango_layout_set_single_paragraph_mode(gobj(), setting);
 }
 
 auto Layout::get_single_paragraph_mode() const -> bool
@@ -481,46 +487,49 @@ auto Layout::get_serial() const -> guint
   return pango_layout_get_serial(const_cast<PangoLayout*>(gobj()));
 }
 
-auto Layout::index_to_line_x (int index_, bool trailing, int &line, int &x_pos) const -> void
+auto Layout::index_to_line_x (
+  const int index_, const bool trailing, int &line, int &x_pos) const -> void
 {
-  pango_layout_index_to_line_x(const_cast<PangoLayout*>(gobj()), index_, static_cast<int>(trailing), &(line), &(x_pos));
+  pango_layout_index_to_line_x(const_cast<PangoLayout*>(gobj()), index_, trailing, &line, &x_pos);
 }
 
-auto Layout::get_cursor_pos (int index, Rectangle &strong_pos, Rectangle &weak_pos) const -> void
+auto Layout::get_cursor_pos (
+  const int index, Rectangle &strong_pos, Rectangle &weak_pos) const -> void
 {
-  pango_layout_get_cursor_pos(const_cast<PangoLayout*>(gobj()), index, (strong_pos).gobj(), (weak_pos).gobj());
+  pango_layout_get_cursor_pos(const_cast<PangoLayout*>(gobj()), index, strong_pos.gobj(), weak_pos.gobj());
 }
 
 auto Layout::move_cursor_visually (
-  bool strong, int old_index, int old_trailing, int direction, int &new_index,
+  const bool strong, const int old_index, const int old_trailing, const int direction, int &new_index,
   int &new_trailing) const -> void
 {
-  pango_layout_move_cursor_visually(const_cast<PangoLayout*>(gobj()), static_cast<int>(strong), old_index, old_trailing, direction, &(new_index), &(new_trailing));
+  pango_layout_move_cursor_visually(const_cast<PangoLayout*>(gobj()), strong, old_index, old_trailing, direction, &new_index, &new_trailing);
 }
 
-auto Layout::xy_to_index(int x, int y, int& index, int& trailing) const -> bool
+auto Layout::xy_to_index(
+  const int x, const int y, int& index, int& trailing) const -> bool
 {
-  return pango_layout_xy_to_index(const_cast<PangoLayout*>(gobj()), x, y, &(index), &(trailing));
+  return pango_layout_xy_to_index(const_cast<PangoLayout*>(gobj()), x, y, &index, &trailing);
 }
 
 auto Layout::get_extents (Rectangle &ink_rect, Rectangle &logical_rect) const -> void
 {
-  pango_layout_get_extents(const_cast<PangoLayout*>(gobj()), (ink_rect).gobj(), (logical_rect).gobj());
+  pango_layout_get_extents(const_cast<PangoLayout*>(gobj()), ink_rect.gobj(), logical_rect.gobj());
 }
 
 auto Layout::get_pixel_extents (Rectangle &ink_rect, Rectangle &logical_rect) const -> void
 {
-  pango_layout_get_pixel_extents(const_cast<PangoLayout*>(gobj()), (ink_rect).gobj(), (logical_rect).gobj());
+  pango_layout_get_pixel_extents(const_cast<PangoLayout*>(gobj()), ink_rect.gobj(), logical_rect.gobj());
 }
 
 auto Layout::get_size (int &width, int &height) const -> void
 {
-  pango_layout_get_size(const_cast<PangoLayout*>(gobj()), &(width), &(height));
+  pango_layout_get_size(const_cast<PangoLayout*>(gobj()), &width, &height);
 }
 
 auto Layout::get_pixel_size (int &width, int &height) const -> void
 {
-  pango_layout_get_pixel_size(const_cast<PangoLayout*>(gobj()), &(width), &(height));
+  pango_layout_get_pixel_size(const_cast<PangoLayout*>(gobj()), &width, &height);
 }
 
 auto Layout::get_baseline() const -> int
@@ -533,7 +542,8 @@ auto Layout::get_line_count() const -> int
   return pango_layout_get_line_count(const_cast<PangoLayout*>(gobj()));
 }
 
-auto Layout::get_line(int line) -> Glib::RefPtr<LayoutLine>
+auto Layout::get_line(
+  const int line) -> Glib::RefPtr<LayoutLine>
 {
   auto retvalue = Glib::wrap(pango_layout_get_line(gobj(), line));
   if(retvalue)
@@ -541,7 +551,8 @@ auto Layout::get_line(int line) -> Glib::RefPtr<LayoutLine>
   return retvalue;
 }
 
-auto Layout::get_line(int line) const -> Glib::RefPtr<const LayoutLine>
+auto Layout::get_line(
+  const int line) const -> Glib::RefPtr<const LayoutLine>
 {
   auto retvalue = Glib::wrap(pango_layout_get_line_readonly(const_cast<PangoLayout*>(gobj()), line));
   if(retvalue)
@@ -549,7 +560,8 @@ auto Layout::get_line(int line) const -> Glib::RefPtr<const LayoutLine>
   return retvalue;
 }
 
-auto Layout::get_const_line(int line) const -> Glib::RefPtr<const LayoutLine>
+auto Layout::get_const_line(
+  const int line) const -> Glib::RefPtr<const LayoutLine>
 {
   auto retvalue = Glib::wrap(pango_layout_get_line_readonly(const_cast<PangoLayout*>(gobj()), line));
   if(retvalue)

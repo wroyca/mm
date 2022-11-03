@@ -29,7 +29,7 @@ namespace
 {
 auto GLTexture_destroy_callback (void *data) -> void
 {
-  auto the_slot = static_cast<Gdk::GLTexture::SlotGLReleased*>(data);
+  const auto the_slot = static_cast<Gdk::GLTexture::SlotGLReleased*>(data);
   try
   {
     (*the_slot)();
@@ -51,9 +51,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GdkGLTexture* object, bool take_copy) -> Glib::RefPtr<Gdk::GLTexture>
+auto wrap(GdkGLTexture* object, const bool take_copy) -> RefPtr<Gdk::GLTexture>
 {
-  return Glib::make_refptr_for_instance<Gdk::GLTexture>( dynamic_cast<Gdk::GLTexture*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gdk::GLTexture>( dynamic_cast<Gdk::GLTexture*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -66,7 +66,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-auto GLTexture_Class::init() -> const Glib::Class&
+auto GLTexture_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -112,32 +112,28 @@ auto GLTexture::gobj_copy() -> GdkGLTexture*
 }
 
 GLTexture::GLTexture(const Glib::ConstructParams& construct_params)
-:
-  Gdk::Texture(construct_params)
+: Texture(construct_params)
 {
 
 }
 
 GLTexture::GLTexture(GdkGLTexture* castitem)
-:
-  Gdk::Texture((GdkTexture*)(castitem))
+: Texture((GdkTexture*)castitem)
 {}
 
 
 GLTexture::GLTexture(GLTexture&& src) noexcept
-: Gdk::Texture(std::move(src))
+: Texture(std::move(src))
 {}
 
 auto GLTexture::operator=(GLTexture&& src) noexcept -> GLTexture&
 {
-  Gdk::Texture::operator=(std::move(src));
+  Texture::operator=(std::move(src));
   return *this;
 }
 
 
-GLTexture::~GLTexture() noexcept
-{}
-
+GLTexture::~GLTexture() noexcept = default;
 
 GLTexture::CppClassType GLTexture::gltexture_class_; // initialize static member
 
@@ -156,17 +152,17 @@ auto GLTexture::get_base_type() -> GType
 GLTexture::GLTexture()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gdk::Texture(Glib::ConstructParams(gltexture_class_.init()))
+ObjectBase(nullptr),
+Texture(Glib::ConstructParams(gltexture_class_.init()))
 {
 
 
 }
 
-auto GLTexture::create(const Glib::RefPtr<GLContext>& context, guint id, int width, int height, const SlotGLReleased& slot) -> Glib::RefPtr<Texture>
+auto GLTexture::create(const Glib::RefPtr<GLContext>& context, const guint id, const int width, const int height, const SlotGLReleased& slot) -> Glib::RefPtr<Texture>
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotGLReleased(slot);
+  const auto slot_copy = new SlotGLReleased(slot);
 
   return Glib::wrap(gdk_gl_texture_new(Glib::unwrap(context), id, width, height, &GLTexture_destroy_callback, slot_copy));
 }

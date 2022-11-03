@@ -30,12 +30,12 @@ namespace
 
 
 auto GestureClick_signal_pressed_callback (
-  GtkGestureClick *self, gint p0, gdouble p1, gdouble p2, void *data) -> void
+  GtkGestureClick *self, const gint p0, const gdouble p1, const gdouble p2, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(int, double, double)>;
 
-  auto obj = dynamic_cast<GestureClick*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<GestureClick*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -63,12 +63,12 @@ const Glib::SignalProxyInfo GestureClick_signal_pressed_info =
 
 
 auto GestureClick_signal_released_callback (
-  GtkGestureClick *self, gint p0, gdouble p1, gdouble p2, void *data) -> void
+  GtkGestureClick *self, const gint p0, const gdouble p1, const gdouble p2, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(int, double, double)>;
 
-  auto obj = dynamic_cast<GestureClick*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<GestureClick*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -104,12 +104,12 @@ const Glib::SignalProxyInfo GestureClick_signal_stopped_info =
 
 
 auto GestureClick_signal_unpaired_release_callback (
-  GtkGestureClick *self, gdouble p0, gdouble p1, guint p2, GdkEventSequence *p3, void *data) -> void
+  GtkGestureClick *self, const gdouble p0, const gdouble p1, const guint p2, GdkEventSequence *p3, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double, double, guint, Gdk::EventSequence*)>;
 
-  auto obj = dynamic_cast<GestureClick*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<GestureClick*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -142,9 +142,9 @@ const Glib::SignalProxyInfo GestureClick_signal_unpaired_release_info =
 namespace Glib
 {
 
-auto wrap(GtkGestureClick* object, bool take_copy) -> Glib::RefPtr<Gtk::GestureClick>
+auto wrap(GtkGestureClick* object, const bool take_copy) -> RefPtr<Gtk::GestureClick>
 {
-  return Glib::make_refptr_for_instance<Gtk::GestureClick>( dynamic_cast<Gtk::GestureClick*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::GestureClick>( dynamic_cast<Gtk::GestureClick*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -157,7 +157,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto GestureClick_Class::init() -> const Glib::Class&
+auto GestureClick_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -211,7 +211,7 @@ GestureClick::GestureClick(const Glib::ConstructParams& construct_params)
 
 GestureClick::GestureClick(GtkGestureClick* castitem)
 :
-  GestureSingle((GtkGestureSingle*)(castitem))
+  GestureSingle((GtkGestureSingle*)castitem)
 {}
 
 
@@ -226,9 +226,7 @@ auto GestureClick::operator=(GestureClick&& src) noexcept -> GestureClick&
 }
 
 
-GestureClick::~GestureClick() noexcept
-{}
-
+GestureClick::~GestureClick() noexcept = default;
 
 GestureClick::CppClassType GestureClick::gestureclick_class_; // initialize static member
 
@@ -247,7 +245,7 @@ auto GestureClick::get_base_type() -> GType
 GestureClick::GestureClick()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   GestureSingle(Glib::ConstructParams(gestureclick_class_.init()))
 {
 
@@ -262,25 +260,25 @@ auto GestureClick::create() -> Glib::RefPtr<GestureClick>
 
 auto GestureClick::signal_pressed() -> Glib::SignalProxy<void(int, double, double)>
 {
-  return Glib::SignalProxy<void(int, double, double) >(this, &GestureClick_signal_pressed_info);
+  return {this, &GestureClick_signal_pressed_info};
 }
 
 
 auto GestureClick::signal_released() -> Glib::SignalProxy<void(int, double, double)>
 {
-  return Glib::SignalProxy<void(int, double, double) >(this, &GestureClick_signal_released_info);
+  return {this, &GestureClick_signal_released_info};
 }
 
 
 auto GestureClick::signal_stopped() -> Glib::SignalProxy<void()>
 {
-  return Glib::SignalProxy<void() >(this, &GestureClick_signal_stopped_info);
+  return {this, &GestureClick_signal_stopped_info};
 }
 
 
 auto GestureClick::signal_unpaired_release() -> Glib::SignalProxy<void(double, double, guint, Gdk::EventSequence*)>
 {
-  return Glib::SignalProxy<void(double, double, guint, Gdk::EventSequence*) >(this, &GestureClick_signal_unpaired_release_info);
+  return {this, &GestureClick_signal_unpaired_release_info};
 }
 
 

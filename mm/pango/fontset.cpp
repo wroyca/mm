@@ -25,12 +25,12 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-static auto fontset_foreach_callback(PangoFontset* /* fontset */, PangoFont* font, gpointer data) -> gboolean
+static auto fontset_foreach_callback(PangoFontset* /* fontset */, PangoFont* font, const gpointer data) -> gboolean
 {
   try
   {
-    auto& slot = *static_cast<Pango::Fontset::ForeachSlot*>(data);
-    auto cppFont = Glib::wrap(font, true /* take_copy */);
+    const auto& slot = *static_cast<Pango::Fontset::ForeachSlot*>(data);
+    const auto cppFont = Glib::wrap(font, true /* take_copy */);
 
     return slot(cppFont);
   }
@@ -61,9 +61,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(PangoFontset* object, bool take_copy) -> Glib::RefPtr<Pango::Fontset>
+auto wrap(PangoFontset* object, const bool take_copy) -> RefPtr<Pango::Fontset>
 {
-  return Glib::make_refptr_for_instance<Pango::Fontset>( dynamic_cast<Pango::Fontset*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Pango::Fontset>( dynamic_cast<Pango::Fontset*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -76,7 +76,7 @@ namespace Pango
 
 /* The *_Class implementation: */
 
-auto Fontset_Class::init() -> const Glib::Class&
+auto Fontset_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -122,32 +122,28 @@ auto Fontset::gobj_copy() -> PangoFontset*
 }
 
 Fontset::Fontset(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 Fontset::Fontset(PangoFontset* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 Fontset::Fontset(Fontset&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto Fontset::operator=(Fontset&& src) noexcept -> Fontset&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-Fontset::~Fontset() noexcept
-{}
-
+Fontset::~Fontset() noexcept = default;
 
 Fontset::CppClassType Fontset::fontset_class_; // initialize static member
 
@@ -163,14 +159,15 @@ auto Fontset::get_base_type() -> GType
 }
 
 
-auto Fontset::get_font(guint wc) const -> Glib::RefPtr<Font>
+auto Fontset::get_font(
+  const guint wc) const -> Glib::RefPtr<Font>
 {
   return Glib::wrap(pango_fontset_get_font(const_cast<PangoFontset*>(gobj()), wc));
 }
 
 auto Fontset::get_metrics() const -> FontMetrics
 {
-  return FontMetrics((pango_fontset_get_metrics(const_cast<PangoFontset*>(gobj()))));
+  return FontMetrics(pango_fontset_get_metrics(const_cast<PangoFontset*>(gobj())));
 }
 
 

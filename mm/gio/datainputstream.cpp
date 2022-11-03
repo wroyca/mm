@@ -38,7 +38,7 @@ DataInputStream::read_line(std::string& line, const Glib::RefPtr<Cancellable>& c
     nullptr, // pass nullptr since we can easily determine the length from the returned std::string
     Glib::unwrap(cancellable), &gerror);
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   if (c_line)
   {
     line = c_line;
@@ -57,7 +57,7 @@ DataInputStream::read_line(std::string& line) -> bool
     nullptr, // pass nullptr since we can easily determine the length from the returned std::string
     nullptr, &gerror);
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   if (c_line)
   {
     line = c_line;
@@ -69,13 +69,12 @@ DataInputStream::read_line(std::string& line) -> bool
 }
 
 auto DataInputStream::read_line_async (
-  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
-  int io_priority) -> void
+  const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_data_input_stream_read_line_async(
     gobj(), io_priority, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
@@ -87,14 +86,14 @@ DataInputStream::read_line_finish(const Glib::RefPtr<AsyncResult>& result, std::
   GError* gerror = nullptr;
   gsize size = 0;
   gchar* buffer =
-    g_data_input_stream_read_line_finish(gobj(), Glib::unwrap(result), &size, &(gerror));
+    g_data_input_stream_read_line_finish(gobj(), Glib::unwrap(result), &size, &gerror);
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 
   bool retval = false;
   if (buffer && size)
   {
-    retval = (buffer != nullptr);
+    retval = buffer != nullptr;
     data = std::string(buffer, size);
     g_free(buffer);
   }
@@ -111,7 +110,7 @@ DataInputStream::read_upto(
     nullptr, // pass nullptr since we can easily determine the length from the returned std::string
     Glib::unwrap(cancellable), &gerror);
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   if (c_str)
   {
     data = c_str;
@@ -133,7 +132,7 @@ DataInputStream::read_upto(std::string& data, const std::string& stop_chars) -> 
     nullptr, &gerror);
 
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 
   if (c_str)
   {
@@ -148,12 +147,12 @@ DataInputStream::read_upto(std::string& data, const std::string& stop_chars) -> 
 
 auto DataInputStream::read_upto_async (
   const std::string &stop_chars, const SlotAsyncReady &slot,
-  const Glib::RefPtr <Cancellable> &cancellable, int io_priority) -> void
+  const Glib::RefPtr <Cancellable> &cancellable, const int io_priority) -> void
 {
   // Create a copy of the slot.
   // A pointer to it will be passed through the callback's data parameter
   // and deleted in the callback.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_data_input_stream_read_upto_async(gobj(), stop_chars.c_str(), -1, /* null-terminated */
     io_priority, Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
@@ -165,14 +164,14 @@ DataInputStream::read_upto_finish(const Glib::RefPtr<AsyncResult>& result, std::
   GError* gerror = nullptr;
   gsize size = 0;
   gchar* buffer =
-    g_data_input_stream_read_upto_finish(gobj(), Glib::unwrap(result), &size, &(gerror));
+    g_data_input_stream_read_upto_finish(gobj(), Glib::unwrap(result), &size, &gerror);
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 
   bool retval = false;
   if (buffer && size)
   {
-    retval = (buffer != nullptr);
+    retval = buffer != nullptr;
     data = std::string(buffer, size);
     g_free(buffer);
   }
@@ -190,9 +189,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GDataInputStream* object, bool take_copy) -> Glib::RefPtr<Gio::DataInputStream>
+auto wrap(GDataInputStream* object, const bool take_copy) -> RefPtr<Gio::DataInputStream>
 {
-  return Glib::make_refptr_for_instance<Gio::DataInputStream>( dynamic_cast<Gio::DataInputStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::DataInputStream>( dynamic_cast<Gio::DataInputStream*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -205,7 +204,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto DataInputStream_Class::init() -> const Glib::Class&
+auto DataInputStream_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -251,32 +250,28 @@ auto DataInputStream::gobj_copy() -> GDataInputStream*
 }
 
 DataInputStream::DataInputStream(const Glib::ConstructParams& construct_params)
-:
-  Gio::BufferedInputStream(construct_params)
+: BufferedInputStream(construct_params)
 {
 
 }
 
 DataInputStream::DataInputStream(GDataInputStream* castitem)
-:
-  Gio::BufferedInputStream((GBufferedInputStream*)(castitem))
+: BufferedInputStream((GBufferedInputStream*)castitem)
 {}
 
 
 DataInputStream::DataInputStream(DataInputStream&& src) noexcept
-: Gio::BufferedInputStream(std::move(src))
+: BufferedInputStream(std::move(src))
 {}
 
 auto DataInputStream::operator=(DataInputStream&& src) noexcept -> DataInputStream&
 {
-  Gio::BufferedInputStream::operator=(std::move(src));
+  BufferedInputStream::operator=(std::move(src));
   return *this;
 }
 
 
-DataInputStream::~DataInputStream() noexcept
-{}
-
+DataInputStream::~DataInputStream() noexcept = default;
 
 DataInputStream::CppClassType DataInputStream::datainputstream_class_; // initialize static member
 
@@ -295,8 +290,8 @@ auto DataInputStream::get_base_type() -> GType
 DataInputStream::DataInputStream(const Glib::RefPtr<InputStream>& base_stream)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gio::BufferedInputStream(Glib::ConstructParams(datainputstream_class_.init(), "base_stream", const_cast<GInputStream*>(Glib::unwrap(base_stream)), nullptr))
+ObjectBase(nullptr),
+BufferedInputStream(Glib::ConstructParams(datainputstream_class_.init(), "base_stream", Glib::unwrap(base_stream), nullptr))
 {
 
 
@@ -330,126 +325,126 @@ auto DataInputStream::get_newline_type() const -> DataStreamNewlineType
 auto DataInputStream::read_byte(const Glib::RefPtr<Cancellable>& cancellable) -> guchar
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_input_stream_read_byte(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_data_input_stream_read_byte(gobj(), Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto DataInputStream::read_byte() -> guchar
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_input_stream_read_byte(gobj(), nullptr, &(gerror));
+  const auto retvalue = g_data_input_stream_read_byte(gobj(), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto DataInputStream::read_int16(const Glib::RefPtr<Cancellable>& cancellable) -> gint16
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_input_stream_read_int16(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_data_input_stream_read_int16(gobj(), Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto DataInputStream::read_int16() -> gint16
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_input_stream_read_int16(gobj(), nullptr, &(gerror));
+  const auto retvalue = g_data_input_stream_read_int16(gobj(), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto DataInputStream::read_uint16(const Glib::RefPtr<Cancellable>& cancellable) -> guint16
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_input_stream_read_uint16(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_data_input_stream_read_uint16(gobj(), Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto DataInputStream::read_uint16() -> guint16
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_input_stream_read_uint16(gobj(), nullptr, &(gerror));
+  const auto retvalue = g_data_input_stream_read_uint16(gobj(), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto DataInputStream::read_int32(const Glib::RefPtr<Cancellable>& cancellable) -> gint32
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_input_stream_read_int32(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_data_input_stream_read_int32(gobj(), Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto DataInputStream::read_int32() -> gint32
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_input_stream_read_int32(gobj(), nullptr, &(gerror));
+  const auto retvalue = g_data_input_stream_read_int32(gobj(), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto DataInputStream::read_uint32(const Glib::RefPtr<Cancellable>& cancellable) -> guint32
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_input_stream_read_uint32(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_data_input_stream_read_uint32(gobj(), Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto DataInputStream::read_uint32() -> guint32
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_input_stream_read_uint32(gobj(), nullptr, &(gerror));
+  const auto retvalue = g_data_input_stream_read_uint32(gobj(), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto DataInputStream::read_int64(const Glib::RefPtr<Cancellable>& cancellable) -> gint64
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_input_stream_read_int64(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_data_input_stream_read_int64(gobj(), Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto DataInputStream::read_int64() -> gint64
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_input_stream_read_int64(gobj(), nullptr, &(gerror));
+  const auto retvalue = g_data_input_stream_read_int64(gobj(), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto DataInputStream::read_uint64(const Glib::RefPtr<Cancellable>& cancellable) -> guint64
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_input_stream_read_uint64(gobj(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_data_input_stream_read_uint64(gobj(), Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto DataInputStream::read_uint64() -> guint64
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_input_stream_read_uint64(gobj(), nullptr, &(gerror));
+  const auto retvalue = g_data_input_stream_read_uint64(gobj(), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -457,52 +452,52 @@ auto DataInputStream::read_line_utf8 (
   std::string &line, const Glib::RefPtr <Cancellable> &cancellable, gsize &length) -> void
 {
   GError* gerror = nullptr;
-  line = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_utf8(gobj(), &(length), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
+  line = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_utf8(gobj(), &length, Glib::unwrap(cancellable), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
 auto DataInputStream::read_line_utf8 (
   std::string &line, const Glib::RefPtr <Cancellable> &cancellable) -> void
 {
   GError* gerror = nullptr;
-  line = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_utf8(gobj(), nullptr, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
+  line = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_utf8(gobj(), nullptr, Glib::unwrap(cancellable), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
 auto DataInputStream::read_line_utf8 (std::string &line, gsize &length) -> void
 {
   GError* gerror = nullptr;
-  line = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_utf8(gobj(), &(length), nullptr, &(gerror)));
+  line = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_utf8(gobj(), &length, nullptr, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
 auto DataInputStream::read_line_utf8 (std::string &line) -> void
 {
   GError* gerror = nullptr;
-  line = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_utf8(gobj(), nullptr, nullptr, &(gerror)));
+  line = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_utf8(gobj(), nullptr, nullptr, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
 auto DataInputStream::read_line_finish_utf8 (
   const Glib::RefPtr <AsyncResult> &result, std::string &data, gsize &length) -> void
 {
   GError* gerror = nullptr;
-  data = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_finish_utf8(gobj(), Glib::unwrap(result), &(length), &(gerror)));
+  data = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_finish_utf8(gobj(), Glib::unwrap(result), &length, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
 auto DataInputStream::read_line_finish_utf8 (
   const Glib::RefPtr <AsyncResult> &result, std::string &data) -> void
 {
   GError* gerror = nullptr;
-  data = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_finish_utf8(gobj(), Glib::unwrap(result), nullptr, &(gerror)));
+  data = Glib::convert_return_gchar_ptr_to_stdstring(g_data_input_stream_read_line_finish_utf8(gobj(), Glib::unwrap(result), nullptr, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 }
 
 
@@ -512,12 +507,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<DataStreamByteOrder>
 
 auto DataInputStream::property_byte_order() -> Glib::PropertyProxy< DataStreamByteOrder >
 {
-  return Glib::PropertyProxy< DataStreamByteOrder >(this, "byte-order");
+  return {this, "byte-order"};
 }
 
 auto DataInputStream::property_byte_order() const -> Glib::PropertyProxy_ReadOnly< DataStreamByteOrder >
 {
-  return Glib::PropertyProxy_ReadOnly< DataStreamByteOrder >(this, "byte-order");
+  return {this, "byte-order"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<DataStreamNewlineType>::value,
@@ -526,12 +521,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<DataStreamNewlineTyp
 
 auto DataInputStream::property_newline_type() -> Glib::PropertyProxy< DataStreamNewlineType >
 {
-  return Glib::PropertyProxy< DataStreamNewlineType >(this, "newline-type");
+  return {this, "newline-type"};
 }
 
 auto DataInputStream::property_newline_type() const -> Glib::PropertyProxy_ReadOnly< DataStreamNewlineType >
 {
-  return Glib::PropertyProxy_ReadOnly< DataStreamNewlineType >(this, "newline-type");
+  return {this, "newline-type"};
 }
 
 

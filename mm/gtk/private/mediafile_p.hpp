@@ -17,13 +17,13 @@ public:
   using CppObjectType = MediaFile;
   using BaseObjectType = GtkMediaFile;
   using BaseClassType = GtkMediaFileClass;
-  using CppClassParent = Gtk::MediaStream_Class;
+  using CppClassParent = MediaStream_Class;
   using BaseClassParent = GtkMediaStreamClass;
 
   friend class MediaFile;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

@@ -20,13 +20,13 @@ public:
   using CppObjectType = MenuModel;
   using BaseObjectType = GDBusMenuModel;
   using BaseClassType = GDBusMenuModelClass;
-  using CppClassParent = ::Gio::MenuModel_Class;
+  using CppClassParent = Gio::MenuModel_Class;
   using BaseClassParent = GMenuModelClass;
 
   friend class MenuModel;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

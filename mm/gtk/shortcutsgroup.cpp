@@ -42,9 +42,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkShortcutsGroup* object, bool take_copy) -> Gtk::ShortcutsGroup*
+auto wrap(GtkShortcutsGroup* object, const bool take_copy) -> Gtk::ShortcutsGroup*
 {
-  return dynamic_cast<Gtk::ShortcutsGroup *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::ShortcutsGroup *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -55,7 +55,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto ShortcutsGroup_Class::init() -> const Glib::Class&
+auto ShortcutsGroup_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -88,7 +88,7 @@ auto ShortcutsGroup_Class::class_init_function (void *g_class, void *class_data)
 
 auto ShortcutsGroup_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new ShortcutsGroup((GtkShortcutsGroup*)(o)));
+  return manage(new ShortcutsGroup((GtkShortcutsGroup*)o));
 
 }
 
@@ -103,7 +103,7 @@ ShortcutsGroup::ShortcutsGroup(const Glib::ConstructParams& construct_params)
 
 ShortcutsGroup::ShortcutsGroup(GtkShortcutsGroup* castitem)
 :
-  Box((GtkBox*)(castitem))
+  Box((GtkBox*)castitem)
 {
   }
 
@@ -140,7 +140,7 @@ auto ShortcutsGroup::get_base_type() -> GType
 ShortcutsGroup::ShortcutsGroup()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   Box(Glib::ConstructParams(shortcutsgroup_class_.init()))
 {
 
@@ -150,22 +150,22 @@ ShortcutsGroup::ShortcutsGroup()
 
 auto ShortcutsGroup::property_title() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 auto ShortcutsGroup::property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "title");
+  return {this, "title"};
 }
 
 auto ShortcutsGroup::property_view() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "view");
+  return {this, "view"};
 }
 
 auto ShortcutsGroup::property_view() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "view");
+  return {this, "view"};
 }
 
 

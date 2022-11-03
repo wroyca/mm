@@ -62,9 +62,9 @@ auto Glib::Value<Gio::TlsDatabase::LookupFlags>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GTlsDatabase* object, bool take_copy) -> Glib::RefPtr<Gio::TlsDatabase>
+auto wrap(GTlsDatabase* object, const bool take_copy) -> RefPtr<Gio::TlsDatabase>
 {
-  return Glib::make_refptr_for_instance<Gio::TlsDatabase>( dynamic_cast<Gio::TlsDatabase*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::TlsDatabase>( dynamic_cast<Gio::TlsDatabase*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -77,7 +77,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto TlsDatabase_Class::init() -> const Glib::Class&
+auto TlsDatabase_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -122,8 +122,7 @@ auto TlsDatabase_Class::class_init_function (void *g_class, void *class_data) ->
 
 auto TlsDatabase_Class::verify_chain_vfunc_callback(GTlsDatabase* self, GTlsCertificate* chain, const gchar* purpose, GSocketConnectable* identity, GTlsInteraction* interaction, GTlsDatabaseVerifyFlags flags, GCancellable* cancellable, GError** error) -> GTlsCertificateFlags
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -159,7 +158,7 @@ auto TlsDatabase_Class::verify_chain_vfunc_callback(GTlsDatabase* self, GTlsCert
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -172,13 +171,11 @@ auto TlsDatabase_Class::verify_chain_vfunc_callback(GTlsDatabase* self, GTlsCert
 }
 auto TlsDatabase_Class::verify_chain_async_vfunc_callback (
   GTlsDatabase *self, GTlsCertificate *chain, const gchar *purpose, GSocketConnectable *identity,
-  GTlsInteraction *interaction, GTlsDatabaseVerifyFlags flags, GCancellable *cancellable,
-  GAsyncReadyCallback callback, gpointer user_data) -> void
+  GTlsInteraction *interaction, GTlsDatabaseVerifyFlags flags, GCancellable *cancellable, const GAsyncReadyCallback callback, const gpointer user_data) -> void
 {
-  const auto slot = static_cast<Gio::SlotAsyncReady*>(user_data);
+  const auto slot = static_cast<SlotAsyncReady *>(user_data);
 
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -209,7 +206,7 @@ auto TlsDatabase_Class::verify_chain_async_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -219,8 +216,7 @@ auto TlsDatabase_Class::verify_chain_async_vfunc_callback (
 }
 auto TlsDatabase_Class::verify_chain_finish_vfunc_callback(GTlsDatabase* self, GAsyncResult* result, GError** error) -> GTlsCertificateFlags
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -251,7 +247,7 @@ auto TlsDatabase_Class::verify_chain_finish_vfunc_callback(GTlsDatabase* self, G
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -264,8 +260,7 @@ auto TlsDatabase_Class::verify_chain_finish_vfunc_callback(GTlsDatabase* self, G
 }
 auto TlsDatabase_Class::create_certificate_handle_vfunc_callback(GTlsDatabase* self, GTlsCertificate* certificate) -> gchar*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -280,7 +275,8 @@ auto TlsDatabase_Class::create_certificate_handle_vfunc_callback(GTlsDatabase* s
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return g_strdup(Glib::c_str_or_nullptr(obj->create_certificate_handle_vfunc(Glib::wrap(certificate, true)
+        return g_strdup(
+          c_str_or_nullptr(obj->create_certificate_handle_vfunc(Glib::wrap(certificate, true)
 )));
       }
       catch(...)
@@ -290,7 +286,7 @@ auto TlsDatabase_Class::create_certificate_handle_vfunc_callback(GTlsDatabase* s
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -303,8 +299,7 @@ auto TlsDatabase_Class::create_certificate_handle_vfunc_callback(GTlsDatabase* s
 }
 auto TlsDatabase_Class::lookup_certificate_for_handle_vfunc_callback(GTlsDatabase* self, const gchar* handle, GTlsInteraction* interaction, GTlsDatabaseLookupFlags flags, GCancellable* cancellable, GError** error) -> GTlsCertificate*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -319,11 +314,11 @@ auto TlsDatabase_Class::lookup_certificate_for_handle_vfunc_callback(GTlsDatabas
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return Glib::unwrap_copy(obj->lookup_certificate_for_handle_vfunc(Glib::convert_const_gchar_ptr_to_ustring(handle)
-, Glib::wrap(interaction, true)
-, Glib::wrap(cancellable)
-, static_cast<LookupFlags>(flags)
-));
+        return unwrap_copy(obj->lookup_certificate_for_handle_vfunc(Glib::convert_const_gchar_ptr_to_ustring(handle)
+                                                                    , Glib::wrap(interaction, true)
+                                                                    , Glib::wrap(cancellable)
+                                                                    , static_cast<LookupFlags>(flags)
+        ));
       }
       catch(Glib::Error& errormm)
       {
@@ -338,7 +333,7 @@ auto TlsDatabase_Class::lookup_certificate_for_handle_vfunc_callback(GTlsDatabas
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -351,13 +346,11 @@ auto TlsDatabase_Class::lookup_certificate_for_handle_vfunc_callback(GTlsDatabas
 }
 auto TlsDatabase_Class::lookup_certificate_for_handle_async_vfunc_callback (
   GTlsDatabase *self, const gchar *handle, GTlsInteraction *interaction,
-  GTlsDatabaseLookupFlags flags, GCancellable *cancellable, GAsyncReadyCallback callback,
-  gpointer user_data) -> void
+  GTlsDatabaseLookupFlags flags, GCancellable *cancellable, const GAsyncReadyCallback callback, const gpointer user_data) -> void
 {
-  const auto slot = static_cast<Gio::SlotAsyncReady*>(user_data);
+  const auto slot = static_cast<SlotAsyncReady *>(user_data);
 
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -386,7 +379,7 @@ auto TlsDatabase_Class::lookup_certificate_for_handle_async_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -396,8 +389,7 @@ auto TlsDatabase_Class::lookup_certificate_for_handle_async_vfunc_callback (
 }
 auto TlsDatabase_Class::lookup_certificate_for_handle_finish_vfunc_callback(GTlsDatabase* self, GAsyncResult* result, GError** error) -> GTlsCertificate*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -412,7 +404,7 @@ auto TlsDatabase_Class::lookup_certificate_for_handle_finish_vfunc_callback(GTls
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return Glib::unwrap_copy(obj->lookup_certificate_for_handle_finish_vfunc(Glib::wrap(result, true)
+        return unwrap_copy(obj->lookup_certificate_for_handle_finish_vfunc(Glib::wrap(result, true)
 ));
       }
       catch(Glib::Error& errormm)
@@ -428,7 +420,7 @@ auto TlsDatabase_Class::lookup_certificate_for_handle_finish_vfunc_callback(GTls
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -441,8 +433,7 @@ auto TlsDatabase_Class::lookup_certificate_for_handle_finish_vfunc_callback(GTls
 }
 auto TlsDatabase_Class::lookup_certificate_issuer_vfunc_callback(GTlsDatabase* self, GTlsCertificate* certificate, GTlsInteraction* interaction, GTlsDatabaseLookupFlags flags, GCancellable* cancellable, GError** error) -> GTlsCertificate*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -457,11 +448,11 @@ auto TlsDatabase_Class::lookup_certificate_issuer_vfunc_callback(GTlsDatabase* s
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return Glib::unwrap_copy(obj->lookup_certificate_issuer_vfunc(Glib::wrap(certificate, true)
-, Glib::wrap(interaction, true)
-, Glib::wrap(cancellable)
-, static_cast<LookupFlags>(flags)
-));
+        return unwrap_copy(obj->lookup_certificate_issuer_vfunc(Glib::wrap(certificate, true)
+                                                                , Glib::wrap(interaction, true)
+                                                                , Glib::wrap(cancellable)
+                                                                , static_cast<LookupFlags>(flags)
+        ));
       }
       catch(Glib::Error& errormm)
       {
@@ -476,7 +467,7 @@ auto TlsDatabase_Class::lookup_certificate_issuer_vfunc_callback(GTlsDatabase* s
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -489,13 +480,11 @@ auto TlsDatabase_Class::lookup_certificate_issuer_vfunc_callback(GTlsDatabase* s
 }
 auto TlsDatabase_Class::lookup_certificate_issuer_async_vfunc_callback (
   GTlsDatabase *self, GTlsCertificate *certificate, GTlsInteraction *interaction,
-  GTlsDatabaseLookupFlags flags, GCancellable *cancellable, GAsyncReadyCallback callback,
-  gpointer user_data) -> void
+  GTlsDatabaseLookupFlags flags, GCancellable *cancellable, const GAsyncReadyCallback callback, const gpointer user_data) -> void
 {
-  const auto slot = static_cast<Gio::SlotAsyncReady*>(user_data);
+  const auto slot = static_cast<SlotAsyncReady *>(user_data);
 
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -524,7 +513,7 @@ auto TlsDatabase_Class::lookup_certificate_issuer_async_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -534,8 +523,7 @@ auto TlsDatabase_Class::lookup_certificate_issuer_async_vfunc_callback (
 }
 auto TlsDatabase_Class::lookup_certificate_issuer_finish_vfunc_callback(GTlsDatabase* self, GAsyncResult* result, GError** error) -> GTlsCertificate*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -550,7 +538,7 @@ auto TlsDatabase_Class::lookup_certificate_issuer_finish_vfunc_callback(GTlsData
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return Glib::unwrap_copy(obj->lookup_certificate_issuer_finish_vfunc(Glib::wrap(result, true)
+        return unwrap_copy(obj->lookup_certificate_issuer_finish_vfunc(Glib::wrap(result, true)
 ));
       }
       catch(Glib::Error& errormm)
@@ -566,7 +554,7 @@ auto TlsDatabase_Class::lookup_certificate_issuer_finish_vfunc_callback(GTlsData
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -579,8 +567,7 @@ auto TlsDatabase_Class::lookup_certificate_issuer_finish_vfunc_callback(GTlsData
 }
 auto TlsDatabase_Class::lookup_certificates_issued_by_vfunc_callback(GTlsDatabase* self, GByteArray* issuer_raw_dn, GTlsInteraction* interaction, GTlsDatabaseLookupFlags flags, GCancellable* cancellable, GError** error) -> GList*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -614,7 +601,7 @@ auto TlsDatabase_Class::lookup_certificates_issued_by_vfunc_callback(GTlsDatabas
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -627,13 +614,11 @@ auto TlsDatabase_Class::lookup_certificates_issued_by_vfunc_callback(GTlsDatabas
 }
 auto TlsDatabase_Class::lookup_certificates_issued_by_async_vfunc_callback (
   GTlsDatabase *self, GByteArray *issuer_raw_dn, GTlsInteraction *interaction,
-  GTlsDatabaseLookupFlags flags, GCancellable *cancellable, GAsyncReadyCallback callback,
-  gpointer user_data) -> void
+  GTlsDatabaseLookupFlags flags, GCancellable *cancellable, const GAsyncReadyCallback callback, const gpointer user_data) -> void
 {
-  const auto slot = static_cast<Gio::SlotAsyncReady*>(user_data);
+  const auto slot = static_cast<SlotAsyncReady *>(user_data);
 
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -662,7 +647,7 @@ auto TlsDatabase_Class::lookup_certificates_issued_by_async_vfunc_callback (
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -672,8 +657,7 @@ auto TlsDatabase_Class::lookup_certificates_issued_by_async_vfunc_callback (
 }
 auto TlsDatabase_Class::lookup_certificates_issued_by_finish_vfunc_callback(GTlsDatabase* self, GAsyncResult* result, GError** error) -> GList*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -704,7 +688,7 @@ auto TlsDatabase_Class::lookup_certificates_issued_by_finish_vfunc_callback(GTls
     }
   }
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const BaseClassType *const base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class (The original underlying C class).
   );
 
@@ -732,32 +716,28 @@ auto TlsDatabase::gobj_copy() -> GTlsDatabase*
 }
 
 TlsDatabase::TlsDatabase(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 TlsDatabase::TlsDatabase(GTlsDatabase* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 TlsDatabase::TlsDatabase(TlsDatabase&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto TlsDatabase::operator=(TlsDatabase&& src) noexcept -> TlsDatabase&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-TlsDatabase::~TlsDatabase() noexcept
-{}
-
+TlsDatabase::~TlsDatabase() noexcept = default;
 
 TlsDatabase::CppClassType TlsDatabase::tlsdatabase_class_; // initialize static member
 
@@ -776,8 +756,8 @@ auto TlsDatabase::get_base_type() -> GType
 TlsDatabase::TlsDatabase()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(tlsdatabase_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(tlsdatabase_class_.init()))
 {
 
 
@@ -786,72 +766,72 @@ TlsDatabase::TlsDatabase()
 auto TlsDatabase::verify_chain(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const Glib::RefPtr<const SocketConnectable>& identity, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, VerifyFlags flags) const -> TlsCertificateFlags
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
+  const auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), Glib::unwrap(cancellable), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::verify_chain(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const Glib::RefPtr<const SocketConnectable>& identity, const Glib::RefPtr<TlsInteraction>& interaction, VerifyFlags flags) const -> TlsCertificateFlags
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), nullptr, &(gerror)));
+  const auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), nullptr, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::verify_chain(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const Glib::RefPtr<const SocketConnectable>& identity, const Glib::RefPtr<Cancellable>& cancellable, VerifyFlags flags) const -> TlsCertificateFlags
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), nullptr, static_cast<GTlsDatabaseVerifyFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
+  const auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), nullptr, static_cast<GTlsDatabaseVerifyFlags>(flags), Glib::unwrap(cancellable), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::verify_chain(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const Glib::RefPtr<const SocketConnectable>& identity, VerifyFlags flags) const -> TlsCertificateFlags
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), nullptr, static_cast<GTlsDatabaseVerifyFlags>(flags), nullptr, &(gerror)));
+  const auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), nullptr, static_cast<GTlsDatabaseVerifyFlags>(flags), nullptr, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::verify_chain(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, VerifyFlags flags) const -> TlsCertificateFlags
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), nullptr, Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
+  const auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), nullptr, Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), Glib::unwrap(cancellable), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::verify_chain(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const Glib::RefPtr<TlsInteraction>& interaction, VerifyFlags flags) const -> TlsCertificateFlags
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), nullptr, Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), nullptr, &(gerror)));
+  const auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), nullptr, Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), nullptr, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::verify_chain(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const Glib::RefPtr<Cancellable>& cancellable, VerifyFlags flags) const -> TlsCertificateFlags
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), nullptr, nullptr, static_cast<GTlsDatabaseVerifyFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
+  const auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), nullptr, nullptr, static_cast<GTlsDatabaseVerifyFlags>(flags), Glib::unwrap(cancellable), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::verify_chain(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, VerifyFlags flags) const -> TlsCertificateFlags
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), nullptr, nullptr, static_cast<GTlsDatabaseVerifyFlags>(flags), nullptr, &(gerror)));
+  const auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), nullptr, nullptr, static_cast<GTlsDatabaseVerifyFlags>(flags), nullptr, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -862,9 +842,9 @@ auto TlsDatabase::verify_chain_async (
   const Glib::RefPtr <Cancellable> &cancellable, VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
-  g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
+  g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
 auto TlsDatabase::verify_chain_async (
@@ -874,7 +854,7 @@ auto TlsDatabase::verify_chain_async (
   VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
 }
@@ -885,9 +865,9 @@ auto TlsDatabase::verify_chain_async (
   const Glib::RefPtr <Cancellable> &cancellable, VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
-  g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), nullptr, static_cast<GTlsDatabaseVerifyFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
+  g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), nullptr, static_cast<GTlsDatabaseVerifyFlags>(flags), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
 auto TlsDatabase::verify_chain_async (
@@ -896,7 +876,7 @@ auto TlsDatabase::verify_chain_async (
   VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), const_cast<GSocketConnectable*>(Glib::unwrap(identity)), nullptr, static_cast<GTlsDatabaseVerifyFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
 }
@@ -907,9 +887,9 @@ auto TlsDatabase::verify_chain_async (
   const Glib::RefPtr <Cancellable> &cancellable, VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
-  g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), nullptr, Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
+  g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), nullptr, Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
 auto TlsDatabase::verify_chain_async (
@@ -918,7 +898,7 @@ auto TlsDatabase::verify_chain_async (
   VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), nullptr, Glib::unwrap(interaction), static_cast<GTlsDatabaseVerifyFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
 }
@@ -929,9 +909,9 @@ auto TlsDatabase::verify_chain_async (
   VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
-  g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), nullptr, nullptr, static_cast<GTlsDatabaseVerifyFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
+  g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), nullptr, nullptr, static_cast<GTlsDatabaseVerifyFlags>(flags), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
 auto TlsDatabase::verify_chain_async (
@@ -939,7 +919,7 @@ auto TlsDatabase::verify_chain_async (
   const SlotAsyncReady &slot, VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_tls_database_verify_chain_async(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(chain), purpose.c_str(), nullptr, nullptr, static_cast<GTlsDatabaseVerifyFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
 }
@@ -947,64 +927,64 @@ auto TlsDatabase::verify_chain_async (
 auto TlsDatabase::verify_chain_finish(const Glib::RefPtr<AsyncResult>& result) -> TlsCertificateFlags
 {
   GError* gerror = nullptr;
-  auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain_finish(gobj(), Glib::unwrap(result), &(gerror)));
+  const auto retvalue = static_cast<TlsCertificateFlags>(g_tls_database_verify_chain_finish(gobj(), Glib::unwrap(result), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::lookup_certificate_issuer(const Glib::RefPtr<const TlsCertificate>& certificate, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) -> Glib::RefPtr<TlsCertificate>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_issuer(gobj(), const_cast<GTlsCertificate*>(Glib::unwrap(certificate)), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
+  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_issuer(gobj(), const_cast<GTlsCertificate*>(Glib::unwrap(certificate)), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), Glib::unwrap(cancellable), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::lookup_certificate_issuer(const Glib::RefPtr<const TlsCertificate>& certificate, const Glib::RefPtr<TlsInteraction>& interaction, LookupFlags flags) -> Glib::RefPtr<TlsCertificate>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_issuer(gobj(), const_cast<GTlsCertificate*>(Glib::unwrap(certificate)), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &(gerror)));
+  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_issuer(gobj(), const_cast<GTlsCertificate*>(Glib::unwrap(certificate)), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::lookup_certificate_issuer(const Glib::RefPtr<const TlsCertificate>& certificate, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) -> Glib::RefPtr<TlsCertificate>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_issuer(gobj(), const_cast<GTlsCertificate*>(Glib::unwrap(certificate)), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
+  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_issuer(gobj(), const_cast<GTlsCertificate*>(Glib::unwrap(certificate)), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), Glib::unwrap(cancellable), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::lookup_certificate_issuer(const Glib::RefPtr<const TlsCertificate>& certificate, LookupFlags flags) -> Glib::RefPtr<TlsCertificate>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_issuer(gobj(), const_cast<GTlsCertificate*>(Glib::unwrap(certificate)), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &(gerror)));
+  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_issuer(gobj(), const_cast<GTlsCertificate*>(Glib::unwrap(certificate)), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto TlsDatabase::lookup_certificate_issuer(const Glib::RefPtr<const TlsCertificate>& certificate, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) const -> Glib::RefPtr<const TlsCertificate>
+auto TlsDatabase::lookup_certificate_issuer(const Glib::RefPtr<const TlsCertificate>& certificate, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, const LookupFlags flags) const -> Glib::RefPtr<const TlsCertificate>
 {
   return const_cast<TlsDatabase*>(this)->lookup_certificate_issuer(certificate, interaction, cancellable, flags);
 }
 
-auto TlsDatabase::lookup_certificate_issuer(const Glib::RefPtr<const TlsCertificate>& certificate, const Glib::RefPtr<TlsInteraction>& interaction, LookupFlags flags) const -> Glib::RefPtr<const TlsCertificate>
+auto TlsDatabase::lookup_certificate_issuer(const Glib::RefPtr<const TlsCertificate>& certificate, const Glib::RefPtr<TlsInteraction>& interaction, const LookupFlags flags) const -> Glib::RefPtr<const TlsCertificate>
 {
   return const_cast<TlsDatabase*>(this)->lookup_certificate_issuer(certificate, interaction, flags);
 }
 
-auto TlsDatabase::lookup_certificate_issuer(const Glib::RefPtr<const TlsCertificate>& certificate, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) const -> Glib::RefPtr<const TlsCertificate>
+auto TlsDatabase::lookup_certificate_issuer(const Glib::RefPtr<const TlsCertificate>& certificate, const Glib::RefPtr<Cancellable>& cancellable, const LookupFlags flags) const -> Glib::RefPtr<const TlsCertificate>
 {
   return const_cast<TlsDatabase*>(this)->lookup_certificate_issuer(certificate, cancellable, flags);
 }
 
-auto TlsDatabase::lookup_certificate_issuer(const Glib::RefPtr<const TlsCertificate>& certificate, LookupFlags flags) const -> Glib::RefPtr<const TlsCertificate>
+auto TlsDatabase::lookup_certificate_issuer(const Glib::RefPtr<const TlsCertificate>& certificate, const LookupFlags flags) const -> Glib::RefPtr<const TlsCertificate>
 {
   return const_cast<TlsDatabase*>(this)->lookup_certificate_issuer(certificate, flags);
 }
@@ -1015,9 +995,9 @@ auto TlsDatabase::lookup_certificate_issuer_async (
   const Glib::RefPtr <Cancellable> &cancellable, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
-  g_tls_database_lookup_certificate_issuer_async(gobj(), const_cast<GTlsCertificate*>(Glib::unwrap(certificate)), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
+  g_tls_database_lookup_certificate_issuer_async(gobj(), const_cast<GTlsCertificate*>(Glib::unwrap(certificate)), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
 auto TlsDatabase::lookup_certificate_issuer_async (
@@ -1026,7 +1006,7 @@ auto TlsDatabase::lookup_certificate_issuer_async (
   LookupFlags flags) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_tls_database_lookup_certificate_issuer_async(gobj(), const_cast<GTlsCertificate*>(Glib::unwrap(certificate)), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
 }
@@ -1036,9 +1016,9 @@ auto TlsDatabase::lookup_certificate_issuer_async (
   const Glib::RefPtr <Cancellable> &cancellable, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
-  g_tls_database_lookup_certificate_issuer_async(gobj(), const_cast<GTlsCertificate*>(Glib::unwrap(certificate)), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
+  g_tls_database_lookup_certificate_issuer_async(gobj(), const_cast<GTlsCertificate*>(Glib::unwrap(certificate)), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
 auto TlsDatabase::lookup_certificate_issuer_async (
@@ -1046,7 +1026,7 @@ auto TlsDatabase::lookup_certificate_issuer_async (
   LookupFlags flags) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_tls_database_lookup_certificate_issuer_async(gobj(), const_cast<GTlsCertificate*>(Glib::unwrap(certificate)), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
 }
@@ -1054,81 +1034,81 @@ auto TlsDatabase::lookup_certificate_issuer_async (
 auto TlsDatabase::lookup_certificate_issuer_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<TlsCertificate>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_issuer_finish(gobj(), Glib::unwrap(result), &(gerror)));
+  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_issuer_finish(gobj(), Glib::unwrap(result), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::lookup_certificates_issued_by(const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) -> std::vector< Glib::RefPtr<TlsCertificate> >
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::ListHandler< Glib::RefPtr<TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by(gobj(), Glib::unwrap(issuer_raw_dn), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)), Glib::OWNERSHIP_DEEP);
+  auto retvalue = Glib::ListHandler< Glib::RefPtr<TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by(gobj(), unwrap(issuer_raw_dn), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), Glib::unwrap(cancellable), &gerror), Glib::OWNERSHIP_DEEP);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::lookup_certificates_issued_by(const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn, const Glib::RefPtr<TlsInteraction>& interaction, LookupFlags flags) -> std::vector< Glib::RefPtr<TlsCertificate> >
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::ListHandler< Glib::RefPtr<TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by(gobj(), Glib::unwrap(issuer_raw_dn), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &(gerror)), Glib::OWNERSHIP_DEEP);
+  auto retvalue = Glib::ListHandler< Glib::RefPtr<TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by(gobj(), unwrap(issuer_raw_dn), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &gerror), Glib::OWNERSHIP_DEEP);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::lookup_certificates_issued_by(const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) -> std::vector< Glib::RefPtr<TlsCertificate> >
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::ListHandler< Glib::RefPtr<TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by(gobj(), Glib::unwrap(issuer_raw_dn), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)), Glib::OWNERSHIP_DEEP);
+  auto retvalue = Glib::ListHandler< Glib::RefPtr<TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by(gobj(), unwrap(issuer_raw_dn), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), Glib::unwrap(cancellable), &gerror), Glib::OWNERSHIP_DEEP);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::lookup_certificates_issued_by(const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn, LookupFlags flags) -> std::vector< Glib::RefPtr<TlsCertificate> >
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::ListHandler< Glib::RefPtr<TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by(gobj(), Glib::unwrap(issuer_raw_dn), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &(gerror)), Glib::OWNERSHIP_DEEP);
+  auto retvalue = Glib::ListHandler< Glib::RefPtr<TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by(gobj(), unwrap(issuer_raw_dn), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &gerror), Glib::OWNERSHIP_DEEP);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::lookup_certificates_issued_by(const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) const -> std::vector< Glib::RefPtr<const TlsCertificate> >
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::ListHandler< Glib::RefPtr<const TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(issuer_raw_dn), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)), Glib::OWNERSHIP_DEEP);
+  auto retvalue = Glib::ListHandler< Glib::RefPtr<const TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by(const_cast<GTlsDatabase*>(gobj()), unwrap(issuer_raw_dn), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), Glib::unwrap(cancellable), &gerror), Glib::OWNERSHIP_DEEP);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::lookup_certificates_issued_by(const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn, const Glib::RefPtr<TlsInteraction>& interaction, LookupFlags flags) const -> std::vector< Glib::RefPtr<const TlsCertificate> >
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::ListHandler< Glib::RefPtr<const TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(issuer_raw_dn), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &(gerror)), Glib::OWNERSHIP_DEEP);
+  auto retvalue = Glib::ListHandler< Glib::RefPtr<const TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by(const_cast<GTlsDatabase*>(gobj()), unwrap(issuer_raw_dn), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &gerror), Glib::OWNERSHIP_DEEP);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::lookup_certificates_issued_by(const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) const -> std::vector< Glib::RefPtr<const TlsCertificate> >
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::ListHandler< Glib::RefPtr<const TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(issuer_raw_dn), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)), Glib::OWNERSHIP_DEEP);
+  auto retvalue = Glib::ListHandler< Glib::RefPtr<const TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by(const_cast<GTlsDatabase*>(gobj()), unwrap(issuer_raw_dn), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), Glib::unwrap(cancellable), &gerror), Glib::OWNERSHIP_DEEP);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::lookup_certificates_issued_by(const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn, LookupFlags flags) const -> std::vector< Glib::RefPtr<const TlsCertificate> >
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::ListHandler< Glib::RefPtr<const TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by(const_cast<GTlsDatabase*>(gobj()), Glib::unwrap(issuer_raw_dn), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &(gerror)), Glib::OWNERSHIP_DEEP);
+  auto retvalue = Glib::ListHandler< Glib::RefPtr<const TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by(const_cast<GTlsDatabase*>(gobj()), unwrap(issuer_raw_dn), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &gerror), Glib::OWNERSHIP_DEEP);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -1138,9 +1118,9 @@ auto TlsDatabase::lookup_certificates_issued_by_async (
   const Glib::RefPtr <Cancellable> &cancellable, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
-  g_tls_database_lookup_certificates_issued_by_async(gobj(), Glib::unwrap(issuer_raw_dn), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
+  g_tls_database_lookup_certificates_issued_by_async(gobj(), unwrap(issuer_raw_dn), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
 auto TlsDatabase::lookup_certificates_issued_by_async (
@@ -1149,9 +1129,9 @@ auto TlsDatabase::lookup_certificates_issued_by_async (
   LookupFlags flags) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
-  g_tls_database_lookup_certificates_issued_by_async(gobj(), Glib::unwrap(issuer_raw_dn), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
+  g_tls_database_lookup_certificates_issued_by_async(gobj(), unwrap(issuer_raw_dn), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
 auto TlsDatabase::lookup_certificates_issued_by_async (
@@ -1159,9 +1139,9 @@ auto TlsDatabase::lookup_certificates_issued_by_async (
   const Glib::RefPtr <Cancellable> &cancellable, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
-  g_tls_database_lookup_certificates_issued_by_async(gobj(), Glib::unwrap(issuer_raw_dn), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
+  g_tls_database_lookup_certificates_issued_by_async(gobj(), unwrap(issuer_raw_dn), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
 auto TlsDatabase::lookup_certificates_issued_by_async (
@@ -1169,17 +1149,17 @@ auto TlsDatabase::lookup_certificates_issued_by_async (
   LookupFlags flags) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
-  g_tls_database_lookup_certificates_issued_by_async(gobj(), Glib::unwrap(issuer_raw_dn), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
+  g_tls_database_lookup_certificates_issued_by_async(gobj(), unwrap(issuer_raw_dn), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
 }
 
 auto TlsDatabase::lookup_certificates_issued_by_finish(const Glib::RefPtr<AsyncResult>& result) -> std::vector< Glib::RefPtr<TlsCertificate> >
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::ListHandler< Glib::RefPtr<TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by_finish(gobj(), Glib::unwrap(result), &(gerror)), Glib::OWNERSHIP_DEEP);
+  auto retvalue = Glib::ListHandler< Glib::RefPtr<TlsCertificate> >::list_to_vector(g_tls_database_lookup_certificates_issued_by_finish(gobj(), Glib::unwrap(result), &gerror), Glib::OWNERSHIP_DEEP);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -1191,55 +1171,55 @@ auto TlsDatabase::create_certificate_handle(const Glib::RefPtr<const TlsCertific
 auto TlsDatabase::lookup_certificate_for_handle(const Glib::ustring& handle, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) -> Glib::RefPtr<TlsCertificate>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_for_handle(gobj(), handle.c_str(), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
+  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_for_handle(gobj(), handle.c_str(), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), Glib::unwrap(cancellable), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::lookup_certificate_for_handle(const Glib::ustring& handle, const Glib::RefPtr<TlsInteraction>& interaction, LookupFlags flags) -> Glib::RefPtr<TlsCertificate>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_for_handle(gobj(), handle.c_str(), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &(gerror)));
+  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_for_handle(gobj(), handle.c_str(), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::lookup_certificate_for_handle(const Glib::ustring& handle, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) -> Glib::RefPtr<TlsCertificate>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_for_handle(gobj(), handle.c_str(), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror)));
+  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_for_handle(gobj(), handle.c_str(), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), Glib::unwrap(cancellable), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto TlsDatabase::lookup_certificate_for_handle(const Glib::ustring& handle, LookupFlags flags) -> Glib::RefPtr<TlsCertificate>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_for_handle(gobj(), handle.c_str(), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &(gerror)));
+  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_for_handle(gobj(), handle.c_str(), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto TlsDatabase::lookup_certificate_for_handle(const Glib::ustring& handle, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) const -> Glib::RefPtr<const TlsCertificate>
+auto TlsDatabase::lookup_certificate_for_handle(const Glib::ustring& handle, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, const LookupFlags flags) const -> Glib::RefPtr<const TlsCertificate>
 {
   return const_cast<TlsDatabase*>(this)->lookup_certificate_for_handle(handle, interaction, cancellable, flags);
 }
 
-auto TlsDatabase::lookup_certificate_for_handle(const Glib::ustring& handle, const Glib::RefPtr<TlsInteraction>& interaction, LookupFlags flags) const -> Glib::RefPtr<const TlsCertificate>
+auto TlsDatabase::lookup_certificate_for_handle(const Glib::ustring& handle, const Glib::RefPtr<TlsInteraction>& interaction, const LookupFlags flags) const -> Glib::RefPtr<const TlsCertificate>
 {
   return const_cast<TlsDatabase*>(this)->lookup_certificate_for_handle(handle, interaction, flags);
 }
 
-auto TlsDatabase::lookup_certificate_for_handle(const Glib::ustring& handle, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) const -> Glib::RefPtr<const TlsCertificate>
+auto TlsDatabase::lookup_certificate_for_handle(const Glib::ustring& handle, const Glib::RefPtr<Cancellable>& cancellable, const LookupFlags flags) const -> Glib::RefPtr<const TlsCertificate>
 {
   return const_cast<TlsDatabase*>(this)->lookup_certificate_for_handle(handle, cancellable, flags);
 }
 
-auto TlsDatabase::lookup_certificate_for_handle(const Glib::ustring& handle, LookupFlags flags) const -> Glib::RefPtr<const TlsCertificate>
+auto TlsDatabase::lookup_certificate_for_handle(const Glib::ustring& handle, const LookupFlags flags) const -> Glib::RefPtr<const TlsCertificate>
 {
   return const_cast<TlsDatabase*>(this)->lookup_certificate_for_handle(handle, flags);
 }
@@ -1250,9 +1230,9 @@ auto TlsDatabase::lookup_certificate_for_handle_async (
   LookupFlags flags) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
-  g_tls_database_lookup_certificate_for_handle_async(gobj(), handle.c_str(), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
+  g_tls_database_lookup_certificate_for_handle_async(gobj(), handle.c_str(), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
 auto TlsDatabase::lookup_certificate_for_handle_async (
@@ -1260,7 +1240,7 @@ auto TlsDatabase::lookup_certificate_for_handle_async (
   const SlotAsyncReady &slot, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_tls_database_lookup_certificate_for_handle_async(gobj(), handle.c_str(), Glib::unwrap(interaction), static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
 }
@@ -1270,16 +1250,16 @@ auto TlsDatabase::lookup_certificate_for_handle_async (
   const Glib::RefPtr <Cancellable> &cancellable, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
-  g_tls_database_lookup_certificate_for_handle_async(gobj(), handle.c_str(), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &SignalProxy_async_callback, slot_copy);
+  g_tls_database_lookup_certificate_for_handle_async(gobj(), handle.c_str(), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), Glib::unwrap(cancellable), &SignalProxy_async_callback, slot_copy);
 }
 
 auto TlsDatabase::lookup_certificate_for_handle_async (
   const Glib::ustring &handle, const SlotAsyncReady &slot, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   g_tls_database_lookup_certificate_for_handle_async(gobj(), handle.c_str(), nullptr, static_cast<GTlsDatabaseLookupFlags>(flags), nullptr, &SignalProxy_async_callback, slot_copy);
 }
@@ -1287,14 +1267,14 @@ auto TlsDatabase::lookup_certificate_for_handle_async (
 auto TlsDatabase::lookup_certificate_for_handle_finish(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<TlsCertificate>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_for_handle_finish(gobj(), Glib::unwrap(result), &(gerror)));
+  auto retvalue = Glib::wrap(g_tls_database_lookup_certificate_for_handle_finish(gobj(), Glib::unwrap(result), &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 
-auto Gio::TlsDatabase::verify_chain_vfunc(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const Glib::RefPtr<const SocketConnectable>& identity, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, VerifyFlags flags) const -> TlsCertificateFlags
+auto TlsDatabase::verify_chain_vfunc(const Glib::RefPtr<TlsCertificate>& chain, const Glib::ustring& purpose, const Glib::RefPtr<const SocketConnectable>& identity, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, VerifyFlags flags) const -> TlsCertificateFlags
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1303,23 +1283,23 @@ auto Gio::TlsDatabase::verify_chain_vfunc(const Glib::RefPtr<TlsCertificate>& ch
   if(base && base->verify_chain)
   {
     GError* gerror = nullptr;
-    TlsCertificateFlags retval(static_cast<TlsCertificateFlags>((*base->verify_chain)(const_cast<GTlsDatabase*>(gobj()),Glib::unwrap(chain),purpose.c_str(),const_cast<GSocketConnectable*>(Glib::unwrap(identity)),Glib::unwrap(interaction),static_cast<GTlsDatabaseVerifyFlags>(flags),const_cast<GCancellable*>(Glib::unwrap(cancellable)),&(gerror))));
+    const TlsCertificateFlags retval(static_cast<TlsCertificateFlags>((*base->verify_chain)(const_cast<GTlsDatabase*>(gobj()),Glib::unwrap(chain),purpose.c_str(),const_cast<GSocketConnectable*>(Glib::unwrap(identity)),Glib::unwrap(interaction),static_cast<GTlsDatabaseVerifyFlags>(flags),Glib::unwrap(cancellable),&gerror)));
     if(gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Glib::Error::throw_exception(gerror);
     return retval;
   }
 
   using RType = TlsCertificateFlags;
   return RType();
 }
-auto Gio::TlsDatabase::verify_chain_async_vfunc (
+auto TlsDatabase::verify_chain_async_vfunc (
   const Glib::RefPtr <TlsCertificate> &chain, const Glib::ustring &purpose,
   const Glib::RefPtr <const SocketConnectable> &identity,
   const Glib::RefPtr <TlsInteraction> &interaction, const SlotAsyncReady &slot,
   const Glib::RefPtr <Cancellable> &cancellable, VerifyFlags flags) const -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1327,10 +1307,10 @@ auto Gio::TlsDatabase::verify_chain_async_vfunc (
 
   if(base && base->verify_chain_async)
   {
-    (*base->verify_chain_async)(const_cast<GTlsDatabase*>(gobj()),Glib::unwrap(chain),purpose.c_str(),const_cast<GSocketConnectable*>(Glib::unwrap(identity)),Glib::unwrap(interaction),static_cast<GTlsDatabaseVerifyFlags>(flags),const_cast<GCancellable*>(Glib::unwrap(cancellable)),&SignalProxy_async_callback,slot_copy);
+    (*base->verify_chain_async)(const_cast<GTlsDatabase*>(gobj()),Glib::unwrap(chain),purpose.c_str(),const_cast<GSocketConnectable*>(Glib::unwrap(identity)),Glib::unwrap(interaction),static_cast<GTlsDatabaseVerifyFlags>(flags),Glib::unwrap(cancellable),&SignalProxy_async_callback,slot_copy);
   }
 }
-auto Gio::TlsDatabase::verify_chain_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> TlsCertificateFlags
+auto TlsDatabase::verify_chain_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> TlsCertificateFlags
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1339,16 +1319,16 @@ auto Gio::TlsDatabase::verify_chain_finish_vfunc(const Glib::RefPtr<AsyncResult>
   if(base && base->verify_chain_finish)
   {
     GError* gerror = nullptr;
-    TlsCertificateFlags retval(static_cast<TlsCertificateFlags>((*base->verify_chain_finish)(gobj(),Glib::unwrap(result),&(gerror))));
+    const TlsCertificateFlags retval(static_cast<TlsCertificateFlags>((*base->verify_chain_finish)(gobj(),Glib::unwrap(result),&gerror)));
     if(gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Glib::Error::throw_exception(gerror);
     return retval;
   }
 
   using RType = TlsCertificateFlags;
   return RType();
 }
-auto Gio::TlsDatabase::create_certificate_handle_vfunc(const Glib::RefPtr<const TlsCertificate>& certificate) const -> Glib::ustring
+auto TlsDatabase::create_certificate_handle_vfunc(const Glib::RefPtr<const TlsCertificate>& certificate) const -> Glib::ustring
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1361,9 +1341,9 @@ auto Gio::TlsDatabase::create_certificate_handle_vfunc(const Glib::RefPtr<const 
   }
 
   using RType = Glib::ustring;
-  return RType();
+  return {};
 }
-auto Gio::TlsDatabase::lookup_certificate_for_handle_vfunc(const Glib::ustring& handle, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) -> Glib::RefPtr<TlsCertificate>
+auto TlsDatabase::lookup_certificate_for_handle_vfunc(const Glib::ustring& handle, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) -> Glib::RefPtr<TlsCertificate>
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1372,22 +1352,22 @@ auto Gio::TlsDatabase::lookup_certificate_for_handle_vfunc(const Glib::ustring& 
   if(base && base->lookup_certificate_for_handle)
   {
     GError* gerror = nullptr;
-    Glib::RefPtr<TlsCertificate> retval(Glib::wrap((*base->lookup_certificate_for_handle)(gobj(),handle.c_str(),Glib::unwrap(interaction),static_cast<GTlsDatabaseLookupFlags>(flags),const_cast<GCancellable*>(Glib::unwrap(cancellable)),&(gerror))));
+    Glib::RefPtr<TlsCertificate> retval(Glib::wrap((*base->lookup_certificate_for_handle)(gobj(),handle.c_str(),Glib::unwrap(interaction),static_cast<GTlsDatabaseLookupFlags>(flags),Glib::unwrap(cancellable),&gerror)));
     if(gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Glib::Error::throw_exception(gerror);
     return retval;
   }
 
   using RType = Glib::RefPtr<TlsCertificate>;
-  return RType();
+  return {};
 }
-auto Gio::TlsDatabase::lookup_certificate_for_handle_async_vfunc (
+auto TlsDatabase::lookup_certificate_for_handle_async_vfunc (
   const Glib::ustring &handle, const Glib::RefPtr <TlsInteraction> &interaction,
   const SlotAsyncReady &slot, const Glib::RefPtr <Cancellable> &cancellable,
   LookupFlags flags) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1395,10 +1375,10 @@ auto Gio::TlsDatabase::lookup_certificate_for_handle_async_vfunc (
 
   if(base && base->lookup_certificate_for_handle_async)
   {
-    (*base->lookup_certificate_for_handle_async)(gobj(),handle.c_str(),Glib::unwrap(interaction),static_cast<GTlsDatabaseLookupFlags>(flags),const_cast<GCancellable*>(Glib::unwrap(cancellable)),&SignalProxy_async_callback,slot_copy);
+    (*base->lookup_certificate_for_handle_async)(gobj(),handle.c_str(),Glib::unwrap(interaction),static_cast<GTlsDatabaseLookupFlags>(flags),Glib::unwrap(cancellable),&SignalProxy_async_callback,slot_copy);
   }
 }
-auto Gio::TlsDatabase::lookup_certificate_for_handle_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<TlsCertificate>
+auto TlsDatabase::lookup_certificate_for_handle_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<TlsCertificate>
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1407,16 +1387,16 @@ auto Gio::TlsDatabase::lookup_certificate_for_handle_finish_vfunc(const Glib::Re
   if(base && base->lookup_certificate_for_handle_finish)
   {
     GError* gerror = nullptr;
-    Glib::RefPtr<TlsCertificate> retval(Glib::wrap((*base->lookup_certificate_for_handle_finish)(gobj(),Glib::unwrap(result),&(gerror))));
+    Glib::RefPtr<TlsCertificate> retval(Glib::wrap((*base->lookup_certificate_for_handle_finish)(gobj(),Glib::unwrap(result),&gerror)));
     if(gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Glib::Error::throw_exception(gerror);
     return retval;
   }
 
   using RType = Glib::RefPtr<TlsCertificate>;
-  return RType();
+  return {};
 }
-auto Gio::TlsDatabase::lookup_certificate_issuer_vfunc(const Glib::RefPtr<TlsCertificate>& certificate, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) -> Glib::RefPtr<TlsCertificate>
+auto TlsDatabase::lookup_certificate_issuer_vfunc(const Glib::RefPtr<TlsCertificate>& certificate, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) -> Glib::RefPtr<TlsCertificate>
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1425,22 +1405,22 @@ auto Gio::TlsDatabase::lookup_certificate_issuer_vfunc(const Glib::RefPtr<TlsCer
   if(base && base->lookup_certificate_issuer)
   {
     GError* gerror = nullptr;
-    Glib::RefPtr<TlsCertificate> retval(Glib::wrap((*base->lookup_certificate_issuer)(gobj(),Glib::unwrap(certificate),Glib::unwrap(interaction),static_cast<GTlsDatabaseLookupFlags>(flags),const_cast<GCancellable*>(Glib::unwrap(cancellable)),&(gerror))));
+    Glib::RefPtr<TlsCertificate> retval(Glib::wrap((*base->lookup_certificate_issuer)(gobj(),Glib::unwrap(certificate),Glib::unwrap(interaction),static_cast<GTlsDatabaseLookupFlags>(flags),Glib::unwrap(cancellable),&gerror)));
     if(gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Glib::Error::throw_exception(gerror);
     return retval;
   }
 
   using RType = Glib::RefPtr<TlsCertificate>;
-  return RType();
+  return {};
 }
-auto Gio::TlsDatabase::lookup_certificate_issuer_async_vfunc (
+auto TlsDatabase::lookup_certificate_issuer_async_vfunc (
   const Glib::RefPtr <TlsCertificate> &certificate,
   const Glib::RefPtr <TlsInteraction> &interaction, const SlotAsyncReady &slot,
   const Glib::RefPtr <Cancellable> &cancellable, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1448,10 +1428,10 @@ auto Gio::TlsDatabase::lookup_certificate_issuer_async_vfunc (
 
   if(base && base->lookup_certificate_issuer_async)
   {
-    (*base->lookup_certificate_issuer_async)(gobj(),Glib::unwrap(certificate),Glib::unwrap(interaction),static_cast<GTlsDatabaseLookupFlags>(flags),const_cast<GCancellable*>(Glib::unwrap(cancellable)),&SignalProxy_async_callback,slot_copy);
+    (*base->lookup_certificate_issuer_async)(gobj(),Glib::unwrap(certificate),Glib::unwrap(interaction),static_cast<GTlsDatabaseLookupFlags>(flags),Glib::unwrap(cancellable),&SignalProxy_async_callback,slot_copy);
   }
 }
-auto Gio::TlsDatabase::lookup_certificate_issuer_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<TlsCertificate>
+auto TlsDatabase::lookup_certificate_issuer_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<TlsCertificate>
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1460,16 +1440,16 @@ auto Gio::TlsDatabase::lookup_certificate_issuer_finish_vfunc(const Glib::RefPtr
   if(base && base->lookup_certificate_issuer_finish)
   {
     GError* gerror = nullptr;
-    Glib::RefPtr<TlsCertificate> retval(Glib::wrap((*base->lookup_certificate_issuer_finish)(gobj(),Glib::unwrap(result),&(gerror))));
+    Glib::RefPtr<TlsCertificate> retval(Glib::wrap((*base->lookup_certificate_issuer_finish)(gobj(),Glib::unwrap(result),&gerror)));
     if(gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Glib::Error::throw_exception(gerror);
     return retval;
   }
 
   using RType = Glib::RefPtr<TlsCertificate>;
-  return RType();
+  return {};
 }
-auto Gio::TlsDatabase::lookup_certificates_issued_by_vfunc(const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) -> std::vector< Glib::RefPtr<TlsCertificate> >
+auto TlsDatabase::lookup_certificates_issued_by_vfunc(const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn, const Glib::RefPtr<TlsInteraction>& interaction, const Glib::RefPtr<Cancellable>& cancellable, LookupFlags flags) -> std::vector< Glib::RefPtr<TlsCertificate> >
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1478,22 +1458,22 @@ auto Gio::TlsDatabase::lookup_certificates_issued_by_vfunc(const Glib::RefPtr<Gl
   if(base && base->lookup_certificates_issued_by)
   {
     GError* gerror = nullptr;
-    std::vector< Glib::RefPtr<TlsCertificate> > retval(Glib::ListHandler< Glib::RefPtr<TlsCertificate> >::list_to_vector((*base->lookup_certificates_issued_by)(gobj(),Glib::unwrap(issuer_raw_dn),Glib::unwrap(interaction),static_cast<GTlsDatabaseLookupFlags>(flags),const_cast<GCancellable*>(Glib::unwrap(cancellable)),&(gerror)), Glib::OWNERSHIP_DEEP));
+    std::vector< Glib::RefPtr<TlsCertificate> > retval(Glib::ListHandler< Glib::RefPtr<TlsCertificate> >::list_to_vector((*base->lookup_certificates_issued_by)(gobj(), unwrap(issuer_raw_dn),Glib::unwrap(interaction),static_cast<GTlsDatabaseLookupFlags>(flags),Glib::unwrap(cancellable),&gerror), Glib::OWNERSHIP_DEEP));
     if(gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Glib::Error::throw_exception(gerror);
     return retval;
   }
 
   using RType = std::vector< Glib::RefPtr<TlsCertificate> >;
-  return RType();
+  return {};
 }
-auto Gio::TlsDatabase::lookup_certificates_issued_by_async_vfunc (
+auto TlsDatabase::lookup_certificates_issued_by_async_vfunc (
   const Glib::RefPtr <Glib::ByteArray> &issuer_raw_dn,
   const Glib::RefPtr <TlsInteraction> &interaction, const SlotAsyncReady &slot,
   const Glib::RefPtr <Cancellable> &cancellable, LookupFlags flags) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new SlotAsyncReady(slot);
+  const auto slot_copy = new SlotAsyncReady(slot);
 
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1501,10 +1481,10 @@ auto Gio::TlsDatabase::lookup_certificates_issued_by_async_vfunc (
 
   if(base && base->lookup_certificates_issued_by_async)
   {
-    (*base->lookup_certificates_issued_by_async)(gobj(),Glib::unwrap(issuer_raw_dn),Glib::unwrap(interaction),static_cast<GTlsDatabaseLookupFlags>(flags),const_cast<GCancellable*>(Glib::unwrap(cancellable)),&SignalProxy_async_callback,slot_copy);
+    (*base->lookup_certificates_issued_by_async)(gobj(), unwrap(issuer_raw_dn),Glib::unwrap(interaction),static_cast<GTlsDatabaseLookupFlags>(flags),Glib::unwrap(cancellable),&SignalProxy_async_callback,slot_copy);
   }
 }
-auto Gio::TlsDatabase::lookup_certificates_issued_by_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> std::vector< Glib::RefPtr<TlsCertificate> >
+auto TlsDatabase::lookup_certificates_issued_by_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> std::vector< Glib::RefPtr<TlsCertificate> >
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -1513,14 +1493,14 @@ auto Gio::TlsDatabase::lookup_certificates_issued_by_finish_vfunc(const Glib::Re
   if(base && base->lookup_certificates_issued_by_finish)
   {
     GError* gerror = nullptr;
-    std::vector< Glib::RefPtr<TlsCertificate> > retval(Glib::ListHandler< Glib::RefPtr<TlsCertificate> >::list_to_vector((*base->lookup_certificates_issued_by_finish)(gobj(),Glib::unwrap(result),&(gerror)), Glib::OWNERSHIP_DEEP));
+    std::vector< Glib::RefPtr<TlsCertificate> > retval(Glib::ListHandler< Glib::RefPtr<TlsCertificate> >::list_to_vector((*base->lookup_certificates_issued_by_finish)(gobj(),Glib::unwrap(result),&gerror), Glib::OWNERSHIP_DEEP));
     if(gerror)
-      ::Glib::Error::throw_exception(gerror);
+      Glib::Error::throw_exception(gerror);
     return retval;
   }
 
   using RType = std::vector< Glib::RefPtr<TlsCertificate> >;
-  return RType();
+  return {};
 }
 
 

@@ -33,9 +33,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkNoSelection* object, bool take_copy) -> Glib::RefPtr<Gtk::NoSelection>
+auto wrap(GtkNoSelection* object, const bool take_copy) -> RefPtr<Gtk::NoSelection>
 {
-  return Glib::make_refptr_for_instance<Gtk::NoSelection>( dynamic_cast<Gtk::NoSelection*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::NoSelection>( dynamic_cast<Gtk::NoSelection*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto NoSelection_Class::init() -> const Glib::Class&
+auto NoSelection_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -88,36 +88,33 @@ auto NoSelection::gobj_copy() -> GtkNoSelection*
 }
 
 NoSelection::NoSelection(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 NoSelection::NoSelection(GtkNoSelection* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 NoSelection::NoSelection(NoSelection&& src) noexcept
-: Glib::Object(std::move(src))
-  , Gio::ListModel(std::move(src))
+: Object(std::move(src))
+  ,
+  ListModel(std::move(src))
   , SelectionModel(std::move(src))
 {}
 
 auto NoSelection::operator=(NoSelection&& src) noexcept -> NoSelection&
 {
-  Glib::Object::operator=(std::move(src));
-  Gio::ListModel::operator=(std::move(src));
+  Object::operator=(std::move(src));
+  ListModel::operator=(std::move(src));
   SelectionModel::operator=(std::move(src));
   return *this;
 }
 
 
-NoSelection::~NoSelection() noexcept
-{}
-
+NoSelection::~NoSelection() noexcept = default;
 
 NoSelection::CppClassType NoSelection::noselection_class_; // initialize static member
 
@@ -136,18 +133,18 @@ auto NoSelection::get_base_type() -> GType
 NoSelection::NoSelection()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(noselection_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(noselection_class_.init()))
 {
 
 
 }
 
-NoSelection::NoSelection(const Glib::RefPtr<Gio::ListModel>& model)
+NoSelection::NoSelection(const Glib::RefPtr<ListModel>& model)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(noselection_class_.init(), "model", Glib::unwrap(model), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(noselection_class_.init(), "model", Glib::unwrap(model), nullptr))
 {
 
 
@@ -158,12 +155,12 @@ auto NoSelection::create() -> Glib::RefPtr<NoSelection>
   return Glib::make_refptr_for_instance<NoSelection>( new NoSelection() );
 }
 
-auto NoSelection::create(const Glib::RefPtr<Gio::ListModel>& model) -> Glib::RefPtr<NoSelection>
+auto NoSelection::create(const Glib::RefPtr<ListModel>& model) -> Glib::RefPtr<NoSelection>
 {
   return Glib::make_refptr_for_instance<NoSelection>( new NoSelection(model) );
 }
 
-auto NoSelection::get_model() -> Glib::RefPtr<Gio::ListModel>
+auto NoSelection::get_model() -> Glib::RefPtr<ListModel>
 {
   auto retvalue = Glib::wrap(gtk_no_selection_get_model(gobj()));
   if(retvalue)
@@ -171,12 +168,12 @@ auto NoSelection::get_model() -> Glib::RefPtr<Gio::ListModel>
   return retvalue;
 }
 
-auto NoSelection::get_model() const -> Glib::RefPtr<const Gio::ListModel>
+auto NoSelection::get_model() const -> Glib::RefPtr<const ListModel>
 {
   return const_cast<NoSelection*>(this)->get_model();
 }
 
-auto NoSelection::set_model (const Glib::RefPtr <Gio::ListModel> &model) -> void
+auto NoSelection::set_model (const Glib::RefPtr <ListModel> &model) -> void
 {
   gtk_no_selection_set_model(gobj(), Glib::unwrap(model));
 }
@@ -188,26 +185,26 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
 
 auto NoSelection::property_item_type() const -> Glib::PropertyProxy_ReadOnly< GType >
 {
-  return Glib::PropertyProxy_ReadOnly< GType >(this, "item-type");
+  return {this, "item-type"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::ListModel>>::value,
   "Type Glib::RefPtr<Gio::ListModel> cannot be used in _WRAP_PROPERTY. "
   "There is no suitable template specialization of Glib::Value<>.");
 
-auto NoSelection::property_model() -> Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> >
+auto NoSelection::property_model() -> Glib::PropertyProxy< Glib::RefPtr<ListModel> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Gio::ListModel> >(this, "model");
+  return {this, "model"};
 }
 
-auto NoSelection::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >
+auto NoSelection::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ListModel> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >(this, "model");
+  return {this, "model"};
 }
 
 auto NoSelection::property_n_items() const -> Glib::PropertyProxy_ReadOnly< unsigned int >
 {
-  return Glib::PropertyProxy_ReadOnly< unsigned int >(this, "n-items");
+  return {this, "n-items"};
 }
 
 

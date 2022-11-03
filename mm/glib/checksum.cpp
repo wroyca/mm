@@ -47,8 +47,8 @@ Checksum::get_length(Type checksum_type) -> gssize
 auto
 Checksum::compute_checksum(Type checksum_type, const std::string& data) -> std::string
 {
-  return Glib::convert_return_gchar_ptr_to_stdstring(
-    g_compute_checksum_for_string(((GChecksumType)checksum_type), data.c_str(), data.size()));
+  return convert_return_gchar_ptr_to_stdstring(
+    g_compute_checksum_for_string((GChecksumType)checksum_type, data.c_str(), data.size()));
 }
 
 auto Checksum::update (const std::string &data) -> void
@@ -66,9 +66,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GChecksum* object, bool take_copy) -> Glib::Checksum
+auto wrap(GChecksum* object, const bool take_copy) -> Checksum
 {
-  return Glib::Checksum(object, take_copy);
+  return Checksum(object, take_copy);
 }
 
 } // namespace Glib
@@ -91,7 +91,7 @@ Checksum::Checksum()
 
 Checksum::Checksum(const Checksum& other)
 :
-  gobject_ ((other.gobject_) ? g_checksum_copy(other.gobject_) : nullptr)
+  gobject_ (other.gobject_ ? g_checksum_copy(other.gobject_) : nullptr)
 {}
 
 Checksum::Checksum(Checksum&& other) noexcept
@@ -108,12 +108,12 @@ auto Checksum::operator=(Checksum&& other) noexcept -> Checksum&
   return *this;
 }
 
-Checksum::Checksum(GChecksum* gobject, bool make_a_copy)
+Checksum::Checksum(GChecksum* gobject, const bool make_a_copy)
 :
   // For BoxedType wrappers, make_a_copy is true by default.  The static
   // BoxedType wrappers must always take a copy, thus make_a_copy = true
   // ensures identical behaviour if the default argument is used.
-  gobject_ ((make_a_copy && gobject) ? g_checksum_copy(gobject) : gobject)
+  gobject_ (make_a_copy && gobject ? g_checksum_copy(gobject) : gobject)
 {}
 
 auto Checksum::operator=(const Checksum& other) -> Checksum&
@@ -145,7 +145,7 @@ auto Checksum::reset () -> void
   g_checksum_reset(gobj());
 }
 
-auto Checksum::update (const guchar *data, gssize length) -> void
+auto Checksum::update (const guchar *data, const gssize length) -> void
 {
   g_checksum_update(gobj(), data, length);
 }
@@ -157,12 +157,12 @@ auto Checksum::get_digest (guint8 *buffer, gsize *digest_len) const -> void
 
 auto Checksum::get_string() const -> std::string
 {
-  return Glib::convert_const_gchar_ptr_to_stdstring(g_checksum_get_string(const_cast<GChecksum*>(gobj())));
+  return convert_const_gchar_ptr_to_stdstring(g_checksum_get_string(const_cast<GChecksum*>(gobj())));
 }
 
-auto Checksum::compute_checksum(Type checksum_type, const guchar* data, gsize length) -> std::string
+auto Checksum::compute_checksum(Type checksum_type, const guchar* data, const gsize length) -> std::string
 {
-  return Glib::convert_return_gchar_ptr_to_stdstring(g_compute_checksum_for_data((static_cast<GChecksumType>(checksum_type)), data, length));
+  return convert_return_gchar_ptr_to_stdstring(g_compute_checksum_for_data(static_cast<GChecksumType>(checksum_type), data, length));
 }
 
 

@@ -47,7 +47,7 @@ auto CellRendererToggle_signal_toggled_callback (
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
 
-  auto obj = dynamic_cast<CellRendererToggle*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<CellRendererToggle*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -78,9 +78,9 @@ const Glib::SignalProxyInfo CellRendererToggle_signal_toggled_info =
 namespace Glib
 {
 
-auto wrap(GtkCellRendererToggle* object, bool take_copy) -> Gtk::CellRendererToggle*
+auto wrap(GtkCellRendererToggle* object, const bool take_copy) -> Gtk::CellRendererToggle*
 {
-  return dynamic_cast<Gtk::CellRendererToggle *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::CellRendererToggle *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -91,7 +91,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto CellRendererToggle_Class::init() -> const Glib::Class&
+auto CellRendererToggle_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -124,7 +124,7 @@ auto CellRendererToggle_Class::class_init_function (void *g_class, void *class_d
 
 auto CellRendererToggle_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new CellRendererToggle((GtkCellRendererToggle*)(o)));
+  return manage(new CellRendererToggle((GtkCellRendererToggle*)o));
 
 }
 
@@ -132,25 +132,23 @@ auto CellRendererToggle_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 CellRendererToggle::CellRendererToggle(const Glib::ConstructParams& construct_params)
-:
-  Gtk::CellRenderer(construct_params)
+: CellRenderer(construct_params)
 {
   }
 
 CellRendererToggle::CellRendererToggle(GtkCellRendererToggle* castitem)
-:
-  Gtk::CellRenderer((GtkCellRenderer*)(castitem))
+: CellRenderer((GtkCellRenderer*)castitem)
 {
   }
 
 
 CellRendererToggle::CellRendererToggle(CellRendererToggle&& src) noexcept
-: Gtk::CellRenderer(std::move(src))
+: CellRenderer(std::move(src))
 {}
 
 auto CellRendererToggle::operator=(CellRendererToggle&& src) noexcept -> CellRendererToggle&
 {
-  Gtk::CellRenderer::operator=(std::move(src));
+  CellRenderer::operator=(std::move(src));
   return *this;
 }
 
@@ -176,8 +174,8 @@ auto CellRendererToggle::get_base_type() -> GType
 CellRendererToggle::CellRendererToggle()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::CellRenderer(Glib::ConstructParams(cellrenderertoggle_class_.init()))
+ObjectBase(nullptr),
+CellRenderer(Glib::ConstructParams(cellrenderertoggle_class_.init()))
 {
 
 
@@ -188,9 +186,10 @@ auto CellRendererToggle::get_radio() const -> bool
   return gtk_cell_renderer_toggle_get_radio(const_cast<GtkCellRendererToggle*>(gobj()));
 }
 
-auto CellRendererToggle::set_radio (bool radio) -> void
+auto CellRendererToggle::set_radio (
+  const bool radio) -> void
 {
-  gtk_cell_renderer_toggle_set_radio(gobj(), static_cast<int>(radio));
+  gtk_cell_renderer_toggle_set_radio(gobj(), radio);
 }
 
 auto CellRendererToggle::get_active() const -> bool
@@ -198,9 +197,10 @@ auto CellRendererToggle::get_active() const -> bool
   return gtk_cell_renderer_toggle_get_active(const_cast<GtkCellRendererToggle*>(gobj()));
 }
 
-auto CellRendererToggle::set_active (bool setting) -> void
+auto CellRendererToggle::set_active (
+  const bool setting) -> void
 {
-  gtk_cell_renderer_toggle_set_active(gobj(), static_cast<int>(setting));
+  gtk_cell_renderer_toggle_set_active(gobj(), setting);
 }
 
 auto CellRendererToggle::get_activatable() const -> bool
@@ -208,56 +208,57 @@ auto CellRendererToggle::get_activatable() const -> bool
   return gtk_cell_renderer_toggle_get_activatable(const_cast<GtkCellRendererToggle*>(gobj()));
 }
 
-auto CellRendererToggle::set_activatable (bool setting) -> void
+auto CellRendererToggle::set_activatable (
+  const bool setting) -> void
 {
-  gtk_cell_renderer_toggle_set_activatable(gobj(), static_cast<int>(setting));
+  gtk_cell_renderer_toggle_set_activatable(gobj(), setting);
 }
 
 
 auto CellRendererToggle::signal_toggled() -> Glib::SignalProxy<void(const Glib::ustring&)>
 {
-  return Glib::SignalProxy<void(const Glib::ustring&) >(this, &CellRendererToggle_signal_toggled_info);
+  return {this, &CellRendererToggle_signal_toggled_info};
 }
 
 
 auto CellRendererToggle::property_activatable() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "activatable");
+  return {this, "activatable"};
 }
 
 auto CellRendererToggle::property_activatable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "activatable");
+  return {this, "activatable"};
 }
 
 auto CellRendererToggle::property_active() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "active");
+  return {this, "active"};
 }
 
 auto CellRendererToggle::property_active() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "active");
+  return {this, "active"};
 }
 
 auto CellRendererToggle::property_inconsistent() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "inconsistent");
+  return {this, "inconsistent"};
 }
 
 auto CellRendererToggle::property_inconsistent() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "inconsistent");
+  return {this, "inconsistent"};
 }
 
 auto CellRendererToggle::property_radio() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "radio");
+  return {this, "radio"};
 }
 
 auto CellRendererToggle::property_radio() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "radio");
+  return {this, "radio"};
 }
 
 

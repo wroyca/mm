@@ -41,7 +41,7 @@ Attribute::Attribute(const Attribute& src)
   gobject_(src.gobject_ ? pango_attribute_copy(src.gobject_) : nullptr)
 {}
 
-Attribute::Attribute(PangoAttribute* castitem, bool take_copy)
+Attribute::Attribute(PangoAttribute* castitem, const bool take_copy)
 {
   if(take_copy)
   {
@@ -66,7 +66,7 @@ Attribute::~Attribute()
 
 auto Attribute::operator=(const Attribute& src) -> Attribute&
 {
-  auto* const new_gobject = (src.gobject_ ? pango_attribute_copy(src.gobject_) : nullptr);
+  auto* const new_gobject = src.gobject_ ? pango_attribute_copy(src.gobject_) : nullptr;
 
   if(gobject_)
     pango_attribute_destroy(gobject_);
@@ -77,7 +77,7 @@ auto Attribute::operator=(const Attribute& src) -> Attribute&
 
 auto Attribute::get_type() const -> AttrType
 {
-  return (AttrType) ((gobject_) ? gobj()->klass->type : PANGO_ATTR_INVALID);
+  return (AttrType) (gobject_ ? gobj()->klass->type : PANGO_ATTR_INVALID);
 }
 
 auto Attribute::register_type(const Glib::ustring& name) -> AttrType
@@ -100,32 +100,38 @@ auto Attribute::create_attr_language(const Language& language) -> AttrLanguage
   return Glib::wrap((PangoAttrLanguage*)pango_attr_language_new(const_cast<PangoLanguage*>(language.gobj())));
 }
 
-auto Attribute::create_attr_foreground(guint16 red, guint16 green, guint16 blue) -> AttrColor
+auto Attribute::create_attr_foreground(
+  const guint16 red, const guint16 green, const guint16 blue) -> AttrColor
 {
   return Glib::wrap((PangoAttrColor*)pango_attr_foreground_new(red, green, blue));
 }
 
-auto Attribute::create_attr_background(guint16 red, guint16 green, guint16 blue) -> AttrColor
+auto Attribute::create_attr_background(
+  const guint16 red, const guint16 green, const guint16 blue) -> AttrColor
 {
   return Glib::wrap((PangoAttrColor*)pango_attr_background_new(red, green, blue));
 }
 
-auto Attribute::create_attr_foreground_alpha(guint16 alpha) -> AttrInt
+auto Attribute::create_attr_foreground_alpha(
+  const guint16 alpha) -> AttrInt
 {
   return Glib::wrap((PangoAttrInt*)pango_attr_foreground_alpha_new(alpha));
 }
 
-auto Attribute::create_attr_background_alpha(guint16 alpha) -> AttrInt
+auto Attribute::create_attr_background_alpha(
+  const guint16 alpha) -> AttrInt
 {
   return Glib::wrap((PangoAttrInt*)pango_attr_background_alpha_new(alpha));
 }
 
-auto Attribute::create_attr_size(int size) -> AttrInt
+auto Attribute::create_attr_size(
+  const int size) -> AttrInt
 {
   return Glib::wrap((PangoAttrInt*)pango_attr_size_new(size));
 }
 
-auto Attribute::create_attr_size_absolute(int size) -> AttrInt
+auto Attribute::create_attr_size_absolute(
+  const int size) -> AttrInt
 {
   return Glib::wrap((PangoAttrInt*)pango_attr_size_new_absolute(size));
 }
@@ -160,7 +166,8 @@ auto Attribute::create_attr_underline(Underline underline) -> AttrInt
   return Glib::wrap((PangoAttrInt*)pango_attr_underline_new((PangoUnderline)underline));
 }
 
-auto Attribute::create_attr_underline_color(guint16 red, guint16 green, guint16 blue) -> AttrColor
+auto Attribute::create_attr_underline_color(
+  const guint16 red, const guint16 green, const guint16 blue) -> AttrColor
 {
   return Glib::wrap((PangoAttrColor*)pango_attr_underline_color_new(red, green, blue));
 }
@@ -170,27 +177,32 @@ auto Attribute::create_attr_overline(Overline overline) -> AttrInt
   return Glib::wrap((PangoAttrInt*)pango_attr_overline_new((PangoOverline)overline));
 }
 
-auto Attribute::create_attr_overline_color(guint16 red, guint16 green, guint16 blue) -> AttrColor
+auto Attribute::create_attr_overline_color(
+  const guint16 red, const guint16 green, const guint16 blue) -> AttrColor
 {
   return Glib::wrap((PangoAttrColor*)pango_attr_overline_color_new(red, green, blue));
 }
 
-auto Attribute::create_attr_strikethrough(bool strikethrough) -> AttrInt
+auto Attribute::create_attr_strikethrough(
+  const bool strikethrough) -> AttrInt
 {
   return Glib::wrap((PangoAttrInt*)pango_attr_strikethrough_new(strikethrough));
 }
 
-auto Attribute::create_attr_strikethrough_color(guint16 red, guint16 green, guint16 blue) -> AttrColor
+auto Attribute::create_attr_strikethrough_color(
+  const guint16 red, const guint16 green, const guint16 blue) -> AttrColor
 {
   return Glib::wrap((PangoAttrColor*)pango_attr_strikethrough_color_new(red, green, blue));
 }
 
-auto Attribute::create_attr_rise(int rise) -> AttrInt
+auto Attribute::create_attr_rise(
+  const int rise) -> AttrInt
 {
   return Glib::wrap((PangoAttrInt*)pango_attr_rise_new(rise));
 }
 
-auto Attribute::create_attr_baseline_shift(int shift) -> AttrInt
+auto Attribute::create_attr_baseline_shift(
+  const int shift) -> AttrInt
 {
   return Glib::wrap((PangoAttrInt*)pango_attr_baseline_shift_new(shift));
 }
@@ -200,17 +212,20 @@ auto Attribute::create_attr_font_scale(FontScale scale) -> AttrInt
   return Glib::wrap((PangoAttrInt*)pango_attr_font_scale_new((PangoFontScale)scale));
 }
 
-auto Attribute::create_attr_scale(double scale_factor) -> AttrFloat
+auto Attribute::create_attr_scale(
+  const double scale_factor) -> AttrFloat
 {
   return Glib::wrap((PangoAttrFloat*)pango_attr_scale_new(scale_factor));
 }
 
-auto Attribute::create_attr_fallback(bool enable_fallback) -> AttrInt
+auto Attribute::create_attr_fallback(
+  const bool enable_fallback) -> AttrInt
 {
   return Glib::wrap((PangoAttrInt*)pango_attr_fallback_new(enable_fallback));
 }
 
-auto Attribute::create_attr_letter_spacing(int letter_spacing) -> AttrInt
+auto Attribute::create_attr_letter_spacing(
+  const int letter_spacing) -> AttrInt
 {
   return Glib::wrap((PangoAttrInt*)pango_attr_letter_spacing_new(letter_spacing));
 }
@@ -235,7 +250,8 @@ auto Attribute::create_attr_font_features(const Glib::ustring& features) -> Attr
   return Glib::wrap((PangoAttrString*)pango_attr_font_features_new(features.c_str()));
 }
 
-auto Attribute::create_attr_allow_breaks(bool allow_breaks) -> AttrInt
+auto Attribute::create_attr_allow_breaks(
+  const bool allow_breaks) -> AttrInt
 {
   return Glib::wrap((PangoAttrInt*)pango_attr_allow_breaks_new(allow_breaks));
 }
@@ -250,7 +266,8 @@ auto Attribute::create_attr_sentence() -> AttrInt
   return Glib::wrap((PangoAttrInt*)pango_attr_sentence_new());
 }
 
-auto Attribute::create_attr_insert_hyphens(bool insert_hyphens) -> AttrInt
+auto Attribute::create_attr_insert_hyphens(
+  const bool insert_hyphens) -> AttrInt
 {
   return Glib::wrap((PangoAttrInt*)pango_attr_insert_hyphens_new(insert_hyphens));
 }
@@ -260,12 +277,14 @@ auto Attribute::create_attr_show(ShowFlags show) -> AttrInt
   return Glib::wrap((PangoAttrInt*)pango_attr_show_new((PangoShowFlags)show));
 }
 
-auto Attribute::create_attr_line_height(double factor) -> AttrFloat
+auto Attribute::create_attr_line_height(
+  const double factor) -> AttrFloat
 {
   return Glib::wrap((PangoAttrFloat*)pango_attr_line_height_new(factor));
 }
 
-auto Attribute::create_attr_line_height_absolute(int height) -> AttrInt
+auto Attribute::create_attr_line_height_absolute(
+  const int height) -> AttrInt
 {
   return Glib::wrap((PangoAttrInt*)pango_attr_line_height_new_absolute(height));
 }
@@ -276,24 +295,16 @@ auto Attribute::create_attr_text_transform(TextTransform transform) -> AttrInt
 }
 
 
-AttrString::AttrString()
-{}
+AttrString::AttrString() = default;
 
-AttrString::AttrString(const AttrString& src)
-:
-  Attribute(src)
-{}
+AttrLanguage::AttrLanguage(const AttrLanguage& src) = default;
 
-AttrString::AttrString(PangoAttrString* castitem, bool take_copy)
+AttrString::AttrString(PangoAttrString* castitem, const bool take_copy)
 :
   Attribute((PangoAttribute*)castitem, take_copy)
 {}
 
-auto AttrString::operator=(const AttrString& src) -> AttrString&
-{
-  Attribute::operator=(src);
-  return *this;
-}
+auto AttrString::operator=(const AttrString& src) -> AttrString& = default;
 
 auto AttrString::set_string (const Glib::ustring &str) -> void
 {
@@ -301,105 +312,58 @@ auto AttrString::set_string (const Glib::ustring &str) -> void
   gobj()->value = g_strdup(str.c_str());
 }
 
+AttrLanguage::AttrLanguage() = default;
 
-AttrLanguage::AttrLanguage()
-{}
-
-AttrLanguage::AttrLanguage(const AttrLanguage& src)
-:
-  Attribute(src)
-{}
-
-AttrLanguage::AttrLanguage(PangoAttrLanguage* castitem, bool take_copy)
+AttrLanguage::AttrLanguage(PangoAttrLanguage* castitem, const bool take_copy)
 :
   Attribute((PangoAttribute*)castitem, take_copy)
 {}
 
-auto AttrLanguage::operator=(const AttrLanguage& src) -> AttrLanguage&
-{
-  Attribute::operator=(src);
-  return *this;
-}
+auto AttrLanguage::operator=(const AttrLanguage& src) -> AttrLanguage& = default;
 
+AttrColor::AttrColor() = default;
 
-AttrColor::AttrColor()
-{}
+AttrColor::AttrColor(const AttrColor& src) = default;
 
-AttrColor::AttrColor(const AttrColor& src)
-:
-  Attribute(src)
-{}
-
-AttrColor::AttrColor(PangoAttrColor* castitem, bool take_copy)
+AttrColor::AttrColor(PangoAttrColor* castitem, const bool take_copy)
 :
   Attribute((PangoAttribute*)castitem, take_copy)
 {}
 
-auto AttrColor::operator=(const AttrColor& src) -> AttrColor&
-{
-  Attribute::operator=(src);
-  return *this;
-}
+auto AttrColor::operator=(const AttrColor& src) -> AttrColor& = default;
 
+AttrInt::AttrInt() = default;
 
-AttrInt::AttrInt()
-{}
+AttrInt::AttrInt(const AttrInt& src) = default;
 
-AttrInt::AttrInt(const AttrInt& src)
-:
-  Attribute(src)
-{}
-
-AttrInt::AttrInt(PangoAttrInt* castitem, bool take_copy)
+AttrInt::AttrInt(PangoAttrInt* castitem, const bool take_copy)
 :
   Attribute((PangoAttribute*)castitem, take_copy)
 {}
 
-auto AttrInt::operator=(const AttrInt& src) -> AttrInt&
-{
-  Attribute::operator=(src);
-  return *this;
-}
+auto AttrInt::operator=(const AttrInt& src) -> AttrInt& = default;
 
+AttrFloat::AttrFloat() = default;
 
-AttrFloat::AttrFloat()
-{}
+AttrFloat::AttrFloat(const AttrFloat& src) = default;
 
-AttrFloat::AttrFloat(const AttrFloat& src)
-:
-  Attribute(src)
-{}
-
-AttrFloat::AttrFloat(PangoAttrFloat* castitem, bool take_copy)
+AttrFloat::AttrFloat(PangoAttrFloat* castitem, const bool take_copy)
 :
   Attribute((PangoAttribute*)castitem, take_copy)
 {}
 
-auto AttrFloat::operator=(const AttrFloat& src) -> AttrFloat&
-{
-  Attribute::operator=(src);
-  return *this;
-}
+auto AttrFloat::operator=(const AttrFloat& src) -> AttrFloat& = default;
 
+AttrFontDesc::AttrFontDesc() = default;
 
-AttrFontDesc::AttrFontDesc()
-{}
+AttrFontDesc::AttrFontDesc(const AttrFontDesc& src) = default;
 
-AttrFontDesc::AttrFontDesc(const AttrFontDesc& src)
-:
-  Attribute(src)
-{}
-
-AttrFontDesc::AttrFontDesc(PangoAttrFontDesc* castitem, bool take_copy)
+AttrFontDesc::AttrFontDesc(PangoAttrFontDesc* castitem, const bool take_copy)
 :
   Attribute((PangoAttribute*)castitem, take_copy)
 {}
 
-auto AttrFontDesc::operator=(const AttrFontDesc& src) -> AttrFontDesc&
-{
-  Attribute::operator=(src);
-  return *this;
-}
+auto AttrFontDesc::operator=(const AttrFontDesc& src) -> AttrFontDesc& = default;
 
 auto AttrFontDesc::set_desc (const FontDescription &desc) -> void
 {
@@ -408,67 +372,58 @@ auto AttrFontDesc::set_desc (const FontDescription &desc) -> void
 }
 
 
-AttrShape::AttrShape()
-{}
+AttrShape::AttrShape() = default;
 
-AttrShape::AttrShape(const AttrShape& src)
-:
-  Attribute(src)
-{}
+AttrShape::AttrShape(const AttrShape& src) = default;
 
-AttrShape::AttrShape(PangoAttrShape* castitem, bool take_copy)
+AttrShape::AttrShape(PangoAttrShape* castitem, const bool take_copy)
 :
   Attribute((PangoAttribute*)castitem, take_copy)
 {}
 
-auto AttrShape::operator=(const AttrShape& src) -> AttrShape&
-{
-  Attribute::operator=(src);
-  return *this;
-}
-
+auto AttrShape::operator=(const AttrShape& src) -> AttrShape& = default;
 } //namespace Pango
 
 
 namespace Glib
 {
 
-auto wrap(PangoAttribute* object, bool take_copy) -> Pango::Attribute
+auto wrap(PangoAttribute* object, const bool take_copy) -> Pango::Attribute
 {
   return Pango::Attribute(object, take_copy);
 }
 
-auto wrap(PangoAttrString* object, bool take_copy) -> Pango::AttrString
+auto wrap(PangoAttrString* object, const bool take_copy) -> Pango::AttrString
 {
   return Pango::AttrString(object, take_copy);
 }
 
-auto wrap(PangoAttrLanguage* object, bool take_copy) -> Pango::AttrLanguage
+auto wrap(PangoAttrLanguage* object, const bool take_copy) -> Pango::AttrLanguage
 {
   return Pango::AttrLanguage(object, take_copy);
 }
 
-auto wrap(PangoAttrColor* object, bool take_copy) -> Pango::AttrColor
+auto wrap(PangoAttrColor* object, const bool take_copy) -> Pango::AttrColor
 {
   return Pango::AttrColor(object, take_copy);
 }
 
-auto wrap(PangoAttrInt* object, bool take_copy) -> Pango::AttrInt
+auto wrap(PangoAttrInt* object, const bool take_copy) -> Pango::AttrInt
 {
   return Pango::AttrInt(object, take_copy);
 }
 
-auto wrap(PangoAttrFloat* object, bool take_copy) -> Pango::AttrFloat
+auto wrap(PangoAttrFloat* object, const bool take_copy) -> Pango::AttrFloat
 {
   return Pango::AttrFloat(object, take_copy);
 }
 
-auto wrap(PangoAttrFontDesc* object, bool take_copy) -> Pango::AttrFontDesc
+auto wrap(PangoAttrFontDesc* object, const bool take_copy) -> Pango::AttrFontDesc
 {
   return Pango::AttrFontDesc(object, take_copy);
 }
 
-auto wrap(PangoAttrShape* object, bool take_copy) -> Pango::AttrShape
+auto wrap(PangoAttrShape* object, const bool take_copy) -> Pango::AttrShape
 {
   return Pango::AttrShape(object, take_copy);
 }
@@ -549,7 +504,7 @@ auto Attribute::set_end_index (const unsigned int &value) -> void
 
 auto Attribute::equal(const Attribute& attr2) const -> bool
 {
-  return pango_attribute_equal(const_cast<PangoAttribute*>(gobj()), (attr2).gobj());
+  return pango_attribute_equal(gobj(), attr2.gobj());
 }
 
 
@@ -580,7 +535,7 @@ auto AttrLanguage::get_language() const -> Language
 
 auto AttrLanguage::set_language (const Language &value) -> void
 {
-  gobj()->value = const_cast<PangoLanguage*>((value).gobj());
+  gobj()->value = const_cast<PangoLanguage*>(value.gobj());
 }
 
 
@@ -593,12 +548,12 @@ namespace Pango
 
 auto AttrColor::get_color() const -> Color
 {
-  return Color(&(gobj()->color));
+  return Color(&gobj()->color);
 }
 
 auto AttrColor::set_color (const Color &value) -> void
 {
-  gobj()->color = *(value).gobj();
+  gobj()->color = *value.gobj();
 }
 
 
@@ -647,7 +602,7 @@ namespace Pango
 
 auto AttrFontDesc::get_desc() const -> FontDescription
 {
-  return FontDescription((gobj()->desc));
+  return FontDescription(gobj()->desc);
 }
 
 
@@ -660,22 +615,22 @@ namespace Pango
 
 auto AttrShape::get_ink_rect() const -> Rectangle
 {
-  return Rectangle(&(gobj()->ink_rect));
+  return Rectangle(&gobj()->ink_rect);
 }
 
 auto AttrShape::get_logical_rect() const -> Rectangle
 {
-  return Rectangle(&(gobj()->logical_rect));
+  return Rectangle(&gobj()->logical_rect);
 }
 
 auto AttrShape::set_ink_rect (const Rectangle &value) -> void
 {
-  gobj()->ink_rect = *(value).gobj();
+  gobj()->ink_rect = *value.gobj();
 }
 
 auto AttrShape::set_logical_rect (const Rectangle &value) -> void
 {
-  gobj()->logical_rect = *(value).gobj();
+  gobj()->logical_rect = *value.gobj();
 }
 
 

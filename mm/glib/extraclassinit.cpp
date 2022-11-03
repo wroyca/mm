@@ -19,8 +19,8 @@
 namespace Glib
 {
 
-ExtraClassInit::ExtraClassInit(GClassInitFunc class_init_func, void* class_data,
-  GInstanceInitFunc instance_init_func)
+ExtraClassInit::ExtraClassInit(
+  const GClassInitFunc class_init_func, void* class_data, const GInstanceInitFunc instance_init_func)
 {
   if (class_init_func)
     add_custom_class_init_function(class_init_func, class_data);

@@ -39,9 +39,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkFontChooserWidget* object, bool take_copy) -> Gtk::FontChooserWidget*
+auto wrap(GtkFontChooserWidget* object, const bool take_copy) -> Gtk::FontChooserWidget*
 {
-  return dynamic_cast<Gtk::FontChooserWidget *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::FontChooserWidget *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -52,7 +52,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto FontChooserWidget_Class::init() -> const Glib::Class&
+auto FontChooserWidget_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -86,7 +86,7 @@ auto FontChooserWidget_Class::class_init_function (void *g_class, void *class_da
 
 auto FontChooserWidget_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new FontChooserWidget((GtkFontChooserWidget*)(o)));
+  return manage(new FontChooserWidget((GtkFontChooserWidget*)o));
 
 }
 
@@ -94,26 +94,24 @@ auto FontChooserWidget_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 FontChooserWidget::FontChooserWidget(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 FontChooserWidget::FontChooserWidget(GtkFontChooserWidget* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 FontChooserWidget::FontChooserWidget(FontChooserWidget&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
   , FontChooser(std::move(src))
 {}
 
 auto FontChooserWidget::operator=(FontChooserWidget&& src) noexcept -> FontChooserWidget&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   FontChooser::operator=(std::move(src));
   return *this;
 }
@@ -140,8 +138,8 @@ auto FontChooserWidget::get_base_type() -> GType
 FontChooserWidget::FontChooserWidget()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(fontchooserwidget_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(fontchooserwidget_class_.init()))
 {
 
 

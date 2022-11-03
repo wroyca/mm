@@ -41,9 +41,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkCellAreaBox* object, bool take_copy) -> Glib::RefPtr<Gtk::CellAreaBox>
+auto wrap(GtkCellAreaBox* object, const bool take_copy) -> RefPtr<Gtk::CellAreaBox>
 {
-  return Glib::make_refptr_for_instance<Gtk::CellAreaBox>( dynamic_cast<Gtk::CellAreaBox*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::CellAreaBox>( dynamic_cast<Gtk::CellAreaBox*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -56,7 +56,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto CellAreaBox_Class::init() -> const Glib::Class&
+auto CellAreaBox_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -111,7 +111,7 @@ CellAreaBox::CellAreaBox(const Glib::ConstructParams& construct_params)
 
 CellAreaBox::CellAreaBox(GtkCellAreaBox* castitem)
 :
-  CellArea((GtkCellArea*)(castitem))
+  CellArea((GtkCellArea*)castitem)
 {}
 
 
@@ -128,9 +128,7 @@ auto CellAreaBox::operator=(CellAreaBox&& src) noexcept -> CellAreaBox&
 }
 
 
-CellAreaBox::~CellAreaBox() noexcept
-{}
-
+CellAreaBox::~CellAreaBox() noexcept = default;
 
 CellAreaBox::CppClassType CellAreaBox::cellareabox_class_; // initialize static member
 
@@ -149,7 +147,7 @@ auto CellAreaBox::get_base_type() -> GType
 CellAreaBox::CellAreaBox()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   CellArea(Glib::ConstructParams(cellareabox_class_.init()))
 {
 
@@ -161,14 +159,14 @@ auto CellAreaBox::create() -> Glib::RefPtr<CellAreaBox>
   return Glib::make_refptr_for_instance<CellAreaBox>( new CellAreaBox() );
 }
 
-auto CellAreaBox::pack_start (CellRenderer &renderer, bool expand, bool align, bool fixed) -> void
+auto CellAreaBox::pack_start (CellRenderer &renderer, const bool expand, const bool align, const bool fixed) -> void
 {
-  gtk_cell_area_box_pack_start(gobj(), (renderer).gobj(), static_cast<int>(expand), static_cast<int>(align), static_cast<int>(fixed));
+  gtk_cell_area_box_pack_start(gobj(), renderer.gobj(), expand, align, fixed);
 }
 
-auto CellAreaBox::pack_end (CellRenderer &renderer, bool expand, bool align, bool fixed) -> void
+auto CellAreaBox::pack_end (CellRenderer &renderer, const bool expand, const bool align, const bool fixed) -> void
 {
-  gtk_cell_area_box_pack_end(gobj(), (renderer).gobj(), static_cast<int>(expand), static_cast<int>(align), static_cast<int>(fixed));
+  gtk_cell_area_box_pack_end(gobj(), renderer.gobj(), expand, align, fixed);
 }
 
 auto CellAreaBox::get_spacing() const -> int
@@ -176,7 +174,8 @@ auto CellAreaBox::get_spacing() const -> int
   return gtk_cell_area_box_get_spacing(const_cast<GtkCellAreaBox*>(gobj()));
 }
 
-auto CellAreaBox::set_spacing (int spacing) -> void
+auto CellAreaBox::set_spacing (
+  const int spacing) -> void
 {
   gtk_cell_area_box_set_spacing(gobj(), spacing);
 }
@@ -184,12 +183,12 @@ auto CellAreaBox::set_spacing (int spacing) -> void
 
 auto CellAreaBox::property_spacing() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "spacing");
+  return {this, "spacing"};
 }
 
 auto CellAreaBox::property_spacing() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "spacing");
+  return {this, "spacing"};
 }
 
 

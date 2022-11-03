@@ -31,20 +31,20 @@ namespace Gio
 {
 
 SimpleAction::SimpleAction(const Glib::ustring& name) : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(simpleaction_class_.init(), "name",name.c_str(), nullptr))
+  ObjectBase(nullptr),
+  Object(Glib::ConstructParams(simpleaction_class_.init(), "name",name.c_str(), nullptr))
 {
 }
 
 SimpleAction::SimpleAction(const Glib::ustring& name, const Glib::VariantBase& state)
 : // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(simpleaction_class_.init(), "name",name.c_str(),"state",const_cast<GVariant*>((state).gobj()), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(simpleaction_class_.init(), "name",name.c_str(),"state",state.gobj(), nullptr))
 {
 }
 
 auto
-SimpleAction::create_bool(const Glib::ustring& name, bool state) -> Glib::RefPtr<SimpleAction>
+SimpleAction::create_bool(const Glib::ustring& name, const bool state) -> Glib::RefPtr<SimpleAction>
 {
   // We must provide some initial state, as a way to specify the type of the state.
   return create(name, Glib::Variant<bool>::create(state));
@@ -60,7 +60,7 @@ SimpleAction::create_radio_string(const Glib::ustring& name, const Glib::ustring
 }
 
 auto
-SimpleAction::create_radio_integer(const Glib::ustring& name, gint32 initial_state) -> Glib::RefPtr<SimpleAction>
+SimpleAction::create_radio_integer(const Glib::ustring& name, const gint32 initial_state) -> Glib::RefPtr<SimpleAction>
 {
   // See
   // https://developer.gnome.org/glib/stable/gvariant-format-strings.html#gvariant-format-strings-numeric-types
@@ -78,7 +78,7 @@ auto SimpleAction_signal_activate_callback (GSimpleAction *self, GVariant *p0, v
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::VariantBase&)>;
 
-  auto obj = dynamic_cast<SimpleAction*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<SimpleAction*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -109,7 +109,7 @@ auto SimpleAction_signal_change_state_callback (
   using namespace Gio;
   using SlotType = sigc::slot<void(const Glib::VariantBase&)>;
 
-  auto obj = dynamic_cast<SimpleAction*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<SimpleAction*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -140,9 +140,9 @@ const Glib::SignalProxyInfo SimpleAction_signal_change_state_info =
 namespace Glib
 {
 
-auto wrap(GSimpleAction* object, bool take_copy) -> Glib::RefPtr<Gio::SimpleAction>
+auto wrap(GSimpleAction* object, const bool take_copy) -> RefPtr<Gio::SimpleAction>
 {
-  return Glib::make_refptr_for_instance<Gio::SimpleAction>( dynamic_cast<Gio::SimpleAction*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::SimpleAction>( dynamic_cast<Gio::SimpleAction*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -155,7 +155,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto SimpleAction_Class::init() -> const Glib::Class&
+auto SimpleAction_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -202,34 +202,30 @@ auto SimpleAction::gobj_copy() -> GSimpleAction*
 }
 
 SimpleAction::SimpleAction(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 SimpleAction::SimpleAction(GSimpleAction* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 SimpleAction::SimpleAction(SimpleAction&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , Action(std::move(src))
 {}
 
 auto SimpleAction::operator=(SimpleAction&& src) noexcept -> SimpleAction&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   Action::operator=(std::move(src));
   return *this;
 }
 
 
-SimpleAction::~SimpleAction() noexcept
-{}
-
+SimpleAction::~SimpleAction() noexcept = default;
 
 SimpleAction::CppClassType SimpleAction::simpleaction_class_; // initialize static member
 
@@ -248,8 +244,8 @@ auto SimpleAction::get_base_type() -> GType
 SimpleAction::SimpleAction(const Glib::ustring& name, const Glib::VariantType& parameter_type)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(simpleaction_class_.init(), "name", name.c_str(), "parameter_type", parameter_type.gobj(), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(simpleaction_class_.init(), "name", name.c_str(), "parameter_type", parameter_type.gobj(), nullptr))
 {
 
 
@@ -258,8 +254,8 @@ SimpleAction::SimpleAction(const Glib::ustring& name, const Glib::VariantType& p
 SimpleAction::SimpleAction(const Glib::ustring& name, const Glib::VariantType& parameter_type, const Glib::VariantBase& state)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(simpleaction_class_.init(), "name", name.c_str(), "parameter_type", parameter_type.gobj(), "state", const_cast<GVariant*>((state).gobj()), nullptr))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(simpleaction_class_.init(), "name", name.c_str(), "parameter_type", parameter_type.gobj(), "state", state.gobj(), nullptr))
 {
 
 
@@ -285,47 +281,48 @@ auto SimpleAction::create(const Glib::ustring& name, const Glib::VariantBase& st
   return Glib::make_refptr_for_instance<SimpleAction>( new SimpleAction(name, state) );
 }
 
-auto SimpleAction::set_enabled (bool enabled) -> void
+auto SimpleAction::set_enabled (
+  const bool enabled) -> void
 {
-  g_simple_action_set_enabled(gobj(), static_cast<int>(enabled));
+  g_simple_action_set_enabled(gobj(), enabled);
 }
 
 auto SimpleAction::set_state (const Glib::VariantBase &value) -> void
 {
-  g_simple_action_set_state(gobj(), const_cast<GVariant*>((value).gobj()));
+  g_simple_action_set_state(gobj(), const_cast<GVariant*>(value.gobj()));
 }
 
 auto SimpleAction::set_state_hint (const Glib::VariantBase &state_hint) -> void
 {
-  g_simple_action_set_state_hint(gobj(), const_cast<GVariant*>((state_hint).gobj()));
+  g_simple_action_set_state_hint(gobj(), const_cast<GVariant*>(state_hint.gobj()));
 }
 
 
 auto SimpleAction::signal_activate() -> Glib::SignalProxy<void(const Glib::VariantBase&)>
 {
-  return Glib::SignalProxy<void(const Glib::VariantBase&) >(this, &SimpleAction_signal_activate_info);
+  return {this, &SimpleAction_signal_activate_info};
 }
 
 
 auto SimpleAction::signal_change_state() -> Glib::SignalProxy<void(const Glib::VariantBase&)>
 {
-  return Glib::SignalProxy<void(const Glib::VariantBase&) >(this, &SimpleAction_signal_change_state_info);
+  return {this, &SimpleAction_signal_change_state_info};
 }
 
 
 auto SimpleAction::property_enabled() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "enabled");
+  return {this, "enabled"};
 }
 
 auto SimpleAction::property_enabled() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "enabled");
+  return {this, "enabled"};
 }
 
 auto SimpleAction::property_name() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "name");
+  return {this, "name"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantType>::value,
@@ -334,7 +331,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantType>::
 
 auto SimpleAction::property_parameter_type() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantType >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::VariantType >(this, "parameter-type");
+  return {this, "parameter-type"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantBase>::value,
@@ -343,12 +340,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantBase>::
 
 auto SimpleAction::property_state() -> Glib::PropertyProxy< Glib::VariantBase >
 {
-  return Glib::PropertyProxy< Glib::VariantBase >(this, "state");
+  return {this, "state"};
 }
 
 auto SimpleAction::property_state() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantBase >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::VariantBase >(this, "state");
+  return {this, "state"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantType>::value,
@@ -357,7 +354,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantType>::
 
 auto SimpleAction::property_state_type() const -> Glib::PropertyProxy_ReadOnly< Glib::VariantType >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::VariantType >(this, "state-type");
+  return {this, "state-type"};
 }
 
 

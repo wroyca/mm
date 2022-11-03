@@ -29,12 +29,12 @@ namespace
 {
 
 
-auto ColumnView_signal_activate_callback (GtkColumnView *self, guint p0, void *data) -> void
+auto ColumnView_signal_activate_callback (GtkColumnView *self, const guint p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(guint)>;
 
-  auto obj = dynamic_cast<ColumnView*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<ColumnView*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -64,9 +64,9 @@ const Glib::SignalProxyInfo ColumnView_signal_activate_info =
 namespace Glib
 {
 
-auto wrap(GtkColumnView* object, bool take_copy) -> Gtk::ColumnView*
+auto wrap(GtkColumnView* object, const bool take_copy) -> Gtk::ColumnView*
 {
-  return dynamic_cast<Gtk::ColumnView *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::ColumnView *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -77,7 +77,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto ColumnView_Class::init() -> const Glib::Class&
+auto ColumnView_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -111,7 +111,7 @@ auto ColumnView_Class::class_init_function (void *g_class, void *class_data) -> 
 
 auto ColumnView_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new ColumnView((GtkColumnView*)(o)));
+  return manage(new ColumnView((GtkColumnView*)o));
 
 }
 
@@ -119,26 +119,24 @@ auto ColumnView_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 ColumnView::ColumnView(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 ColumnView::ColumnView(GtkColumnView* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 ColumnView::ColumnView(ColumnView&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
   , Scrollable(std::move(src))
 {}
 
 auto ColumnView::operator=(ColumnView&& src) noexcept -> ColumnView&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   Scrollable::operator=(std::move(src));
   return *this;
 }
@@ -165,8 +163,8 @@ auto ColumnView::get_base_type() -> GType
 ColumnView::ColumnView(const Glib::RefPtr<SelectionModel>& model)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(columnview_class_.init(), "model", Glib::unwrap(model), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(columnview_class_.init(), "model", Glib::unwrap(model), nullptr))
 {
 
 
@@ -196,7 +194,7 @@ auto ColumnView::remove_column (const Glib::RefPtr <ColumnViewColumn> &column) -
 }
 
 auto ColumnView::insert_column (
-  guint position, const Glib::RefPtr <ColumnViewColumn> &column) -> void
+  const guint position, const Glib::RefPtr <ColumnViewColumn> &column) -> void
 {
   gtk_column_view_insert_column(gobj(), position, Glib::unwrap(column));
 }
@@ -224,9 +222,10 @@ auto ColumnView::get_show_row_separators() const -> bool
   return gtk_column_view_get_show_row_separators(const_cast<GtkColumnView*>(gobj()));
 }
 
-auto ColumnView::set_show_row_separators (bool show_separators) -> void
+auto ColumnView::set_show_row_separators (
+  const bool show_separators) -> void
 {
-  gtk_column_view_set_show_row_separators(gobj(), static_cast<int>(show_separators));
+  gtk_column_view_set_show_row_separators(gobj(), show_separators);
 }
 
 auto ColumnView::get_show_column_separators() const -> bool
@@ -234,9 +233,10 @@ auto ColumnView::get_show_column_separators() const -> bool
   return gtk_column_view_get_show_column_separators(const_cast<GtkColumnView*>(gobj()));
 }
 
-auto ColumnView::set_show_column_separators (bool show_separators) -> void
+auto ColumnView::set_show_column_separators (
+  const bool show_separators) -> void
 {
-  gtk_column_view_set_show_column_separators(gobj(), static_cast<int>(show_separators));
+  gtk_column_view_set_show_column_separators(gobj(), show_separators);
 }
 
 auto ColumnView::get_sorter() -> Glib::RefPtr<Sorter>
@@ -258,9 +258,10 @@ auto ColumnView::sort_by_column (
   gtk_column_view_sort_by_column(gobj(), Glib::unwrap(column), static_cast<GtkSortType>(direction));
 }
 
-auto ColumnView::set_single_click_activate (bool single_click_activate) -> void
+auto ColumnView::set_single_click_activate (
+  const bool single_click_activate) -> void
 {
-  gtk_column_view_set_single_click_activate(gobj(), static_cast<int>(single_click_activate));
+  gtk_column_view_set_single_click_activate(gobj(), single_click_activate);
 }
 
 auto ColumnView::get_single_click_activate() const -> bool
@@ -268,9 +269,10 @@ auto ColumnView::get_single_click_activate() const -> bool
   return gtk_column_view_get_single_click_activate(const_cast<GtkColumnView*>(gobj()));
 }
 
-auto ColumnView::set_reorderable (bool reorderable) -> void
+auto ColumnView::set_reorderable (
+  const bool reorderable) -> void
 {
-  gtk_column_view_set_reorderable(gobj(), static_cast<int>(reorderable));
+  gtk_column_view_set_reorderable(gobj(), reorderable);
 }
 
 auto ColumnView::get_reorderable() const -> bool
@@ -278,9 +280,10 @@ auto ColumnView::get_reorderable() const -> bool
   return gtk_column_view_get_reorderable(const_cast<GtkColumnView*>(gobj()));
 }
 
-auto ColumnView::set_enable_rubberband (bool enable_rubberband) -> void
+auto ColumnView::set_enable_rubberband (
+  const bool enable_rubberband) -> void
 {
-  gtk_column_view_set_enable_rubberband(gobj(), static_cast<int>(enable_rubberband));
+  gtk_column_view_set_enable_rubberband(gobj(), enable_rubberband);
 }
 
 auto ColumnView::get_enable_rubberband() const -> bool
@@ -291,7 +294,7 @@ auto ColumnView::get_enable_rubberband() const -> bool
 
 auto ColumnView::signal_activate() -> Glib::SignalProxy<void(guint)>
 {
-  return Glib::SignalProxy<void(guint) >(this, &ColumnView_signal_activate_info);
+  return {this, &ColumnView_signal_activate_info};
 }
 
 
@@ -301,7 +304,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Li
 
 auto ColumnView::property_columns() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::ListModel> >(this, "columns");
+  return {this, "columns"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<SelectionModel>>::value,
@@ -310,32 +313,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Selecti
 
 auto ColumnView::property_model() -> Glib::PropertyProxy< Glib::RefPtr<SelectionModel> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<SelectionModel> >(this, "model");
+  return {this, "model"};
 }
 
 auto ColumnView::property_model() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<SelectionModel> >(this, "model");
+  return {this, "model"};
 }
 
 auto ColumnView::property_show_row_separators() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "show-row-separators");
+  return {this, "show-row-separators"};
 }
 
 auto ColumnView::property_show_row_separators() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "show-row-separators");
+  return {this, "show-row-separators"};
 }
 
 auto ColumnView::property_show_column_separators() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "show-column-separators");
+  return {this, "show-column-separators"};
 }
 
 auto ColumnView::property_show_column_separators() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "show-column-separators");
+  return {this, "show-column-separators"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Sorter>>::value,
@@ -344,37 +347,37 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Sorter>
 
 auto ColumnView::property_sorter() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Sorter> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Sorter> >(this, "sorter");
+  return {this, "sorter"};
 }
 
 auto ColumnView::property_single_click_activate() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "single-click-activate");
+  return {this, "single-click-activate"};
 }
 
 auto ColumnView::property_single_click_activate() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "single-click-activate");
+  return {this, "single-click-activate"};
 }
 
 auto ColumnView::property_reorderable() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "reorderable");
+  return {this, "reorderable"};
 }
 
 auto ColumnView::property_reorderable() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "reorderable");
+  return {this, "reorderable"};
 }
 
 auto ColumnView::property_enable_rubberband() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "enable-rubberband");
+  return {this, "enable-rubberband"};
 }
 
 auto ColumnView::property_enable_rubberband() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "enable-rubberband");
+  return {this, "enable-rubberband"};
 }
 
 

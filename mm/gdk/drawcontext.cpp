@@ -35,9 +35,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GdkDrawContext* object, bool take_copy) -> Glib::RefPtr<Gdk::DrawContext>
+auto wrap(GdkDrawContext* object, const bool take_copy) -> RefPtr<Gdk::DrawContext>
 {
-  return Glib::make_refptr_for_instance<Gdk::DrawContext>( dynamic_cast<Gdk::DrawContext*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gdk::DrawContext>( dynamic_cast<Gdk::DrawContext*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -50,7 +50,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-auto DrawContext_Class::init() -> const Glib::Class&
+auto DrawContext_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -96,32 +96,28 @@ auto DrawContext::gobj_copy() -> GdkDrawContext*
 }
 
 DrawContext::DrawContext(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 DrawContext::DrawContext(GdkDrawContext* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 DrawContext::DrawContext(DrawContext&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto DrawContext::operator=(DrawContext&& src) noexcept -> DrawContext&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-DrawContext::~DrawContext() noexcept
-{}
-
+DrawContext::~DrawContext() noexcept = default;
 
 DrawContext::CppClassType DrawContext::drawcontext_class_; // initialize static member
 
@@ -140,8 +136,8 @@ auto DrawContext::get_base_type() -> GType
 DrawContext::DrawContext()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(drawcontext_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(drawcontext_class_.init()))
 {
 
 
@@ -175,7 +171,7 @@ auto DrawContext::get_surface() const -> Glib::RefPtr<const Surface>
 
 auto DrawContext::begin_frame (const ::Cairo::RefPtr <const ::Cairo::Region> &region) -> void
 {
-  gdk_draw_context_begin_frame(gobj(), ((region) ? (region)->cobj() : nullptr));
+  gdk_draw_context_begin_frame(gobj(), region ? region->cobj() : nullptr);
 }
 
 auto DrawContext::end_frame () -> void
@@ -190,7 +186,7 @@ auto DrawContext::is_in_frame() const -> bool
 
 auto DrawContext::get_frame_region() const -> ::Cairo::RefPtr<const ::Cairo::Region>
 {
-  auto retvalue = Gdk::Cairo::wrap(const_cast<cairo_region_t*>(gdk_draw_context_get_frame_region(const_cast<GdkDrawContext*>(gobj()))));
+  auto retvalue = Cairo::wrap(const_cast<cairo_region_t*>(gdk_draw_context_get_frame_region(const_cast<GdkDrawContext*>(gobj()))));
   if(retvalue)
     retvalue->reference(); //The function does not do a ref for us.
   return retvalue;
@@ -203,7 +199,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Display
 
 auto DrawContext::property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >(this, "display");
+  return {this, "display"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Surface>>::value,
@@ -212,7 +208,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Surface
 
 auto DrawContext::property_surface() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >(this, "surface");
+  return {this, "surface"};
 }
 
 

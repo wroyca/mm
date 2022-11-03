@@ -30,13 +30,13 @@ Win32FontFace::Win32FontFace(LOGFONTW* logfont) :
   check_object_status_and_throw_exception(*this);
 }
 
-Win32FontFace::Win32FontFace(HFONT font) :
+Win32FontFace::Win32FontFace(const HFONT font) :
   FontFace(cairo_win32_font_face_create_for_hfont(font), true)
 {
   check_object_status_and_throw_exception(*this);
 }
 
-Win32FontFace::Win32FontFace(LOGFONTW* logfont, HFONT font) :
+Win32FontFace::Win32FontFace(LOGFONTW* logfont, const HFONT font) :
   FontFace(cairo_win32_font_face_create_for_logfontw_hfont(logfont, font), true)
 {
   check_object_status_and_throw_exception(*this);
@@ -47,12 +47,13 @@ auto Win32FontFace::create (LOGFONTW *logfont) -> RefPtr <Win32FontFace>
   return make_refptr_for_instance<Win32FontFace>(new Win32FontFace(logfont));
 }
 
-auto Win32FontFace::create (HFONT font) -> RefPtr <Win32FontFace>
+auto Win32FontFace::create (
+  const HFONT font) -> RefPtr <Win32FontFace>
 {
   return make_refptr_for_instance<Win32FontFace>(new Win32FontFace(font));
 }
 
-auto Win32FontFace::create (LOGFONTW *logfont, HFONT font) -> RefPtr <Win32FontFace>
+auto Win32FontFace::create (LOGFONTW *logfont, const HFONT font) -> RefPtr <Win32FontFace>
 {
   return make_refptr_for_instance<Win32FontFace>(new Win32FontFace(logfont, font));
 }
@@ -76,9 +77,10 @@ auto Win32ScaledFont::create (
                                                      ctm, options));
 }
 
-auto Win32ScaledFont::select_font (HDC hdc) -> void
+auto Win32ScaledFont::select_font (
+  const HDC hdc) -> void
 {
-  auto status = cairo_win32_scaled_font_select_font(cobj(), hdc);
+  const auto status = cairo_win32_scaled_font_select_font(cobj(), hdc);
   check_status_and_throw_exception(status);
   check_object_status_and_throw_exception(*this);
 }
@@ -91,7 +93,7 @@ auto Win32ScaledFont::done_font () -> void
 
 auto Win32ScaledFont::get_metrics_factor () const -> double
 {
-  auto val = cairo_win32_scaled_font_get_metrics_factor(const_cast<cairo_scaled_font_t*>(cobj()));
+  const auto val = cairo_win32_scaled_font_get_metrics_factor(const_cast<cairo_scaled_font_t*>(cobj()));
   check_object_status_and_throw_exception(*this);
   return val;
 }
@@ -99,14 +101,14 @@ auto Win32ScaledFont::get_metrics_factor () const -> double
 auto Win32ScaledFont::get_logical_to_device (Matrix &logical_to_device) const -> void
 {
   cairo_win32_scaled_font_get_logical_to_device(const_cast<cairo_scaled_font_t*>(cobj()),
-                                              static_cast<cairo_matrix_t*>(&logical_to_device));
+                                              &logical_to_device);
   check_object_status_and_throw_exception(*this);
 }
 
 auto Win32ScaledFont::get_device_to_logical (Matrix &device_to_logical) const -> void
 {
   cairo_win32_scaled_font_get_device_to_logical(const_cast<cairo_scaled_font_t*>(cobj()),
-                                              static_cast<cairo_matrix_t*>(&device_to_logical));
+                                              &device_to_logical);
   check_object_status_and_throw_exception(*this);
 }
 

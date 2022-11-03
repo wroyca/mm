@@ -30,12 +30,12 @@ namespace
 
 
 auto GestureZoom_signal_scale_changed_callback (
-  GtkGestureZoom *self, gdouble p0, void *data) -> void
+  GtkGestureZoom *self, const gdouble p0, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(double)>;
 
-  auto obj = dynamic_cast<GestureZoom*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<GestureZoom*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -66,9 +66,9 @@ const Glib::SignalProxyInfo GestureZoom_signal_scale_changed_info =
 namespace Glib
 {
 
-auto wrap(GtkGestureZoom* object, bool take_copy) -> Glib::RefPtr<Gtk::GestureZoom>
+auto wrap(GtkGestureZoom* object, const bool take_copy) -> RefPtr<Gtk::GestureZoom>
 {
-  return Glib::make_refptr_for_instance<Gtk::GestureZoom>( dynamic_cast<Gtk::GestureZoom*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::GestureZoom>( dynamic_cast<Gtk::GestureZoom*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -81,7 +81,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto GestureZoom_Class::init() -> const Glib::Class&
+auto GestureZoom_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -135,7 +135,7 @@ GestureZoom::GestureZoom(const Glib::ConstructParams& construct_params)
 
 GestureZoom::GestureZoom(GtkGestureZoom* castitem)
 :
-  Gesture((GtkGesture*)(castitem))
+  Gesture((GtkGesture*)castitem)
 {}
 
 
@@ -150,9 +150,7 @@ auto GestureZoom::operator=(GestureZoom&& src) noexcept -> GestureZoom&
 }
 
 
-GestureZoom::~GestureZoom() noexcept
-{}
-
+GestureZoom::~GestureZoom() noexcept = default;
 
 GestureZoom::CppClassType GestureZoom::gesturezoom_class_; // initialize static member
 
@@ -171,7 +169,7 @@ auto GestureZoom::get_base_type() -> GType
 GestureZoom::GestureZoom()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   Gesture(Glib::ConstructParams(gesturezoom_class_.init()))
 {
 
@@ -191,7 +189,7 @@ auto GestureZoom::get_scale_delta() const -> double
 
 auto GestureZoom::signal_scale_changed() -> Glib::SignalProxy<void(double)>
 {
-  return Glib::SignalProxy<void(double) >(this, &GestureZoom_signal_scale_changed_info);
+  return {this, &GestureZoom_signal_scale_changed_info};
 }
 
 

@@ -33,9 +33,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkText* object, bool take_copy) -> Gtk::Text*
+auto wrap(GtkText* object, const bool take_copy) -> Gtk::Text*
 {
-  return dynamic_cast<Gtk::Text *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::Text *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -46,7 +46,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto Text_Class::init() -> const Glib::Class&
+auto Text_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -80,7 +80,7 @@ auto Text_Class::class_init_function (void *g_class, void *class_data) -> void
 
 auto Text_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new Text((GtkText*)(o)));
+  return manage(new Text((GtkText*)o));
 
 }
 
@@ -88,26 +88,24 @@ auto Text_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 Text::Text(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 Text::Text(GtkText* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 Text::Text(Text&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
   , Editable(std::move(src))
 {}
 
 auto Text::operator=(Text&& src) noexcept -> Text&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   Editable::operator=(std::move(src));
   return *this;
 }
@@ -134,8 +132,8 @@ auto Text::get_base_type() -> GType
 Text::Text()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(text_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(text_class_.init()))
 {
 
 
@@ -144,8 +142,8 @@ Text::Text()
 Text::Text(const Glib::RefPtr<EntryBuffer>& buffer)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(text_class_.init(), "buffer", Glib::unwrap(buffer), nullptr))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(text_class_.init(), "buffer", Glib::unwrap(buffer), nullptr))
 {
 
 
@@ -169,9 +167,10 @@ auto Text::set_buffer (const Glib::RefPtr <EntryBuffer> &buffer) -> void
   gtk_text_set_buffer(gobj(), Glib::unwrap(buffer));
 }
 
-auto Text::set_visibility (bool visible) -> void
+auto Text::set_visibility (
+  const bool visible) -> void
 {
-  gtk_text_set_visibility(gobj(), static_cast<int>(visible));
+  gtk_text_set_visibility(gobj(), visible);
 }
 
 auto Text::get_visibility() const -> bool
@@ -179,7 +178,8 @@ auto Text::get_visibility() const -> bool
   return gtk_text_get_visibility(const_cast<GtkText*>(gobj()));
 }
 
-auto Text::set_invisible_char (gunichar ch) -> void
+auto Text::set_invisible_char (
+  const gunichar ch) -> void
 {
   gtk_text_set_invisible_char(gobj(), ch);
 }
@@ -194,9 +194,10 @@ auto Text::get_invisible_char() const -> gunichar
   return gtk_text_get_invisible_char(const_cast<GtkText*>(gobj()));
 }
 
-auto Text::set_overwrite_mode (bool overwrite) -> void
+auto Text::set_overwrite_mode (
+  const bool overwrite) -> void
 {
-  gtk_text_set_overwrite_mode(gobj(), static_cast<int>(overwrite));
+  gtk_text_set_overwrite_mode(gobj(), overwrite);
 }
 
 auto Text::get_overwrite_mode() const -> bool
@@ -204,7 +205,8 @@ auto Text::get_overwrite_mode() const -> bool
   return gtk_text_get_overwrite_mode(const_cast<GtkText*>(gobj()));
 }
 
-auto Text::set_max_length (int max) -> void
+auto Text::set_max_length (
+  const int max) -> void
 {
   gtk_text_set_max_length(gobj(), max);
 }
@@ -219,9 +221,10 @@ auto Text::get_text_length() const -> guint16
   return gtk_text_get_text_length(const_cast<GtkText*>(gobj()));
 }
 
-auto Text::set_activates_default (bool setting) -> void
+auto Text::set_activates_default (
+  const bool setting) -> void
 {
-  gtk_text_set_activates_default(gobj(), static_cast<int>(setting));
+  gtk_text_set_activates_default(gobj(), setting);
 }
 
 auto Text::get_activates_default() const -> bool
@@ -261,12 +264,12 @@ auto Text::get_input_hints() const -> InputHints
 
 auto Text::set_attributes (Pango::AttrList &attrs) -> void
 {
-  gtk_text_set_attributes(gobj(), (attrs).gobj());
+  gtk_text_set_attributes(gobj(), attrs.gobj());
 }
 
 auto Text::get_attributes() const -> Pango::AttrList
 {
-  return Pango::AttrList((gtk_text_get_attributes(const_cast<GtkText*>(gobj()))));
+  return Pango::AttrList(gtk_text_get_attributes(const_cast<GtkText*>(gobj())));
 }
 
 auto Text::set_tabs (const Pango::TabArray &tabs) -> void
@@ -276,7 +279,7 @@ auto Text::set_tabs (const Pango::TabArray &tabs) -> void
 
 auto Text::get_tabs() const -> Pango::TabArray
 {
-  return Pango::TabArray((gtk_text_get_tabs(const_cast<GtkText*>(gobj()))));
+  return Pango::TabArray(gtk_text_get_tabs(const_cast<GtkText*>(gobj())));
 }
 
 auto Text::grab_focus_without_selecting() -> bool
@@ -302,9 +305,10 @@ auto Text::get_extra_menu() const -> Glib::RefPtr<const Gio::MenuModel>
   return const_cast<Text*>(this)->get_extra_menu();
 }
 
-auto Text::set_enable_emoji_completion (bool enable_emoji_completion) -> void
+auto Text::set_enable_emoji_completion (
+  const bool enable_emoji_completion) -> void
 {
-  gtk_text_set_enable_emoji_completion(gobj(), static_cast<int>(enable_emoji_completion));
+  gtk_text_set_enable_emoji_completion(gobj(), enable_emoji_completion);
 }
 
 auto Text::get_enable_emoji_completion() const -> bool
@@ -312,9 +316,10 @@ auto Text::get_enable_emoji_completion() const -> bool
   return gtk_text_get_enable_emoji_completion(const_cast<GtkText*>(gobj()));
 }
 
-auto Text::set_propagate_text_width (bool propagate_text_width) -> void
+auto Text::set_propagate_text_width (
+  const bool propagate_text_width) -> void
 {
-  gtk_text_set_propagate_text_width(gobj(), static_cast<int>(propagate_text_width));
+  gtk_text_set_propagate_text_width(gobj(), propagate_text_width);
 }
 
 auto Text::get_propagate_text_width() const -> bool
@@ -322,9 +327,10 @@ auto Text::get_propagate_text_width() const -> bool
   return gtk_text_get_propagate_text_width(const_cast<GtkText*>(gobj()));
 }
 
-auto Text::set_truncate_multiline (bool truncate_multiline) -> void
+auto Text::set_truncate_multiline (
+  const bool truncate_multiline) -> void
 {
-  gtk_text_set_truncate_multiline(gobj(), static_cast<int>(truncate_multiline));
+  gtk_text_set_truncate_multiline(gobj(), truncate_multiline);
 }
 
 auto Text::get_truncate_multiline() const -> bool
@@ -339,32 +345,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<EntryBu
 
 auto Text::property_buffer() -> Glib::PropertyProxy< Glib::RefPtr<EntryBuffer> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<EntryBuffer> >(this, "buffer");
+  return {this, "buffer"};
 }
 
 auto Text::property_buffer() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<EntryBuffer> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<EntryBuffer> >(this, "buffer");
+  return {this, "buffer"};
 }
 
 auto Text::property_max_length() -> Glib::PropertyProxy< int >
 {
-  return Glib::PropertyProxy< int >(this, "max-length");
+  return {this, "max-length"};
 }
 
 auto Text::property_max_length() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "max-length");
+  return {this, "max-length"};
 }
 
 auto Text::property_visibility() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "visibility");
+  return {this, "visibility"};
 }
 
 auto Text::property_visibility() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "visibility");
+  return {this, "visibility"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<gunichar>::value,
@@ -373,77 +379,77 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<gunichar>::value,
 
 auto Text::property_invisible_char() -> Glib::PropertyProxy< gunichar >
 {
-  return Glib::PropertyProxy< gunichar >(this, "invisible-char");
+  return {this, "invisible-char"};
 }
 
 auto Text::property_invisible_char() const -> Glib::PropertyProxy_ReadOnly< gunichar >
 {
-  return Glib::PropertyProxy_ReadOnly< gunichar >(this, "invisible-char");
+  return {this, "invisible-char"};
 }
 
 auto Text::property_invisible_char_set() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "invisible-char-set");
+  return {this, "invisible-char-set"};
 }
 
 auto Text::property_invisible_char_set() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "invisible-char-set");
+  return {this, "invisible-char-set"};
 }
 
 auto Text::property_activates_default() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "activates-default");
+  return {this, "activates-default"};
 }
 
 auto Text::property_activates_default() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "activates-default");
+  return {this, "activates-default"};
 }
 
 auto Text::property_scroll_offset() const -> Glib::PropertyProxy_ReadOnly< int >
 {
-  return Glib::PropertyProxy_ReadOnly< int >(this, "scroll-offset");
+  return {this, "scroll-offset"};
 }
 
 auto Text::property_truncate_multiline() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "truncate-multiline");
+  return {this, "truncate-multiline"};
 }
 
 auto Text::property_truncate_multiline() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "truncate-multiline");
+  return {this, "truncate-multiline"};
 }
 
 auto Text::property_overwrite_mode() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "overwrite-mode");
+  return {this, "overwrite-mode"};
 }
 
 auto Text::property_overwrite_mode() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "overwrite-mode");
+  return {this, "overwrite-mode"};
 }
 
 auto Text::property_im_module() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "im-module");
+  return {this, "im-module"};
 }
 
 auto Text::property_im_module() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "im-module");
+  return {this, "im-module"};
 }
 
 auto Text::property_placeholder_text() -> Glib::PropertyProxy< Glib::ustring >
 {
-  return Glib::PropertyProxy< Glib::ustring >(this, "placeholder-text");
+  return {this, "placeholder-text"};
 }
 
 auto Text::property_placeholder_text() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::ustring >(this, "placeholder-text");
+  return {this, "placeholder-text"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<InputPurpose>::value,
@@ -452,12 +458,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<InputPurpose>::value
 
 auto Text::property_input_purpose() -> Glib::PropertyProxy< InputPurpose >
 {
-  return Glib::PropertyProxy< InputPurpose >(this, "input-purpose");
+  return {this, "input-purpose"};
 }
 
 auto Text::property_input_purpose() const -> Glib::PropertyProxy_ReadOnly< InputPurpose >
 {
-  return Glib::PropertyProxy_ReadOnly< InputPurpose >(this, "input-purpose");
+  return {this, "input-purpose"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<InputHints>::value,
@@ -466,12 +472,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<InputHints>::value,
 
 auto Text::property_input_hints() -> Glib::PropertyProxy< InputHints >
 {
-  return Glib::PropertyProxy< InputHints >(this, "input-hints");
+  return {this, "input-hints"};
 }
 
 auto Text::property_input_hints() const -> Glib::PropertyProxy_ReadOnly< InputHints >
 {
-  return Glib::PropertyProxy_ReadOnly< InputHints >(this, "input-hints");
+  return {this, "input-hints"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::AttrList>::value,
@@ -480,12 +486,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::AttrList>::va
 
 auto Text::property_attributes() -> Glib::PropertyProxy< Pango::AttrList >
 {
-  return Glib::PropertyProxy< Pango::AttrList >(this, "attributes");
+  return {this, "attributes"};
 }
 
 auto Text::property_attributes() const -> Glib::PropertyProxy_ReadOnly< Pango::AttrList >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::AttrList >(this, "attributes");
+  return {this, "attributes"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::TabArray>::value,
@@ -494,32 +500,32 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Pango::TabArray>::va
 
 auto Text::property_tabs() -> Glib::PropertyProxy< Pango::TabArray >
 {
-  return Glib::PropertyProxy< Pango::TabArray >(this, "tabs");
+  return {this, "tabs"};
 }
 
 auto Text::property_tabs() const -> Glib::PropertyProxy_ReadOnly< Pango::TabArray >
 {
-  return Glib::PropertyProxy_ReadOnly< Pango::TabArray >(this, "tabs");
+  return {this, "tabs"};
 }
 
 auto Text::property_enable_emoji_completion() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "enable-emoji-completion");
+  return {this, "enable-emoji-completion"};
 }
 
 auto Text::property_enable_emoji_completion() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "enable-emoji-completion");
+  return {this, "enable-emoji-completion"};
 }
 
 auto Text::property_propagate_text_width() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "propagate-text-width");
+  return {this, "propagate-text-width"};
 }
 
 auto Text::property_propagate_text_width() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "propagate-text-width");
+  return {this, "propagate-text-width"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::MenuModel>>::value,
@@ -528,12 +534,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gio::Me
 
 auto Text::property_extra_menu() -> Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >
 {
-  return Glib::PropertyProxy< Glib::RefPtr<Gio::MenuModel> >(this, "extra-menu");
+  return {this, "extra-menu"};
 }
 
 auto Text::property_extra_menu() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gio::MenuModel> >(this, "extra-menu");
+  return {this, "extra-menu"};
 }
 
 

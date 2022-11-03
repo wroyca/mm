@@ -47,9 +47,9 @@ inline auto time_coord_copy(const GdkTimeCoord* gobject) -> GdkTimeCoord*
 namespace Gdk
 {
 
-TimeCoord::TimeCoord(GdkTimeCoord* gobject, bool make_a_copy)
+TimeCoord::TimeCoord(GdkTimeCoord* gobject, const bool make_a_copy)
 :
-  gobject_((make_a_copy && gobject) ? time_coord_copy(gobject) : gobject)
+  gobject_(make_a_copy && gobject ? time_coord_copy(gobject) : gobject)
 {}
 
 TimeCoord::TimeCoord(const TimeCoord& other)
@@ -84,7 +84,8 @@ TimeCoord::~TimeCoord() noexcept
   g_free(gobject_);
 }
 
-auto TimeCoord::get_value_at_axis(guint index) const -> double
+auto TimeCoord::get_value_at_axis(
+  const guint index) const -> double
 {
   if (gobject_)
   {

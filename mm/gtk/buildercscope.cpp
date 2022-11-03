@@ -33,9 +33,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkBuilderCScope* object, bool take_copy) -> Glib::RefPtr<Gtk::BuilderCScope>
+auto wrap(GtkBuilderCScope* object, const bool take_copy) -> RefPtr<Gtk::BuilderCScope>
 {
-  return Glib::make_refptr_for_instance<Gtk::BuilderCScope>( dynamic_cast<Gtk::BuilderCScope*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::BuilderCScope>( dynamic_cast<Gtk::BuilderCScope*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -48,7 +48,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto BuilderCScope_Class::init() -> const Glib::Class&
+auto BuilderCScope_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -95,34 +95,30 @@ auto BuilderCScope::gobj_copy() -> GtkBuilderCScope*
 }
 
 BuilderCScope::BuilderCScope(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 BuilderCScope::BuilderCScope(GtkBuilderCScope* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 BuilderCScope::BuilderCScope(BuilderCScope&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
   , BuilderScope(std::move(src))
 {}
 
 auto BuilderCScope::operator=(BuilderCScope&& src) noexcept -> BuilderCScope&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   BuilderScope::operator=(std::move(src));
   return *this;
 }
 
 
-BuilderCScope::~BuilderCScope() noexcept
-{}
-
+BuilderCScope::~BuilderCScope() noexcept = default;
 
 BuilderCScope::CppClassType BuilderCScope::buildercscope_class_; // initialize static member
 
@@ -141,8 +137,8 @@ auto BuilderCScope::get_base_type() -> GType
 BuilderCScope::BuilderCScope()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(buildercscope_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(buildercscope_class_.init()))
 {
 
 

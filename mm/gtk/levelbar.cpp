@@ -38,7 +38,7 @@ auto LevelBar_signal_offset_changed_callback (
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::ustring&)>;
 
-  auto obj = dynamic_cast<LevelBar*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<LevelBar*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -75,9 +75,9 @@ auto Glib::Value<Gtk::LevelBar::Mode>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkLevelBar* object, bool take_copy) -> Gtk::LevelBar*
+auto wrap(GtkLevelBar* object, const bool take_copy) -> Gtk::LevelBar*
 {
-  return dynamic_cast<Gtk::LevelBar *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::LevelBar *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -88,7 +88,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto LevelBar_Class::init() -> const Glib::Class&
+auto LevelBar_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -122,7 +122,7 @@ auto LevelBar_Class::class_init_function (void *g_class, void *class_data) -> vo
 
 auto LevelBar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new LevelBar((GtkLevelBar*)(o)));
+  return manage(new LevelBar((GtkLevelBar*)o));
 
 }
 
@@ -130,26 +130,24 @@ auto LevelBar_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 LevelBar::LevelBar(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 LevelBar::LevelBar(GtkLevelBar* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 LevelBar::LevelBar(LevelBar&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
   , Orientable(std::move(src))
 {}
 
 auto LevelBar::operator=(LevelBar&& src) noexcept -> LevelBar&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   Orientable::operator=(std::move(src));
   return *this;
 }
@@ -176,8 +174,8 @@ auto LevelBar::get_base_type() -> GType
 LevelBar::LevelBar()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(levelbar_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(levelbar_class_.init()))
 {
 
 
@@ -193,7 +191,8 @@ auto LevelBar::get_mode() const -> Mode
   return static_cast<Mode>(gtk_level_bar_get_mode(const_cast<GtkLevelBar*>(gobj())));
 }
 
-auto LevelBar::set_value (double value) -> void
+auto LevelBar::set_value (
+  const double value) -> void
 {
   gtk_level_bar_set_value(gobj(), value);
 }
@@ -203,7 +202,8 @@ auto LevelBar::get_value() const -> double
   return gtk_level_bar_get_value(const_cast<GtkLevelBar*>(gobj()));
 }
 
-auto LevelBar::set_min_value (double value) -> void
+auto LevelBar::set_min_value (
+  const double value) -> void
 {
   gtk_level_bar_set_min_value(gobj(), value);
 }
@@ -213,7 +213,8 @@ auto LevelBar::get_min_value() const -> double
   return gtk_level_bar_get_min_value(const_cast<GtkLevelBar*>(gobj()));
 }
 
-auto LevelBar::set_max_value (double value) -> void
+auto LevelBar::set_max_value (
+  const double value) -> void
 {
   gtk_level_bar_set_max_value(gobj(), value);
 }
@@ -223,9 +224,10 @@ auto LevelBar::get_max_value() const -> double
   return gtk_level_bar_get_max_value(const_cast<GtkLevelBar*>(gobj()));
 }
 
-auto LevelBar::set_inverted (bool inverted) -> void
+auto LevelBar::set_inverted (
+  const bool inverted) -> void
 {
-  gtk_level_bar_set_inverted(gobj(), static_cast<int>(inverted));
+  gtk_level_bar_set_inverted(gobj(), inverted);
 }
 
 auto LevelBar::get_inverted() const -> bool
@@ -233,7 +235,7 @@ auto LevelBar::get_inverted() const -> bool
   return gtk_level_bar_get_inverted(const_cast<GtkLevelBar*>(gobj()));
 }
 
-auto LevelBar::add_offset_value (const Glib::ustring &name, double value) -> void
+auto LevelBar::add_offset_value (const Glib::ustring &name, const double value) -> void
 {
   gtk_level_bar_add_offset_value(gobj(), name.c_str(), value);
 }
@@ -245,7 +247,7 @@ auto LevelBar::remove_offset_value (const Glib::ustring &name) -> void
 
 auto LevelBar::get_offset_value(const Glib::ustring& name, double& value) const -> bool
 {
-  return gtk_level_bar_get_offset_value(const_cast<GtkLevelBar*>(gobj()), name.c_str(), &(value));
+  return gtk_level_bar_get_offset_value(const_cast<GtkLevelBar*>(gobj()), name.c_str(), &value);
 }
 
 
@@ -257,32 +259,32 @@ auto LevelBar::signal_offset_changed(const Glib::ustring& offset_name) -> Glib::
 
 auto LevelBar::property_value() -> Glib::PropertyProxy< double >
 {
-  return Glib::PropertyProxy< double >(this, "value");
+  return {this, "value"};
 }
 
 auto LevelBar::property_value() const -> Glib::PropertyProxy_ReadOnly< double >
 {
-  return Glib::PropertyProxy_ReadOnly< double >(this, "value");
+  return {this, "value"};
 }
 
 auto LevelBar::property_min_value() -> Glib::PropertyProxy< double >
 {
-  return Glib::PropertyProxy< double >(this, "min-value");
+  return {this, "min-value"};
 }
 
 auto LevelBar::property_min_value() const -> Glib::PropertyProxy_ReadOnly< double >
 {
-  return Glib::PropertyProxy_ReadOnly< double >(this, "min-value");
+  return {this, "min-value"};
 }
 
 auto LevelBar::property_max_value() -> Glib::PropertyProxy< double >
 {
-  return Glib::PropertyProxy< double >(this, "max-value");
+  return {this, "max-value"};
 }
 
 auto LevelBar::property_max_value() const -> Glib::PropertyProxy_ReadOnly< double >
 {
-  return Glib::PropertyProxy_ReadOnly< double >(this, "max-value");
+  return {this, "max-value"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Mode>::value,
@@ -291,22 +293,22 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Mode>::value,
 
 auto LevelBar::property_mode() -> Glib::PropertyProxy< Mode >
 {
-  return Glib::PropertyProxy< Mode >(this, "mode");
+  return {this, "mode"};
 }
 
 auto LevelBar::property_mode() const -> Glib::PropertyProxy_ReadOnly< Mode >
 {
-  return Glib::PropertyProxy_ReadOnly< Mode >(this, "mode");
+  return {this, "mode"};
 }
 
 auto LevelBar::property_inverted() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "inverted");
+  return {this, "inverted"};
 }
 
 auto LevelBar::property_inverted() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "inverted");
+  return {this, "inverted"};
 }
 
 

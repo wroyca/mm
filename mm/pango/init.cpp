@@ -27,7 +27,7 @@ namespace Pango
 auto init () -> void
 {
   Glib::init();
-  Pango::wrap_init();
+  wrap_init();
 }
 
 } // namespace Pango

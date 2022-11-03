@@ -20,7 +20,7 @@
 namespace Pango
 {
 CairoFontMapImpl::CairoFontMapImpl(PangoFontMap* castitem)
-: Glib::ObjectBase(nullptr), FontMap(castitem)
+: ObjectBase(nullptr), FontMap(castitem)
 {}
 
 CairoFontMapImpl::CairoFontMapImpl(CairoFontMapImpl&& src) noexcept
@@ -35,7 +35,5 @@ auto CairoFontMapImpl::operator=(CairoFontMapImpl&& src) noexcept -> CairoFontMa
   return *this;
 }
 
-CairoFontMapImpl::~CairoFontMapImpl() noexcept
-{}
-
+CairoFontMapImpl::~CairoFontMapImpl() noexcept = default;
 } // namespace Pango

@@ -44,7 +44,7 @@ auto Drop::refuse () -> void
 
 auto Drop::failed () -> void
 {
-  gdk_drop_finish(gobj(), (static_cast<GdkDragAction>(0)) /* see GDK docs */);
+  gdk_drop_finish(gobj(), static_cast<GdkDragAction>(0) /* see GDK docs */);
 }
 
 auto Drop::read_value_finish(const Glib::RefPtr<Gio::AsyncResult>& result) -> Glib::ValueBase
@@ -52,7 +52,7 @@ auto Drop::read_value_finish(const Glib::RefPtr<Gio::AsyncResult>& result) -> Gl
   GError* gerror = nullptr;
   const GValue* gvalue = gdk_drop_read_value_finish(gobj(), Glib::unwrap(result), &gerror);
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 
   Glib::ValueBase retvalue;
   retvalue.init(gvalue);
@@ -69,9 +69,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GdkDrop* object, bool take_copy) -> Glib::RefPtr<Gdk::Drop>
+auto wrap(GdkDrop* object, const bool take_copy) -> RefPtr<Gdk::Drop>
 {
-  return Glib::make_refptr_for_instance<Gdk::Drop>( dynamic_cast<Gdk::Drop*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gdk::Drop>( dynamic_cast<Gdk::Drop*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -84,7 +84,7 @@ namespace Gdk
 
 /* The *_Class implementation: */
 
-auto Drop_Class::init() -> const Glib::Class&
+auto Drop_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -130,32 +130,28 @@ auto Drop::gobj_copy() -> GdkDrop*
 }
 
 Drop::Drop(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 Drop::Drop(GdkDrop* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 Drop::Drop(Drop&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto Drop::operator=(Drop&& src) noexcept -> Drop&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-Drop::~Drop() noexcept
-{}
-
+Drop::~Drop() noexcept = default;
 
 Drop::CppClassType Drop::drop_class_; // initialize static member
 
@@ -252,21 +248,21 @@ auto Drop::finish (DragAction action) -> void
 }
 
 auto Drop::read_async (
-  const std::vector <Glib::ustring> &mime_types, int io_priority, const Gio::SlotAsyncReady &slot,
+  const std::vector <Glib::ustring> &mime_types, const int io_priority, const Gio::SlotAsyncReady &slot,
   const Glib::RefPtr <Gio::Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new Gio::SlotAsyncReady(slot);
+  const auto slot_copy = new Gio::SlotAsyncReady(slot);
 
-  gdk_drop_read_async(gobj(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(mime_types).data(), io_priority, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &Gio::SignalProxy_async_callback, slot_copy);
+  gdk_drop_read_async(gobj(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(mime_types).data(), io_priority, Glib::unwrap(cancellable), &Gio::SignalProxy_async_callback, slot_copy);
 }
 
 auto Drop::read_async (
-  const std::vector <Glib::ustring> &mime_types, int io_priority,
+  const std::vector <Glib::ustring> &mime_types, const int io_priority,
   const Gio::SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new Gio::SlotAsyncReady(slot);
+  const auto slot_copy = new Gio::SlotAsyncReady(slot);
 
   gdk_drop_read_async(gobj(), Glib::ArrayHandler<Glib::ustring>::vector_to_array(mime_types).data(), io_priority, nullptr, &Gio::SignalProxy_async_callback, slot_copy);
 }
@@ -275,27 +271,28 @@ auto Drop::read_finish(const Glib::RefPtr<Gio::AsyncResult>& result, Glib::ustri
 {
   GError* gerror = nullptr;
   const char* g_out_mime_type = nullptr;
-  auto retvalue = Glib::wrap(gdk_drop_read_finish(gobj(), Glib::unwrap(result), &g_out_mime_type, &(gerror)));
+  auto retvalue = Glib::wrap(gdk_drop_read_finish(gobj(), Glib::unwrap(result), &g_out_mime_type, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 out_mime_type = Glib::convert_const_gchar_ptr_to_ustring(g_out_mime_type);
   return retvalue;
 }
 
 auto Drop::read_value_async (
-  GType type, int io_priority, const Gio::SlotAsyncReady &slot,
+  const GType type, const int io_priority, const Gio::SlotAsyncReady &slot,
   const Glib::RefPtr <Gio::Cancellable> &cancellable) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new Gio::SlotAsyncReady(slot);
+  const auto slot_copy = new Gio::SlotAsyncReady(slot);
 
-  gdk_drop_read_value_async(gobj(), type, io_priority, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &Gio::SignalProxy_async_callback, slot_copy);
+  gdk_drop_read_value_async(gobj(), type, io_priority, Glib::unwrap(cancellable), &Gio::SignalProxy_async_callback, slot_copy);
 }
 
-auto Drop::read_value_async (GType type, int io_priority, const Gio::SlotAsyncReady &slot) -> void
+auto Drop::read_value_async (
+  const GType type, const int io_priority, const Gio::SlotAsyncReady &slot) -> void
 {
   // Create a copy of the slot.
-  auto slot_copy = new Gio::SlotAsyncReady(slot);
+  const auto slot_copy = new Gio::SlotAsyncReady(slot);
 
   gdk_drop_read_value_async(gobj(), type, io_priority, nullptr, &Gio::SignalProxy_async_callback, slot_copy);
 }
@@ -307,7 +304,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<DragAction>::value,
 
 auto Drop::property_actions() const -> Glib::PropertyProxy_ReadOnly< DragAction >
 {
-  return Glib::PropertyProxy_ReadOnly< DragAction >(this, "actions");
+  return {this, "actions"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Device>>::value,
@@ -316,7 +313,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Device>
 
 auto Drop::property_device() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Device> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Device> >(this, "device");
+  return {this, "device"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Display>>::value,
@@ -325,7 +322,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Display
 
 auto Drop::property_display() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Display> >(this, "display");
+  return {this, "display"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Drag>>::value,
@@ -334,7 +331,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Drag>>:
 
 auto Drop::property_drag() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Drag> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Drag> >(this, "drag");
+  return {this, "drag"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<ContentFormats>>::value,
@@ -343,7 +340,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Content
 
 auto Drop::property_formats() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<ContentFormats> >(this, "formats");
+  return {this, "formats"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Surface>>::value,
@@ -352,7 +349,7 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Surface
 
 auto Drop::property_surface() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Surface> >(this, "surface");
+  return {this, "surface"};
 }
 
 

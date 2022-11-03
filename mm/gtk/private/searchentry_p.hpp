@@ -17,13 +17,13 @@ public:
   using CppObjectType = SearchEntry;
   using BaseObjectType = GtkSearchEntry;
   using BaseClassType = GtkSearchEntryClass;
-  using CppClassParent = Gtk::Entry_Class;
+  using CppClassParent = Entry_Class;
   using BaseClassParent = GtkEntryClass;
 
   friend class SearchEntry;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

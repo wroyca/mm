@@ -29,12 +29,12 @@ auto SignalProxy_CellData_gtk_callback (
   if(!model)
     g_warning("SignalProxy_CellData_gtk_callback(): model is NULL, which is unusual.\n");
 
-  TreeViewColumn::SlotTreeCellData* the_slot = static_cast<TreeViewColumn::SlotTreeCellData*>(data);
+  const TreeViewColumn::SlotTreeCellData* the_slot = static_cast<TreeViewColumn::SlotTreeCellData*>(data);
 
   try
   {
     // use Slot::operator()
-    auto cppiter = Gtk::TreeModel::iterator(model, iter);
+    auto cppiter = TreeModel::iterator(model, iter);
     if(!cppiter.get_model_gobject())
     {
       g_warning("SignalProxy_CellData_gtk_callback() The cppiter has no model\n");
@@ -57,11 +57,11 @@ auto SignalProxy_CellData_gtk_callback_destroy (void *data) -> void
 
 auto SignalProxy_RowSeparator_gtk_callback(GtkTreeModel* model, GtkTreeIter* iter, void* data) -> gboolean
 {
-  TreeView::SlotRowSeparator* the_slot = static_cast<TreeView::SlotRowSeparator*>(data);
+  const TreeView::SlotRowSeparator* the_slot = static_cast<TreeView::SlotRowSeparator*>(data);
 
   try
   {
-    return (*the_slot)(Glib::wrap(model, true), Gtk::TreeModel::iterator(model, iter));
+    return (*the_slot)(Glib::wrap(model, true), TreeModel::iterator(model, iter));
   }
   catch(...)
   {

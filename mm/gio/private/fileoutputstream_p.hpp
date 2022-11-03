@@ -17,13 +17,13 @@ public:
   using CppObjectType = FileOutputStream;
   using BaseObjectType = GFileOutputStream;
   using BaseClassType = GFileOutputStreamClass;
-  using CppClassParent = Gio::OutputStream_Class;
+  using CppClassParent = OutputStream_Class;
   using BaseClassParent = GOutputStreamClass;
 
   friend class FileOutputStream;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

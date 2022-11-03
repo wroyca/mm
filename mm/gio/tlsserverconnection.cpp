@@ -34,9 +34,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GTlsServerConnection* object, bool take_copy) -> Glib::RefPtr<Gio::TlsServerConnection>
+auto wrap(GTlsServerConnection* object, const bool take_copy) -> RefPtr<Gio::TlsServerConnection>
 {
-  return Glib::make_refptr_for_instance<Gio::TlsServerConnection>( dynamic_cast<Gio::TlsServerConnection*> (Glib::wrap_auto_interface<Gio::TlsServerConnection> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::TlsServerConnection>( Glib::wrap_auto_interface<Gio::TlsServerConnection> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -49,7 +49,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto TlsServerConnection_Class::init() -> const Glib::Interface_Class&
+auto TlsServerConnection_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -78,42 +78,40 @@ auto TlsServerConnection_Class::iface_init_function (void *g_iface, void *) -> v
 
 auto TlsServerConnection_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new TlsServerConnection((GTlsServerConnection*)(object));
+  return new TlsServerConnection((GTlsServerConnection*)object);
 }
 
 
 /* The implementation: */
 
 TlsServerConnection::TlsServerConnection()
-:
-  Glib::Interface(tlsserverconnection_class_.init())
+: Interface(tlsserverconnection_class_.init())
 {}
 
 TlsServerConnection::TlsServerConnection(GTlsServerConnection* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 TlsServerConnection::TlsServerConnection(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 TlsServerConnection::TlsServerConnection(TlsServerConnection&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto TlsServerConnection::operator=(TlsServerConnection&& src) noexcept -> TlsServerConnection&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-TlsServerConnection::~TlsServerConnection() noexcept
-{}
+TlsServerConnection::~TlsServerConnection() noexcept = default;
 
 // static
-auto TlsServerConnection::add_interface (GType gtype_implementer) -> void
+auto TlsServerConnection::add_interface (
+  const GType gtype_implementer) -> void
 {
   tlsserverconnection_class_.init().add_interface(gtype_implementer);
 }
@@ -135,9 +133,9 @@ auto TlsServerConnection::get_base_type() -> GType
 auto TlsServerConnection::create(const Glib::RefPtr<IOStream>& base_io_stream, const Glib::RefPtr<TlsCertificate>& certificate) -> Glib::RefPtr<TlsServerConnectionImpl>
 {
   GError* gerror = nullptr;
-  auto retvalue = std::dynamic_pointer_cast<TlsServerConnectionImpl>(Glib::wrap(G_TLS_CONNECTION(g_tls_server_connection_new(Glib::unwrap(base_io_stream), Glib::unwrap(certificate), &(gerror)))));
+  auto retvalue = std::dynamic_pointer_cast<TlsServerConnectionImpl>(Glib::wrap(G_TLS_CONNECTION(g_tls_server_connection_new(Glib::unwrap(base_io_stream), Glib::unwrap(certificate), & gerror))));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -148,12 +146,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<TlsAuthenticationMod
 
 auto TlsServerConnection::property_authentication_mode() -> Glib::PropertyProxy< TlsAuthenticationMode >
 {
-  return Glib::PropertyProxy< TlsAuthenticationMode >(this, "authentication-mode");
+  return {this, "authentication-mode"};
 }
 
 auto TlsServerConnection::property_authentication_mode() const -> Glib::PropertyProxy_ReadOnly< TlsAuthenticationMode >
 {
-  return Glib::PropertyProxy_ReadOnly< TlsAuthenticationMode >(this, "authentication-mode");
+  return {this, "authentication-mode"};
 }
 
 

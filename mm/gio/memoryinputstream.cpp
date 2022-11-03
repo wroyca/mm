@@ -50,7 +50,7 @@ private:
 
 auto destroy_data_callback (void *user_data) -> void
 {
-  auto slot_with_data = static_cast<SlotWithData*>(user_data);
+  const auto slot_with_data = static_cast<SlotWithData*>(user_data);
   g_return_if_fail(slot_with_data != nullptr);
 
   try
@@ -71,10 +71,10 @@ namespace Gio
 {
 
 auto MemoryInputStream::add_data (
-  const void *data, gssize len, const SlotDestroyData &destroy_slot) -> void
+  const void *data, const gssize len, const SlotDestroyData &destroy_slot) -> void
 {
-  auto slot_with_data = new SlotWithData(destroy_slot, const_cast<void*>(data));
-  auto bytes = g_bytes_new_with_free_func(data, len, &destroy_data_callback, slot_with_data);
+  const auto slot_with_data = new SlotWithData(destroy_slot, const_cast<void*>(data));
+  const auto bytes = g_bytes_new_with_free_func(data, len, &destroy_data_callback, slot_with_data);
   g_memory_input_stream_add_bytes(gobj(), bytes);
   g_bytes_unref(bytes); // g_memory_input_stream_add_bytes() takes a reference
 }
@@ -89,9 +89,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GMemoryInputStream* object, bool take_copy) -> Glib::RefPtr<Gio::MemoryInputStream>
+auto wrap(GMemoryInputStream* object, const bool take_copy) -> RefPtr<Gio::MemoryInputStream>
 {
-  return Glib::make_refptr_for_instance<Gio::MemoryInputStream>( dynamic_cast<Gio::MemoryInputStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::MemoryInputStream>( dynamic_cast<Gio::MemoryInputStream*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -104,7 +104,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto MemoryInputStream_Class::init() -> const Glib::Class&
+auto MemoryInputStream_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -152,36 +152,32 @@ auto MemoryInputStream::gobj_copy() -> GMemoryInputStream*
 }
 
 MemoryInputStream::MemoryInputStream(const Glib::ConstructParams& construct_params)
-:
-  Gio::InputStream(construct_params)
+: InputStream(construct_params)
 {
 
 }
 
 MemoryInputStream::MemoryInputStream(GMemoryInputStream* castitem)
-:
-  Gio::InputStream((GInputStream*)(castitem))
+: InputStream((GInputStream*)castitem)
 {}
 
 
 MemoryInputStream::MemoryInputStream(MemoryInputStream&& src) noexcept
-: Gio::InputStream(std::move(src))
+: InputStream(std::move(src))
   , Seekable(std::move(src))
   , PollableInputStream(std::move(src))
 {}
 
 auto MemoryInputStream::operator=(MemoryInputStream&& src) noexcept -> MemoryInputStream&
 {
-  Gio::InputStream::operator=(std::move(src));
+  InputStream::operator=(std::move(src));
   Seekable::operator=(std::move(src));
   PollableInputStream::operator=(std::move(src));
   return *this;
 }
 
 
-MemoryInputStream::~MemoryInputStream() noexcept
-{}
-
+MemoryInputStream::~MemoryInputStream() noexcept = default;
 
 MemoryInputStream::CppClassType MemoryInputStream::memoryinputstream_class_; // initialize static member
 
@@ -200,8 +196,8 @@ auto MemoryInputStream::get_base_type() -> GType
 MemoryInputStream::MemoryInputStream()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gio::InputStream(Glib::ConstructParams(memoryinputstream_class_.init()))
+ObjectBase(nullptr),
+InputStream(Glib::ConstructParams(memoryinputstream_class_.init()))
 {
 
 
@@ -212,7 +208,7 @@ auto MemoryInputStream::create() -> Glib::RefPtr<MemoryInputStream>
   return Glib::make_refptr_for_instance<MemoryInputStream>( new MemoryInputStream() );
 }
 
-auto MemoryInputStream::add_data (const void *data, gssize len, GDestroyNotify destroy) -> void
+auto MemoryInputStream::add_data (const void *data, const gssize len, const GDestroyNotify destroy) -> void
 {
   g_memory_input_stream_add_data(gobj(), data, len, destroy);
 }

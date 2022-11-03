@@ -29,7 +29,7 @@ FontOptions::FontOptions()
   check_object_status_and_throw_exception(*this);
 }
 
-FontOptions::FontOptions(cairo_font_options_t* cobject, bool take_ownership)
+FontOptions::FontOptions(cairo_font_options_t* cobject, const bool take_ownership)
 : m_cobject(nullptr)
 {
   if(take_ownership)
@@ -133,7 +133,7 @@ auto FontOptions::set_hint_style (HintStyle hint_style) -> void
   check_object_status_and_throw_exception(*this);
 }
 
-auto FontOptions::get_hint_style() const -> FontOptions::HintStyle
+auto FontOptions::get_hint_style() const -> HintStyle
 {
   const auto result = static_cast<HintStyle>(cairo_font_options_get_hint_style(m_cobject));
   check_object_status_and_throw_exception(*this);
@@ -147,7 +147,7 @@ auto FontOptions::set_hint_metrics (HintMetrics hint_metrics) -> void
   check_object_status_and_throw_exception(*this);
 }
 
-auto FontOptions::get_hint_metrics() const -> FontOptions::HintMetrics
+auto FontOptions::get_hint_metrics() const -> HintMetrics
 {
   const auto result =
       static_cast<HintMetrics>(cairo_font_options_get_hint_metrics(m_cobject));

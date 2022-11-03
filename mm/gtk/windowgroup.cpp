@@ -38,9 +38,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkWindowGroup* object, bool take_copy) -> Glib::RefPtr<Gtk::WindowGroup>
+auto wrap(GtkWindowGroup* object, const bool take_copy) -> RefPtr<Gtk::WindowGroup>
 {
-  return Glib::make_refptr_for_instance<Gtk::WindowGroup>( dynamic_cast<Gtk::WindowGroup*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::WindowGroup>( dynamic_cast<Gtk::WindowGroup*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -53,7 +53,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto WindowGroup_Class::init() -> const Glib::Class&
+auto WindowGroup_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -99,32 +99,28 @@ auto WindowGroup::gobj_copy() -> GtkWindowGroup*
 }
 
 WindowGroup::WindowGroup(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 WindowGroup::WindowGroup(GtkWindowGroup* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 WindowGroup::WindowGroup(WindowGroup&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto WindowGroup::operator=(WindowGroup&& src) noexcept -> WindowGroup&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-WindowGroup::~WindowGroup() noexcept
-{}
-
+WindowGroup::~WindowGroup() noexcept = default;
 
 WindowGroup::CppClassType WindowGroup::windowgroup_class_; // initialize static member
 
@@ -143,8 +139,8 @@ auto WindowGroup::get_base_type() -> GType
 WindowGroup::WindowGroup()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(windowgroup_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(windowgroup_class_.init()))
 {
 
 
@@ -157,12 +153,12 @@ auto WindowGroup::create() -> Glib::RefPtr<WindowGroup>
 
 auto WindowGroup::add_window (Window &window) -> void
 {
-  gtk_window_group_add_window(gobj(), (window).gobj());
+  gtk_window_group_add_window(gobj(), window.gobj());
 }
 
 auto WindowGroup::remove_window (Window &window) -> void
 {
-  gtk_window_group_remove_window(gobj(), (window).gobj());
+  gtk_window_group_remove_window(gobj(), window.gobj());
 }
 
 auto WindowGroup::list_windows() -> std::vector<Window*>

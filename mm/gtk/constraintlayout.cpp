@@ -45,7 +45,7 @@ auto ConstraintLayout::add_guide (const Glib::RefPtr <ConstraintGuide> &guide) -
 }
 
 auto ConstraintLayout::add_constraints_from_description(
-  const std::vector<Glib::ustring>& lines, int hspacing, int vspacing, const VFLmap& views) -> std::vector<Glib::RefPtr<Constraint>>
+  const std::vector<Glib::ustring>& lines, const int hspacing, const int vspacing, const VFLmap& views) -> std::vector<Glib::RefPtr<Constraint>>
 {
   GHashTable* hash_table_views = g_hash_table_new(g_str_hash, g_str_equal);
   for (const auto& it : views)
@@ -61,7 +61,7 @@ auto ConstraintLayout::add_constraints_from_description(
   if (gerror)
   {
     g_list_free(constraints);
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   }
 
   return Glib::ListHandler<Glib::RefPtr<Constraint>>::list_to_vector(
@@ -75,24 +75,22 @@ namespace
 } // anonymous namespace
 
 
-Gtk::ConstraintVflParserError::ConstraintVflParserError(Gtk::ConstraintVflParserError::Code error_code, const Glib::ustring& error_message)
-:
-  Glib::Error (GTK_CONSTRAINT_VFL_PARSER_ERROR, error_code, error_message)
+Gtk::ConstraintVflParserError::ConstraintVflParserError(const Code error_code, const Glib::ustring& error_message)
+: Error(GTK_CONSTRAINT_VFL_PARSER_ERROR, error_code, error_message)
 {}
 
 Gtk::ConstraintVflParserError::ConstraintVflParserError(GError* gobject)
-:
-  Glib::Error (gobject)
+: Error(gobject)
 {}
 
-auto Gtk::ConstraintVflParserError::code() const -> Gtk::ConstraintVflParserError::Code
+auto Gtk::ConstraintVflParserError::code() const -> Code
 {
-  return static_cast<Code>(Glib::Error::code());
+  return static_cast<Code>(Error::code());
 }
 
 auto Gtk::ConstraintVflParserError::throw_func (GError *gobject) -> void
 {
-  throw Gtk::ConstraintVflParserError(gobject);
+  throw ConstraintVflParserError(gobject);
 }
 
 // static
@@ -105,9 +103,9 @@ auto Glib::Value<Gtk::ConstraintVflParserError::Code>::value_type() -> GType
 namespace Glib
 {
 
-auto wrap(GtkConstraintLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::ConstraintLayout>
+auto wrap(GtkConstraintLayout* object, const bool take_copy) -> RefPtr<Gtk::ConstraintLayout>
 {
-  return Glib::make_refptr_for_instance<Gtk::ConstraintLayout>( dynamic_cast<Gtk::ConstraintLayout*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gtk::ConstraintLayout>( dynamic_cast<Gtk::ConstraintLayout*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -120,7 +118,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto ConstraintLayout_Class::init() -> const Glib::Class&
+auto ConstraintLayout_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -168,7 +166,7 @@ ConstraintLayout::ConstraintLayout(const Glib::ConstructParams& construct_params
 
 ConstraintLayout::ConstraintLayout(GtkConstraintLayout* castitem)
 :
-  LayoutManager((GtkLayoutManager*)(castitem))
+  LayoutManager((GtkLayoutManager*)castitem)
 {}
 
 
@@ -185,9 +183,7 @@ auto ConstraintLayout::operator=(ConstraintLayout&& src) noexcept -> ConstraintL
 }
 
 
-ConstraintLayout::~ConstraintLayout() noexcept
-{}
-
+ConstraintLayout::~ConstraintLayout() noexcept = default;
 
 ConstraintLayout::CppClassType ConstraintLayout::constraintlayout_class_; // initialize static member
 
@@ -206,7 +202,7 @@ auto ConstraintLayout::get_base_type() -> GType
 ConstraintLayout::ConstraintLayout()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   LayoutManager(Glib::ConstructParams(constraintlayout_class_.init()))
 {
 

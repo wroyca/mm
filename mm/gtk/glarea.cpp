@@ -37,7 +37,7 @@ auto GLArea::has_error() const -> bool
 
 auto GLArea::throw_if_error () const -> void
 {
-  GError* error = gtk_gl_area_get_error(const_cast<GtkGLArea*>(gobj()));
+  const GError* error = gtk_gl_area_get_error(const_cast<GtkGLArea*>(gobj()));
   if(error)
   {
     Glib::Error::throw_exception(g_error_copy(error));
@@ -60,14 +60,14 @@ auto GLArea_signal_create_context_callback(GtkGLArea* self, void* data) -> GdkGL
   using namespace Gtk;
   using SlotType = sigc::slot<Glib::RefPtr<Gdk::GLContext>()>;
 
-  auto obj = dynamic_cast<GLArea*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<GLArea*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return Glib::unwrap_copy((*static_cast<SlotType*>(slot))());
+        return unwrap_copy((*static_cast<SlotType*>(slot))());
     }
     catch(...)
     {
@@ -84,7 +84,7 @@ auto GLArea_signal_create_context_notify_callback(GtkGLArea* self,  void* data) 
   using namespace Gtk;
   using SlotType = sigc::slot<void()>;
 
-  auto obj = dynamic_cast<GLArea*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<GLArea*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -116,15 +116,15 @@ auto GLArea_signal_render_callback(GtkGLArea* self, GdkGLContext* p0,void* data)
   using namespace Gtk;
   using SlotType = sigc::slot<bool(const Glib::RefPtr<Gdk::GLContext>&)>;
 
-  auto obj = dynamic_cast<GLArea*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<GLArea*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
     try
     {
       if(const auto slot = Glib::SignalProxyNormal::data_to_slot(data))
-        return static_cast<int>((*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
-));
+        return (*static_cast<SlotType*>(slot))(Glib::wrap(p0, true)
+        );
     }
     catch(...)
     {
@@ -141,7 +141,7 @@ auto GLArea_signal_render_notify_callback(GtkGLArea* self, GdkGLContext* p0, voi
   using namespace Gtk;
   using SlotType = sigc::slot<void(const Glib::RefPtr<Gdk::GLContext>&)>;
 
-  auto obj = dynamic_cast<GLArea*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<GLArea*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -169,12 +169,12 @@ const Glib::SignalProxyInfo GLArea_signal_render_info =
 };
 
 
-auto GLArea_signal_resize_callback (GtkGLArea *self, gint p0, gint p1, void *data) -> void
+auto GLArea_signal_resize_callback (GtkGLArea *self, const gint p0, const gint p1, void *data) -> void
 {
   using namespace Gtk;
   using SlotType = sigc::slot<void(int, int)>;
 
-  auto obj = dynamic_cast<GLArea*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+  const auto obj = dynamic_cast<GLArea*>(Glib::ObjectBase::_get_current_wrapper((GObject*) self));
   // Do not try to call a signal on a disassociated wrapper.
   if(obj)
   {
@@ -206,9 +206,9 @@ const Glib::SignalProxyInfo GLArea_signal_resize_info =
 namespace Glib
 {
 
-auto wrap(GtkGLArea* object, bool take_copy) -> Gtk::GLArea*
+auto wrap(GtkGLArea* object, const bool take_copy) -> Gtk::GLArea*
 {
-  return dynamic_cast<Gtk::GLArea *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::GLArea *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -219,7 +219,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto GLArea_Class::init() -> const Glib::Class&
+auto GLArea_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -255,8 +255,7 @@ auto GLArea_Class::class_init_function (void *g_class, void *class_data) -> void
 
 auto GLArea_Class::create_context_callback(GtkGLArea* self) -> GdkGLContext*
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -271,7 +270,7 @@ auto GLArea_Class::create_context_callback(GtkGLArea* self) -> GdkGLContext*
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return Glib::unwrap_copy(obj->on_create_context());
+        return unwrap_copy(obj->on_create_context());
       }
       catch(...)
       {
@@ -293,8 +292,7 @@ auto GLArea_Class::create_context_callback(GtkGLArea* self) -> GdkGLContext*
 }
 auto GLArea_Class::render_callback(GtkGLArea* self, GdkGLContext* p0) -> gboolean
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -309,8 +307,8 @@ auto GLArea_Class::render_callback(GtkGLArea* self, GdkGLContext* p0) -> gboolea
       try // Trap C++ exceptions which would normally be lost because this is a C callback.
       {
         // Call the virtual member method, which derived classes might override.
-        return static_cast<int>(obj->on_render(Glib::wrap(p0, true)
-));
+        return obj->on_render(Glib::wrap(p0, true)
+        );
       }
       catch(...)
       {
@@ -330,10 +328,9 @@ auto GLArea_Class::render_callback(GtkGLArea* self, GdkGLContext* p0) -> gboolea
   using RType = gboolean;
   return RType();
 }
-auto GLArea_Class::resize_callback (GtkGLArea *self, gint p0, gint p1) -> void
+auto GLArea_Class::resize_callback (GtkGLArea *self, const gint p0, const gint p1) -> void
 {
-  const auto obj_base = static_cast<Glib::ObjectBase*>(
-      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+  const auto obj_base = Glib::ObjectBase::_get_current_wrapper((GObject*)self);
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
   // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
@@ -372,7 +369,7 @@ auto GLArea_Class::resize_callback (GtkGLArea *self, gint p0, gint p1) -> void
 
 auto GLArea_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new GLArea((GtkGLArea*)(o)));
+  return manage(new GLArea((GtkGLArea*)o));
 
 }
 
@@ -380,25 +377,23 @@ auto GLArea_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 /* The implementation: */
 
 GLArea::GLArea(const Glib::ConstructParams& construct_params)
-:
-  Gtk::Widget(construct_params)
+: Widget(construct_params)
 {
   }
 
 GLArea::GLArea(GtkGLArea* castitem)
-:
-  Gtk::Widget((GtkWidget*)(castitem))
+: Widget((GtkWidget*)castitem)
 {
   }
 
 
 GLArea::GLArea(GLArea&& src) noexcept
-: Gtk::Widget(std::move(src))
+: Widget(std::move(src))
 {}
 
 auto GLArea::operator=(GLArea&& src) noexcept -> GLArea&
 {
-  Gtk::Widget::operator=(std::move(src));
+  Widget::operator=(std::move(src));
   return *this;
 }
 
@@ -424,8 +419,8 @@ auto GLArea::get_base_type() -> GType
 GLArea::GLArea()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gtk::Widget(Glib::ConstructParams(glarea_class_.init()))
+ObjectBase(nullptr),
+Widget(Glib::ConstructParams(glarea_class_.init()))
 {
 
 
@@ -461,7 +456,7 @@ auto GLArea::attach_buffers () -> void
 
 auto GLArea::set_error (const Glib::Error &error) -> void
 {
-  gtk_gl_area_set_error(gobj(), (error).gobj());
+  gtk_gl_area_set_error(gobj(), error.gobj());
 }
 
 auto GLArea::get_has_depth_buffer() const -> bool
@@ -469,9 +464,10 @@ auto GLArea::get_has_depth_buffer() const -> bool
   return gtk_gl_area_get_has_depth_buffer(const_cast<GtkGLArea*>(gobj()));
 }
 
-auto GLArea::set_has_depth_buffer (bool has_depth_buffer) -> void
+auto GLArea::set_has_depth_buffer (
+  const bool has_depth_buffer) -> void
 {
-  gtk_gl_area_set_has_depth_buffer(gobj(), static_cast<int>(has_depth_buffer));
+  gtk_gl_area_set_has_depth_buffer(gobj(), has_depth_buffer);
 }
 
 auto GLArea::get_has_stencil_buffer() const -> bool
@@ -479,9 +475,10 @@ auto GLArea::get_has_stencil_buffer() const -> bool
   return gtk_gl_area_get_has_stencil_buffer(const_cast<GtkGLArea*>(gobj()));
 }
 
-auto GLArea::set_has_stencil_buffer (bool has_stencil_buffer) -> void
+auto GLArea::set_has_stencil_buffer (
+  const bool has_stencil_buffer) -> void
 {
-  gtk_gl_area_set_has_stencil_buffer(gobj(), static_cast<int>(has_stencil_buffer));
+  gtk_gl_area_set_has_stencil_buffer(gobj(), has_stencil_buffer);
 }
 
 auto GLArea::get_auto_render() const -> bool
@@ -489,17 +486,19 @@ auto GLArea::get_auto_render() const -> bool
   return gtk_gl_area_get_auto_render(const_cast<GtkGLArea*>(gobj()));
 }
 
-auto GLArea::set_auto_render (bool auto_render) -> void
+auto GLArea::set_auto_render (
+  const bool auto_render) -> void
 {
-  gtk_gl_area_set_auto_render(gobj(), static_cast<int>(auto_render));
+  gtk_gl_area_set_auto_render(gobj(), auto_render);
 }
 
 auto GLArea::get_required_version (int &major, int &minor) const -> void
 {
-  gtk_gl_area_get_required_version(const_cast<GtkGLArea*>(gobj()), &(major), &(minor));
+  gtk_gl_area_get_required_version(const_cast<GtkGLArea*>(gobj()), &major, &minor);
 }
 
-auto GLArea::set_required_version (int major, int minor) -> void
+auto GLArea::set_required_version (
+  const int major, const int minor) -> void
 {
   gtk_gl_area_set_required_version(gobj(), major, minor);
 }
@@ -509,38 +508,39 @@ auto GLArea::get_use_es() const -> bool
   return gtk_gl_area_get_use_es(const_cast<GtkGLArea*>(gobj()));
 }
 
-auto GLArea::set_use_es (bool use_es) -> void
+auto GLArea::set_use_es (
+  const bool use_es) -> void
 {
-  gtk_gl_area_set_use_es(gobj(), static_cast<int>(use_es));
+  gtk_gl_area_set_use_es(gobj(), use_es);
 }
 
 
 auto GLArea::signal_create_context() -> Glib::SignalProxy<Glib::RefPtr<Gdk::GLContext>()>
 {
-  return Glib::SignalProxy<Glib::RefPtr<Gdk::GLContext>() >(this, &GLArea_signal_create_context_info);
+  return {this, &GLArea_signal_create_context_info};
 }
 
 
 auto GLArea::signal_render() -> Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::GLContext>&)>
 {
-  return Glib::SignalProxy<bool(const Glib::RefPtr<Gdk::GLContext>&) >(this, &GLArea_signal_render_info);
+  return {this, &GLArea_signal_render_info};
 }
 
 
 auto GLArea::signal_resize() -> Glib::SignalProxy<void(int, int)>
 {
-  return Glib::SignalProxy<void(int, int) >(this, &GLArea_signal_resize_info);
+  return {this, &GLArea_signal_resize_info};
 }
 
 
 auto GLArea::property_auto_render() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "auto-render");
+  return {this, "auto-render"};
 }
 
 auto GLArea::property_auto_render() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "auto-render");
+  return {this, "auto-render"};
 }
 
 static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::GLContext>>::value,
@@ -549,41 +549,41 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<Gdk::GL
 
 auto GLArea::property_context() const -> Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::GLContext> >
 {
-  return Glib::PropertyProxy_ReadOnly< Glib::RefPtr<Gdk::GLContext> >(this, "context");
+  return {this, "context"};
 }
 
 auto GLArea::property_has_depth_buffer() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "has-depth-buffer");
+  return {this, "has-depth-buffer"};
 }
 
 auto GLArea::property_has_depth_buffer() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "has-depth-buffer");
+  return {this, "has-depth-buffer"};
 }
 
 auto GLArea::property_has_stencil_buffer() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "has-stencil-buffer");
+  return {this, "has-stencil-buffer"};
 }
 
 auto GLArea::property_has_stencil_buffer() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "has-stencil-buffer");
+  return {this, "has-stencil-buffer"};
 }
 
 auto GLArea::property_use_es() -> Glib::PropertyProxy< bool >
 {
-  return Glib::PropertyProxy< bool >(this, "use-es");
+  return {this, "use-es"};
 }
 
 auto GLArea::property_use_es() const -> Glib::PropertyProxy_ReadOnly< bool >
 {
-  return Glib::PropertyProxy_ReadOnly< bool >(this, "use-es");
+  return {this, "use-es"};
 }
 
 
-auto Gtk::GLArea::on_create_context() -> Glib::RefPtr<Gdk::GLContext>
+auto GLArea::on_create_context() -> Glib::RefPtr<Gdk::GLContext>
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -593,9 +593,9 @@ auto Gtk::GLArea::on_create_context() -> Glib::RefPtr<Gdk::GLContext>
     return Glib::wrap((*base->create_context)(gobj()));
 
   using RType = Glib::RefPtr<Gdk::GLContext>;
-  return RType();
+  return {};
 }
-auto Gtk::GLArea::on_render(const Glib::RefPtr<Gdk::GLContext>& context) -> bool
+auto GLArea::on_render(const Glib::RefPtr<Gdk::GLContext>& context) -> bool
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).
@@ -607,7 +607,8 @@ auto Gtk::GLArea::on_render(const Glib::RefPtr<Gdk::GLContext>& context) -> bool
   using RType = bool;
   return RType();
 }
-auto Gtk::GLArea::on_resize (int width, int height) -> void
+auto GLArea::on_resize (
+  const int width, const int height) -> void
 {
   const auto base = static_cast<BaseClassType*>(
       g_type_class_peek_parent(G_OBJECT_GET_CLASS(gobject_)) // Get the parent class of the object class (The original underlying C class).

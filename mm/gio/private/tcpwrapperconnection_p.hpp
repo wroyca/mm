@@ -17,13 +17,13 @@ public:
   using CppObjectType = TcpWrapperConnection;
   using BaseObjectType = GTcpWrapperConnection;
   using BaseClassType = GTcpWrapperConnectionClass;
-  using CppClassParent = Gio::TcpConnection_Class;
+  using CppClassParent = TcpConnection_Class;
   using BaseClassParent = GTcpConnectionClass;
 
   friend class TcpWrapperConnection;
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
-  auto init () -> const Glib::Class&;
+  auto init () -> const Class&;
 
 
   static auto class_init_function (void *g_class, void *class_data) -> void;

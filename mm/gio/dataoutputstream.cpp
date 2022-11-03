@@ -39,9 +39,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GDataOutputStream* object, bool take_copy) -> Glib::RefPtr<Gio::DataOutputStream>
+auto wrap(GDataOutputStream* object, const bool take_copy) -> RefPtr<Gio::DataOutputStream>
 {
-  return Glib::make_refptr_for_instance<Gio::DataOutputStream>( dynamic_cast<Gio::DataOutputStream*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::DataOutputStream>( dynamic_cast<Gio::DataOutputStream*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -54,7 +54,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto DataOutputStream_Class::init() -> const Glib::Class&
+auto DataOutputStream_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -101,34 +101,30 @@ auto DataOutputStream::gobj_copy() -> GDataOutputStream*
 }
 
 DataOutputStream::DataOutputStream(const Glib::ConstructParams& construct_params)
-:
-  Gio::FilterOutputStream(construct_params)
+: FilterOutputStream(construct_params)
 {
 
 }
 
 DataOutputStream::DataOutputStream(GDataOutputStream* castitem)
-:
-  Gio::FilterOutputStream((GFilterOutputStream*)(castitem))
+: FilterOutputStream((GFilterOutputStream*)castitem)
 {}
 
 
 DataOutputStream::DataOutputStream(DataOutputStream&& src) noexcept
-: Gio::FilterOutputStream(std::move(src))
+: FilterOutputStream(std::move(src))
   , Seekable(std::move(src))
 {}
 
 auto DataOutputStream::operator=(DataOutputStream&& src) noexcept -> DataOutputStream&
 {
-  Gio::FilterOutputStream::operator=(std::move(src));
+  FilterOutputStream::operator=(std::move(src));
   Seekable::operator=(std::move(src));
   return *this;
 }
 
 
-DataOutputStream::~DataOutputStream() noexcept
-{}
-
+DataOutputStream::~DataOutputStream() noexcept = default;
 
 DataOutputStream::CppClassType DataOutputStream::dataoutputstream_class_; // initialize static member
 
@@ -147,8 +143,8 @@ auto DataOutputStream::get_base_type() -> GType
 DataOutputStream::DataOutputStream(const Glib::RefPtr<OutputStream>& base_stream)
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Gio::FilterOutputStream(Glib::ConstructParams(dataoutputstream_class_.init(), "base_stream", const_cast<GOutputStream*>(Glib::unwrap(base_stream)), nullptr))
+ObjectBase(nullptr),
+FilterOutputStream(Glib::ConstructParams(dataoutputstream_class_.init(), "base_stream", Glib::unwrap(base_stream), nullptr))
 {
 
 
@@ -169,147 +165,161 @@ auto DataOutputStream::get_byte_order() const -> DataStreamByteOrder
   return static_cast<DataStreamByteOrder>(g_data_output_stream_get_byte_order(const_cast<GDataOutputStream*>(gobj())));
 }
 
-auto DataOutputStream::put_byte(guchar data, const Glib::RefPtr<Cancellable>& cancellable) -> bool
+auto DataOutputStream::put_byte(
+  const guchar data, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_output_stream_put_byte(gobj(), data, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_data_output_stream_put_byte(gobj(), data, Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto DataOutputStream::put_byte(guchar data) -> bool
+auto DataOutputStream::put_byte(
+  const guchar data) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_output_stream_put_byte(gobj(), data, nullptr, &(gerror));
+  const auto retvalue = g_data_output_stream_put_byte(gobj(), data, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto DataOutputStream::put_int16(gint16 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool
+auto DataOutputStream::put_int16(
+  const gint16 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_output_stream_put_int16(gobj(), data, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_data_output_stream_put_int16(gobj(), data, Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto DataOutputStream::put_int16(gint16 data) -> bool
+auto DataOutputStream::put_int16(
+  const gint16 data) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_output_stream_put_int16(gobj(), data, nullptr, &(gerror));
+  const auto retvalue = g_data_output_stream_put_int16(gobj(), data, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto DataOutputStream::put_uint16(guint16 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool
+auto DataOutputStream::put_uint16(
+  const guint16 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_output_stream_put_uint16(gobj(), data, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_data_output_stream_put_uint16(gobj(), data, Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto DataOutputStream::put_uint16(guint16 data) -> bool
+auto DataOutputStream::put_uint16(
+  const guint16 data) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_output_stream_put_uint16(gobj(), data, nullptr, &(gerror));
+  const auto retvalue = g_data_output_stream_put_uint16(gobj(), data, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto DataOutputStream::put_int32(gint32 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool
+auto DataOutputStream::put_int32(
+  const gint32 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_output_stream_put_int32(gobj(), data, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_data_output_stream_put_int32(gobj(), data, Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto DataOutputStream::put_int32(gint32 data) -> bool
+auto DataOutputStream::put_int32(
+  const gint32 data) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_output_stream_put_int32(gobj(), data, nullptr, &(gerror));
+  const auto retvalue = g_data_output_stream_put_int32(gobj(), data, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto DataOutputStream::put_uint32(guint32 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool
+auto DataOutputStream::put_uint32(
+  const guint32 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_output_stream_put_uint32(gobj(), data, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_data_output_stream_put_uint32(gobj(), data, Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto DataOutputStream::put_uint32(guint32 data) -> bool
+auto DataOutputStream::put_uint32(
+  const guint32 data) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_output_stream_put_uint32(gobj(), data, nullptr, &(gerror));
+  const auto retvalue = g_data_output_stream_put_uint32(gobj(), data, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto DataOutputStream::put_int64(gint64 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool
+auto DataOutputStream::put_int64(
+  const gint64 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_output_stream_put_int64(gobj(), data, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_data_output_stream_put_int64(gobj(), data, Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto DataOutputStream::put_int64(gint64 data) -> bool
+auto DataOutputStream::put_int64(
+  const gint64 data) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_output_stream_put_int64(gobj(), data, nullptr, &(gerror));
+  const auto retvalue = g_data_output_stream_put_int64(gobj(), data, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto DataOutputStream::put_uint64(guint64 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool
+auto DataOutputStream::put_uint64(
+  const guint64 data, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_output_stream_put_uint64(gobj(), data, const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_data_output_stream_put_uint64(gobj(), data, Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto DataOutputStream::put_uint64(guint64 data) -> bool
+auto DataOutputStream::put_uint64(
+  const guint64 data) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_output_stream_put_uint64(gobj(), data, nullptr, &(gerror));
+  const auto retvalue = g_data_output_stream_put_uint64(gobj(), data, nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto DataOutputStream::put_string(const std::string& str, const Glib::RefPtr<Cancellable>& cancellable) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_output_stream_put_string(gobj(), str.c_str(), const_cast<GCancellable*>(Glib::unwrap(cancellable)), &(gerror));
+  const auto retvalue = g_data_output_stream_put_string(gobj(), str.c_str(), Glib::unwrap(cancellable), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
 auto DataOutputStream::put_string(const std::string& str) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_data_output_stream_put_string(gobj(), str.c_str(), nullptr, &(gerror));
+  const auto retvalue = g_data_output_stream_put_string(gobj(), str.c_str(), nullptr, &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
@@ -320,12 +330,12 @@ static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<DataStreamByteOrder>
 
 auto DataOutputStream::property_byte_order() -> Glib::PropertyProxy< DataStreamByteOrder >
 {
-  return Glib::PropertyProxy< DataStreamByteOrder >(this, "byte-order");
+  return {this, "byte-order"};
 }
 
 auto DataOutputStream::property_byte_order() const -> Glib::PropertyProxy_ReadOnly< DataStreamByteOrder >
 {
-  return Glib::PropertyProxy_ReadOnly< DataStreamByteOrder >(this, "byte-order");
+  return {this, "byte-order"};
 }
 
 

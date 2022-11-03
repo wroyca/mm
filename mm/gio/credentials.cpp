@@ -39,9 +39,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GCredentials* object, bool take_copy) -> Glib::RefPtr<Gio::Credentials>
+auto wrap(GCredentials* object, const bool take_copy) -> RefPtr<Gio::Credentials>
 {
-  return Glib::make_refptr_for_instance<Gio::Credentials>( dynamic_cast<Gio::Credentials*> (Glib::wrap_auto ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::Credentials>( dynamic_cast<Gio::Credentials*> (wrap_auto((GObject*)object, take_copy)) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -54,7 +54,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto Credentials_Class::init() -> const Glib::Class&
+auto Credentials_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -100,32 +100,28 @@ auto Credentials::gobj_copy() -> GCredentials*
 }
 
 Credentials::Credentials(const Glib::ConstructParams& construct_params)
-:
-  Glib::Object(construct_params)
+: Object(construct_params)
 {
 
 }
 
 Credentials::Credentials(GCredentials* castitem)
-:
-  Glib::Object((GObject*)(castitem))
+: Object((GObject*)castitem)
 {}
 
 
 Credentials::Credentials(Credentials&& src) noexcept
-: Glib::Object(std::move(src))
+: Object(std::move(src))
 {}
 
 auto Credentials::operator=(Credentials&& src) noexcept -> Credentials&
 {
-  Glib::Object::operator=(std::move(src));
+  Object::operator=(std::move(src));
   return *this;
 }
 
 
-Credentials::~Credentials() noexcept
-{}
-
+Credentials::~Credentials() noexcept = default;
 
 Credentials::CppClassType Credentials::credentials_class_; // initialize static member
 
@@ -144,8 +140,8 @@ auto Credentials::get_base_type() -> GType
 Credentials::Credentials()
 :
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
-  Glib::Object(Glib::ConstructParams(credentials_class_.init()))
+ObjectBase(nullptr),
+Object(Glib::ConstructParams(credentials_class_.init()))
 {
 
 
@@ -166,7 +162,7 @@ auto Credentials::get_native(Type native_type) -> gpointer
   return g_credentials_get_native(gobj(), static_cast<GCredentialsType>(native_type));
 }
 
-auto Credentials::set_native (Type native_type, gpointer native) -> void
+auto Credentials::set_native (Type native_type, const gpointer native) -> void
 {
   g_credentials_set_native(gobj(), static_cast<GCredentialsType>(native_type), native);
 }
@@ -174,9 +170,9 @@ auto Credentials::set_native (Type native_type, gpointer native) -> void
 auto Credentials::is_same_user(const Glib::RefPtr<const Credentials>& other_credentials) -> bool
 {
   GError* gerror = nullptr;
-  auto retvalue = g_credentials_is_same_user(gobj(), const_cast<GCredentials*>(Glib::unwrap<Gio::Credentials>(other_credentials)), &(gerror));
+  const auto retvalue = g_credentials_is_same_user(gobj(), const_cast<GCredentials*>(Glib::unwrap<Credentials>(other_credentials)), &gerror);
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 

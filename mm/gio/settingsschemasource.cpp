@@ -31,9 +31,10 @@ namespace Gio
 {
 
 auto
-SettingsSchemaSource::list_schemas(bool relocatable, bool recursive) const -> std::vector<Glib::ustring>
+SettingsSchemaSource::list_schemas(
+  const bool relocatable, const bool recursive) const -> std::vector<Glib::ustring>
 {
-  auto gobject = const_cast<GSettingsSchemaSource*>(gobj());
+  const auto gobject = const_cast<GSettingsSchemaSource*>(gobj());
   gchar** schemas{};
 
   if (relocatable)
@@ -67,7 +68,7 @@ namespace
 namespace Glib
 {
 
-auto wrap(GSettingsSchemaSource* object, bool take_copy) -> Glib::RefPtr<Gio::SettingsSchemaSource>
+auto wrap(GSettingsSchemaSource* object, const bool take_copy) -> RefPtr<Gio::SettingsSchemaSource>
 {
   if(take_copy && object)
     g_settings_schema_source_ref(object);
@@ -124,23 +125,23 @@ auto SettingsSchemaSource::get_default() -> Glib::RefPtr<SettingsSchemaSource>
   return retvalue;
 }
 
-auto SettingsSchemaSource::create(const std::string& directory, bool trusted, const Glib::RefPtr<SettingsSchemaSource>& parent) -> Glib::RefPtr<SettingsSchemaSource>
+auto SettingsSchemaSource::create(const std::string& directory, const bool trusted, const Glib::RefPtr<SettingsSchemaSource>& parent) -> Glib::RefPtr<SettingsSchemaSource>
 {
   GError* gerror = nullptr;
-  auto retvalue = Glib::wrap(g_settings_schema_source_new_from_directory(directory.c_str(), Glib::unwrap(parent), static_cast<int>(trusted), &(gerror)));
+  auto retvalue = Glib::wrap(g_settings_schema_source_new_from_directory(directory.c_str(), Glib::unwrap(parent), trusted, &gerror));
   if(gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
   return retvalue;
 }
 
-auto SettingsSchemaSource::lookup(const Glib::ustring& schema_id, bool recursive) -> Glib::RefPtr<SettingsSchema>
+auto SettingsSchemaSource::lookup(const Glib::ustring& schema_id, const bool recursive) -> Glib::RefPtr<SettingsSchema>
 {
-  return Glib::wrap(g_settings_schema_source_lookup(gobj(), schema_id.c_str(), static_cast<int>(recursive)));
+  return Glib::wrap(g_settings_schema_source_lookup(gobj(), schema_id.c_str(), recursive));
 }
 
-auto SettingsSchemaSource::lookup(const Glib::ustring& schema_id, bool recursive) const -> Glib::RefPtr<const SettingsSchema>
+auto SettingsSchemaSource::lookup(const Glib::ustring& schema_id, const bool recursive) const -> Glib::RefPtr<const SettingsSchema>
 {
-  return Glib::wrap(g_settings_schema_source_lookup(const_cast<GSettingsSchemaSource*>(gobj()), schema_id.c_str(), static_cast<int>(recursive)));
+  return Glib::wrap(g_settings_schema_source_lookup(const_cast<GSettingsSchemaSource*>(gobj()), schema_id.c_str(), recursive));
 }
 
 

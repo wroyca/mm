@@ -30,21 +30,21 @@
 namespace Gtk
 {
 
-ComboBoxText::ComboBoxText(bool has_entry)
+ComboBoxText::ComboBoxText(const bool has_entry)
 :
   //The entry-text-column and id-column values are copied from gtk_combo_box_text_new():
   // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-  Glib::ObjectBase(nullptr),
+ObjectBase(nullptr),
   ComboBox(Glib::ConstructParams(comboboxtext_class_.init(), "has-entry",gboolean(has_entry), nullptr))
 {}
 
 auto ComboBoxText::set_active_text (const Glib::ustring &text) -> void
 {
   //Look for the row with this text, and activate it:
-  auto model = get_model();
+  const auto model = get_model();
   if(model)
   {
-    auto enditer = model->children().end();
+    const auto enditer = model->children().end();
     for(auto iter = model->children().begin(); iter != enditer; ++iter)
     {
       Glib::ustring this_text;
@@ -72,9 +72,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GtkComboBoxText* object, bool take_copy) -> Gtk::ComboBoxText*
+auto wrap(GtkComboBoxText* object, const bool take_copy) -> Gtk::ComboBoxText*
 {
-  return dynamic_cast<Gtk::ComboBoxText *> (Glib::wrap_auto ((GObject*)(object), take_copy));
+  return dynamic_cast<Gtk::ComboBoxText *> (wrap_auto((GObject*)object, take_copy));
 }
 
 } /* namespace Glib */
@@ -85,7 +85,7 @@ namespace Gtk
 
 /* The *_Class implementation: */
 
-auto ComboBoxText_Class::init() -> const Glib::Class&
+auto ComboBoxText_Class::init() -> const Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -118,7 +118,7 @@ auto ComboBoxText_Class::class_init_function (void *g_class, void *class_data) -
 
 auto ComboBoxText_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
 {
-  return manage(new ComboBoxText((GtkComboBoxText*)(o)));
+  return manage(new ComboBoxText((GtkComboBoxText*)o));
 
 }
 
@@ -133,7 +133,7 @@ ComboBoxText::ComboBoxText(const Glib::ConstructParams& construct_params)
 
 ComboBoxText::ComboBoxText(GtkComboBoxText* castitem)
 :
-  ComboBox((GtkComboBox*)(castitem))
+  ComboBox((GtkComboBox*)castitem)
 {
   }
 
@@ -177,12 +177,14 @@ auto ComboBoxText::append (const Glib::ustring &id, const Glib::ustring &text) -
   gtk_combo_box_text_append(gobj(), id.c_str(), text.c_str());
 }
 
-auto ComboBoxText::insert (int position, const Glib::ustring &text) -> void
+auto ComboBoxText::insert (
+  const int position, const Glib::ustring &text) -> void
 {
   gtk_combo_box_text_insert_text(gobj(), position, text.c_str());
 }
 
-auto ComboBoxText::insert (int position, const Glib::ustring &id, const Glib::ustring &text) -> void
+auto ComboBoxText::insert (
+  const int position, const Glib::ustring &id, const Glib::ustring &text) -> void
 {
   gtk_combo_box_text_insert(gobj(), position, id.c_str(), text.c_str());
 }
@@ -197,7 +199,8 @@ auto ComboBoxText::prepend (const Glib::ustring &id, const Glib::ustring &text) 
   gtk_combo_box_text_prepend(gobj(), id.c_str(), text.c_str());
 }
 
-auto ComboBoxText::remove_text (int position) -> void
+auto ComboBoxText::remove_text (
+  const int position) -> void
 {
   gtk_combo_box_text_remove(gobj(), position);
 }

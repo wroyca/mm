@@ -33,16 +33,16 @@ auto
 Icon::equal(const Glib::RefPtr<Icon>& other) const -> bool
 {
   return static_cast<bool>(
-    g_icon_equal(const_cast<GIcon*>(this->gobj()), const_cast<GIcon*>(other->gobj())));
+    g_icon_equal(const_cast<GIcon*>(this->gobj()), other->gobj()));
 }
 
 auto
 Icon::create(const std::string& str) -> Glib::RefPtr<Icon>
 {
   GError* gerror = nullptr;
-  auto icon = g_icon_new_for_string(str.c_str(), &gerror);
+  const auto icon = g_icon_new_for_string(str.c_str(), &gerror);
   if (gerror)
-    ::Glib::Error::throw_exception(gerror);
+    Glib::Error::throw_exception(gerror);
 
   return Glib::wrap(icon);
 }
@@ -57,9 +57,9 @@ namespace
 namespace Glib
 {
 
-auto wrap(GIcon* object, bool take_copy) -> Glib::RefPtr<Gio::Icon>
+auto wrap(GIcon* object, const bool take_copy) -> RefPtr<Gio::Icon>
 {
-  return Glib::make_refptr_for_instance<Gio::Icon>( dynamic_cast<Gio::Icon*> (Glib::wrap_auto_interface<Gio::Icon> ((GObject*)(object), take_copy)) );
+  return Glib::make_refptr_for_instance<Gio::Icon>( Glib::wrap_auto_interface<Gio::Icon> ((GObject*)object, take_copy) );
   //We use dynamic_cast<> in case of multiple inheritance.
 }
 
@@ -72,7 +72,7 @@ namespace Gio
 
 /* The *_Class implementation: */
 
-auto Icon_Class::init() -> const Glib::Interface_Class&
+auto Icon_Class::init() -> const Interface_Class&
 {
   if(!gtype_) // create the GType if necessary
   {
@@ -101,42 +101,40 @@ auto Icon_Class::iface_init_function (void *g_iface, void *) -> void
 
 auto Icon_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
 {
-  return new Icon((GIcon*)(object));
+  return new Icon((GIcon*)object);
 }
 
 
 /* The implementation: */
 
 Icon::Icon()
-:
-  Glib::Interface(icon_class_.init())
+: Interface(icon_class_.init())
 {}
 
 Icon::Icon(GIcon* castitem)
-:
-  Glib::Interface((GObject*)(castitem))
+: Interface((GObject*)castitem)
 {}
 
 Icon::Icon(const Glib::Interface_Class& interface_class)
-: Glib::Interface(interface_class)
+: Interface(interface_class)
 {
 }
 
 Icon::Icon(Icon&& src) noexcept
-: Glib::Interface(std::move(src))
+: Interface(std::move(src))
 {}
 
 auto Icon::operator=(Icon&& src) noexcept -> Icon&
 {
-  Glib::Interface::operator=(std::move(src));
+  Interface::operator=(std::move(src));
   return *this;
 }
 
-Icon::~Icon() noexcept
-{}
+Icon::~Icon() noexcept = default;
 
 // static
-auto Icon::add_interface (GType gtype_implementer) -> void
+auto Icon::add_interface (
+  const GType gtype_implementer) -> void
 {
   icon_class_.init().add_interface(gtype_implementer);
 }
@@ -157,7 +155,7 @@ auto Icon::get_base_type() -> GType
 
 auto Icon::hash() const -> guint
 {
-  return g_icon_hash(const_cast<GIcon*>(gobj()));
+  return g_icon_hash(gobj());
 }
 
 auto Icon::to_string() const -> std::string
@@ -172,7 +170,7 @@ auto Icon::serialize() const -> Glib::VariantBase
 
 auto Icon::deserialize(const Glib::VariantBase& value) -> Glib::RefPtr<Icon>
 {
-  return Glib::wrap(g_icon_deserialize(const_cast<GVariant*>((value).gobj())));
+  return Glib::wrap(g_icon_deserialize(const_cast<GVariant*>(value.gobj())));
 }
 
 
