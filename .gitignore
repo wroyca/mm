@@ -1,13 +1,67 @@
-# Cache directories
+# Cache
+#
 .[Vv]s/
 .[Vv]scode/
 .[Ii]dea/
-.[Cc]ache/
 
-# Cache files
+# Swap
+#
 *.[Ss]wp
 *.[Ss]wo
-*~
 
-# Build results
-[Bb]uild/
+# Ninja
+#
+.ninja_deps
+.ninja_log
+build.ninja
+
+# CMake
+#
+CMakeFiles/
+CMakeCache.txt
+!cmake/*.cmake
+*.cmake
+
+# Prerequisites
+#
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+#
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+#
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+#
+*.mod
+*.smod
+
+# Compiled Static libraries
+#
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+#
+*.exe
+*.out
+*.app
+
+# Build
+#
+build/
+mm-examples

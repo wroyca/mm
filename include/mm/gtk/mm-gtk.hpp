@@ -230,7 +230,7 @@ extern const int gtkmm_micro_version;
 #include <mm/gtk/paned.hpp>
 #include <mm/gtk/pagesetup.hpp>
 #ifndef G_OS_WIN32
-# include #include <mm/gtk/pagesetupunixdialog.h>
+#include <mm/gtk/pagesetupunixdialog.hpp>
 #endif
 #include <mm/gtk/papersize.hpp>
 #include <mm/gtk/passwordentry.hpp>
@@ -240,14 +240,14 @@ extern const int gtkmm_micro_version;
 #include <mm/gtk/popovermenubar.hpp>
 #include <mm/gtk/printcontext.hpp>
 #ifndef G_OS_WIN32
-# include #include <mm/gtk/printer.h>
-# include #include <mm/gtk/printjob.h>
+#include <mm/gtk/printer.hpp>
+#include <mm/gtk/printjob.hpp>
 #endif
 #include <mm/gtk/printoperation.hpp>
 #include <mm/gtk/printoperationpreview.hpp>
 #include <mm/gtk/printsettings.hpp>
 #ifndef G_OS_WIN32
-# include #include <mm/gtk/printunixdialog.h>
+#include <mm/gtk/printunixdialog.hpp>
 #endif
 #include <mm/gtk/progressbar.hpp>
 #include <mm/gtk/range.hpp>

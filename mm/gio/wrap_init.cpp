@@ -165,6 +165,134 @@
 #include <mm/gio/zlibcompressor.hpp>
 #include <mm/gio/zlibdecompressor.hpp>
 
+#ifndef G_OS_WIN32
+
+extern "C"
+{
+
+//Declarations of the *_get_type() functions:
+
+auto g_app_info_monitor_get_type(void) -> GType;
+auto g_app_launch_context_get_type(void) -> GType;
+auto g_application_get_type(void) -> GType;
+auto g_application_command_line_get_type(void) -> GType;
+auto g_buffered_input_stream_get_type(void) -> GType;
+auto g_buffered_output_stream_get_type(void) -> GType;
+auto g_cancellable_get_type(void) -> GType;
+auto g_charset_converter_get_type(void) -> GType;
+auto g_converter_input_stream_get_type(void) -> GType;
+auto g_converter_output_stream_get_type(void) -> GType;
+auto g_credentials_get_type(void) -> GType;
+auto g_data_input_stream_get_type(void) -> GType;
+auto g_data_output_stream_get_type(void) -> GType;
+auto g_dbus_action_group_get_type(void) -> GType;
+auto g_dbus_auth_observer_get_type(void) -> GType;
+auto g_dbus_connection_get_type(void) -> GType;
+auto g_dbus_interface_skeleton_get_type(void) -> GType;
+auto g_dbus_menu_model_get_type(void) -> GType;
+auto g_dbus_message_get_type(void) -> GType;
+auto g_dbus_method_invocation_get_type(void) -> GType;
+auto g_dbus_object_manager_client_get_type(void) -> GType;
+auto g_dbus_object_manager_server_get_type(void) -> GType;
+auto g_dbus_object_proxy_get_type(void) -> GType;
+auto g_dbus_object_skeleton_get_type(void) -> GType;
+auto g_dbus_proxy_get_type(void) -> GType;
+auto g_dbus_server_get_type(void) -> GType;
+#if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
+auto g_desktop_app_info_get_type(void) -> GType;
+#endif // if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
+auto g_emblem_get_type(void) -> GType;
+auto g_emblemed_icon_get_type(void) -> GType;
+auto g_file_enumerator_get_type(void) -> GType;
+auto g_file_icon_get_type(void) -> GType;
+auto g_file_info_get_type(void) -> GType;
+auto g_file_input_stream_get_type(void) -> GType;
+auto g_file_io_stream_get_type(void) -> GType;
+auto g_file_monitor_get_type(void) -> GType;
+auto g_filename_completer_get_type(void) -> GType;
+auto g_file_output_stream_get_type(void) -> GType;
+auto g_filter_input_stream_get_type(void) -> GType;
+auto g_filter_output_stream_get_type(void) -> GType;
+auto g_inet_address_get_type(void) -> GType;
+auto g_inet_socket_address_get_type(void) -> GType;
+auto g_input_stream_get_type(void) -> GType;
+auto g_io_stream_get_type(void) -> GType;
+auto g_list_store_get_type(void) -> GType;
+auto g_memory_input_stream_get_type(void) -> GType;
+auto g_memory_output_stream_get_type(void) -> GType;
+auto g_menu_get_type(void) -> GType;
+auto g_menu_attribute_iter_get_type(void) -> GType;
+auto g_menu_item_get_type(void) -> GType;
+auto g_menu_link_iter_get_type(void) -> GType;
+auto g_menu_model_get_type(void) -> GType;
+auto g_mount_operation_get_type(void) -> GType;
+auto g_network_address_get_type(void) -> GType;
+auto g_network_service_get_type(void) -> GType;
+auto g_notification_get_type(void) -> GType;
+auto g_output_stream_get_type(void) -> GType;
+auto g_permission_get_type(void) -> GType;
+auto g_property_action_get_type(void) -> GType;
+auto g_proxy_address_get_type(void) -> GType;
+auto g_resolver_get_type(void) -> GType;
+auto g_settings_get_type(void) -> GType;
+auto g_simple_action_get_type(void) -> GType;
+auto g_simple_action_group_get_type(void) -> GType;
+auto g_simple_io_stream_get_type(void) -> GType;
+auto g_simple_permission_get_type(void) -> GType;
+auto g_socket_get_type(void) -> GType;
+auto g_socket_address_get_type(void) -> GType;
+auto g_socket_address_enumerator_get_type(void) -> GType;
+auto g_socket_client_get_type(void) -> GType;
+auto g_socket_connection_get_type(void) -> GType;
+auto g_socket_control_message_get_type(void) -> GType;
+auto g_socket_listener_get_type(void) -> GType;
+auto g_socket_service_get_type(void) -> GType;
+auto g_tcp_connection_get_type(void) -> GType;
+auto g_tcp_wrapper_connection_get_type(void) -> GType;
+auto g_themed_icon_get_type(void) -> GType;
+auto g_threaded_socket_service_get_type(void) -> GType;
+auto g_tls_certificate_get_type(void) -> GType;
+auto g_tls_connection_get_type(void) -> GType;
+auto g_tls_database_get_type(void) -> GType;
+auto g_tls_interaction_get_type(void) -> GType;
+auto g_tls_password_get_type(void) -> GType;
+#ifndef G_OS_WIN32
+auto g_unix_connection_get_type(void) -> GType;
+#endif // ifndef G_OS_WIN32
+#ifndef G_OS_WIN32
+auto g_unix_credentials_message_get_type(void) -> GType;
+#endif // ifndef G_OS_WIN32
+#ifndef G_OS_WIN32
+auto g_unix_fd_list_get_type(void) -> GType;
+#endif // ifndef G_OS_WIN32
+#ifndef G_OS_WIN32
+auto g_unix_fd_message_get_type(void) -> GType;
+#endif // ifndef G_OS_WIN32
+#ifndef G_OS_WIN32
+auto g_unix_input_stream_get_type(void) -> GType;
+#endif // ifndef G_OS_WIN32
+#ifndef G_OS_WIN32
+auto g_unix_output_stream_get_type(void) -> GType;
+#endif // ifndef G_OS_WIN32
+#ifndef G_OS_WIN32
+auto g_unix_socket_address_get_type(void) -> GType;
+#endif // ifndef G_OS_WIN32
+auto g_volume_monitor_get_type(void) -> GType;
+auto g_zlib_compressor_get_type(void) -> GType;
+auto g_zlib_decompressor_get_type(void) -> GType;
+
+//Declarations of the *_error_quark() functions:
+
+auto g_dbus_error_quark(void) -> GQuark;
+auto g_io_error_quark(void) -> GQuark;
+auto g_resolver_error_quark(void) -> GQuark;
+auto g_tls_error_quark(void) -> GQuark;
+auto g_resource_error_quark(void) -> GQuark;
+
+} // extern "C"
+
+#endif // G_OS_WIN32
+
 namespace Gio {
 
 //Declarations of the *_Class::wrap_new() methods, instead of including all the private headers:

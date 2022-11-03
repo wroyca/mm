@@ -53,9 +53,16 @@ link_directories (
   ${LIBADWAITA_LIBRARY_DIRS}
 )
 
+# unix-print is not properly imported from pkg_check_modules(GTK4 ...)
+#
+
+if (EXISTS /usr/include/gtk-4.0/unix-print)
+  include_directories(/usr/include/gtk-4.0/unix-print)
+endif ()
+
 # Multi-process build
 #
-add_compile_options (/MP /cgthreads8)
+# add_compile_options (/MP /cgthreads8)
 
 # Treat mm/ as a workspace.
 #
