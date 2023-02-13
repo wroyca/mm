@@ -1,15 +1,18 @@
 #pragma once
 
-#include <iosfwd>
-#include <string>
-
 #include <libmm-pango/export.hxx>
 
-namespace mm_pango
-{
-  // Print a greeting for the specified name into the specified
-  // stream. Throw std::invalid_argument if the name is empty.
-  //
-  LIBMM_PANGO_SYMEXPORT void
-  say_hello (std::ostream&, const std::string& name);
-}
+#include <libmm-pango/attrlist.hxx>
+#include <libmm-pango/context.hxx>
+#include <libmm-pango/coverage.hxx>
+#include <libmm-pango/fontdescription.hxx>
+#include <libmm-pango/fontface.hxx>
+#include <libmm-pango/fontfamily.hxx>
+#include <libmm-pango/font.hxx>
+#include <libmm-pango/fontmap.hxx>
+#include <libmm-pango/fontmetrics.hxx>
+#include <libmm-pango/fontset.hxx>
+#include <libmm-pango/layout.hxx>
+#include <libmm-pango/layoutiter.hxx>
+#include <libmm-pango/layoutline.hxx>
+#include <libmm-pango/tabarray.hxx>

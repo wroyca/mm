@@ -1,15 +1,17 @@
 #pragma once
 
-#include <iosfwd>
-#include <string>
-
 #include <libmm-cairo/export.hxx>
 
-namespace mm_cairo
-{
-  // Print a greeting for the specified name into the specified
-  // stream. Throw std::invalid_argument if the name is empty.
-  //
-  LIBMM_CAIRO_SYMEXPORT void
-  say_hello (std::ostream&, const std::string& name);
-}
+#include <libmm-cairo/mm-cairoconfig.hxx>
+#include <libmm-cairo/context.hxx>
+#include <libmm-cairo/device.hxx>
+#include <libmm-cairo/enums.hxx>
+#include <libmm-cairo/exception.hxx>
+#include <libmm-cairo/fontface.hxx>
+#include <libmm-cairo/fontoptions.hxx>
+#include <libmm-cairo/matrix.hxx>
+#include <libmm-cairo/path.hxx>
+#include <libmm-cairo/pattern.hxx>
+#include <libmm-cairo/region.hxx>
+#include <libmm-cairo/scaledfont.hxx>
+#include <libmm-cairo/surface.hxx>
