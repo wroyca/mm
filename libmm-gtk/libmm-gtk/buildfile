@@ -1,8 +1,15 @@
 intf_libs = # Interface dependencies.
 impl_libs = # Implementation dependencies.
-#import xxxx_libs += libhello%lib{hello}
+import impl_libs += libmm-glib%lib{mm-glib}
+import impl_libs += libmm-gdk%lib{mm-gdk}
+import impl_libs += libmm-cairo%lib{mm-cairo}
+import impl_libs += libmm-pango%lib{mm-pango}
+import impl_libs += libmm-gio%lib{mm-gio}
 
-lib{mm-gtk}: {hxx ixx txx cxx}{** -version} hxx{version} $impl_libs $intf_libs
+import impl_libs += glib-2.0%lib{glib-2.0}
+import impl_libs += gtk4%lib{gtk4}
+
+liba{mm-gtk}: {hxx ixx txx cxx}{** -version} hxx{version} $impl_libs $intf_libs
 
 hxx{version}: in{version} $src_root/manifest
 
@@ -11,29 +18,31 @@ hxx{export}@./: cxx.importable = false
 # Build options.
 #
 cxx.poptions =+ "-I$out_root" "-I$src_root"
+cxx.loptions =+ "/LIBPATH:C:/gnome/lib"
+cxx.poptions =+ "-DGTKMM_BUILD" "-DGTKMM_STATIC_LIB"
 
-{hbmia obja}{*}: cxx.poptions += -DLIBMM_GTK_STATIC_BUILD
-{hbmis objs}{*}: cxx.poptions += -DLIBMM_GTK_SHARED_BUILD
+#{hbmia obja}{*}: cxx.poptions += -DLIBMM_GTK_STATIC_BUILD
+#{hbmis objs}{*}: cxx.poptions += -DLIBMM_GTK_SHARED_BUILD
 
 # Export options.
 #
-lib{mm-gtk}:
+liba{mm-gtk}:
 {
   cxx.export.poptions = "-I$out_root" "-I$src_root"
   cxx.export.libs = $intf_libs
 }
 
-liba{mm-gtk}: cxx.export.poptions += -DLIBMM_GTK_STATIC
-libs{mm-gtk}: cxx.export.poptions += -DLIBMM_GTK_SHARED
+#liba{mm-gtk}: cxx.export.poptions += -DLIBMM_GTK_STATIC
+#libs{mm-gtk}: cxx.export.poptions += -DLIBMM_GTK_SHARED
 
 # For pre-releases use the complete version to make sure they cannot be used
 # in place of another pre-release or the final version. See the version module
 # for details on the version.* variable values.
 #
 if $version.pre_release
-  lib{mm-gtk}: bin.lib.version = "-$version.project_id"
+  liba{mm-gtk}: bin.lib.version = "-$version.project_id"
 else
-  lib{mm-gtk}: bin.lib.version = "-$version.major.$version.minor"
+  liba{mm-gtk}: bin.lib.version = "-$version.major.$version.minor"
 
 # Install into the libmm-gtk/ subdirectory of, say, /usr/include/
 # recreating subdirectories.

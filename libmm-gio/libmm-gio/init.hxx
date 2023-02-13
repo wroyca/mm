@@ -1,7 +1,7 @@
 #ifndef _GIOMM_INIT_H
 #define _GIOMM_INIT_H
 
-#include "wrap_init.hpp"
+#include <libmm-gio/wrap_init.hxx>
 
 /* init.h
  *
