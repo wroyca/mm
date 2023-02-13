@@ -14,10 +14,10 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gio/socketsource.hpp>
-#include <libmm-gio/socket.hpp>
-#include <libmm-glib/exceptionhandler.hpp>
-#include <libmm-glib/wrap.hpp>
+#include <libmm-gio/socketsource.hxx>
+#include <libmm-gio/socket.hxx>
+#include <libmm-glib/exceptionhandler.hxx>
+#include <libmm-glib/wrap.hxx>
 #include <gio/gio.h>
 
 namespace

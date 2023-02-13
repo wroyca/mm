@@ -3,7 +3,7 @@
 #define _GDKMM_CONTENTFORMATSBUILDER_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2017 The gtkmm Development Team
@@ -23,7 +23,7 @@
  */
 
 
-#include <libmm-gdk/contentformats.hpp>
+#include <libmm-gdk/contentformats.hxx>
 
 namespace Gdk
 {

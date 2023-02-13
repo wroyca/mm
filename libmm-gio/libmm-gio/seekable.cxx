@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/seekable.hpp>
-#include <libmm-gio/seekable_p.hpp>
+#include <libmm-gio/seekable.hxx>
+#include <libmm-gio/seekable_p.hxx>
 
 
 /* Copyright (C) 2007 The gtkmm Development Team

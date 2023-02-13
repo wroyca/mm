@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/treeiter.hpp>
-#include <libmm-gtk/treeiter_p.hpp>
+#include <libmm-gtk/treeiter.hxx>
+#include <libmm-gtk/treeiter_p.hxx>
 
 #include <cstring> // std::memset()
 
@@ -25,7 +25,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/treemodel.hpp>
+#include <libmm-gtk/treemodel.hxx>
 #include <gtk/gtk.h>
 
 

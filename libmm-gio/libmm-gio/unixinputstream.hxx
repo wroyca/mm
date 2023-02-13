@@ -3,7 +3,7 @@
 #define _GIOMM_UNIXINPUTSTREAM_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -22,9 +22,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gio/inputstream.hpp>
-#include <libmm-gio/pollableinputstream.hpp>
-#include <libmm-gio/filedescriptorbased.hpp>
+#include <libmm-gio/inputstream.hxx>
+#include <libmm-gio/pollableinputstream.hxx>
+#include <libmm-gio/filedescriptorbased.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -3,9 +3,9 @@
 #define _GIOMM_PROXYADDRESS_P_H
 
 
-#include <libmm-gio/inetsocketaddress_p.hpp>
+#include <libmm-gio/inetsocketaddress_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gio
 {

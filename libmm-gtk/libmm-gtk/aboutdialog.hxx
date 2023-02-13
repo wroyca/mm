@@ -2,10 +2,10 @@
 #ifndef _GTKMM_ABOUTDIALOG_H
 #define _GTKMM_ABOUTDIALOG_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /*
@@ -29,8 +29,8 @@
 
 #include <vector>
 
-#include <libmm-gtk/window.hpp>
-#include <libmm-gdk/paintable.hpp>
+#include <libmm-gtk/window.hxx>
+#include <libmm-gdk/paintable.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

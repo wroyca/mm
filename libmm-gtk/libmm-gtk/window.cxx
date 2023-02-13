@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/window.hpp>
-#include <libmm-gtk/window_p.hpp>
+#include <libmm-gtk/window.hxx>
+#include <libmm-gtk/window_p.hxx>
 
 
 /*
@@ -25,10 +25,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-glib/vectorutils.hpp>
-#include <libmm-gio/listmodel.hpp>
-#include <libmm-gdk/monitor.hpp>
-#include <libmm-gtk/application.hpp>
+#include <libmm-glib/vectorutils.hxx>
+#include <libmm-gio/listmodel.hxx>
+#include <libmm-gdk/monitor.hxx>
+#include <libmm-gtk/application.hxx>
 #include <gtk/gtk.h>
 
 namespace Gtk

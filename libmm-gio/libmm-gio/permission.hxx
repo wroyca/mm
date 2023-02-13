@@ -3,7 +3,7 @@
 #define _GIOMM_PERMISSION_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2014 The giomm Development Team
@@ -22,9 +22,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/object.hpp>
-#include <libmm-gio/cancellable.hpp>
-#include <libmm-gio/asyncresult.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-gio/cancellable.hxx>
+#include <libmm-gio/asyncresult.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -2,10 +2,10 @@
 #ifndef _GTKMM_TEXTBUFFER_H
 #define _GTKMM_TEXTBUFFER_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright(C) 1998-2002 The gtkmm Development Team
@@ -31,14 +31,14 @@
 
 #include <vector>
 
-#include <libmm-gdk/contentprovider.hpp>
-#include <libmm-gtk/texttagtable.hpp>
-#include <libmm-gtk/textchildanchor.hpp>
-#include <libmm-gtk/textmark.hpp>
-#include <libmm-gtk/textiter.hpp>
-#include <libmm-gdk/clipboard.hpp>
-#include <libmm-gdk/paintable.hpp>
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gdk/contentprovider.hxx>
+#include <libmm-gtk/texttagtable.hxx>
+#include <libmm-gtk/textchildanchor.hxx>
+#include <libmm-gtk/textmark.hxx>
+#include <libmm-gtk/textiter.hxx>
+#include <libmm-gdk/clipboard.hxx>
+#include <libmm-gdk/paintable.hxx>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 #include <utility>
 
 

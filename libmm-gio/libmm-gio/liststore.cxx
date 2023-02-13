@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/liststore.hpp>
-#include <libmm-gio/liststore_p.hpp>
+#include <libmm-gio/liststore.hxx>
+#include <libmm-gio/liststore_p.hxx>
 
 
 /* Copyright (C) 2016 The giomm Development Team

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-glib/module.hpp>
-#include <libmm-glib/module_p.hpp>
+#include <libmm-glib/module.hxx>
+#include <libmm-glib/module_p.hxx>
 
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -23,7 +23,7 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/utility.hpp>
+#include <libmm-glib/utility.hxx>
 #include <gmodule.h>
 
 namespace Glib

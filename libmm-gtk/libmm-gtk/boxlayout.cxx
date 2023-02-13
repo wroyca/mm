@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/boxlayout.hpp>
-#include <libmm-gtk/boxlayout_p.hpp>
+#include <libmm-gtk/boxlayout.hxx>
+#include <libmm-gtk/boxlayout_p.hxx>
 
 
 /* Copyright (C) 2019 The gtkmm Development Team

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/unixfdmessage.hpp>
-#include <libmm-gio/unixfdmessage_p.hpp>
+#include <libmm-gio/unixfdmessage.hxx>
+#include <libmm-gio/unixfdmessage_p.hxx>
 
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -26,8 +26,8 @@
 #ifndef _WIN32
 
 #include <gio/gunixfdmessage.h>
-#include <libmm-glib/error.hpp>
-#include <libmm-gio/unixfdlist.hpp>
+#include <libmm-glib/error.hxx>
+#include <libmm-gio/unixfdlist.hxx>
 
 namespace Gio
 {

@@ -1,40 +1,40 @@
 
 
 #define GLIBMM_INCLUDED_FROM_WRAP_INIT_CC
-#include <libmm-glib/mm-glib.hpp>
-#include <libmm-glib/wrap_init.hpp>
-#include <libmm-glib/error.hpp>
-#include <libmm-glib/object.hpp>
+#include <libmm-glib/mm-glib.hxx>
+#include <libmm-glib/wrap_init.hxx>
+#include <libmm-glib/error.hxx>
+#include <libmm-glib/object.hxx>
 
 // #include the widget headers so that we can call the get_type() static methods:
-#include <libmm-glib/binding.hpp>
-#include <libmm-glib/bytearray.hpp>
-#include <libmm-glib/bytes.hpp>
-#include <libmm-glib/checksum.hpp>
-#include <libmm-glib/convert.hpp>
-#include <libmm-glib/date.hpp>
-#include <libmm-glib/datetime.hpp>
-#include <libmm-glib/enums.hpp>
-#include <libmm-glib/fileutils.hpp>
-#include <libmm-glib/iochannel.hpp>
-#include <libmm-glib/keyfile.hpp>
-#include <libmm-glib/markup.hpp>
-#include <libmm-glib/miscutils.hpp>
-#include <libmm-glib/module.hpp>
-#include <libmm-glib/nodetree.hpp>
-#include <libmm-glib/optioncontext.hpp>
-#include <libmm-glib/optionentry.hpp>
-#include <libmm-glib/optiongroup.hpp>
-#include <libmm-glib/regex.hpp>
-#include <libmm-glib/shell.hpp>
-#include <libmm-glib/spawn.hpp>
-#include <libmm-glib/timezone.hpp>
-#include <libmm-glib/unicode.hpp>
-#include <libmm-glib/uriutils.hpp>
-#include <libmm-glib/variant.hpp>
-#include <libmm-glib/variantdict.hpp>
-#include <libmm-glib/variantiter.hpp>
-#include <libmm-glib/varianttype.hpp>
+#include <libmm-glib/binding.hxx>
+#include <libmm-glib/bytearray.hxx>
+#include <libmm-glib/bytes.hxx>
+#include <libmm-glib/checksum.hxx>
+#include <libmm-glib/convert.hxx>
+#include <libmm-glib/date.hxx>
+#include <libmm-glib/datetime.hxx>
+#include <libmm-glib/enums.hxx>
+#include <libmm-glib/fileutils.hxx>
+#include <libmm-glib/iochannel.hxx>
+#include <libmm-glib/keyfile.hxx>
+#include <libmm-glib/markup.hxx>
+#include <libmm-glib/miscutils.hxx>
+#include <libmm-glib/module.hxx>
+#include <libmm-glib/nodetree.hxx>
+#include <libmm-glib/optioncontext.hxx>
+#include <libmm-glib/optionentry.hxx>
+#include <libmm-glib/optiongroup.hxx>
+#include <libmm-glib/regex.hxx>
+#include <libmm-glib/shell.hxx>
+#include <libmm-glib/spawn.hxx>
+#include <libmm-glib/timezone.hxx>
+#include <libmm-glib/unicode.hxx>
+#include <libmm-glib/uriutils.hxx>
+#include <libmm-glib/variant.hxx>
+#include <libmm-glib/variantdict.hxx>
+#include <libmm-glib/variantiter.hxx>
+#include <libmm-glib/varianttype.hxx>
 
 namespace Glib {
 

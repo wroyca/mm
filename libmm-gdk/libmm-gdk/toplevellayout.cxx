@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/toplevellayout.hpp>
-#include <libmm-gdk/toplevellayout_p.hpp>
+#include <libmm-gdk/toplevellayout.hxx>
+#include <libmm-gdk/toplevellayout_p.hxx>
 
 #include <gdk/gdk.h>
 

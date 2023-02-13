@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/sorter.hpp>
-#include <libmm-gtk/sorter_p.hpp>
+#include <libmm-gtk/sorter.hxx>
+#include <libmm-gtk/sorter_p.hxx>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

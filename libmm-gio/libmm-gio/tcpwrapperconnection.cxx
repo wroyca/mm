@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/tcpwrapperconnection.hpp>
-#include <libmm-gio/tcpwrapperconnection_p.hpp>
+#include <libmm-gio/tcpwrapperconnection.hxx>
+#include <libmm-gio/tcpwrapperconnection_p.hxx>
 
 
 /* Copyright (C) 2015 The giomm Development Team

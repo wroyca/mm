@@ -25,8 +25,8 @@ typedef struct _GObject GObject;
 }
 
 #include <sigc++/sigc++.h>
-#include <libmm-glib/signalproxy_connectionnode.hpp>
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/signalproxy_connectionnode.hxx>
+#include <libmm-glib/ustring.hxx>
 #include <utility> // std::move()
 
 namespace Glib

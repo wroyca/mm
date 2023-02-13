@@ -16,8 +16,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/accelkey.hpp>
-#include <libmm-gtk/accelerator.hpp>
+#include <libmm-gtk/accelkey.hxx>
+#include <libmm-gtk/accelerator.hxx>
 
 namespace Gtk
 {

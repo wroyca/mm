@@ -3,9 +3,9 @@
 #define _GIOMM_FILEIOSTREAM_P_H
 
 
-#include <libmm-gio/iostream_p.hpp>
+#include <libmm-gio/iostream_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gio
 {

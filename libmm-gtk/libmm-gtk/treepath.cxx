@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/treepath.hpp>
-#include <libmm-gtk/treepath_p.hpp>
+#include <libmm-gtk/treepath.hxx>
+#include <libmm-gtk/treepath_p.hxx>
 
 
 /*
@@ -25,8 +25,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/treemodel.hpp>
-#include <libmm-glib/utility.hpp>
+#include <libmm-gtk/treemodel.hxx>
+#include <libmm-glib/utility.hxx>
 #include <gtk/gtk.h>
 
 

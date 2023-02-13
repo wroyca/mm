@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/socketservice.hpp>
-#include <libmm-gio/socketservice_p.hpp>
+#include <libmm-gio/socketservice.hxx>
+#include <libmm-gio/socketservice_p.hxx>
 
 
 /* Copyright (C) 2010 Jonathon Jongsma
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <libmm-glib/exceptionhandler.hpp>
+#include <libmm-glib/exceptionhandler.hxx>
 
 namespace Gio
 {

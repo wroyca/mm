@@ -2,10 +2,10 @@
 #ifndef _GTKMM_RECENTMANAGER_H
 #define _GTKMM_RECENTMANAGER_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2006 The gtkmm Development Team
@@ -27,9 +27,9 @@
 
 
 #include <vector>
-#include <libmm-gdk/pixbuf.hpp>
-#include <libmm-gtk/recentinfo.hpp>
-#include <libmm-glib/object.hpp>
+#include <libmm-gdk/pixbuf.hxx>
+#include <libmm-gtk/recentinfo.hxx>
+#include <libmm-glib/object.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

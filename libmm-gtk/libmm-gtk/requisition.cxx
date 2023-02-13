@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/requisition.hpp>
-#include <libmm-gtk/requisition_p.hpp>
+#include <libmm-gtk/requisition.hxx>
+#include <libmm-gtk/requisition_p.hxx>
 
 #include <cstring> // std::memset()
 

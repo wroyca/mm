@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-glib/spawn.hpp>
-#include <libmm-glib/spawn_p.hpp>
+#include <libmm-glib/spawn.hxx>
+#include <libmm-glib/spawn_p.hxx>
 
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -24,8 +24,8 @@
  */
 
 #include <glib.h>
-#include <libmm-glib/exceptionhandler.hpp>
-#include <libmm-glib/utility.hpp>
+#include <libmm-glib/exceptionhandler.hxx>
+#include <libmm-glib/utility.hxx>
 
 namespace
 {

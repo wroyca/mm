@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/dbusintrospection.hpp>
-#include <libmm-gio/dbusintrospection_p.hpp>
+#include <libmm-gio/dbusintrospection.hxx>
+#include <libmm-gio/dbusintrospection_p.hxx>
 
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -23,8 +23,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/error.hpp>
-#include <libmm-glib/utility.hpp>
+#include <libmm-glib/error.hxx>
+#include <libmm-glib/utility.hxx>
 
 namespace Gio::DBus
 {

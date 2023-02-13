@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/enums.hpp>
-#include <libmm-gtk/enums_p.hpp>
+#include <libmm-gtk/enums.hxx>
+#include <libmm-gtk/enums_p.hxx>
 
 #include <gtk/gtk.h>
 
@@ -26,7 +26,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/enums.hpp>
+#include <libmm-gtk/enums.hxx>
 
 namespace Gtk
 {

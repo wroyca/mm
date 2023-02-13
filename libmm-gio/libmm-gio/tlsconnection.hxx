@@ -2,10 +2,10 @@
 #ifndef _GIOMM_TLSCONNECTION_H
 #define _GIOMM_TLSCONNECTION_H
 
-#include <libmm-gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2013 The giomm Development Team
@@ -25,9 +25,9 @@
  */
 
 
-#include <libmm-gio/iostream.hpp>
-#include <libmm-gio/tlscertificate.hpp>
-#include <libmm-gio/asyncresult.hpp>
+#include <libmm-gio/iostream.hxx>
+#include <libmm-gio/tlscertificate.hxx>
+#include <libmm-gio/asyncresult.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

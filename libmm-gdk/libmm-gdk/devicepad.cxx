@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/devicepad.hpp>
-#include <libmm-gdk/devicepad_p.hpp>
+#include <libmm-gdk/devicepad.hxx>
+#include <libmm-gdk/devicepad_p.hxx>
 
 
 /* Copyright (C) 2019 The gtkmm Development Team

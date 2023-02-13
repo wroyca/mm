@@ -16,8 +16,8 @@
  * 02110-1301, USA.
  */
 
-#include <libmm-cairo/win32_surface.hpp>
-#include <libmm-cairo/private.hpp>
+#include <libmm-cairo/win32_surface.hxx>
+#include <libmm-cairo/private.hxx>
 
 namespace Cairo
 {

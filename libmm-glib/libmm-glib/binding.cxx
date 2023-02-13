@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-glib/binding.hpp>
-#include <libmm-glib/binding_p.hpp>
+#include <libmm-glib/binding.hxx>
+#include <libmm-glib/binding_p.hxx>
 
 
 /* Copyright (C) 2014 The glibmm Development Team
@@ -25,7 +25,7 @@
 
 using Flags = Glib::Binding::Flags;
 
-#include <libmm-glib/binding.hpp>
+#include <libmm-glib/binding.hxx>
 #include <glib.h>
 
 namespace

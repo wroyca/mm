@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/networkservice.hpp>
-#include <libmm-gio/networkservice_p.hpp>
+#include <libmm-gio/networkservice.hxx>
+#include <libmm-gio/networkservice_p.hxx>
 
 
 /* Copyright (C) 2007 The giomm Development Team
@@ -24,8 +24,8 @@
  */
 
 #include <gio/gio.h>
-#include <libmm-gio/asyncresult.hpp>
-#include <libmm-gio/slot_async.hpp>
+#include <libmm-gio/asyncresult.hxx>
+#include <libmm-gio/slot_async.hxx>
 
 namespace Gio
 {

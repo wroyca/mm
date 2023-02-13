@@ -16,10 +16,10 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/mm-glibconfig.hpp>
-#include <libmm-glib/error.hpp>
-#include <libmm-glib/wrap.hpp>
-#include <libmm-glib/wrap_init.hpp>
+#include <libmm-glib/mm-glibconfig.hxx>
+#include <libmm-glib/error.hxx>
+#include <libmm-glib/wrap.hxx>
+#include <libmm-glib/wrap_init.hxx>
 #include <glib.h>
 #include <map>
 

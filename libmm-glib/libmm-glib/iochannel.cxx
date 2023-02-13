@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-glib/iochannel.hpp>
-#include <libmm-glib/iochannel_p.hpp>
+#include <libmm-glib/iochannel.hxx>
+#include <libmm-glib/iochannel_p.hxx>
 
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -23,10 +23,10 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/exceptionhandler.hpp>
-#include <libmm-glib/iochannel.hpp>
-#include <libmm-glib/utility.hpp>
-#include <libmm-glib/main.hpp>
+#include <libmm-glib/exceptionhandler.hxx>
+#include <libmm-glib/iochannel.hxx>
+#include <libmm-glib/utility.hxx>
+#include <libmm-glib/main.hxx>
 
 namespace
 {

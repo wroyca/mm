@@ -3,7 +3,7 @@
 #ifndef _GLIBMM_OBJECT_P_H
 #define _GLIBMM_OBJECT_P_H
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Glib
 {

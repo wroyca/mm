@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/gestureswipe.hpp>
-#include <libmm-gtk/gestureswipe_p.hpp>
+#include <libmm-gtk/gestureswipe.hxx>
+#include <libmm-gtk/gestureswipe_p.hxx>
 
 
 /* Copyright (C) 2014 The gtkmm Development Team

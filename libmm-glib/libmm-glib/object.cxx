@@ -14,9 +14,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/object.hpp>
-#include <libmm-glib/object_p.hpp>
-#include <libmm-glib/property.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-glib/object_p.hxx>
+#include <libmm-glib/property.hxx>
 
 #include <glib-object.h>
 #include <gobject/gvaluecollector.h>

@@ -3,9 +3,9 @@
 #define _GIOMM_UNIXFDMESSAGE_P_H
 
 
-#include <libmm-gio/socketcontrolmessage_p.hpp>
+#include <libmm-gio/socketcontrolmessage_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gio
 {

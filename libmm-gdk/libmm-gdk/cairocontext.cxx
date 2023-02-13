@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/cairocontext.hpp>
-#include <libmm-gdk/cairocontext_p.hpp>
+#include <libmm-gdk/cairocontext.hxx>
+#include <libmm-gdk/cairocontext_p.hxx>
 
 
 /* Copyright (C) 2018 The gtkmm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gdk/gdk.h>
-#include <libmm-gdk/cairoutils.hpp>
+#include <libmm-gdk/cairoutils.hxx>
 
 namespace
 {

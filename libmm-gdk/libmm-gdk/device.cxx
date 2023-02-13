@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/device.hpp>
-#include <libmm-gdk/device_p.hpp>
+#include <libmm-gdk/device.hxx>
+#include <libmm-gdk/device_p.hxx>
 
 
 /* Copyright 2002 The gtkmm Development Team
@@ -25,12 +25,12 @@
  */
 
 #include <gdk/gdk.h>
-#include <libmm-gdk/cursor.hpp>
-#include <libmm-gdk/devicetool.hpp>
-#include <libmm-gdk/devicewithpad.hpp>
-#include <libmm-gdk/display.hpp>
-#include <libmm-gdk/seat.hpp>
-#include <libmm-gdk/surface.hpp>
+#include <libmm-gdk/cursor.hxx>
+#include <libmm-gdk/devicetool.hxx>
+#include <libmm-gdk/devicewithpad.hxx>
+#include <libmm-gdk/display.hxx>
+#include <libmm-gdk/seat.hxx>
+#include <libmm-gdk/surface.hxx>
 
 namespace Gdk
 {

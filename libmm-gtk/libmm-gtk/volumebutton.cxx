@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/volumebutton.hpp>
-#include <libmm-gtk/volumebutton_p.hpp>
+#include <libmm-gtk/volumebutton.hxx>
+#include <libmm-gtk/volumebutton_p.hxx>
 
 
 /*

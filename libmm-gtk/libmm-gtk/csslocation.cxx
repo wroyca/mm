@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/csslocation.hpp>
-#include <libmm-gtk/csslocation_p.hpp>
+#include <libmm-gtk/csslocation.hxx>
+#include <libmm-gtk/csslocation_p.hxx>
 
 
 /* Copyright (C) 2019 The gtkmm Development Team

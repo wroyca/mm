@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/resource.hpp>
-#include <libmm-gio/resource_p.hpp>
+#include <libmm-gio/resource.hxx>
+#include <libmm-gio/resource_p.hxx>
 
 
 /* Copyright (C) 2012 The giomm Development Team

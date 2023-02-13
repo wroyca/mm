@@ -3,7 +3,7 @@
 #define _GTKMM_PADCONTROLLER_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2019 The gtkmm Development Team
@@ -22,10 +22,10 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gio/actiongroup.hpp>
-#include <libmm-gdk/device.hpp>
-#include <libmm-gtk/eventcontroller.hpp>
-#include <libmm-gtk/padactionentry.hpp>
+#include <libmm-gio/actiongroup.hxx>
+#include <libmm-gdk/device.hxx>
+#include <libmm-gtk/eventcontroller.hxx>
+#include <libmm-gtk/padactionentry.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

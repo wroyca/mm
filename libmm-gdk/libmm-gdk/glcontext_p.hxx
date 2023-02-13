@@ -3,9 +3,9 @@
 #define _GDKMM_GLCONTEXT_P_H
 
 
-#include <libmm-gdk/drawcontext_p.hpp>
+#include <libmm-gdk/drawcontext_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gdk
 {

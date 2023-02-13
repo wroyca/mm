@@ -3,7 +3,7 @@
 #define _GIOMM_DATAINPUTSTREAM_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -22,8 +22,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gio/bufferedinputstream.hpp>
-#include <libmm-gio/enums.hpp>
+#include <libmm-gio/bufferedinputstream.hxx>
+#include <libmm-gio/enums.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

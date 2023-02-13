@@ -3,9 +3,9 @@
 #define _GTKMM_CENTERLAYOUT_P_H
 
 
-#include <libmm-gtk/layoutmanager_p.hpp>
+#include <libmm-gtk/layoutmanager_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gtk
 {

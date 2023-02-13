@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/statusbar.hpp>
-#include <libmm-gtk/statusbar_p.hpp>
+#include <libmm-gtk/statusbar.hxx>
+#include <libmm-gtk/statusbar_p.hxx>
 
 
 /*

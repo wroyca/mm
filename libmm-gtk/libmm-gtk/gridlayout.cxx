@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/gridlayout.hpp>
-#include <libmm-gtk/gridlayout_p.hpp>
+#include <libmm-gtk/gridlayout.hxx>
+#include <libmm-gtk/gridlayout_p.hxx>
 
 
 /* Copyright (C) 2019 The gtkmm Development Team

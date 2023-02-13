@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/eventcontroller.hpp>
-#include <libmm-gtk/eventcontroller_p.hpp>
+#include <libmm-gtk/eventcontroller.hxx>
+#include <libmm-gtk/eventcontroller_p.hxx>
 
 
 /* Copyright (C) 2014 The gtkmm Development Team

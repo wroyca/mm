@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/root.hpp>
-#include <libmm-gtk/root_p.hpp>
+#include <libmm-gtk/root.hxx>
+#include <libmm-gtk/root_p.hxx>
 
 
 /* Copyright (C) 2019 The gtkmm Development Team
@@ -24,9 +24,9 @@
  */
 
 #include <gtk/gtk.h>
-#include <libmm-gdk/display.hpp>
-#include <libmm-gdk/surface.hpp>
-#include <libmm-gtk/widget.hpp>
+#include <libmm-gdk/display.hxx>
+#include <libmm-gdk/surface.hxx>
+#include <libmm-gtk/widget.hxx>
 
 namespace Gtk
 {

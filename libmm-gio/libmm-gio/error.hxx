@@ -2,10 +2,10 @@
 #ifndef _GIOMM_ERROR_H
 #define _GIOMM_ERROR_H
 
-#include <libmm-gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The giomm Development Team
@@ -25,8 +25,8 @@
  */
 
 
-#include <libmm-glib/error.hpp>
-#include <libmm-glib/interface.hpp>
+#include <libmm-glib/error.hxx>
+#include <libmm-glib/interface.hxx>
 
 // There have been issues with other libraries defining HOST_NOT_FOUND (e.g.
 // netdb.h).  As a workaround, we added the alternate name HOST_WAS_NOT_FOUND.

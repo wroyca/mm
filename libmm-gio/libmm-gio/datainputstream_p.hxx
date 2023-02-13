@@ -3,9 +3,9 @@
 #define _GIOMM_DATAINPUTSTREAM_P_H
 
 
-#include <libmm-gio/bufferedinputstream_p.hpp>
+#include <libmm-gio/bufferedinputstream_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gio
 {

@@ -3,7 +3,7 @@
 #define _GTKMM_SHORTCUTCONTROLLER_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -22,12 +22,12 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gtk/eventcontroller.hpp>
-#include <libmm-gtk/buildable.hpp>
-#include <libmm-gio/listmodel.hpp>
-#include <libmm-gdk/enums.hpp>
-#include <libmm-gtk/enums.hpp>
-#include <libmm-gtk/shortcut.hpp>
+#include <libmm-gtk/eventcontroller.hxx>
+#include <libmm-gtk/buildable.hxx>
+#include <libmm-gio/listmodel.hxx>
+#include <libmm-gdk/enums.hxx>
+#include <libmm-gtk/enums.hxx>
+#include <libmm-gtk/shortcut.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

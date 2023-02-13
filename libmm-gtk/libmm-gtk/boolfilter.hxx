@@ -3,7 +3,7 @@
 #define _GTKMM_BOOLFILTER_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -22,8 +22,8 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gtk/filter.hpp>
-#include <libmm-gtk/expression.hpp>
+#include <libmm-gtk/filter.hxx>
+#include <libmm-gtk/expression.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

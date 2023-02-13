@@ -3,7 +3,7 @@
 #define _GTKMM_FILECHOOSERNATIVE_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2017 The gtkmm Development Team
@@ -22,8 +22,8 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gtk/nativedialog.hpp>
-#include <libmm-gtk/filechooser.hpp>
+#include <libmm-gtk/nativedialog.hxx>
+#include <libmm-gtk/filechooser.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

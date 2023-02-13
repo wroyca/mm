@@ -3,7 +3,7 @@
 #define _GTKMM_CELLRENDERERPROGRESS_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2004 The gtkmm Development Team
@@ -23,8 +23,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/cellrenderer.hpp>
-#include <libmm-gtk/orientable.hpp>
+#include <libmm-gtk/cellrenderer.hxx>
+#include <libmm-gtk/orientable.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

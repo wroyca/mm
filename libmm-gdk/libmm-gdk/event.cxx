@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/event.hpp>
-#include <libmm-gdk/event_p.hpp>
+#include <libmm-gdk/event.hxx>
+#include <libmm-gdk/event_p.hxx>
 
 
 /* Copyright 1998-2002 The gtkmm Development Team
@@ -24,12 +24,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gdk/device.hpp>
-#include <libmm-gdk/devicetool.hpp>
-#include <libmm-gdk/display.hpp>
-#include <libmm-gdk/drop.hpp>
-#include <libmm-gdk/seat.hpp>
-#include <libmm-gdk/surface.hpp>
+#include <libmm-gdk/device.hxx>
+#include <libmm-gdk/devicetool.hxx>
+#include <libmm-gdk/display.hxx>
+#include <libmm-gdk/drop.hxx>
+#include <libmm-gdk/seat.hxx>
+#include <libmm-gdk/surface.hxx>
 
 using Type = Gdk::Event::Type;
 

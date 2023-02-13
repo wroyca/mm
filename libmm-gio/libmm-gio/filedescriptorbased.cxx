@@ -16,10 +16,10 @@
 
 #ifndef _WIN32
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/filedescriptorbased.hpp>
-#include <libmm-gio/filedescriptorbased_p.hpp>
+#include <libmm-gio/filedescriptorbased.hxx>
+#include <libmm-gio/filedescriptorbased_p.hxx>
 
 #include <gio/gio.h>
 #include <gio/gfiledescriptorbased.h>

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/searchentry.hpp>
-#include <libmm-gtk/searchentry_p.hpp>
+#include <libmm-gtk/searchentry.hxx>
+#include <libmm-gtk/searchentry_p.hxx>
 
 
 /* Copyright 2012 The gtkmm Development Team

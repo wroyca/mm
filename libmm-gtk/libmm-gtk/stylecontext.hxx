@@ -3,7 +3,7 @@
 #define _GTKMM_STYLECONTEXT_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 The gtkmm Development Team
@@ -24,17 +24,17 @@
  */
 
 
-#include <libmm-gtk/styleprovider.hpp>
-#include <libmm-gtk/border.hpp>
-#include <libmm-gtk/enums.hpp>
-#include <libmm-gdk/display.hpp>
-#include <libmm-gdk/rgba.hpp>
+#include <libmm-gtk/styleprovider.hxx>
+#include <libmm-gtk/border.hxx>
+#include <libmm-gtk/enums.hxx>
+#include <libmm-gdk/display.hxx>
+#include <libmm-gdk/rgba.hxx>
 
-#include <libmm-gtk/enums.hpp>
-#include <libmm-pango/context.hpp>
-#include <libmm-pango/fontdescription.hpp>
-#include <libmm-pango/layout.hpp>
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/enums.hxx>
+#include <libmm-pango/context.hxx>
+#include <libmm-pango/fontdescription.hxx>
+#include <libmm-pango/layout.hxx>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkStyleContext = struct _GtkStyleContext;

@@ -3,7 +3,7 @@
 #define _GTKMM_TREESTORE_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright(C) 1998-2002 The gtkmm Development Team
@@ -25,14 +25,14 @@
 
 #include <vector>
 
-#include <libmm-gtk/treeiter.hpp>
-#include <libmm-gtk/treemodel.hpp>
-#include <libmm-gtk/treesortable.hpp>
-#include <libmm-gtk/treedragdest.hpp>
-#include <libmm-gtk/treedragsource.hpp>
-#include <libmm-gtk/buildable.hpp>
+#include <libmm-gtk/treeiter.hxx>
+#include <libmm-gtk/treemodel.hxx>
+#include <libmm-gtk/treesortable.hxx>
+#include <libmm-gtk/treedragdest.hxx>
+#include <libmm-gtk/treedragsource.hxx>
+#include <libmm-gtk/buildable.hxx>
 // We couldn't include it in treemodel.h, but doing it here makes it easier for people.
-#include <libmm-gtk/treepath.hpp>
+#include <libmm-gtk/treepath.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

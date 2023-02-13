@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/treesortable.hpp>
-#include <libmm-gtk/treesortable_p.hpp>
+#include <libmm-gtk/treesortable.hxx>
+#include <libmm-gtk/treesortable_p.hxx>
 
 
 /* Copyright 1998-2002 The gtkmm Development Team

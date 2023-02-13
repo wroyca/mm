@@ -2,10 +2,10 @@
 #ifndef _GTKMM_ENTRYBUFFER_H
 #define _GTKMM_ENTRYBUFFER_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright(C) 1998-2002 The gtkmm Development Team
@@ -29,8 +29,8 @@
 // the #ifndef GTKMM_DISABLE_DEPRECATED in deprecated classes) is generated:
 
 
-#include <libmm-glib/object.hpp>
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 #include <utility>
 
 

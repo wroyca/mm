@@ -2,10 +2,10 @@
 #ifndef _GDKMM_DEVICEPAD_H
 #define _GDKMM_DEVICEPAD_H
 
-#include <libmm-gdk/mm-gdkconfig.hpp>
+#include <libmm-gdk/mm-gdkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2019 The gtkmm Development Team
@@ -25,7 +25,7 @@
  */
 
 
-#include <libmm-glib/interface.hpp>
+#include <libmm-glib/interface.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

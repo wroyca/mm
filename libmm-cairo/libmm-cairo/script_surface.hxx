@@ -19,8 +19,8 @@
 #ifndef __CAIROMM_SCRIPT_SURFACE_H
 #define __CAIROMM_SCRIPT_SURFACE_H
 
-#include <libmm-cairo/surface.hpp>
-#include <libmm-cairo/script.hpp>
+#include <libmm-cairo/surface.hxx>
+#include <libmm-cairo/script.hxx>
 
 namespace Cairo {
 

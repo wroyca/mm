@@ -19,7 +19,7 @@
  */
 
 #include <glib-object.h>
-#include <libmm-glib/mm-glibconfig.hpp> //Include this here so that the /*.h classes have access to GLIBMM_VFUNCS_ENABLED
+#include <libmm-glib/mm-glibconfig.hxx> //Include this here so that the /*.h classes have access to GLIBMM_VFUNCS_ENABLED
 
 #include <vector> //For interface properties that custom types might override.
 #include <tuple>

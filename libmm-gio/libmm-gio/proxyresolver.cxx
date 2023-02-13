@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/proxyresolver.hpp>
-#include <libmm-gio/proxyresolver_p.hpp>
+#include <libmm-gio/proxyresolver.hxx>
+#include <libmm-gio/proxyresolver_p.hxx>
 
 
 /* Copyright (C) 2010 The gtkmm Development Team
@@ -25,10 +25,10 @@
 
 #include <gio/gio.h>
 #include <utility>
-#include <libmm-glib/error.hpp>
-#include <libmm-glib/exceptionhandler.hpp>
-#include <libmm-glib/vectorutils.hpp>
-#include <libmm-gio/slot_async.hpp>
+#include <libmm-glib/error.hxx>
+#include <libmm-glib/exceptionhandler.hxx>
+#include <libmm-glib/vectorutils.hxx>
+#include <libmm-gio/slot_async.hxx>
 
 namespace Gio
 {

@@ -2,10 +2,10 @@
 #ifndef _GTKMM_CSSLOCATION_H
 #define _GTKMM_CSSLOCATION_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2019 The gtkmm Development Team

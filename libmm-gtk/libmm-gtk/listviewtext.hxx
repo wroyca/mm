@@ -18,8 +18,8 @@
 #ifndef _GTKMM_LISTVIEW_TEXT_H
 #define _GTKMM_LISTVIEW_TEXT_H
 
-#include <libmm-gtk/treeview.hpp>
-#include <libmm-gtk/liststore.hpp>
+#include <libmm-gtk/treeview.hxx>
+#include <libmm-gtk/liststore.hxx>
 
 #include <vector>
 

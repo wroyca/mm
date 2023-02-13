@@ -3,7 +3,7 @@
 #define _GTKMM_COLORBUTTON_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /*
@@ -24,9 +24,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/widget.hpp>
-#include <libmm-gtk/colorchooser.hpp>
-#include <libmm-gdk/rgba.hpp>
+#include <libmm-gtk/widget.hxx>
+#include <libmm-gtk/colorchooser.hxx>
+#include <libmm-gdk/rgba.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

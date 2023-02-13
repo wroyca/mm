@@ -2,10 +2,10 @@
 #ifndef _GIOMM_SETTINGS_H
 #define _GIOMM_SETTINGS_H
 
-#include <libmm-gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 Jonathon Jongsma
@@ -25,9 +25,9 @@
  */
 
 
-#include <libmm-glib/object.hpp>
-#include <libmm-glib/variant.hpp>
-#include <libmm-gio/action.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-glib/variant.hxx>
+#include <libmm-gio/action.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

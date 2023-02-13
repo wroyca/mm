@@ -3,7 +3,7 @@
 #define _PANGOMM_RENDERER_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* renderer.h
@@ -26,12 +26,12 @@
  */
 
 
-#include <libmm-glib/object.hpp>
-#include <libmm-pango/context.hpp>
-#include <libmm-pango/glyphitem.hpp>
-#include <libmm-pango/glyphstring.hpp>
-#include <libmm-pango/layout.hpp>
-#include <libmm-pango/layoutline.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-pango/context.hxx>
+#include <libmm-pango/glyphitem.hxx>
+#include <libmm-pango/glyphstring.hxx>
+#include <libmm-pango/layout.hxx>
+#include <libmm-pango/layoutline.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

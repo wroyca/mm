@@ -18,8 +18,8 @@
  */
 
 #include <glib-object.h>
-#include <libmm-glib/refptr.hpp>
-#include <libmm-glib/objectbase.hpp>
+#include <libmm-glib/refptr.hxx>
+#include <libmm-glib/objectbase.hxx>
 
 namespace Glib
 {

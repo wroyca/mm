@@ -18,7 +18,7 @@
  */
 
 #include <sigc++/sigc++.h>
-#include <libmm-glib/main.hpp>
+#include <libmm-glib/main.hxx>
 
 namespace Glib
 {

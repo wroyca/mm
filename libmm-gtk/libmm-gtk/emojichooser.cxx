@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/emojichooser.hpp>
-#include <libmm-gtk/emojichooser_p.hpp>
+#include <libmm-gtk/emojichooser.hxx>
+#include <libmm-gtk/emojichooser_p.hxx>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

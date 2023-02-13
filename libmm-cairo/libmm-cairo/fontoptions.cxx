@@ -16,8 +16,8 @@
  * 02110-1301, USA.
  */
 
-#include <libmm-cairo/fontoptions.hpp>
-#include <libmm-cairo/private.hpp>
+#include <libmm-cairo/fontoptions.hxx>
+#include <libmm-cairo/private.hxx>
 
 namespace Cairo
 {

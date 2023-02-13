@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/checkbutton.hpp>
-#include <libmm-gtk/checkbutton_p.hpp>
+#include <libmm-gtk/checkbutton.hxx>
+#include <libmm-gtk/checkbutton_p.hxx>
 
 
 /*

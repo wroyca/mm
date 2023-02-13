@@ -17,9 +17,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gdk/mm-gdkconfig.hpp>
-#include <libmm-gdk/dragsurface.hpp>
-#include <libmm-gdk/surface.hpp>
+#include <libmm-gdk/mm-gdkconfig.hxx>
+#include <libmm-gdk/dragsurface.hxx>
+#include <libmm-gdk/surface.hxx>
 
 namespace Gdk
 {

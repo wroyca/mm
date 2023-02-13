@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/editable.hpp>
-#include <libmm-gtk/editable_p.hpp>
+#include <libmm-gtk/editable.hxx>
+#include <libmm-gtk/editable_p.hxx>
 
 
 /* Copyright 1998-2002 The gtkmm Development Team

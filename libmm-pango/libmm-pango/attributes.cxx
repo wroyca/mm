@@ -1,7 +1,7 @@
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-pango/attributes.hpp>
-#include <libmm-pango/attributes_p.hpp>
+#include <libmm-pango/attributes.hxx>
+#include <libmm-pango/attributes_p.hxx>
 
 
 /*
@@ -23,7 +23,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <libmm-pango/context.hpp>
+#include <libmm-pango/context.hxx>
 
 namespace Pango
 {

@@ -3,10 +3,10 @@
 #define _GIOMM_OUTPUTSTREAM_P_H
 
 
-#include <libmm-glib/object_p.hpp>
+#include <libmm-glib/object_p.hxx>
 #include <gio/gio.h>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gio
 {

@@ -15,8 +15,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301, USA.
  */
-#include <libmm-cairo/matrix.hpp>
-#include <libmm-cairo/private.hpp>
+#include <libmm-cairo/matrix.hxx>
+#include <libmm-cairo/private.hxx>
 
 namespace Cairo
 {

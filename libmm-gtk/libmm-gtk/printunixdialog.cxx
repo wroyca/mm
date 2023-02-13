@@ -17,13 +17,13 @@
 
 #ifndef _WIN32
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/printunixdialog.hpp>
-#include <libmm-gtk/printunixdialog_p.hpp>
+#include <libmm-gtk/printunixdialog.hxx>
+#include <libmm-gtk/printunixdialog_p.hxx>
 
 #include <gtk/gtkunixprint.h>
-#include <libmm-gtk/label.hpp>
+#include <libmm-gtk/label.hxx>
 
 namespace Gtk
 {

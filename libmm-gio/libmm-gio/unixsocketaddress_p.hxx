@@ -3,9 +3,9 @@
 #define _GIOMM_UNIXSOCKETADDRESS_P_H
 
 
-#include <libmm-gio/socketaddress_p.hpp>
+#include <libmm-gio/socketaddress_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gio
 {

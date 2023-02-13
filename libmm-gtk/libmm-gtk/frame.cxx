@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/frame.hpp>
-#include <libmm-gtk/frame_p.hpp>
+#include <libmm-gtk/frame.hxx>
+#include <libmm-gtk/frame_p.hxx>
 
 
 /* Copyright 1998-2002 The gtkmm Development Team

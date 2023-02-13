@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/pixbufanimationiter.hpp>
-#include <libmm-gdk/pixbufanimationiter_p.hpp>
+#include <libmm-gdk/pixbufanimationiter.hxx>
+#include <libmm-gdk/pixbufanimationiter_p.hxx>
 
 
 /*

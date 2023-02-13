@@ -15,8 +15,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gdk/cairoutils.hpp>
-#include <libmm-gdk/general.hpp>
+#include <libmm-gdk/cairoutils.hxx>
+#include <libmm-gdk/general.hxx>
 #include <gdk/gdk.h>
 
 

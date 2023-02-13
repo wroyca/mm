@@ -3,7 +3,7 @@
 #define _GTKMM_STRINGLIST_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -22,8 +22,8 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gtk/buildable.hpp>
-#include <libmm-gio/listmodel.hpp>
+#include <libmm-gtk/buildable.hxx>
+#include <libmm-gio/listmodel.hxx>
 #include <gtk/gtk.h>
 
 

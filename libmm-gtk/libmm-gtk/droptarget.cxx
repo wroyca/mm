@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/droptarget.hpp>
-#include <libmm-gtk/droptarget_p.hpp>
+#include <libmm-gtk/droptarget.hxx>
+#include <libmm-gtk/droptarget_p.hxx>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -23,7 +23,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/vectorutils.hpp>
+#include <libmm-glib/vectorutils.hxx>
 #include <gtk/gtk.h>
 
 namespace Gtk

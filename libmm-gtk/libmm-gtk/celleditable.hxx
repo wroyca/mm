@@ -2,10 +2,10 @@
 #ifndef _GTKMM_CELLEDITABLE_H
 #define _GTKMM_CELLEDITABLE_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 1998-2002 The gtkmm Development Team
@@ -26,8 +26,8 @@
  */
 
 
-#include <libmm-glib/interface.hpp>
-#include <libmm-gdk/event.hpp>
+#include <libmm-glib/interface.hxx>
+#include <libmm-gdk/event.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

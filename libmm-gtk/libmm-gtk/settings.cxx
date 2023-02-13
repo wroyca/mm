@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/settings.hpp>
-#include <libmm-gtk/settings_p.hpp>
+#include <libmm-gtk/settings.hxx>
+#include <libmm-gtk/settings_p.hxx>
 
 
 /*

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/listboxrow.hpp>
-#include <libmm-gtk/listboxrow_p.hpp>
+#include <libmm-gtk/listboxrow.hxx>
+#include <libmm-gtk/listboxrow_p.hxx>
 
 
 /* Copyright (C) 2013 The gtkmm Development Team

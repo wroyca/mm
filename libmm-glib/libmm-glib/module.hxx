@@ -20,7 +20,7 @@
  */
 
 
-#include <libmm-glib/mm-glibconfig.hpp>
+#include <libmm-glib/mm-glibconfig.hxx>
 #include <string>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

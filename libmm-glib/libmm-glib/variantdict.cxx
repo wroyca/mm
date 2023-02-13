@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-glib/variantdict.hpp>
-#include <libmm-glib/variantdict_p.hpp>
+#include <libmm-glib/variantdict.hxx>
+#include <libmm-glib/variantdict_p.hxx>
 
 
 /*

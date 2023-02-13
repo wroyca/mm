@@ -26,9 +26,9 @@
 
 #include <sigc++/bind.h>
 #include <sigc++/slot.h>
-#include <libmm-glib/refptr.hpp>
-#include <libmm-glib/ustring.hpp>
-#include <libmm-glib/error.hpp>
+#include <libmm-glib/refptr.hxx>
+#include <libmm-glib/ustring.hxx>
+#include <libmm-glib/error.hxx>
 #include <glib.h>
 
 namespace Glib

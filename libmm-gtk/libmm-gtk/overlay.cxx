@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/overlay.hpp>
-#include <libmm-gtk/overlay_p.hpp>
+#include <libmm-gtk/overlay.hxx>
+#include <libmm-gtk/overlay_p.hxx>
 
 
 /*

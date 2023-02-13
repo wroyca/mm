@@ -2,10 +2,10 @@
 #ifndef _GIOMM_MENUITEM_H
 #define _GIOMM_MENUITEM_H
 
-#include <libmm-gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2012 The giomm Development Team
@@ -25,9 +25,9 @@
  */
 
 
-#include <libmm-glib/object.hpp>
-#include <libmm-gio/menumodel.hpp>
-#include <libmm-gio/icon.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-gio/menumodel.hxx>
+#include <libmm-gio/icon.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

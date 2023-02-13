@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/printcontext.hpp>
-#include <libmm-gtk/printcontext_p.hpp>
+#include <libmm-gtk/printcontext.hxx>
+#include <libmm-gtk/printcontext_p.hxx>
 
 
 /* Copyright (C) 2006 The gtkmm Development Team
@@ -25,7 +25,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <libmm-gdk/cairoutils.hpp>
+#include <libmm-gdk/cairoutils.hxx>
 
 namespace Gtk
 {

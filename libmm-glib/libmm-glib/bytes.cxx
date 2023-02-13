@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-glib/bytes.hpp>
-#include <libmm-glib/bytes_p.hpp>
+#include <libmm-glib/bytes.hxx>
+#include <libmm-glib/bytes_p.hxx>
 
 
 /* Copyright (C) 2012 The glibmm Development Team

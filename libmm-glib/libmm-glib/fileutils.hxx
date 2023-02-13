@@ -24,7 +24,7 @@
 extern "C" { typedef struct _GDir GDir; }
 #endif
 
-#include <libmm-glib/error.hpp>
+#include <libmm-glib/error.hxx>
 #include <iterator>
 #include <string>
 

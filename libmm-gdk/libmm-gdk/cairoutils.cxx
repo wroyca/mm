@@ -14,7 +14,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gdk/cairoutils.hpp>
+#include <libmm-gdk/cairoutils.hxx>
 
 namespace Gdk::Cairo
 {

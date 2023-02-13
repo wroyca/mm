@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/snapshot.hpp>
-#include <libmm-gtk/snapshot_p.hpp>
+#include <libmm-gtk/snapshot.hxx>
+#include <libmm-gtk/snapshot_p.hxx>
 
 
 /* Copyright (C) 2017 The gtkmm Development Team
@@ -24,9 +24,9 @@
  */
 
 #include <gtk/gtk.h>
-#include <libmm-gdk/cairoutils.hpp>
-#include <libmm-gdk/rgba.hpp>
-#include <libmm-gdk/texture.hpp>
+#include <libmm-gdk/cairoutils.hxx>
+#include <libmm-gdk/rgba.hxx>
+#include <libmm-gdk/texture.hxx>
 #include <memory>
 
 namespace

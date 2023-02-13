@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/flowboxchild.hpp>
-#include <libmm-gtk/flowboxchild_p.hpp>
+#include <libmm-gtk/flowboxchild.hxx>
+#include <libmm-gtk/flowboxchild_p.hxx>
 
 
 /* Copyright (C) 2014 The gtkmm Development Team

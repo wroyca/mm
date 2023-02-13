@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/notification.hpp>
-#include <libmm-gio/notification_p.hpp>
+#include <libmm-gio/notification.hxx>
+#include <libmm-gio/notification_p.hxx>
 
 
 /* Copyright (C) 2014 The giomm Development Team
@@ -24,8 +24,8 @@
  */
 
 #include <gio/gio.h>
-#include <libmm-gio/icon.hpp>
-#include <libmm-glib/variant.hpp>
+#include <libmm-gio/icon.hxx>
+#include <libmm-glib/variant.hxx>
 
 namespace Gio
 {

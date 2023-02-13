@@ -1,37 +1,37 @@
 
 
 #define GLIBMM_INCLUDED_FROM_WRAP_INIT_CC
-#include <libmm-glib/mm-glib.hpp>
-#include <libmm-pango/wrap_init.hpp>
-#include <libmm-glib/error.hpp>
-#include <libmm-glib/object.hpp>
+#include <libmm-glib/mm-glib.hxx>
+#include <libmm-pango/wrap_init.hxx>
+#include <libmm-glib/error.hxx>
+#include <libmm-glib/object.hxx>
 
 // #include the widget headers so that we can call the get_type() static methods:
-#include <libmm-pango/attributes.hpp>
-#include <libmm-pango/attriter.hpp>
-#include <libmm-pango/attrlist.hpp>
-#include <libmm-pango/cairofontmap.hpp>
-#include <libmm-pango/color.hpp>
-#include <libmm-pango/context.hpp>
-#include <libmm-pango/coverage.hpp>
-#include <libmm-pango/font.hpp>
-#include <libmm-pango/fontdescription.hpp>
-#include <libmm-pango/fontface.hpp>
-#include <libmm-pango/fontfamily.hpp>
-#include <libmm-pango/fontmap.hpp>
-#include <libmm-pango/fontmetrics.hpp>
-#include <libmm-pango/fontset.hpp>
-#include <libmm-pango/glyph.hpp>
-#include <libmm-pango/glyphitem.hpp>
-#include <libmm-pango/glyphstring.hpp>
-#include <libmm-pango/item.hpp>
-#include <libmm-pango/language.hpp>
-#include <libmm-pango/layout.hpp>
-#include <libmm-pango/layoutiter.hpp>
-#include <libmm-pango/layoutline.hpp>
-#include <libmm-pango/rectangle.hpp>
-#include <libmm-pango/renderer.hpp>
-#include <libmm-pango/tabarray.hpp>
+#include <libmm-pango/attributes.hxx>
+#include <libmm-pango/attriter.hxx>
+#include <libmm-pango/attrlist.hxx>
+#include <libmm-pango/cairofontmap.hxx>
+#include <libmm-pango/color.hxx>
+#include <libmm-pango/context.hxx>
+#include <libmm-pango/coverage.hxx>
+#include <libmm-pango/font.hxx>
+#include <libmm-pango/fontdescription.hxx>
+#include <libmm-pango/fontface.hxx>
+#include <libmm-pango/fontfamily.hxx>
+#include <libmm-pango/fontmap.hxx>
+#include <libmm-pango/fontmetrics.hxx>
+#include <libmm-pango/fontset.hxx>
+#include <libmm-pango/glyph.hxx>
+#include <libmm-pango/glyphitem.hxx>
+#include <libmm-pango/glyphstring.hxx>
+#include <libmm-pango/item.hxx>
+#include <libmm-pango/language.hxx>
+#include <libmm-pango/layout.hxx>
+#include <libmm-pango/layoutiter.hxx>
+#include <libmm-pango/layoutline.hxx>
+#include <libmm-pango/rectangle.hxx>
+#include <libmm-pango/renderer.hxx>
+#include <libmm-pango/tabarray.hxx>
 
 extern "C"
 {

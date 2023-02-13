@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/padactionentry.hpp>
-#include <libmm-gtk/padactionentry_p.hpp>
+#include <libmm-gtk/padactionentry.hxx>
+#include <libmm-gtk/padactionentry_p.hxx>
 
 
 /* Copyright (C) 2019 The gtkmm Development Team

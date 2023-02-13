@@ -3,9 +3,9 @@
 #define _GTKMM_SHORTCUTSGROUP_P_H
 
 
-#include <libmm-gtk/box_p.hpp>
+#include <libmm-gtk/box_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gtk
 {

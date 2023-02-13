@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-pango/fontfamily.hpp>
-#include <libmm-pango/fontfamily_p.hpp>
+#include <libmm-pango/fontfamily.hxx>
+#include <libmm-pango/fontfamily_p.hxx>
 
 
 // -*- c++ -*-

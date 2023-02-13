@@ -3,7 +3,7 @@
 #define _GDKMM_SEAT_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2015 The gtkmm Development Team
@@ -23,10 +23,10 @@
  */
 
 #include <vector>
-#include <libmm-glib/object.hpp>
-#include <libmm-gdk/cursor.hpp>
-#include <libmm-gdk/device.hpp>
-#include <libmm-gdk/event.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-gdk/cursor.hxx>
+#include <libmm-gdk/device.hxx>
+#include <libmm-gdk/event.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

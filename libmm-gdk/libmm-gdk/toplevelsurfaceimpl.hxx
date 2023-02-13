@@ -17,9 +17,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gdk/mm-gdkconfig.hpp>
-#include <libmm-gdk/toplevel.hpp>
-#include <libmm-gdk/surface.hpp>
+#include <libmm-gdk/mm-gdkconfig.hxx>
+#include <libmm-gdk/toplevel.hxx>
+#include <libmm-gdk/surface.hxx>
 
 namespace Gdk
 {

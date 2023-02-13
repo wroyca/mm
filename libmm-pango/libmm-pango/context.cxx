@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-pango/context.hpp>
-#include <libmm-pango/context_p.hpp>
+#include <libmm-pango/context.hxx>
+#include <libmm-pango/context_p.hxx>
 
 
 /*

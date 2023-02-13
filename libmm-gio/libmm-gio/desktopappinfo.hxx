@@ -2,10 +2,10 @@
 #ifndef _GIOMM_DESKTOPAPPINFO_H
 #define _GIOMM_DESKTOPAPPINFO_H
 
-#include <libmm-gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -25,8 +25,8 @@
  */
 
 
-#include <libmm-glib/object.hpp>
-#include <libmm-gio/appinfo.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-gio/appinfo.hxx>
 
 
 // This file is not used on Windows and Mac OS Cocoa

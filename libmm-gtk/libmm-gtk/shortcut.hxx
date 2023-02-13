@@ -2,10 +2,10 @@
 #ifndef _GTKMM_SHORTCUT_H
 #define _GTKMM_SHORTCUT_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -25,9 +25,9 @@
  */
 
 
-#include <libmm-glib/object.hpp>
-#include <libmm-gtk/shortcutaction.hpp>
-#include <libmm-gtk/shortcuttrigger.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-gtk/shortcutaction.hxx>
+#include <libmm-gtk/shortcuttrigger.hxx>
 #include <gtk/gtk.h>
 
 

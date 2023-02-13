@@ -3,7 +3,7 @@
 #define _GDKMM_CONTENTPROVIDER_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2017 The gtkmm Development Team
@@ -23,12 +23,12 @@
  */
 
 
-#include <libmm-glib/bytes.hpp>
-#include <libmm-glib/object.hpp>
-#include <libmm-glib/refptr.hpp>
-#include <libmm-gio/asyncresult.hpp>
-#include <libmm-gio/cancellable.hpp>
-#include <libmm-gdk/contentformats.hpp>
+#include <libmm-glib/bytes.hxx>
+#include <libmm-glib/object.hxx>
+#include <libmm-glib/refptr.hxx>
+#include <libmm-gio/asyncresult.hxx>
+#include <libmm-gio/cancellable.hxx>
+#include <libmm-gdk/contentformats.hxx>
 #include <memory>
 
 

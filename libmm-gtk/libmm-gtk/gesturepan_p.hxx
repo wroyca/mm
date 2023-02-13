@@ -3,9 +3,9 @@
 #define _GTKMM_GESTUREPAN_P_H
 
 
-#include <libmm-gtk/gesturedrag_p.hpp>
+#include <libmm-gtk/gesturedrag_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gtk
 {

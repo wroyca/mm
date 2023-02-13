@@ -3,7 +3,7 @@
 #define _GTKMM_PRINTJOB_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2006 The gtkmm Development Team
@@ -23,12 +23,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-glib/object.hpp>
-#include <libmm-gtk/pagesetup.hpp>
-#include <libmm-gtk/printer.hpp>
-#include <libmm-gtk/printoperation.hpp>
-#include <libmm-gtk/printsettings.hpp>
-#include <libmm-cairo/surface.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-gtk/pagesetup.hxx>
+#include <libmm-gtk/printer.hxx>
+#include <libmm-gtk/printoperation.hxx>
+#include <libmm-gtk/printsettings.hxx>
+#include <libmm-cairo/surface.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

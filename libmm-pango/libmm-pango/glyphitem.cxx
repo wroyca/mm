@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-pango/glyphitem.hpp>
-#include <libmm-pango/glyphitem_p.hpp>
+#include <libmm-pango/glyphitem.hxx>
+#include <libmm-pango/glyphitem_p.hxx>
 
 
 /*
@@ -25,8 +25,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <libmm-pango/item.hpp>
-#include <libmm-pango/glyphstring.hpp>
+#include <libmm-pango/item.hxx>
+#include <libmm-pango/glyphstring.hxx>
 
 namespace
 {

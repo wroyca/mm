@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-pango/glyph.hpp>
-#include <libmm-pango/glyph_p.hpp>
+#include <libmm-pango/glyph.hxx>
+#include <libmm-pango/glyph_p.hxx>
 
 
 /*

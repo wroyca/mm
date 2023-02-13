@@ -17,10 +17,10 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/refptr.hpp>
-#include <libmm-glib/main.hpp>
-#include <libmm-glib/priorities.hpp>
-#include <libmm-gio/cancellable.hpp>
+#include <libmm-glib/refptr.hxx>
+#include <libmm-glib/main.hxx>
+#include <libmm-glib/priorities.hxx>
+#include <libmm-gio/cancellable.hxx>
 #include <sigc++/sigc++.h>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

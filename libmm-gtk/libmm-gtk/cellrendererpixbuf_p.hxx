@@ -3,9 +3,9 @@
 #define _GTKMM_CELLRENDERERPIXBUF_P_H
 
 
-#include <libmm-gtk/cellrenderer_p.hpp>
+#include <libmm-gtk/cellrenderer_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gtk
 {

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/buildercscope.hpp>
-#include <libmm-gtk/buildercscope_p.hpp>
+#include <libmm-gtk/buildercscope.hxx>
+#include <libmm-gtk/buildercscope_p.hxx>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

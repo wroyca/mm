@@ -3,7 +3,7 @@
 #define _GTKMM_ORIENTABLE_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2009 The gtkmm Development Team
@@ -23,8 +23,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-glib/interface.hpp>
-#include <libmm-gtk/enums.hpp>
+#include <libmm-glib/interface.hxx>
+#include <libmm-gtk/enums.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

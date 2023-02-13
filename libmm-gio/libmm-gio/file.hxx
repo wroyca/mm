@@ -3,7 +3,7 @@
 #define _GIOMM_FILE_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -22,20 +22,20 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/error.hpp>
-#include <libmm-glib/interface.hpp>
-#include <libmm-gio/appinfo.hpp>
-#include <libmm-gio/asyncresult.hpp>
-#include <libmm-gio/fileattributeinfolist.hpp>
-#include <libmm-gio/fileenumerator.hpp>
-#include <libmm-gio/fileinfo.hpp>
-#include <libmm-gio/fileinputstream.hpp>
-#include <libmm-gio/fileiostream.hpp>
-#include <libmm-gio/filemonitor.hpp>
-#include <libmm-gio/fileoutputstream.hpp>
-#include <libmm-gio/mountoperation.hpp>
-#include <libmm-gio/drive.hpp>
-#include <libmm-gio/error.hpp> //Because this is thrown by some of these methods.
+#include <libmm-glib/error.hxx>
+#include <libmm-glib/interface.hxx>
+#include <libmm-gio/appinfo.hxx>
+#include <libmm-gio/asyncresult.hxx>
+#include <libmm-gio/fileattributeinfolist.hxx>
+#include <libmm-gio/fileenumerator.hxx>
+#include <libmm-gio/fileinfo.hxx>
+#include <libmm-gio/fileinputstream.hxx>
+#include <libmm-gio/fileiostream.hxx>
+#include <libmm-gio/filemonitor.hxx>
+#include <libmm-gio/fileoutputstream.hxx>
+#include <libmm-gio/mountoperation.hxx>
+#include <libmm-gio/drive.hxx>
+#include <libmm-gio/error.hxx> //Because this is thrown by some of these methods.
 #include <utility>
 
 

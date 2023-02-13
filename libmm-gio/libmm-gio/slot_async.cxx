@@ -14,9 +14,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/exceptionhandler.hpp>
-#include <libmm-gio/asyncresult.hpp>
-#include <libmm-gio/slot_async.hpp>
+#include <libmm-glib/exceptionhandler.hxx>
+#include <libmm-gio/asyncresult.hxx>
+#include <libmm-gio/slot_async.hxx>
 
 namespace Gio
 {

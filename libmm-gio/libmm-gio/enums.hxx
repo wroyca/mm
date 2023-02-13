@@ -2,10 +2,10 @@
 #ifndef _GIOMM_ENUMS_H
 #define _GIOMM_ENUMS_H
 
-#include <libmm-gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -26,7 +26,7 @@
 
 
 #include <gio/gio.h>
-#include <libmm-glib/value.hpp>
+#include <libmm-glib/value.hxx>
 
 
 namespace Gio

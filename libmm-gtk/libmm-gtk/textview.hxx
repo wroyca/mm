@@ -2,10 +2,10 @@
 #ifndef _GTKMM_TEXTVIEW_H
 #define _GTKMM_TEXTVIEW_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright(C) 2002 The gtkmm Development Team
@@ -29,11 +29,11 @@
 // the #ifndef GTKMM_DISABLE_DEPRECATED in deprecated classes) is generated:
 
 
-#include <libmm-gtk/widget.hpp>
-#include <libmm-gtk/scrollable.hpp>
-#include <libmm-gtk/textbuffer.hpp>
-#include <libmm-gtk/textmark.hpp>
-#include <libmm-gio/menumodel.hpp>
+#include <libmm-gtk/widget.hxx>
+#include <libmm-gtk/scrollable.hxx>
+#include <libmm-gtk/textbuffer.hxx>
+#include <libmm-gtk/textmark.hxx>
+#include <libmm-gio/menumodel.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

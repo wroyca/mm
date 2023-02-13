@@ -3,7 +3,7 @@
 #define _GTKMM_WINDOW_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /*
@@ -26,14 +26,14 @@
 
 #include <vector>
 
-#include <libmm-glib/object.hpp>
-#include <libmm-gdk/surface.hpp>
-#include <libmm-gdk/texture.hpp>
-#include <libmm-gtk/widget.hpp>
-#include <libmm-gtk/native.hpp>
-#include <libmm-gtk/root.hpp>
-#include <libmm-gtk/shortcutmanager.hpp>
-#include <libmm-gtk/windowgroup.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-gdk/surface.hxx>
+#include <libmm-gdk/texture.hxx>
+#include <libmm-gtk/widget.hxx>
+#include <libmm-gtk/native.hxx>
+#include <libmm-gtk/root.hxx>
+#include <libmm-gtk/shortcutmanager.hxx>
+#include <libmm-gtk/windowgroup.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

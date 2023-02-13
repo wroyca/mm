@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/stringfilter.hpp>
-#include <libmm-gtk/stringfilter_p.hpp>
+#include <libmm-gtk/stringfilter.hxx>
+#include <libmm-gtk/stringfilter_p.hxx>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

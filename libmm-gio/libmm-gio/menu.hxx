@@ -3,7 +3,7 @@
 #define _GIOMM_MENU_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2012 The giomm Development Team
@@ -22,8 +22,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gio/menumodel.hpp>
-#include <libmm-gio/menuitem.hpp>
+#include <libmm-gio/menumodel.hxx>
+#include <libmm-gio/menuitem.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

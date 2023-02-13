@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/simplepermission.hpp>
-#include <libmm-gio/simplepermission_p.hpp>
+#include <libmm-gio/simplepermission.hxx>
+#include <libmm-gio/simplepermission_p.hxx>
 
 
 /* Copyright (C) 2014 The gtkmm Development Team

@@ -2,10 +2,10 @@
 #ifndef _PANGOMM_FONTDESCRIPTION_H
 #define _PANGOMM_FONTDESCRIPTION_H
 
-#include <libmm-pango/mm-pangoconfig.hpp>
+#include <libmm-pango/mm-pangoconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* fontdescription.h
@@ -28,7 +28,7 @@
  */
 
 
-#include <libmm-glib/value.hpp>
+#include <libmm-glib/value.hxx>
 #include <pango/pango.h>
 
 

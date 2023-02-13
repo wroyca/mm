@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/centerlayout.hpp>
-#include <libmm-gtk/centerlayout_p.hpp>
+#include <libmm-gtk/centerlayout.hxx>
+#include <libmm-gtk/centerlayout_p.hxx>
 
 
 /* Copyright (C) 2019 The gtkmm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <libmm-gtk/widget.hpp>
+#include <libmm-gtk/widget.hxx>
 
 namespace
 {

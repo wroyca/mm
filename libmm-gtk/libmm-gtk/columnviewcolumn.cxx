@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/columnviewcolumn.hpp>
-#include <libmm-gtk/columnviewcolumn_p.hpp>
+#include <libmm-gtk/columnviewcolumn.hxx>
+#include <libmm-gtk/columnviewcolumn_p.hxx>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <libmm-gtk/columnview.hpp>
+#include <libmm-gtk/columnview.hxx>
 
 namespace
 {

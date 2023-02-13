@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/popover.hpp>
-#include <libmm-gtk/popover_p.hpp>
+#include <libmm-gtk/popover.hxx>
+#include <libmm-gtk/popover_p.hxx>
 
 
 /*

@@ -20,8 +20,8 @@
  */
 
 
-#include <libmm-glib/mm-glibconfig.hpp>
-#include <libmm-glib/error.hpp>
+#include <libmm-glib/mm-glibconfig.hxx>
+#include <libmm-glib/error.hxx>
 #include <sigc++/sigc++.h>
 #include <string>
 #include <vector>

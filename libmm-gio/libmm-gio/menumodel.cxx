@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/menumodel.hpp>
-#include <libmm-gio/menumodel_p.hpp>
+#include <libmm-gio/menumodel.hxx>
+#include <libmm-gio/menumodel_p.hxx>
 
 
 /* Copyright (C) 2012 The giomm Development Team
@@ -24,8 +24,8 @@
  */
 
 #include <gio/gio.h>
-#include <libmm-gio/menuattributeiter.hpp>
-#include <libmm-gio/menulinkiter.hpp>
+#include <libmm-gio/menuattributeiter.hxx>
+#include <libmm-gio/menulinkiter.hxx>
 
 using Attribute = Gio::MenuModel::Attribute;
 using Link = Gio::MenuModel::Link;

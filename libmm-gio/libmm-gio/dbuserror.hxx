@@ -2,10 +2,10 @@
 #ifndef _GIOMM_DBUSERROR_H
 #define _GIOMM_DBUSERROR_H
 
-#include <libmm-gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -25,7 +25,7 @@
  */
 
 
-#include <libmm-glib/error.hpp>
+#include <libmm-glib/error.hxx>
 
 
 namespace Gio::DBus

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/initable.hpp>
-#include <libmm-gio/initable_p.hpp>
+#include <libmm-gio/initable.hxx>
+#include <libmm-gio/initable_p.hxx>
 
 
 /* Copyright (C) 2009 Jonathon Jongsma
@@ -24,8 +24,8 @@
  */
 
 #include <gio/gio.h>
-#include <libmm-glib/error.hpp>
-#include <libmm-glib/exceptionhandler.hpp>
+#include <libmm-glib/error.hxx>
+#include <libmm-glib/exceptionhandler.hxx>
 
 namespace Gio
 {

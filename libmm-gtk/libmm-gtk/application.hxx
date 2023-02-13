@@ -2,10 +2,10 @@
 #ifndef _GTKMM_APPLICATION_H
 #define _GTKMM_APPLICATION_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2003-2014 The gtkmm Development Team
@@ -29,10 +29,10 @@
 #include <vector>
 #include <type_traits>
 #include <utility>
-#include <libmm-gio/application.hpp>
-#include <libmm-gio/menumodel.hpp>
-#include <libmm-gio/menu.hpp>
-#include <libmm-gtk/window.hpp>
+#include <libmm-gio/application.hxx>
+#include <libmm-gio/menumodel.hxx>
+#include <libmm-gio/menu.hxx>
+#include <libmm-gtk/window.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

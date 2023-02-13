@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/fileattributeinfolist.hpp>
-#include <libmm-gio/fileattributeinfolist_p.hpp>
+#include <libmm-gio/fileattributeinfolist.hxx>
+#include <libmm-gio/fileattributeinfolist_p.hxx>
 
 
 /* Copyright (C) 2007 The gtkmm Development Team

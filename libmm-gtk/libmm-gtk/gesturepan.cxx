@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/gesturepan.hpp>
-#include <libmm-gtk/gesturepan_p.hpp>
+#include <libmm-gtk/gesturepan.hxx>
+#include <libmm-gtk/gesturepan_p.hxx>
 
 
 /* Copyright (C) 2014 The gtkmm Development Team

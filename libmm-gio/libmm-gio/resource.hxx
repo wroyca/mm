@@ -3,7 +3,7 @@
 #define _GIOMM_RESOURCE_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2012 The gtkmm Development Team
@@ -22,10 +22,10 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/error.hpp>
-#include <libmm-glib/refptr.hpp>
-#include <libmm-glib/bytes.hpp>
-#include <libmm-gio/inputstream.hpp>
+#include <libmm-glib/error.hxx>
+#include <libmm-glib/refptr.hxx>
+#include <libmm-glib/bytes.hxx>
+#include <libmm-gio/inputstream.hxx>
 #include <vector>
 #include <string>
 

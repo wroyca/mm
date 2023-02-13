@@ -2,10 +2,10 @@
 #ifndef _GIOMM_ACTIONGROUP_H
 #define _GIOMM_ACTIONGROUP_H
 
-#include <libmm-gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -25,8 +25,8 @@
  */
 
 
-#include <libmm-glib/interface.hpp>
-#include <libmm-glib/varianttype.hpp>
+#include <libmm-glib/interface.hxx>
+#include <libmm-glib/varianttype.hxx>
 #include <gio/gio.h> //To declare g_action_group_get_action_state_type().
 
 

@@ -16,11 +16,11 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/propertyproxy_base.hpp>
+#include <libmm-glib/propertyproxy_base.hxx>
 
-#include <libmm-glib/signalproxy_connectionnode.hpp>
-#include <libmm-glib/object.hpp>
-#include <libmm-glib/object_p.hpp>
+#include <libmm-glib/signalproxy_connectionnode.hxx>
+#include <libmm-glib/object.hxx>
+#include <libmm-glib/object_p.hxx>
 #include <utility> // For std::move()
 
 namespace Glib

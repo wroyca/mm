@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/cellrenderertext.hpp>
-#include <libmm-gtk/cellrenderertext_p.hpp>
+#include <libmm-gtk/cellrenderertext.hxx>
+#include <libmm-gtk/cellrenderertext_p.hxx>
 
 
 /*

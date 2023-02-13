@@ -14,10 +14,10 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/dispatcher.hpp>
-#include <libmm-glib/exceptionhandler.hpp>
-#include <libmm-glib/fileutils.hpp>
-#include <libmm-glib/main.hpp>
+#include <libmm-glib/dispatcher.hxx>
+#include <libmm-glib/exceptionhandler.hxx>
+#include <libmm-glib/fileutils.hxx>
+#include <libmm-glib/main.hxx>
 
 #include <cerrno>
 #include <fcntl.h>

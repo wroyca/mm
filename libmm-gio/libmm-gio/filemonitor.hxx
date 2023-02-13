@@ -2,10 +2,10 @@
 #ifndef _GIOMM_FILEMONITOR_H
 #define _GIOMM_FILEMONITOR_H
 
-#include <libmm-gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -25,8 +25,8 @@
  */
 
 
-//#include <libmm-gio/file.hpp>
-#include <libmm-glib/object.hpp>
+//#include <libmm-gio/file.hxx>
+#include <libmm-glib/object.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

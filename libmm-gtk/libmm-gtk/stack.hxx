@@ -3,7 +3,7 @@
 #define _GTKMM_STACK_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /*
@@ -24,10 +24,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/widget.hpp>
-#include <libmm-gtk/stackpage.hpp>
-#include <libmm-gtk/enums.hpp>
-#include <libmm-gtk/selectionmodel.hpp>
+#include <libmm-gtk/widget.hxx>
+#include <libmm-gtk/stackpage.hxx>
+#include <libmm-gtk/enums.hxx>
+#include <libmm-gtk/selectionmodel.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

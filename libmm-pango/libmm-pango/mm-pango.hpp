@@ -67,19 +67,19 @@
  */
 
 
-#include <libmm-pango/attrlist.hpp>
-#include <libmm-pango/context.hpp>
-#include <libmm-pango/coverage.hpp>
-#include <libmm-pango/fontdescription.hpp>
-#include <libmm-pango/fontface.hpp>
-#include <libmm-pango/fontfamily.hpp>
-#include <libmm-pango/font.hpp>
-#include <libmm-pango/fontmap.hpp>
-#include <libmm-pango/fontmetrics.hpp>
-#include <libmm-pango/fontset.hpp>
-#include <libmm-pango/layout.hpp>
-#include <libmm-pango/layoutiter.hpp>
-#include <libmm-pango/layoutline.hpp>
-#include <libmm-pango/tabarray.hpp>
+#include <libmm-pango/attrlist.hxx>
+#include <libmm-pango/context.hxx>
+#include <libmm-pango/coverage.hxx>
+#include <libmm-pango/fontdescription.hxx>
+#include <libmm-pango/fontface.hxx>
+#include <libmm-pango/fontfamily.hxx>
+#include <libmm-pango/font.hxx>
+#include <libmm-pango/fontmap.hxx>
+#include <libmm-pango/fontmetrics.hxx>
+#include <libmm-pango/fontset.hxx>
+#include <libmm-pango/layout.hxx>
+#include <libmm-pango/layoutiter.hxx>
+#include <libmm-pango/layoutline.hxx>
+#include <libmm-pango/tabarray.hxx>
 
 #endif /* _PANGOMM_H */

@@ -3,7 +3,7 @@
 #define _GDKMM_PIXBUFANIMATIONITER_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /*
@@ -24,8 +24,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-glib/object.hpp>
-#include <libmm-gdk/pixbuf.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-gdk/pixbuf.hxx>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 

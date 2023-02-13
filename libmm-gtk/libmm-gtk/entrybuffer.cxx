@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/entrybuffer.hpp>
-#include <libmm-gtk/entrybuffer_p.hpp>
+#include <libmm-gtk/entrybuffer.hxx>
+#include <libmm-gtk/entrybuffer_p.hxx>
 
 
 /* Copyright(C) 1998-2002 The gtkmm Development Team

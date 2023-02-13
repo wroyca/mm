@@ -3,9 +3,9 @@
 #define _GTKMM_MULTISORTER_P_H
 
 
-#include <libmm-gtk/sorter_p.hpp>
+#include <libmm-gtk/sorter_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gtk
 {

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/cellareabox.hpp>
-#include <libmm-gtk/cellareabox_p.hpp>
+#include <libmm-gtk/cellareabox.hxx>
+#include <libmm-gtk/cellareabox_p.hxx>
 
 
 /* Copyright 2010 The gtkmm Development Team

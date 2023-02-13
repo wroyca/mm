@@ -3,7 +3,7 @@
 #define _GIOMM_DBUSMETHODINVOCATION_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -22,11 +22,11 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <libmm-gio/dbusconnection.hpp>
-#include <libmm-gio/dbusmessage.hpp>
-#include <libmm-gio/dbusintrospection.hpp>
-#include <libmm-glib/object.hpp>
-#include <libmm-glib/variant.hpp>
+//#include <libmm-gio/dbusconnection.hxx>
+#include <libmm-gio/dbusmessage.hxx>
+#include <libmm-gio/dbusintrospection.hxx>
+#include <libmm-glib/object.hxx>
+#include <libmm-glib/variant.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

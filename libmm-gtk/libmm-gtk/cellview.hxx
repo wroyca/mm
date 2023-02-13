@@ -2,10 +2,10 @@
 #ifndef _GTKMM_CELLVIEW_H
 #define _GTKMM_CELLVIEW_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /*
@@ -27,15 +27,15 @@
  */
 
 
-#include <libmm-gtk/widget.hpp>
-#include <libmm-gtk/celllayout.hpp>
-#include <libmm-gtk/treemodel.hpp>
-#include <libmm-gtk/treepath.hpp>
-#include <libmm-gtk/cellrenderer.hpp>
-#include <libmm-gtk/cellarea.hpp>
-#include <libmm-gtk/cellareacontext.hpp>
-#include <libmm-gtk/orientable.hpp>
-#include <libmm-gdk/texture.hpp>
+#include <libmm-gtk/widget.hxx>
+#include <libmm-gtk/celllayout.hxx>
+#include <libmm-gtk/treemodel.hxx>
+#include <libmm-gtk/treepath.hxx>
+#include <libmm-gtk/cellrenderer.hxx>
+#include <libmm-gtk/cellarea.hxx>
+#include <libmm-gtk/cellareacontext.hxx>
+#include <libmm-gtk/orientable.hxx>
+#include <libmm-gdk/texture.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

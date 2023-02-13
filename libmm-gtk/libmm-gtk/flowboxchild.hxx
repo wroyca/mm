@@ -3,7 +3,7 @@
 #define _GTKMM_FLOWBOXCHILD_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2014 The gtkmm Development Team
@@ -22,7 +22,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gtk/widget.hpp>
+#include <libmm-gtk/widget.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

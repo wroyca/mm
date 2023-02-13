@@ -2,10 +2,10 @@
 #ifndef _GTKMM_ACTIONABLE_H
 #define _GTKMM_ACTIONABLE_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2012 The gtkmm Development Team
@@ -26,7 +26,7 @@
  */
 
 
-#include <libmm-glib/interface.hpp>
+#include <libmm-glib/interface.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -3,7 +3,7 @@
 #define _GTKMM_TREEROWREFERENCE_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /*
@@ -25,8 +25,8 @@
  */
 
 
-#include <libmm-gtk/treemodel.hpp>
-#include <libmm-gtk/treepath.hpp>
+#include <libmm-gtk/treemodel.hxx>
+#include <libmm-gtk/treepath.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

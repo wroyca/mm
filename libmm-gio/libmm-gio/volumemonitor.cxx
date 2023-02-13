@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/volumemonitor.hpp>
-#include <libmm-gio/volumemonitor_p.hpp>
+#include <libmm-gio/volumemonitor.hxx>
+#include <libmm-gio/volumemonitor_p.hxx>
 
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <libmm-glib/exceptionhandler.hpp>
+#include <libmm-glib/exceptionhandler.hxx>
 
 namespace Gio
 {

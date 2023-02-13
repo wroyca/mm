@@ -19,7 +19,7 @@
 #ifndef __CAIROMM_QUARTZ_SURFACE_H
 #define __CAIROMM_QUARTZ_SURFACE_H
 
-#include <libmm-cairo/surface.hpp>
+#include <libmm-cairo/surface.hxx>
 
 #ifdef CAIRO_HAS_QUARTZ_SURFACE
 #include <cairo-quartz.h>

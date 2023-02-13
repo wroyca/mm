@@ -23,7 +23,7 @@
 #endif
 #endif
 
-#include <libmm-glib/mm-glibconfig.hpp>
+#include <libmm-glib/mm-glibconfig.hxx>
 #include <new>
 #include <typeinfo>
 #include <type_traits>

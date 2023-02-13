@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-pango/layoutline.hpp>
-#include <libmm-pango/layoutline_p.hpp>
+#include <libmm-pango/layoutline.hxx>
+#include <libmm-pango/layoutline_p.hxx>
 
 
 // -*- c++ -*-
@@ -29,7 +29,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <libmm-pango/layout.hpp>
+#include <libmm-pango/layout.hxx>
 #include <pango/pangocairo.h>
 
 namespace Pango {

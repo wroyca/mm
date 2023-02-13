@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/grid.hpp>
-#include <libmm-gtk/grid_p.hpp>
+#include <libmm-gtk/grid.hxx>
+#include <libmm-gtk/grid_p.hxx>
 
 
 /*

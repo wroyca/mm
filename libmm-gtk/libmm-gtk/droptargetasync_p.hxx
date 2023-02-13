@@ -3,9 +3,9 @@
 #define _GTKMM_DROPTARGETASYNC_P_H
 
 
-#include <libmm-gtk/eventcontroller_p.hpp>
+#include <libmm-gtk/eventcontroller_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gtk
 {

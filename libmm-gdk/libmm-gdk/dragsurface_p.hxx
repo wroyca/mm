@@ -3,10 +3,10 @@
 #define _GDKMM_DRAGSURFACE_P_H
 
 
-#include <libmm-glib/interface_p.hpp>
+#include <libmm-glib/interface_p.hxx>
 #include <gdk/gdk.h>
 
-#include <libmm-glib/interface_p.hpp>
+#include <libmm-glib/interface_p.hxx>
 
 namespace Gdk
 {

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/dbusmethodinvocation.hpp>
-#include <libmm-gio/dbusmethodinvocation_p.hpp>
+#include <libmm-gio/dbusmethodinvocation.hxx>
+#include <libmm-gio/dbusmethodinvocation_p.hxx>
 
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -24,10 +24,10 @@
  */
 
 #include <gio/gio.h>
-#include <libmm-glib/error.hpp>
-#include <libmm-gio/dbusconnection.hpp>
-#include <libmm-gio/dbusmessage.hpp>
-#include <libmm-gio/dbusintrospection.hpp>
+#include <libmm-glib/error.hxx>
+#include <libmm-gio/dbusconnection.hxx>
+#include <libmm-gio/dbusmessage.hxx>
+#include <libmm-gio/dbusintrospection.hxx>
 
 namespace Gio::DBus
 {

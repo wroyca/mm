@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/filechooserdialog.hpp>
-#include <libmm-gtk/filechooserdialog_p.hpp>
+#include <libmm-gtk/filechooserdialog.hxx>
+#include <libmm-gtk/filechooserdialog_p.hxx>
 
 
 /*

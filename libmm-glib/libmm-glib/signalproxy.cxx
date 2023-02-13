@@ -17,9 +17,9 @@
  */
 
 #include <glib-object.h>
-#include <libmm-glib/exceptionhandler.hpp>
-#include <libmm-glib/object.hpp>
-#include <libmm-glib/signalproxy.hpp>
+#include <libmm-glib/exceptionhandler.hxx>
+#include <libmm-glib/object.hxx>
+#include <libmm-glib/signalproxy.hxx>
 
 namespace Glib
 {

@@ -17,7 +17,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 // GTKMM_M*_VERSION are defined in gtkmmconfig.h.
 // They are described here because Doxygen does not document gtkmmconfig.h.

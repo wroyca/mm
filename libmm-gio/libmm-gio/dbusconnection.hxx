@@ -3,7 +3,7 @@
 #define _GIOMM_DBUSCONNECTION_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -22,17 +22,17 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/object.hpp>
-#include <libmm-gio/initable.hpp>
-#include <libmm-gio/asyncinitable.hpp>
-#include <libmm-gio/dbusauthobserver.hpp>
-#include <libmm-gio/dbusmethodinvocation.hpp>
-#include <libmm-gio/dbusintrospection.hpp>
-#include <libmm-gio/iostream.hpp>
-#include <libmm-gio/asyncresult.hpp>
-#include <libmm-gio/credentials.hpp>
-#include <libmm-gio/dbusmessage.hpp>
-#include <libmm-gio/dbussubtreevtable.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-gio/initable.hxx>
+#include <libmm-gio/asyncinitable.hxx>
+#include <libmm-gio/dbusauthobserver.hxx>
+#include <libmm-gio/dbusmethodinvocation.hxx>
+#include <libmm-gio/dbusintrospection.hxx>
+#include <libmm-gio/iostream.hxx>
+#include <libmm-gio/asyncresult.hxx>
+#include <libmm-gio/credentials.hxx>
+#include <libmm-gio/dbusmessage.hxx>
+#include <libmm-gio/dbussubtreevtable.hxx>
 #include <gio/gio.h>
 
 

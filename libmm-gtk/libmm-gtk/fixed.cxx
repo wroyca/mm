@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/fixed.hpp>
-#include <libmm-gtk/fixed_p.hpp>
+#include <libmm-gtk/fixed.hxx>
+#include <libmm-gtk/fixed_p.hxx>
 
 
 /*

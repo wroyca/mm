@@ -3,7 +3,7 @@
 #define _GDKMM_GLCONTEXT_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2015 The gtkmm Development Team
@@ -23,10 +23,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gdk/mm-gdkconfig.hpp>
-#include <libmm-gdk/drawcontext.hpp>
-#include <libmm-gdk/display.hpp>
-#include <libmm-gdk/surface.hpp>
+#include <libmm-gdk/mm-gdkconfig.hxx>
+#include <libmm-gdk/drawcontext.hxx>
+#include <libmm-gdk/display.hxx>
+#include <libmm-gdk/surface.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -134,7 +134,7 @@ namespace Gdk
  * @note Name clash! GLAPI is defined as a preprocessor macro in epoxy/gl.h.
  * If you include epoxy/gl.h and want to use API with %Gdk::GLAPI, you must undef GLAPI.
  * @code
- * #include <libmm-gdk/glcontext.hpp> // or <gtkmm.h>
+ * #include <libmm-gdk/glcontext.hxx> // or <gtkmm.h>
  * #include <epoxy/gl.h>
  * #undef GLAPI
  * @endcode
@@ -142,7 +142,7 @@ namespace Gdk
  * @code
  * #include <epoxy/gl.h>
  * #undef GLAPI
- * #include <libmm-gdk/glcontext.hpp> // or <gtkmm.h>
+ * #include <libmm-gdk/glcontext.hxx> // or <gtkmm.h>
  * @endcode
  *
  *  @var GLAPI GL
@@ -305,7 +305,7 @@ namespace Gdk
  * Use GLApi instead of GLAPI.
  * If you include epoxy/gl.h and want to use API with Gdk::GLAPI, you must undef GLAPI.
  * @code
- * #include <libmm-gdk/glcontext.hpp> // or <gtkmm.h>
+ * #include <libmm-gdk/glcontext.hxx> // or <gtkmm.h>
  * #include <epoxy/gl.h>
  * #undef GLAPI
  * @endcode
@@ -313,7 +313,7 @@ namespace Gdk
  * @code
  * #include <epoxy/gl.h>
  * #undef GLAPI
- * #include <libmm-gdk/glcontext.hpp> // or <gtkmm.h>
+ * #include <libmm-gdk/glcontext.hxx> // or <gtkmm.h>
  * @endcode
  *
  * @newin{3,18}

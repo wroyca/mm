@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/frameclock.hpp>
-#include <libmm-gdk/frameclock_p.hpp>
+#include <libmm-gdk/frameclock.hxx>
+#include <libmm-gdk/frameclock_p.hxx>
 
 #include <gdk/gdk.h>
 

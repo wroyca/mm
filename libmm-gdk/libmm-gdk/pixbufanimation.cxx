@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/pixbufanimation.hpp>
-#include <libmm-gdk/pixbufanimation_p.hpp>
+#include <libmm-gdk/pixbufanimation.hxx>
+#include <libmm-gdk/pixbufanimation_p.hxx>
 
 
 /*
@@ -25,7 +25,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gio/slot_async.hpp>
+#include <libmm-gio/slot_async.hxx>
 #include <gdk/gdk.h>
 
 namespace Gdk

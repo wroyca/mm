@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/droptargetasync.hpp>
-#include <libmm-gtk/droptargetasync_p.hpp>
+#include <libmm-gtk/droptargetasync.hxx>
+#include <libmm-gtk/droptargetasync_p.hxx>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -23,7 +23,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gio/slot_async.hpp>
+#include <libmm-gio/slot_async.hxx>
 #include <gtk/gtk.h>
 
 namespace Gtk

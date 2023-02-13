@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/colorchooser.hpp>
-#include <libmm-gtk/colorchooser_p.hpp>
+#include <libmm-gtk/colorchooser.hxx>
+#include <libmm-gtk/colorchooser_p.hxx>
 
 
 /* Copyright 2012 The gtkmm Development Team

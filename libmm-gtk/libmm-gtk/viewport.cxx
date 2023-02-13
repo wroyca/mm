@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/viewport.hpp>
-#include <libmm-gtk/viewport_p.hpp>
+#include <libmm-gtk/viewport.hxx>
+#include <libmm-gtk/viewport_p.hxx>
 
 
 /*
@@ -25,8 +25,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/viewport.hpp>
-#include <libmm-gtk/adjustment.hpp>
+#include <libmm-gtk/viewport.hxx>
+#include <libmm-gtk/adjustment.hxx>
 #include <gtk/gtk.h>
 
 namespace Gtk

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/box.hpp>
-#include <libmm-gtk/box_p.hpp>
+#include <libmm-gtk/box.hxx>
+#include <libmm-gtk/box_p.hxx>
 
 
 /*
@@ -26,7 +26,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <libmm-glib/wrap.hpp>
+#include <libmm-glib/wrap.hxx>
 
 
 namespace Gtk

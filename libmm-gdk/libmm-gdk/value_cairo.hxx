@@ -17,10 +17,10 @@
 #ifndef _GDKMM_VALUE_CAIRO_H
 #define _GDKMM_VALUE_CAIRO_H
 
-#include <libmm-gdk/mm-gdkconfig.hpp>
+#include <libmm-gdk/mm-gdkconfig.hxx>
 
-#include <libmm-glib/value.hpp>
-#include <libmm-cairo/refptr.hpp>
+#include <libmm-glib/value.hxx>
+#include <libmm-cairo/refptr.hxx>
 #include <type_traits>
 
 namespace Cairo

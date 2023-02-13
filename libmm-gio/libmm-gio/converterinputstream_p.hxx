@@ -3,9 +3,9 @@
 #define _GIOMM_CONVERTERINPUTSTREAM_P_H
 
 
-#include <libmm-gio/filterinputstream_p.hpp>
+#include <libmm-gio/filterinputstream_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gio
 {

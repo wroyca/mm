@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/paned.hpp>
-#include <libmm-gtk/paned_p.hpp>
+#include <libmm-gtk/paned.hxx>
+#include <libmm-gtk/paned_p.hxx>
 
 
 /*

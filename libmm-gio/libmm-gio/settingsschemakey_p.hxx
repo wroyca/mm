@@ -3,7 +3,7 @@
 #define _GIOMM_SETTINGSSCHEMAKEY_P_H
 
 
-#include <libmm-glib/object_p.hpp>
+#include <libmm-glib/object_p.hxx>
 
 
 #endif /* _GIOMM_SETTINGSSCHEMAKEY_P_H */

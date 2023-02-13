@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/charsetconverter.hpp>
-#include <libmm-gio/charsetconverter_p.hpp>
+#include <libmm-gio/charsetconverter.hxx>
+#include <libmm-gio/charsetconverter_p.hxx>
 
 
 /* Copyright (C) 2012 The giomm Development Team

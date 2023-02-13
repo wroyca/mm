@@ -2,10 +2,10 @@
 #ifndef _GIOMM_SIMPLEACTIONGROUP_H
 #define _GIOMM_SIMPLEACTIONGROUP_H
 
-#include <libmm-gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2011 The giomm Development Team
@@ -25,8 +25,8 @@
  */
 
 
-#include <libmm-gio/actionmap.hpp>
-#include <libmm-gio/actiongroup.hpp>
+#include <libmm-gio/actionmap.hxx>
+#include <libmm-gio/actiongroup.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

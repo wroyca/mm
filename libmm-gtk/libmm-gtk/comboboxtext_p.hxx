@@ -3,9 +3,9 @@
 #define _GTKMM_COMBOBOXTEXT_P_H
 
 
-#include <libmm-gtk/combobox_p.hpp>
+#include <libmm-gtk/combobox_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gtk
 {

@@ -17,12 +17,12 @@
 #ifndef _GDKMM_CAIROUTILS_H
 #define _GDKMM_CAIROUTILS_H
 
-#include <libmm-gdk/mm-gdkconfig.hpp>
+#include <libmm-gdk/mm-gdkconfig.hxx>
 
-#include <libmm-cairo/context.hpp>
-#include <libmm-cairo/region.hpp>
-#include <libmm-cairo/surface.hpp>
-#include <libmm-glib/containerhandle_shared.hpp>
+#include <libmm-cairo/context.hxx>
+#include <libmm-cairo/region.hxx>
+#include <libmm-cairo/surface.hxx>
+#include <libmm-glib/containerhandle_shared.hxx>
 #include <type_traits>
 
 namespace Gdk::Cairo

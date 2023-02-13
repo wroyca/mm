@@ -3,7 +3,7 @@
 #define _GTKMM_PRINTER_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2006 The gtkmm Development Team
@@ -25,7 +25,7 @@
 
 #include <vector>
 
-#include <libmm-gtk/pagesetup.hpp>
+#include <libmm-gtk/pagesetup.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

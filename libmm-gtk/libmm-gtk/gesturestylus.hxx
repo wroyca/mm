@@ -3,7 +3,7 @@
 #define _GTKMM_GESTURESTYLUS_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2018 The gtkmm Development Team
@@ -22,9 +22,9 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gtk/gesturesingle.hpp>
-#include <libmm-gdk/enums.hpp>
-#include <libmm-gdk/timecoord.hpp>
+#include <libmm-gtk/gesturesingle.hxx>
+#include <libmm-gdk/enums.hxx>
+#include <libmm-gdk/timecoord.hxx>
 #include <optional>
 #include <vector>
 

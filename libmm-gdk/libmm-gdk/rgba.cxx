@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/rgba.hpp>
-#include <libmm-gdk/rgba_p.hpp>
+#include <libmm-gdk/rgba.hxx>
+#include <libmm-gdk/rgba_p.hxx>
 
 
 /*

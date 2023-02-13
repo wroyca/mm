@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/gesturedrag.hpp>
-#include <libmm-gtk/gesturedrag_p.hpp>
+#include <libmm-gtk/gesturedrag.hxx>
+#include <libmm-gtk/gesturedrag_p.hxx>
 
 
 /* Copyright (C) 2014 The gtkmm Development Team

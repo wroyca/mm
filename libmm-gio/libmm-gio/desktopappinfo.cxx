@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/desktopappinfo.hpp>
-#include <libmm-gio/desktopappinfo_p.hpp>
+#include <libmm-gio/desktopappinfo.hxx>
+#include <libmm-gio/desktopappinfo_p.hxx>
 
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -27,7 +27,7 @@
 
 #include <gio/gio.h>
 #include <gio/gdesktopappinfo.h>
-#include <libmm-glib/keyfile.hpp>
+#include <libmm-glib/keyfile.hxx>
 
 namespace
 {

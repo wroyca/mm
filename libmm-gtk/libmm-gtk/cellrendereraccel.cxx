@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/cellrendereraccel.hpp>
-#include <libmm-gtk/cellrendereraccel_p.hpp>
+#include <libmm-gtk/cellrendereraccel.hxx>
+#include <libmm-gtk/cellrendereraccel_p.hxx>
 
 
 /*

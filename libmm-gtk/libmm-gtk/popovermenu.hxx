@@ -3,7 +3,7 @@
 #define _GTKMM_POPOVERMENU_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2015 The gtkmm Development Team
@@ -22,8 +22,8 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gtk/popover.hpp>
-#include <libmm-gio/menumodel.hpp>
+#include <libmm-gtk/popover.hxx>
+#include <libmm-gio/menumodel.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

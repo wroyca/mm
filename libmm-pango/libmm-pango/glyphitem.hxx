@@ -3,7 +3,7 @@
 #define _PANGOMM_GLYPHITEM_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* glyphitem.h
@@ -25,7 +25,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <libmm-pango/attributes.hpp> //For LogAttr.
+#include <libmm-pango/attributes.hxx> //For LogAttr.
 #include <pango/pango.h>
 
 

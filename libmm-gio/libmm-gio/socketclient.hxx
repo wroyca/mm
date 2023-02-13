@@ -3,7 +3,7 @@
 #define _GIOMM_SOCKETCLIENT_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 Jonathon Jongsma
@@ -22,14 +22,14 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/object.hpp>
-#include <libmm-gio/asyncresult.hpp>
-#include <libmm-gio/cancellable.hpp>
-#include <libmm-gio/socketconnectable.hpp>
-#include <libmm-gio/enums.hpp>
-#include <libmm-gio/socket.hpp>
-#include <libmm-gio/socketconnection.hpp>
-#include <libmm-gio/proxyresolver.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-gio/asyncresult.hxx>
+#include <libmm-gio/cancellable.hxx>
+#include <libmm-gio/socketconnectable.hxx>
+#include <libmm-gio/enums.hxx>
+#include <libmm-gio/socket.hxx>
+#include <libmm-gio/socketconnection.hxx>
+#include <libmm-gio/proxyresolver.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

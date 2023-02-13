@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/networkmonitor.hpp>
-#include <libmm-gio/networkmonitor_p.hpp>
+#include <libmm-gio/networkmonitor.hxx>
+#include <libmm-gio/networkmonitor_p.hxx>
 
 
 /* Copyright (C) 2014 The gtkmm Development Team
@@ -23,9 +23,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/exceptionhandler.hpp>
+#include <libmm-glib/exceptionhandler.hxx>
 #include <gio/gio.h>
-#include <libmm-gio/slot_async.hpp>
+#include <libmm-gio/slot_async.hxx>
 
 namespace Gio
 {

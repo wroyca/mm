@@ -3,9 +3,9 @@
 #define _GIOMM_SIMPLEPERMISSION_P_H
 
 
-#include <libmm-gio/permission_p.hpp>
+#include <libmm-gio/permission_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gio
 {

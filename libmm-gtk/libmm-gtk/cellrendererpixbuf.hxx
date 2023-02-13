@@ -3,7 +3,7 @@
 #define _GTKMM_CELLRENDERERPIXBUF_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /*
@@ -24,10 +24,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/cellrenderer.hpp>
-#include <libmm-gdk/pixbuf.hpp>
-#include <libmm-gdk/texture.hpp>
-#include <libmm-gio/icon.hpp>
+#include <libmm-gtk/cellrenderer.hxx>
+#include <libmm-gdk/pixbuf.hxx>
+#include <libmm-gdk/texture.hxx>
+#include <libmm-gio/icon.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

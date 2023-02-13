@@ -3,9 +3,9 @@
 #define _GTKMM_SCALE_P_H
 
 
-#include <libmm-gtk/range_p.hpp>
+#include <libmm-gtk/range_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gtk
 {

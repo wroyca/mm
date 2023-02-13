@@ -19,9 +19,9 @@
 #ifndef __CAIROMM_DEVICE_H
 #define __CAIROMM_DEVICE_H
 
-#include <libmm-cairo/types.hpp>
-#include <libmm-cairo/enums.hpp>
-#include <libmm-cairo/refptr.hpp>
+#include <libmm-cairo/types.hxx>
+#include <libmm-cairo/enums.hxx>
+#include <libmm-cairo/refptr.hxx>
 #include <cairo.h>
 
 

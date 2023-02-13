@@ -3,7 +3,7 @@
 #define _GTKMM_SETTINGS_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /*
@@ -24,9 +24,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-glib/object.hpp>
-#include <libmm-gdk/display.hpp>
-#include <libmm-gtk/styleprovider.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-gdk/display.hxx>
+#include <libmm-gtk/styleprovider.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

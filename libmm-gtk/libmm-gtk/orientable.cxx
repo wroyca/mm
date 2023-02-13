@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/orientable.hpp>
-#include <libmm-gtk/orientable_p.hpp>
+#include <libmm-gtk/orientable.hxx>
+#include <libmm-gtk/orientable_p.hxx>
 
 
 /* Copyright 2009 The gtkmm Development Team

@@ -3,7 +3,7 @@
 #define _GIOMM_MOUNT_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -22,14 +22,14 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <libmm-gio/drive.hpp>
-//#include <libmm-gio/file.hpp>
-//#include <libmm-gio/volume.hpp>
-#include <libmm-glib/interface.hpp>
-#include <libmm-gio/asyncresult.hpp>
-#include <libmm-gio/cancellable.hpp>
-#include <libmm-gio/mountoperation.hpp>
-#include <libmm-gio/icon.hpp>
+//#include <libmm-gio/drive.hxx>
+//#include <libmm-gio/file.hxx>
+//#include <libmm-gio/volume.hxx>
+#include <libmm-glib/interface.hxx>
+#include <libmm-gio/asyncresult.hxx>
+#include <libmm-gio/cancellable.hxx>
+#include <libmm-gio/mountoperation.hxx>
+#include <libmm-gio/icon.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

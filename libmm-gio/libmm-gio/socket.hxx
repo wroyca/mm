@@ -3,7 +3,7 @@
 #define _GIOMM_SOCKET_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2009 Jonathon Jongsma
@@ -22,14 +22,14 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/iochannel.hpp>
-#include <libmm-glib/object.hpp>
-#include <libmm-gio/initable.hpp>
-#include <libmm-gio/credentials.hpp>
-#include <libmm-gio/socketconnectable.hpp>
-#include <libmm-gio/socketaddress.hpp>
-#include <libmm-gio/enums.hpp>
-#include <libmm-gio/inetaddress.hpp>
+#include <libmm-glib/iochannel.hxx>
+#include <libmm-glib/object.hxx>
+#include <libmm-gio/initable.hxx>
+#include <libmm-gio/credentials.hxx>
+#include <libmm-gio/socketconnectable.hxx>
+#include <libmm-gio/socketaddress.hxx>
+#include <libmm-gio/enums.hxx>
+#include <libmm-gio/inetaddress.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

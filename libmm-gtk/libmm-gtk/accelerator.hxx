@@ -17,10 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
-#include <libmm-glib/ustring.hpp>
-#include <libmm-gdk/enums.hpp>
+#include <libmm-glib/ustring.hxx>
+#include <libmm-gdk/enums.hxx>
 
 // The corresponding gtk functions are declared in gtkaccelgroup.h.
 

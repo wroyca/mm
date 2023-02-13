@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/appchooserwidget.hpp>
-#include <libmm-gtk/appchooserwidget_p.hpp>
+#include <libmm-gtk/appchooserwidget.hxx>
+#include <libmm-gtk/appchooserwidget_p.hxx>
 
 
 /* Copyright 2011 The gtkmm Development Team

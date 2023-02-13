@@ -4,7 +4,7 @@
 #undef G_DISABLE_DEPRECATED
 #define GLIB_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-glib/value.hpp>
+#include <libmm-glib/value.hxx>
 
 namespace Glib
 {

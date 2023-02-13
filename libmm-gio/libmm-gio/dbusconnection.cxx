@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/dbusconnection.hpp>
-#include <libmm-gio/dbusconnection_p.hpp>
+#include <libmm-gio/dbusconnection.hxx>
+#include <libmm-gio/dbusconnection_p.hxx>
 
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -24,19 +24,19 @@
  */
 
 #include <gio/gio.h>
-#include <libmm-glib/exceptionhandler.hpp>
-#include <libmm-gio/actiongroup.hpp>
-#include <libmm-gio/dbusauthobserver.hpp>
-#include <libmm-gio/dbusintrospection.hpp>
-#include <libmm-gio/dbusmethodinvocation.hpp>
-#include <libmm-gio/dbuserror.hpp>
-#include <libmm-gio/menumodel.hpp>
+#include <libmm-glib/exceptionhandler.hxx>
+#include <libmm-gio/actiongroup.hxx>
+#include <libmm-gio/dbusauthobserver.hxx>
+#include <libmm-gio/dbusintrospection.hxx>
+#include <libmm-gio/dbusmethodinvocation.hxx>
+#include <libmm-gio/dbuserror.hxx>
+#include <libmm-gio/menumodel.hxx>
 
 #ifdef G_OS_UNIX
-#include <libmm-gio/unixfdlist.hpp>
+#include <libmm-gio/unixfdlist.hxx>
 #endif
 
-#include <libmm-gio/slot_async.hpp>
+#include <libmm-gio/slot_async.hxx>
 #include <mutex>
 
 namespace

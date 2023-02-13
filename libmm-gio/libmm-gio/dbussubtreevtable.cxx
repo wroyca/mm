@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/dbussubtreevtable.hpp>
-#include <libmm-gio/dbussubtreevtable_p.hpp>
+#include <libmm-gio/dbussubtreevtable.hxx>
+#include <libmm-gio/dbussubtreevtable_p.hxx>
 
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -24,13 +24,13 @@
  */
 
 #include <gio/gio.h>
-#include <libmm-glib/exceptionhandler.hpp>
-#include <libmm-gio/dbusauthobserver.hpp>
-#include <libmm-gio/dbusintrospection.hpp>
-#include <libmm-gio/dbusmethodinvocation.hpp>
-#include <libmm-gio/dbusconnection.hpp>
-#include <libmm-gio/dbuserror.hpp>
-#include <libmm-gio/slot_async.hpp>
+#include <libmm-glib/exceptionhandler.hxx>
+#include <libmm-gio/dbusauthobserver.hxx>
+#include <libmm-gio/dbusintrospection.hxx>
+#include <libmm-gio/dbusmethodinvocation.hxx>
+#include <libmm-gio/dbusconnection.hxx>
+#include <libmm-gio/dbuserror.hxx>
+#include <libmm-gio/slot_async.hxx>
 
 namespace
 {

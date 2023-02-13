@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-pango/fontset.hpp>
-#include <libmm-pango/fontset_p.hpp>
+#include <libmm-pango/fontset.hxx>
+#include <libmm-pango/fontset_p.hxx>
 
 
 /*

@@ -19,9 +19,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/mm-glibconfig.hpp>
-#include <libmm-glib/value.hpp>
-#include <libmm-glib/signalproxy.hpp>
+#include <libmm-glib/mm-glibconfig.hxx>
+#include <libmm-glib/value.hxx>
+#include <libmm-glib/signalproxy.hxx>
 
 namespace Glib
 {

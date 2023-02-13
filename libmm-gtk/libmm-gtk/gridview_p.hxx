@@ -3,9 +3,9 @@
 #define _GTKMM_GRIDVIEW_P_H
 
 
-#include <libmm-gtk/listbase_p.hpp>
+#include <libmm-gtk/listbase_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gtk
 {

@@ -2,10 +2,10 @@
 #ifndef _GTKMM_ASSISTANTPAGE_H
 #define _GTKMM_ASSISTANTPAGE_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2019 The gtkmm Development Team
@@ -25,8 +25,8 @@
  */
 
 
-#include <libmm-glib/object.hpp>
-#include <libmm-glib/refptr.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-glib/refptr.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

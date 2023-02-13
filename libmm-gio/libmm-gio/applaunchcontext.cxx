@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/applaunchcontext.hpp>
-#include <libmm-gio/applaunchcontext_p.hpp>
+#include <libmm-gio/applaunchcontext.hxx>
+#include <libmm-gio/applaunchcontext_p.hxx>
 
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -23,8 +23,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gio/appinfo.hpp>
-#include <libmm-gio/file.hpp>
+#include <libmm-gio/appinfo.hxx>
+#include <libmm-gio/file.hxx>
 #include <gio/gio.h>
 
 namespace Gio

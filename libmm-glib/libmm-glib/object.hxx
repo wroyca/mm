@@ -25,14 +25,14 @@
   "X11/Xlib.h seems to have been included before this header. Due to some commonly-named macros in X11/Xlib.h, it may only be included after any glibmm, gdkmm, or gtkmm headers."
 #endif
 
-#include <libmm-glib/mm-glibconfig.hpp>
-#include <libmm-glib/objectbase.hpp>
-#include <libmm-glib/wrap.hpp>
-#include <libmm-glib/quark.hpp>
-#include <libmm-glib/refptr.hpp>
-#include <libmm-glib/utility.hpp> /* Could be private, but that would be tedious. */
-#include <libmm-glib/containerhandle_shared.hpp> /* Because its specializations may be here. */
-#include <libmm-glib/value.hpp>
+#include <libmm-glib/mm-glibconfig.hxx>
+#include <libmm-glib/objectbase.hxx>
+#include <libmm-glib/wrap.hxx>
+#include <libmm-glib/quark.hxx>
+#include <libmm-glib/refptr.hxx>
+#include <libmm-glib/utility.hxx> /* Could be private, but that would be tedious. */
+#include <libmm-glib/containerhandle_shared.hxx> /* Because its specializations may be here. */
+#include <libmm-glib/value.hxx>
 #include <glib.h> /* for G_GNUC_NULL_TERMINATED */
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

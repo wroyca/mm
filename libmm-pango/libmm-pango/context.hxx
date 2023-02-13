@@ -3,7 +3,7 @@
 #define _PANGOMM_CONTEXT_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* context.h
@@ -26,17 +26,17 @@
  */
 
 
-#include <libmm-glib/object.hpp>
-#include <libmm-pango/fontdescription.hpp>
-#include <libmm-pango/fontmetrics.hpp>
-#include <libmm-pango/fontset.hpp>
-#include <libmm-pango/fontmap.hpp>
-#include <libmm-pango/item.hpp>
-#include <libmm-pango/attrlist.hpp>
-#include <libmm-pango/types.hpp> //For Matrix
+#include <libmm-glib/object.hxx>
+#include <libmm-pango/fontdescription.hxx>
+#include <libmm-pango/fontmetrics.hxx>
+#include <libmm-pango/fontset.hxx>
+#include <libmm-pango/fontmap.hxx>
+#include <libmm-pango/item.hxx>
+#include <libmm-pango/attrlist.hxx>
+#include <libmm-pango/types.hxx> //For Matrix
 #include <pango/pango.h>
-#include <libmm-cairo/context.hpp>
-#include <libmm-cairo/fontoptions.hpp>
+#include <libmm-cairo/context.hxx>
+#include <libmm-cairo/fontoptions.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

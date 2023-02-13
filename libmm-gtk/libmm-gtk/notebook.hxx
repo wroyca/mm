@@ -2,10 +2,10 @@
 #ifndef _GTKMM_NOTEBOOK_H
 #define _GTKMM_NOTEBOOK_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /*
@@ -27,10 +27,10 @@
  */
 
 
-#include <libmm-gio/listmodel.hpp>
-#include <libmm-gtk/widget.hpp>
-#include <libmm-gtk/label.hpp>
-#include <libmm-gtk/notebookpage.hpp>
+#include <libmm-gio/listmodel.hxx>
+#include <libmm-gtk/widget.hxx>
+#include <libmm-gtk/label.hxx>
+#include <libmm-gtk/notebookpage.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

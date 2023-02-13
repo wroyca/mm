@@ -3,7 +3,7 @@
 #define _GTKMM_RANGE_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 1998-2002 The gtkmm Development Team
@@ -23,10 +23,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/widget.hpp>
-#include <libmm-gtk/enums.hpp> //For SensitivityType.
-#include <libmm-gtk/border.hpp>
-#include <libmm-gtk/orientable.hpp>
+#include <libmm-gtk/widget.hxx>
+#include <libmm-gtk/enums.hxx> //For SensitivityType.
+#include <libmm-gtk/border.hxx>
+#include <libmm-gtk/orientable.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

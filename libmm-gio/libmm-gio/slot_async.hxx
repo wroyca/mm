@@ -17,7 +17,7 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hxx>
 #include <gio/gio.h>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

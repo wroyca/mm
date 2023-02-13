@@ -19,7 +19,7 @@
 #ifndef __CAIROMM_XLIB_SURFACE_H
 #define __CAIROMM_XLIB_SURFACE_H
 
-#include <libmm-cairo/surface.hpp>
+#include <libmm-cairo/surface.hxx>
 
 // This header is not included by cairomm.h because it requires X headers that
 // tend to pollute the namespace with non-prefixed #defines and typedefs.

@@ -3,7 +3,7 @@
 #define _GTKMM_INSCRIPTION_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2022 The gtkmm Development Team
@@ -23,9 +23,9 @@
  */
 
 
-#include <libmm-gtk/widget.hpp>
-#include <libmm-pango/attrlist.hpp>
-#include <libmm-pango/layout.hpp> // for Pango::WrapMode
+#include <libmm-gtk/widget.hxx>
+#include <libmm-pango/attrlist.hxx>
+#include <libmm-pango/layout.hxx> // for Pango::WrapMode
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */

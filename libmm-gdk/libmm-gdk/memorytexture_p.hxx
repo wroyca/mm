@@ -3,9 +3,9 @@
 #define _GDKMM_MEMORYTEXTURE_P_H
 
 
-#include <libmm-gdk/texture_p.hpp>
+#include <libmm-gdk/texture_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gdk
 {

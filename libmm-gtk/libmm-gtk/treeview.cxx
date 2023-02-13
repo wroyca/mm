@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/treeview.hpp>
-#include <libmm-gtk/treeview_p.hpp>
+#include <libmm-gtk/treeview.hxx>
+#include <libmm-gtk/treeview_p.hxx>
 
 #include <gtk/gtk.h>
 
@@ -26,14 +26,14 @@
  */
 
 #include <climits> // INT_MIN, etc.
-#include <libmm-glib/vectorutils.hpp>
-#include <libmm-gdk/contentformats.hpp>
-#include <libmm-gtk/treeviewcolumn.hpp>
-#include <libmm-gtk/treeview_private.hpp>
-#include <libmm-gtk/treemodel.hpp>
-#include <libmm-gtk/treemodelfilter.hpp>
-#include <libmm-gtk/treemodelsort.hpp>
-#include <libmm-gtk/entry.hpp>
+#include <libmm-glib/vectorutils.hxx>
+#include <libmm-gdk/contentformats.hxx>
+#include <libmm-gtk/treeviewcolumn.hxx>
+#include <libmm-gtk/treeview_private.hxx>
+#include <libmm-gtk/treemodel.hxx>
+#include <libmm-gtk/treemodelfilter.hxx>
+#include <libmm-gtk/treemodelsort.hxx>
+#include <libmm-gtk/entry.hxx>
 #include <gtk/gtk.h>
 
 using GridLines = Gtk::TreeView::GridLines;

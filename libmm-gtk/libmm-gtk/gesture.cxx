@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/gesture.hpp>
-#include <libmm-gtk/gesture_p.hpp>
+#include <libmm-gtk/gesture.hxx>
+#include <libmm-gtk/gesture_p.hxx>
 
 
 /* Copyright (C) 2014 The gtkmm Development Team
@@ -23,7 +23,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gdk/device.hpp>
+#include <libmm-gdk/device.hxx>
 #include <gtk/gtk.h>
 
 namespace Gtk

@@ -18,11 +18,11 @@
 
 #ifndef _WIN32
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/printjob.hpp>
-#include <libmm-gtk/printjob_p.hpp>
-#include <libmm-gdk/cairoutils.hpp>
+#include <libmm-gtk/printjob.hxx>
+#include <libmm-gtk/printjob_p.hxx>
+#include <libmm-gdk/cairoutils.hxx>
 
 #include <gtk/gtkunixprint.h>
 

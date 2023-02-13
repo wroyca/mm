@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-glib/date.hpp>
-#include <libmm-glib/date_p.hpp>
+#include <libmm-glib/date.hxx>
+#include <libmm-glib/date_p.hxx>
 
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -29,8 +29,8 @@
 
 #include <algorithm>
 
-#include <libmm-glib/convert.hpp>
-#include <libmm-glib/utility.hpp>
+#include <libmm-glib/convert.hxx>
+#include <libmm-glib/utility.hxx>
 
 namespace Glib
 {

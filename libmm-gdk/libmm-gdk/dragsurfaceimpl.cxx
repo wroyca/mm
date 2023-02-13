@@ -14,7 +14,7 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gdk/dragsurfaceimpl.hpp>
+#include <libmm-gdk/dragsurfaceimpl.hxx>
 #include <utility> // std::move()
 
 namespace Gdk

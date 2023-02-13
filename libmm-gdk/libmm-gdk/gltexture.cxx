@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/gltexture.hpp>
-#include <libmm-gdk/gltexture_p.hpp>
+#include <libmm-gdk/gltexture.hxx>
+#include <libmm-gdk/gltexture_p.hxx>
 
 
 /* Copyright (C) 2018 The gtkmm Development Team
@@ -23,7 +23,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gdk/glcontext.hpp>
+#include <libmm-gdk/glcontext.hxx>
 
 namespace
 {

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/pagesetup.hpp>
-#include <libmm-gtk/pagesetup_p.hpp>
+#include <libmm-gtk/pagesetup.hxx>
+#include <libmm-gtk/pagesetup_p.hxx>
 
 
 /* Copyright (C) 2006 The gtkmm Development Team

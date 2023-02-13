@@ -3,9 +3,9 @@
 #define _GTKMM_SNAPSHOT_P_H
 
 
-#include <libmm-gdk/snapshot_p.hpp>
+#include <libmm-gdk/snapshot_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gtk
 {

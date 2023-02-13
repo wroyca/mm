@@ -2,10 +2,10 @@
 #ifndef _GDKMM_TOPLEVELSIZE_H
 #define _GDKMM_TOPLEVELSIZE_H
 
-#include <libmm-gdk/mm-gdkconfig.hpp>
+#include <libmm-gdk/mm-gdkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/windowgroup.hpp>
-#include <libmm-gtk/windowgroup_p.hpp>
+#include <libmm-gtk/windowgroup.hxx>
+#include <libmm-gtk/windowgroup_p.hxx>
 
 
 /*
@@ -25,8 +25,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/window.hpp>
-#include <libmm-glib/vectorutils.hpp>
+#include <libmm-gtk/window.hxx>
+#include <libmm-glib/vectorutils.hxx>
 
 #include <gtk/gtk.h>
 

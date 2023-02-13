@@ -3,7 +3,7 @@
 #define _GTKMM_DRAGSOURCE_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -22,11 +22,11 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gdk/contentprovider.hpp>
-#include <libmm-gdk/drag.hpp>
-#include <libmm-gdk/enums.hpp>
-#include <libmm-gdk/paintable.hpp>
-#include <libmm-gtk/gesturesingle.hpp>
+#include <libmm-gdk/contentprovider.hxx>
+#include <libmm-gdk/drag.hxx>
+#include <libmm-gdk/enums.hxx>
+#include <libmm-gdk/paintable.hxx>
+#include <libmm-gtk/gesturesingle.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

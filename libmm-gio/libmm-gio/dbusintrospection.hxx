@@ -2,10 +2,10 @@
 #ifndef _GIOMM_DBUSINTROSPECTION_H
 #define _GIOMM_DBUSINTROSPECTION_H
 
-#include <libmm-gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -25,8 +25,8 @@
  */
 
 
-#include <libmm-glib/refptr.hpp>
-#include <libmm-glib/value.hpp>
+#include <libmm-glib/refptr.hxx>
+#include <libmm-glib/value.hxx>
 #include <gio/gio.h>
 #include <vector>
 

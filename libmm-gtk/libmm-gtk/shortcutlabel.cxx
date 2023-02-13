@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/shortcutlabel.hpp>
-#include <libmm-gtk/shortcutlabel_p.hpp>
+#include <libmm-gtk/shortcutlabel.hxx>
+#include <libmm-gtk/shortcutlabel_p.hxx>
 
 
 /* Copyright (C) 2016 The gtkmm Development Team

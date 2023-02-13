@@ -2,10 +2,10 @@
 #ifndef _GIOMM_SETTINGSSCHEMAKEY_H
 #define _GIOMM_SETTINGSSCHEMAKEY_H
 
-#include <libmm-gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2015 The giomm Development Team
@@ -25,8 +25,8 @@
  */
 
 
-#include <libmm-glib/variant.hpp>
-#include <libmm-glib/varianttype.hpp>
+#include <libmm-glib/variant.hxx>
+#include <libmm-glib/varianttype.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

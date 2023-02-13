@@ -3,7 +3,7 @@
 #define _GTKMM_NOSELECTION_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2019 The gtkmm Development Team
@@ -22,10 +22,10 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/object.hpp>
-#include <libmm-glib/refptr.hpp>
-#include <libmm-gio/listmodel.hpp>
-#include <libmm-gtk/selectionmodel.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-glib/refptr.hxx>
+#include <libmm-gio/listmodel.hxx>
+#include <libmm-gtk/selectionmodel.hxx>
 #include <gtk/gtk.h> // Declares GtkNoSelection and GtkNoSelectionClass
 
 

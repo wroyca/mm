@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/propertyaction.hpp>
-#include <libmm-gio/propertyaction_p.hpp>
+#include <libmm-gio/propertyaction.hxx>
+#include <libmm-gio/propertyaction_p.hxx>
 
 
 /* Copyright (C) 2017 The giomm Development Team

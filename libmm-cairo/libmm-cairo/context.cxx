@@ -18,13 +18,13 @@
 
 /* M_PI is defined in math.h in the case of Microsoft Visual C++ */
 
-#include <libmm-cairo/mm-cairoconfig.hpp>
-#include <libmm-cairo/context.hpp>
-#include <libmm-cairo/context_private.hpp>
-#include <libmm-cairo/private.hpp>
-#include <libmm-cairo/surface.hpp>
-#include <libmm-cairo/script_surface.hpp>
-#include <libmm-cairo/scaledfont.hpp>
+#include <libmm-cairo/mm-cairoconfig.hxx>
+#include <libmm-cairo/context.hxx>
+#include <libmm-cairo/context_private.hxx>
+#include <libmm-cairo/private.hxx>
+#include <libmm-cairo/surface.hxx>
+#include <libmm-cairo/script_surface.hxx>
+#include <libmm-cairo/scaledfont.hxx>
 
 /* Windows et. al. need _USE_MATH_DEFINES for M_PI too */
 #include <cmath>

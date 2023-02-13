@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/application.hpp>
-#include <libmm-gio/application_p.hpp>
+#include <libmm-gio/application.hxx>
+#include <libmm-gio/application_p.hxx>
 
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -24,9 +24,9 @@
  */
 
 #include <gio/gio.h>
-#include <libmm-gio/file.hpp>
-#include <libmm-gio/actiongroup.hpp>
-#include <libmm-gio/init.hpp>
+#include <libmm-gio/file.hxx>
+#include <libmm-gio/actiongroup.hxx>
+#include <libmm-gio/init.hxx>
 #include <cstring> // std::memset()
 #include <map>
 #include <mutex>

@@ -2,10 +2,10 @@
 #ifndef _GTKMM_COLUMNVIEWCOLUMN_H
 #define _GTKMM_COLUMNVIEWCOLUMN_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -25,10 +25,10 @@
  */
 
 
-#include <libmm-glib/object.hpp>
-#include <libmm-gtk/listitemfactory.hpp>
-#include <libmm-gio/menumodel.hpp>
-#include <libmm-gtk/sorter.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-gtk/listitemfactory.hxx>
+#include <libmm-gio/menumodel.hxx>
+#include <libmm-gtk/sorter.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

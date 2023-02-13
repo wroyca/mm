@@ -3,7 +3,7 @@
 #define _GIOMM_FILEINFO_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -22,10 +22,10 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/datetime.hpp>
-#include <libmm-glib/object.hpp>
-#include <libmm-gio/fileattributeinfolist.hpp>
-#include <libmm-gio/icon.hpp>
+#include <libmm-glib/datetime.hxx>
+#include <libmm-glib/object.hxx>
+#include <libmm-gio/fileattributeinfolist.hxx>
+#include <libmm-gio/icon.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

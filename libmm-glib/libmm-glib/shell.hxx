@@ -20,7 +20,7 @@
  */
 
 
-#include <libmm-glib/error.hpp>
+#include <libmm-glib/error.hxx>
 #include <glib.h>
 #include <string>
 #include <vector>

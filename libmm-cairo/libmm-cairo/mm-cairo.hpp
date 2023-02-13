@@ -31,19 +31,19 @@
  *
  */
 
-#include <libmm-cairo/mm-cairoconfig.hpp>
-#include <libmm-cairo/context.hpp>
-#include <libmm-cairo/device.hpp>
-#include <libmm-cairo/enums.hpp>
-#include <libmm-cairo/exception.hpp>
-#include <libmm-cairo/fontface.hpp>
-#include <libmm-cairo/fontoptions.hpp>
-#include <libmm-cairo/matrix.hpp>
-#include <libmm-cairo/path.hpp>
-#include <libmm-cairo/pattern.hpp>
-#include <libmm-cairo/region.hpp>
-#include <libmm-cairo/scaledfont.hpp>
-#include <libmm-cairo/surface.hpp>
+#include <libmm-cairo/mm-cairoconfig.hxx>
+#include <libmm-cairo/context.hxx>
+#include <libmm-cairo/device.hxx>
+#include <libmm-cairo/enums.hxx>
+#include <libmm-cairo/exception.hxx>
+#include <libmm-cairo/fontface.hxx>
+#include <libmm-cairo/fontoptions.hxx>
+#include <libmm-cairo/matrix.hxx>
+#include <libmm-cairo/path.hxx>
+#include <libmm-cairo/pattern.hxx>
+#include <libmm-cairo/region.hxx>
+#include <libmm-cairo/scaledfont.hxx>
+#include <libmm-cairo/surface.hxx>
 
 #endif //__CAIROMM_H
 

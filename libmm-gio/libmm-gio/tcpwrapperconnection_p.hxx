@@ -3,9 +3,9 @@
 #define _GIOMM_TCPWRAPPERCONNECTION_P_H
 
 
-#include <libmm-gio/tcpconnection_p.hpp>
+#include <libmm-gio/tcpconnection_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gio
 {

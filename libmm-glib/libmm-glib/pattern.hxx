@@ -23,7 +23,7 @@ extern "C" {
 using GPatternSpec = struct _GPatternSpec;
 }
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 
 namespace Glib
 {

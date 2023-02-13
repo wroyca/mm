@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/aboutdialog.hpp>
-#include <libmm-gtk/aboutdialog_p.hpp>
+#include <libmm-gtk/aboutdialog.hxx>
+#include <libmm-gtk/aboutdialog_p.hxx>
 
 
 /*
@@ -25,7 +25,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-glib/vectorutils.hpp>
+#include <libmm-glib/vectorutils.hxx>
 
 #include <gtk/gtk.h>
 

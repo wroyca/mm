@@ -3,7 +3,7 @@
 #define _PANGOMM_ATTRLIST_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* attrlist.h
@@ -25,8 +25,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <libmm-pango/attributes.hpp>
-#include <libmm-pango/attriter.hpp>
+#include <libmm-pango/attributes.hxx>
+#include <libmm-pango/attriter.hxx>
 #include <vector>
 
 

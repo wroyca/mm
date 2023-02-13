@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/cellrendererpixbuf.hpp>
-#include <libmm-gtk/cellrendererpixbuf_p.hpp>
+#include <libmm-gtk/cellrendererpixbuf.hxx>
+#include <libmm-gtk/cellrendererpixbuf_p.hxx>
 
 
 /*

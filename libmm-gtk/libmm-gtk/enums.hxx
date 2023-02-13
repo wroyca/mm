@@ -2,10 +2,10 @@
 #ifndef _GTKMM_ENUMS_H
 #define _GTKMM_ENUMS_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /*
@@ -27,7 +27,7 @@
  */
 
 
-#include <libmm-glib/value.hpp>
+#include <libmm-glib/value.hxx>
 #include <gtk/gtk.h>
 
 

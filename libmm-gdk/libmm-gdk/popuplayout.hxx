@@ -3,7 +3,7 @@
 #define _GDKMM_POPUPLAYOUT_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -23,9 +23,9 @@
  */
 
 
-#include <libmm-glib/refptr.hpp>
-#include <libmm-gdk/enums.hpp>
-#include <libmm-gdk/rectangle.hpp>
+#include <libmm-glib/refptr.hxx>
+#include <libmm-gdk/enums.hxx>
+#include <libmm-gdk/rectangle.hxx>
 #include <gdk/gdk.h> // For GdkPopupLayout.
 
 

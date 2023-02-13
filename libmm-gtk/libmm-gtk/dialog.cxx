@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/dialog.hpp>
-#include <libmm-gtk/dialog_p.hpp>
+#include <libmm-gtk/dialog.hxx>
+#include <libmm-gtk/dialog_p.hxx>
 
 #include <gtk/gtk.h>
 

@@ -3,7 +3,7 @@
 #define _GTKMM_SWITCH_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 The gtkmm Development Team
@@ -23,8 +23,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/widget.hpp>
-#include <libmm-gtk/actionable.hpp>
+#include <libmm-gtk/widget.hxx>
+#include <libmm-gtk/actionable.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/icon.hpp>
-#include <libmm-gio/icon_p.hpp>
+#include <libmm-gio/icon.hxx>
+#include <libmm-gio/icon_p.hxx>
 
 
 /* Copyright (C) 2007 The giomm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <libmm-glib/error.hpp>
+#include <libmm-glib/error.hxx>
 
 namespace Gio
 {

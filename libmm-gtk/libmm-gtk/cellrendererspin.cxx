@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/cellrendererspin.hpp>
-#include <libmm-gtk/cellrendererspin_p.hpp>
+#include <libmm-gtk/cellrendererspin.hxx>
+#include <libmm-gtk/cellrendererspin_p.hxx>
 
 
 /* Copyright (C) 2006 The gtkmm Development Team
@@ -24,7 +24,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/adjustment.hpp>
+#include <libmm-gtk/adjustment.hxx>
 #include <gtk/gtk.h>
 
 namespace Gtk

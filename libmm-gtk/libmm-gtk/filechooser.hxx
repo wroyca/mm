@@ -3,7 +3,7 @@
 #define _GTKMM_FILECHOOSER_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2003 The gtkmm Development Team
@@ -25,10 +25,10 @@
 
 #include <vector>
 
-#include <libmm-gtk/widget.hpp>
-#include <libmm-gtk/filefilter.hpp>
-#include <libmm-gio/file.hpp>
-#include <libmm-gio/listmodel.hpp>
+#include <libmm-gtk/widget.hxx>
+#include <libmm-gtk/filefilter.hxx>
+#include <libmm-gio/file.hxx>
+#include <libmm-gio/listmodel.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

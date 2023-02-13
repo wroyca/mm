@@ -3,7 +3,7 @@
 #define _PANGOMM_LAYOUTITER_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* layoutiter.h
@@ -25,8 +25,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <libmm-pango/layoutline.hpp>
-#include <libmm-pango/glyphitem.hpp>
+#include <libmm-pango/layoutline.hxx>
+#include <libmm-pango/glyphitem.hxx>
 #include <pango/pango.h>
 
 

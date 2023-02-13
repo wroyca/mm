@@ -3,7 +3,7 @@
 #define _GTKMM_TREEMODELFILTER_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /*
@@ -24,11 +24,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/treeiter.hpp>
-#include <libmm-gtk/treemodel.hpp>
-#include <libmm-gtk/treedragsource.hpp>
+#include <libmm-gtk/treeiter.hxx>
+#include <libmm-gtk/treemodel.hxx>
+#include <libmm-gtk/treedragsource.hxx>
 // We couldn't include it in treemodel.h, but doing it here makes it easier for people.
-#include <libmm-gtk/treepath.hpp>
+#include <libmm-gtk/treepath.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

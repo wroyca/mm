@@ -3,9 +3,9 @@
 #define _GTKMM_CELLLAYOUT_P_H
 
 
-#include <libmm-glib/interface_p.hpp>
+#include <libmm-glib/interface_p.hxx>
 
-#include <libmm-glib/interface_p.hpp>
+#include <libmm-glib/interface_p.hxx>
 
 namespace Gtk
 {

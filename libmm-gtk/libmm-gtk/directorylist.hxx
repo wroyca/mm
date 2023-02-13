@@ -2,10 +2,10 @@
 #ifndef _GTKMM_DIRECTORYLIST_H
 #define _GTKMM_DIRECTORYLIST_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -25,8 +25,8 @@
  */
 
 
-#include <libmm-gio/listmodel.hpp>
-#include <libmm-gio/file.hpp>
+#include <libmm-gio/listmodel.hxx>
+#include <libmm-gio/file.hxx>
 #include <gtk/gtk.h>
 
 

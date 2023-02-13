@@ -3,9 +3,9 @@
 #define _GTKMM_SIGNALLISTITEMFACTORY_P_H
 
 
-#include <libmm-gtk/listitemfactory_p.hpp>
+#include <libmm-gtk/listitemfactory_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gtk
 {

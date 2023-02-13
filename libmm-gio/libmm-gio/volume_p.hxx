@@ -3,9 +3,9 @@
 #define _GIOMM_VOLUME_P_H
 
 
-#include <libmm-glib/interface_p.hpp>
+#include <libmm-glib/interface_p.hxx>
 
-#include <libmm-glib/interface_p.hpp>
+#include <libmm-glib/interface_p.hxx>
 
 namespace Gio
 {

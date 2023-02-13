@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-glib/unicode.hpp>
-#include <libmm-glib/unicode_p.hpp>
+#include <libmm-glib/unicode.hxx>
+#include <libmm-glib/unicode_p.hxx>
 
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -23,7 +23,7 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/unicode.hpp>
+#include <libmm-glib/unicode.hxx>
 
 namespace
 {

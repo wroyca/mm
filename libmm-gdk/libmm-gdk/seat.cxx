@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/seat.hpp>
-#include <libmm-gdk/seat_p.hpp>
+#include <libmm-gdk/seat.hxx>
+#include <libmm-gdk/seat_p.hxx>
 
 
 /* Copyright (C) 2015 The gtkmm Development Team
@@ -23,9 +23,9 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gdk/devicetool.hpp>
-#include <libmm-gdk/display.hpp>
-#include <libmm-gdk/surface.hpp>
+#include <libmm-gdk/devicetool.hxx>
+#include <libmm-gdk/display.hxx>
+#include <libmm-gdk/surface.hxx>
 
 using Capabilities = Gdk::Seat::Capabilities;
 

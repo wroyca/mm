@@ -3,9 +3,9 @@
 #define _GTKMM_APPCHOOSERDIALOG_P_H
 
 
-#include <libmm-gtk/dialog_p.hpp>
+#include <libmm-gtk/dialog_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gtk
 {

@@ -3,10 +3,10 @@
 #define _GTKMM_SHORTCUTMANAGER_P_H
 
 
-#include <libmm-glib/interface_p.hpp>
+#include <libmm-glib/interface_p.hxx>
 #include <gtk/gtk.h>
 
-#include <libmm-glib/interface_p.hpp>
+#include <libmm-glib/interface_p.hxx>
 
 namespace Gtk
 {

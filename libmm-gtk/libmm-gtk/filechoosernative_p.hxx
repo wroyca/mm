@@ -3,9 +3,9 @@
 #define _GTKMM_FILECHOOSERNATIVE_P_H
 
 
-#include <libmm-gtk/nativedialog_p.hpp>
+#include <libmm-gtk/nativedialog_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gtk
 {

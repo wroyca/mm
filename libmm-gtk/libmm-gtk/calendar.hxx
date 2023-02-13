@@ -2,10 +2,10 @@
 #ifndef _GTKMM_CALENDAR_H
 #define _GTKMM_CALENDAR_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /*
@@ -27,8 +27,8 @@
  */
 
 
-#include <libmm-gtk/widget.hpp>
-#include <libmm-glib/datetime.hpp>
+#include <libmm-gtk/widget.hxx>
+#include <libmm-glib/datetime.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

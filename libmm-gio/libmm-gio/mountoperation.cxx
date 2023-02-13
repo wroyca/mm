@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/mountoperation.hpp>
-#include <libmm-gio/mountoperation_p.hpp>
+#include <libmm-gio/mountoperation.hxx>
+#include <libmm-gio/mountoperation_p.hxx>
 
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <libmm-glib/exceptionhandler.hpp>
+#include <libmm-glib/exceptionhandler.hxx>
 
 namespace
 {

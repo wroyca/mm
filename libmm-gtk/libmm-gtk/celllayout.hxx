@@ -3,7 +3,7 @@
 #define _GTKMM_CELLLAYOUT_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2003 The gtkmm Development Team
@@ -25,11 +25,11 @@
 
 #include <vector>
 
-#include <libmm-glib/interface.hpp>
-//#include <libmm-gtk/cellarea.hpp>
-#include <libmm-gtk/cellrenderer.hpp>
-#include <libmm-gtk/cellrenderer_generation.hpp>
-#include <libmm-gtk/treemodel.hpp>
+#include <libmm-glib/interface.hxx>
+//#include <libmm-gtk/cellarea.hxx>
+#include <libmm-gtk/cellrenderer.hxx>
+#include <libmm-gtk/cellrenderer_generation.hxx>
+#include <libmm-gtk/treemodel.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

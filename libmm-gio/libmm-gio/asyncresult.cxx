@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/asyncresult.hpp>
-#include <libmm-gio/asyncresult_p.hpp>
+#include <libmm-gio/asyncresult.hxx>
+#include <libmm-gio/asyncresult_p.hxx>
 
 
 /* Copyright (C) 2007 The giomm Development Team
@@ -25,7 +25,7 @@
 
 //#include <gio/gasyncresult.h> //We are not allowed to include individual headers.
 #include <gio/gio.h>
-#include <libmm-glib/exceptionhandler.hpp>
+#include <libmm-glib/exceptionhandler.hxx>
 
 namespace Gio
 {

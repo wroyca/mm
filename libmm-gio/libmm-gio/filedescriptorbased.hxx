@@ -2,10 +2,10 @@
 #ifndef _GIOMM_FILEDESCRIPTORBASED_H
 #define _GIOMM_FILEDESCRIPTORBASED_H
 
-#include <libmm-gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2017 The giomm Development Team
@@ -25,7 +25,7 @@
  */
 
 
-#include <libmm-glib/interface.hpp>
+#include <libmm-glib/interface.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

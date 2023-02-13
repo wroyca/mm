@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/scrolledwindow.hpp>
-#include <libmm-gtk/scrolledwindow_p.hpp>
+#include <libmm-gtk/scrolledwindow.hxx>
+#include <libmm-gtk/scrolledwindow_p.hxx>
 
 
 /*
@@ -25,8 +25,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/scrollbar.hpp>
-#include <libmm-gtk/adjustment.hpp>
+#include <libmm-gtk/scrollbar.hxx>
+#include <libmm-gtk/adjustment.hxx>
 #include <gtk/gtk.h>
 
 namespace Gtk

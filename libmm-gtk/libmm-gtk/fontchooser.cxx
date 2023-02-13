@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/fontchooser.hpp>
-#include <libmm-gtk/fontchooser_p.hpp>
+#include <libmm-gtk/fontchooser.hxx>
+#include <libmm-gtk/fontchooser_p.hxx>
 
 
 /* Copyright 2011 The gtkmm Development Team

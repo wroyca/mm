@@ -2,10 +2,10 @@
 #ifndef _GDKMM_DRAWCONTEXT_H
 #define _GDKMM_DRAWCONTEXT_H
 
-#include <libmm-gdk/mm-gdkconfig.hpp>
+#include <libmm-gdk/mm-gdkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2016 The gtkmm Development Team
@@ -25,8 +25,8 @@
  */
 
 
-#include <libmm-glib/object.hpp>
-#include <libmm-cairo/region.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-cairo/region.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

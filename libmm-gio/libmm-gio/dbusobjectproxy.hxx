@@ -3,7 +3,7 @@
 #define _GIOMM_DBUSOBJECTPROXY_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2019 The giomm Development Team
@@ -22,9 +22,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/object.hpp>
-#include <libmm-gio/dbusobject.hpp>
-#include <libmm-gio/dbusconnection.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-gio/dbusobject.hxx>
+#include <libmm-gio/dbusconnection.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

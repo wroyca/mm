@@ -3,10 +3,10 @@
 #define _GTKMM_CELLRENDERER_P_H
 
 
-#include <libmm-gtk/object_p.hpp>
+#include <libmm-gtk/object_p.hxx>
 #include <gtk/gtk.h>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gtk
 {

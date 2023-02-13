@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/contentformatsbuilder.hpp>
-#include <libmm-gdk/contentformatsbuilder_p.hpp>
+#include <libmm-gdk/contentformatsbuilder.hxx>
+#include <libmm-gdk/contentformatsbuilder_p.hxx>
 
 
 /* Copyright (C) 2017 The gtkmm Development Team

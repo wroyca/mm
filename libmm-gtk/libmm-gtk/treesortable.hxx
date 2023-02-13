@@ -2,10 +2,10 @@
 #ifndef _GTKMM_TREESORTABLE_H
 #define _GTKMM_TREESORTABLE_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /*
@@ -30,11 +30,11 @@
 // the #ifndef GTKMM_DISABLE_DEPRECATED in deprecated classes) is generated:
 
 
-#include <libmm-glib/interface.hpp>
-#include <libmm-gtk/enums.hpp>
-#include <libmm-gtk/treemodelcolumn.hpp>
-#include <libmm-gtk/treemodel.hpp>
-#include <libmm-gtk/treeiter.hpp>
+#include <libmm-glib/interface.hxx>
+#include <libmm-gtk/enums.hxx>
+#include <libmm-gtk/treemodelcolumn.hxx>
+#include <libmm-gtk/treemodel.hxx>
+#include <libmm-gtk/treeiter.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

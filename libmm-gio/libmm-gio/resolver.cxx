@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/resolver.hpp>
-#include <libmm-gio/resolver_p.hpp>
+#include <libmm-gio/resolver.hxx>
+#include <libmm-gio/resolver_p.hxx>
 
 
 /* Copyright (C) 2008 Jonathon Jongsma
@@ -24,8 +24,8 @@
  */
 
 #include <gio/gio.h>
-#include <libmm-glib/error.hpp>
-#include <libmm-gio/slot_async.hpp>
+#include <libmm-glib/error.hxx>
+#include <libmm-gio/slot_async.hxx>
 
 namespace {
 

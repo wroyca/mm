@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/actiongroup.hpp>
-#include <libmm-gio/actiongroup_p.hpp>
+#include <libmm-gio/actiongroup.hxx>
+#include <libmm-gio/actiongroup_p.hxx>
 
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -23,9 +23,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/exceptionhandler.hpp>
-#include <libmm-glib/variant.hpp>
-#include <libmm-glib/vectorutils.hpp>
+#include <libmm-glib/exceptionhandler.hxx>
+#include <libmm-glib/variant.hxx>
+#include <libmm-glib/vectorutils.hxx>
 #include <gio/gio.h>
 
 namespace Gio

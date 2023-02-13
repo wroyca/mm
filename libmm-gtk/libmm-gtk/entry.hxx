@@ -3,7 +3,7 @@
 #define _GTKMM_ENTRY_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /*
@@ -24,16 +24,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/widget.hpp>
-#include <libmm-gtk/editable.hpp>
-#include <libmm-gtk/celleditable.hpp>
-#include <libmm-gtk/entrycompletion.hpp>
-#include <libmm-gtk/image.hpp> //For Image::Type.
-#include <libmm-gtk/border.hpp>
-#include <libmm-gtk/entrybuffer.hpp>
-#include <libmm-gio/menumodel.hpp>
-#include <libmm-pango/attrlist.hpp>
-#include <libmm-pango/tabarray.hpp>
+#include <libmm-gtk/widget.hxx>
+#include <libmm-gtk/editable.hxx>
+#include <libmm-gtk/celleditable.hxx>
+#include <libmm-gtk/entrycompletion.hxx>
+#include <libmm-gtk/image.hxx> //For Image::Type.
+#include <libmm-gtk/border.hxx>
+#include <libmm-gtk/entrybuffer.hxx>
+#include <libmm-gio/menumodel.hxx>
+#include <libmm-pango/attrlist.hxx>
+#include <libmm-pango/tabarray.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

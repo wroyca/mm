@@ -3,9 +3,9 @@
 #define _GIOMM_THREADEDSOCKETSERVICE_P_H
 
 
-#include <libmm-gio/socketservice_p.hpp>
+#include <libmm-gio/socketservice_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gio
 {

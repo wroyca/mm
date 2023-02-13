@@ -2,10 +2,10 @@
 #ifndef _GIOMM_SRVTARGET_H
 #define _GIOMM_SRVTARGET_H
 
-#include <libmm-gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2009 Jonathon Jongsma
@@ -25,7 +25,7 @@
  */
 
 
-#include <libmm-glib/value.hpp>
+#include <libmm-glib/value.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

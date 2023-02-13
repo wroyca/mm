@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/cursor.hpp>
-#include <libmm-gdk/cursor_p.hpp>
+#include <libmm-gdk/cursor.hxx>
+#include <libmm-gdk/cursor_p.hxx>
 
 
 /*

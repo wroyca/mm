@@ -3,7 +3,7 @@
 #define _GTKMM_BOXLAYOUT_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2019 The gtkmm Development Team
@@ -22,8 +22,8 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gtk/layoutmanager.hpp>
-#include <libmm-gtk/orientable.hpp>
+#include <libmm-gtk/layoutmanager.hxx>
+#include <libmm-gtk/orientable.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

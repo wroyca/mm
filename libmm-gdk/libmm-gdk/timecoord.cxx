@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/timecoord.hpp>
-#include <libmm-gdk/timecoord_p.hpp>
+#include <libmm-gdk/timecoord.hxx>
+#include <libmm-gdk/timecoord_p.hxx>
 
 
 /* Copyright (C) 2010 The gtkmm Development Team

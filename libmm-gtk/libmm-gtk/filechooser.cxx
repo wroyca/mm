@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/filechooser.hpp>
-#include <libmm-gtk/filechooser_p.hpp>
+#include <libmm-gtk/filechooser.hxx>
+#include <libmm-gtk/filechooser_p.hxx>
 
 
 /* Copyright 2003 The gtkmm Development Team
@@ -24,7 +24,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-glib/vectorutils.hpp>
+#include <libmm-glib/vectorutils.hxx>
 #include <gtk/gtk.h>
 
 using Action = Gtk::FileChooser::Action;

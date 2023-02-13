@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/unixcredentialsmessage.hpp>
-#include <libmm-gio/unixcredentialsmessage_p.hpp>
+#include <libmm-gio/unixcredentialsmessage.hxx>
+#include <libmm-gio/unixcredentialsmessage_p.hxx>
 
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gunixcredentialsmessage.h>
-#include <libmm-gio/credentials.hpp>
+#include <libmm-gio/credentials.hxx>
 
 namespace Gio
 {

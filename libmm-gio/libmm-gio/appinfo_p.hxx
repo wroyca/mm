@@ -3,10 +3,10 @@
 #define _GIOMM_APPINFO_P_H
 
 
-#include <libmm-glib/interface_p.hpp>
-#include <libmm-glib/object_p.hpp>
+#include <libmm-glib/interface_p.hxx>
+#include <libmm-glib/object_p.hxx>
 
-#include <libmm-glib/interface_p.hpp>
+#include <libmm-glib/interface_p.hxx>
 
 namespace Gio
 {

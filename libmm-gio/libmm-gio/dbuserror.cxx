@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/dbuserror.hpp>
-#include <libmm-gio/dbuserror_p.hpp>
+#include <libmm-gio/dbuserror.hxx>
+#include <libmm-gio/dbuserror_p.hxx>
 
 
 /* Copyright (C) 2010 The giomm Development Team

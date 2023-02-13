@@ -3,7 +3,7 @@
 #define _GTKMM_TREESELECTION_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright(C) 1998-1999 The gtkmm Development Team
@@ -25,10 +25,10 @@
 
 #include <vector>
 
-#include <libmm-gtk/enums.hpp>
-#include <libmm-gtk/treemodel.hpp>
-#include <libmm-gtk/treeiter.hpp>
-#include <libmm-gtk/treepath.hpp>
+#include <libmm-gtk/enums.hxx>
+#include <libmm-gtk/treemodel.hxx>
+#include <libmm-gtk/treeiter.hxx>
+#include <libmm-gtk/treepath.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

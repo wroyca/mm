@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/dbusauthobserver.hpp>
-#include <libmm-gio/dbusauthobserver_p.hpp>
+#include <libmm-gio/dbusauthobserver.hxx>
+#include <libmm-gio/dbusauthobserver_p.hxx>
 
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -24,8 +24,8 @@
  */
 
 #include <gio/gio.h>
-#include <libmm-glib/exceptionhandler.hpp>
-#include <libmm-gio/credentials.hpp>
+#include <libmm-glib/exceptionhandler.hxx>
+#include <libmm-gio/credentials.hxx>
 
 // To help the generated code:
 using Credentials = Gio::Credentials;

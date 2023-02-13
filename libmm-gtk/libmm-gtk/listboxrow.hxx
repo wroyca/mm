@@ -3,7 +3,7 @@
 #define _GTKMM_LISTBOXROW_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2013 The gtkmm Development Team
@@ -22,8 +22,8 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gtk/widget.hpp>
-#include <libmm-gtk/actionable.hpp>
+#include <libmm-gtk/widget.hxx>
+#include <libmm-gtk/actionable.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

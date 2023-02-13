@@ -3,7 +3,7 @@
 #define _GIOMM_FILEOUTPUTSTREAM_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -22,11 +22,11 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gio/outputstream.hpp>
-#include <libmm-gio/seekable.hpp>
-#include <libmm-gio/fileinfo.hpp>
-#include <libmm-glib/object.hpp>
-#include <libmm-glib/iochannel.hpp>
+#include <libmm-gio/outputstream.hxx>
+#include <libmm-gio/seekable.hxx>
+#include <libmm-gio/fileinfo.hxx>
+#include <libmm-glib/object.hxx>
+#include <libmm-glib/iochannel.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

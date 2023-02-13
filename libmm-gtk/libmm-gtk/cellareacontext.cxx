@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/cellareacontext.hpp>
-#include <libmm-gtk/cellareacontext_p.hpp>
+#include <libmm-gtk/cellareacontext.hxx>
+#include <libmm-gtk/cellareacontext_p.hxx>
 
 
 /* Copyright (C) 2010 The gtkmm Development Team
@@ -24,7 +24,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/cellarea.hpp>
+#include <libmm-gtk/cellarea.hxx>
 #include <gtk/gtk.h>
 
 namespace Gtk

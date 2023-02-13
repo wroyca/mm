@@ -1,7 +1,7 @@
 #ifndef _GTKMM_CONFIG_H
 #define _GTKMM_CONFIG_H
 
-#include <libmm-gdk/mm-gdkconfig.hpp>
+#include <libmm-gdk/mm-gdkconfig.hxx>
 
 /* Define to omit deprecated API from gtkmm. */
 /* #undef GTKMM_DISABLE_DEPRECATED */

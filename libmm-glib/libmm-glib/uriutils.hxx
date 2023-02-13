@@ -20,7 +20,7 @@
  */
 
 
-#include <libmm-glib/mm-glibconfig.hpp>
+#include <libmm-glib/mm-glibconfig.hxx>
 #include <string>
 
 namespace Glib

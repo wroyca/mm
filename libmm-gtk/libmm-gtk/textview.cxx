@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/textview.hpp>
-#include <libmm-gtk/textview_p.hpp>
+#include <libmm-gtk/textview.hxx>
+#include <libmm-gtk/textview_p.hxx>
 
 #include <gtk/gtk.h>
 

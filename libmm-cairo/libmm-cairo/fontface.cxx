@@ -17,10 +17,10 @@
  */
 
 #include <iostream>
-#include <libmm-cairo/context.hpp>
-#include <libmm-cairo/fontface.hpp>
-#include <libmm-cairo/scaledfont.hpp>
-#include <libmm-cairo/private.hpp>
+#include <libmm-cairo/context.hxx>
+#include <libmm-cairo/fontface.hxx>
+#include <libmm-cairo/scaledfont.hxx>
+#include <libmm-cairo/private.hxx>
 
 namespace
 {

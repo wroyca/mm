@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/picture.hpp>
-#include <libmm-gtk/picture_p.hpp>
+#include <libmm-gtk/picture.hxx>
+#include <libmm-gtk/picture_p.hxx>
 
 #include <gtk/gtk.h>
 

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/simpleactiongroup.hpp>
-#include <libmm-gio/simpleactiongroup_p.hpp>
+#include <libmm-gio/simpleactiongroup.hxx>
+#include <libmm-gio/simpleactiongroup_p.hxx>
 
 
 /* Copyright (C) 2011 The giomm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <libmm-gio/action.hpp>
+#include <libmm-gio/action.hxx>
 
 namespace Gio
 {

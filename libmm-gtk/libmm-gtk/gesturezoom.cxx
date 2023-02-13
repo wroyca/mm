@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/gesturezoom.hpp>
-#include <libmm-gtk/gesturezoom_p.hpp>
+#include <libmm-gtk/gesturezoom.hxx>
+#include <libmm-gtk/gesturezoom_p.hxx>
 
 
 /* Copyright (C) 2014 The gtkmm Development Team

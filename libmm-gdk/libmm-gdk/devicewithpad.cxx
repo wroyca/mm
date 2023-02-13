@@ -14,7 +14,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gdk/devicewithpad.hpp>
+#include <libmm-gdk/devicewithpad.hxx>
 
 namespace Gdk
 {

@@ -20,9 +20,9 @@
  */
 
 
-#include <libmm-glib/mm-glibconfig.hpp>
+#include <libmm-glib/mm-glibconfig.hxx>
 #include <glib-object.h> //For gsize
-#include <libmm-glib/value.hpp>
+#include <libmm-glib/value.hxx>
 #include <string>
 #include <vector>
 

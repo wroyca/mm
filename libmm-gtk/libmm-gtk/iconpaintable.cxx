@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/iconpaintable.hpp>
-#include <libmm-gtk/iconpaintable_p.hpp>
+#include <libmm-gtk/iconpaintable.hxx>
+#include <libmm-gtk/iconpaintable_p.hxx>
 
 
 /* Copyright 2003 The gtkmm Development Team

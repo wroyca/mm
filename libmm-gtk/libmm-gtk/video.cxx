@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/video.hpp>
-#include <libmm-gtk/video_p.hpp>
+#include <libmm-gtk/video.hxx>
+#include <libmm-gtk/video_p.hxx>
 
 
 /* Copyright (C) 2018 The gtkmm Development Team

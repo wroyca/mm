@@ -15,8 +15,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-glib/mm-glib.hpp>
-#include <libmm-gtk/treeview_private.hpp>
+#include <libmm-glib/mm-glib.hxx>
+#include <libmm-gtk/treeview_private.hxx>
 
 
 namespace Gtk::TreeView_Private

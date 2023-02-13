@@ -2,10 +2,10 @@
 #ifndef _GIOMM_UNIXSOCKETADDRESS_H
 #define _GIOMM_UNIXSOCKETADDRESS_H
 
-#include <libmm-gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -25,7 +25,7 @@
  */
 
 
-#include <libmm-gio/socketaddress.hpp>
+#include <libmm-gio/socketaddress.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

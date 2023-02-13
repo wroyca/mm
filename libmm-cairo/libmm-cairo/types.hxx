@@ -18,7 +18,7 @@
 #ifndef __CAIROMM_TYPES_H
 #define __CAIROMM_TYPES_H
 
-#include <libmm-cairo/mm-cairoconfig.hpp>
+#include <libmm-cairo/mm-cairoconfig.hxx>
 
 #include <cairo.h>
 

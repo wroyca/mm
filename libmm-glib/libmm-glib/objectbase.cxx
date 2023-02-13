@@ -16,11 +16,11 @@
 
 #include <glib-object.h>
 
-#include <libmm-glib/quark.hpp>
-#include <libmm-glib/objectbase.hpp>
-#include <libmm-glib/propertyproxy_base.hpp> //For PropertyProxyConnectionNode
-#include <libmm-glib/interface.hpp>
-#include <libmm-glib/interface_p.hpp>
+#include <libmm-glib/quark.hxx>
+#include <libmm-glib/objectbase.hxx>
+#include <libmm-glib/propertyproxy_base.hxx> //For PropertyProxyConnectionNode
+#include <libmm-glib/interface.hxx>
+#include <libmm-glib/interface_p.hxx>
 #include <utility> // For std::move()
 
 namespace

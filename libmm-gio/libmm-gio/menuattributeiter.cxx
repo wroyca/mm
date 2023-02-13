@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/menuattributeiter.hpp>
-#include <libmm-gio/menuattributeiter_p.hpp>
+#include <libmm-gio/menuattributeiter.hxx>
+#include <libmm-gio/menuattributeiter_p.hxx>
 
 
 /* Copyright (C) 2012 The giomm Development Team

@@ -1,7 +1,7 @@
 #ifndef _GIOMM_CONFIG_H
 #define _GIOMM_CONFIG_H
 
-#include <libmm-glib/mm-glibconfig.hpp>
+#include <libmm-glib/mm-glibconfig.hxx>
 
 /* Define to omit deprecated API from the library. */
 #undef GIOMM_DISABLE_DEPRECATED

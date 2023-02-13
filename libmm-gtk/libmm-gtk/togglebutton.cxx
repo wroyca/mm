@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/togglebutton.hpp>
-#include <libmm-gtk/togglebutton_p.hpp>
+#include <libmm-gtk/togglebutton.hxx>
+#include <libmm-gtk/togglebutton_p.hxx>
 
 
 /*

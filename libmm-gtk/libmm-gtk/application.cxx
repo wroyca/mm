@@ -4,10 +4,10 @@
 typedef struct _GtkWindow GtkWindow;
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/application.hpp>
-#include <libmm-gtk/application_p.hpp>
+#include <libmm-gtk/application.hxx>
+#include <libmm-gtk/application_p.hxx>
 
 
 /* Copyright 2003 The gtkmm Development Team
@@ -27,15 +27,15 @@ typedef struct _GtkWindow GtkWindow;
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <libmm-glib/vectorutils.hpp>
+#include <libmm-glib/vectorutils.hxx>
 
 #include <gtk/gtk.h>
-#include <libmm-gtk/window.hpp>
-#include <libmm-glib/init.hpp>
-#include <libmm-gio/init.hpp>
-#include <libmm-pango/wrap_init.hpp>
-#include <libmm-gdk/wrap_init.hpp>
-#include <libmm-gtk/wrap_init.hpp>
+#include <libmm-gtk/window.hxx>
+#include <libmm-glib/init.hxx>
+#include <libmm-gio/init.hxx>
+#include <libmm-pango/wrap_init.hxx>
+#include <libmm-gdk/wrap_init.hxx>
+#include <libmm-gtk/wrap_init.hxx>
 #include <locale>
 #include <clocale>
 #include <stdexcept>

@@ -2,10 +2,10 @@
 #ifndef _GTKMM_TREEVIEW_H
 #define _GTKMM_TREEVIEW_H
 
-#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright(C) 2002 The gtkmm Development Team
@@ -31,14 +31,14 @@
 
 #include <vector>
 #include <cstdlib> // std::strto*()
-#include <libmm-gtk/widget.hpp>
-#include <libmm-gtk/treeviewcolumn.hpp>
-#include <libmm-gtk/treeselection.hpp>
-#include <libmm-gtk/treemodelcolumn.hpp>
-#include <libmm-gtk/cellrenderer.hpp>
-#include <libmm-gtk/scrollable.hpp>
-#include <libmm-gtk/editable.hpp>
-#include <libmm-gtk/tooltip.hpp>
+#include <libmm-gtk/widget.hxx>
+#include <libmm-gtk/treeviewcolumn.hxx>
+#include <libmm-gtk/treeselection.hxx>
+#include <libmm-gtk/treemodelcolumn.hxx>
+#include <libmm-gtk/cellrenderer.hxx>
+#include <libmm-gtk/scrollable.hxx>
+#include <libmm-gtk/editable.hxx>
+#include <libmm-gtk/tooltip.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -4,10 +4,10 @@
 //#undef GDK_PIXBUF_DISABLE_DEPRECATED
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/pixbuf.hpp>
-#include <libmm-gdk/pixbuf_p.hpp>
+#include <libmm-gdk/pixbuf.hxx>
+#include <libmm-gdk/pixbuf_p.hxx>
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
@@ -29,7 +29,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-glib/vectorutils.hpp>
+#include <libmm-glib/vectorutils.hxx>
 
 #include <gdk/gdk.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>

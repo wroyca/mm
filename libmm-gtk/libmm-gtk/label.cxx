@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/label.hpp>
-#include <libmm-gtk/label_p.hpp>
+#include <libmm-gtk/label.hxx>
+#include <libmm-gtk/label_p.hxx>
 
 
 /* Copyright 1998-2002 The gtkmm Development Team

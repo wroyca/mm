@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-pango/renderer.hpp>
-#include <libmm-pango/renderer_p.hpp>
+#include <libmm-pango/renderer.hxx>
+#include <libmm-pango/renderer_p.hxx>
 
 
 /*

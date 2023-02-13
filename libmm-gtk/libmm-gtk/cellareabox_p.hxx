@@ -3,9 +3,9 @@
 #define _GTKMM_CELLAREABOX_P_H
 
 
-#include <libmm-gtk/cellarea_p.hpp>
+#include <libmm-gtk/cellarea_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gtk
 {

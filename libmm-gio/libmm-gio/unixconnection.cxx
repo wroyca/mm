@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/unixconnection.hpp>
-#include <libmm-gio/unixconnection_p.hpp>
+#include <libmm-gio/unixconnection.hxx>
+#include <libmm-gio/unixconnection_p.hxx>
 
 
 /* Copyright (C) 2010 Jonathon Jongsma
@@ -25,7 +25,7 @@
 
 #include <gio/gio.h>
 #include <gio/gunixconnection.h>
-#include <libmm-gio/slot_async.hpp>
+#include <libmm-gio/slot_async.hxx>
 
 namespace Gio
 {

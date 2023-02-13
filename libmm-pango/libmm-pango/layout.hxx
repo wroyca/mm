@@ -3,7 +3,7 @@
 #define _PANGOMM_LAYOUT_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* layout.h
@@ -25,14 +25,14 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <libmm-glib/object.hpp>
-#include <libmm-pango/font.hpp>
-#include <libmm-pango/fontdescription.hpp>
-#include <libmm-pango/context.hpp>
-#include <libmm-pango/attrlist.hpp>
-#include <libmm-pango/tabarray.hpp>
-#include <libmm-pango/layoutline.hpp>
-#include <libmm-pango/layoutiter.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-pango/font.hxx>
+#include <libmm-pango/fontdescription.hxx>
+#include <libmm-pango/context.hxx>
+#include <libmm-pango/attrlist.hxx>
+#include <libmm-pango/tabarray.hxx>
+#include <libmm-pango/layoutline.hxx>
+#include <libmm-pango/layoutiter.hxx>
 #include <pango/pango.h>
 
 

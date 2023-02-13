@@ -3,7 +3,7 @@
 #define _GDKMM_TEXTURE_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2017 The gtkmm Development Team
@@ -22,8 +22,8 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/object.hpp>
-#include <libmm-gdk/paintable.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-gdk/paintable.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

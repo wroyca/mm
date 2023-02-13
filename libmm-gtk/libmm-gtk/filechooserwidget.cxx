@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/filechooserwidget.hpp>
-#include <libmm-gtk/filechooserwidget_p.hpp>
+#include <libmm-gtk/filechooserwidget.hxx>
+#include <libmm-gtk/filechooserwidget_p.hxx>
 
 
 /*

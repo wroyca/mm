@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/headerbar.hpp>
-#include <libmm-gtk/headerbar_p.hpp>
+#include <libmm-gtk/headerbar.hxx>
+#include <libmm-gtk/headerbar_p.hxx>
 
 
 /*

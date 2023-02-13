@@ -2,10 +2,10 @@
 #ifndef _GDKMM_PIXBUF_H
 #define _GDKMM_PIXBUF_H
 
-#include <libmm-gdk/mm-gdkconfig.hpp>
+#include <libmm-gdk/mm-gdkconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 1998-2002 The gtkmm Development Team
@@ -31,12 +31,12 @@
 
 #include <vector>
 
-#include <libmm-gdk/pixbufformat.hpp>
-#include <libmm-gio/inputstream.hpp>
-#include <libmm-gio/icon.hpp>
-#include <libmm-gio/loadableicon.hpp>
-#include <libmm-cairo/surface.hpp>
-#include <libmm-glib/error.hpp>
+#include <libmm-gdk/pixbufformat.hxx>
+#include <libmm-gio/inputstream.hxx>
+#include <libmm-gio/icon.hxx>
+#include <libmm-gio/loadableicon.hxx>
+#include <libmm-cairo/surface.hxx>
+#include <libmm-glib/error.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

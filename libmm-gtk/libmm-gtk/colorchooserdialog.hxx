@@ -3,7 +3,7 @@
 #define _GTKMM_COLORCHOOSERDIALOG_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2012 The gtkmm Development Team
@@ -23,8 +23,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/dialog.hpp>
-#include <libmm-gtk/colorchooser.hpp>
+#include <libmm-gtk/dialog.hxx>
+#include <libmm-gtk/colorchooser.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

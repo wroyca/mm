@@ -3,7 +3,7 @@
 #define _GDKMM_FRAMECLOCK_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2018 The gtkmm Development Team
@@ -22,8 +22,8 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/object.hpp>
-#include <libmm-gdk/frametimings.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-gdk/frametimings.hxx>
 
 
 extern "C" typedef struct _GdkFrameClock GdkFrameClock;

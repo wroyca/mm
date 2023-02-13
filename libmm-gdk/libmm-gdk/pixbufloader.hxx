@@ -3,7 +3,7 @@
 #define _GDKMM_PIXBUFLOADER_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 1998-2002 The gtkmm Development Team
@@ -23,10 +23,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-glib/object.hpp>
-#include <libmm-gdk/pixbuf.hpp>
-#include <libmm-gdk/pixbufanimation.hpp>
-#include <libmm-gdk/pixbufformat.hpp>
+#include <libmm-glib/object.hxx>
+#include <libmm-gdk/pixbuf.hxx>
+#include <libmm-gdk/pixbufanimation.hxx>
+#include <libmm-gdk/pixbufformat.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

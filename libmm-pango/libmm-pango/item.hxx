@@ -3,7 +3,7 @@
 #define _PANGOMM_ITEM_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -23,8 +23,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <libmm-pango/attributes.hpp>
-#include <libmm-pango/language.hpp>
+#include <libmm-pango/attributes.hxx>
+#include <libmm-pango/language.hxx>
 #include <pango/pango.h>
 
 

@@ -16,9 +16,9 @@
  * 02110-1301, USA.
  */
 
-#include <libmm-cairo/mm-cairoconfig.hpp> //For CAIROMM_EXCEPTIONS_ENABLED
-#include <libmm-cairo/private.hpp>
-#include <libmm-cairo/exception.hpp>
+#include <libmm-cairo/mm-cairoconfig.hxx> //For CAIROMM_EXCEPTIONS_ENABLED
+#include <libmm-cairo/private.hxx>
+#include <libmm-cairo/exception.hxx>
 #include <stdexcept>
 #include <iostream>
 

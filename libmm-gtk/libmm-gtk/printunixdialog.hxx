@@ -3,7 +3,7 @@
 #define _GTKMM_PRINTUNIXDIALOG_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2006 The gtkmm Development Team
@@ -23,11 +23,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/dialog.hpp>
-#include <libmm-gtk/pagesetup.hpp>
-#include <libmm-gtk/printer.hpp>
-#include <libmm-gtk/printjob.hpp>
-#include <libmm-gtk/printsettings.hpp>
+#include <libmm-gtk/dialog.hxx>
+#include <libmm-gtk/pagesetup.hxx>
+#include <libmm-gtk/printer.hxx>
+#include <libmm-gtk/printjob.hxx>
+#include <libmm-gtk/printsettings.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

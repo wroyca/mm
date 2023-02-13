@@ -3,7 +3,7 @@
 #define _GIOMM_PROXYRESOLVER_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 The gtkmm Development Team
@@ -22,11 +22,11 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/error.hpp>
-#include <libmm-glib/interface.hpp>
-#include <libmm-gio/asyncresult.hpp>
-#include <libmm-gio/cancellable.hpp>
-//#include <libmm-gio/error.hpp> //Because this is thrown by some of these methods.
+#include <libmm-glib/error.hxx>
+#include <libmm-glib/interface.hxx>
+#include <libmm-gio/asyncresult.hxx>
+#include <libmm-gio/cancellable.hxx>
+//#include <libmm-gio/error.hxx> //Because this is thrown by some of these methods.
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

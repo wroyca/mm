@@ -2,10 +2,10 @@
 #ifndef _PANGOMM_GLYPH_H
 #define _PANGOMM_GLYPH_H
 
-#include <libmm-pango/mm-pangoconfig.hpp>
+#include <libmm-pango/mm-pangoconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* glyph.h

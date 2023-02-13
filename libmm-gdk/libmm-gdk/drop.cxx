@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/drop.hpp>
-#include <libmm-gdk/drop_p.hpp>
+#include <libmm-gdk/drop.hxx>
+#include <libmm-gdk/drop_p.hxx>
 
 
 /* Copyright (C) 2018 The gtkmm Development Team
@@ -23,14 +23,14 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gio/cancellable.hpp>
-#include <libmm-gio/inputstream.hpp>
-#include <libmm-gio/slot_async.hpp>
-#include <libmm-gdk/contentformats.hpp>
-#include <libmm-gdk/device.hpp>
-#include <libmm-gdk/display.hpp>
-#include <libmm-gdk/drag.hpp>
-#include <libmm-gdk/surface.hpp>
+#include <libmm-gio/cancellable.hxx>
+#include <libmm-gio/inputstream.hxx>
+#include <libmm-gio/slot_async.hxx>
+#include <libmm-gdk/contentformats.hxx>
+#include <libmm-gdk/device.hxx>
+#include <libmm-gdk/display.hxx>
+#include <libmm-gdk/drag.hxx>
+#include <libmm-gdk/surface.hxx>
 #include <gdk/gdk.h>
 
 namespace Gdk

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/tlsserverconnection.hpp>
-#include <libmm-gio/tlsserverconnection_p.hpp>
+#include <libmm-gio/tlsserverconnection.hxx>
+#include <libmm-gio/tlsserverconnection_p.hxx>
 
 
 /* Copyright (C) 2013 The giomm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <libmm-gio/tlsserverconnectionimpl.hpp>
+#include <libmm-gio/tlsserverconnectionimpl.hxx>
 
 namespace
 {

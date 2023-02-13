@@ -14,7 +14,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gdk/value_cairo.hpp>
+#include <libmm-gdk/value_cairo.hxx>
 #include <cairo-gobject.h>
 
 namespace Gdk::Cairo

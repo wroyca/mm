@@ -3,7 +3,7 @@
 #define _GTKMM_ICONVIEW_H
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /*
@@ -26,14 +26,14 @@
 
 #include <vector>
 
-#include <libmm-gtk/widget.hpp>
-#include <libmm-gtk/treemodel.hpp>
-#include <libmm-gtk/treepath.hpp>
-#include <libmm-gtk/celllayout.hpp>
-#include <libmm-gtk/cellarea.hpp>
-#include <libmm-gtk/cellrenderer.hpp>
-#include <libmm-gtk/scrollable.hpp>
-#include <libmm-gtk/tooltip.hpp>
+#include <libmm-gtk/widget.hxx>
+#include <libmm-gtk/treemodel.hxx>
+#include <libmm-gtk/treepath.hxx>
+#include <libmm-gtk/celllayout.hxx>
+#include <libmm-gtk/cellarea.hxx>
+#include <libmm-gtk/cellrenderer.hxx>
+#include <libmm-gtk/scrollable.hxx>
+#include <libmm-gtk/tooltip.hxx>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

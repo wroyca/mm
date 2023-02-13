@@ -3,9 +3,9 @@
 #define _GTKMM_VOLUMEBUTTON_P_H
 
 
-#include <libmm-gtk/scalebutton_p.hpp>
+#include <libmm-gtk/scalebutton_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gtk
 {

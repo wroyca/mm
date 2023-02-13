@@ -20,10 +20,10 @@
  */
 
 
-#include <libmm-glib/mm-glibconfig.hpp>
-#include <libmm-glib/refptr.hpp>
-#include <libmm-glib/ustring.hpp>
-#include <libmm-glib/error.hpp>
+#include <libmm-glib/mm-glibconfig.hxx>
+#include <libmm-glib/refptr.hxx>
+#include <libmm-glib/ustring.hxx>
+#include <libmm-glib/error.hxx>
 #include <glib.h>
 #include <vector>
 

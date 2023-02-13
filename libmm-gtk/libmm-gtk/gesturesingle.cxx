@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/gesturesingle.hpp>
-#include <libmm-gtk/gesturesingle_p.hpp>
+#include <libmm-gtk/gesturesingle.hxx>
+#include <libmm-gtk/gesturesingle_p.hxx>
 
 
 /* Copyright (C) 2014 The gtkmm Development Team

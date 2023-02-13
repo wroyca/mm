@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-pango/tabarray.hpp>
-#include <libmm-pango/tabarray_p.hpp>
+#include <libmm-pango/tabarray.hxx>
+#include <libmm-pango/tabarray_p.hxx>
 
 
 // -*- c++ -*-

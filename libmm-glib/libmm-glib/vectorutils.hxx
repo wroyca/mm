@@ -17,8 +17,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include <vector>
-#include <libmm-glib/mm-glibconfig.hpp>
-#include <libmm-glib/containerhandle_shared.hpp>
+#include <libmm-glib/mm-glibconfig.hxx>
+#include <libmm-glib/containerhandle_shared.hxx>
 #include <cstddef>
 
 /* There are three types of functions:

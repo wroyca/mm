@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-pango/fontface.hpp>
-#include <libmm-pango/fontface_p.hpp>
+#include <libmm-pango/fontface.hxx>
+#include <libmm-pango/fontface_p.hxx>
 
 
 /*
@@ -25,7 +25,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <libmm-pango/fontfamily.hpp>
+#include <libmm-pango/fontfamily.hxx>
 
 namespace Pango
 {

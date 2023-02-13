@@ -17,8 +17,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/mm-glibconfig.hpp>
-#include <libmm-glib/unicode.hpp>
+#include <libmm-glib/mm-glibconfig.hxx>
+#include <libmm-glib/unicode.hxx>
 #include <glib.h>
 
 #include <cstddef> // for std::size_t and optionally std::ptrdiff_t

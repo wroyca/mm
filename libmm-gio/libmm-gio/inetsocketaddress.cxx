@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/inetsocketaddress.hpp>
-#include <libmm-gio/inetsocketaddress_p.hpp>
+#include <libmm-gio/inetsocketaddress.hxx>
+#include <libmm-gio/inetsocketaddress_p.hxx>
 
 
 /* Copyright (C) 2008 Jonathon Jongsma

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/themedicon.hpp>
-#include <libmm-gio/themedicon_p.hpp>
+#include <libmm-gio/themedicon.hxx>
+#include <libmm-gio/themedicon_p.hxx>
 
 
 /* Copyright (C) 2007 The gtkmm Development Team

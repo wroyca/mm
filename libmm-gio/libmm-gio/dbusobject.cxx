@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/dbusobject.hpp>
-#include <libmm-gio/dbusobject_p.hpp>
+#include <libmm-gio/dbusobject.hxx>
+#include <libmm-gio/dbusobject_p.hxx>
 
 
 /* Copyright (C) 2012 The giomm Development Team
@@ -24,8 +24,8 @@
  */
 
 #include <gio/gio.h>
-#include <libmm-gio/dbusinterface.hpp>
-#include <libmm-glib/vectorutils.hpp>
+#include <libmm-gio/dbusinterface.hxx>
+#include <libmm-glib/vectorutils.hxx>
 
 namespace
 {

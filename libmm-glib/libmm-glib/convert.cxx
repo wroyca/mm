@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-glib/convert.hpp>
-#include <libmm-glib/convert_p.hpp>
+#include <libmm-glib/convert.hxx>
+#include <libmm-glib/convert_p.hxx>
 
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -27,7 +27,7 @@
 //#include <glib/gmessages.h> //For g_assert() in glib < 2.15.0
 #include <glib.h> //For g_assert() in all versions of glib.
 
-#include <libmm-glib/utility.hpp>
+#include <libmm-glib/utility.hxx>
 
 namespace Glib
 {

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/expression.hpp>
-#include <libmm-gtk/expression_p.hpp>
+#include <libmm-gtk/expression.hxx>
+#include <libmm-gtk/expression_p.hxx>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -23,7 +23,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gtk/expression.hpp>
+#include <libmm-gtk/expression.hxx>
 
 
 namespace Gtk::Expression_Private

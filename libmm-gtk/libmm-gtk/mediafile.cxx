@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/mediafile.hpp>
-#include <libmm-gtk/mediafile_p.hpp>
+#include <libmm-gtk/mediafile.hxx>
+#include <libmm-gtk/mediafile_p.hxx>
 
 
 /* Copyright (C) 2018 The gtkmm Development Team
@@ -23,8 +23,8 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-gio/file.hpp>
-#include <libmm-gio/inputstream.hpp>
+#include <libmm-gio/file.hxx>
+#include <libmm-gio/inputstream.hxx>
 #include <gtk/gtk.h>
 
 

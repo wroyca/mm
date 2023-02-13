@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/display.hpp>
-#include <libmm-gdk/display_p.hpp>
+#include <libmm-gdk/display.hxx>
+#include <libmm-gdk/display_p.hxx>
 
 #include <gdk/gdk.h>
 
@@ -28,13 +28,13 @@
 
 #include <vector>
 
-#include <libmm-gio/listmodel.hpp>
-#include <libmm-gdk/applaunchcontext.hpp>
-#include <libmm-gdk/clipboard.hpp>
-#include <libmm-gdk/glcontext.hpp>
-#include <libmm-gdk/seat.hpp>
-#include <libmm-gdk/monitor.hpp>
-#include <libmm-gdk/surface.hpp>
+#include <libmm-gio/listmodel.hxx>
+#include <libmm-gdk/applaunchcontext.hxx>
+#include <libmm-gdk/clipboard.hxx>
+#include <libmm-gdk/glcontext.hxx>
+#include <libmm-gdk/seat.hxx>
+#include <libmm-gdk/monitor.hxx>
+#include <libmm-gdk/surface.hxx>
 #include <gdk/gdk.h>
 
 namespace Gdk

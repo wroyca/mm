@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/separator.hpp>
-#include <libmm-gtk/separator_p.hpp>
+#include <libmm-gtk/separator.hxx>
+#include <libmm-gtk/separator_p.hxx>
 
 
 /*

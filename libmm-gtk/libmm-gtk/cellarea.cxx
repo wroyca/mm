@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/cellarea.hpp>
-#include <libmm-gtk/cellarea_p.hpp>
+#include <libmm-gtk/cellarea.hxx>
+#include <libmm-gtk/cellarea_p.hxx>
 
 
 /* Copyright 2010 The gtkmm Development Team
@@ -25,7 +25,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <libmm-gtk/snapshot.hpp>
+#include <libmm-gtk/snapshot.hxx>
 
 namespace //anonymous namespace
 {

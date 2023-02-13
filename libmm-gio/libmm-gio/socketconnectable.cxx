@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/socketconnectable.hpp>
-#include <libmm-gio/socketconnectable_p.hpp>
+#include <libmm-gio/socketconnectable.hxx>
+#include <libmm-gio/socketconnectable_p.hxx>
 
 
 /* Copyright (C) 2009 The giomm Development Team

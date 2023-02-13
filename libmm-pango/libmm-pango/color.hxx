@@ -2,10 +2,10 @@
 #ifndef _PANGOMM_COLOR_H
 #define _PANGOMM_COLOR_H
 
-#include <libmm-pango/mm-pangoconfig.hpp>
+#include <libmm-pango/mm-pangoconfig.hxx>
 
 
-#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -26,8 +26,8 @@
  */
 
 
-#include <libmm-glib/value.hpp>
-#include <libmm-glib/utility.hpp>
+#include <libmm-glib/value.hxx>
+#include <libmm-glib/utility.hxx>
 #include <pango/pango.h>
 
 

@@ -2,9 +2,9 @@
 #define _GTKMM_OBJECT_P_H
 
 
-#include <libmm-glib/object_p.hpp>
+#include <libmm-glib/object_p.hxx>
 
-#include <libmm-glib/class.hpp>
+#include <libmm-glib/class.hxx>
 
 namespace Gtk
 {

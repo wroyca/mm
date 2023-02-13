@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gio/filterinputstream.hpp>
-#include <libmm-gio/filterinputstream_p.hpp>
+#include <libmm-gio/filterinputstream.hxx>
+#include <libmm-gio/filterinputstream_p.hxx>
 
 
 /* Copyright (C) 2008 The gtkmm Development Team

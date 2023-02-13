@@ -14,8 +14,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libmm-glib/init.hpp>
-#include <libmm-glib/error.hpp>
+#include <libmm-glib/init.hxx>
+#include <libmm-glib/error.hxx>
 #include <locale>
 #include <clocale>
 #include <stdexcept>

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-pango/attrlist.hpp>
-#include <libmm-pango/attrlist_p.hpp>
+#include <libmm-pango/attrlist.hxx>
+#include <libmm-pango/attrlist_p.hxx>
 
 
 /*

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/treemodelfilter.hpp>
-#include <libmm-gtk/treemodelfilter_p.hpp>
+#include <libmm-gtk/treemodelfilter.hxx>
+#include <libmm-gtk/treemodelfilter_p.hxx>
 
 
 /*

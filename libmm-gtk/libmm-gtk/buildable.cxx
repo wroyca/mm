@@ -5,10 +5,10 @@
     typedef struct _GtkBuildableParser GtkBuildableParser;
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/buildable.hpp>
-#include <libmm-gtk/buildable_p.hpp>
+#include <libmm-gtk/buildable.hxx>
+#include <libmm-gtk/buildable_p.hxx>
 
 
 /* Copyright 2009 The gtkmm Development Team
@@ -29,7 +29,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <libmm-gtk/builder.hpp>
+#include <libmm-gtk/builder.hxx>
 #include <cstring>
 
 namespace Gtk

@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gdk/dragsurface.hpp>
-#include <libmm-gdk/dragsurface_p.hpp>
+#include <libmm-gdk/dragsurface.hxx>
+#include <libmm-gdk/dragsurface_p.hxx>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

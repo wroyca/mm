@@ -1,10 +1,10 @@
 
 
 
-#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hxx>
 
-#include <libmm-gtk/scrollable.hpp>
-#include <libmm-gtk/scrollable_p.hpp>
+#include <libmm-gtk/scrollable.hxx>
+#include <libmm-gtk/scrollable_p.hxx>
 
 
 /* Copyright 2010 The gtkmm Development Team
