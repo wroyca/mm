@@ -1,0 +1,3 @@
+import libs = libmm-pango%lib{mm-pango}
+
+exe{driver}: {hxx ixx txx cxx}{**} $libs testscript{**}

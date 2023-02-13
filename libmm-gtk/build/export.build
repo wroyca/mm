@@ -1,0 +1,6 @@
+$out_root/
+{
+  include libmm-gtk/
+}
+
+export $out_root/libmm-gtk/$import.target

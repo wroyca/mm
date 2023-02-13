@@ -1,0 +1,6 @@
+$out_root/
+{
+  include libmm-adw/
+}
+
+export $out_root/libmm-adw/$import.target

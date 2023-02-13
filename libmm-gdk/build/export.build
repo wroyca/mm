@@ -1,0 +1,6 @@
+$out_root/
+{
+  include libmm-gdk/
+}
+
+export $out_root/libmm-gdk/$import.target

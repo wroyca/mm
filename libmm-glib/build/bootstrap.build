@@ -1,0 +1,7 @@
+project = libmm-glib
+
+using version
+using config
+using test
+using install
+using dist

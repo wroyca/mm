@@ -1,0 +1,7 @@
+project = libmm-adw
+
+using version
+using config
+using test
+using install
+using dist

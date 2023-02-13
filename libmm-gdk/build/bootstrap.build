@@ -1,0 +1,7 @@
+project = libmm-gdk
+
+using version
+using config
+using test
+using install
+using dist

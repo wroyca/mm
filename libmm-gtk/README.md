@@ -1,0 +1,3 @@
+# libmm-gtk
+
+C++ library

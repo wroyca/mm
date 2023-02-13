@@ -1,0 +1,7 @@
+project = libmm-cairo
+
+using version
+using config
+using test
+using install
+using dist

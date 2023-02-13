@@ -1,0 +1,14 @@
+: 1
+location: libmm-adw/
+:
+location: libmm-cairo/
+:
+location: libmm-gdk/
+:
+location: libmm-gio/
+:
+location: libmm-glib/
+:
+location: libmm-gtk/
+:
+location: libmm-pango/

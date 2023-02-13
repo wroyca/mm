@@ -1,0 +1,3 @@
+# libmm-glib
+
+C++ library

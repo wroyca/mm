@@ -1,0 +1,3 @@
+# libmm-gdk
+
+C++ library
