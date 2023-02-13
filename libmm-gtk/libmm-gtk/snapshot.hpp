@@ -3,7 +3,7 @@
 #define _GTKMM_SNAPSHOT_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2017 The gtkmm Development Team
@@ -22,9 +22,9 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gdk/snapshot.hpp>
-#include <mm/gdk/rectangle.hpp>
-#include <mm/gtk/stylecontext.hpp>
+#include <libmm-gdk/snapshot.hpp>
+#include <libmm-gdk/rectangle.hpp>
+#include <libmm-gtk/stylecontext.hpp>
 
 
 typedef struct _graphene_rect_t graphene_rect_t;

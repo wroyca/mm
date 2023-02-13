@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/constrainttarget.hpp>
-#include <mm/gtk/private/constrainttarget_p.hpp>
+#include <libmm-gtk/constrainttarget.hpp>
+#include <libmm-gtk/constrainttarget_p.hpp>
 
 
 /* Copyright (C) 2019 The gtkmm Development Team

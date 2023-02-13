@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/settingsschemakey.hpp>
-#include <mm/gio/private/settingsschemakey_p.hpp>
+#include <libmm-gio/settingsschemakey.hpp>
+#include <libmm-gio/settingsschemakey_p.hpp>
 
 
 /* Copyright (C) 2015 The giomm Development Team

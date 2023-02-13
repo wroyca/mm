@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/tlsclientconnection.hpp>
-#include <mm/gio/private/tlsclientconnection_p.hpp>
+#include <libmm-gio/tlsclientconnection.hpp>
+#include <libmm-gio/tlsclientconnection_p.hpp>
 
 
 /* Copyright (C) 2013 The giomm Development Team
@@ -24,8 +24,8 @@
  */
 
 #include <gio/gio.h>
-#include <mm/gio/socketconnectable.hpp>
-#include <mm/gio/tlsclientconnectionimpl.hpp>
+#include <libmm-gio/socketconnectable.hpp>
+#include <libmm-gio/tlsclientconnectionimpl.hpp>
 
 namespace
 {

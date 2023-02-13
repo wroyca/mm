@@ -3,7 +3,7 @@
 #define _GDKMM_DISPLAYMANAGER_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /*
@@ -26,8 +26,8 @@
 
 #include <vector>
 
-#include <mm/glib/object.hpp>
-#include <mm/gdk/display.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gdk/display.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

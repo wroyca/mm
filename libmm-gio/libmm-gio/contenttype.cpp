@@ -14,8 +14,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/contenttype.hpp>
-#include <mm/glib/vectorutils.hpp>
+#include <libmm-gio/contenttype.hpp>
+#include <libmm-glib/vectorutils.hpp>
 #include <gio/gio.h>
 
 namespace Gio

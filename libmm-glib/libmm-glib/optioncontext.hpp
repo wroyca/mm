@@ -20,9 +20,9 @@
  */
 
 
-#include <mm/glib/optionentry.hpp>
-#include <mm/glib/optiongroup.hpp>
-#include <mm/glib/error.hpp>
+#include <libmm-glib/optionentry.hpp>
+#include <libmm-glib/optiongroup.hpp>
+#include <libmm-glib/error.hpp>
 #include <sigc++/signal.h>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

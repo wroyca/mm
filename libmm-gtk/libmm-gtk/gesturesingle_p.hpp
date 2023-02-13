@@ -3,9 +3,9 @@
 #define _GTKMM_GESTURESINGLE_P_H
 
 
-#include <mm/gtk/private/gesture_p.hpp>
+#include <libmm-gtk/gesture_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {

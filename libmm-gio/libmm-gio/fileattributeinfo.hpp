@@ -2,10 +2,10 @@
 #ifndef _GIOMM_FILEATTRIBUTEINFO_H
 #define _GIOMM_FILEATTRIBUTEINFO_H
 
-#include <mm/gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -27,7 +27,7 @@
 
 #include <string>
 #include <gio/gio.h>
-#include <mm/glib/object.hpp>
+#include <libmm-glib/object.hpp>
 
 
 namespace Gio

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/glarea.hpp>
-#include <mm/gtk/private/glarea_p.hpp>
+#include <libmm-gtk/glarea.hpp>
+#include <libmm-gtk/glarea_p.hpp>
 
 
 /*

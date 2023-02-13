@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/widget.hpp>
-#include <mm/gtk/private/widget_p.hpp>
+#include <libmm-gtk/widget.hpp>
+#include <libmm-gtk/widget_p.hpp>
 
 #include <gtk/gtk.h>
 
@@ -25,20 +25,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/glib/vectorutils.hpp>
-#include <mm/gio/listmodel.hpp>
+#include <libmm-glib/vectorutils.hpp>
+#include <libmm-gio/listmodel.hpp>
 
-#include <mm/gdk/frameclock.hpp>
-#include <mm/gdk/paintable.hpp>
-#include <mm/gtk/adjustment.hpp>
-#include <mm/gtk/window.hpp>
-#include <mm/gtk/root.hpp>
-#include <mm/gtk/native.hpp>
-#include <mm/gtk/settings.hpp>
-#include <mm/gtk/eventcontroller.hpp>
-#include <mm/gtk/tooltip.hpp>
-#include <mm/gtk/snapshot.hpp>
-#include <mm/gtk/layoutmanager.hpp>
+#include <libmm-gdk/frameclock.hpp>
+#include <libmm-gdk/paintable.hpp>
+#include <libmm-gtk/adjustment.hpp>
+#include <libmm-gtk/window.hpp>
+#include <libmm-gtk/root.hpp>
+#include <libmm-gtk/native.hpp>
+#include <libmm-gtk/settings.hpp>
+#include <libmm-gtk/eventcontroller.hpp>
+#include <libmm-gtk/tooltip.hpp>
+#include <libmm-gtk/snapshot.hpp>
+#include <libmm-gtk/layoutmanager.hpp>
 #include <gtk/gtk.h>
 
 namespace //anonymous

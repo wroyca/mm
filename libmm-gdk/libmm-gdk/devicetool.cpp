@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/devicetool.hpp>
-#include <mm/gdk/private/devicetool_p.hpp>
+#include <libmm-gdk/devicetool.hpp>
+#include <libmm-gdk/devicetool_p.hpp>
 
 #include <gdk/gdk.h>
 

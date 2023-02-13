@@ -3,7 +3,7 @@
 #define _GIOMM_DBUSMENUMODEL_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2012 The giomm Development Team
@@ -22,7 +22,7 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/menumodel.hpp>
+#include <libmm-gio/menumodel.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

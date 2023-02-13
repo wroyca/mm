@@ -2,10 +2,10 @@
 #ifndef _PANGOMM_CAIROFONTMAP_H
 #define _PANGOMM_CAIROFONTMAP_H
 
-#include <mm/pango/mm-pangoconfig.hpp>
+#include <libmm-pango/mm-pangoconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* fontmap.h
@@ -28,9 +28,9 @@
  */
 
 
-#include <mm/glib/interface.hpp>
-#include <mm/pango/fontmap.hpp>
-#include <mm/cairo/enums.hpp>
+#include <libmm-glib/interface.hpp>
+#include <libmm-pango/fontmap.hpp>
+#include <libmm-cairo/enums.hpp>
 #include <pango/pangocairo.h>
 
 

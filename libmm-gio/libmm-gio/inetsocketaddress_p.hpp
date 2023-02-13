@@ -3,9 +3,9 @@
 #define _GIOMM_INETSOCKETADDRESS_P_H
 
 
-#include <mm/gio/private/socketaddress_p.hpp>
+#include <libmm-gio/socketaddress_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gio
 {

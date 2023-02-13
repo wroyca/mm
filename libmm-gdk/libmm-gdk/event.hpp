@@ -3,7 +3,7 @@
 #define _GDKMM_EVENT_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 1998-2002 The gtkmm Development Team
@@ -24,10 +24,10 @@
  */
 
 
-#include <mm/glib/refptr.hpp>
-#include <mm/glib/value.hpp>
-#include <mm/gdk/enums.hpp>
-#include <mm/gdk/timecoord.hpp>
+#include <libmm-glib/refptr.hpp>
+#include <libmm-glib/value.hpp>
+#include <libmm-gdk/enums.hpp>
+#include <libmm-gdk/timecoord.hpp>
 
 /* Shadow DELETE macro (from winnt.h).
  * It interferes with Gdk::Event::Type::DELETE.

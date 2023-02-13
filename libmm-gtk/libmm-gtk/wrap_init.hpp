@@ -1,7 +1,7 @@
 #ifndef _GTKMM_WRAP_INIT_H
 #define _GTKMM_WRAP_INIT_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 /* wrap_init.h
  *

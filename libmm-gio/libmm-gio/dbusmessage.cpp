@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/dbusmessage.hpp>
-#include <mm/gio/private/dbusmessage_p.hpp>
+#include <libmm-gio/dbusmessage.hpp>
+#include <libmm-gio/dbusmessage_p.hpp>
 
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -24,10 +24,10 @@
  */
 
 #include <gio/gio.h>
-#include <mm/glib/error.hpp>
+#include <libmm-glib/error.hpp>
 
 #ifdef G_OS_UNIX
-#include <mm/gio/unixfdlist.hpp>
+#include <libmm-gio/unixfdlist.hpp>
 #endif // G_OS_UNIX
 
 namespace Gio::DBus

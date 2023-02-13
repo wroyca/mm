@@ -3,7 +3,7 @@
 #define _GTKMM_POPOVER_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /*
@@ -24,9 +24,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/widget.hpp>
-#include <mm/gtk/native.hpp>
-#include <mm/gtk/shortcutmanager.hpp>
+#include <libmm-gtk/widget.hpp>
+#include <libmm-gtk/native.hpp>
+#include <libmm-gtk/shortcutmanager.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -22,8 +22,8 @@
 
 #ifdef CAIRO_HAS_WIN32_FONT
 #include <cairo-win32.h>
-#include <mm/cairo/fontface.hpp>
-#include <mm/cairo/scaledfont.hpp>
+#include <libmm-cairo/fontface.hpp>
+#include <libmm-cairo/scaledfont.hpp>
 
 namespace Cairo
 {

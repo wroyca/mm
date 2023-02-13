@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/listview.hpp>
-#include <mm/gtk/private/listview_p.hpp>
+#include <libmm-gtk/listview.hpp>
+#include <libmm-gtk/listview_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

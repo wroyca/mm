@@ -3,7 +3,7 @@
 #define _GIOMM_TLSSERVERCONNECTION_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2013 The giomm Development Team
@@ -22,10 +22,10 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/interface.hpp>
-#include <mm/gio/enums.hpp>
-#include <mm/gio/iostream.hpp>
-#include <mm/gio/tlscertificate.hpp>
+#include <libmm-glib/interface.hpp>
+#include <libmm-gio/enums.hpp>
+#include <libmm-gio/iostream.hpp>
+#include <libmm-gio/tlscertificate.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

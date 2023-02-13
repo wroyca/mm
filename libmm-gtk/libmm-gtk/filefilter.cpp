@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/filefilter.hpp>
-#include <mm/gtk/private/filefilter_p.hpp>
+#include <libmm-gtk/filefilter.hpp>
+#include <libmm-gtk/filefilter_p.hpp>
 
 
 /* Copyright 2003 The gtkmm Development Team

@@ -3,9 +3,9 @@
 #define _GDKMM_APPLAUNCHCONTEXT_P_H
 
 
-#include <mm/gio/private/applaunchcontext_p.hpp>
+#include <libmm-gio/applaunchcontext_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gdk
 {

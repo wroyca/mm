@@ -14,11 +14,11 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/value.hpp>
-#include <mm/glib/objectbase.hpp>
-#include <mm/glib/utility.hpp>
-#include <mm/glib/vectorutils.hpp>
-#include <mm/glib/wrap.hpp>
+#include <libmm-glib/value.hpp>
+#include <libmm-glib/objectbase.hpp>
+#include <libmm-glib/utility.hpp>
+#include <libmm-glib/vectorutils.hpp>
+#include <libmm-glib/wrap.hpp>
 #include <cstring> // std::memset()
 
 namespace Glib

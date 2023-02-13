@@ -14,7 +14,7 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/utility.hpp>
 
 auto Glib::append_canonical_typename (std::string &dest, const char *type_name) -> void
 {

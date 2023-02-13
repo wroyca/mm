@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/celllayout.hpp>
-#include <mm/gtk/private/celllayout_p.hpp>
+#include <libmm-gtk/celllayout.hpp>
+#include <libmm-gtk/celllayout_p.hpp>
 
 
 /* Copyright 2003 The gtkmm Development Team
@@ -24,9 +24,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/glib/vectorutils.hpp>
+#include <libmm-glib/vectorutils.hpp>
 
-#include <mm/gtk/cellarea.hpp>
+#include <libmm-gtk/cellarea.hpp>
 #include <gtk/gtk.h>
 
 

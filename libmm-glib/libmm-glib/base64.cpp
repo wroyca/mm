@@ -15,8 +15,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/base64.hpp>
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/base64.hpp>
+#include <libmm-glib/utility.hpp>
 
 namespace Glib
 {

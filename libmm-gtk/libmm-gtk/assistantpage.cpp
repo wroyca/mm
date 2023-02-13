@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/assistantpage.hpp>
-#include <mm/gtk/private/assistantpage_p.hpp>
+#include <libmm-gtk/assistantpage.hpp>
+#include <libmm-gtk/assistantpage_p.hpp>
 
 
 /* Copyright (C) 2019 The gtkmm Development Team
@@ -23,7 +23,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gtk/widget.hpp>
+#include <libmm-gtk/widget.hpp>
 #include <gtk/gtk.h>
 
 using Type = Gtk::AssistantPage::Type;

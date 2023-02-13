@@ -20,13 +20,13 @@
  */
 
 
-#include <mm/glib/mm-glibconfig.hpp>
-#include <mm/glib/varianttype.hpp>
-#include <mm/glib/variantiter.hpp>
-#include <mm/glib/variantdbusstring.hpp>
-#include <mm/glib/refptr.hpp>
-#include <mm/glib/ustring.hpp>
-#include <mm/glib/error.hpp>
+#include <libmm-glib/mm-glibconfig.hpp>
+#include <libmm-glib/varianttype.hpp>
+#include <libmm-glib/variantiter.hpp>
+#include <libmm-glib/variantdbusstring.hpp>
+#include <libmm-glib/refptr.hpp>
+#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/error.hpp>
 #include <utility>
 #include <vector>
 #include <map>
@@ -1685,7 +1685,7 @@ public:
 /* Include generated specializations of Variant<> for fundamental types:
  */
 #define _GLIBMM_VARIANT_H_INCLUDE_VARIANT_BASICTYPES_H
-#include <mm/glib/variant_basictypes.hpp>
+#include <libmm-glib/variant_basictypes.hpp>
 #undef _GLIBMM_VARIANT_H_INCLUDE_VARIANT_BASICTYPES_H
 
 namespace Glib

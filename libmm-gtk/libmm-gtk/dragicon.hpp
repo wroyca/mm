@@ -3,7 +3,7 @@
 #define _GTKMM_DRAGICON_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -22,12 +22,12 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gtk/widget.hpp>
-#include <mm/gtk/native.hpp>
-#include <mm/gtk/root.hpp>
-#include <mm/gdk/drag.hpp>
-#include <mm/gdk/paintable.hpp>
-#include <mm/glib/value.hpp>
+#include <libmm-gtk/widget.hpp>
+#include <libmm-gtk/native.hpp>
+#include <libmm-gtk/root.hpp>
+#include <libmm-gdk/drag.hpp>
+#include <libmm-gdk/paintable.hpp>
+#include <libmm-glib/value.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

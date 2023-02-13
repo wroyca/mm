@@ -3,7 +3,7 @@
 #define _GIOMM_DBUSOBJECTSKELETON_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2019 The giomm Development Team
@@ -22,10 +22,10 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/object.hpp>
-#include <mm/gio/dbusobject.hpp>
-#include <mm/gio/dbusinterfaceskeleton.hpp>
-#include <mm/gio/dbusmethodinvocation.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gio/dbusobject.hpp>
+#include <libmm-gio/dbusinterfaceskeleton.hpp>
+#include <libmm-gio/dbusmethodinvocation.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

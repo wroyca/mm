@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/scrollbar.hpp>
-#include <mm/gtk/private/scrollbar_p.hpp>
+#include <libmm-gtk/scrollbar.hpp>
+#include <libmm-gtk/scrollbar_p.hpp>
 
 
 /*
@@ -25,7 +25,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/adjustment.hpp>
+#include <libmm-gtk/adjustment.hpp>
 
 #include <gtk/gtk.h>
 

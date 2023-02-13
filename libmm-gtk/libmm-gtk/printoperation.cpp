@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/printoperation.hpp>
-#include <mm/gtk/private/printoperation_p.hpp>
+#include <libmm-gtk/printoperation.hpp>
+#include <libmm-gtk/printoperation_p.hpp>
 
 
 /* Copyright (C) 2006 The gtkmm Development Team

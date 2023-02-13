@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/pango/coverage.hpp>
-#include <mm/pango/private/coverage_p.hpp>
+#include <libmm-pango/coverage.hpp>
+#include <libmm-pango/coverage_p.hpp>
 
 
 /*

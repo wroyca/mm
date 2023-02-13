@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/dbusutils.hpp>
-#include <mm/gio/private/dbusutils_p.hpp>
+#include <libmm-gio/dbusutils.hpp>
+#include <libmm-gio/dbusutils_p.hpp>
 
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/utility.hpp>
 
 namespace Gio::DBus
 {

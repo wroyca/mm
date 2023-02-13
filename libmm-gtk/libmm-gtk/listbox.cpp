@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/listbox.hpp>
-#include <mm/gtk/private/listbox_p.hpp>
+#include <libmm-gtk/listbox.hpp>
+#include <libmm-gtk/listbox_p.hpp>
 
 
 /* Copyright (C) 2013 The gtkmm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <mm/gtk/adjustment.hpp>
+#include <libmm-gtk/adjustment.hpp>
 
 namespace
 {

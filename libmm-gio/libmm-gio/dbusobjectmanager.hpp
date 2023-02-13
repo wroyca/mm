@@ -2,10 +2,10 @@
 #ifndef _GIOMM_DBUSOBJECTMANAGER_H
 #define _GIOMM_DBUSOBJECTMANAGER_H
 
-#include <mm/gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2019 The giomm Development Team
@@ -25,8 +25,8 @@
  */
 
 
-#include <mm/glib/interface.hpp>
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/interface.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <vector>
 
 

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/pango/cairofontmap.hpp>
-#include <mm/pango/private/cairofontmap_p.hpp>
+#include <libmm-pango/cairofontmap.hpp>
+#include <libmm-pango/cairofontmap_p.hpp>
 
 
 /*

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/memorytexture.hpp>
-#include <mm/gdk/private/memorytexture_p.hpp>
+#include <libmm-gdk/memorytexture.hpp>
+#include <libmm-gdk/memorytexture_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

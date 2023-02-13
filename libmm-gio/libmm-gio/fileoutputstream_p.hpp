@@ -3,9 +3,9 @@
 #define _GIOMM_FILEOUTPUTSTREAM_P_H
 
 
-#include <mm/gio/private/outputstream_p.hpp>
+#include <libmm-gio/outputstream_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gio
 {

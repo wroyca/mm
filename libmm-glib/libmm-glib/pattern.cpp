@@ -17,7 +17,7 @@
  */
 
 #include <glib.h>
-#include <mm/glib/pattern.hpp>
+#include <libmm-glib/pattern.hpp>
 
 namespace Glib
 {

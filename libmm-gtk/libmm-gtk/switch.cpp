@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/switch.hpp>
-#include <mm/gtk/private/switch_p.hpp>
+#include <libmm-gtk/switch.hpp>
+#include <libmm-gtk/switch_p.hpp>
 
 
 /*

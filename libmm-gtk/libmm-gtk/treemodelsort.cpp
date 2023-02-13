@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/treemodelsort.hpp>
-#include <mm/gtk/private/treemodelsort_p.hpp>
+#include <libmm-gtk/treemodelsort.hpp>
+#include <libmm-gtk/treemodelsort_p.hpp>
 
 
 /*

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/shortcutcontroller.hpp>
-#include <mm/gtk/private/shortcutcontroller_p.hpp>
+#include <libmm-gtk/shortcutcontroller.hpp>
+#include <libmm-gtk/shortcutcontroller_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/converteroutputstream.hpp>
-#include <mm/gio/private/converteroutputstream_p.hpp>
+#include <libmm-gio/converteroutputstream.hpp>
+#include <libmm-gio/converteroutputstream_p.hpp>
 
 
 /* Copyright (C) 2012 The giomm Development Team
@@ -24,8 +24,8 @@
  */
 
 #include <gio/gio.h>
-#include <mm/gio/converter.hpp>
-#include <mm/gio/outputstream.hpp>
+#include <libmm-gio/converter.hpp>
+#include <libmm-gio/outputstream.hpp>
 
 namespace Gio
 {

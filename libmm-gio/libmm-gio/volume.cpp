@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/volume.hpp>
-#include <mm/gio/private/volume_p.hpp>
+#include <libmm-gio/volume.hpp>
+#include <libmm-gio/volume_p.hpp>
 
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -23,12 +23,12 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/error.hpp>
-#include <mm/glib/exceptionhandler.hpp>
-#include <mm/gio/file.hpp>
-#include <mm/gio/drive.hpp>
+#include <libmm-glib/error.hpp>
+#include <libmm-glib/exceptionhandler.hpp>
+#include <libmm-gio/file.hpp>
+#include <libmm-gio/drive.hpp>
 #include <gio/gio.h>
-#include <mm/gio/slot_async.hpp>
+#include <libmm-gio/slot_async.hpp>
 
 namespace Gio
 {

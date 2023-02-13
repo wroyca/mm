@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/glib/bytearray.hpp>
-#include <mm/glib/private/bytearray_p.hpp>
+#include <libmm-glib/bytearray.hpp>
+#include <libmm-glib/bytearray_p.hpp>
 
 
 /* Copyright (C) 2013 The glibmm Development Team

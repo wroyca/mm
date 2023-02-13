@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/glib/miscutils.hpp>
-#include <mm/glib/private/miscutils_p.hpp>
+#include <libmm-glib/miscutils.hpp>
+#include <libmm-glib/miscutils_p.hpp>
 
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -26,8 +26,8 @@
 #include <cstddef>
 #include <cstring>
 
-#include <mm/glib/miscutils.hpp>
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/miscutils.hpp>
+#include <libmm-glib/utility.hpp>
 #include <glib.h>
 
 namespace Glib

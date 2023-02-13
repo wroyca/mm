@@ -2,10 +2,10 @@
 #ifndef _GTKMM_FONTCHOOSER_H
 #define _GTKMM_FONTCHOOSER_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2011 The gtkmm Development Team
@@ -26,11 +26,11 @@
  */
 
 
-#include <mm/glib/interface.hpp>
-#include <mm/pango/fontface.hpp>
-#include <mm/pango/fontdescription.hpp>
-#include <mm/pango/fontfamily.hpp>
-#include <mm/pango/fontmap.hpp>
+#include <libmm-glib/interface.hpp>
+#include <libmm-pango/fontface.hpp>
+#include <libmm-pango/fontdescription.hpp>
+#include <libmm-pango/fontfamily.hpp>
+#include <libmm-pango/fontmap.hpp>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 extern "C"

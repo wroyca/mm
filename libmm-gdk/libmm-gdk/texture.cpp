@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/texture.hpp>
-#include <mm/gdk/private/texture_p.hpp>
+#include <libmm-gdk/texture.hpp>
+#include <libmm-gdk/texture_p.hpp>
 
 
 /* Copyright (C) 2017 The gtkmm Development Team
@@ -23,9 +23,9 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/bytes.hpp>
-#include <mm/gio/file.hpp>
-#include <mm/gdk/pixbuf.hpp>
+#include <libmm-glib/bytes.hpp>
+#include <libmm-gio/file.hpp>
+#include <libmm-gdk/pixbuf.hpp>
 #include <gdk/gdk.h>
 
 namespace

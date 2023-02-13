@@ -14,8 +14,8 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/environ.hpp>
-#include <mm/glib/vectorutils.hpp>
+#include <libmm-glib/environ.hpp>
+#include <libmm-glib/vectorutils.hpp>
 
 namespace Glib
 {

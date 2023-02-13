@@ -2,10 +2,10 @@
 #ifndef _GIOMM_SETTINGSSCHEMA_H
 #define _GIOMM_SETTINGSSCHEMA_H
 
-#include <mm/gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2015 The giomm Development Team
@@ -25,7 +25,7 @@
  */
 
 
-#include <mm/gio/settingsschemakey.hpp>
+#include <libmm-gio/settingsschemakey.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -3,7 +3,7 @@
 #define _PANGOMM_FONTMAP_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* fontmap.h
@@ -25,11 +25,11 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <mm/glib/object.hpp>
-#include <mm/gio/listmodel.hpp>
-#include <mm/pango/font.hpp>
-#include <mm/pango/fontset.hpp>
-#include <mm/pango/fontfamily.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gio/listmodel.hpp>
+#include <libmm-pango/font.hpp>
+#include <libmm-pango/fontset.hpp>
+#include <libmm-pango/fontfamily.hpp>
 #include <pango/pango.h>
 
 

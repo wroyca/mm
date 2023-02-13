@@ -14,11 +14,11 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/main.hpp>
-#include <mm/glib/exceptionhandler.hpp>
-#include <mm/glib/wrap.hpp>
-#include <mm/glib/iochannel.hpp>
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/main.hpp>
+#include <libmm-glib/exceptionhandler.hpp>
+#include <libmm-glib/wrap.hpp>
+#include <libmm-glib/iochannel.hpp>
+#include <libmm-glib/utility.hpp>
 #include <algorithm>
 
 namespace

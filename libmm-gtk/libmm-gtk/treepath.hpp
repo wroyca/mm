@@ -2,10 +2,10 @@
 #ifndef _GTKMM_TREEPATH_H
 #define _GTKMM_TREEPATH_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /*
@@ -30,8 +30,8 @@
 // the #ifndef GTKMM_DISABLE_DEPRECATED in deprecated classes) is generated:
 
 
-#include <mm/gtk/treemodel.hpp>
-#include <mm/gdk/contentprovider.hpp>
+#include <libmm-gtk/treemodel.hpp>
+#include <libmm-gdk/contentprovider.hpp>
 #ifdef GLIBMM_HAVE_SUN_REVERSE_ITERATOR
 #include <cstddef> /* for std::ptrdiff_t */
 #endif

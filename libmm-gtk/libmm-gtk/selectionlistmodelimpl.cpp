@@ -14,7 +14,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gtk/selectionlistmodelimpl.hpp>
+#include <libmm-gtk/selectionlistmodelimpl.hpp>
 #include <utility> // std::move()
 
 namespace Gtk

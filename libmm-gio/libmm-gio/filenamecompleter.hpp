@@ -2,10 +2,10 @@
 #ifndef _GIOMM_FILENAMECOMPLETER_H
 #define _GIOMM_FILENAMECOMPLETER_H
 
-#include <mm/gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -25,8 +25,8 @@
  */
 
 
-//#include <mm/gio/file.hpp>
-#include <mm/glib/object.hpp>
+//#include <libmm-gio/file.hpp>
+#include <libmm-glib/object.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

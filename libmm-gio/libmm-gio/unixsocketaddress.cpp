@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/unixsocketaddress.hpp>
-#include <mm/gio/private/unixsocketaddress_p.hpp>
+#include <libmm-gio/unixsocketaddress.hpp>
+#include <libmm-gio/unixsocketaddress_p.hpp>
 
 
 /* Copyright (C) 2010 The giomm Development Team

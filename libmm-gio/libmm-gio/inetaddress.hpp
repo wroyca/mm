@@ -2,10 +2,10 @@
 #ifndef _GIOMM_INETADDRESS_H
 #define _GIOMM_INETADDRESS_H
 
-#include <mm/gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2009 jonathon jongsma
@@ -25,8 +25,8 @@
  */
 
 
-#include <mm/glib/object.hpp>
-#include <mm/gio/enums.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gio/enums.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

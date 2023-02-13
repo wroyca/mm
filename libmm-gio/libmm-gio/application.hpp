@@ -2,10 +2,10 @@
 #ifndef _GIOMM_APPLICATION_H
 #define _GIOMM_APPLICATION_H
 
-#include <mm/gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -25,17 +25,17 @@
  */
 
 
-#include <mm/gio/actiongroup.hpp>
-#include <mm/gio/actionmap.hpp>
-#include <mm/gio/applicationcommandline.hpp>
-#include <mm/gio/file.hpp>
-#include <mm/glib/object.hpp>
-#include <mm/glib/optionentry.hpp>
-#include <mm/glib/optiongroup.hpp>
-#include <mm/glib/variant.hpp>
-#include <mm/glib/variantdict.hpp>
-#include <mm/gio/dbusconnection.hpp>
-#include <mm/gio/notification.hpp>
+#include <libmm-gio/actiongroup.hpp>
+#include <libmm-gio/actionmap.hpp>
+#include <libmm-gio/applicationcommandline.hpp>
+#include <libmm-gio/file.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-glib/optionentry.hpp>
+#include <libmm-glib/optiongroup.hpp>
+#include <libmm-glib/variant.hpp>
+#include <libmm-glib/variantdict.hpp>
+#include <libmm-gio/dbusconnection.hpp>
+#include <libmm-gio/notification.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/cellrenderer.hpp>
-#include <mm/gtk/private/cellrenderer_p.hpp>
+#include <libmm-gtk/cellrenderer.hpp>
+#include <libmm-gtk/cellrenderer_p.hpp>
 
 
 /* Copyright 1998-2002 The gtkmm Development Team
@@ -25,7 +25,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <mm/gtk/snapshot.hpp>
+#include <libmm-gtk/snapshot.hpp>
 
 namespace Gtk
 {

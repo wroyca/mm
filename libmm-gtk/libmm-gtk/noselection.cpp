@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/noselection.hpp>
-#include <mm/gtk/private/noselection_p.hpp>
+#include <libmm-gtk/noselection.hpp>
+#include <libmm-gtk/noselection_p.hpp>
 
 
 /* Copyright (C) 2019 The gtkmm Development Team

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/pango/fontmap.hpp>
-#include <mm/pango/private/fontmap_p.hpp>
+#include <libmm-pango/fontmap.hpp>
+#include <libmm-pango/fontmap_p.hpp>
 
 
 /*
@@ -25,8 +25,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <mm/pango/cairofontmapimpl.hpp>
-#include <mm/pango/context.hpp>
+#include <libmm-pango/cairofontmapimpl.hpp>
+#include <libmm-pango/context.hpp>
 #include <pango/pangocairo.h>
 
 namespace Pango

@@ -16,10 +16,10 @@
  * 02110-1301, USA.
  */
 
-#include <mm/cairo/win32_font.hpp>
+#include <libmm-cairo/win32_font.hpp>
 
 #ifdef CAIRO_HAS_WIN32_FONT
-#include <mm/cairo/private.hpp>
+#include <libmm-cairo/private.hpp>
 
 namespace Cairo {
 

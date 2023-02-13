@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/entrycompletion.hpp>
-#include <mm/gtk/private/entrycompletion_p.hpp>
+#include <libmm-gtk/entrycompletion.hpp>
+#include <libmm-gtk/entrycompletion_p.hpp>
 
 
 /* Copyright 2003 The gtkmm Development Team
@@ -24,9 +24,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/treeiter.hpp>
-#include <mm/gtk/cellarea.hpp>
-#include <mm/gtk/entry.hpp>
+#include <libmm-gtk/treeiter.hpp>
+#include <libmm-gtk/cellarea.hpp>
+#include <libmm-gtk/entry.hpp>
 #include <gtk/gtk.h>
 
 

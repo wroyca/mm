@@ -19,11 +19,11 @@
 #ifndef __CAIROMM_SCALEDFONT_H
 #define __CAIROMM_SCALEDFONT_H
 
-#include <mm/cairo/refptr.hpp>
-#include <mm/cairo/fontoptions.hpp>
-#include <mm/cairo/fontface.hpp>
-#include <mm/cairo/matrix.hpp>
-#include <mm/cairo/types.hpp>
+#include <libmm-cairo/refptr.hpp>
+#include <libmm-cairo/fontoptions.hpp>
+#include <libmm-cairo/fontface.hpp>
+#include <libmm-cairo/matrix.hpp>
+#include <libmm-cairo/types.hpp>
 #include <vector>
 
 #ifdef CAIRO_HAS_FT_FONT

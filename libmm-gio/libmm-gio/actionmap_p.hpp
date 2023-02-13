@@ -3,10 +3,10 @@
 #define _GIOMM_ACTIONMAP_P_H
 
 
-#include <mm/glib/private/interface_p.hpp>
+#include <libmm-glib/interface_p.hpp>
 #include <gio/gio.h>
 
-#include <mm/glib/private/interface_p.hpp>
+#include <libmm-glib/interface_p.hpp>
 
 namespace Gio
 {

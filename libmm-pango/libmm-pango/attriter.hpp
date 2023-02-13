@@ -3,7 +3,7 @@
 #define _PANGOMM_ATTRITER_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* attriter.h
@@ -25,7 +25,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <mm/pango/attributes.hpp>
+#include <libmm-pango/attributes.hpp>
 
 
 namespace Pango

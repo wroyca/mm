@@ -14,8 +14,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/value.hpp>
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/value.hpp>
+#include <libmm-glib/utility.hpp>
 #include <glib.h>
 
 namespace

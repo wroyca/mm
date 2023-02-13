@@ -19,8 +19,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/mm-glibconfig.hpp>
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/mm-glibconfig.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <glib.h>
 
 namespace Glib

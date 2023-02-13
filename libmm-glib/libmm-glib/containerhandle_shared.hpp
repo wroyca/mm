@@ -17,12 +17,12 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/mm-glibconfig.hpp>
-#include <mm/glib/refptr.hpp>
-#include <mm/glib/ustring.hpp>
-#include <mm/glib/variant.hpp>
-#include <mm/glib/wrap.hpp>
-#include <mm/glib/debug.hpp>
+#include <libmm-glib/mm-glibconfig.hpp>
+#include <libmm-glib/refptr.hpp>
+#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/variant.hpp>
+#include <libmm-glib/wrap.hpp>
+#include <libmm-glib/debug.hpp>
 #include <glib-object.h>
 
 #include <cstddef>

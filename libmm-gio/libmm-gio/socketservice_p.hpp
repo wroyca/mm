@@ -3,9 +3,9 @@
 #define _GIOMM_SOCKETSERVICE_P_H
 
 
-#include <mm/gio/private/socketlistener_p.hpp>
+#include <libmm-gio/socketlistener_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gio
 {

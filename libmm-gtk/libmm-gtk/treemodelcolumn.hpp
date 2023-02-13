@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/mm-gtkconfig.hpp>
-#include <mm/glib/value.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-glib/value.hpp>
 #include <glib-object.h>
 #include <vector>
 

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/fileicon.hpp>
-#include <mm/gio/private/fileicon_p.hpp>
+#include <libmm-gio/fileicon.hpp>
+#include <libmm-gio/fileicon_p.hpp>
 
 
 /* Copyright (C) 2007 The gtkmm Development Team

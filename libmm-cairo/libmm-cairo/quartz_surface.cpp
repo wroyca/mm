@@ -16,8 +16,8 @@
  * 02110-1301, USA.
  */
 
-#include <mm/cairo/quartz_surface.hpp>
-#include <mm/cairo/private.hpp>
+#include <libmm-cairo/quartz_surface.hpp>
+#include <libmm-cairo/private.hpp>
 
 namespace Cairo
 {

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/revealer.hpp>
-#include <mm/gtk/private/revealer_p.hpp>
+#include <libmm-gtk/revealer.hpp>
+#include <libmm-gtk/revealer_p.hpp>
 
 
 /*

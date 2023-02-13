@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/unixfdlist.hpp>
-#include <mm/gio/private/unixfdlist_p.hpp>
+#include <libmm-gio/unixfdlist.hpp>
+#include <libmm-gio/unixfdlist_p.hpp>
 
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gunixfdlist.h>
-#include <mm/glib/error.hpp>
+#include <libmm-glib/error.hpp>
 
 namespace Gio
 {

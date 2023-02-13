@@ -2,10 +2,10 @@
 #ifndef _GTKMM_TREEITER_H
 #define _GTKMM_TREEITER_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright(C) 1998-2002 The gtkmm Development Team
@@ -26,7 +26,7 @@
  */
 
 
-#include <mm/gtk/treemodelcolumn.hpp>
+#include <libmm-gtk/treemodelcolumn.hpp>
 #include <iterator>
 #include <type_traits>
 #include <gtk/gtk.h> /* for GtkTreeIter */

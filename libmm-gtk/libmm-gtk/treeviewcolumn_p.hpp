@@ -3,9 +3,9 @@
 #define _GTKMM_TREEVIEWCOLUMN_P_H
 
 
-#include <mm/gtk/private/object_p.hpp>
+#include <libmm-gtk/object_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {

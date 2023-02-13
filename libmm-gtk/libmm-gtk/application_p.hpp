@@ -3,9 +3,9 @@
 #define _GTKMM_APPLICATION_P_H
 
 
-#include <mm/gio/private/application_p.hpp>
+#include <libmm-gio/application_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {

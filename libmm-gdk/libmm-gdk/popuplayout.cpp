@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/popuplayout.hpp>
-#include <mm/gdk/private/popuplayout_p.hpp>
+#include <libmm-gdk/popuplayout.hpp>
+#include <libmm-gdk/popuplayout_p.hpp>
 
 #include <gdk/gdk.h>
 

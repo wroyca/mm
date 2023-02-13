@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/glcontext.hpp>
-#include <mm/gdk/private/glcontext_p.hpp>
+#include <libmm-gdk/glcontext.hpp>
+#include <libmm-gdk/glcontext_p.hpp>
 
 
 /* Copyright (C) 2015 The gtkmm Development Team
@@ -25,7 +25,7 @@
  */
 
 #include <gdk/gdk.h>
-#include <mm/gdk/cairoutils.hpp>
+#include <libmm-gdk/cairoutils.hpp>
 
 namespace Gdk
 {

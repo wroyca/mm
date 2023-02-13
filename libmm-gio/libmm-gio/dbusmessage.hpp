@@ -2,10 +2,10 @@
 #ifndef _GIOMM_DBUSMESSAGE_H
 #define _GIOMM_DBUSMESSAGE_H
 
-#include <mm/gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -25,12 +25,12 @@
  */
 
 
-#include <mm/glib/object.hpp>
-#include <mm/glib/variant.hpp>
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-glib/variant.hpp>
+#include <libmm-glib/utility.hpp>
 
 #ifdef G_OS_UNIX
-#include <mm/gio/unixfdlist.hpp>
+#include <libmm-gio/unixfdlist.hpp>
 #endif
 
 

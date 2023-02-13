@@ -3,9 +3,9 @@
 #define _GTKMM_LISTVIEW_P_H
 
 
-#include <mm/gtk/private/listbase_p.hpp>
+#include <libmm-gtk/listbase_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {

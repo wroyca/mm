@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/tlsdatabase.hpp>
-#include <mm/gio/private/tlsdatabase_p.hpp>
+#include <libmm-gio/tlsdatabase.hpp>
+#include <libmm-gio/tlsdatabase_p.hpp>
 
 
 /* Copyright (C) 2013 The giomm Development Team
@@ -24,11 +24,11 @@
  */
 
 #include <gio/gio.h>
-#include <mm/gio/cancellable.hpp>
-#include <mm/gio/socketconnectable.hpp>
-#include <mm/gio/tlscertificate.hpp>
-#include <mm/gio/tlsinteraction.hpp>
-#include <mm/gio/slot_async.hpp>
+#include <libmm-gio/cancellable.hpp>
+#include <libmm-gio/socketconnectable.hpp>
+#include <libmm-gio/tlscertificate.hpp>
+#include <libmm-gio/tlsinteraction.hpp>
+#include <libmm-gio/slot_async.hpp>
 
 using VerifyFlags = Gio::TlsDatabase::VerifyFlags;
 using LookupFlags = Gio::TlsDatabase::LookupFlags;

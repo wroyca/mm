@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/gridview.hpp>
-#include <mm/gtk/private/gridview_p.hpp>
+#include <libmm-gtk/gridview.hpp>
+#include <libmm-gtk/gridview_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/pixbufloader.hpp>
-#include <mm/gdk/private/pixbufloader_p.hpp>
+#include <libmm-gdk/pixbufloader.hpp>
+#include <libmm-gdk/pixbufloader_p.hpp>
 
 
 /* Copyright 1998-2002 The gtkmm Development Team

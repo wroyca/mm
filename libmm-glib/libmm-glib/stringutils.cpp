@@ -14,9 +14,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/mm-glibconfig.hpp>
-#include <mm/glib/stringutils.hpp>
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/mm-glibconfig.hpp>
+#include <libmm-glib/stringutils.hpp>
+#include <libmm-glib/utility.hpp>
 #include <glib.h>
 #include <cerrno>
 #include <stdexcept>

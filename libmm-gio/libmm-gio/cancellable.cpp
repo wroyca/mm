@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/cancellable.hpp>
-#include <mm/gio/private/cancellable_p.hpp>
+#include <libmm-gio/cancellable.hpp>
+#include <libmm-gio/cancellable_p.hpp>
 
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <mm/glib/exceptionhandler.hpp>
+#include <libmm-glib/exceptionhandler.hpp>
 
 namespace Gio
 {

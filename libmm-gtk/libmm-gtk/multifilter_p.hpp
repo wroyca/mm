@@ -3,9 +3,9 @@
 #define _GTKMM_MULTIFILTER_P_H
 
 
-#include <mm/gtk/private/filter_p.hpp>
+#include <libmm-gtk/filter_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {
@@ -43,7 +43,7 @@ protected:
 } // namespace Gtk
 
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {
@@ -81,7 +81,7 @@ protected:
 } // namespace Gtk
 
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {

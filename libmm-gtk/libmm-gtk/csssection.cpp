@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/csssection.hpp>
-#include <mm/gtk/private/csssection_p.hpp>
+#include <libmm-gtk/csssection.hpp>
+#include <libmm-gtk/csssection_p.hpp>
 
 
 /* Copyright (C) 2014 The gtkmm Development Team

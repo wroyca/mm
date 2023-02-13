@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/textiter.hpp>
-#include <mm/gtk/private/textiter_p.hpp>
+#include <libmm-gtk/textiter.hpp>
+#include <libmm-gtk/textiter_p.hpp>
 
 #include <gtk/gtk.h>
 #include <cstring> // std::memset()
@@ -26,11 +26,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/glib/vectorutils.hpp>
-#include <mm/gdk/paintable.hpp>
-#include <mm/gtk/textbuffer.hpp>
-#include <mm/gtk/textmark.hpp>
-#include <mm/gtk/textchildanchor.hpp>
+#include <libmm-glib/vectorutils.hpp>
+#include <libmm-gdk/paintable.hpp>
+#include <libmm-gtk/textbuffer.hpp>
+#include <libmm-gtk/textmark.hpp>
+#include <libmm-gtk/textchildanchor.hpp>
 
 /**** Gtk::TextIterBase *******************************************************/
 

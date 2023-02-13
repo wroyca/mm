@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/shortcutaction.hpp>
-#include <mm/gtk/private/shortcutaction_p.hpp>
+#include <libmm-gtk/shortcutaction.hpp>
+#include <libmm-gtk/shortcutaction_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <mm/gtk/widget.hpp>
+#include <libmm-gtk/widget.hpp>
 
 namespace
 {

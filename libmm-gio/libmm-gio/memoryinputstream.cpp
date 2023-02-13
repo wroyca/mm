@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/memoryinputstream.hpp>
-#include <mm/gio/private/memoryinputstream_p.hpp>
+#include <libmm-gio/memoryinputstream.hpp>
+#include <libmm-gio/memoryinputstream_p.hpp>
 
 
 /* Copyright (C) 2007 The gtkmm Development Team

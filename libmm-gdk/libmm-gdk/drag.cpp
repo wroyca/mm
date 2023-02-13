@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/drag.hpp>
-#include <mm/gdk/private/drag_p.hpp>
+#include <libmm-gdk/drag.hpp>
+#include <libmm-gdk/drag_p.hpp>
 
 
 /*
@@ -25,11 +25,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gdk/contentformats.hpp>
-#include <mm/gdk/contentprovider.hpp>
-#include <mm/gdk/display.hpp>
-#include <mm/gdk/device.hpp>
-#include <mm/gdk/surface.hpp>
+#include <libmm-gdk/contentformats.hpp>
+#include <libmm-gdk/contentprovider.hpp>
+#include <libmm-gdk/display.hpp>
+#include <libmm-gdk/device.hpp>
+#include <libmm-gdk/surface.hpp>
 #include <gdk/gdk.h>
 
 

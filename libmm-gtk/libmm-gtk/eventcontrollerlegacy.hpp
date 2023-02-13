@@ -3,7 +3,7 @@
 #define _GTKMM_EVENTCONTROLLERLEGACY_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2021 The gtkmm Development Team
@@ -22,7 +22,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gtk/eventcontroller.hpp>
+#include <libmm-gtk/eventcontroller.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

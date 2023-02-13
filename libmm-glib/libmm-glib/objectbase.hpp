@@ -17,14 +17,14 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/mm-glibconfig.hpp>
-#include <mm/glib/class.hpp>
-#include <mm/glib/signalproxy.hpp>
-#include <mm/glib/propertyproxy.hpp>
-#include <mm/glib/ustring.hpp>
-#include <mm/glib/value.hpp>
-#include <mm/glib/quark.hpp>
-#include <mm/glib/debug.hpp>
+#include <libmm-glib/mm-glibconfig.hpp>
+#include <libmm-glib/class.hpp>
+#include <libmm-glib/signalproxy.hpp>
+#include <libmm-glib/propertyproxy.hpp>
+#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/value.hpp>
+#include <libmm-glib/quark.hpp>
+#include <libmm-glib/debug.hpp>
 #include <sigc++/trackable.h>
 #include <typeinfo>
 #include <memory>

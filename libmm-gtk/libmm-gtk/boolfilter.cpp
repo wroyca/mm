@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/boolfilter.hpp>
-#include <mm/gtk/private/boolfilter_p.hpp>
+#include <libmm-gtk/boolfilter.hpp>
+#include <libmm-gtk/boolfilter_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

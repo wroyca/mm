@@ -3,7 +3,7 @@
 #define _PANGOMM_ATTRIBUTES_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* attributes.h
@@ -25,10 +25,10 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <mm/pango/language.hpp>
-#include <mm/pango/rectangle.hpp>
-#include <mm/pango/color.hpp>
-#include <mm/pango/fontdescription.hpp>
+#include <libmm-pango/language.hpp>
+#include <libmm-pango/rectangle.hpp>
+#include <libmm-pango/color.hpp>
+#include <libmm-pango/fontdescription.hpp>
 #include <pango/pango.h>
 
 

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/glib/optionentry.hpp>
-#include <mm/glib/private/optionentry_p.hpp>
+#include <libmm-glib/optionentry.hpp>
+#include <libmm-glib/optionentry_p.hpp>
 
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -23,7 +23,7 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/utility.hpp>
 #include <glib.h>
 
 namespace Glib

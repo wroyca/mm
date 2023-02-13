@@ -2,10 +2,10 @@
 #ifndef _GIOMM_REMOTEACTIONGROUP_H
 #define _GIOMM_REMOTEACTIONGROUP_H
 
-#include <mm/gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2012 The giomm Development Team
@@ -25,7 +25,7 @@
  */
 
 
-#include <mm/glib/interface.hpp>
+#include <libmm-glib/interface.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

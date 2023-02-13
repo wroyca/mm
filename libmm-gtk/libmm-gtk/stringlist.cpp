@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/stringlist.hpp>
-#include <mm/gtk/private/stringlist_p.hpp>
+#include <libmm-gtk/stringlist.hpp>
+#include <libmm-gtk/stringlist_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

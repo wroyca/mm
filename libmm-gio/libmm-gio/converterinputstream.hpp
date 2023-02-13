@@ -3,7 +3,7 @@
 #define _GIOMM_CONVERTERINPUTSTREAM_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2012 The giomm Development Team
@@ -22,8 +22,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/filterinputstream.hpp>
-#include <mm/gio/pollableinputstream.hpp>
+#include <libmm-gio/filterinputstream.hpp>
+#include <libmm-gio/pollableinputstream.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

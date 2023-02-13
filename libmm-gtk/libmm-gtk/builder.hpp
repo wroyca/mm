@@ -3,7 +3,7 @@
 #define _GTKMM_BUILDER_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -25,8 +25,8 @@
 
 #include <vector>
 
-#include <mm/gtk/widget.hpp>
-#include <mm/gio/resource.hpp> //For ResourceError, thrown by create_from_resource().
+#include <libmm-gtk/widget.hpp>
+#include <libmm-gio/resource.hpp> //For ResourceError, thrown by create_from_resource().
 #include <utility> //For std::forward()
 
 

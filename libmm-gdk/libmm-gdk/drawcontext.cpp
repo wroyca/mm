@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/drawcontext.hpp>
-#include <mm/gdk/private/drawcontext_p.hpp>
+#include <libmm-gdk/drawcontext.hpp>
+#include <libmm-gdk/drawcontext_p.hpp>
 
 
 /* Copyright (C) 2016 The gtkmm Development Team
@@ -23,9 +23,9 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gdk/cairoutils.hpp>
-#include <mm/gdk/display.hpp>
-#include <mm/gdk/surface.hpp>
+#include <libmm-gdk/cairoutils.hpp>
+#include <libmm-gdk/display.hpp>
+#include <libmm-gdk/surface.hpp>
 
 namespace
 {

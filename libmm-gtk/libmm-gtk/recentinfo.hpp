@@ -2,10 +2,10 @@
 #ifndef _GTKMM_RECENTINFO_H
 #define _GTKMM_RECENTINFO_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2006 The gtkmm Development Team
@@ -28,9 +28,9 @@
 
 #include <vector>
 
-#include <mm/gio/icon.hpp>
-#include <mm/gio/appinfo.hpp>
-#include <mm/glib/datetime.hpp>
+#include <libmm-gio/icon.hpp>
+#include <libmm-gio/appinfo.hpp>
+#include <libmm-glib/datetime.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

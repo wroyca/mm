@@ -3,10 +3,10 @@
 #define _GTKMM_BUILDERSCOPE_P_H
 
 
-#include <mm/glib/private/interface_p.hpp>
+#include <libmm-glib/interface_p.hpp>
 #include <gtk/gtk.h>
 
-#include <mm/glib/private/interface_p.hpp>
+#include <libmm-glib/interface_p.hpp>
 
 namespace Gtk
 {

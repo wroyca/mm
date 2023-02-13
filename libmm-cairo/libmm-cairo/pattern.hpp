@@ -19,8 +19,8 @@
 #ifndef __CAIROMM_PATTERN_H
 #define __CAIROMM_PATTERN_H
 
-#include <mm/cairo/surface.hpp>
-#include <mm/cairo/enums.hpp>
+#include <libmm-cairo/surface.hpp>
+#include <libmm-cairo/enums.hpp>
 #include <cairo.h>
 
 

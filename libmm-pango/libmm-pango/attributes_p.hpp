@@ -1,6 +1,1 @@
-#ifndef _PANGOMM_ATTRIBUTES_P_H
-#define _PANGOMM_ATTRIBUTES_P_H
-
-
-#endif /* _PANGOMM_ATTRIBUTES_P_H */
-
+#pragma once

@@ -2,10 +2,10 @@
 #ifndef _GTKMM_MEDIASTREAM_H
 #define _GTKMM_MEDIASTREAM_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2018 The gtkmm Development Team
@@ -25,9 +25,9 @@
  */
 
 
-#include <mm/glib/object.hpp>
-#include <mm/gdk/paintable.hpp>
-#include <mm/gdk/surface.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gdk/paintable.hpp>
+#include <libmm-gdk/surface.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

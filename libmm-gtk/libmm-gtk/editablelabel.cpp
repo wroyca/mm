@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/editablelabel.hpp>
-#include <mm/gtk/private/editablelabel_p.hpp>
+#include <libmm-gtk/editablelabel.hpp>
+#include <libmm-gtk/editablelabel_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

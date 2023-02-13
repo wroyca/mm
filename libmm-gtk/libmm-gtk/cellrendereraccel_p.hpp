@@ -3,9 +3,9 @@
 #define _GTKMM_CELLRENDERERACCEL_P_H
 
 
-#include <mm/gtk/private/cellrenderertext_p.hpp>
+#include <libmm-gtk/cellrenderertext_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {

@@ -3,7 +3,7 @@
 #define _GIOMM_RESOLVER_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2009 jonathon jongsma
@@ -22,11 +22,11 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/object.hpp>
-#include <mm/gio/inetaddress.hpp>
-#include <mm/gio/cancellable.hpp>
-#include <mm/gio/srvtarget.hpp>
-#include <mm/gio/asyncresult.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gio/inetaddress.hpp>
+#include <libmm-gio/cancellable.hpp>
+#include <libmm-gio/srvtarget.hpp>
+#include <libmm-gio/asyncresult.hpp>
 
 
 // Forward declarations for classes in the Glib namespace.

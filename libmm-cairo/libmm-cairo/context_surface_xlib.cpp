@@ -16,9 +16,9 @@
  * 02110-1301, USA.
  */
 
-#include <mm/cairo/mm-cairoconfig.hpp>
-#include <mm/cairo/context_private.hpp>
-#include <mm/cairo/xlib_surface.hpp>
+#include <libmm-cairo/mm-cairoconfig.hpp>
+#include <libmm-cairo/context_private.hpp>
+#include <libmm-cairo/xlib_surface.hpp>
 
 namespace Cairo::Private
 {

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/socketaddressenumerator.hpp>
-#include <mm/gio/private/socketaddressenumerator_p.hpp>
+#include <libmm-gio/socketaddressenumerator.hpp>
+#include <libmm-gio/socketaddressenumerator_p.hpp>
 
 
 /* Copyright (C) 2009 The giomm Development Team
@@ -24,9 +24,9 @@
  */
 
 #include <gio/gio.h>
-#include <mm/glib/error.hpp>
-#include <mm/gio/socketaddress.hpp>
-#include <mm/gio/slot_async.hpp>
+#include <libmm-glib/error.hpp>
+#include <libmm-gio/socketaddress.hpp>
+#include <libmm-gio/slot_async.hpp>
 
 namespace Gio
 {

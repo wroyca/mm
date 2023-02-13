@@ -2,10 +2,10 @@
 #ifndef _PANGOMM_FONTMETRICS_H
 #define _PANGOMM_FONTMETRICS_H
 
-#include <mm/pango/mm-pangoconfig.hpp>
+#include <libmm-pango/mm-pangoconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* fontmetrics.h
@@ -28,7 +28,7 @@
  */
 
 
-#include <mm/glib/value.hpp>
+#include <libmm-glib/value.hpp>
 #include <pango/pango.h>
 
 

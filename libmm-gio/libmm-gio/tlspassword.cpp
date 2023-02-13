@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/tlspassword.hpp>
-#include <mm/gio/private/tlspassword_p.hpp>
+#include <libmm-gio/tlspassword.hpp>
+#include <libmm-gio/tlspassword_p.hpp>
 
 
 /* Copyright (C) 2012 The giomm Development Team

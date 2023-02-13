@@ -21,10 +21,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/cellrenderertext.hpp>
-#include <mm/gtk/cellrendererpixbuf.hpp>
-#include <mm/gtk/cellrenderertoggle.hpp>
-#include <mm/gtk/cellrendereraccel.hpp>
+#include <libmm-gtk/cellrenderertext.hpp>
+#include <libmm-gtk/cellrendererpixbuf.hpp>
+#include <libmm-gtk/cellrenderertoggle.hpp>
+#include <libmm-gtk/cellrendereraccel.hpp>
 
 namespace Gtk::CellRenderer_Generation
 {

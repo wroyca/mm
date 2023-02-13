@@ -2,10 +2,10 @@
 #ifndef _GTKMM_TREELISTROW_H
 #define _GTKMM_TREELISTROW_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -25,8 +25,8 @@
  */
 
 
-#include <mm/glib/object.hpp>
-#include <mm/gio/listmodel.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gio/listmodel.hpp>
 #include <gtk/gtk.h>
 
 

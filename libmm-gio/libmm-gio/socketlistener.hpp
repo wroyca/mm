@@ -3,7 +3,7 @@
 #define _GIOMM_SOCKETLISTENER_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 Jonathon Jongsma
@@ -22,11 +22,11 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/object.hpp>
-#include <mm/gio/enums.hpp>
-#include <mm/gio/socket.hpp>
-#include <mm/gio/socketconnection.hpp>
-#include <mm/gio/asyncresult.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gio/enums.hpp>
+#include <libmm-gio/socket.hpp>
+#include <libmm-gio/socketconnection.hpp>
+#include <libmm-gio/asyncresult.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

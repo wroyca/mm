@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/gesturerotate.hpp>
-#include <mm/gtk/private/gesturerotate_p.hpp>
+#include <libmm-gtk/gesturerotate.hpp>
+#include <libmm-gtk/gesturerotate_p.hpp>
 
 
 /* Copyright (C) 2014 The gtkmm Development Team

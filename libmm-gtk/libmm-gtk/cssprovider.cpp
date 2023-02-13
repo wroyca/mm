@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/cssprovider.hpp>
-#include <mm/gtk/private/cssprovider_p.hpp>
+#include <libmm-gtk/cssprovider.hpp>
+#include <libmm-gtk/cssprovider_p.hpp>
 
 
 /* Copyright (C) 2010 The gtkmm Development Team

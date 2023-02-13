@@ -14,7 +14,7 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gdk/popupsurfaceimpl.hpp>
+#include <libmm-gdk/popupsurfaceimpl.hpp>
 #include <utility> // std::move()
 
 namespace Gdk

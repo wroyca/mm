@@ -2,10 +2,10 @@
 #ifndef _GTKMM_PAPERSIZE_H
 #define _GTKMM_PAPERSIZE_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2006 The gtkmm Development Team
@@ -26,8 +26,8 @@
  */
 
 
-#include <mm/glib/keyfile.hpp>
-#include <mm/glib/value.hpp>
+#include <libmm-glib/keyfile.hpp>
+#include <libmm-glib/value.hpp>
 #include <vector>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

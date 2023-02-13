@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/actionable.hpp>
-#include <mm/gtk/private/actionable_p.hpp>
+#include <libmm-gtk/actionable.hpp>
+#include <libmm-gtk/actionable_p.hpp>
 
 
 /* Copyright (C) 2011 The giomm Development Team

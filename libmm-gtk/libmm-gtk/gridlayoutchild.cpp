@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/gridlayoutchild.hpp>
-#include <mm/gtk/private/gridlayoutchild_p.hpp>
+#include <libmm-gtk/gridlayoutchild.hpp>
+#include <libmm-gtk/gridlayoutchild_p.hpp>
 
 
 /* Copyright (C) 2019 The gtkmm Development Team

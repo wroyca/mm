@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/pango/layoutiter.hpp>
-#include <mm/pango/private/layoutiter_p.hpp>
+#include <libmm-pango/layoutiter.hpp>
+#include <libmm-pango/layoutiter_p.hpp>
 
 
 /*
@@ -25,7 +25,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <mm/pango/layout.hpp>
+#include <libmm-pango/layout.hpp>
 
 namespace Pango
 {

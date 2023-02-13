@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/dragsource.hpp>
-#include <mm/gtk/private/dragsource_p.hpp>
+#include <libmm-gtk/dragsource.hpp>
+#include <libmm-gtk/dragsource_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

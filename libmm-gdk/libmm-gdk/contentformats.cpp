@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/contentformats.hpp>
-#include <mm/gdk/private/contentformats_p.hpp>
+#include <libmm-gdk/contentformats.hpp>
+#include <libmm-gdk/contentformats_p.hpp>
 
 #include <gdk/gdk.h>
 
@@ -24,7 +24,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/vectorutils.hpp>
+#include <libmm-glib/vectorutils.hpp>
 
 namespace Gdk
 {

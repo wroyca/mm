@@ -3,9 +3,9 @@
 #define _GIOMM_BUFFEREDOUTPUTSTREAM_P_H
 
 
-#include <mm/gio/private/filteroutputstream_p.hpp>
+#include <libmm-gio/filteroutputstream_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gio
 {

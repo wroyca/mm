@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/glib/regex.hpp>
-#include <mm/glib/private/regex_p.hpp>
+#include <libmm-glib/regex.hpp>
+#include <libmm-glib/regex_p.hpp>
 
 
 /* Copyright (C) 2007 The glibmm Development Team
@@ -23,7 +23,7 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/utility.hpp>
 
 using CompileFlags = Glib::Regex::CompileFlags;
 using MatchFlags = Glib::Regex::MatchFlags;

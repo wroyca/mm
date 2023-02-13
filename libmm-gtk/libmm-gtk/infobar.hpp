@@ -3,7 +3,7 @@
 #define _GTKMM_INFOBAR_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2009 The gtkmm Development Team
@@ -23,9 +23,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/widget.hpp>
-#include <mm/gtk/button.hpp>
-#include <mm/gtk/enums.hpp>
+#include <libmm-gtk/widget.hpp>
+#include <libmm-gtk/button.hpp>
+#include <libmm-gtk/enums.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

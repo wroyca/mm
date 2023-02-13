@@ -3,7 +3,7 @@
 #define _GDKMM_PIXBUFFORMAT_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -24,8 +24,8 @@
  */
 
 
-#include <mm/gdk/mm-gdkconfig.hpp>
-#include <mm/glib/value.hpp>
+#include <libmm-gdk/mm-gdkconfig.hpp>
+#include <libmm-glib/value.hpp>
 #include <vector>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -16,7 +16,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/objectbase.hpp>
+#include <libmm-glib/objectbase.hpp>
 
 namespace Glib
 {
@@ -27,7 +27,7 @@ namespace Glib
  * need an instance init function.
  * Example:
  * @code
- * #include <mm/glib/extraclassinit.hpp>
+ * #include <libmm-glib/extraclassinit.hpp>
  *
  * class MyExtraInit : public Glib::ExtraClassInit
  * {

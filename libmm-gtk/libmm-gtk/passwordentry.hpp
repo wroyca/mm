@@ -3,7 +3,7 @@
 #define _GTKMM_PASSWORDENTRY_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2019 The gtkmm Development Team
@@ -22,9 +22,9 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gtk/widget.hpp>
-#include <mm/gtk/editable.hpp>
-#include <mm/gio/menumodel.hpp>
+#include <libmm-gtk/widget.hpp>
+#include <libmm-gtk/editable.hpp>
+#include <libmm-gio/menumodel.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

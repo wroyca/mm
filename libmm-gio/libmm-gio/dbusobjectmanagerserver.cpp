@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/dbusobjectmanagerserver.hpp>
-#include <mm/gio/private/dbusobjectmanagerserver_p.hpp>
+#include <libmm-gio/dbusobjectmanagerserver.hpp>
+#include <libmm-gio/dbusobjectmanagerserver_p.hpp>
 
 
 /* Copyright (C) 2019 The giomm Development Team

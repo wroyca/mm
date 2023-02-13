@@ -17,9 +17,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/pango/mm-pangoconfig.hpp>
-#include <mm/pango/cairofontmap.hpp>
-#include <mm/pango/fontmap.hpp>
+#include <libmm-pango/mm-pangoconfig.hpp>
+#include <libmm-pango/cairofontmap.hpp>
+#include <libmm-pango/fontmap.hpp>
 
 namespace Pango
 {

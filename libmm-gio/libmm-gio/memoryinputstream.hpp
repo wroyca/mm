@@ -2,10 +2,10 @@
 #ifndef _GIOMM_MEMORYINPUTSTREAM_H
 #define _GIOMM_MEMORYINPUTSTREAM_H
 
-#include <mm/gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -25,9 +25,9 @@
  */
 
 
-#include <mm/gio/inputstream.hpp>
-#include <mm/gio/seekable.hpp>
-#include <mm/gio/pollableinputstream.hpp>
+#include <libmm-gio/inputstream.hpp>
+#include <libmm-gio/seekable.hpp>
+#include <libmm-gio/pollableinputstream.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

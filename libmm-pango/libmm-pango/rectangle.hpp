@@ -2,10 +2,10 @@
 #ifndef _PANGOMM_RECTANGLE_H
 #define _PANGOMM_RECTANGLE_H
 
-#include <mm/pango/mm-pangoconfig.hpp>
+#include <libmm-pango/mm-pangoconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2002 The gtkmm Development Team

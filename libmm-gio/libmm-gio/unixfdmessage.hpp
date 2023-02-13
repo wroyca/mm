@@ -3,7 +3,7 @@
 #define _GIOMM_UNIXFDMESSAGE_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -22,7 +22,7 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/socketcontrolmessage.hpp>
+#include <libmm-gio/socketcontrolmessage.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

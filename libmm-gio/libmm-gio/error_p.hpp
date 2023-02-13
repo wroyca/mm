@@ -3,7 +3,7 @@
 #define _GIOMM_ERROR_P_H
 
 
-#include <mm/glib/private/interface_p.hpp>
+#include <libmm-glib/interface_p.hpp>
 
 
 #endif /* _GIOMM_ERROR_P_H */

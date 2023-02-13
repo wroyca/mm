@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/glib/fileutils.hpp>
-#include <mm/glib/private/fileutils_p.hpp>
+#include <libmm-glib/fileutils.hpp>
+#include <libmm-glib/fileutils_p.hpp>
 
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <glib.h>
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/utility.hpp>
 
 namespace Glib
 {

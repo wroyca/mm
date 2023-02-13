@@ -3,9 +3,9 @@
 #define _GTKMM_COLORCHOOSERDIALOG_P_H
 
 
-#include <mm/gtk/private/dialog_p.hpp>
+#include <libmm-gtk/dialog_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {

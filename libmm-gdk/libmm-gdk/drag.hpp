@@ -3,7 +3,7 @@
 #define _GDKMM_DRAG_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /*
@@ -24,8 +24,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gdk/enums.hpp>
-#include <mm/glib/object.hpp>
+#include <libmm-gdk/enums.hpp>
+#include <libmm-glib/object.hpp>
 #include <gdk/gdk.h>
 
 

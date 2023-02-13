@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/flowbox.hpp>
-#include <mm/gtk/private/flowbox_p.hpp>
+#include <libmm-gtk/flowbox.hpp>
+#include <libmm-gtk/flowbox_p.hpp>
 
 
 /* Copyright (C) 2014 The gtkmm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <mm/gtk/adjustment.hpp>
+#include <libmm-gtk/adjustment.hpp>
 
 namespace
 {

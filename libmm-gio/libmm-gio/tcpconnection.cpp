@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/tcpconnection.hpp>
-#include <mm/gio/private/tcpconnection_p.hpp>
+#include <libmm-gio/tcpconnection.hpp>
+#include <libmm-gio/tcpconnection_p.hpp>
 
 
 /* Copyright (C) 2010 Jonathon Jongsma

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/inscription.hpp>
-#include <mm/gtk/private/inscription_p.hpp>
+#include <libmm-gtk/inscription.hpp>
+#include <libmm-gtk/inscription_p.hpp>
 
 
 /* Copyright 2022 The gtkmm Development Team

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/multisorter.hpp>
-#include <mm/gtk/private/multisorter_p.hpp>
+#include <libmm-gtk/multisorter.hpp>
+#include <libmm-gtk/multisorter_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

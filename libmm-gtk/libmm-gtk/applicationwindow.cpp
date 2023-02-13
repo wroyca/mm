@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/applicationwindow.hpp>
-#include <mm/gtk/private/applicationwindow_p.hpp>
+#include <libmm-gtk/applicationwindow.hpp>
+#include <libmm-gtk/applicationwindow_p.hpp>
 
 
 /* Copyright 2012 The gtkmm Development Team
@@ -24,8 +24,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <mm/gtk/applicationwindow.hpp>
-#include <mm/gtk/shortcutswindow.hpp>
+#include <libmm-gtk/applicationwindow.hpp>
+#include <libmm-gtk/shortcutswindow.hpp>
 
 namespace Gtk
 {

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/glib/datetime.hpp>
-#include <mm/glib/private/datetime_p.hpp>
+#include <libmm-glib/datetime.hpp>
+#include <libmm-glib/datetime_p.hpp>
 
 
 /* Copyright (C) 2011 The glibmm Development Team
@@ -23,8 +23,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/utility.hpp>
-#include <mm/glib/wrap.hpp>
+#include <libmm-glib/utility.hpp>
+#include <libmm-glib/wrap.hpp>
 
 namespace Glib
 {

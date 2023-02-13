@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/gesturelongpress.hpp>
-#include <mm/gtk/private/gesturelongpress_p.hpp>
+#include <libmm-gtk/gesturelongpress.hpp>
+#include <libmm-gtk/gesturelongpress_p.hpp>
 
 
 /* Copyright (C) 2014 The gtkmm Development Team

@@ -3,7 +3,7 @@
 #define _GTKMM_LISTBASE_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -22,9 +22,9 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gtk/widget.hpp>
-#include <mm/gtk/orientable.hpp>
-#include <mm/gtk/scrollable.hpp>
+#include <libmm-gtk/widget.hpp>
+#include <libmm-gtk/orientable.hpp>
+#include <libmm-gtk/scrollable.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

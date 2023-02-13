@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/surface.hpp>
-#include <mm/gdk/private/surface_p.hpp>
+#include <libmm-gdk/surface.hpp>
+#include <libmm-gdk/surface_p.hpp>
 
 
 /* Copyright 1998-2002 The gtkmm Development Team
@@ -25,17 +25,17 @@
  */
 
 #include <gdk/gdk.h>
-#include <mm/gdk/cairoutils.hpp>
-#include <mm/gdk/contentprovider.hpp>
-#include <mm/gdk/cursor.hpp>
-#include <mm/gdk/device.hpp>
-#include <mm/gdk/cairocontext.hpp>
-#include <mm/gdk/glcontext.hpp>
-#include <mm/gdk/frameclock.hpp>
-#include <mm/gdk/monitor.hpp>
-#include <mm/gdk/dragsurfaceimpl.hpp>
-#include <mm/gdk/popupsurfaceimpl.hpp>
-#include <mm/gdk/toplevelsurfaceimpl.hpp>
+#include <libmm-gdk/cairoutils.hpp>
+#include <libmm-gdk/contentprovider.hpp>
+#include <libmm-gdk/cursor.hpp>
+#include <libmm-gdk/device.hpp>
+#include <libmm-gdk/cairocontext.hpp>
+#include <libmm-gdk/glcontext.hpp>
+#include <libmm-gdk/frameclock.hpp>
+#include <libmm-gdk/monitor.hpp>
+#include <libmm-gdk/dragsurfaceimpl.hpp>
+#include <libmm-gdk/popupsurfaceimpl.hpp>
+#include <libmm-gdk/toplevelsurfaceimpl.hpp>
 
 using CairoRegion = cairo_region_t;
 

@@ -3,7 +3,7 @@
 #define _GTKMM_TREEMODEL_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /*
@@ -27,9 +27,9 @@
 #include <vector>
 
 #include <gtk/gtk.h>
-#include <mm/glib/interface.hpp>
-#include <mm/gtk/treeiter.hpp>
-#include <mm/gtk/treemodelcolumn.hpp>
+#include <libmm-glib/interface.hpp>
+#include <libmm-gtk/treeiter.hpp>
+#include <libmm-gtk/treemodelcolumn.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

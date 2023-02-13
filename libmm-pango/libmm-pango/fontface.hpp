@@ -3,7 +3,7 @@
 #define _PANGOMM_FONTFACE_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* fontface.h
@@ -25,8 +25,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <mm/pango/fontdescription.hpp>
-#include <mm/glib/object.hpp>
+#include <libmm-pango/fontdescription.hpp>
+#include <libmm-glib/object.hpp>
 #include <pango/pango.h>
 
 

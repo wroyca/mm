@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/toplevel.hpp>
-#include <mm/gdk/private/toplevel_p.hpp>
+#include <libmm-gdk/toplevel.hpp>
+#include <libmm-gdk/toplevel_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

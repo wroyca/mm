@@ -19,8 +19,8 @@
 #ifndef __CAIROMM_WIN32_SURFACE_H
 #define __CAIROMM_WIN32_SURFACE_H
 
-#include <mm/cairo/surface.hpp>
-#include <mm/cairo/enums.hpp>
+#include <libmm-cairo/surface.hpp>
+#include <libmm-cairo/enums.hpp>
 #include <cairo-features.h>
 
 #ifdef CAIRO_HAS_WIN32_SURFACE

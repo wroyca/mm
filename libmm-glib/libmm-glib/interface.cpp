@@ -14,8 +14,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/interface.hpp>
-#include <mm/glib/private/interface_p.hpp>
+#include <libmm-glib/interface.hpp>
+#include <libmm-glib/interface_p.hpp>
 
 namespace Glib
 {

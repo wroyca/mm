@@ -3,7 +3,7 @@
 #define _GIOMM_DBUSPROXY_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -22,13 +22,13 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/object.hpp>
-#include <mm/gio/asyncresult.hpp>
-#include <mm/gio/dbusintrospection.hpp>
-#include <mm/gio/dbusinterface.hpp>
-#include <mm/gio/initable.hpp>
-#include <mm/gio/asyncinitable.hpp>
-#include <mm/gio/dbusconnection.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gio/asyncresult.hpp>
+#include <libmm-gio/dbusintrospection.hpp>
+#include <libmm-gio/dbusinterface.hpp>
+#include <libmm-gio/initable.hpp>
+#include <libmm-gio/asyncinitable.hpp>
+#include <libmm-gio/dbusconnection.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

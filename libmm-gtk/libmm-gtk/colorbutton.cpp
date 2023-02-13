@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/colorbutton.hpp>
-#include <mm/gtk/private/colorbutton_p.hpp>
+#include <libmm-gtk/colorbutton.hpp>
+#include <libmm-gtk/colorbutton_p.hpp>
 
 
 /*

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/socketlistener.hpp>
-#include <mm/gio/private/socketlistener_p.hpp>
+#include <libmm-gio/socketlistener.hpp>
+#include <libmm-gio/socketlistener_p.hpp>
 
 
 /* Copyright (C) 2010 Jonathon Jongsma
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <mm/gio/slot_async.hpp>
+#include <libmm-gio/slot_async.hpp>
 
 namespace Gio
 {

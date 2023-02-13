@@ -3,9 +3,9 @@
 #define _GTKMM_GRIDLAYOUTCHILD_P_H
 
 
-#include <mm/gtk/private/layoutchild_p.hpp>
+#include <libmm-gtk/layoutchild_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {

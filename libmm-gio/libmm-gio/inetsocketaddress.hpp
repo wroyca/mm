@@ -3,7 +3,7 @@
 #define _GIOMM_INETSOCKETADDRESS_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2009 jonathon jongsma
@@ -22,9 +22,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/socketaddress.hpp>
-#include <mm/gio/inetaddress.hpp>
-#include <mm/gio/enums.hpp>
+#include <libmm-gio/socketaddress.hpp>
+#include <libmm-gio/inetaddress.hpp>
+#include <libmm-gio/enums.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

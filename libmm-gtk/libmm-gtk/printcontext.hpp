@@ -3,7 +3,7 @@
 #define _GTKMM_PRINTCONTEXT_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2006 The gtkmm Development Team
@@ -23,15 +23,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/glib/object.hpp>
+#include <libmm-glib/object.hpp>
 
-#include <mm/cairo/context.hpp>
+#include <libmm-cairo/context.hpp>
 
-#include <mm/pango/fontmap.hpp>
-#include <mm/pango/context.hpp>
-#include <mm/pango/layout.hpp>
+#include <libmm-pango/fontmap.hpp>
+#include <libmm-pango/context.hpp>
+#include <libmm-pango/layout.hpp>
 
-#include <mm/gtk/pagesetup.hpp>
+#include <libmm-gtk/pagesetup.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

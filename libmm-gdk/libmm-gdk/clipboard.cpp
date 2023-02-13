@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/clipboard.hpp>
-#include <mm/gdk/private/clipboard_p.hpp>
+#include <libmm-gdk/clipboard.hpp>
+#include <libmm-gdk/clipboard_p.hpp>
 
 
 /* Copyright (C) 2017 The gtkmm Development Team
@@ -23,9 +23,9 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/cancellable.hpp>
-#include <mm/gio/slot_async.hpp>
-#include <mm/gio/inputstream.hpp>
+#include <libmm-gio/cancellable.hpp>
+#include <libmm-gio/slot_async.hpp>
+#include <libmm-gio/inputstream.hpp>
 
 namespace Gdk
 {

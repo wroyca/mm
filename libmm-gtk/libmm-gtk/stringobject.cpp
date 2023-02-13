@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/stringobject.hpp>
-#include <mm/gtk/private/stringobject_p.hpp>
+#include <libmm-gtk/stringobject.hpp>
+#include <libmm-gtk/stringobject_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

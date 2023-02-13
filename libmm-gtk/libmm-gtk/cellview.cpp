@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/cellview.hpp>
-#include <mm/gtk/private/cellview_p.hpp>
+#include <libmm-gtk/cellview.hpp>
+#include <libmm-gtk/cellview_p.hpp>
 
 
 /*
@@ -25,8 +25,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/cellrenderertext.hpp>
-#include <mm/gtk/cellrendererpixbuf.hpp>
+#include <libmm-gtk/cellrenderertext.hpp>
+#include <libmm-gtk/cellrendererpixbuf.hpp>
 #include <gtk/gtk.h>
 
 namespace Gtk

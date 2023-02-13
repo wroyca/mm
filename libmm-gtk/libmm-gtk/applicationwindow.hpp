@@ -2,10 +2,10 @@
 #ifndef _GTKMM_APPLICATIONWINDOW_H
 #define _GTKMM_APPLICATIONWINDOW_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2012 The gtkmm Development Team
@@ -26,10 +26,10 @@
  */
 
 
-#include <mm/gtk/window.hpp>
-#include <mm/gio/actiongroup.hpp>
-#include <mm/gio/actionmap.hpp>
-#include <mm/gtk/application.hpp>
+#include <libmm-gtk/window.hpp>
+#include <libmm-gio/actiongroup.hpp>
+#include <libmm-gio/actionmap.hpp>
+#include <libmm-gtk/application.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

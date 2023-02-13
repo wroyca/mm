@@ -3,7 +3,7 @@
 #define _GTKMM_SCROLLABLE_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 The gtkmm Development Team
@@ -23,10 +23,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/adjustment.hpp>
-#include <mm/gtk/border.hpp>
-#include <mm/glib/interface.hpp>
-#include <mm/gtk/enums.hpp>
+#include <libmm-gtk/adjustment.hpp>
+#include <libmm-gtk/border.hpp>
+#include <libmm-glib/interface.hpp>
+#include <libmm-gtk/enums.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

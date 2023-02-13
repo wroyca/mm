@@ -3,7 +3,7 @@
 #define _GTKMM_EVENTCONTROLLER_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2014 The gtkmm Development Team
@@ -22,11 +22,11 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/object.hpp>
-#include <mm/gtk/widget.hpp>
-#include <mm/gdk/device.hpp>
-#include <mm/gdk/event.hpp>
-#include <mm/gdk/enums.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gtk/widget.hpp>
+#include <libmm-gdk/device.hpp>
+#include <libmm-gdk/event.hpp>
+#include <libmm-gdk/enums.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

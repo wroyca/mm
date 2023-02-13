@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/stylecontext.hpp>
-#include <mm/gtk/private/stylecontext_p.hpp>
+#include <libmm-gtk/stylecontext.hpp>
+#include <libmm-gtk/stylecontext_p.hpp>
 
 
 /* Copyright 1998-2002 The gtkmm Development Team
@@ -24,8 +24,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gdk/texture.hpp>
-#include <mm/gtk/widget.hpp>
+#include <libmm-gdk/texture.hpp>
+#include <libmm-gtk/widget.hpp>
 #include <gtk/gtk.h>
 
 

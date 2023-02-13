@@ -3,7 +3,7 @@
 #define _GTKMM_PRINTSETTINGS_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2006 The gtkmm Development Team
@@ -25,9 +25,9 @@
 
 #include <vector>
 
-#include <mm/glib/object.hpp>
-#include <mm/gtk/enums.hpp>
-#include <mm/gtk/papersize.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gtk/enums.hpp>
+#include <libmm-gtk/papersize.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

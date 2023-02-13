@@ -3,7 +3,7 @@
 #define _GTKMM_CENTERLAYOUT_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2019 The gtkmm Development Team
@@ -22,8 +22,8 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gtk/layoutmanager.hpp>
-#include <mm/gtk/enums.hpp>
+#include <libmm-gtk/layoutmanager.hpp>
+#include <libmm-gtk/enums.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

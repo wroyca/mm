@@ -3,7 +3,7 @@
 #define _GTKMM_DIALOG_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /*
@@ -26,10 +26,10 @@
 
 #include <vector>
 
-#include <mm/gtk/window.hpp>
-#include <mm/gtk/box.hpp>
-#include <mm/gtk/button.hpp>
-#include <mm/gtk/headerbar.hpp>
+#include <libmm-gtk/window.hpp>
+#include <libmm-gtk/box.hpp>
+#include <libmm-gtk/button.hpp>
+#include <libmm-gtk/headerbar.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

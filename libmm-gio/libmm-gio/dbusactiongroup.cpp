@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/dbusactiongroup.hpp>
-#include <mm/gio/private/dbusactiongroup_p.hpp>
+#include <libmm-gio/dbusactiongroup.hpp>
+#include <libmm-gio/dbusactiongroup_p.hpp>
 
 
 /* Copyright (C) 2012 The giomm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <mm/gio/dbusconnection.hpp>
+#include <libmm-gio/dbusconnection.hpp>
 
 namespace Gio
 {

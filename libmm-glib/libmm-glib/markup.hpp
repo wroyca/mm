@@ -20,7 +20,7 @@
  */
 
 
-#include <mm/glib/error.hpp>
+#include <libmm-glib/error.hpp>
 #include <sigc++/sigc++.h>
 #include <map>
 

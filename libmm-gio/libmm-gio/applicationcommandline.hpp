@@ -3,7 +3,7 @@
 #define _GIOMM_APPLICATIONCOMMANDLINE_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 Jonathon Jongsma <jonathon@quotidian.org>
@@ -22,11 +22,11 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/file.hpp>
-#include <mm/gio/inputstream.hpp>
-#include <mm/glib/object.hpp>
-#include <mm/glib/variant.hpp>
-#include <mm/glib/variantdict.hpp>
+#include <libmm-gio/file.hpp>
+#include <libmm-gio/inputstream.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-glib/variant.hpp>
+#include <libmm-glib/variantdict.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -17,10 +17,10 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/refptr.hpp>
-#include <mm/glib/priorities.hpp>
-#include <mm/glib/iochannel.hpp>
-#include <mm/glib/enums.hpp>
+#include <libmm-glib/refptr.hpp>
+#include <libmm-glib/priorities.hpp>
+#include <libmm-glib/iochannel.hpp>
+#include <libmm-glib/enums.hpp>
 #include <sigc++/sigc++.h>
 #include <vector>
 #include <cstddef>

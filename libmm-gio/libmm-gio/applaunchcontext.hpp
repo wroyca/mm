@@ -3,7 +3,7 @@
 #define _GIOMM_APPLAUNCHCONTEXT_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -26,10 +26,10 @@
 
 #include <string>
 
-#include <mm/glib/interface.hpp>
-#include <mm/glib/object.hpp>
-//#include <mm/gio/file.hpp>
-#include <mm/gio/icon.hpp>
+#include <libmm-glib/interface.hpp>
+#include <libmm-glib/object.hpp>
+//#include <libmm-gio/file.hpp>
+#include <libmm-gio/icon.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

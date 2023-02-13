@@ -18,10 +18,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 #include <gdk/gdkkeysyms.h>
-#include <mm/gdk/enums.hpp>
+#include <libmm-gdk/enums.hpp>
 
 namespace Gtk
 {

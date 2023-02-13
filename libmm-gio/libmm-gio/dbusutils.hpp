@@ -2,10 +2,10 @@
 #ifndef _GIOMM_DBUSUTILS_H
 #define _GIOMM_DBUSUTILS_H
 
-#include <mm/gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 The giomm Development Team

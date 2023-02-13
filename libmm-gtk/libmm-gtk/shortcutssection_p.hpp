@@ -3,9 +3,9 @@
 #define _GTKMM_SHORTCUTSSECTION_P_H
 
 
-#include <mm/gtk/private/box_p.hpp>
+#include <libmm-gtk/box_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {

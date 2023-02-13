@@ -3,7 +3,7 @@
 #define _GTKMM_CSSSECTION_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2014 The gtkmm Development Team
@@ -22,9 +22,9 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/refptr.hpp>
-#include <mm/gio/file.hpp>
-#include <mm/gtk/csslocation.hpp>
+#include <libmm-glib/refptr.hpp>
+#include <libmm-gio/file.hpp>
+#include <libmm-gtk/csslocation.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -2,10 +2,10 @@
 #ifndef _GTKMM_ICONPAINTABLE_H
 #define _GTKMM_ICONPAINTABLE_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2003 The gtkmm Development Team
@@ -26,9 +26,9 @@
  */
 
 
-#include <mm/glib/object.hpp>
-#include <mm/gdk/paintable.hpp>
-#include <mm/gio/file.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gdk/paintable.hpp>
+#include <libmm-gio/file.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/appinfo.hpp>
-#include <mm/gio/private/appinfo_p.hpp>
+#include <libmm-gio/appinfo.hpp>
+#include <libmm-gio/appinfo_p.hpp>
 
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -23,9 +23,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/file.hpp>
-#include <mm/glib/vectorutils.hpp>
-#include <mm/gio/slot_async.hpp>
+#include <libmm-gio/file.hpp>
+#include <libmm-glib/vectorutils.hpp>
+#include <libmm-gio/slot_async.hpp>
 #include <gio/gio.h>
 
 namespace

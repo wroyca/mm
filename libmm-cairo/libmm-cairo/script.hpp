@@ -20,9 +20,9 @@
 #define __CAIROMM_SCRIPT_H
 
 #include <string>
-#include <mm/cairo/device.hpp>
-#include <mm/cairo/surface.hpp> // SlotWriteFunc
-#include <mm/cairo/enums.hpp>
+#include <libmm-cairo/device.hpp>
+#include <libmm-cairo/surface.hpp> // SlotWriteFunc
+#include <libmm-cairo/enums.hpp>
 
 #ifdef CAIRO_HAS_SCRIPT_SURFACE
 #include <cairo-script.h>

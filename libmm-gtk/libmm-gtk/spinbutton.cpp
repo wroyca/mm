@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/spinbutton.hpp>
-#include <mm/gtk/private/spinbutton_p.hpp>
+#include <libmm-gtk/spinbutton.hpp>
+#include <libmm-gtk/spinbutton_p.hpp>
 
 #include <gtk/gtk.h>
 
@@ -25,7 +25,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/adjustment.hpp>
+#include <libmm-gtk/adjustment.hpp>
 #include <gtk/gtk.h>
 
 using UpdatePolicy = Gtk::SpinButton::UpdatePolicy;

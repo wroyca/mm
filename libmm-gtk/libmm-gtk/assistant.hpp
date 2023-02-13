@@ -3,7 +3,7 @@
 #define _GTKMM_ASSISTANT_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /*
@@ -24,10 +24,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gio/listmodel.hpp>
-#include <mm/gtk/window.hpp>
-#include <mm/gtk/assistantpage.hpp>
-#include <mm/gdk/pixbuf.hpp>
+#include <libmm-gio/listmodel.hpp>
+#include <libmm-gtk/window.hpp>
+#include <libmm-gtk/assistantpage.hpp>
+#include <libmm-gdk/pixbuf.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

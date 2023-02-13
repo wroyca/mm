@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/menubutton.hpp>
-#include <mm/gtk/private/menubutton_p.hpp>
+#include <libmm-gtk/menubutton.hpp>
+#include <libmm-gtk/menubutton_p.hpp>
 
 
 /* Copyright (C) 2012 The gtkmm Development Team

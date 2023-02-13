@@ -2,10 +2,10 @@
 #ifndef _GTKMM_CELLRENDERERTEXT_H
 #define _GTKMM_CELLRENDERERTEXT_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 1998-2002 The gtkmm Development Team
@@ -26,9 +26,9 @@
  */
 
 
-#include <mm/gtk/cellrenderer.hpp>
-#include <mm/pango/attrlist.hpp>
-#include <mm/pango/fontdescription.hpp>
+#include <libmm-gtk/cellrenderer.hpp>
+#include <libmm-pango/attrlist.hpp>
+#include <libmm-pango/fontdescription.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

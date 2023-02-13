@@ -22,9 +22,9 @@
 
 #include <cstddef> // std::size_t
 #include <sigc++/slot.h>
-#include <mm/glib/refptr.hpp>
-#include <mm/glib/value.hpp>
-#include <mm/glib/wrap.hpp>
+#include <libmm-glib/refptr.hpp>
+#include <libmm-glib/value.hpp>
+#include <libmm-glib/wrap.hpp>
 #include <glib.h>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

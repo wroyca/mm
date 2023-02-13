@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/notebook.hpp>
-#include <mm/gtk/private/notebook_p.hpp>
+#include <libmm-gtk/notebook.hpp>
+#include <libmm-gtk/notebook_p.hpp>
 
 #include <gtk/gtk.h>
 
@@ -26,7 +26,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <mm/gtk/label.hpp>
+#include <libmm-gtk/label.hpp>
 #include <algorithm>
 
 namespace Gtk

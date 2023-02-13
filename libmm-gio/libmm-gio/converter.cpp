@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/converter.hpp>
-#include <mm/gio/private/converter_p.hpp>
+#include <libmm-gio/converter.hpp>
+#include <libmm-gio/converter_p.hpp>
 
 
 /* Copyright (C) 2012 The giomm Development Team

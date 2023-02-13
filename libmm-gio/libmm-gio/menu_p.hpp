@@ -3,9 +3,9 @@
 #define _GIOMM_MENU_P_H
 
 
-#include <mm/gio/private/menumodel_p.hpp>
+#include <libmm-gio/menumodel_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gio
 {

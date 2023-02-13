@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/zlibcompressor.hpp>
-#include <mm/gio/private/zlibcompressor_p.hpp>
+#include <libmm-gio/zlibcompressor.hpp>
+#include <libmm-gio/zlibcompressor_p.hpp>
 
 
 /* Copyright (C) 2012 The giomm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <mm/gio/fileinfo.hpp>
+#include <libmm-gio/fileinfo.hpp>
 
 namespace Gio
 {

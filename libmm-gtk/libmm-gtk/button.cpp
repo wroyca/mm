@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/button.hpp>
-#include <mm/gtk/private/button_p.hpp>
+#include <libmm-gtk/button.hpp>
+#include <libmm-gtk/button_p.hpp>
 
 
 /*
@@ -26,7 +26,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <mm/gtk/image.hpp>
+#include <libmm-gtk/image.hpp>
 
 namespace Gtk
 {

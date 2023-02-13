@@ -20,11 +20,11 @@
  */
 
 
-#include <mm/glib/mm-glibconfig.hpp>
+#include <libmm-glib/mm-glibconfig.hpp>
 #include <glib.h> //For the GIOCondition enum values.
-#include <mm/glib/error.hpp>
-#include <mm/glib/refptr.hpp>
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/error.hpp>
+#include <libmm-glib/refptr.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 #include <string>
 

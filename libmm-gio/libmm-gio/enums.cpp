@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/enums.hpp>
-#include <mm/gio/private/enums_p.hpp>
+#include <libmm-gio/enums.hpp>
+#include <libmm-gio/enums_p.hpp>
 
 
 /* Copyright (C) 2007 The gtkmm Development Team

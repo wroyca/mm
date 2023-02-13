@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/iconview.hpp>
-#include <mm/gtk/private/iconview_p.hpp>
+#include <libmm-gtk/iconview.hpp>
+#include <libmm-gtk/iconview_p.hpp>
 
 
 /* Copyright 1998-2004 The gtkmm Development Team
@@ -24,9 +24,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/glib/vectorutils.hpp>
+#include <libmm-glib/vectorutils.hpp>
 
-#include <mm/gtk/adjustment.hpp>
+#include <libmm-gtk/adjustment.hpp>
 #include <gtk/gtk.h>
 
 namespace //anonymous namespace

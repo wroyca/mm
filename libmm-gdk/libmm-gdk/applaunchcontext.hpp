@@ -2,10 +2,10 @@
 #ifndef _GDKMM_APPLAUNCHCONTEXT_H
 #define _GDKMM_APPLAUNCHCONTEXT_H
 
-#include <mm/gdk/mm-gdkconfig.hpp>
+#include <libmm-gdk/mm-gdkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2012 The gtkmm Development Team
@@ -26,7 +26,7 @@
  */
 
 
-#include <mm/gio/appinfo.hpp>
+#include <libmm-gio/appinfo.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

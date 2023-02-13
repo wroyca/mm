@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/tlsinteraction.hpp>
-#include <mm/gio/private/tlsinteraction_p.hpp>
+#include <libmm-gio/tlsinteraction.hpp>
+#include <libmm-gio/tlsinteraction_p.hpp>
 
 
 /* Copyright (C) 2012 The giomm Development Team
@@ -24,9 +24,9 @@
  */
 
 #include <gio/gio.h>
-#include <mm/gio/cancellable.hpp>
-#include <mm/gio/tlspassword.hpp>
-#include <mm/gio/slot_async.hpp>
+#include <libmm-gio/cancellable.hpp>
+#include <libmm-gio/tlspassword.hpp>
+#include <libmm-gio/slot_async.hpp>
 
 namespace
 {

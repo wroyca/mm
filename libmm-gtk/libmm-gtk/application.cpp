@@ -1,13 +1,13 @@
 
 
-// Needed before gtkmm/private/application_p.h is included.
+// Needed before gtkmm/application_p.h is included.
 typedef struct _GtkWindow GtkWindow;
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/application.hpp>
-#include <mm/gtk/private/application_p.hpp>
+#include <libmm-gtk/application.hpp>
+#include <libmm-gtk/application_p.hpp>
 
 
 /* Copyright 2003 The gtkmm Development Team
@@ -27,15 +27,15 @@ typedef struct _GtkWindow GtkWindow;
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <mm/glib/vectorutils.hpp>
+#include <libmm-glib/vectorutils.hpp>
 
 #include <gtk/gtk.h>
-#include <mm/gtk/window.hpp>
-#include <mm/glib/init.hpp>
-#include <mm/gio/init.hpp>
-#include <mm/pango/wrap_init.hpp>
-#include <mm/gdk/wrap_init.hpp>
-#include <mm/gtk/wrap_init.hpp>
+#include <libmm-gtk/window.hpp>
+#include <libmm-glib/init.hpp>
+#include <libmm-gio/init.hpp>
+#include <libmm-pango/wrap_init.hpp>
+#include <libmm-gdk/wrap_init.hpp>
+#include <libmm-gtk/wrap_init.hpp>
 #include <locale>
 #include <clocale>
 #include <stdexcept>

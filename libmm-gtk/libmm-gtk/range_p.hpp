@@ -3,9 +3,9 @@
 #define _GTKMM_RANGE_P_H
 
 
-#include <mm/gtk/private/widget_p.hpp>
+#include <libmm-gtk/widget_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {

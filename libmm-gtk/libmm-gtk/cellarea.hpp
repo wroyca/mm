@@ -3,7 +3,7 @@
 #define _GTKMM_CELLAREA_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 The gtkmm Development Team
@@ -23,10 +23,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/buildable.hpp>
-#include <mm/gtk/cellareacontext.hpp>
-#include <mm/gtk/celllayout.hpp>
-#include <mm/glib/object.hpp>
+#include <libmm-gtk/buildable.hpp>
+#include <libmm-gtk/cellareacontext.hpp>
+#include <libmm-gtk/celllayout.hpp>
+#include <libmm-glib/object.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

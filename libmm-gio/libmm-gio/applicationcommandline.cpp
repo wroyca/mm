@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/applicationcommandline.hpp>
-#include <mm/gio/private/applicationcommandline_p.hpp>
+#include <libmm-gio/applicationcommandline.hpp>
+#include <libmm-gio/applicationcommandline_p.hpp>
 
 
 /* Copyright (C) 2010 Jonathon Jongsma <jonathon@quotidian.org>
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <mm/glib/vectorutils.hpp>
+#include <libmm-glib/vectorutils.hpp>
 
 namespace Gio
 {

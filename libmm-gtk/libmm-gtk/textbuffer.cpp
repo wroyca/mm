@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/textbuffer.hpp>
-#include <mm/gtk/private/textbuffer_p.hpp>
+#include <libmm-gtk/textbuffer.hpp>
+#include <libmm-gtk/textbuffer_p.hpp>
 
 
 /* Copyright(C) 1998-2002 The gtkmm Development Team
@@ -24,12 +24,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/glib/vectorutils.hpp>
+#include <libmm-glib/vectorutils.hpp>
 
 #include <gtk/gtk.h>
 #include <glib.h>
-#include <mm/gtk/textmark.hpp>
-#include <mm/gtk/textiter.hpp>
+#include <libmm-gtk/textmark.hpp>
+#include <libmm-gtk/textiter.hpp>
 
 namespace Gtk
 {

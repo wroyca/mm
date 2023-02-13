@@ -15,9 +15,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/object.hpp>
-#include <mm/gtk/private/object_p.hpp>
-#include <mm/glib/quark.hpp>
+#include <libmm-gtk/object.hpp>
+#include <libmm-gtk/object_p.hpp>
+#include <libmm-glib/quark.hpp>
 #include <gtk/gtk.h>
 
 namespace Gtk

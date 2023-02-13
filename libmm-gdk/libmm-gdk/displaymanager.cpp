@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/displaymanager.hpp>
-#include <mm/gdk/private/displaymanager_p.hpp>
+#include <libmm-gdk/displaymanager.hpp>
+#include <libmm-gdk/displaymanager_p.hpp>
 
 
 /*

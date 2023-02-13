@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/levelbar.hpp>
-#include <mm/gtk/private/levelbar_p.hpp>
+#include <libmm-gtk/levelbar.hpp>
+#include <libmm-gtk/levelbar_p.hpp>
 
 
 /* Copyright (C) 2012 The gtkmm Development Team

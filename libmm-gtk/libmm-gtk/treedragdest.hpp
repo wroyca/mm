@@ -3,7 +3,7 @@
 #define _GTKMM_TREEDRAGDEST_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 1998-2002 The gtkmm Development Team
@@ -23,9 +23,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/glib/interface.hpp>
-#include <mm/glib/value.hpp>
-#include <mm/gtk/treemodel.hpp>
+#include <libmm-glib/interface.hpp>
+#include <libmm-glib/value.hpp>
+#include <libmm-gtk/treemodel.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

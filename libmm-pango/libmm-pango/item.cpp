@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/pango/item.hpp>
-#include <mm/pango/private/item_p.hpp>
+#include <libmm-pango/item.hpp>
+#include <libmm-pango/item_p.hpp>
 
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -24,9 +24,9 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <mm/pango/font.hpp>
-#include <mm/pango/attributes.hpp>
-#include <mm/pango/glyphstring.hpp>
+#include <libmm-pango/font.hpp>
+#include <libmm-pango/attributes.hpp>
+#include <libmm-pango/glyphstring.hpp>
 
 namespace Pango
 {

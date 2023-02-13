@@ -2,10 +2,10 @@
 #ifndef _GTKMM_SCALEBUTTON_H
 #define _GTKMM_SCALEBUTTON_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /*
@@ -29,10 +29,10 @@
 
 #include <vector>
 
-#include <mm/gtk/button.hpp>
-#include <mm/gtk/adjustment.hpp>
-#include <mm/gtk/orientable.hpp>
-#include <mm/gtk/enums.hpp>
+#include <libmm-gtk/button.hpp>
+#include <libmm-gtk/adjustment.hpp>
+#include <libmm-gtk/orientable.hpp>
+#include <libmm-gtk/enums.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

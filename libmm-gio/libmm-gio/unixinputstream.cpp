@@ -16,10 +16,10 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/unixinputstream.hpp>
-#include <mm/gio/private/unixinputstream_p.hpp>
+#include <libmm-gio/unixinputstream.hpp>
+#include <libmm-gio/unixinputstream_p.hpp>
 
 #include <gio/gio.h>
 #include <gio/gunixinputstream.h>

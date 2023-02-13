@@ -3,7 +3,7 @@
 #define _GTKMM_GESTURE_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2014 The gtkmm Development Team
@@ -23,8 +23,8 @@
  */
 
 #include <vector>
-#include <mm/gtk/eventcontroller.hpp>
-#include <mm/gdk/event.hpp>
+#include <libmm-gtk/eventcontroller.hpp>
+#include <libmm-gdk/event.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

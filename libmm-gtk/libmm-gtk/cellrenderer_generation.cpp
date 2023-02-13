@@ -17,7 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/cellrenderer_generation.hpp>
+#include <libmm-gtk/cellrenderer_generation.hpp>
 
 
 //template specializations:

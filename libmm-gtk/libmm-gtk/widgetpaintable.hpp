@@ -3,7 +3,7 @@
 #define _GTKMM_WIDGETPAINTABLE_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2018 The gtkmm Development Team
@@ -22,9 +22,9 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/object.hpp>
-#include <mm/gdk/paintable.hpp>
-#include <mm/gtk/widget.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gdk/paintable.hpp>
+#include <libmm-gtk/widget.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -2,10 +2,10 @@
 #ifndef _GTKMM_TREEVIEWCOLUMN_H
 #define _GTKMM_TREEVIEWCOLUMN_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright(C) 2002 The gtkmm Development Team
@@ -29,12 +29,12 @@
 // the #ifndef GTKMM_DISABLE_DEPRECATED in deprecated classes) is generated:
 
 
-#include <mm/gtk/treeiter.hpp>
-#include <mm/gtk/button.hpp>
-#include <mm/gtk/treemodel.hpp>
-#include <mm/gtk/celllayout.hpp>
-#include <mm/gtk/buildable.hpp>
-#include <mm/gtk/cellrenderer_generation.hpp>
+#include <libmm-gtk/treeiter.hpp>
+#include <libmm-gtk/button.hpp>
+#include <libmm-gtk/treemodel.hpp>
+#include <libmm-gtk/celllayout.hpp>
+#include <libmm-gtk/buildable.hpp>
+#include <libmm-gtk/cellrenderer_generation.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

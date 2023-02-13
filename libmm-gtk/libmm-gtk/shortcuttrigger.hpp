@@ -2,10 +2,10 @@
 #ifndef _GTKMM_SHORTCUTTRIGGER_H
 #define _GTKMM_SHORTCUTTRIGGER_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -25,10 +25,10 @@
  */
 
 
-#include <mm/glib/object.hpp>
-#include <mm/gdk/display.hpp>
-#include <mm/gdk/event.hpp>
-#include <mm/gdk/enums.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gdk/display.hpp>
+#include <libmm-gdk/event.hpp>
+#include <libmm-gdk/enums.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

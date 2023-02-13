@@ -17,9 +17,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gdk/mm-gdkconfig.hpp>
-#include <mm/gdk/popup.hpp>
-#include <mm/gdk/surface.hpp>
+#include <libmm-gdk/mm-gdkconfig.hpp>
+#include <libmm-gdk/popup.hpp>
+#include <libmm-gdk/surface.hpp>
 
 namespace Gdk
 {

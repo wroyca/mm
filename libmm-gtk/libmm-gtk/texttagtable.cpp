@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/texttagtable.hpp>
-#include <mm/gtk/private/texttagtable_p.hpp>
+#include <libmm-gtk/texttagtable.hpp>
+#include <libmm-gtk/texttagtable_p.hpp>
 
 
 /*
@@ -25,7 +25,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/texttag.hpp>
+#include <libmm-gtk/texttag.hpp>
 #include <gtk/gtk.h>
 
 

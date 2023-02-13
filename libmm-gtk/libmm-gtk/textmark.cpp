@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/textmark.hpp>
-#include <mm/gtk/private/textmark_p.hpp>
+#include <libmm-gtk/textmark.hpp>
+#include <libmm-gtk/textmark_p.hpp>
 
 
 /*
@@ -26,8 +26,8 @@
  */
 
 
-#include <mm/gtk/textmark.hpp>
-#include <mm/gtk/textbuffer.hpp>
+#include <libmm-gtk/textmark.hpp>
+#include <libmm-gtk/textbuffer.hpp>
 #include <gtk/gtk.h>
 
 

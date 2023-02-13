@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/eventcontrollermotion.hpp>
-#include <mm/gtk/private/eventcontrollermotion_p.hpp>
+#include <libmm-gtk/eventcontrollermotion.hpp>
+#include <libmm-gtk/eventcontrollermotion_p.hpp>
 
 
 /* Copyright (C) 2018 The gtkmm Development Team

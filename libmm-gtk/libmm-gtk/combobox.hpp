@@ -3,7 +3,7 @@
 #define _GTKMM_COMBOBOX_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /*
@@ -24,13 +24,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/widget.hpp>
-#include <mm/gtk/celllayout.hpp>
-#include <mm/gtk/celleditable.hpp>
-#include <mm/gtk/entry.hpp>
-#include <mm/gtk/treemodel.hpp>
-#include <mm/gtk/treeview.hpp>
-#include <mm/gtk/enums.hpp> //For SensitivityType.
+#include <libmm-gtk/widget.hpp>
+#include <libmm-gtk/celllayout.hpp>
+#include <libmm-gtk/celleditable.hpp>
+#include <libmm-gtk/entry.hpp>
+#include <libmm-gtk/treemodel.hpp>
+#include <libmm-gtk/treeview.hpp>
+#include <libmm-gtk/enums.hpp> //For SensitivityType.
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

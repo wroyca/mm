@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/dbusinterfaceskeleton.hpp>
-#include <mm/gio/private/dbusinterfaceskeleton_p.hpp>
+#include <libmm-gio/dbusinterfaceskeleton.hpp>
+#include <libmm-gio/dbusinterfaceskeleton_p.hpp>
 
 
 /* Copyright (C) 2013 The giomm Development Team
@@ -23,9 +23,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/dbusconnection.hpp>
-#include <mm/gio/dbusintrospection.hpp>
-#include <mm/gio/dbusmethodinvocation.hpp>
+#include <libmm-gio/dbusconnection.hpp>
+#include <libmm-gio/dbusintrospection.hpp>
+#include <libmm-gio/dbusmethodinvocation.hpp>
 
 using Flags = Gio::DBus::InterfaceSkeleton::Flags;
 

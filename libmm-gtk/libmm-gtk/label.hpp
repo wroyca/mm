@@ -3,7 +3,7 @@
 #define _GTKMM_LABEL_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 1998-2002 The gtkmm Development Team
@@ -24,10 +24,10 @@
  */
 
 
-#include <mm/gtk/widget.hpp>
-#include <mm/pango/attrlist.hpp>
-#include <mm/pango/tabarray.hpp>
-#include <mm/gio/menumodel.hpp>
+#include <libmm-gtk/widget.hpp>
+#include <libmm-pango/attrlist.hpp>
+#include <libmm-pango/tabarray.hpp>
+#include <libmm-gio/menumodel.hpp>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkLabel = struct _GtkLabel;

@@ -18,8 +18,8 @@
 #ifndef _GTKMM_OBJECT_H
 #define _GTKMM_OBJECT_H
 
-#include <mm/glib/object.hpp>
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 #include <utility>
 

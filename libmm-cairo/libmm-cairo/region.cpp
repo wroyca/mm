@@ -16,8 +16,8 @@
  * 02110-1301, USA.
  */
 
-#include <mm/cairo/region.hpp>
-#include <mm/cairo/private.hpp>
+#include <libmm-cairo/region.hpp>
+#include <libmm-cairo/private.hpp>
 #include <algorithm>
 
 namespace Cairo

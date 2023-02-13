@@ -20,7 +20,7 @@
  */
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 extern "C" { typedef struct _GOptionEntry GOptionEntry; }

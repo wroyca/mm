@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/proxyaddress.hpp>
-#include <mm/gio/private/proxyaddress_p.hpp>
+#include <libmm-gio/proxyaddress.hpp>
+#include <libmm-gio/proxyaddress_p.hpp>
 
 
 /* Copyright (C) 2010 glibmm Development Team

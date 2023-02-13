@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/pango/glyphstring.hpp>
-#include <mm/pango/private/glyphstring_p.hpp>
+#include <libmm-pango/glyphstring.hpp>
+#include <libmm-pango/glyphstring_p.hpp>
 
 
 /*
@@ -25,7 +25,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/utility.hpp>
 #include <pango/pangocairo.h>
 
 namespace Pango

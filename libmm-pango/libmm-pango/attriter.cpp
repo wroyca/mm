@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/pango/attriter.hpp>
-#include <mm/pango/private/attriter_p.hpp>
+#include <libmm-pango/attriter.hpp>
+#include <libmm-pango/attriter_p.hpp>
 
 
 /*

@@ -2,10 +2,10 @@
 #ifndef _GTKMM_TREELISTMODEL_H
 #define _GTKMM_TREELISTMODEL_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -25,9 +25,9 @@
  */
 
 
-#include <mm/glib/object.hpp>
-#include <mm/gio/listmodel.hpp>
-#include <mm/gtk/treelistrow.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gio/listmodel.hpp>
+#include <libmm-gtk/treelistrow.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/comboboxtext.hpp>
-#include <mm/gtk/private/comboboxtext_p.hpp>
+#include <libmm-gtk/comboboxtext.hpp>
+#include <libmm-gtk/comboboxtext_p.hpp>
 
 
 /*

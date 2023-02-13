@@ -1,7 +1,7 @@
 #ifndef _GDKMM_WRAP_INIT_H
 #define _GDKMM_WRAP_INIT_H
 
-#include <mm/gdk/mm-gdkconfig.hpp>
+#include <libmm-gdk/mm-gdkconfig.hpp>
 
 /* wrap_init.h
  *

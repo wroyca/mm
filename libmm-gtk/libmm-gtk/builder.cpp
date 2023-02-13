@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/builder.hpp>
-#include <mm/gtk/private/builder_p.hpp>
+#include <libmm-gtk/builder.hpp>
+#include <libmm-gtk/builder_p.hpp>
 
 
 /* Copyright 2007 The gtkmm Development Team
@@ -24,9 +24,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/glib/vectorutils.hpp>
-#include <mm/gtk/application.hpp>
-#include <mm/gtk/buildercscope.hpp>
+#include <libmm-glib/vectorutils.hpp>
+#include <libmm-gtk/application.hpp>
+#include <libmm-gtk/buildercscope.hpp>
 
 #include <gtk/gtk.h>
 

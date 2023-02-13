@@ -2,10 +2,10 @@
 #ifndef _GTKMM_PADACTIONENTRY_H
 #define _GTKMM_PADACTIONENTRY_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2019 The gtkmm Development Team
@@ -25,8 +25,8 @@
  */
 
 
-#include <mm/glib/ustring.hpp>
-#include <mm/glib/value.hpp>
+#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/value.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

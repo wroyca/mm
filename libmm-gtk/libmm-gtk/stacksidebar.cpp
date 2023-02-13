@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/stacksidebar.hpp>
-#include <mm/gtk/private/stacksidebar_p.hpp>
+#include <libmm-gtk/stacksidebar.hpp>
+#include <libmm-gtk/stacksidebar_p.hpp>
 
 
 /* Copyright (C) 2015 The gtkmm Development Team

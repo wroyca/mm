@@ -3,9 +3,9 @@
 #define _GTKMM_ABOUTDIALOG_P_H
 
 
-#include <mm/gtk/private/window_p.hpp>
+#include <libmm-gtk/window_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {

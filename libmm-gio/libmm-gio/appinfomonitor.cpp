@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/appinfomonitor.hpp>
-#include <mm/gio/private/appinfomonitor_p.hpp>
+#include <libmm-gio/appinfomonitor.hpp>
+#include <libmm-gio/appinfomonitor_p.hpp>
 
 
 /* Copyright (C) 2022 The giomm Development Team

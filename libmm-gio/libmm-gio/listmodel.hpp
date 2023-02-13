@@ -2,10 +2,10 @@
 #ifndef _GIOMM_LISTMODEL_H
 #define _GIOMM_LISTMODEL_H
 
-#include <mm/gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2016 The giomm Development Team
@@ -25,7 +25,7 @@
  */
 
 
-#include <mm/glib/interface.hpp>
+#include <libmm-glib/interface.hpp>
 #include <gio/gio.h>
 
 

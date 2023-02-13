@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/emblem.hpp>
-#include <mm/gio/private/emblem_p.hpp>
+#include <libmm-gio/emblem.hpp>
+#include <libmm-gio/emblem_p.hpp>
 
 
 /* Copyright (C) 2008 Jonathon Jongsma

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/searchbar.hpp>
-#include <mm/gtk/private/searchbar_p.hpp>
+#include <libmm-gtk/searchbar.hpp>
+#include <libmm-gtk/searchbar_p.hpp>
 
 
 /*

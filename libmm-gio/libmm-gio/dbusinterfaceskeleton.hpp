@@ -3,7 +3,7 @@
 #define _GIOMM_DBUSINTERFACESKELETON_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2013 The giomm Development Team
@@ -22,8 +22,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/object.hpp>
-#include <mm/gio/dbusinterface.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gio/dbusinterface.hpp>
 
 
  //For the GDBusMethodInvocation type in the *_p.h file.

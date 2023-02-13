@@ -14,7 +14,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/extraclassinit.hpp>
+#include <libmm-glib/extraclassinit.hpp>
 
 namespace Glib
 {

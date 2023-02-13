@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/text.hpp>
-#include <mm/gtk/private/text_p.hpp>
+#include <libmm-gtk/text.hpp>
+#include <libmm-gtk/text_p.hpp>
 
 
 /* Copyright (C) 2019 The gtkmm Development Team

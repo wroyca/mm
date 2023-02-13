@@ -3,7 +3,7 @@
 #define _PANGOMM_FONTSET_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* fontset.h
@@ -25,10 +25,10 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <mm/glib/object.hpp>
-#include <mm/pango/language.hpp>
-#include <mm/pango/font.hpp>
-#include <mm/pango/fontmetrics.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-pango/language.hpp>
+#include <libmm-pango/font.hpp>
+#include <libmm-pango/fontmetrics.hpp>
 #include <pango/pango.h>
 
 

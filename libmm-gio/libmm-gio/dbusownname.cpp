@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/dbusownname.hpp>
-#include <mm/gio/private/dbusownname_p.hpp>
+#include <libmm-gio/dbusownname.hpp>
+#include <libmm-gio/dbusownname_p.hpp>
 
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <mm/glib/exceptionhandler.hpp>
+#include <libmm-glib/exceptionhandler.hpp>
 
 namespace
 {

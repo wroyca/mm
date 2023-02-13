@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/expander.hpp>
-#include <mm/gtk/private/expander_p.hpp>
+#include <libmm-gtk/expander.hpp>
+#include <libmm-gtk/expander_p.hpp>
 
 
 /*

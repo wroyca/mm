@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/calendar.hpp>
-#include <mm/gtk/private/calendar_p.hpp>
+#include <libmm-gtk/calendar.hpp>
+#include <libmm-gtk/calendar_p.hpp>
 
 #include <gtk/gtk.h>
 

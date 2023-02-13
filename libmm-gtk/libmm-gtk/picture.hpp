@@ -3,7 +3,7 @@
 #define _GTKMM_PICTURE_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2018 The gtkmm Development Team
@@ -22,9 +22,9 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gtk/widget.hpp>
-#include <mm/gdk/pixbuf.hpp>
-#include <mm/gio/file.hpp>
+#include <libmm-gtk/widget.hpp>
+#include <libmm-gdk/pixbuf.hpp>
+#include <libmm-gio/file.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

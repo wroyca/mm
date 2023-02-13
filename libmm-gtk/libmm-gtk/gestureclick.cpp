@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/gestureclick.hpp>
-#include <mm/gtk/private/gestureclick_p.hpp>
+#include <libmm-gtk/gestureclick.hpp>
+#include <libmm-gtk/gestureclick_p.hpp>
 
 
 /* Copyright (C) 2014 The gtkmm Development Team

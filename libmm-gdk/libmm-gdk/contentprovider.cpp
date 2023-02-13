@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/contentprovider.hpp>
-#include <mm/gdk/private/contentprovider_p.hpp>
+#include <libmm-gdk/contentprovider.hpp>
+#include <libmm-gdk/contentprovider_p.hpp>
 
 #include <gdk/gdk.h>
 
@@ -24,8 +24,8 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/slot_async.hpp>
-#include <mm/gio/outputstream.hpp>
+#include <libmm-gio/slot_async.hpp>
+#include <libmm-gio/outputstream.hpp>
 
 namespace Gdk
 {

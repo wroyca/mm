@@ -3,7 +3,7 @@
 #define _GTKMM_FONTCHOOSERDIALOG_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2011 The gtkmm Development Team
@@ -24,8 +24,8 @@
  */
 
 
-#include <mm/gtk/dialog.hpp>
-#include <mm/gtk/fontchooser.hpp>
+#include <libmm-gtk/dialog.hpp>
+#include <libmm-gtk/fontchooser.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

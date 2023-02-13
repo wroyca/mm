@@ -3,10 +3,10 @@
 #define _GDKMM_DEVICEPAD_P_H
 
 
-#include <mm/glib/private/interface_p.hpp>
+#include <libmm-glib/interface_p.hpp>
 #include <gdk/gdk.h>
 
-#include <mm/glib/private/interface_p.hpp>
+#include <libmm-glib/interface_p.hpp>
 
 namespace Gdk
 {

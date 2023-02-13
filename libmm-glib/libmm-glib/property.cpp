@@ -14,10 +14,10 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/property.hpp>
+#include <libmm-glib/property.hpp>
 
-#include <mm/glib/object.hpp>
-#include <mm/glib/class.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-glib/class.hpp>
 #include <cstddef>
 #include <map>
 

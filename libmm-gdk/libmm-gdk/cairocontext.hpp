@@ -3,7 +3,7 @@
 #define _GDKMM_CAIROCONTEXT_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2018 The gtkmm Development Team
@@ -22,8 +22,8 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gdk/drawcontext.hpp>
-#include <mm/cairo/context.hpp>
+#include <libmm-gdk/drawcontext.hpp>
+#include <libmm-cairo/context.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -2,10 +2,10 @@
 #ifndef _GTKMM_TEXTMARK_H
 #define _GTKMM_TEXTMARK_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /*
@@ -27,7 +27,7 @@
  */
 
 
-#include <mm/glib/object.hpp>
+#include <libmm-glib/object.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

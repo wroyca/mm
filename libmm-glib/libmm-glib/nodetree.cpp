@@ -1,13 +1,13 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/glib/nodetree.hpp>
-#include <mm/glib/private/nodetree_p.hpp>
+#include <libmm-glib/nodetree.hpp>
+#include <libmm-glib/nodetree_p.hpp>
 
 
-#include <mm/glib/nodetree.hpp>
+#include <libmm-glib/nodetree.hpp>
 
 namespace
 {

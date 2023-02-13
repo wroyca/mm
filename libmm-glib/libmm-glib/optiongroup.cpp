@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/glib/optiongroup.hpp>
-#include <mm/glib/private/optiongroup_p.hpp>
+#include <libmm-glib/optiongroup.hpp>
+#include <libmm-glib/optiongroup_p.hpp>
 
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -23,10 +23,10 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/optionentry.hpp>
-#include <mm/glib/optioncontext.hpp>
-#include <mm/glib/utility.hpp>
-#include <mm/glib/exceptionhandler.hpp>
+#include <libmm-glib/optionentry.hpp>
+#include <libmm-glib/optioncontext.hpp>
+#include <libmm-glib/utility.hpp>
+#include <libmm-glib/exceptionhandler.hpp>
 #include <glib.h> // g_malloc
 #include <cstring> // std::memset()
 

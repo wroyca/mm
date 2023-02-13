@@ -15,8 +15,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/glib/utility.hpp>
-#include <mm/gtk/accelerator.hpp>
+#include <libmm-glib/utility.hpp>
+#include <libmm-gtk/accelerator.hpp>
 #include <gtk/gtk.h>
 
 // The corresponding gtk functions are defined in gtkaccelgroup.c.

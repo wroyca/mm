@@ -1,14 +1,14 @@
 
 
-    // Needed before gtkmm/private/buildable_p.h is included.
+    // Needed before gtkmm/buildable_p.h is included.
     typedef struct _GtkBuilder GtkBuilder;
     typedef struct _GtkBuildableParser GtkBuildableParser;
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/buildable.hpp>
-#include <mm/gtk/private/buildable_p.hpp>
+#include <libmm-gtk/buildable.hpp>
+#include <libmm-gtk/buildable_p.hpp>
 
 
 /* Copyright 2009 The gtkmm Development Team
@@ -29,7 +29,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <mm/gtk/builder.hpp>
+#include <libmm-gtk/builder.hpp>
 #include <cstring>
 
 namespace Gtk

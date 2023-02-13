@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/treerowreference.hpp>
-#include <mm/gtk/private/treerowreference_p.hpp>
+#include <libmm-gtk/treerowreference.hpp>
+#include <libmm-gtk/treerowreference_p.hpp>
 
 
 /* Copyright (C) 2002 The gtkmm Development Team

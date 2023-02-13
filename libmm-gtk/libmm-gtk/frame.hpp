@@ -3,7 +3,7 @@
 #define _GTKMM_FRAME_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /*
@@ -25,7 +25,7 @@
  */
 
 
-#include <mm/gtk/widget.hpp>
+#include <libmm-gtk/widget.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -16,9 +16,9 @@
 #ifndef _GIOMM_CONTENTTYPE_H
 #define _GIOMM_CONTENTTYPE_H
 
-#include <mm/glib/ustring.hpp>
-#include <mm/gio/icon.hpp>
-#include <mm/gio/file.hpp>
+#include <libmm-glib/ustring.hpp>
+#include <libmm-gio/icon.hpp>
+#include <libmm-gio/file.hpp>
 #include <string>
 
 namespace Gio

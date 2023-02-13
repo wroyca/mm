@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/remoteactiongroup.hpp>
-#include <mm/gio/private/remoteactiongroup_p.hpp>
+#include <libmm-gio/remoteactiongroup.hpp>
+#include <libmm-gio/remoteactiongroup_p.hpp>
 
 
 /* Copyright (C) 2012 The giomm Development Team

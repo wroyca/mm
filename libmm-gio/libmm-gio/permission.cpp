@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/permission.hpp>
-#include <mm/gio/private/permission_p.hpp>
+#include <libmm-gio/permission.hpp>
+#include <libmm-gio/permission_p.hpp>
 
 
 /* Copyright (C) 2014 The giomm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <mm/gio/slot_async.hpp>
+#include <libmm-gio/slot_async.hpp>
 
 namespace Gio
 {

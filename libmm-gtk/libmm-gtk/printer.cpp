@@ -18,12 +18,12 @@
 
 #ifndef _WIN32
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/printer.hpp>
-#include <mm/gtk/private/printer_p.hpp>
-#include <mm/glib/vectorutils.hpp>
-#include <mm/gtk/papersize.hpp>
+#include <libmm-gtk/printer.hpp>
+#include <libmm-gtk/printer_p.hpp>
+#include <libmm-glib/vectorutils.hpp>
+#include <libmm-gtk/papersize.hpp>
 
 #include <gtk/gtkunixprint.h>
 

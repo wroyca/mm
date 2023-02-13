@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/filterlistmodel.hpp>
-#include <mm/gtk/private/filterlistmodel_p.hpp>
+#include <libmm-gtk/filterlistmodel.hpp>
+#include <libmm-gtk/filterlistmodel_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

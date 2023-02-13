@@ -1,6 +1,6 @@
 // This is a generated file, do not edit.  Generated from ../glib/glibmm/../src/variant_basictypes.cc.m4
 
-#include <mm/glib/variant.hpp>
+#include <libmm-glib/variant.hpp>
 
 namespace Glib
 {

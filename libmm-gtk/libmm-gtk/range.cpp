@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/range.hpp>
-#include <mm/gtk/private/range_p.hpp>
+#include <libmm-gtk/range.hpp>
+#include <libmm-gtk/range_p.hpp>
 
 
 /* Copyright 1998-2002 The gtkmm Development Team
@@ -25,7 +25,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <mm/gtk/adjustment.hpp>
+#include <libmm-gtk/adjustment.hpp>
 
 namespace Gtk
 {

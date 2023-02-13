@@ -17,10 +17,10 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gtk/mm-gtkconfig.hpp>
-#include <mm/glib/object.hpp>
-#include <mm/gio/listmodel.hpp>
-#include <mm/gtk/selectionmodel.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gio/listmodel.hpp>
+#include <libmm-gtk/selectionmodel.hpp>
 
 namespace Gtk
 {

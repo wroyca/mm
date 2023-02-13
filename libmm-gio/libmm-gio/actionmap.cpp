@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/actionmap.hpp>
-#include <mm/gio/private/actionmap_p.hpp>
+#include <libmm-gio/actionmap.hpp>
+#include <libmm-gio/actionmap_p.hpp>
 
 
 /* Copyright (C) 2012 The giomm Development Team
@@ -23,8 +23,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/action.hpp>
-#include <mm/gio/simpleaction.hpp>
+#include <libmm-gio/action.hpp>
+#include <libmm-gio/simpleaction.hpp>
 
 namespace Gio
 {

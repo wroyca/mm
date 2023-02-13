@@ -3,7 +3,7 @@
 #define _GTKMM_GRIDLAYOUTCHILD_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2019 The gtkmm Development Team
@@ -22,7 +22,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gtk/layoutchild.hpp>
+#include <libmm-gtk/layoutchild.hpp>
 #include <gtk/gtk.h>
 
 

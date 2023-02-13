@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/dbuswatchname.hpp>
-#include <mm/gio/private/dbuswatchname_p.hpp>
+#include <libmm-gio/dbuswatchname.hpp>
+#include <libmm-gio/dbuswatchname_p.hpp>
 
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -23,7 +23,7 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/exceptionhandler.hpp>
+#include <libmm-glib/exceptionhandler.hpp>
 #include <gio/gio.h>
 
 namespace

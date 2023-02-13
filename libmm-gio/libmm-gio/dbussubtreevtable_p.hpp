@@ -3,7 +3,7 @@
 #define _GIOMM_DBUSSUBTREEVTABLE_P_H
 
 
-#include <mm/glib/private/object_p.hpp>
+#include <libmm-glib/object_p.hpp>
 
 
 #endif /* _GIOMM_DBUSSUBTREEVTABLE_P_H */

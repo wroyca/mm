@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/pango/language.hpp>
-#include <mm/pango/private/language_p.hpp>
+#include <libmm-pango/language.hpp>
+#include <libmm-pango/language_p.hpp>
 
 
 /* Copyright (C) 2002 The gtkmm Development Team

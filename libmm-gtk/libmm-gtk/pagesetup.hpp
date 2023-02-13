@@ -3,7 +3,7 @@
 #define _GTKMM_PAGESETUP_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2006 The gtkmm Development Team
@@ -23,9 +23,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/glib/object.hpp>
-#include <mm/gtk/enums.hpp>
-#include <mm/gtk/papersize.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gtk/enums.hpp>
+#include <libmm-gtk/papersize.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

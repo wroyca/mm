@@ -2,10 +2,10 @@
 #ifndef _GIOMM_VOLUMEMONITOR_H
 #define _GIOMM_VOLUMEMONITOR_H
 
-#include <mm/gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -25,9 +25,9 @@
  */
 
 
-#include <mm/gio/drive.hpp>
-#include <mm/gio/volume.hpp>
-#include <mm/gio/mount.hpp>
+#include <libmm-gio/drive.hpp>
+#include <libmm-gio/volume.hpp>
+#include <libmm-gio/mount.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

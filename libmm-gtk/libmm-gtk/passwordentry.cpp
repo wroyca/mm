@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/passwordentry.hpp>
-#include <mm/gtk/private/passwordentry_p.hpp>
+#include <libmm-gtk/passwordentry.hpp>
+#include <libmm-gtk/passwordentry_p.hpp>
 
 
 /* Copyright (C) 2019 The gtkmm Development Team

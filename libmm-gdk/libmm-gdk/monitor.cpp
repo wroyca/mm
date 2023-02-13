@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/monitor.hpp>
-#include <mm/gdk/private/monitor_p.hpp>
+#include <libmm-gdk/monitor.hpp>
+#include <libmm-gdk/monitor_p.hpp>
 
 
 /* Copyright (C) 2016 The gtkmm Development Team
@@ -23,7 +23,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gdk/display.hpp>
+#include <libmm-gdk/display.hpp>
 
 
 namespace

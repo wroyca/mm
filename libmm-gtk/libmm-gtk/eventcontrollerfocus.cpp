@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/eventcontrollerfocus.hpp>
-#include <mm/gtk/private/eventcontrollerfocus_p.hpp>
+#include <libmm-gtk/eventcontrollerfocus.hpp>
+#include <libmm-gtk/eventcontrollerfocus_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

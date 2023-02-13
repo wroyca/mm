@@ -18,8 +18,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <mm/glib/init.hpp>
-#include <mm/pango/wrap_init.hpp>
+#include <libmm-glib/init.hpp>
+#include <libmm-pango/wrap_init.hpp>
 
 namespace Pango
 {

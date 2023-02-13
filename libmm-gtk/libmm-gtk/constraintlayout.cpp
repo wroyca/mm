@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/constraintlayout.hpp>
-#include <mm/gtk/private/constraintlayout_p.hpp>
+#include <libmm-gtk/constraintlayout.hpp>
+#include <libmm-gtk/constraintlayout_p.hpp>
 
 
 /* Copyright (C) 2019 The gtkmm Development Team

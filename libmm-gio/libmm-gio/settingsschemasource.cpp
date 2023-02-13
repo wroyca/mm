@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/settingsschemasource.hpp>
-#include <mm/gio/private/settingsschemasource_p.hpp>
+#include <libmm-gio/settingsschemasource.hpp>
+#include <libmm-gio/settingsschemasource_p.hpp>
 
 
 /* Copyright (C) 2015 The giomm Development Team
@@ -25,7 +25,7 @@
 
 #include <gio/gio.h>
 
-#include <mm/glib/vectorutils.hpp>
+#include <libmm-glib/vectorutils.hpp>
 
 namespace Gio
 {

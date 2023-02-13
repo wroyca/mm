@@ -3,7 +3,7 @@
 #define _GTKMM_DROPDOWN_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -22,10 +22,10 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/listmodel.hpp>
-#include <mm/gtk/listitemfactory.hpp>
-#include <mm/gtk/expression.hpp>
-#include <mm/gtk/widget.hpp>
+#include <libmm-gio/listmodel.hpp>
+#include <libmm-gtk/listitemfactory.hpp>
+#include <libmm-gtk/expression.hpp>
+#include <libmm-gtk/widget.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

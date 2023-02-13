@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/drive.hpp>
-#include <mm/gio/private/drive_p.hpp>
+#include <libmm-gio/drive.hpp>
+#include <libmm-gio/drive_p.hpp>
 
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -24,10 +24,10 @@
  */
 
 #include <gio/gio.h>
-#include <mm/gio/volume.hpp>
-#include <mm/glib/error.hpp>
-#include <mm/glib/exceptionhandler.hpp>
-#include <mm/gio/slot_async.hpp>
+#include <libmm-gio/volume.hpp>
+#include <libmm-glib/error.hpp>
+#include <libmm-glib/exceptionhandler.hpp>
+#include <libmm-gio/slot_async.hpp>
 
 using StartStopType = Gio::Drive::StartStopType;
 

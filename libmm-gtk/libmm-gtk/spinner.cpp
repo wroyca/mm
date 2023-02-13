@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/spinner.hpp>
-#include <mm/gtk/private/spinner_p.hpp>
+#include <libmm-gtk/spinner.hpp>
+#include <libmm-gtk/spinner_p.hpp>
 
 #include <gtk/gtk.h>
 

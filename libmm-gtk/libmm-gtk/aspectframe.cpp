@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/aspectframe.hpp>
-#include <mm/gtk/private/aspectframe_p.hpp>
+#include <libmm-gtk/aspectframe.hpp>
+#include <libmm-gtk/aspectframe_p.hpp>
 
 
 /*

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/fontbutton.hpp>
-#include <mm/gtk/private/fontbutton_p.hpp>
+#include <libmm-gtk/fontbutton.hpp>
+#include <libmm-gtk/fontbutton_p.hpp>
 
 
 /*

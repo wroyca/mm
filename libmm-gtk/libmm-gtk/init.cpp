@@ -14,12 +14,12 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gtk/init.hpp>
-#include <mm/glib/init.hpp>
-#include <mm/gio/init.hpp>
-#include <mm/pango/wrap_init.hpp>
-#include <mm/gdk/wrap_init.hpp>
-#include <mm/gtk/wrap_init.hpp>
+#include <libmm-gtk/init.hpp>
+#include <libmm-glib/init.hpp>
+#include <libmm-gio/init.hpp>
+#include <libmm-pango/wrap_init.hpp>
+#include <libmm-gdk/wrap_init.hpp>
+#include <libmm-gtk/wrap_init.hpp>
 
 namespace Gtk
 {

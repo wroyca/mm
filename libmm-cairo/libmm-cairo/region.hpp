@@ -19,9 +19,9 @@
 #ifndef __CAIROMM_REGION_H
 #define __CAIROMM_REGION_H
 
-#include <mm/cairo/types.hpp>
-#include <mm/cairo/enums.hpp>
-#include <mm/cairo/refptr.hpp>
+#include <libmm-cairo/types.hpp>
+#include <libmm-cairo/enums.hpp>
+#include <libmm-cairo/refptr.hpp>
 #include <cairo.h>
 #include <vector>
 

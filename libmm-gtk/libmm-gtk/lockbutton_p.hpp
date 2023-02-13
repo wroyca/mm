@@ -3,9 +3,9 @@
 #define _GTKMM_LOCKBUTTON_P_H
 
 
-#include <mm/gtk/private/button_p.hpp>
+#include <libmm-gtk/button_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/snapshot.hpp>
-#include <mm/gdk/private/snapshot_p.hpp>
+#include <libmm-gdk/snapshot.hpp>
+#include <libmm-gdk/snapshot_p.hpp>
 
 
 /* Copyright (C) 2018 The gtkmm Development Team

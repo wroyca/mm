@@ -3,9 +3,9 @@
 #define _GDKMM_CAIROCONTEXT_P_H
 
 
-#include <mm/gdk/private/drawcontext_p.hpp>
+#include <libmm-gdk/drawcontext_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gdk
 {

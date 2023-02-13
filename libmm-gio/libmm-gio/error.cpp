@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/error.hpp>
-#include <mm/gio/private/error_p.hpp>
+#include <libmm-gio/error.hpp>
+#include <libmm-gio/error_p.hpp>
 
 
 /* Copyright (C) 2007 The giomm Development Team

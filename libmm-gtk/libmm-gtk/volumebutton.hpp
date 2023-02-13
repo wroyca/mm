@@ -3,7 +3,7 @@
 #define _GTKMM_VOLUMEBUTTON_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /*
@@ -24,7 +24,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/scalebutton.hpp>
+#include <libmm-gtk/scalebutton.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

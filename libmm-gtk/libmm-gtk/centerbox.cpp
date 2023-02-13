@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/centerbox.hpp>
-#include <mm/gtk/private/centerbox_p.hpp>
+#include <libmm-gtk/centerbox.hpp>
+#include <libmm-gtk/centerbox_p.hpp>
 
 
 /* Copyright (C) 2017 The gtkmm Development Team

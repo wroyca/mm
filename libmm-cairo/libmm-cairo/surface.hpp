@@ -24,11 +24,11 @@
 
 #include <sigc++/slot.h>
 
-#include <mm/cairo/enums.hpp>
-#include <mm/cairo/exception.hpp>
-#include <mm/cairo/device.hpp>
-#include <mm/cairo/fontoptions.hpp>
-#include <mm/cairo/refptr.hpp>
+#include <libmm-cairo/enums.hpp>
+#include <libmm-cairo/exception.hpp>
+#include <libmm-cairo/device.hpp>
+#include <libmm-cairo/fontoptions.hpp>
+#include <libmm-cairo/refptr.hpp>
 
 //See xlib_surface.h for XlibSurface.
 //See win32_surface.h for Win32Surface.

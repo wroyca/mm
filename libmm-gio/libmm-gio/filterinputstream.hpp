@@ -3,7 +3,7 @@
 #define _GIOMM_FILTERINPUTSTREAM_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2008 The gtkmm Development Team
@@ -22,8 +22,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/inputstream.hpp>
-#include <mm/glib/object.hpp>
+#include <libmm-gio/inputstream.hpp>
+#include <libmm-glib/object.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

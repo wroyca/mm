@@ -14,7 +14,7 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/tlsserverconnectionimpl.hpp>
+#include <libmm-gio/tlsserverconnectionimpl.hpp>
 #include <utility> // std::move()
 
 namespace Gio

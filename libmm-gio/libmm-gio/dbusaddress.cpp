@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/dbusaddress.hpp>
-#include <mm/gio/private/dbusaddress_p.hpp>
+#include <libmm-gio/dbusaddress.hpp>
+#include <libmm-gio/dbusaddress_p.hpp>
 
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -24,8 +24,8 @@
  */
 
 #include <gio/gio.h>
-#include <mm/glib/error.hpp>
-#include <mm/gio/slot_async.hpp>
+#include <libmm-glib/error.hpp>
+#include <libmm-gio/slot_async.hpp>
 
 namespace Gio::DBus::Address
 {

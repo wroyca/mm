@@ -19,9 +19,9 @@
 #ifndef __CAIROMM_FONTOPTIONS_H
 #define __CAIROMM_FONTOPTIONS_H
 
-#include <mm/cairo/mm-cairoconfig.hpp>
+#include <libmm-cairo/mm-cairoconfig.hpp>
 
-#include <mm/cairo/enums.hpp>
+#include <libmm-cairo/enums.hpp>
 #include <string>
 //#include <cairo.h>
 #ifdef CAIRO_HAS_FT_FONT

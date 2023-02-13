@@ -3,7 +3,7 @@
 #define _GIOMM_SIMPLEACTION_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2011 The giomm Development Team
@@ -22,8 +22,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/object.hpp>
-#include <mm/gio/action.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gio/action.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

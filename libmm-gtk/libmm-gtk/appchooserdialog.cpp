@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/appchooserdialog.hpp>
-#include <mm/gtk/private/appchooserdialog_p.hpp>
+#include <libmm-gtk/appchooserdialog.hpp>
+#include <libmm-gtk/appchooserdialog_p.hpp>
 
 
 /* Copyright 2011 The gtkmm Development Team

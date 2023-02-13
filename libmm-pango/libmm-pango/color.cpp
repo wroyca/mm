@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/pango/color.hpp>
-#include <mm/pango/private/color_p.hpp>
+#include <libmm-pango/color.hpp>
+#include <libmm-pango/color_p.hpp>
 
 #include <cstring> // std::memset()
 

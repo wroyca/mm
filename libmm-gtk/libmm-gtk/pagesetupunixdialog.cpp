@@ -17,10 +17,10 @@
 
 #ifndef _WIN32
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/pagesetupunixdialog.hpp>
-#include <mm/gtk/private/pagesetupunixdialog_p.hpp>
+#include <libmm-gtk/pagesetupunixdialog.hpp>
+#include <libmm-gtk/pagesetupunixdialog_p.hpp>
 
 #include <gtk/gtkunixprint.h>
 

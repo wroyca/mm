@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/dropcontrollermotion.hpp>
-#include <mm/gtk/private/dropcontrollermotion_p.hpp>
+#include <libmm-gtk/dropcontrollermotion.hpp>
+#include <libmm-gtk/dropcontrollermotion_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

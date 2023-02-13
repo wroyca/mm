@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/native.hpp>
-#include <mm/gtk/private/native_p.hpp>
+#include <libmm-gtk/native.hpp>
+#include <libmm-gtk/native_p.hpp>
 
 
 /* Copyright (C) 2019 The gtkmm Development Team
@@ -24,8 +24,8 @@
  */
 
 #include <gtk/gtk.h>
-#include <mm/gdk/surface.hpp>
-#include <mm/gtk/widget.hpp>
+#include <libmm-gdk/surface.hpp>
+#include <libmm-gtk/widget.hpp>
 
 namespace
 {

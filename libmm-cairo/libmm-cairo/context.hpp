@@ -21,13 +21,13 @@
 
 #include <vector>
 #include <utility>
-#include <mm/cairo/surface.hpp>
-#include <mm/cairo/fontface.hpp>
-#include <mm/cairo/matrix.hpp>
-#include <mm/cairo/pattern.hpp>
-#include <mm/cairo/path.hpp>
-#include <mm/cairo/scaledfont.hpp>
-#include <mm/cairo/types.hpp>
+#include <libmm-cairo/surface.hpp>
+#include <libmm-cairo/fontface.hpp>
+#include <libmm-cairo/matrix.hpp>
+#include <libmm-cairo/pattern.hpp>
+#include <libmm-cairo/path.hpp>
+#include <libmm-cairo/scaledfont.hpp>
+#include <libmm-cairo/types.hpp>
 #include <valarray>
 #include <vector>
 #include <cairo.h>

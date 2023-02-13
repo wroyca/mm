@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/signallistitemfactory.hpp>
-#include <mm/gtk/private/signallistitemfactory_p.hpp>
+#include <libmm-gtk/signallistitemfactory.hpp>
+#include <libmm-gtk/signallistitemfactory_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

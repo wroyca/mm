@@ -3,7 +3,7 @@
 #define _GIOMM_LOADABLEICON_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The giomm Development Team
@@ -22,8 +22,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/interface.hpp>
-#include <mm/gio/inputstream.hpp>
+#include <libmm-glib/interface.hpp>
+#include <libmm-gio/inputstream.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

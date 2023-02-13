@@ -2,10 +2,10 @@
 #ifndef _GTKMM_TEXTTAG_H
 #define _GTKMM_TEXTTAG_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /*
@@ -27,12 +27,12 @@
  */
 
 
-#include <mm/glib/object.hpp>
-#include <mm/gtk/enums.hpp>
-#include <mm/gdk/rgba.hpp>
-#include <mm/pango/attributes.hpp>
-#include <mm/pango/fontdescription.hpp>
-#include <mm/pango/tabarray.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gtk/enums.hpp>
+#include <libmm-gdk/rgba.hpp>
+#include <libmm-pango/attributes.hpp>
+#include <libmm-pango/fontdescription.hpp>
+#include <libmm-pango/tabarray.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

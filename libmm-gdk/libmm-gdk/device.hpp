@@ -3,7 +3,7 @@
 #define _GDKMM_DEVICE_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2002-2004 The gtkmm Development Team
@@ -23,10 +23,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/pango/context.hpp>
-#include <mm/gdk/cursor.hpp>
-#include <mm/gdk/enums.hpp>
-#include <mm/gdk/timecoord.hpp>
+#include <libmm-pango/context.hpp>
+#include <libmm-gdk/cursor.hpp>
+#include <libmm-gdk/enums.hpp>
+#include <libmm-gdk/timecoord.hpp>
 #include <gdk/gdk.h>
 
 

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/linkbutton.hpp>
-#include <mm/gtk/private/linkbutton_p.hpp>
+#include <libmm-gtk/linkbutton.hpp>
+#include <libmm-gtk/linkbutton_p.hpp>
 
 
 /*

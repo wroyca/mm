@@ -3,7 +3,7 @@
 #define _GTKMM_CELLRENDERERACCEL_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /*
@@ -24,8 +24,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/cellrenderertext.hpp>
-#include <mm/gtk/accelkey.hpp>
+#include <libmm-gtk/cellrenderertext.hpp>
+#include <libmm-gtk/accelkey.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

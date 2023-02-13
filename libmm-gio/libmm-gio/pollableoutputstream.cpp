@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/pollableoutputstream.hpp>
-#include <mm/gio/private/pollableoutputstream_p.hpp>
+#include <libmm-gio/pollableoutputstream.hpp>
+#include <libmm-gio/pollableoutputstream_p.hpp>
 
 
 /* Copyright (C) 2012 The giomm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <mm/gio/cancellable.hpp>
+#include <libmm-gio/cancellable.hpp>
 
 namespace Gio
 {

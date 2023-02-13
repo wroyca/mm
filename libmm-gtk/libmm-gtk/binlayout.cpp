@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/binlayout.hpp>
-#include <mm/gtk/private/binlayout_p.hpp>
+#include <libmm-gtk/binlayout.hpp>
+#include <libmm-gtk/binlayout_p.hpp>
 
 
 /* Copyright (C) 2019 The gtkmm Development Team

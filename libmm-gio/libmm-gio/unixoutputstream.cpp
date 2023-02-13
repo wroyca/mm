@@ -16,10 +16,10 @@
 
 #ifndef _WIN32
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/unixoutputstream.hpp>
-#include <mm/gio/private/unixoutputstream_p.hpp>
+#include <libmm-gio/unixoutputstream.hpp>
+#include <libmm-gio/unixoutputstream_p.hpp>
 
 #include <gio/gio.h>
 #include <gio/gunixoutputstream.h>

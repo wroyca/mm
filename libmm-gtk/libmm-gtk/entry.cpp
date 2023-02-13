@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/entry.hpp>
-#include <mm/gtk/private/entry_p.hpp>
+#include <libmm-gtk/entry.hpp>
+#include <libmm-gtk/entry_p.hpp>
 
 
 /*

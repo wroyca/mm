@@ -3,7 +3,7 @@
 #define _GIOMM_DBUSSUBTREEVTABLE_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -22,8 +22,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/dbusmethodinvocation.hpp>
-#include <mm/gio/dbusinterfacevtable.hpp>
+#include <libmm-gio/dbusmethodinvocation.hpp>
+#include <libmm-gio/dbusinterfacevtable.hpp>
 #include <gio/gio.h>
 
 

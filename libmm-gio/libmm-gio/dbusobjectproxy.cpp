@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/dbusobjectproxy.hpp>
-#include <mm/gio/private/dbusobjectproxy_p.hpp>
+#include <libmm-gio/dbusobjectproxy.hpp>
+#include <libmm-gio/dbusobjectproxy_p.hpp>
 
 
 /* Copyright (C) 2019 The giomm Development Team

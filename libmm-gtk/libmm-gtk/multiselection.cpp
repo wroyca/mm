@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/multiselection.hpp>
-#include <mm/gtk/private/multiselection_p.hpp>
+#include <libmm-gtk/multiselection.hpp>
+#include <libmm-gtk/multiselection_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/sizegroup.hpp>
-#include <mm/gtk/private/sizegroup_p.hpp>
+#include <libmm-gtk/sizegroup.hpp>
+#include <libmm-gtk/sizegroup_p.hpp>
 
 #include <gtk/gtk.h>
 
@@ -26,7 +26,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/glib/vectorutils.hpp>
+#include <libmm-glib/vectorutils.hpp>
 
 #include <gtk/gtk.h>
 

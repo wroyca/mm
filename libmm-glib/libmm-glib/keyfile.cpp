@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/glib/keyfile.hpp>
-#include <mm/glib/private/keyfile_p.hpp>
+#include <libmm-glib/keyfile.hpp>
+#include <libmm-glib/keyfile_p.hpp>
 
 
 /* Copyright 2006 The gtkmm Development Team

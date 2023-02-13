@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/srvtarget.hpp>
-#include <mm/gio/private/srvtarget_p.hpp>
+#include <libmm-gio/srvtarget.hpp>
+#include <libmm-gio/srvtarget_p.hpp>
 
 
 /* Copyright (C) 2008 Jonathon Jongsma
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/utility.hpp>
 
 namespace Gio
 {

@@ -3,7 +3,7 @@
 #define _GIOMM_INPUTSTREAM_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The giomm Development Team
@@ -22,12 +22,12 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/object.hpp>
-#include <mm/glib/priorities.hpp>
-#include <mm/glib/bytes.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-glib/priorities.hpp>
+#include <libmm-glib/bytes.hpp>
 
-#include <mm/gio/asyncresult.hpp>
-#include <mm/gio/cancellable.hpp>
+#include <libmm-gio/asyncresult.hpp>
+#include <libmm-gio/cancellable.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/glib/timezone.hpp>
-#include <mm/glib/private/timezone_p.hpp>
+#include <libmm-glib/timezone.hpp>
+#include <libmm-glib/timezone_p.hpp>
 
 
 /* Copyright (C) 2011 The glibmm Development Team
@@ -23,7 +23,7 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/utility.hpp>
 
 namespace Glib
 {

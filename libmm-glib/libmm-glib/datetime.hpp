@@ -20,10 +20,10 @@
  */
 
 
-#include <mm/glib/mm-glibconfig.hpp>
-#include <mm/glib/timezone.hpp>
-#include <mm/glib/ustring.hpp>
-#include <mm/glib/value.hpp>
+#include <libmm-glib/mm-glibconfig.hpp>
+#include <libmm-glib/timezone.hpp>
+#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/value.hpp>
 #include <glib.h>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

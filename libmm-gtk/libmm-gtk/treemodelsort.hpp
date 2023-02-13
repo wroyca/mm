@@ -3,7 +3,7 @@
 #define _GTKMM_TREEMODELSORT_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /*
@@ -25,12 +25,12 @@
  */
 
 
-#include <mm/gtk/treeiter.hpp>
-#include <mm/gtk/treemodel.hpp>
-#include <mm/gtk/treesortable.hpp>
-#include <mm/gtk/treedragsource.hpp>
+#include <libmm-gtk/treeiter.hpp>
+#include <libmm-gtk/treemodel.hpp>
+#include <libmm-gtk/treesortable.hpp>
+#include <libmm-gtk/treedragsource.hpp>
 // We couldn't include it in treemodel.h, but doing it here makes it easier for people.
-#include <mm/gtk/treepath.hpp>
+#include <libmm-gtk/treepath.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

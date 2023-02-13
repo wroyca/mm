@@ -19,8 +19,8 @@
 #ifndef __CAIROMM_CONTEXT_PRIVATE_H
 #define __CAIROMM_CONTEXT_PRIVATE_H
 
-#include <mm/cairo/refptr.hpp>
-#include <mm/cairo/surface.hpp>
+#include <libmm-cairo/refptr.hpp>
+#include <libmm-cairo/surface.hpp>
 
 namespace Cairo::Private
 {

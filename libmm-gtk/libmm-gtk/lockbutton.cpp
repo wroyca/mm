@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/lockbutton.hpp>
-#include <mm/gtk/private/lockbutton_p.hpp>
+#include <libmm-gtk/lockbutton.hpp>
+#include <libmm-gtk/lockbutton_p.hpp>
 
 
 /*

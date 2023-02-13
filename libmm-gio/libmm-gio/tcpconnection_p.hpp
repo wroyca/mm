@@ -3,9 +3,9 @@
 #define _GIOMM_TCPCONNECTION_P_H
 
 
-#include <mm/gio/private/socketconnection_p.hpp>
+#include <libmm-gio/socketconnection_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gio
 {

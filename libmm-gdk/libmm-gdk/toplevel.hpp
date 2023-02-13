@@ -3,7 +3,7 @@
 #define _GDKMM_TOPLEVEL_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -22,11 +22,11 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/interface.hpp>
-#include <mm/gdk/surface.hpp>
-#include <mm/gdk/texture.hpp>
-#include <mm/gdk/toplevellayout.hpp>
-#include <mm/gdk/toplevelsize.hpp>
+#include <libmm-glib/interface.hpp>
+#include <libmm-gdk/surface.hpp>
+#include <libmm-gdk/texture.hpp>
+#include <libmm-gdk/toplevellayout.hpp>
+#include <libmm-gdk/toplevelsize.hpp>
 #include <vector>
 
 

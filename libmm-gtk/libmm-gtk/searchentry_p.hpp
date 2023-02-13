@@ -3,9 +3,9 @@
 #define _GTKMM_SEARCHENTRY_P_H
 
 
-#include <mm/gtk/private/entry_p.hpp>
+#include <libmm-gtk/entry_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {

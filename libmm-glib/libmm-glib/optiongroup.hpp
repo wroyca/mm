@@ -20,8 +20,8 @@
  */
 
 
-#include <mm/glib/error.hpp>
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/error.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/slot.h>
 #include <map>
 #include <vector>

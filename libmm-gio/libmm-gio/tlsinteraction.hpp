@@ -3,7 +3,7 @@
 #define _GIOMM_TLSINTERACTION_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2012 The giomm Development Team
@@ -22,9 +22,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/object.hpp>
-#include <mm/gio/asyncresult.hpp>
-#include <mm/gio/tlsconnection.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gio/asyncresult.hpp>
+#include <libmm-gio/tlsconnection.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

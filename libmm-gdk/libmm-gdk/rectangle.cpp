@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/rectangle.hpp>
-#include <mm/gdk/private/rectangle_p.hpp>
+#include <libmm-gdk/rectangle.hpp>
+#include <libmm-gdk/rectangle_p.hpp>
 
 #include <cstring> // std::memset()
 

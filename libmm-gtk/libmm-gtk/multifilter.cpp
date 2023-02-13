@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/multifilter.hpp>
-#include <mm/gtk/private/multifilter_p.hpp>
+#include <libmm-gtk/multifilter.hpp>
+#include <libmm-gtk/multifilter_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

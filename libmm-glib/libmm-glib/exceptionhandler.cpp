@@ -16,9 +16,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/mm-glibconfig.hpp>
-#include <mm/glib/error.hpp>
-#include <mm/glib/exceptionhandler.hpp>
+#include <libmm-glib/mm-glibconfig.hpp>
+#include <libmm-glib/error.hpp>
+#include <libmm-glib/exceptionhandler.hpp>
 #include <glib.h>
 #include <exception>
 #include <list>

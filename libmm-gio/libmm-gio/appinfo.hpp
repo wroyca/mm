@@ -2,10 +2,10 @@
 #ifndef _GIOMM_APPINFO_H
 #define _GIOMM_APPINFO_H
 
-#include <mm/gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -25,18 +25,18 @@
  */
 
 
-#include <mm/gio/applaunchcontext.hpp>
-#include <mm/gio/asyncresult.hpp>
-#include <mm/gio/cancellable.hpp>
+#include <libmm-gio/applaunchcontext.hpp>
+#include <libmm-gio/asyncresult.hpp>
+#include <libmm-gio/cancellable.hpp>
 
 #include <exception>
 
 #include <string>
 
-#include <mm/glib/interface.hpp>
-#include <mm/glib/object.hpp>
-//#include <mm/gio/file.hpp>
-#include <mm/gio/icon.hpp>
+#include <libmm-glib/interface.hpp>
+#include <libmm-glib/object.hpp>
+//#include <libmm-gio/file.hpp>
+#include <libmm-gio/icon.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

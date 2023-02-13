@@ -3,7 +3,7 @@
 #define _GTKMM_GESTURESINGLE_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2014 The gtkmm Development Team
@@ -22,7 +22,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gtk/gesture.hpp>
+#include <libmm-gtk/gesture.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

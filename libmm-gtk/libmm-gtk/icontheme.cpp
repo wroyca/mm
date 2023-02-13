@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/icontheme.hpp>
-#include <mm/gtk/private/icontheme_p.hpp>
+#include <libmm-gtk/icontheme.hpp>
+#include <libmm-gtk/icontheme_p.hpp>
 
 
 /* Copyright 2003 The gtkmm Development Team
@@ -24,7 +24,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/glib/vectorutils.hpp>
+#include <libmm-glib/vectorutils.hpp>
 #include <gtk/gtk.h> //For gtk_icon_theme_error_get_type().
 
 namespace

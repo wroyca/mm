@@ -3,7 +3,7 @@
 #define _GTKMM_LAYOUTMANAGER_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2019 The gtkmm Development Team
@@ -22,9 +22,9 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/object.hpp>
-#include <mm/glib/refptr.hpp>
-#include <mm/gtk/enums.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-glib/refptr.hpp>
+#include <libmm-gtk/enums.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

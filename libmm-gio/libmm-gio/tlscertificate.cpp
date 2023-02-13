@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/tlscertificate.hpp>
-#include <mm/gio/private/tlscertificate_p.hpp>
+#include <libmm-gio/tlscertificate.hpp>
+#include <libmm-gio/tlscertificate_p.hpp>
 
 
 /* Copyright (C) 2012 The giomm Development Team
@@ -24,8 +24,8 @@
  */
 
 #include <gio/gio.h>
-#include <mm/glib/bytearray.hpp>
-#include <mm/gio/socketconnectable.hpp>
+#include <libmm-glib/bytearray.hpp>
+#include <libmm-gio/socketconnectable.hpp>
 
 namespace
 {

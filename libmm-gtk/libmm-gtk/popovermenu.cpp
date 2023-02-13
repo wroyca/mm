@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/popovermenu.hpp>
-#include <mm/gtk/private/popovermenu_p.hpp>
+#include <libmm-gtk/popovermenu.hpp>
+#include <libmm-gtk/popovermenu_p.hpp>
 
 
 /* Copyright (C) 2015 The gtkmm Development Team

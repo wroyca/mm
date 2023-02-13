@@ -3,7 +3,7 @@
 #define _GTKMM_CONSTRAINTLAYOUT_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2019 The gtkmm Development Team
@@ -22,11 +22,11 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gtk/layoutmanager.hpp>
-#include <mm/gtk/buildable.hpp>
-#include <mm/gtk/constraint.hpp>
-#include <mm/gtk/constraintguide.hpp>
-#include <mm/gio/listmodel.hpp>
+#include <libmm-gtk/layoutmanager.hpp>
+#include <libmm-gtk/buildable.hpp>
+#include <libmm-gtk/constraint.hpp>
+#include <libmm-gtk/constraintguide.hpp>
+#include <libmm-gio/listmodel.hpp>
 #include <vector>
 #include <map>
 

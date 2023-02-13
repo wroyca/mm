@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/expressionwatch.hpp>
-#include <mm/gtk/private/expressionwatch_p.hpp>
+#include <libmm-gtk/expressionwatch.hpp>
+#include <libmm-gtk/expressionwatch_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

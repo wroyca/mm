@@ -2,10 +2,10 @@
 #ifndef _GIOMM_ACTION_H
 #define _GIOMM_ACTION_H
 
-#include <mm/gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2011 The giomm Development Team
@@ -25,9 +25,9 @@
  */
 
 
-#include <mm/glib/interface.hpp>
-#include <mm/glib/variant.hpp>
-#include <mm/glib/varianttype.hpp>
+#include <libmm-glib/interface.hpp>
+#include <libmm-glib/variant.hpp>
+#include <libmm-glib/varianttype.hpp>
 #include <gio/gio.h>
 
 

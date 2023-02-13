@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/bitset.hpp>
-#include <mm/gtk/private/bitset_p.hpp>
+#include <libmm-gtk/bitset.hpp>
+#include <libmm-gtk/bitset_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/treemodel.hpp>
-#include <mm/gtk/private/treemodel_p.hpp>
+#include <libmm-gtk/treemodel.hpp>
+#include <libmm-gtk/treemodel_p.hpp>
 
 #include <gtk/gtk.h>
 
@@ -26,10 +26,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/glib/vectorutils.hpp>
+#include <libmm-glib/vectorutils.hpp>
 
-#include <mm/gtk/treeiter.hpp>
-#include <mm/gtk/treepath.hpp>
+#include <libmm-gtk/treeiter.hpp>
+#include <libmm-gtk/treepath.hpp>
 #include <gtk/gtk.h>
 
 using Flags = Gtk::TreeModel::Flags;

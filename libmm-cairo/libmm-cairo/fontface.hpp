@@ -21,9 +21,9 @@
 
 #include <string>
 #include <vector>
-#include <mm/cairo/enums.hpp>
-#include <mm/cairo/types.hpp>
-#include <mm/cairo/refptr.hpp>
+#include <libmm-cairo/enums.hpp>
+#include <libmm-cairo/types.hpp>
+#include <libmm-cairo/refptr.hpp>
 
 #include <cairo.h>
 #ifdef CAIRO_HAS_FT_FONT

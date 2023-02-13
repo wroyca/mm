@@ -18,14 +18,14 @@
 #ifndef _GDKMM_GENERAL_H
 #define _GDKMM_GENERAL_H
 
-#include <mm/gdk/pixbuf.hpp>
-#include <mm/gdk/rectangle.hpp>
-#include <mm/gdk/rgba.hpp>
-#include <mm/gdk/glcontext.hpp>
-#include <mm/gdk/surface.hpp>
-#include <mm/cairo/context.hpp>
-#include <mm/cairo/region.hpp>
-#include <mm/cairo/surface.hpp>
+#include <libmm-gdk/pixbuf.hpp>
+#include <libmm-gdk/rectangle.hpp>
+#include <libmm-gdk/rgba.hpp>
+#include <libmm-gdk/glcontext.hpp>
+#include <libmm-gdk/surface.hpp>
+#include <libmm-cairo/context.hpp>
+#include <libmm-cairo/region.hpp>
+#include <libmm-cairo/surface.hpp>
 
 namespace Gdk::Cairo
 {

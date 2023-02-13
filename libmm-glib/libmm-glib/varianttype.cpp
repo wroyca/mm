@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/glib/varianttype.hpp>
-#include <mm/glib/private/varianttype_p.hpp>
+#include <libmm-glib/varianttype.hpp>
+#include <libmm-glib/varianttype_p.hpp>
 
 
 /* Copyright 2010 The glibmm Development Team
@@ -23,8 +23,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/varianttype.hpp>
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/varianttype.hpp>
+#include <libmm-glib/utility.hpp>
 #include <glib.h>
 
 namespace Glib

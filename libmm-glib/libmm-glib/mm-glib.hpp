@@ -56,8 +56,8 @@
  *
  * Include the glibmm header, plus giomm if necessary:
  * @code
- * #include <mm/glib/mm-glib.hpp>
- * #include <mm/gio.h>
+ * #include <libmm-glib/mm-glib.hpp>
+ * #include <libmm-gio.h>
  * @endcode
  * (You may include individual headers, such as @c glibmm/ustring.h instead.)
  *
@@ -93,64 +93,64 @@
  * @endcode
  */
 
-#include <mm/glib/mm-glibconfig.hpp>
-//#include <mm/glib/i18n.hpp> //This must be included by the application, after system headers such as
+#include <libmm-glib/mm-glibconfig.hpp>
+//#include <libmm-glib/i18n.hpp> //This must be included by the application, after system headers such as
 //<iostream>.
 
-#include <mm/glib/base64.hpp>
+#include <libmm-glib/base64.hpp>
 #ifndef GLIBMM_INCLUDED_FROM_WRAP_INIT_CC
 // wrap_init.cc includes this file after it has cleared G_GNUC_CONST.
-#include <mm/glib/binding.hpp>
+#include <libmm-glib/binding.hpp>
 #endif
-#include <mm/glib/bytearray.hpp>
-#include <mm/glib/bytes.hpp>
-#include <mm/glib/checksum.hpp>
-#include <mm/glib/class.hpp>
-#include <mm/glib/containerhandle_shared.hpp>
-#include <mm/glib/convert.hpp>
-#include <mm/glib/date.hpp>
-#include <mm/glib/datetime.hpp>
-#include <mm/glib/dispatcher.hpp>
-#include <mm/glib/enums.hpp>
-#include <mm/glib/environ.hpp>
-#include <mm/glib/error.hpp>
-#include <mm/glib/exceptionhandler.hpp>
-#include <mm/glib/fileutils.hpp>
-#include <mm/glib/interface.hpp>
-#include <mm/glib/iochannel.hpp>
-#include <mm/glib/init.hpp>
-#include <mm/glib/keyfile.hpp>
-#include <mm/glib/main.hpp>
-#include <mm/glib/markup.hpp>
-#include <mm/glib/miscutils.hpp>
-#include <mm/glib/module.hpp>
-#include <mm/glib/nodetree.hpp>
-#include <mm/glib/objectbase.hpp>
-#include <mm/glib/object.hpp>
-#include <mm/glib/optioncontext.hpp>
-#include <mm/glib/pattern.hpp>
-#include <mm/glib/property.hpp>
-#include <mm/glib/propertyproxy_base.hpp>
-#include <mm/glib/propertyproxy.hpp>
-#include <mm/glib/quark.hpp>
-#include <mm/glib/random.hpp>
-#include <mm/glib/regex.hpp>
-#include <mm/glib/refptr.hpp>
-#include <mm/glib/shell.hpp>
-#include <mm/glib/signalproxy_connectionnode.hpp>
-#include <mm/glib/signalproxy.hpp>
-#include <mm/glib/spawn.hpp>
-#include <mm/glib/stringutils.hpp>
-#include <mm/glib/timer.hpp>
-#include <mm/glib/timezone.hpp>
-#include <mm/glib/uriutils.hpp>
-#include <mm/glib/ustring.hpp>
-#include <mm/glib/value.hpp>
-#include <mm/glib/variant.hpp>
-#include <mm/glib/variantdict.hpp>
-#include <mm/glib/variantiter.hpp>
-#include <mm/glib/varianttype.hpp>
-#include <mm/glib/vectorutils.hpp>
-#include <mm/glib/wrap.hpp>
+#include <libmm-glib/bytearray.hpp>
+#include <libmm-glib/bytes.hpp>
+#include <libmm-glib/checksum.hpp>
+#include <libmm-glib/class.hpp>
+#include <libmm-glib/containerhandle_shared.hpp>
+#include <libmm-glib/convert.hpp>
+#include <libmm-glib/date.hpp>
+#include <libmm-glib/datetime.hpp>
+#include <libmm-glib/dispatcher.hpp>
+#include <libmm-glib/enums.hpp>
+#include <libmm-glib/environ.hpp>
+#include <libmm-glib/error.hpp>
+#include <libmm-glib/exceptionhandler.hpp>
+#include <libmm-glib/fileutils.hpp>
+#include <libmm-glib/interface.hpp>
+#include <libmm-glib/iochannel.hpp>
+#include <libmm-glib/init.hpp>
+#include <libmm-glib/keyfile.hpp>
+#include <libmm-glib/main.hpp>
+#include <libmm-glib/markup.hpp>
+#include <libmm-glib/miscutils.hpp>
+#include <libmm-glib/module.hpp>
+#include <libmm-glib/nodetree.hpp>
+#include <libmm-glib/objectbase.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-glib/optioncontext.hpp>
+#include <libmm-glib/pattern.hpp>
+#include <libmm-glib/property.hpp>
+#include <libmm-glib/propertyproxy_base.hpp>
+#include <libmm-glib/propertyproxy.hpp>
+#include <libmm-glib/quark.hpp>
+#include <libmm-glib/random.hpp>
+#include <libmm-glib/regex.hpp>
+#include <libmm-glib/refptr.hpp>
+#include <libmm-glib/shell.hpp>
+#include <libmm-glib/signalproxy_connectionnode.hpp>
+#include <libmm-glib/signalproxy.hpp>
+#include <libmm-glib/spawn.hpp>
+#include <libmm-glib/stringutils.hpp>
+#include <libmm-glib/timer.hpp>
+#include <libmm-glib/timezone.hpp>
+#include <libmm-glib/uriutils.hpp>
+#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/value.hpp>
+#include <libmm-glib/variant.hpp>
+#include <libmm-glib/variantdict.hpp>
+#include <libmm-glib/variantiter.hpp>
+#include <libmm-glib/varianttype.hpp>
+#include <libmm-glib/vectorutils.hpp>
+#include <libmm-glib/wrap.hpp>
 
 #endif /* _GLIBMM_H */

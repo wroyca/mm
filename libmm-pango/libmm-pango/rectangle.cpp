@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/pango/rectangle.hpp>
-#include <mm/pango/private/rectangle_p.hpp>
+#include <libmm-pango/rectangle.hpp>
+#include <libmm-pango/rectangle_p.hpp>
 
 
 /* Copyright (C) 2002 The gtkmm Development Team

@@ -2,10 +2,10 @@
 #ifndef _GIOMM_SETTINGSSCHEMASOURCE_H
 #define _GIOMM_SETTINGSSCHEMASOURCE_H
 
-#include <mm/gio/gioconfig.hpp>
+#include <libmm-gio/gioconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2015 The giomm Development Team
@@ -25,9 +25,9 @@
  */
 
 
-#include <mm/gio/settingsschema.hpp>
+#include <libmm-gio/settingsschema.hpp>
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <vector>
 
 

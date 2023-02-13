@@ -3,7 +3,7 @@
 #define _PANGOMM_GLYPHSTRING_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* glyphstring.h
@@ -25,10 +25,10 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <mm/pango/font.hpp>
-#include <mm/pango/glyph.hpp>
-#include <mm/pango/item.hpp> // for Analysis and ShapeFlags
-#include <mm/cairo/context.hpp>
+#include <libmm-pango/font.hpp>
+#include <libmm-pango/glyph.hpp>
+#include <libmm-pango/item.hpp> // for Analysis and ShapeFlags
+#include <libmm-cairo/context.hpp>
 #include <pango/pango.h>
 
 

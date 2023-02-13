@@ -17,9 +17,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/gioconfig.hpp>
-#include <mm/gio/tlsclientconnection.hpp>
-#include <mm/gio/tlsconnection.hpp>
+#include <libmm-gio/gioconfig.hpp>
+#include <libmm-gio/tlsclientconnection.hpp>
+#include <libmm-gio/tlsconnection.hpp>
 
 namespace Gio
 {

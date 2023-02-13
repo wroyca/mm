@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/sortlistmodel.hpp>
-#include <mm/gtk/private/sortlistmodel_p.hpp>
+#include <libmm-gtk/sortlistmodel.hpp>
+#include <libmm-gtk/sortlistmodel_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

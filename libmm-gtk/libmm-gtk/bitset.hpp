@@ -2,10 +2,10 @@
 #ifndef _GTKMM_BITSET_H
 #define _GTKMM_BITSET_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -25,8 +25,8 @@
  */
 
 
-#include <mm/glib/refptr.hpp>
-#include <mm/gtk/bitsetconstiter.hpp>
+#include <libmm-glib/refptr.hpp>
+#include <libmm-gtk/bitsetconstiter.hpp>
 
 extern "C" typedef struct _GtkBitset GtkBitset;
 

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/frametimings.hpp>
-#include <mm/gdk/private/frametimings_p.hpp>
+#include <libmm-gdk/frametimings.hpp>
+#include <libmm-gdk/frametimings_p.hpp>
 
 #include <gdk/gdk.h>
 

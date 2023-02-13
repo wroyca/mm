@@ -3,7 +3,7 @@
 #define _GTKMM_LOCKBUTTON_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /*
@@ -24,8 +24,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gio/permission.hpp>
-#include <mm/gtk/button.hpp>
+#include <libmm-gio/permission.hpp>
+#include <libmm-gtk/button.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

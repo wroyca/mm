@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/celleditable.hpp>
-#include <mm/gtk/private/celleditable_p.hpp>
+#include <libmm-gtk/celleditable.hpp>
+#include <libmm-gtk/celleditable_p.hpp>
 
 
 /* Copyright 1998-2002 The gtkmm Development Team

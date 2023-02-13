@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/fileoutputstream.hpp>
-#include <mm/gio/private/fileoutputstream_p.hpp>
+#include <libmm-gio/fileoutputstream.hpp>
+#include <libmm-gio/fileoutputstream_p.hpp>
 
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -24,10 +24,10 @@
  */
 
 #include <gio/gio.h>
-#include <mm/glib/mm-glib.hpp>
-#include <mm/glib/error.hpp>
-#include <mm/glib/exceptionhandler.hpp>
-#include <mm/gio/slot_async.hpp>
+#include <libmm-glib/mm-glib.hpp>
+#include <libmm-glib/error.hpp>
+#include <libmm-glib/exceptionhandler.hpp>
+#include <libmm-gio/slot_async.hpp>
 
 namespace Gio
 {

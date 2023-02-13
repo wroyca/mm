@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/inetaddress.hpp>
-#include <mm/gio/private/inetaddress_p.hpp>
+#include <libmm-gio/inetaddress.hpp>
+#include <libmm-gio/inetaddress_p.hpp>
 
 
 /* Copyright (C) 2008 Jonathon Jongsma

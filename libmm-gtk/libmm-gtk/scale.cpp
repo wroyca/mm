@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/scale.hpp>
-#include <mm/gtk/private/scale_p.hpp>
+#include <libmm-gtk/scale.hpp>
+#include <libmm-gtk/scale_p.hpp>
 
 
 /*
@@ -25,7 +25,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/adjustment.hpp>
+#include <libmm-gtk/adjustment.hpp>
 
 #include <gtk/gtk.h>
 #include <math.h>

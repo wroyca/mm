@@ -3,7 +3,7 @@
 #define _GTKMM_FLOWBOX_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2014 The gtkmm Development Team
@@ -22,11 +22,11 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gtk/widget.hpp>
-#include <mm/gtk/orientable.hpp>
-#include <mm/gtk/flowboxchild.hpp>
-#include <mm/gio/liststore.hpp>
-#include <mm/glib/exceptionhandler.hpp>
+#include <libmm-gtk/widget.hpp>
+#include <libmm-gtk/orientable.hpp>
+#include <libmm-gtk/flowboxchild.hpp>
+#include <libmm-gio/liststore.hpp>
+#include <libmm-glib/exceptionhandler.hpp>
 #include <vector>
 #include <utility> // std::forward
 

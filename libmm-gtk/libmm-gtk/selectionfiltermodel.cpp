@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/selectionfiltermodel.hpp>
-#include <mm/gtk/private/selectionfiltermodel_p.hpp>
+#include <libmm-gtk/selectionfiltermodel.hpp>
+#include <libmm-gtk/selectionfiltermodel_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

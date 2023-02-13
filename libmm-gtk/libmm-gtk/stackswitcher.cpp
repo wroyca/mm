@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/stackswitcher.hpp>
-#include <mm/gtk/private/stackswitcher_p.hpp>
+#include <libmm-gtk/stackswitcher.hpp>
+#include <libmm-gtk/stackswitcher_p.hpp>
 
 
 /*

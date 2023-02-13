@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/adjustment.hpp>
-#include <mm/gtk/private/adjustment_p.hpp>
+#include <libmm-gtk/adjustment.hpp>
+#include <libmm-gtk/adjustment_p.hpp>
 
 
 /*

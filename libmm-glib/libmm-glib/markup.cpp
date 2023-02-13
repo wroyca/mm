@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/glib/markup.hpp>
-#include <mm/glib/private/markup_p.hpp>
+#include <libmm-glib/markup.hpp>
+#include <libmm-glib/markup_p.hpp>
 
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -23,9 +23,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/markup.hpp>
-#include <mm/glib/exceptionhandler.hpp>
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/markup.hpp>
+#include <libmm-glib/exceptionhandler.hpp>
+#include <libmm-glib/utility.hpp>
 #include <glib.h>
 
 namespace Glib::Markup

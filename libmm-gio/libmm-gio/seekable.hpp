@@ -3,7 +3,7 @@
 #define _GIOMM_SEEKABLE_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -22,9 +22,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/cancellable.hpp>
-#include <mm/glib/interface.hpp>
-#include <mm/glib/iochannel.hpp>
+#include <libmm-gio/cancellable.hpp>
+#include <libmm-glib/interface.hpp>
+#include <libmm-glib/iochannel.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

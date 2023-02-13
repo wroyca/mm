@@ -17,10 +17,10 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/mm-glibconfig.hpp>
-#include <mm/glib/refptr.hpp>
-#include <mm/glib/ustring.hpp>
-#include <mm/glib/enums.hpp>
+#include <libmm-glib/mm-glibconfig.hpp>
+#include <libmm-glib/refptr.hpp>
+#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/enums.hpp>
 #include <glib-object.h>
 #include <vector>
 
@@ -209,7 +209,7 @@ protected:
 /* Include primary Glib::Value<> template, before any specializations:
  */
 #define _GLIBMM_VALUE_H_INCLUDE_VALUE_CUSTOM_H
-#include <mm/glib/value_custom.hpp>
+#include <libmm-glib/value_custom.hpp>
 #undef _GLIBMM_VALUE_H_INCLUDE_VALUE_CUSTOM_H
 
 namespace Glib
@@ -321,7 +321,7 @@ public:
 /* Include generated specializations of Glib::Value<> for fundamental types:
  */
 #define _GLIBMM_VALUE_H_INCLUDE_VALUE_BASICTYPES_H
-#include <mm/glib/value_basictypes.hpp>
+#include <libmm-glib/value_basictypes.hpp>
 #undef _GLIBMM_VALUE_H_INCLUDE_VALUE_BASICTYPES_H
 
 namespace Glib

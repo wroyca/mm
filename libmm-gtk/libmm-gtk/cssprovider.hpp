@@ -3,7 +3,7 @@
 #define _GTKMM_CSSPROVIDER_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2010 The gtkmm Development Team
@@ -23,10 +23,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/styleprovider.hpp>
-#include <mm/gtk/csssection.hpp>
-#include <mm/glib/object.hpp>
-#include <mm/gio/file.hpp>
+#include <libmm-gtk/styleprovider.hpp>
+#include <libmm-gtk/csssection.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gio/file.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

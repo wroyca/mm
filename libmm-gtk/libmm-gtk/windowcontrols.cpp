@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/windowcontrols.hpp>
-#include <mm/gtk/private/windowcontrols_p.hpp>
+#include <libmm-gtk/windowcontrols.hpp>
+#include <libmm-gtk/windowcontrols_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

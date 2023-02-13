@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/treeviewcolumn.hpp>
-#include <mm/gtk/private/treeviewcolumn_p.hpp>
+#include <libmm-gtk/treeviewcolumn.hpp>
+#include <libmm-gtk/treeviewcolumn_p.hpp>
 
 #include <gtk/gtk.h>
 
@@ -26,8 +26,8 @@
  */
 
 #include <gtk/gtk.h>
-#include <mm/gtk/cellarea.hpp>
-#include <mm/gtk/treeview_private.hpp>
+#include <libmm-gtk/cellarea.hpp>
+#include <libmm-gtk/treeview_private.hpp>
 
 using Sizing = Gtk::TreeViewColumn::Sizing;
 

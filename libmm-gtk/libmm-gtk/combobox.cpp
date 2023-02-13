@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/combobox.hpp>
-#include <mm/gtk/private/combobox_p.hpp>
+#include <libmm-gtk/combobox.hpp>
+#include <libmm-gtk/combobox_p.hpp>
 
 
 /*
@@ -25,9 +25,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gdk/device.hpp>
-#include <mm/gtk/liststore.hpp>
-#include <mm/gtk/treeview_private.hpp> //For SignalProxy_RowSeparator.
+#include <libmm-gdk/device.hpp>
+#include <libmm-gtk/liststore.hpp>
+#include <libmm-gtk/treeview_private.hpp> //For SignalProxy_RowSeparator.
 #include <gtk/gtk.h>
 
 namespace Gtk

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/tlsconnection.hpp>
-#include <mm/gio/private/tlsconnection_p.hpp>
+#include <libmm-gio/tlsconnection.hpp>
+#include <libmm-gio/tlsconnection_p.hpp>
 
 
 /* Copyright (C) 2013 The giomm Development Team
@@ -24,12 +24,12 @@
  */
 
 #include <gio/gio.h>
-#include <mm/gio/cancellable.hpp>
-#include <mm/gio/tlsdatabase.hpp>
-#include <mm/gio/tlsinteraction.hpp>
-#include <mm/gio/tlsclientconnectionimpl.hpp>
-#include <mm/gio/tlsserverconnectionimpl.hpp>
-#include <mm/gio/slot_async.hpp>
+#include <libmm-gio/cancellable.hpp>
+#include <libmm-gio/tlsdatabase.hpp>
+#include <libmm-gio/tlsinteraction.hpp>
+#include <libmm-gio/tlsclientconnectionimpl.hpp>
+#include <libmm-gio/tlsserverconnectionimpl.hpp>
+#include <libmm-gio/slot_async.hpp>
 
 namespace Gio
 {

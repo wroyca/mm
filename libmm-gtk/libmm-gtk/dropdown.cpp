@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/dropdown.hpp>
-#include <mm/gtk/private/dropdown_p.hpp>
+#include <libmm-gtk/dropdown.hpp>
+#include <libmm-gtk/dropdown_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <mm/gtk/stringlist.hpp>
+#include <libmm-gtk/stringlist.hpp>
 
 namespace Gtk
 {

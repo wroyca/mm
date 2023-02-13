@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/asyncinitable.hpp>
-#include <mm/gio/private/asyncinitable_p.hpp>
+#include <libmm-gio/asyncinitable.hpp>
+#include <libmm-gio/asyncinitable_p.hpp>
 
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -24,10 +24,10 @@
  */
 
 #include <gio/gio.h>
-#include <mm/glib/error.hpp>
-#include <mm/glib/exceptionhandler.hpp>
-#include <mm/gio/cancellable.hpp>
-#include <mm/gio/slot_async.hpp>
+#include <libmm-glib/error.hpp>
+#include <libmm-glib/exceptionhandler.hpp>
+#include <libmm-gio/cancellable.hpp>
+#include <libmm-gio/slot_async.hpp>
 
 namespace Gio
 {

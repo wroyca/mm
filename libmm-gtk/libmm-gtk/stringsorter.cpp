@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/stringsorter.hpp>
-#include <mm/gtk/private/stringsorter_p.hpp>
+#include <libmm-gtk/stringsorter.hpp>
+#include <libmm-gtk/stringsorter_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

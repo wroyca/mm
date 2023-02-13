@@ -3,7 +3,7 @@
 #define _GTKMM_LISTVIEW_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -22,9 +22,9 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gtk/listbase.hpp>
-#include <mm/gtk/selectionmodel.hpp>
-#include <mm/gtk/listitemfactory.hpp>
+#include <libmm-gtk/listbase.hpp>
+#include <libmm-gtk/selectionmodel.hpp>
+#include <libmm-gtk/listitemfactory.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

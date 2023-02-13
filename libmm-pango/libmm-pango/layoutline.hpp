@@ -3,7 +3,7 @@
 #define _PANGOMM_LAYOUTLINE_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* layoutline.h
@@ -25,9 +25,9 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <mm/glib/refptr.hpp>
-#include <mm/pango/rectangle.hpp>
-#include <mm/cairo/context.hpp>
+#include <libmm-glib/refptr.hpp>
+#include <libmm-pango/rectangle.hpp>
+#include <libmm-cairo/context.hpp>
 #include <pango/pango.h>
 
 

@@ -3,7 +3,7 @@
 #define _GDKMM_TOPLEVELLAYOUT_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -23,8 +23,8 @@
  */
 
 
-#include <mm/glib/refptr.hpp>
-#include <mm/gdk/monitor.hpp>
+#include <libmm-glib/refptr.hpp>
+#include <libmm-gdk/monitor.hpp>
 
 
 namespace Gdk

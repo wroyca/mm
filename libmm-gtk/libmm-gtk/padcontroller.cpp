@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/padcontroller.hpp>
-#include <mm/gtk/private/padcontroller_p.hpp>
+#include <libmm-gtk/padcontroller.hpp>
+#include <libmm-gtk/padcontroller_p.hpp>
 
 
 /* Copyright (C) 2019 The gtkmm Development Team

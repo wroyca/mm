@@ -14,11 +14,11 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/mm-glibconfig.hpp>
-#include <mm/glib/ustring.hpp>
-#include <mm/glib/convert.hpp>
-#include <mm/glib/error.hpp>
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/mm-glibconfig.hpp>
+#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/convert.hpp>
+#include <libmm-glib/error.hpp>
+#include <libmm-glib/utility.hpp>
 
 #include <algorithm>
 #include <iostream>

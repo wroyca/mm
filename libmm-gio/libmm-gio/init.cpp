@@ -16,8 +16,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gio/init.hpp>
-#include <mm/glib/init.hpp>
+#include <libmm-gio/init.hpp>
+#include <libmm-glib/init.hpp>
 
 namespace Gio
 {

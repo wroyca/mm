@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/treeexpander.hpp>
-#include <mm/gtk/private/treeexpander_p.hpp>
+#include <libmm-gtk/treeexpander.hpp>
+#include <libmm-gtk/treeexpander_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

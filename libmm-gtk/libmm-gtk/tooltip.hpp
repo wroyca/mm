@@ -3,7 +3,7 @@
 #define _GTKMM_TOOLTIP_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -23,11 +23,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/glib/object.hpp>
-#include <mm/gio/icon.hpp>
-#include <mm/gdk/paintable.hpp>
-#include <mm/gtk/enums.hpp>
-#include <mm/gtk/widget.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gio/icon.hpp>
+#include <libmm-gdk/paintable.hpp>
+#include <libmm-gtk/enums.hpp>
+#include <libmm-gtk/widget.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

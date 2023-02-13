@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/mediastream.hpp>
-#include <mm/gtk/private/mediastream_p.hpp>
+#include <libmm-gtk/mediastream.hpp>
+#include <libmm-gtk/mediastream_p.hpp>
 
 
 /* Copyright (C) 2018 The gtkmm Development Team

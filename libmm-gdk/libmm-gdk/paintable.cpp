@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/paintable.hpp>
-#include <mm/gdk/private/paintable_p.hpp>
+#include <libmm-gdk/paintable.hpp>
+#include <libmm-gdk/paintable_p.hpp>
 
 
 /* Copyright (C) 2018 The gtkmm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gdk/gdk.h>
-#include <mm/gdk/snapshot.hpp>
+#include <libmm-gdk/snapshot.hpp>
 
 using Flags = Gdk::Paintable::Flags;
 

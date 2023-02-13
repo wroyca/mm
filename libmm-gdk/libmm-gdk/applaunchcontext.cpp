@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/applaunchcontext.hpp>
-#include <mm/gdk/private/applaunchcontext_p.hpp>
+#include <libmm-gdk/applaunchcontext.hpp>
+#include <libmm-gdk/applaunchcontext_p.hpp>
 
 
 /* Copyright (C) 2012 The gtkmm Development Team
@@ -24,7 +24,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <mm/gdk/display.hpp>
+#include <libmm-gdk/display.hpp>
 #include <gdk/gdk.h>
 
 namespace Gdk

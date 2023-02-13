@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/menulinkiter.hpp>
-#include <mm/gio/private/menulinkiter_p.hpp>
+#include <libmm-gio/menulinkiter.hpp>
+#include <libmm-gio/menulinkiter_p.hpp>
 
 
 /* Copyright (C) 2012 The giomm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <mm/gio/menumodel.hpp>
+#include <libmm-gio/menumodel.hpp>
 
 namespace Gio
 {

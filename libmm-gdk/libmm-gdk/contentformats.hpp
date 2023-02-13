@@ -2,10 +2,10 @@
 #ifndef _GDKMM_CONTENTFORMATS_H
 #define _GDKMM_CONTENTFORMATS_H
 
-#include <mm/gdk/mm-gdkconfig.hpp>
+#include <libmm-gdk/mm-gdkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2017 The gtkmm Development Team
@@ -25,9 +25,9 @@
  */
 
 
-#include <mm/glib/refptr.hpp>
-#include <mm/glib/ustring.hpp>
-#include <mm/glib/value.hpp>
+#include <libmm-glib/refptr.hpp>
+#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/value.hpp>
 #include <gdk/gdk.h> // For GdkContentFormats.
 #include <vector>
 

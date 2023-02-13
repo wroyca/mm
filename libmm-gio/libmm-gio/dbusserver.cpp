@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/dbusserver.hpp>
-#include <mm/gio/private/dbusserver_p.hpp>
+#include <libmm-gio/dbusserver.hpp>
+#include <libmm-gio/dbusserver_p.hpp>
 
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -24,10 +24,10 @@
  */
 
 #include <gio/gio.h>
-#include <mm/glib/error.hpp>
-#include <mm/glib/exceptionhandler.hpp>
-#include <mm/gio/dbusconnection.hpp>
-#include <mm/gio/dbusauthobserver.hpp>
+#include <libmm-glib/error.hpp>
+#include <libmm-glib/exceptionhandler.hpp>
+#include <libmm-gio/dbusconnection.hpp>
+#include <libmm-gio/dbusauthobserver.hpp>
 
 using Flags = Gio::DBus::Server::Flags;
 

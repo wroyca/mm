@@ -3,7 +3,7 @@
 #define _GTKMM_TEXT_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2019 The gtkmm Development Team
@@ -22,12 +22,12 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gtk/widget.hpp>
-#include <mm/gtk/editable.hpp>
-#include <mm/gtk/entrybuffer.hpp>
-#include <mm/gio/menumodel.hpp>
-#include <mm/pango/attrlist.hpp>
-#include <mm/pango/tabarray.hpp>
+#include <libmm-gtk/widget.hpp>
+#include <libmm-gtk/editable.hpp>
+#include <libmm-gtk/entrybuffer.hpp>
+#include <libmm-gio/menumodel.hpp>
+#include <libmm-pango/attrlist.hpp>
+#include <libmm-pango/tabarray.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

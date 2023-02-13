@@ -3,9 +3,9 @@
 #define _GTKMM_SHORTCUTACTION_P_H
 
 
-#include <mm/glib/private/object_p.hpp>
+#include <libmm-glib/object_p.hpp>
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {
@@ -43,7 +43,7 @@ protected:
 } // namespace Gtk
 
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {
@@ -81,7 +81,7 @@ protected:
 } // namespace Gtk
 
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {
@@ -119,7 +119,7 @@ protected:
 } // namespace Gtk
 
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {
@@ -157,7 +157,7 @@ protected:
 } // namespace Gtk
 
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {
@@ -195,7 +195,7 @@ protected:
 } // namespace Gtk
 
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {
@@ -233,7 +233,7 @@ protected:
 } // namespace Gtk
 
 
-#include <mm/glib/class.hpp>
+#include <libmm-glib/class.hpp>
 
 namespace Gtk
 {

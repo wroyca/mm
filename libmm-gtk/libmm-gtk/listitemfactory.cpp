@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/listitemfactory.hpp>
-#include <mm/gtk/private/listitemfactory_p.hpp>
+#include <libmm-gtk/listitemfactory.hpp>
+#include <libmm-gtk/listitemfactory_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/dbuserrorutils.hpp>
-#include <mm/gio/private/dbuserrorutils_p.hpp>
+#include <libmm-gio/dbuserrorutils.hpp>
+#include <libmm-gio/dbuserrorutils_p.hpp>
 
 
 /* Copyright (C) 2010 The giomm Development Team
@@ -24,8 +24,8 @@
  */
 
 #include <gio/gio.h>
-#include <mm/glib/error.hpp>
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/error.hpp>
+#include <libmm-glib/utility.hpp>
 
 namespace Gio::DBus::ErrorUtils
 {

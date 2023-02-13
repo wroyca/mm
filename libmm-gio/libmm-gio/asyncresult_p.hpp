@@ -3,9 +3,9 @@
 #define _GIOMM_ASYNCRESULT_P_H
 
 
-#include <mm/glib/private/interface_p.hpp>
+#include <libmm-glib/interface_p.hpp>
 
-#include <mm/glib/private/interface_p.hpp>
+#include <libmm-glib/interface_p.hpp>
 
 namespace Gio
 {

@@ -3,7 +3,7 @@
 #define _GTKMM_MULTISELECTION_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -22,10 +22,10 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/object.hpp>
-#include <mm/glib/refptr.hpp>
-#include <mm/gio/listmodel.hpp>
-#include <mm/gtk/selectionmodel.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-glib/refptr.hpp>
+#include <libmm-gio/listmodel.hpp>
+#include <libmm-gtk/selectionmodel.hpp>
 #include <gtk/gtk.h> // Declares GtkMultiSelection and GtkMultiSelectionClass
 
 

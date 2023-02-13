@@ -17,7 +17,7 @@
  */
 
 #include <string>
-#include <mm/cairo/exception.hpp>
+#include <libmm-cairo/exception.hpp>
 
 namespace Cairo
 {

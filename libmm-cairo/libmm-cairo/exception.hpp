@@ -19,9 +19,9 @@
 #ifndef __CAIRO_EXCEPTION_H
 #define __CAIRO_EXCEPTION_H
 
-#include <mm/cairo/mm-cairoconfig.hpp>
+#include <libmm-cairo/mm-cairoconfig.hpp>
 
-#include <mm/cairo/enums.hpp>
+#include <libmm-cairo/enums.hpp>
 #include <stdexcept>
 
 namespace Cairo

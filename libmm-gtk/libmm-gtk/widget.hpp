@@ -2,10 +2,10 @@
 #ifndef _GTKMM_WIDGET_H
 #define _GTKMM_WIDGET_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2002, 2003 The gtkmm Development Team
@@ -28,22 +28,22 @@
 
 #include <vector>
 
-#include <mm/pango/context.hpp>
-#include <mm/pango/layout.hpp>
+#include <libmm-pango/context.hpp>
+#include <libmm-pango/layout.hpp>
 
-#include <mm/gtk/object.hpp>
-#include <mm/gtk/accessible.hpp>
-#include <mm/gtk/buildable.hpp>
-#include <mm/gtk/constrainttarget.hpp>
-#include <mm/gtk/enums.hpp>
-#include <mm/gdk/display.hpp>
-#include <mm/gdk/clipboard.hpp>
-#include <mm/gdk/cursor.hpp>
-#include <mm/gdk/rectangle.hpp>
-#include <mm/gtk/requisition.hpp>
-#include <mm/gtk/stylecontext.hpp>
-#include <mm/gio/actiongroup.hpp>
-#include <mm/cairo/region.hpp>
+#include <libmm-gtk/object.hpp>
+#include <libmm-gtk/accessible.hpp>
+#include <libmm-gtk/buildable.hpp>
+#include <libmm-gtk/constrainttarget.hpp>
+#include <libmm-gtk/enums.hpp>
+#include <libmm-gdk/display.hpp>
+#include <libmm-gdk/clipboard.hpp>
+#include <libmm-gdk/cursor.hpp>
+#include <libmm-gdk/rectangle.hpp>
+#include <libmm-gtk/requisition.hpp>
+#include <libmm-gtk/stylecontext.hpp>
+#include <libmm-gio/actiongroup.hpp>
+#include <libmm-cairo/region.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

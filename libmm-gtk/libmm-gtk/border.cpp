@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/border.hpp>
-#include <mm/gtk/private/border_p.hpp>
+#include <libmm-gtk/border.hpp>
+#include <libmm-gtk/border_p.hpp>
 
 
 /*

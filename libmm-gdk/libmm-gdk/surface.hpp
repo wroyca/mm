@@ -2,10 +2,10 @@
 #ifndef _GDKMM_SURFACE_H
 #define _GDKMM_SURFACE_H
 
-#include <mm/gdk/mm-gdkconfig.hpp>
+#include <libmm-gdk/mm-gdkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright(C) 1998-2010 The gtkmm Development Team
@@ -26,14 +26,14 @@
  */
 
 
-#include <mm/glib/object.hpp>
-#include <mm/gdk/drag.hpp>
-#include <mm/cairo/region.hpp>
-#include <mm/gdk/device.hpp>
-#include <mm/gdk/enums.hpp>
-#include <mm/gdk/event.hpp>
-#include <mm/gdk/popuplayout.hpp>
-#include <mm/cairo/context.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gdk/drag.hpp>
+#include <libmm-cairo/region.hpp>
+#include <libmm-gdk/device.hpp>
+#include <libmm-gdk/enums.hpp>
+#include <libmm-gdk/event.hpp>
+#include <libmm-gdk/popuplayout.hpp>
+#include <libmm-cairo/context.hpp>
 #include <gdk/gdk.h>
 
 

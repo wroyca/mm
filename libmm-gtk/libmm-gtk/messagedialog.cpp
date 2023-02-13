@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/messagedialog.hpp>
-#include <mm/gtk/private/messagedialog_p.hpp>
+#include <libmm-gtk/messagedialog.hpp>
+#include <libmm-gtk/messagedialog_p.hpp>
 
 #include <gtk/gtk.h>
 

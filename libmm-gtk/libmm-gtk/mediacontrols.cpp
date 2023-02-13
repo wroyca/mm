@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/mediacontrols.hpp>
-#include <mm/gtk/private/mediacontrols_p.hpp>
+#include <libmm-gtk/mediacontrols.hpp>
+#include <libmm-gtk/mediacontrols_p.hpp>
 
 
 /* Copyright (C) 2018 The gtkmm Development Team

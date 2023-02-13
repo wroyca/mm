@@ -3,7 +3,7 @@
 #define _PANGOMM_TABARRAY_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* tabarray.h
@@ -25,7 +25,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <mm/pango/attrlist.hpp>
+#include <libmm-pango/attrlist.hpp>
 #include <pango/pango.h>
 #include <utility>
 

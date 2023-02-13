@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/drawingarea.hpp>
-#include <mm/gtk/private/drawingarea_p.hpp>
+#include <libmm-gtk/drawingarea.hpp>
+#include <libmm-gtk/drawingarea_p.hpp>
 
 
 /*
@@ -26,7 +26,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <mm/gdk/cairoutils.hpp>
+#include <libmm-gdk/cairoutils.hpp>
 
 namespace
 {

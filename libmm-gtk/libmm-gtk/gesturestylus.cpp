@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/gesturestylus.hpp>
-#include <mm/gtk/private/gesturestylus_p.hpp>
+#include <libmm-gtk/gesturestylus.hpp>
+#include <libmm-gtk/gesturestylus_p.hpp>
 
 
 /* Copyright (C) 2018 The gtkmm Development Team
@@ -23,7 +23,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gdk/devicetool.hpp>
+#include <libmm-gdk/devicetool.hpp>
 #include <gtk/gtk.h>
 #include <memory>
 

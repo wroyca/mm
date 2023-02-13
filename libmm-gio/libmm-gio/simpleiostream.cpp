@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/simpleiostream.hpp>
-#include <mm/gio/private/simpleiostream_p.hpp>
+#include <libmm-gio/simpleiostream.hpp>
+#include <libmm-gio/simpleiostream_p.hpp>
 
 
 /* Copyright (C) 2015 The giomm Development Team

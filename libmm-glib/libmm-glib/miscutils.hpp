@@ -20,8 +20,8 @@
  */
 
 
-#include <mm/glib/ustring.hpp>
-#include <mm/glib/utility.hpp>
+#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/utility.hpp>
 #include <vector>
 
 namespace Glib

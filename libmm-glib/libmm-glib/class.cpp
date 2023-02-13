@@ -14,12 +14,12 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/class.hpp>
-#include <mm/glib/property.hpp>
-#include <mm/glib/ustring.hpp>
-#include <mm/glib/utility.hpp>
-#include <mm/glib/interface.hpp>
-#include <mm/glib/private/interface_p.hpp>
+#include <libmm-glib/class.hpp>
+#include <libmm-glib/property.hpp>
+#include <libmm-glib/ustring.hpp>
+#include <libmm-glib/utility.hpp>
+#include <libmm-glib/interface.hpp>
+#include <libmm-glib/interface_p.hpp>
 
 namespace Glib
 {

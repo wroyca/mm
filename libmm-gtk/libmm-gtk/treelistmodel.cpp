@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/treelistmodel.hpp>
-#include <mm/gtk/private/treelistmodel_p.hpp>
+#include <libmm-gtk/treelistmodel.hpp>
+#include <libmm-gtk/treelistmodel_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

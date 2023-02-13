@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/textchildanchor.hpp>
-#include <mm/gtk/private/textchildanchor_p.hpp>
+#include <libmm-gtk/textchildanchor.hpp>
+#include <libmm-gtk/textchildanchor_p.hpp>
 
 
 /*
@@ -25,7 +25,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/glib/vectorutils.hpp>
+#include <libmm-glib/vectorutils.hpp>
 
 #include <gtk/gtk.h>
 

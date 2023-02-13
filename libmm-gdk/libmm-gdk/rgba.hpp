@@ -2,10 +2,10 @@
 #ifndef _GDKMM_RGBA_H
 #define _GDKMM_RGBA_H
 
-#include <mm/gdk/mm-gdkconfig.hpp>
+#include <libmm-gdk/mm-gdkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /*
@@ -27,7 +27,7 @@
  */
 
 
-#include <mm/glib/value.hpp>
+#include <libmm-glib/value.hpp>
 #include <gdk/gdk.h> //Needed for our RGBATraits here.
 
 

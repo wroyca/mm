@@ -3,7 +3,7 @@
 #define _GIOMM_THEMEDICON_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -22,10 +22,10 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/object.hpp>
-#include <mm/gio/file.hpp>
-#include <mm/gio/icon.hpp>
-#include <mm/gio/loadableicon.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-gio/file.hpp>
+#include <libmm-gio/icon.hpp>
+#include <libmm-gio/loadableicon.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

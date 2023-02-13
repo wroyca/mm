@@ -20,7 +20,7 @@
  */
 
 
-#include <mm/glib/value.hpp>
+#include <libmm-glib/value.hpp>
 #include <glib.h>
 #include <string>
 

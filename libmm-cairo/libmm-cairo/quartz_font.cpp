@@ -16,10 +16,10 @@
  * 02110-1301, USA.
  */
 
-#include <mm/cairo/quartz_font.hpp>
+#include <libmm-cairo/quartz_font.hpp>
 
 #ifdef CAIRO_HAS_QUARTZ_FONT
-#include <mm/cairo/private.hpp>
+#include <libmm-cairo/private.hpp>
 
 namespace Cairo {
 

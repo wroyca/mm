@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/actionbar.hpp>
-#include <mm/gtk/private/actionbar_p.hpp>
+#include <libmm-gtk/actionbar.hpp>
+#include <libmm-gtk/actionbar_p.hpp>
 
 
 /*

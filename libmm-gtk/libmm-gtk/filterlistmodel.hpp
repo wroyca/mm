@@ -2,10 +2,10 @@
 #ifndef _GTKMM_FILTERLISTMODEL_H
 #define _GTKMM_FILTERLISTMODEL_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -25,8 +25,8 @@
  */
 
 
-#include <mm/gio/listmodel.hpp>
-#include <mm/gtk/filter.hpp>
+#include <libmm-gio/listmodel.hpp>
+#include <libmm-gtk/filter.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

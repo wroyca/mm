@@ -19,8 +19,8 @@
 #ifndef __CAIROMM_PRIVATE_H
 #define __CAIROMM_PRIVATE_H
 
-#include <mm/cairo/enums.hpp>
-#include <mm/cairo/exception.hpp>
+#include <libmm-cairo/enums.hpp>
+#include <libmm-cairo/exception.hpp>
 #include <string>
 
 #ifndef DOXYGEN_IGNORE_THIS

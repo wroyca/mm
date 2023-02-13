@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/texttag.hpp>
-#include <mm/gtk/private/texttag_p.hpp>
+#include <libmm-gtk/texttag.hpp>
+#include <libmm-gtk/texttag_p.hpp>
 
 
 /*

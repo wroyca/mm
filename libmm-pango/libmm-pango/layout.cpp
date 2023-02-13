@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/pango/layout.hpp>
-#include <mm/pango/private/layout_p.hpp>
+#include <libmm-pango/layout.hpp>
+#include <libmm-pango/layout_p.hpp>
 
 
 /*

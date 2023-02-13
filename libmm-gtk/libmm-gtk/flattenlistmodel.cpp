@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/flattenlistmodel.hpp>
-#include <mm/gtk/private/flattenlistmodel_p.hpp>
+#include <libmm-gtk/flattenlistmodel.hpp>
+#include <libmm-gtk/flattenlistmodel_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

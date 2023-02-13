@@ -2,10 +2,10 @@
 #ifndef _GDKMM_FRAMETIMINGS_H
 #define _GDKMM_FRAMETIMINGS_H
 
-#include <mm/gdk/mm-gdkconfig.hpp>
+#include <libmm-gdk/mm-gdkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2018 The gtkmm Development Team
@@ -25,7 +25,7 @@
  */
 
 
-#include <mm/glib/refptr.hpp>
+#include <libmm-glib/refptr.hpp>
 
 
 extern "C" typedef struct _GdkFrameTimings GdkFrameTimings;

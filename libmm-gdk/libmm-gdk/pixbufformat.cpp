@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gdk/pixbufformat.hpp>
-#include <mm/gdk/private/pixbufformat_p.hpp>
+#include <libmm-gdk/pixbufformat.hpp>
+#include <libmm-gdk/pixbufformat_p.hpp>
 
 
 /* Copyright (C) 2002 The gtkmm Development Team

@@ -3,7 +3,7 @@
 #define _GTKMM_TEXTITER_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright(C) 1998-2002 The gtkmm Development Team
@@ -24,8 +24,8 @@
  */
 
 #include <vector>
-#include <mm/pango/language.hpp>
-#include <mm/gtk/texttag.hpp>
+#include <libmm-pango/language.hpp>
+#include <libmm-gtk/texttag.hpp>
 #include <gtk/gtk.h> /* we need the definition of GtkTextIter */
 
 

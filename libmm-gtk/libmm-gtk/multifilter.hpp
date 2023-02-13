@@ -3,7 +3,7 @@
 #define _GTKMM_MULTIFILTER_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2020 The gtkmm Development Team
@@ -22,9 +22,9 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/gtk/filter.hpp>
-#include <mm/gtk/buildable.hpp>
-#include <mm/gio/listmodel.hpp>
+#include <libmm-gtk/filter.hpp>
+#include <libmm-gtk/buildable.hpp>
+#include <libmm-gio/listmodel.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

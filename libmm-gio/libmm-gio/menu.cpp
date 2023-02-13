@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/menu.hpp>
-#include <mm/gio/private/menu_p.hpp>
+#include <libmm-gio/menu.hpp>
+#include <libmm-gio/menu_p.hpp>
 
 
 /* Copyright (C) 2012 The giomm Development Team

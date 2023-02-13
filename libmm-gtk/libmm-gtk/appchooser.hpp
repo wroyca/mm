@@ -2,10 +2,10 @@
 #ifndef _GTKMM_APPCHOOSER_H
 #define _GTKMM_APPCHOOSER_H
 
-#include <mm/gtk/mm-gtkconfig.hpp>
+#include <libmm-gtk/mm-gtkconfig.hpp>
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2011 The gtkmm Development Team
@@ -26,9 +26,9 @@
  */
 
 
-#include <mm/glib/interface.hpp>
-#include <mm/gio/appinfo.hpp>
-//#include <mm/gtk/enums.hpp>
+#include <libmm-glib/interface.hpp>
+#include <libmm-gio/appinfo.hpp>
+//#include <libmm-gtk/enums.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

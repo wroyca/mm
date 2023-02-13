@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/dragicon.hpp>
-#include <mm/gtk/private/dragicon_p.hpp>
+#include <libmm-gtk/dragicon.hpp>
+#include <libmm-gtk/dragicon_p.hpp>
 
 
 /* Copyright (C) 2020 The gtkmm Development Team

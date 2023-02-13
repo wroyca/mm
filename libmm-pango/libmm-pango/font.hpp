@@ -3,7 +3,7 @@
 #define _PANGOMM_FONT_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* font.h
@@ -26,13 +26,13 @@
  */
 
 
-#include <mm/glib/object.hpp>
-#include <mm/pango/rectangle.hpp>
-#include <mm/pango/language.hpp>
-#include <mm/pango/glyph.hpp>
-#include <mm/pango/fontdescription.hpp>
-#include <mm/pango/fontmetrics.hpp>
-#include <mm/pango/coverage.hpp>
+#include <libmm-glib/object.hpp>
+#include <libmm-pango/rectangle.hpp>
+#include <libmm-pango/language.hpp>
+#include <libmm-pango/glyph.hpp>
+#include <libmm-pango/fontdescription.hpp>
+#include <libmm-pango/fontmetrics.hpp>
+#include <libmm-pango/coverage.hpp>
 #include <pango/pango.h>
 
 

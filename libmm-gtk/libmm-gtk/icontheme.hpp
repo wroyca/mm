@@ -3,7 +3,7 @@
 #define _GTKMM_ICONTHEME_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2003 The gtkmm Development Team
@@ -25,11 +25,11 @@
 
 #include <vector>
 
-#include <mm/gdk/paintable.hpp>
-#include <mm/gdk/display.hpp>
-#include <mm/gtk/enums.hpp>
-#include <mm/gtk/iconpaintable.hpp>
-#include <mm/gio/icon.hpp>
+#include <libmm-gdk/paintable.hpp>
+#include <libmm-gdk/display.hpp>
+#include <libmm-gtk/enums.hpp>
+#include <libmm-gtk/iconpaintable.hpp>
+#include <libmm-gio/icon.hpp>
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

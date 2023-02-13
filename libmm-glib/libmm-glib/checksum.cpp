@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/glib/checksum.hpp>
-#include <mm/glib/private/checksum_p.hpp>
+#include <libmm-glib/checksum.hpp>
+#include <libmm-glib/checksum_p.hpp>
 
 
 /* Copyright (C) 2002 The gtkmm Development Team
@@ -23,8 +23,8 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <mm/glib/utility.hpp>
-#include <mm/glib/checksum.hpp>
+#include <libmm-glib/utility.hpp>
+#include <libmm-glib/checksum.hpp>
 
 namespace Glib
 {

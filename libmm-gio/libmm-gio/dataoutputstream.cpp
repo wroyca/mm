@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/dataoutputstream.hpp>
-#include <mm/gio/private/dataoutputstream_p.hpp>
+#include <libmm-gio/dataoutputstream.hpp>
+#include <libmm-gio/dataoutputstream_p.hpp>
 
 
 /* Copyright (C) 2007 The gtkmm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gio/gio.h>
-#include <mm/glib/error.hpp>
+#include <libmm-glib/error.hpp>
 
 namespace Gio
 {

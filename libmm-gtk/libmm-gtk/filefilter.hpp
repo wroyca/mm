@@ -3,7 +3,7 @@
 #define _GTKMM_FILEFILTER_H
 
 
-#include <mm/glib/ustring.hpp>
+#include <libmm-glib/ustring.hpp>
 #include <sigc++/sigc++.h>
 
 /* Copyright (C) 2003 The gtkmm Development Team
@@ -23,8 +23,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mm/gtk/filter.hpp>
-#include <mm/gtk/buildable.hpp>
+#include <libmm-gtk/filter.hpp>
+#include <libmm-gtk/buildable.hpp>
 #include <string>
 
 

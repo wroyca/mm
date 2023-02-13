@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gtk/filechoosernative.hpp>
-#include <mm/gtk/private/filechoosernative_p.hpp>
+#include <libmm-gtk/filechoosernative.hpp>
+#include <libmm-gtk/filechoosernative_p.hpp>
 
 
 /* Copyright (C) 2017 The gtkmm Development Team
@@ -24,7 +24,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <mm/gtk/window.hpp>
+#include <libmm-gtk/window.hpp>
 
 namespace Gtk
 {

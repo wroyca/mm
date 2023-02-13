@@ -1,10 +1,10 @@
 
 
 
-#include <mm/glib/mm-glib.hpp>
+#include <libmm-glib/mm-glib.hpp>
 
-#include <mm/gio/simpleaction.hpp>
-#include <mm/gio/private/simpleaction_p.hpp>
+#include <libmm-gio/simpleaction.hpp>
+#include <libmm-gio/simpleaction_p.hpp>
 
 
 /* Copyright (C) 2011 The giomm Development Team
@@ -24,8 +24,8 @@
  */
 
 #include <gio/gio.h>
-#include <mm/glib/exceptionhandler.hpp>
-#include <mm/glib/variant.hpp>
+#include <libmm-glib/exceptionhandler.hpp>
+#include <libmm-glib/variant.hpp>
 
 namespace Gio
 {

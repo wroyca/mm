@@ -16,9 +16,9 @@
  * 02110-1301, USA.
  */
 
-#include <mm/cairo/surface.hpp>
-#include <mm/cairo/script.hpp>
-#include <mm/cairo/private.hpp>
+#include <libmm-cairo/surface.hpp>
+#include <libmm-cairo/script.hpp>
+#include <libmm-cairo/private.hpp>
 
 namespace Cairo
 {
