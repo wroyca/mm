@@ -1,174 +1,135 @@
 
 
-
 #include <libmm-glib/mm-glib.hxx>
 
 #include <libmm-gtk/shortcutsgroup.hxx>
 #include <libmm-gtk/shortcutsgroup_p.hxx>
 
-
-/* Copyright (C) 2016 The gtkmm Development Team
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library. If not, see <http://www.gnu.org/licenses/>.
- */
-
 #include <gtk/gtk.h>
 
 namespace Gtk
 {
-auto ShortcutsGroup::unset_view () -> void
-{
-  // Set gtk+'s char* to nullptr.
-  property_view().reset_value();
-}
-} //namespace Gtk
+  auto
+  ShortcutsGroup::unset_view () -> void
+  {
+    property_view ().reset_value ();
+  }
+} // namespace Gtk
 
 namespace
 {
-} // anonymous namespace
-
+}
 
 namespace Glib
 {
 
-auto wrap(GtkShortcutsGroup* object, const bool take_copy) -> Gtk::ShortcutsGroup*
-{
-  return dynamic_cast<Gtk::ShortcutsGroup *> (wrap_auto((GObject*)object, take_copy));
-}
+  auto
+  wrap (GtkShortcutsGroup* object, const bool take_copy) -> Gtk::ShortcutsGroup*
+  {
+    return dynamic_cast<Gtk::ShortcutsGroup*> (
+        wrap_auto ((GObject*) object, take_copy));
+  }
 
-} /* namespace Glib */
+} // namespace Glib
 
 namespace Gtk
 {
 
-
-/* The *_Class implementation: */
-
-auto ShortcutsGroup_Class::init() -> const Class&
-{
-  if(!gtype_) // create the GType if necessary
+  auto
+  ShortcutsGroup_Class::init () -> const Class&
   {
-    // Glib::Class has to know the class init function to clone custom types.
-    class_init_func_ = &ShortcutsGroup_Class::class_init_function;
+    if (!gtype_)
+    {
+      class_init_func_ = &ShortcutsGroup_Class::class_init_function;
 
-    // This is actually just optimized away, apparently with no harm.
-    // Make sure that the parent type has been created.
-    //CppClassParent::CppObjectType::get_type();
+      register_derived_type (gtk_shortcuts_group_get_type ());
+    }
 
-    // Create the wrapper type, with the same class/instance size as the base type.
-    register_derived_type(gtk_shortcuts_group_get_type());
-
-    // Add derived versions of interfaces, if the C type implements any interfaces:
-
+    return *this;
   }
 
-  return *this;
-}
-
-
-auto ShortcutsGroup_Class::class_init_function (void *g_class, void *class_data) -> void
-{
-  const auto klass = static_cast<BaseClassType*>(g_class);
-  CppClassParent::class_init_function(klass, class_data);
-
-
-}
-
-
-auto ShortcutsGroup_Class::wrap_new(GObject* o) -> Glib::ObjectBase*
-{
-  return manage(new ShortcutsGroup((GtkShortcutsGroup*)o));
-
-}
-
-
-/* The implementation: */
-
-ShortcutsGroup::ShortcutsGroup(const Glib::ConstructParams& construct_params)
-:
-  Box(construct_params)
-{
+  auto
+  ShortcutsGroup_Class::class_init_function (void* g_class, void* class_data) -> void
+  {
+    const auto klass = static_cast<BaseClassType*> (g_class);
+    CppClassParent::class_init_function (klass, class_data);
   }
 
-ShortcutsGroup::ShortcutsGroup(GtkShortcutsGroup* castitem)
-:
-  Box((GtkBox*)castitem)
-{
+  auto
+  ShortcutsGroup_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  {
+    return manage (new ShortcutsGroup ((GtkShortcutsGroup*) o));
   }
 
+  ShortcutsGroup::ShortcutsGroup (const Glib::ConstructParams& construct_params)
+    : Box (construct_params)
+  {
+  }
 
-ShortcutsGroup::ShortcutsGroup(ShortcutsGroup&& src) noexcept
-: Box(std::move(src))
-{}
+  ShortcutsGroup::ShortcutsGroup (GtkShortcutsGroup* castitem)
+    : Box ((GtkBox*) castitem)
+  {
+  }
 
-auto ShortcutsGroup::operator=(ShortcutsGroup&& src) noexcept -> ShortcutsGroup&
-{
-  Box::operator=(std::move(src));
-  return *this;
-}
+  ShortcutsGroup::ShortcutsGroup (ShortcutsGroup&& src) noexcept
+    : Box (std::move (src))
+  {
+  }
 
-ShortcutsGroup::~ShortcutsGroup() noexcept
-{
-  destroy_();
-}
+  auto
+  ShortcutsGroup::operator= (ShortcutsGroup&& src) noexcept -> ShortcutsGroup&
+  {
+    Box::operator= (std::move (src));
+    return *this;
+  }
 
-ShortcutsGroup::CppClassType ShortcutsGroup::shortcutsgroup_class_; // initialize static member
+  ShortcutsGroup::~ShortcutsGroup () noexcept
+  {
+    destroy_ ();
+  }
 
-auto ShortcutsGroup::get_type() -> GType
-{
-  return shortcutsgroup_class_.init().get_type();
-}
+  ShortcutsGroup::CppClassType ShortcutsGroup::shortcutsgroup_class_;
 
+  auto
+  ShortcutsGroup::get_type () -> GType
+  {
+    return shortcutsgroup_class_.init ().get_type ();
+  }
 
-auto ShortcutsGroup::get_base_type() -> GType
-{
-  return gtk_shortcuts_group_get_type();
-}
+  auto
+  ShortcutsGroup::get_base_type () -> GType
+  {
+    return gtk_shortcuts_group_get_type ();
+  }
 
+  ShortcutsGroup::ShortcutsGroup ()
+    : ObjectBase (nullptr),
+      Box (Glib::ConstructParams (shortcutsgroup_class_.init ()))
+  {
+  }
 
-ShortcutsGroup::ShortcutsGroup()
-:
-  // Mark this class as non-derived to allow C++ vfuncs to be skipped.
-ObjectBase(nullptr),
-  Box(Glib::ConstructParams(shortcutsgroup_class_.init()))
-{
+  auto
+  ShortcutsGroup::property_title () -> Glib::PropertyProxy<Glib::ustring>
+  {
+    return {this, "title"};
+  }
 
+  auto
+  ShortcutsGroup::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  {
+    return {this, "title"};
+  }
 
-}
+  auto
+  ShortcutsGroup::property_view () -> Glib::PropertyProxy<Glib::ustring>
+  {
+    return {this, "view"};
+  }
 
-
-auto ShortcutsGroup::property_title() -> Glib::PropertyProxy< Glib::ustring >
-{
-  return {this, "title"};
-}
-
-auto ShortcutsGroup::property_title() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
-{
-  return {this, "title"};
-}
-
-auto ShortcutsGroup::property_view() -> Glib::PropertyProxy< Glib::ustring >
-{
-  return {this, "view"};
-}
-
-auto ShortcutsGroup::property_view() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >
-{
-  return {this, "view"};
-}
-
+  auto
+  ShortcutsGroup::property_view () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  {
+    return {this, "view"};
+  }
 
 } // namespace Gtk
-
-

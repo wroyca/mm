@@ -1,27 +1,24 @@
 #include <sstream>
 #include <stdexcept>
 
-#include <libmm-cairo/version.hxx>
 #include <libmm-cairo/mm-cairo.hxx>
+#include <libmm-cairo/version.hxx>
 
 #undef NDEBUG
 #include <cassert>
 
-int main ()
+int
+main ()
 {
   using namespace std;
   using namespace mm_cairo;
 
-  // Basics.
-  //
   {
     ostringstream o;
     say_hello (o, "World");
     assert (o.str () == "Hello, World!\n");
   }
 
-  // Empty name.
-  //
   try
   {
     ostringstream o;

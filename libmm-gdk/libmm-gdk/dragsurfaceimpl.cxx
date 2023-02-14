@@ -1,39 +1,29 @@
-/* Copyright (C) 2020 The gtkmm Development Team
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
- */
+
 
 #include <libmm-gdk/dragsurfaceimpl.hxx>
-#include <utility> // std::move()
+#include <utility>
 
 namespace Gdk
 {
-DragSurfaceImpl::DragSurfaceImpl(GdkSurface* castitem)
-: ObjectBase(nullptr), Surface(castitem)
-{}
+  DragSurfaceImpl::DragSurfaceImpl (GdkSurface* castitem)
+    : ObjectBase (nullptr),
+      Surface (castitem)
+  {
+  }
 
-DragSurfaceImpl::DragSurfaceImpl(DragSurfaceImpl&& src) noexcept
-: DragSurface(std::move(src)),
-  Surface(std::move(src))
-{}
+  DragSurfaceImpl::DragSurfaceImpl (DragSurfaceImpl&& src) noexcept
+    : DragSurface (std::move (src)),
+      Surface (std::move (src))
+  {
+  }
 
-auto DragSurfaceImpl::operator=(DragSurfaceImpl&& src) noexcept -> DragSurfaceImpl&
-{
-  DragSurface::operator=(std::move(src));
-  Surface::operator=(std::move(src));
-  return *this;
-}
+  auto
+  DragSurfaceImpl::operator= (DragSurfaceImpl&& src) noexcept -> DragSurfaceImpl&
+  {
+    DragSurface::operator= (std::move (src));
+    Surface::operator= (std::move (src));
+    return *this;
+  }
 
-DragSurfaceImpl::~DragSurfaceImpl() noexcept = default;
+  DragSurfaceImpl::~DragSurfaceImpl () noexcept = default;
 } // namespace Gdk

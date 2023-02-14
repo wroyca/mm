@@ -1,27 +1,24 @@
 #include <sstream>
 #include <stdexcept>
 
-#include <libmm-gdk/version.hxx>
 #include <libmm-gdk/mm-gdk.hxx>
+#include <libmm-gdk/version.hxx>
 
 #undef NDEBUG
 #include <cassert>
 
-int main ()
+int
+main ()
 {
   using namespace std;
   using namespace mm_gdk;
 
-  // Basics.
-  //
   {
     ostringstream o;
     say_hello (o, "World");
     assert (o.str () == "Hello, World!\n");
   }
 
-  // Empty name.
-  //
   try
   {
     ostringstream o;

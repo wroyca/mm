@@ -4,153 +4,104 @@
 
 #include <libmm-gtk/mm-gtkconfig.hxx>
 
-
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
-/* Copyright (C) 2020 The gtkmm Development Team
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library. If not, see <http://www.gnu.org/licenses/>.
- */
-
-
-#include <libmm-glib/object.hxx>
 #include <gtk/gtk.h>
-
-
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-#endif /* DOXYGEN_SHOULD_SKIP_THIS */
-
+#include <libmm-glib/object.hxx>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
-{ class GTKMM_API StringObject_Class; } // namespace Gtk
-#endif //DOXYGEN_SHOULD_SKIP_THIS
-
-namespace Gtk
-{
-
-class GTKMM_API StringObject : public Glib::Object
-{
-
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-
-public:
-  using CppObjectType = StringObject;
-  using CppClassType = StringObject_Class;
-  using BaseObjectType = GtkStringObject;
-  using BaseClassType = GtkStringObjectClass;
-
-  // noncopyable
-  StringObject(const StringObject&) = delete;
-  auto operator=(const StringObject&) -> StringObject& = delete;
-
-private:  friend class StringObject_Class;
-  static CppClassType stringobject_class_;
-
-protected:
-  explicit StringObject(const Glib::ConstructParams& construct_params);
-  explicit StringObject(GtkStringObject* castitem);
-
-#endif /* DOXYGEN_SHOULD_SKIP_THIS */
-
-public:
-
-  StringObject(StringObject&& src) noexcept;
-  auto operator=(StringObject&& src) noexcept -> StringObject&;
-
-  ~StringObject() noexcept override;
-
-  /** Get the GType for this class, for use with the underlying GObject type system.
-   */
-  static auto get_type() -> GType      G_GNUC_CONST;
-
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-
-
-  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
-  ///Provides access to the underlying C GObject.
-  auto       gobj() -> GtkStringObject*       { return reinterpret_cast<GtkStringObject*>(gobject_); }
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+namespace Gtk
+{
+  class GTKMM_API StringObject_Class;
+}
+#endif
 
-  ///Provides access to the underlying C GObject.
-  auto gobj() const -> const GtkStringObject* { return reinterpret_cast<GtkStringObject*>(gobject_); }
+namespace Gtk
+{
 
-  ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  auto gobj_copy() -> GtkStringObject*;
+  class GTKMM_API StringObject : public Glib::Object
+  {
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-private:
+  public:
+    using CppObjectType = StringObject;
+    using CppClassType = StringObject_Class;
+    using BaseObjectType = GtkStringObject;
+    using BaseClassType = GtkStringObjectClass;
 
+    StringObject (const StringObject&) = delete;
+    auto
+    operator= (const StringObject&) -> StringObject& = delete;
 
-public:
-  // gtk_string_object_new() does more than call g_object_new().
-  // property_string() is read-only, can't be used in a _WRAP_CTOR().
+  private:
+    friend class StringObject_Class;
+    static CppClassType stringobject_class_;
 
-  /** Wraps a string in an object for use with `Gio::ListModel`.
-   *
-   * @param string The string to wrap.
-   * @return A new `Gtk::StringObject`.
-   */
-  static auto create(const Glib::ustring& string) -> Glib::RefPtr<StringObject>;
+  protected:
+    explicit StringObject (const Glib::ConstructParams& construct_params);
+    explicit StringObject (GtkStringObject* castitem);
 
+#endif
 
-  /** Returns the string contained in a `Gtk::StringObject`.
-   *
-   * @return The string of @a self.
-   */
-  auto get_string() const -> Glib::ustring;
-  /** The string.
-   *
-   * Default value: ""
-   *
-   * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
-   * or receive notification when the value of the property changes.
-   */
-  auto property_string() const -> Glib::PropertyProxy_ReadOnly< Glib::ustring >;
+  public:
+    StringObject (StringObject&& src) noexcept;
+    auto
+    operator= (StringObject&& src) noexcept -> StringObject&;
 
+    ~StringObject () noexcept override;
 
-public:
+    static auto
+    get_type () -> GType G_GNUC_CONST;
 
-public:
-  //C++ methods used to invoke GTK+ virtual functions:
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-protected:
-  //GTK+ Virtual Functions (override these to change behaviour):
+    static auto
+    get_base_type () -> GType G_GNUC_CONST;
+#endif
 
-  //Default Signal Handlers::
+    auto
+    gobj () -> GtkStringObject*
+    {
+      return reinterpret_cast<GtkStringObject*> (gobject_);
+    }
 
+    auto
+    gobj () const -> const GtkStringObject*
+    {
+      return reinterpret_cast<GtkStringObject*> (gobject_);
+    }
 
-};
+    auto
+    gobj_copy () -> GtkStringObject*;
+
+  private:
+  public:
+    static auto
+    create (const Glib::ustring& string) -> Glib::RefPtr<StringObject>;
+
+    auto
+    get_string () const -> Glib::ustring;
+
+    auto
+    property_string () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+
+  public:
+  public:
+  protected:
+  };
 
 } // namespace Gtk
 
-
 namespace Glib
 {
-  /** A Glib::wrap() method for this object.
-   *
-   * @param object The C instance.
-   * @param take_copy False if the result should take ownership of the C instance. True if it should take a new copy or ref.
-   * @result A C++ instance that wraps this C instance.
-   *
-   * @relates Gtk::StringObject
-   */
+
   GTKMM_API
-  auto wrap(GtkStringObject* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StringObject>;
-}
+  auto
+  wrap (GtkStringObject* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StringObject>;
+} // namespace Glib
 
-
-#endif /* _GTKMM_STRINGOBJECT_H */
-
+#endif

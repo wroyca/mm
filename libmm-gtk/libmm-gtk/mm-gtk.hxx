@@ -2,17 +2,15 @@
 
 #include <libmm-gtk/export.hxx>
 
-/* Gtkmm version.  */
 extern const int gtkmm_major_version;
 extern const int gtkmm_minor_version;
 extern const int gtkmm_micro_version;
 
-#include <libmm-glib/mm-glib.hxx>
 #include <libmm-gio/gio.hxx>
+#include <libmm-glib/mm-glib.hxx>
 
 #include <libmm-gdk/mm-gdk.hxx>
 
-#include <libmm-gtk/object.hxx>
 #include <libmm-gtk/aboutdialog.hxx>
 #include <libmm-gtk/accelerator.hxx>
 #include <libmm-gtk/accelkey.hxx>
@@ -33,11 +31,10 @@ extern const int gtkmm_micro_version;
 #include <libmm-gtk/boxlayout.hxx>
 #include <libmm-gtk/builder.hxx>
 #include <libmm-gtk/button.hxx>
+#include <libmm-gtk/calendar.hxx>
 #include <libmm-gtk/cellarea.hxx>
 #include <libmm-gtk/cellareabox.hxx>
 #include <libmm-gtk/cellareacontext.hxx>
-#include <libmm-gtk/cellview.hxx>
-#include <libmm-gtk/checkbutton.hxx>
 #include <libmm-gtk/cellrenderer.hxx>
 #include <libmm-gtk/cellrendereraccel.hxx>
 #include <libmm-gtk/cellrenderercombo.hxx>
@@ -47,8 +44,10 @@ extern const int gtkmm_micro_version;
 #include <libmm-gtk/cellrendererspinner.hxx>
 #include <libmm-gtk/cellrenderertext.hxx>
 #include <libmm-gtk/cellrenderertoggle.hxx>
+#include <libmm-gtk/cellview.hxx>
 #include <libmm-gtk/centerbox.hxx>
 #include <libmm-gtk/centerlayout.hxx>
+#include <libmm-gtk/checkbutton.hxx>
 #include <libmm-gtk/colorbutton.hxx>
 #include <libmm-gtk/colorchooser.hxx>
 #include <libmm-gtk/colorchooserdialog.hxx>
@@ -70,13 +69,13 @@ extern const int gtkmm_micro_version;
 #include <libmm-gtk/editablelabel.hxx>
 #include <libmm-gtk/emojichooser.hxx>
 #include <libmm-gtk/entry.hxx>
-#include <libmm-gtk/expander.hxx>
 #include <libmm-gtk/enums.hxx>
 #include <libmm-gtk/eventcontroller.hxx>
 #include <libmm-gtk/eventcontrollerfocus.hxx>
 #include <libmm-gtk/eventcontrollerkey.hxx>
 #include <libmm-gtk/eventcontrollermotion.hxx>
 #include <libmm-gtk/eventcontrollerscroll.hxx>
+#include <libmm-gtk/expander.hxx>
 #include <libmm-gtk/filechooser.hxx>
 #include <libmm-gtk/filechooserdialog.hxx>
 #include <libmm-gtk/filechoosernative.hxx>
@@ -113,17 +112,16 @@ extern const int gtkmm_micro_version;
 #include <libmm-gtk/image.hxx>
 #include <libmm-gtk/infobar.hxx>
 #include <libmm-gtk/inscription.hxx>
-#include <libmm-gtk/calendar.hxx>
 #include <libmm-gtk/label.hxx>
 #include <libmm-gtk/layoutchild.hxx>
 #include <libmm-gtk/layoutmanager.hxx>
 #include <libmm-gtk/levelbar.hxx>
+#include <libmm-gtk/linkbutton.hxx>
 #include <libmm-gtk/listbox.hxx>
 #include <libmm-gtk/listboxrow.hxx>
 #include <libmm-gtk/liststore.hxx>
 #include <libmm-gtk/listview.hxx>
 #include <libmm-gtk/listviewtext.hxx>
-#include <libmm-gtk/linkbutton.hxx>
 #include <libmm-gtk/mediacontrols.hxx>
 #include <libmm-gtk/mediafile.hxx>
 #include <libmm-gtk/menubutton.hxx>
@@ -137,10 +135,10 @@ extern const int gtkmm_micro_version;
 #include <libmm-gtk/object.hxx>
 #include <libmm-gtk/overlay.hxx>
 #include <libmm-gtk/padcontroller.hxx>
-#include <libmm-gtk/paned.hxx>
 #include <libmm-gtk/pagesetup.hxx>
+#include <libmm-gtk/paned.hxx>
 #ifndef G_OS_WIN32
-#include <libmm-gtk/pagesetupunixdialog.hxx>
+  #include <libmm-gtk/pagesetupunixdialog.hxx>
 #endif
 #include <libmm-gtk/papersize.hxx>
 #include <libmm-gtk/passwordentry.hxx>
@@ -150,14 +148,14 @@ extern const int gtkmm_micro_version;
 #include <libmm-gtk/popovermenubar.hxx>
 #include <libmm-gtk/printcontext.hxx>
 #ifndef G_OS_WIN32
-#include <libmm-gtk/printer.hxx>
-#include <libmm-gtk/printjob.hxx>
+  #include <libmm-gtk/printer.hxx>
+  #include <libmm-gtk/printjob.hxx>
 #endif
 #include <libmm-gtk/printoperation.hxx>
 #include <libmm-gtk/printoperationpreview.hxx>
 #include <libmm-gtk/printsettings.hxx>
 #ifndef G_OS_WIN32
-#include <libmm-gtk/printunixdialog.hxx>
+  #include <libmm-gtk/printunixdialog.hxx>
 #endif
 #include <libmm-gtk/progressbar.hxx>
 #include <libmm-gtk/range.hxx>
@@ -170,9 +168,9 @@ extern const int gtkmm_micro_version;
 #include <libmm-gtk/scrolledwindow.hxx>
 #include <libmm-gtk/searchbar.hxx>
 #include <libmm-gtk/searchentry.hxx>
-#include <libmm-gtk/separator.hxx>
 #include <libmm-gtk/selectionfiltermodel.hxx>
 #include <libmm-gtk/selectionlistmodelimpl.hxx>
+#include <libmm-gtk/separator.hxx>
 #include <libmm-gtk/settings.hxx>
 #include <libmm-gtk/shortcutcontroller.hxx>
 #include <libmm-gtk/shortcutlabel.hxx>
@@ -225,6 +223,6 @@ extern const int gtkmm_micro_version;
 #include <libmm-gtk/volumebutton.hxx>
 #include <libmm-gtk/widget.hxx>
 #include <libmm-gtk/widgetpaintable.hxx>
-#include <libmm-gtk/windowcontrols.hxx>
 #include <libmm-gtk/window.hxx>
+#include <libmm-gtk/windowcontrols.hxx>
 #include <libmm-gtk/windowhandle.hxx>

@@ -2,7 +2,6 @@
 #ifndef _GTKMM_NATIVEDIALOG_P_H
 #define _GTKMM_NATIVEDIALOG_P_H
 
-
 #include <libmm-glib/object_p.hxx>
 
 #include <libmm-glib/class.hxx>
@@ -10,39 +9,33 @@
 namespace Gtk
 {
 
-class GTKMM_API NativeDialog_Class : public Glib::Class
-{
-public:
+  class GTKMM_API NativeDialog_Class : public Glib::Class
+  {
+  public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  using CppObjectType = NativeDialog;
-  using BaseObjectType = GtkNativeDialog;
-  using BaseClassType = GtkNativeDialogClass;
-  using CppClassParent = Glib::Object_Class;
-  using BaseClassParent = GObjectClass;
+    using CppObjectType = NativeDialog;
+    using BaseObjectType = GtkNativeDialog;
+    using BaseClassType = GtkNativeDialogClass;
+    using CppClassParent = Glib::Object_Class;
+    using BaseClassParent = GObjectClass;
 
-  friend class NativeDialog;
-#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+    friend class NativeDialog;
+#endif
 
-  auto init () -> const Class&;
+    auto
+    init () -> const Class&;
 
+    static auto
+    class_init_function (void* g_class, void* class_data) -> void;
 
-  static auto class_init_function (void *g_class, void *class_data) -> void;
+    static auto
+    wrap_new (GObject*) -> Glib::ObjectBase*;
 
-  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
-
-protected:
-
-  //Callbacks (default signal handlers):
-  //These will call the *_impl member methods, which will then call the existing default signal callbacks, if any.
-  //You could prevent the original default signal handlers being called by overriding the *_impl method.
-  static auto response_callback (GtkNativeDialog *self, gint p0) -> void;
-
-  //Callbacks (virtual functions):
-};
-
+  protected:
+    static auto
+    response_callback (GtkNativeDialog* self, gint p0) -> void;
+  };
 
 } // namespace Gtk
 
-
-#endif /* _GTKMM_NATIVEDIALOG_P_H */
-
+#endif

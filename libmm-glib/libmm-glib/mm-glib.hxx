@@ -3,13 +3,11 @@
 #include <libmm-glib/export.hxx>
 
 #include <libmm-glib/mm-glibconfig.hxx>
-//#include <libmm-glib/i18n.hxx> //This must be included by the application, after system headers such as
-//<iostream>.
 
 #include <libmm-glib/base64.hxx>
 #ifndef GLIBMM_INCLUDED_FROM_WRAP_INIT_CC
-// wrap_init.cc includes this file after it has cleared G_GNUC_CONST.
-#include <libmm-glib/binding.hxx>
+
+  #include <libmm-glib/binding.hxx>
 #endif
 #include <libmm-glib/bytearray.hxx>
 #include <libmm-glib/bytes.hxx>
@@ -25,29 +23,29 @@
 #include <libmm-glib/error.hxx>
 #include <libmm-glib/exceptionhandler.hxx>
 #include <libmm-glib/fileutils.hxx>
+#include <libmm-glib/init.hxx>
 #include <libmm-glib/interface.hxx>
 #include <libmm-glib/iochannel.hxx>
-#include <libmm-glib/init.hxx>
 #include <libmm-glib/keyfile.hxx>
 #include <libmm-glib/main.hxx>
 #include <libmm-glib/markup.hxx>
 #include <libmm-glib/miscutils.hxx>
 #include <libmm-glib/module.hxx>
 #include <libmm-glib/nodetree.hxx>
-#include <libmm-glib/objectbase.hxx>
 #include <libmm-glib/object.hxx>
+#include <libmm-glib/objectbase.hxx>
 #include <libmm-glib/optioncontext.hxx>
 #include <libmm-glib/pattern.hxx>
 #include <libmm-glib/property.hxx>
-#include <libmm-glib/propertyproxy_base.hxx>
 #include <libmm-glib/propertyproxy.hxx>
+#include <libmm-glib/propertyproxy_base.hxx>
 #include <libmm-glib/quark.hxx>
 #include <libmm-glib/random.hxx>
-#include <libmm-glib/regex.hxx>
 #include <libmm-glib/refptr.hxx>
+#include <libmm-glib/regex.hxx>
 #include <libmm-glib/shell.hxx>
-#include <libmm-glib/signalproxy_connectionnode.hxx>
 #include <libmm-glib/signalproxy.hxx>
+#include <libmm-glib/signalproxy_connectionnode.hxx>
 #include <libmm-glib/spawn.hxx>
 #include <libmm-glib/stringutils.hxx>
 #include <libmm-glib/timer.hxx>

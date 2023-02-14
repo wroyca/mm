@@ -1,160 +1,142 @@
 
 
-
 #include <libmm-glib/mm-glib.hxx>
 
 #include <libmm-gio/tlsserverconnection.hxx>
 #include <libmm-gio/tlsserverconnection_p.hxx>
-
-
-/* Copyright (C) 2013 The giomm Development Team
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
- */
 
 #include <gio/gio.h>
 #include <libmm-gio/tlsserverconnectionimpl.hxx>
 
 namespace
 {
-} // anonymous namespace
-
+}
 
 namespace Glib
 {
 
-auto wrap(GTlsServerConnection* object, const bool take_copy) -> RefPtr<Gio::TlsServerConnection>
-{
-  return Glib::make_refptr_for_instance<Gio::TlsServerConnection>( Glib::wrap_auto_interface<Gio::TlsServerConnection> ((GObject*)object, take_copy) );
-  //We use dynamic_cast<> in case of multiple inheritance.
-}
+  auto
+  wrap (GTlsServerConnection* object, const bool take_copy) -> RefPtr<Gio::TlsServerConnection>
+  {
+    return Glib::make_refptr_for_instance<Gio::TlsServerConnection> (
+        Glib::wrap_auto_interface<Gio::TlsServerConnection> ((GObject*) object,
+                                                             take_copy));
+  }
 
 } // namespace Glib
-
 
 namespace Gio
 {
 
-
-/* The *_Class implementation: */
-
-auto TlsServerConnection_Class::init() -> const Interface_Class&
-{
-  if(!gtype_) // create the GType if necessary
+  auto
+  TlsServerConnection_Class::init () -> const Interface_Class&
   {
-    // Glib::Interface_Class has to know the interface init function
-    // in order to add interfaces to implementing types.
-    class_init_func_ = &TlsServerConnection_Class::iface_init_function;
+    if (!gtype_)
+    {
+      class_init_func_ = &TlsServerConnection_Class::iface_init_function;
 
-    // We can not derive from another interface, and it is not necessary anyway.
-    gtype_ = g_tls_server_connection_get_type();
+      gtype_ = g_tls_server_connection_get_type ();
+    }
+
+    return *this;
   }
 
-  return *this;
-}
+  auto
+  TlsServerConnection_Class::iface_init_function (void* g_iface, void*) -> void
+  {
+    const auto klass = static_cast<BaseClassType*> (g_iface);
 
-auto TlsServerConnection_Class::iface_init_function (void *g_iface, void *) -> void
-{
-  const auto klass = static_cast<BaseClassType*>(g_iface);
+    g_assert (klass != nullptr);
+  }
 
-  //This is just to avoid an "unused variable" warning when there are no vfuncs or signal handlers to connect.
-  //This is a temporary fix until I find out why I can not seem to derive a GtkFileChooser interface. murrayc
-  g_assert(klass != nullptr);
+  auto
+  TlsServerConnection_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  {
+    return new TlsServerConnection ((GTlsServerConnection*) object);
+  }
 
+  TlsServerConnection::TlsServerConnection ()
+    : Interface (tlsserverconnection_class_.init ())
+  {
+  }
 
-}
+  TlsServerConnection::TlsServerConnection (GTlsServerConnection* castitem)
+    : Interface ((GObject*) castitem)
+  {
+  }
 
+  TlsServerConnection::TlsServerConnection (
+      const Glib::Interface_Class& interface_class)
+    : Interface (interface_class)
+  {
+  }
 
-auto TlsServerConnection_Class::wrap_new(GObject* object) -> Glib::ObjectBase*
-{
-  return new TlsServerConnection((GTlsServerConnection*)object);
-}
+  TlsServerConnection::TlsServerConnection (TlsServerConnection&& src) noexcept
+    : Interface (std::move (src))
+  {
+  }
 
+  auto
+  TlsServerConnection::operator= (TlsServerConnection&& src) noexcept -> TlsServerConnection&
+  {
+    Interface::operator= (std::move (src));
+    return *this;
+  }
 
-/* The implementation: */
+  TlsServerConnection::~TlsServerConnection () noexcept = default;
 
-TlsServerConnection::TlsServerConnection()
-: Interface(tlsserverconnection_class_.init())
-{}
+  auto
+  TlsServerConnection::add_interface (const GType gtype_implementer) -> void
+  {
+    tlsserverconnection_class_.init ().add_interface (gtype_implementer);
+  }
 
-TlsServerConnection::TlsServerConnection(GTlsServerConnection* castitem)
-: Interface((GObject*)castitem)
-{}
+  TlsServerConnection::CppClassType
+      TlsServerConnection::tlsserverconnection_class_;
 
-TlsServerConnection::TlsServerConnection(const Glib::Interface_Class& interface_class)
-: Interface(interface_class)
-{
-}
+  auto
+  TlsServerConnection::get_type () -> GType
+  {
+    return tlsserverconnection_class_.init ().get_type ();
+  }
 
-TlsServerConnection::TlsServerConnection(TlsServerConnection&& src) noexcept
-: Interface(std::move(src))
-{}
+  auto
+  TlsServerConnection::get_base_type () -> GType
+  {
+    return g_tls_server_connection_get_type ();
+  }
 
-auto TlsServerConnection::operator=(TlsServerConnection&& src) noexcept -> TlsServerConnection&
-{
-  Interface::operator=(std::move(src));
-  return *this;
-}
+  auto
+  TlsServerConnection::create (const Glib::RefPtr<IOStream>& base_io_stream,
+                               const Glib::RefPtr<TlsCertificate>& certificate) -> Glib::RefPtr<TlsServerConnectionImpl>
+  {
+    GError* gerror = nullptr;
+    auto retvalue = std::dynamic_pointer_cast<TlsServerConnectionImpl> (
+        Glib::wrap (G_TLS_CONNECTION (
+            g_tls_server_connection_new (Glib::unwrap (base_io_stream),
+                                         Glib::unwrap (certificate),
+                                         &gerror))));
+    if (gerror)
+      Glib::Error::throw_exception (gerror);
+    return retvalue;
+  }
 
-TlsServerConnection::~TlsServerConnection() noexcept = default;
+  static_assert (
+      Glib::Traits::ValueCompatibleWithWrapProperty<
+          TlsAuthenticationMode>::value,
+      "Type TlsAuthenticationMode cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of Glib::Value<>.");
 
-// static
-auto TlsServerConnection::add_interface (
-  const GType gtype_implementer) -> void
-{
-  tlsserverconnection_class_.init().add_interface(gtype_implementer);
-}
+  auto
+  TlsServerConnection::property_authentication_mode () -> Glib::PropertyProxy<TlsAuthenticationMode>
+  {
+    return {this, "authentication-mode"};
+  }
 
-TlsServerConnection::CppClassType TlsServerConnection::tlsserverconnection_class_; // initialize static member
-
-auto TlsServerConnection::get_type() -> GType
-{
-  return tlsserverconnection_class_.init().get_type();
-}
-
-
-auto TlsServerConnection::get_base_type() -> GType
-{
-  return g_tls_server_connection_get_type();
-}
-
-
-auto TlsServerConnection::create(const Glib::RefPtr<IOStream>& base_io_stream, const Glib::RefPtr<TlsCertificate>& certificate) -> Glib::RefPtr<TlsServerConnectionImpl>
-{
-  GError* gerror = nullptr;
-  auto retvalue = std::dynamic_pointer_cast<TlsServerConnectionImpl>(Glib::wrap(G_TLS_CONNECTION(g_tls_server_connection_new(Glib::unwrap(base_io_stream), Glib::unwrap(certificate), & gerror))));
-  if(gerror)
-    Glib::Error::throw_exception(gerror);
-  return retvalue;
-}
-
-
-static_assert(Glib::Traits::ValueCompatibleWithWrapProperty<TlsAuthenticationMode>::value,
-  "Type TlsAuthenticationMode cannot be used in _WRAP_PROPERTY. "
-  "There is no suitable template specialization of Glib::Value<>.");
-
-auto TlsServerConnection::property_authentication_mode() -> Glib::PropertyProxy< TlsAuthenticationMode >
-{
-  return {this, "authentication-mode"};
-}
-
-auto TlsServerConnection::property_authentication_mode() const -> Glib::PropertyProxy_ReadOnly< TlsAuthenticationMode >
-{
-  return {this, "authentication-mode"};
-}
-
+  auto
+  TlsServerConnection::property_authentication_mode () const -> Glib::PropertyProxy_ReadOnly<TlsAuthenticationMode>
+  {
+    return {this, "authentication-mode"};
+  }
 
 } // namespace Gio
-
-

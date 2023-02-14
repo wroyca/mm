@@ -2,227 +2,120 @@
 #ifndef _GTKMM_GESTURELONGPRESS_H
 #define _GTKMM_GESTURELONGPRESS_H
 
-
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
-/* Copyright (C) 2014 The gtkmm Development Team
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library. If not, see <http://www.gnu.org/licenses/>.
- */
-
 #include <libmm-gtk/gesturesingle.hxx>
-
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkGestureLongPress = struct _GtkGestureLongPress;
 using GtkGestureLongPressClass = struct _GtkGestureLongPressClass;
-#endif /* DOXYGEN_SHOULD_SKIP_THIS */
-
-
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
-{ class GTKMM_API GestureLongPress_Class; } // namespace Gtk
-#endif //DOXYGEN_SHOULD_SKIP_THIS
-
-namespace Gtk
-{
-/** "Press and Hold" gesture.
- *
- * This is a Gesture implementation able to recognize
- * long presses, triggering signal_pressed() after the
- * timeout is exceeded.
- *
- * If the touchpoint is lifted before the timeout passes, or if it drifts
- * too far of the initial press point, signal_cancelled() will be emitted.
- *
- * @newin{3,14}
- *
- * @ingroup Gestures
- */
-
-class GTKMM_API GestureLongPress : public GestureSingle
-{
-
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-
-public:
-  using CppObjectType = GestureLongPress;
-  using CppClassType = GestureLongPress_Class;
-  using BaseObjectType = GtkGestureLongPress;
-  using BaseClassType = GtkGestureLongPressClass;
-
-  // noncopyable
-  GestureLongPress(const GestureLongPress&) = delete;
-  auto operator=(const GestureLongPress&) -> GestureLongPress& = delete;
-
-private:  friend class GestureLongPress_Class;
-  static CppClassType gesturelongpress_class_;
-
-protected:
-  explicit GestureLongPress(const Glib::ConstructParams& construct_params);
-  explicit GestureLongPress(GtkGestureLongPress* castitem);
-
-#endif /* DOXYGEN_SHOULD_SKIP_THIS */
-
-public:
-
-  GestureLongPress(GestureLongPress&& src) noexcept;
-  auto operator=(GestureLongPress&& src) noexcept -> GestureLongPress&;
-
-  ~GestureLongPress() noexcept override;
-
-  /** Get the GType for this class, for use with the underlying GObject type system.
-   */
-  static auto get_type() -> GType      G_GNUC_CONST;
-
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-
-
-  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
-  ///Provides access to the underlying C GObject.
-  auto       gobj() -> GtkGestureLongPress*       { return reinterpret_cast<GtkGestureLongPress*>(gobject_); }
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+namespace Gtk
+{
+  class GTKMM_API GestureLongPress_Class;
+}
+#endif
 
-  ///Provides access to the underlying C GObject.
-  auto gobj() const -> const GtkGestureLongPress* { return reinterpret_cast<GtkGestureLongPress*>(gobject_); }
+namespace Gtk
+{
 
-  ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  auto gobj_copy() -> GtkGestureLongPress*;
+  class GTKMM_API GestureLongPress : public GestureSingle
+  {
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-private:
+  public:
+    using CppObjectType = GestureLongPress;
+    using CppClassType = GestureLongPress_Class;
+    using BaseObjectType = GtkGestureLongPress;
+    using BaseClassType = GtkGestureLongPressClass;
 
+    GestureLongPress (const GestureLongPress&) = delete;
+    auto
+    operator= (const GestureLongPress&) -> GestureLongPress& = delete;
 
-protected:
-  /** Constructs a Gesture that recognizes long presses.
-   */
-  GestureLongPress();
+  private:
+    friend class GestureLongPress_Class;
+    static CppClassType gesturelongpress_class_;
 
-public:
-  /** Creates a Gesture that recognizes long presses.
-   *
-   * @newin{3,14}
-   *
-   * @return A RefPtr to a new GestureLongPress.
-   */
+  protected:
+    explicit GestureLongPress (const Glib::ConstructParams& construct_params);
+    explicit GestureLongPress (GtkGestureLongPress* castitem);
 
-  static auto create() -> Glib::RefPtr<GestureLongPress>;
+#endif
 
+  public:
+    GestureLongPress (GestureLongPress&& src) noexcept;
+    auto
+    operator= (GestureLongPress&& src) noexcept -> GestureLongPress&;
 
-  /** Applies the given delay factor.
-   *
-   * The default long press time will be multiplied by this value.
-   * Valid values are in the range [0.5..2.0].
-   *
-   * @param delay_factor The delay factor to apply.
-   */
-  void set_delay_factor(double delay_factor);
+    ~GestureLongPress () noexcept override;
 
-  /** Returns the delay factor.
-   *
-   * @return The delay factor.
-   */
-  auto get_delay_factor() const -> double;
+    static auto
+    get_type () -> GType G_GNUC_CONST;
 
-  // no_default_handler because GtkGestureLongPressClass is private.
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-  /**
-   * @par Slot Prototype:
-   * <tt>void on_my_%pressed(double x, double y)</tt>
-   *
-   * Flags: Run Last
-   *
-   * Emitted whenever a press goes unmoved/unreleased longer than
-   * what the GTK defaults tell.
-   *
-   * @param x The X coordinate where the press happened, relative to the widget allocation.
-   * @param y The Y coordinate where the press happened, relative to the widget allocation.
-   */
+    static auto
+    get_base_type () -> GType G_GNUC_CONST;
+#endif
 
-  auto signal_pressed() -> Glib::SignalProxy<void(double, double)>;
+    auto
+    gobj () -> GtkGestureLongPress*
+    {
+      return reinterpret_cast<GtkGestureLongPress*> (gobject_);
+    }
 
+    auto
+    gobj () const -> const GtkGestureLongPress*
+    {
+      return reinterpret_cast<GtkGestureLongPress*> (gobject_);
+    }
 
-  /**
-   * @par Slot Prototype:
-   * <tt>void on_my_%cancelled()</tt>
-   *
-   * Flags: Run Last
-   *
-   * Emitted whenever a press moved too far, or was released
-   * before signal_pressed() happened.
-   */
+    auto
+    gobj_copy () -> GtkGestureLongPress*;
 
-  auto signal_cancelled() -> Glib::SignalProxy<void()>;
+  private:
+  protected:
+    GestureLongPress ();
 
+  public:
+    static auto
+    create () -> Glib::RefPtr<GestureLongPress>;
 
-  /** Factor by which to modify the default timeout.
-   *
-   * @newin{3,20}
-   *
-   * Default value: 1
-   *
-   * @return A PropertyProxy that allows you to get or set the value of the property,
-   * or receive notification when the value of the property changes.
-   */
-  auto property_delay_factor() -> Glib::PropertyProxy< double > ;
+    void
+    set_delay_factor (double delay_factor);
 
-/** Factor by which to modify the default timeout.
-   *
-   * @newin{3,20}
-   *
-   * Default value: 1
-   *
-   * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
-   * or receive notification when the value of the property changes.
-   */
-  auto property_delay_factor() const -> Glib::PropertyProxy_ReadOnly< double >;
+    auto
+    get_delay_factor () const -> double;
 
+    auto
+    signal_pressed () -> Glib::SignalProxy<void (double, double)>;
 
-  // GestureLongPress has no methods
+    auto
+    signal_cancelled () -> Glib::SignalProxy<void ()>;
 
+    auto
+    property_delay_factor () -> Glib::PropertyProxy<double>;
 
-public:
+    auto
+    property_delay_factor () const -> Glib::PropertyProxy_ReadOnly<double>;
 
-public:
-  //C++ methods used to invoke GTK+ virtual functions:
-
-protected:
-  //GTK+ Virtual Functions (override these to change behaviour):
-
-  //Default Signal Handlers::
-
-
-};
+  public:
+  public:
+  protected:
+  };
 
 } // namespace Gtk
 
-
 namespace Glib
 {
-  /** A Glib::wrap() method for this object.
-   *
-   * @param object The C instance.
-   * @param take_copy False if the result should take ownership of the C instance. True if it should take a new copy or ref.
-   * @result A C++ instance that wraps this C instance.
-   *
-   * @relates Gtk::GestureLongPress
-   */
+
   GTKMM_API
-  auto wrap(GtkGestureLongPress* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureLongPress>;
-}
+  auto
+  wrap (GtkGestureLongPress* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureLongPress>;
+} // namespace Glib
 
-
-#endif /* _GTKMM_GESTURELONGPRESS_H */
-
+#endif

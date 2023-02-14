@@ -1,123 +1,76 @@
 #ifndef _GLIBMM_UTILITY_H
 #define _GLIBMM_UTILITY_H
 
-/* Copyright 2002 The gtkmm Development Team
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
- */
-
+#include <glib.h>
 #include <libmm-glib/mm-glibconfig.hxx>
 #include <libmm-glib/ustring.hxx>
-#include <glib.h>
-#include <memory> //For std::unique_ptr.
+#include <memory>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 namespace Glib
 {
 
-// These are used by gmmproc-generated type conversions:
+  template <typename T>
+  auto
+  make_unique_ptr_gfree (T* p) -> std::unique_ptr<T[], decltype (&g_free)>
+  {
+    return std::unique_ptr<T[], decltype (&g_free)> (p, &g_free);
+  }
 
-/** Helper to deal with memory allocated
- * by GLib functions in an exception-safe manner.
- *
- * This just creates a std::unique_ptr that uses g_free() as its deleter.
- */
-template <typename T>
-auto
-make_unique_ptr_gfree(T* p) -> std::unique_ptr<T[], decltype(&g_free)>
-{
-  return std::unique_ptr<T[], decltype(&g_free)>(p, &g_free);
-}
+  inline auto
+  convert_const_gchar_ptr_to_ustring (const char* str) -> Glib::ustring
+  {
+    return (str) ? Glib::ustring (str) : Glib::ustring ();
+  }
 
-// Convert const gchar* to ustring, while treating NULL as empty string.
-inline auto
-convert_const_gchar_ptr_to_ustring(const char* str) -> Glib::ustring
-{
-  return (str) ? Glib::ustring(str) : Glib::ustring();
-}
+  inline auto
+  convert_const_gchar_ptr_to_stdstring (const char* str) -> std::string
+  {
+    return (str) ? std::string (str) : std::string ();
+  }
 
-// Convert const gchar* to std::string, while treating NULL as empty string.
-inline auto
-convert_const_gchar_ptr_to_stdstring(const char* str) -> std::string
-{
-  return (str) ? std::string(str) : std::string();
-}
+  inline auto
+  convert_return_gchar_ptr_to_ustring (char* str) -> Glib::ustring
+  {
+    return (str) ? Glib::ustring (Glib::make_unique_ptr_gfree (str).get ()) :
+                   Glib::ustring ();
+  }
 
-// Convert a non-const gchar* return value to ustring, freeing it too.
-inline auto
-convert_return_gchar_ptr_to_ustring(char* str) -> Glib::ustring
-{
-  return (str) ? Glib::ustring(Glib::make_unique_ptr_gfree(str).get()) : Glib::ustring();
-}
+  inline auto
+  convert_return_gchar_ptr_to_stdstring (char* str) -> std::string
+  {
+    return (str) ? std::string (Glib::make_unique_ptr_gfree (str).get ()) :
+                   std::string ();
+  }
 
-// Convert a non-const gchar* return value to std::string, freeing it too.
-inline auto
-convert_return_gchar_ptr_to_stdstring(char* str) -> std::string
-{
-  return (str) ? std::string(Glib::make_unique_ptr_gfree(str).get()) : std::string();
-}
+  template <typename T>
+  inline auto
+  c_str_or_nullptr (const T& str) -> const char*
+  {
+    return str.empty () ? nullptr : str.c_str ();
+  }
 
-/** Get a pointer to the C style string in a std::string or Glib::ustring.
- * If the string is empty, a nullptr is returned.
- */
-template <typename T>
-inline auto
-c_str_or_nullptr(const T& str) -> const char*
-{
-  return str.empty() ? nullptr : str.c_str();
-}
+  GLIBMM_API
+  void
+  append_canonical_typename (std::string& dest, const char* type_name);
 
-// Append type_name to dest, while replacing special characters with '+'.
-GLIBMM_API
-void append_canonical_typename(std::string& dest, const char* type_name);
+  template <typename T>
+  void
+  destroy_notify_delete (void* data)
+  {
+    delete static_cast<T*> (data);
+  }
 
-// Delete data referred to by a void*.
-// Instantiations can be used as destroy callbacks in glib functions
-// that take a GDestroyNotify parameter, such as g_object_set_qdata_full()
-// and g_option_group_set_translate_func().
-template <typename T>
-void
-destroy_notify_delete(void* data)
-{
-  delete static_cast<T*>(data);
-}
-
-// Conversion between different types of function pointers with
-// reinterpret_cast can make gcc8 print a warning.
-// https://github.com/libsigcplusplus/libsigcplusplus/issues/1
-// https://github.com/libsigcplusplus/libsigcplusplus/issues/8
-/** Returns the supplied function pointer, cast to a pointer to another function type.
- *
- * When a single reinterpret_cast between function pointer types causes a
- * compiler warning or error, this function may work.
- *
- * Qualify calls with namespace names: sigc::internal::function_pointer_cast<>().
- * If you don't, indirect calls from another library that also contains a
- * function_pointer_cast<>() (perhaps glibmm), can be ambiguous due to ADL
- * (argument-dependent lookup).
- */
-template <typename T_out, typename T_in>
-inline auto function_pointer_cast(T_in in) -> T_out
-{
-  // The double reinterpret_cast suppresses a warning from gcc8 with the
-  // -Wcast-function-type option.
-  return reinterpret_cast<T_out>(reinterpret_cast<void (*)()>(in));
-}
+  template <typename T_out, typename T_in>
+  inline auto
+  function_pointer_cast (T_in in) -> T_out
+  {
+    return reinterpret_cast<T_out> (reinterpret_cast<void (*) ()> (in));
+  }
 
 } // namespace Glib
 
-#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+#endif
 
-#endif /* _GLIBMM_UTILITY_H */
+#endif

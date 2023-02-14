@@ -2,375 +2,174 @@
 #ifndef _GIOMM_PERMISSION_H
 #define _GIOMM_PERMISSION_H
 
-
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
-/* Copyright (C) 2014 The giomm Development Team
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-#include <libmm-glib/object.hxx>
-#include <libmm-gio/cancellable.hxx>
 #include <libmm-gio/asyncresult.hxx>
-
+#include <libmm-gio/cancellable.hxx>
+#include <libmm-glib/object.hxx>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GPermission = struct _GPermission;
 using GPermissionClass = struct _GPermissionClass;
-#endif /* DOXYGEN_SHOULD_SKIP_THIS */
-
-
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
-{ class GIOMM_API Permission_Class; } // namespace Gio
-#endif //DOXYGEN_SHOULD_SKIP_THIS
-
-namespace Gio
-{
-
-/** An object representing the permission to perform a certain action.
- *
- * A Permission represents the status of the caller's permission to
- * perform a certain action.
- *
- * You can query if the action is currently allowed and if it is
- * possible to acquire the permission so that the action will be allowed
- * in the future.
- *
- * There is also an API to actually acquire the permission and one to
- * release it.
- *
- * As an example, a Permission might represent the ability for the
- * user to write to a Settings object.  This Permission object could
- * then be used to decide if it is appropriate to show a "Click here to
- * unlock" button in a dialog and to provide the mechanism to invoke
- * when that button is clicked.
- *
- * @newin{2,42}
- */
-
-class GIOMM_API Permission : public Glib::Object
-{
-
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-
-public:
-  using CppObjectType = Permission;
-  using CppClassType = Permission_Class;
-  using BaseObjectType = GPermission;
-  using BaseClassType = GPermissionClass;
-
-  // noncopyable
-  Permission(const Permission&) = delete;
-  auto operator=(const Permission&) -> Permission& = delete;
-
-private:  friend class Permission_Class;
-  static CppClassType permission_class_;
-
-protected:
-  explicit Permission(const Glib::ConstructParams& construct_params);
-  explicit Permission(GPermission* castitem);
-
-#endif /* DOXYGEN_SHOULD_SKIP_THIS */
-
-public:
-
-  Permission(Permission&& src) noexcept;
-  auto operator=(Permission&& src) noexcept -> Permission&;
-
-  ~Permission() noexcept override;
-
-  /** Get the GType for this class, for use with the underlying GObject type system.
-   */
-  static auto get_type() -> GType      G_GNUC_CONST;
-
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-
-
-  static auto get_base_type() -> GType G_GNUC_CONST;
 #endif
 
-  ///Provides access to the underlying C GObject.
-  auto       gobj() -> GPermission*       { return reinterpret_cast<GPermission*>(gobject_); }
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+namespace Gio
+{
+  class GIOMM_API Permission_Class;
+}
+#endif
 
-  ///Provides access to the underlying C GObject.
-  auto gobj() const -> const GPermission* { return reinterpret_cast<GPermission*>(gobject_); }
+namespace Gio
+{
 
-  ///Provides access to the underlying C instance. The caller is responsible for unrefing it. Use when directly setting fields in structs.
-  auto gobj_copy() -> GPermission*;
+  class GIOMM_API Permission : public Glib::Object
+  {
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-private:
+  public:
+    using CppObjectType = Permission;
+    using CppClassType = Permission_Class;
+    using BaseObjectType = GPermission;
+    using BaseClassType = GPermissionClass;
 
+    Permission (const Permission&) = delete;
+    auto
+    operator= (const Permission&) -> Permission& = delete;
 
-public:
+  private:
+    friend class Permission_Class;
+    static CppClassType permission_class_;
 
+  protected:
+    explicit Permission (const Glib::ConstructParams& construct_params);
+    explicit Permission (GPermission* castitem);
 
-  /** Attempts to acquire the permission represented by @a permission.
-   *
-   * The precise method by which this happens depends on the permission
-   * and the underlying authentication mechanism.  A simple example is
-   * that a dialog may appear asking the user to enter their password.
-   *
-   * You should check with g_permission_get_can_acquire() before calling
-   * this function.
-   *
-   * If the permission is acquired then <tt>true</tt> is returned.  Otherwise,
-   * <tt>false</tt> is returned and @a error is set appropriately.
-   *
-   * This call is blocking, likely for a very long time (in the case that
-   * user interaction is required).  See g_permission_acquire_async() for
-   * the non-blocking version.
-   *
-   * @newin{2,26}
-   *
-   * @param cancellable A Cancellable, or <tt>nullptr</tt>.
-   * @return <tt>true</tt> if the permission was successfully acquired.
-   *
-   * @throws Glib::Error
-   */
-  auto acquire(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+#endif
 
-  /// A acquire() convenience overload.
-  auto acquire() -> bool;
+  public:
+    Permission (Permission&& src) noexcept;
+    auto
+    operator= (Permission&& src) noexcept -> Permission&;
 
-  /** Attempts to acquire the permission represented by @a permission.
-   *
-   * This is the first half of the asynchronous version of
-   * g_permission_acquire().
-   *
-   * @newin{2,26}
-   *
-   * @param cancellable A Cancellable, or <tt>nullptr</tt>.
-   * @param slot The SlotAsyncReady to call when done.
-   */
-  void acquire_async(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable);
+    ~Permission () noexcept override;
 
-  /// A acquire_async() convenience overload.
-  void acquire_async(const SlotAsyncReady& slot);
+    static auto
+    get_type () -> GType G_GNUC_CONST;
 
-  /** Collects the result of attempting to acquire the permission
-   * represented by @a permission.
-   *
-   * This is the second half of the asynchronous version of
-   * g_permission_acquire().
-   *
-   * @newin{2,26}
-   *
-   * @param result The AsyncResult given to the SlotAsyncReady.
-   * @return <tt>true</tt> if the permission was successfully acquired.
-   *
-   * @throws Glib::Error
-   */
-  auto acquire_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
 
+    static auto
+    get_base_type () -> GType G_GNUC_CONST;
+#endif
 
-  /** Attempts to release the permission represented by @a permission.
-   *
-   * The precise method by which this happens depends on the permission
-   * and the underlying authentication mechanism.  In most cases the
-   * permission will be dropped immediately without further action.
-   *
-   * You should check with g_permission_get_can_release() before calling
-   * this function.
-   *
-   * If the permission is released then <tt>true</tt> is returned.  Otherwise,
-   * <tt>false</tt> is returned and @a error is set appropriately.
-   *
-   * This call is blocking, likely for a very long time (in the case that
-   * user interaction is required).  See g_permission_release_async() for
-   * the non-blocking version.
-   *
-   * @newin{2,26}
-   *
-   * @param cancellable A Cancellable, or <tt>nullptr</tt>.
-   * @return <tt>true</tt> if the permission was successfully released.
-   *
-   * @throws Glib::Error
-   */
-  auto release(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    auto
+    gobj () -> GPermission*
+    {
+      return reinterpret_cast<GPermission*> (gobject_);
+    }
 
-  /// A release() convenience overload.
-  auto release() -> bool;
+    auto
+    gobj () const -> const GPermission*
+    {
+      return reinterpret_cast<GPermission*> (gobject_);
+    }
 
-  /** Attempts to release the permission represented by @a permission.
-   *
-   * This is the first half of the asynchronous version of
-   * g_permission_release().
-   *
-   * @newin{2,26}
-   *
-   * @param cancellable A Cancellable, or <tt>nullptr</tt>.
-   * @param slot The SlotAsyncReady to call when done.
-   */
-  void release_async(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable);
+    auto
+    gobj_copy () -> GPermission*;
 
-  /// A release_async() convenience overload.
-  void release_async(const SlotAsyncReady& slot);
+  private:
+  public:
+    auto
+    acquire (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
-  /** Collects the result of attempting to release the permission
-   * represented by @a permission.
-   *
-   * This is the second half of the asynchronous version of
-   * g_permission_release().
-   *
-   * @newin{2,26}
-   *
-   * @param result The AsyncResult given to the SlotAsyncReady.
-   * @return <tt>true</tt> if the permission was successfully released.
-   *
-   * @throws Glib::Error
-   */
-  auto release_finish(const Glib::RefPtr<AsyncResult>& result) -> bool;
+    auto
+    acquire () -> bool;
 
+    void
+    acquire_async (const SlotAsyncReady& slot,
+                   const Glib::RefPtr<Cancellable>& cancellable);
 
-  /** Gets the value of the 'allowed' property.  This property is <tt>true</tt> if
-   * the caller currently has permission to perform the action that
-   *  @a permission represents the permission to perform.
-   *
-   * @newin{2,26}
-   *
-   * @return The value of the 'allowed' property.
-   */
-  auto get_allowed() const -> bool;
+    void
+    acquire_async (const SlotAsyncReady& slot);
 
-  /** Gets the value of the 'can-acquire' property.  This property is <tt>true</tt>
-   * if it is generally possible to acquire the permission by calling
-   * g_permission_acquire().
-   *
-   * @newin{2,26}
-   *
-   * @return The value of the 'can-acquire' property.
-   */
-  auto get_can_acquire() const -> bool;
+    auto
+    acquire_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
 
-  /** Gets the value of the 'can-release' property.  This property is <tt>true</tt>
-   * if it is generally possible to release the permission by calling
-   * g_permission_release().
-   *
-   * @newin{2,26}
-   *
-   * @return The value of the 'can-release' property.
-   */
-  auto get_can_release() const -> bool;
+    auto
+    release (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
-  /** <tt>true</tt> if the caller currently has permission to perform the action that
-   *  @a permission represents the permission to perform.
-   *
-   * Default value: <tt>false</tt>
-   *
-   * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
-   * or receive notification when the value of the property changes.
-   */
-  auto property_allowed() const -> Glib::PropertyProxy_ReadOnly< bool >;
+    auto
+    release () -> bool;
 
+    void
+    release_async (const SlotAsyncReady& slot,
+                   const Glib::RefPtr<Cancellable>& cancellable);
 
-  /** <tt>true</tt> if it is generally possible to acquire the permission by calling
-   * g_permission_acquire().
-   *
-   * Default value: <tt>false</tt>
-   *
-   * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
-   * or receive notification when the value of the property changes.
-   */
-  auto property_can_acquire() const -> Glib::PropertyProxy_ReadOnly< bool >;
+    void
+    release_async (const SlotAsyncReady& slot);
 
+    auto
+    release_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
 
-  /** <tt>true</tt> if it is generally possible to release the permission by calling
-   * g_permission_release().
-   *
-   * Default value: <tt>false</tt>
-   *
-   * @return A PropertyProxy_ReadOnly that allows you to get the value of the property,
-   * or receive notification when the value of the property changes.
-   */
-  auto property_can_release() const -> Glib::PropertyProxy_ReadOnly< bool >;
+    auto
+    get_allowed () const -> bool;
 
+    auto
+    get_can_acquire () const -> bool;
 
-protected:
+    auto
+    get_can_release () const -> bool;
 
-  Permission();
+    auto
+    property_allowed () const -> Glib::PropertyProxy_ReadOnly<bool>;
 
-// A copy is needed for vfuncs, i.e. Glib::wrap($3, true)
+    auto
+    property_can_acquire () const -> Glib::PropertyProxy_ReadOnly<bool>;
 
+    auto
+    property_can_release () const -> Glib::PropertyProxy_ReadOnly<bool>;
 
-  /// @throws Glib::Error.
-  virtual auto acquire_vfunc(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+  protected:
+    Permission ();
 
-    virtual void acquire_async_vfunc(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable);
+    virtual auto
+    acquire_vfunc (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
-  /// @throws Glib::Error.
-  virtual auto acquire_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> bool;
+    virtual void
+    acquire_async_vfunc (const SlotAsyncReady& slot,
+                         const Glib::RefPtr<Cancellable>& cancellable);
 
+    virtual auto
+    acquire_finish_vfunc (const Glib::RefPtr<AsyncResult>& result) -> bool;
 
-  /// @throws Glib::Error.
-  virtual auto release_vfunc(const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    virtual auto
+    release_vfunc (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
-    virtual void release_async_vfunc(const SlotAsyncReady& slot, const Glib::RefPtr<Cancellable>& cancellable);
+    virtual void
+    release_async_vfunc (const SlotAsyncReady& slot,
+                         const Glib::RefPtr<Cancellable>& cancellable);
 
-  /// @throws Glib::Error.
-  virtual auto release_finish_vfunc(const Glib::RefPtr<AsyncResult>& result) -> bool;
+    virtual auto
+    release_finish_vfunc (const Glib::RefPtr<AsyncResult>& result) -> bool;
 
+    void
+    impl_update (bool allowed, bool can_acquire, bool can_release);
 
-  // You should never call this function except from a Gio::Permission implementation.
-
-  /** This function is called by the Permission implementation to update
-   * the properties of the permission.  You should never call this
-   * function except from a Permission implementation.
-   *
-   * GObject notify signals are generated, as appropriate.
-   *
-   * @newin{2,26}
-   *
-   * @param allowed The new value for the 'allowed' property.
-   * @param can_acquire The new value for the 'can-acquire' property.
-   * @param can_release The new value for the 'can-release' property.
-   */
-  void impl_update(bool allowed, bool can_acquire, bool can_release);
-
-
-public:
-
-public:
-  //C++ methods used to invoke GTK+ virtual functions:
-
-protected:
-  //GTK+ Virtual Functions (override these to change behaviour):
-
-  //Default Signal Handlers::
-
-
-};
+  public:
+  public:
+  protected:
+  };
 
 } // namespace Gio
 
-
 namespace Glib
 {
-  /** A Glib::wrap() method for this object.
-   *
-   * @param object The C instance.
-   * @param take_copy False if the result should take ownership of the C instance. True if it should take a new copy or ref.
-   * @result A C++ instance that wraps this C instance.
-   *
-   * @relates Gio::Permission
-   */
+
   GIOMM_API
-  auto wrap(GPermission* object, bool take_copy = false) -> Glib::RefPtr<Gio::Permission>;
-}
+  auto
+  wrap (GPermission* object, bool take_copy = false) -> Glib::RefPtr<Gio::Permission>;
+} // namespace Glib
 
-
-#endif /* _GIOMM_PERMISSION_H */
-
+#endif

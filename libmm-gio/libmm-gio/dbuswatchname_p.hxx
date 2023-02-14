@@ -2,6 +2,4 @@
 #ifndef _GIOMM_DBUSWATCHNAME_P_H
 #define _GIOMM_DBUSWATCHNAME_P_H
 
-
-#endif /* _GIOMM_DBUSWATCHNAME_P_H */
-
+#endif

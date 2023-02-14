@@ -1,27 +1,24 @@
 #include <sstream>
 #include <stdexcept>
 
-#include <libmm-pango/version.hxx>
 #include <libmm-pango/mm-pango.hxx>
+#include <libmm-pango/version.hxx>
 
 #undef NDEBUG
 #include <cassert>
 
-int main ()
+int
+main ()
 {
   using namespace std;
   using namespace mm_pango;
 
-  // Basics.
-  //
   {
     ostringstream o;
     say_hello (o, "World");
     assert (o.str () == "Hello, World!\n");
   }
 
-  // Empty name.
-  //
   try
   {
     ostringstream o;

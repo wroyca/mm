@@ -2,7 +2,6 @@
 #ifndef _GTKMM_VOLUMEBUTTON_P_H
 #define _GTKMM_VOLUMEBUTTON_P_H
 
-
 #include <libmm-gtk/scalebutton_p.hxx>
 
 #include <libmm-glib/class.hxx>
@@ -10,38 +9,31 @@
 namespace Gtk
 {
 
-class GTKMM_API VolumeButton_Class : public Glib::Class
-{
-public:
+  class GTKMM_API VolumeButton_Class : public Glib::Class
+  {
+  public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  using CppObjectType = VolumeButton;
-  using BaseObjectType = GtkVolumeButton;
-  using BaseClassType = GtkVolumeButtonClass;
-  using CppClassParent = ScaleButton_Class;
-  using BaseClassParent = GtkScaleButtonClass;
+    using CppObjectType = VolumeButton;
+    using BaseObjectType = GtkVolumeButton;
+    using BaseClassType = GtkVolumeButtonClass;
+    using CppClassParent = ScaleButton_Class;
+    using BaseClassParent = GtkScaleButtonClass;
 
-  friend class VolumeButton;
-#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+    friend class VolumeButton;
+#endif
 
-  auto init () -> const Class&;
+    auto
+    init () -> const Class&;
 
+    static auto
+    class_init_function (void* g_class, void* class_data) -> void;
 
-  static auto class_init_function (void *g_class, void *class_data) -> void;
+    static auto
+    wrap_new (GObject*) -> Glib::ObjectBase*;
 
-  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
-
-protected:
-
-  //Callbacks (default signal handlers):
-  //These will call the *_impl member methods, which will then call the existing default signal callbacks, if any.
-  //You could prevent the original default signal handlers being called by overriding the *_impl method.
-
-  //Callbacks (virtual functions):
-};
-
+  protected:
+  };
 
 } // namespace Gtk
 
-
-#endif /* _GTKMM_VOLUMEBUTTON_P_H */
-
+#endif

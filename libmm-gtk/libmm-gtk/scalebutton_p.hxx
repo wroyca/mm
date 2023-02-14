@@ -2,7 +2,6 @@
 #ifndef _GTKMM_SCALEBUTTON_P_H
 #define _GTKMM_SCALEBUTTON_P_H
 
-
 #include <libmm-gtk/widget_p.hxx>
 
 #include <libmm-glib/class.hxx>
@@ -10,39 +9,33 @@
 namespace Gtk
 {
 
-class GTKMM_API ScaleButton_Class : public Glib::Class
-{
-public:
+  class GTKMM_API ScaleButton_Class : public Glib::Class
+  {
+  public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  using CppObjectType = ScaleButton;
-  using BaseObjectType = GtkScaleButton;
-  using BaseClassType = GtkScaleButtonClass;
-  using CppClassParent = Widget_Class;
-  using BaseClassParent = GtkWidgetClass;
+    using CppObjectType = ScaleButton;
+    using BaseObjectType = GtkScaleButton;
+    using BaseClassType = GtkScaleButtonClass;
+    using CppClassParent = Widget_Class;
+    using BaseClassParent = GtkWidgetClass;
 
-  friend class ScaleButton;
-#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+    friend class ScaleButton;
+#endif
 
-  auto init () -> const Class&;
+    auto
+    init () -> const Class&;
 
+    static auto
+    class_init_function (void* g_class, void* class_data) -> void;
 
-  static auto class_init_function (void *g_class, void *class_data) -> void;
+    static auto
+    wrap_new (GObject*) -> Glib::ObjectBase*;
 
-  static auto wrap_new (GObject *) -> Glib::ObjectBase*;
-
-protected:
-
-  //Callbacks (default signal handlers):
-  //These will call the *_impl member methods, which will then call the existing default signal callbacks, if any.
-  //You could prevent the original default signal handlers being called by overriding the *_impl method.
-  static auto value_changed_callback (GtkScaleButton *self, gdouble p0) -> void;
-
-  //Callbacks (virtual functions):
-};
-
+  protected:
+    static auto
+    value_changed_callback (GtkScaleButton* self, gdouble p0) -> void;
+  };
 
 } // namespace Gtk
 
-
-#endif /* _GTKMM_SCALEBUTTON_P_H */
-
+#endif

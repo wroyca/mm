@@ -2,6 +2,4 @@
 #ifndef _PANGOMM_GLYPHITEM_P_H
 #define _PANGOMM_GLYPHITEM_P_H
 
-
-#endif /* _PANGOMM_GLYPHITEM_P_H */
-
+#endif

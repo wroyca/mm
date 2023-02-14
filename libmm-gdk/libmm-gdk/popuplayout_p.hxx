@@ -2,6 +2,4 @@
 #ifndef _GDKMM_POPUPLAYOUT_P_H
 #define _GDKMM_POPUPLAYOUT_P_H
 
-
-#endif /* _GDKMM_POPUPLAYOUT_P_H */
-
+#endif

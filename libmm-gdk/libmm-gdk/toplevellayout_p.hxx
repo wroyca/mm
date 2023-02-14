@@ -2,6 +2,4 @@
 #ifndef _GDKMM_TOPLEVELLAYOUT_P_H
 #define _GDKMM_TOPLEVELLAYOUT_P_H
 
-
-#endif /* _GDKMM_TOPLEVELLAYOUT_P_H */
-
+#endif

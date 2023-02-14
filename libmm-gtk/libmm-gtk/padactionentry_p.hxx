@@ -2,6 +2,4 @@
 #ifndef _GTKMM_PADACTIONENTRY_P_H
 #define _GTKMM_PADACTIONENTRY_P_H
 
-
-#endif /* _GTKMM_PADACTIONENTRY_P_H */
-
+#endif

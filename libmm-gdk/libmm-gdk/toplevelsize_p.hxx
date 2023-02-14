@@ -2,6 +2,4 @@
 #ifndef _GDKMM_TOPLEVELSIZE_P_H
 #define _GDKMM_TOPLEVELSIZE_P_H
 
-
-#endif /* _GDKMM_TOPLEVELSIZE_P_H */
-
+#endif

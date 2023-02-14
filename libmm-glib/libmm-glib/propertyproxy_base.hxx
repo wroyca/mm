@@ -1,112 +1,99 @@
 #ifndef _GLIBMM_PROPERTYPROXY_BASE_H
 #define _GLIBMM_PROPERTYPROXY_BASE_H
 
-/* propertyproxy_base.h
- *
- * Copyright 2002 The gtkmm Development Team
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 #include <libmm-glib/mm-glibconfig.hxx>
-#include <libmm-glib/value.hxx>
 #include <libmm-glib/signalproxy.hxx>
+#include <libmm-glib/value.hxx>
 
 namespace Glib
 {
 
-class GLIBMM_API ObjectBase;
+  class GLIBMM_API ObjectBase;
 
-/// Use the connect() method, with sigc::ptr_fun() or sigc::mem_fun() to connect signals to signal
-/// handlers.
-class GLIBMM_API SignalProxyProperty : public SignalProxyBase
-{
-public:
-  friend class PropertyProxy_Base;
+  class GLIBMM_API SignalProxyProperty : public SignalProxyBase
+  {
+  public:
+    friend class PropertyProxy_Base;
 
-  SignalProxyProperty(Glib::ObjectBase* obj, const gchar* property_name);
-  ~SignalProxyProperty() noexcept;
+    SignalProxyProperty (Glib::ObjectBase* obj, const gchar* property_name);
+    ~SignalProxyProperty () noexcept;
 
-  using SlotType = sigc::slot<void()>;
-  auto connect(const SlotType& slot) -> sigc::connection;
-  /** @newin{2,48}
-   */
-  auto connect(SlotType&& slot) -> sigc::connection;
+    using SlotType = sigc::slot<void ()>;
+    auto
+    connect (const SlotType& slot) -> sigc::connection;
 
-protected:
-  const char* property_name_; // Should be a static string literal.
+    auto
+    connect (SlotType&& slot) -> sigc::connection;
 
-private:
-  auto operator=(const SignalProxyProperty&) -> SignalProxyProperty&; // not implemented
-};
+  protected:
+    const char* property_name_;
 
-class GLIBMM_API PropertyProxy_Base
-{
-public:
-  PropertyProxy_Base(ObjectBase* obj, const char* property_name);
-  PropertyProxy_Base(const PropertyProxy_Base& other);
+  private:
+    auto
+    operator= (const SignalProxyProperty&) -> SignalProxyProperty&;
+  };
 
-  /// This signal will be emitted when the property changes.
-  auto signal_changed() -> SignalProxyProperty;
+  class GLIBMM_API PropertyProxy_Base
+  {
+  public:
+    PropertyProxy_Base (ObjectBase* obj, const char* property_name);
+    PropertyProxy_Base (const PropertyProxy_Base& other);
 
-  auto get_object() const -> ObjectBase* { return obj_; }
-  auto get_name() const -> const char* { return property_name_; }
+    auto
+    signal_changed () -> SignalProxyProperty;
 
-protected:
-  void set_property_(const Glib::ValueBase& value);
-  void get_property_(Glib::ValueBase& value) const;
-  void reset_property_();
+    auto
+    get_object () const -> ObjectBase*
+    {
+      return obj_;
+    }
 
-  ObjectBase* obj_; // The C++ wrapper instance of which this PropertyProxy is a member.
+    auto
+    get_name () const -> const char*
+    {
+      return property_name_;
+    }
 
-  const char* property_name_; // Should be a static string literal.
+  protected:
+    void
+    set_property_ (const Glib::ValueBase& value);
+    void
+    get_property_ (Glib::ValueBase& value) const;
+    void
+    reset_property_ ();
 
-private:
-  // Declared as private, but not implemented to prevent any automatically generated implementation.
-  auto operator=(const PropertyProxy_Base&) -> PropertyProxy_Base&;
-};
+    ObjectBase* obj_;
+
+    const char* property_name_;
+
+  private:
+    auto
+    operator= (const PropertyProxy_Base&) -> PropertyProxy_Base&;
+  };
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-class GLIBMM_API SignalProxyProperty;
+  class GLIBMM_API SignalProxyProperty;
 
-/** PropertyProxyConnectionNode is a connection node for use with SignalProxyProperty.
-  * It's like SignalProxyConnectionNode, but it contains the property name too.
-  * This is not public API.
-  */
-class GLIBMM_API PropertyProxyConnectionNode : public SignalProxyConnectionNode
-{
-public:
-  friend class SignalProxyProperty;
+  class GLIBMM_API PropertyProxyConnectionNode
+    : public SignalProxyConnectionNode
+  {
+  public:
+    friend class SignalProxyProperty;
 
-  PropertyProxyConnectionNode(const sigc::slot_base& slot, GObject* gobject);
-  /** @newin{2,48}
-   */
-  PropertyProxyConnectionNode(sigc::slot_base&& slot, GObject* gobject);
+    PropertyProxyConnectionNode (const sigc::slot_base& slot, GObject* gobject);
 
-  /** Connect callback() to the notify::property_name signal.
-   * It invokes the slot, supplied in the constructor.
-   *
-   * @newin{2,48}
-   */
-  auto connect_changed(const Glib::ustring& property_name) -> sigc::connection;
+    PropertyProxyConnectionNode (sigc::slot_base&& slot, GObject* gobject);
 
-  static void callback(GObject* object, GParamSpec* pspec, gpointer data);
-};
+    auto
+    connect_changed (const Glib::ustring& property_name) -> sigc::connection;
 
-#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+    static void
+    callback (GObject* object, GParamSpec* pspec, gpointer data);
+  };
+
+#endif
 
 } // namespace Glib
 
-#endif /* _GLIBMM_PROPERTYPROXY_BASE_H */
+#endif

@@ -2,6 +2,4 @@
 #ifndef _GIOMM_DBUSADDRESS_P_H
 #define _GIOMM_DBUSADDRESS_P_H
 
-
-#endif /* _GIOMM_DBUSADDRESS_P_H */
-
+#endif

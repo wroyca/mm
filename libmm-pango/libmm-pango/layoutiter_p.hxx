@@ -2,6 +2,4 @@
 #ifndef _PANGOMM_LAYOUTITER_P_H
 #define _PANGOMM_LAYOUTITER_P_H
 
-
-#endif /* _PANGOMM_LAYOUTITER_P_H */
-
+#endif

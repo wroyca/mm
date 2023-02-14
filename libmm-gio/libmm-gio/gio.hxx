@@ -1,24 +1,6 @@
 #ifndef _GIOMM_H
 #define _GIOMM_H
 
-/*
- * Copyright (C) 2007 The giomm Development Team
- *
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 #include <libmm-glib/mm-glib.hxx>
 
 #include <libmm-gio/action.hxx>
@@ -68,7 +50,7 @@
 #include <libmm-gio/dbusutils.hxx>
 #include <libmm-gio/dbuswatchname.hxx>
 #if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
-#include <libmm-gio/desktopappinfo.hxx>
+  #include <libmm-gio/desktopappinfo.hxx>
 #endif
 #include <libmm-gio/drive.hxx>
 #include <libmm-gio/emblem.hxx>
@@ -79,7 +61,7 @@
 #include <libmm-gio/fileattributeinfo.hxx>
 #include <libmm-gio/fileattributeinfolist.hxx>
 #ifndef G_OS_WIN32
-#include <libmm-gio/filedescriptorbased.hxx>
+  #include <libmm-gio/filedescriptorbased.hxx>
 #endif
 #include <libmm-gio/fileenumerator.hxx>
 #include <libmm-gio/fileicon.hxx>
@@ -159,17 +141,17 @@
 #include <libmm-gio/tlsserverconnection.hxx>
 #include <libmm-gio/tlsserverconnectionimpl.hxx>
 #ifndef G_OS_WIN32
-#include <libmm-gio/unixconnection.hxx>
-#include <libmm-gio/unixcredentialsmessage.hxx>
-#include <libmm-gio/unixfdlist.hxx>
-#include <libmm-gio/unixfdmessage.hxx>
-#include <libmm-gio/unixinputstream.hxx>
-#include <libmm-gio/unixoutputstream.hxx>
-#include <libmm-gio/unixsocketaddress.hxx>
+  #include <libmm-gio/unixconnection.hxx>
+  #include <libmm-gio/unixcredentialsmessage.hxx>
+  #include <libmm-gio/unixfdlist.hxx>
+  #include <libmm-gio/unixfdmessage.hxx>
+  #include <libmm-gio/unixinputstream.hxx>
+  #include <libmm-gio/unixoutputstream.hxx>
+  #include <libmm-gio/unixsocketaddress.hxx>
 #endif
 #include <libmm-gio/volume.hxx>
 #include <libmm-gio/volumemonitor.hxx>
 #include <libmm-gio/zlibcompressor.hxx>
 #include <libmm-gio/zlibdecompressor.hxx>
 
-#endif /* #ifndef _GIOMM_H */
+#endif

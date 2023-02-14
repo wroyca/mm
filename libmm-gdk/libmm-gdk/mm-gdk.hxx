@@ -4,8 +4,8 @@
 
 #include <libmm-gdk/applaunchcontext.hxx>
 #include <libmm-gdk/cairocontext.hxx>
-#include <libmm-gdk/contentformatsbuilder.hxx>
 #include <libmm-gdk/clipboard.hxx>
+#include <libmm-gdk/contentformatsbuilder.hxx>
 #include <libmm-gdk/cursor.hxx>
 #include <libmm-gdk/devicepad.hxx>
 #include <libmm-gdk/devicetool.hxx>
