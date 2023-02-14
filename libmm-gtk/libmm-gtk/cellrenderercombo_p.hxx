@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GTKMM_CELLRENDERERCOMBO_P_H
 #define _GTKMM_CELLRENDERERCOMBO_P_H

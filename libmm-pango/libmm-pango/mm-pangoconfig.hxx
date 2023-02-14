@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.0-or-later
 
 #ifndef PANGOMM_PANGOMMCONFIG_H_INCLUDED
 #define PANGOMM_PANGOMMCONFIG_H_INCLUDED

@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 typedef struct _GtkBuilder GtkBuilder;
 typedef struct _GtkBuildableParser GtkBuildableParser;

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: LGPL-2.0-or-later
+
 #include <libmm-glib/mm-glib.hxx>
 
 #include <libmm-pango/attributes.hxx>

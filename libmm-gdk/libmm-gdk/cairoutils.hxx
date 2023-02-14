@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GDKMM_CAIROUTILS_H
 #define _GDKMM_CAIROUTILS_H

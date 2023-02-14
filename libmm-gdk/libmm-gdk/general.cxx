@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #include <gdk/gdk.h>
 #include <libmm-gdk/cairoutils.hxx>

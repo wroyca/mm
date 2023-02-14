@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #include <libmm-gdk/wrap_init.hxx>
 #include <libmm-gio/init.hxx>

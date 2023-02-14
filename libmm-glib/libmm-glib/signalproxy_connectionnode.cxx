@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #include <libmm-glib/object.hxx>
 #include <libmm-glib/signalproxy_connectionnode.hxx>

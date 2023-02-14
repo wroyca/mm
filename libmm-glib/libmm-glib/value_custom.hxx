@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GLIBMM_VALUE_CUSTOM_H
 #define _GLIBMM_VALUE_CUSTOM_H

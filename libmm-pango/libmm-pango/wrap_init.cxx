@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.0-or-later
 
 #define GLIBMM_INCLUDED_FROM_WRAP_INIT_CC
 #include <libmm-glib/error.hxx>

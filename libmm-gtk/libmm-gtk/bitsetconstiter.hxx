@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
+
 #ifndef _GTKMM_BITSETCONSTITER_H
 #define _GTKMM_BITSETCONSTITER_H
 

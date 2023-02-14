@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GDKMM_DEVICETOOL_H
 #define _GDKMM_DEVICETOOL_H

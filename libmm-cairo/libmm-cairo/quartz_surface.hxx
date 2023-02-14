@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.0-or-later
 
 #ifndef __CAIROMM_QUARTZ_SURFACE_H
 #define __CAIROMM_QUARTZ_SURFACE_H

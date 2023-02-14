@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #define GLIBMM_INCLUDED_FROM_WRAP_INIT_CC
 #include <libmm-gdk/wrap_init.hxx>

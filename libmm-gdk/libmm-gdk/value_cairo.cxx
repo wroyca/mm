@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #include <cairo-gobject.h>
 #include <libmm-gdk/value_cairo.hxx>

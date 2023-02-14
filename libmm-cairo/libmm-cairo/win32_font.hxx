@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.0-or-later
 
 #ifndef __CAIROMM_WIN32_FONT_H
 #define __CAIROMM_WIN32_FONT_H

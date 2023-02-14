@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GTKMM_OVERLAY_H
 #define _GTKMM_OVERLAY_H

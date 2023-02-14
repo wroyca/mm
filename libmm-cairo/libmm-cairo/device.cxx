@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.0-or-later
 
 #include <libmm-cairo/device.hxx>
 #include <libmm-cairo/private.hxx>

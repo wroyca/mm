@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: LGPL-2.0-or-later
+
 #ifndef _CAIROMM_CONFIG_H
 #define _CAIROMM_CONFIG_H
 

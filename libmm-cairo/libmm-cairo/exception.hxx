@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.0-or-later
 
 #ifndef __CAIRO_EXCEPTION_H
 #define __CAIRO_EXCEPTION_H

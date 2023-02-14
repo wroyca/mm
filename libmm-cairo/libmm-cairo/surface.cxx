@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.0-or-later
 
 #include <libmm-cairo/private.hxx>
 #include <libmm-cairo/script.hxx>

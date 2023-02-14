@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #undef G_DISABLE_DEPRECATED
 #define GLIB_DISABLE_DEPRECATION_WARNINGS 1

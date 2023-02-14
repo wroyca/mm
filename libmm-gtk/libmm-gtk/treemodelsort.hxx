@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GTKMM_TREEMODELSORT_H
 #define _GTKMM_TREEMODELSORT_H

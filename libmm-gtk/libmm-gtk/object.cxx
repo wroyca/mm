@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #include <gtk/gtk.h>
 #include <libmm-glib/quark.hxx>

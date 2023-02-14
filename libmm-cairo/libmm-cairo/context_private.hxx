@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.0-or-later
 
 #ifndef __CAIROMM_CONTEXT_PRIVATE_H
 #define __CAIROMM_CONTEXT_PRIVATE_H

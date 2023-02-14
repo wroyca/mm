@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.0-or-later
 
 #ifndef __CAIROMM_PATH_H
 #define __CAIROMM_PATH_H

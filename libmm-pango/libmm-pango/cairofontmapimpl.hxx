@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: LGPL-2.0-or-later
+
 #ifndef _PANGO_CAIROFONTMAPIMPL_H
 #define _PANGO_CAIROFONTMAPIMPL_H
 

@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   #ifndef _GLIBMM_VALUE_H_INCLUDE_VALUE_BASICTYPES_H

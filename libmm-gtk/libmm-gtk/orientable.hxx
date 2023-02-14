@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GTKMM_ORIENTABLE_H
 #define _GTKMM_ORIENTABLE_H
